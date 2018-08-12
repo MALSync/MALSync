@@ -19,6 +19,7 @@ lib-cov
 build/Release
 
 # Dependency directories
+package-lock.json
 node_modules/
 jspm_packages/
 
@@ -42,3 +43,5 @@ jspm_packages/
 config.json
 bwd/
 Storage/
+
+dist/
