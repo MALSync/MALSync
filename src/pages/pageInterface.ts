@@ -1,4 +1,5 @@
 export interface pageInterface {
-    name: string,
-    name2?: string
+    domain: string,
+    include: Array<string>,
+    exclude?: Array<string>,
 }
