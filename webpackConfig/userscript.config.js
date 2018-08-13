@@ -1,5 +1,48 @@
 const path = require('path');
 const webpack = require("webpack");
+const wrapper = require('wrapper-webpack-plugin');
+const package = require('../package.json');
+
+const metadata = {
+  'name': package['productName'],
+  'namespace': 'https://greasyfork.org/users/92233',
+  'description': package['description'],
+  'version': package['version'],
+  'author': package['author'],
+  'grant': [
+    'GM_xmlhttpRequest',
+    'GM_getValue',
+    'GM_setValue',
+    'GM.xmlHttpRequest',
+    'GM.getValue',
+    'GM.setValue'
+  ],
+  'run-at': 'document_start',
+  'connect': '*'
+};
+
+const generateMetadataBlock = (metadata) => {
+  let block = '';
+  for (let key in metadata) {
+    if (metadata.hasOwnProperty(key)) {
+      let values = metadata[key];
+      if (values) {
+        if (!Array.isArray(values)) {
+          values = [values];
+        }
+        for (let i = 0; i < values.length; i++) {
+          block += '// @' + key + ' ' + values[i] + '\n';
+        }
+      } else {
+        block += '// @' + key + '\n';
+      }
+    }
+  }
+
+  return '// ==UserScript==\n'
+    + block
+    + '// ==/UserScript==\n\n';
+};
 
 module.exports = {
   entry: {
@@ -24,6 +67,10 @@ module.exports = {
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
+    }),
+    new wrapper({
+      test: /\.js$/,
+      header: generateMetadataBlock(metadata)
     })
   ],
   optimization: {
