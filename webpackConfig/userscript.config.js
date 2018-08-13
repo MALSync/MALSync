@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -20,6 +21,11 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, '..', 'dist')
   },
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    })
+  ],
   optimization: {
     minimize: false
   },
