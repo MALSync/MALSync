@@ -1,5 +1,7 @@
+import {pages} from "./pages/pages";
+
 function main() {
-  alert('Hello World!');
+  console.log(pages);
 }
 
 main();
