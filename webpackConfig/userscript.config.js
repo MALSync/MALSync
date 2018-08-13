@@ -2,6 +2,18 @@ const path = require('path');
 const webpack = require("webpack");
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
+const pageUrls = require('../src/pages/pageUrls');
+
+const generateIncludeExcludes = () => {
+  var include = [];
+  var exclude = [];
+  for (var key in pageUrls) {
+    var el = pageUrls[key];
+    if(typeof el.include !== "undefined") include = include.concat(el.include);
+    if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
+  }
+  return {include: include, exclude: exclude}
+}
 
 const metadata = {
   'name': package['productName'],
@@ -17,6 +29,8 @@ const metadata = {
     'GM.getValue',
     'GM.setValue'
   ],
+  'include' : generateIncludeExcludes().include,
+  'exclude' : generateIncludeExcludes().exclude,
   'run-at': 'document_start',
   'connect': '*'
 };
