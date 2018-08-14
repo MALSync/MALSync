@@ -19,7 +19,10 @@
     "build:userscript": "webpack --config webpackConfig/userscript.config.js",
     "build:webextension": "npm run build:webextension:content && npm run build:webextension:assets",
     "build:webextension:content": "webpack --config webpackConfig/webextension.content.config.js",
-    "build:webextension:assets": "node webpackConfig/webextension.assets.js"
+    "build:webextension:assets": "node webpackConfig/webextension.assets.js",
+
+    "dev:userscript": "webpack --watch --progress --config webpackConfig/userscript.config.js",
+    "dev:webextension:content": "webpack --watch --progress --config webpackConfig/webextension.content.config.js"
   },
   "dependencies": {
     "jquery": "^3.3.1"
