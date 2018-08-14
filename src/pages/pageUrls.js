@@ -7,7 +7,7 @@ module.exports = {
   },
   kissmanga: {
     match: [
-      '*://kissmanga.com/manga/*'
+      '*://kissmanga.com/Manga/*'
     ]
   }
 }
