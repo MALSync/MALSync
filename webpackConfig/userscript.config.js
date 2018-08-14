@@ -4,15 +4,15 @@ const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
 
-const generateIncludeExcludes = () => {
-  var include = [];
+const generateMatchExcludes = () => {
+  var match = [];
   var exclude = [];
   for (var key in pageUrls) {
     var el = pageUrls[key];
-    if(typeof el.include !== "undefined") include = include.concat(el.include);
+    if(typeof el.match !== "undefined") match = match.concat(el.match);
     if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
   }
-  return {include: include, exclude: exclude}
+  return {match: match, exclude: exclude}
 }
 
 const metadata = {
@@ -29,8 +29,8 @@ const metadata = {
     'GM.getValue',
     'GM.setValue'
   ],
-  'include' : generateIncludeExcludes().include,
-  'exclude' : generateIncludeExcludes().exclude,
+  'match' : generateMatchExcludes().match,
+  'exclude' : generateMatchExcludes().exclude,
   'run-at': 'document_start',
   'connect': '*'
 };

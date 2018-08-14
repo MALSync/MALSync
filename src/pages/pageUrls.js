@@ -1,13 +1,13 @@
 module.exports = {
   Kissanime: {
-    include: [
-      '/^https?:\/\/kissanime\.ru\/(Anime\/|BookmarkList)/',
-      '/^https?:\/\/kissanime\.to\/(Anime\/|BookmarkList)/'
+    match: [
+      '*://kissanime.ru/Anime/*',
+      '*://kissanime.to/Anime/*'
     ]
   },
   kissmanga: {
-    include: [
-      '/^https?:\/\/kissmanga\.com\/(manga\/|BookmarkList)/'
+    match: [
+      '*://kissmanga.com/manga/*'
     ]
   }
 }
