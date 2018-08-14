@@ -20,5 +20,8 @@
     "build:webextension": "npm run build:webextension:content && npm run build:webextension:assets",
     "build:webextension:content": "webpack --config webpackConfig/webextension.content.config.js",
     "build:webextension:assets": "node webpackConfig/webextension.assets.js"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }

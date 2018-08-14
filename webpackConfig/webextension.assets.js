@@ -28,6 +28,7 @@ const generateManifest = () => {
       {
         'matches': generateMatchExcludes().match,
         'js': [
+          'vendor/jquery.min.js',
           'content-script.js'
         ],
         "run_at": "document_start"
@@ -41,6 +42,13 @@ const generateManifest = () => {
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
 
   fs.writeFile(path.join(__dirname, '../dist/webextension/manifest.json'), generateManifest(), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  extra.copy(path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js'), path.join(__dirname, '../dist/webextension/vendor/jquery.min.js'), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
