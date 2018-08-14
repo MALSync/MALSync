@@ -1,7 +1,12 @@
-import {pages} from "./pages/pages";
+import {syncPage} from "./pages/syncPage";
 
 function main() {
-  console.log(pages);
+  var page = new syncPage(window.location.href);
+  if (page.page != null) {
+    alert(page.page.domain);
+  }else{
+    alert('nothing to do!');
+  }
 }
 
 main();
