@@ -79,6 +79,9 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist')
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      con: path.resolve(__dirname, './../src/utils/console')
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
