@@ -1,9 +1,21 @@
 const package = require('../package.json');
+const pageUrls = require('../src/pages/pageUrls');
 
 const path = require('path');
 const extra = require('fs-extra');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
+
+const generateMatchExcludes = () => {
+  var match = [];
+  var exclude = [];
+  for (var key in pageUrls) {
+    var el = pageUrls[key];
+    if(typeof el.match !== "undefined") match = match.concat(el.match);
+    if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
+  }
+  return {match: match, exclude: exclude}
+}
 
 const generateManifest = () => {
   return JSON.stringify({
@@ -14,9 +26,7 @@ const generateManifest = () => {
     'author': package['author'],
     'content_scripts': [
       {
-        'matches': [
-          '*://www.crunchyroll.com/*'
-        ],
+        'matches': generateMatchExcludes().match,
         'js': [
           'content-script.js'
         ],
@@ -24,8 +34,7 @@ const generateManifest = () => {
       }
     ],
     'permissions': [
-      "storage",
-      "*://www.crunchyroll.com/*",
+      "storage"
     ]
   }, null, 2);
 };
