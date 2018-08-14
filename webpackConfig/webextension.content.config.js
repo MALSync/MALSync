@@ -27,6 +27,11 @@ module.exports = {
     filename: 'content-script.js',
     path: path.resolve(__dirname, '..', 'dist', 'webextension')
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      con: path.resolve(__dirname, './../src/utils/console')
+    }),
+  ],
   optimization: {
     minimize: false
   }
