@@ -13,7 +13,11 @@
   },
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && npm run build:userscript",
-    "build:userscript": "webpack --config webpackConfig/userscript.config.js"
+    "build": "npm run clean && npm run build:userscript && npm run build:webextension",
+    "build:userscript": "webpack --config webpackConfig/userscript.config.js",
+
+    "build:webextension": "npm run build:webextension:content && npm run build:webextension:assets",
+    "build:webextension:content": "webpack --config webpackConfig/webextension.content.config.js",
+    "build:webextension:assets": "node webpackConfig/webextension.assets.js"
   }
 }
