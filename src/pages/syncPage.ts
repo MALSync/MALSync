@@ -11,7 +11,7 @@ export class syncPage{
   private getPage(url){
     for (var key in pages) {
       var page = pages[key];
-      if( url.indexOf(page.domain.split('//')[1].split('.')[0]+'.') > -1 ){//TODO
+      if( url.indexOf(utils.urlPart(page.domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
         return page;
       }
     }
