@@ -15,3 +15,4 @@ main();
 con.log('log');
 con.error('error');
 con.info('info');
+con.log(utils.urlPart('https://greasyfork.org/de/scripts/27564-kissanimelist/code', 5));
