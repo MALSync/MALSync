@@ -3,3 +3,4 @@ declare var utils: any;
 declare var api: any;
 
 declare var $: any;
+declare var chrome: any;
