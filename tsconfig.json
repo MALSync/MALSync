@@ -3,7 +3,7 @@
     "outDir": "./src/",
     "noImplicitAny": false,
     "module": "es6",
-    "target": "es5",
+    "target": "es6",
     "lib": ["es5", "es6", "es2015.collection", "es2015.iterable", "dom"],
     "jsx": "react",
     "allowJs": true,
