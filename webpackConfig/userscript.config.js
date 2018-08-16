@@ -81,7 +81,8 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
-      utils: path.resolve(__dirname, './../src/utils/general')
+      utils: path.resolve(__dirname, './../src/utils/general'),
+      api: path.resolve(__dirname, './../src/api/userscript'),
     }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
