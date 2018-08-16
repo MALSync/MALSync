@@ -42,6 +42,5 @@ jspm_packages/
 .vscode/
 config.json
 bwd/
-Storage/
 
 dist/

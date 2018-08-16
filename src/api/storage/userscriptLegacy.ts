@@ -1,10 +1,10 @@
-import {apiInterface} from "./apiInterface";
+import {storageInterface} from "./storageInterface";
 
 declare var GM_setValue: any;
 declare var GM_getValue: any;
 declare var GM_deleteValue: any;
 
-export const userscriptLegacy: apiInterface = {
+export const userscriptLegacy: storageInterface = {
     async set(key: string, value: string): Promise<void> {
       GM_setValue(key, value);
     },

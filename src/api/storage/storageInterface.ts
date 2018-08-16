@@ -1,4 +1,4 @@
-export interface apiInterface {
+export interface storageInterface {
   set(key: string, value: string): Promise<void>;
 
   get(key: string): Promise<string|undefined>;

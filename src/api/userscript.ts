@@ -1,3 +1,3 @@
-import {userscriptLegacy} from "./userscriptLegacy";
+import {userscriptLegacy} from "./storage/userscriptLegacy";
 
 export var storage = userscriptLegacy;
