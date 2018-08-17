@@ -40,7 +40,8 @@ const generateManifest = () => {
       }
     ],
     'permissions': [
-      "storage"
+      "storage",
+      "https://*/"
     ]
   }, null, 2);
 };
