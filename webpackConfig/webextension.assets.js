@@ -24,6 +24,11 @@ const generateManifest = () => {
     'version': package.version,
     'description': package.description,
     'author': package['author'],
+    'background': {
+      'scripts': [
+        'background.js'
+      ]
+    },
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,

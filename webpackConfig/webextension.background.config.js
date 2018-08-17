@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/index.ts')
+    index: path.join(__dirname, '..', 'src/background.ts')
   },
   module: {
     rules: [
@@ -20,7 +20,7 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: 'content-script.js',
+    filename: 'background.js',
     path: path.resolve(__dirname, '..', 'dist', 'webextension')
   },
   plugins: [
