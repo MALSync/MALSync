@@ -41,7 +41,7 @@ const generateManifest = () => {
     ],
     'permissions': [
       "storage",
-      "https://*/"
+      "https://myanimelist.net/"
     ]
   }, null, 2);
 };
