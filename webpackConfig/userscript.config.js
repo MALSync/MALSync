@@ -32,7 +32,10 @@ const metadata = {
   'match' : generateMatchExcludes().match,
   'exclude' : generateMatchExcludes().exclude,
   'run-at': 'document_start',
-  'connect': '*'
+  'connect': [
+    'myanimelist.net',
+    '*'
+  ]
 };
 
 const generateMetadataBlock = (metadata) => {
