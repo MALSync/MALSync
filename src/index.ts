@@ -23,6 +23,7 @@ api.storage.set('test', 'test123').then(() => {
   con.log(value);
 });
 
-chrome.runtime.sendMessage({name: "xhr", method: "GET", url: "https://myanimelist.net/"}, function(response) {
+api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
   con.log(response);
 });
+
