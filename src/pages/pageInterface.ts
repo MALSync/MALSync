@@ -8,6 +8,10 @@ export interface pageInterface {
       getEpisode: (url) => number,
       getVolume?: (url) => number,
     }
+    overview?:{
+      getTitle: (url) => string,
+      getIdentifier: (url) => string,
+    }
 }
 
 

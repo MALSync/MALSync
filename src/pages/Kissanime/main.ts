@@ -34,5 +34,9 @@ export const Kissanime: pageInterface = {
         }
         return episodePart;
       },
+    },
+    overview:{
+      getTitle: function(){return $('.bigChar').first().text();},
+      getIdentifier: function(url){return Kissanime.sync.getIdentifier(url)},
     }
 };

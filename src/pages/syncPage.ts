@@ -24,17 +24,28 @@ export class syncPage{
   }
 
   handlePage(){
-    var state: pageState = {
-      title: this.page.sync.getTitle(this.url),
-      identifier: this.page.sync.getIdentifier(this.url)
-    };
+    var state: pageState;
 
     if(this.page.isSyncPage(this.url)){
+      state = {
+        title: this.page.sync.getTitle(this.url),
+        identifier: this.page.sync.getIdentifier(this.url)
+      };
       state.episode = this.page.sync.getEpisode(this.url);
       if (typeof(this.page.sync.getVolume) != "undefined"){
         state.volume = this.page.sync.getVolume(this.url)
       }
       con.log('Sync', state);
+    }else{
+      if (typeof(this.page.overview) == "undefined"){
+        con.log('No overview definition');
+        return;
+      }
+      state = {
+        title: this.page.overview.getTitle(this.url),
+        identifier: this.page.overview.getIdentifier(this.url)
+      };
+      con.log('Overview', state);
     }
   }
 
