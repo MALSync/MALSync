@@ -47,6 +47,17 @@ export class syncPage{
       };
       con.log('Overview', state);
     }
+
+    utils.getMalUrl(state.identifier, state.title, this.page.type, "Kissanime")
+      .then((malUrl) => {
+        if(malUrl === null){
+          con.error('Not on mal');
+        }else if(!malUrl){
+          con.error('Nothing found');
+        }else{
+          con.log('MyAnimeList', malUrl);
+        }
+      });
   }
 
 }
