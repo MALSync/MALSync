@@ -1,11 +1,16 @@
 import {pages} from "./pages";
-import {pageInterface} from "./pageInterface";
+import {pageInterface, pageState} from "./pageInterface";
 
 export class syncPage{
   page: pageInterface;
 
-  constructor(url){
+  constructor(public url){
     this.page = this.getPage(url);
+    if (this.page == null) {
+      throw new Error('Page could not be recognized');
+    }
+    var tempThis = this;
+    $(document).ready(function(){tempThis.handlePage()});
   }
 
   private getPage(url){
@@ -16,6 +21,21 @@ export class syncPage{
       }
     }
     return null;
+  }
+
+  handlePage(){
+    var state: pageState = {
+      title: this.page.sync.getTitle(this.url),
+      identifier: this.page.sync.getIdentifier(this.url)
+    };
+
+    if(this.page.isSyncPage(this.url)){
+      state.episode = this.page.sync.getEpisode(this.url);
+      if (typeof(this.page.sync.getVolume) != "undefined"){
+        state.volume = this.page.sync.getVolume(this.url)
+      }
+      con.log('Sync', state);
+    }
   }
 
 }

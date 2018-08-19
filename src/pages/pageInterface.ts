@@ -1,11 +1,19 @@
 export interface pageInterface {
     domain: string,
     type: "anime"|"manga",
-    isSyncPage: () => boolean,
+    isSyncPage: (url) => boolean,
     sync:{
-      getTitle: () => string,
-      getIdentifier: () => string,
-      getEpisode: () => number,
-      getVolume?: () => number,
+      getTitle: (url) => string,
+      getIdentifier: (url) => string,
+      getEpisode: (url) => number,
+      getVolume?: (url) => number,
     }
+}
+
+
+export interface pageState {
+    title: string,
+    identifier: string,
+    episode?: number,
+    volume?: number
 }
