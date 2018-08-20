@@ -1,5 +1,6 @@
 import {pages} from "./pages";
 import {pageInterface, pageState} from "./pageInterface";
+import {mal} from "./../utils/mal";
 
 export class syncPage{
   page: pageInterface;
@@ -56,6 +57,7 @@ export class syncPage{
           con.error('Nothing found');
         }else{
           con.log('MyAnimeList', malUrl);
+          var malObj = new mal(malUrl);
         }
       });
   }

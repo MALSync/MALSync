@@ -34,3 +34,17 @@ export function getMalUrl(identifier: string, title: string, type: string, datab
     return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
   };
 }
+
+export function getselect(data, name){
+    var temp = data.split('name="'+name+'"')[1].split('</select>')[0];
+    if(temp.indexOf('selected="selected"') > -1){
+        temp = temp.split('<option');
+        for (var i = 0; i < temp.length; ++i) {
+            if(temp[i].indexOf('selected="selected"') > -1){
+                return temp[i].split('value="')[1].split('"')[0];
+            }
+        }
+    }else{
+        return '';
+    }
+}
