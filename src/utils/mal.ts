@@ -3,6 +3,13 @@ export class mal{
   readonly id: number;
   readonly type: "anime"|"manga";
 
+  name: string = "";
+  totalEp: number = NaN;
+  totalVol?: number;
+  addAnime: boolean = false;
+
+  animeInfo;
+
   constructor(public url:string){
     con.error('mal', url);
     this.id = utils.urlPart(url, 4);
@@ -28,12 +35,12 @@ export class mal{
       var anime = {};
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
       if(data.indexOf('Add Anime') > -1) {
-          anime['addanime'] = 1;
+        this.addAnime = true;
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 
-      anime['totalEp'] = parseInt(data.split('id="totalEpisodes">')[1].split('<')[0]);
-      anime['name'] = data.split('<a href="')[1].split('">')[1].split('<')[0];
+      this.totalEp = parseInt(data.split('id="totalEpisodes">')[1].split('<')[0]);
+      this.name = data.split('<a href="')[1].split('">')[1].split('<')[0];
       anime['.anime_id'] = parseInt(data.split('name="anime_id"')[1].split('value="')[1].split('"')[0]); //input
       anime['.aeps'] = parseInt(data.split('name="aeps"')[1].split('value="')[1].split('"')[0]);
       anime['.astatus'] = parseInt(data.split('name="astatus"')[1].split('value="')[1].split('"')[0]);
@@ -68,13 +75,13 @@ export class mal{
       var anime = {};
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
       if(data.indexOf('Add Manga') > -1) {
-          anime['addmanga'] = 1;
+          this.addAnime = true;
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 
-      anime['totalVol'] = parseInt(data.split('id="totalVol">')[1].split('<')[0]);
-      anime['totalChap'] = parseInt(data.split('id="totalChap">')[1].split('<')[0]);
-      anime['name'] = data.split('<a href="')[1].split('">')[1].split('<')[0];
+      this.totalEp = parseInt(data.split('id="totalChap">')[1].split('<')[0]);
+      this.totalVol = parseInt(data.split('id="totalVol">')[1].split('<')[0]);
+      this.name = data.split('<a href="')[1].split('">')[1].split('<')[0];
       anime['.entry_id'] = parseInt(data.split('name="entry_id"')[1].split('value="')[1].split('"')[0]);
       anime['.manga_id'] = parseInt(data.split('name="manga_id"')[1].split('value="')[1].split('"')[0]); //input
       anime['volumes'] = parseInt(data.split('id="volumes"')[1].split('value="')[1].split('"')[0]);
