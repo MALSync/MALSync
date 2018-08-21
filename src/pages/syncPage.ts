@@ -58,6 +58,22 @@ export class syncPage{
         }else{
           con.log('MyAnimeList', malUrl);
           var malObj = new mal(malUrl);
+
+          //TEMP//
+          setTimeout(function(){
+            con.info(malObj.getEpisode());
+            con.info(malObj.setEpisode(10));
+            con.info(malObj.getEpisode());
+            con.info('--------------------------');
+            con.info(malObj.getStatus());
+            con.info(malObj.setStatus(5));
+            con.info(malObj.getStatus());
+            con.info('--------------------------');
+            con.info(malObj.getScore());
+            con.info(malObj.setScore(5));
+            con.info(malObj.getScore());
+          },3000)
+          //TEMP//
         }
       });
   }

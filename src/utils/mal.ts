@@ -8,7 +8,7 @@ export class mal{
   totalVol?: number;
   addAnime: boolean = false;
 
-  animeInfo;
+  private animeInfo;
 
   constructor(public url:string){
     con.error('mal', url);
@@ -22,8 +22,50 @@ export class mal{
     con.log('Update MAL info', editUrl);
     api.request.xhr('GET', editUrl).then((response) => {
       con.info('test', response);
-      this.getObject(response.responseText);
+      this.animeInfo = this.getObject(response.responseText);
     });
+  }
+
+  getEpisode(){
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[num_read_chapters]"];
+    }
+    return this.animeInfo[".add_anime[num_watched_episodes]"];
+  }
+
+  setEpisode(ep:number){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[num_read_chapters]"] = ep;
+    }
+    this.animeInfo[".add_anime[num_watched_episodes]"] = ep;
+  }
+
+  getStatus(){
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[status]"];
+    }
+    return this.animeInfo[".add_anime[status]"];
+  }
+
+  setStatus(status:number){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[status]"] = status;
+    }
+    this.animeInfo[".add_anime[status]"] = status;
+  }
+
+  getScore(){
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[score]"];
+    }
+    return this.animeInfo[".add_anime[score]"];
+  }
+
+  setScore(score:number){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[score]"] = score;
+    }
+    this.animeInfo[".add_anime[score]"] = score;
   }
 
   private getObject(data){
