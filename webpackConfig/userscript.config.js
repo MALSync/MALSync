@@ -25,6 +25,7 @@ const metadata = {
     'GM_xmlhttpRequest',
     'GM_getValue',
     'GM_setValue',
+    'GM_addStyle',
     'GM.xmlHttpRequest',
     'GM.getValue',
     'GM.setValue'
