@@ -68,6 +68,49 @@ export class mal{
     this.animeInfo[".add_anime[score]"] = score;
   }
 
+  sync(){
+    var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
+    if(this.addAnime){
+      if(this.type == 'anime'){
+        url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
+        alert('todo'); //TODO;
+        /*flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){
+            if(change['checkIncrease'] == 1){
+                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
+            }
+        });
+        return;*/
+      }else{
+        url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
+        alert('todo'); //TODO;
+        /* flashConfirm('Add "'+actual['name']+'" to MAL?', function(){continueCall();}, function(){});
+        return;*/
+      }
+    }
+
+    var parameter = "";
+    $.each( this.animeInfo, function( index, value ){
+        if(index.charAt(0) == "."){
+            if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)){
+                parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+            }
+        }
+    });
+
+    con.log('[SET] URL:', url);
+    con.log('[SET] Object:', this.animeInfo);
+
+    api.request.xhr('POST', {url: url, data: parameter, headers: {"Content-Type": "application/x-www-form-urlencoded"} }).then((response) => {
+      con.info('test', response);
+      if(response.responseText.indexOf('Successfully') >= 0){
+        alert('Success');
+      }else{
+        alert('update Failed');
+      }
+      //this.animeInfo = this.getObject(response.responseText);
+    });
+  }
+
   private getObject(data){
     var getselect = utils.getselect;
     if (typeof data.split('<form name="')[1] === "undefined" && (this.url.indexOf('/manga/') !== -1 || this.url.indexOf('/anime/') !== -1)) {

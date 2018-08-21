@@ -15,8 +15,16 @@ chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendRespons
           sendResponse(responseObj);
         }
       }
-      xhr.open(message.method, message.url, true);
-      xhr.send();
+      if(typeof message.url === 'object'){
+        xhr.open(message.method, message.url.url, true);
+        for (var key in message.url.headers) {
+          xhr.setRequestHeader(key, message.url.headers[key]);
+        }
+        xhr.send(message.url.data);
+      }else{
+        xhr.open(message.method, message.url, true);
+        xhr.send();
+      }
       return true;
     }
   }

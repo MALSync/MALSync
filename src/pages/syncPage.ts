@@ -66,12 +66,14 @@ export class syncPage{
             con.info(malObj.getEpisode());
             con.info('--------------------------');
             con.info(malObj.getStatus());
-            con.info(malObj.setStatus(5));
+            con.info(malObj.setStatus(1));
             con.info(malObj.getStatus());
             con.info('--------------------------');
             con.info(malObj.getScore());
             con.info(malObj.setScore(5));
             con.info(malObj.getScore());
+            con.info('--------------------------');
+            con.info(malObj.sync());
           },3000)
           //TEMP//
         }
