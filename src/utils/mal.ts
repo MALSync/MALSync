@@ -90,9 +90,9 @@ export class mal{
 
     var parameter = "";
     $.each( this.animeInfo, function( index, value ){
-        if(index.charAt(0) == "."){
+        if(index.toString().charAt(0) == "."){
             if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)){
-                parameter += encodeURIComponent (index.substring(1))+"="+encodeURIComponent (value)+"&";
+                parameter += encodeURIComponent (index.toString().substring(1))+"="+encodeURIComponent (value)+"&";
             }
         }
     });
