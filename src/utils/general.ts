@@ -48,3 +48,109 @@ export function getselect(data, name){
         return '';
     }
 }
+
+
+//flashm
+export function flashm(text,error = true, info = false, permanent = false){
+    if(!$('#flash-div-top').length){
+        initflashm();
+    }
+    con.log("[Flash] Message:",text);
+    if(error === true){
+        var colorF = "#3e0808";
+    }else{
+        var colorF = "#323232";
+    }
+
+    if(permanent){
+        $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
+        $('.flashPerm').delay(2000).slideDown({duration: 2000, easing: "easeOutElastic"});
+    }else{
+        if(info){
+            $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            $('#flashinfo-div').addClass('hover').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>');
+            $('.flashinfo').slideDown(800).delay(4000).queue(function() { $('#flashinfo-div').removeClass('hover'); $(this).css('max-height', '8px');});
+        }else{
+            $('.flash').removeClass('flash').fadeOut({
+                duration: 400,
+                queue: false,
+                complete: function() { $(this).remove(); }});
+            var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
+            if($('.flashinfo').length){
+                $('.flashinfo').before(mess);
+            }else{
+                $('#flash-div').append(mess);
+            }
+            $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
+        }
+    }
+}
+
+function flashConfirm(message, yesCall, cancelCall){
+    $('.flashPerm').remove();
+    var rNumber = Math.floor((Math.random() * 1000) + 1);
+    message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
+    flashm(message, false, false, true);
+    $( '.Yes'+rNumber ).click(function(){
+        $(this).parentsUntil('.flashPerm').remove();
+        yesCall();
+    });
+    $( '.Cancel'+rNumber ).click(function(){
+        $(this).parentsUntil('.flashPerm').remove();
+        cancelCall();
+    });
+}
+
+function initflashm(){
+
+    api.storage.addStyle('.flashinfo{\
+                    transition: max-height 2s;\
+                 }\
+                 .flashinfo:hover{\
+                    max-height:5000px !important;\
+                    z-index: 2147483647;\
+                 }\
+                 .flashinfo .synopsis{\
+                    transition: max-height 2s, max-width 2s ease 2s;\
+                 }\
+                 .flashinfo:hover .synopsis{\
+                    max-height:9999px !important;\
+                    max-width: 500px !important;\
+                    transition: max-height 2s;\
+                 }\
+                 #flashinfo-div{\
+                  z-index: 2;\
+                  transition: 2s;\
+                 }\
+                 #flashinfo-div:hover, #flashinfo-div.hover{\
+                  z-index: 2147483647;\
+                 }\
+                 \
+                 #flash-div-top, #flash-div, #flashinfo-div{\
+                    font-family: "Helvetica","Arial",sans-serif;\
+                    color: white;\
+                    font-size: 14px;\
+                    font-weight: 400;\
+                    line-height: 17px;\
+                 }\
+                 #flash-div-top h2, #flash-div h2, #flashinfo-div h2{\
+                    font-family: "Helvetica","Arial",sans-serif;\
+                    color: white;\
+                    font-size: 14px;\
+                    font-weight: 700;\
+                    line-height: 17px;\
+                    padding: 0;\
+                    margin: 0;\
+                 }\
+                 #flash-div-top a, #flash-div a, #flashinfo-div a{\
+                    color: #DF6300;\
+                 }');
+
+    $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
+        <div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
+        <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
+    con.log('1234567');
+}

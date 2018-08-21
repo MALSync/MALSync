@@ -4,7 +4,7 @@ function main() {
   var page = new syncPage(window.location.href);
 }
 
-main();
+//main();
 
 //temp
 con.log('log');
@@ -24,3 +24,6 @@ api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
 
 const style = require('./style.less').toString();
 api.storage.addStyle(style);
+$(document).ready(function(){
+  utils.flashm('test');
+});
