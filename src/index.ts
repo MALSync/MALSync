@@ -22,3 +22,4 @@ api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
   con.log(response);
 });
 
+api.storage.addStyle('body{background-color: red !important;}');

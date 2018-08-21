@@ -4,4 +4,6 @@ export interface storageInterface {
   get(key: string): Promise<string|undefined>;
 
   remove(key: string): Promise<void>;
+
+  addStyle(css: string): Promise<void>;
 }
