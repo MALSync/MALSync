@@ -27,12 +27,14 @@ api.storage.addStyle(style);
 $(document).ready(function(){
   utils.flashm('test');
   utils.flashm('test', {type: "test", error: true});
-  utils.flashm('permanent', {type: "permanent", permanent: true});
+  utils.flashm('permanent', {type: "permanent", permanent: true, position: "top"});
   utils.flashm('permanent hover', {hoverInfo: true});
   setTimeout(function(){
     utils.flashm('test');
     utils.flashm('test', {type: "test", error: true});
     utils.flashm('test', {type: "test", error: true});
+    utils.flashm('test', {type: "test", error: true, position: "top"});
+    utils.flashm('test', {type: "test", error: true, position: "top"});
     utils.flashm('permanent2', {type: "permanent", permanent: true});
   }, 3000)
 });

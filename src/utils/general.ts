@@ -51,7 +51,7 @@ export function getselect(data, name){
 
 
 //flashm
-export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean}){
+export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
     if(!$('#flash-div-top').length){
         initflashm();
     }
@@ -62,10 +62,15 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
       var colorF = "#3e0808";
     }
 
+    var flashdiv = '#flash-div-bottom';
+    if(typeof options !== 'undefined' && typeof options.position !== 'undefined' && options.position){
+      flashdiv = '#flash-div-'+options.position;
+    }
+
     var messClass = "flash";
     if(typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type){
       var tempClass = "type-"+options.type;
-      $('.'+tempClass)
+      $(flashdiv+' .'+tempClass)
         .removeClass(tempClass)
         .fadeOut({
           duration: 1000,
@@ -88,7 +93,7 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
       $('#flashinfo-div').addClass('hover');
       var flashm = $(mess).appendTo('#flashinfo-div')
     }else{
-      var flashm = $(mess).appendTo('#flash-div');
+      var flashm = $(mess).appendTo(flashdiv);
     }
 
     if(typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent){
@@ -168,14 +173,14 @@ function initflashm(){
                   z-index: 2147483647;\
                  }\
                  \
-                 #flash-div-top, #flash-div, #flashinfo-div{\
+                 #flash-div-top, #flash-div-bottom, #flashinfo-div{\
                     font-family: "Helvetica","Arial",sans-serif;\
                     color: white;\
                     font-size: 14px;\
                     font-weight: 400;\
                     line-height: 17px;\
                  }\
-                 #flash-div-top h2, #flash-div h2, #flashinfo-div h2{\
+                 #flash-div-top h2, #flash-div-bottom h2, #flashinfo-div h2{\
                     font-family: "Helvetica","Arial",sans-serif;\
                     color: white;\
                     font-size: 14px;\
@@ -184,11 +189,11 @@ function initflashm(){
                     padding: 0;\
                     margin: 0;\
                  }\
-                 #flash-div-top a, #flash-div a, #flashinfo-div a{\
+                 #flash-div-top a, #flash-div-bottom a, #flashinfo-div a{\
                     color: #DF6300;\
                  }');
 
-    $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
-        <div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
+    $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
+        <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
         <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
 }
