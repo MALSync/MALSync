@@ -28,7 +28,7 @@ $(document).ready(function(){
   utils.flashm('test');
   utils.flashm('test', {type: "test", error: true});
   utils.flashm('permanent', {type: "permanent", permanent: true});
-  utils.flashm('permanent alone', {permanent: true});
+  utils.flashm('permanent hover', {hoverInfo: true});
   setTimeout(function(){
     utils.flashm('test');
     utils.flashm('test', {type: "test", error: true});
