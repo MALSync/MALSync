@@ -7,11 +7,12 @@ export interface pageInterface {
       getIdentifier: (url) => string,
       getEpisode: (url) => number,
       getVolume?: (url) => number,
-    }
+    },
     overview?:{
       getTitle: (url) => string,
       getIdentifier: (url) => string,
-    }
+    },
+    init: (page:any) => void,
 }
 
 

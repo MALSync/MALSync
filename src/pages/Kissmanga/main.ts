@@ -9,5 +9,8 @@ export const Kissmanga: pageInterface = {
       getIdentifier: function(url){return $('.bigChar').first().text();},
       getEpisode: function(url){return parseInt($('.bigChar').first().text());},
       getVolume: function(url){return parseInt($('.bigChar').first().text());},
+    },
+    init(page){
+      $(document).ready(function(){page.handlePage()});
     }
 };

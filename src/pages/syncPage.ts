@@ -10,8 +10,10 @@ export class syncPage{
     if (this.page == null) {
       throw new Error('Page could not be recognized');
     }
-    var tempThis = this;
-    $(document).ready(function(){tempThis.handlePage()});
+  }
+
+  init(){
+    this.page.init(this);
   }
 
   private getPage(url){

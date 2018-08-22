@@ -2,6 +2,7 @@ import {syncPage} from "./pages/syncPage";
 
 function main() {
   var page = new syncPage(window.location.href);
+  page.init();
 }
 
 main();
