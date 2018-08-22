@@ -104,33 +104,6 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
       flashm.slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
     }
     return flashm;
-
-/*
-    if(permanent){
-        $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
-        $('.flashPerm').delay(2000).slideDown({duration: 2000, easing: "easeOutElastic"});
-    }else{
-        if(info){
-            $('.flashinfo').removeClass('flashinfo').delay(2000).fadeOut({
-                duration: 400,
-                queue: false,
-                complete: function() { $(this).remove(); }});
-            $('#flashinfo-div').addClass('hover').append('<div class="flashinfo" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; background-color: red; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>');
-            $('.flashinfo').slideDown(800).delay(4000).queue(function() { $('#flashinfo-div').removeClass('hover'); $(this).css('max-height', '8px');});
-        }else{
-            $('.flash').removeClass('flash').fadeOut({
-                duration: 400,
-                queue: false,
-                complete: function() { $(this).remove(); }});
-            var mess ='<div class="flash" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 20px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>';
-            if($('.flashinfo').length){
-                $('.flashinfo').before(mess);
-            }else{
-                $('#flash-div').append(mess);
-            }
-            $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
-        }
-    }*/
 }
 
 export function flashConfirm(message, type, yesCall, cancelCall){
