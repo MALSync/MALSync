@@ -24,7 +24,7 @@ export class syncPage{
     return null;
   }
 
-  handlePage(){
+  async handlePage(){
     var state: pageState;
 
     if(this.page.isSyncPage(this.url)){
@@ -49,35 +49,32 @@ export class syncPage{
       con.log('Overview', state);
     }
 
-    utils.getMalUrl(state.identifier, state.title, this.page.type, "Kissanime")
-      .then((malUrl) => {
-        if(malUrl === null){
-          con.error('Not on mal');
-        }else if(!malUrl){
-          con.error('Nothing found');
-        }else{
-          con.log('MyAnimeList', malUrl);
-          var malObj = new mal(malUrl);
-          malObj.init()
-            .then(function(){
-              //TEMP//
-              con.info(malObj.getEpisode());
-              con.info(malObj.setEpisode(10));
-              con.info(malObj.getEpisode());
-              con.info('--------------------------');
-              con.info(malObj.getStatus());
-              con.info(malObj.setStatus(1));
-              con.info(malObj.getStatus());
-              con.info('--------------------------');
-              con.info(malObj.getScore());
-              con.info(malObj.setScore(5));
-              con.info(malObj.getScore());
-              con.info('--------------------------');
-              con.info(malObj.sync());
-              //TEMP//
-            });
-        }
-      });
+    var malUrl = await utils.getMalUrl(state.identifier, state.title, this.page.type, "Kissanime");
+
+    if(malUrl === null){
+      con.error('Not on mal');
+    }else if(!malUrl){
+      con.error('Nothing found');
+    }else{
+      con.log('MyAnimeList', malUrl);
+      var malObj = new mal(malUrl);
+      await malObj.init()
+      //TEMP//
+      con.info(malObj.getEpisode());
+      con.info(malObj.setEpisode(10));
+      con.info(malObj.getEpisode());
+      con.info('--------------------------');
+      con.info(malObj.getStatus());
+      con.info(malObj.setStatus(1));
+      con.info(malObj.getStatus());
+      con.info('--------------------------');
+      con.info(malObj.getScore());
+      con.info(malObj.setScore(5));
+      con.info(malObj.getScore());
+      con.info('--------------------------');
+      await malObj.sync();
+      //TEMP//
+    }
   }
 
 }
