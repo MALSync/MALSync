@@ -38,5 +38,5 @@ api.storage.addStyle(style);
     utils.flashm('permanent2', {type: "permanent", permanent: true});
     utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
   }, 3000)
-  utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});*/
-});
+  utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
+});*/
