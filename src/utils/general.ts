@@ -7,11 +7,12 @@ export function urlPart(url:string, part:number){
 
 }
 
-export function getMalUrl(identifier: string, title: string, type: string, database: string){
+export function getMalUrl(identifier: string, title: string, page){
+  if(typeof page.database == "undefined") return false;
   return firebase();
 
   function firebase(){
-    var url = 'https://kissanimelist.firebaseio.com/Data2/'+database+'/'+encodeURIComponent(titleToDbKey(identifier)).toLowerCase()+'/Mal.json';
+    var url = 'https://kissanimelist.firebaseio.com/Data2/'+page.database+'/'+encodeURIComponent(titleToDbKey(identifier)).toLowerCase()+'/Mal.json';
     con.log("Firebase", url);
     return api.request.xhr('GET', url).then((response) => {
       con.log("Firebase response",response.responseText);
@@ -19,7 +20,7 @@ export function getMalUrl(identifier: string, title: string, type: string, datab
         if(response.responseText.split('"')[1] == 'Not-Found'){
             return null;
         }
-        return 'https://myanimelist.net/'+type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];;
+        return 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];;
       }else{
         return false;
       }

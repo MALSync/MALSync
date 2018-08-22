@@ -51,7 +51,7 @@ export class syncPage{
       con.log('Overview', state);
     }
 
-    var malUrl = await utils.getMalUrl(state.identifier, state.title, this.page.type, "Kissanime");
+    var malUrl = await utils.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
       con.error('Not on mal');

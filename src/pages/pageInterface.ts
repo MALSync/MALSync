@@ -12,6 +12,7 @@ export interface pageInterface {
       getTitle: (url) => string,
       getIdentifier: (url) => string,
     },
+    database?: string, //ignore, only for first party implementations
     init: (page:any) => void,
 }
 

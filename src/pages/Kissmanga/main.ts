@@ -2,6 +2,7 @@ import {pageInterface} from "./../pageInterface";
 
 export const Kissmanga: pageInterface = {
     domain: 'http://kissmanga.com',
+    database: 'Kissmanga',
     type: 'manga',
     isSyncPage: function(url){return true;},
     sync:{
