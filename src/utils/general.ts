@@ -133,17 +133,15 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     }*/
 }
 
-function flashConfirm(message, yesCall, cancelCall){
-    $('.flashPerm').remove();
-    var rNumber = Math.floor((Math.random() * 1000) + 1);
-    message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
-    //flashm(message, false, false, true);
-    $( '.Yes'+rNumber ).click(function(){
-        $(this).parentsUntil('.flashPerm').remove();
+export function flashConfirm(message, yesCall, cancelCall){
+    message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
+    var flasmessage = flashm(message, {permanent: true, position: "top"});
+    flasmessage.find( '.Yes' ).click(function(){
+        $(this).parentsUntil('.flash').remove();
         yesCall();
     });
-    $( '.Cancel'+rNumber ).click(function(){
-        $(this).parentsUntil('.flashPerm').remove();
+    flasmessage.find( '.Cancel' ).click(function(){
+        $(this).parentsUntil('.flash').remove();
         cancelCall();
     });
 }
