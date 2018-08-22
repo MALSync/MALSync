@@ -36,6 +36,7 @@ $(document).ready(function(){
     utils.flashm('test', {type: "test", error: true, position: "top"});
     utils.flashm('test', {type: "test", error: true, position: "top"});
     utils.flashm('permanent2', {type: "permanent", permanent: true});
+    utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
   }, 3000)
-  utils.flashConfirm('Add?', function(){alert('yes')}, function(){alert('no')});
+  utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
 });

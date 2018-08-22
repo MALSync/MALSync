@@ -133,9 +133,9 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     }*/
 }
 
-export function flashConfirm(message, yesCall, cancelCall){
+export function flashConfirm(message, type, yesCall, cancelCall){
     message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
-    var flasmessage = flashm(message, {permanent: true, position: "top"});
+    var flasmessage = flashm(message, {permanent: true, position: "top", type: type});
     flasmessage.find( '.Yes' ).click(function(){
         $(this).parentsUntil('.flash').remove();
         yesCall();
