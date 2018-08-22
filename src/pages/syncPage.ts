@@ -60,23 +60,26 @@ export class syncPage{
     }else{
       con.log('MyAnimeList', malUrl);
       var malObj = new mal(malUrl);
-      await malObj.init()
-      //TEMP//
-      con.info(malObj.getEpisode());
-      con.info(malObj.setEpisode(10));
-      con.info(malObj.getEpisode());
-      con.info('--------------------------');
-      con.info(malObj.getStatus());
-      con.info(malObj.setStatus(1));
-      con.info(malObj.getStatus());
-      con.info('--------------------------');
-      con.info(malObj.getScore());
-      con.info(malObj.setScore(5));
-      con.info(malObj.getScore());
-      con.info('--------------------------');
-      await malObj.sync();
-      //TEMP//
+      await malObj.init();
+
+      if(this.page.isSyncPage(this.url)){
+        if(this.handleAnimeUpdate(state, malObj)){
+          alert('sync');
+          await malObj.sync();
+        }else{
+          alert('noSync');
+        }
+      }
+
     }
+  }
+
+  private handleAnimeUpdate(state, malObj){
+    if(malObj.getEpisode() >= state.episode){
+      return false;
+    }
+    malObj.setEpisode(state.episode);
+    return true;
   }
 
 }
