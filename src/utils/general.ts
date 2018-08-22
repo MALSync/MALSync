@@ -51,17 +51,46 @@ export function getselect(data, name){
 
 
 //flashm
-export function flashm(text,error = true, info = false, permanent = false){
+export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean}){
     if(!$('#flash-div-top').length){
         initflashm();
     }
     con.log("[Flash] Message:",text);
-    if(error === true){
-        var colorF = "#3e0808";
-    }else{
-        var colorF = "#323232";
+
+    var colorF = "#323232";
+    if(typeof options !== 'undefined' && typeof options.error !== 'undefined' && options.error){
+      var colorF = "#3e0808";
     }
 
+    var messClass = "flash";
+    if(typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type){
+      var tempClass = "type-"+options.type;
+      $('.'+tempClass)
+        .removeClass(tempClass)
+        .fadeOut({
+          duration: 1000,
+          queue: false,
+          complete: function() { $(this).remove(); }
+        });
+
+      messClass += " "+tempClass;
+    }
+
+    var mess = '<div class="'+messClass+'" style="display:none;">\
+        <div style="display:table; pointer-events: all; padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 5px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">\
+          '+text+'\
+        </div>\
+      </div>';
+
+    var flashm = $(mess).appendTo('#flash-div');
+    if(typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent){
+      flashm.slideDown(800);
+    }else{
+      flashm.slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
+    }
+    return flashm;
+
+/*
     if(permanent){
         $('#flash-div-top').prepend('<div class="flashPerm" style="display:none;"><div style="display:table; pointer-events: all; background-color: red;padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">'+text+'</div></div>');
         $('.flashPerm').delay(2000).slideDown({duration: 2000, easing: "easeOutElastic"});
@@ -86,14 +115,14 @@ export function flashm(text,error = true, info = false, permanent = false){
             }
             $('.flash').slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
         }
-    }
+    }*/
 }
 
 function flashConfirm(message, yesCall, cancelCall){
     $('.flashPerm').remove();
     var rNumber = Math.floor((Math.random() * 1000) + 1);
     message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel'+rNumber+'" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
-    flashm(message, false, false, true);
+    //flashm(message, false, false, true);
     $( '.Yes'+rNumber ).click(function(){
         $(this).parentsUntil('.flashPerm').remove();
         yesCall();
@@ -152,5 +181,4 @@ function initflashm(){
     $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:0px;width:100%;z-index: 2147483647;left: 0;"></div>\
         <div id="flash-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
         <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
-    con.log('1234567');
 }

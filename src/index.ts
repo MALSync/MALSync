@@ -26,4 +26,13 @@ const style = require('./style.less').toString();
 api.storage.addStyle(style);
 $(document).ready(function(){
   utils.flashm('test');
+  utils.flashm('test', {type: "test", error: true});
+  utils.flashm('permanent', {type: "permanent", permanent: true});
+  utils.flashm('permanent alone', {permanent: true});
+  setTimeout(function(){
+    utils.flashm('test');
+    utils.flashm('test', {type: "test", error: true});
+    utils.flashm('test', {type: "test", error: true});
+    utils.flashm('permanent2', {type: "permanent", permanent: true});
+  }, 3000)
 });
