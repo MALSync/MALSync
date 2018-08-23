@@ -104,7 +104,6 @@ export class syncPage{
           .then(() => {
             return This.malObj.update();
           }).then(() => {
-            con.error(This.malObj);
             This.fillUI();
           });
       });
@@ -119,7 +118,7 @@ export class syncPage{
          $("#malTotalVol").text('?');
       }
 
-      $("#malEpisodes, #malChapters").val(this.malObj.getEpisode());
+      $("#malEpisodes").val(this.malObj.getEpisode());
       $("#malVolumes").val(this.malObj.getVolume());
 
       $("#malStatus").val(this.malObj.getStatus());
@@ -185,7 +184,7 @@ export class syncPage{
         middle += wrapStart;
         middle += '<span class="info">Chapters: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malChapters" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right;  text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+        middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right;  text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
         middle += '</span>';
         middle += wrapEnd;
@@ -232,6 +231,25 @@ export class syncPage{
         this.page.overview.uiSelector($(ui));
       }
     }
+
+    var This = this;
+    $( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
+        This.buttonclick();
+    });
+  }
+
+  private buttonclick(){
+    this.malObj.setEpisode($("#malEpisodes").val());
+    if( $("#malVolumes").length ) this.malObj.setVolume($("#malVolumes").val());
+    this.malObj.setScore($("#malUserRating").val());
+    this.malObj.setStatus($("#malStatus").val());
+
+    this.malObj.sync()
+      .then(() => {
+        return this.malObj.update();
+      }).then(() => {
+        this.fillUI();
+      });
   }
 
 }
