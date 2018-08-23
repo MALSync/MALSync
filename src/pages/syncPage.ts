@@ -97,13 +97,16 @@ export class syncPage{
     if(this.malObj.addAnime){
       $('.MalLogin').css("display","none");
       $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
+      var This = this;
       $('#AddMal').click(function() {
-        alert('todo');
-        //TODO
-        /*var anime = {};
-        anime['.add_'+K.listType+'[status]'] = 6;
-        anime['forceUpdate'] = 1;
-        setanime(K.normalUrl(),anime);*/
+        This.malObj.setStatus(6);
+        This.malObj.sync()
+          .then(() => {
+            return This.malObj.update();
+          }).then(() => {
+            con.error(This.malObj);
+            This.fillUI();
+          });
       });
     }else{
       $("#malTotal, #malTotalCha").text(this.malObj.totalEp);

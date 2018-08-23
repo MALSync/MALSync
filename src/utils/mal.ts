@@ -139,6 +139,9 @@ export class mal{
     if (typeof data.split('<form name="')[1] === "undefined" && (this.url.indexOf('/manga/') !== -1 || this.url.indexOf('/anime/') !== -1)) {
       throw new Error("MAL is down or otherwise giving bad data");
     }
+
+    this.addAnime = false;
+
     if(this.type == 'anime'){
       var anime = {};
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
