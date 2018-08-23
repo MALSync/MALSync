@@ -4,6 +4,7 @@ import {mal} from "./../utils/mal";
 
 export class syncPage{
   page: pageInterface;
+  malObj;
 
   constructor(public url){
     this.page = this.getPage(url);
@@ -60,17 +61,17 @@ export class syncPage{
       con.error('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      var malObj = new mal(malUrl);
-      await malObj.init();
+      this.malObj = new mal(malUrl);
+      await this.malObj.init();
 
       //fillUI
-      this.fillUI(malObj);
+      this.fillUI();
 
       //sync
       if(this.page.isSyncPage(this.url)){
-        if(this.handleAnimeUpdate(state, malObj)){
+        if(this.handleAnimeUpdate(state)){
           alert('sync');
-          await malObj.sync();
+          await this.malObj.sync();
         }else{
           alert('noSync');
         }
@@ -79,21 +80,21 @@ export class syncPage{
     }
   }
 
-  private handleAnimeUpdate(state, malObj){
-    if(malObj.getEpisode() >= state.episode){
+  private handleAnimeUpdate(state){
+    if(this.malObj.getEpisode() >= state.episode){
       return false;
     }
-    malObj.setEpisode(state.episode);
+    this.malObj.setEpisode(state.episode);
     return true;
   }
 
-  fillUI(malObj){
+  fillUI(){
     $('.MalLogin').css("display","initial");
     $('#AddMalDiv').remove();
 
-    $("#malRating").attr("href", malObj.url);
+    $("#malRating").attr("href", this.malObj.url);
 
-    if(malObj.addAnime){
+    if(this.malObj.addAnime){
       $('.MalLogin').css("display","none");
       $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
       $('#AddMal').click(function() {
@@ -105,21 +106,21 @@ export class syncPage{
         setanime(K.normalUrl(),anime);*/
       });
     }else{
-      $("#malTotal, #malTotalCha").text(malObj.totalEp);
-      if(malObj.totalEp == 0){
+      $("#malTotal, #malTotalCha").text(this.malObj.totalEp);
+      if(this.malObj.totalEp == 0){
          $("#malTotal, #malTotalCha").text('?');
       }
 
-      $("#malTotalVol").text(malObj.totalVol);
-      if(malObj.totalVol == 0){
+      $("#malTotalVol").text(this.malObj.totalVol);
+      if(this.malObj.totalVol == 0){
          $("#malTotalVol").text('?');
       }
 
-      $("#malEpisodes, #malChapters").val(malObj.getEpisode());
-      $("#malVolumes").val(malObj.getVolume());
+      $("#malEpisodes, #malChapters").val(this.malObj.getEpisode());
+      $("#malVolumes").val(this.malObj.getVolume());
 
-      $("#malStatus").val(malObj.getStatus());
-      $("#malUserRating").val(malObj.getScore());
+      $("#malStatus").val(this.malObj.getStatus());
+      $("#malUserRating").val(this.malObj.getScore());
     }
     $("#MalData").css("display","flex");
     $("#MalInfo").text("");
