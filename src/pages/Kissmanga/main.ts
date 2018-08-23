@@ -51,6 +51,10 @@ export const Kissmanga: pageInterface = {
         return url;
       },
     },
+    overview:{
+      getTitle: function(){return $('.bigChar').first().text();},
+      getIdentifier: function(url){return Kissmanga.sync.getIdentifier(url)},
+    },
     init(page){
       $(document).ready(function(){page.handlePage()});
     }

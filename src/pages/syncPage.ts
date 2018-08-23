@@ -63,6 +63,10 @@ export class syncPage{
       var malObj = new mal(malUrl);
       await malObj.init();
 
+      //fillUI
+      this.fillUI(malObj);
+
+      //sync
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state, malObj)){
           alert('sync');
@@ -81,6 +85,44 @@ export class syncPage{
     }
     malObj.setEpisode(state.episode);
     return true;
+  }
+
+  fillUI(malObj){
+    $('.MalLogin').css("display","initial");
+    $('#AddMalDiv').remove();
+
+    $("#malRating").attr("href", malObj.url);
+
+    if(malObj.addAnime){
+      $('.MalLogin').css("display","none");
+      $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
+      $('#AddMal').click(function() {
+        alert('todo');
+        //TODO
+        /*var anime = {};
+        anime['.add_'+K.listType+'[status]'] = 6;
+        anime['forceUpdate'] = 1;
+        setanime(K.normalUrl(),anime);*/
+      });
+    }else{
+      $("#malTotal, #malTotalCha").text(malObj.totalEp);
+      if(malObj.totalEp == 0){
+         $("#malTotal, #malTotalCha").text('?');
+      }
+
+      $("#malTotalVol").text(malObj.totalVol);
+      if(malObj.totalVol == 0){
+         $("#malTotalVol").text('?');
+      }
+
+      $("#malEpisodes, #malChapters").val(malObj.getEpisode());
+      $("#malVolumes").val(malObj.getVolume());
+
+      $("#malStatus").val(malObj.getStatus());
+      $("#malUserRating").val(malObj.getScore());
+    }
+    $("#MalData").css("display","flex");
+    $("#MalInfo").text("");
   }
 
   UILoaded:boolean = false;

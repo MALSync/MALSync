@@ -43,6 +43,20 @@ export class mal{
     this.animeInfo[".add_anime[num_watched_episodes]"] = ep;
   }
 
+  getVolume(){
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[num_read_volumes]"];
+    }
+    return false;
+  }
+
+  setVolume(ep:number){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[num_read_volumes]"] = ep;
+    }
+    con.log('You cant set Volumes for animes')
+  }
+
   getStatus(){
     if(this.type == "manga"){
       return this.animeInfo[".add_manga[status]"];
