@@ -219,7 +219,15 @@ export class syncPage{
 
     uiwrong += '<button class="open-info-popup mdl-button" style="display:none; margin-left: 6px;">MAL</button>';
 
-    $(ui).insertAfter($(".bigChar").first());
+    if(this.page.isSyncPage(this.url)){
+      if (typeof(this.page.sync.uiSelector) != "undefined"){
+        this.page.sync.uiSelector($(ui));
+      }
+    }else{
+      if (typeof(this.page.overview) != "undefined"){
+        this.page.overview.uiSelector($(ui));
+      }
+    }
   }
 
 }

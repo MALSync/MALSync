@@ -7,10 +7,13 @@ export interface pageInterface {
       getIdentifier: (url) => string,
       getEpisode: (url) => number,
       getVolume?: (url) => number,
+
+      uiSelector?: (selector) => void,
     },
     overview?:{
       getTitle: (url) => string,
       getIdentifier: (url) => string,
+      uiSelector: (selector) => void,
     },
     database?: string, //ignore, only for first party implementations
     init: (page:any) => void,

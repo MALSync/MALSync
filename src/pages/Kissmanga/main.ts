@@ -54,6 +54,7 @@ export const Kissmanga: pageInterface = {
     overview:{
       getTitle: function(){return $('.bigChar').first().text();},
       getIdentifier: function(url){return Kissmanga.sync.getIdentifier(url)},
+      uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
     },
     init(page){
       $(document).ready(function(){page.handlePage()});
