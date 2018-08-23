@@ -7,6 +7,16 @@ export function urlPart(url:string, part:number){
 
 }
 
+export function watching(type: "anime"|"manga"){
+  if(type == "manga") return 'Reading';
+  return 'Watching';
+}
+
+export function planTo(type: "anime"|"manga"){
+  if(type == "manga") return 'Plan to Read';
+  return 'Plan to Watch';
+}
+
 export function getMalUrl(identifier: string, title: string, page){
   if(typeof page.database == "undefined") return false;
   return firebase();
