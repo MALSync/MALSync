@@ -42,6 +42,7 @@ export const Kissanime: pageInterface = {
       uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
     },
     init(page){
+      api.storage.addStyle(require('./style.less').toString());
       $(document).ready(function(){page.handlePage()});
     }
 };
