@@ -54,7 +54,7 @@ export class mal{
     if(this.type == "manga"){
       this.animeInfo[".add_manga[num_read_volumes]"] = ep;
     }
-    con.log('You cant set Volumes for animes')
+    con.error('You cant set Volumes for animes');
   }
 
   getStatus(){
