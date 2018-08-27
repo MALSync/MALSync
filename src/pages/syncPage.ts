@@ -183,9 +183,19 @@ export class syncPage{
       return cache;
     }
 
+    if(typeof page.database != "undefined"){
+      var firebaseVal = await firebase();
+      if(firebaseVal !== false){
+        return firebaseVal;
+      }
+    }
 
-    if(typeof page.database == "undefined") return false;
-    return firebase();
+    var malSearchVal = await malSearch();
+    if(malSearchVal !== false){
+      return malSearchVal;
+    }
+
+    return false;
 
     function firebase(){
       var url = 'https://kissanimelist.firebaseio.com/Data2/'+page.database+'/'+encodeURIComponent(titleToDbKey(identifier)).toLowerCase()+'/Mal.json';
@@ -201,6 +211,26 @@ export class syncPage{
           }
           setCache( returnUrl, false);
           return returnUrl;
+        }else{
+          return false;
+        }
+      });
+    }
+
+    function malSearch(){
+      var url = "https://myanimelist.net/"+page.type+".php?q=" + encodeURI(title);
+      con.log("malSearch", url);
+      return api.request.xhr('GET', url).then((response) => {
+        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
+          try{
+            var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
+            setCache( link, false);
+            return link
+          }catch(e){
+            con.error(e);
+            return false;
+          }
+
         }else{
           return false;
         }
