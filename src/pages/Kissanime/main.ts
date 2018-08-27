@@ -1,6 +1,7 @@
 import {pageInterface} from "./../pageInterface";
 
 export const Kissanime: pageInterface = {
+    name: 'kissanime',
     domain: 'http://kissanime.ru',
     database: 'Kissanime',
     type: 'anime',

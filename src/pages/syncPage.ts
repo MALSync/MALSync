@@ -175,7 +175,15 @@ export class syncPage{
     }
   }
 
-  getMalUrl(identifier: string, title: string, page){
+  async getMalUrl(identifier: string, title: string, page){
+    var This = this;
+    var cache = await api.storage.get(this.page.name+'/'+identifier+'/Mal' , null);
+    if(typeof(cache) != "undefined"){
+      con.log('Cache', this.page.name+'/'+identifier, cache);
+      return cache;
+    }
+
+
     if(typeof page.database == "undefined") return false;
     return firebase();
 
@@ -185,10 +193,14 @@ export class syncPage{
       return api.request.xhr('GET', url).then((response) => {
         con.log("Firebase response",response.responseText);
         if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
+          var returnUrl:any = '';
           if(response.responseText.split('"')[1] == 'Not-Found'){
-              return null;
+            returnUrl = null;
+          }else{
+            returnUrl = 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
           }
-          return 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];;
+          setCache( returnUrl, false);
+          return returnUrl;
         }else{
           return false;
         }
@@ -202,6 +214,10 @@ export class syncPage{
       }
       return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
     };
+
+    function setCache(url, toDatabase){
+      api.storage.set(This.page.name+'/'+identifier+'/Mal' , url);
+    }
   }
 
   UILoaded:boolean = false;

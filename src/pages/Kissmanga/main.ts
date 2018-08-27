@@ -1,6 +1,7 @@
 import {pageInterface} from "./../pageInterface";
 
 export const Kissmanga: pageInterface = {
+    name: 'kissmanga',
     domain: 'http://kissmanga.com',
     database: 'Kissmanga',
     type: 'manga',
