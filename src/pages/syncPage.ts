@@ -148,7 +148,8 @@ export class syncPage{
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
       if (typeof(epList) != "undefined"){
-        con.log("Episode List", epList);
+        var elementUrl = this.page.overview.list.elementUrl;
+        con.log("Episode List", $.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         var curEp = epList[this.malObj.getEpisode()];
         if (typeof(curEp) != "undefined" && curEp){
           curEp.addClass('mal-sync-active');
@@ -159,7 +160,6 @@ export class syncPage{
 
   getEpList(){
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
-      var elementUrl = this.page.overview.list.elementUrl;
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
       this.page.overview.list.elementsSelector().each( function(index, el) {
