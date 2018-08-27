@@ -7,6 +7,7 @@ export class mal{
   totalEp: number = NaN;
   totalVol?: number;
   addAnime: boolean = false;
+  login: boolean = false;
 
   private animeInfo;
 
@@ -24,7 +25,13 @@ export class mal{
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.id+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);
     return api.request.xhr('GET', editUrl).then((response) => {
-      con.info('test', response);
+      con.error(response);
+      if(response.finalUrl.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
+        this.login = false;
+        con.error( "User not logged in" , {error: true});
+        return;
+      }
+      this.login = true;
       this.animeInfo = this.getObject(response.responseText);
     });
   }
