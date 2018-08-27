@@ -14,6 +14,11 @@ export interface pageInterface {
       getTitle: (url) => string,
       getIdentifier: (url) => string,
       uiSelector: (selector) => void,
+      list?:{
+        elementsSelector: () => JQuery<HTMLElement>,
+        elementUrl: (selector) => string,
+        elementEp: (selector) => number,
+      }
     },
     database?: string, //ignore, only for first party implementations
     init: (page:any) => void,

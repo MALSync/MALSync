@@ -40,6 +40,11 @@ export const Kissanime: pageInterface = {
       getTitle: function(){return $('.bigChar').first().text();},
       getIdentifier: function(url){return Kissanime.sync.getIdentifier(url)},
       uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
+      list:{
+        elementsSelector: function(){return $(".trAnime");},
+        elementUrl: function(selector){return '';},
+        elementEp: function(selector){return 1;},
+      }
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
