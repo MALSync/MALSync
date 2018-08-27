@@ -28,7 +28,7 @@ export class mal{
       con.error(response);
       if(response.finalUrl.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
         this.login = false;
-        con.error( "User not logged in" , {error: true});
+        con.error("User not logged in");
         return;
       }
       this.login = true;

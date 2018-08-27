@@ -67,6 +67,11 @@ export class syncPage{
       //fillUI
       this.fillUI();
 
+      if(!this.malObj.login){
+        utils.flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>", {error: true});
+        return;
+      }
+
       //sync
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
