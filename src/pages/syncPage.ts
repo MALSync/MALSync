@@ -94,6 +94,14 @@ export class syncPage{
 
     $("#malRating").attr("href", this.malObj.url);
 
+    if(!this.malObj.login){
+      $('.MalLogin').css("display","none");
+      $("#MalData").css("display","flex");
+      $("#MalInfo").text("");
+      $("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>Please log in on <a target='_blank' id='login' href='https://myanimelist.net/login.php'>MyAnimeList!<a></span>");
+      return;
+    }
+
     if(this.malObj.addAnime){
       $('.MalLogin').css("display","none");
       $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
