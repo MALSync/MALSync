@@ -41,8 +41,8 @@ export const Kissanime: pageInterface = {
       getIdentifier: function(url){return Kissanime.sync.getIdentifier(url)},
       uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
       list:{
-        elementsSelector: function(){return $(".listing a");},
-        elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Kissanime.domain);},
+        elementsSelector: function(){return $(".listing tr").filter(function(){return $(this).find('a').length > 0});},
+        elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Kissanime.domain);},
         elementEp: function(selector){
           var url = Kissanime.overview!.list!.elementUrl(selector);
           if(/_ED/.test(url)) return NaN;

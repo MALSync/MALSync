@@ -163,8 +163,13 @@ export class syncPage{
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
       this.page.overview.list.elementsSelector().each( function(index, el) {
-        var elEp = parseInt(elementEp($(el))+"");
-        elementArray[elEp] = $(el);
+        try{
+          var elEp = parseInt(elementEp($(el))+"");
+          elementArray[elEp] = $(el);
+        }catch(e){
+          con.info(e);
+        }
+
       });
       return elementArray;
     }
