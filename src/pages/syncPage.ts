@@ -139,6 +139,35 @@ export class syncPage{
     }
     $("#MalData").css("display","flex");
     $("#MalInfo").text("");
+
+    this.handleList();
+  }
+
+  handleList(){
+    $('.mal-sync-active').removeClass('mal-sync-active');
+    if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
+      var epList = this.getEpList();
+      if (typeof(epList) != "undefined"){
+        con.log("Episode List", epList);
+        var curEp = epList[this.malObj.getEpisode()];
+        if (typeof(curEp) != "undefined" && curEp){
+          curEp.addClass('mal-sync-active');
+        }
+      }
+    }
+  }
+
+  getEpList(){
+    if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
+      var elementUrl = this.page.overview.list.elementUrl;
+      var elementEp = this.page.overview.list.elementEp;
+      var elementArray = [] as JQuery<HTMLElement>[];
+      this.page.overview.list.elementsSelector().each( function(index, el) {
+        var elEp = parseInt(elementEp($(el))+"");
+        elementArray[elEp] = $(el);
+      });
+      return elementArray;
+    }
   }
 
   UILoaded:boolean = false;

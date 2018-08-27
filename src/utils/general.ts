@@ -60,6 +60,16 @@ export function getselect(data, name){
     }
 }
 
+export function absoluteLink(url, domain) {
+  if (typeof url === "undefined") {
+    return url;
+  }
+  if(!url.startsWith("http")) {
+    url = domain + url;
+  }
+  return url;
+};
+
 
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
