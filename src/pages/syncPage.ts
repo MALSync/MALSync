@@ -91,37 +91,43 @@ export class syncPage{
       .then(function(){
         var message = This.malObj.name;
         var split = '<br>';
+        var totalVol = This.malObj.totalVol;
+        if (totalVol == 0) totalVol = '?';
         var totalEp = This.malObj.totalEp;
         if (totalEp == 0) totalEp = '?';
         if(typeof This.malObj.getStatus() != 'undefined'){
-            var statusString = "";
-            switch (parseInt(This.malObj.getStatus())) {
-                case 1:
-                    statusString = utils.watching(This.page.type);
-                    break;
-                case 2:
-                    statusString = 'Completed';
-                    break;
-                case 3:
-                    statusString = 'On-Hold';
-                    break;
-                case 4:
-                    statusString = 'Dropped';
-                    break;
-                case 6:
-                    statusString = utils.planTo(This.page.type);
-                    break;
-            }
-            message += split + statusString;
-            split = ' | '
+          var statusString = "";
+          switch (parseInt(This.malObj.getStatus())) {
+            case 1:
+              statusString = utils.watching(This.page.type);
+              break;
+            case 2:
+              statusString = 'Completed';
+              break;
+            case 3:
+              statusString = 'On-Hold';
+              break;
+            case 4:
+              statusString = 'Dropped';
+              break;
+            case 6:
+              statusString = utils.planTo(This.page.type);
+              break;
+          }
+          message += split + statusString;
+          split = ' | '
+        }
+        if(This.page.type == 'manga' && typeof This.malObj.getVolume() != 'undefined'){
+          message += split + 'Volume: ' + This.malObj.getVolume()+"/"+totalVol;
+          split = ' | '
         }
         if(typeof This.malObj.getEpisode() != 'undefined'){
-            message += split + 'Episode: ' + This.malObj.getEpisode()+"/"+totalEp;
-            split = ' | '
+          message += split + 'Episode: ' + This.malObj.getEpisode()+"/"+totalEp;
+          split = ' | '
         }
         if(typeof This.malObj.getScore() != 'undefined' && This.malObj.getScore() != ''){
-            message += split + 'Rating: ' + This.malObj.getScore();
-            split = ' | '
+          message += split + 'Rating: ' + This.malObj.getScore();
+          split = ' | '
         }
         if(hoverInfo){
             /*message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
@@ -141,9 +147,9 @@ export class syncPage{
                     }
                 });
             }*/
-            utils.flashm(message, {hoverInfo: true});
+          utils.flashm(message, {hoverInfo: true});
         }else{
-            utils.flashm(message);
+          utils.flashm(message);
         }
 
         return;
