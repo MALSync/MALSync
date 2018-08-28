@@ -76,13 +76,24 @@ export class syncPage{
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
           alert('sync');
-          await this.malObj.sync();
+          this.syncHandling();
         }else{
           alert('noSync');
         }
       }
 
     }
+  }
+
+  private syncHandling(){
+    return this.malObj.sync()
+      .then(function(){
+        utils.flashm( "Success");
+        return;
+      }).catch(function(){
+        utils.flashm( "Anime update failed" , {error: true});
+        return;
+      });
   }
 
   private handleAnimeUpdate(state){
@@ -113,7 +124,7 @@ export class syncPage{
       var This = this;
       $('#AddMal').click(function() {
         This.malObj.setStatus(6);
-        This.malObj.sync()
+        This.syncHandling()
           .then(() => {
             return This.malObj.update();
           }).then(() => {
@@ -366,7 +377,7 @@ export class syncPage{
     this.malObj.setScore($("#malUserRating").val());
     this.malObj.setStatus($("#malStatus").val());
 
-    this.malObj.sync()
+    this.syncHandling()
       .then(() => {
         return this.malObj.update();
       }).then(() => {
