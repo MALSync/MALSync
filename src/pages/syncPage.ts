@@ -76,7 +76,7 @@ export class syncPage{
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
           alert('sync');
-          this.syncHandling();
+          this.syncHandling(true);
         }else{
           alert('noSync');
         }
@@ -85,10 +85,67 @@ export class syncPage{
     }
   }
 
-  private syncHandling(){
+  private syncHandling(hoverInfo = false){
+    var This = this;
     return this.malObj.sync()
       .then(function(){
-        utils.flashm( "Success");
+        var message = This.malObj.name;
+        var split = '<br>';
+        var totalEp = This.malObj.totalEp;
+        if (totalEp == 0) totalEp = '?';
+        if(typeof This.malObj.getStatus() != 'undefined'){
+            var statusString = "";
+            switch (parseInt(This.malObj.getStatus())) {
+                case 1:
+                    statusString = utils.watching(This.page.type);
+                    break;
+                case 2:
+                    statusString = 'Completed';
+                    break;
+                case 3:
+                    statusString = 'On-Hold';
+                    break;
+                case 4:
+                    statusString = 'Dropped';
+                    break;
+                case 6:
+                    statusString = utils.planTo(This.page.type);
+                    break;
+            }
+            message += split + statusString;
+            split = ' | '
+        }
+        if(typeof This.malObj.getEpisode() != 'undefined'){
+            message += split + 'Episode: ' + This.malObj.getEpisode()+"/"+totalEp;
+            split = ' | '
+        }
+        if(typeof This.malObj.getScore() != 'undefined' && This.malObj.getScore() != ''){
+            message += split + 'Rating: ' + This.malObj.getScore();
+            split = ' | '
+        }
+        if(hoverInfo){
+            /*message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
+            if(!episodeInfoBox){
+                flashm( message , false);
+                $('.undoButton').click(function(){
+                    undoAnime['checkIncrease'] = 0;
+                    setanime(thisUrl, undoAnime, null, localListType);
+                });
+            }else{
+                episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
+                    undoAnime['checkIncrease'] = 0;
+                    setanime(thisUrl, undoAnime, null, localListType);
+                    $('.info-Mal-undo').remove();
+                    if($('.flashinfo>div').text() == ''){
+                        $('.flashinfo').remove();
+                    }
+                });
+            }*/
+            utils.flashm(message, {hoverInfo: true});
+        }else{
+            utils.flashm(message);
+        }
+
         return;
       }).catch(function(){
         utils.flashm( "Anime update failed" , {error: true});
