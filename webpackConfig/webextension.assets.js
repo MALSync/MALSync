@@ -31,6 +31,9 @@ const generateManifest = () => {
         'background.js'
       ]
     },
+    'browser_action': {
+      'default_popup': 'popup.html'
+    },
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,
@@ -57,6 +60,13 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
   });
 
   extra.copy(path.join(__dirname, '../node_modules/jquery/dist/jquery.min.js'), path.join(__dirname, '../dist/webextension/vendor/jquery.min.js'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  extra.copy(path.join(__dirname, '../src/minimal/popup.html'), path.join(__dirname, '../dist/webextension/popup.html'), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
