@@ -45,9 +45,9 @@ export class mal{
 
   setEpisode(ep:number){
     if(this.type == "manga"){
-      this.animeInfo[".add_manga[num_read_chapters]"] = ep;
+      this.animeInfo[".add_manga[num_read_chapters]"] = parseInt(ep+'');
     }
-    this.animeInfo[".add_anime[num_watched_episodes]"] = ep;
+    this.animeInfo[".add_anime[num_watched_episodes]"] = parseInt(ep+'');
   }
 
   getVolume(){
@@ -91,6 +91,13 @@ export class mal{
       this.animeInfo[".add_manga[score]"] = score;
     }
     this.animeInfo[".add_anime[score]"] = score;
+  }
+
+  clone() {
+      const copy = new (this.constructor as { new () })();
+      Object.assign(copy, this);
+      copy.animeInfo = Object.assign( {},this.animeInfo);
+      return copy;
   }
 
   sync(){

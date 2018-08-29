@@ -5,6 +5,7 @@ import {mal} from "./../utils/mal";
 export class syncPage{
   page: pageInterface;
   malObj;
+  oldMalObj;
 
   constructor(public url){
     this.page = this.getPage(url);
@@ -63,6 +64,8 @@ export class syncPage{
       con.log('MyAnimeList', malUrl);
       this.malObj = new mal(malUrl);
       await this.malObj.init();
+      this.oldMalObj = this.malObj.clone();
+
 
       //fillUI
       this.fillUI();
@@ -95,7 +98,7 @@ export class syncPage{
         if (totalVol == 0) totalVol = '?';
         var totalEp = This.malObj.totalEp;
         if (totalEp == 0) totalEp = '?';
-        if(typeof This.malObj.getStatus() != 'undefined'){
+        if(This.malObj.getStatus() != This.oldMalObj.getStatus()){
           var statusString = "";
           switch (parseInt(This.malObj.getStatus())) {
             case 1:
@@ -117,15 +120,15 @@ export class syncPage{
           message += split + statusString;
           split = ' | '
         }
-        if(This.page.type == 'manga' && typeof This.malObj.getVolume() != 'undefined'){
+        if(This.page.type == 'manga' && This.malObj.getVolume() != This.oldMalObj.getVolume()){
           message += split + 'Volume: ' + This.malObj.getVolume()+"/"+totalVol;
           split = ' | '
         }
-        if(typeof This.malObj.getEpisode() != 'undefined'){
+        if(This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
           message += split + 'Episode: ' + This.malObj.getEpisode()+"/"+totalEp;
           split = ' | '
         }
-        if(typeof This.malObj.getScore() != 'undefined' && This.malObj.getScore() != ''){
+        if(This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
           message += split + 'Rating: ' + This.malObj.getScore();
           split = ' | '
         }
@@ -153,7 +156,8 @@ export class syncPage{
         }
 
         return;
-      }).catch(function(){
+      }).catch(function(e){
+        con.error(e);
         utils.flashm( "Anime update failed" , {error: true});
         return;
       });
