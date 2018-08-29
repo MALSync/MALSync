@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
+const resourcesJson = require('./resources');
 
 const generateMatchExcludes = () => {
   var match = [];
@@ -13,6 +14,15 @@ const generateMatchExcludes = () => {
     if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
   }
   return {match: match, exclude: exclude}
+}
+
+const generateResources = () => {
+  var resources = [];
+  for (var key in resourcesJson) {
+    var el = resourcesJson[key];
+    resources.push(key+' '+el);
+  }
+  return resources;
 }
 
 const metadata = {
@@ -32,6 +42,7 @@ const metadata = {
   ],
   'match' : generateMatchExcludes().match,
   'exclude' : generateMatchExcludes().exclude,
+  'resource' : generateResources(),
   'run-at': 'document_start',
   'connect': [
     'myanimelist.net',
