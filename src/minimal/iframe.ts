@@ -1,3 +1,5 @@
+import {minimal} from "./minimalClass";
+
 export function createIframe(){
   if( !($('#info-popup').length) ){
     //TEMP
@@ -149,6 +151,9 @@ export function createIframe(){
                 $('.floatbutton').fadeIn();
             }
         });
+
+
+        var minimalObj = new minimal($("#info-iframe").contents().find('html'));
       //TEMP
 
     };
