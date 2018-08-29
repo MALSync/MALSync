@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@types/chrome": "0.0.72",
+    "download-file": "^0.1.5",
     "jquery": "^3.3.1"
   }
 }

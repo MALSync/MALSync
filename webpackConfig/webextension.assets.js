@@ -5,6 +5,8 @@ const path = require('path');
 const extra = require('fs-extra');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
+const download = require('download-file');
+const resourcesJson = require('./resources');
 
 const generateMatchExcludes = () => {
   var match = [];
@@ -60,5 +62,21 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
       process.exit(1);
     }
   });
+
+  for (var key in resourcesJson) {
+    var url = resourcesJson[key];
+
+    var options = {
+        directory: "./dist/webextension/vendor/",
+        filename: key
+    }
+
+    download(url, options, function(err){
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+    })
+  }
 
 });
