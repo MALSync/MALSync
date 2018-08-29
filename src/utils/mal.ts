@@ -93,6 +93,18 @@ export class mal{
     this.animeInfo[".add_anime[score]"] = score;
   }
 
+  getStreamingUrl(){
+    var tags = this.animeInfo[".add_anime[tags]"];
+    if(this.type == "manga"){
+      tags = this.animeInfo[".add_manga[tags]"];
+    }
+    return utils.getUrlFromTags(tags);
+  }
+
+  setStreamingUrl(url:string){
+
+  }
+
   clone() {
       const copy = new (this.constructor as { new () })();
       Object.assign(copy, this);

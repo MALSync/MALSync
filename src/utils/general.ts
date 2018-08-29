@@ -41,6 +41,24 @@ export function absoluteLink(url, domain) {
   return url;
 };
 
+export function getUrlFromTags(tags:string){
+  if(/last::[\d\D]+::/.test(tags)){
+    return atobURL( tags.split("last::")[1].split("::")[0] );
+  }
+  if(/malSync::[\d\D]+::/.test(tags)){
+    return atobURL( tags.split("malSync::")[1].split("::")[0] );
+  }
+  return undefined;
+
+  function atobURL( encoded ){
+    try{
+      return atob( encoded );
+    }catch(e){
+      return encoded;
+    }
+  }
+}
+
 
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
