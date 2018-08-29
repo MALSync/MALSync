@@ -169,6 +169,7 @@ export class syncPage{
       return false;
     }
     this.malObj.setEpisode(state.episode);
+    this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
     return true;
   }
 

@@ -6,6 +6,7 @@ export interface pageInterface {
     sync:{
       getTitle: (url) => string,
       getIdentifier: (url) => string,
+      getOverviewUrl: (url) => string,
       getEpisode: (url) => number,
       getVolume?: (url) => number,
 

@@ -16,6 +16,7 @@ export const Kissanime: pageInterface = {
     sync:{
       getTitle: function(url){return Kissanime.sync.getIdentifier(url)},
       getIdentifier: function(url){return utils.urlPart(url, 4);},
+      getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 5);
         var temp = [];
