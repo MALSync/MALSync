@@ -41,3 +41,7 @@ api.storage.addStyle(style);
   }, 3000)
   utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
 });*/
+import {createIframe} from "./minimal/iframe";
+$(document).ready(function(){
+  createIframe();
+});
