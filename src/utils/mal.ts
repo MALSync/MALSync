@@ -102,7 +102,17 @@ export class mal{
   }
 
   setStreamingUrl(url:string){
+    var tags = this.animeInfo[".add_anime[tags]"];
+    if(this.type == "manga"){
+      tags = this.animeInfo[".add_manga[tags]"];
+    }
 
+    tags = utils.setUrlInTags(url, tags);
+
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[tags]"] = tags;
+    }
+    this.animeInfo[".add_anime[tags]"] = tags;
   }
 
   clone() {

@@ -59,6 +59,17 @@ export function getUrlFromTags(tags:string){
   }
 }
 
+export function setUrlInTags(url: string, tags: string){
+  //if(tagLinks == 0){return current;} TODO
+  var addition = "malSync::"+ btoa(url) +"::";
+  if(/(last|malSync)::[\d\D]+::/.test(tags)){
+      tags = tags.replace(/(last|malSync)::[^\^]*?::/, addition);
+  }else{
+      tags = tags+','+addition;
+  }
+  return tags;
+}
+
 
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
