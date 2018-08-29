@@ -170,6 +170,7 @@ export class syncPage{
     }
     this.malObj.setEpisode(state.episode);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
+    //TODO: Add the Startwatching/Endwatching/Rewatching Handling
     return true;
   }
 
