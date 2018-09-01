@@ -52,5 +52,22 @@ export const webextension: storageInterface = {
           this.remove();
       };
       head.get(0).appendChild(s);
+    },
+
+    updateDom(head){
+      var s = document.createElement('script');
+      s.text = `
+        try{
+          componentHandler.upgradeDom();
+        }catch(e){
+          console.log(e);
+          setTimeout(function(){
+            componentHandler.upgradeDom();
+          },500);
+        }`;
+      s.onload = function() {
+          this.remove();
+      };
+      head.get(0).appendChild(s);
     }
 };

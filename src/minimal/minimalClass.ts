@@ -96,5 +96,12 @@ export class minimal{
       </div>
     `;
     this.minimal.find("body").append(material);
+
+    this.updateDom();
+
+  }
+
+  updateDom(){
+    api.storage.updateDom(this.minimal.find("head"));
   }
 }

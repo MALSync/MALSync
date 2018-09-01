@@ -10,4 +10,6 @@ export interface storageInterface {
   injectCssResource(res: string, head): void;
 
   injectjsResource(res: string, head): void;
+
+  updateDom(head): void;
 }
