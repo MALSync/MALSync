@@ -35,5 +35,13 @@ export const webextension: storageInterface = {
       } catch (e) {
           console.log("Could not add css:" + e);
       }
+    },
+
+    injectCssResource(res, head){
+      var path = chrome.extension.getURL('vendor/'+res);
+      head.append($('<link>')
+          .attr("rel","stylesheet")
+          .attr("type","text/css")
+          .attr("href", path));
     }
 };

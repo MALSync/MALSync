@@ -129,9 +129,10 @@ export function createIframe(){
                 background-image: url(https://github.com/google/material-design-icons/blob/master/social/1x_web/ic_notifications_none_black_18dp.png?raw=true);\
               }\
             </style>');
-      /*head.append('<style>'+GM_getResourceText("materialCSS")+'</style>');*/
-      /*head.append('<style>'+GM_getResourceText("materialFont")+'</style>');*/
-      /*head.append('<style>'+GM_getResourceText("simpleBarCSS")+'</style>');*/
+
+      api.storage.injectCssResource('materialCSS', head);
+      api.storage.injectCssResource('materialFont', head);
+      api.storage.injectCssResource('simpleBarCSS', head);
 
       var floatbutton = '<button class="open-info-popup floatbutton" style="">';
       floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
