@@ -43,5 +43,14 @@ export const webextension: storageInterface = {
           .attr("rel","stylesheet")
           .attr("type","text/css")
           .attr("href", path));
+    },
+
+    injectjsResource(res, head){
+      var s = document.createElement('script');
+      s.src = chrome.extension.getURL('vendor/'+res);
+      s.onload = function() {
+          this.remove();
+      };
+      head.get(0).appendChild(s);
     }
 };

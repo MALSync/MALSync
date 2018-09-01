@@ -36,9 +36,11 @@ export function createIframe(){
     iframe.setAttribute("id", "info-iframe");
     iframe.setAttribute("style", "height:100%;width:100%;border:0;");
     iframe.onload = function() {
-      /*executejs(GM_getResourceText("materialjs"));*/
-      /*executejs(GM_getResourceText("simpleBarjs"));*/
       var head = $("#info-iframe").contents().find("head");
+
+      api.storage.injectjsResource('simpleBarjs', head);
+      api.storage.injectjsResource('materialjs', head);
+
       head.append('<style>#material .mdl-card__supporting-text{width: initial} .mdl-layout__header .mdl-textfield__label:after{background-color: red !important;}</style>');
       head.append('<style>\
               .alternative-list .mdl-list{\
