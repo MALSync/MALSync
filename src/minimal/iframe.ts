@@ -14,7 +14,6 @@ export function createIframe(){
     }*/
     var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
     material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; '+position+'">';
-    material += '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>';
     material += '</div>';
     material += '</dialog>';
     $('body').after(material);
@@ -159,5 +158,6 @@ export function createIframe(){
 
     };
     document.getElementById("modal-content")!.appendChild(iframe);
+    $("#modal-content").append('<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>');
   }
 }
