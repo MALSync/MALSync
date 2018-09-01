@@ -44,6 +44,9 @@ const generateManifest = () => {
         "run_at": "document_start"
       }
     ],
+    'web_accessible_resources': [
+      'vendor/*'
+    ],
     'permissions': [
       "storage",
       "https://myanimelist.net/"
