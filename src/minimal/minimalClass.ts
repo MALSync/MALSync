@@ -97,11 +97,17 @@ export class minimal{
     `;
     this.minimal.find("body").append(material);
 
+    this.injectCss();
     this.updateDom();
 
   }
 
   updateDom(){
     api.storage.updateDom(this.minimal.find("head"));
+  }
+
+  injectCss(){
+    this.minimal.find("head").append($('<style>')
+        .html(require('./minimalStyle.less').toString()));
   }
 }
