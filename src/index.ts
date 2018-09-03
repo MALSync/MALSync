@@ -5,7 +5,10 @@ function main() {
   page.init();
 }
 
-main();
+api.settings.init()
+  .then(()=>{
+    main();
+  });
 
 //temp
 con.log('log');
@@ -25,11 +28,6 @@ api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
 
 const style = require('./style.less').toString();
 api.storage.addStyle(style);
-
-api.settings.init()
-  .then(()=>{
-    alert(api.settings.get('test'));
-  });
 
 /*$(document).ready(function(){
   utils.flashm('test');
