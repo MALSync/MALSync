@@ -144,23 +144,82 @@ export class minimal{
         .html(require('./minimalStyle.less').toString()));
   }
 
-  loadSettings(){//:array<function>
+  loadSettings(){
     var This = this;
     var listener: (() => void)[] = [];
     var settingsUI = `
     <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
       <div class="mdl-grid">
+
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
-            <h2 class="mdl-card__title-text">General</h2>
+            <h2 class="mdl-card__title-text">miniMAL</h2>
+            <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
           </div>
-          ${materialCheckbox('test','testText')}
-          ${materialCheckbox('test2','testText2')}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Display to the
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select name="myinfo_score" id="posLeft" class="inputtext mdl-textfield__input" style="outline: none;">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+            </span>
+          </li>
+          <!--${materialCheckbox('miniMALonMal','Display on MyAnimeList')/*TODO*/}
+          ${materialCheckbox('displayFloatButton','Floating menu button')}
+          ${materialCheckbox('outWay','Move video out of the way')}-->
+          <li class="mdl-list__item" style="display: inline-block; width: 49%;">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+              <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" value="${api.settings.get('miniMalHeight')}">
+              <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)
+              </label>
+            </div>
+          </li>
+          <li class="mdl-list__item" style="display: inline-block; width: 50%;">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+              <input class="mdl-textfield__input" type="text" step="1" id="miniMalWidth" value="${api.settings.get('miniMalWidth')}">
+              <label class="mdl-textfield__label" for="miniMalWidth">Width (px / %)</label>
+            </div>
+          </li>
         </div>
+
       </div>
     </ul>
     `;
     this.minimal.find('#malConfig').html(settingsUI);
+
+    // Listener
+    this.minimal.find("#posLeft").val(api.settings.get('posLeft'));
+    this.minimal.find("#posLeft").change(function(){
+      // @ts-ignore
+      api.settings.set('posLeft', $(this).val());
+    });
+
+    this.minimal.find("#miniMalWidth").on("input", function(){
+        var miniMalWidth = This.minimal.find("#miniMalWidth").val();
+        if(miniMalWidth !== null){
+            if(miniMalWidth === ''){
+                miniMalWidth = '30%';
+                utils.flashm( "Width reset" );
+            }
+            api.settings.set( 'miniMalWidth', miniMalWidth );
+        }
+        $("#modal-content").css('width', miniMalWidth);
+    });
+
+    this.minimal.find("#miniMalHeight").on("input", function(){
+        var miniMalHeight = This.minimal.find("#miniMalHeight").val();
+        if(miniMalHeight !== null){
+            if(miniMalHeight === ''){
+                miniMalHeight = '90%';
+                utils.flashm( "Height reset" );
+            }
+            api.settings.set( 'miniMalHeight', miniMalHeight );
+        }
+        $("#modal-content").css('height', miniMalHeight);
+    });
 
     listener.forEach(function(fn) {
       fn();

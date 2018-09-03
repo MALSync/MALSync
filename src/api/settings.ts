@@ -1,7 +1,11 @@
 export var settingsObj = {
   options: {
-    test: 1,
-    test2: 2,
+    posLeft: 'left',
+    miniMALonMal: false,
+    displayFloatButton: true,
+    outWay: true,
+    miniMalWidth: '30%',
+    miniMalHeight: '90%',
   },
 
   init: async function (){

@@ -30,11 +30,9 @@ function createIframe(){
 
 
 export function initIframeModal(){
-  //TEMP
-  var posLeft = 'left';
-  var miniMalWidth = '30%';
-  var miniMalHeight = '30%';
-  //TEMP END
+  var posLeft = api.settings.get('posLeft');
+  var miniMalWidth = api.settings.get('miniMalWidth');
+  var miniMalHeight = api.settings.get('miniMalHeight');
 
   if( !($('#info-popup').length) ){
     api.storage.addStyle('.modal-content-kal.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
@@ -53,9 +51,10 @@ export function initIframeModal(){
 
     //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
     var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
-    /*if($(window).width() < 500){TODO
+    // @ts-ignore
+    if($(window).width() < 500){
       position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
-    }*/
+    }
     var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
     material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; '+position+'">';
     material += '</div>';
