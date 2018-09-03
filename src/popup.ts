@@ -1,3 +1,5 @@
 import {minimal} from "./minimal/minimalClass";
-
-var minimalObj = new minimal($('html'));
+api.settings.init()
+  .then(()=>{
+    var minimalObj = new minimal($('html'));
+  })
