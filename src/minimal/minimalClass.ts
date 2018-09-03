@@ -98,6 +98,7 @@ export class minimal{
     this.minimal.find("body").append(material);
 
     this.injectCss();
+    this.loadSettings();
     this.updateDom();
 
   }
@@ -109,5 +110,60 @@ export class minimal{
   injectCss(){
     this.minimal.find("head").append($('<style>')
         .html(require('./minimalStyle.less').toString()));
+  }
+
+  loadSettings(){//:array<function>
+    var This = this;
+    var listener: (() => void)[] = [];
+    var settingsUI = `
+    <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">General</h2>
+          </div>
+          ${materialCheckbox('test','testText')}
+          ${materialCheckbox('test2','testText2')}
+        </div>
+      </div>
+    </ul>
+    `;
+    this.minimal.find('#malConfig').html(settingsUI);
+
+    listener.forEach(function(fn) {
+      fn();
+    });
+
+    //helper
+
+    function materialCheckbox(option, text, header = false){
+      var check = '';
+      var sty = '';
+      var value = api.settings.get(option)
+      if(value) check = 'checked';
+      if(header) sty = 'font-size: 24px; font-weight: 300; line-height: normal;';
+      var item = `
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content" style="${sty}">
+          ${text}
+        </span>
+        <span class="mdl-list__item-secondary-action">
+          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="${option}">
+            <input type="checkbox" id="${option}" class="mdl-switch__input" ${check} />
+          </label>
+        </span>
+      </li>`;
+
+      listener.push(function(){
+        This.minimal.find('#'+option).change(function(){
+            if(This.minimal.find('#'+option).is(":checked")){
+                api.settings.set(option, true);
+            }else{
+                api.settings.set(option, false);
+            }
+        });
+      });
+      return item;
+    }
   }
 }
