@@ -34,7 +34,7 @@ export class minimal{
               <a href="#fixed-tab-5" class="mdl-layout__tab settingsTab">Settings</a>
             </div>
           </header>
-          <main class="mdl-layout__content" data-simplebar>
+          <main class="mdl-layout__content" data-simplebar style="height:  100%;">
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
               <div class="page-content">
