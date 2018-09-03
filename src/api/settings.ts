@@ -1,25 +1,27 @@
-export class settingsClass{
-  options = {
+export var settingsObj = {
+  options: {
     test: 1,
     test2: 2,
-  }
+  },
 
-  async init(){
-    for (var key in this.options) {
-      var store = await api.storage.get('settings/'+key);
-      if(typeof store != 'undefined'){
-        this.options[key] = store;
-        con.error(store);
+  init: async function (){
+    return new Promise(async (resolve, reject) => {
+      for (var key in this.options) {
+        var store = await api.storage.get('settings/'+key);
+        if(typeof store != 'undefined'){
+          this.options[key] = store;
+        }
       }
-    }
-    return this;
-  }
+      con.log('Settings', this.options);
+      resolve(this);
+    });
+  },
 
-  get(name: string){
+  get: function(name: string){
     return this.options[name];
-  }
+  },
 
-  set(name: string, value: any){
+  set: function(name: string, value: any){
     if(this.options.hasOwnProperty(name)){
       this.options[name] = value;
       api.storage.set('settings/'+name, value);

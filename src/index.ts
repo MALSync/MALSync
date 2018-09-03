@@ -26,11 +26,11 @@ api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
 const style = require('./style.less').toString();
 api.storage.addStyle(style);
 
-var settings = new api.settings;
-settings.init();
-settings.set('test','lol');
+api.settings.init()
+  .then(()=>{
+    alert(api.settings.get('test'));
+  });
 
-con.log(settings);
 /*$(document).ready(function(){
   utils.flashm('test');
   utils.flashm('test', {type: "test", error: true});

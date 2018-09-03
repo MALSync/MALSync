@@ -1,9 +1,9 @@
 import {webextension} from "./storage/webextension";
 import {requestApi} from "./request/requestWebextension";
-import {settingsClass} from "./settings";
+import {settingsObj} from "./settings";
 
 export var storage = webextension;
 
 export var request = requestApi;
 
-export var settings = settingsClass;
+export var settings = settingsObj;
