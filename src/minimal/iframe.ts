@@ -4,7 +4,7 @@ function createIframe(){
 
     var iframe = document.createElement('iframe');
     iframe.setAttribute("id", "info-iframe");
-    iframe.setAttribute("style", "height:100%;width:100%;border:0;display:none;");
+    iframe.setAttribute("style", "height:100%;width:100%;border:0;display:block;");
     iframe.onload = function() {
       var head = $("#info-iframe").contents().find("head");
 
@@ -17,14 +17,17 @@ function createIframe(){
       api.storage.injectCssResource('simpleBarCSS', head);
 
       //TEMP
-        $('#info-iframe').css('display', 'block');
-
         var minimalObj = new minimal($("#info-iframe").contents().find('html'));
       //TEMP
 
     };
     document.getElementById("modal-content")!.appendChild(iframe);
     $("#modal-content").append('<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>');
+
+    if((!$("#info-iframe").length) || ($('#info-iframe').css('display') != 'block')){
+        $('#info-popup').remove();
+        alert('The miniMAL iframe could not be loaded.\nThis could be caused by an AdBlocker.');
+    }
 
 }
 
