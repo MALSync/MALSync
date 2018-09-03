@@ -139,7 +139,7 @@ export class minimal{
     function materialCheckbox(option, text, header = false){
       var check = '';
       var sty = '';
-      var value = api.settings.get(option)
+      var value = api.settings.get(option);
       if(value) check = 'checked';
       if(header) sty = 'font-size: 24px; font-weight: 300; line-height: normal;';
       var item = `
