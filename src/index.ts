@@ -1,4 +1,5 @@
 import {syncPage} from "./pages/syncPage";
+import {createIframe} from "./minimal/iframe";
 
 function main() {
   var page = new syncPage(window.location.href);
@@ -8,6 +9,11 @@ function main() {
 api.settings.init()
   .then(()=>{
     main();
+
+    //TODO
+    $(document).ready(function(){
+      createIframe();
+    });
   });
 
 //temp
@@ -45,7 +51,3 @@ api.storage.addStyle(style);
   }, 3000)
   utils.flashConfirm('Add?', 'add', function(){alert('yes')}, function(){alert('no')});
 });*/
-import {createIframe} from "./minimal/iframe";
-$(document).ready(function(){
-  createIframe();
-});
