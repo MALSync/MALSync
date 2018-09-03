@@ -97,10 +97,42 @@ export class minimal{
     `;
     this.minimal.find("body").append(material);
 
+    this.uiListener();
     this.injectCss();
     this.loadSettings();
     this.updateDom();
 
+  }
+
+  uiListener(){
+    var modal = document.getElementById('info-popup');
+    var This = this;
+
+    this.minimal.find("#close-info-popup").click( function(){
+        if(This.isPopup()){
+          window.close();
+        }else{
+          modal!.style.display = "none";
+          $('.floatbutton').fadeIn();
+        }
+    });
+
+    this.minimal.find("#material-fullscreen").click( function(){
+        if($('.modal-content-kal.fullscreen').length){
+            $(".modal-content-kal").removeClass('fullscreen');
+            // @ts-ignore
+            $(this).find('i').text('fullscreen');
+        }else{
+            $(".modal-content-kal").addClass('fullscreen');
+            // @ts-ignore
+            $(this).find('i').text('fullscreen_exit');
+        }
+    });
+  }
+
+  isPopup(){
+    if($('#Mal-Sync-Popup').length) return true;
+    return false;
   }
 
   updateDom(){
