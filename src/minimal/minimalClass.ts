@@ -104,7 +104,7 @@ export class minimal{
   }
 
   updateDom(){
-    api.storage.updateDom(this.minimal.find("head"));
+    this.minimal.find("head").click();
   }
 
   injectCss(){

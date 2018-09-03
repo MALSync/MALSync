@@ -40,6 +40,7 @@ export function createIframe(){
 
       api.storage.injectjsResource('simpleBarjs', head);
       api.storage.injectjsResource('materialjs', head);
+      api.storage.updateDom(head);
 
       api.storage.injectCssResource('materialCSS', head);
       api.storage.injectCssResource('materialFont', head);

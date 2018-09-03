@@ -57,13 +57,15 @@ export const webextension: storageInterface = {
     updateDom(head){
       var s = document.createElement('script');
       s.text = `
-        try{
-          componentHandler.upgradeDom();
-        }catch(e){
-          console.log(e);
-          setTimeout(function(){
+        document.getElementsByTagName('head')[0].onclick = function(e){
+          try{
             componentHandler.upgradeDom();
-          },500);
+          }catch(e){
+            console.log(e);
+            setTimeout(function(){
+              componentHandler.upgradeDom();
+            },500);
+          }
         }`;
       s.onload = function() {
           this.remove();
