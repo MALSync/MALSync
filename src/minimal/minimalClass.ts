@@ -1,6 +1,8 @@
 import {animeType} from "./types/anime";
 
 export class minimal{
+  private history:(string)[] = [];
+
   constructor(public minimal){
     var material = `
       <div id="material" style="height: 100%;">
@@ -92,6 +94,25 @@ export class minimal{
       }
     });
 
+    this.minimal.find("#backbutton").click( function(){
+      con.log('History', This.history);
+
+      if(This.history.length > 1){
+        This.history.pop(); //Remove current page
+        var url = This.history.pop();
+
+        if(typeof url != 'undefined'){
+          This.fill(url);
+          if(This.history.length > 1){
+            return;
+          }
+        }
+
+      }
+
+      This.backbuttonHide();
+    });
+
     this.minimal.find("#close-info-popup").click( function(){
         if(This.isPopup()){
           window.close();
@@ -140,6 +161,8 @@ export class minimal{
   }
 
   loadOverview(overviewObj){
+    this.history.push(overviewObj.url);
+    if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview').show();
     this.minimal.find('#fixed-tab-1 .page-content').html('');
     overviewObj.init()
@@ -149,6 +172,18 @@ export class minimal{
         this.minimal.find('#fixed-tab-1 .page-content').html(html);
         this.minimal.find('#loadOverview').hide();
       });
+  }
+
+  backbuttonShow(){
+    this.minimal.find("#backbutton").show();
+    this.minimal.find('#SearchButton').css('margin-left', '-17px');
+    this.minimal.find('#book').css('left', '40px');
+  }
+
+  backbuttonHide(){
+    this.minimal.find("#backbutton").hide();
+    this.minimal.find('#SearchButton').css('margin-left', '-57px');
+    this.minimal.find('#book').css('left', '0px');
   }
 
   loadSettings(){

@@ -1,7 +1,7 @@
 export class animeType{
   private vars;
 
-  constructor(private url){
+  constructor(public url){
 
   }
 
