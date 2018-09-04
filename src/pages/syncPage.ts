@@ -342,6 +342,7 @@ export class syncPage{
   private offset;
 
   getOffset(){
+    if(typeof this.offset == 'undefined') return 0;
     return this.offset;
   }
 
