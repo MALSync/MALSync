@@ -119,11 +119,14 @@ export class minimal{
   }
 
   loadOverview(overviewObj){
+    this.minimal.find('#loadOverview').show();
+    this.minimal.find('#fixed-tab-1 .page-content').html('');
     overviewObj.init()
       .then(() => {
         return overviewObj.overview();
       }).then((html) => {
         this.minimal.find('#fixed-tab-1 .page-content').html(html);
+        this.minimal.find('#loadOverview').hide();
       });
   }
 
