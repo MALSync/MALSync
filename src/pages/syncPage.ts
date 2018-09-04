@@ -42,7 +42,8 @@ export class syncPage{
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url)
       };
-      state.episode = this.page.sync.getEpisode(this.url);
+      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+      state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
       if (typeof(this.page.sync.getVolume) != "undefined"){
         state.volume = this.page.sync.getVolume(this.url)
       }
@@ -56,10 +57,9 @@ export class syncPage{
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url)
       };
+      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
       con.log('Overview', state);
     }
-
-    this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
@@ -247,12 +247,13 @@ export class syncPage{
   }
 
   getEpList(){
+    var This = this;
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
       this.page.overview.list.elementsSelector().each( function(index, el) {
         try{
-          var elEp = parseInt(elementEp($(el))+"");
+          var elEp = parseInt(elementEp($(el))+"")+parseInt(This.getOffset());
           elementArray[elEp] = $(el);
         }catch(e){
           con.info(e);
