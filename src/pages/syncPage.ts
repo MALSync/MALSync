@@ -336,6 +336,14 @@ export class syncPage{
     }
   }
 
+  async getOffset(){
+    return api.storage.get(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Offset');
+  }
+
+  async setOffset(value:number){
+    return api.storage.set(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Offset', value);
+  }
+
   UILoaded:boolean = false;
   private loadUI(){
     if(this.UILoaded) return;

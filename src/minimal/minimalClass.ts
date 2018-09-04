@@ -162,8 +162,9 @@ export class minimal{
 
   private pageSync;
 
-  setPageSync(page){
+  async setPageSync(page){
     this.pageSync = page;
+    var This = this;
     var html =
     ` <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text">`;
@@ -177,7 +178,7 @@ export class minimal{
       </div>
       <div class="mdl-list__item">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' , '')+'">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="${await page.getOffset()}">
           <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>
           ${utils.getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')}
         </div>
@@ -208,6 +209,19 @@ export class minimal{
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
       </div>`;
     this.minimal.find('#page-config').html(html);
+
+    this.minimal.find("#malOffset").on("input", function(){
+      var Offset = This.minimal.find("#malOffset").val();
+      if(Offset !== null){
+        if(Offset !== ''){
+          page.setOffset(Offset);
+          utils.flashm("New Offset ("+Offset+") set.");
+        }else{
+          page.setOffset(0);
+          utils.flashm("Offset reset");
+        }
+      }
+    });
   }
 
   loadOverview(overviewObj){
