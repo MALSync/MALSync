@@ -229,7 +229,7 @@ export class minimal{
     this.minimal.find("#malReset").click( function(){
       page.deleteCache();
       utils.flashm( "MyAnimeList url reset" , false);
-      //checkdata();
+      page.handlePage();
     });
 
     this.minimal.find("#malSubmit").click( function(){
@@ -240,7 +240,7 @@ export class minimal{
       }
       page.setCache(murl, toDatabase);
       utils.flashm( "new url '"+murl+"' set." , false);
-      //checkdata();
+      page.handlePage();
     });
 
   }
