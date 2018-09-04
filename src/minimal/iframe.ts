@@ -18,10 +18,13 @@ function createIframe(page){
 
       //TEMP
       var minimalObj = new minimal($("#info-iframe").contents().find('html'));
-      if(typeof(page.malObj) != 'undefined'){
-        minimalObj.fill(page.malObj.url);
-      }else{
-        minimalObj.fill(null);
+      if(typeof(page) != 'undefined'){
+        minimalObj.setPageSync(page);
+        if(typeof(page.malObj) != 'undefined'){
+          minimalObj.fill(page.malObj.url);
+        }else{
+          minimalObj.fill(null);
+        }
       }
       //TEMP
 

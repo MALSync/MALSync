@@ -160,6 +160,58 @@ export class minimal{
     return false;
   }
 
+  private pageSync;
+
+  setPageSync(page){
+    this.pageSync = page;
+    var html =
+    `<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-card__title mdl-card--border">
+        <h2 class="mdl-card__title-text">`;
+          /*if(data != null && data != '404'){//TODO
+            html += data.split('itemprop="name">')[1].split('<')[0];
+          }else{*/
+            html += 'Not Found';
+          /*}*/
+          html +=
+    `   </h2>
+      </div>
+      <div class="mdl-list__item">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="'+GM_getValue(K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Offset' , '')+'">
+          <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>
+          '+getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')+'
+        </div>
+      </div>
+      <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="'+malUrl+'">
+          <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>
+          '+getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;','left')+'
+        </div>
+      </div>
+
+      <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+          <label class="mdl-textfield__label" for="malSearch">
+            Search
+          </label>
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
+          '+getTooltip('This field is for finding an anime, when you need to replace the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')+'
+        </div>
+      </div>
+      <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">
+        <div class="malResults" id="malSearchResults"></div>
+      </div>
+
+      <div class="mdl-list__item">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
+      </div>
+    </div>`;
+    this.minimal.find('#page-config').html(html);
+  }
+
   loadOverview(overviewObj){
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
@@ -192,7 +244,7 @@ export class minimal{
     var settingsUI = `
     <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
       <div class="mdl-grid">
-
+        <div id="page-config"></div>
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">miniMAL</h2>
