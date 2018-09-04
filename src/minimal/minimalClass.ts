@@ -39,39 +39,7 @@ export class minimal{
           <main class="mdl-layout__content" data-simplebar style="height:  100%;">
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
               <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-              <div class="page-content">
-                <div class="mdl-grid">
-                  <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
-
-                  </div>
-                  <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
-                    <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
-                      <img class="malImage malClear" style="width: 100%; height: auto;"></img>
-                    </div>
-                    <div class="mdl-cell mdl-cell--12-col">
-                      <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" href="" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
-                      <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;"></h1>
-                      <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;"></div>
-                    </div>
-                    <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;"></div>
-                  </div>
-                  <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
-
-                  </div>
-                  <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
-
-                  </div>
-                  <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
-                    <ul class="mdl-list stream-block-inner">
-
-                    </ul>
-                  </div>
-                  <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear" style="display: none;"></div>
-                  <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
-
-                  </div>
-                </div>
-              </div>
+              <div class="page-content"></div>
             </section>
             <section class="mdl-layout__tab-panel" id="fixed-tab-2">
               <div id="loadReviews" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
