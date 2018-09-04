@@ -322,6 +322,8 @@ export class minimal{
     this.minimal.find("#posLeft").change(function(){
       // @ts-ignore
       api.settings.set('posLeft', $(this).val());
+      // @ts-ignore
+      $('#modal-content').css('right', 'auto').css('left', 'auto').css($(this).val(), '0');
     });
 
     this.minimal.find("#miniMalWidth").on("input", function(){
