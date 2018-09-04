@@ -165,16 +165,19 @@ export class minimal{
   setPageSync(page){
     this.pageSync = page;
     var This = this;
+
+    var malUrl = '';
+    var title = 'Not Found';
+    if(typeof page.malObj != 'undefined'){
+      malUrl = page.malObj.url;
+      title = page.malObj.name;
+    }
+
     var html =
     ` <div class="mdl-card__title mdl-card--border">
-        <h2 class="mdl-card__title-text">`;
-          /*if(data != null && data != '404'){//TODO
-            html += data.split('itemprop="name">')[1].split('<')[0];
-          }else{*/
-            html += 'Not Found';
-          /*}*/
-          html +=
-    `   </h2>
+        <h2 class="mdl-card__title-text">
+          ${title}
+        </h2>
       </div>
       <div class="mdl-list__item">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
@@ -185,7 +188,7 @@ export class minimal{
       </div>
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="'+malUrl+'">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="${malUrl}">
           <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>
           ${utils.getTooltip('Only change this URL if it points to the wrong anime page on MAL.','float: right; margin-top: -17px;','left')}
         </div>
@@ -222,6 +225,20 @@ export class minimal{
         }
       }
     });
+
+    this.minimal.find("#malReset").click( function(){
+        //GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' );
+        utils.flashm( "MyAnimeList url reset" , false);
+        //checkdata();
+    });
+
+    this.minimal.find("#malSubmit").click( function(){
+        var murl = This.minimal.find("#malUrlInput").val();
+        //local_setValue(K.normalUrl(), murl, true);
+        utils.flashm( "new url '"+murl+"' set." , false);
+        //checkdata();
+    });
+
   }
 
   loadOverview(overviewObj){
