@@ -1,6 +1,7 @@
 import {pages} from "./pages";
 import {pageInterface, pageState} from "./pageInterface";
 import {mal} from "./../utils/mal";
+import {initIframeModal} from "./../minimal/iframe";
 
 export class syncPage{
   page: pageInterface;
@@ -15,6 +16,10 @@ export class syncPage{
   }
 
   init(){
+    var This = this;
+    $(document).ready(function(){
+      initIframeModal(This);
+    });
     this.page.init(this);
   }
 

@@ -1,5 +1,5 @@
 import {syncPage} from "./pages/syncPage";
-import {initIframeModal} from "./minimal/iframe";
+
 
 function main() {
   var page = new syncPage(window.location.href);
@@ -9,11 +9,6 @@ function main() {
 api.settings.init()
   .then(()=>{
     main();
-
-    //TODO
-    $(document).ready(function(){
-      initIframeModal();
-    });
   });
 
 //temp

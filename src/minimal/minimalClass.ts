@@ -144,6 +144,10 @@ export class minimal{
         .html(require('./minimalStyle.less').toString()));
   }
 
+  fill(url: string|null){
+    alert(url);
+  }
+
   loadSettings(){
     var This = this;
     var listener: (() => void)[] = [];
