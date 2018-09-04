@@ -162,7 +162,7 @@ export class minimal{
 
   private pageSync;
 
-  async setPageSync(page){
+  setPageSync(page){
     this.pageSync = page;
     var This = this;
     var html =
@@ -178,7 +178,7 @@ export class minimal{
       </div>
       <div class="mdl-list__item">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="${await page.getOffset()}">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="${page.getOffset()}">
           <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>
           ${utils.getTooltip('Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.','float: right; margin-top: -17px;','left')}
         </div>

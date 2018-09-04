@@ -59,6 +59,8 @@ export class syncPage{
       con.log('Overview', state);
     }
 
+    this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
@@ -336,11 +338,14 @@ export class syncPage{
     }
   }
 
-  async getOffset(){
-    return api.storage.get(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Offset');
+  private offset;
+
+  getOffset(){
+    return this.offset;
   }
 
   async setOffset(value:number){
+    this.offset = value;
     return api.storage.set(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Offset', value);
   }
 
