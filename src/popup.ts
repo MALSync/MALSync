@@ -16,4 +16,7 @@ document.getElementsByTagName('head')[0].onclick = function(e){
 api.settings.init()
   .then(()=>{
     var minimalObj = new minimal($('html'));
+    //TEMP
+    minimalObj.fill('https://myanimelist.net/anime/19815/No_Game_No_Life');
+    //TEMP
   })
