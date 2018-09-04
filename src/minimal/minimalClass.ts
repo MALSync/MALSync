@@ -78,6 +78,20 @@ export class minimal{
     var modal = document.getElementById('info-popup');
     var This = this;
 
+    this.minimal.on('click', '.mdl-layout__content a', function(e){
+      e.preventDefault();
+      // @ts-ignore
+      var url = utils.absoluteLink($(this).attr('href'), 'https://myanimelist.net');
+      if(!This.fill(url)){
+        var win = window.open(url, '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            alert('Please allow popups for this website');
+        }
+      }
+    });
+
     this.minimal.find("#close-info-popup").click( function(){
         if(This.isPopup()){
           window.close();
@@ -115,7 +129,14 @@ export class minimal{
   }
 
   fill(url: string|null){
-    this.loadOverview(new animeType(url));
+    if(url == null){
+      return false;
+    }
+    if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
+      this.loadOverview(new animeType(url));
+      return true;
+    }
+    return false;
   }
 
   loadOverview(overviewObj){
