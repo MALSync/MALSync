@@ -68,13 +68,36 @@ export class animeType{
 
       html += overviewElement(this.url, title, image, description, altTitle, stats);
 
-      resolve(html);
+      try{
+        var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
+        var related = $.parseHTML( relatedBlock );
+        var relatedHtml = '<ul class="mdl-list">';
+        $.each($(related).filter('table').find('tr'), function( index, value ) {
+          relatedHtml += '<li class="mdl-list__item mdl-list__item--two-line">';
+            relatedHtml += '<span class="mdl-list__item-primary-content">';
+              relatedHtml += '<span>';
+                relatedHtml += $(this).find('.borderClass').first().text();
+              relatedHtml += '</span>';
+              relatedHtml += '<span class="mdl-list__item-sub-title">';
+                relatedHtml += $(this).find('.borderClass').last().html();
+              relatedHtml += '</span>';
+            relatedHtml += '</span>';
+          relatedHtml += '</li>';
+        });
+        relatedHtml += '</ul>';
+
+        html += `<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
+                  ${relatedHtml}
+                </div>`
+      }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+      resolve('<div class="mdl-grid">'+html+'</div>');
     });
   }
 }
 
 function overviewElement(url, title, image, description, altTitle, stats){
-  return `<div class="mdl-grid">
+  return `
     <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
       ${stats}
     </div>
@@ -93,20 +116,5 @@ function overviewElement(url, title, image, description, altTitle, stats){
         </p>
       </div>
     </div>
-    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
-
-    </div>
-    <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
-
-    </div>
-    <div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
-      <ul class="mdl-list stream-block-inner">
-
-      </ul>
-    </div>
-    <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear" style="display: none;"></div>
-    <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
-
-    </div>
-  </div>`;
+  `;
 }
