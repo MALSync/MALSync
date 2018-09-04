@@ -227,16 +227,20 @@ export class minimal{
     });
 
     this.minimal.find("#malReset").click( function(){
-        //GM_deleteValue( K.dbSelector+'/'+$.titleToDbKey(K.urlAnimeSelector(K.normalUrl()))+'/Mal' );
-        utils.flashm( "MyAnimeList url reset" , false);
-        //checkdata();
+      page.deleteCache();
+      utils.flashm( "MyAnimeList url reset" , false);
+      //checkdata();
     });
 
     this.minimal.find("#malSubmit").click( function(){
-        var murl = This.minimal.find("#malUrlInput").val();
-        //local_setValue(K.normalUrl(), murl, true);
-        utils.flashm( "new url '"+murl+"' set." , false);
-        //checkdata();
+      var murl = This.minimal.find("#malUrlInput").val();
+      var toDatabase:boolean|'correction' = false;
+      if (typeof page.page.database != 'undefined' && confirm('Submit database correction request? \nIf it does not exist on MAL, please leave empty.')) {
+          toDatabase = 'correction';
+      }
+      page.setCache(murl, toDatabase);
+      utils.flashm( "new url '"+murl+"' set." , false);
+      //checkdata();
     });
 
   }

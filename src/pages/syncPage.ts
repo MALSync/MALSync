@@ -298,7 +298,7 @@ export class syncPage{
           }else{
             returnUrl = 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
           }
-          setCache( returnUrl, false);
+          This.setCache(returnUrl, false, identifier);
           return returnUrl;
         }else{
           return false;
@@ -313,7 +313,7 @@ export class syncPage{
         if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
           try{
             var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
-            setCache( link, false);
+            This.setCache(link, false, identifier);
             return link
           }catch(e){
             con.error(e);
@@ -334,9 +334,15 @@ export class syncPage{
       return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
     };
 
-    function setCache(url, toDatabase){
-      api.storage.set(This.page.name+'/'+identifier+'/Mal' , url);
-    }
+  }
+
+  public setCache(url, toDatabase:boolean|'correction', identifier:any = null){
+    if(identifier == null) identifier = this.page.sync.getIdentifier(this.url);
+    api.storage.set(this.page.name+'/'+identifier+'/Mal' , url);
+  }
+
+  public deleteCache(){
+    api.storage.remove(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Mal');
   }
 
   private offset;
