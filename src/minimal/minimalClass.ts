@@ -151,6 +151,7 @@ export class minimal{
 
   fill(url: string|null){
     if(url == null){
+      this.minimal.find('#material').addClass('settings-only');
       return false;
     }
     if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
@@ -246,6 +247,7 @@ export class minimal{
   }
 
   loadOverview(overviewObj){
+    this.minimal.find('#material').removeClass('settings-only');
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview').show();
