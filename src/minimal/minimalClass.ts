@@ -1,3 +1,5 @@
+import {animeType} from "./types/anime";
+
 export class minimal{
   constructor(public minimal){
     var material = `
@@ -145,7 +147,16 @@ export class minimal{
   }
 
   fill(url: string|null){
-    alert(url);
+    this.loadOverview(new animeType(url));
+  }
+
+  loadOverview(overviewObj){
+    overviewObj.init()
+      .then(() => {
+        return overviewObj.overview();
+      }).then((html) => {
+        this.minimal.find('#fixed-tab-1 .page-content').html(html);
+      });
   }
 
   loadSettings(){
