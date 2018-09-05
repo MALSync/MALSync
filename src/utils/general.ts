@@ -76,6 +76,63 @@ export function getTooltip(text, style = '', direction = 'top'){
   <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
 }
 
+//Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
+export function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
+    con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
+    if(username == null){
+        getMalUserName(function(usernameTemp){
+            if(usernameTemp == false){
+                flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" );
+            }else{
+                getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
+            }
+        });
+        return;
+    }
+    var url = 'http://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
+    api.request.xhr('GET', url).then((response) => {
+      var data = $.parseJSON(response.responseText);
+      if(singleCallback){
+        // @ts-ignore
+        if(!data.length) singleCallback(false, 0, 0);
+        for (var i = 0; i < data.length; i++) {
+          // @ts-ignore
+          singleCallback(data[i], i+offset+1, data.length+offset);
+        }
+      }
+      if(fullListCallback){
+          templist = templist.concat(data);
+      }
+      if(data.length > 299){
+        if(continueCall){
+          // @ts-ignore
+          continueCall(function(){
+            getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+          });
+        }else{
+          getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, username, offset + 300, templist);
+        }
+      }else{
+        // @ts-ignore
+        if(fullListCallback) fullListCallback(templist);
+        // @ts-ignore
+        if(finishCallback) finishCallback();
+      }
+
+    });
+}
+
+export function getMalUserName(callback){
+    var url = 'https://myanimelist.net/editlist.php?hideLayout';
+    api.request.xhr('GET', url).then((response) => {
+      var username = false;
+      try{
+        username = response.responseText.split('USER_NAME = "')[1].split('"')[0];
+      }catch(e){}
+      con.log('[Username]', username);
+      callback(username);
+    });
+}
 
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
