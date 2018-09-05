@@ -154,6 +154,17 @@ export class minimal{
       This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
     });
 
+    this.minimal.find("#book").click(function() {
+      if(This.minimal.find("#book.open").length){
+        This.minimal.find("#book").toggleClass('open');
+        This.minimal.find('#material').removeClass('pop-over');
+      }else{
+        This.minimal.find("#book").toggleClass('open');
+        This.minimal.find('#material').addClass('pop-over');
+        This.bookmarks();
+      }
+    });
+
   }
 
   isPopup(){
@@ -470,6 +481,10 @@ export class minimal{
       });
       callback();
     });
+  }
+
+  bookmarks(){
+    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('Test');
   }
 
 }
