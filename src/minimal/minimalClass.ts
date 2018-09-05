@@ -131,6 +131,8 @@ export class minimal{
 
     var timer;
     this.minimal.find("#headMalSearch").on("input", function(){
+      var listType = 'anime';//TODO
+
       This.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
       This.minimal.find('#loadMalSearchPop').show();
       clearTimeout(timer);
@@ -141,8 +143,8 @@ export class minimal{
           This.minimal.find('#material').addClass('pop-over');
           This.minimal.find('#fixed-tab-4 #malSearchPopInner').html(This.minimal.find("#headMalSearch").val());
           This.minimal.find('#loadMalSearchPop').hide();
-          /*searchMal(This.minimal.find("#headMalSearch").val(), K.listType, '#malSearchPopInner', function(){
-            This.minimal.find("#malSearchPop .searchItem").unbind('click').click(function(event) {
+          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
+            /*This.minimal.find("#malSearchPop .searchItem").unbind('click').click(function(event) {
               This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
               This.minimal.find('.malClear').hide();
               This.minimal.find('.mdl-progress__indeterminate').show();
@@ -151,8 +153,8 @@ export class minimal{
               This.minimal.find('#book').css('left', '40px');
               This.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
               fillIframe($(this).attr('malhref'));
-            });
-          });*/
+            });*/
+          });
         }
       }, 300);
     });
@@ -411,4 +413,46 @@ export class minimal{
       return item;
     }
   }
+
+  searchMal(keyword, type = 'all', selector, callback){
+    var This = this;
+
+    this.minimal.find(selector).html('');
+    api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1').then((response) => {
+      var searchResults = $.parseJSON(response.responseText);
+      this.minimal.find(selector).append('<div class="mdl-grid">\
+          <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+            <option value="anime">Anime</option>\
+            <option value="manga">Manga</option>\
+          </select>\
+        </div>');
+      this.minimal.find('#searchListType').val(type);
+      this.minimal.find('#searchListType').change(function(event) {
+        This.searchMal(keyword, This.minimal.find('#searchListType').val(), selector, callback);
+      });
+
+      $.each(searchResults, function() {
+        $.each(this, function() {
+          $.each(this, function() {
+            if(typeof this !== 'object') return;
+            $.each(this, function() {
+              if(typeof this['name'] != 'undefined'){
+                This.minimal.find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
+                  <img src="'+this['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
+                  <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
+                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
+                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">Type: '+this['payload']['media_type']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">Score: '+this['payload']['score']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">Year: '+this['payload']['start_year']+'</p>\
+                  </div>\
+                  </div>');
+              }
+            });
+          });
+        });
+      });
+      callback();
+    });
+  }
+
 }
