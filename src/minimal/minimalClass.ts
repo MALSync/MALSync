@@ -265,6 +265,27 @@ export class minimal{
       page.handlePage();
     });
 
+    var listType = 'anime';
+    if(typeof This.pageSync != 'undefined'){
+      listType = This.pageSync.page.type;
+    }
+    var timer;
+    this.minimal.find("#malSearch").on("input", function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        This.searchMal(This.minimal.find("#malSearch").val(), listType, '.malResults', function(){
+         This.minimal.find("#malSearchResults .searchItem").unbind('click').click(function(e) {
+          e.preventDefault();
+          // @ts-ignore
+          This.minimal.find('#malUrlInput').val($(this).attr('href'));
+          This.minimal.find('#malSearch').val('');
+          This.minimal.find('#malSearchResults').html('');
+          This.minimal.find('#malSubmit').click();
+          });
+        });
+      }, 300);
+    });
+
   }
 
   loadOverview(overviewObj){
