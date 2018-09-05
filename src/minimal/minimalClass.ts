@@ -52,17 +52,12 @@ export class minimal{
               <div class="page-content malClear" id="malRecommendations"></div>
             </section>
             <section class="mdl-layout__tab-panel" id="fixed-tab-4">
-              <div id="loadEpisode" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-              <div class="page-content malClear" id="malEpisodes"></div>
+              <div id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
+              <div class="page-content malClear" id="malSearchPopInner"></div>
             </section>
             <section class="mdl-layout__tab-panel" id="fixed-tab-5">
               <div class="page-content malClear" id="malConfig"></div>
             </section></main>
-          </div>
-          <div id="malSearchPop" style="display: none; z-index: 10; position: fixed;">
-            <div data-simplebar style="height: calc(100% - 60px); z-index: 10; width: 100%; position: fixed !important; top: 60px; background-color: #f9f9f9; width: 100%;position: fixed; top: 60px; background-color: #f9f9f9;">
-              <div id="malSearchPopInner"></div>
-            </div>
           </div>
         </div>
       </div>
@@ -132,6 +127,34 @@ export class minimal{
             // @ts-ignore
             $(this).find('i').text('fullscreen_exit');
         }
+    });
+
+    var timer;
+    this.minimal.find("#headMalSearch").on("input", function(){
+      This.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+      This.minimal.find('#loadMalSearchPop').show();
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        if(This.minimal.find("#headMalSearch").val() == ''){
+          This.minimal.find('#material').removeClass('pop-over');
+        }else{
+          This.minimal.find('#material').addClass('pop-over');
+          This.minimal.find('#fixed-tab-4 #malSearchPopInner').html(This.minimal.find("#headMalSearch").val());
+          This.minimal.find('#loadMalSearchPop').hide();
+          /*searchMal(This.minimal.find("#headMalSearch").val(), K.listType, '#malSearchPopInner', function(){
+            This.minimal.find("#malSearchPop .searchItem").unbind('click').click(function(event) {
+              This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
+              This.minimal.find('.malClear').hide();
+              This.minimal.find('.mdl-progress__indeterminate').show();
+              This.minimal.find("#backbutton").show();
+              This.minimal.find('#SearchButton').css('margin-left', '-17px');
+              This.minimal.find('#book').css('left', '40px');
+              This.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
+              fillIframe($(this).attr('malhref'));
+            });
+          });*/
+        }
+      }, 300);
     });
   }
 

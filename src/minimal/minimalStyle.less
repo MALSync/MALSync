@@ -99,15 +99,27 @@ a{
   background-image: url(https://github.com/google/material-design-icons/blob/master/social/1x_web/ic_notifications_none_black_18dp.png?raw=true);
 }
 
-.settings-only{
-  .mdl-layout__header .mdl-layout__tab-bar-container{
-    display: none;
+#material{
+  &.settings-only, &.pop-over{
+    .mdl-layout__header .mdl-layout__tab-bar-container{
+      display: none;
+    }
+    .mdl-layout__tab-panel{
+      display: none !important;
+    }
   }
-  .mdl-layout__tab-panel{
-    display: none !important;
+  &.settings-only{
+    #fixed-tab-5.mdl-layout__tab-panel{
+      display: block !important;
+    }
   }
-  #fixed-tab-5.mdl-layout__tab-panel{
-    display: block !important;
+  &.pop-over{
+    #fixed-tab-5.mdl-layout__tab-panel{
+      display: none !important;
+    }
+    #fixed-tab-4.mdl-layout__tab-panel{
+      display: block !important;
+    }
   }
 }
 
