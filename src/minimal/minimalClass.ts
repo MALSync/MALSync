@@ -143,21 +143,14 @@ export class minimal{
           This.minimal.find('#material').addClass('pop-over');
           This.minimal.find('#fixed-tab-4 #malSearchPopInner').html(This.minimal.find("#headMalSearch").val());
           This.minimal.find('#loadMalSearchPop').hide();
-          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
-            /*This.minimal.find("#malSearchPop .searchItem").unbind('click').click(function(event) {
-              This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
-              This.minimal.find('.malClear').hide();
-              This.minimal.find('.mdl-progress__indeterminate').show();
-              This.minimal.find("#backbutton").show();
-              This.minimal.find('#SearchButton').css('margin-left', '-17px');
-              This.minimal.find('#book').css('left', '40px');
-              This.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
-              fillIframe($(this).attr('malhref'));
-            });*/
-          });
+          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){});
         }
       }, 300);
     });
+    this.minimal.on('click', '.searchItem', function(e){
+      This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
+    });
+
   }
 
   isPopup(){
@@ -272,7 +265,7 @@ export class minimal{
   }
 
   loadOverview(overviewObj){
-    this.minimal.find('#material').removeClass('settings-only');
+    this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview').show();
@@ -437,7 +430,7 @@ export class minimal{
             if(typeof this !== 'object') return;
             $.each(this, function() {
               if(typeof this['name'] != 'undefined'){
-                This.minimal.find(selector+' > div').append('<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" malhref="'+this['url']+'" style="cursor: pointer;">\
+                This.minimal.find(selector+' > div').append('<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="'+this['url']+'" style="cursor: pointer;">\
                   <img src="'+this['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                     <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
@@ -445,7 +438,7 @@ export class minimal{
                     <p style="margin-bottom: 0; line-height: 20px;">Score: '+this['payload']['score']+'</p>\
                     <p style="margin-bottom: 0; line-height: 20px;">Year: '+this['payload']['start_year']+'</p>\
                   </div>\
-                  </div>');
+                  </a>');
               }
             });
           });
