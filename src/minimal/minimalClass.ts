@@ -131,7 +131,10 @@ export class minimal{
 
     var timer;
     this.minimal.find("#headMalSearch").on("input", function(){
-      var listType = 'anime';//TODO
+      var listType = 'anime';
+      if(typeof This.pageSync != 'undefined'){
+        listType = This.pageSync.page.type;
+      }
 
       This.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
       This.minimal.find('#loadMalSearchPop').show();
