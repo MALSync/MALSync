@@ -144,9 +144,9 @@ export class minimal{
           This.minimal.find('#material').removeClass('pop-over');
         }else{
           This.minimal.find('#material').addClass('pop-over');
-          This.minimal.find('#fixed-tab-4 #malSearchPopInner').html(This.minimal.find("#headMalSearch").val());
-          This.minimal.find('#loadMalSearchPop').hide();
-          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){});
+          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
+            This.minimal.find('#loadMalSearchPop').hide();
+          });
         }
       }, 300);
     });
