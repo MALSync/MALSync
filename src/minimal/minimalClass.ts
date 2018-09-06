@@ -483,11 +483,8 @@ export class minimal{
     });
   }
 
-  bookmarks(){
-    //TEMP TODO
-    var state = 1;
-    var localListType = 'anime';
-    //TEMP
+  bookmarks(state = 1, localListType = 'anime'){
+    var element = this.minimal.find('#malSearchPopInner')
     var This = this;
 
     var my_watched_episodes = 'num_watched_episodes';
@@ -503,6 +500,76 @@ export class minimal{
     var firstEl = 1;
 
     utils.getUserList(state, localListType, function(el, index, total){
+      if(firstEl){
+        firstEl = 0;
+        var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: space-around;">';
+        bookmarkHtml +='<select name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+                          <option value="anime">Anime</option>\
+                          <option value="manga">Manga</option>\
+                        </select>';
+        bookmarkHtml +='<select name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
+                          <option value="7">All</option>\
+                          <option value="1" selected>'+localWatching+'</option>\
+                          <option value="2">Completed</option>\
+                          <option value="3">On-Hold</option>\
+                          <option value="4">Dropped</option>\
+                          <option value="6">'+localPlanTo+'</option>\
+                        </select>';
+        //flexbox placeholder
+        for(var i=0; i < 10; i++){
+            bookmarkHtml +='<div class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>';
+        }
+        bookmarkHtml += '</div>'
+        element.html( bookmarkHtml );
+
+        This.minimal.find('#malSearchPopInner #userListType').val(localListType);
+        This.minimal.find('#malSearchPopInner #userListType').change(function(event) {
+          This.bookmarks(state, This.minimal.find('#malSearchPopInner #userListType').val() );
+        });
+
+        This.minimal.find('#malSearchPopInner #userListState').val(state);
+        This.minimal.find('#malSearchPopInner #userListState').change(function(event) {
+          This.bookmarks(This.minimal.find('#malSearchPopInner #userListState').val(), localListType);
+        });
+      }
+
+      if(!el){
+        element.find('#malList .listPlaceholder').first().before( '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>');
+        element.find('#malList .listPlaceholder').remove();
+        return;
+      }
+
+      var bookmarkElement = '';
+      var uid = el[localListType+'_id']
+      var malUrl = 'https://myanimelist.net'+el[localListType+'_url'];
+      var imageHi = el[localListType+'_image_path'];
+      var regexDimensions = /\/r\/\d*x\d*/g;
+      if ( regexDimensions.test(imageHi) ) {
+        imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
+      }
+      var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
+      bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+        bookmarkElement +='<div class="data title" style="background-image: url('+imageHi+'); background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
+          bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[localListType+'_title'];
+            bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+            bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
+              bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el[my_watched_episodes]+'</div>';
+            bookmarkElement +='</div>';
+          bookmarkElement +='</span>';
+          bookmarkElement +='<div class="tags" style="display: none;">'+el['tags']+'</div>';
+        bookmarkElement +='</div>';
+      bookmarkElement +='</div>';
+      element.find('#malList .listPlaceholder').first().before( bookmarkElement );
+
+      var domE = element.find('#malList .e'+uid).first();
+
+      domE.click(function(event) {
+        // @ts-ignore
+        if(!This.fill($(this).attr('malhref'))){
+          con.error('Something is wrong');
+        }
+      });
+
     }
     ,function(){
     },
