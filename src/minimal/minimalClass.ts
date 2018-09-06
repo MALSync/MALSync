@@ -303,6 +303,7 @@ export class minimal{
 
   loadOverview(overviewObj){
     this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
+    this.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview').show();
