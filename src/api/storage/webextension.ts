@@ -37,6 +37,10 @@ export const webextension: storageInterface = {
       }
     },
 
+    version(){
+      return chrome.runtime.getManifest().version;
+    },
+
     injectCssResource(res, head){
       var path = chrome.extension.getURL('vendor/'+res);
       head.append($('<link>')

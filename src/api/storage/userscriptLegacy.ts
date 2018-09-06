@@ -5,6 +5,7 @@ declare var GM_getValue: any;
 declare var GM_deleteValue: any;
 declare var GM_addStyle: any;
 declare var GM_getResourceText: any;
+declare var GM_info: any;
 
 export const userscriptLegacy: storageInterface = {
     async set(key: string, value: string): Promise<void> {
@@ -22,6 +23,10 @@ export const userscriptLegacy: storageInterface = {
 
     async addStyle(css){
       GM_addStyle(css);
+    },
+
+    version(){
+      return GM_info.script.version;
     },
 
     injectCssResource(res, head){

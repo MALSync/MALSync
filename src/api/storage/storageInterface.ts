@@ -7,6 +7,8 @@ export interface storageInterface {
 
   addStyle(css: string): Promise<void>;
 
+  version(): string;
+
   injectCssResource(res: string, head): void;
 
   injectjsResource(res: string, head): void;
