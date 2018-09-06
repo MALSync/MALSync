@@ -12,7 +12,6 @@ export class mal{
   private animeInfo;
 
   constructor(public url:string){
-    con.error('mal', url);
     this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
   }
@@ -25,7 +24,6 @@ export class mal{
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.id+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);
     return api.request.xhr('GET', editUrl).then((response) => {
-      con.error(response);
       if(response.finalUrl.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
         this.login = false;
         con.error("User not logged in");
@@ -157,7 +155,6 @@ export class mal{
         con.log('[SET] Object:', This.animeInfo);
 
         api.request.xhr('POST', {url: url, data: parameter, headers: {"Content-Type": "application/x-www-form-urlencoded"} }).then((response) => {
-          con.info('test', response);
           if(response.responseText.indexOf('Successfully') >= 0){
             alert('Success');
             resolve();

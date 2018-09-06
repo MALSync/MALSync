@@ -12,7 +12,7 @@ api.settings.init()
   });
 
 //temp
-con.log('log');
+/*con.log('log');
 con.error('error');
 con.info('info');
 con.log(utils.urlPart('https://greasyfork.org/de/scripts/27564-kissanimelist/code', 5));
@@ -30,7 +30,7 @@ api.request.xhr('GET', 'https://myanimelist.net/').then((response) => {
 const style = require('./style.less').toString();
 api.storage.addStyle(style);
 
-/*$(document).ready(function(){
+$(document).ready(function(){
   utils.flashm('test');
   utils.flashm('test', {type: "test", error: true});
   utils.flashm('permanent', {type: "permanent", permanent: true, position: "top"});
