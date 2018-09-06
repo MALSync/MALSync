@@ -484,7 +484,46 @@ export class minimal{
   }
 
   bookmarks(){
-    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('Test');
+    //TEMP TODO
+    var state = 1;
+    var localListType = 'anime';
+    //TEMP
+    var This = this;
+
+    var my_watched_episodes = 'num_watched_episodes';
+    var series_episodes = 'anime_num_episodes';
+    var localPlanTo = 'Plan to Watch';
+    var localWatching = 'Watching'
+    if(localListType != 'anime'){
+        my_watched_episodes = 'num_read_chapters';
+        series_episodes = 'manga_num_chapters';
+        localPlanTo = 'Plan to Read';
+        localWatching = 'Reading'
+    }
+    var firstEl = 1;
+
+    utils.getUserList(state, localListType, function(el, index, total){
+    }
+    ,function(){
+    },
+    null,
+    function(continueCall){
+      if(state == 1){
+        continueCall();
+        return;
+      }
+      var scrollable = This.minimal.find('.simplebar-scroll-content');
+      var scrollDone = 0;
+      scrollable.scroll(function() {
+        if(scrollDone) return;
+        // @ts-ignore
+        if(scrollable.scrollTop() + scrollable.height() > scrollable.find('.simplebar-content').height() - 100) {
+          scrollDone = 1;
+          con.log('[Bookmarks]','Loading next part');
+          continueCall();
+        }
+      });
+    });
   }
 
 }

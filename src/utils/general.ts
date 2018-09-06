@@ -89,7 +89,7 @@ export function getUserList(status = 1, localListType = 'anime', singleCallback 
         });
         return;
     }
-    var url = 'http://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
+    var url = 'https://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
     api.request.xhr('GET', url).then((response) => {
       var data = $.parseJSON(response.responseText);
       if(singleCallback){
