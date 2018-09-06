@@ -113,6 +113,25 @@ export class mal{
     this.animeInfo[".add_anime[tags]"] = tags;
   }
 
+  async getRating(){
+    return new Promise((resolve, reject) => {
+      var url = '';
+      if(this.type == 'anime'){
+        url = 'https://myanimelist.net/includes/ajax.inc.php?t=64&id='+this.id;
+      }else{
+        url = 'https://myanimelist.net/includes/ajax.inc.php?t=65&id='+this.id;
+      }
+      api.request.xhr('GET', url).then((response) => {
+        try{
+          resolve(response.responseText.split('Score:</span>')[1].split('<')[0]);
+        }catch(e){
+          con.error('Could not get rating', e);
+          reject();
+        }
+      });
+    });
+  }
+
   clone() {
       const copy = new (this.constructor as { new () })();
       Object.assign(copy, this);
