@@ -79,6 +79,10 @@ export class animeType{
                 relatedHtml += $(this).find('.borderClass').first().text();
               relatedHtml += '</span>';
               relatedHtml += '<span class="mdl-list__item-sub-title">';
+                               $(this).find('.borderClass').last().each(function(){
+                                // @ts-ignore
+                                $(this).html($(this).children());
+                               })
                 relatedHtml += $(this).find('.borderClass').last().html();
               relatedHtml += '</span>';
             relatedHtml += '</span>';
