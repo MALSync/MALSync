@@ -297,6 +297,8 @@ export class minimal{
       }, 300);
     });
 
+    this.updateDom();
+
   }
 
   loadOverview(overviewObj){
