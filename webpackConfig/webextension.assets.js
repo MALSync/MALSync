@@ -44,6 +44,11 @@ const generateManifest = () => {
         "run_at": "document_start"
       }
     ],
+    'icons': {
+      '16': 'icons/icon16.png',
+      '48': 'icons/icon48.png',
+      '128': 'icons/icon128.png'
+    },
     'web_accessible_resources': [
       'vendor/*'
     ],
@@ -70,6 +75,13 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
   });
 
   extra.copy(path.join(__dirname, '../src/minimal/popup.html'), path.join(__dirname, '../dist/webextension/popup.html'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  extra.copy(path.join(__dirname, '../assets/'), path.join(__dirname, '../dist/webextension/'), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
