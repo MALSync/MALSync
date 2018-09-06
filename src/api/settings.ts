@@ -6,6 +6,7 @@ export var settingsObj = {
     outWay: true,
     miniMalWidth: '30%',
     miniMalHeight: '90%',
+    malThumbnail: 100,
   },
 
   init: async function (){
