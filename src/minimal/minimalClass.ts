@@ -484,6 +484,9 @@ export class minimal{
   }
 
   bookmarks(state = 1, localListType = 'anime'){
+    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+    this.minimal.find('#loadMalSearchPop').show();
+
     var element = this.minimal.find('#malSearchPopInner')
     var This = this;
 
@@ -572,6 +575,7 @@ export class minimal{
 
     }
     ,function(){
+      This.minimal.find('#loadMalSearchPop').hide();
     },
     null,
     function(continueCall){
@@ -581,12 +585,14 @@ export class minimal{
       }
       var scrollable = This.minimal.find('.simplebar-scroll-content');
       var scrollDone = 0;
+      This.minimal.find('#loadMalSearchPop').hide();
       scrollable.scroll(function() {
         if(scrollDone) return;
         // @ts-ignore
         if(scrollable.scrollTop() + scrollable.height() > scrollable.find('.simplebar-content').height() - 100) {
           scrollDone = 1;
           con.log('[Bookmarks]','Loading next part');
+          This.minimal.find('#loadMalSearchPop').show();
           continueCall();
         }
       });
