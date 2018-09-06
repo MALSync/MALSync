@@ -1,9 +1,15 @@
 import {syncPage} from "./pages/syncPage";
+import {myanimelistClass} from "./myanimelist/myanimelistClass";
 
 
 function main() {
-  var page = new syncPage(window.location.href);
-  page.init();
+  if( window.location.href.indexOf("myanimelist.net") > -1 ){
+    var mal = new myanimelistClass(window.location.href);
+    mal.init();
+  }else{
+    var page = new syncPage(window.location.href);
+    page.init();
+  }
 }
 
 var css = "font-size: 40px; padding-bottom: 3px; color: white; text-shadow: -1px -1px #2e51a2, 1px -1px #2e51a2, -1px 1px #2e51a2, 1px 1px #2e51a2, 2px 2px #2e51a2, 3px 3px #2e51a2;";
