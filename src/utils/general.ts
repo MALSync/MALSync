@@ -79,6 +79,12 @@ export async function getMalToKissArray(type, id){
       for(var pageKey in json){
         var page = json[pageKey];
 
+        if(!api.settings.get(pageKey)){
+          con.log(pageKey+' is deactivated');
+          delete json[pageKey];
+          continue;
+        }
+
         for(var streamKey in page){
           var stream = page[streamKey];
 

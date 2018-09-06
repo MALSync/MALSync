@@ -7,6 +7,14 @@ export var settingsObj = {
     miniMalWidth: '30%',
     miniMalHeight: '90%',
     malThumbnail: 100,
+
+    '9anime': true,
+    Crunchyroll: true,
+    Gogoanime: true,
+    Kissanime: true,
+    Masterani: true,
+    Kissmanga: true,
+    Mangadex: true,
   },
 
   init: async function (){
