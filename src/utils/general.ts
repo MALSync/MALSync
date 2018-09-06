@@ -70,6 +70,41 @@ export function setUrlInTags(url: string, tags: string){
   return tags;
 }
 
+export async function getMalToKissArray(type, id){
+  return new Promise((resolve, reject) => {
+    var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';
+    api.request.xhr('GET', url).then(async (response) => {
+      var json = $.parseJSON(response.responseText);
+
+      for(var pageKey in json){
+        var page = json[pageKey];
+
+        for(var streamKey in page){
+          var stream = page[streamKey];
+
+          var streamUrl = 'https://kissanimelist.firebaseio.com/Data2/'+stream+'/'+encodeURIComponent(streamKey)+'.json';
+
+          var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), null);
+          if(typeof(cache) != "undefined"){
+            var streamJson = cache;
+          }else{
+            var streamRespose = await api.request.xhr('GET', streamUrl);
+            var streamJson = $.parseJSON(streamRespose.responseText);
+            api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
+          }
+
+          json[pageKey][streamKey] = streamJson;
+
+        }
+      }
+
+      con.log('Mal2Kiss', json);
+      resolve(json);
+
+    });
+  });
+}
+
 export function getTooltip(text, style = '', direction = 'top'){
   var rNumber = Math.floor((Math.random() * 1000) + 1);
   return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'"> &#x1F6C8;</div>\
