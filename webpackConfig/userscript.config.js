@@ -43,6 +43,7 @@ const metadata = {
   ],
   'match' : generateMatchExcludes().match,
   'exclude' : generateMatchExcludes().exclude,
+  'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
   'resource' : generateResources(),
   'run-at': 'document_start',
   'connect': [
