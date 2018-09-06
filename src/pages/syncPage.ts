@@ -186,6 +186,7 @@ export class syncPage{
     $('#AddMalDiv').remove();
 
     $("#malRating").attr("href", this.malObj.url);
+    this.malObj.getRating().then((rating)=>{$("#malRating").text(rating);});
 
     if(!this.malObj.login){
       $('.MalLogin').css("display","none");
