@@ -20,6 +20,7 @@ export class myanimelistClass{
     switch(this.page) {
       case 'detail':
         this.thumbnails();
+        this.malToKiss();
         break;
       default:
         con.log('This page has no scipt')
@@ -79,5 +80,28 @@ export class myanimelistClass{
         }
       }
     }
+  }
+
+  async malToKiss(){
+    utils.getMalToKissArray(this.type, this.id).then((links) => {
+      con.log('test', links);
+      var html = '';
+      for(var pageKey in links){
+        var page = links[pageKey];
+
+        var tempHtml = '';
+        var tempUrl = '';
+        for(var streamKey in page){
+          var stream = page[streamKey];
+          tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a><div>';
+          tempUrl = stream['url'];
+        }
+        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+tempUrl.split('/')[2]+'"> '+pageKey+'</h2>';
+        html += tempHtml;
+        html += '<br class="mal_links" />';
+
+      }
+      $('h2:contains("Information")').before(html);
+    })
   }
 }
