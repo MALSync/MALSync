@@ -336,6 +336,27 @@ export class minimal{
     <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
       <div class="mdl-grid">
         <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">MyAnimeList</h2>
+          </div>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Thumbnails
+              ${utils.getTooltip('The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.')}
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">
+                <option value="144">Large</option>
+                <option value="100">Medium</option>
+                <option value="60">Small</option>
+                <option value="0">MAL Default</option>
+              </select>
+            </span>
+          </li>
+        </div>
+
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">miniMAL</h2>
@@ -406,6 +427,11 @@ export class minimal{
             api.settings.set( 'miniMalHeight', miniMalHeight );
         }
         $("#modal-content").css('height', miniMalHeight);
+    });
+
+    this.minimal.find("#malThumbnail").val(api.settings.get('malThumbnail'));
+    this.minimal.find("#malThumbnail").change(function(){
+      api.settings.set( 'malThumbnail', This.minimal.find("#malThumbnail").val() );
     });
 
     listener.forEach(function(fn) {
