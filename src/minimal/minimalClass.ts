@@ -339,6 +339,20 @@ export class minimal{
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">Streaming Site Links</h2>
+            ${utils.getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.')}
+          </div>
+          ${materialCheckbox('Kissanime','KissAnime')}
+          ${materialCheckbox('Masterani','MasterAnime')}
+          ${materialCheckbox('9anime','9anime')}
+          ${materialCheckbox('Crunchyroll','Crunchyroll')}
+          ${materialCheckbox('Gogoanime','Gogoanime')}
+          ${materialCheckbox('Kissmanga','KissManga')}
+          ${materialCheckbox('Mangadex','MangaDex')}
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">MyAnimeList</h2>
           </div>
           <li class="mdl-list__item">
