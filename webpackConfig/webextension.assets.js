@@ -32,7 +32,8 @@ const generateManifest = () => {
       ]
     },
     'browser_action': {
-      'default_popup': 'popup.html'
+      'default_popup': 'popup.html',
+      'default_icon': 'icons/icon16.png'
     },
     'content_scripts': [
       {
