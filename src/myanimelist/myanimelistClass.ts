@@ -52,6 +52,7 @@ export class myanimelistClass{
 
     var loaded = 0;
     try{
+      // @ts-ignore
       $(window).load(function(){ overrideLazyload(); });
     }catch(e){
       con.info(e);
@@ -103,8 +104,8 @@ export class myanimelistClass{
   }
 
   async malToKiss(){
+    con.log('malToKiss');
     utils.getMalToKissArray(this.type, this.id).then((links) => {
-      con.log('test', links);
       var html = '';
       for(var pageKey in links){
         var page = links[pageKey];
@@ -121,40 +122,46 @@ export class myanimelistClass{
         html += '<br class="mal_links" />';
 
       }
-      $('h2:contains("Information")').before(html);
+      $(document).ready(function(){
+        $('h2:contains("Information")').before(html);
+      });
     })
   }
 
   siteSearch(){
-    $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
-    $('#mal-sync-search-links').one('click', () => {
-      var title = $('#contentWrapper > div:first-child span').text()
-      var titleEncoded = encodeURI(title);
-      var html = '';
+    var This = this;
+    $(document).ready(function(){
+      con.log('Site Search');
+      $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
+      $('#mal-sync-search-links').one('click', () => {
+        var title = $('#contentWrapper > div:first-child span').text()
+        var titleEncoded = encodeURI(title);
+        var html = '';
 
-      for (var key in pageSearch) {
-        var page = pageSearch[key];
-        if(page.type !== this.type) continue;
+        for (var key in pageSearch) {
+          var page = pageSearch[key];
+          if(page.type !== This.type) continue;
 
-        var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
-        if( typeof page.completeSearchTag === 'undefined'){
-          var link =
-          `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
-            ${linkContent}
-          </a>`
-        }else{
-          var link = page.completeSearchTag(title, linkContent);
+          var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
+          if( typeof page.completeSearchTag === 'undefined'){
+            var link =
+            `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+              ${linkContent}
+            </a>`
+          }else{
+            var link = page.completeSearchTag(title, linkContent);
+          }
+          html +=
+          `<div class="mal_links">
+              ${link}
+            <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.domain}">
+              <img src="https://www.google.com/s2/favicons?domain=google.com">
+            </a>
+          </div>`;
         }
-        html +=
-        `<div class="mal_links">
-            ${link}
-          <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.domain}">
-            <img src="https://www.google.com/s2/favicons?domain=google.com">
-          </a>
-        </div>`;
-      }
 
-      $('#mal-sync-search-links').after(html);
+        $('#mal-sync-search-links').after(html);
+      });
     });
   }
 }
