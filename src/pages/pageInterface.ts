@@ -28,10 +28,10 @@ export interface pageInterface {
 
 interface pageSearch {
     name: string,
+    type: 'anime'|'manga',
     domain: string,
-    googleDomain: string,
     searchUrl: (titleEncoded) => string,
-    completeSearchTag?: (title) => string
+    completeSearchTag?: (title, linkContent) => string
 }
 
 export interface pageState {

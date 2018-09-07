@@ -1,3 +1,5 @@
+import {pageSearch} from './../pages/pages';
+
 export class myanimelistClass{
   readonly page: "detail"|null = null;
 
@@ -109,16 +111,32 @@ export class myanimelistClass{
   siteSearch(){
     $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
     $('#mal-sync-search-links').one('click', () => {
-      var titleEncoded = encodeURI($('#contentWrapper > div:first-child span').text());
-      var html =
-      `<div class="mal_links">
-        <a target="_blank" href="http://www.crunchyroll.com/search?q=${titleEncoded}">
-          Crunchyroll <img src="https://www.google.com/s2/favicons?domain=crunchyroll.com">
-        </a>
-        <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:crunchyroll.com">
-          <img src="https://www.google.com/s2/favicons?domain=google.com">
-        </a>
-      </div>`;
+      var title = $('#contentWrapper > div:first-child span').text()
+      var titleEncoded = encodeURI(title);
+      var html = '';
+
+      for (var key in pageSearch) {
+        var page = pageSearch[key];
+
+        var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
+        con.log(page);
+        if( typeof page.completeSearchTag === 'undefined'){
+          var link =
+          `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+            ${linkContent}
+          </a>`
+        }else{
+          var link = page.completeSearchTag(title, linkContent);
+        }
+        html +=
+        `<div class="mal_links">
+            ${link}
+          <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.domain}">
+            <img src="https://www.google.com/s2/favicons?domain=google.com">
+          </a>
+        </div>`;
+      }
+
       $('#mal-sync-search-links').after(html);
     });
   }
