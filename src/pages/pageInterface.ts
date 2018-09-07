@@ -26,10 +26,21 @@ export interface pageInterface {
     init: (page:any) => void,
 }
 
+interface pageSearch {
+    name: string,
+    domain: string,
+    googleDomain: string,
+    searchUrl: (titleEncoded) => string,
+    completeSearchTag?: (title) => string
+}
 
 export interface pageState {
     title: string,
     identifier: string,
     episode?: number,
     volume?: number
+}
+
+export interface pageSearchObj {
+    [key: string]: pageSearch
 }
