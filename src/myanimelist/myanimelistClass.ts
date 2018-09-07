@@ -117,9 +117,9 @@ export class myanimelistClass{
 
       for (var key in pageSearch) {
         var page = pageSearch[key];
+        if(page.type !== this.type) continue;
 
         var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
-        con.log(page);
         if( typeof page.completeSearchTag === 'undefined'){
           var link =
           `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
