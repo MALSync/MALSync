@@ -50,14 +50,31 @@ export class myanimelistClass{
     api.storage.addStyle('.picSurround img.lazyloaded.kal{width: auto !important;}');
     api.storage.addStyle('.picSurround:not(.noKal) a{height: '+surHeight+'px; width: '+surWidth+'px; overflow: hidden; display: flex; justify-content: center;}');
 
+    var loaded = 0;
+    try{
+      $(window).load(function(){ overrideLazyload(); });
+    }catch(e){
+      con.info(e);
+    }
     try{
       window.onload = function(){ overrideLazyload(); };
+    }catch(e){
+      con.info(e);
+    }
+    try{
       document.onload = function(){ overrideLazyload(); };
     }catch(e){
+      con.info(e);
+    }
+    try{
       $(document).ready(function(){ overrideLazyload(); });
+    }catch(e){
+      con.info(e);
     }
 
     function overrideLazyload() {
+      if(loaded) return;
+      loaded = 1;
       var tags = document.querySelectorAll(".picSurround img:not(.kal)");
       var url = '';
       for (var i = 0; i < tags.length; i++) {
