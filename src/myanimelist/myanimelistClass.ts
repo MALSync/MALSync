@@ -21,6 +21,7 @@ export class myanimelistClass{
       case 'detail':
         this.thumbnails();
         this.malToKiss();
+        this.siteSearch();
         break;
       default:
         con.log('This page has no scipt')
@@ -93,7 +94,7 @@ export class myanimelistClass{
         var tempUrl = '';
         for(var streamKey in page){
           var stream = page[streamKey];
-          tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a><div>';
+          tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a></div>';
           tempUrl = stream['url'];
         }
         html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+tempUrl.split('/')[2]+'"> '+pageKey+'</h2>';
@@ -103,5 +104,22 @@ export class myanimelistClass{
       }
       $('h2:contains("Information")').before(html);
     })
+  }
+
+  siteSearch(){
+    $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
+    $('#mal-sync-search-links').one('click', () => {
+      var titleEncoded = encodeURI($('#contentWrapper > div:first-child span').text());
+      var html =
+      `<div class="mal_links">
+        <a target="_blank" href="http://www.crunchyroll.com/search?q=${titleEncoded}">
+          Crunchyroll <img src="https://www.google.com/s2/favicons?domain=crunchyroll.com">
+        </a>
+        <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:crunchyroll.com">
+          <img src="https://www.google.com/s2/favicons?domain=google.com">
+        </a>
+      </div>`;
+      $('#mal-sync-search-links').after(html);
+    });
   }
 }
