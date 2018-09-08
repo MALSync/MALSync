@@ -1,4 +1,5 @@
 import {pageSearch} from './../pages/pages';
+import {mal} from "./../utils/mal";
 
 export class myanimelistClass{
   readonly page: "detail"|null = null;
@@ -22,6 +23,7 @@ export class myanimelistClass{
     switch(this.page) {
       case 'detail':
         this.thumbnails();
+        this.streamingUI();
         this.malToKiss();
         this.siteSearch();
         break;
@@ -163,5 +165,36 @@ export class myanimelistClass{
         $('#mal-sync-search-links').after(html);
       });
     });
+  }
+
+  async streamingUI(){
+    con.log('Streaming UI');
+    var malObj = new mal(this.url);
+    await malObj.init();
+
+    var streamUrl = malObj.getStreamingUrl();
+    if(typeof streamUrl !== 'undefined'){
+
+      $(document).ready(async function(){
+        $('.h1 span').first().after(`
+        <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
+          <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
+            <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+          </a>
+        </div>`);
+
+        var resumeUrlObj = await malObj.getResumeWaching();
+        con.log('resume', resumeUrlObj);
+        if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
+          $('#mal-sync-stream-div').after(
+            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+              <img src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/if_Double_Arrow_Right_1063903.png" width="16" height="16">
+            </a>`
+            );
+
+        }
+
+      });
+    }
   }
 }
