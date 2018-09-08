@@ -1,5 +1,5 @@
 import {pageInterface} from "./../pageInterface";
-
+//TODO: Add mal2kiss season argument
 export const Crunchyroll: pageInterface = {
     name: 'Crunchyroll',
     domain: 'http://www.crunchyroll.com',
@@ -54,11 +54,7 @@ export const Crunchyroll: pageInterface = {
           }
         }
       },
-      uiSelector: function(selector){
-        selector.insertBefore($("#tabs").first());
-        //$('#malStatus option').css('background-color','#f2f2f2');
-        //$('#malUserRating option').css('background-color','#f2f2f2');
-      },
+      uiSelector: function(selector){selector.insertBefore($("#tabs").first());},
       list:{
         elementsSelector: function(){return $("#showview_content_videos .list-of-seasons .group-item a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);},
@@ -70,6 +66,35 @@ export const Crunchyroll: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){page.handlePage()});
+      $(document).ready(function(){
+        if( $('.season-dropdown').length > 1){
+          $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
+          $('.exclusivMal').click(function(){
+            $('#showview_content').before('<div><a href="'+page.url.split('?')[0]+'">Show hidden seasons</a></div>');
+            var thisparent =  $(this).parent();
+            $('.season-dropdown').not(thisparent).siblings().remove();
+            $('.season-dropdown').not(thisparent).remove();
+            $('.portrait-grid').css('display','block').find("li.group-item img.landscape").each(function() {
+              // @ts-ignore
+              void 0 === $(this).attr("src") && $(this).attr("src", $(this).attr("data-thumbnailUrl"))
+            }),
+            $('.exclusivMal').remove();
+            page.handlePage();
+          });
+          var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(page.url);
+          if(season != null){
+            // @ts-ignore
+            season = season[1] || null;
+            if(season != null){
+              // @ts-ignore
+              season = decodeURIComponent(decodeURI(season));
+              $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+            }
+          }
+          return;
+        }else{
+          page.handlePage();
+        }
+      });
     }
 };
