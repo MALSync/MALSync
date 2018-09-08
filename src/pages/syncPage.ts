@@ -86,6 +86,7 @@ export class syncPage{
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
           alert('sync');
+          this.malObj.setResumeWaching(this.url, state.episode);
           this.syncHandling(true);
         }else{
           alert('noSync');
