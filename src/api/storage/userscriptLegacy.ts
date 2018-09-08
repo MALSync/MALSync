@@ -29,6 +29,10 @@ export const userscriptLegacy: storageInterface = {
       return GM_info.script.version;
     },
 
+    assetUrl(filename){
+      return 'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/assets/'+filename;
+    },
+
     injectCssResource(res, head){
       head.append($('<style>')
           .attr("rel","stylesheet")
