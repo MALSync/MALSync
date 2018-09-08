@@ -162,7 +162,10 @@ export class mal{
       if(this.addAnime){
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){continueCall();}, function(){
+          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
+            This.setStatus(1);
+            continueCall();
+          }, function(){
               /*if(change['checkIncrease'] == 1){TODO
                   episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
               }*/
@@ -170,7 +173,10 @@ export class mal{
           return;
         }else{
           url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){continueCall();}, function(){});
+          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
+            This.setStatus(1);
+            continueCall();
+          }, function(){});
           return;
         }
       }
