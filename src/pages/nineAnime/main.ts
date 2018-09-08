@@ -28,7 +28,7 @@ export const nineAnime: pageInterface = {
       uiSelector: function(selector){$('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore($(".widget.info").first());},
     },
     init(page){
-
+      api.storage.addStyle(require('./style.less').toString());
       utils.waitUntilTrue(function(){return $('.servers').length}, function(){
         con.info('Start check');
         page.handlePage();
@@ -37,22 +37,5 @@ export const nineAnime: pageInterface = {
           page.handlePage();
         });
       });
-
-
-      //api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){
-        con.log('ready');
-
-        //page.handlePage()
-        document.addEventListener("load", event =>{console.log('load');});
-      });
-      try{
-          window.onpopstate = function (event) {
-              con.log('load');
-          };
-      }catch(e){
-        con.error(e);
-      }
-
     }
 };
