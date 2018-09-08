@@ -184,14 +184,20 @@ export class myanimelistClass{
         </div>`);
 
         var resumeUrlObj = await malObj.getResumeWaching();
-        con.log('resume', resumeUrlObj);
-        if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
+        var continueUrlObj = await malObj.getContinueWaching();
+        con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
+          $('#mal-sync-stream-div').append(
+            `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+            </a>`
+            );
+        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );
-
         }
 
       });

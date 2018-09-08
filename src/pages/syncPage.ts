@@ -87,6 +87,11 @@ export class syncPage{
         if(this.handleAnimeUpdate(state)){
           alert('sync');
           this.malObj.setResumeWaching(this.url, state.episode);
+          if(typeof this.page.sync.nextEpUrl !== 'undefined'){
+            var continueWatching = this.page.sync.nextEpUrl(this.url);
+            if(continueWatching) this.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+          }
+
           this.syncHandling(true);
         }else{
           alert('noSync');
