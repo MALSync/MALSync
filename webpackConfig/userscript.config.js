@@ -97,7 +97,7 @@ module.exports = {
     extensions: [ '.tsx', '.ts', '.js', '.less' ]
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'malsync.user.js',
     path: path.resolve(__dirname, '..', 'dist')
   },
   plugins: [
