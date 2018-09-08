@@ -5,13 +5,7 @@ export const nineAnime: pageInterface = {
     domain: 'http://9anime.to',
     database: '9anime',
     type: 'anime',
-    isSyncPage: function(url){
-      if(url.split('/')[4] !== 'watch'){
-        return true;
-      }else{
-        return null;
-      }
-    },
+    isSyncPage: function(url){return true;},
     sync:{
       getTitle: function(url){return url.split("/")[4].split("?")[0].split(".")[0];},
       getIdentifier: function(url){
