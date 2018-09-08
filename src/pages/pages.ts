@@ -1,10 +1,12 @@
 import {Kissanime} from "./Kissanime/main";
 import {Kissmanga} from "./Kissmanga/main";
+import {nineAnime} from "./nineAnime/main";
 import {pageSearchObj} from "./pageInterface";
 
 export const pages = {
     Kissanime: Kissanime,
-    Kissmanga: Kissmanga
+    Kissmanga: Kissmanga,
+    nineAnime: nineAnime,
 };
 
 export const pageSearch:pageSearchObj = {

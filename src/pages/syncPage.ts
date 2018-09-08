@@ -35,6 +35,7 @@ export class syncPage{
 
   async handlePage(){
     var state: pageState;
+    this.url = window.location.href;
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){

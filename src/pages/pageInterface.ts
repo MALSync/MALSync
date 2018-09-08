@@ -2,7 +2,7 @@ export interface pageInterface {
     domain: string,
     name: string,
     type: "anime"|"manga",
-    isSyncPage: (url) => boolean,
+    isSyncPage: (url) => boolean|null,
     sync:{
       getTitle: (url) => string,
       getIdentifier: (url) => string,

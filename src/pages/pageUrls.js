@@ -15,5 +15,13 @@ module.exports = {
     match: [
       '*://kissmanga.com/Manga/*'
     ]
+  },
+  nineAnime: {
+    match: [
+      '*://*.9anime.to/watch/*',
+      '*://*.9anime.is/watch/*',
+      '*://*.9anime.ru/watch/*',
+      '*://*.9anime.ch/watch/*'
+    ]
   }
 }

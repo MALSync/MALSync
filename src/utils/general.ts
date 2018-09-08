@@ -41,6 +41,27 @@ export function absoluteLink(url, domain) {
   return url;
 };
 
+export function urlChangeDetect(callback){
+  var currentPage = window.location.href;
+  return setInterval(function(){
+      if (currentPage != window.location.href){
+          currentPage = window.location.href;
+          callback();
+      }
+  }, 1000);
+}
+
+export function waitUntilTrue(condition, callback){
+  var Interval:any = null;
+  Interval = setInterval(function(){
+      if (condition()){
+          clearInterval(Interval);
+          callback();
+      }
+  }, 1000);
+  return Interval;
+}
+
 export function getUrlFromTags(tags:string){
   if(/last::[\d\D]+::/.test(tags)){
     return atobURL( tags.split("last::")[1].split("::")[0] );
