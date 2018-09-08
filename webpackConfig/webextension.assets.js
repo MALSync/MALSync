@@ -51,7 +51,8 @@ const generateManifest = () => {
       '128': 'icons/icon128.png'
     },
     'web_accessible_resources': [
-      'vendor/*'
+      'vendor/*',
+      'assets/*',
     ],
     'permissions': [
       "storage",

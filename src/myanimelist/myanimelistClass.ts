@@ -186,9 +186,9 @@ export class myanimelistClass{
         var resumeUrlObj = await malObj.getResumeWaching();
         con.log('resume', resumeUrlObj);
         if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
-          $('#mal-sync-stream-div').after(
+          $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
-              <img src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/if_Double_Arrow_Right_1063903.png" width="16" height="16">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );
 

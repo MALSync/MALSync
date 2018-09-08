@@ -9,6 +9,8 @@ export interface storageInterface {
 
   version(): string;
 
+  assetUrl(filename: string): string;
+
   injectCssResource(res: string, head): void;
 
   injectjsResource(res: string, head): void;
