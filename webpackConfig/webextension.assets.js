@@ -38,6 +38,7 @@ const generateManifest = () => {
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,
+        'exclude_globs': generateMatchExcludes().exclude,
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'
