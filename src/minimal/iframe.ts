@@ -1,5 +1,7 @@
 import {minimal} from "./minimalClass";
 
+var minimalObj;
+
 function createIframe(page){
 
     var iframe = document.createElement('iframe');
@@ -17,7 +19,7 @@ function createIframe(page){
       api.storage.injectCssResource('simpleBarCSS', head);
 
       //TEMP
-      var minimalObj = new minimal($("#info-iframe").contents().find('html'));
+      minimalObj = new minimal($("#info-iframe").contents().find('html'));
       if(typeof(page) != 'undefined'){
         minimalObj.setPageSync(page);
         if(typeof(page.malObj) != 'undefined'){
@@ -83,6 +85,8 @@ export function initIframeModal(page){
             $('.floatbutton').fadeOut();
             if( !($('#info-iframe').length) ){
               createIframe(page);
+            }else if(typeof minimalObj !== 'undefined' && typeof(page.malObj) != 'undefined'){
+              minimalObj.fillBase(page.malObj.url);
             }
         }else{
             document.getElementById('info-popup')!.style.display = "none";

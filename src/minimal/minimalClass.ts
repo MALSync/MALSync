@@ -76,6 +76,7 @@ export class minimal{
     var This = this;
 
     this.minimal.on('click', '.mdl-layout__content a', function(e){
+      // @ts-ignore
       if($(this).attr('target') === '_blank'){
         return;
       }
@@ -196,6 +197,18 @@ export class minimal{
     return false;
   }
 
+  fillBase(url: string){
+    con.log('Fill Base', url, this.history);
+    if(!this.history.length){
+      this.fill(url);
+    }else if(this.history[0] !== url){
+      while(this.history.length > 0) {
+          this.history.pop();
+      }
+      this.fill(url);
+    }
+  }
+
   private pageSync;
 
   setPageSync(page){
@@ -266,6 +279,7 @@ export class minimal{
       page.deleteCache();
       utils.flashm( "MyAnimeList url reset" , false);
       page.handlePage();
+      This.minimal.find("#close-info-popup").trigger( "click" );
     });
 
     this.minimal.find("#malSubmit").click( function(){
@@ -277,6 +291,7 @@ export class minimal{
       page.setCache(murl, toDatabase);
       utils.flashm( "new url '"+murl+"' set." , false);
       page.handlePage();
+      This.fillBase(murl);
     });
 
     var listType = 'anime';
