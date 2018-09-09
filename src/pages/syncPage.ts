@@ -347,12 +347,26 @@ export class syncPage{
   }
 
   public setCache(url, toDatabase:boolean|'correction', identifier:any = null){
-    if(identifier == null) identifier = this.page.sync.getIdentifier(this.url);
+    if(identifier == null){
+      if(this.page.isSyncPage(this.url)){
+        identifier = this.page.sync.getIdentifier(this.url);
+      }else{
+        identifier = this.page.overview!.getIdentifier(this.url);
+      }
+    }
+
     api.storage.set(this.page.name+'/'+identifier+'/Mal' , url);
   }
 
   public deleteCache(){
-    api.storage.remove(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Mal');
+    var getIdentifier;
+    if(this.page.isSyncPage(this.url)){
+      getIdentifier = this.page.sync.getIdentifier;
+    }else{
+      getIdentifier = this.page.overview!.getIdentifier;
+    }
+
+    api.storage.remove(this.page.name+'/'+getIdentifier(this.url)+'/Mal');
   }
 
   private offset;
