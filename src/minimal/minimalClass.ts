@@ -76,6 +76,9 @@ export class minimal{
     var This = this;
 
     this.minimal.on('click', '.mdl-layout__content a', function(e){
+      if($(this).attr('target') === '_blank'){
+        return;
+      }
       e.preventDefault();
       // @ts-ignore
       var url = utils.absoluteLink($(this).attr('href'), 'https://myanimelist.net');
