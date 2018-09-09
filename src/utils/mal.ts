@@ -197,10 +197,10 @@ export class mal{
 
         api.request.xhr('POST', {url: url, data: parameter, headers: {"Content-Type": "application/x-www-form-urlencoded"} }).then((response) => {
           if(response.responseText.indexOf('Successfully') >= 0){
-            alert('Success');
+            con.log('Update Succeeded');
             resolve();
           }else{
-            alert('update Failed');
+            con.error('Update failed');
             reject();
           }
           //This.animeInfo = This.getObject(response.responseText);

@@ -65,9 +65,11 @@ export class syncPage{
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
-      con.error('Not on mal');
+      $("#MalInfo").text("Not Found!");
+      con.log('Not on mal');
     }else if(!malUrl){
-      con.error('Nothing found');
+      $("#MalInfo").text("Nothing Found!");
+      con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
       this.malObj = new mal(malUrl);
@@ -86,7 +88,7 @@ export class syncPage{
       //sync
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
-          alert('sync');
+          con.log('Start Sync');
           this.malObj.setResumeWaching(this.url, state.episode);
           if(typeof this.page.sync.nextEpUrl !== 'undefined'){
             var continueWatching = this.page.sync.nextEpUrl(this.url);
@@ -95,7 +97,7 @@ export class syncPage{
 
           this.syncHandling(true);
         }else{
-          alert('noSync');
+          con.log('Nothing to Sync');
         }
       }
 
