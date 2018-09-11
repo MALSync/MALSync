@@ -2,7 +2,7 @@ import {pageSearch} from './../pages/pages';
 import {mal} from "./../utils/mal";
 
 export class myanimelistClass{
-  readonly page: "detail"|null = null;
+  readonly page: "detail"|"modern"|null = null;
 
   //detail
   readonly id: number|null = null;
@@ -16,6 +16,10 @@ export class myanimelistClass{
       this.id = utils.urlPart(url, 4);
       this.type = urlpart;
     }
+    if(urlpart == 'animelist' || urlpart == 'mangalist'){
+      this.page = 'modern';
+      this.type = urlpart.substring(0, 5);
+    }
   }
 
   init(){
@@ -26,6 +30,9 @@ export class myanimelistClass{
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
+        break;
+      case 'modern':
+        this.bookmarks();
         break;
       default:
         con.log('This page has no scipt')
@@ -200,6 +207,59 @@ export class myanimelistClass{
             );
         }
 
+      });
+    }
+  }
+
+  bookmarks(){
+    con.log('Bookmarks ['+this.page+']');
+    var This = this;
+
+    bookReady(function(){
+      var data = $.parseJSON($('.list-table').attr('data-items')!);
+      $.each(data, function(index, el) {
+        var streamUrl = utils.getUrlFromTags(el['tags']);
+        if(typeof streamUrl !== 'undefined'){
+          var element = $('.list-item a[href^="'+el[This.type+'_url']+'"]').parent().parent('.list-table-data');
+          element.find('.data.title .link').after(`
+            <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
+              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+            </a>`);
+
+          //var resumeUrlObj = await malObj.getResumeWaching();
+          //var continueUrlObj = await malObj.getContinueWaching();
+          //var curEp = parseInt(element.find('.data.progress .link').text().trim().replace(/\/.*/,''));
+
+          //con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+          //if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+          //  $('#mal-sync-stream-div').append(
+          //    `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+          //      <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+          //    </a>`
+          //    );
+          //}else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+          //  $('#mal-sync-stream-div').append(
+          //    `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+          //      <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+          //    </a>`
+          //    );
+          //}
+        }
+      });
+      cleanTags();
+    });
+
+    function bookReady(callback){
+      utils.waitUntilTrue(function(){return $('.list-item').length}, function(){
+        callback();
+      });
+    }
+
+    function cleanTags(){
+      $('.tags span a').each(function( index ) {
+        if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+          $(this).parent().remove();
+        }
       });
     }
   }
