@@ -217,33 +217,38 @@ export class myanimelistClass{
 
     bookReady(function(){
       var data = $.parseJSON($('.list-table').attr('data-items')!);
-      $.each(data, function(index, el) {
+      $.each(data, async function(index, el) {
         var streamUrl = utils.getUrlFromTags(el['tags']);
+        var malUrl = el[This.type+'_url'];
+        con.log(malUrl);
+        var id = utils.urlPart(malUrl, 2);
+        var type = utils.urlPart(malUrl, 1);
+
         if(typeof streamUrl !== 'undefined'){
-          var element = $('.list-item a[href^="'+el[This.type+'_url']+'"]').parent().parent('.list-table-data');
+          var element = $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
           element.find('.data.title .link').after(`
             <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
               <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
             </a>`);
 
-          //var resumeUrlObj = await malObj.getResumeWaching();
-          //var continueUrlObj = await malObj.getContinueWaching();
-          //var curEp = parseInt(element.find('.data.progress .link').text().trim().replace(/\/.*/,''));
+          var resumeUrlObj = await utils.getResumeWaching(type, id);
+          var continueUrlObj = await utils.getContinueWaching(type, id);
+          var curEp = parseInt(element.find('.data.progress .link').text().trim().replace(/\/.*/,''));
 
-          //con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-          //if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-          //  $('#mal-sync-stream-div').append(
-          //    `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
-          //      <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
-          //    </a>`
-          //    );
-          //}else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-          //  $('#mal-sync-stream-div').append(
-          //    `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
-          //      <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
-          //    </a>`
-          //    );
-          //}
+          con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+            element.find('.mal-sync-stream').after(
+              `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+            element.find('.mal-sync-stream').after(
+              `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }
         }
       });
       cleanTags();

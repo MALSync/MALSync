@@ -133,19 +133,19 @@ export class mal{
   }
 
   async setResumeWaching(url:string, ep:number){
-    return api.storage.set('resume/'+this.type+'/'+this.id, {url: url, ep: ep});
+    return utils.setResumeWaching(url, ep, this.type, this.id);
   }
 
   async getResumeWaching():Promise<{url:string, ep:number}>{
-    return api.storage.get('resume/'+this.type+'/'+this.id);
+    return utils.getResumeWaching(this.type, this.id)
   }
 
   async setContinueWaching(url:string, ep:number){
-    return api.storage.set('continue/'+this.type+'/'+this.id, {url: url, ep: ep});
+    return utils.setContinueWaching(url, ep,this.type, this.id)
   }
 
   async getContinueWaching():Promise<{url:string, ep:number}>{
-    return api.storage.get('continue/'+this.type+'/'+this.id);
+    return utils.getContinueWaching(this.type, this.id)
   }
 
   clone() {

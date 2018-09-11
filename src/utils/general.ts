@@ -91,6 +91,22 @@ export function setUrlInTags(url: string, tags: string){
   return tags;
 }
 
+export async function setResumeWaching(url:string, ep:number, type, id){
+  return api.storage.set('resume/'+type+'/'+id, {url: url, ep: ep});
+}
+
+export async function getResumeWaching(type, id):Promise<{url:string, ep:number}>{
+  return api.storage.get('resume/'+type+'/'+id);
+}
+
+export async function setContinueWaching(url:string, ep:number, type, id){
+  return api.storage.set('continue/'+type+'/'+id, {url: url, ep: ep});
+}
+
+export async function getContinueWaching(type, id):Promise<{url:string, ep:number}>{
+  return api.storage.get('continue/'+type+'/'+id);
+}
+
 export async function getMalToKissArray(type, id){
   return new Promise((resolve, reject) => {
     var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';
