@@ -54,6 +54,7 @@ module.exports = {
       '*crunchyroll.com/store*',
       '*crunchyroll.com/user*',
       '*crunchyroll.com/videos*',
+      '*crunchyroll.com/affiliate_iframeplayer*'
     ]
   }
 }
