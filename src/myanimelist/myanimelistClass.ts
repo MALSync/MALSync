@@ -112,6 +112,15 @@ export class myanimelistClass{
     }
   }
 
+  bookmarksHDimages(){
+    var tags = document.querySelectorAll('img[src*="/96x136/"]');
+    for (var i = 0; i < tags.length; i++) {
+      var regexDimensions = /\/r\/\d*x\d*/g;
+      var url = tags[i].getAttribute("src")!;
+      tags[i].setAttribute("src", url.replace(regexDimensions, ''));
+    }
+  }
+
   async malToKiss(){
     con.log('malToKiss');
     utils.getMalToKissArray(this.type, this.id).then((links) => {
@@ -216,6 +225,7 @@ export class myanimelistClass{
     var This = this;
 
     bookReady(function(){
+      This.bookmarksHDimages();
       var data = $.parseJSON($('.list-table').attr('data-items')!);
       $.each(data, async function(index, el) {
         var streamUrl = utils.getUrlFromTags(el['tags']);
