@@ -3,6 +3,8 @@ module.exports = {
     match: [
       '*://myanimelist.net/anime/*',
       '*://myanimelist.net/manga/*',
+      '*://myanimelist.net/animelist/*',
+      '*://myanimelist.net/mangalist/*',
     ]
   },
   Kissanime: {
