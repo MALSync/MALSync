@@ -195,7 +195,7 @@ export class myanimelistClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
@@ -238,7 +238,7 @@ export class myanimelistClass{
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
             element.find('.mal-sync-stream').after(
-              `<a class="resumeStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
                 <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
               </a>`
               );
