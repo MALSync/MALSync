@@ -181,12 +181,36 @@ export class syncPage{
   }
 
   private handleAnimeUpdate(state){
+    var status = utils.status;
     if(this.malObj.getEpisode() >= state.episode){
       return false;
     }
     this.malObj.setEpisode(state.episode);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
     //TODO: Add the Startwatching/Endwatching/Rewatching Handling
+    if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
+      if (confirm('Set as completed?')) {
+        this.malObj.setStatus(status.completed);
+        /*if(current['.add_anime[finish_date][day]'] === ''){
+          var Datec = new Date();
+          anime['.add_anime[finish_date][year]'] = Datec.getFullYear();
+          anime['.add_anime[finish_date][month]'] = Datec.getMonth()+1;
+          anime['.add_anime[finish_date][day]'] = Datec.getDate();
+        }*/
+        return true;
+      }
+    }
+
+    if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
+      if (confirm('Start watching?')) {
+        this.malObj.setStatus(status.watching);
+      }else{
+        return false;
+      }
+    }
+
+
+
     return true;
   }
 

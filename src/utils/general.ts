@@ -17,6 +17,14 @@ export function planTo(type: "anime"|"manga"){
   return 'Plan to Watch';
 }
 
+export enum status {
+  watching = 1,
+  completed = 2,
+  onhold = 3,
+  dropped = 4,
+  planToWatch = 6
+}
+
 export function getselect(data, name){
     var temp = data.split('name="'+name+'"')[1].split('</select>')[0];
     if(temp.indexOf('selected="selected"') > -1){
