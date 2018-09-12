@@ -1,7 +1,25 @@
 language: node_js
 node_js:
   - "9"
+before_install:
+  - npm install --global web-ext
 install:
   - npm install
 script:
   - npm run build
+before_deploy:
+  - npm run build
+  - npm run package
+  - npm run package:firefox --key $sign_key --secret $sign_secret --id $sign_id
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  skip_cleanup: true
+  file_glob: true
+  file:
+  - "./dist/mal_sync-*.xpi"
+  - "./dist/malsync.user.js"
+  - "./dist/webextension.zip"
+  on:
+    tags: true
+    all_branches: true
