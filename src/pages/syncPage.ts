@@ -187,16 +187,13 @@ export class syncPage{
     }
     this.malObj.setEpisode(state.episode);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
-    //TODO: Add the Startwatching/Endwatching/Rewatching Handling
+    //TODO: Add the Rewatching Handling
+    this.malObj.setStartingDateToNow();
+
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
       if (confirm('Set as completed?')) {
         this.malObj.setStatus(status.completed);
-        /*if(current['.add_anime[finish_date][day]'] === ''){
-          var Datec = new Date();
-          anime['.add_anime[finish_date][year]'] = Datec.getFullYear();
-          anime['.add_anime[finish_date][month]'] = Datec.getMonth()+1;
-          anime['.add_anime[finish_date][day]'] = Datec.getDate();
-        }*/
+        this.malObj.setCompletionDateToNow()
         return true;
       }
     }
@@ -208,8 +205,6 @@ export class syncPage{
         return false;
       }
     }
-
-
 
     return true;
   }

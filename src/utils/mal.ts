@@ -91,6 +91,38 @@ export class mal{
     this.animeInfo[".add_anime[score]"] = score;
   }
 
+  setCompletionDateToNow(){
+    var Datec = new Date();
+    if(this.animeInfo['.add_anime[finish_date][day]'] === '' || this.animeInfo['.add_manga[finish_date][day]'] === ''){
+      if(this.type == "manga"){
+        this.animeInfo['.add_manga[finish_date][year]'] = Datec.getFullYear();
+        this.animeInfo['.add_manga[finish_date][month]'] = Datec.getMonth()+1;
+        this.animeInfo['.add_manga[finish_date][day]'] = Datec.getDate();
+      }
+      this.animeInfo['.add_anime[finish_date][year]'] = Datec.getFullYear();
+      this.animeInfo['.add_anime[finish_date][month]'] = Datec.getMonth()+1;
+      this.animeInfo['.add_anime[finish_date][day]'] = Datec.getDate();
+    }else{
+      con.error('Completion date already set');
+    }
+  }
+
+  setStartingDateToNow(){
+    var Datec = new Date();
+    if(this.animeInfo['.add_anime[start_date][day]'] === '' || this.animeInfo['.add_manga[start_date][day]'] === ''){
+      if(this.type == "manga"){
+        this.animeInfo['.add_manga[start_date][year]'] = Datec.getFullYear();
+        this.animeInfo['.add_manga[start_date][month]'] = Datec.getMonth()+1;
+        this.animeInfo['.add_manga[start_date][day]'] = Datec.getDate();
+      }
+      this.animeInfo['.add_anime[start_date][year]'] = Datec.getFullYear();
+      this.animeInfo['.add_anime[start_date][month]'] = Datec.getMonth()+1;
+      this.animeInfo['.add_anime[start_date][day]'] = Datec.getDate();
+    }else{
+      con.info('Start date already set');
+    }
+  }
+
   getStreamingUrl(){
     var tags = this.animeInfo[".add_anime[tags]"];
     if(this.type == "manga"){
