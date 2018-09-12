@@ -8,9 +8,8 @@ install:
 script:
   - npm run build
 before_deploy:
-  - npm run build
   - npm run package
-  - web-ext sign -a dist -s dist/webextension --key $sign_key --secret $sign_secret --id $sign_id
+  - npm run package:firefox
 deploy:
   provider: releases
   api_key: $GITHUB_OAUTH_TOKEN
