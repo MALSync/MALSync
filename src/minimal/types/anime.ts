@@ -1,3 +1,5 @@
+import {mal} from "./../../utils/mal";
+
 export class animeType{
   private vars;
 
@@ -15,7 +17,7 @@ export class animeType{
     });
   }
 
-  overview(){
+  overview(minimal){
     return new Promise((resolve, reject) => {
       var data = this.vars;
       var html = '';
@@ -97,6 +99,47 @@ export class animeType{
 
       resolve('<div class="mdl-grid">'+html+'</div>');
     });
+  }
+
+  async lazyLoadOverview(minimal){
+    try{
+      con.log('Streaming UI');
+      var malObj = new mal(this.url);
+      await malObj.init();
+
+      var streamUrl = malObj.getStreamingUrl();
+      if(typeof streamUrl !== 'undefined'){
+
+        var streamhtml =
+        `<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">
+          <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
+            <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
+              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue Watching
+            </a>`;
+
+        var resumeUrlObj = await malObj.getResumeWaching();
+        var continueUrlObj = await malObj.getContinueWaching();
+        con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
+          streamhtml +=
+            `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Continue watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${continueUrlObj.url}">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Next Episode
+            </a>`;
+        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
+          streamhtml +=
+            `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Resume watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${resumeUrlObj.url}">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Resume Episode
+            </a>`;
+        }
+
+        streamhtml +=
+          `</div>
+        </div>`;
+
+        minimal.find('.malDescription').first().append(streamhtml);
+      }
+
+    }catch(e) {console.log('[iframeOverview] Error:',e);}
   }
 }
 

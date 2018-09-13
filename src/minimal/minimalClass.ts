@@ -328,10 +328,11 @@ export class minimal{
     this.minimal.find('#fixed-tab-1 .page-content').html('');
     overviewObj.init()
       .then(() => {
-        return overviewObj.overview();
+        return overviewObj.overview(this.minimal);
       }).then((html) => {
         this.minimal.find('#fixed-tab-1 .page-content').html(html);
         this.minimal.find('#loadOverview').hide();
+        overviewObj.lazyLoadOverview(this.minimal);
       });
   }
 
