@@ -56,5 +56,11 @@ module.exports = {
       '*crunchyroll.com/videos*',
       '*crunchyroll.com/affiliate_iframeplayer*'
     ]
+  },
+  Masterani: {
+    match: [
+      '*://www.masterani.me/anime/info/*',
+      '*://www.masterani.me/anime/watch/*',
+    ]
   }
 }
