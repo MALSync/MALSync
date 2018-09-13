@@ -41,7 +41,7 @@ export const Masterani: pageInterface = {
         page.handlePage();
 
         $('.ui.toggle.checkbox, .pagination.menu').click(function(){
-          setTimeout(function{
+          setTimeout(function(){
             page.handleList();
           }, 500);
         });
