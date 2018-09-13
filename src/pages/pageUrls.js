@@ -62,5 +62,12 @@ module.exports = {
       '*://www.masterani.me/anime/info/*',
       '*://www.masterani.me/anime/watch/*',
     ]
+  },
+  Mangadex: {
+    match: [
+      '*://*.mangadex.org/manga/*',
+      '*://*.mangadex.org/title/*',
+      '*://*.mangadex.org/chapter/*',
+    ]
   }
 }

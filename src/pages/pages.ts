@@ -3,6 +3,7 @@ import {Kissmanga} from "./Kissmanga/main";
 import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
 import {Masterani} from "./Masterani/main";
+import {Mangadex} from "./Mangadex/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -12,6 +13,7 @@ export const pages = {
     nineAnime: nineAnime,
     Crunchyroll: Crunchyroll,
     Masterani: Masterani,
+    Mangadex: Mangadex,
 };
 
 export const pageSearch:pageSearchObj = {
