@@ -159,11 +159,59 @@ export class animeType{
                 </div>`
       }catch(e) {console.log('[iframeOverview] Error:',e);}
 
+
+      try{
+        var characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
+        var charHtml = $.parseHTML( '<div class="detail-characters-list '+characterBlock );
+        var temphtml = '';
+        var charFound = 0;
+        var tempWrapHtml = '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">\
+        <div class="mdl-card__actions clicker">\
+          <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>\
+          <i class="material-icons mdl-accordion__icon mdl-animation--default remove" style="float: right; margin-top: 3px;">expand_more</i>\
+        </div>\
+        <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; display: none;">';
+
+        $.each($(charHtml).find(':not(td) > table'), function( index, value ) {
+          if(!index) charFound = 1;
+          var regexDimensions = /\/r\/\d*x\d*/g;
+          var charImg = $(this).find('img').first().attr("data-src");
+          if ( regexDimensions.test(charImg!)){
+            charImg = charImg!.replace(regexDimensions, '');
+          }else{
+            charImg = 'https://myanimelist.cdn-dena.com/images/questionmark_23.gif';
+          }
+
+          tempWrapHtml += '<div>';
+            tempWrapHtml += '<div class="mdl-grid" style="width: 126px;">';
+              tempWrapHtml += '<div style="width: 100%; height: auto;">';
+                tempWrapHtml += '<img style="height: auto; width: 100%;"src="'+charImg+'">';
+              tempWrapHtml += '</div>';
+              tempWrapHtml += '<div class="">';
+                tempWrapHtml += $(this).find('.borderClass .spaceit_pad').first().parent().html();
+              tempWrapHtml += '</div>';
+            tempWrapHtml += '</div>';
+          tempWrapHtml += '</div>';
+
+        });
+        for(var i=0; i < 10; i++){
+          tempWrapHtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
+        }
+        tempWrapHtml += '</div></div></div>';
+        if(charFound) html += tempWrapHtml;
+
+      }catch(e) {console.log('[iframeOverview] Error:',e);}
+
       resolve('<div class="mdl-grid">'+html+'</div>');
     });
   }
 
   async lazyLoadOverview(minimal){
+    minimal.find('.characters-block .clicker').one('click', function(){
+      minimal.find('#characterList').show();
+      minimal.find('.characters-block .remove').remove();
+    });
+
     try{
       con.log('Streaming UI');
       var malObj = new mal(this.url);
