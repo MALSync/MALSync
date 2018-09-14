@@ -78,7 +78,7 @@ export class animeType{
                 <span class="mdl-list__item-primary-content">
                   <span>Status:</span>
                   <span class="mdl-list__item-text-body">
-                    <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
+                    <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none; visibility: hidden;">
                       <option selected="selected" value="1">Watching</option>
                       <option value="2">Completed</option>
                       <option value="3">On-Hold</option>
@@ -92,7 +92,7 @@ export class animeType{
                 <span class="mdl-list__item-primary-content">
                   <span>Eps Seen:</span>
                   <span class="mdl-list__item-text-body">
-                    <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curEps">12</span>
+                    <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">12</span>
                     <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                       <i class="fa fa-plus-circle ml4">
                       </i>
@@ -104,7 +104,7 @@ export class animeType{
                 <span class="mdl-list__item-primary-content">
                   <span>Your Score:</span>
                   <span class="mdl-list__item-text-body">
-                    <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+                    <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; visibility: hidden;">
                       <option value="0">Select</option>
                       <option selected="selected" value="10">(10) Masterpiece</option>
                       <option value="9">(9) Great</option>
@@ -169,10 +169,10 @@ export class animeType{
       var malObj = new mal(this.url);
       await malObj.init();
 
-      minimal.find('#myinfo_status').val(malObj.getStatus());
-      minimal.find('#myinfo_watchedeps').val(malObj.getEpisode());
-      minimal.find('#curEps').html(malObj.totalEp);
-      minimal.find('#myinfo_score').val(malObj.getScore());
+      minimal.find('#myinfo_status').val(malObj.getStatus()).css('visibility', 'visible');
+      minimal.find('#myinfo_watchedeps').val(malObj.getEpisode()).css('visibility', 'visible');
+      minimal.find('#curEps').html(malObj.totalEp).css('visibility', 'visible');
+      minimal.find('#myinfo_score').val(malObj.getScore()).css('visibility', 'visible');
 
       minimal.find('.inputButton').click(function(){
         malObj.setStatus(minimal.find('#myinfo_status').val());
