@@ -69,6 +69,68 @@ export class animeType{
       }catch(e) {console.log('[iframeOverview] Error:',e);}
 
       html += overviewElement(this.url, title, image, description, altTitle, stats);
+      try{
+        html +=
+        `<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+              <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+                <span class="mdl-list__item-primary-content">
+                  <span>Status:</span>
+                  <span class="mdl-list__item-text-body">
+                    <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
+                      <option selected="selected" value="1">Watching</option>
+                      <option value="2">Completed</option>
+                      <option value="3">On-Hold</option>
+                      <option value="4">Dropped</option>
+                      <option value="6">Plan to Watch</option>
+                    </select>
+                  </span>
+                </span>
+              </li>
+              <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+                <span class="mdl-list__item-primary-content">
+                  <span>Eps Seen:</span>
+                  <span class="mdl-list__item-text-body">
+                    <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curEps">12</span>
+                    <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
+                      <i class="fa fa-plus-circle ml4">
+                      </i>
+                    </a>
+                  </span>
+                </span>
+              </li>
+              <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+                <span class="mdl-list__item-primary-content">
+                  <span>Your Score:</span>
+                  <span class="mdl-list__item-text-body">
+                    <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+                      <option value="0">Select</option>
+                      <option selected="selected" value="10">(10) Masterpiece</option>
+                      <option value="9">(9) Great</option>
+                      <option value="8">(8) Very Good</option>
+                      <option value="7">(7) Good</option>
+                      <option value="6">(6) Fine</option>
+                      <option value="5">(5) Average</option>
+                      <option value="4">(4) Bad</option>
+                      <option value="3">(3) Very Bad</option>
+                      <option value="2">(2) Horrible</option>
+                      <option value="1">(1) Appalling</option>
+                    </select>
+                  </span>
+                </span>
+              </li>
+              <li class="mdl-list__item" style="width: 100%;">
+                <input type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton">
+                <small>
+                  <a href="https://myanimelist.net/ownlist/anime/${utils.urlPart(this.url, 4)}/edit" target="_blank">Edit Details</a>
+                </small>
+              </li>
+
+            </tbody>
+          </table>
+        </div>`;
+      }catch(e) {console.log('[iframeOverview] Error:',e);}
 
       try{
         var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
@@ -106,6 +168,19 @@ export class animeType{
       con.log('Streaming UI');
       var malObj = new mal(this.url);
       await malObj.init();
+
+      minimal.find('#myinfo_status').val(malObj.getStatus());
+      minimal.find('#myinfo_watchedeps').val(malObj.getEpisode());
+      minimal.find('#curEps').html(malObj.totalEp);
+      minimal.find('#myinfo_score').val(malObj.getScore());
+
+      minimal.find('.inputButton').click(function(){
+        malObj.setStatus(minimal.find('#myinfo_status').val());
+        malObj.setEpisode( minimal.find('#myinfo_watchedeps').val());
+        malObj.setScore(minimal.find('#myinfo_score').val());
+        malObj.sync();
+      });
+
 
       var streamUrl = malObj.getStreamingUrl();
       if(typeof streamUrl !== 'undefined'){
