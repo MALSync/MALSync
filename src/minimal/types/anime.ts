@@ -178,7 +178,12 @@ export class animeType{
         malObj.setStatus(minimal.find('#myinfo_status').val());
         malObj.setEpisode( minimal.find('#myinfo_watchedeps').val());
         malObj.setScore(minimal.find('#myinfo_score').val());
-        malObj.sync();
+        malObj.sync()
+          .then(function(){
+            utils.flashm('Updated');
+          }, function(){
+            utils.flashm( "Anime update failed" , {error: true});
+          });
       });
 
 
