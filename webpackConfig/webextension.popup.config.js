@@ -19,7 +19,7 @@ module.exports = {
       }
     ]
   },
-  devtool: "cheap-source-map",
+  devtool: "source-map",
   resolve: {
     extensions: [ '.tsx', '.ts', '.js', '.less' ]
   },
@@ -34,8 +34,5 @@ module.exports = {
       utils: path.resolve(__dirname, './../src/utils/general'),
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
-  ],
-  optimization: {
-    minimize: false
-  }
+  ]
 };
