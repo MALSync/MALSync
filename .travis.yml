@@ -1,12 +1,21 @@
 language: node_js
 node_js:
   - "9"
+dist: trusty
+sudo: required
+addons:
+  chrome: stable
+cache:
+  npm: true
+  directories:
+  - node_modules
 before_install:
   - npm install --global web-ext
 install:
   - npm install
 script:
   - npm run build
+  - npm run test
 before_deploy:
   - npm run package
   - npm run package:firefox
