@@ -607,6 +607,7 @@ export class minimal{
       var bookmarkElement = '';
       var uid = el[localListType+'_id']
       var malUrl = 'https://myanimelist.net'+el[localListType+'_url'];
+      var streamUrl = utils.getUrlFromTags(el['tags']);
       var imageHi = el[localListType+'_image_path'];
       var regexDimensions = /\/r\/\d*x\d*/g;
       if ( regexDimensions.test(imageHi) ) {
@@ -634,6 +635,38 @@ export class minimal{
           con.error('Something is wrong');
         }
       });
+
+      streamUI();
+      async function streamUI(){
+        if(typeof streamUrl !== 'undefined'){
+          con.log(streamUrl);
+          domE.find('.data.progress').append(`
+            <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 5px;" href="${streamUrl}">
+              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+            </a>`);
+
+          var id = utils.urlPart(malUrl, 4);
+          var type = utils.urlPart(malUrl, 3);
+          var resumeUrlObj = await utils.getResumeWaching(type, id);
+          var continueUrlObj = await utils.getContinueWaching(type, id);
+          var curEp = parseInt(el[my_watched_episodes]);
+
+          con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+            domE.find('.data.progress').append(
+              `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+            domE.find('.data.progress').append(
+              `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }
+        }
+      }
 
     }
     ,function(){
