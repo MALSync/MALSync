@@ -295,7 +295,63 @@ export class animeType{
 
     }catch(e) {console.log('[iframeOverview] Error:',e);}
   }
+
+  async reviews(minimal){
+    return new Promise((resolve, reject) => {
+      con.info('Loading reviews');
+      var data = this.vars;
+      try{
+          var reviews = data.split('Reviews</h2>')[1].split('<h2>')[0];
+          var reviewsData = $.parseHTML( reviews );
+          var reviewsHtml = '<div class="mdl-grid">';
+          $.each($(reviewsData).filter('.borderDark'), function( index, value ) {
+            reviewsHtml += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">';
+              reviewsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
+                $(this).find('.spaceit > div').css('max-width','60%');
+                reviewsHtml += $(this).find('.spaceit').first().html();
+              reviewsHtml += '</div>';
+
+              reviewsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
+                // @ts-ignore
+                $(this).find('.textReadability, .textReadability > span').contents().filter(function(){
+                  // @ts-ignore
+                  return this.nodeType == 3 && $.trim(this.nodeValue).length;
+                }).wrap('<p style="margin:0;padding=0;"/>');
+                $(this).find('br').css('line-height','10px');
+                reviewsHtml += $(this).find('.textReadability').html();
+              reviewsHtml += '</div>';
+            reviewsHtml += '</div>';
+          });
+          reviewsHtml += '</div>';
+          if(reviewsHtml == '<div class="mdl-grid"></div>'){
+            reviewsHtml = '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">Nothing Found</span></span>';
+          }
+
+          resolve(reviewsHtml);
+          /*$("#info-iframe").contents().find('#malReviews').html(reviewsHtml).show();
+          */
+      }catch(e) {console.log('[iframeReview] Error:',e);}
+    });
+  }
+
+  async lazyLoadReviews(minimal){
+    minimal.find('.js-toggle-review-button').addClass('nojs').click(function(){
+      // @ts-ignore
+      var revID = $(this).attr('data-id');
+      minimal.find('#review'+revID).css('display','initial');
+      minimal.find('#revhelp_output_'+revID).remove();
+      // @ts-ignore
+      $(this).remove();
+    });
+    minimal.find('.mb8 a').addClass('nojs').click(function(){
+      // @ts-ignore
+      var revID = $(this).attr('onclick').split("$('")[1].split("'")[0];
+      minimal.find(revID).toggle();
+    });
+  }
+
 }
+
 
 function overviewElement(url, title, image, description, altTitle, stats){
   return `
