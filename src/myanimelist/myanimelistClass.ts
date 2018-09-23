@@ -150,8 +150,9 @@ export class myanimelistClass{
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');
-      $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
-      $('#mal-sync-search-links').one('click', () => {
+      $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />');
+      $('#mal-sync-search-links, .MALSync-search').one('click', () => {
+        $('.MALSync-search').remove();
         var title = $('#contentWrapper > div:first-child span').text()
         var titleEncoded = encodeURI(title);
         var html = '';
