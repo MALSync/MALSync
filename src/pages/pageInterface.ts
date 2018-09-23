@@ -32,6 +32,7 @@ interface pageSearch {
     name: string,
     type: 'anime'|'manga',
     domain: string,
+    googleSearchDomain?: string,
     searchUrl: (titleEncoded) => string,
     completeSearchTag?: (title, linkContent) => string
 }

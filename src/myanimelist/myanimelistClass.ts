@@ -155,12 +155,13 @@ export class myanimelistClass{
         var title = $('#contentWrapper > div:first-child span').text()
         var titleEncoded = encodeURI(title);
         var html = '';
+        var imgStyle = 'position: relative; top: 4px;'
 
         for (var key in pageSearch) {
           var page = pageSearch[key];
           if(page.type !== This.type) continue;
 
-          var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
+          var linkContent = `<img style="${imgStyle}" src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
             `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
@@ -169,12 +170,18 @@ export class myanimelistClass{
           }else{
             var link = page.completeSearchTag(title, linkContent);
           }
+
+          var googleSeach = '';
+          if( typeof page.googleSearchDomain !== 'undefined'){
+            googleSeach =`<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}">
+              <img style="${imgStyle}" src="https://www.google.com/s2/favicons?domain=google.com">
+            </a>`;
+          }
+
           html +=
-          `<div class="mal_links">
+          `<div class="mal_links" style="padding: 1px 0;">
               ${link}
-            <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.domain}">
-              <img src="https://www.google.com/s2/favicons?domain=google.com">
-            </a>
+              ${googleSeach}
           </div>`;
         }
 

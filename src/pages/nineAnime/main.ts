@@ -2,7 +2,7 @@ import {pageInterface} from "./../pageInterface";
 
 export const nineAnime: pageInterface = {
     name: '9anime',
-    domain: 'http://9anime.to',
+    domain: 'https://9anime.to',
     database: '9anime',
     type: 'anime',
     isSyncPage: function(url){return true;},
