@@ -378,6 +378,13 @@ export class minimal{
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">General</h2>
+          </div>
+          ${materialCheckbox('autoTracking','Autotracking'+utils.getTooltip('Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.','','bottom'))}
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">Streaming Site Links</h2>
             ${utils.getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.')}
           </div>

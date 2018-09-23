@@ -35,6 +35,7 @@ export class syncPage{
 
   async handlePage(){
     var state: pageState;
+    var This = this;
     this.url = window.location.href;
 
     this.loadUI();
@@ -89,13 +90,31 @@ export class syncPage{
       if(this.page.isSyncPage(this.url)){
         if(this.handleAnimeUpdate(state)){
           con.log('Start Sync');
-          this.malObj.setResumeWaching(this.url, state.episode);
-          if(typeof this.page.sync.nextEpUrl !== 'undefined'){
-            var continueWatching = this.page.sync.nextEpUrl(this.url);
-            if(continueWatching) this.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+
+          if(api.settings.get('autoTracking')){
+            sync();
+          }else{
+            if(This.page.type == 'anime'){
+              var epis = 'episode: '+state.episode;
+            }else{
+              var epis = 'chapter: <b>'+state.episode+'</b>';
+            }
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
+            utils.flashm( message , {hoverInfo: true, error: true}).find('.sync').on('click', function(){
+              $('.flashinfo').remove();
+              sync();
+            });
           }
 
-          this.syncHandling(true);
+          function sync(){
+            This.malObj.setResumeWaching(This.url, state.episode);
+            if(typeof This.page.sync.nextEpUrl !== 'undefined'){
+              var continueWatching = This.page.sync.nextEpUrl(This.url);
+              if(continueWatching) This.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+            }
+            This.syncHandling(true);
+          }
+
         }else{
           con.log('Nothing to Sync');
         }

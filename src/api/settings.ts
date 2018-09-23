@@ -1,5 +1,7 @@
 export var settingsObj = {
   options: {
+    autoTracking: true,
+
     posLeft: 'left',
     miniMALonMal: false,
     displayFloatButton: true,
