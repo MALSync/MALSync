@@ -274,7 +274,7 @@ export class myanimelistClass{
     });
 
     function bookReady(callback){
-      utils.waitUntilTrue(function(){return $('.list-item').length}, function(){
+      utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
         callback();
       });
     }
