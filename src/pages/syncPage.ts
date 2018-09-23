@@ -104,6 +104,11 @@ export class syncPage{
               $('.flashinfo').remove();
               sync();
             });
+            //Debugging
+            con.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
+            if(typeof This.page.sync.nextEpUrl !== 'undefined'){
+              con.log('nextEp', This.page.sync.nextEpUrl(This.url));
+            }
           }
 
           function sync(){

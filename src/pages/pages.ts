@@ -4,6 +4,7 @@ import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
 import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
+import {Gogoanime} from "./Gogoanime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -14,6 +15,7 @@ export const pages = {
     Crunchyroll: Crunchyroll,
     Masterani: Masterani,
     Mangadex: Mangadex,
+    Gogoanime: Gogoanime,
 };
 
 export const pageSearch:pageSearchObj = {
@@ -50,6 +52,12 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.masterani.me',
       googleSearchDomain: 'www.masterani.me/anime/info/',
       searchUrl: (titleEncoded) => {return 'https://www.masterani.me/anime?search='+titleEncoded}
+    },
+    Gogoanime: {
+      name: 'Gogoanime',
+      type: 'anime',
+      domain: 'www.gogoanime.in',
+      searchUrl: (titleEncoded) => {return 'http://www3.gogoanime.in/search.html?keyword='+titleEncoded}
     },
     AniList: {
       name: 'AniList',

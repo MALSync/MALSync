@@ -69,5 +69,19 @@ module.exports = {
       '*://*.mangadex.org/title/*',
       '*://*.mangadex.org/chapter/*',
     ]
+  },
+  Gogoanime: {
+    match: [
+      '*://*.gogoanime.tv/*',
+      '*://*.gogoanime.io/*',
+      '*://*.gogoanime.in/*',
+      '*://*.gogoanime.se/*',
+      '*://*.gogoanime.sh/*',
+    ],
+    exclude: [
+      '*gogoanime.*/',
+      '*gogoanime.*/*.html',
+      '*gogoanime.*/anime-List*',
+    ]
   }
 }
