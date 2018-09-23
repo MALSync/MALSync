@@ -197,9 +197,35 @@ export class animeType{
         for(var i=0; i < 10; i++){
           tempWrapHtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
         }
-        tempWrapHtml += '</div></div></div>';
+        tempWrapHtml += '</div></div>';
         if(charFound) html += tempWrapHtml;
 
+      }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+      try{
+          var infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
+          var infoData = $.parseHTML( infoBlock );
+          var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
+          $.each($(infoData).filter('div'), function( index, value ) {
+              if((index + 4) % 4 == 0 && index != 0){
+                  //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
+              }
+              infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
+                  infoHtml += '<span class="mdl-list__item-primary-content">';
+                      infoHtml += '<span>';
+                          infoHtml += $(this).find('.dark_text').text();
+                      infoHtml += '</span>';
+                      infoHtml += '<span class="mdl-list__item-text-body">';
+                          $(this).find('.dark_text').remove();
+                          infoHtml += $(this).html();
+                          //$(this).find('*').each(function(){infoHtml += $(this)[0].outerHTML});
+                          //infoHtml += $(this).find('span[itemprop=ratingValue]').height() != null ? $(this).find('span[itemprop=ratingValue]').text() : $(this).clone().children().remove().end().text();
+                      infoHtml += '</span>';
+                  infoHtml += '</span>';
+              infoHtml += '</li>';
+          });
+          infoHtml += '</ul>';
+          html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
       }catch(e) {console.log('[iframeOverview] Error:',e);}
 
       resolve('<div class="mdl-grid">'+html+'</div>');
@@ -207,10 +233,10 @@ export class animeType{
   }
 
   async lazyLoadOverview(minimal){
-    minimal.find('.characters-block .clicker').one('click', function(){
+    //minimal.find('.characters-block .clicker').one('click', function(){
       minimal.find('#characterList').show();
       minimal.find('.characters-block .remove').remove();
-    });
+    //});
 
     try{
       con.log('Streaming UI');
