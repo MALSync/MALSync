@@ -166,7 +166,7 @@ export class animeType{
         var temphtml = '';
         var charFound = 0;
         var tempWrapHtml = '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">\
-        <div class="mdl-card__actions clicker">\
+        <div class="mdl-card__actions clicker" style="display: none;">\
           <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>\
           <i class="material-icons mdl-accordion__icon mdl-animation--default remove" style="float: right; margin-top: 3px;">expand_more</i>\
         </div>\
@@ -348,6 +348,77 @@ export class animeType{
       var revID = $(this).attr('onclick').split("$('")[1].split("'")[0];
       minimal.find(revID).toggle();
     });
+  }
+
+  async recommendations(minimal){
+
+    //return new Promise((resolve, reject) => {
+    return api.request.xhr('GET', this.url+'/userrecs').then((response) => {
+      var data = response.responseText;
+      try{
+        var recommendationsBlock = data.split('Make a recommendation</a>')[1].split('</h2>')[1].split('<div class="mauto')[0];
+        var html = $.parseHTML( recommendationsBlock );
+        var recommendationsHtml = '<div class="mdl-grid">';
+        $.each($(html).filter('.borderClass'), function( index, value ) {
+          recommendationsHtml += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
+            recommendationsHtml += '<div class="mdl-card__media" style="background-color: transparent; margin: 8px;">';
+              recommendationsHtml += $(this).find('.picSurround').html();
+            recommendationsHtml += '</div>';
+            recommendationsHtml += '<div class="mdl-cell" style="flex-grow: 100;">';
+              recommendationsHtml += '<div class="">';
+                $(this).find('.button_edit, .button_add, td:eq(1) > div:eq(1) span').remove();
+                recommendationsHtml += $(this).find('td:eq(1) > div:eq(1)').html();
+              recommendationsHtml += '</div>';
+              recommendationsHtml += '<div class="">';
+                $(this).find('a[href^="/dbchanges.php?go=report"]').remove();
+                recommendationsHtml += $(this).find('.borderClass').html();
+              recommendationsHtml += '</div>';
+              recommendationsHtml += '<div class="">';
+                recommendationsHtml += (typeof $(this).find('.spaceit').html() != 'undefined') ? $(this).find('.spaceit').html() : '';
+                recommendationsHtml += '<div class="more" style="display: none;">';
+                  recommendationsHtml += $(this).find('td:eq(1) > div').last().html();
+                recommendationsHtml += '</div>';
+              recommendationsHtml += '</div>';
+            recommendationsHtml += '</div>';
+            /*recommendationsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
+              $(this).find('.spaceit > div').css('max-width','60%');
+              recommendationsHtml += $(this).find('.spaceit').first().html();
+            recommendationsHtml += '</div>';
+            recommendationsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
+              $(this).find('.textReadability, .textReadability > span').contents().filter(function(){
+                return this.nodeType == 3 && $.trim(this.nodeValue).length;
+              }).wrap('<p style="margin:0;padding=0;"/>');
+              $(this).find('br').css('line-height','10px');
+              recommendationsHtml += $(this).find('.textReadability').html();
+            recommendationsHtml += '</div>';*/
+            //recommendationsHtml += $(this).html();
+          recommendationsHtml += '</div>';
+        });
+        recommendationsHtml += '</div>';
+
+        if(recommendationsHtml == '<div class="mdl-grid"></div>'){
+          recommendationsHtml = '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">Nothing Found</span></span>';
+        }
+
+        //resolve(recommendationsHtml);
+        return recommendationsHtml;
+      }catch(e) {console.log('[iframeRecommendations] Error:',e);}
+    });
+  }
+
+  async lazyLoadRecommendations(minimal){
+    // @ts-ignore
+    minimal.find('.js-similar-recommendations-button').addClass('nojs').click(function(){$(this).parent().find('.more').toggle();});
+    minimal.find('.js-toggle-recommendation-button').addClass('nojs').click(function(){
+      // @ts-ignore
+      var revID = $(this).attr('data-id');
+      minimal.find('#recommend'+revID).css('display','initial');
+      // @ts-ignore
+      $(this).remove();
+    });
+    minimal.find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
+    // @ts-ignore
+    minimal.find('.lazyload').each(function() { $(this).attr('src', $(this).attr('data-src'));});//TODO: use lazyloading
   }
 
 }

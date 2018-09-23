@@ -325,7 +325,7 @@ export class minimal{
     this.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
-    this.minimal.find('#loadOverview, #loadReviews').show();
+    this.minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
     this.minimal.find('#fixed-tab-1 .page-content').html('');
     overviewObj.init()
       .then(() => {
@@ -336,6 +336,15 @@ export class minimal{
               This.minimal.find('#fixed-tab-2 .page-content').html(html);
               This.minimal.find('#loadReviews').hide();
               overviewObj.lazyLoadReviews(This.minimal);
+            })
+        });
+
+        this.minimal.find('.recommendationTab').off("click").one('click', function(){
+          overviewObj.recommendations(This.minimal)
+            .then((html) => {
+              This.minimal.find('#fixed-tab-3 .page-content').html(html);
+              This.minimal.find('#loadRecommendations').hide();
+              overviewObj.lazyLoadRecommendations(This.minimal);
             })
         });
 
