@@ -260,7 +260,7 @@ export class minimal{
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
       </div>`;
-    this.minimal.find('#page-config').html(html);
+    this.minimal.find('#page-config').html(html).show();
 
     this.minimal.find("#malOffset").on("input", function(){
       var Offset = This.minimal.find("#malOffset").val();
@@ -374,7 +374,7 @@ export class minimal{
     var settingsUI = `
     <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
       <div class="mdl-grid">
-        <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
+        <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;"></div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
