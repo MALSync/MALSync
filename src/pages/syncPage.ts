@@ -115,7 +115,9 @@ export class syncPage{
             This.malObj.setResumeWaching(This.url, state.episode);
             if(typeof This.page.sync.nextEpUrl !== 'undefined'){
               var continueWatching = This.page.sync.nextEpUrl(This.url);
-              if(continueWatching) This.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+              if(continueWatching && !(continueWatching.indexOf('undefined') != -1)){
+                This.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+              }
             }
             This.syncHandling(true);
           }
