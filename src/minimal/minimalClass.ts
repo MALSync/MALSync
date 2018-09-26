@@ -451,6 +451,36 @@ export class minimal{
           </li>
         </div>
 
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+
+          <li class="mdl-list__item">
+
+            <div style="line-height: 30px;">
+
+              <a href="https://discordapp.com/invite/cTH4yaw">
+                <img src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"/>
+              </a><br/>
+
+              <a href="https://github.com/lolamtisch/MALSync/issues">
+                <img src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"/>
+              </a><br/>
+
+              <a href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en">
+                <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome"/>
+              </a><br/>
+
+              <a href="https://github.com/lolamtisch/MALSync/releases">
+                <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox"/>
+              </a><br/>
+
+              <a href="https://github.com/lolamtisch/MALSync/releases">
+                <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript"/>
+              </a>
+
+            </div>
+          </li>
+        </div>
+
       </div>
     </ul>
     `;
