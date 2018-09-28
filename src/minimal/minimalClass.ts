@@ -326,7 +326,7 @@ export class minimal{
     this.history.push(overviewObj.url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
-    this.minimal.find('#fixed-tab-1 .page-content').html('');
+    this.minimal.find('#fixed-tab-1 .page-content, #fixed-tab-2 .page-content, #fixed-tab-3 .page-content').html('');
     overviewObj.init()
       .then(() => {
 
