@@ -17,6 +17,8 @@ export function planTo(type: "anime"|"manga"){
   return 'Plan to Watch';
 }
 
+export var syncRegex = /^(settings\/|resume\/|continue\/).*/
+
 export enum status {
   watching = 1,
   completed = 2,

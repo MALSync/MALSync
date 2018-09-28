@@ -5,7 +5,7 @@ export const webextension: storageInterface = {
       const obj = {} as any;
       obj[key] = value;
       return new Promise((resolve, reject) => {
-          chrome.storage.local.set(obj, function(){
+          getStorage(key).set(obj, function(){
               resolve();
           });
       });
@@ -13,7 +13,7 @@ export const webextension: storageInterface = {
 
     async get(key: string): Promise<any> {
       return new Promise((resolve, reject) => {
-          chrome.storage.local.get(key, function(results){
+          getStorage(key).get(key, function(results){
               resolve(results[key]);
           });
       });
@@ -21,7 +21,7 @@ export const webextension: storageInterface = {
 
     async remove(key: string): Promise<any> {
       return new Promise((resolve, reject) => {
-          chrome.storage.local.remove(key, function(){
+          getStorage(key).remove(key, function(){
               resolve();
           });
       });
@@ -83,3 +83,10 @@ export const webextension: storageInterface = {
       head.get(0).appendChild(s);
     }
 };
+
+function getStorage(key:string){
+  if(utils.syncRegex.test(key)){
+    return chrome.storage.sync;
+  }
+  return chrome.storage.local;
+}
