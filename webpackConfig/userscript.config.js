@@ -41,6 +41,7 @@ const metadata = {
     'GM.getValue',
     'GM.setValue'
   ],
+  'noframes': '',
   'match' : generateMatchExcludes().match,
   'exclude' : generateMatchExcludes().exclude,
   'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
@@ -48,6 +49,7 @@ const metadata = {
   'run-at': 'document_start',
   'connect': [
     'myanimelist.net',
+    'kissanimelist.firebaseio.com',
     '*'
   ]
 };
