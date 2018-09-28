@@ -457,6 +457,13 @@ export class minimal{
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">ETC</h2>
+          </div>
+          <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 
           <li class="mdl-list__item">
 
@@ -528,6 +535,10 @@ export class minimal{
     this.minimal.find("#malThumbnail").change(function(){
       api.settings.set( 'malThumbnail', This.minimal.find("#malThumbnail").val() );
     });
+
+    this.minimal.find('#clearCache').click(function(){
+      utils.flashm("Cache Cleared [TODO]");//TODO
+    })
 
     listener.forEach(function(fn) {
       fn();
