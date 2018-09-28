@@ -11,7 +11,8 @@ export class minimal{
             <button class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
             <div class="mdl-layout__header-row">
               <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
-                <i class="material-icons" class="material-icons md-48">book</i>
+                <i class="material-icons md-48 bookIcon">book</i>
+                <i class="material-icons md-48 settingsIcon" style="display:none;">settings</i>
               </button>
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
                 <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
@@ -188,6 +189,9 @@ export class minimal{
   fill(url: string|null){
     if(url == null){
       this.minimal.find('#material').addClass('settings-only');
+      if(this.isPopup()){
+        this.minimal.find('#book').first().click();
+      }
       return false;
     }
     if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
@@ -321,6 +325,7 @@ export class minimal{
 
   loadOverview(overviewObj){
     var This = this;
+    this.minimal.find("#book.open").toggleClass('open');
     this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
     this.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
     this.history.push(overviewObj.url);
