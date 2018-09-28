@@ -44,7 +44,8 @@ export const userscriptLegacy: storageInterface = {
       var s = document.createElement('script');
       s.text = GM_getResourceText(res);
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     },
@@ -63,7 +64,8 @@ export const userscriptLegacy: storageInterface = {
           }
         }`;
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     }
