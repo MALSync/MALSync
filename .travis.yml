@@ -9,6 +9,7 @@ script:
   - npm run build
 before_deploy:
   - npm run package
+  - npm run package:chrome
   - npm run package:firefox
 deploy:
   provider: releases
