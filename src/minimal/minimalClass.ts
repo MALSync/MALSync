@@ -159,7 +159,7 @@ export class minimal{
     });
 
     this.minimal.find("#book").click(function() {
-      if(This.minimal.find("#book.open").length){
+      if(This.minimal.find('#material.pop-over #malList').length){
         This.minimal.find("#book").toggleClass('open');
         This.minimal.find('#material').removeClass('pop-over');
       }else{
