@@ -57,7 +57,8 @@ export const webextension: storageInterface = {
       var s = document.createElement('script');
       s.src = chrome.extension.getURL('vendor/'+res);
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     },
@@ -76,7 +77,8 @@ export const webextension: storageInterface = {
           }
         }`;
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     }
