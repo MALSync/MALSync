@@ -258,6 +258,13 @@ export class myanimelistClass{
           return $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
         },
         streamingSelector: '.data.title .link',
+        cleanTags: function(){
+          $('.tags span a').each(function( index ) {
+            if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+              $(this).parent().remove();
+            }
+          });
+        },
       }
     }else if(this.page == 'classic'){
       var book = {
@@ -270,6 +277,13 @@ export class myanimelistClass{
           return $('a[href^="'+malUrl+'"]');
         },
         streamingSelector: 'span',
+        cleanTags: function(){
+          $('span[id^="tagLinks"] a').each(function( index ) {
+            if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+              $(this).remove();
+            }
+          });
+        },
       }
     }else{
       con.error('Bookmark type unknown')
@@ -317,15 +331,7 @@ export class myanimelistClass{
           }
         }
       });
-      cleanTags();
+      book.cleanTags();
     });
-
-    function cleanTags(){
-      $('.tags span a').each(function( index ) {
-        if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
-          $(this).parent().remove();
-        }
-      });
-    }
   }
 }
