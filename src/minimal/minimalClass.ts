@@ -198,6 +198,10 @@ export class minimal{
       this.loadOverview(new animeType(url));
       return true;
     }
+    this.minimal.find('#material').addClass('settings-only');
+    if(this.isPopup()){
+      this.minimal.find('#book').first().click();
+    }
     return false;
   }
 
