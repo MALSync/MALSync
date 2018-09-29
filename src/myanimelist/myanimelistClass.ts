@@ -2,7 +2,7 @@ import {pageSearch} from './../pages/pages';
 import {mal} from "./../utils/mal";
 
 export class myanimelistClass{
-  readonly page: "detail"|"modern"|null = null;
+  page: "detail"|"bookmarks"|"modern"|"classic"|null = null;
 
   //detail
   readonly id: number|null = null;
@@ -17,7 +17,7 @@ export class myanimelistClass{
       this.type = urlpart;
     }
     if(urlpart == 'animelist' || urlpart == 'mangalist'){
-      this.page = 'modern';
+      this.page = 'bookmarks';
       this.type = urlpart.substring(0, 5);
     }
   }
@@ -31,9 +31,23 @@ export class myanimelistClass{
         this.malToKiss();
         this.siteSearch();
         break;
+      case 'bookmarks':
+        var This = this;
+        $(document).ready(function(){
+          if($('#mal_cs_powered').length){
+            This.page = 'classic';
+          }else{
+            This.page = 'modern';
+          }
+          This.init();
+        });
+        break;
       case 'modern':
         this.bookmarks();
         break;
+      case 'classic':
+        this.bookmarks();
+        break
       default:
         con.log('This page has no scipt')
     }
@@ -233,9 +247,37 @@ export class myanimelistClass{
     con.log('Bookmarks ['+this.page+']');
     var This = this;
 
-    bookReady(function(){
+    if(this.page == 'modern'){
+      var book = {
+        bookReady: function(callback){
+          utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
+            callback($.parseJSON($('.list-table').attr('data-items')!));
+          });
+        },
+        getElement: function(malUrl){
+          return $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
+        },
+        streamingSelector: '.data.title .link',
+      }
+    }else if(this.page == 'classic'){
+      var book = {
+        bookReady: function(callback){
+          utils.getUserList(7, This.type, null, null, function(list){
+            callback(list);
+          }, null, null/*TODO Get username before*/);
+        },
+        getElement: function(malUrl){
+          return $('a[href^="'+malUrl+'"]');
+        },
+        streamingSelector: 'span',
+      }
+    }else{
+      con.error('Bookmark type unknown')
+      return
+    }
+
+    book.bookReady(function(data){
       This.bookmarksHDimages();
-      var data = $.parseJSON($('.list-table').attr('data-items')!);
       $.each(data, async function(index, el) {
         var streamUrl = utils.getUrlFromTags(el['tags']);
         var malUrl = el[This.type+'_url'];
@@ -244,15 +286,20 @@ export class myanimelistClass{
         var type = utils.urlPart(malUrl, 1);
 
         if(typeof streamUrl !== 'undefined'){
-          var element = $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
-          element.find('.data.title .link').after(`
+          var element = book.getElement(malUrl);
+          element.find(book.streamingSelector).after(`
             <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
               <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
             </a>`);
 
           var resumeUrlObj = await utils.getResumeWaching(type, id);
           var continueUrlObj = await utils.getContinueWaching(type, id);
-          var curEp = parseInt(element.find('.data.progress .link').text().trim().replace(/\/.*/,''));
+
+          if(This.type == 'anime'){
+            var curEp = parseInt(el['num_watched_episodes']);
+          }else{
+            var curEp = parseInt(el['num_read_chapters']);
+          }
 
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
@@ -272,12 +319,6 @@ export class myanimelistClass{
       });
       cleanTags();
     });
-
-    function bookReady(callback){
-      utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
-        callback();
-      });
-    }
 
     function cleanTags(){
       $('.tags span a').each(function( index ) {
