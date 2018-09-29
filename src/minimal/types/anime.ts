@@ -159,6 +159,12 @@ export class animeType{
                 </div>`
       }catch(e) {console.log('[iframeOverview] Error:',e);}
 
+      try{
+        html += `<div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
+                  <ul class="mdl-list stream-block-inner">
+                  </ul>
+                </div>`;
+      }catch(e) {console.log('[iframeOverview] Error:',e);}
 
       try{
         var characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
@@ -294,6 +300,38 @@ export class animeType{
       }
 
     }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+    try{
+      utils.getMalToKissArray(utils.urlPart(this.url, 3), utils.urlPart(this.url, 4)).then((links) => {
+        var Kisshtml = '';
+        for(var pageKey in links){
+          var page = links[pageKey];
+
+          var tempHtml = '';
+          var tempUrl = '';
+          for(var streamKey in page){
+            var stream = page[streamKey];
+            tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a></div>';
+            tempUrl = stream['url'];
+          }
+
+          Kisshtml += `<li class="mdl-list__item mdl-list__item--three-line">
+                        <span class="mdl-list__item-primary-content">
+                          <span>
+                            <img style="padding-bottom: 3px;" src="https://www.google.com/s2/favicons?domain=${tempUrl.split('/')[2]}">
+                            ${pageKey}
+                          </span>
+                          <span id="KissAnimeLinks" class="mdl-list__item-text-body">
+                            ${tempHtml}
+                          </span>
+                        </span>
+                       </li>`;
+
+        }
+        minimal.find('.stream-block').show().find('.stream-block-inner').prepend(Kisshtml);
+      })
+    }catch(e) {console.log('[iframeOverview] Error:',e);}
+
   }
 
   async reviews(minimal){
