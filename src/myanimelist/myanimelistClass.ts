@@ -8,6 +8,9 @@ export class myanimelistClass{
   readonly id: number|null = null;
   readonly type: "anime"|"manga"|null = null;
 
+  //bookmarks
+  readonly username: any = null;
+
 
   constructor(public url:string){
     var urlpart = utils.urlPart(url, 3);
@@ -19,6 +22,7 @@ export class myanimelistClass{
     if(urlpart == 'animelist' || urlpart == 'mangalist'){
       this.page = 'bookmarks';
       this.type = urlpart.substring(0, 5);
+      this.username = utils.urlPart(url, 4);
     }
   }
 
@@ -244,7 +248,7 @@ export class myanimelistClass{
   }
 
   bookmarks(){
-    con.log('Bookmarks ['+this.page+']');
+    con.log('Bookmarks ['+this.username+']['+this.page+']');
     var This = this;
 
     if(this.page == 'modern'){
@@ -271,7 +275,7 @@ export class myanimelistClass{
         bookReady: function(callback){
           utils.getUserList(7, This.type, null, null, function(list){
             callback(list);
-          }, null, null/*TODO Get username before*/);
+          }, null, This.username);
         },
         getElement: function(malUrl){
           return $('a[href^="'+malUrl+'"]');
