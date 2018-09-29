@@ -5,6 +5,8 @@ export interface storageInterface {
 
   remove(key: string): Promise<void>;
 
+  list(): Promise<void>;
+
   addStyle(css: string): Promise<void>;
 
   version(): string;

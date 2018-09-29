@@ -27,6 +27,14 @@ export const webextension: storageInterface = {
       });
     },
 
+    async list(): Promise<any> {
+      return new Promise((resolve, reject) => {
+          chrome.storage.local.get(null, function(results){
+              resolve(results);
+          });
+      });
+    },
+
     async addStyle(css){
       try {
           var style = document.createElement('style');

@@ -536,8 +536,18 @@ export class minimal{
       api.settings.set( 'malThumbnail', This.minimal.find("#malThumbnail").val() );
     });
 
-    this.minimal.find('#clearCache').click(function(){
-      utils.flashm("Cache Cleared [TODO]");//TODO
+    this.minimal.find('#clearCache').click(async function(){
+      var cacheArray = await api.storage.list();
+      var deleted = 0;
+
+      $.each( cacheArray, function( index, cache){
+        if(!utils.syncRegex.test(index)){
+          api.storage.remove(index);
+          deleted++;
+        }
+      });
+
+      utils.flashm("Cache Cleared ["+deleted+"]");
     })
 
     listener.forEach(function(fn) {

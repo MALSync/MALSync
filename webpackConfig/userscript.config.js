@@ -35,6 +35,8 @@ const metadata = {
     'GM_xmlhttpRequest',
     'GM_getValue',
     'GM_setValue',
+    'GM_deleteValue',
+    'GM_listValues',
     'GM_addStyle',
     'GM_getResourceText',
     'GM.xmlHttpRequest',

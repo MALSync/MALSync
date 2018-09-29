@@ -6,6 +6,7 @@ declare var GM_deleteValue: any;
 declare var GM_addStyle: any;
 declare var GM_getResourceText: any;
 declare var GM_info: any;
+declare var GM_listValues: any;
 
 export const userscriptLegacy: storageInterface = {
     async set(key: string, value: string): Promise<void> {
@@ -19,6 +20,14 @@ export const userscriptLegacy: storageInterface = {
 
     async remove(key: string): Promise<void> {
       GM_deleteValue(key);
+    },
+
+    async list(): Promise<void> {
+      var reverseArray:any = {};
+      $.each( GM_listValues(), function( index, cache){
+        reverseArray[cache] = index;
+      });
+      return reverseArray;
     },
 
     async addStyle(css){
