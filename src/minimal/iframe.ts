@@ -18,17 +18,17 @@ function createIframe(page){
       api.storage.injectCssResource('materialFont', head);
       api.storage.injectCssResource('simpleBarCSS', head);
 
-      //TEMP
-      minimalObj = new minimal($("#info-iframe").contents().find('html'));
-      if(typeof(page) != 'undefined'){
-        minimalObj.setPageSync(page);
-        if(typeof(page.malObj) != 'undefined'){
-          minimalObj.fill(page.malObj.url);
-        }else{
-          minimalObj.fill(null);
+      setTimeout(function(){
+        minimalObj = new minimal($("#info-iframe").contents().find('html'));
+        if(typeof(page) != 'undefined'){
+          minimalObj.setPageSync(page);
+          if(typeof(page.malObj) != 'undefined'){
+            minimalObj.fill(page.malObj.url);
+          }else{
+            minimalObj.fill(null);
+          }
         }
-      }
-      //TEMP
+      }, 200);
 
     };
     document.getElementById("modal-content")!.appendChild(iframe);
