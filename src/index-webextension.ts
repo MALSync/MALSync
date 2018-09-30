@@ -24,7 +24,7 @@ api.settings.init()
 
 function messagePageListener(page){
   // @ts-ignore
-  chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
       con.log('TabMalUrl Message', page.malObj.url);
       sendResponse(page.malObj.url);
@@ -34,7 +34,7 @@ function messagePageListener(page){
 
 function messageMalListener(mal){
   // @ts-ignore
-  chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
       con.log('TabMalUrl Message', mal.url);
       sendResponse(mal.url);
