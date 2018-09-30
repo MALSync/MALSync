@@ -2,7 +2,7 @@
   "name": "MALSync",
   "productName": "MAL-Sync",
   "author": "lolamtisch@gmail.com",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Integrates MyAnimeList into various sites, with auto episode tracking.",
   "devDependencies": {
     "@types/jquery": "^3.3.6",
