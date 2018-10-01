@@ -105,8 +105,8 @@ export class animeType{
                   <span>Your Score:</span>
                   <span class="mdl-list__item-text-body">
                     <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; visibility: hidden;">
-                      <option value="0">Select</option>
-                      <option selected="selected" value="10">(10) Masterpiece</option>
+                      <option value="" selected="selected">Select</option>
+                      <option value="10">(10) Masterpiece</option>
                       <option value="9">(9) Great</option>
                       <option value="8">(8) Very Good</option>
                       <option value="7">(7) Good</option>
