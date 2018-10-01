@@ -29,7 +29,7 @@ export const pageSearch:pageSearchObj = {
     Kissmanga: {
       name: 'Kissmanga',
       type: 'manga',
-      domain: 'kissmanga.ru',
+      domain: 'kissmanga.com',
       searchUrl: (titleEncoded) => {return ''},
       completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
     },
@@ -59,10 +59,23 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.gogoanime.in',
       searchUrl: (titleEncoded) => {return 'http://www3.gogoanime.in/search.html?keyword='+titleEncoded}
     },
+    Mangadex: {
+      name: 'Mangadex',
+      type: 'manga',
+      domain: 'mangadex.org',
+      searchUrl: (titleEncoded) => {return 'https://mangadex.org/quick_search/'+titleEncoded}
+    },
     AniList: {
       name: 'AniList',
       type: 'anime',
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
-    }
+    },
+    AniListManga: {
+      name: 'AniList',
+      type: 'manga',
+      domain: 'anilist.co',
+      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
+    },
+
 }
