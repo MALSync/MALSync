@@ -75,7 +75,7 @@ export function initIframeModal(page){
     j.$('body').after(material);
 
     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
-    floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
+    floatbutton += '<i class="my-float open-info-popup" style="margin-top:22px;"><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px"></div></i></button>';
     j.$('#info-popup').after(floatbutton);
 
     j.$(".open-info-popup").show();
