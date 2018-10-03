@@ -216,7 +216,7 @@ export class mal{
       continueCall();
       function continueCall(){
         var parameter = "";
-        $.each( This.animeInfo, function( index, value ){
+        j.$.each( This.animeInfo, function( index, value ){
             if(index.toString().charAt(0) == "."){
                 if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)){
                     parameter += encodeURIComponent (index.toString().substring(1))+"="+encodeURIComponent (value)+"&";

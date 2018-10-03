@@ -121,7 +121,7 @@ export async function getMalToKissArray(type, id){
   return new Promise((resolve, reject) => {
     var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';
     api.request.xhr('GET', url).then(async (response) => {
-      var json = $.parseJSON(response.responseText);
+      var json = j.$.parseJSON(response.responseText);
 
       for(var pageKey in json){
         var page = json[pageKey];
@@ -142,7 +142,7 @@ export async function getMalToKissArray(type, id){
             var streamJson = cache;
           }else{
             var streamRespose = await api.request.xhr('GET', streamUrl);
-            var streamJson = $.parseJSON(streamRespose.responseText);
+            var streamJson = j.$.parseJSON(streamRespose.responseText);
             api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
           }
 
@@ -179,7 +179,7 @@ export function getUserList(status = 1, localListType = 'anime', singleCallback 
     }
     var url = 'https://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
     api.request.xhr('GET', url).then((response) => {
-      var data = $.parseJSON(response.responseText);
+      var data = j.$.parseJSON(response.responseText);
       if(singleCallback){
         // @ts-ignore
         if(!data.length) singleCallback(false, 0, 0);
@@ -224,7 +224,7 @@ export function getMalUserName(callback){
 
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
-    if(!$('#flash-div-top').length){
+    if(!j.$('#flash-div-top').length){
         initflashm();
     }
     con.log("[Flash] Message:",text);
@@ -242,12 +242,12 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     var messClass = "flash";
     if(typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type){
       var tempClass = "type-"+options.type;
-      $(flashdiv+' .'+tempClass)
+      j.$(flashdiv+' .'+tempClass)
         .removeClass(tempClass)
         .fadeOut({
           duration: 1000,
           queue: false,
-          complete: function() { $(this).remove(); }
+          complete: function() { j.$(this).remove(); }
         });
 
       messClass += " "+tempClass;
@@ -262,18 +262,18 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
       messClass += " flashinfo";
       mess = '<div class="'+messClass+'" style="display:none; max-height: 5000px; margin-top: -8px;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>';
-      $('#flashinfo-div').addClass('hover');
-      var flashm = $(mess).appendTo('#flashinfo-div')
+      j.$('#flashinfo-div').addClass('hover');
+      var flashm = j.$(mess).appendTo('#flashinfo-div')
     }else{
-      var flashm = $(mess).appendTo(flashdiv);
+      var flashm = j.$(mess).appendTo(flashdiv);
     }
 
     if(typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent){
       flashm.slideDown(800);
     }else if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
-      flashm.slideDown(800).delay(4000).queue(function() { $('#flashinfo-div').removeClass('hover'); flashm.css('max-height', '8px');});
+      flashm.slideDown(800).delay(4000).queue(function() { j.$('#flashinfo-div').removeClass('hover'); flashm.css('max-height', '8px');});
     }else{
-      flashm.slideDown(800).delay(4000).slideUp(800, function() { $(this).remove(); });
+      flashm.slideDown(800).delay(4000).slideUp(800, function(evt) { j.$(evt.target).remove(); });
     }
     return flashm;
 }
@@ -281,12 +281,12 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
 export function flashConfirm(message, type, yesCall, cancelCall){
     message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
     var flasmessage = flashm(message, {permanent: true, position: "top", type: type});
-    flasmessage.find( '.Yes' ).click(function(){
-        $(this).parentsUntil('.flash').remove();
+    flasmessage.find( '.Yes' ).click(function(evt){
+        j.$(evt.target).parentsUntil('.flash').remove();
         yesCall();
     });
-    flasmessage.find( '.Cancel' ).click(function(){
-        $(this).parentsUntil('.flash').remove();
+    flasmessage.find( '.Cancel' ).click(function(evt){
+        j.$(evt.target).parentsUntil('.flash').remove();
         cancelCall();
     });
 }
@@ -336,7 +336,7 @@ function initflashm(){
                     color: #DF6300;\
                  }');
 
-    $('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
+    j.$('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
         <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
         <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
 }
