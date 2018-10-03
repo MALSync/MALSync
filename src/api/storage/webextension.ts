@@ -55,7 +55,7 @@ export const webextension: storageInterface = {
 
     injectCssResource(res, head){
       var path = chrome.extension.getURL('vendor/'+res);
-      head.append($('<link>')
+      head.append(j.$('<link>')
           .attr("rel","stylesheet")
           .attr("type","text/css")
           .attr("href", path));

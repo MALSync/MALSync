@@ -24,7 +24,7 @@ export const userscriptLegacy: storageInterface = {
 
     async list(): Promise<void> {
       var reverseArray:any = {};
-      $.each( GM_listValues(), function( index, cache){
+      j.$.each( GM_listValues(), function( index, cache){
         reverseArray[cache] = index;
       });
       return reverseArray;
@@ -43,7 +43,7 @@ export const userscriptLegacy: storageInterface = {
     },
 
     injectCssResource(res, head){
-      head.append($('<style>')
+      head.append(j.$('<style>')
           .attr("rel","stylesheet")
           .attr("type","text/css")
           .html(GM_getResourceText(res)));
