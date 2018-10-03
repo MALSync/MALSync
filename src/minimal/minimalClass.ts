@@ -698,7 +698,7 @@ export class minimal{
       var imageHi = el[localListType+'_image_path'];
       var regexDimensions = /\/r\/\d*x\d*/g;
       if ( regexDimensions.test(imageHi) ) {
-        imageHi = imageHi.replace(/v.jpgj.$/g, '.jpg').replace(regexDimensions, '');
+        imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
       }
       var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
       bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
