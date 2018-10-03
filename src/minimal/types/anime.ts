@@ -50,16 +50,16 @@ export class animeType{
       try{
           var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
           // @ts-ignore
-          var tempHtml = $.parseHTML( statsBlock );
+          var tempHtml = j.$.parseHTML( statsBlock );
           var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
-          $.each($(tempHtml).filter('div').slice(0,5), function( index, value ) {
+          j.$.each(j.$(tempHtml).filter('div').slice(0,5), function( index, value ) {
               statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
                   statsHtml += '<span class="mdl-list__item-primary-content">';
                       statsHtml += '<span>';
-                          statsHtml += $(this).find('.dark_text').text();
+                          statsHtml += j.$(value).find('.dark_text').text();
                       statsHtml += '</span>';
                       statsHtml += '<span class="mdl-list__item-sub-title">';
-                          statsHtml += $(this).find('span[itemprop=ratingValue]').height() != null ? $(this).find('span[itemprop=ratingValue]').text() : $(this).clone().children().remove().end().text();
+                          statsHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
                       statsHtml += '</span>';
                   statsHtml += '</span>';
               statsHtml += '</li>';
@@ -134,20 +134,19 @@ export class animeType{
 
       try{
         var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
-        var related = $.parseHTML( relatedBlock );
+        var related = j.$.parseHTML( relatedBlock );
         var relatedHtml = '<ul class="mdl-list">';
-        $.each($(related).filter('table').find('tr'), function( index, value ) {
+        j.$.each(j.$(related).filter('table').find('tr'), function( index, value ) {
           relatedHtml += '<li class="mdl-list__item mdl-list__item--two-line">';
             relatedHtml += '<span class="mdl-list__item-primary-content">';
               relatedHtml += '<span>';
-                relatedHtml += $(this).find('.borderClass').first().text();
+                relatedHtml += j.$(value).find('.borderClass').first().text();
               relatedHtml += '</span>';
               relatedHtml += '<span class="mdl-list__item-sub-title">';
-                               $(this).find('.borderClass').last().each(function(){
-                                // @ts-ignore
-                                $(this).html($(this).children());
-                               })
-                relatedHtml += $(this).find('.borderClass').last().html();
+                                j.$(value).find('.borderClass').last().each(function(){
+                                   j.$(value).html(j.$(value).children());
+                                })
+                relatedHtml += j.$(value).find('.borderClass').last().html();
               relatedHtml += '</span>';
             relatedHtml += '</span>';
           relatedHtml += '</li>';
@@ -168,7 +167,7 @@ export class animeType{
 
       try{
         var characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
-        var charHtml = $.parseHTML( '<div class="detail-characters-list '+characterBlock );
+        var charHtml = j.$.parseHTML( '<div class="detail-characters-list '+characterBlock );
         var temphtml = '';
         var charFound = 0;
         var tempWrapHtml = '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">\
@@ -178,10 +177,10 @@ export class animeType{
         </div>\
         <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; display: none;">';
 
-        $.each($(charHtml).find(':not(td) > table'), function( index, value ) {
+        j.$.each(j.$(charHtml).find(':not(td) > table'), ( index, value ) => {
           if(!index) charFound = 1;
           var regexDimensions = /\/r\/\d*x\d*/g;
-          var charImg = $(this).find('img').first().attr("data-src");
+          var charImg = j.$(value).find('img').first().attr("data-src");
           if ( regexDimensions.test(charImg!)){
             charImg = charImg!.replace(regexDimensions, '');
           }else{
@@ -194,7 +193,7 @@ export class animeType{
                 tempWrapHtml += '<img style="height: auto; width: 100%;"src="'+charImg+'">';
               tempWrapHtml += '</div>';
               tempWrapHtml += '<div class="">';
-                tempWrapHtml += $(this).find('.borderClass .spaceit_pad').first().parent().html();
+                tempWrapHtml += j.$(value).find('.borderClass .spaceit_pad').first().parent().html();
               tempWrapHtml += '</div>';
             tempWrapHtml += '</div>';
           tempWrapHtml += '</div>';
@@ -210,22 +209,22 @@ export class animeType{
 
       try{
           var infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
-          var infoData = $.parseHTML( infoBlock );
+          var infoData = j.$.parseHTML( infoBlock );
           var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
-          $.each($(infoData).filter('div'), function( index, value ) {
+          j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
               if((index + 4) % 4 == 0 && index != 0){
                   //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
               }
               infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
                   infoHtml += '<span class="mdl-list__item-primary-content">';
                       infoHtml += '<span>';
-                          infoHtml += $(this).find('.dark_text').text();
+                          infoHtml += j.$(value).find('.dark_text').text();
                       infoHtml += '</span>';
                       infoHtml += '<span class="mdl-list__item-text-body">';
-                          $(this).find('.dark_text').remove();
-                          infoHtml += $(this).html();
-                          //$(this).find('*').each(function(){infoHtml += $(this)[0].outerHTML});
-                          //infoHtml += $(this).find('span[itemprop=ratingValue]').height() != null ? $(this).find('span[itemprop=ratingValue]').text() : $(this).clone().children().remove().end().text();
+                          j.$(value).find('.dark_text').remove();
+                          infoHtml += j.$(value).html();
+                          //j.$(value).find('*').each(function(){infoHtml += j.$(value)[0].outerHTML});
+                          //infoHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
                       infoHtml += '</span>';
                   infoHtml += '</span>';
               infoHtml += '</li>';
@@ -340,23 +339,22 @@ export class animeType{
       var data = this.vars;
       try{
           var reviews = data.split('Reviews</h2>')[1].split('<h2>')[0];
-          var reviewsData = $.parseHTML( reviews );
+          var reviewsData = j.$.parseHTML( reviews );
           var reviewsHtml = '<div class="mdl-grid">';
-          $.each($(reviewsData).filter('.borderDark'), function( index, value ) {
+          j.$.each(j.$(reviewsData).filter('.borderDark'), ( index, value ) => {
             reviewsHtml += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">';
               reviewsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
-                $(this).find('.spaceit > div').css('max-width','60%');
-                reviewsHtml += $(this).find('.spaceit').first().html();
+                j.$(value).find('.spaceit > div').css('max-width','60%');
+                reviewsHtml += j.$(value).find('.spaceit').first().html();
               reviewsHtml += '</div>';
 
               reviewsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
-                // @ts-ignore
-                $(this).find('.textReadability, .textReadability > span').contents().filter(function(){
+                j.$(value).find('.textReadability, .textReadability > span').contents().filter(function(){
                   // @ts-ignore
-                  return this.nodeType == 3 && $.trim(this.nodeValue).length;
+                  return this.nodeType == 3 && j.$.trim(this.nodeValue).length;
                 }).wrap('<p style="margin:0;padding=0;"/>');
-                $(this).find('br').css('line-height','10px');
-                reviewsHtml += $(this).find('.textReadability').html();
+                j.$(value).find('br').css('line-height','10px');
+                reviewsHtml += j.$(value).find('.textReadability').html();
               reviewsHtml += '</div>';
             reviewsHtml += '</div>';
           });
@@ -366,7 +364,7 @@ export class animeType{
           }
 
           resolve(reviewsHtml);
-          /*$("#info-iframe").contents().find('#malReviews').html(reviewsHtml).show();
+          /*j.$("#info-iframe").contents().find('#malReviews').html(reviewsHtml).show();
           */
       }catch(e) {console.log('[iframeReview] Error:',e);}
     });
@@ -375,15 +373,15 @@ export class animeType{
   async lazyLoadReviews(minimal){
     minimal.find('.js-toggle-review-button').addClass('nojs').click(function(){
       // @ts-ignore
-      var revID = $(this).attr('data-id');
+      var revID = j.$(this).attr('data-id');
       minimal.find('#review'+revID).css('display','initial');
       minimal.find('#revhelp_output_'+revID).remove();
       // @ts-ignore
-      $(this).remove();
+      j.$(this).remove();
     });
     minimal.find('.mb8 a').addClass('nojs').click(function(){
       // @ts-ignore
-      var revID = $(this).attr('onclick').split("$('")[1].split("'")[0];
+      var revID = j.$(this).attr('onclick').split("j.$('")[1].split("'")[0];
       minimal.find(revID).toggle();
     });
   }
@@ -395,41 +393,41 @@ export class animeType{
       var data = response.responseText;
       try{
         var recommendationsBlock = data.split('Make a recommendation</a>')[1].split('</h2>')[1].split('<div class="mauto')[0];
-        var html = $.parseHTML( recommendationsBlock );
+        var html = j.$.parseHTML( recommendationsBlock );
         var recommendationsHtml = '<div class="mdl-grid">';
-        $.each($(html).filter('.borderClass'), function( index, value ) {
+        j.$.each(j.$(html).filter('.borderClass'),( index, value ) => {
           recommendationsHtml += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
             recommendationsHtml += '<div class="mdl-card__media" style="background-color: transparent; margin: 8px;">';
-              recommendationsHtml += $(this).find('.picSurround').html();
+              recommendationsHtml += j.$(value).find('.picSurround').html();
             recommendationsHtml += '</div>';
             recommendationsHtml += '<div class="mdl-cell" style="flex-grow: 100;">';
               recommendationsHtml += '<div class="">';
-                $(this).find('.button_edit, .button_add, td:eq(1) > div:eq(1) span').remove();
-                recommendationsHtml += $(this).find('td:eq(1) > div:eq(1)').html();
+                j.$(value).find('.button_edit, .button_add, td:eq(1) > div:eq(1) span').remove();
+                recommendationsHtml += j.$(value).find('td:eq(1) > div:eq(1)').html();
               recommendationsHtml += '</div>';
               recommendationsHtml += '<div class="">';
-                $(this).find('a[href^="/dbchanges.php?go=report"]').remove();
-                recommendationsHtml += $(this).find('.borderClass').html();
+                j.$(value).find('a[href^="/dbchanges.php?go=report"]').remove();
+                recommendationsHtml += j.$(value).find('.borderClass').html();
               recommendationsHtml += '</div>';
               recommendationsHtml += '<div class="">';
-                recommendationsHtml += (typeof $(this).find('.spaceit').html() != 'undefined') ? $(this).find('.spaceit').html() : '';
+                recommendationsHtml += (typeof j.$(value).find('.spaceit').html() != 'undefined') ? j.$(value).find('.spaceit').html() : '';
                 recommendationsHtml += '<div class="more" style="display: none;">';
-                  recommendationsHtml += $(this).find('td:eq(1) > div').last().html();
+                  recommendationsHtml += j.$(value).find('td:eq(1) > div').last().html();
                 recommendationsHtml += '</div>';
               recommendationsHtml += '</div>';
             recommendationsHtml += '</div>';
             /*recommendationsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
-              $(this).find('.spaceit > div').css('max-width','60%');
-              recommendationsHtml += $(this).find('.spaceit').first().html();
+              j.$(value).find('.spaceit > div').css('max-width','60%');
+              recommendationsHtml += j.$(value).find('.spaceit').first().html();
             recommendationsHtml += '</div>';
             recommendationsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
-              $(this).find('.textReadability, .textReadability > span').contents().filter(function(){
-                return this.nodeType == 3 && $.trim(this.nodeValue).length;
+              j.$(value).find('.textReadability, .textReadability > span').contents().filter(function(){
+                return value.nodeType == 3 && j.$.trim(value.nodeValue).length;
               }).wrap('<p style="margin:0;padding=0;"/>');
-              $(this).find('br').css('line-height','10px');
-              recommendationsHtml += $(this).find('.textReadability').html();
+              j.$(value).find('br').css('line-height','10px');
+              recommendationsHtml += j.$(value).find('.textReadability').html();
             recommendationsHtml += '</div>';*/
-            //recommendationsHtml += $(this).html();
+            //recommendationsHtml += j.$(value).html();
           recommendationsHtml += '</div>';
         });
         recommendationsHtml += '</div>';
@@ -446,17 +444,17 @@ export class animeType{
 
   async lazyLoadRecommendations(minimal){
     // @ts-ignore
-    minimal.find('.js-similar-recommendations-button').addClass('nojs').click(function(){$(this).parent().find('.more').toggle();});
+    minimal.find('.js-similar-recommendations-button').addClass('nojs').click(function(){j.$(this).parent().find('.more').toggle();});
     minimal.find('.js-toggle-recommendation-button').addClass('nojs').click(function(){
       // @ts-ignore
-      var revID = $(this).attr('data-id');
+      var revID = j.$(this).attr('data-id');
       minimal.find('#recommend'+revID).css('display','initial');
       // @ts-ignore
-      $(this).remove();
+      j.$(this).remove();
     });
     minimal.find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
     // @ts-ignore
-    minimal.find('.lazyload').each(function() { $(this).attr('src', $(this).attr('data-src'));});//TODO: use lazyloading
+    minimal.find('.lazyload').each(function() { j.$(this).attr('src', j.$(this).attr('data-src'));});//TODO: use lazyloading
   }
 
 }

@@ -78,12 +78,12 @@ export class minimal{
 
     this.minimal.on('click', '.mdl-layout__content a', function(e){
       // @ts-ignore
-      if($(this).attr('target') === '_blank'){
+      if(j.$(this).attr('target') === '_blank'){
         return;
       }
       e.preventDefault();
       // @ts-ignore
-      var url = utils.absoluteLink($(this).attr('href'), 'https://myanimelist.net');
+      var url = utils.absoluteLink(j.$(this).attr('href'), 'https://myanimelist.net');
       if(!This.fill(url)){
         var win = window.open(url, '_blank');
         if (win) {
@@ -118,19 +118,19 @@ export class minimal{
           window.close();
         }else{
           modal!.style.display = "none";
-          $('.floatbutton').fadeIn();
+          j.$('.floatbutton').fadeIn();
         }
     });
 
     this.minimal.find("#material-fullscreen").click( function(){
-        if($('.modal-content-kal.fullscreen').length){
-            $(".modal-content-kal").removeClass('fullscreen');
+        if(j.$('.modal-content-kal.fullscreen').length){
+            j.$(".modal-content-kal").removeClass('fullscreen');
             // @ts-ignore
-            $(this).find('i').text('fullscreen');
+            j.$(this).find('i').text('fullscreen');
         }else{
-            $(".modal-content-kal").addClass('fullscreen');
+            j.$(".modal-content-kal").addClass('fullscreen');
             // @ts-ignore
-            $(this).find('i').text('fullscreen_exit');
+            j.$(this).find('i').text('fullscreen_exit');
         }
     });
 
@@ -173,7 +173,7 @@ export class minimal{
   }
 
   isPopup(){
-    if($('#Mal-Sync-Popup').length) return true;
+    if(j.$('#Mal-Sync-Popup').length) return true;
     return false;
   }
 
@@ -182,7 +182,7 @@ export class minimal{
   }
 
   injectCss(){
-    this.minimal.find("head").append($('<style>')
+    this.minimal.find("head").append(j.$('<style>')
         .html(require('./minimalStyle.less').toString()));
   }
 
@@ -314,7 +314,7 @@ export class minimal{
          This.minimal.find("#malSearchResults .searchItem").unbind('click').click(function(e) {
           e.preventDefault();
           // @ts-ignore
-          This.minimal.find('#malUrlInput').val($(this).attr('href'));
+          This.minimal.find('#malUrlInput').val(j.$(this).attr('href'));
           This.minimal.find('#malSearch').val('');
           This.minimal.find('#malSearchResults').html('');
           This.minimal.find('#malSubmit').click();
@@ -506,9 +506,9 @@ export class minimal{
     this.minimal.find("#posLeft").val(api.settings.get('posLeft'));
     this.minimal.find("#posLeft").change(function(){
       // @ts-ignore
-      api.settings.set('posLeft', $(this).val());
+      api.settings.set('posLeft', j.$(this).val());
       // @ts-ignore
-      $('#modal-content').css('right', 'auto').css('left', 'auto').css($(this).val(), '0');
+      j.$('#modal-content').css('right', 'auto').css('left', 'auto').css(j.$(this).val(), '0');
     });
 
     this.minimal.find("#miniMalWidth").on("input", function(){
@@ -520,7 +520,7 @@ export class minimal{
             }
             api.settings.set( 'miniMalWidth', miniMalWidth );
         }
-        $("#modal-content").css('width', miniMalWidth);
+        j.$("#modal-content").css('width', miniMalWidth);
     });
 
     this.minimal.find("#miniMalHeight").on("input", function(){
@@ -532,7 +532,7 @@ export class minimal{
             }
             api.settings.set( 'miniMalHeight', miniMalHeight );
         }
-        $("#modal-content").css('height', miniMalHeight);
+        j.$("#modal-content").css('height', miniMalHeight);
     });
 
     this.minimal.find("#malThumbnail").val(api.settings.get('malThumbnail'));
@@ -544,7 +544,7 @@ export class minimal{
       var cacheArray = await api.storage.list();
       var deleted = 0;
 
-      $.each( cacheArray, function( index, cache){
+      j.$.each( cacheArray, function( index, cache){
         if(!utils.syncRegex.test(index)){
           api.storage.remove(index);
           deleted++;
@@ -596,7 +596,7 @@ export class minimal{
 
     this.minimal.find(selector).html('');
     api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1').then((response) => {
-      var searchResults = $.parseJSON(response.responseText);
+      var searchResults = j.$.parseJSON(response.responseText);
       this.minimal.find(selector).append('<div class="mdl-grid">\
           <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
             <option value="anime">Anime</option>\
@@ -608,19 +608,19 @@ export class minimal{
         This.searchMal(keyword, This.minimal.find('#searchListType').val(), selector, callback);
       });
 
-      $.each(searchResults, function() {
-        $.each(this, function() {
-          $.each(this, function() {
-            if(typeof this !== 'object') return;
-            $.each(this, function() {
-              if(typeof this['name'] != 'undefined'){
-                This.minimal.find(selector+' > div').append('<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="'+this['url']+'" style="cursor: pointer;">\
-                  <img src="'+this['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
+      j.$.each(searchResults, (i, value) => {
+        j.$.each(value, (i, value) => {
+          j.$.each(value, (i, value) => {
+            if(typeof value !== 'object') return;
+            j.$.each(value, (i, value) => {
+              if(typeof value['name'] != 'undefined'){
+                This.minimal.find(selector+' > div').append('<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="'+value['url']+'" style="cursor: pointer;">\
+                  <img src="'+value['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
-                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+this['name']+'</span>\
-                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">Type: '+this['payload']['media_type']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">Score: '+this['payload']['score']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">Year: '+this['payload']['start_year']+'</p>\
+                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+value['name']+'</span>\
+                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">Type: '+value['payload']['media_type']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">Score: '+value['payload']['score']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">Year: '+value['payload']['start_year']+'</p>\
                   </div>\
                   </a>');
               }
@@ -698,7 +698,7 @@ export class minimal{
       var imageHi = el[localListType+'_image_path'];
       var regexDimensions = /\/r\/\d*x\d*/g;
       if ( regexDimensions.test(imageHi) ) {
-        imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
+        imageHi = imageHi.replace(/v.jpgj.$/g, '.jpg').replace(regexDimensions, '');
       }
       var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
       bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
@@ -718,7 +718,7 @@ export class minimal{
 
       domE.click(function(event) {
         // @ts-ignore
-        if(!This.fill($(this).attr('malhref'))){
+        if(!This.fill(j.$(this).attr('malhref'))){
           con.error('Something is wrong');
         }
       });
