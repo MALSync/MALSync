@@ -78,9 +78,6 @@ export function initIframeModal(page){
     floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
     j.$('#info-popup').after(floatbutton);
 
-    j.$(".open-info-popup").unbind('click').show().click( function(){
-
-    });
     document.addEventListener("click", function (e) {
       if (j.$(e.target).hasClass('open-info-popup')) {
         con.log("Open miniMAL");
