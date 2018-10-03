@@ -7,7 +7,7 @@ export const Kissanime: pageInterface = {
     type: 'anime',
     isSyncPage: function(url){
       if(typeof utils.urlPart(url, 5) != 'undefined'){
-          if($('#centerDivVideo').length){
+          if(j.$('#centerDivVideo').length){
               return true;
           }
       }
@@ -37,14 +37,14 @@ export const Kissanime: pageInterface = {
         }
         return episodePart;
       },
-      nextEpUrl: function(url){return url.replace(/\/[^\/]*$/, '')+'/'+$('#selectEpisode option:selected').next().val();}
+      nextEpUrl: function(url){return url.replace(/\/[^\/]*$/, '')+'/'+j.$('#selectEpisode option:selected').next().val();}
     },
     overview:{
-      getTitle: function(){return $('.bigChar').first().text();},
+      getTitle: function(){return j.$('.bigChar').first().text();},
       getIdentifier: function(url){return Kissanime.sync.getIdentifier(url)},
-      uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
+      uiSelector: function(selector){selector.insertAfter(j.$(".bigChar").first());},
       list:{
-        elementsSelector: function(){return $(".listing tr").filter(function(){return $(this).find('a').length > 0});},
+        elementsSelector: function(){return j.$(".listing tr").filter(() => {return j.$(this).find('a').length > 0});},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Kissanime.domain);},
         elementEp: function(selector){
           var url = Kissanime.overview!.list!.elementUrl(selector);
@@ -55,6 +55,6 @@ export const Kissanime: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){page.handlePage()});
+      j.$(document).ready(function(){page.handlePage()});
     }
 };

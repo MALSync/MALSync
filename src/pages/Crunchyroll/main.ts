@@ -7,7 +7,7 @@ export const Crunchyroll: pageInterface = {
     type: 'anime',
     isSyncPage: function(url){
       if(typeof url.split('/')[4] != 'undefined'){
-        if($('#showmedia_video').length){
+        if(j.$('#showmedia_video').length){
           return true;
         }
       }
@@ -16,7 +16,7 @@ export const Crunchyroll: pageInterface = {
     sync:{
       getTitle: function(url){return Crunchyroll.sync.getIdentifier(url)},
       getIdentifier: function(url){
-        var script = ($("#template_body script")[1]).innerHTML;
+        var script = (j.$("#template_body script")[1]).innerHTML;
         script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
         script = JSON.parse('"' + script.replace('"', '\\"') + '"');
         return script;
@@ -39,24 +39,24 @@ export const Crunchyroll: pageInterface = {
         }
         return episodePart;
       },
-      nextEpUrl: function(url){return Crunchyroll.domain+$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');}
+      nextEpUrl: function(url){return Crunchyroll.domain+j.$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');}
     },
     overview:{
       getTitle: function(url){return Crunchyroll.overview!.getIdentifier(url)},
       getIdentifier: function(url){
-        if( $('.season-dropdown').length > 1){
+        if( j.$('.season-dropdown').length > 1){
           throw new Error('MAL-Sync does not support multiple seasons');
         }else{
-          if($('.season-dropdown').length){
-            return $('.season-dropdown').first().text();
+          if(j.$('.season-dropdown').length){
+            return j.$('.season-dropdown').first().text();
           }else{
-            return $('#source_showview h1 span').text();
+            return j.$('#source_showview h1 span').text();
           }
         }
       },
-      uiSelector: function(selector){selector.insertBefore($("#tabs").first());},
+      uiSelector: function(selector){selector.insertBefore(j.$("#tabs").first());},
       list:{
-        elementsSelector: function(){return $("#showview_content_videos .list-of-seasons .group-item a");},
+        elementsSelector: function(){return j.$("#showview_content_videos .list-of-seasons .group-item a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);},
         elementEp: function(selector){
           var url = Crunchyroll.overview!.list!.elementUrl(selector);
@@ -66,19 +66,19 @@ export const Crunchyroll: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){
-        if( $('.season-dropdown').length > 1){
-          $('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
-          $('.exclusivMal').click(function(){
-            $('#showview_content').before('<div><a href="'+page.url.split('?')[0]+'">Show hidden seasons</a></div>');
-            var thisparent =  $(this).parent();
-            $('.season-dropdown').not(thisparent).siblings().remove();
-            $('.season-dropdown').not(thisparent).remove();
-            $('.portrait-grid').css('display','block').find("li.group-item img.landscape").each(function() {
+      j.$(document).ready(function(){
+        if( j.$('.season-dropdown').length > 1){
+          j.$('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
+          j.$('.exclusivMal').click(function(evt){
+            j.$('#showview_content').before('<div><a href="'+page.url.split('?')[0]+'">Show hidden seasons</a></div>');
+            var thisparent =  j.$(evt.target).parent();
+            j.$('.season-dropdown').not(thisparent).siblings().remove();
+            j.$('.season-dropdown').not(thisparent).remove();
+            j.$('.portrait-grid').css('display','block').find("li.group-item img.landscape").each(function() {
               // @ts-ignore
-              void 0 === $(this).attr("src") && $(this).attr("src", $(this).attr("data-thumbnailUrl"))
+              void 0 === j.$(this).attr("src") && j.$(this).attr("src", j.$(this).attr("data-thumbnailUrl"))
             }),
-            $('.exclusivMal').remove();
+            j.$('.exclusivMal').remove();
             page.handlePage();
           });
           var season = new RegExp('[\?&]' + 'season' + '=([^&#]*)').exec(page.url);
@@ -88,7 +88,7 @@ export const Crunchyroll: pageInterface = {
             if(season != null){
               // @ts-ignore
               season = decodeURIComponent(decodeURI(season));
-              $('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
+              j.$('.season-dropdown[title="'+season+'" i] .exclusivMal').first().click();
             }
           }
           return;

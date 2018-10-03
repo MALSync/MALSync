@@ -17,7 +17,7 @@ export class syncPage{
 
   init(){
     var This = this;
-    $(document).ready(function(){
+    j.$(document).ready(function(){
       initIframeModal(This);
     });
     this.page.init(this);
@@ -66,10 +66,10 @@ export class syncPage{
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
-      $("#MalInfo").text("Not Found!");
+      j.$("#MalInfo").text("Not Found!");
       con.log('Not on mal');
     }else if(!malUrl){
-      $("#MalInfo").text("Nothing Found!");
+      j.$("#MalInfo").text("Nothing Found!");
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
@@ -101,7 +101,7 @@ export class syncPage{
             }
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
             utils.flashm( message , {hoverInfo: true, error: true}).find('.sync').on('click', function(){
-              $('.flashinfo').remove();
+              j.$('.flashinfo').remove();
               sync();
             });
             //Debugging
@@ -179,9 +179,9 @@ export class syncPage{
                 episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
                     undoAnime['checkIncrease'] = 0;
                     setanime(thisUrl, undoAnime, null, localListType);
-                    $('.info-Mal-undo').remove();
-                    if($('.flashinfo>div').text() == ''){
-                        $('.flashinfo').remove();
+                    j.$('.info-Mal-undo').remove();
+                    if(j.$('.flashinfo>div').text() == ''){
+                        j.$('.flashinfo').remove();
                     }
                 });
             }*/
@@ -236,25 +236,25 @@ export class syncPage{
   }
 
   fillUI(){
-    $('.MalLogin').css("display","initial");
-    $('#AddMalDiv').remove();
+    j.$('.MalLogin').css("display","initial");
+    j.$('#AddMalDiv').remove();
 
-    $("#malRating").attr("href", this.malObj.url);
-    this.malObj.getRating().then((rating)=>{$("#malRating").text(rating);});
+    j.$("#malRating").attr("href", this.malObj.url);
+    this.malObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
     if(!this.malObj.login){
-      $('.MalLogin').css("display","none");
-      $("#MalData").css("display","flex");
-      $("#MalInfo").text("");
-      $("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>Please log in on <a target='_blank' id='login' href='https://myanimelist.net/login.php'>MyAnimeList!<a></span>");
+      j.$('.MalLogin').css("display","none");
+      j.$("#MalData").css("display","flex");
+      j.$("#MalInfo").text("");
+      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>Please log in on <a target='_blank' id='login' href='https://myanimelist.net/login.php'>MyAnimeList!<a></span>");
       return;
     }
 
     if(this.malObj.addAnime){
-      $('.MalLogin').css("display","none");
-      $("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
+      j.$('.MalLogin').css("display","none");
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
       var This = this;
-      $('#AddMal').click(function() {
+      j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);
         This.syncHandling()
           .then(() => {
@@ -264,35 +264,35 @@ export class syncPage{
           });
       });
     }else{
-      $("#malTotal, #malTotalCha").text(this.malObj.totalEp);
+      j.$("#malTotal, #malTotalCha").text(this.malObj.totalEp);
       if(this.malObj.totalEp == 0){
-         $("#malTotal, #malTotalCha").text('?');
+         j.$("#malTotal, #malTotalCha").text('?');
       }
 
-      $("#malTotalVol").text(this.malObj.totalVol);
+      j.$("#malTotalVol").text(this.malObj.totalVol);
       if(this.malObj.totalVol == 0){
-         $("#malTotalVol").text('?');
+         j.$("#malTotalVol").text('?');
       }
 
-      $("#malEpisodes").val(this.malObj.getEpisode());
-      $("#malVolumes").val(this.malObj.getVolume());
+      j.$("#malEpisodes").val(this.malObj.getEpisode());
+      j.$("#malVolumes").val(this.malObj.getVolume());
 
-      $("#malStatus").val(this.malObj.getStatus());
-      $("#malUserRating").val(this.malObj.getScore());
+      j.$("#malStatus").val(this.malObj.getStatus());
+      j.$("#malUserRating").val(this.malObj.getScore());
     }
-    $("#MalData").css("display","flex");
-    $("#MalInfo").text("");
+    j.$("#MalData").css("display","flex");
+    j.$("#MalInfo").text("");
 
     this.handleList();
   }
 
   handleList(){
-    $('.mal-sync-active').removeClass('mal-sync-active');
+    j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
       if (typeof(epList) != "undefined"){
         var elementUrl = this.page.overview.list.elementUrl;
-        con.log("Episode List", $.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
+        con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         var curEp = epList[this.malObj.getEpisode()];
         if (typeof(curEp) != "undefined" && curEp){
           curEp.addClass('mal-sync-active');
@@ -308,8 +308,8 @@ export class syncPage{
       var elementArray = [] as JQuery<HTMLElement>[];
       this.page.overview.list.elementsSelector().each( function(index, el) {
         try{
-          var elEp = parseInt(elementEp($(el))+"")+parseInt(This.getOffset());
-          elementArray[elEp] = $(el);
+          var elEp = parseInt(elementEp(j.$(el))+"")+parseInt(This.getOffset());
+          elementArray[elEp] = j.$(el);
         }catch(e){
           con.info(e);
         }
@@ -522,25 +522,25 @@ export class syncPage{
 
     if(this.page.isSyncPage(this.url)){
       if (typeof(this.page.sync.uiSelector) != "undefined"){
-        this.page.sync.uiSelector($(ui));
+        this.page.sync.uiSelector(j.$(ui));
       }
     }else{
       if (typeof(this.page.overview) != "undefined"){
-        this.page.overview.uiSelector($(ui));
+        this.page.overview.uiSelector(j.$(ui));
       }
     }
 
     var This = this;
-    $( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
+    j.$( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
         This.buttonclick();
     });
   }
 
   private buttonclick(){
-    this.malObj.setEpisode($("#malEpisodes").val());
-    if( $("#malVolumes").length ) this.malObj.setVolume($("#malVolumes").val());
-    this.malObj.setScore($("#malUserRating").val());
-    this.malObj.setStatus($("#malStatus").val());
+    this.malObj.setEpisode(j.$("#malEpisodes").val());
+    if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
+    this.malObj.setScore(j.$("#malUserRating").val());
+    this.malObj.setStatus(j.$("#malStatus").val());
 
     this.syncHandling()
       .then(() => {

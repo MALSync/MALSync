@@ -16,14 +16,14 @@ export const nineAnime: pageInterface = {
         return url;
       },
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
-      getEpisode: function(url){return parseInt($(".servers .episodes a.active").attr('data-base')!);},
-      nextEpUrl: function(url){return nineAnime.domain+$(".servers .episodes a.active").parent('li').next().find('a').attr('href');},
+      getEpisode: function(url){return parseInt(j.$(".servers .episodes a.active").attr('data-base')!);},
+      nextEpUrl: function(url){return nineAnime.domain+j.$(".servers .episodes a.active").parent('li').next().find('a').attr('href');},
 
-      uiSelector: function(selector){$('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore($(".widget.info").first());},
+      uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore(j.$(".widget.info").first());},
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      utils.waitUntilTrue(function(){return $('.servers').length}, function(){
+      utils.waitUntilTrue(function(){return j.$('.servers').length}, function(){
         con.info('Start check');
         page.handlePage();
         utils.urlChangeDetect(function(){

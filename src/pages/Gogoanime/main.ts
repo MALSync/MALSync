@@ -17,14 +17,14 @@ export const Gogoanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 3).split('-episode')[0];},
       getOverviewUrl: function(url){return url.split('/').slice(0,3).join('/') + '/category/'+Gogoanime.sync.getIdentifier(url);},
       getEpisode: function(url){return utils.urlPart(url, 3).split('episode-')[1];},
-      nextEpUrl: function(url){return Gogoanime.domain + $('.anime_video_body_episodes_r a').last().attr('href');}
+      nextEpUrl: function(url){return Gogoanime.domain + j.$('.anime_video_body_episodes_r a').last().attr('href');}
     },
     overview:{
       getTitle: function(url){return Gogoanime.overview!.getIdentifier(url);},
       getIdentifier: function(url){return utils.urlPart(url, 4);},
-      uiSelector: function(selector){selector.prependTo($(".anime_info_body").first());},
+      uiSelector: function(selector){selector.prependTo(j.$(".anime_info_body").first());},
       list:{
-        elementsSelector: function(){return $("#episode_related a");},
+        elementsSelector: function(){return j.$("#episode_related a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Gogoanime.domain);},
         elementEp: function(selector){
           var url = Gogoanime.overview!.list!.elementUrl(selector);
@@ -34,10 +34,10 @@ export const Gogoanime: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){
+      j.$(document).ready(function(){
         page.handlePage();
 
-        $('#episode_page').click(function(){
+        j.$('#episode_page').click(function(){
           setTimeout(function(){
             page.handleList();
           }, 500);
