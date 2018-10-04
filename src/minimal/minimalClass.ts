@@ -482,15 +482,15 @@ export class minimal{
               </a><br/>
 
               <a href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en">
-                <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome"/>
+                <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white"/>
               </a><br/>
 
-              <a href="https://github.com/lolamtisch/MALSync/releases">
-                <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox"/>
+              <a href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync">
+                <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white"/>
               </a><br/>
 
-              <a href="https://github.com/lolamtisch/MALSync/releases">
-                <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript"/>
+              <a href="https://greasyfork.org/de/scripts/372847-mal-sync">
+                <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white"/>
               </a>
 
             </div>
