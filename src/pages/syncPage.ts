@@ -100,7 +100,7 @@ export class syncPage{
               var epis = 'chapter: <b>'+state.episode+'</b>';
             }
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
-            utils.flashm( message , {hoverInfo: true, error: true}).find('.sync').on('click', function(){
+            utils.flashm( message , {hoverInfo: true, error: true, type: 'update'}).find('.sync').on('click', function(){
               j.$('.flashinfo').remove();
               sync();
             });
@@ -188,7 +188,7 @@ export class syncPage{
           if(typeof This.oldMalObj != "undefined"){
             message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
           }
-          utils.flashm(message, {hoverInfo: true}).find('.undoButton').on('click', function(this){
+          utils.flashm(message, {hoverInfo: true, type: 'update'}).find('.undoButton').on('click', function(this){
             this.closest('.flash').remove();
             This.malObj = This.oldMalObj;
             This.oldMalObj = undefined;

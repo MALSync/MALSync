@@ -252,7 +252,7 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     var messClass = "flash";
     if(typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type){
       var tempClass = "type-"+options.type;
-      j.$(flashdiv+' .'+tempClass)
+      j.$(flashdiv+' .'+tempClass+', #flashinfo-div .'+tempClass)
         .removeClass(tempClass)
         .fadeOut({
           duration: 1000,
