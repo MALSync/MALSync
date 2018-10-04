@@ -1,3 +1,10 @@
+[![img](https://img.shields.io/travis/com/lolamtisch/MALSync.svg?style=flat-square)](https://travis-ci.com/lolamtisch/MALSync)
+[![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)
+[![img](https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/lolamtisch/MALSync/issues)
+[![img](https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)
+[![img](https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mal-sync)
+[![img](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/de/scripts/372847-mal-sync)
+
 # MAL-Sync
 **MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList and multiple anime streaming websites.
 
