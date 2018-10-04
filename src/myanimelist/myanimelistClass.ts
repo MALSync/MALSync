@@ -13,16 +13,29 @@ export class myanimelistClass{
 
 
   constructor(public url:string){
-    var urlpart = utils.urlPart(url, 3);
+    if(url.indexOf("myanimelist.net/anime.php") > -1){
+      var urlTemp = '/anime/'+utils.urlParam(this.url, 'id');
+      // @ts-ignore
+      window.history.replaceState(null, null, urlTemp);
+      this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
+    }
+    if(url.indexOf("myanimelist.net/manga.php") > -1){
+      var urlTemp = '/manga/'+utils.urlParam(this.url, 'id');
+      // @ts-ignore
+      window.history.replaceState(null, null, urlTemp);
+      this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
+    }
+
+    var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
       this.page = 'detail';
-      this.id = utils.urlPart(url, 4);
+      this.id = utils.urlPart(this.url, 4);
       this.type = urlpart;
     }
     if(urlpart == 'animelist' || urlpart == 'mangalist'){
       this.page = 'bookmarks';
       this.type = urlpart.substring(0, 5);
-      this.username = utils.urlPart(url, 4);
+      this.username = utils.urlPart(this.url, 4);
     }
   }
 

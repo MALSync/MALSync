@@ -7,6 +7,16 @@ export function urlPart(url:string, part:number){
 
 }
 
+export function urlParam(url, name){
+  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(url);
+  if (results==null){
+   return null;
+  }
+  else{
+    return decodeURI(results[1]) || 0;
+  }
+}
+
 export function watching(type: "anime"|"manga"){
   if(type == "manga") return 'Reading';
   return 'Watching';
