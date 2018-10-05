@@ -64,6 +64,7 @@ export class minimal{
       </div>
     `;
     this.minimal.find("body").append(material);
+    this.minimal.find("head").append('<base href="https://myanimelist.net/">');
 
     this.uiListener();
     this.injectCss();
