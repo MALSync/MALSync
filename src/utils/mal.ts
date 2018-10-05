@@ -42,6 +42,7 @@ export class mal{
   }
 
   setEpisode(ep:number){
+    if(ep+'' === '') ep = 0;
     if(this.type == "manga"){
       this.animeInfo[".add_manga[num_read_chapters]"] = parseInt(ep+'');
     }
