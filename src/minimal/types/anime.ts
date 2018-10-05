@@ -143,7 +143,7 @@ export class animeType{
                 relatedHtml += j.$(value).find('.borderClass').first().text();
               relatedHtml += '</span>';
               relatedHtml += '<span class="mdl-list__item-sub-title">';
-                                j.$(value).find('.borderClass').last().each(function(){
+                                j.$(value).find('.borderClass').last().each(function( index, value){
                                    j.$(value).html(j.$(value).children());
                                 })
                 relatedHtml += j.$(value).find('.borderClass').last().html();
