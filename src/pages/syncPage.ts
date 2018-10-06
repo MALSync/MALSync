@@ -368,7 +368,7 @@ export class syncPage{
         if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
           try{
             var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
-            This.setCache(link, false, identifier);
+            This.setCache(link, true, identifier);
             return link
           }catch(e){
             con.error(e);
@@ -401,6 +401,26 @@ export class syncPage{
     }
 
     api.storage.set(this.page.name+'/'+identifier+'/Mal' , url);
+
+    this.databaseRequest(url, toDatabase, identifier);
+  }
+
+  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl = this.url){
+    if(typeof this.page.database != 'undefined' && toDatabase){
+      var param = { Kiss: kissurl, Mal: malurl};
+      if(toDatabase == 'correction'){
+        param['newCorrection'] = true;
+      }
+      var url = 'https://kissanimelist.firebaseio.com/Data2/Request/'+this.page.database+'Request.json';
+      api.request.xhr('POST', {url: url, data: JSON.stringify(param)}).then((response) => {
+        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
+          con.log("[DB] Send to database:", param);
+        }else{
+          con.error("[DB] Send to database:", response.responseText);
+        }
+      });
+
+    }
   }
 
   public deleteCache(){
