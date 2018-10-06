@@ -724,6 +724,19 @@ export class minimal{
         }
       });
 
+      utils.epPredictionUI(uid, function(prediction){
+        var pre = prediction.prediction;
+        if(pre.airing){
+          if(pre.episode){
+            var progressBar = domE.find('.mdl-progress');
+            var predictionProgress = ( pre.episode / progressBar.attr('series_episodes') ) * 100;
+            progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(pre.diffWeeks+1)+'" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+            domE.attr('title', prediction.text);
+          }
+        }
+
+      });
+
       streamUI();
       async function streamUI(){
         if(typeof streamUrl !== 'undefined'){
