@@ -28,6 +28,7 @@ const generateManifest = () => {
     'author': package['author'],
     'background': {
       'scripts': [
+        'vendor/jquery.min.js',
         'background.js'
       ]
     },
@@ -57,6 +58,7 @@ const generateManifest = () => {
     ],
     'permissions': [
       "storage",
+      "alarms",
       "https://myanimelist.net/"
     ]
   }, null, 2);
