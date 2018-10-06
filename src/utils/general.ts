@@ -174,6 +174,79 @@ export function getTooltip(text, style = '', direction = 'top'){
   <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
 }
 
+export async function epPredictionUI(malid, callback){
+  utils.epPrediction(malid, function(pre){
+    var UI = {
+      tag: '',
+      text: '',
+      prediction: pre
+    };
+    if(pre.airing){
+      UI.text = 'Next episode estimated in '+pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m' ;
+      if(pre.episode){
+        UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">['+pre.episode+']</span>';
+      }
+    }else{
+      UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';
+    }
+    callback(UI);
+  });
+}
+
+export async function epPrediction(malId , callback){
+  var timestamp = await api.storage.get('mal/'+malId+'/release');
+  if(typeof(timestamp) != "undefined"){
+    var airing = 1;
+    var episode = 0;
+    if(Date.now() < timestamp) airing = 0;
+
+    if(airing){
+      var delta = Math.abs(Date.now() - timestamp) / 1000;
+    }else{
+      var delta = Math.abs(timestamp - Date.now()) / 1000;
+    }
+
+
+    var diffWeeks = Math.floor(delta / (86400 * 7));
+    delta -= diffWeeks * (86400 * 7);
+
+    if(airing){
+      //We need the time until the week is complete
+      delta = (86400 * 7) - delta;
+    }
+
+    var diffDays = Math.floor(delta / 86400);
+    delta -= diffDays * 86400;
+
+    var diffHours = Math.floor(delta / 3600) % 24;
+    delta -= diffHours * 3600;
+
+    var diffMinutes = Math.floor(delta / 60) % 60;
+    delta -= diffMinutes * 60;
+
+    if(airing){
+      episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+      episode++;
+      if( episode > 50 ){
+        episode = 0;
+      }
+    }
+
+    var maxEp = await api.storage.get('mal/'+malId+'/release');
+    if(typeof(maxEp) === "undefined" || episode < maxEp){
+      callback({
+        timestamp: timestamp,
+        airing: airing,
+        diffWeeks: diffWeeks,
+        diffDays: diffDays,
+        diffHours: diffHours,
+        diffMinutes: diffMinutes,
+        episode: episode
+      });
+    }
+  }
+}
+
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
     con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);

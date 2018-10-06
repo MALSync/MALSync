@@ -44,6 +44,7 @@ export class myanimelistClass{
     switch(this.page) {
       case 'detail':
         this.thumbnails();
+        this.setEpPrediction();
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
@@ -150,6 +151,15 @@ export class myanimelistClass{
       var url = tags[i].getAttribute("src")!;
       tags[i].setAttribute("src", url.replace(regexDimensions, ''));
     }
+  }
+
+  setEpPrediction(){
+    con.log('setEpPrediction');
+    utils.epPredictionUI(this.id, function(prediction){
+      con.log(prediction);
+      $('#addtolist').prev().before(prediction.text);
+      $('[id="curEps"]').before(prediction.tag+' ');
+    });
   }
 
   async malToKiss(){
