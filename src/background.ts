@@ -1,13 +1,13 @@
 import {xhrI, xhrResponseI, sendMessageI, responseMessageI} from "./api/messageInterface";
 import {scheduleUpdate} from "./utils/scheduler";
 
-/*api.request.sendMessage = function(message: sendMessageI){
+api.request.sendMessage = function(message: sendMessageI){
   return new Promise((resolve, reject) => {
     messageHandler(message, null, function(response: responseMessageI) {
       resolve(response);
     });
   });
-}*/
+}
 
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
