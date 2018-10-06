@@ -244,6 +244,16 @@ export class animeType{
     //});
 
     try{
+      utils.epPredictionUI(utils.urlPart(this.url, 4), function(prediction){
+        con.log(prediction);
+        minimal.find('[id="curEps"]').before(prediction.tag+' ');
+        if(!prediction.prediction.airing){
+          minimal.find('.data-block').prepend('<li class="mdl-list__item" style="width: 100%;">'+prediction.text+'</li>');
+        }
+      });
+    }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+    try{
       con.log('Streaming UI');
       var malObj = new mal(this.url);
       await malObj.init();
