@@ -405,8 +405,15 @@ export class syncPage{
     this.databaseRequest(url, toDatabase, identifier);
   }
 
-  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl = this.url){
+  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl = null){
     if(typeof this.page.database != 'undefined' && toDatabase){
+      if(kissurl == null){
+        if(this.page.isSyncPage(this.url)){
+          kissurl = this.page.sync.getOverviewUrl(this.url);
+        }else{
+          kissurl = this.url;
+        }
+      }
       var param = { Kiss: kissurl, Mal: malurl};
       if(toDatabase == 'correction'){
         param['newCorrection'] = true;
