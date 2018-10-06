@@ -405,7 +405,7 @@ export class syncPage{
     this.databaseRequest(url, toDatabase, identifier);
   }
 
-  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl = null){
+  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl:any = null){
     if(typeof this.page.database != 'undefined' && toDatabase){
       if(kissurl == null){
         if(this.page.isSyncPage(this.url)){
