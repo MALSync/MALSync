@@ -283,7 +283,10 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     }else if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
       flashm.slideDown(800).delay(4000).queue(function() { j.$('#flashinfo-div').removeClass('hover'); flashm.css('max-height', '8px');});
     }else{
-      flashm.slideDown(800).delay(4000).slideUp(800, function(evt) { j.$(evt.target).remove(); });
+      flashm.slideDown(800).delay(4000).slideUp(800, () => {
+        // @ts-ignore
+        j.$(this).remove();
+      });
     }
     return flashm;
 }
