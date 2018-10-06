@@ -66,6 +66,18 @@ export const Crunchyroll: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
+
+      page.setCacheTemp = page.setCache;
+      page.setCache = function(url, toDatabase:boolean|'correction', identifier:any = null){
+        if(this.page.isSyncPage(this.url)){
+          this.setCacheTemp(url, toDatabase, identifier);
+        }
+      }
+      page.databaseRequestTemp = page.databaseRequest;
+      page.databaseRequest = function(malurl, toDatabase:boolean|'correction', identifier, kissurl = null){
+        this.databaseRequestTemp(malurl, toDatabase, identifier, this.url+'?..'+identifier)
+      }
+
       j.$(document).ready(function(){
         if( j.$('.season-dropdown').length > 1){
           j.$('.season-dropdown').append('<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>');
