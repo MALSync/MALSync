@@ -1,5 +1,6 @@
 import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
+import {scheduleUpdate} from "./utils/scheduler";
 
 
 function main() {
@@ -18,7 +19,16 @@ console.log("%cMAL-Sync", css, "Version: "+ api.storage.version());
 api.settings.init()
   .then(()=>{
     main();
+    scheduler();
   });
+
+async function scheduler(){
+  var schedule = await api.storage.get('timestampUpdate/release');
+  if(typeof schedule === 'undefined' || (j.$.now() - schedule) > 345600000){
+    await scheduleUpdate();
+    api.storage.set('timestampUpdate/release', j.$.now());
+  }
+}
 
 //temp
 /*con.log('log');
