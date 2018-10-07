@@ -292,6 +292,9 @@ export class myanimelistClass{
             }
           });
         },
+        predictionPos(element, tag){
+          element.find('.data.progress span').first().after(tag);
+        },
       }
     }else if(this.page == 'classic'){
       var book = {
@@ -310,6 +313,9 @@ export class myanimelistClass{
               $(this).remove();
             }
           });
+        },
+        predictionPos(element, tag){
+          element.parent().parent().find('span[id^="epText"] a span').first().after(tag);
         },
       }
     }else{
@@ -356,6 +362,11 @@ export class myanimelistClass{
               </a>`
               );
           }
+
+          utils.epPredictionUI(id, function(prediction){
+            book.predictionPos(element, prediction.tag);
+          });
+
         }
       });
       book.cleanTags();
