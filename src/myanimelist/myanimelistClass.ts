@@ -2,7 +2,7 @@ import {pageSearch} from './../pages/pages';
 import {mal} from "./../utils/mal";
 
 export class myanimelistClass{
-  page: "detail"|"bookmarks"|"modern"|"classic"|null = null;
+  page: "detail"|"bookmarks"|"modern"|"classic"|"character"|"people"|"search"|null = null;
 
   //detail
   readonly id: number|null = null;
@@ -37,6 +37,15 @@ export class myanimelistClass{
       this.type = urlpart.substring(0, 5);
       this.username = utils.urlPart(this.url, 4);
     }
+    if(urlpart == 'character'){
+      this.page = 'character';
+    }
+    if(urlpart == 'people'){
+      this.page = 'people';
+    }
+    if(urlpart == 'search'){
+      this.page = 'search';
+    }
   }
 
   init(){
@@ -66,6 +75,11 @@ export class myanimelistClass{
       case 'classic':
         this.bookmarks();
         break
+      case 'character':
+      case 'people':
+      case 'search':
+        this.thumbnails();
+        break;
       default:
         con.log('This page has no scipt')
     }

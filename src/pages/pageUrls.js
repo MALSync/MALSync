@@ -7,6 +7,9 @@ module.exports = {
       '*://myanimelist.net/mangalist/*',
       '*://myanimelist.net/anime.php?id=*',
       '*://myanimelist.net/manga.php?id=*',
+      '*://myanimelist.net/character/*',
+      '*://myanimelist.net/people/*',
+      '*://myanimelist.net/search/*'
     ]
   },
   Kissanime: {
