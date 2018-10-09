@@ -1,6 +1,7 @@
 export var settingsObj = {
   options: {
     autoTracking: true,
+    malTags: true,
 
     posLeft: 'left',
     miniMALonMal: false,

@@ -101,7 +101,7 @@ export function getUrlFromTags(tags:string){
 }
 
 export function setUrlInTags(url: string, tags: string){
-  //if(tagLinks == 0){return current;} TODO
+  if(!api.settings.get('malTags')) return tags;
   var addition = "malSync::"+ btoa(url) +"::";
   if(/(last|malSync)::[\d\D]+::/.test(tags)){
       tags = tags.replace(/(last|malSync)::[^\^]*?::/, addition);
