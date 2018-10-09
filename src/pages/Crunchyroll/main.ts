@@ -75,7 +75,7 @@ export const Crunchyroll: pageInterface = {
       }
       page.databaseRequestTemp = page.databaseRequest;
       page.databaseRequest = function(malurl, toDatabase:boolean|'correction', identifier, kissurl = null){
-        this.databaseRequestTemp(malurl, toDatabase, identifier, this.url+'?..'+identifier)
+        this.databaseRequestTemp(malurl, toDatabase, identifier, this.url+'?..'+encodeURIComponent(identifier.toLowerCase().split('#')[0]).replace(/\./g, '%2E'))
       }
 
       j.$(document).ready(function(){
