@@ -88,7 +88,7 @@ export class syncPage{
 
       //sync
       if(this.page.isSyncPage(this.url)){
-        if(this.handleAnimeUpdate(state)){
+        if(await this.handleAnimeUpdate(state)){
           con.log('Start Sync');
 
           if(api.settings.get('autoTracking')){
@@ -206,7 +206,7 @@ export class syncPage{
       });
   }
 
-  private handleAnimeUpdate(state){
+  private async handleAnimeUpdate(state){
     var status = utils.status;
     if(this.malObj.getEpisode() >= state.episode){
       return false;
@@ -217,7 +217,7 @@ export class syncPage{
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      if (confirm('Set as completed?')) {
+      if (await utils.flashConfirm('Set as completed?', 'complete')) {
         this.malObj.setStatus(status.completed);
         this.malObj.setCompletionDateToNow()
         return true;
@@ -225,7 +225,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (confirm('Start watching?')) {
+      if (await utils.flashConfirm('Start watching?', 'start')) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;
