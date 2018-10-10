@@ -283,7 +283,7 @@ export class animeType{
         `<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">
           <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
             <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue Watching
+              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
             </a>`;
 
         var resumeUrlObj = await malObj.getResumeWaching();

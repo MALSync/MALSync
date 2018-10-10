@@ -225,7 +225,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm('Start watching?', 'start')) {
+      if (await utils.flashConfirm('Start '+utils.watching(this.page.type).toLowerCase()+'?', 'start')) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;
