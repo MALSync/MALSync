@@ -2,6 +2,7 @@ export var settingsObj = {
   options: {
     autoTracking: true,
     malTags: true,
+    epPredictions: true,
 
     posLeft: 'left',
     miniMALonMal: false,

@@ -392,6 +392,7 @@ export class minimal{
           </div>
           ${materialCheckbox('autoTracking','Autotracking'+utils.getTooltip('Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.','','bottom'))}
           ${materialCheckbox('malTags','Continue watching links'+utils.getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.','','bottom'))}
+          ${materialCheckbox('epPredictions','Estimate episode number')}
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">

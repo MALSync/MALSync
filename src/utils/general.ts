@@ -194,6 +194,7 @@ export async function epPredictionUI(malid, callback){
 }
 
 export async function epPrediction(malId , callback){
+  if(!api.settings.get('epPredictions')) return;
   var timestamp = await api.storage.get('mal/'+malId+'/release');
   if(typeof(timestamp) != "undefined"){
     var airing = 1;
