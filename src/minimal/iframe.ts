@@ -15,7 +15,7 @@ function createIframe(page){
       api.storage.updateDom(head);
 
       api.storage.injectCssResource('material.css', head);
-      api.storage.injectCssResource('materialFont', head);
+      api.storage.injectCssResource('materialFont.css', head);
       api.storage.injectCssResource('simpleBar.css', head);
 
       setTimeout(function(){

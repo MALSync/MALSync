@@ -1,6 +1,6 @@
 {
   "material.css": "https://code.getmdl.io/1.3.0/material.indigo-pink.min.css",
-  "materialFont": "https://fonts.googleapis.com/icon?family=Material+Icons",
+  "materialFont.css": "https://fonts.googleapis.com/icon?family=Material+Icons",
   "material.js": "https://code.getmdl.io/1.3.0/material.min.js",
   "simpleBar.css": "https://unpkg.com/simplebar@3.0.0-beta.4/dist/simplebar.css",
   "simpleBar.js": "https://unpkg.com/simplebar@3.0.0-beta.4/dist/simplebar.js"
