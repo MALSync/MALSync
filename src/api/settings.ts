@@ -1,6 +1,7 @@
 export var settingsObj = {
   options: {
     autoTracking: true,
+    delay: 0,
     malTags: true,
     epPredictions: true,
 

@@ -391,6 +391,12 @@ export class minimal{
             <h2 class="mdl-card__title-text">General</h2>
           </div>
           ${materialCheckbox('autoTracking','Autotracking'+utils.getTooltip('Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.','','bottom'))}
+          <li class="mdl-list__item">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+                  <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="${api.settings.get('delay')}">
+              <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>
+              </div>
+          </li>
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -555,7 +561,20 @@ export class minimal{
       });
 
       utils.flashm("Cache Cleared ["+deleted+"]");
-    })
+    });
+
+    this.minimal.find("#malDelay").on("input", function(){
+        var tempDelay = This.minimal.find("#malDelay").val();
+        if(tempDelay !== null){
+            if(tempDelay !== ''){
+                api.settings.set( 'delay', tempDelay );
+                utils.flashm( "New delay ("+tempDelay+") set." );
+            }else{
+                api.settings.set( 'delay', 0 );
+                utils.flashm( "Delay reset" );
+            }
+        }
+    });
 
     listener.forEach(function(fn) {
       fn();

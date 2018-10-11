@@ -89,10 +89,12 @@ export class syncPage{
       //sync
       if(this.page.isSyncPage(this.url)){
         if(await this.handleAnimeUpdate(state)){
-          con.log('Start Sync');
+          con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
           if(api.settings.get('autoTracking')){
-            sync();
+            setTimeout(()=>{
+              sync();
+            }, api.settings.get('delay') * 1000);
           }else{
             if(This.page.type == 'anime'){
               var epis = 'episode: '+state.episode;
