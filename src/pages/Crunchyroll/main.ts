@@ -21,7 +21,7 @@ export const Crunchyroll: pageInterface = {
         script = JSON.parse('"' + script.replace('"', '\\"') + '"');
         return script;
       },
-      getOverviewUrl: function(url){return url.split('/').slice(0,4).join('/');},
+      getOverviewUrl: function(url){return url.split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(url);},
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 4);
         var temp = [];

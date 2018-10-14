@@ -156,6 +156,9 @@ export async function getMalToKissArray(type, id){
             var streamJson = j.$.parseJSON(streamRespose.responseText);
             api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
           }
+          if(pageKey == 'Crunchyroll'){
+            streamJson['url'] = streamJson['url'] + '?season=' + streamKey;
+          }
 
           json[pageKey][streamKey] = streamJson;
 
