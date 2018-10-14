@@ -79,7 +79,7 @@ export class minimal{
 
     this.minimal.on('click', '.mdl-layout__content a', function(e){
       // @ts-ignore
-      if(j.$(this).attr('target') === '_blank'){
+      if(j.$(this).attr('target') === '_blank' || j.$(this).hasClass('nojs')){
         return;
       }
       e.preventDefault();
