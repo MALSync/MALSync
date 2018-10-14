@@ -83,6 +83,7 @@ export function waitUntilTrue(condition, callback){
 }
 
 export function getUrlFromTags(tags:string){
+  if(!api.settings.get('malTags')) return undefined;
   if(/last::[\d\D]+::/.test(tags)){
     return atobURL( tags.split("last::")[1].split("::")[0] );
   }
