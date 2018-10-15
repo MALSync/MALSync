@@ -27,6 +27,11 @@ export function planTo(type: "anime"|"manga"){
   return 'Plan to Watch';
 }
 
+export function episode(type: "anime"|"manga"){
+  if(type == "manga") return 'Volume';
+  return 'Episode';
+}
+
 export var syncRegex = /^(settings\/|resume\/|continue\/).*/
 
 export enum status {

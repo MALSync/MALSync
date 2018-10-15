@@ -311,7 +311,7 @@ export class syncPage{
 
         var nextEp = epList[this.malObj.getEpisode() + 1];
         if (typeof(nextEp) != "undefined" && nextEp){
-          var message = '<a href="'+elementUrl(nextEp)+'">Episode '+( this.malObj.getEpisode()+1 )+'</a>';
+          var message = '<a href="'+elementUrl(nextEp)+'">'+utils.episode(this.page.type)+' '+( this.malObj.getEpisode()+1 )+'</a>';
           utils.flashm( message , {hoverInfo: true, type: 'nextEp'});
         }
 
