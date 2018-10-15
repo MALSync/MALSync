@@ -30,6 +30,21 @@ export const Gogoanime: pageInterface = {
           var url = Gogoanime.overview!.list!.elementUrl(selector);
           return Gogoanime.sync.getEpisode(url);
         },
+        paginationNext: function(){
+          var next = false;
+          var nextReturn = false;
+          j.$(j.$('#episode_page a').get().reverse()).each(function(index, el){
+            if(next && !nextReturn){
+              el.click();
+              nextReturn = true;
+              return;
+            }
+            if(j.$(el).hasClass('active')){
+              next = true;
+            }
+          });
+          return nextReturn;
+        }
       }
     },
     init(page){
