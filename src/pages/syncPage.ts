@@ -285,10 +285,10 @@ export class syncPage{
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");
 
-    this.handleList();
+    this.handleList(true);
   }
 
-  handleList(){
+  handleList(searchCurrent = false, reTry = 0){
     j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
@@ -298,6 +298,15 @@ export class syncPage{
         var curEp = epList[this.malObj.getEpisode()];
         if (typeof(curEp) != "undefined" && curEp){
           curEp.addClass('mal-sync-active');
+        }else if(this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
+          con.log('Pagination next');
+          var This = this;
+          if(this.page.overview.list.paginationNext()){
+            setTimeout(function(){
+              reTry++;
+              This.handleList(true, reTry);
+            }, 500);
+          }
         }
       }
     }

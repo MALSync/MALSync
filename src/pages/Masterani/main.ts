@@ -33,6 +33,15 @@ export const Masterani: pageInterface = {
             Masterani.overview!.list!.elementUrl(selector)
           );
         },
+        paginationNext: function(){
+          var el = j.$('.pagination .item').last();
+          if(el.hasClass('disabled')){
+            return false;
+          }else{
+            el[0].click();
+            return true;
+          }
+        }
       }
     },
     init(page){

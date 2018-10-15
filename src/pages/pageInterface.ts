@@ -22,6 +22,7 @@ export interface pageInterface {
         elementsSelector: () => JQuery<HTMLElement>,
         elementUrl: (selector) => string,
         elementEp: (selector) => number,
+        paginationNext?: () => boolean,
       }
     },
     database?: string, //ignore, only for first party implementations
