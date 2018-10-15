@@ -21,6 +21,16 @@ export const nineAnime: pageInterface = {
 
       uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore(j.$(".widget.info").first());},
     },
+    overview:{
+      getTitle: function(url){return '';},
+      getIdentifier: function(url){return '';},
+      uiSelector: function(selector){},
+      list:{
+        elementsSelector: function(){return j.$(".episodes.range a");},
+        elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), nineAnime.domain);},
+        elementEp: function(selector){return selector.attr('data-base')},
+      }
+    },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       utils.waitUntilTrue(function(){return j.$('.servers').length}, function(){
