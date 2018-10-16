@@ -272,7 +272,7 @@ export function getUserList(status = 1, localListType = 'anime', singleCallback 
     }
     var url = 'https://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
     api.request.xhr('GET', url).then((response) => {
-      var data = j.$.parseJSON(response.responseText);
+      var data = JSON.parse(response.responseText);
       if(singleCallback){
         // @ts-ignore
         if(!data.length) singleCallback(false, 0, 0);

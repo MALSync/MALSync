@@ -1,5 +1,6 @@
 import {xhrI, xhrResponseI, sendMessageI, responseMessageI} from "./api/messageInterface";
 import {scheduleUpdate} from "./utils/scheduler";
+import {checkInit} from "./updateCheck/backgroundIframe";
 
 api.request.sendMessage = function(message: sendMessageI){
   return new Promise((resolve, reject) => {
@@ -68,3 +69,5 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     scheduleUpdate();
   }
 });
+
+checkInit();
