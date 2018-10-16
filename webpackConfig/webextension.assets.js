@@ -19,6 +19,13 @@ const generateMatchExcludes = () => {
   return {match: match, exclude: exclude}
 }
 
+const backgroundMatch = (matches) => {
+  for(var i=0;i<matches.length;i++){
+      matches[i]=matches[i]+'*mal-sync-background=true*';
+  }
+  return matches;
+}
+
 const generateManifest = () => {
   return JSON.stringify({
     'manifest_version': 2,
@@ -44,6 +51,15 @@ const generateManifest = () => {
           'vendor/jquery.min.js',
           'content-script.js'
         ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': backgroundMatch(generateMatchExcludes().match),
+        'js': [
+          'vendor/jquery.min.js',
+          'update-check.js'
+        ],
+        "all_frames": true,
         "run_at": "document_start"
       }
     ],

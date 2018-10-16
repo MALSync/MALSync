@@ -1,0 +1,1 @@
+con.log('updateCheck.ts');

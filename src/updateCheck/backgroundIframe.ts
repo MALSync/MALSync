@@ -43,11 +43,12 @@ async function updateElement(el){
       removeIframes();
       //Create iframe
       var ifrm = document.createElement("iframe");
+      streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=true';
       ifrm.setAttribute("src", streamUrl);
       document.body.appendChild(ifrm);
       setTimeout(function(){
         resolve();
-      },3000)
+      },60000)
     }else{
       resolve();
     }
