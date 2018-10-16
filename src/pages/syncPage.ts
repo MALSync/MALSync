@@ -285,14 +285,18 @@ export class syncPage{
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");
 
-    this.handleList(true);
+    try{
+      this.handleList(true);
+    }catch(e){
+      con.error(e)
+    }
   }
 
   handleList(searchCurrent = false, reTry = 0){
     j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
-      if (typeof(epList) != "undefined"){
+      if (typeof(epList) != "undefined" && epList.length > 0){
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         var curEp = epList[this.malObj.getEpisode()];
