@@ -28,7 +28,7 @@ export function planTo(type: "anime"|"manga"){
 }
 
 export function episode(type: "anime"|"manga"){
-  if(type == "manga") return 'Volume';
+  if(type == "manga") return 'Chapter';
   return 'Episode';
 }
 
