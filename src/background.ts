@@ -1,6 +1,6 @@
 import {xhrI, xhrResponseI, sendMessageI, responseMessageI} from "./api/messageInterface";
 import {scheduleUpdate} from "./utils/scheduler";
-import {checkInit} from "./updateCheck/backgroundIframe";
+import {checkInit, checkContinue} from "./updateCheck/backgroundIframe";
 
 api.request.sendMessage = function(message: sendMessageI){
   return new Promise((resolve, reject) => {
@@ -47,6 +47,9 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
         xhr.send();
       }
       return true;
+    }
+    case "iframeDone": {
+      checkContinue();
     }
   }
   return undefined;

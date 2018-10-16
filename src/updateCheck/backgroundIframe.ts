@@ -20,6 +20,16 @@ export function checkInit(){
   });
 }
 
+export function checkContinue(){
+  con.log('Iframe update check done');
+  removeIframes();
+  continueCheck();
+}
+
+var continueCheck = function(){
+  con.error('Empty continueCheck');
+}
+
 function startCheck(){
   con.log('startCheck');
   chrome.alarms.getAll(function(alarms){
@@ -46,9 +56,13 @@ async function updateElement(el){
       streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=true';
       ifrm.setAttribute("src", streamUrl);
       document.body.appendChild(ifrm);
-      setTimeout(function(){
+      var timeout = setTimeout(function(){
         resolve();
-      },60000)
+      },60000);
+      continueCheck = function(){
+        clearTimeout(timeout);
+        resolve();
+      }
     }else{
       resolve();
     }
