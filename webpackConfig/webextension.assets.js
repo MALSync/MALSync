@@ -75,7 +75,9 @@ const generateManifest = () => {
     'permissions': [
       "storage",
       "alarms",
-      "https://myanimelist.net/"
+      "https://myanimelist.net/",
+      "notifications",
+      "https://myanimelist.cdn-dena.com/"
     ]
   }, null, 2);
 };
