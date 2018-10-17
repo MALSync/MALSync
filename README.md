@@ -28,3 +28,7 @@
 
 ___
 ![alt tag](https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/MAL_details_features_overview.png)
+
+___
+How to build?  
+[Wiki](https://github.com/lolamtisch/MALSync/wiki/Build)
