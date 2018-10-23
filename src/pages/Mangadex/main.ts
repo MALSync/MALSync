@@ -60,8 +60,21 @@ export const Mangadex: pageInterface = {
       if(j.$('.card-header').length){
         j.$(document).ready(function(){page.handlePage()});
       }else{
+        con.info('Waiting');
         utils.waitUntilTrue(function(){return Mangadex.sync.getOverviewUrl('')}, function(){
+          con.info('Start');
           page.handlePage();
+          var tempChapterId = utils.urlPart(window.location.href, 4);
+          utils.urlChangeDetect(function(){
+            var newTempChapterId = utils.urlPart(window.location.href , 4)
+            if( tempChapterId !== newTempChapterId){
+              tempChapterId = newTempChapterId;
+              con.info('Check');
+              page.handlePage();
+            }else{
+              con.info('Nothing to do')
+            }
+          });
         });
       }
     }
