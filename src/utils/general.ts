@@ -440,3 +440,83 @@ function initflashm(){
         <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
         <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
 }
+
+var lazyloaded = false;
+var lazyimages = new Array();
+
+export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
+  /* lazyload.js (c) Lorenzo Giuliani
+   * MIT License (http://www.opensource.org/licenses/mit-license.html)
+   *
+   * expects a list of:
+   * `<img src="blank.gif" data-src="my_image.png" width="600" height="400" class="lazy">`
+   */
+
+  processScroll = function(){
+    for (var i = 0; i < lazyimages.length; i++) {
+      if (elementInViewport(lazyimages[i])) {
+        loadImage(lazyimages[i], function () {
+          lazyimages.splice(i, i);
+        });
+      }
+      if(!$(lazyimages[i]).length){
+        lazyimages.splice(i, i);
+      }
+    };
+  }
+
+  function loadImage (el, fn) {
+    if(j.$(el).hasClass('lazyBack')){
+      j.$(el).css('background-image','url('+el.getAttribute('data-src')+')').removeClass('lazyBack');
+    }else{
+      var img = new Image()
+        , src = el.getAttribute('data-src');
+      img.onload = function() {
+        if (!! el.parent)
+          el.parent.replaceChild(img, el)
+        else
+          el.src = src;
+
+        fn? fn() : null;
+      }
+      img.src = src;
+    }
+  }
+
+  lazyimages = new Array();
+  var query = doc.find('img.lazy.init, .lazyBack.init')
+    , processScroll = function(){
+        for (var i = 0; i < lazyimages.length; i++) {
+          if (utils.elementInViewport(lazyimages[i], 300)) {
+            loadImage(lazyimages[i], function () {
+              lazyimages.splice(i, i);
+            });
+          }
+        };
+      }
+    ;
+  // Array.prototype.slice.call is not callable under our lovely IE8
+  for (var i = 0; i < query.length; i++) {
+    lazyimages.push(query[i]);
+    $(query[i]).removeClass('init')
+  };
+
+  processScroll();
+
+  if(!lazyloaded){
+    lazyloaded = true;
+    doc.find(scrollElement).scroll(function() {
+      processScroll();
+    });
+  }
+}
+
+export function elementInViewport(el, horizontalOffset = 0) {
+  var rect = el.getBoundingClientRect()
+
+  return (
+     rect.top    >= 0
+  && rect.left   >= 0
+  && (rect.top - horizontalOffset) <= (window.innerHeight || document.documentElement.clientHeight)
+  )
+}
