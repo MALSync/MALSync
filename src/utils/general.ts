@@ -517,6 +517,7 @@ export function elementInViewport(el, horizontalOffset = 0) {
   return (
      rect.top    >= 0
   && rect.left   >= 0
+  // @ts-ignore
   && (rect.top - horizontalOffset) <= (window.innerHeight || document.documentElement.clientHeight)
   )
 }
