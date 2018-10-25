@@ -487,7 +487,7 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
   var query = doc.find('img.lazy.init, .lazyBack.init')
     , processScroll = function(){
         for (var i = 0; i < lazyimages.length; i++) {
-          if (utils.elementInViewport(lazyimages[i], 300)) {
+          if (utils.elementInViewport(lazyimages[i], 600)) {
             loadImage(lazyimages[i], function () {
               lazyimages.splice(i, i);
             });
