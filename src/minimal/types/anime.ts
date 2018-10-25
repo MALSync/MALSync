@@ -295,7 +295,7 @@ export class animeType{
           .then(function(){
             utils.flashm('Updated');
           }, function(){
-            utils.flashm( "Anime update failed" , {error: true});
+            utils.flashm( "Update failed" , {error: true});
           });
       });
 
