@@ -75,20 +75,42 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 
 checkInit();
 
-chrome.webRequest.onHeadersReceived.addListener(
-  function (details) {
-    con.log('test', details);
-    if(details.initiator.indexOf(chrome.runtime.id) !== -1){
-      con.log('Remove x-frame-options');
-      for (var i = 0; i < details.responseHeaders!.length; ++i) {
-        if (details.responseHeaders![i].name.toLowerCase() == 'x-frame-options') {
-          details.responseHeaders!.splice(i, 1);
-          return {
-            responseHeaders: details.responseHeaders
-          };
+function webRequestListener(){
+  chrome.permissions.contains({
+    permissions: ['webRequest']
+  }, function(result) {
+    if (result) {
+      con.log('webRequest permissions found');
+      chrome.webRequest.onHeadersReceived.addListener(function (details) {
+        con.log('test', details);
+        if(details.initiator!.indexOf(chrome.runtime.id) !== -1){
+          con.log('Remove x-frame-options');
+          for (var i = 0; i < details.responseHeaders!.length; ++i) {
+            if (details.responseHeaders![i].name.toLowerCase() == 'x-frame-options') {
+              details.responseHeaders!.splice(i, 1);
+              return {
+                responseHeaders: details.responseHeaders
+              };
+            }
+          }
         }
-      }
+      }, {
+        urls: ["*://*/*mal-sync-background=true*"]
+      }, ["blocking", "responseHeaders"]);
+    } else {
+      con.log('No webRequest permissions');
     }
-  }, {
-    urls: ["*://*/*mal-sync-background=true*"]
-  }, ["blocking", "responseHeaders"]);
+  });
+}
+
+webRequestListener();
+chrome.permissions.onAdded.addListener(function(){
+  webRequestListener();
+});
+
+/*chrome.permissions.request({
+    permissions: ["webRequest", "webRequestBlocking"],
+    origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+  }, function(granted) {
+    con.log('optional_permissions', granted);
+  });*/
