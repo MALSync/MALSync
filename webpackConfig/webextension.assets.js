@@ -78,7 +78,11 @@ const generateManifest = () => {
       "https://myanimelist.net/",
       "notifications",
       "https://myanimelist.cdn-dena.com/"
-    ]
+    ],
+    "optional_permissions": [
+      "webRequest",
+      "webRequestBlocking"
+    ].concat(generateMatchExcludes().match),
   }, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {

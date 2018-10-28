@@ -74,3 +74,21 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 });
 
 checkInit();
+
+chrome.webRequest.onHeadersReceived.addListener(
+  function (details) {
+    con.log('test', details);
+    if(details.initiator.indexOf(chrome.runtime.id) !== -1){
+      con.log('Remove x-frame-options');
+      for (var i = 0; i < details.responseHeaders!.length; ++i) {
+        if (details.responseHeaders![i].name.toLowerCase() == 'x-frame-options') {
+          details.responseHeaders!.splice(i, 1);
+          return {
+            responseHeaders: details.responseHeaders
+          };
+        }
+      }
+    }
+  }, {
+    urls: ["*://*/*mal-sync-background=true*"]
+  }, ["blocking", "responseHeaders"]);
