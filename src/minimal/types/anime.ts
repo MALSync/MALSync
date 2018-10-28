@@ -70,6 +70,7 @@ export class animeType{
 
       html += overviewElement(this.url, title, image, description, altTitle, stats);
       try{
+        var localType = utils.urlPart(this.url, 3);
         html +=
         `<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
           <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -79,20 +80,20 @@ export class animeType{
                   <span>Status:</span>
                   <span class="mdl-list__item-text-body">
                     <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none; visibility: hidden;">
-                      <option selected="selected" value="1">Watching</option>
+                      <option selected="selected" value="1">${utils.watching(localType)}</option>
                       <option value="2">Completed</option>
                       <option value="3">On-Hold</option>
                       <option value="4">Dropped</option>
-                      <option value="6">Plan to Watch</option>
+                      <option value="6">${utils.planTo(localType)}</option>
                     </select>
                   </span>
                 </span>
               </li>
               <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
                 <span class="mdl-list__item-primary-content">
-                  <span>Eps Seen:</span>
+                  <span>${utils.episode(localType)}:</span>
                   <span class="mdl-list__item-text-body">
-                    <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">12</span>
+                    <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">?</span>
                     <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                       <i class="fa fa-plus-circle ml4">
                       </i>
@@ -100,6 +101,24 @@ export class animeType{
                   </span>
                 </span>
               </li>
+          `;
+          if(localType == 'manga'){
+            html +=`
+              <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+                <span class="mdl-list__item-primary-content">
+                  <span>Volume:</span>
+                  <span class="mdl-list__item-text-body">
+                    <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" style="visibility: hidden;">?</span>
+                    <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
+                      <i class="fa fa-plus-circle ml4">
+                      </i>
+                    </a>
+                  </span>
+                </span>
+              </li>
+            `;
+          }
+          html +=`
               <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
                 <span class="mdl-list__item-primary-content">
                   <span>Your Score:</span>
@@ -260,18 +279,23 @@ export class animeType{
 
       minimal.find('#myinfo_status').val(malObj.getStatus()).css('visibility', 'visible');
       minimal.find('#myinfo_watchedeps').val(malObj.getEpisode()).css('visibility', 'visible');
+      minimal.find('#myinfo_volumes').val(malObj.getVolume()).css('visibility', 'visible');
       minimal.find('#curEps').html(malObj.totalEp).css('visibility', 'visible');
+      minimal.find('#curVolumes').html(malObj.totalVol).css('visibility', 'visible');
       minimal.find('#myinfo_score').val(malObj.getScore()).css('visibility', 'visible');
 
       minimal.find('.inputButton').click(function(){
         malObj.setStatus(minimal.find('#myinfo_status').val());
         malObj.setEpisode( minimal.find('#myinfo_watchedeps').val());
+        if(minimal.find('#myinfo_volumes').length){
+          malObj.setVolume( minimal.find('#myinfo_volumes').val());
+        }
         malObj.setScore(minimal.find('#myinfo_score').val());
         malObj.sync()
           .then(function(){
             utils.flashm('Updated');
           }, function(){
-            utils.flashm( "Anime update failed" , {error: true});
+            utils.flashm( "Update failed" , {error: true});
           });
       });
 

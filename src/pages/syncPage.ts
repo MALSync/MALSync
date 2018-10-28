@@ -203,7 +203,7 @@ export class syncPage{
         return;
       }).catch(function(e){
         con.error(e);
-        utils.flashm( "Anime update failed" , {error: true});
+        utils.flashm( "Update failed" , {error: true});
         return;
       });
   }

@@ -57,6 +57,9 @@ export class myanimelistClass{
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
+        setInterval(() => {
+          this.setEpPrediction();
+        }, 1000 * 60)
         break;
       case 'bookmarks':
         var This = this;
@@ -171,7 +174,8 @@ export class myanimelistClass{
     con.log('setEpPrediction');
     utils.epPredictionUI(this.id, function(prediction){
       con.log(prediction);
-      $('#addtolist').prev().before(prediction.text);
+      $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
+      $('#addtolist').prev().before('<div class="mal-sync-pre-remove">'+prediction.text+'</div>');
       $('[id="curEps"]').before(prediction.tag+' ');
     });
   }
