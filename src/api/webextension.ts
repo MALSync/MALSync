@@ -7,3 +7,5 @@ export var storage = webextension;
 export var request = requestApi;
 
 export var settings = settingsObj;
+
+export var type = 'webextension';

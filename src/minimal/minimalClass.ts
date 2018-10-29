@@ -469,6 +469,13 @@ export class minimal{
           </li>
         </div>
 
+        <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">Update Check</h2>
+          </div>
+          <li class="mdl-list__item"><button type="button" id="xFrame" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none;">Get X-Frame-Options Permissions</button></li>
+        </div>
+
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">ETC</h2>
@@ -579,6 +586,24 @@ export class minimal{
     listener.forEach(function(fn) {
       fn();
     });
+
+    if(api.type == 'webextension' && this.isPopup()){
+      this.minimal.find('#updateCheck').show();
+      chrome.permissions.contains({
+        permissions: ['webRequest']
+      }, (result) => {
+        if (!result) {
+          this.minimal.find('#xFrame').show().click(function(){
+            chrome.permissions.request({
+              permissions: ["webRequest", "webRequestBlocking"],
+              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+            }, function(granted) {
+              con.log('optional_permissions', granted);
+            });
+          });
+        }
+      });
+    }
 
     //helper
 
