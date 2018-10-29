@@ -26,7 +26,7 @@ export function checkContinue(message){
   removeIframes();
 
   if(continueCheck[id]){
-    continueCheck[id]();
+    continueCheck[id](message.epList);
     delete continueCheck[id];
   }
 }
@@ -58,15 +58,34 @@ async function updateElement(el){
       removeIframes();
       //Create iframe
       var ifrm = document.createElement("iframe");
-      streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=' + id;
-      ifrm.setAttribute("src", streamUrl);
-      ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');//
+      ifrm.setAttribute("src", streamUrl + (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=' + id );
+      ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');
       document.body.appendChild(ifrm);
       var timeout = setTimeout(function(){
         resolve();
       },60000);
-      continueCheck[id] = function(){
+      continueCheck[id] = function(list){
         clearTimeout(timeout);
+        con.error(list);
+        if (typeof list !== 'undefined' && list.length > 0) {
+          var newestEpisode = list.length - 1;
+          var newestEpisodeUrl = list[newestEpisode];
+          con.log('Episode list found',{
+            newestEpisode: newestEpisode,
+            newestEpisodeUrl: newestEpisodeUrl
+          });
+          chrome.notifications.create(
+            streamUrl,
+            {
+              type: 'basic',
+              iconUrl: el['anime_image_path'],
+              title: el['anime_title'],
+              message: 'Episode '+newestEpisode+' released',
+           }
+          );
+        }else{
+          con.error('Episode list empty')
+        }
         resolve();
       }
     }else{
