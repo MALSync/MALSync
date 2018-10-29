@@ -48,12 +48,19 @@ function startCheck(){
   })
 }
 
-async function updateElement(el){
-  return new Promise((resolve, reject) => {
+async function updateElement(el, type = "anime"){
+  return new Promise(async (resolve, reject) => {
     var id = Math.random().toString(36).substr(2, 9);
     con.log(utils.getUrlFromTags(el['tags']));
     var streamUrl = utils.getUrlFromTags(el['tags']);
     if(typeof streamUrl != 'undefined'){
+      var elCache = await api.storage.get('updateCheck/'+type+'/'+el['anime_id']);
+      con.log('cached', elCache);
+      if(typeof elCache != 'undefined' && elCache.finished){
+        resolve()
+        return;
+      }
+
       //Remove other iframes
       removeIframes();
       //Create iframe
@@ -74,15 +81,30 @@ async function updateElement(el){
             newestEpisode: newestEpisode,
             newestEpisodeUrl: newestEpisodeUrl
           });
-          chrome.notifications.create(
-            streamUrl,
-            {
-              type: 'basic',
-              iconUrl: el['anime_image_path'],
-              title: el['anime_title'],
-              message: 'Episode '+newestEpisode+' released',
-           }
-          );
+
+          var finished = false;
+          if(newestEpisode >= parseInt(el['anime_num_episodes']) && parseInt(el['anime_num_episodes']) != 0){
+            con.log('Finished');
+            finished = true;
+          }
+
+          api.storage.set('updateCheck/'+type+'/'+el['anime_id'], {newestEp: newestEpisode, finished: finished});
+
+          if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp){
+            con.log('new Episode')
+            chrome.notifications.create(
+              streamUrl,
+              {
+                type: 'basic',
+                iconUrl: el['anime_image_path'],
+                title: el['anime_title'],
+                message: 'Episode '+newestEpisode+' released',
+             }
+            );
+          }else{
+            con.log('No new episode')
+          }
+
         }else{
           con.error('Episode list empty')
         }
