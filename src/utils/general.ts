@@ -202,6 +202,13 @@ export async function epPredictionUI(malid, callback){
   });
 }
 
+export function canHideTabs(){
+  if(typeof browser != 'undefined' && typeof browser.tabs.hide != 'undefined'){
+    return true;
+  }
+  return false;
+}
+
 export async function epPrediction(malId , callback){
   if(!api.settings.get('epPredictions')) return;
   var timestamp = await api.storage.get('mal/'+malId+'/release');
