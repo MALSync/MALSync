@@ -55,6 +55,7 @@ async function updateElement(el){
       var ifrm = document.createElement("iframe");
       streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=true';
       ifrm.setAttribute("src", streamUrl);
+      ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');//
       document.body.appendChild(ifrm);
       var timeout = setTimeout(function(){
         resolve();
