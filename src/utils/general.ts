@@ -1,3 +1,5 @@
+declare var browser: any;
+
 export function urlPart(url:string, part:number){
   try{
       return url.split("/")[part].split("?")[0];

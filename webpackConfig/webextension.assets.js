@@ -46,7 +46,7 @@ const generateManifest = () => {
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,
-        'exclude_globs': generateMatchExcludes().exclude,
+        'exclude_globs': generateMatchExcludes().exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'

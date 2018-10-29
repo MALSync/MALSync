@@ -6,6 +6,7 @@ api.settings.init()
   .then(()=>{
     var url = new URL(window.location.href);
     var id = url.searchParams.get("mal-sync-background");
+    con.log(id);
 
     var page = new syncPage(window.location.href);
     page.handlePage = async function(){

@@ -1,5 +1,5 @@
 /*TODO: Manga*/
-
+declare var browser: any;
 export function checkInit(){
   chrome.alarms.get("updateCheck", function(a) {
     if(typeof a === 'undefined'){
@@ -32,9 +32,12 @@ export function checkContinue(message){
 }
 
 var continueCheck = {};
+var hiddenTabs:any = [];
 
 function startCheck(){
   con.log('startCheck');
+  con.log('hideTab', utils.canHideTabs());
+
   continueCheck = {};
   chrome.alarms.getAll(function(alarms){
     utils.getUserList(1, 'anime', null, null, async function(list){
@@ -64,10 +67,8 @@ async function updateElement(el, type = "anime"){
       //Remove other iframes
       removeIframes();
       //Create iframe
-      var ifrm = document.createElement("iframe");
-      ifrm.setAttribute("src", streamUrl + (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=' + id );
-      ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');
-      document.body.appendChild(ifrm);
+      openInvisiblePage(streamUrl, id);
+
       var timeout = setTimeout(function(){
         resolve();
       },60000);
@@ -116,9 +117,41 @@ async function updateElement(el, type = "anime"){
   });
 }
 
-function removeIframes(){
-  var iframes = document.querySelectorAll('iframe');
-  for (var i = 0; i < iframes.length; i++) {
-      iframes[i].parentNode!.removeChild(iframes[i]);
+function openInvisiblePage(url:string, id){
+  var url = (url + (url.split('?')[1] ? '&':'?') + 'mal-sync-background=' + id);
+  if(utils.canHideTabs()){
+    //Firefox
+    browser.tabs.create({
+      url: url,
+      active: false,
+    }).then((tab) => {
+      hiddenTabs.push(tab.id);
+      browser.tabs.hide(tab.id);
+    });
+  }else{
+    //Chrome
+    var ifrm = document.createElement("iframe");
+    ifrm.setAttribute("src", url);
+    ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');
+    document.body.appendChild(ifrm);
   }
+}
+
+function removeIframes(){
+  if(utils.canHideTabs()){
+    //Firefox
+    if(hiddenTabs.length){
+      for (var i = 0; i < hiddenTabs.length; i++) {
+        chrome.tabs.remove(hiddenTabs[i]);
+      }
+    }
+    hiddenTabs = [];
+  }else{
+    //Chrome
+    var iframes = document.querySelectorAll('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+      iframes[i].parentNode!.removeChild(iframes[i]);
+    }
+  }
+
 }
