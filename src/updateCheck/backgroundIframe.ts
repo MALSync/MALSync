@@ -72,7 +72,7 @@ async function updateElement(el, type = "anime"){
       var timeout = setTimeout(function(){
         resolve();
       },60000);
-      continueCheck[id] = function(list){
+      continueCheck[id] = async function(list){
         clearTimeout(timeout);
         con.error(list);
         if (typeof list !== 'undefined' && list.length > 0) {
@@ -104,6 +104,22 @@ async function updateElement(el, type = "anime"){
             );
           }else{
             con.log('No new episode')
+          }
+
+          //Update next Episode link
+          var continueUrlObj = await utils.getContinueWaching(type, el['anime_id']);
+          var nextUserEp = parseInt(el['num_watched_episodes'])+1;
+
+          con.log('Continue', continueUrlObj);
+          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === nextUserEp){
+            con.log('Continue link up to date');
+          }else{
+            con.log('Update continue link');
+            var nextUserEpUrl = list[nextUserEp];
+            if(typeof nextUserEpUrl != 'undefined'){
+              con.log('set continue link', nextUserEpUrl, nextUserEp);
+              utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, el['anime_id']);
+            }
           }
 
         }else{
