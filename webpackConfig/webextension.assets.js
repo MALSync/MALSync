@@ -21,7 +21,7 @@ const generateMatchExcludes = () => {
 
 const backgroundMatch = (matches) => {
   for(var i=0;i<matches.length;i++){
-      matches[i]=matches[i]+'*mal-sync-background=true*';
+      matches[i]=matches[i]+'*mal-sync-background=*';
   }
   return matches;
 }

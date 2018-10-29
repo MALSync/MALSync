@@ -49,7 +49,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
       return true;
     }
     case "iframeDone": {
-      checkContinue();
+      checkContinue(message);
     }
   }
   return undefined;
@@ -95,7 +95,7 @@ function webRequestListener(){
           }
         }
       }, {
-        urls: ["*://*/*mal-sync-background=true*"]
+        urls: ["*://*/*mal-sync-background=*"]
       }, ["blocking", "responseHeaders"]);
     } else {
       con.log('No webRequest permissions');

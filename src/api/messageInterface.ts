@@ -9,6 +9,6 @@ export interface xhrResponseI {
     status: number
 }
 
-export type sendMessageI = xhrI | {name: 'iframeDone'};
+export type sendMessageI = xhrI | {name: 'iframeDone', id: string};
 
 export type responseMessageI = xhrResponseI;

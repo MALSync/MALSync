@@ -20,18 +20,22 @@ export function checkInit(){
   });
 }
 
-export function checkContinue(){
-  con.log('Iframe update check done');
+export function checkContinue(message){
+  var id = message.id;
+  con.log('Iframe update check done', id);
   removeIframes();
-  continueCheck();
+
+  if(continueCheck[id]){
+    continueCheck[id]();
+    delete continueCheck[id];
+  }
 }
 
-var continueCheck = function(){
-  con.error('Empty continueCheck');
-}
+var continueCheck = {};
 
 function startCheck(){
   con.log('startCheck');
+  continueCheck = {};
   chrome.alarms.getAll(function(alarms){
     utils.getUserList(1, 'anime', null, null, async function(list){
       con.log('list', list)
@@ -46,6 +50,7 @@ function startCheck(){
 
 async function updateElement(el){
   return new Promise((resolve, reject) => {
+    var id = Math.random().toString(36).substr(2, 9);
     con.log(utils.getUrlFromTags(el['tags']));
     var streamUrl = utils.getUrlFromTags(el['tags']);
     if(typeof streamUrl != 'undefined'){
@@ -53,14 +58,14 @@ async function updateElement(el){
       removeIframes();
       //Create iframe
       var ifrm = document.createElement("iframe");
-      streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=true';
+      streamUrl += (streamUrl.split('?')[1] ? '&':'?') + 'mal-sync-background=' + id;
       ifrm.setAttribute("src", streamUrl);
       ifrm.setAttribute("sandbox", 'allow-scripts allow-same-origin');//
       document.body.appendChild(ifrm);
       var timeout = setTimeout(function(){
         resolve();
       },60000);
-      continueCheck = function(){
+      continueCheck[id] = function(){
         clearTimeout(timeout);
         resolve();
       }
