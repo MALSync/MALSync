@@ -195,6 +195,7 @@ export async function epPredictionUI(malid, callback){
       tag: '',
       text: '',
       color: '',
+      colorStyle: '',
       prediction: pre,
       elCache: elCache
     };
