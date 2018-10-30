@@ -474,6 +474,7 @@ export class minimal{
             <h2 class="mdl-card__title-text">Update Check</h2>
           </div>
           <li class="mdl-list__item"><button type="button" id="xFrame" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none;">Get X-Frame-Options Permissions</button></li>
+          <li class="mdl-list__item"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="">Debugging</button></li>
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -604,6 +605,9 @@ export class minimal{
         }
       });
     }
+    this.minimal.find('#updateCheckUi').click(() => {
+      this.updateCheckUi();
+    })
 
     //helper
 
@@ -841,6 +845,55 @@ export class minimal{
         }
       });
     });
+  }
+
+  updateCheckUi(type = 'anime'){
+    this.minimal.find('#material').addClass('pop-over');
+    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+
+    utils.getUserList(1, 'anime', null, null, async (list) => {
+      var html = `
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric"></th>
+          <th>Episode</th>
+          <th>Message</th>
+        </tr>`;
+
+      for (var i = 0; i < list.length; i++) {
+        var el = list[i];
+        var title = el['anime_title'];
+        var episode = '';
+        var error = '';
+        var trColor = '';
+        con.log('el', el);
+        var elCache = await api.storage.get('updateCheck/'+type+'/'+el['anime_id']);
+        con.log('elCache', elCache);
+        if(typeof elCache != 'undefined'){
+          episode = elCache['newestEp']+'/'+el['anime_num_episodes'];
+          trColor = 'orange';
+          if(elCache['finished']){
+            error = 'finished';
+            trColor = 'green';
+          }
+          if(typeof elCache['error'] != 'undefined'){
+            error = elCache['error'];
+            trColor = 'red';
+          }
+        }
+        html += `
+        <tr style="background-color: ${trColor};">
+          <th class="mdl-data-table__cell--non-numeric">${title}</th>
+          <th>${episode}</th>
+          <th>${error}</th>
+        </tr>
+        `;
+      }
+
+      html += '</table>';
+      this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
+    });
+
   }
 
 }
