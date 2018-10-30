@@ -70,6 +70,7 @@ async function updateElement(el, type = "anime"){
       openInvisiblePage(streamUrl, id);
 
       var timeout = setTimeout(function(){
+        api.storage.set('updateCheck/'+type+'/'+el['anime_id'], checkError(elCache, 'Timeout'));
         resolve();
       },60000);
       continueCheck[id] = async function(list){
@@ -123,6 +124,8 @@ async function updateElement(el, type = "anime"){
           }
 
         }else{
+          con.log(checkError(elCache, 'Episode list empty'));
+          api.storage.set('updateCheck/'+type+'/'+el['anime_id'], checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty')
         }
         resolve();
@@ -131,6 +134,14 @@ async function updateElement(el, type = "anime"){
       resolve();
     }
   });
+}
+
+function checkError(elCache, error){
+  if(typeof elCache == 'undefined'){
+    elCache = {newestEp: '', finished: false}
+  }
+  elCache['error'] = error;
+  return elCache;
 }
 
 function openInvisiblePage(url:string, id){
