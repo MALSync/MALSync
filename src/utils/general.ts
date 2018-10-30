@@ -186,16 +186,40 @@ export function getTooltip(text, style = '', direction = 'top'){
 }
 
 export async function epPredictionUI(malid, callback){
-  utils.epPrediction(malid, function(pre){
+
+  utils.epPrediction(malid, async function(pre){
+    var type = 'anime';
+    var elCache = await api.storage.get('updateCheck/'+type+'/'+malid);
+    if(pre === false && typeof elCache == 'undefined') return;
     var UI = {
       tag: '',
       text: '',
-      prediction: pre
+      color: '',
+      prediction: pre,
+      elCache: elCache
     };
-    if(pre.airing){
-      UI.text = 'Next episode estimated in '+pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m' ;
-      if(pre.episode){
-        UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">['+pre.episode+']</span>';
+    //
+    var airing = pre.airing;
+    var episode = pre.episode;
+    if(typeof elCache != 'undefined' && typeof elCache.error == 'undefined'){
+      if(!elCache.finished){
+        airing = true;
+      }
+      if(elCache.newestEp && elCache.newestEp != '' && typeof elCache.newestEp != 'undefined'){
+        episode = elCache.newestEp;
+        UI.color = 'green';
+      }
+    }
+    if(UI.color != ''){
+      UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
+    }
+    //
+    if(airing){
+      if(pre.airing){
+        UI.text = 'Next episode estimated in '+pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m' ;
+      }
+      if(episode){
+        UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">[<span style="'+UI.colorStyle+';">'+episode+'</span>]</span>';
       }
     }else{
       UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';
@@ -262,8 +286,10 @@ export async function epPrediction(malId , callback){
         diffMinutes: diffMinutes,
         episode: episode
       });
+      return;
     }
   }
+  callback(false);
 }
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
