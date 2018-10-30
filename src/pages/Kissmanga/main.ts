@@ -67,6 +67,10 @@ export const Kissmanga: pageInterface = {
       }
     },
     init(page){
+      if(document.title == "Please wait 5 seconds..."){
+          con.log("loading");
+          return;
+      }
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){page.handlePage()});
     }
