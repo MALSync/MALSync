@@ -207,11 +207,12 @@ export async function epPredictionUI(malid, callback){
       }
       if(elCache.newestEp && elCache.newestEp != '' && typeof elCache.newestEp != 'undefined'){
         episode = elCache.newestEp;
-        UI.color = 'green';
+        UI.color = 'orange';
       }
     }
     if(UI.color != ''){
-      UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
+      //UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
+      UI.colorStyle = 'background-color: #00ff0057 !important;'
     }
     //
     if(airing){
