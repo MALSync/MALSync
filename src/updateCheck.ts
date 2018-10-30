@@ -10,7 +10,24 @@ api.settings.init()
     var episodeList = [];
 
     var page = new syncPage(window.location.href);
-    page.handlePage = async function(){con.log('handlePage');
+    page.handlePage = async function(){
+      con.log('handlePage');
+      var state: any;
+      if(this.page.isSyncPage(this.url)){
+        state = {
+          identifier: this.page.sync.getIdentifier(this.url)
+        };
+        //@ts-ignore
+        this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+      }else{
+        state = {
+          identifier: this.page.overview!.getIdentifier(this.url)
+        };
+        //@ts-ignore
+        this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+        con.log('Overview', state);
+      }
+
       if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
         var elementUrl = this.page.overview.list.elementUrl;
         var tempEpisodeList = j.$.map( this.getEpList(), function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';});

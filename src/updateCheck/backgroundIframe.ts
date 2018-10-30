@@ -92,7 +92,7 @@ async function updateElement(el, type = "anime"){
 
           api.storage.set('updateCheck/'+type+'/'+el['anime_id'], {newestEp: newestEpisode, finished: finished});
 
-          if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp){
+          if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp, elCache.newestEp != ''){
             con.log('new Episode')
             chrome.notifications.create(
               streamUrl,
