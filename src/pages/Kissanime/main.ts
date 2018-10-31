@@ -56,6 +56,7 @@ export const Kissanime: pageInterface = {
     init(page){
       if(document.title == "Please wait 5 seconds..."){
           con.log("loading");
+          page.cdn();
           return;
       }
       api.storage.addStyle(require('./style.less').toString());

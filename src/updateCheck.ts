@@ -10,6 +10,9 @@ api.settings.init()
     var episodeList = [];
 
     var page = new syncPage(window.location.href);
+    page.cdn = function(){
+      api.request.sendMessage({name: "iframeDone", id: 'retry', epList: []});
+    }
     page.handlePage = async function(){
       con.log('handlePage');
       var state: any;

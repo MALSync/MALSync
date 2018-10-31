@@ -20,7 +20,15 @@ export function checkInit(){
   });
 }
 
+var retry = false;
+
 export function checkContinue(message){
+  if(message.id === 'retry'){
+    retry = true;
+    con.log('Retry recived');
+    return;
+  }
+
   var id = message.id;
   con.log('Iframe update check done', id);
   removeIframes();
@@ -51,7 +59,7 @@ function startCheck(){
   })
 }
 
-async function updateElement(el, type = "anime"){
+async function updateElement(el, type = "anime", retryNum = 0){
   return new Promise(async (resolve, reject) => {
     var id = Math.random().toString(36).substr(2, 9);
     con.log(utils.getUrlFromTags(el['tags']));
@@ -69,8 +77,14 @@ async function updateElement(el, type = "anime"){
       //Create iframe
       openInvisiblePage(streamUrl, id);
 
-      var timeout = setTimeout(function(){
+      var timeout = setTimeout(async function(){
         api.storage.set('updateCheck/'+type+'/'+el['anime_id'], checkError(elCache, 'Timeout'));
+        if(retry && retryNum < 3){
+          con.log('retry', retryNum);
+          retry = false;
+          retryNum++;
+          await updateElement(el, type, retryNum)
+        }
         resolve();
       },60000);
       continueCheck[id] = async function(list){
