@@ -489,8 +489,7 @@ export class minimal{
               </select>
             </span>
           </li>
-          <li class="mdl-list__item"><button type="button" id="xFrame" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none;">Get X-Frame-Options Permissions</button></li>
-          <li class="mdl-list__item"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="">Debugging</button></li>
+          <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Debugging</button></li>
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -610,13 +609,15 @@ export class minimal{
         interval = 0;
         if(typeof a !== 'undefined'){
           var interval = a!.periodInMinutes;
+          this.minimal.find('.updateCheckEnable').show();
         }
         this.minimal.find('#updateCheckTime').val(interval);
       });
 
       this.minimal.find("#updateCheckTime").change(() => {
         var updateCheckTime = this.minimal.find('#updateCheckTime').val();
-        if(updateCheckTime){
+        if(updateCheckTime != 0 && updateCheckTime != '0' ){
+          this.minimal.find('.updateCheckEnable').show();
           chrome.alarms.create("updateCheck", {
             periodInMinutes: parseInt(updateCheckTime)
           });
@@ -632,24 +633,11 @@ export class minimal{
             when: Date.now() + 1000
           });
         }else{
+          this.minimal.find('.updateCheckEnable').hide();
           chrome.alarms.clear("updateCheck");
         }
       });
       this.minimal.find('#updateCheck').show();
-      chrome.permissions.contains({
-        permissions: ['webRequest']
-      }, (result) => {
-        if (!result) {
-          this.minimal.find('#xFrame').show().click(function(){
-            chrome.permissions.request({
-              permissions: ["webRequest", "webRequestBlocking"],
-              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
-            }, function(granted) {
-              con.log('optional_permissions', granted);
-            });
-          });
-        }
-      });
     }
     this.minimal.find('#updateCheckUi').click(() => {
       this.updateCheckUi();
