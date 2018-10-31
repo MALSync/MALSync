@@ -473,6 +473,22 @@ export class minimal{
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">Update Check</h2>
           </div>
+
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Interval
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select name="updateCheckTime" id="updateCheckTime" class="inputtext mdl-textfield__input" style="outline: none;">
+                <option value="0">Off</option>
+                <option value="60">1h</option>
+                <option value="240">4h</option>
+                <option value="720">12h</option>
+                <option value="1440">24h</option>
+                <option value="2880">48h</option>
+              </select>
+            </span>
+          </li>
           <li class="mdl-list__item"><button type="button" id="xFrame" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none;">Get X-Frame-Options Permissions</button></li>
           <li class="mdl-list__item"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="">Debugging</button></li>
         </div>
@@ -589,6 +605,33 @@ export class minimal{
     });
 
     if(api.type == 'webextension' && this.isPopup()){
+      chrome.alarms.get("updateCheck", (a:any) => {
+        con.log(a);
+        interval = 0;
+        if(typeof a !== 'undefined'){
+          var interval = a!.periodInMinutes;
+        }
+        this.minimal.find('#updateCheckTime').val(interval);
+      });
+
+      this.minimal.find("#updateCheckTime").change(() => {
+        var updateCheckTime = this.minimal.find('#updateCheckTime').val();
+        if(updateCheckTime){
+          chrome.alarms.create("updateCheck", {
+            periodInMinutes: parseInt(updateCheckTime)
+          });
+          if(!utils.canHideTabs()){
+            chrome.permissions.request({
+              permissions: ["webRequest", "webRequestBlocking"],
+              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+            }, function(granted) {
+              con.log('optional_permissions', granted);
+            });
+          };
+        }else{
+          chrome.alarms.clear("updateCheck");
+        }
+      });
       this.minimal.find('#updateCheck').show();
       chrome.permissions.contains({
         permissions: ['webRequest']

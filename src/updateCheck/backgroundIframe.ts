@@ -3,11 +3,6 @@ declare var browser: any;
 export function checkInit(){
   chrome.alarms.get("updateCheck", function(a) {
     if(typeof a === 'undefined'){
-      con.log('Create updateCheck Alarm');
-      chrome.alarms.create("updateCheck", {
-        periodInMinutes: 60 * 24
-      });
-      startCheck();
     }else{
       con.log(a);
     }
