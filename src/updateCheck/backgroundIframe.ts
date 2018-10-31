@@ -84,7 +84,6 @@ async function updateElement(el, type = "anime", retryNum = 0){
       },60000);
       continueCheck[id] = async function(list){
         clearTimeout(timeout);
-        con.error(list);
         if (typeof list !== 'undefined' && list.length > 0) {
           var newestEpisode = list.length - 1;
           var newestEpisodeUrl = list[newestEpisode];
