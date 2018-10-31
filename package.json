@@ -37,6 +37,7 @@
     "package:firefox": "web-ext sign -a dist -s dist/webextension --api-key $sign_key --api-secret $sign_secret --id $sign_id",
     "package:chrome": "CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID} REFRESH_TOKEN=${REFRESH_TOKEN} node ./package/deployChrome",
     "dev:userscript": "webpack --watch --progress --config webpackConfig/userscript.config.js",
+    "dev:webextension": "npm run dev:webextension:content | npm run dev:webextension:background | npm run dev:webextension:popup | npm run dev:webextension:updateCheck",
     "dev:webextension:content": "webpack --watch --progress --config webpackConfig/webextension.content.config.js",
     "dev:webextension:background": "webpack --watch --progress --config webpackConfig/webextension.background.config.js",
     "dev:webextension:popup": "webpack --watch --progress --config webpackConfig/webextension.popup.config.js",
