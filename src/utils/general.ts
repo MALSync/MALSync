@@ -208,7 +208,7 @@ export async function epPredictionUI(malid, callback){
       }
       if(elCache.newestEp && elCache.newestEp != '' && typeof elCache.newestEp != 'undefined'){
         episode = elCache.newestEp;
-        UI.color = 'orange';
+        UI.color = 'red';
       }
     }
     if(UI.color != ''){

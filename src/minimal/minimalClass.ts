@@ -811,7 +811,7 @@ export class minimal{
 
       utils.epPredictionUI(uid, function(prediction){
         var pre = prediction.prediction;
-        var color = 'red';
+        var color = 'orange';
         if(prediction.color != ''){
           color = prediction.color;
         }
