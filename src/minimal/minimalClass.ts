@@ -489,6 +489,7 @@ export class minimal{
               </select>
             </span>
           </li>
+          <span class="updateCheckEnable" style="display: none;">${materialCheckbox('updateCheckNotifications','Notifications')}<span>
           <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Debugging</button></li>
         </div>
 

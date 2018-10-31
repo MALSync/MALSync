@@ -103,15 +103,20 @@ async function updateElement(el, type = "anime", retryNum = 0){
 
           if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp && elCache.newestEp != ''){
             con.log('new Episode');
-            chrome.notifications.create(
-              streamUrl,
-              {
-                type: 'basic',
-                iconUrl: el['anime_image_path'],
-                title: el['anime_title'],
-                message: 'Episode '+newestEpisode+' released',
-             }
-            );
+            api.settings.init().then(()=>{
+              if(api.settings.get('updateCheckNotifications')){
+                chrome.notifications.create(
+                  streamUrl,
+                  {
+                    type: 'basic',
+                    iconUrl: el['anime_image_path'],
+                    title: el['anime_title'],
+                    message: 'Episode '+newestEpisode+' released',
+                 }
+                );
+              }
+            })
+
           }else{
             con.log('No new episode')
           }
