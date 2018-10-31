@@ -7,3 +7,5 @@ export var storage = userscriptLegacy;
 export var request = requestUserscriptLegacy;
 
 export var settings = settingsObj;
+
+export var type = 'userscript';

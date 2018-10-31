@@ -20,6 +20,8 @@ export var settingsObj = {
     Masterani: true,
     Kissmanga: true,
     Mangadex: true,
+
+    updateCheckNotifications: true,
   },
 
   init: async function (){

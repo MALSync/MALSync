@@ -1,5 +1,6 @@
 import {xhrI, xhrResponseI, sendMessageI, responseMessageI} from "./api/messageInterface";
 import {scheduleUpdate} from "./utils/scheduler";
+import {checkInit, checkContinue} from "./updateCheck/backgroundIframe";
 
 api.request.sendMessage = function(message: sendMessageI){
   return new Promise((resolve, reject) => {
@@ -47,6 +48,9 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
       }
       return true;
     }
+    case "iframeDone": {
+      checkContinue(message);
+    }
   }
   return undefined;
 }
@@ -68,3 +72,49 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
     scheduleUpdate();
   }
 });
+
+checkInit();
+
+function webRequestListener(){
+  chrome.permissions.contains({
+    permissions: ['webRequest']
+  }, function(result) {
+    if (result) {
+      con.log('webRequest permissions found');
+      chrome.webRequest.onHeadersReceived.addListener(function (details) {
+        con.log('test', details);
+        if(details.initiator!.indexOf(chrome.runtime.id) !== -1){
+          con.log('Remove x-frame-options');
+          for (var i = 0; i < details.responseHeaders!.length; ++i) {
+            if (details.responseHeaders![i].name.toLowerCase() == 'x-frame-options') {
+              details.responseHeaders!.splice(i, 1);
+              return {
+                responseHeaders: details.responseHeaders
+              };
+            }
+          }
+        }
+      }, {
+        urls: ["*://*/*mal-sync-background=*"]
+      }, ["blocking", "responseHeaders"]);
+    } else {
+      con.log('No webRequest permissions');
+    }
+  });
+}
+
+webRequestListener();
+chrome.permissions.onAdded.addListener(function(){
+  webRequestListener();
+});
+
+chrome.notifications.onClicked.addListener(function(notificationId) {
+  chrome.tabs.create({url: notificationId});
+});
+
+/*chrome.permissions.request({
+    permissions: ["webRequest", "webRequestBlocking"],
+    origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+  }, function(granted) {
+    con.log('optional_permissions', granted);
+  });*/

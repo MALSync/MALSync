@@ -341,6 +341,10 @@ export class syncPage{
     }
   }
 
+  cdn(){
+
+  }
+
   async getMalUrl(identifier: string, title: string, page){
     var This = this;
     var cache = await api.storage.get(this.page.name+'/'+identifier+'/Mal' , null);

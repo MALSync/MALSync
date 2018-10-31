@@ -469,6 +469,30 @@ export class minimal{
           </li>
         </div>
 
+        <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">Update Check</h2>
+          </div>
+
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Interval
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select name="updateCheckTime" id="updateCheckTime" class="inputtext mdl-textfield__input" style="outline: none;">
+                <option value="0">Off</option>
+                <option value="60">1h</option>
+                <option value="240">4h</option>
+                <option value="720">12h</option>
+                <option value="1440">24h</option>
+                <option value="2880">48h</option>
+              </select>
+            </span>
+          </li>
+          <span class="updateCheckEnable" style="display: none;">${materialCheckbox('updateCheckNotifications','Notifications')}<span>
+          <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Debugging</button></li>
+        </div>
+
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">ETC</h2>
@@ -579,6 +603,46 @@ export class minimal{
     listener.forEach(function(fn) {
       fn();
     });
+
+    if(api.type == 'webextension' && this.isPopup()){
+      chrome.alarms.get("updateCheck", (a:any) => {
+        con.log(a);
+        interval = 0;
+        if(typeof a !== 'undefined'){
+          var interval = a!.periodInMinutes;
+          this.minimal.find('.updateCheckEnable').show();
+        }
+        this.minimal.find('#updateCheckTime').val(interval);
+      });
+
+      this.minimal.find("#updateCheckTime").change(() => {
+        var updateCheckTime = this.minimal.find('#updateCheckTime').val();
+        if(updateCheckTime != 0 && updateCheckTime != '0' ){
+          this.minimal.find('.updateCheckEnable').show();
+          chrome.alarms.create("updateCheck", {
+            periodInMinutes: parseInt(updateCheckTime)
+          });
+          if(!utils.canHideTabs()){
+            chrome.permissions.request({
+              permissions: ["webRequest", "webRequestBlocking"],
+              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+            }, function(granted) {
+              con.log('optional_permissions', granted);
+            });
+          };
+          chrome.alarms.create("updateCheckNow", {
+            when: Date.now() + 1000
+          });
+        }else{
+          this.minimal.find('.updateCheckEnable').hide();
+          chrome.alarms.clear("updateCheck");
+        }
+      });
+      this.minimal.find('#updateCheck').show();
+    }
+    this.minimal.find('#updateCheckUi').click(() => {
+      this.updateCheckUi();
+    })
 
     //helper
 
@@ -747,11 +811,15 @@ export class minimal{
 
       utils.epPredictionUI(uid, function(prediction){
         var pre = prediction.prediction;
+        var color = 'orange';
+        if(prediction.color != ''){
+          color = prediction.color;
+        }
         if(pre.airing){
           if(pre.episode){
             var progressBar = domE.find('.mdl-progress');
             var predictionProgress = ( pre.episode / progressBar.attr('series_episodes') ) * 100;
-            progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(pre.diffWeeks+1)+'" style="width: '+predictionProgress+'%; background-color: red; z-index: 1; left: 0;"></div>');
+            progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(pre.diffWeeks+1)+'" style="width: '+predictionProgress+'%; background-color: '+color+'; z-index: 1; left: 0;"></div>');
             domE.attr('title', prediction.text);
           }
         }
@@ -816,6 +884,55 @@ export class minimal{
         }
       });
     });
+  }
+
+  updateCheckUi(type = 'anime'){
+    this.minimal.find('#material').addClass('pop-over');
+    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+
+    utils.getUserList(1, 'anime', null, null, async (list) => {
+      var html = `
+      <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric"></th>
+          <th>Episode</th>
+          <th>Message</th>
+        </tr>`;
+
+      for (var i = 0; i < list.length; i++) {
+        var el = list[i];
+        var title = el['anime_title'];
+        var episode = '';
+        var error = '';
+        var trColor = '';
+        con.log('el', el);
+        var elCache = await api.storage.get('updateCheck/'+type+'/'+el['anime_id']);
+        con.log('elCache', elCache);
+        if(typeof elCache != 'undefined'){
+          episode = elCache['newestEp']+'/'+el['anime_num_episodes'];
+          trColor = 'orange';
+          if(elCache['finished']){
+            error = 'finished';
+            trColor = 'green';
+          }
+          if(typeof elCache['error'] != 'undefined'){
+            error = elCache['error'];
+            trColor = 'red';
+          }
+        }
+        html += `
+        <tr style="background-color: ${trColor};">
+          <th class="mdl-data-table__cell--non-numeric">${title}</th>
+          <th>${episode}</th>
+          <th>${error}</th>
+        </tr>
+        `;
+      }
+
+      html += '</table>';
+      this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
+    });
+
   }
 
 }

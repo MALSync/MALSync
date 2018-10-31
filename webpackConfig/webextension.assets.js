@@ -19,6 +19,13 @@ const generateMatchExcludes = () => {
   return {match: match, exclude: exclude}
 }
 
+const backgroundMatch = (matches) => {
+  for(var i=0;i<matches.length;i++){
+      matches[i]=matches[i]+'*mal-sync-background=*';
+  }
+  return matches;
+}
+
 const generateManifest = () => {
   return JSON.stringify({
     'manifest_version': 2,
@@ -39,11 +46,20 @@ const generateManifest = () => {
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,
-        'exclude_globs': generateMatchExcludes().exclude,
+        'exclude_globs': generateMatchExcludes().exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'
         ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': backgroundMatch(generateMatchExcludes().match),
+        'js': [
+          'vendor/jquery.min.js',
+          'update-check.js'
+        ],
+        "all_frames": true,
         "run_at": "document_start"
       }
     ],
@@ -59,8 +75,15 @@ const generateManifest = () => {
     'permissions': [
       "storage",
       "alarms",
-      "https://myanimelist.net/"
-    ]
+      "https://myanimelist.net/",
+      "notifications",
+      "https://myanimelist.cdn-dena.com/",
+      "tabHide"
+    ],
+    "optional_permissions": [
+      "webRequest",
+      "webRequestBlocking"
+    ].concat(generateMatchExcludes().match),
   }, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
