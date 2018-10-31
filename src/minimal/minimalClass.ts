@@ -628,6 +628,9 @@ export class minimal{
               con.log('optional_permissions', granted);
             });
           };
+          chrome.alarms.create("updateCheckNow", {
+            when: Date.now() + 1000
+          });
         }else{
           chrome.alarms.clear("updateCheck");
         }

@@ -9,7 +9,7 @@ export function checkInit(){
   });
 
   chrome.alarms.onAlarm.addListener(function(alarm) {
-    if (alarm.name === "updateCheck") {
+    if (alarm.name === "updateCheck" || alarm.name === "updateCheckNow") {
       startCheck()
     }
   });
