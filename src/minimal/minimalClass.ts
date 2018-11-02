@@ -472,6 +472,7 @@ export class minimal{
         <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">Update Check</h2>
+            ${utils.getTooltip('Checks for new episodes in the background.')}
           </div>
 
           <li class="mdl-list__item">
