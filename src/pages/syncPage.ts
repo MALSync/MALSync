@@ -476,7 +476,14 @@ export class syncPage{
 
   async setOffset(value:number){
     this.offset = value;
-    return api.storage.set(this.page.name+'/'+this.page.sync.getIdentifier(this.url)+'/Offset', value);
+    var getIdentifier;
+    if(this.page.isSyncPage(this.url)){
+      getIdentifier = this.page.sync.getIdentifier;
+    }else{
+      getIdentifier = this.page.overview!.getIdentifier;
+      this.handleList();
+    }
+    return api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
   }
 
   UILoaded:boolean = false;
