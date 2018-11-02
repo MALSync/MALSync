@@ -67,7 +67,29 @@ chrome.alarms.get("schedule", function(a) {
   }
 });
 
+chrome.alarms.get("updateCheck", async function(a) {
+  if(typeof a === 'undefined'){
+    var updateCheckTime = await api.storage.get("updateCheckTime");
+    if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){
+      var updateCheck = await api.storage.get("updateCheck");
+      if(typeof updateCheck === 'undefined' || !parseInt(updateCheck) || parseInt(updateCheck) < Date.now()){
+        updateCheck = Date.now() + 1000;
+      }
+      con.log('Create updateCheck Alarm', updateCheckTime+'m', updateCheck);
+      chrome.alarms.create("updateCheck", {
+        periodInMinutes: parseInt(updateCheckTime),
+        when: parseInt(updateCheck)
+      });
+    }
+  }else{
+    con.log(a);
+  }
+});
+
 chrome.alarms.onAlarm.addListener(function(alarm) {
+  if(typeof alarm.periodInMinutes != 'undefined'){
+    api.storage.set( alarm.name, Date.now() + ( alarm.periodInMinutes * 1000 * 60) );
+  }
   if (alarm.name === "schedule") {
     scheduleUpdate();
   }

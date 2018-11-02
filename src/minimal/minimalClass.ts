@@ -617,6 +617,7 @@ export class minimal{
 
       this.minimal.find("#updateCheckTime").change(() => {
         var updateCheckTime = this.minimal.find('#updateCheckTime').val();
+        api.storage.set( 'updateCheckTime', updateCheckTime );
         if(updateCheckTime != 0 && updateCheckTime != '0' ){
           this.minimal.find('.updateCheckEnable').show();
           chrome.alarms.create("updateCheck", {
