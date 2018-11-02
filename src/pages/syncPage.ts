@@ -483,7 +483,11 @@ export class syncPage{
       getIdentifier = this.page.overview!.getIdentifier;
       this.handleList();
     }
-    return api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
+    var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
+    if(typeof this.malObj != 'undefined'){
+      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.id)
+    }
+    return returnValue;
   }
 
   UILoaded:boolean = false;
