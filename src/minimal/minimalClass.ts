@@ -923,7 +923,10 @@ export class minimal{
         }
         html += `
         <tr style="background-color: ${trColor};">
-          <th class="mdl-data-table__cell--non-numeric">${title}</th>
+          <th class="mdl-data-table__cell--non-numeric">
+            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+el['anime_id']}"><i class="material-icons">delete</i></button>
+            ${title}
+          </th>
           <th>${episode}</th>
           <th>${error}</th>
         </tr>
@@ -932,6 +935,14 @@ export class minimal{
 
       html += '</table>';
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
+      this.minimal.find('.delete-updateCheck').click(function(){
+        //@ts-ignore
+        var thisEl = $(this);
+        var delData = thisEl.data('delete');
+        con.log('delete', delData);
+        api.storage.remove(delData);
+        thisEl.parent().parent().css('background-color', 'black');
+      });
     });
 
   }
