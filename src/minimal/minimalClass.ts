@@ -893,6 +893,12 @@ export class minimal{
 
     utils.getUserList(1, 'anime', null, null, async (list) => {
       var html = `
+      <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
+        Refresh
+      </button>
+      <button class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
+        Start Check
+      </button>
       <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
         <tr>
           <th class="mdl-data-table__cell--non-numeric"></th>
@@ -935,6 +941,18 @@ export class minimal{
 
       html += '</table>';
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
+
+      this.minimal.find('.refresh-updateCheck').click(() => {
+        this.updateCheckUi(type);
+      });
+
+      this.minimal.find('.startCheck-updateCheck').click(() => {
+        chrome.alarms.create("updateCheckNow", {
+          when: Date.now() + 1000
+        });
+        utils.flashm("Check started");
+      });
+
       this.minimal.find('.delete-updateCheck').click(function(){
         //@ts-ignore
         var thisEl = $(this);
