@@ -196,6 +196,7 @@ export async function epPredictionUI(malid, callback){
       text: '',
       color: '',
       colorStyle: '',
+      tagEpisode: false,
       prediction: pre,
       elCache: elCache
     };
@@ -222,6 +223,7 @@ export async function epPredictionUI(malid, callback){
       }
       if(episode){
         UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">[<span style="'+UI.colorStyle+';">'+episode+'</span>]</span>';
+        UI.tagEpisode = episode;
       }
     }else{
       UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';

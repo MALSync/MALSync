@@ -817,13 +817,11 @@ export class minimal{
         if(prediction.color != ''){
           color = prediction.color;
         }
-        if(pre.airing){
-          if(pre.episode){
-            var progressBar = domE.find('.mdl-progress');
-            var predictionProgress = ( pre.episode / progressBar.attr('series_episodes') ) * 100;
-            progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(pre.diffWeeks+1)+'" style="width: '+predictionProgress+'%; background-color: '+color+'; z-index: 1; left: 0;"></div>');
-            domE.attr('title', prediction.text);
-          }
+        if(prediction.tagEpisode){
+          var progressBar = domE.find('.mdl-progress');
+          var predictionProgress = ( prediction.tagEpisode / progressBar.attr('series_episodes') ) * 100;
+          progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(prediction.tagEpisode)+'" style="width: '+predictionProgress+'%; background-color: '+color+'; z-index: 1; left: 0;"></div>');
+          domE.attr('title', prediction.text);
         }
 
       });
