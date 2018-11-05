@@ -3,6 +3,7 @@ export var settingsObj = {
     autoTracking: true,
     delay: 0,
     malTags: true,
+    malResume: true,
     epPredictions: true,
 
     posLeft: 'left',

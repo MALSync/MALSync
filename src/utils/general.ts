@@ -124,6 +124,8 @@ export async function setResumeWaching(url:string, ep:number, type, id){
 }
 
 export async function getResumeWaching(type, id):Promise<{url:string, ep:number}>{
+  //@ts-ignore
+  if(!api.settings.get('malResume')) return undefined;
   return api.storage.get('resume/'+type+'/'+id);
 }
 
