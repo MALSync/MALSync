@@ -200,6 +200,8 @@ export class syncPage{
           utils.flashm(message);
         }
 
+        This.fillUI();
+
         return;
       }).catch(function(e){
         con.error(e);
