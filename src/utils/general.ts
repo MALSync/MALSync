@@ -228,7 +228,9 @@ export async function epPredictionUI(malid, callback){
         UI.tagEpisode = episode;
       }
     }else{
-      UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';
+      if(pre){
+        UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';
+      }
     }
     callback(UI);
   });
