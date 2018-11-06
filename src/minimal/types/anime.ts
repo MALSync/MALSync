@@ -365,6 +365,23 @@ export class animeType{
       })
     }catch(e) {console.log('[iframeOverview] Error:',e);}
 
+    try{
+      minimal.find('.related-block a').each(function(){
+        //@ts-ignore
+        var el = $(this);
+        var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
+        if(typeof url != 'undefined'){
+          var malObj = new mal(url);
+          malObj.init().then(() => {
+            var tag = utils.statusTag(malObj);
+            if(tag){
+              el.wrap( "<div></div>" ).after('<span>'+tag+'</span>')
+            }
+          });
+        }
+      })
+    }catch(e) {console.log('[iframeOverview] Error:',e);}
+
   }
 
   async reviews(minimal){

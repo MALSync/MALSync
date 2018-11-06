@@ -393,73 +393,15 @@ export class myanimelistClass{
   }
 
   related(){
-    var info = {
-      anime: {
-        1:{
-          class: 'watching',
-          text: 'CW',
-          title: 'Watching'
-        },
-        2:{
-          class: 'completed',
-          text: 'CMPL',
-          title: 'Completed'
-        },
-        3:{
-          class: 'on-hold',
-          text: ' HOLD',
-          title: 'On-Hold'
-        },
-        4:{
-          class: 'dropped',
-          text: 'DROP',
-          title: 'Dropped'
-        },
-        6:{
-          class: 'plantowatch',
-          text: 'PTW',
-          title: 'Plan to Watch'
-        }
-      },
-      manga: {
-        1:{
-          class: 'reading',
-          text: 'CR',
-          title: 'Reading'
-        },
-        2:{
-          class: 'completed',
-          text: 'CMPL',
-          title: 'Completed'
-        },
-        3:{
-          class: 'on-hold',
-          text: ' HOLD',
-          title: 'On-Hold'
-        },
-        4:{
-          class: 'dropped',
-          text: 'DROP',
-          title: 'Dropped'
-        },
-        6:{
-          class: 'plantoread',
-          text: 'PTR',
-          title: 'Plan to Read'
-        }
-      }
-    }
-
     $('.anime_detail_related_anime a').each(function(){
       var el = $(this);
       var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
       if(typeof url != 'undefined'){
         var malObj = new mal(url);
         malObj.init().then(() => {
-          var status = malObj.getStatus();
-          if(status){
-            var tempInfo = info[malObj.type][status];
-            el.after(` <a href="https://myanimelist.net/ownlist/${malObj.type}/${malObj.id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`)
+          var tag = utils.statusTag(malObj);
+          if(tag){
+            el.after(tag)
           }
         });
       }

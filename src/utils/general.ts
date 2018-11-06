@@ -304,6 +304,71 @@ export async function epPrediction(malId , callback){
   callback(false);
 }
 
+export function statusTag(malObj){
+  var info = {
+    anime: {
+      1:{
+        class: 'watching',
+        text: 'CW',
+        title: 'Watching'
+      },
+      2:{
+        class: 'completed',
+        text: 'CMPL',
+        title: 'Completed'
+      },
+      3:{
+        class: 'on-hold',
+        text: ' HOLD',
+        title: 'On-Hold'
+      },
+      4:{
+        class: 'dropped',
+        text: 'DROP',
+        title: 'Dropped'
+      },
+      6:{
+        class: 'plantowatch',
+        text: 'PTW',
+        title: 'Plan to Watch'
+      }
+    },
+    manga: {
+      1:{
+        class: 'reading',
+        text: 'CR',
+        title: 'Reading'
+      },
+      2:{
+        class: 'completed',
+        text: 'CMPL',
+        title: 'Completed'
+      },
+      3:{
+        class: 'on-hold',
+        text: ' HOLD',
+        title: 'On-Hold'
+      },
+      4:{
+        class: 'dropped',
+        text: 'DROP',
+        title: 'Dropped'
+      },
+      6:{
+        class: 'plantoread',
+        text: 'PTR',
+        title: 'Plan to Read'
+      }
+    }
+  }
+  var status = malObj.getStatus();
+  if(status){
+    var tempInfo = info[malObj.type][status];
+    return` <a href="https://myanimelist.net/ownlist/${malObj.type}/${malObj.id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
+  }
+  return false;
+}
+
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
     con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
