@@ -191,7 +191,11 @@ export async function epPredictionUI(malid, callback){
 
   utils.epPrediction(malid, async function(pre){
     var type = 'anime';
-    var elCache = await api.storage.get('updateCheck/'+type+'/'+malid);
+    var updateCheckTime = await api.storage.get("updateCheckTime");
+    var elCache:any = undefined;
+    if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){
+      elCache = await api.storage.get('updateCheck/'+type+'/'+malid);
+    }
     if(pre === false && typeof elCache == 'undefined') return;
     var UI = {
       tag: '',
