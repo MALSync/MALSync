@@ -499,6 +499,7 @@ export class minimal{
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">ETC</h2>
           </div>
+          <span class="option-extension" style="display: none;">${materialCheckbox('userscriptMode','Userscript mode'+utils.getTooltip('Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.','','bottom'))}</span>
           <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
         </div>
 
@@ -605,6 +606,10 @@ export class minimal{
     listener.forEach(function(fn) {
       fn();
     });
+
+    if(api.type == 'webextension'){
+      this.minimal.find('.option-extension').show();
+    }
 
     if(api.type == 'webextension' && this.isPopup()){
       chrome.alarms.get("updateCheck", (a:any) => {

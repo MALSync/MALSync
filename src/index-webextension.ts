@@ -3,6 +3,7 @@ import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {firebaseNotification} from "./utils/firebaseNotification";
 
 function main() {
+  if(api.settings.get('userscriptMode')) return;
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
     var mal = new myanimelistClass(window.location.href);
     messageMalListener(mal);

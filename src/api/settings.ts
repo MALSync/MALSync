@@ -1,6 +1,7 @@
 export var settingsObj = {
   options: {
     autoTracking: true,
+    userscriptMode: false,
     delay: 0,
     malTags: true,
     malResume: true,
