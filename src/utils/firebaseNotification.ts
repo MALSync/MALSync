@@ -36,14 +36,14 @@ function checkNotifications(){
               flashm.find('.okChangelog').click(function(){
                 flashm.remove();
                 api.storage.set('firebaseNotification', next).then(function(){
-                  firebaseNotification();
+                  checkNotifications();
                 });
               })
             });
           }else{
             con.info('Notification empty', response.responseText);
             api.storage.set('firebaseNotification', next).then(function(){
-              firebaseNotification();
+              checkNotifications();
             });
           }
 

@@ -1,7 +1,7 @@
 import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {scheduleUpdate} from "./utils/scheduler";
-
+import {firebaseNotification} from "./utils/firebaseNotification";
 
 function main() {
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
@@ -11,6 +11,7 @@ function main() {
     var page = new syncPage(window.location.href);
     page.init();
   }
+  firebaseNotification();
 }
 
 var css = "font-size: 40px; padding-bottom: 3px; color: white; text-shadow: -1px -1px #2e51a2, 1px -1px #2e51a2, -1px 1px #2e51a2, 1px 1px #2e51a2, 2px 2px #2e51a2, 3px 3px #2e51a2;";
