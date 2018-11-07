@@ -382,11 +382,13 @@ export class myanimelistClass{
               );
           }
 
-          utils.epPredictionUI(id, function(prediction){
-            book.predictionPos(element, prediction.tag);
-          });
-
         }
+
+        utils.epPredictionUI(id, function(prediction){
+          var element = book.getElement(malUrl);
+          book.predictionPos(element, prediction.tag);
+        });
+
       });
       book.cleanTags();
     });
