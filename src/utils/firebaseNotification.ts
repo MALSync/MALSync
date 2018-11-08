@@ -18,9 +18,7 @@ function checkNotifications(){
       var last = parseInt(await api.storage.get('firebaseNotification'));
       var next = last + 1;
       if(typeof last == undefined || isNaN(last)){
-        //todo: Temporary
-        api.storage.set('firebaseNotification', 1);
-        //api.storage.set('firebaseNotification', current);
+        api.storage.set('firebaseNotification', current);
         return;
       }
       if(current >= next){
