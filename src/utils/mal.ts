@@ -142,6 +142,7 @@ export class mal{
 
     if(this.type == "manga"){
       this.animeInfo[".add_manga[tags]"] = tags;
+      return;
     }
     this.animeInfo[".add_anime[tags]"] = tags;
   }
