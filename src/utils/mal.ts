@@ -287,6 +287,7 @@ export class mal{
       anime['.add_anime[rewatch_value]'] = getselect(data,'add_anime[rewatch_value]');
       anime['.add_anime[comments]'] = data.split('name="add_anime[comments]"')[1].split('>')[1].split('<')[0];
       anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
+      if(anime['.add_anime[is_asked_to_discuss]'] == '') anime['.add_anime[is_asked_to_discuss]'] = 0; //#15
       anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
       anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
       con.log('[GET] Object:',anime);
@@ -331,6 +332,7 @@ export class mal{
       anime['.add_manga[reread_value]'] = getselect(data,'add_manga[reread_value]');
       anime['.add_manga[comments]'] = data.split('name="add_manga[comments]"')[1].split('>')[1].split('<')[0];
       anime['.add_manga[is_asked_to_discuss]'] = getselect(data,'add_manga[is_asked_to_discuss]');
+      if(anime['.add_manga[is_asked_to_discuss]'] == '') anime['.add_manga[is_asked_to_discuss]'] = 0; //#15
       anime['.add_manga[sns_post_type]'] = getselect(data,'add_manga[sns_post_type]');
       anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
       con.log('[GET] Object:', anime);
