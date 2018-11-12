@@ -395,18 +395,20 @@ export class myanimelistClass{
   }
 
   related(){
-    $('.anime_detail_related_anime a').each(function(){
-      var el = $(this);
-      var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
-      if(typeof url != 'undefined'){
-        var malObj = new mal(url);
-        malObj.init().then(() => {
-          var tag = utils.statusTag(malObj);
-          if(tag){
-            el.after(tag)
-          }
-        });
-      }
-    })
+    $(document).ready(function(){
+      $('.anime_detail_related_anime a').each(function(){
+        var el = $(this);
+        var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
+        if(typeof url != 'undefined'){
+          var malObj = new mal(url);
+          malObj.init().then(() => {
+            var tag = utils.statusTag(malObj);
+            if(tag){
+              el.after(tag)
+            }
+          });
+        }
+      })
+    });
   }
 }
