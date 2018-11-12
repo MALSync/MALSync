@@ -373,7 +373,7 @@ export class animeType{
         if(typeof url != 'undefined'){
           var malObj = new mal(url);
           malObj.init().then(() => {
-            var tag = utils.statusTag(malObj);
+            var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
             if(tag){
               el.wrap( "<div></div>" ).after('<span>'+tag+'</span>')
             }
