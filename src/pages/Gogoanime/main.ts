@@ -25,7 +25,7 @@ export const Gogoanime: pageInterface = {
       uiSelector: function(selector){selector.prependTo(j.$(".anime_info_body").first());},
       list:{
         elementsSelector: function(){return j.$("#episode_related a");},
-        elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Gogoanime.domain);},
+        elementUrl: function(selector){return utils.absoluteLink(selector.attr('href').replace(/^ /,''), Gogoanime.domain);},
         elementEp: function(selector){
           var url = Gogoanime.overview!.list!.elementUrl(selector);
           return Gogoanime.sync.getEpisode(url);
@@ -50,6 +50,7 @@ export const Gogoanime: pageInterface = {
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){
+        Gogoanime.domain = window.location.protocol+"//"+window.location.hostname;
         page.handlePage();
 
         j.$('#episode_page').click(function(){
