@@ -81,6 +81,7 @@ export class myanimelistClass{
         break
       case 'character':
       case 'people':
+        this.relatedTag();
       case 'search':
         this.thumbnails();
         break;
@@ -402,7 +403,7 @@ export class myanimelistClass{
         if(typeof url != 'undefined'){
           var malObj = new mal(url);
           malObj.init().then(() => {
-            var tag = utils.statusTag(malObj);
+            var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
             if(tag){
               el.after(tag)
             }
@@ -411,4 +412,22 @@ export class myanimelistClass{
       })
     });
   }
+
+  relatedTag(){
+    $(document).ready(function(){
+      $('a.button_edit').each(function(){
+        var el = $(this);
+        var href = $(this).attr('href');
+        var type =  utils.urlPart(href, 4);
+        var id = utils.urlPart(href, 5);
+        var state = el.attr('title');
+        if(typeof state != 'undefined' && state){
+          var tag = utils.statusTag(state, type, id);
+          el.parent().parent().find('> a').after(tag);
+          el.remove();
+        }
+      });
+    });
+  }
+
 }

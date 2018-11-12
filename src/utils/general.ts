@@ -304,7 +304,7 @@ export async function epPrediction(malId , callback){
   callback(false);
 }
 
-export function statusTag(malObj){
+export function statusTag(status, type, id){
   var info = {
     anime: {
       1:{
@@ -361,10 +361,15 @@ export function statusTag(malObj){
       }
     }
   }
-  var status = malObj.getStatus();
+
+  $.each([1,2,3,4,6], function(i,el){
+    info.anime[info.anime[el].title] = info.anime[el];
+    info.manga[info.manga[el].title] = info.manga[el];
+  });
+
   if(status){
-    var tempInfo = info[malObj.type][status];
-    return` <a href="https://myanimelist.net/ownlist/${malObj.type}/${malObj.id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
+    var tempInfo = info[type][status];
+    return` <a href="https://myanimelist.net/ownlist/${type}/${id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
   }
   return false;
 }
