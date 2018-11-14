@@ -266,3 +266,11 @@ img.lazyload:not(.loaded) {
   padding-top: 2px;
   padding-bottom: 2px;
 }
+
+#changelog-content .badge{
+  opacity: 0.4;
+}
+
+#changelog-content .card:hover .badge, #changelog-content .card.border-light .badge{
+  opacity: 1;
+}

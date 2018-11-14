@@ -234,6 +234,22 @@ function changelog(){
       })
     }
 
+    var badges = /\[(.*?)\]/g.exec(message);
+    if(badges){
+      badges.forEach(function(badge){
+        if(badge[0] != '[') return
+        var content = badge.replace(/(^\[|\]$)/g,'');
+        var type = 'secondary';
+        if(content === 'FEATURE'){
+          type = 'info';
+        }
+        if(content === 'BUGFIX'){
+          type = 'warning';
+        }
+        message = message.replace(badge,'<span class="badge badge-'+type+'" style="float: right; margin-top: 3px;">'+content+'</span>');
+      })
+    }
+
     return message;
   }
 }
