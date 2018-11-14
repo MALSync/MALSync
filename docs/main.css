@@ -19,7 +19,7 @@ table {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
   background-color: #411835;
-  background-image: url(./../lain.png);
+  background-image: url(lain.png);
 }
 @-webkit-keyframes spin {
   0% {
@@ -38,6 +38,31 @@ table {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+.loader2-div{
+  -ms-transform: rotate(217deg) scale(0.5);
+      transform: rotateZ(217deg) scale(0.5);
+  -webkit-transform: rotateZ(217deg) scale(0.5);
+  margin-left: -31px;
+  margin-top: -22px;
+  margin-bottom: -28px;
+  border: 10px solid white;
+  border-radius: 50%;
+}
+.loader2 {
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  background-color: #411835;
+  background-image: url(lain.png);
+}
+.loader2:hover{
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
 #sidebar,
 #sidebar-inner {
