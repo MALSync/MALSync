@@ -36,12 +36,12 @@ function init(){
 }
 
 function home(){
-  //pushHistory('/');
+  pushHistory('/');
   switchPage('home');
 }
 
 function changelog(){
-  //pushHistory('/changelog');
+  pushHistory('/changelog');
   var data = [
     {
       title: '0.2.13',
@@ -261,7 +261,12 @@ function pushHistory(path, title){
   console.log(data);
   window.history.replaceState(data, window.location.pathname, window.location.pathname);
   //push
-  history.pushState(data, title, path);
+  try{
+    history.pushState(data, title, path);
+  }catch(e){
+    console.error(e);
+  }
+
   scrollPos = null;
 }
 
