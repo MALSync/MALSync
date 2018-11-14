@@ -59,10 +59,14 @@ table {
   height: 120px;
   background-color: #411835;
   background-image: url(lain.png);
-}
-.loader2:hover{
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.loader2:hover{
+  -webkit-animation-play-state: running;
+  animation-play-state: running;
 }
 #sidebar,
 #sidebar-inner {
