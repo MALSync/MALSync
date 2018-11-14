@@ -273,6 +273,10 @@ img.lazyload:not(.loaded) {
   color: white;
 }
 
+.card .list-group-item a{
+  text-decoration: underline;
+}
+
 .card .card-header{
   padding: 7px 5px;
 }
