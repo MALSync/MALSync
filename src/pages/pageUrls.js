@@ -82,11 +82,12 @@ module.exports = {
       '*://*.gogoanime.in/*',
       '*://*.gogoanime.se/*',
       '*://*.gogoanime.sh/*',
+      '*://*.gogoanimes.co/*',
     ],
     exclude: [
-      '*gogoanime.*/',
-      '*gogoanime.*/*.html',
-      '*gogoanime.*/anime-List*',
+      '*gogoanime*.*/',
+      '*gogoanime*.*/*.html',
+      '*gogoanime*.*/anime-List*',
     ]
   }
 }

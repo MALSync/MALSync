@@ -1,5 +1,5 @@
 export interface pageInterface {
-    domain: string,
+    domain: string | string[],
     name: string,
     type: "anime"|"manga",
     isSyncPage: (url) => boolean,

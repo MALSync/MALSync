@@ -26,9 +26,28 @@ export class syncPage{
   private getPage(url){
     for (var key in pages) {
       var page = pages[key];
-      if( url.indexOf(utils.urlPart(page.domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
-        return page;
+      if($.isArray(page.domain)){
+        for (var k in page.domain) {
+          var singleDomain = page.domain[k];
+          if(checkDomain(singleDomain)){
+            page.domain = singleDomain;
+            return page;
+          }
+        }
+      }else{
+        if(checkDomain(page.domain)){
+          return page;
+        }
       }
+
+      function checkDomain(domain){
+        con.log(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.');
+        if( url.indexOf(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
+          return true;
+        }
+        return false;
+      }
+
     }
     return null;
   }

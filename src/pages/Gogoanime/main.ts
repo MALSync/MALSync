@@ -2,7 +2,7 @@ import {pageInterface} from "./../pageInterface";
 
 export const Gogoanime: pageInterface = {
     name: 'Gogoanime',
-    domain: 'https://gogoanime.tv',
+    domain: ['https://gogoanimes.co', 'https://gogoanime.tv'],
     database: 'Gogoanime',
     type: 'anime',
     isSyncPage: function(url){
