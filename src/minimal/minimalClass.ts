@@ -660,6 +660,15 @@ export class minimal{
       this.updateCheckUi();
     })
 
+    api.storage.get('tempVersion')
+      .then((version) => {
+        if(typeof version == undefined || version != api.storage.version()){
+          this.flashm('Updated to version '+api.storage.version()+' [<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">CHANGELOG</a>]', function(){
+            api.storage.set('tempVersion', api.storage.version());
+          });
+        }
+      });
+
     //helper
 
     function materialCheckbox(option, text, header = false){
