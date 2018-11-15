@@ -49,7 +49,18 @@ export const Gogoanime: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      j.$(document).ready(function(){
+      if(Gogoanime.isSyncPage(page.url)){
+        j.$(document).ready(function(){
+          start();
+        });
+      }else{
+        con.log('noSync');
+        utils.waitUntilTrue(function(){return j.$('#episode_related').length}, function(){
+          start();
+        });
+      }
+
+      function start(){
         Gogoanime.domain = window.location.protocol+"//"+window.location.hostname;
         page.handlePage();
 
@@ -58,8 +69,7 @@ export const Gogoanime: pageInterface = {
             page.handleList();
           }, 500);
         });
-
-      });
+      }
 
     }
 };
