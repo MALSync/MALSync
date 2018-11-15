@@ -978,4 +978,34 @@ export class minimal{
 
   }
 
+  flashm(text, closefn = function(){}){
+    var mess =`
+      <div style="
+        background-color: #3f51b5;
+        text-align: center;
+        padding: 5px 24px;
+        color: white;
+        border-top: 1px solid #fefefe;
+      ">
+        ${text}
+        <i class="material-icons close" style="
+          float: right;
+          font-size: 24px;
+          margin-top: -2px;
+          margin-right: -24px;
+          margin-bottom: -5px;
+        ">close</i>
+      </div>
+    `;
+
+    var flashmDiv = j.$(mess).appendTo(this.minimal.find('.mdl-layout'));
+    flashmDiv.find('.close').click(function(){
+      flashmDiv.slideUp(100, function(){
+        flashmDiv.remove();
+        closefn();
+      });
+    });
+    return flashmDiv;
+  }
+
 }
