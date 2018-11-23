@@ -75,6 +75,11 @@ module.exports = {
       '*://*.mangadex.org/chapter/*',
     ]
   },
+  Mangarock: {
+    match: [
+      '*://mangarock.com/manga/*',
+    ]
+  },
   Gogoanime: {
     match: [
       '*://*.gogoanime.tv/*',

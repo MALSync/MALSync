@@ -41,7 +41,6 @@ export class syncPage{
       }
 
       function checkDomain(domain){
-        con.log(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.');
         if( url.indexOf(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
           return true;
         }

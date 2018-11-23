@@ -4,6 +4,7 @@ import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
 import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
+import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
 
 import {pageSearchObj} from "./pageInterface";
@@ -15,6 +16,7 @@ export const pages = {
     Crunchyroll: Crunchyroll,
     Masterani: Masterani,
     Mangadex: Mangadex,
+    Mangarock: Mangarock,
     Gogoanime: Gogoanime,
 };
 
