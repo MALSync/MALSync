@@ -26,7 +26,7 @@ export class syncPage{
   private getPage(url){
     for (var key in pages) {
       var page = pages[key];
-      if($.isArray(page.domain)){
+      if(j.$.isArray(page.domain)){
         for (var k in page.domain) {
           var singleDomain = page.domain[k];
           if(checkDomain(singleDomain)){
