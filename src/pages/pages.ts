@@ -67,6 +67,12 @@ export const pageSearch:pageSearchObj = {
       domain: 'mangadex.org',
       searchUrl: (titleEncoded) => {return 'https://mangadex.org/quick_search/'+titleEncoded}
     },
+    Mangarock: {
+      name: 'Mangarock',
+      type: 'manga',
+      domain: 'mangarock.com',
+      searchUrl: (titleEncoded) => {return 'https://mangarock.com/search?q='+titleEncoded}
+    },
     AniList: {
       name: 'AniList',
       type: 'anime',
