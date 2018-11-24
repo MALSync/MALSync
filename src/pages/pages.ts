@@ -63,6 +63,12 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.gogoanime.in',
       searchUrl: (titleEncoded) => {return 'http://gogoanimes.co/search.html?keyword='+titleEncoded}
     },
+    Animeheaven: {
+      name: 'Animeheaven',
+      type: 'anime',
+      domain: 'animeheaven.eu',
+      searchUrl: (titleEncoded) => {return 'http://animeheaven.eu/search.php?q='+titleEncoded}
+    },
     Mangadex: {
       name: 'Mangadex',
       type: 'manga',
