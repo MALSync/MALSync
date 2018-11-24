@@ -28,7 +28,7 @@ export const Mangarock: pageInterface = {
       getTitle: function(){return j.$('h1').first().text().trim();},
       getIdentifier: function(url){return utils.urlPart(url, 4).replace(/mrs-serie-/i,'')},
       uiSelector: function(selector){
-        selector.insertAfter($( "h2:contains('Chapters')" ).first().parent().parent());
+        selector.insertBefore($( "h2:contains('Chapters')" ).first().parent().parent().parent());
       },
       /*list:{
         elementsSelector: function(){return j.$(".chapter-container > .row:not(:first-of-type) .chapter-row");},
@@ -43,6 +43,7 @@ export const Mangarock: pageInterface = {
 
       utils.urlChangeDetect(function(){
         page.url = window.location.href;
+        page.UILoaded = false;
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
         start();
       });
@@ -58,8 +59,14 @@ export const Mangarock: pageInterface = {
           });
         }else{
           j.$(document).ready(function(){
-            page.handlePage();
+            utils.waitUntilTrue(function(){
+              con.log('visibility', j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length);
+              return !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length
+            }, function(){
+              page.handlePage();
+            });
           });
+
         }
       }
     }
