@@ -6,6 +6,7 @@ import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
 import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
+import {Animeheaven} from "./Animeheaven/main"
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -18,6 +19,7 @@ export const pages = {
     Mangadex: Mangadex,
     Mangarock: Mangarock,
     Gogoanime: Gogoanime,
+    Animeheaven: Animeheaven,
 };
 
 export const pageSearch:pageSearchObj = {

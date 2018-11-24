@@ -63,6 +63,7 @@ export function absoluteLink(url, domain) {
     return url;
   }
   if(!url.startsWith("http")) {
+    if(url.charAt(0) !== '/') url = '/' + url;
     url = domain + url;
   }
   return url;

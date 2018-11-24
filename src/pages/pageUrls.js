@@ -94,5 +94,11 @@ module.exports = {
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
     ]
+  },
+  Animeheaven: {
+    match: [
+      '*://animeheaven.eu/i.php*',
+      '*://animeheaven.eu/watch.php*'
+    ]
   }
 }
