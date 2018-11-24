@@ -30,11 +30,11 @@ export const Mangarock: pageInterface = {
       uiSelector: function(selector){
         selector.insertBefore($( "h2:contains('Chapters')" ).first().parent().parent().parent());
       },
-      /*list:{
-        elementsSelector: function(){return j.$(".chapter-container > .row:not(:first-of-type) .chapter-row");},
+      list:{
+        elementsSelector: function(){return j.$('[data-test="chapter-table"] tr');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Mangarock.domain);},
-        elementEp: function(selector){return selector.attr('data-chapter');},
-      }*/
+        elementEp: function(selector){return EpisodePartToEpisode(selector.find('a').text());},
+      }
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
