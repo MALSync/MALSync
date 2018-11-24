@@ -38,17 +38,29 @@ export const Mangarock: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      if(Mangarock.isSyncPage(page.url)){
-        utils.waitUntilTrue(function(){return Mangarock.sync.getTitle(page.url)}, function(){
-          page.handlePage();
-        });
-        utils.urlChangeDetect(function(){
-          page.handlePage();
-        });
-      }else{
-        j.$(document).ready(function(){
-          page.handlePage();
-        });
+
+      start();
+
+      utils.urlChangeDetect(function(){
+        page.url = window.location.href;
+        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        start();
+      });
+
+      function start(){
+        if(!/manga/i.test(utils.urlPart(page.url, 3))){
+          con.log('Not a manga page!');
+          return;
+        }
+        if(Mangarock.isSyncPage(page.url)){
+          utils.waitUntilTrue(function(){return Mangarock.sync.getTitle(page.url)}, function(){
+            page.handlePage();
+          });
+        }else{
+          j.$(document).ready(function(){
+            page.handlePage();
+          });
+        }
       }
     }
 };
