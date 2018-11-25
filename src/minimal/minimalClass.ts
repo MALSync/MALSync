@@ -846,6 +846,45 @@ export class minimal{
           progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(prediction.tagEpisode)+'" style="width: '+predictionProgress+'%; background-color: '+color+'; z-index: 1; left: 0;"></div>');
           domE.attr('title', prediction.text);
         }
+        if(prediction.text != "" && prediction.text){
+          domE.find('.data.title').prepend(`
+            <div class="mdl-shadow--2dp" style="
+              position: absolute;
+              top: 0;
+              right: 0;
+              background-color: rgba(255, 255, 255, 0.9);
+              padding: 0px 5px;
+              margin: 5px 0;
+              text-align: center;
+            ">
+              ${preTexter(pre)}
+            </div>
+          `);
+        }
+
+        function preTexter(pre){
+          //Round hours
+          if(pre.diffDays > 1 && pre.diffHours > 12){
+            pre.diffDays++;
+          }
+
+          var text = '';
+          if(pre.diffDays > 1){
+            return text+pre.diffDays+' Days';
+          }
+          if(pre.diffDays == 1){
+            text += pre.diffDays+' Day ';
+          }
+
+          if(pre.diffHours > 1){
+            return text+pre.diffHours+' Hours';
+          }
+          if(pre.diffHours == 1){
+            text += pre.diffHours+' Hour ';
+          }
+
+          return text+pre.diffMinutes+' mins';
+        }
 
       });
 
