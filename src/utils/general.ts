@@ -143,6 +143,11 @@ export async function getContinueWaching(type, id):Promise<{url:string, ep:numbe
   return api.storage.get('continue/'+type+'/'+id);
 }
 
+export function handleMalImages(url){
+  if(url.indexOf('questionmark') !== -1) return api.storage.assetUrl('questionmark.gif');
+  return url;
+}
+
 export async function getMalToKissArray(type, id){
   return new Promise((resolve, reject) => {
     var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';

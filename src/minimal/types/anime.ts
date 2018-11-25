@@ -206,6 +206,8 @@ export class animeType{
             charImg = 'https://myanimelist.cdn-dena.com/images/questionmark_23.gif';
           }
 
+          charImg = utils.handleMalImages(charImg);
+
           tempWrapHtml += '<div>';
             tempWrapHtml += '<div class="mdl-grid" style="width: 126px;">';
               tempWrapHtml += '<div style="width: 100%; height: auto;">';

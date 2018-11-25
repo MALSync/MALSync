@@ -146,7 +146,8 @@ export class myanimelistClass{
           url = tags[i].getAttribute("src")!;
         }
 
-        if ( regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) ) {
+        if ( regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) || url.indexOf('questionmark') !== -1) {
+          url = utils.handleMalImages(url);
           if(!(url.indexOf("100x140") > -1)){
             tags[i].setAttribute("data-src", url);
             url = url.replace(/v.jpg$/g, '.jpg');
