@@ -91,6 +91,7 @@ export function initIframeModal(page){
               createIframe(page);
             }else if(typeof minimalObj !== 'undefined' && typeof(page.malObj) != 'undefined'){
               minimalObj.fillBase(page.malObj.url);
+              minimalObj.setPageSync(page);
             }
         }else{
             document.getElementById('info-popup')!.style.display = "none";

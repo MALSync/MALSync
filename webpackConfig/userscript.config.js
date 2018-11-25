@@ -31,6 +31,10 @@ const metadata = {
   'description': package['description'],
   'version': package['version'],
   'author': package['author'],
+  'license': 'GPL-3.0',
+  'iconURL': 'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png',
+  'downloadURL': 'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.user.js',
+  'updateURL': 'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.meta.js',
   'grant': [
     'GM_xmlhttpRequest',
     'GM_getValue',

@@ -4,7 +4,9 @@ import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
 import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
+import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
+import {Animeheaven} from "./Animeheaven/main"
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -15,7 +17,9 @@ export const pages = {
     Crunchyroll: Crunchyroll,
     Masterani: Masterani,
     Mangadex: Mangadex,
+    Mangarock: Mangarock,
     Gogoanime: Gogoanime,
+    Animeheaven: Animeheaven,
 };
 
 export const pageSearch:pageSearchObj = {
@@ -59,11 +63,23 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.gogoanime.in',
       searchUrl: (titleEncoded) => {return 'http://gogoanimes.co/search.html?keyword='+titleEncoded}
     },
+    Animeheaven: {
+      name: 'Animeheaven',
+      type: 'anime',
+      domain: 'animeheaven.eu',
+      searchUrl: (titleEncoded) => {return 'http://animeheaven.eu/search.php?q='+titleEncoded}
+    },
     Mangadex: {
       name: 'Mangadex',
       type: 'manga',
       domain: 'mangadex.org',
       searchUrl: (titleEncoded) => {return 'https://mangadex.org/quick_search/'+titleEncoded}
+    },
+    Mangarock: {
+      name: 'Mangarock',
+      type: 'manga',
+      domain: 'mangarock.com',
+      searchUrl: (titleEncoded) => {return 'https://mangarock.com/search?q='+titleEncoded}
     },
     AniList: {
       name: 'AniList',

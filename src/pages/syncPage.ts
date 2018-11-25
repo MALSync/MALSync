@@ -41,7 +41,6 @@ export class syncPage{
       }
 
       function checkDomain(domain){
-        con.log(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.');
         if( url.indexOf(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
           return true;
         }
@@ -412,7 +411,7 @@ export class syncPage{
       var url = "https://myanimelist.net/"+page.type+".php?q=" + encodeURI(title);
       con.log("malSearch", url);
       return api.request.xhr('GET', url).then((response) => {
-        if(response.responseText !== 'null' && !(response.responseText.indexOf(" error ") > -1)){
+        if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){
           try{
             var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
             This.setCache(link, true, identifier);

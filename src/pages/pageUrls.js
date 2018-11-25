@@ -75,6 +75,11 @@ module.exports = {
       '*://*.mangadex.org/chapter/*',
     ]
   },
+  Mangarock: {
+    match: [
+      '*://mangarock.com/manga/*',
+    ]
+  },
   Gogoanime: {
     match: [
       '*://*.gogoanime.tv/*',
@@ -88,6 +93,12 @@ module.exports = {
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
+    ]
+  },
+  Animeheaven: {
+    match: [
+      '*://animeheaven.eu/i.php*',
+      '*://animeheaven.eu/watch.php*'
     ]
   }
 }
