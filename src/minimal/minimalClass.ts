@@ -931,6 +931,7 @@ export class minimal{
       for (var i = 0; i < list.length; i++) {
         var el = list[i];
         var title = el['anime_title'];
+        var elUrl = el['anime_url'];
         var episode = '';
         var error = '';
         var trColor = '';
@@ -953,7 +954,9 @@ export class minimal{
         <tr style="background-color: ${trColor};">
           <th class="mdl-data-table__cell--non-numeric">
             <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+el['anime_id']}"><i class="material-icons">delete</i></button>
-            ${title}
+            <a href="${elUrl}" style="color: black;">
+              ${title}
+            </a>
           </th>
           <th>${episode}</th>
           <th>${error}</th>
