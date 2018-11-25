@@ -196,7 +196,7 @@ export class myanimelistClass{
           tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a></div>';
           tempUrl = stream['url'];
         }
-        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+tempUrl.split('/')[2]+'"> '+pageKey+'</h2>';
+        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="'+utils.favicon(tempUrl.split('/')[2])+'"> '+pageKey+'</h2>';
         html += tempHtml;
         html += '<br class="mal_links" />';
 
@@ -224,7 +224,7 @@ export class myanimelistClass{
           var page = pageSearch[key];
           if(page.type !== This.type) continue;
 
-          var linkContent = `<img style="${imgStyle}" src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}`;
+          var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
             `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
@@ -237,7 +237,7 @@ export class myanimelistClass{
           var googleSeach = '';
           if( typeof page.googleSearchDomain !== 'undefined'){
             googleSeach =`<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}">
-              <img style="${imgStyle}" src="https://www.google.com/s2/favicons?domain=google.com">
+              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
             </a>`;
           }
 
@@ -265,7 +265,7 @@ export class myanimelistClass{
         $('.h1 span').first().after(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+            <img src="${utils.favicon(streamUrl.split('/')[2])}">
           </a>
         </div>`);
 
@@ -356,7 +356,7 @@ export class myanimelistClass{
           var element = book.getElement(malUrl);
           element.find(book.streamingSelector).after(`
             <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
           var resumeUrlObj = await utils.getResumeWaching(type, id);

@@ -19,6 +19,11 @@ export function urlParam(url, name){
   }
 }
 
+export function favicon(domain){
+  if(domain.indexOf('animeheaven') !== -1) return 'http://animeheaven.eu/favicon.ico';
+  return 'https://www.google.com/s2/favicons?domain='+domain;
+}
+
 export function watching(type: "anime"|"manga"){
   if(type == "manga") return 'Reading';
   return 'Watching';

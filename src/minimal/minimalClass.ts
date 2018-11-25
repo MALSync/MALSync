@@ -855,7 +855,7 @@ export class minimal{
           con.log(streamUrl);
           domE.find('.data.progress').append(`
             <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 5px;" href="${streamUrl}">
-              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
           var id = utils.urlPart(malUrl, 4);

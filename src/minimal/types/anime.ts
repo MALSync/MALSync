@@ -307,7 +307,7 @@ export class animeType{
         `<div class="mdl-card__actions mdl-card--border" style="padding-left: 0;">
           <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
             <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
+              <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
             </a>`;
 
         var resumeUrlObj = await malObj.getResumeWaching();
@@ -351,7 +351,7 @@ export class animeType{
           Kisshtml += `<li class="mdl-list__item mdl-list__item--three-line">
                         <span class="mdl-list__item-primary-content">
                           <span>
-                            <img style="padding-bottom: 3px;" src="https://www.google.com/s2/favicons?domain=${tempUrl.split('/')[2]}">
+                            <img style="padding-bottom: 3px;" src="${utils.favicon(tempUrl.split('/')[2])}">
                             ${pageKey}
                           </span>
                           <span id="KissAnimeLinks" class="mdl-list__item-text-body">
