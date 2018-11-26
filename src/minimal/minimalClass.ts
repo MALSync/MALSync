@@ -474,6 +474,7 @@ export class minimal{
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">Update Check</h2>
             ${utils.getTooltip('Checks for new episodes in the background.')}
+            <div id="updateCheckAgo" style="margin-left: auto;"></div>
           </div>
 
           <li class="mdl-list__item">
@@ -628,6 +629,46 @@ export class minimal{
           this.minimal.find('.updateCheckEnable').show();
         }
         this.minimal.find('#updateCheckTime').val(interval);
+
+        if(interval){
+
+          setUpdateCheckLast();
+          setInterval(function(){
+            setUpdateCheckLast();
+          }, 60 * 1000);
+
+          function setUpdateCheckLast(){
+            api.storage.get("updateCheckLast").then((updateCheckTime) => {
+              var delta = Math.abs(updateCheckTime - Date.now()) / 1000;
+              var text = '';
+
+              var diffDays = Math.floor(delta / 86400);
+              delta -= diffDays * 86400;
+              if(diffDays){
+                text += diffDays+'d ';
+              }
+
+              var diffHours = Math.floor(delta / 3600) % 24;
+              delta -= diffHours * 3600;
+              if(diffHours){
+                text += diffHours+'h ';
+              }
+
+              var diffMinutes = Math.floor(delta / 60) % 60;
+              delta -= diffMinutes * 60;
+              if(!diffDays){
+                text += diffMinutes+'min ';
+              }
+
+              if(text != ''){
+                text += 'ago';
+                $('#updateCheckAgo').text(text);
+              }
+
+            });
+          }
+
+        }
       });
 
       this.minimal.find("#updateCheckTime").change(() => {

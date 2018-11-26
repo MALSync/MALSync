@@ -50,6 +50,7 @@ function startCheck(){
         await updateElement(list[i]);
       }
       removeIframes();
+      api.storage.set( 'updateCheckLast', Date.now() );
     });
   })
 }
