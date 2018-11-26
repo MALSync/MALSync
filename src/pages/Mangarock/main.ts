@@ -59,12 +59,16 @@ export const Mangarock: pageInterface = {
           });
         }else{
           j.$(document).ready(function(){
+            var waitTimeout = false;
             utils.waitUntilTrue(function(){
               con.log('visibility', j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length);
-              return !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length
+              return !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length || waitTimeout
             }, function(){
               page.handlePage();
             });
+            setTimeout(function(){
+              waitTimeout = true;
+            }, 2000)
           });
 
         }
