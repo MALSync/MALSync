@@ -997,7 +997,7 @@ export class minimal{
     }
 
     setTimeout(() => {
-      if(this.minimal.find('.refresh-updateCheck').length){
+      if(this.minimal.find('.refresh-updateCheck').length && this.minimal.find('#fixed-tab-4').css('display') != 'none'){
         this.updateCheckUi(type);
       }
     }, 5000)
