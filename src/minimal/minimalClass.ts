@@ -991,7 +991,15 @@ export class minimal{
 
   updateCheckUi(type = 'anime'){
     this.minimal.find('#material').addClass('pop-over');
-    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+    if(!this.minimal.find('.refresh-updateCheck').length){
+      this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+    }
+
+    setTimeout(() => {
+      if(this.minimal.find('.refresh-updateCheck').length){
+        this.updateCheckUi(type);
+      }
+    }, 5000)
 
     utils.getUserList(1, 'anime', null, null, async (list) => {
       var html = `
