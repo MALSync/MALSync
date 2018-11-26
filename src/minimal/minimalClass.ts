@@ -639,6 +639,7 @@ export class minimal{
 
           function setUpdateCheckLast(){
             api.storage.get("updateCheckLast").then((updateCheckTime) => {
+              if(isNaN(updateCheckTime)) return;
               var delta = Math.abs(updateCheckTime - Date.now()) / 1000;
               var text = '';
 

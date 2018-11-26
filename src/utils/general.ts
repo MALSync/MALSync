@@ -39,7 +39,7 @@ export function episode(type: "anime"|"manga"){
   return 'Episode';
 }
 
-export var syncRegex = /(^settings\/.*|^resume\/.*|^continue\/.*|^.*\/Offset$)/
+export var syncRegex = /(^settings\/.*|^resume\/.*|^continue\/.*|^.*\/Offset$|^updateCheckTime$|^tempVersion$)/
 
 export enum status {
   watching = 1,
