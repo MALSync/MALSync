@@ -77,7 +77,7 @@ module.exports = {
   },
   Mangarock: {
     match: [
-      '*://mangarock.com/manga/*',
+      '*://mangarock.com/*',
     ]
   },
   Gogoanime: {
