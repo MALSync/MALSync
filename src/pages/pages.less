@@ -1,5 +1,6 @@
 @textColor: black;
 @activeEp: #002966;
+@inputBackground: #111111;
 
 #malStatus, #malTotal, #malEpisodes, #malUserRating, #malRating, #malVolumes, #malTotalVol, #malTotalCha, #AddMal{
   color: @textColor;
@@ -7,4 +8,12 @@
 
 .mal-sync-active{
   background-color: @activeEp;
+}
+
+#malp{
+  select{
+    option{
+      background-color: @inputBackground;
+    }
+  }
 }

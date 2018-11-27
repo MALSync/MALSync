@@ -533,12 +533,12 @@ export class syncPage{
     ui += wrapStart;
     ui += '<span class="info">Status: </span>';
     ui += '<select id="malStatus" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey;  text-decoration: none; outline: medium none;">';
-    //ui += '<option value="0" style="background: #111111;"></option>';
-    ui += '<option value="1" style="background: #111111;">'+utils.watching(this.page.type)+'</option>';
-    ui += '<option value="2" style="background: #111111;">Completed</option>';
-    ui += '<option value="3" style="background: #111111;">On-Hold</option>';
-    ui += '<option value="4" style="background: #111111;">Dropped</option>';
-    ui += '<option value="6" style="background: #111111;">'+utils.planTo(this.page.type)+'</option>';
+    //ui += '<option value="0" ></option>';
+    ui += '<option value="1" >'+utils.watching(this.page.type)+'</option>';
+    ui += '<option value="2" >Completed</option>';
+    ui += '<option value="3" >On-Hold</option>';
+    ui += '<option value="4" >Dropped</option>';
+    ui += '<option value="6" >'+utils.planTo(this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 
@@ -577,17 +577,17 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">Your Score: </span>';
-    ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey;  text-decoration: none; outline: medium none;"><option value="" style="background: #111111;">Select</option>';
-    ui += '<option value="10" style="background: #111111;">(10) Masterpiece</option>';
-    ui += '<option value="9" style="background: #111111;">(9) Great</option>';
-    ui += '<option value="8" style="background: #111111;">(8) Very Good</option>';
-    ui += '<option value="7" style="background: #111111;">(7) Good</option>';
-    ui += '<option value="6" style="background: #111111;">(6) Fine</option>';
-    ui += '<option value="5" style="background: #111111;">(5) Average</option>';
-    ui += '<option value="4" style="background: #111111;">(4) Bad</option>';
-    ui += '<option value="3" style="background: #111111;">(3) Very Bad</option>';
-    ui += '<option value="2" style="background: #111111;">(2) Horrible</option>';
-    ui += '<option value="1" style="background: #111111;">(1) Appalling</option>';
+    ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey;  text-decoration: none; outline: medium none;"><option value="" >Select</option>';
+    ui += '<option value="10" >(10) Masterpiece</option>';
+    ui += '<option value="9" >(9) Great</option>';
+    ui += '<option value="8" >(8) Very Good</option>';
+    ui += '<option value="7" >(7) Good</option>';
+    ui += '<option value="6" >(6) Fine</option>';
+    ui += '<option value="5" >(5) Average</option>';
+    ui += '<option value="4" >(4) Bad</option>';
+    ui += '<option value="3" >(3) Very Bad</option>';
+    ui += '<option value="2" >(2) Horrible</option>';
+    ui += '<option value="1" >(1) Appalling</option>';
     ui += '</select>';
     ui += wrapEnd;
 
