@@ -532,7 +532,7 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">Status: </span>';
-    ui += '<select id="malStatus" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey;  text-decoration: none; outline: medium none;">';
+    ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
     ui += '<option value="1" >'+utils.watching(this.page.type)+'</option>';
     ui += '<option value="2" >Completed</option>';
@@ -547,7 +547,7 @@ export class syncPage{
         middle += wrapStart;
         middle += '<span class="info">Episodes: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right;  text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+        middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
         middle += '</span>';
         middle += wrapEnd;
@@ -557,7 +557,7 @@ export class syncPage{
         middle += wrapStart;
         middle += '<span class="info">Volumes: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malVolumes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right;  text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+        middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
         middle += '</span>';
         middle += wrapEnd;
@@ -566,7 +566,7 @@ export class syncPage{
         middle += wrapStart;
         middle += '<span class="info">Chapters: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malEpisodes" value="0" style="background: transparent; border-width: 1px; border-color: grey; text-align: right;  text-decoration: none; outline: medium none;" type="text" size="1" maxlength="4">';
+        middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
         middle += '</span>';
         middle += wrapEnd;
@@ -577,7 +577,7 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">Your Score: </span>';
-    ui += '<select id="malUserRating" style="font-size: 12px;background: transparent; border-width: 1px; border-color: grey;  text-decoration: none; outline: medium none;"><option value="" >Select</option>';
+    ui += '<select id="malUserRating"><option value="" >Select</option>';
     ui += '<option value="10" >(10) Masterpiece</option>';
     ui += '<option value="9" >(9) Great</option>';
     ui += '<option value="8" >(8) Very Good</option>';

@@ -19,7 +19,7 @@ export const nineAnime: pageInterface = {
       getEpisode: function(url){return parseInt(j.$(".servers .episodes a.active").attr('data-base')!);},
       nextEpUrl: function(url){return nineAnime.domain+j.$(".servers .episodes a.active").parent('li').next().find('a').attr('href');},
 
-      uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> '+selector.html()+'</div></div>').insertBefore(j.$(".widget.info").first());},
+      uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> <p id="malp">'+selector.html()+'</p></div></div>').insertBefore(j.$(".widget.info").first());},
     },
     overview:{
       getTitle: function(url){return '';},
