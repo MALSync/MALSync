@@ -23,10 +23,23 @@
 
 ## What more can it do?
 
-- miniMAL, a frame which can be toggled by a floating button which appears in the lower right of your screen on supported streaming sites 
-- When visiting the MAL-page for an anime/manga, you will in your left sidebar have direct links to the supported sites.
-- You will also have larger thumbnails on MAL, with options to choose your preferred size from a settings-tab in miniMAL.
-- Displays the last opened viewing page and a link to the next episode on your MAL Bookmarks page
+MyAnimeList
+  - Direct links to the supported websites
+  - Links to the next episode
+  - Enlarge thumbnails in many places
+  - Adds missing watching status tags like in the related anime section
+  - Estimated time to next episode and estimated current episode number (JP release time)
+
+miniMAL (Extension Popup)
+  - Allows to browse, search and edit MyAnimeList anime/manga everywhere
+  - Access MAL Bookmarks everywhere
+  - MAL-Sync's Settings
+
+Update Check [BETA]
+  - Checks for new episodes in the background and sends out a notification
+  - Updates the links to the next episode
+  - Makes current episode estimation more accurate
+  !This feature is disabled by default. You will need to enable it in the miniMAL popup!
 
 ___
 ![alt tag](https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/MAL_details_features_overview.png)
