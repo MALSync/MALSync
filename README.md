@@ -38,8 +38,8 @@ miniMAL (Extension Popup)
 Update Check [BETA]
   - Checks for new episodes in the background and sends out a notification
   - Updates the links to the next episode
-  - Makes current episode estimation more accurate
-  !This feature is disabled by default. You will need to enable it in the miniMAL popup!
+  - Makes current episode estimation more accurate  
+!This feature is disabled by default. You will need to enable it in the miniMAL popup!
 
 ___
 ![alt tag](https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/MAL_details_features_overview.png)
