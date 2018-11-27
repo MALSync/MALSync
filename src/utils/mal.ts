@@ -182,6 +182,17 @@ export class mal{
     return utils.getContinueWaching(this.type, this.id)
   }
 
+  async getImage():Promise<string>{
+    return api.request.xhr('GET', this.url).then((response) => {
+      var data = response.responseText;
+      var image = '';
+      try{
+          image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
+      }catch(e) {console.log('[mal.ts] Error:',e);}
+      return image;
+    });
+  }
+
   clone() {
       const copy = new (this.constructor as { new () })();
       Object.assign(copy, this);
@@ -194,9 +205,21 @@ export class mal{
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
       if(this.addAnime){
+        var imgSelector = 'malSyncImg'+this.id;
+        var flashConfirmText = `
+          Add "${this.name}" to MAL?
+          <br>
+          <img id="${imgSelector}" style="
+            height: 200px;
+            min-height: 200px;
+            min-width: 144px;
+            border: 1px solid;
+            margin-top: 10px;
+          " src="" />
+        `;
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
+          utils.flashConfirm(flashConfirmText, 'add', function(){
             This.setStatus(1);
             continueCall();
           }, function(){
@@ -204,15 +227,19 @@ export class mal{
                   episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
               }*/
           });
-          return;
         }else{
           url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
+          utils.flashConfirm(flashConfirmText, 'add', function(){
             This.setStatus(1);
             continueCall();
           }, function(){});
-          return;
         }
+
+        this.getImage().then((image) => {
+          j.$('#'+imgSelector).attr('src', image);
+        })
+
+        return;
       }
 
       continueCall();

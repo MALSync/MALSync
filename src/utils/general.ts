@@ -504,7 +504,7 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
 
 export async function flashConfirm(message, type, yesCall = () => {}, cancelCall = () => {}){
   return new Promise(function(resolve, reject) {
-    message = '<div style="text-align: left;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
+    message = '<div style="text-align: center;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
     var flasmessage = flashm(message, {permanent: true, position: "top", type: type});
     flasmessage.find( '.Yes' ).click(function(evt){
         j.$(evt.target).parentsUntil('.flash').remove();
