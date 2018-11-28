@@ -142,7 +142,7 @@ export class animeType{
               <li class="mdl-list__item" style="width: 100%;">
                 <input type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton">
                 <small>
-                  <a href="https://myanimelist.net/ownlist/anime/${utils.urlPart(this.url, 4)}/edit" target="_blank">Edit Details</a>
+                  <a href="https://myanimelist.net/ownlist/${localType}/${utils.urlPart(this.url, 4)}/edit" target="_blank">Edit Details</a>
                 </small>
               </li>
 
