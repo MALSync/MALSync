@@ -4,10 +4,19 @@
 @activeEp: #cee1ff;
 
 #malp{
+  margin: 0;
   span{
     color: @textColor;
   }
   select > * {
     background-color: white !important;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  #malp{
+    .MalLogin{
+      width: 100%;
+    }
   }
 }
