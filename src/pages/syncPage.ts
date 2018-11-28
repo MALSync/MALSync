@@ -305,6 +305,8 @@ export class syncPage{
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");
 
+    j.$( "#malEpisodes, #malVolumes" ).trigger('input');
+
     try{
       this.handleList(true);
     }catch(e){
@@ -618,6 +620,16 @@ export class syncPage{
     j.$( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
         This.buttonclick();
     });
+
+    j.$( "#malEpisodes, #malVolumes" ).on('input', function(){
+      //@ts-ignore
+      var el = $(this);
+      var numberlength = el.val()!.toString().length;
+      if(numberlength < 1) numberlength = 1;
+      var numberWidth = (numberlength * 7.7) + 3;
+      el.css('width', numberWidth+'px');
+    }).trigger('input');
+
   }
 
   private buttonclick(){
