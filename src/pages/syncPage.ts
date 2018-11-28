@@ -545,7 +545,7 @@ export class syncPage{
     if(this.page.type == 'anime'){
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">Episodes: </span>';
+        middle += '<span class="info">Episode: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
@@ -555,7 +555,7 @@ export class syncPage{
     }else{
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">Volumes: </span>';
+        middle += '<span class="info">Volume: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
@@ -564,7 +564,7 @@ export class syncPage{
 
 
         middle += wrapStart;
-        middle += '<span class="info">Chapters: </span>';
+        middle += '<span class="info">Chapter: </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
