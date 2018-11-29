@@ -704,8 +704,42 @@ export class minimal{
 
     api.storage.get('tempVersion')
       .then((version) => {
-        if(typeof version == undefined || version != api.storage.version()){
-          this.flashm('Updated to version '+api.storage.version()+' [<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">CHANGELOG</a>]', function(){
+        var versionMsg = '';
+
+        if(version != api.storage.version()){
+          versionMsg = 'Updated to version '+api.storage.version()+' [<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">CHANGELOG</a>]';
+        }
+        con.log(version);
+        if(typeof version == 'undefined'){
+          versionMsg = `
+            <div style="
+              text-align: left;
+              margin-left: auto;
+              margin-right: auto;
+              display: inline-block;
+              padding: 10px 15px;
+              background-color: #3d4e9a;
+              margin-top: -5px;
+            ">
+              <span style="text-decoration: underline; font-size: 15px;">Thanks for installing MAL-Sync</span><br>
+              <br>
+              Having Questions?<br>
+              <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
+                <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
+              </a><br>
+              <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
+                <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
+              </a><br>
+              <br>
+              Open Source Code:<br>
+              <a target="_blank" href="https://github.com/lolamtisch/MALSync">
+                <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
+              </a>
+            </div>
+          `;
+        }
+        if(versionMsg != ''){
+          this.flashm(versionMsg, function(){
             api.storage.set('tempVersion', api.storage.version());
           });
         }
