@@ -46,5 +46,7 @@ ___
 
 ___
 
-How to build?  
-[Wiki](https://github.com/lolamtisch/MALSync/wiki/Build)
+## Want to Contribute?
+Then let me know on [![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Discord&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)  
+
+How to build? [Wiki](https://github.com/lolamtisch/MALSync/wiki/Build)
