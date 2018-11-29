@@ -3,6 +3,7 @@ import {pageInterface} from "./../pageInterface";
 export const Animeheaven: pageInterface = {
     name: 'Animeheaven',
     domain: 'http://animeheaven.eu',
+    database: 'Animeheaven',
     type: 'anime',
     isSyncPage: function(url){
       if(utils.urlPart(url, 3) === 'watch.php'){

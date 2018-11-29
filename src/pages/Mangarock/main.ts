@@ -3,6 +3,7 @@ import {pageInterface} from "./../pageInterface";
 export const Mangarock: pageInterface = {
     name: 'Mangarock',
     domain: 'https://mangarock.com',
+    database: 'Mangarock',
     type: 'manga',
     isSyncPage: function(url){
       if(typeof utils.urlPart(url, 5) != 'undefined'){
