@@ -207,7 +207,7 @@ export class mal{
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
-          Add "${this.name}" to MAL?
+          Is "${this.name}" correct?
           <br>
           <img id="${imgSelector}" style="
             height: 200px;
@@ -216,6 +216,8 @@ export class mal{
             border: 1px solid;
             margin-top: 10px;
           " src="" />
+          <br>
+          <a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>
         `;
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
