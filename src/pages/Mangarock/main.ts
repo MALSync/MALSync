@@ -69,7 +69,7 @@ export const Mangarock: pageInterface = {
             });
             setTimeout(function(){
               waitTimeout = true;
-            }, 2000)
+            }, 1000)
           });
 
         }
