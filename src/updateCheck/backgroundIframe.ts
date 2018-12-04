@@ -37,17 +37,17 @@ export function checkContinue(message){
 var continueCheck = {};
 var hiddenTabs:any = [];
 
-function startCheck(){
+function startCheck(type = "anime"){
   con.log('startCheck');
   con.log('hideTab', utils.canHideTabs());
 
   continueCheck = {};
   chrome.alarms.getAll(function(alarms){
-    utils.getUserList(1, 'anime', null, null, async function(list){
+    utils.getUserList(1, type, null, null, async function(list){
       con.log('list', list)
       for (var i = 0; i < list.length; i++) {
         con.log('el', list[i])
-        await updateElement(list[i]);
+        await updateElement(list[i], type);
       }
       removeIframes();
       api.storage.set( 'updateCheckLast', Date.now() );
@@ -57,11 +57,17 @@ function startCheck(){
 
 async function updateElement(el, type = "anime", retryNum = 0){
   return new Promise(async (resolve, reject) => {
+    var anime_id = el['anime_id'];
+    var anime_num_episodes = el['anime_num_episodes'];
+    var anime_image_path = el['anime_image_path'];
+    var anime_title = el['anime_title'];
+    var num_watched_episodes = el['num_watched_episodes'];
+
     var id = Math.random().toString(36).substr(2, 9);
     con.log(utils.getUrlFromTags(el['tags']));
     var streamUrl = utils.getUrlFromTags(el['tags']);
     if(typeof streamUrl != 'undefined'){
-      var elCache = await api.storage.get('updateCheck/'+type+'/'+el['anime_id']);
+      var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
       con.log('cached', elCache);
       if(typeof elCache != 'undefined' && elCache.finished){
         resolve()
@@ -74,7 +80,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
       openInvisiblePage(streamUrl, id);
 
       var timeout = setTimeout(async function(){
-        api.storage.set('updateCheck/'+type+'/'+el['anime_id'], checkError(elCache, 'Timeout'));
+        api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, 'Timeout'));
         if(retry && retryNum < 3){
           con.log('retry', retryNum);
           retry = false;
@@ -94,12 +100,12 @@ async function updateElement(el, type = "anime", retryNum = 0){
           });
 
           var finished = false;
-          if(newestEpisode >= parseInt(el['anime_num_episodes']) && parseInt(el['anime_num_episodes']) != 0){
+          if(newestEpisode >= parseInt(anime_num_episodes) && parseInt(anime_num_episodes) != 0){
             con.log('Finished');
             finished = true;
           }
 
-          api.storage.set('updateCheck/'+type+'/'+el['anime_id'], {newestEp: newestEpisode, finished: finished});
+          api.storage.set('updateCheck/'+type+'/'+anime_id, {newestEp: newestEpisode, finished: finished});
 
           if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp && elCache.newestEp != ''){
             con.log('new Episode');
@@ -109,11 +115,12 @@ async function updateElement(el, type = "anime", retryNum = 0){
                   streamUrl,
                   {
                     type: 'basic',
-                    iconUrl: el['anime_image_path'],
-                    title: el['anime_title'],
+                    iconUrl: anime_image_path,
+                    title: anime_title,
                     message: 'Episode '+newestEpisode+' released',
                  }
                 );
+                con.log('Notification');
               }
             })
 
@@ -122,8 +129,8 @@ async function updateElement(el, type = "anime", retryNum = 0){
           }
 
           //Update next Episode link
-          var continueUrlObj = await utils.getContinueWaching(type, el['anime_id']);
-          var nextUserEp = parseInt(el['num_watched_episodes'])+1;
+          var continueUrlObj = await utils.getContinueWaching(type, anime_id);
+          var nextUserEp = parseInt(num_watched_episodes)+1;
 
           con.log('Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === nextUserEp){
@@ -133,13 +140,13 @@ async function updateElement(el, type = "anime", retryNum = 0){
             var nextUserEpUrl = list[nextUserEp];
             if(typeof nextUserEpUrl != 'undefined'){
               con.log('set continue link', nextUserEpUrl, nextUserEp);
-              utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, el['anime_id']);
+              utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, anime_id);
             }
           }
 
         }else{
           con.log(checkError(elCache, 'Episode list empty'));
-          api.storage.set('updateCheck/'+type+'/'+el['anime_id'], checkError(elCache, 'Episode list empty'));
+          api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty')
         }
         resolve();
