@@ -332,6 +332,12 @@ export class minimal{
 
     this.updateDom();
 
+    if(typeof page.malObj != 'undefined' && page.malObj.wrong){
+      con.log('config click');
+      this.minimal.find('.mdl-layout__tab.settingsTab span').trigger( "click" );
+      this.minimal.find('#page-config').css('border', '1px solid red');
+    }
+
   }
 
   loadOverview(overviewObj){

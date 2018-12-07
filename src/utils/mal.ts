@@ -8,6 +8,7 @@ export class mal{
   totalVol?: number;
   addAnime: boolean = false;
   login: boolean = false;
+  wrong: boolean = false;
 
   private animeInfo;
 
@@ -217,7 +218,7 @@ export class mal{
             margin-top: 10px;
           " src="" />
           <br>
-          <a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>
+          <!--<a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>-->
         `;
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
@@ -225,6 +226,7 @@ export class mal{
             This.setStatus(1);
             continueCall();
           }, function(){
+            wrongCall();
               /*if(change['checkIncrease'] == 1){TODO
                   episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
               }*/
@@ -234,14 +236,30 @@ export class mal{
           utils.flashConfirm(flashConfirmText, 'add', function(){
             This.setStatus(1);
             continueCall();
-          }, function(){});
+          }, function(){
+            wrongCall();
+          });
         }
 
         this.getImage().then((image) => {
           j.$('#'+imgSelector).attr('src', image);
         })
 
+        j.$('.Yes').text('YES');
+        j.$('.Cancel').text('NO');
+
         return;
+      }
+
+      function wrongCall(){
+        This.wrong = true;
+        var miniButton = j.$('button.open-info-popup');
+        if(miniButton.css('display') != 'none'){
+          miniButton.click();
+        }else{
+          miniButton.click();
+          miniButton.click();
+        }
       }
 
       continueCall();
