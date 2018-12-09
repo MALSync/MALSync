@@ -128,7 +128,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
                 utils.notifications(
                   streamUrl,
                   anime_title,
-                  EpisodeText+newestEpisode+' released',
+                  EpisodeText+newestEpisode,
                   anime_image_path
                 );
               }
