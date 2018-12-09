@@ -63,6 +63,14 @@ async function updateElement(el, type = "anime", retryNum = 0){
     var anime_title = el['anime_title'];
     var num_watched_episodes = el['num_watched_episodes'];
 
+    if(type == 'manga'){
+      anime_id = el['manga_id'];
+      anime_num_episodes = el['manga_num_chapters'];
+      anime_image_path = el['manga_image_path'];
+      anime_title = el['manga_title'];
+      num_watched_episodes = el['num_read_chapters'];
+    }
+
     var id = Math.random().toString(36).substr(2, 9);
     con.log(utils.getUrlFromTags(el['tags']));
     var streamUrl = utils.getUrlFromTags(el['tags']);
