@@ -268,6 +268,7 @@ export class minimal{
       <div class="mdl-list__item">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
       </div>`;
     this.minimal.find('#page-config').html(html).show();
 
@@ -282,6 +283,11 @@ export class minimal{
           utils.flashm("Offset reset");
         }
       }
+    });
+
+    this.minimal.find("#malNotOnMal").click( function(){
+      This.minimal.find('#malUrlInput').val('');
+      This.minimal.find("#malSubmit").click();
     });
 
     this.minimal.find("#malReset").click( function(){
@@ -325,6 +331,12 @@ export class minimal{
     });
 
     this.updateDom();
+
+    if(typeof page.malObj != 'undefined' && page.malObj.wrong){
+      con.log('config click');
+      this.minimal.find('.mdl-layout__tab.settingsTab span').trigger( "click" );
+      this.minimal.find('#page-config').css('border', '1px solid red');
+    }
 
   }
 

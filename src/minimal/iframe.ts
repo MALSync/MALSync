@@ -21,12 +21,12 @@ function createIframe(page){
       setTimeout(function(){
         minimalObj = new minimal(j.$("#info-iframe").contents().find('html'));
         if(typeof(page) != 'undefined'){
-          minimalObj.setPageSync(page);
           if(typeof(page.malObj) != 'undefined'){
             minimalObj.fill(page.malObj.url);
           }else{
             minimalObj.fill(null);
           }
+          minimalObj.setPageSync(page);
         }
       }, 200);
 

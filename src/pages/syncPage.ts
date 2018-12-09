@@ -420,7 +420,14 @@ export class syncPage{
             return link
           }catch(e){
             con.error(e);
-            return false;
+            try{
+              var link = response.responseText.split('class="picSurround')[1].split('<a')[1].split('href="')[1].split('"')[0];
+              This.setCache(link, true, identifier);
+              return link
+            }catch(e){
+              con.error(e);
+              return false;
+            }
           }
 
         }else{
