@@ -216,6 +216,7 @@ export class mal{
             min-width: 144px;
             border: 1px solid;
             margin-top: 10px;
+            display: block;
           " src="" />
           <br>
           <!--<a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>-->

@@ -922,7 +922,7 @@ export class minimal{
         }
       });
 
-      utils.epPredictionUI(uid, function(prediction){
+      utils.epPredictionUI(uid, localListType, function(prediction){
         var pre = prediction.prediction;
         var color = 'orange';
         if(prediction.color != ''){

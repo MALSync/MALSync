@@ -198,10 +198,9 @@ export function getTooltip(text, style = '', direction = 'top'){
   <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
 }
 
-export async function epPredictionUI(malid, callback){
+export async function epPredictionUI(malid, type = 'anime', callback){
 
   utils.epPrediction(malid, async function(pre){
-    var type = 'anime';
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var elCache:any = undefined;
     if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){

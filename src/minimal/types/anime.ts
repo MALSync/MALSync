@@ -265,7 +265,7 @@ export class animeType{
     //});
 
     try{
-      utils.epPredictionUI(utils.urlPart(this.url, 4), function(prediction){
+      utils.epPredictionUI(utils.urlPart(this.url, 4), utils.urlPart(this.url, 3), function(prediction){
         con.log(prediction);
         minimal.find('[id="curEps"]').before(prediction.tag+' ');
         if(!prediction.prediction.airing){
