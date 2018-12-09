@@ -1048,7 +1048,7 @@ export class minimal{
       }
     }, 5000)
 
-    utils.getUserList(1, 'anime', null, null, async (list) => {
+    utils.getUserList(1, type, null, null, async (list) => {
       var html = `
       <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
         Refresh
@@ -1068,16 +1068,24 @@ export class minimal{
 
       for (var i = 0; i < list.length; i++) {
         var el = list[i];
+        var anime_id = el['anime_id'];
+        var anime_num_episodes = el['anime_num_episodes'];
         var title = el['anime_title'];
         var elUrl = el['anime_url'];
+        if(type == 'manga'){
+          anime_id = el['manga_id'];
+          anime_num_episodes = el['manga_num_chapters'];
+          title = el['manga_title'];
+          elUrl = el['manga_url'];
+        }
         var episode = '';
         var error = '';
         var trColor = '';
         con.log('el', el);
-        var elCache = await api.storage.get('updateCheck/'+type+'/'+el['anime_id']);
+        var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
         con.log('elCache', elCache);
         if(typeof elCache != 'undefined'){
-          episode = elCache['newestEp']+'/'+el['anime_num_episodes'];
+          episode = elCache['newestEp']+'/'+anime_num_episodes;
           trColor = 'orange';
           if(elCache['finished']){
             error = 'finished';
@@ -1091,7 +1099,7 @@ export class minimal{
         html += `
         <tr style="background-color: ${trColor};">
           <th class="mdl-data-table__cell--non-numeric">
-            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+el['anime_id']}"><i class="material-icons">delete</i></button>
+            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+anime_id}"><i class="material-icons">delete</i></button>
             <a href="${elUrl}" style="color: black;">
               ${title}
             </a>
