@@ -385,6 +385,23 @@ export function statusTag(status, type, id){
   return false;
 }
 
+export function notifications(url:string, title:string, message:string, iconUrl = ''){
+  var messageObj = {
+      type: 'basic',
+      title: title,
+      message: message,
+      iconUrl: iconUrl,
+   };
+
+  con.log('Notification', url, messageObj );
+  try{
+    return chrome.notifications.create(url, messageObj );
+  }catch(e){
+    con.error(e);
+  }
+
+}
+
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function getUserList(status = 1, localListType = 'anime', singleCallback = null, finishCallback = null, fullListCallback = null, continueCall = null, username = null, offset = 0, templist = []){
     con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);

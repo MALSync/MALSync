@@ -1056,6 +1056,9 @@ export class minimal{
       <button class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
         Start Check
       </button>
+      <button class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
+        Notification Check
+      </button>
       <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
         <tr>
           <th class="mdl-data-table__cell--non-numeric"></th>
@@ -1104,6 +1107,15 @@ export class minimal{
 
       this.minimal.find('.refresh-updateCheck').click(() => {
         this.updateCheckUi(type);
+      });
+
+      this.minimal.find('.notification-updateCheck').click(() => {
+        utils.notifications(
+          'https://malsync.lolamtisch.de/',
+          'MyAnimeList-Sync',
+          'by lolamtisch',
+          'https://cdn.myanimelist.net/images/anime/5/65187.jpg'
+        );
       });
 
       this.minimal.find('.startCheck-updateCheck').click(() => {

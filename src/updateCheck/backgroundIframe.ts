@@ -111,16 +111,12 @@ async function updateElement(el, type = "anime", retryNum = 0){
             con.log('new Episode');
             api.settings.init().then(()=>{
               if(api.settings.get('updateCheckNotifications')){
-                chrome.notifications.create(
+                utils.notifications(
                   streamUrl,
-                  {
-                    type: 'basic',
-                    iconUrl: anime_image_path,
-                    title: anime_title,
-                    message: 'Episode '+newestEpisode+' released',
-                 }
+                  anime_title,
+                  'Episode '+newestEpisode+' released',
+                  anime_image_path
                 );
-                con.log('Notification');
               }
             })
 

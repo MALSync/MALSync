@@ -78,6 +78,7 @@ const generateManifest = () => {
       "https://myanimelist.net/",
       "notifications",
       "https://myanimelist.cdn-dena.com/",
+      "https://cdn.myanimelist.net/",
       "tabHide"
     ],
     "optional_permissions": [
