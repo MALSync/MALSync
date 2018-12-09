@@ -1042,7 +1042,7 @@ export class minimal{
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
     }
 
-    setTimeout(() => {
+    var refreshTo = setTimeout(() => {
       if(this.minimal.find('.refresh-updateCheck').length && this.minimal.find('#fixed-tab-4').css('display') != 'none'){
         this.updateCheckUi(type);
       }
@@ -1059,6 +1059,10 @@ export class minimal{
       <button class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
         Notification Check
       </button>
+      <select style="float: right;" class="typeSelect-updateCheck">
+        <option value="anime">Anime</option>
+        <option value="manga"${(type == 'manga') ? 'selected="selected"' : ''}>Manga</option>
+      </select>
       <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
         <tr>
           <th class="mdl-data-table__cell--non-numeric"></th>
@@ -1114,6 +1118,7 @@ export class minimal{
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
 
       this.minimal.find('.refresh-updateCheck').click(() => {
+        clearTimeout(refreshTo);
         this.updateCheckUi(type);
       });
 
@@ -1141,6 +1146,11 @@ export class minimal{
         api.storage.remove(delData);
         thisEl.parent().parent().css('background-color', 'black');
       });
+
+      this.minimal.find('.typeSelect-updateCheck').change(() => {
+        clearTimeout(refreshTo);
+        this.updateCheckUi(this.minimal.find('.typeSelect-updateCheck').val());
+      })
     });
 
   }
