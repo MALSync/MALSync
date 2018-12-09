@@ -179,7 +179,7 @@ export class myanimelistClass{
       con.log(prediction);
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist').prev().before('<div class="mal-sync-pre-remove">'+prediction.text+'</div>');
-      $('[id="curEps"]').before(prediction.tag+' ');
+      $('[id="curEps"], [id="totalChaps"]').before(prediction.tag+' ');
     });
   }
 
@@ -314,7 +314,7 @@ export class myanimelistClass{
           });
         },
         predictionPos(element, tag){
-          element.find('.data.progress span').first().after(tag);
+          element.find('.data.progress span, .data.chapter span').first().after(tag);
         },
       }
     }else if(this.page == 'classic'){
@@ -336,7 +336,7 @@ export class myanimelistClass{
           });
         },
         predictionPos(element, tag){
-          element.parent().parent().find('span[id^="epText"] a span').first().after(tag);
+          element.parent().parent().find('span[id^="epText"] a span, span[id^="chap"]').first().after(tag);
         },
       }
     }else{
