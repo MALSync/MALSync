@@ -119,10 +119,16 @@ async function updateElement(el, type = "anime", retryNum = 0){
             con.log('new Episode');
             api.settings.init().then(()=>{
               if(api.settings.get('updateCheckNotifications')){
+
+                var EpisodeText = 'Episode ';
+                if(type == 'manga'){
+                  EpisodeText = 'Chapter ';
+                }
+
                 utils.notifications(
                   streamUrl,
                   anime_title,
-                  'Episode '+newestEpisode+' released',
+                  EpisodeText+newestEpisode+' released',
                   anime_image_path
                 );
               }
