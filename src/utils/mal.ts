@@ -12,7 +12,7 @@ export class mal{
 
   private animeInfo;
 
-  constructor(public url:string){
+  constructor(public url:string, public miniMAL:boolean = false){
     this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
   }
@@ -220,6 +220,12 @@ export class mal{
           <br>
           <!--<a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>-->
         `;
+
+        if(This.miniMAL){
+          flashConfirmText = `
+                    Add "${this.name}" to MAL?`;
+        }
+
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
           utils.flashConfirm(flashConfirmText, 'add', function(){
@@ -241,24 +247,28 @@ export class mal{
           });
         }
 
-        this.getImage().then((image) => {
-          j.$('#'+imgSelector).attr('src', image);
-        })
+        if(!This.miniMAL){
+          this.getImage().then((image) => {
+            j.$('#'+imgSelector).attr('src', image);
+          })
 
-        j.$('.Yes').text('YES');
-        j.$('.Cancel').text('NO');
+          j.$('.Yes').text('YES');
+          j.$('.Cancel').text('NO');
+        }
 
         return;
       }
 
       function wrongCall(){
         This.wrong = true;
-        var miniButton = j.$('button.open-info-popup');
-        if(miniButton.css('display') != 'none'){
-          miniButton.click();
-        }else{
-          miniButton.click();
-          miniButton.click();
+        if(!This.miniMAL){
+          var miniButton = j.$('button.open-info-popup');
+          if(miniButton.css('display') != 'none'){
+            miniButton.click();
+          }else{
+            miniButton.click();
+            miniButton.click();
+          }
         }
       }
 
