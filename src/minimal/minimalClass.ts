@@ -903,7 +903,7 @@ export class minimal{
       bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
         bookmarkElement +='<div class="data title lazyBack init" data-src="'+imageHi+'" style="background-image: url(); background-color: grey; background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
           bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[localListType+'_title'];
-            bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+            bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" ep="'+el[my_watched_episodes]+'" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: 100%;"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
             bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
               bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el[my_watched_episodes]+'</div>';
             bookmarkElement +='</div>';
@@ -930,7 +930,18 @@ export class minimal{
         }
         if(prediction.tagEpisode){
           var progressBar = domE.find('.mdl-progress');
-          var predictionProgress = ( prediction.tagEpisode / progressBar.attr('series_episodes') ) * 100;
+          var totalEps = progressBar.attr('series_episodes');
+
+          var predictionProgress = ( prediction.tagEpisode / totalEps ) * 100;
+
+          if(parseInt(totalEps) == 0){
+            predictionProgress = 80;
+            progressBar.find('.bar2').css('background', 'transparent');
+            var watchedEp = progressBar.find('.bar1').attr('ep');
+            var watchedProgress = ( watchedEp / prediction.tagEpisode ) * predictionProgress;
+            progressBar.find('.bar1').css('width', watchedProgress+'%');
+          }
+
           progressBar.prepend('<div class="predictionbar bar kal-ep-pre" ep="'+(prediction.tagEpisode)+'" style="width: '+predictionProgress+'%; background-color: '+color+'; z-index: 1; left: 0;"></div>');
           domE.attr('title', prediction.text);
         }
