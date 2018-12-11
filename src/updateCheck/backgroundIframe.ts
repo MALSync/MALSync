@@ -1,4 +1,5 @@
-/*TODO: Manga*/
+import {Mutex} from 'async-mutex';
+
 declare var browser: any;
 export function checkInit(){
   chrome.alarms.get("updateCheck", function(a) {
@@ -10,7 +11,8 @@ export function checkInit(){
 
   chrome.alarms.onAlarm.addListener(function(alarm) {
     if (alarm.name === "updateCheck" || alarm.name === "updateCheckNow") {
-      startCheck()
+      startCheck('anime');
+      startCheck('manga');
     }
   });
 }
@@ -36,23 +38,32 @@ export function checkContinue(message){
 
 var continueCheck = {};
 var hiddenTabs:any = [];
+var mutex = new Mutex();
 
-function startCheck(type = "anime"){
-  con.log('startCheck');
+async function startCheck(type = "anime"){
+  const release = await mutex.acquire()
+  con.log('startCheck', type);
   con.log('hideTab', utils.canHideTabs());
 
+  var mutexTimout = setTimeout(() => {
+    release();
+  }, 30 * 60 * 1000)
+
   continueCheck = {};
-  chrome.alarms.getAll(function(alarms){
-    utils.getUserList(1, type, null, null, async function(list){
-      con.log('list', list)
-      for (var i = 0; i < list.length; i++) {
-        con.log('el', list[i])
-        await updateElement(list[i], type);
-      }
-      removeIframes();
-      api.storage.set( 'updateCheckLast', Date.now() );
-    });
-  })
+
+  utils.getUserList(1, type, null, null, async function(list){
+    con.log('list', list)
+    for (var i = 0; i < list.length; i++) {
+      con.log('el', list[i])
+      await updateElement(list[i], type);
+    }
+    removeIframes();
+    api.storage.set( 'updateCheckLast', Date.now() );
+    release();
+    clearTimeout(mutexTimout);
+  });
+
+
 }
 
 async function updateElement(el, type = "anime", retryNum = 0){
