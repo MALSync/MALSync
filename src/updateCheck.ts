@@ -39,7 +39,7 @@ api.settings.init()
         for (var key in tempEpisodeList) {
           var tempEpisode = tempEpisodeList[key];
           if(tempEpisode != '-' && (episodeList[key] == '-' || typeof episodeList[key] == 'undefined')){
-            episodeList[key] = tempEpisode;
+            episodeList[key] = tempEpisode.replace(/\?mal-sync-background=[^\/]+/, '');
             changed = true;
           }
         }
