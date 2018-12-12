@@ -7,7 +7,8 @@ import {Mangadex} from "./Mangadex/main";
 import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
 import {Animeheaven} from "./Animeheaven/main";
-import {Anime4you} from "./Anime4you/main"
+import {Anime4you} from "./Anime4you/main";
+import {Branitube} from "./Branitube/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -22,6 +23,7 @@ export const pages = {
     Gogoanime: Gogoanime,
     Animeheaven: Animeheaven,
     Anime4you: Anime4you,
+    Branitube: Branitube,
 };
 
 export const pageSearch:pageSearchObj = {
