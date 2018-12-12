@@ -197,7 +197,7 @@ export class myanimelistClass{
           tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a></div>';
           tempUrl = stream['url'];
         }
-        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="'+utils.favicon(tempUrl.split('/')[2])+'"> '+pageKey+'<span title="'+pageKey+'" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">X<span></h2>';
+        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="'+utils.favicon(tempUrl.split('/')[2])+'"> '+pageKey+'<span title="'+pageKey+'" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>';
         html += tempHtml;
         html += '<br class="mal_links" />';
 
