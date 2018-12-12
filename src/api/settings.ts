@@ -21,7 +21,7 @@ export var settingsObj = {
     Kissanime: true,
     Masterani: true,
     Animeheaven: true,
-    Anime4you: false,
+    Anime4you: true,
     Kissmanga: true,
     Mangadex: true,
 
