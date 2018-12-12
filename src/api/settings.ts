@@ -20,6 +20,8 @@ export var settingsObj = {
     Gogoanime: true,
     Kissanime: true,
     Masterani: true,
+    Animeheaven: true,
+    Anime4you: false,
     Kissmanga: true,
     Mangadex: true,
 

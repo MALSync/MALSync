@@ -480,10 +480,12 @@ export class syncPage{
         }else{
           con.error("[DB] Send to database:", response.responseText);
         }
+
       });
 
     }
   }
+
 
   public deleteCache(){
     var getIdentifier;

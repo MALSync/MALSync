@@ -421,6 +421,8 @@ export class minimal{
           ${materialCheckbox('9anime','9anime')}
           ${materialCheckbox('Crunchyroll','Crunchyroll')}
           ${materialCheckbox('Gogoanime','Gogoanime')}
+          ${materialCheckbox('Animeheaven','Animeheaven')}
+          ${materialCheckbox('Anime4you','Anime4You (Ger)')}
           ${materialCheckbox('Kissmanga','KissManga')}
           ${materialCheckbox('Mangadex','MangaDex')}
         </div>
