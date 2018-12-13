@@ -9,6 +9,7 @@ import {Gogoanime} from "./Gogoanime/main";
 import {Animeheaven} from "./Animeheaven/main";
 import {Anime4you} from "./Anime4you/main";
 import {Branitube} from "./Branitube/main";
+import {Turkanime} from "./Turkanime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -24,6 +25,7 @@ export const pages = {
     Animeheaven: Animeheaven,
     Anime4you: Anime4you,
     Branitube: Branitube,
+    Turkanime: Turkanime,
 };
 
 export const pageSearch:pageSearchObj = {

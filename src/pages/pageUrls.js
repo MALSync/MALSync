@@ -111,5 +111,11 @@ module.exports = {
       '*://branitube.org/assistir/*',
       '*://branitube.org/animes/*'
     ]
+  },
+  Turkanime: {
+    match: [
+      '*://*.www.turkanime.tv/video/*',
+      '*://*.www.turkanime.tv/anime/*'
+    ]
   }
 }
