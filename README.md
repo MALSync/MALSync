@@ -3,7 +3,9 @@
 [![img](https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/lolamtisch/MALSync/issues)
 
 # MAL-Sync
-**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList and multiple anime streaming websites.
+**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList and multiple anime streaming websites.  
+
+Makes it possible to use your MyAnimeList anime/mangalist as a centralized bookmarks system for all supported pages.  
 
 #### **Supported Pages** <a id="anchor-link"></a>
 
@@ -15,6 +17,9 @@
 | [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) |                                          |
 | [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) |                                          |
 | [![AnimeHeaven](http://animeheaven.eu/favicon.ico "AnimeHeaven")](http://animeheaven.eu) [animeheaven.eu](http://animeheaven.eu) |                                          |
+| [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) |                                          |
+| [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) |                                          |
+| [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) |                                          |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
@@ -36,7 +41,7 @@ miniMAL (Extension Popup)
   - MAL-Sync's Settings
 
 Update Check [BETA]
-  - Checks for new episodes in the background and sends out a notification
+  - Checks for new episodes/chapter in the background and sends out a notification
   - Updates the links to the next episode
   - Makes current episode estimation more accurate  
 !This feature is disabled by default. You will need to enable it in the miniMAL popup!
