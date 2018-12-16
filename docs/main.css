@@ -89,6 +89,80 @@ table {
 #content > * {
   position: relative;
 }
+
+#contributer{
+  width: 50px;
+  height: 100%;
+  float: right;
+  -webkit-transition: width 1s;
+  -o-transition: width 1s;
+  transition: width 1s;
+  overflow: hidden;
+  position: relative;
+}
+  #contributer:hover{
+    width: 200px;
+  }
+  #contributer .contributer-inner{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    -webkit-transition: background-color 1s;
+    -o-transition: background-color 1s;
+    transition: background-color 1s;
+  }
+  #contributer:hover .contributer-inner{
+    background-color: #2f3136;
+  }
+  #contributer .group{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+    color: #707070;
+    padding: 10px;
+  }
+  #contributer:hover .group{
+    opacity: 1;
+  }
+  #contributer .user{
+    padding: 5px 10px;
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  #contributer .user .image{
+    display: inline-block;
+    height: 30px;
+    widows: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  #contributer .user .image img{
+    height: 100%;
+    widows: 100%;
+  }
+  #contributer .user .text{
+    display: inline-block;
+    width: 140px;
+    line-height: 100%;
+  }
+  #contributer .user .text .name{
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  #contributer .user .text .subtext{
+    color: #b9bbbe;
+    font-size: 12px;
+  }
+
 img.lain.lazyload {
   background: -webkit-gradient(linear, left top, left bottom, from(#032e45), to(#9b7c91));
   background: -webkit-linear-gradient(top, #032e45 0%, #9b7c91 100%);
