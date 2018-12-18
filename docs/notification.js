@@ -141,3 +141,63 @@ function FormatNumberLength(num, length) {
   }
   return r;
 }
+
+
+//Contributer
+contributer();
+function contributer(){
+  var contr = {
+    Developer: [
+      {
+        name: '『Akkusativ』',
+        color: '#992d22',
+        image: 'https://cdn.discordapp.com/avatars/357070922030645249/a_439143f99f8554ba2196e908a6c5af99.png?size=256'
+      },
+    ],
+    Contributer: [
+      {
+        name: 'Roselyn ®「武蔵ちゃん」',
+        subText: 'AD Manager',
+        color: '#d6680e',
+        image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=256'
+      },
+      {
+        name: 'ᏆhᎬ ᎶᏒᎬᎪᏆ ᏞuᏒᏦᎬᏒ ᵀᴬᴳ ᴴᴵᴹ',
+        color: '#d6680e',
+        image: 'https://cdn.discordapp.com/avatars/217589387020599297/6cc800b4b85769c813bbf925201778c4.png?size=256'
+      },
+    ]
+  };
+
+  var html = '';
+
+  for (var group in contr){
+    console.log(group);
+    html += `<div class="group">${group}</div>`;
+    for(var user in contr[group]){
+      var userVal = contr[group][user];
+
+      if(typeof userVal.subText != 'undefined' && userVal.subText){
+        userVal.subText = `<div class="subtext">${userVal.subText}</div>`;
+      }else{
+        userVal.subText = '';
+      }
+      console.log(contr[group][user]);
+      html += `
+        <div class="user">
+          <div class="image align-middle">
+            <img src="${userVal.image}">
+          </div>
+          <div class="text align-middle">
+            <div class="name" style="color: ${userVal.color}">
+              ${userVal.name}
+            </div>
+            ${userVal.subText}
+          </div>
+        </div>
+      `;
+    }
+  }
+  $('#contributer .contributer-inner').html(html);
+  $('#contributer').addClass('hover');
+}

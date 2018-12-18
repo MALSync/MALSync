@@ -100,7 +100,7 @@ table {
   overflow: hidden;
   position: relative;
 }
-  #contributer:hover{
+  #contributer.hover:hover{
     width: 200px;
   }
   #contributer .contributer-inner{
@@ -111,7 +111,7 @@ table {
     -o-transition: background-color 1s;
     transition: background-color 1s;
   }
-  #contributer:hover .contributer-inner{
+  #contributer.hover:hover .contributer-inner{
     background-color: #2f3136;
   }
   #contributer .group{
@@ -127,7 +127,7 @@ table {
     color: #707070;
     padding: 10px;
   }
-  #contributer:hover .group{
+  #contributer.hover:hover .group{
     opacity: 1;
   }
   #contributer .user{
