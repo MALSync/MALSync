@@ -162,6 +162,13 @@ function contributer(){
         image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=256'
       },
       {
+        name: '『DinoDaddy』',
+        color: '#3498db',
+        image: 'https://cdn.discordapp.com/avatars/204545112988975104/f67b2fd3b8849260bf2a13604702df62.webp?size=128'
+      },
+    ],
+    Donator: [
+      {
         name: 'ᏆhᎬ ᎶᏒᎬᎪᏆ ᏞuᏒᏦᎬᏒ ᵀᴬᴳ ᴴᴵᴹ',
         color: '#d6680e',
         image: 'https://cdn.discordapp.com/avatars/217589387020599297/6cc800b4b85769c813bbf925201778c4.png?size=256'

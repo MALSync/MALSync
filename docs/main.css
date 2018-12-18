@@ -121,14 +121,21 @@ table {
     opacity: 0;
     -webkit-transition: 1s;
     -o-transition: 1s;
-    -webkit-transition: opacity 1s;
-    -o-transition: opacity 1s;
-    transition: opacity 1s;
+    -webkit-transition: 1s;
+    -o-transition: 1s;
+    transition: 1s;
     color: #707070;
     padding: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-height: 0;
   }
   #contributer.hover:hover .group{
     opacity: 1;
+    max-height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding: 10px;
   }
   #contributer .user{
     padding: 5px 10px;
@@ -152,6 +159,13 @@ table {
     display: inline-block;
     width: 140px;
     line-height: 100%;
+    opacity: 0;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+  }
+  #contributer.hover:hover .user .text{
+    opacity: 1;
   }
   #contributer .user .text .name{
     -o-text-overflow: ellipsis;
