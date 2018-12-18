@@ -196,7 +196,7 @@ function contributer(){
             <img src="${userVal.image}">
           </div>
           <div class="text align-middle">
-            <div class="name" style="color: ${userVal.color}">
+            <div class="name" style="color: ${userVal.color}" title="${userVal.name}">
               ${userVal.name}
             </div>
             ${userVal.subText}

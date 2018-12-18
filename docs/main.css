@@ -201,6 +201,9 @@ img.lain.lazyload {
   height: 100% !important;
 }
 @media (max-width: 991px) {
+  #contributer{
+    display: none;
+  }
   .mobile-nav.allow {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     height: 34px !important;
