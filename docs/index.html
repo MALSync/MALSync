@@ -312,6 +312,8 @@
 		var frame = 0;
 		var remainingScroll = 0;
 		var running = 0;
+    var lastCalledTime;
+    var fpsRunning;
 		initStars();
 		window.onresize = function() {
 		  initStars();
@@ -344,6 +346,7 @@
 			drawStars();
 			if(!running){
 				//setInterval(animate, 1000 / fps);
+        lastCalledTime = performance.now();
 				requestAnimationFrame(animate);
 				running++;
 			}
@@ -371,7 +374,20 @@
 					star.offset(0, scrollDistance/star.paralaxLevel);
 				}
 				drawStars();
-				requestAnimationFrame(animate);
+
+        delta = (performance.now() - lastCalledTime)/1000;
+        fpsRunning = 1/delta;
+        if(fpsRunning > 20){
+          lastCalledTime = performance.now();
+          requestAnimationFrame(animate);
+        }else{
+          console.log('Skip Frame');
+          setTimeout(function(){
+            lastCalledTime = performance.now();
+            requestAnimationFrame(animate);
+          }, 100)
+        }
+
 			}
 			function drawStars(){
 				frame++;
