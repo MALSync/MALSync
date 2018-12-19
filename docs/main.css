@@ -90,6 +90,10 @@ table {
   position: relative;
 }
 
+body{
+  padding-right: 50px;
+}
+
 #contributer{
   width: 50px;
   height: 100%;
@@ -99,6 +103,10 @@ table {
   transition: width 1s;
   overflow: hidden;
   position: relative;
+
+  position: fixed;
+  right: 0;
+  z-index: 300;
 }
   #contributer.hover:hover{
     width: 200px;
