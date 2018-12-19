@@ -151,27 +151,27 @@ function contributer(){
       {
         name: '『Akkusativ』',
         color: '#992d22',
-        image: 'https://cdn.discordapp.com/avatars/357070922030645249/a_439143f99f8554ba2196e908a6c5af99.png?size=128'
+        image: 'https://cdn.discordapp.com/avatars/357070922030645249/a_439143f99f8554ba2196e908a6c5af99.png?size=32'
       },
     ],
     Contributer: [
       {
         name: 'Roselyn ®「武蔵ちゃん」',
-        subText: 'AD Manager',
+        //subText: 'AD Manager',
         color: '#d6680e',
-        image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=128'
+        image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=32'
       },
       {
         name: '『DinoDaddy』',
         color: '#3498db',
-        image: 'https://cdn.discordapp.com/avatars/204545112988975104/f67b2fd3b8849260bf2a13604702df62.png?size=128'
+        image: 'https://cdn.discordapp.com/avatars/204545112988975104/f67b2fd3b8849260bf2a13604702df62.png?size=32'
       },
     ],
     Donator: [
       {
         name: 'Emils/Trolly',
         color: '#25c059',
-        image: 'https://cdn.discordapp.com/avatars/204634979634905088/bd1d822c147183c99cdb3029ae8381a0.png?size=128'
+        image: 'https://cdn.discordapp.com/avatars/204634979634905088/bd1d822c147183c99cdb3029ae8381a0.png?size=32'
       },
     ]
   };

@@ -109,7 +109,7 @@ body{
   z-index: 300;
 }
   #contributer.hover:hover{
-    width: 200px;
+    width: 250px;
   }
   #contributer .contributer-inner{
     position: fixed;
@@ -153,8 +153,8 @@ body{
   }
   #contributer .user .image{
     display: inline-block;
-    height: 30px;
-    widows: 30px;
+    height: 32px;
+    widows: 32px;
     margin-right: 10px;
     border-radius: 50%;
     overflow: hidden;
@@ -165,7 +165,7 @@ body{
   }
   #contributer .user .text{
     display: inline-block;
-    width: 140px;
+    width: 190px;
     line-height: 100%;
     opacity: 0;
     -webkit-transition: opacity 1s;
