@@ -208,4 +208,62 @@ a{
     }
 
   }
+
+
+  #contributer{
+    padding: 15px;
+    padding-bottom: 0;
+
+    .group{
+      display: none;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 5px 0px;
+      font-weight: bold;
+      color: #707070;
+      opacity: 0;
+      -webkit-transition: 1s;
+      -o-transition: 1s;
+      transition: 1s;
+    }
+
+    .user{
+      height: 40px;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+
+      .image{
+        vertical-align: middle!important;
+        display: inline-block;
+        height: 32px;
+        widows: 32px;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .text{
+        vertical-align: middle!important;
+        display: none;
+        line-height: 100%;
+      }
+    }
+  }
+
+  #contributer.open{
+    padding-bottom: 15px;
+    //background-color: #2f3136;
+    .group{
+      opacity: 1;
+      display: block;
+    }
+    .user{
+      display: block;
+      .text{
+        display: inline-block;
+      }
+    }
+  }
+
 }

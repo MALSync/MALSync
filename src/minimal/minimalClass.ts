@@ -517,7 +517,7 @@ export class minimal{
           <span class="option-extension" style="display: none;">${materialCheckbox('userscriptMode','Userscript mode'+utils.getTooltip('Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.','','bottom'))}</span>
           <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
         </div>
-
+        <div id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 
           <li class="mdl-list__item">
@@ -555,6 +555,8 @@ export class minimal{
             </div>
           </li>
         </div>
+
+
 
       </div>
     </ul>
@@ -758,6 +760,74 @@ export class minimal{
           });
         }
       });
+
+      setTimeout(function(){
+        var contr = {
+          Developer: [
+            {
+              name: '『Akkusativ』',
+              color: '#992d22',
+              image: 'https://cdn.discordapp.com/avatars/357070922030645249/a_439143f99f8554ba2196e908a6c5af99.png?size=32'
+            },
+          ],
+          Contributer: [
+            {
+              name: 'Roselyn ®「武蔵ちゃん」',
+              //subText: 'AD Manager',
+              color: '#d6680e',
+              image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=32'
+            },
+            {
+              name: '『DinoDaddy』',
+              color: '#3498db',
+              image: 'https://cdn.discordapp.com/avatars/204545112988975104/f67b2fd3b8849260bf2a13604702df62.png?size=32'
+            },
+          ],
+          Donator: [
+            {
+              name: 'Emils/Trolly',
+              color: '#25c059',
+              image: 'https://cdn.discordapp.com/avatars/204634979634905088/bd1d822c147183c99cdb3029ae8381a0.png?size=32'
+            },
+          ]
+        };
+
+        var html = '';
+
+        for (var group in contr){
+          console.log(group);
+          html += `<div class="group">${group}</div>`;
+          for(var user in contr[group]){
+            var userVal = contr[group][user];
+
+            if(typeof userVal.subText != 'undefined' && userVal.subText){
+              userVal.subText = `<div class="subtext">${userVal.subText}</div>`;
+            }else{
+              userVal.subText = '';
+            }
+            console.log(contr[group][user]);
+            html += `
+              <div class="user">
+                <div class="image align-middle">
+                  <img src="${userVal.image}">
+                </div>
+                <div class="text align-middle">
+                  <div class="name" style="color: ${userVal.color}" title="${userVal.name}">
+                    ${userVal.name}
+                  </div>
+                  ${userVal.subText}
+                </div>
+              </div>
+            `;
+          }
+        }
+
+        This.minimal.find('#contributer').html(html).click(()=>{
+          This.minimal.find('#contributer').toggleClass("open");
+        });
+
+      }, 100)
+
 
     //helper
 
