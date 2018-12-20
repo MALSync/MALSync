@@ -761,41 +761,18 @@ export class minimal{
         }
       });
 
-      setTimeout(function(){
-        var contr = {
-          Developer: [
-            {
-              name: '『Akkusativ』',
-              color: '#992d22',
-              image: 'https://cdn.discordapp.com/avatars/357070922030645249/a_439143f99f8554ba2196e908a6c5af99.png?size=32'
-            },
-          ],
-          Contributer: [
-            {
-              name: 'Roselyn ®「武蔵ちゃん」',
-              //subText: 'AD Manager',
-              color: '#d6680e',
-              image: 'https://cdn.discordapp.com/avatars/380463167496650753/1c0e0a4430150b7debcfe8f40762d3bc.png?size=32'
-            },
-            {
-              name: '『DinoDaddy』',
-              color: '#3498db',
-              image: 'https://cdn.discordapp.com/avatars/204545112988975104/f67b2fd3b8849260bf2a13604702df62.png?size=32'
-            },
-          ],
-          Donator: [
-            {
-              name: 'Emils/Trolly',
-              color: '#25c059',
-              image: 'https://cdn.discordapp.com/avatars/204634979634905088/bd1d822c147183c99cdb3029ae8381a0.png?size=32'
-            },
-          ]
-        };
+      api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
+        try{
+          var contr = JSON.parse(response.responseText.replace(/(^"|"$)/gi,'').replace(/\\"/g, '"'));
+        }catch(e){
+          con.error('Contributer Could not be retieved', e);
+          return;
+        }
+        con.log('Contributer', contr);
 
         var html = '';
 
         for (var group in contr){
-          console.log(group);
           html += `<div class="group">${group}</div>`;
           for(var user in contr[group]){
             var userVal = contr[group][user];
@@ -805,7 +782,6 @@ export class minimal{
             }else{
               userVal.subText = '';
             }
-            console.log(contr[group][user]);
             html += `
               <div class="user">
                 <div class="image align-middle">
