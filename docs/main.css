@@ -91,7 +91,7 @@ table {
 }
 
 body{
-  padding-right: 50px;
+  padding-right: 40px;
 }
 
 #contributer{
@@ -211,6 +211,9 @@ img.lain.lazyload {
 @media (max-width: 991px) {
   #contributer{
     display: none;
+  }
+  body{
+    padding-right: 0px;
   }
   .mobile-nav.allow {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
