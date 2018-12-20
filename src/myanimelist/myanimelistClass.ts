@@ -57,7 +57,8 @@ export class myanimelistClass{
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
-        this.related()
+        this.related();
+        this.friendScore();
         setInterval(() => {
           this.setEpPrediction();
         }, 1000 * 60)
@@ -433,6 +434,26 @@ export class myanimelistClass{
           el.remove();
         }
       });
+    });
+  }
+
+  friendScore(){
+    var position = $('h2:contains(Reviews)');
+    if (!position.length) return;
+
+    var overview = $('#horiznav_nav li a').first();
+    if(!overview.is('#horiznav_nav li a.horiznav_active')) return;
+
+    var url = overview.attr('href');
+    if(typeof url == 'undefined' || !url) return;
+
+    api.request.xhr('GET', url+'/stats').then((response) => {
+      var friendHead = $('a[name=members]', $(response.responseText).children());
+      if (!friendHead) return;
+      var friendBody = friendHead.nextAll();
+      if (friendBody.length > 1){
+        position.before(friendHead).before(friendBody).before('<br>')
+      }
     });
   }
 
