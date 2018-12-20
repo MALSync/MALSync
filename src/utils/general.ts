@@ -610,6 +610,7 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
   }
 
   function loadImage (el, fn) {
+    if(!j.$(el).is(':visible')) return false;
     if(j.$(el).hasClass('lazyBack')){
       j.$(el).css('background-image','url('+el.getAttribute('data-src')+')').removeClass('lazyBack');
     }else{
@@ -626,6 +627,10 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
       img.src = src;
     }
   }
+
+  for (var i = 0; i < lazyimages.length; i++) {
+    $(lazyimages[i]).addClass('init')
+  };
 
   lazyimages = new Array();
   var query = doc.find('img.lazy.init, .lazyBack.init')

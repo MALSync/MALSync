@@ -809,7 +809,7 @@ export class minimal{
             html += `
               <div class="user">
                 <div class="image align-middle">
-                  <img src="${userVal.image}">
+                  <img data-src="${userVal.image}" class="lazy init">
                 </div>
                 <div class="text align-middle">
                   <div class="name" style="color: ${userVal.color}" title="${userVal.name}">
@@ -825,6 +825,8 @@ export class minimal{
         This.minimal.find('#contributer').html(html).click(()=>{
           This.minimal.find('#contributer').toggleClass("open");
         });
+
+        utils.lazyload(This.minimal);
 
       }, 100)
 
