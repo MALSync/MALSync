@@ -448,6 +448,7 @@ export class myanimelistClass{
 
       var url = overview.attr('href');
       if(typeof url == 'undefined' || !url) return;
+      url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       api.request.xhr('GET', url+'/stats').then((response) => {
         var friendHead = $('a[name=members]', $(response.responseText).children());
