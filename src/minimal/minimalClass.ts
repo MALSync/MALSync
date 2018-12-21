@@ -445,6 +445,7 @@ export class minimal{
               </select>
             </span>
           </li>
+          ${materialCheckbox('friendScore','Friend scores on detail page')}
           ${materialCheckbox('epPredictions','Estimate episode number')}
           ${materialCheckbox('malTags','Continue watching links'+utils.getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.','','bottom'))}
           ${materialCheckbox('malResume','Resume watching links')}

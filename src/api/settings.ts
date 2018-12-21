@@ -14,6 +14,7 @@ export var settingsObj = {
     miniMalWidth: '30%',
     miniMalHeight: '90%',
     malThumbnail: 100,
+    friendScore: true,
 
     '9anime': true,
     Crunchyroll: true,

@@ -438,23 +438,32 @@ export class myanimelistClass{
   }
 
   friendScore(){
-    var position = $('h2:contains(Reviews)');
-    if (!position.length) return;
+    if(!api.settings.get('friendScore')) return;
+    $(document).ready(function(){
+      var position = $('h2:contains(Reviews)');
+      if (!position.length) return;
 
-    var overview = $('#horiznav_nav li a').first();
-    if(!overview.is('#horiznav_nav li a.horiznav_active')) return;
+      var overview = $('#horiznav_nav li a').first();
+      if(!overview.is('#horiznav_nav li a.horiznav_active')) return;
 
-    var url = overview.attr('href');
-    if(typeof url == 'undefined' || !url) return;
+      var url = overview.attr('href');
+      if(typeof url == 'undefined' || !url) return;
 
-    api.request.xhr('GET', url+'/stats').then((response) => {
-      var friendHead = $('a[name=members]', $(response.responseText).children());
-      if (!friendHead) return;
-      var friendBody = friendHead.nextAll();
-      if (friendBody.length > 1){
-        position.before(friendHead).before(friendBody).before('<br>')
-      }
+      api.request.xhr('GET', url+'/stats').then((response) => {
+        var friendHead = $('a[name=members]', $(response.responseText).children());
+        if (!friendHead) return;
+        var friendBody = friendHead.nextAll();
+        if (friendBody.length > 1){
+          position.before(friendHead).before(friendBody).before('<br>');
+
+          $('a:contains("All Members")').after(' | <span id="mal-sync-removeFriends" title="remove" style="cursor: pointer; color: #1d439b;">X</span>');
+          $('#mal-sync-removeFriends').click(function(){
+            api.settings.set('friendScore', false);
+            location.reload();
+          });
+
+        }
+      });
     });
   }
-
 }
