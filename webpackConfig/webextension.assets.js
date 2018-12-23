@@ -73,6 +73,9 @@ const generateManifest = () => {
       'assets/*',
     ],
     'permissions': [
+      "cookies",//
+      "webRequest",//
+      "webRequestBlocking",//
       "storage",
       "alarms",
       "https://myanimelist.net/",

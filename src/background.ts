@@ -36,15 +36,22 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
           sendResponse(responseObj);
         }
       }
+
       if(typeof message.url === 'object'){
         xhr.open(message.method, message.url.url, true);
         for (var key in message.url.headers) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
-        xhr.send(message.url.data);
+        getCookies(message.url.url, sender, xhr, () => {
+          //@ts-ignore
+          xhr.send(message.url.data);
+        });
       }else{
         xhr.open(message.method, message.url, true);
-        xhr.send();
+        getCookies(message.url, sender, xhr, function(){
+          xhr.send();
+        });
+
       }
       return true;
     }
@@ -53,6 +60,32 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
     }
   }
   return undefined;
+}
+
+function getCookies(url, sender, xhr, callback = function(){}){
+  if(typeof sender != 'undefined' && sender && typeof sender.tab != 'undefined' && typeof sender.tab.cookieStoreId != 'undefined'){
+    con.error(sender.tab.cookieStoreId);
+    //@ts-ignore
+    browser.cookies.getAll({storeId: sender.tab.cookieStoreId, url: url}).then(function(cookies){
+      con.log(cookies);
+      var cookiesText = '';
+      for (var key in cookies) {
+        var cookie = cookies[key];
+        con.log(cookie.name, cookie.value);
+        cookiesText += cookie.name+'='+cookie.value+'; ';
+        //xhr.setRequestHeader(cookie.name, cookie.value);
+      }
+      if(cookiesText !== ''){
+        //xhr.setRequestHeader('Cookie', cookiesText);
+        xhr.setRequestHeader('CookieTemp', cookiesText);
+        xhr.withCredentials = "true";
+      }
+
+      callback();
+    });
+  }else{
+    callback();
+  }
 }
 
 chrome.alarms.get("schedule", function(a) {
@@ -119,6 +152,35 @@ function webRequestListener(){
       }, {
         urls: ["*://*/*mal-sync-background=*"]
       }, ["blocking", "responseHeaders"]);
+
+      chrome.webRequest.onBeforeSendHeaders.addListener(
+          function (details) {
+            con.error(details);
+            var tempCookies = '';
+            details.requestHeaders!.forEach(function(requestHeader){
+              if (requestHeader.name === "CookieTemp") {
+                tempCookies = requestHeader!.value!;
+              }
+            });
+            con.log(tempCookies);
+
+            if(tempCookies !== ''){
+              details.requestHeaders!.forEach(function(requestHeader){
+                if (requestHeader.name.toLowerCase() === "cookie") {
+                  requestHeader.value = tempCookies;
+                }
+              });
+              con.log(details);
+            }
+            return {
+              requestHeaders: details.requestHeaders
+            };
+
+          }, {
+              urls: [ "*://myanimelist.net/*" ]
+          }, ['blocking', 'requestHeaders']
+      );
+
     } else {
       con.log('No webRequest permissions');
     }
