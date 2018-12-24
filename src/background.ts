@@ -64,28 +64,27 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
 
 function getCookies(url, sender, xhr, callback = function(){}){
   if(typeof sender != 'undefined' && sender && typeof sender.tab != 'undefined' && typeof sender.tab.cookieStoreId != 'undefined'){
-    con.error(sender.tab.cookieStoreId);
     //@ts-ignore
-    browser.cookies.getAll({storeId: sender.tab.cookieStoreId, url: url}).then(function(cookies){
-      con.log(cookies);
-      var cookiesText = '';
-      for (var key in cookies) {
-        var cookie = cookies[key];
-        con.log(cookie.name, cookie.value);
-        cookiesText += cookie.name+'='+cookie.value+'; ';
-        //xhr.setRequestHeader(cookie.name, cookie.value);
-      }
-      if(cookiesText !== ''){
-        //xhr.setRequestHeader('Cookie', cookiesText);
-        xhr.setRequestHeader('CookieTemp', cookiesText);
-        xhr.withCredentials = "true";
-      }
+    if(browser) {
+      //@ts-ignore
+      browser.cookies.getAll({storeId: sender.tab.cookieStoreId, url: url}).then(function(cookies){
+        con.log('Cookie Store', sender.tab.cookieStoreId, cookies);
+        var cookiesText = '';
+        for (var key in cookies) {
+          var cookie = cookies[key];
+          cookiesText += cookie.name+'='+cookie.value+'; ';
+        }
+        if(cookiesText !== ''){
+          xhr.setRequestHeader('CookieTemp', cookiesText);
+          xhr.withCredentials = "true";
+        }
 
-      callback();
-    });
-  }else{
-    callback();
+        callback();
+      });
+      return;
+    }
   }
+  callback();
 }
 
 chrome.alarms.get("schedule", function(a) {
@@ -152,25 +151,29 @@ function webRequestListener(){
       }, {
         urls: ["*://*/*mal-sync-background=*"]
       }, ["blocking", "responseHeaders"]);
+    }
+  });
 
+  chrome.permissions.contains({
+    permissions: ['webRequest', 'cookies']
+  }, function(result) {
+    if (result) {
       chrome.webRequest.onBeforeSendHeaders.addListener(
           function (details) {
-            con.error(details);
             var tempCookies = '';
             details.requestHeaders!.forEach(function(requestHeader){
               if (requestHeader.name === "CookieTemp") {
                 tempCookies = requestHeader!.value!;
               }
             });
-            con.log(tempCookies);
 
             if(tempCookies !== ''){
+              con.log('Replace Cookies', tempCookies);
               details.requestHeaders!.forEach(function(requestHeader){
                 if (requestHeader.name.toLowerCase() === "cookie") {
                   requestHeader.value = tempCookies;
                 }
               });
-              con.log(details);
             }
             return {
               requestHeaders: details.requestHeaders
