@@ -73,9 +73,6 @@ const generateManifest = () => {
       'assets/*',
     ],
     'permissions': [
-      "cookies",//
-      "webRequest",//
-      "webRequestBlocking",//
       "storage",
       "alarms",
       "https://myanimelist.net/",
@@ -85,6 +82,7 @@ const generateManifest = () => {
       "tabHide"
     ],
     "optional_permissions": [
+      "cookies",
       "webRequest",
       "webRequestBlocking"
     ].concat(generateMatchExcludes().match),

@@ -516,6 +516,7 @@ export class minimal{
             <h2 class="mdl-card__title-text">ETC</h2>
           </div>
           <span class="option-extension" style="display: none;">${materialCheckbox('userscriptMode','Userscript mode'+utils.getTooltip('Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.','','bottom'))}</span>
+          <span class="option-extension" style="display: none;">${materialCheckbox('strictCookies','Strict Cookies',false,false)}</span>
           <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
         </div>
         <div id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
@@ -700,7 +701,7 @@ export class minimal{
           if(!utils.canHideTabs()){
             chrome.permissions.request({
               permissions: ["webRequest", "webRequestBlocking"],
-              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
+              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking' && permission != 'cookies')})
             }, function(granted) {
               con.log('optional_permissions', granted);
             });
@@ -718,6 +719,41 @@ export class minimal{
     this.minimal.find('#updateCheckUi').click(() => {
       this.updateCheckUi();
     })
+
+    try{
+      if(api.type == 'webextension'){
+        chrome.permissions.contains({
+          permissions: ['cookies']
+        }, (result) => {
+          if(result){
+            if (!this.minimal.find('#strictCookies')[0].checked) {
+              this.minimal.find('#strictCookies').trigger('click');
+            }
+          }
+          this.minimal.find('#strictCookies').change(() => {
+            if (this.minimal.find('#strictCookies')[0].checked) {
+              con.log('strictCookies checked');
+              chrome.permissions.request({
+                permissions: ["webRequest", "webRequestBlocking", "cookies"],
+                origins: [],
+              }, function(granted) {
+                con.log('optional_permissions', granted);
+              });
+            }else{
+              con.log('strictCookies not checked');
+              chrome.permissions.remove({
+                permissions: ["cookies"],
+                origins: [],
+              }, function(remove) {
+                con.log('optional_permissions_remove', remove);
+              });
+            }
+          })
+        });
+      }
+    }catch(e){
+      con.error(e);
+    }
 
     api.storage.get('tempVersion')
       .then((version) => {
@@ -810,10 +846,12 @@ export class minimal{
 
     //helper
 
-    function materialCheckbox(option, text, header = false){
+    function materialCheckbox(option, text, header = false, value:any = null){
       var check = '';
       var sty = '';
-      var value = api.settings.get(option);
+      if(value === null){
+        value = api.settings.get(option);
+      }
       if(value) check = 'checked';
       if(header) sty = 'font-size: 24px; font-weight: 300; line-height: normal;';
       var item = `
