@@ -136,7 +136,6 @@ function webRequestListener(){
     if (result) {
       con.log('webRequest permissions found');
       chrome.webRequest.onHeadersReceived.addListener(function (details) {
-        con.log('test', details);
         if(details.initiator!.indexOf(chrome.runtime.id) !== -1){
           con.log('Remove x-frame-options');
           for (var i = 0; i < details.responseHeaders!.length; ++i) {
@@ -158,6 +157,7 @@ function webRequestListener(){
     permissions: ['webRequest', 'cookies']
   }, function(result) {
     if (result) {
+      con.log('Cookie permissions found');
       chrome.webRequest.onBeforeSendHeaders.addListener(
           function (details) {
             var tempCookies = '';
