@@ -63,28 +63,56 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
 }
 
 function getCookies(url, sender, xhr, callback = function(){}){
-  if(typeof sender != 'undefined' && sender && typeof sender.tab != 'undefined' && typeof sender.tab.cookieStoreId != 'undefined'){
+  chrome.permissions.contains({
+    permissions: ['cookies']
+  }, function(result) {
     //@ts-ignore
-    if(browser) {
-      //@ts-ignore
-      browser.cookies.getAll({storeId: sender.tab.cookieStoreId, url: url}).then(function(cookies){
-        con.log('Cookie Store', sender.tab.cookieStoreId, cookies);
-        var cookiesText = '';
-        for (var key in cookies) {
-          var cookie = cookies[key];
-          cookiesText += cookie.name+'='+cookie.value+'; ';
-        }
-        if(cookiesText !== ''){
-          xhr.setRequestHeader('CookieTemp', cookiesText);
-          xhr.withCredentials = "true";
-        }
-
-        callback();
-      });
+    if(!result || typeof browser === 'undefined' || !browser){
+      callback();
       return;
     }
-  }
-  callback();
+
+    var cookieId = '';
+    if(typeof sender != 'undefined' && sender && typeof sender.tab != 'undefined' && typeof sender.tab.cookieStoreId != 'undefined'){
+      cookieId = sender.tab.cookieStoreId;
+    }
+
+    if(typeof sender != 'undefined' && sender && typeof sender.envType != 'undefined' && sender.envType === 'addon_child'){
+      chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
+        //@ts-ignore
+        if(tabs[0] && typeof tabs[0].cookieStoreId != 'undefined'){
+          //@ts-ignore
+          cookieId = tabs[0].cookieStoreId;
+        }
+        t(cookieId);
+      });
+    }else{
+      t(cookieId);
+    }
+
+    function t(cookieId){
+      if(cookieId !== '') {
+        //@ts-ignore
+        browser.cookies.getAll({storeId: cookieId, url: url}).then(function(cookies){
+          con.log('Cookie Store', cookieId, cookies);
+          var cookiesText = '';
+          for (var key in cookies) {
+            var cookie = cookies[key];
+            cookiesText += cookie.name+'='+cookie.value+'; ';
+          }
+          if(cookiesText !== ''){
+            xhr.setRequestHeader('CookieTemp', cookiesText);
+            xhr.withCredentials = "true";
+          }
+
+          callback();
+        });
+        return;
+      }
+
+      callback();
+    }
+  });
 }
 
 chrome.alarms.get("schedule", function(a) {
