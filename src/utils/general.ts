@@ -408,6 +408,10 @@ export function getUserList(status = 1, localListType = 'anime', singleCallback 
         getMalUserName(function(usernameTemp){
             if(usernameTemp == false){
                 flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" );
+                // @ts-ignore
+                if(fullListCallback) fullListCallback([]);
+                // @ts-ignore
+                if(finishCallback) finishCallback();
             }else{
                 getUserList(status, localListType, singleCallback, finishCallback, fullListCallback, continueCall, usernameTemp, offset, templist);
             }

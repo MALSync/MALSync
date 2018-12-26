@@ -921,7 +921,7 @@ export class minimal{
   }
 
   bookmarks(state = 1, localListType = 'anime'){
-    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
+    this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('<div id="malList"></div>');
     this.minimal.find('#loadMalSearchPop').show();
 
     var element = this.minimal.find('#malSearchPopInner')
