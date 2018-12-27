@@ -219,17 +219,15 @@ function webRequestListener(){
 }
 
 webRequestListener();
-chrome.permissions.onAdded.addListener(function(){
-  webRequestListener();
-});
 
 chrome.notifications.onClicked.addListener(function(notificationId) {
   chrome.tabs.create({url: notificationId});
 });
 
-/*chrome.permissions.request({
-    permissions: ["webRequest", "webRequestBlocking"],
-    origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking')})
-  }, function(granted) {
-    con.log('optional_permissions', granted);
-  });*/
+try{
+  chrome.permissions.onAdded.addListener(function(){
+    webRequestListener();
+  });
+}catch(e){
+  con.info('Permission on change', e);
+}
