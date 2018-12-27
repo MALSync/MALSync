@@ -516,7 +516,7 @@ export class minimal{
             <h2 class="mdl-card__title-text">ETC</h2>
           </div>
           <span class="option-extension" style="display: none;">${materialCheckbox('userscriptMode','Userscript mode'+utils.getTooltip('Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.','','bottom'))}</span>
-          <span class="option-extension" style="display: none;">${materialCheckbox('strictCookies','Strict Cookies',false,false)}</span>
+          <span class="option-extension-popup" style="display: none;">${materialCheckbox('strictCookies','Strict Cookies',false,false)}</span>
           <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
         </div>
         <div id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
@@ -636,6 +636,10 @@ export class minimal{
 
     if(api.type == 'webextension'){
       this.minimal.find('.option-extension').show();
+    }
+
+    if(api.type == 'webextension' && this.isPopup()){
+      this.minimal.find('.option-extension-popup').show();
     }
 
     if(api.type == 'webextension' && this.isPopup()){
