@@ -9,6 +9,7 @@ import {Gogoanime} from "./Gogoanime/main";
 import {Anime4you} from "./Anime4you/main";
 import {Branitube} from "./Branitube/main";
 import {Turkanime} from "./Turkanime/main";
+import {Twistmoe} from "./Twistmoe/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -24,6 +25,7 @@ export const pages = {
     Anime4you: Anime4you,
     Branitube: Branitube,
     Turkanime: Turkanime,
+    Twistmoe: Twistmoe,
 };
 
 export const pageSearch:pageSearchObj = {

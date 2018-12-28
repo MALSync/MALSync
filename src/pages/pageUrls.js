@@ -111,5 +111,10 @@ module.exports = {
       '*://*.www.turkanime.tv/video/*',
       '*://*.www.turkanime.tv/anime/*'
     ]
+  },
+  Twistmoe: {
+    match: [
+      '*://twist.moe/*'
+    ]
   }
 }
