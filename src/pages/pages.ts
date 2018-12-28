@@ -6,7 +6,6 @@ import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
 import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
-import {Animeheaven} from "./Animeheaven/main";
 import {Anime4you} from "./Anime4you/main";
 import {Branitube} from "./Branitube/main";
 import {Turkanime} from "./Turkanime/main";
@@ -22,7 +21,6 @@ export const pages = {
     Mangadex: Mangadex,
     Mangarock: Mangarock,
     Gogoanime: Gogoanime,
-    Animeheaven: Animeheaven,
     Anime4you: Anime4you,
     Branitube: Branitube,
     Turkanime: Turkanime,
@@ -68,12 +66,6 @@ export const pageSearch:pageSearchObj = {
       type: 'anime',
       domain: 'www.gogoanime.in',
       searchUrl: (titleEncoded) => {return 'http://gogoanimes.co/search.html?keyword='+titleEncoded}
-    },
-    Animeheaven: {
-      name: 'Animeheaven',
-      type: 'anime',
-      domain: 'animeheaven.eu',
-      searchUrl: (titleEncoded) => {return 'http://animeheaven.eu/search.php?q='+titleEncoded}
     },
     Mangadex: {
       name: 'Mangadex',

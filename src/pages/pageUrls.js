@@ -95,12 +95,6 @@ module.exports = {
       '*gogoanime*.*/anime-List*',
     ]
   },
-  Animeheaven: {
-    match: [
-      '*://animeheaven.eu/i.php*',
-      '*://animeheaven.eu/watch.php*'
-    ]
-  },
   Anime4you: {
     match: [
       '*://*.anime4you.one/show/1/aid/*',
