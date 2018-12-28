@@ -300,7 +300,7 @@ export class minimal{
     this.minimal.find("#malSubmit").click( function(){
       var murl = This.minimal.find("#malUrlInput").val();
       var toDatabase:boolean|'correction' = false;
-      if (typeof page.page.database != 'undefined' && confirm('Submit database correction request? \nIf it does not exist on MAL, please leave empty.')) {
+      if (typeof page.page.database != 'undefined' && confirm('Submit database correction request?')) {
           toDatabase = 'correction';
       }
       page.setCache(murl, toDatabase);
