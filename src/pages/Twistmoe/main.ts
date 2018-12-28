@@ -10,7 +10,7 @@ export const Twistmoe: pageInterface = {
       getTitle: function(url){return j.$('.series-title').text().trim();},
       getIdentifier: function(url){return utils.urlPart(url, 4);},
       getOverviewUrl: function(url){
-        return Twistmoe.domain+'/a/'+Twistmoe.sync.getIdentifier(url);
+        return Twistmoe.domain+'/a/'+Twistmoe.sync.getIdentifier(url)+'/1';
         },
       getEpisode: function(url){
         return parseInt(utils.urlPart(url, 5))
