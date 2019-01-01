@@ -318,6 +318,19 @@ export class minimal{
       clearTimeout(timer);
       timer = setTimeout(function(){
         This.searchMal(This.minimal.find("#malSearch").val(), listType, '.malResults', function(){
+
+          This.minimal.find("#malSearchResults select").first().after(`
+            <a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="" style="cursor: pointer;">
+            <div style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"/>
+            <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
+              <span style="font-size: 20px; font-weight: 400; line-height: 1;">
+              No entry on MyAnimeList</span>
+              <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">
+              If the Anime/Manga can't be found on MAL</p>
+            </div>
+            </a>
+          `);
+
          This.minimal.find("#malSearchResults .searchItem").unbind('click').click(function(e) {
           e.preventDefault();
           // @ts-ignore
