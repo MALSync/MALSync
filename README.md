@@ -16,7 +16,7 @@ Makes it possible to use your MyAnimeList anime/mangalist as a centralized bookm
 | [![MasterAni.me](https://www.google.com/s2/favicons?domain=masterani.me "MasterAni.me")](http://masterani.me)  [masterani.me](http://masterani.me) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) |
 | [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) |                                          |
 | [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) |                                          |
-| [![AnimeHeaven](http://animeheaven.eu/favicon.ico "AnimeHeaven")](http://animeheaven.eu) [animeheaven.eu](http://animeheaven.eu) |                                          |
+| [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) |                                          |
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) |                                          |
 | [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) |                                          |
 | [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) |                                          |
@@ -52,6 +52,8 @@ ___
 ___
 
 ## Want to Contribute?
-Then let me know on [![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Discord&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)  
+Then let me know on [Discord](https://discordapp.com/invite/cTH4yaw).  
 
 How to build? [Wiki](https://github.com/lolamtisch/MALSync/wiki/Build)
+
+You can't code, but want to help? [Donations](https://github.com/lolamtisch/MALSync/wiki/Donations)
