@@ -35,6 +35,11 @@ export const Anime4you: pageInterface = {
       }
     },
     init(page){
+      if(document.title == "Please wait 5 seconds..."){
+          con.log("loading");
+          page.cdn();
+          return;
+      }
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){
         page.handlePage();
