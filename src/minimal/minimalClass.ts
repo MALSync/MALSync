@@ -836,9 +836,15 @@ export class minimal{
             }else{
               userVal.subText = '';
             }
+            if(typeof userVal.gif != 'undefined' && userVal.gif){
+              userVal.gif = `<img data-src="${userVal.gif}" class="lazy init gif">`;
+            }else{
+              userVal.gif = '';
+            }
             html += `
               <div class="user">
                 <div class="image align-middle">
+                  ${userVal.gif}
                   <img data-src="${userVal.image}" class="lazy init">
                 </div>
                 <div class="text align-middle">

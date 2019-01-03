@@ -234,6 +234,7 @@ a{
       overflow: hidden;
 
       .image{
+        position: relative;
         vertical-align: middle!important;
         display: inline-block;
         height: 32px;
@@ -241,6 +242,12 @@ a{
         margin-right: 10px;
         border-radius: 50%;
         overflow: hidden;
+        border: 1px solid #e0e0e0;
+
+        .gif{
+          position: absolute;
+          display:none;
+        }
       }
 
       .text{
@@ -260,6 +267,11 @@ a{
     }
     .user{
       display: block;
+      .image{
+        .gif{
+          display: block;
+        }
+      }
       .text{
         display: inline-block;
       }
