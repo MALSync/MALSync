@@ -167,10 +167,18 @@ function contributer(contr){
       }else{
         userVal.subText = '';
       }
+
+      if(typeof userVal.gif != 'undefined' && userVal.gif){
+        userVal.gif = `<img class="gif" src="${userVal.gif}">`;
+      }else{
+        userVal.gif = '';
+      }
+
       console.log(contr[group][user]);
       html += `
         <div class="user">
           <div class="image align-middle">
+            ${userVal.gif}
             <img src="${userVal.image}">
           </div>
           <div class="text align-middle">

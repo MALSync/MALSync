@@ -152,6 +152,7 @@ body{
     overflow: hidden;
   }
   #contributer .user .image{
+    position: relative;
     display: inline-block;
     height: 32px;
     widows: 32px;
@@ -162,6 +163,13 @@ body{
   #contributer .user .image img{
     height: 100%;
     widows: 100%;
+  }
+  #contributer .user .image .gif{
+    position: absolute;
+    display: none;
+  }
+  #contributer.hover:hover .user .image .gif{
+    display: block;
   }
   #contributer .user .text{
     display: inline-block;
