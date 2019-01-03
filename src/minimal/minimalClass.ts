@@ -255,10 +255,10 @@ export class minimal{
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
           <label class="mdl-textfield__label" for="malSearch">
-            Search
+            Correction Search
           </label>
           <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
-          ${utils.getTooltip('This field is for finding an anime, when you need to replace the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')}
+          ${utils.getTooltip('This field is for finding an anime, when you need to correct the "MyAnimeList Url" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.','float: right; margin-top: -17px;','left')}
         </div>
       </div>
       <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">
