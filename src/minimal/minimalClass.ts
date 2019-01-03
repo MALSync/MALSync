@@ -236,6 +236,7 @@ export class minimal{
         <h2 class="mdl-card__title-text">
           ${title}
         </h2>
+        <a href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting" style="margin-left: auto;">Help</a>
       </div>
       <div class="mdl-list__item">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
