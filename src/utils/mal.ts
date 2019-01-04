@@ -93,6 +93,20 @@ export class mal{
     this.animeInfo[".add_anime[score]"] = score;
   }
 
+  getRewatching(): 1|0{
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[is_rereading]"];
+    }
+    return this.animeInfo[".add_anime[is_rewatching]"];
+  }
+
+  setRewatching(rewatching:1|0){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[is_rereading]"] = rewatching;
+    }
+    this.animeInfo[".add_anime[is_rewatching]"] = rewatching;
+  }
+
   setCompletionDateToNow(){
     var Datec = new Date();
     if(this.animeInfo['.add_anime[finish_date][day]'] === '' || this.animeInfo['.add_manga[finish_date][day]'] === ''){
@@ -202,6 +216,7 @@ export class mal{
   }
 
   sync(){
+    var status = utils.status;
     return new Promise((resolve, reject) => {
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
@@ -258,6 +273,54 @@ export class mal{
         }
 
         return;
+      }else{
+        //Rewatching
+        var watchCounter = '.add_anime[num_watched_times]';
+        var rewatchText = 'Rewatch Anime?';
+        var rewatchFinishText = 'Finish rewatching?';
+        if(this.type == "manga"){
+          watchCounter = '.add_manga[num_read_times]';
+          rewatchText = 'Reread Manga?';
+          rewatchFinishText = 'Finish rereading?';
+        }
+
+        if(
+          this.getStatus() == status.completed &&
+          this.getEpisode() === 1 &&
+          this.totalEp !== 1 &&
+          this.getRewatching() !== 1
+        ){
+          utils.flashConfirm(rewatchText, 'add', () => {
+            this.setRewatching(1);
+            continueCall();
+          }, function(){
+            continueCall();
+          });
+          return;
+        }
+
+        if(
+          this.getStatus() == status.completed &&
+          this.getEpisode() === this.totalEp &&
+          this.getRewatching() === 1
+        ){
+
+          utils.flashConfirm(rewatchFinishText, 'add', () => {
+            this.setRewatching(0);
+
+            if(this.animeInfo[watchCounter] === ''){
+                this.animeInfo[watchCounter] = 1;
+            }else{
+                this.animeInfo[watchCounter] = parseInt(this.animeInfo[watchCounter])+1;
+            }
+
+            continueCall();
+          }, function(){
+            continueCall();
+          });
+
+          return;
+        }
       }
 
       function wrongCall(){
