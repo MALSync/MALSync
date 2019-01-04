@@ -255,7 +255,6 @@ export class mal{
         }else{
           url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
           utils.flashConfirm(flashConfirmText, 'add', function(){
-            This.setStatus(1);
             continueCall();
           }, function(){
             wrongCall();
