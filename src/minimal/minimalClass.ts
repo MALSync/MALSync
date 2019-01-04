@@ -956,6 +956,7 @@ export class minimal{
     var series_episodes = 'anime_num_episodes';
     var localPlanTo = 'Plan to Watch';
     var localWatching = 'Watching'
+    var airingState = 'anime_airing_status';
     if(localListType != 'anime'){
         my_watched_episodes = 'num_read_chapters';
         series_episodes = 'manga_num_chapters';
@@ -1025,7 +1026,12 @@ export class minimal{
           bookmarkElement +='<div class="tags" style="display: none;">'+el['tags']+'</div>';
         bookmarkElement +='</div>';
       bookmarkElement +='</div>';
-      element.find('#malList .listPlaceholder').first().before( bookmarkElement );
+
+      if(el[airingState] == 1 && state == 1){
+        element.find('#malList #userListState').after( bookmarkElement );
+      }else{
+        element.find('#malList .listPlaceholder').first().before( bookmarkElement );
+      }
 
       var domE = element.find('#malList .e'+uid).first();
 
