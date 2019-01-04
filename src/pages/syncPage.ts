@@ -230,12 +230,20 @@ export class syncPage{
 
   private async handleAnimeUpdate(state){
     var status = utils.status;
-    if(this.malObj.getEpisode() >= state.episode){
+    if(
+      this.malObj.getEpisode() >= state.episode &&
+      //Rewatching
+      !(
+        this.malObj.getStatus() == status.completed &&
+        state.episode === 1 &&
+        this.malObj.totalEp !== 1 &&
+        this.malObj.getRewatching() !== 1
+      )
+    ){
       return false;
     }
     this.malObj.setEpisode(state.episode);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
-    //TODO: Add the Rewatching Handling
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
