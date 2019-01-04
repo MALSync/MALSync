@@ -245,7 +245,6 @@ export class mal{
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
           utils.flashConfirm(flashConfirmText, 'add', function(){
-            This.setStatus(1);
             continueCall();
           }, function(){
             wrongCall();
