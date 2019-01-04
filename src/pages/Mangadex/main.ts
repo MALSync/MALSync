@@ -50,6 +50,7 @@ export const Mangadex: pageInterface = {
         selector.appendTo(j.$(".container .card .kal-ui").first());
       },
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$(".chapter-container > .row:not(:first-of-type) .chapter-row");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Mangadex.domain);},
         elementEp: function(selector){return selector.attr('data-chapter');},

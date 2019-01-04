@@ -27,6 +27,7 @@ export const Branitube: pageInterface = {
       getIdentifier: function(url){return Branitube.sync.getIdentifier(url)},
       uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 10px; padding: 12px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$(".theUpdates .contentLastUpdatesEps").first()); },
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$('.imgefeito > .episodio');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a.episodioImages").first().attr('href'), Branitube.domain);},
         elementEp: function(selector){return Branitube.sync!.getEpisode(Branitube.overview!.list!.elementUrl(selector))},

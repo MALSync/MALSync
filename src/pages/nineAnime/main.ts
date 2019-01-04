@@ -26,6 +26,7 @@ export const nineAnime: pageInterface = {
       getIdentifier: function(url){return '';},
       uiSelector: function(selector){},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$(".episodes.range a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), nineAnime.domain);},
         elementEp: function(selector){return selector.attr('data-base')},

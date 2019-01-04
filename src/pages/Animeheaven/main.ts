@@ -24,6 +24,7 @@ export const Animeheaven: pageInterface = {
       getIdentifier: function(url){return Animeheaven.sync.getIdentifier(url);},
       uiSelector: function(selector){selector.insertBefore(j.$(".infoepboxmain").first());},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$(".infoepbox > a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Animeheaven.domain);},
         elementEp: function(selector){

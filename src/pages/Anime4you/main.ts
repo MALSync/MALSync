@@ -29,6 +29,7 @@ export const Anime4you: pageInterface = {
       getIdentifier: function(url){return Anime4you.sync.getIdentifier(url)},
       uiSelector: function(selector){ Anime4you.sync!.uiSelector!(selector)},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$('.episoden li');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Anime4you.domain);},
         elementEp: function(selector){return Anime4you.sync!.getEpisode(Anime4you.overview!.list!.elementUrl(selector))},

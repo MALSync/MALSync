@@ -56,6 +56,7 @@ export const Crunchyroll: pageInterface = {
       },
       uiSelector: function(selector){selector.insertBefore(j.$("#tabs").first());},
       list:{
+        offsetHandler: true,
         elementsSelector: function(){return j.$("#showview_content_videos .list-of-seasons .group-item a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);},
         elementEp: function(selector){

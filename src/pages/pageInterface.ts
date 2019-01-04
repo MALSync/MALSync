@@ -19,6 +19,7 @@ export interface pageInterface {
       getIdentifier: (url) => string,
       uiSelector: (selector) => void,
       list?:{
+        offsetHandler: boolean,
         elementsSelector: () => JQuery<HTMLElement>,
         elementUrl: (selector) => string,
         elementEp: (selector) => number,

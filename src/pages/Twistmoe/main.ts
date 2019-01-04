@@ -25,6 +25,7 @@ export const Twistmoe: pageInterface = {
       getIdentifier: function(url){return '';},
       uiSelector: function(selector){return '';},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$('.episode-list li');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Twistmoe.domain);},
         elementEp: function(selector){return Twistmoe.sync!.getEpisode(Twistmoe.overview!.list!.elementUrl(selector))},

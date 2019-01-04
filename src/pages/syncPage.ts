@@ -327,6 +327,7 @@ export class syncPage{
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
       if (typeof(epList) != "undefined" && epList.length > 0){
+        this.offsetHandler(epList);
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         var curEp = epList[this.malObj.getEpisode()];
@@ -368,6 +369,25 @@ export class syncPage{
 
       });
       return elementArray;
+    }
+  }
+
+  offsetHandler(epList){
+    if(!this.page.overview!.list!.offsetHandler) return;
+    if(typeof this.offset !== 'undefined' && this.offset !== "0") return;
+    for (var i = 0; i < epList.length; ++i) {
+      if (typeof epList[i] !== 'undefined') {
+        con.log('Offset', i);
+        if(i > 1){
+          var calcOffset = 1 - i;
+          utils.flashConfirm('A possible Episode offset of '+calcOffset+' was detected. Is that correct? ', 'offset', () => {
+            this.setOffset(calcOffset);
+          }, () => {
+            this.setOffset(0);
+          });
+        }
+        return;
+      }
     }
   }
 

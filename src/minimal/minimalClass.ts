@@ -280,7 +280,7 @@ export class minimal{
           page.setOffset(Offset);
           utils.flashm("New Offset ("+Offset+") set.");
         }else{
-          page.setOffset(0);
+          page.setOffset("0");
           utils.flashm("Offset reset");
         }
       }

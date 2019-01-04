@@ -26,6 +26,7 @@ export const Turkanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 4)},
       uiSelector: function(selector){selector.prependTo(j.$("#detayPaylas .panel-body").first());},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$('.list.menum > li');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").last().attr('href').replace(/^\/\//, 'http://'), Turkanime.domain);},
         elementEp: function(selector){

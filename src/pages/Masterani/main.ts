@@ -26,6 +26,7 @@ export const Masterani: pageInterface = {
       getIdentifier: function(url){return Masterani.sync.getIdentifier(url)},
       uiSelector: function(selector){selector.prependTo(j.$("#stats").first());},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$(".episodes .thumbnail");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Masterani.domain);},
         elementEp: function(selector){

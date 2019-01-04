@@ -32,6 +32,7 @@ export const Mangarock: pageInterface = {
         selector.insertBefore($( "h2:contains('Chapters')" ).first().parent().parent().parent());
       },
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$('[data-test="chapter-table"] tr');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Mangarock.domain);},
         elementEp: function(selector){return EpisodePartToEpisode(selector.find('a').text());},

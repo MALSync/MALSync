@@ -24,6 +24,7 @@ export const Gogoanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 4);},
       uiSelector: function(selector){selector.prependTo(j.$(".anime_info_body").first());},
       list:{
+        offsetHandler: false,
         elementsSelector: function(){return j.$("#episode_related a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href').replace(/^ /,''), Gogoanime.domain);},
         elementEp: function(selector){
