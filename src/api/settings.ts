@@ -22,9 +22,11 @@ export var settingsObj = {
     Kissanime: true,
     Masterani: true,
     Animeheaven: true,
+    Twistmoe: true,
     Anime4you: true,
     Kissmanga: true,
     Mangadex: true,
+    Mangarock: true,
 
     updateCheckNotifications: true,
   },

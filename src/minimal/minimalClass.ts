@@ -435,10 +435,11 @@ export class minimal{
           ${materialCheckbox('9anime','9anime')}
           ${materialCheckbox('Crunchyroll','Crunchyroll')}
           ${materialCheckbox('Gogoanime','Gogoanime')}
-          ${materialCheckbox('Animeheaven','Animeheaven')}
+          ${materialCheckbox('Twistmoe','twist.moe')}
           ${materialCheckbox('Anime4you','Anime4You (Ger)')}
           ${materialCheckbox('Kissmanga','KissManga')}
           ${materialCheckbox('Mangadex','MangaDex')}
+          ${materialCheckbox('Mangarock','Mangarock')}
         </div>
 
         <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
