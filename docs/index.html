@@ -335,6 +335,8 @@
 		var running = 0;
     var lastCalledTime;
     var fpsRunning;
+    var mouse = {x: 0, y: 0};
+
 		initStars();
 		window.onresize = function() {
 		  initStars();
@@ -348,6 +350,34 @@
 
 			remainingScroll += scrollDistance;
 		}
+
+    document.onmousemove = handleMouseMove;
+    function handleMouseMove(event) {
+      var dot, eventDoc, doc, body, pageX, pageY;
+
+      event = event || window.event; // IE-ism
+
+      // If pageX/Y aren't available and clientX/Y are,
+      // calculate pageX/Y - logic taken from jQuery.
+      // (This is to support old IE)
+      if (event.pageX == null && event.clientX != null) {
+          eventDoc = (event.target && event.target.ownerDocument) || document;
+          doc = eventDoc.documentElement;
+          body = eventDoc.body;
+
+          event.pageX = event.clientX +
+            (doc && doc.scrollLeft || body && body.scrollLeft || 0) -
+            (doc && doc.clientLeft || body && body.clientLeft || 0);
+          event.pageY = event.clientY +
+            (doc && doc.scrollTop  || body && body.scrollTop  || 0) -
+            (doc && doc.clientTop  || body && body.clientTop  || 0 );
+      }
+
+      // Use event.pageX / event.pageY here
+      mouse.x = event.pageX;
+      mouse.y = event.pageY -$(window).scrollTop() ;
+    }
+
 		function initStars(){
 			canvas.width = document.body.clientWidth;
 			canvas.height = document.body.clientHeight;
@@ -393,6 +423,7 @@
 				for (var star of stars) {
 					star.animate();
 					star.offset(0, scrollDistance/star.paralaxLevel);
+          star.mouseReaction(mouse);
 				}
 				drawStars();
 
@@ -414,9 +445,10 @@
 				frame++;
 				ctx.clearRect(0, 0, canvas.width, canvas.height);
 				ctx.moveTo(0, 0);
-				ctx.fillStyle="white";
+
 
 				for (var star of stars) {
+          ctx.fillStyle=star.color;
 					ctx.fillRect(
 						star.x,
 						star.y,
@@ -435,6 +467,7 @@
 			this.ySpeed = 0;
 			this.size = 1;
 			this.paralaxLevel = 1;
+      this.color = 'white';
 			this.init = function(){
 				this.x = Math.floor(Math.random() * canvas.width);
 				this.y = Math.floor(Math.random() * canvas.height);
@@ -479,6 +512,45 @@
 				this.y += yOff;
 				this.x += xOff;
 			}
+      this.mouseReaction = function(mouse){
+        //this.color = 'white';
+        var distx = this.x - mouse.x;
+        var disty = this.y - mouse.y;
+        var reactionDistance = 200;
+        if(distx < reactionDistance && distx > -reactionDistance){
+          if(disty < reactionDistance && disty > -reactionDistance){
+            if(!(distx < 15 && distx > -15 && disty < 15 && disty > -15)){
+              //this.color = 'red';
+
+              var speed = 5
+              var movex = speed / distx;
+              var movey = speed / disty;
+
+              if(distx > 0){
+                distx = reactionDistance - distx;
+              }else{
+                distx = -reactionDistance - distx;
+              }
+
+              if(disty > 0){
+                disty = reactionDistance - disty;
+              }else{
+                disty = -reactionDistance - disty;
+              }
+
+              if(1 == 1){
+                this.xSpeed += (distx / 1000000) * -1;
+              }
+              if(1 == 1){
+                this.ySpeed += (disty / 1000000) * -1;
+              }
+
+              //this.move(movex, movey);
+              return;
+            }
+          }
+        }
+      }
 		}
 
 		window.requestAnimFrame = (function(){
