@@ -69,6 +69,13 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.gogoanime.in',
       searchUrl: (titleEncoded) => {return 'http://gogoanimes.co/search.html?keyword='+titleEncoded}
     },
+    Turkanime: {
+      name: 'Turkanime',
+      type: 'anime',
+      domain: 'www.turkanime.tv/',
+      searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:turkanime.tv/anime/'},
+      googleSearchDomain: 'turkanime.tv/anime/'
+    },
     Mangadex: {
       name: 'Mangadex',
       type: 'manga',
