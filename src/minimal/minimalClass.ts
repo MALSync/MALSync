@@ -1,4 +1,5 @@
 import {animeType} from "./types/anime";
+import * as provider from "./../provider/provider.ts";
 
 export class minimal{
   private history:(string)[] = [];
@@ -952,20 +953,17 @@ export class minimal{
     var element = this.minimal.find('#malSearchPopInner')
     var This = this;
 
-    var my_watched_episodes = 'num_watched_episodes';
-    var series_episodes = 'anime_num_episodes';
     var localPlanTo = 'Plan to Watch';
     var localWatching = 'Watching'
-    var airingState = 'anime_airing_status';
     if(localListType != 'anime'){
-        my_watched_episodes = 'num_read_chapters';
-        series_episodes = 'manga_num_chapters';
         localPlanTo = 'Plan to Read';
         localWatching = 'Reading'
     }
     var firstEl = 1;
 
-    utils.getUserList(state, localListType, function(el, index, total){
+    provider.userList(state, localListType,
+    {
+      singleCallback: function(el, index, total){
       if(firstEl){
         firstEl = 0;
         var bookmarkHtml = '<div class="mdl-grid" id="malList" style="justify-content: space-around;">';
@@ -1006,34 +1004,32 @@ export class minimal{
       }
 
       var bookmarkElement = '';
-      var uid = el[localListType+'_id']
-      var malUrl = 'https://myanimelist.net'+el[localListType+'_url'];
-      var streamUrl = utils.getUrlFromTags(el['tags']);
-      var imageHi = el[localListType+'_image_path'];
+      var streamUrl = utils.getUrlFromTags(el.tags);
+      var imageHi = el.image;
       var regexDimensions = /\/r\/\d*x\d*/g;
       if ( regexDimensions.test(imageHi) ) {
         imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
       }
-      var progressProcent = ( el[my_watched_episodes] / el[series_episodes] ) * 100;
-      bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+uid+'" malhref="'+malUrl+'" maltitle="'+el[localListType+'_title']+'" malimage="'+el[localListType+'_image_path']+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
+      var progressProcent = ( el.watchedEp / el.totalEp ) * 100;
+      bookmarkElement +='<div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry e'+el.id+'" malhref="'+el.url+'" maltitle="'+el.title+'" malimage="'+el.image+'" style="position: relative; cursor: pointer; height: 250px; padding: 0; width: 210px; height: 293px;">';
         bookmarkElement +='<div class="data title lazyBack init" data-src="'+imageHi+'" style="background-image: url(); background-color: grey; background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">';
-          bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el[localListType+'_title'];
-            bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el[series_episodes]+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" ep="'+el[my_watched_episodes]+'" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
+          bookmarkElement +='<span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">'+el.title;
+            bookmarkElement +='<div id="p1" class="mdl-progress" series_episodes="'+el.totalEp+'" style="position: absolute; top: -4px; left: 0;"><div class="progressbar bar bar1" ep="'+el.watchedEp+'" style="width: '+progressProcent+'%;"></div><div class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div><div class="auxbar bar bar3" style="width: 0%;"></div></div>';
             bookmarkElement +='<div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">';
-              bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el[my_watched_episodes]+'</div>';
+              bookmarkElement +='<div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">'+el.watchedEp+'</div>';
             bookmarkElement +='</div>';
           bookmarkElement +='</span>';
-          bookmarkElement +='<div class="tags" style="display: none;">'+el['tags']+'</div>';
+          bookmarkElement +='<div class="tags" style="display: none;">'+el.tags+'</div>';
         bookmarkElement +='</div>';
       bookmarkElement +='</div>';
 
-      if(el[airingState] == 1 && state == 1){
+      if(el.airingState == 1 && state == 1){
         element.find('#malList #userListState').after( bookmarkElement );
       }else{
         element.find('#malList .listPlaceholder').first().before( bookmarkElement );
       }
 
-      var domE = element.find('#malList .e'+uid).first();
+      var domE = element.find('#malList .e'+el.id).first();
 
       domE.click(function(event) {
         // @ts-ignore
@@ -1042,7 +1038,7 @@ export class minimal{
         }
       });
 
-      utils.epPredictionUI(uid, localListType, function(prediction){
+      utils.epPredictionUI(el.id, localListType, function(prediction){
         var pre = prediction.prediction;
         var color = 'orange';
         if(prediction.color != ''){
@@ -1116,11 +1112,11 @@ export class minimal{
               <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
-          var id = utils.urlPart(malUrl, 4);
-          var type = utils.urlPart(malUrl, 3);
+          var id = utils.urlPart(el.url, 4);
+          var type = utils.urlPart(el.url, 3);
           var resumeUrlObj = await utils.getResumeWaching(type, id);
           var continueUrlObj = await utils.getContinueWaching(type, id);
-          var curEp = parseInt(el[my_watched_episodes]);
+          var curEp = parseInt(el.watchedEp.toString());
 
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
@@ -1140,12 +1136,11 @@ export class minimal{
       }
 
     }
-    ,function(){
+    ,finishCallback: function(){
       This.minimal.find('#loadMalSearchPop').hide();
       utils.lazyload(This.minimal);
     },
-    null,
-    function(continueCall){
+    continueCall: function(continueCall){
       utils.lazyload(This.minimal);
       if(state == 1){
         continueCall();
@@ -1164,6 +1159,7 @@ export class minimal{
           continueCall();
         }
       });
+    }
     });
   }
 
@@ -1179,7 +1175,7 @@ export class minimal{
       }
     }, 5000)
 
-    utils.getUserList(1, type, null, null, async (list) => {
+    provider.userList(1, type, {fullListCallback: async (list) => {
       var html = `
       <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
         Refresh
@@ -1203,24 +1199,14 @@ export class minimal{
 
       for (var i = 0; i < list.length; i++) {
         var el = list[i];
-        var anime_id = el['anime_id'];
-        var anime_num_episodes = el['anime_num_episodes'];
-        var title = el['anime_title'];
-        var elUrl = el['anime_url'];
-        if(type == 'manga'){
-          anime_id = el['manga_id'];
-          anime_num_episodes = el['manga_num_chapters'];
-          title = el['manga_title'];
-          elUrl = el['manga_url'];
-        }
         var episode = '';
         var error = '';
         var trColor = '';
         con.log('el', el);
-        var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
+        var elCache = await api.storage.get('updateCheck/'+type+'/'+el.id);
         con.log('elCache', elCache);
         if(typeof elCache != 'undefined'){
-          episode = elCache['newestEp']+'/'+anime_num_episodes;
+          episode = elCache['newestEp']+'/'+el.totalEp;
           trColor = 'orange';
           if(elCache['finished']){
             error = 'finished';
@@ -1234,9 +1220,9 @@ export class minimal{
         html += `
         <tr style="background-color: ${trColor};">
           <th class="mdl-data-table__cell--non-numeric">
-            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+anime_id}"><i class="material-icons">delete</i></button>
-            <a href="${elUrl}" style="color: black;">
-              ${title}
+            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+el.id}"><i class="material-icons">delete</i></button>
+            <a href="${el.url}" style="color: black;">
+              ${el.title}
             </a>
           </th>
           <th>${episode}</th>
@@ -1282,7 +1268,7 @@ export class minimal{
         clearTimeout(refreshTo);
         this.updateCheckUi(this.minimal.find('.typeSelect-updateCheck').val());
       })
-    });
+    }});
 
   }
 
