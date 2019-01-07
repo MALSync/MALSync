@@ -39,7 +39,13 @@ export const Turkanime: pageInterface = {
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){
-        page.handlePage();
+        if(Turkanime.isSyncPage(page.url) ){
+          page.handlePage();
+        }else{
+          utils.waitUntilTrue(function(){return j.$('.list.menum').length}, function(){
+            page.handlePage();
+          });
+        }
       });
     }
 };
