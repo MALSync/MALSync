@@ -18,6 +18,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     var url = 'https://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
     api.request.xhr('GET', url).then((response) => {
       var data = JSON.parse(response.responseText);
+      data = prepareData(data);
       if(typeof callbacks.singleCallback !== 'undefined'){
         // @ts-ignore
         if(!data.length) callbacks.singleCallback(false, 0, 0);
@@ -46,6 +47,20 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       }
 
     });
+}
+
+export interface listElement {
+  title: string,
+}
+
+function prepareData(data): listElement[]{
+  var newData = [] as listElement[];
+  for (var i = 0; i < data.length; i++) {
+    newData.push({
+      title: 'test'
+    })
+  }
+  return newData;
 }
 
 export function UserName(callback){

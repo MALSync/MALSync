@@ -46,9 +46,9 @@ export function userList(
   status = 1,
   localListType = 'anime',
   callbacks: {
-    singleCallback?,
+    singleCallback?: (el: malUserList.listElement, index: number, total: number) => void,
     finishCallback?,
-    fullListCallback?,
+    fullListCallback?: (list: malUserList.listElement[]) => void,
     continueCall?,
   },
   username = null,
@@ -57,3 +57,4 @@ export function userList(
 ){
   return malUserList.userList(status, localListType, callbacks, username, offset, templist);
 }
+
