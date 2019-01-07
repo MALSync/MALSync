@@ -18,7 +18,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     var url = 'https://myanimelist.net/'+localListType+'list/'+username+'/load.json?offset='+offset+'&status='+status;
     api.request.xhr('GET', url).then((response) => {
       var data = JSON.parse(response.responseText);
-      data = prepareData(data);
+      data = prepareData(data, localListType);
       if(typeof callbacks.singleCallback !== 'undefined'){
         // @ts-ignore
         if(!data.length) callbacks.singleCallback(false, 0, 0);
@@ -50,15 +50,47 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
 }
 
 export interface listElement {
+  id: number,
+  type: "anime"|"manga"
   title: string,
+  url: string,
+  watchedEp: number,
+  totalEp: number,
+  image: string,
+  tags: string,
+  airingState: number,
 }
 
-function prepareData(data): listElement[]{
+function prepareData(data, listType): listElement[]{
   var newData = [] as listElement[];
   for (var i = 0; i < data.length; i++) {
-    newData.push({
-      title: 'test'
-    })
+    var el = data[i];
+    if(listType === "anime"){
+      newData.push({
+        id: el['anime_id'],
+        type: listType,
+        title: el['anime_title'],
+        url: el['anime_url'],
+        watchedEp: el['num_watched_episodes'],
+        totalEp: el['anime_num_episodes'],
+        image: el['anime_image_path'],
+        tags: el['tags'],
+        airingState: el['anime_airing_status'],
+      })
+    }else{
+      newData.push({
+        id: el['manga_id'],
+        type: listType,
+        title: el['manga_title'],
+        url: el['manga_url'],
+        watchedEp: el['manga_num_chapters'],
+        totalEp: el['manga_num_chapters'],
+        image:  el['manga_image_path'],
+        tags: el['tags'],
+        airingState: el['anime_airing_status'],
+      })
+    }
+
   }
   return newData;
 }
