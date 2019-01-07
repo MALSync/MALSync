@@ -1,5 +1,7 @@
 import {pageSearch} from './../pages/pages';
 import {mal} from "./../utils/mal";
+import * as provider from "./../provider/provider";
+import {prepareData} from "./../provider/MyAnimeList/userList";
 
 export class myanimelistClass{
   page: "detail"|"bookmarks"|"modern"|"classic"|"character"|"people"|"search"|null = null;
@@ -305,7 +307,8 @@ export class myanimelistClass{
       var book = {
         bookReady: function(callback){
           utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
-            callback($.parseJSON($('.list-table').attr('data-items')!));
+
+            callback(prepareData($.parseJSON($('.list-table').attr('data-items')!), This.type));
           });
         },
         getElement: function(malUrl){
@@ -326,9 +329,13 @@ export class myanimelistClass{
     }else if(this.page == 'classic'){
       var book = {
         bookReady: function(callback){
-          utils.getUserList(7, This.type, null, null, function(list){
+          var tType: string = "anime";
+          if(This.type !== null){
+            tType = This.type;
+          }
+          provider.userList(7, tType, {fullListCallback: function(list){
             callback(list);
-          }, null, This.username);
+          }}, This.username);
         },
         getElement: function(malUrl){
           return $('a[href^="'+malUrl+'"]');
@@ -353,11 +360,11 @@ export class myanimelistClass{
     book.bookReady(function(data){
       This.bookmarksHDimages();
       $.each(data, async function(index, el) {
-        var streamUrl = utils.getUrlFromTags(el['tags']);
-        var malUrl = el[This.type+'_url'];
+        var streamUrl = utils.getUrlFromTags(el.tags);
+        var malUrl = el.url.replace('https://myanimelist.net','');
         con.log(malUrl);
-        var id = utils.urlPart(malUrl, 2);
-        var type = utils.urlPart(malUrl, 1);
+        var id = el.id;
+        var type = el.type;
 
         if(typeof streamUrl !== 'undefined'){
           var element = book.getElement(malUrl);
@@ -369,11 +376,7 @@ export class myanimelistClass{
           var resumeUrlObj = await utils.getResumeWaching(type, id);
           var continueUrlObj = await utils.getContinueWaching(type, id);
 
-          if(This.type == 'anime'){
-            var curEp = parseInt(el['num_watched_episodes']);
-          }else{
-            var curEp = parseInt(el['num_read_chapters']);
-          }
+          var curEp = parseInt(el.watchedEp);
 
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){

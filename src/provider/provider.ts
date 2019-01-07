@@ -57,4 +57,3 @@ export function userList(
 ){
   return malUserList.userList(status, localListType, callbacks, username, offset, templist);
 }
-

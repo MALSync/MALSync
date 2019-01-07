@@ -61,7 +61,7 @@ export interface listElement {
   airingState: number,
 }
 
-function prepareData(data, listType): listElement[]{
+export function prepareData(data, listType): listElement[]{
   var newData = [] as listElement[];
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
