@@ -1,4 +1,5 @@
 import {mal} from "./MyAnimeList/entryClass";
+import * as malUserList from "./MyAnimeList/userList";
 
 interface entryClass {
   readonly id: number,
@@ -39,4 +40,20 @@ interface entryClass {
 
 export function entryClass(url:string, miniMAL:boolean = false): entryClass{
   return new mal(url, miniMAL);
+}
+
+export function userList(
+  status = 1,
+  localListType = 'anime',
+  callbacks: {
+    singleCallback?,
+    finishCallback?,
+    fullListCallback?,
+    continueCall?,
+  },
+  username = null,
+  offset = 0,
+  templist = []
+){
+  return malUserList.userList(status, localListType, callbacks, username, offset, templist);
 }
