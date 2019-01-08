@@ -1,7 +1,6 @@
 import {pageSearch} from './../pages/pages';
 import {mal} from "./../utils/mal";
-import * as provider from "./../provider/provider";
-import {prepareData} from "./../provider/MyAnimeList/userList";
+import {prepareData, userList} from "./../provider/MyAnimeList/userList";
 
 export class myanimelistClass{
   page: "detail"|"bookmarks"|"modern"|"classic"|"character"|"people"|"search"|null = null;
@@ -333,7 +332,7 @@ export class myanimelistClass{
           if(This.type !== null){
             tType = This.type;
           }
-          provider.userList(7, tType, {fullListCallback: function(list){
+          userList(7, tType, {fullListCallback: function(list){
             callback(list);
           }}, This.username);
         },
