@@ -1,4 +1,4 @@
-export class mal{
+export class entryClass{
 
   readonly id: number;
   readonly type: "anime"|"manga";

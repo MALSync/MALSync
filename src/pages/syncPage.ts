@@ -1,6 +1,6 @@
 import {pages} from "./pages";
 import {pageInterface, pageState} from "./pageInterface";
-import {mal} from "./../utils/mal";
+import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
 
 export class syncPage{
@@ -91,7 +91,7 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.malObj = new mal(malUrl);
+      this.malObj = entryClass(malUrl);
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 

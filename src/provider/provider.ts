@@ -1,4 +1,4 @@
-import {mal} from "./MyAnimeList/entryClass";
+import * as mal from "./MyAnimeList/entryClass";
 import * as malUserList from "./MyAnimeList/userList";
 
 interface entryClass {
@@ -39,7 +39,7 @@ interface entryClass {
 }
 
 export function entryClass(url:string, miniMAL:boolean = false): entryClass{
-  return new mal(url, miniMAL);
+  return new mal.entryClass(url, miniMAL);
 }
 
 export function userList(

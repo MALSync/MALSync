@@ -1,5 +1,5 @@
 import {pageSearch} from './../pages/pages';
-import {mal} from "./../utils/mal";
+import {entryClass} from "./../provider/MyAnimeList/entryClass";
 import {prepareData, userList} from "./../provider/MyAnimeList/userList";
 
 export class myanimelistClass{
@@ -263,7 +263,7 @@ export class myanimelistClass{
 
   async streamingUI(){
     con.log('Streaming UI');
-    var malObj = new mal(this.url);
+    var malObj = new entryClass(this.url);
     await malObj.init();
 
     var streamUrl = malObj.getStreamingUrl();
@@ -410,7 +410,7 @@ export class myanimelistClass{
         var el = $(this);
         var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if(typeof url != 'undefined'){
-          var malObj = new mal(url);
+          var malObj = new entryClass(url);
           malObj.init().then(() => {
             var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
             if(tag){
