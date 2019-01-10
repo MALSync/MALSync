@@ -71,6 +71,8 @@ export class entryClass{
     }).then((response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
+      this.login = true;
+      this.errorHandling(res);
       this.animeInfo = res.data.Media;
 
       this.aniId = this.animeInfo.id;
@@ -86,8 +88,6 @@ export class entryClass{
           status: 'PLANNING'
         }
       }
-
-      this.login = true;//TODO
 
       this.name = this.animeInfo.title.userPreferred;
       this.totalEp = this.animeInfo.episodes? this.animeInfo.episodes: this.animeInfo.chapters;
@@ -359,8 +359,9 @@ export class entryClass{
             variables: variables
           })
         }).then((response) => {
-          con.log(response);
-          //TODO: errorHandling
+          var res = JSON.parse(response.responseText);
+          con.log(res);
+          This.errorHandling(res);
           con.log('Update Succeeded');
           resolve();
         });
@@ -382,5 +383,24 @@ export class entryClass{
       return Object.keys(list).find(key => list[key] === malStatus);
     }
     return list[aniStatus];
+  }
+
+  private errorHandling(res){
+    if(typeof res.errors != 'undefined'){
+      j.$.each(res.errors, (index, error) => {
+        switch(error.status) {
+          case 400:
+            utils.flashm('Please Authenticate', {error: true});
+            this.login = false;
+            break;
+          case 404:
+            utils.flashm('anilist: '+error.message, {error: true});
+            break;
+          default:
+            utils.flashm('anilist: '+error.message, {error: true});
+            throw error.message;
+        }
+      })
+    }
   }
 }
