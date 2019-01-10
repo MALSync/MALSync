@@ -1,6 +1,6 @@
 export class entryClass{
 
-  readonly id: number;
+  id: number;
   private aniId: number = NaN;
   readonly type: "anime"|"manga";
 
@@ -16,8 +16,15 @@ export class entryClass{
   private accessToken = '';
 
   constructor(public url:string, public miniMAL:boolean = false){
-    this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
+    if(typeof url !== 'undefined' && url.indexOf("myanimelist.net") > -1){
+      this.id = utils.urlPart(url, 4);
+    }else if(typeof url !== 'undefined' && url.indexOf("anilist.co") > -1){
+      this.id = NaN;
+      this.aniId = utils.urlPart(url, 4);
+    }else{
+      this.id = NaN;
+    }
   }
 
   init(){
@@ -25,10 +32,17 @@ export class entryClass{
   };
 
   update(){
-    con.log('Update AniList info', this.id);
+    con.log('Update AniList info', this.id? 'MAL: '+this.id : 'AniList: '+this.aniId);
+    var selectId = this.id;
+    var selectQuery = 'idMal';
+    if(isNaN(this.id)){
+      selectId = this.aniId;
+      selectQuery = 'id';
+    }
+
     var query = `
     query ($id: Int) {
-      Media (idMal: $id, type: ANIME) {
+      Media (${selectQuery}: $id, type: ANIME) {
         id
         idMal
         episodes
@@ -54,7 +68,7 @@ export class entryClass{
     `;
     ​
     var variables = {
-      id: this.id
+      id: selectId
     };
 
     return api.request.xhr('POST', {
@@ -76,6 +90,9 @@ export class entryClass{
       this.animeInfo = res.data.Media;
 
       this.aniId = this.animeInfo.id;
+      if(isNaN(this.id) && this.animeInfo.idMal){
+        this.id = this.animeInfo.idMal;
+      }
       this.addAnime = false;
       if(this.animeInfo.mediaListEntry === null){
         this.addAnime = true;
