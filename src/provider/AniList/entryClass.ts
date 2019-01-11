@@ -1,3 +1,5 @@
+import * as helper from "./helper";
+
 export class entryClass{
 
   id: number;
@@ -12,8 +14,6 @@ export class entryClass{
   wrong: boolean = false;
 
   private animeInfo;
-
-  private accessToken = '';
 
   constructor(public url:string, public miniMAL:boolean = false){
     this.type = utils.urlPart(url, 3);
@@ -74,7 +74,7 @@ export class entryClass{
     return api.request.xhr('POST', {
       url: 'https://graphql.anilist.co',
       headers: {
-        'Authorization': 'Bearer ' + this.accessToken,
+        'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
@@ -140,11 +140,11 @@ export class entryClass{
   }
 
   getStatus(){
-    return this.translateList(this.animeInfo.mediaListEntry.status);
+    return helper.translateList(this.animeInfo.mediaListEntry.status);
   }
 
   setStatus(status:number){
-    this.animeInfo.mediaListEntry.status = this.translateList(status, parseInt(status.toString()));
+    this.animeInfo.mediaListEntry.status = helper.translateList(status, parseInt(status.toString()));
   }
 
   getScore(){
@@ -367,7 +367,7 @@ export class entryClass{
         api.request.xhr('POST', {
           url: 'https://graphql.anilist.co',
           headers: {
-            'Authorization': 'Bearer ' + This.accessToken,
+            'Authorization': 'Bearer ' + helper.accessToken(),
             'Content-Type': 'application/json',
             'Accept': 'application/json',
           },
@@ -385,21 +385,6 @@ export class entryClass{
 
       }
     });
-  }
-
-  private translateList(aniStatus, malStatus:null|number = null){
-    var list = {
-      'CURRENT': 1,
-      'PLANNING': 6,
-      'COMPLETED': 2,
-      'DROPPED': 4,
-      'PAUSED': 3,
-      'REPEATING': 1,
-    }
-    if(malStatus != null){
-      return Object.keys(list).find(key => list[key] === malStatus);
-    }
-    return list[aniStatus];
   }
 
   private errorHandling(res){
