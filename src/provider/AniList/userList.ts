@@ -71,6 +71,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     }).then((response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
+      helper.errorHandling(res);
       var data = res.data.Page.mediaList;
       data = prepareData(data, localListType);
       if(typeof callbacks.singleCallback !== 'undefined'){
