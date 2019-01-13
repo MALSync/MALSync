@@ -14,7 +14,7 @@ export function translateList(aniStatus, malStatus:null|number = null){
 }
 
 export function accessToken(){
-  return '';
+  return api.settings.get('anilistToken');
 }
 
 export function errorHandling(res){
