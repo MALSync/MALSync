@@ -140,6 +140,7 @@ export class entryClass{
   }
 
   getStatus(){
+    if(this.addAnime) return 0;
     return helper.translateList(this.animeInfo.mediaListEntry.status);
   }
 
