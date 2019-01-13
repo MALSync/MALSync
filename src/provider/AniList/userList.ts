@@ -4,7 +4,7 @@ import * as helper from "./helper";
 export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
     if(offset < 1) offset = 1;
     con.log('[UserList][AniList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
-    username = 'lolamtisch';
+
     if(username == null){
         UserName(function(usernameTemp){
             if(usernameTemp == false){
@@ -22,7 +22,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
 
     var query = `
     query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus) {
-      Page (page: $page, perPage: 3) {
+      Page (page: $page, perPage: 100) {
         pageInfo {
           hasNextPage
         }
@@ -151,13 +151,30 @@ export function prepareData(data, listType): listElement[]{
 }
 
 export function UserName(callback){
-    var url = 'https://myanimelist.net/editlist.php?hideLayout';
-    api.request.xhr('GET', url).then((response) => {
-      var username = false;
-      try{
-        username = response.responseText.split('USER_NAME = "')[1].split('"')[0];
-      }catch(e){}
-      con.log('[Username]', username);
-      callback(username);
-    });
+  var query = `
+  query {
+    Viewer {
+      name
+      id
+    }
+  }
+  `;
+
+  api.request.xhr('POST', {
+    url: 'https://graphql.anilist.co',
+    headers: {
+      'Authorization': 'Bearer ' + helper.accessToken(),
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    data: JSON.stringify({
+      query: query,
+      variables: []
+    })
+  }).then((response) => {
+    var res = JSON.parse(response.responseText);
+    con.log(res);
+    helper.errorHandling(res);
+    callback(res.data.Viewer.name);
+  });
 }
