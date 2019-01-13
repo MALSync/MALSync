@@ -54,7 +54,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       page: offset,
       userName: username,
       type: localListType.toUpperCase(),
-      status: helper.translateList(status, status)
+      status: helper.translateList(parseInt(status.toString()), parseInt(status.toString()))
     };
 
     api.request.xhr('POST', {
