@@ -25,7 +25,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      con: path.resolve(__dirname, './../src/utils/console'),
+      con: path.resolve(__dirname, './../src/utils/consoleBG'),
       utils: path.resolve(__dirname, './../src/utils/general'),
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
