@@ -12,8 +12,10 @@ export function checkInit(){
 
   chrome.alarms.onAlarm.addListener(function(alarm) {
     if (alarm.name === "updateCheck" || alarm.name === "updateCheckNow") {
-      startCheck('anime');
-      startCheck('manga');
+      api.settings.init().then(()=>{
+        startCheck('anime');
+        startCheck('manga');
+      });
     }
   });
 }
