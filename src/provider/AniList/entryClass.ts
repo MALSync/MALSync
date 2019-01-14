@@ -41,8 +41,8 @@ export class entryClass{
     }
 
     var query = `
-    query ($id: Int) {
-      Media (${selectQuery}: $id, type: ANIME) {
+    query ($id: Int, $type: MediaType) {
+      Media (${selectQuery}: $id, type: $type) {
         id
         idMal
         episodes
@@ -68,7 +68,8 @@ export class entryClass{
     `;
     ​
     var variables = {
-      id: selectId
+      id: selectId,
+      type: this.type.toUpperCase()
     };
 
     return api.request.xhr('POST', {
