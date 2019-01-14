@@ -34,3 +34,36 @@ export function errorHandling(res){
     })
   }
 }
+
+export function aniListToMal(anilistId: number, type: "anime"|"manga"){
+  var query = `
+  query ($id: Int, $type: MediaType) {
+    Media (id: $id, type: $type) {
+      id
+      idMal
+    }
+  }
+  `;
+  ​
+  var variables = {
+    id: anilistId,
+    type: type.toUpperCase()
+  };
+
+  return api.request.xhr('POST', {
+    url: 'https://graphql.anilist.co',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    data: JSON.stringify({
+      query: query,
+      variables: variables
+    })
+  }).then((response) => {
+    var res = JSON.parse(response.responseText);
+    con.log(res);
+    errorHandling(res);
+    return res.data.Media.idMal;
+  });
+}
