@@ -15,7 +15,7 @@ interface bookmarks{
 }
 
 export class anilistClass{
-  page: null|detail|bookmarks = null
+  page: any = null
 
   constructor(public url:string){
     utils.urlChangeDetect(() => {
