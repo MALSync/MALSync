@@ -1,5 +1,6 @@
 import * as helper from "./../provider/AniList/helper";
 import {entryClass} from "./../provider/AniList/entryClass";
+import {userList} from "./../provider/AniList/userList";
 
 interface detail{
   page: "detail",
@@ -8,8 +9,13 @@ interface detail{
   type: "anime"|"manga"
 }
 
+interface bookmarks{
+  page: "bookmarks",
+  type: "anime"|"manga"
+}
+
 export class anilistClass{
-  page: null|detail = null
+  page: null|detail|bookmarks = null
 
   constructor(public url:string){
     utils.urlChangeDetect(() => {
@@ -37,6 +43,15 @@ export class anilistClass{
         con.log('page', this.page);
         this.malToKiss();
       });
+    }
+
+    var urlpart4 = utils.urlPart(this.url, 5);
+    if(urlpart4 == 'animelist' || urlpart4 == 'mangalist'){
+      this.page = {
+        page: "bookmarks",
+        type: urlpart4.substring(0, 5)
+      }
+      this.bookmarks();
     }
   }
 
@@ -144,6 +159,64 @@ export class anilistClass{
 
       });
     }
+  }
+
+  bookmarks(){
+    $(document).ready(() => {
+      $('.mal-rem').remove();
+      $('.list-entries .entry, .list-entries .entry-card').each((index, el) => {
+        var streamUrl = utils.getUrlFromTags($(el).find('.notes').first().attr('label'));
+        if(typeof streamUrl !== 'undefined'){
+          con.log(streamUrl);
+          $(el).find('.title a').first().after(`
+            <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; max-height: 14px;" href="${streamUrl}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
+            </a>`);
+        }
+
+      })
+
+      userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+        con.log(list);
+        $.each(list, async (index, en) => {
+          con.log('en', en);
+          if(typeof en.malid !== 'undefined' && en.malid !== null && en.malid){
+            var element = $('a[href^="/'+this.page!.type+'/'+en.id+'/"]').first().parent();
+
+            var resumeUrlObj = await utils.getResumeWaching(this.page!.type, en.malid);
+            var continueUrlObj = await utils.getContinueWaching(this.page!.type, en.malid);
+
+            var curEp = en.watchedEp;
+
+            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+              element.prepend(
+                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+              element.prepend(
+                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }
+
+            utils.epPredictionUI(en.malid, this.page!.type, (prediction) => {
+              element.parent().find('.progress').append(prediction.tag);
+            });
+
+          }
+
+
+
+        })
+
+
+
+      }});
+    });
   }
 
 }

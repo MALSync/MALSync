@@ -3,6 +3,10 @@ import * as helper from "./helper";
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
     if(offset < 1) offset = 1;
+    var anilist = false;
+    if(typeof callbacks.anilist != 'undefined'){
+      anilist = true;
+    }
     con.log('[UserList][AniList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
 
     if(username == null){
@@ -49,6 +53,25 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       }
     }
     `;
+
+    if(anilist){
+      query = `
+      query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus) {
+        Page (page: $page, perPage: 100) {
+          pageInfo {
+            hasNextPage
+          }
+          mediaList (status: $status, type: $type, userName: $userName) {
+            progress
+            media {
+              id
+              idMal
+            }
+          }
+        }
+      }
+      `;
+    }
     ​
     var variables = {
       page: offset,
@@ -73,7 +96,11 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       con.log(res);
       helper.errorHandling(res);
       var data = res.data.Page.mediaList;
-      data = prepareData(data, localListType);
+      if(anilist){
+        data = prepareAnilist(data, localListType);
+      }else{
+        data = prepareData(data, localListType);
+      }
       if(typeof callbacks.singleCallback !== 'undefined'){
         // @ts-ignore
         if(!data.length) callbacks.singleCallback(false, 0, 0);
@@ -177,4 +204,17 @@ export function UserName(callback){
     helper.errorHandling(res);
     callback(res.data.Viewer.name);
   });
+}
+
+function prepareAnilist(data, listType){
+  var newData = [] as {malid: number, id: number, watchedEp: number}[];
+  for (var i = 0; i < data.length; i++) {
+    var el = data[i];
+    newData.push({
+      malid: el.media.idMal,
+      id: el.media.id,
+      watchedEp: el.progress,
+    })
+  }
+  return newData;
 }
