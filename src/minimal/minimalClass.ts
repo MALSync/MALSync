@@ -419,6 +419,25 @@ export class minimal{
           </div>
           ${materialCheckbox('autoTracking','Autotracking'+utils.getTooltip('Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.','','bottom'))}
           <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Mode
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;">
+                <option value="MAL">MyAnimeList</option>
+                <option value="ANILIST">AniList [ALPHA]</option>
+              </select>
+            </span>
+          </li>
+          <li class="mdl-list__item anilistShow" style="display: none;">
+            <span class="mdl-list__item-primary-content">
+              AniList
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
+            </span>
+          </li>
+          <li class="mdl-list__item">
               <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
                   <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="${api.settings.get('delay')}">
               <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>
@@ -601,6 +620,19 @@ export class minimal{
         }
         j.$("#modal-content").css('width', miniMalWidth);
     });
+
+    this.minimal.find("#syncMode").change(function(){
+      // @ts-ignore
+      var value = j.$(this).val();
+      api.settings.set('syncMode', value);
+      if(value == 'ANILIST'){
+        This.minimal.find('.anilistShow').show();
+      }else{
+        This.minimal.find('.anilistShow').hide();
+      }
+
+    });
+    this.minimal.find("#syncMode").val(api.settings.get('syncMode')).change();
 
     this.minimal.find("#miniMalHeight").on("input", function(){
         var miniMalHeight = This.minimal.find("#miniMalHeight").val();

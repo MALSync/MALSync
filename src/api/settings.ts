@@ -2,6 +2,7 @@ export var settingsObj = {
   options: {
     autoTracking: true,
     userscriptMode: false,
+    syncMode: 'MAL',
     delay: 0,
     malTags: true,
     malResume: true,
