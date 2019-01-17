@@ -84,6 +84,17 @@ export function urlChangeDetect(callback){
   }, 1000);
 }
 
+export function changeDetect(callback, func){
+  var currentPage = func();
+  return setInterval(function(){
+    var temp = func();
+    if (typeof temp != 'undefined' && currentPage != temp){
+      currentPage = func();
+      callback();
+    }
+  }, 1000);
+}
+
 export function waitUntilTrue(condition, callback){
   var Interval:any = null;
   Interval = setInterval(function(){

@@ -18,9 +18,11 @@ export class anilistClass{
   page: any = null
 
   constructor(public url:string){
-    utils.urlChangeDetect(() => {
+    utils.changeDetect(() => {
       this.url = window.location.href;
       this.init();
+    }, function(){
+      return $('meta[property="og:url"]').attr('content');
     });
   }
 
@@ -53,6 +55,7 @@ export class anilistClass{
       }
       this.bookmarks();
     }
+
   }
 
   authentication(){
@@ -134,7 +137,7 @@ export class anilistClass{
 
       $(document).ready(async function(){
         $('h1').first().append(`
-        <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
+        <div class="data title progress" id="mal-sync-stream-div" style="margin-top: -2px; display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
             <img src="${utils.favicon(streamUrl.split('/')[2])}">
           </a>
@@ -163,7 +166,7 @@ export class anilistClass{
 
   bookmarks(){
     $(document).ready(() => {
-      $('.mal-rem').remove();
+      $('.mal-rem, .mal-sync-ep-pre').remove();
       $('.list-entries .entry, .list-entries .entry-card').each((index, el) => {
         var streamUrl = utils.getUrlFromTags($(el).find('.notes').first().attr('label'));
         if(typeof streamUrl !== 'undefined'){
