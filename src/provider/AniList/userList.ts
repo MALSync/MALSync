@@ -148,7 +148,7 @@ export function prepareData(data, listType): listElement[]{
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
     if(listType === "anime"){
-      newData.push({
+      var tempData = {
         id: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
@@ -158,9 +158,9 @@ export function prepareData(data, listType): listElement[]{
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],
-      })
+      }
     }else{
-      newData.push({
+      var tempData = {
         id: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
@@ -170,9 +170,14 @@ export function prepareData(data, listType): listElement[]{
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],
-      })
+      }
     }
 
+    if(tempData.totalEp == null){
+      tempData.totalEp = 0;
+    }
+
+    newData.push(tempData);
   }
   return newData;
 }
