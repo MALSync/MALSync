@@ -456,7 +456,7 @@ export class myanimelistClass{
         var friendHead = $('a[name=members]', $(response.responseText).children());
         if (!friendHead) return;
         var friendBody = friendHead.nextAll();
-        if (friendBody.length > 1){
+        if (friendBody.length > 1 && friendBody.find('a:contains("All Members")').length){
           position.before(friendHead).before(friendBody).before('<br>');
 
           $('a:contains("All Members")').after(' | <span id="mal-sync-removeFriends" title="remove" style="cursor: pointer; color: #1d439b;">X</span>');
