@@ -2,6 +2,7 @@ export var settingsObj = {
   options: {
     autoTracking: true,
     userscriptMode: false,
+    syncMode: 'MAL',
     delay: 0,
     malTags: true,
     malResume: true,
@@ -29,6 +30,8 @@ export var settingsObj = {
     Mangarock: true,
 
     updateCheckNotifications: true,
+
+    'anilistToken': '',
   },
 
   init: async function (){
@@ -51,7 +54,7 @@ export var settingsObj = {
   set: function(name: string, value: any){
     if(this.options.hasOwnProperty(name)){
       this.options[name] = value;
-      api.storage.set('settings/'+name, value);
+      return api.storage.set('settings/'+name, value);
     }else{
       con.error(name+' is not a defined option');
     }

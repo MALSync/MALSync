@@ -1,4 +1,4 @@
-import {mal} from "./../../utils/mal";
+import {entryClass} from "./../../provider/provider";
 
 export class animeType{
   private vars;
@@ -276,7 +276,7 @@ export class animeType{
 
     try{
       con.log('Streaming UI');
-      var malObj = new mal(this.url, true);
+      var malObj = entryClass(this.url, true);
       await malObj.init();
 
       minimal.find('#myinfo_status').val(malObj.getStatus()).css('visibility', 'visible');
@@ -373,7 +373,7 @@ export class animeType{
         var el = $(this);
         var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if(typeof url != 'undefined'){
-          var malObj = new mal(url, true);
+          var malObj = entryClass(url, true);
           malObj.init().then(() => {
             var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
             if(tag){

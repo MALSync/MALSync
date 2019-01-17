@@ -1,4 +1,5 @@
 import {Mutex} from 'async-mutex';
+import * as provider from "./../provider/provider.ts";
 
 declare var browser: any;
 export function checkInit(){
@@ -11,8 +12,10 @@ export function checkInit(){
 
   chrome.alarms.onAlarm.addListener(function(alarm) {
     if (alarm.name === "updateCheck" || alarm.name === "updateCheckNow") {
-      startCheck('anime');
-      startCheck('manga');
+      api.settings.init().then(()=>{
+        startCheck('anime');
+        startCheck('manga');
+      });
     }
   });
 }
@@ -51,7 +54,7 @@ async function startCheck(type = "anime"){
 
   continueCheck = {};
 
-  utils.getUserList(1, type, null, null, async function(list){
+  provider.userList(1, type, {fullListCallback: async function(list){
     con.log('list', list)
     for (var i = 0; i < list.length; i++) {
       con.log('el', list[i])
@@ -61,30 +64,22 @@ async function startCheck(type = "anime"){
     api.storage.set( 'updateCheckLast', Date.now() );
     release();
     clearTimeout(mutexTimout);
-  });
+  }});
 
 
 }
 
 async function updateElement(el, type = "anime", retryNum = 0){
   return new Promise(async (resolve, reject) => {
-    var anime_id = el['anime_id'];
-    var anime_num_episodes = el['anime_num_episodes'];
-    var anime_image_path = el['anime_image_path'];
-    var anime_title = el['anime_title'];
-    var num_watched_episodes = el['num_watched_episodes'];
-
-    if(type == 'manga'){
-      anime_id = el['manga_id'];
-      anime_num_episodes = el['manga_num_chapters'];
-      anime_image_path = el['manga_image_path'];
-      anime_title = el['manga_title'];
-      num_watched_episodes = el['num_read_chapters'];
-    }
+    var anime_id = el.id;
+    var anime_num_episodes = el.totalEp;
+    var anime_image_path = el.image;
+    var anime_title = el.title;
+    var num_watched_episodes = el.watchedEp;
 
     var id = Math.random().toString(36).substr(2, 9);
-    con.log(utils.getUrlFromTags(el['tags']));
-    var streamUrl = utils.getUrlFromTags(el['tags']);
+    con.log(utils.getUrlFromTags(el.tags));
+    var streamUrl = utils.getUrlFromTags(el.tags);
     if(typeof streamUrl != 'undefined'){
       var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
       con.log('cached', elCache);

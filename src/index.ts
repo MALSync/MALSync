@@ -1,5 +1,6 @@
 import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
+import {anilistClass} from "./anilist/anilistClass";
 import {scheduleUpdate} from "./utils/scheduler";
 import {firebaseNotification} from "./utils/firebaseNotification";
 
@@ -7,6 +8,9 @@ function main() {
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
     var mal = new myanimelistClass(window.location.href);
     mal.init();
+  }else if(window.location.href.indexOf("anilist.co") > -1 ){
+    var anilist = new anilistClass(window.location.href);
+    anilist.init();
   }else{
     var page = new syncPage(window.location.href);
     page.init();
