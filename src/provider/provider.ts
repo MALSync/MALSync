@@ -1,5 +1,7 @@
 import * as mal from "./MyAnimeList/entryClass";
 import * as malUserList from "./MyAnimeList/userList";
+import * as anilist from "./AniList/entryClass";
+import * as anilistUserList from "./AniList/userList";
 
 interface entryClass {
   readonly id: number,
@@ -38,8 +40,16 @@ interface entryClass {
   sync(),
 }
 
+function getSyncMode(){
+  return api.settings.get('syncMode');
+}
+
 export function entryClass(url:string, miniMAL:boolean = false): entryClass{
-  return new mal.entryClass(url, miniMAL);
+  if(getSyncMode() == 'MAL'){
+    return new mal.entryClass(url, miniMAL);
+  }else{
+    return new anilist.entryClass(url, miniMAL);
+  }
 }
 
 export function userList(
@@ -55,5 +65,9 @@ export function userList(
   offset = 0,
   templist = []
 ){
-  return malUserList.userList(status, localListType, callbacks, username, offset, templist);
+  if(getSyncMode() == 'MAL'){
+    return malUserList.userList(status, localListType, callbacks, username, offset, templist);
+  }else{
+    return anilistUserList.userList(status, localListType, callbacks, username, offset, templist);
+  }
 }
