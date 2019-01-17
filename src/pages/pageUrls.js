@@ -12,6 +12,11 @@ module.exports = {
       '*://myanimelist.net/search/*'
     ]
   },
+  anilist: {
+    match: [
+      '*://anilist.co/*'
+    ]
+  },
   Kissanime: {
     match: [
       '*://kissanime.ru/Anime/*',
