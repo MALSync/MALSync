@@ -56,6 +56,7 @@ const metadata = {
   'connect': [
     'myanimelist.net',
     'kissanimelist.firebaseio.com',
+    'graphql.anilist.co',
     '*'
   ]
 };
