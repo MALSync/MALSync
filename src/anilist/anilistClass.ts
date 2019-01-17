@@ -110,7 +110,7 @@ export class anilistClass{
           ">
             <img src="${utils.favicon(tempUrl.split('/')[2])}">
             <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${pageKey}</span>
-            <span title="${pageKey}" class="remove-mal-sync" style="float: right; cursor: pointer; color: grey;">x</span>
+            <span title="${pageKey}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
             ${tempHtml}
           </div>`;
 
