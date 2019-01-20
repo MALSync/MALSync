@@ -13,7 +13,7 @@ export const Masterani: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return Masterani.sync.getIdentifier(url).replace(/^\d*-/,'')},
+      getTitle: function(url){return j.$('.info h1').text().trim()},
       getIdentifier: function(url){return utils.urlPart(url, 5);},
       getOverviewUrl: function(url){return utils.absoluteLink(j.$('.info a').first().attr('href'), Masterani.domain);},
       getEpisode: function(url){
@@ -22,7 +22,7 @@ export const Masterani: pageInterface = {
       nextEpUrl: function(url){return Masterani.domain+j.$('#watch .anime-info .actions a').last().attr('href');}
     },
     overview:{
-      getTitle: function(url){return Masterani.sync.getTitle(url);},
+      getTitle: function(url){return Masterani.sync.getIdentifier(url).replace(/^\d*-/,'');},
       getIdentifier: function(url){return Masterani.sync.getIdentifier(url)},
       uiSelector: function(selector){selector.prependTo(j.$("#stats").first());},
       list:{

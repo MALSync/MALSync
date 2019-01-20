@@ -7,7 +7,7 @@ export const nineAnime: pageInterface = {
     type: 'anime',
     isSyncPage: function(url){return true;},
     sync:{
-      getTitle: function(url){return url.split("/")[4].split("?")[0].split(".")[0];},
+      getTitle: function(url){return j.$('h1.title').text();},
       getIdentifier: function(url){
           url = url.split("/")[4].split("?")[0];
         if( url.indexOf(".") > -1 ){

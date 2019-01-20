@@ -13,7 +13,7 @@ export const Anime4you: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return j.$('.titleshow h1').text();},
+      getTitle: function(url){return j.$('.titel').text().trim();},
       getIdentifier: function(url){return parseInt(utils.urlPart(url, 6)).toString();},
       getOverviewUrl: function(url){
         return Anime4you.domain+'/show/1/aid/'+Anime4you.sync.getIdentifier(url);

@@ -13,7 +13,7 @@ export const Gogoanime: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return Gogoanime.sync.getIdentifier(url)},
+      getTitle: function(url){return j.$('.anime-info a').first().text().trim()},
       getIdentifier: function(url){return utils.urlPart(url, 3).split('-episode')[0];},
       getOverviewUrl: function(url){return url.split('/').slice(0,3).join('/') + '/category/'+Gogoanime.sync.getIdentifier(url);},
       getEpisode: function(url){return utils.urlPart(url, 3).split('episode-')[1];},
