@@ -1,5 +1,32 @@
 .site-theme-dark, .entry-card{
-  .nextStream, .resumeStream{
+  .nextStream img, .resumeStream img{
     filter: invert(100%);
+  }
+}
+
+.entry-card{
+  .mal-sync-stream{
+    position: absolute;
+    max-height: 17px !important;
+    left: 12px;
+    top: -17px;
+    background: rgba(var(--color-overlay),.8);
+    border-radius: 100% 100% 0 0;
+    img{
+      padding: 5px;
+      padding-top: 7px;
+    }
+  }
+  .nextStream, .resumeStream{
+    position: absolute;
+    max-height: 17px !important;
+    right: 12px;
+    top: -15px;
+    background: rgba(var(--color-overlay),.8);
+    border-radius: 100% 100% 0 0;
+    img{
+      margin: 5px;
+      margin-top: 7px;
+    }
   }
 }
