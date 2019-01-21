@@ -24,6 +24,7 @@ export class anilistClass{
     }, function(){
       return $('meta[property="og:url"]').attr('content');
     });
+    api.storage.addStyle(require('./style.less').toString());
   }
 
   init(){
