@@ -13,6 +13,8 @@ export class entryClass{
   login: boolean = false;
   wrong: boolean = false;
 
+  private displayUrl: string = '';
+
   private animeInfo;
 
   constructor(public url:string, public miniMAL:boolean = false){
@@ -31,6 +33,10 @@ export class entryClass{
     return this.update();
   };
 
+  getDisplayUrl(){
+    return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
+  }
+
   update(){
     con.log('Update AniList info', this.id? 'MAL: '+this.id : 'AniList: '+this.aniId);
     var selectId = this.id;
@@ -45,6 +51,7 @@ export class entryClass{
       Media (${selectQuery}: $id, type: $type) {
         id
         idMal
+        siteUrl
         episodes
         chapters
         volumes
@@ -94,6 +101,7 @@ export class entryClass{
       if(isNaN(this.id) && this.animeInfo.idMal){
         this.id = this.animeInfo.idMal;
       }
+      this.displayUrl = this.animeInfo.siteUrl;
       this.addAnime = false;
       if(this.animeInfo.mediaListEntry === null){
         this.addAnime = true;

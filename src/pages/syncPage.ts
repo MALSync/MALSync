@@ -269,7 +269,7 @@ export class syncPage{
     j.$('.MalLogin').css("display","initial");
     j.$('#AddMalDiv').remove();
 
-    j.$("#malRating").attr("href", this.malObj.url);
+    j.$("#malRating").attr("href", this.malObj.getDisplayUrl());
     this.malObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
     if(!this.malObj.login){

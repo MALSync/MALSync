@@ -7,6 +7,7 @@ interface entryClass {
   readonly id: number,
   readonly type: "anime"|"manga",
 
+  url: string,
   name: string,
   totalEp: number,
   totalVol?: number,
@@ -16,6 +17,7 @@ interface entryClass {
 
   init(),
   update(),
+  getDisplayUrl(),
   getEpisode(),
   setEpisode(ep:number),
   getVolume(),
