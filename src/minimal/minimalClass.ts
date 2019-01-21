@@ -481,6 +481,12 @@ export class minimal{
             </span>
           </li>
           ${materialCheckbox('friendScore','Friend scores on detail page')}
+        </div>
+
+        <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">MyAnimeList / AniList</h2>
+          </div>
           ${materialCheckbox('epPredictions','Estimate episode number')}
           ${materialCheckbox('malTags','Use Tags/Notes'+utils.getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.','','bottom'))}
           ${materialCheckbox('malContinue','Continue watching links')}
