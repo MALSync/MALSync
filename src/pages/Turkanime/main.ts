@@ -19,7 +19,12 @@ export const Turkanime: pageInterface = {
       },
       getEpisode: function(url){
         return getEpisode(Turkanime.sync.getIdentifier(url), Turkanime.overview!.getIdentifier(url));
-      }
+      },
+      nextEpUrl: function(url){
+        if(j.$('.panel-footer a[href^="video"]').last().attr('href') != j.$('.panel-footer a[href^="video"]').first().attr('href')){
+          return utils.absoluteLink(j.$('.panel-footer a[href^="video"]').last().attr('href'), Turkanime.domain);
+        }
+      },
     },
     overview:{
       getTitle: function(url){return j.$('#detayPaylas .panel-title').first().text().trim();},
