@@ -5,6 +5,7 @@ export var settingsObj = {
     syncMode: 'MAL',
     delay: 0,
     malTags: true,
+    malContinue: true,
     malResume: true,
     epPredictions: true,
 

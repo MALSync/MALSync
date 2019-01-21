@@ -151,6 +151,8 @@ export async function setContinueWaching(url:string, ep:number, type, id){
 }
 
 export async function getContinueWaching(type, id):Promise<{url:string, ep:number}>{
+  //@ts-ignore
+  if(!api.settings.get('malContinue')) return undefined;
   return api.storage.get('continue/'+type+'/'+id);
 }
 
