@@ -292,7 +292,7 @@ export class entryClass{
             this.setRewatching(1);
             continueCall();
           }, function(){
-            continueCall();
+            con.log('Rewatching denial');
           });
           return;
         }
