@@ -101,7 +101,7 @@ export class syncPage{
       this.fillUI();
 
       if(!this.malObj.login){
-        utils.flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>", {error: true});
+        utils.flashm( providerTemplates().noLogin, {error: true});
         return;
       }
 
@@ -120,7 +120,7 @@ export class syncPage{
             }else{
               var epis = 'chapter: <b>'+state.episode+'</b>';
             }
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update MAL to '+epis+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
             utils.flashm( message , {hoverInfo: true, error: true, type: 'update'}).find('.sync').on('click', function(){
               j.$('.flashinfo').remove();
               sync();
@@ -277,13 +277,13 @@ export class syncPage{
       j.$('.MalLogin').css("display","none");
       j.$("#MalData").css("display","flex");
       j.$("#MalInfo").text("");
-      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>Please log in on <a target='_blank' id='login' href='https://myanimelist.net/login.php'>MyAnimeList!<a></span>");
+      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>"+providerTemplates().noLogin+"</span>");
       return;
     }
 
     if(this.malObj.addAnime){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to MAL</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to "+providerTemplates().shortName+"</a></span>")
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);

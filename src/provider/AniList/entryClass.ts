@@ -254,7 +254,7 @@ export class entryClass{
 
         if(This.miniMAL){
           flashConfirmText = `
-                    Add "${this.name}" to MAL?`;
+                    Add "${this.name}" to AniList?`;
         }
 
         if(this.type == 'anime'){

@@ -1,3 +1,5 @@
 export const mal = {
-  score: 'MAL Score:'
+  shortName: 'MAL',
+  score: 'MAL Score:',
+  noLogin: "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>",
 }
