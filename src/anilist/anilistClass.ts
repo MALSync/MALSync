@@ -21,7 +21,10 @@ export class anilistClass{
     utils.changeDetect(() => {
       this.url = window.location.href;
       this.init();
-    }, function(){
+    }, () => {
+      if(this.page !== null && this.page.page == "bookmarks" && $('.list-wrap').length){
+        return $('.list-wrap').first().height();
+      }
       return $('meta[property="og:url"]').attr('content');
     });
     api.storage.addStyle(require('./style.less').toString());
@@ -178,8 +181,8 @@ export class anilistClass{
 
   bookmarks(){
     $(document).ready(() => {
-      $('.mal-rem, .mal-sync-ep-pre').remove();
-      $('.list-entries .entry, .list-entries .entry-card').each((index, el) => {
+      $('.list-entries .entry, .list-entries .entry-card').not('.malSyncDone').each((index, el) => {
+        $(el).addClass('malSyncDone')
         var streamUrl = utils.getUrlFromTags($(el).find('.notes').first().attr('label'));
         if(typeof streamUrl !== 'undefined'){
           con.log(streamUrl);
@@ -196,7 +199,9 @@ export class anilistClass{
         $.each(list, async (index, en) => {
           con.log('en', en);
           if(typeof en.malid !== 'undefined' && en.malid !== null && en.malid){
-            var element = $('a[href^="/'+this.page!.type+'/'+en.id+'/"]').first().parent();
+            var element = $('.entry:not(.malSyncDone2) a[href^="/'+this.page!.type+'/'+en.id+'/"], .entry-card:not(.malSyncDone2) a[href^="/'+this.page!.type+'/'+en.id+'/"]').first().parent();
+            con.log(element);
+            element.parent().addClass('malSyncDone2');
 
             var resumeUrlObj = await utils.getResumeWaching(this.page!.type, en.malid);
             var continueUrlObj = await utils.getContinueWaching(this.page!.type, en.malid);
