@@ -10,7 +10,6 @@ function main() {
     mal.init();
   }else if(window.location.href.indexOf("anilist.co") > -1 ){
     var anilist = new anilistClass(window.location.href);
-    anilist.init();
   }else{
     var page = new syncPage(window.location.href);
     page.init();

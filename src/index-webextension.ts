@@ -12,7 +12,6 @@ function main() {
   }else if(window.location.href.indexOf("anilist.co") > -1 ){
     var anilist = new anilistClass(window.location.href);
     messageAniListListener(anilist);
-    anilist.init();
   }else{
     var page = new syncPage(window.location.href);
     messagePageListener(page);
