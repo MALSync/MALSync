@@ -195,7 +195,7 @@ export class anilistClass{
           if(typeof label != 'undefined'){
             label = label.replace(/(malSync|last)::[\d\D]+::/,'').replace(/#,/, '');
             if(label.trim() === '' || label.trim() === ','){
-              $(el).find('.notes').first().remove();
+              $(el).find('.notes').first().css('visibility', 'hidden');
             }else{
               $(el).find('.notes').first().attr('label', label);
             }
