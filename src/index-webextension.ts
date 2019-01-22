@@ -11,6 +11,7 @@ function main() {
     mal.init();
   }else if(window.location.href.indexOf("anilist.co") > -1 ){
     var anilist = new anilistClass(window.location.href);
+    messageAniListListener(anilist);
     anilist.init();
   }else{
     var page = new syncPage(window.location.href);
@@ -44,6 +45,19 @@ function messageMalListener(mal){
     if (msg.action == 'TabMalUrl') {
       con.log('TabMalUrl Message', mal.url);
       sendResponse(mal.url);
+    }
+  });
+}
+
+function messageAniListListener(anilist){
+  // @ts-ignore
+  chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+    if (msg.action == 'TabMalUrl') {
+      anilist.getMalUrl().then((malUrl)=>{
+        con.log('TabMalUrl Message', malUrl);
+        sendResponse(malUrl);
+      })
+      return true;
     }
   });
 }

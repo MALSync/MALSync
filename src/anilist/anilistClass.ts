@@ -78,6 +78,17 @@ export class anilistClass{
     }
   }
 
+  async getMalUrl(){
+    var urlpart = utils.urlPart(this.url, 3);
+    if(urlpart == 'anime' || urlpart == 'manga'){
+      var aniListId = utils.urlPart(this.url, 4);
+      return helper.aniListToMal(aniListId, urlpart).then((malId)=>{
+        return 'https://myanimelist.net/'+urlpart+'/'+malId+'/'+utils.urlPart(this.url, 5);
+      });
+    }
+    return '';
+  }
+
   malToKiss(){
     con.log('malToKiss');
     $('.mal_links').remove();
