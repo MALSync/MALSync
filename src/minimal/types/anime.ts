@@ -279,6 +279,7 @@ export class animeType{
       var malObj = entryClass(this.url, true);
       await malObj.init();
 
+      minimal.find('.malLink').attr('href', malObj.getDisplayUrl());
       minimal.find('#myinfo_status').val(malObj.getStatus()).css('visibility', 'visible');
       minimal.find('#myinfo_watchedeps').val(malObj.getEpisode()).css('visibility', 'visible');
       minimal.find('#myinfo_volumes').val(malObj.getVolume()).css('visibility', 'visible');
