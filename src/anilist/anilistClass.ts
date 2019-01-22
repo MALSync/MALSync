@@ -190,6 +190,17 @@ export class anilistClass{
             <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; max-height: 14px;" href="${streamUrl}">
               <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
+
+          var label = $(el).find('.notes').first().attr('label');
+          if(typeof label != 'undefined'){
+            label = label.replace(/(malSync|last)::[\d\D]+::/,'').replace(/#,/, '');
+            if(label.trim() === '' || label.trim() === ','){
+              $(el).find('.notes').first().remove();
+            }else{
+              $(el).find('.notes').first().attr('label', label);
+            }
+          }
+
         }
 
       })
