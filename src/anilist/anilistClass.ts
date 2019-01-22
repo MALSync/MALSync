@@ -22,8 +22,8 @@ export class anilistClass{
       this.url = window.location.href;
       this.init();
     }, () => {
-      if(this.page !== null && this.page.page == "bookmarks" && $('.list-wrap').length){
-        return $('.list-wrap').first().height();
+      if(this.page !== null && this.page.page == "bookmarks" && $('.lists').length){
+        return $('.lists').first().height();
       }
       return $('meta[property="og:url"]').attr('content');
     });
