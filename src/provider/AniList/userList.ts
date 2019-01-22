@@ -4,6 +4,7 @@ import * as helper from "./helper";
 export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
     if(offset < 1) offset = 1;
     var anilist = false;
+    status = parseInt(status.toString());
     if(typeof callbacks.anilist != 'undefined'){
       anilist = true;
     }
@@ -25,12 +26,12 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     }
 
     var query = `
-    query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus) {
+    query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort] ) {
       Page (page: $page, perPage: 100) {
         pageInfo {
           hasNextPage
         }
-        mediaList (status: $status, type: $type, userName: $userName) {
+        mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
           status
           progress
           progressVolumes
@@ -56,12 +57,12 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
 
     if(anilist){
       query = `
-      query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus) {
+      query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort]) {
         Page (page: $page, perPage: 100) {
           pageInfo {
             hasNextPage
           }
-          mediaList (status: $status, type: $type, userName: $userName) {
+          mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
             progress
             media {
               id
@@ -77,8 +78,14 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       page: offset,
       userName: username,
       type: localListType.toUpperCase(),
-      status: helper.translateList(parseInt(status.toString()), parseInt(status.toString()))
+      status: helper.translateList(parseInt(status.toString()), parseInt(status.toString())),
+      sort: 'UPDATED_TIME_DESC'
     };
+
+    if(status !== 1){
+      //@ts-ignore
+      variables.sort = null;
+    }
 
     api.request.xhr('POST', {
       url: 'https://graphql.anilist.co',
