@@ -243,7 +243,7 @@ export async function epPredictionUI(malid, type = 'anime', callback){
     }
     if(UI.color != ''){
       //UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
-      UI.colorStyle = 'background-color: #00ff0057 !important;'
+      UI.colorStyle = 'background-color: #00ff0057;'
     }
     //
     if(airing){
