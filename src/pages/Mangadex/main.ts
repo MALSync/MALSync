@@ -78,6 +78,17 @@ export const Mangadex: pageInterface = {
           });
         });
       }
+      j.$(document).ready(function(){
+        switch($('#theme_id').val()) {
+          case "2":
+          case "4":
+          case "6":
+          case "7":
+            $('body').addClass('MALSyncDark');
+            break;
+          default:
+        }
+      });
     }
 };
 
