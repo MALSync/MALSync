@@ -83,7 +83,7 @@ export function prepareData(data, listType): listElement[]{
         type: listType,
         title: el['manga_title'],
         url: 'https://myanimelist.net'+el['manga_url'],
-        watchedEp: el['manga_num_chapters'],
+        watchedEp: el['num_read_chapters'],
         totalEp: el['manga_num_chapters'],
         image:  el['manga_image_path'],
         tags: el['tags'],
