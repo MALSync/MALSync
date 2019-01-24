@@ -27,6 +27,11 @@ export class anilistClass{
       }
       return $('meta[property="og:url"]').attr('content');
     });
+
+    if(this.url.indexOf("access_token=") > -1){
+      this.init();
+    }
+
     api.storage.addStyle(require('./style.less').toString());
   }
 
