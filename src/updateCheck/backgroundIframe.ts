@@ -44,11 +44,14 @@ var hiddenTabs:any = [];
 var mutex = new Mutex();
 
 async function startCheck(type = "anime"){
-  const release = await mutex.acquire()
+  const release = await mutex.acquire();
+
   con.log('startCheck', type);
   con.log('hideTab', utils.canHideTabs());
+  setBadgeText('⟲');
 
   var mutexTimout = setTimeout(() => {
+    setBadgeText('');
     release();
   }, 30 * 60 * 1000)
 
@@ -62,6 +65,7 @@ async function startCheck(type = "anime"){
     }
     removeIframes();
     api.storage.set( 'updateCheckLast', Date.now() );
+    setBadgeText('');
     release();
     clearTimeout(mutexTimout);
   }});
@@ -218,4 +222,12 @@ function removeIframes(){
     }
   }
 
+}
+
+function setBadgeText(text:string){
+  try{
+    chrome.browserAction.setBadgeText({text: text});
+  }catch(e){
+    con.error(e);
+  }
 }
