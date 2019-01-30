@@ -184,7 +184,11 @@ export class anilistClass{
     }
   }
 
+  private tempAnimelist = null;
+  private tempMangalist = null;
+
   bookmarks(){
+    var This = this;
     $(document).ready(() => {
       $('.list-entries .entry, .list-entries .entry-card').not('.malSyncDone').each((index, el) => {
         $(el).addClass('malSyncDone')
@@ -210,17 +214,38 @@ export class anilistClass{
 
       })
 
+      if(this.page!.type == 'anime'){
+        if(this.tempAnimelist != null){
+          fullListCallback(this.tempAnimelist);
+          return;
+        }
+      }else{
+        if(this.tempMangalist != null){
+          fullListCallback(this.tempMangalist);
+          return;
+        }
+      }
+
       userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+        if(this.page!.type == 'anime'){
+          this.tempAnimelist = list;
+        }else{
+          this.tempMangalist = list;
+        }
+        fullListCallback(list);
+      }});
+
+      function fullListCallback(list){
         con.log(list);
         $.each(list, async (index, en) => {
           con.log('en', en);
           if(typeof en.malid !== 'undefined' && en.malid !== null && en.malid){
-            var element = $('.entry:not(.malSyncDone2) a[href^="/'+this.page!.type+'/'+en.id+'/"], .entry-card:not(.malSyncDone2) a[href^="/'+this.page!.type+'/'+en.id+'/"]').first().parent();
+            var element = $('.entry:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.id+'/"], .entry-card:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.id+'/"]').first().parent();
             con.log(element);
             element.parent().addClass('malSyncDone2');
 
-            var resumeUrlObj = await utils.getResumeWaching(this.page!.type, en.malid);
-            var continueUrlObj = await utils.getContinueWaching(this.page!.type, en.malid);
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.malid);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.malid);
 
             var curEp = en.watchedEp;
 
@@ -239,7 +264,7 @@ export class anilistClass{
                 );
             }
 
-            utils.epPredictionUI(en.malid, this.page!.type, (prediction) => {
+            utils.epPredictionUI(en.malid, This.page!.type, (prediction) => {
               element.parent().find('.progress').append(prediction.tag);
             });
 
@@ -251,7 +276,7 @@ export class anilistClass{
 
 
 
-      }});
+      }
     });
   }
 
