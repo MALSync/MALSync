@@ -411,7 +411,7 @@
 			var ctx = canvas.getContext("2d");
 
 			if(!stars.length){
-				for(var i = 0; i < 100; i++){
+        for(var i = 0; i < 100; i++){
 					var star = new Star();
 					star.init();
 					stars.push(star);
@@ -486,6 +486,19 @@
 						star.size,
 						star.size
 					);
+          var i = 10;
+          for (var last of star.last){
+            ctx.globalAlpha = 0.8/( i * 4 )
+            ctx.fillStyle=star.color;
+            ctx.fillRect(
+              last.x,
+              last.y,
+              star.size,
+              star.size
+            );
+            i = i - 1;
+          }
+          ctx.globalAlpha = 1;
 				}
 				ctx.stroke();
 			}
@@ -499,6 +512,7 @@
 			this.size = 1;
 			this.paralaxLevel = 1;
       this.color = 'white';
+      this.last = [];
 			this.init = function(){
 				this.x = Math.floor(Math.random() * canvas.width);
 				this.y = Math.floor(Math.random() * canvas.height);
@@ -509,6 +523,12 @@
 				this.paralaxLevel = Math.ceil(Math.random() * 5)+3;
 			}
 			this.animate = function(){
+        if((frame%5) == 0){
+          this.last.push({x: this.x, y: this.y});
+          if (this.last.length > 10) {
+            this.last.shift();
+          }
+        }
 				var maxSpeed = 0.08/this.size;
 				if (frame % 100 == 99) {
 					this.xSpeed += (Math.random() * 0.0004)-0.0002;
