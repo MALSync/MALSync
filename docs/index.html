@@ -447,6 +447,10 @@
 					scrollDistance = speed;
 				}
 
+        if(window.location.pathname === '/'){
+          scrollDistance = 4;
+        }
+
 				for (var star of stars) {
 					star.animate();
 					star.offset(0, scrollDistance/star.paralaxLevel);
