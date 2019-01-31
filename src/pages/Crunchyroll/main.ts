@@ -14,16 +14,16 @@ export const Crunchyroll: pageInterface = {
       return false;
     },
     sync:{
-      getTitle: function(url){return Crunchyroll.sync.getIdentifier(url)},
+      getTitle: function(url){return Crunchyroll.sync.getIdentifier(urlHandling(url))},
       getIdentifier: function(url){
         var script = (j.$("#template_body script")[1]).innerHTML;
         script = script.split('mediaMetadata =')[1].split('"name":"')[1].split(' -')[0];
         script = JSON.parse('"' + script.replace('"', '\\"') + '"');
         return script;
       },
-      getOverviewUrl: function(url){return url.split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(url);},
+      getOverviewUrl: function(url){return urlHandling(url).split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(urlHandling(url));},
       getEpisode: function(url){
-        var episodePart = utils.urlPart(url, 4);
+        var episodePart = utils.urlPart(urlHandling(url), 4);
         var temp = [];
         temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
         if(temp !== null){
@@ -42,7 +42,7 @@ export const Crunchyroll: pageInterface = {
       nextEpUrl: function(url){return Crunchyroll.domain+j.$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');}
     },
     overview:{
-      getTitle: function(url){return Crunchyroll.overview!.getIdentifier(url)},
+      getTitle: function(url){return Crunchyroll.overview!.getIdentifier(urlHandling(url))},
       getIdentifier: function(url){
         if( j.$('.season-dropdown').length > 1){
           throw new Error('MAL-Sync does not support multiple seasons');
@@ -61,7 +61,7 @@ export const Crunchyroll: pageInterface = {
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);},
         elementEp: function(selector){
           var url = Crunchyroll.overview!.list!.elementUrl(selector);
-          return Crunchyroll.sync.getEpisode(url);
+          return Crunchyroll.sync.getEpisode(urlHandling(url));
         },
       }
     },
@@ -111,3 +111,13 @@ export const Crunchyroll: pageInterface = {
       });
     }
 };
+
+function urlHandling(url){
+  var langslug = j.$('#home_link, #logo_beta a').first().attr('href');
+  if(langslug == '/'){
+    return url;
+  }else{
+    return url.replace(langslug, '');
+  }
+
+}
