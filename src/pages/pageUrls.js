@@ -10,6 +10,9 @@ module.exports = {
       '*://myanimelist.net/character/*',
       '*://myanimelist.net/people/*',
       '*://myanimelist.net/search/*'
+    ],
+    exclude: [
+      '*myanimelist.net/anime/season*'
     ]
   },
   anilist: {
