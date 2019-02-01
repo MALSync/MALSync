@@ -6,6 +6,7 @@ declare var GM_deleteValue: any;
 declare var GM_addStyle: any;
 declare var GM_getResourceText: any;
 declare var GM_info: any;
+declare var GM_listValues: any;
 
 export const userscriptLegacy: storageInterface = {
     async set(key: string, value: string): Promise<void> {
@@ -21,6 +22,14 @@ export const userscriptLegacy: storageInterface = {
       GM_deleteValue(key);
     },
 
+    async list(): Promise<void> {
+      var reverseArray:any = {};
+      j.$.each( GM_listValues(), function( index, cache){
+        reverseArray[cache] = index;
+      });
+      return reverseArray;
+    },
+
     async addStyle(css){
       GM_addStyle(css);
     },
@@ -34,7 +43,7 @@ export const userscriptLegacy: storageInterface = {
     },
 
     injectCssResource(res, head){
-      head.append($('<style>')
+      head.append(j.$('<style>')
           .attr("rel","stylesheet")
           .attr("type","text/css")
           .html(GM_getResourceText(res)));
@@ -44,7 +53,8 @@ export const userscriptLegacy: storageInterface = {
       var s = document.createElement('script');
       s.text = GM_getResourceText(res);
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     },
@@ -63,7 +73,8 @@ export const userscriptLegacy: storageInterface = {
           }
         }`;
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     }

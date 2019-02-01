@@ -8,34 +8,34 @@ function createIframe(page){
     iframe.setAttribute("id", "info-iframe");
     iframe.setAttribute("style", "height:100%;width:100%;border:0;display:block;");
     iframe.onload = function() {
-      var head = $("#info-iframe").contents().find("head");
+      var head = j.$("#info-iframe").contents().find("head");
 
-      api.storage.injectjsResource('simpleBarjs', head);
-      api.storage.injectjsResource('materialjs', head);
+      api.storage.injectjsResource('simpleBar.js', head);
+      api.storage.injectjsResource('material.js', head);
       api.storage.updateDom(head);
 
-      api.storage.injectCssResource('materialCSS', head);
-      api.storage.injectCssResource('materialFont', head);
-      api.storage.injectCssResource('simpleBarCSS', head);
+      api.storage.injectCssResource('material.css', head);
+      api.storage.injectCssResource('materialFont.css', head);
+      api.storage.injectCssResource('simpleBar.css', head);
 
-      //TEMP
-      minimalObj = new minimal($("#info-iframe").contents().find('html'));
-      if(typeof(page) != 'undefined'){
-        minimalObj.setPageSync(page);
-        if(typeof(page.malObj) != 'undefined'){
-          minimalObj.fill(page.malObj.url);
-        }else{
-          minimalObj.fill(null);
+      setTimeout(function(){
+        minimalObj = new minimal(j.$("#info-iframe").contents().find('html'));
+        if(typeof(page) != 'undefined'){
+          if(typeof(page.malObj) != 'undefined'){
+            minimalObj.fill(page.malObj.url);
+          }else{
+            minimalObj.fill(null);
+          }
+          minimalObj.setPageSync(page);
         }
-      }
-      //TEMP
+      }, 200);
 
     };
     document.getElementById("modal-content")!.appendChild(iframe);
-    $("#modal-content").append('<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>');
+    j.$("#modal-content").append('<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>');
 
-    if((!$("#info-iframe").length) || ($('#info-iframe').css('display') != 'block')){
-        $('#info-popup').remove();
+    if((!j.$("#info-iframe").length) || (j.$('#info-iframe').css('display') != 'block')){
+        j.$('#info-popup').remove();
         alert('The miniMAL iframe could not be loaded.\nThis could be caused by an AdBlocker.');
     }
 
@@ -47,7 +47,7 @@ export function initIframeModal(page){
   var miniMalWidth = api.settings.get('miniMalWidth');
   var miniMalHeight = api.settings.get('miniMalHeight');
 
-  if( !($('#info-popup').length) ){
+  if( !(j.$('#info-popup').length) ){
     api.storage.addStyle('.modal-content-kal.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
       .modal-content-kal{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
       .floatbutton:hover {background-color:rgb(63,81,181);}\
@@ -65,33 +65,39 @@ export function initIframeModal(page){
     //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
     var position = 'max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: '+miniMalWidth+'; height: '+miniMalHeight+'; position: absolute; bottom: 0%; '+ posLeft +': 0%';//phone
     // @ts-ignore
-    if($(window).width() < 500){
+    if(j.$(window).width() < 500){
       position = 'width: 100vw; height: 100%; position: absolute; top: 0%; '+ posLeft +': 0%';
     }
     var material = '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
     material += '<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; '+position+'">';
     material += '</div>';
     material += '</dialog>';
-    $('body').after(material);
+    j.$('body').after(material);
 
     var floatbutton = '<button class="open-info-popup floatbutton" style="">';
-    floatbutton += '<i class="my-float" style="margin-top:22px;"><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div style="width: 100%; height: 4px"></div></i></button>';
-    $('#info-popup').after(floatbutton);
+    floatbutton += '<i class="my-float open-info-popup" style="margin-top:22px;"><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px"></div></i></button>';
+    j.$('#info-popup').after(floatbutton);
 
-    $(".open-info-popup").unbind('click').show().click( function(){
-        if($('#info-popup').css('display') == 'none'){
+    j.$(".open-info-popup").show();
+
+    document.addEventListener("click", function (e) {
+      if (j.$(e.target).hasClass('open-info-popup')) {
+        con.log("Open miniMAL");
+        if(j.$('#info-popup').css('display') == 'none'){
             document.getElementById('info-popup')!.style.display = "block";
             //fillIframe(url, currentMalData);
-            $('.floatbutton').fadeOut();
-            if( !($('#info-iframe').length) ){
+            j.$('.floatbutton').fadeOut();
+            if( !(j.$('#info-iframe').length) ){
               createIframe(page);
             }else if(typeof minimalObj !== 'undefined' && typeof(page.malObj) != 'undefined'){
               minimalObj.fillBase(page.malObj.url);
+              minimalObj.setPageSync(page);
             }
         }else{
             document.getElementById('info-popup')!.style.display = "none";
-            $('.floatbutton').fadeIn();
+            j.$('.floatbutton').fadeIn();
         }
+      }
     });
   }
 

@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/index.ts')
+    index: path.join(__dirname, '..', 'src/index-webextension.ts')
   },
   module: {
     rules: [
@@ -32,6 +32,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),
+      j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
   ]

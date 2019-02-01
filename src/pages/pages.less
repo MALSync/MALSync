@@ -1,10 +1,46 @@
 @textColor: black;
 @activeEp: #002966;
+@inputBackground: #111111;
 
-#malStatus, #malTotal, #malEpisodes, #malUserRating, #malRating, #malVolumes, #malTotalVol, #malTotalCha{
+#malStatus, #malTotal, #malEpisodes, #malUserRating, #malRating, #malVolumes, #malTotalVol, #malTotalCha, #AddMal{
   color: @textColor;
 }
 
 .mal-sync-active{
   background-color: @activeEp;
+}
+
+#malp{
+  select{
+    option{
+      background-color: @inputBackground;
+    }
+  }
+}
+
+#malp{
+  #malStatus, #malUserRating, #malEpisodes, #malVolumes, #malEpisodes{
+    font-size: inherit;
+    font-family: inherit;
+    background: transparent;
+    border-width: 1px;
+    border-color: grey;
+    text-decoration: none;
+    outline: medium none;
+
+    border-width: 0px;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+  }
+
+  #malEpisodes, #malVolumes, #malEpisodes{
+    text-align: center;
+    border-bottom-width: 1px;
+    &:focus{
+      border-color: @textColor;
+    }
+  }
+
 }

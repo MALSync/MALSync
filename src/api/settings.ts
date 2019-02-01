@@ -1,5 +1,14 @@
 export var settingsObj = {
   options: {
+    autoTracking: true,
+    userscriptMode: false,
+    syncMode: 'MAL',
+    delay: 0,
+    malTags: true,
+    malContinue: true,
+    malResume: true,
+    epPredictions: true,
+
     posLeft: 'left',
     miniMALonMal: false,
     displayFloatButton: true,
@@ -7,14 +16,24 @@ export var settingsObj = {
     miniMalWidth: '30%',
     miniMalHeight: '90%',
     malThumbnail: 100,
+    friendScore: true,
 
+    SiteSearch: true,
     '9anime': true,
     Crunchyroll: true,
     Gogoanime: true,
     Kissanime: true,
     Masterani: true,
+    Animeheaven: true,
+    Twistmoe: true,
+    Anime4you: true,
     Kissmanga: true,
     Mangadex: true,
+    Mangarock: true,
+
+    updateCheckNotifications: true,
+
+    'anilistToken': '',
   },
 
   init: async function (){
@@ -37,7 +56,7 @@ export var settingsObj = {
   set: function(name: string, value: any){
     if(this.options.hasOwnProperty(name)){
       this.options[name] = value;
-      api.storage.set('settings/'+name, value);
+      return api.storage.set('settings/'+name, value);
     }else{
       con.error(name+' is not a defined option');
     }

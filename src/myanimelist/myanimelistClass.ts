@@ -1,24 +1,51 @@
 import {pageSearch} from './../pages/pages';
-import {mal} from "./../utils/mal";
+import {entryClass} from "./../provider/MyAnimeList/entryClass";
+import {prepareData, userList} from "./../provider/MyAnimeList/userList";
 
 export class myanimelistClass{
-  readonly page: "detail"|"modern"|null = null;
+  page: "detail"|"bookmarks"|"modern"|"classic"|"character"|"people"|"search"|null = null;
 
   //detail
   readonly id: number|null = null;
   readonly type: "anime"|"manga"|null = null;
 
+  //bookmarks
+  readonly username: any = null;
+
 
   constructor(public url:string){
-    var urlpart = utils.urlPart(url, 3);
+    if(url.indexOf("myanimelist.net/anime.php") > -1){
+      var urlTemp = '/anime/'+utils.urlParam(this.url, 'id');
+      // @ts-ignore
+      window.history.replaceState(null, null, urlTemp);
+      this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
+    }
+    if(url.indexOf("myanimelist.net/manga.php") > -1){
+      var urlTemp = '/manga/'+utils.urlParam(this.url, 'id');
+      // @ts-ignore
+      window.history.replaceState(null, null, urlTemp);
+      this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
+    }
+
+    var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
       this.page = 'detail';
-      this.id = utils.urlPart(url, 4);
+      this.id = utils.urlPart(this.url, 4);
       this.type = urlpart;
     }
     if(urlpart == 'animelist' || urlpart == 'mangalist'){
-      this.page = 'modern';
+      this.page = 'bookmarks';
       this.type = urlpart.substring(0, 5);
+      this.username = utils.urlPart(this.url, 4);
+    }
+    if(urlpart == 'character'){
+      this.page = 'character';
+    }
+    if(urlpart == 'people'){
+      this.page = 'people';
+    }
+    if(urlpart == 'search'){
+      this.page = 'search';
     }
   }
 
@@ -27,12 +54,38 @@ export class myanimelistClass{
     switch(this.page) {
       case 'detail':
         this.thumbnails();
+        this.setEpPrediction();
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
+        this.related();
+        this.friendScore();
+        setInterval(() => {
+          this.setEpPrediction();
+        }, 1000 * 60)
+        break;
+      case 'bookmarks':
+        var This = this;
+        $(document).ready(function(){
+          if($('#mal_cs_powered').length){
+            This.page = 'classic';
+          }else{
+            This.page = 'modern';
+          }
+          This.init();
+        });
         break;
       case 'modern':
         this.bookmarks();
+        break;
+      case 'classic':
+        this.bookmarks();
+        break
+      case 'character':
+      case 'people':
+        this.relatedTag();
+      case 'search':
+        this.thumbnails();
         break;
       default:
         con.log('This page has no scipt')
@@ -95,7 +148,8 @@ export class myanimelistClass{
           url = tags[i].getAttribute("src")!;
         }
 
-        if ( regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) ) {
+        if ( regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) || url.indexOf('questionmark') !== -1) {
+          url = utils.handleMalImages(url);
           if(!(url.indexOf("100x140") > -1)){
             tags[i].setAttribute("data-src", url);
             url = url.replace(/v.jpg$/g, '.jpg');
@@ -121,6 +175,16 @@ export class myanimelistClass{
     }
   }
 
+  setEpPrediction(){
+    con.log('setEpPrediction');
+    utils.epPredictionUI(this.id, this.type, function(prediction){
+      con.log(prediction);
+      $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
+      $('#addtolist').prev().before('<div class="mal-sync-pre-remove">'+prediction.text+'</div>');
+      $('[id="curEps"], [id="totalChaps"]').before(prediction.tag+' ');
+    });
+  }
+
   async malToKiss(){
     con.log('malToKiss');
     utils.getMalToKissArray(this.type, this.id).then((links) => {
@@ -135,32 +199,41 @@ export class myanimelistClass{
           tempHtml += '<div class="mal_links"><a target="_blank" href="'+stream['url']+'">'+stream['title']+'</a></div>';
           tempUrl = stream['url'];
         }
-        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="https://www.google.com/s2/favicons?domain='+tempUrl.split('/')[2]+'"> '+pageKey+'</h2>';
+        html += '<h2 id="'+pageKey+'Links" class="mal_links"><img src="'+utils.favicon(tempUrl.split('/')[2])+'"> '+pageKey+'<span title="'+pageKey+'" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>';
         html += tempHtml;
         html += '<br class="mal_links" />';
 
       }
       $(document).ready(function(){
         $('h2:contains("Information")').before(html);
+        $('.remove-mal-sync').click(function(){
+          var key = $(this).attr('title');
+          api.settings.set(key, false);
+          location.reload();
+        });
       });
     })
   }
 
   siteSearch(){
+    if(!api.settings.get('SiteSearch')) return;
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');
-      $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><br class="mal_links" />');
-      $('#mal-sync-search-links').one('click', () => {
+      $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />');
+      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
+      $('#mal-sync-search-links, .MALSync-search').one('click', () => {
+        $('.MALSync-search').remove();
         var title = $('#contentWrapper > div:first-child span').text()
         var titleEncoded = encodeURI(title);
         var html = '';
+        var imgStyle = 'position: relative; top: 4px;'
 
         for (var key in pageSearch) {
           var page = pageSearch[key];
           if(page.type !== This.type) continue;
 
-          var linkContent = `${page.name} <img src="https://www.google.com/s2/favicons?domain=${page.domain}">`;
+          var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
             `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
@@ -169,12 +242,18 @@ export class myanimelistClass{
           }else{
             var link = page.completeSearchTag(title, linkContent);
           }
+
+          var googleSeach = '';
+          if( typeof page.googleSearchDomain !== 'undefined'){
+            googleSeach =`<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}">
+              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
+            </a>`;
+          }
+
           html +=
-          `<div class="mal_links">
+          `<div class="mal_links" id="${key}" style="padding: 1px 0;">
               ${link}
-            <a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.domain}">
-              <img src="https://www.google.com/s2/favicons?domain=google.com">
-            </a>
+              ${googleSeach}
           </div>`;
         }
 
@@ -185,7 +264,7 @@ export class myanimelistClass{
 
   async streamingUI(){
     con.log('Streaming UI');
-    var malObj = new mal(this.url);
+    var malObj = new entryClass(this.url);
     await malObj.init();
 
     var streamUrl = malObj.getStreamingUrl();
@@ -195,7 +274,7 @@ export class myanimelistClass{
         $('.h1 span').first().after(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+            <img src="${utils.favicon(streamUrl.split('/')[2])}">
           </a>
         </div>`);
 
@@ -221,29 +300,83 @@ export class myanimelistClass{
   }
 
   bookmarks(){
-    con.log('Bookmarks ['+this.page+']');
+    con.log('Bookmarks ['+this.username+']['+this.page+']');
     var This = this;
 
-    bookReady(function(){
+    if(this.page == 'modern'){
+      var book = {
+        bookReady: function(callback){
+          utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
+
+            callback(prepareData($.parseJSON($('.list-table').attr('data-items')!), This.type));
+          });
+        },
+        getElement: function(malUrl){
+          return $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
+        },
+        streamingSelector: '.data.title .link',
+        cleanTags: function(){
+          $('.tags span a').each(function( index ) {
+            if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+              $(this).parent().remove();
+            }
+          });
+        },
+        predictionPos(element, tag){
+          element.find('.data.progress span, .data.chapter span').first().after(tag);
+        },
+      }
+    }else if(this.page == 'classic'){
+      var book = {
+        bookReady: function(callback){
+          var tType: string = "anime";
+          if(This.type !== null){
+            tType = This.type;
+          }
+          userList(7, tType, {fullListCallback: function(list){
+            callback(list);
+          }}, This.username);
+        },
+        getElement: function(malUrl){
+          return $('a[href^="'+malUrl+'"]');
+        },
+        streamingSelector: 'span',
+        cleanTags: function(){
+          $('span[id^="tagLinks"] a').each(function( index ) {
+            if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+              $(this).remove();
+            }
+          });
+        },
+        predictionPos(element, tag){
+          element.parent().parent().find('span[id^="epText"] a span, span[id^="chap"]').first().after(tag);
+        },
+      }
+    }else{
+      con.error('Bookmark type unknown')
+      return
+    }
+
+    book.bookReady(function(data){
       This.bookmarksHDimages();
-      var data = $.parseJSON($('.list-table').attr('data-items')!);
       $.each(data, async function(index, el) {
-        var streamUrl = utils.getUrlFromTags(el['tags']);
-        var malUrl = el[This.type+'_url'];
+        var streamUrl = utils.getUrlFromTags(el.tags);
+        var malUrl = el.url.replace('https://myanimelist.net','');
         con.log(malUrl);
-        var id = utils.urlPart(malUrl, 2);
-        var type = utils.urlPart(malUrl, 1);
+        var id = el.id;
+        var type = el.type;
 
         if(typeof streamUrl !== 'undefined'){
-          var element = $('.list-item a[href^="'+malUrl+'"]').parent().parent('.list-table-data');
-          element.find('.data.title .link').after(`
+          var element = book.getElement(malUrl);
+          element.find(book.streamingSelector).after(`
             <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-              <img src="https://www.google.com/s2/favicons?domain=${streamUrl.split('/')[2]}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
           var resumeUrlObj = await utils.getResumeWaching(type, id);
           var continueUrlObj = await utils.getContinueWaching(type, id);
-          var curEp = parseInt(element.find('.data.progress .link').text().trim().replace(/\/.*/,''));
+
+          var curEp = parseInt(el.watchedEp);
 
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
@@ -259,23 +392,82 @@ export class myanimelistClass{
               </a>`
               );
           }
+
         }
+
+        utils.epPredictionUI(id, type, function(prediction){
+          var element = book.getElement(malUrl);
+          book.predictionPos(element, prediction.tag);
+        });
+
       });
-      cleanTags();
+      book.cleanTags();
     });
+  }
 
-    function bookReady(callback){
-      utils.waitUntilTrue(function(){return $('.list-item').length}, function(){
-        callback();
-      });
-    }
+  related(){
+    $(document).ready(function(){
+      $('.anime_detail_related_anime a').each(function(){
+        var el = $(this);
+        var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
+        if(typeof url != 'undefined'){
+          var malObj = new entryClass(url);
+          malObj.init().then(() => {
+            var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+            if(tag){
+              el.after(tag)
+            }
+          });
+        }
+      })
+    });
+  }
 
-    function cleanTags(){
-      $('.tags span a').each(function( index ) {
-        if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
-          $(this).parent().remove();
+  relatedTag(){
+    $(document).ready(function(){
+      $('a.button_edit').each(function(){
+        var el = $(this);
+        var href = $(this).attr('href');
+        var type =  utils.urlPart(href, 4);
+        var id = utils.urlPart(href, 5);
+        var state = el.attr('title');
+        if(typeof state != 'undefined' && state){
+          var tag = utils.statusTag(state, type, id);
+          el.parent().parent().find('> a').after(tag);
+          el.remove();
         }
       });
-    }
+    });
+  }
+
+  friendScore(){
+    if(!api.settings.get('friendScore')) return;
+    $(document).ready(function(){
+      var position = $('h2:contains(Reviews)');
+      if (!position.length) return;
+
+      var overview = $('#horiznav_nav li a').first();
+      if(!overview.is('#horiznav_nav li a.horiznav_active')) return;
+
+      var url = overview.attr('href');
+      if(typeof url == 'undefined' || !url) return;
+      url = utils.absoluteLink(url, 'https://myanimelist.net');
+
+      api.request.xhr('GET', url+'/stats').then((response) => {
+        var friendHead = $('a[name=members]', $(response.responseText).children());
+        if (!friendHead) return;
+        var friendBody = friendHead.nextAll();
+        if (friendBody.length > 1 && friendBody.find('a:contains("All Members")').length){
+          position.before(friendHead).before(friendBody).before('<br>');
+
+          $('a:contains("All Members")').after(' | <span id="mal-sync-removeFriends" title="remove" style="cursor: pointer; color: #1d439b;">X</span>');
+          $('#mal-sync-removeFriends').click(function(){
+            api.settings.set('friendScore', false);
+            location.reload();
+          });
+
+        }
+      });
+    });
   }
 }

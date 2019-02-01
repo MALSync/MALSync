@@ -5,7 +5,7 @@ export const webextension: storageInterface = {
       const obj = {} as any;
       obj[key] = value;
       return new Promise((resolve, reject) => {
-          chrome.storage.local.set(obj, function(){
+          getStorage(key).set(obj, function(){
               resolve();
           });
       });
@@ -13,7 +13,7 @@ export const webextension: storageInterface = {
 
     async get(key: string): Promise<any> {
       return new Promise((resolve, reject) => {
-          chrome.storage.local.get(key, function(results){
+          getStorage(key).get(key, function(results){
               resolve(results[key]);
           });
       });
@@ -21,8 +21,16 @@ export const webextension: storageInterface = {
 
     async remove(key: string): Promise<any> {
       return new Promise((resolve, reject) => {
-          chrome.storage.local.remove(key, function(){
+          getStorage(key).remove(key, function(){
               resolve();
+          });
+      });
+    },
+
+    async list(): Promise<any> {
+      return new Promise((resolve, reject) => {
+          chrome.storage.local.get(null, function(results){
+              resolve(results);
           });
       });
     },
@@ -47,7 +55,7 @@ export const webextension: storageInterface = {
 
     injectCssResource(res, head){
       var path = chrome.extension.getURL('vendor/'+res);
-      head.append($('<link>')
+      head.append(j.$('<link>')
           .attr("rel","stylesheet")
           .attr("type","text/css")
           .attr("href", path));
@@ -57,7 +65,8 @@ export const webextension: storageInterface = {
       var s = document.createElement('script');
       s.src = chrome.extension.getURL('vendor/'+res);
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     },
@@ -76,8 +85,16 @@ export const webextension: storageInterface = {
           }
         }`;
       s.onload = function() {
-          this.remove();
+        // @ts-ignore
+        this.remove();
       };
       head.get(0).appendChild(s);
     }
 };
+
+function getStorage(key:string){
+  if(utils.syncRegex.test(key)){
+    return chrome.storage.sync;
+  }
+  return chrome.storage.local;
+}

@@ -1,5 +1,5 @@
 export interface pageInterface {
-    domain: string,
+    domain: string | string[],
     name: string,
     type: "anime"|"manga",
     isSyncPage: (url) => boolean,
@@ -19,9 +19,11 @@ export interface pageInterface {
       getIdentifier: (url) => string,
       uiSelector: (selector) => void,
       list?:{
+        offsetHandler: boolean,
         elementsSelector: () => JQuery<HTMLElement>,
         elementUrl: (selector) => string,
         elementEp: (selector) => number,
+        paginationNext?: () => boolean,
       }
     },
     database?: string, //ignore, only for first party implementations
@@ -32,6 +34,7 @@ interface pageSearch {
     name: string,
     type: 'anime'|'manga',
     domain: string,
+    googleSearchDomain?: string,
     searchUrl: (titleEncoded) => string,
     completeSearchTag?: (title, linkContent) => string
 }

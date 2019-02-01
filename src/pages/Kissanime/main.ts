@@ -7,14 +7,14 @@ export const Kissanime: pageInterface = {
     type: 'anime',
     isSyncPage: function(url){
       if(typeof utils.urlPart(url, 5) != 'undefined'){
-          if($('#centerDivVideo').length){
+          if(j.$('#centerDivVideo').length){
               return true;
           }
       }
       return false;
     },
     sync:{
-      getTitle: function(url){return Kissanime.sync.getIdentifier(url)},
+      getTitle: function(url){return j.$('#navsubbar a').first().text().replace('Anime', '').replace('information', '').trim()},
       getIdentifier: function(url){return utils.urlPart(url, 4);},
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
@@ -37,14 +37,15 @@ export const Kissanime: pageInterface = {
         }
         return episodePart;
       },
-      nextEpUrl: function(url){return url.replace(/\/[^\/]*$/, '')+'/'+$('#selectEpisode option:selected').next().val();}
+      nextEpUrl: function(url){return url.replace(/\/[^\/]*$/, '')+'/'+j.$('#selectEpisode option:selected').next().val();}
     },
     overview:{
-      getTitle: function(){return $('.bigChar').first().text();},
+      getTitle: function(){return j.$('.bigChar').first().text();},
       getIdentifier: function(url){return Kissanime.sync.getIdentifier(url)},
-      uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
+      uiSelector: function(selector){selector.insertAfter(j.$(".bigChar").first());},
       list:{
-        elementsSelector: function(){return $(".listing tr").filter(function(){return $(this).find('a').length > 0});},
+        offsetHandler: true,
+        elementsSelector: function(){return j.$(".listing tr")},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Kissanime.domain);},
         elementEp: function(selector){
           var url = Kissanime.overview!.list!.elementUrl(selector);
@@ -54,7 +55,12 @@ export const Kissanime: pageInterface = {
       }
     },
     init(page){
+      if(document.title == "Please wait 5 seconds..."){
+          con.log("loading");
+          page.cdn();
+          return;
+      }
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){page.handlePage()});
+      j.$(document).ready(function(){page.handlePage()});
     }
 };

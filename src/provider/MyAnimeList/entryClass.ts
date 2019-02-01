@@ -1,4 +1,4 @@
-export class mal{
+export class entryClass{
 
   readonly id: number;
   readonly type: "anime"|"manga";
@@ -8,10 +8,11 @@ export class mal{
   totalVol?: number;
   addAnime: boolean = false;
   login: boolean = false;
+  wrong: boolean = false;
 
   private animeInfo;
 
-  constructor(public url:string){
+  constructor(public url:string, public miniMAL:boolean = false){
     this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
   }
@@ -19,6 +20,10 @@ export class mal{
   init(){
     return this.update();
   };
+
+  getDisplayUrl(){
+    return this.url;
+  }
 
   update(){
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.id+'/edit?hideLayout';
@@ -42,6 +47,7 @@ export class mal{
   }
 
   setEpisode(ep:number){
+    if(ep+'' === '') ep = 0;
     if(this.type == "manga"){
       this.animeInfo[".add_manga[num_read_chapters]"] = parseInt(ep+'');
     }
@@ -89,6 +95,20 @@ export class mal{
       this.animeInfo[".add_manga[score]"] = score;
     }
     this.animeInfo[".add_anime[score]"] = score;
+  }
+
+  getRewatching(): 1|0{
+    if(this.type == "manga"){
+      return this.animeInfo[".add_manga[is_rereading]"];
+    }
+    return this.animeInfo[".add_anime[is_rewatching]"];
+  }
+
+  setRewatching(rewatching:1|0){
+    if(this.type == "manga"){
+      this.animeInfo[".add_manga[is_rereading]"] = rewatching;
+    }
+    this.animeInfo[".add_anime[is_rewatching]"] = rewatching;
   }
 
   setCompletionDateToNow(){
@@ -141,6 +161,7 @@ export class mal{
 
     if(this.type == "manga"){
       this.animeInfo[".add_manga[tags]"] = tags;
+      return;
     }
     this.animeInfo[".add_anime[tags]"] = tags;
   }
@@ -180,6 +201,17 @@ export class mal{
     return utils.getContinueWaching(this.type, this.id)
   }
 
+  async getImage():Promise<string>{
+    return api.request.xhr('GET', this.url).then((response) => {
+      var data = response.responseText;
+      var image = '';
+      try{
+          image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
+      }catch(e) {console.log('[mal.ts] Error:',e);}
+      return image;
+    });
+  }
+
   clone() {
       const copy = new (this.constructor as { new () })();
       Object.assign(copy, this);
@@ -188,35 +220,128 @@ export class mal{
   }
 
   sync(){
+    var status = utils.status;
     return new Promise((resolve, reject) => {
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
       if(this.addAnime){
+        var imgSelector = 'malSyncImg'+this.id;
+        var flashConfirmText = `
+          Is "${this.name}" correct?
+          <br>
+          <img id="${imgSelector}" style="
+            height: 200px;
+            min-height: 200px;
+            min-width: 144px;
+            border: 1px solid;
+            margin-top: 10px;
+            display: inline;
+          " src="" />
+          <br>
+          <!--<a style="margin-left: -2px;" target="_blank" href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting#myanimeentry-entry-is-not-correct">[How to correct entries]</a>-->
+        `;
+
+        if(This.miniMAL){
+          flashConfirmText = `
+                    Add "${this.name}" to MAL?`;
+        }
+
         if(this.type == 'anime'){
           url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
-            This.setStatus(1);
+          utils.flashConfirm(flashConfirmText, 'add', function(){
             continueCall();
           }, function(){
+            wrongCall();
               /*if(change['checkIncrease'] == 1){TODO
                   episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl']);
               }*/
           });
-          return;
         }else{
           url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
-          utils.flashConfirm('Add "'+this.name+'" to MAL?', 'add', function(){
-            This.setStatus(1);
+          utils.flashConfirm(flashConfirmText, 'add', function(){
             continueCall();
-          }, function(){});
+          }, function(){
+            wrongCall();
+          });
+        }
+
+        if(!This.miniMAL){
+          this.getImage().then((image) => {
+            j.$('#'+imgSelector).attr('src', image);
+          })
+
+          j.$('.Yes').text('YES');
+          j.$('.Cancel').text('NO');
+        }
+
+        return;
+      }else{
+        //Rewatching
+        var watchCounter = '.add_anime[num_watched_times]';
+        var rewatchText = 'Rewatch Anime?';
+        var rewatchFinishText = 'Finish rewatching?';
+        if(this.type == "manga"){
+          watchCounter = '.add_manga[num_read_times]';
+          rewatchText = 'Reread Manga?';
+          rewatchFinishText = 'Finish rereading?';
+        }
+
+        if(
+          this.getStatus() == status.completed &&
+          this.getEpisode() === 1 &&
+          this.totalEp !== 1 &&
+          this.getRewatching() !== 1
+        ){
+          utils.flashConfirm(rewatchText, 'add', () => {
+            this.setRewatching(1);
+            continueCall();
+          }, function(){
+            con.log('Rewatching denial');
+          });
           return;
+        }
+
+        if(
+          this.getStatus() == status.completed &&
+          this.getEpisode() === this.totalEp &&
+          this.getRewatching() === 1
+        ){
+
+          utils.flashConfirm(rewatchFinishText, 'add', () => {
+            this.setRewatching(0);
+
+            if(this.animeInfo[watchCounter] === ''){
+                this.animeInfo[watchCounter] = 1;
+            }else{
+                this.animeInfo[watchCounter] = parseInt(this.animeInfo[watchCounter])+1;
+            }
+
+            continueCall();
+          }, function(){
+            continueCall();
+          });
+
+          return;
+        }
+      }
+
+      function wrongCall(){
+        This.wrong = true;
+        if(!This.miniMAL){
+          var miniButton = j.$('button.open-info-popup');
+          if(miniButton.css('display') != 'none'){
+            miniButton.click();
+          }else{
+            miniButton.click();
+            miniButton.click();
+          }
         }
       }
 
       continueCall();
       function continueCall(){
         var parameter = "";
-        $.each( This.animeInfo, function( index, value ){
+        j.$.each( This.animeInfo, function( index, value ){
             if(index.toString().charAt(0) == "."){
                 if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)){
                     parameter += encodeURIComponent (index.toString().substring(1))+"="+encodeURIComponent (value)+"&";
@@ -285,6 +410,7 @@ export class mal{
       anime['.add_anime[rewatch_value]'] = getselect(data,'add_anime[rewatch_value]');
       anime['.add_anime[comments]'] = data.split('name="add_anime[comments]"')[1].split('>')[1].split('<')[0];
       anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
+      if(anime['.add_anime[is_asked_to_discuss]'] == '') anime['.add_anime[is_asked_to_discuss]'] = 0; //#15
       anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
       anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
       con.log('[GET] Object:',anime);
@@ -329,6 +455,7 @@ export class mal{
       anime['.add_manga[reread_value]'] = getselect(data,'add_manga[reread_value]');
       anime['.add_manga[comments]'] = data.split('name="add_manga[comments]"')[1].split('>')[1].split('<')[0];
       anime['.add_manga[is_asked_to_discuss]'] = getselect(data,'add_manga[is_asked_to_discuss]');
+      if(anime['.add_manga[is_asked_to_discuss]'] == '') anime['.add_manga[is_asked_to_discuss]'] = 0; //#15
       anime['.add_manga[sns_post_type]'] = getselect(data,'add_manga[sns_post_type]');
       anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
       con.log('[GET] Object:', anime);

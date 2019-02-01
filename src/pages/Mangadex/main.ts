@@ -13,12 +13,12 @@ export const Mangadex: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return $('.manga-link').text().trim()},
+      getTitle: function(url){return j.$('.manga-link').text().trim()},
       getIdentifier: function(url){return utils.urlPart(Mangadex.sync.getOverviewUrl(url), 4);},
-      getOverviewUrl: function(url){return utils.absoluteLink($('a.manga-link').first().attr('href'), Mangadex.domain);},
+      getOverviewUrl: function(url){return utils.absoluteLink(j.$('a.manga-link').first().attr('href'), Mangadex.domain);},
       getEpisode: function(url){
         var chapterId = url.split('/')[4];
-        var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
+        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"]');
         if(curOption.length){
           var temp = curOption.text().trim().match(/ch\.\D?\d+/i);
           if(temp !== null){
@@ -29,7 +29,7 @@ export const Mangadex: pageInterface = {
       },
       getVolume: function(url){
         var chapterId = url.split('/')[4];
-        var curOption = $('#jump-chapter option[value="'+chapterId+'"]');
+        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"]');
         if(curOption.length){
           var temp = curOption.text().trim().match(/vol\.\D?\d+/i);
           if(temp !== null){
@@ -43,27 +43,52 @@ export const Mangadex: pageInterface = {
       },
     },
     overview:{
-      getTitle: function(){return $('.card-header').first().text().trim();},
+      getTitle: function(){return j.$('.card-header').first().text().trim();},
       getIdentifier: function(url){return utils.urlPart(url, 4)},
       uiSelector: function(selector){
-        $(".container .card .edit.row > * > .row").first().after('<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>');
-        selector.appendTo($(".container .card .kal-ui").first());
+        j.$(".container .card .edit.row > * > .row").first().after('<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>');
+        selector.appendTo(j.$(".container .card .kal-ui").first());
       },
       list:{
-        elementsSelector: function(){return $(".chapter-container > .row:not(:first-of-type) .chapter-row");},
+        offsetHandler: false,
+        elementsSelector: function(){return j.$(".chapter-container > .row:not(:first-of-type) .chapter-row");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Mangadex.domain);},
         elementEp: function(selector){return selector.attr('data-chapter');},
       }
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      if($('.card-header').length){
-        $(document).ready(function(){page.handlePage()});
+      if(j.$('.card-header').length){
+        j.$(document).ready(function(){page.handlePage()});
       }else{
+        con.info('Waiting');
         utils.waitUntilTrue(function(){return Mangadex.sync.getOverviewUrl('')}, function(){
+          con.info('Start');
           page.handlePage();
+          var tempChapterId = utils.urlPart(window.location.href, 4);
+          utils.urlChangeDetect(function(){
+            var newTempChapterId = utils.urlPart(window.location.href , 4)
+            if( tempChapterId !== newTempChapterId){
+              tempChapterId = newTempChapterId;
+              con.info('Check');
+              page.handlePage();
+            }else{
+              con.info('Nothing to do')
+            }
+          });
         });
       }
+      j.$(document).ready(function(){
+        switch($('#theme_id').val()) {
+          case "2":
+          case "4":
+          case "6":
+          case "7":
+            $('body').addClass('MALSyncDark');
+            break;
+          default:
+        }
+      });
     }
 };
 

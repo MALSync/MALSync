@@ -31,16 +31,23 @@ const metadata = {
   'description': package['description'],
   'version': package['version'],
   'author': package['author'],
+  'license': 'GPL-3.0',
+  'iconURL': 'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png',
+  'downloadURL': 'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.user.js',
+  'updateURL': 'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.meta.js',
   'grant': [
     'GM_xmlhttpRequest',
     'GM_getValue',
     'GM_setValue',
+    'GM_deleteValue',
+    'GM_listValues',
     'GM_addStyle',
     'GM_getResourceText',
     'GM.xmlHttpRequest',
     'GM.getValue',
     'GM.setValue'
   ],
+  'noframes': '',
   'match' : generateMatchExcludes().match,
   'exclude' : generateMatchExcludes().exclude,
   'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
@@ -48,6 +55,8 @@ const metadata = {
   'run-at': 'document_start',
   'connect': [
     'myanimelist.net',
+    'kissanimelist.firebaseio.com',
+    'graphql.anilist.co',
     '*'
   ]
 };
@@ -104,6 +113,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),
+      j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/userscript'),
     }),
     new webpack.optimize.LimitChunkCountPlugin({

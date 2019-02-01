@@ -19,6 +19,13 @@ const generateMatchExcludes = () => {
   return {match: match, exclude: exclude}
 }
 
+const backgroundMatch = (matches) => {
+  for(var i=0;i<matches.length;i++){
+      matches[i]=matches[i]+'*mal-sync-background=*';
+  }
+  return matches;
+}
+
 const generateManifest = () => {
   return JSON.stringify({
     'manifest_version': 2,
@@ -28,6 +35,7 @@ const generateManifest = () => {
     'author': package['author'],
     'background': {
       'scripts': [
+        'vendor/jquery.min.js',
         'background.js'
       ]
     },
@@ -38,11 +46,20 @@ const generateManifest = () => {
     'content_scripts': [
       {
         'matches': generateMatchExcludes().match,
-        'exclude_globs': generateMatchExcludes().exclude,
+        'exclude_globs': generateMatchExcludes().exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'
         ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': backgroundMatch(generateMatchExcludes().match),
+        'js': [
+          'vendor/jquery.min.js',
+          'update-check.js'
+        ],
+        "all_frames": true,
         "run_at": "document_start"
       }
     ],
@@ -57,8 +74,20 @@ const generateManifest = () => {
     ],
     'permissions': [
       "storage",
-      "https://myanimelist.net/"
-    ]
+      "alarms",
+      "https://myanimelist.net/",
+      "notifications",
+      "https://myanimelist.cdn-dena.com/",
+      "https://cdn.myanimelist.net/",
+      "https://s3.anilist.co/",
+      "https://graphql.anilist.co",
+      "tabHide"
+    ],
+    "optional_permissions": [
+      "cookies",
+      "webRequest",
+      "webRequestBlocking"
+    ].concat(generateMatchExcludes().match),
   }, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {

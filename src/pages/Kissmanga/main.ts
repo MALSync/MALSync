@@ -12,14 +12,14 @@ export const Kissmanga: pageInterface = {
       return false;
     },
     sync:{
-      getTitle: function(url){return utils.urlPart(url, 4);},
+      getTitle: function(url){return j.$('#navsubbar a').first().text().replace('Manga', '').replace('information', '').trim();},
       getIdentifier: function(url){return utils.urlPart(url, 4);},
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 5);
         //var temp = [];
         /*try{
-          episodePart = episodePart.replace($('.bigChar').attr('href').split('/')[2],'');
+          episodePart = episodePart.replace(j.$('.bigChar').attr('href').split('/')[2],'');
         }catch(e){
           episodePart = episodePart.replace(kalUrl.split("/")[4],'');
         }*/
@@ -53,11 +53,12 @@ export const Kissmanga: pageInterface = {
       },
     },
     overview:{
-      getTitle: function(){return $('.bigChar').first().text();},
+      getTitle: function(){return j.$('.bigChar').first().text();},
       getIdentifier: function(url){return Kissmanga.sync.getIdentifier(url)},
-      uiSelector: function(selector){selector.insertAfter($(".bigChar").first());},
+      uiSelector: function(selector){selector.insertAfter(j.$(".bigChar").first());},
       list:{
-        elementsSelector: function(){return $(".listing tr").filter(function(){return $(this).find('a').length > 0});},
+        offsetHandler: true,
+        elementsSelector: function(){return j.$(".listing tr");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Kissmanga.domain);},
         elementEp: function(selector){
           var url = Kissmanga.overview!.list!.elementUrl(selector);
@@ -67,7 +68,12 @@ export const Kissmanga: pageInterface = {
       }
     },
     init(page){
+      if(document.title == "Please wait 5 seconds..."){
+          con.log("loading");
+          page.cdn();
+          return;
+      }
       api.storage.addStyle(require('./style.less').toString());
-      $(document).ready(function(){page.handlePage()});
+      j.$(document).ready(function(){page.handlePage()});
     }
 };

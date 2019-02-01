@@ -13,34 +13,44 @@ export const Masterani: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return Masterani.sync.getIdentifier(url).replace(/^\d*-/,'')},
+      getTitle: function(url){return j.$('.info h1').text().trim()},
       getIdentifier: function(url){return utils.urlPart(url, 5);},
-      getOverviewUrl: function(url){return utils.absoluteLink($('.info a').first().attr('href'), Masterani.domain);},
+      getOverviewUrl: function(url){return utils.absoluteLink(j.$('.info a').first().attr('href'), Masterani.domain);},
       getEpisode: function(url){
         return parseInt(utils.urlPart(url, 6))
       },
-      nextEpUrl: function(url){return Masterani.domain+$('#watch .anime-info .actions a').last().attr('href');}
+      nextEpUrl: function(url){return Masterani.domain+j.$('#watch .anime-info .actions a').last().attr('href');}
     },
     overview:{
-      getTitle: function(url){return Masterani.sync.getTitle(url);},
+      getTitle: function(url){return Masterani.sync.getIdentifier(url).replace(/^\d*-/,'');},
       getIdentifier: function(url){return Masterani.sync.getIdentifier(url)},
-      uiSelector: function(selector){selector.prependTo($("#stats").first());},
+      uiSelector: function(selector){selector.prependTo(j.$("#stats").first());},
       list:{
-        elementsSelector: function(){return $(".episodes .thumbnail");},
+        offsetHandler: false,
+        elementsSelector: function(){return j.$(".episodes .thumbnail");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Masterani.domain);},
         elementEp: function(selector){
           return Masterani.sync.getEpisode(
             Masterani.overview!.list!.elementUrl(selector)
           );
         },
+        paginationNext: function(){
+          var el = j.$('.pagination .item').last();
+          if(el.hasClass('disabled')){
+            return false;
+          }else{
+            el[0].click();
+            return true;
+          }
+        }
       }
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      utils.waitUntilTrue(function(){return $('#stats,#watch').length}, function(){
+      utils.waitUntilTrue(function(){return j.$('#stats,#watch').length}, function(){
         page.handlePage();
 
-        $('.ui.toggle.checkbox, .pagination.menu').click(function(){
+        j.$('.ui.toggle.checkbox, .pagination.menu').click(function(){
           setTimeout(function(){
             page.handleList();
           }, 500);
