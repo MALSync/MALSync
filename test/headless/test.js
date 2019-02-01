@@ -27,6 +27,7 @@ var testsArray = [
       },
     ]
   },
+
   {
     title: 'Kissanime',
     url: 'https://kissanime.ru/',
@@ -46,6 +47,206 @@ var testsArray = [
           title: 'No Game No Life (Dub)',
           identifier: 'No-Game-No-Life-Dub',
           episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: '9anime',
+    url: 'https://www2.9anime.to/',
+    testCases: [
+      {
+        url: 'https://www2.9anime.to/watch/no-game-no-life-dub.y2p0/mlkqnp',
+        expected: {
+          sync: true,
+          title: 'No Game, No Life (Dub)',
+          identifier: 'y2p0',
+          episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'MasterAnime',
+    url: 'https://www.masterani.me/',
+    testCases: [
+      {
+        url: 'https://www.masterani.me/anime/info/55-no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'no-game-no-life',
+          identifier: '55-no-game-no-life'
+        }
+      },
+      {
+        url: 'https://www.masterani.me/anime/watch/55-no-game-no-life/4',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: '55-no-game-no-life',
+          episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Gogoanime',
+    url: 'https://gogoanimes.co',
+    testCases: [
+      {
+        url: 'https://gogoanimes.co/category/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'no-game-no-life',
+          identifier: 'no-game-no-life'
+        }
+      },
+      {
+        url: 'https://gogoanimes.co/no-game-no-life-episode-5',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          episode: 5
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'twist.moe',
+    url: 'https://twist.moe/a/no-game-no-life/4',
+    testCases: [
+      {
+        url: 'https://twist.moe/a/no-game-no-life/4',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'anime4you',
+    url: 'https://www.anime4you.one/',
+    testCases: [
+      {
+        url: 'https://www.anime4you.one/show/1/aid/781/',
+        expected: {
+          sync: false,
+          title: 'No Game No LifeGerSub',
+          identifier: '781'
+        }
+      },
+      {
+        url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: '779',
+          episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Turkanime',
+    url: 'http://www.turkanime.tv',
+    testCases: [
+      {
+        url: 'http://www.turkanime.tv/anime/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life'
+        }
+      },
+      {
+        url: 'http://www.turkanime.tv/video/no-game-no-life-6-bolum',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          episode: 6
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Kissmanga',
+    url: 'https://kissmanga.com/',
+    testCases: [
+      {
+        url: 'https://kissmanga.com/Manga/No-Game-No-Life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'No-Game-No-Life'
+        }
+      },
+      {
+        url: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-003--Game-003?id=167047',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'No-Game-No-Life',
+          episode: 3
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Mangadex',
+    url: 'https://mangadex.org/manga/8173/no-game-no-life',
+    testCases: [
+      {
+        url: 'https://mangadex.org/manga/8173/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: '8173'
+        }
+      },
+      {
+        url: 'https://mangadex.org/chapter/57332',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: '8173',
+          episode: 4
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Mangarock',
+    url: 'https://mangarock.com/',
+    testCases: [
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-179306',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: '179306'
+        }
+      },
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-179306/chapter/mrs-chapter-179312',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: '179306',
+          episode: 6
         }
       },
     ]
