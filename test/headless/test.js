@@ -1,5 +1,7 @@
 const {expect} = require('chai');
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
 
 var testsArray = [
   {
@@ -71,8 +73,9 @@ testsArray.forEach(function(testPage) {
           page.goto(testCase.url, {timeout:0}),
           page.waitForNavigation({timeout:0}),
         ]);
+        await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
 
-        const text = await page.evaluate(() => $('.link-mal-logo').text().trim())
+        const text = await page.evaluate(script)
         expect(text).to.equal(testCase.expectedInput);
       })
     });

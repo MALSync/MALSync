@@ -45,7 +45,7 @@
     "dev:webextension:content": "webpack --watch --progress --config webpackConfig/webextension.content.config.js",
     "dev:webextension:background": "webpack --watch --progress --config webpackConfig/webextension.background.config.js",
     "dev:webextension:popup": "webpack --watch --progress --config webpackConfig/webextension.popup.config.js",
-    "test": "mocha --recursive --timeout 10000 test",
+    "test": "mocha --recursive --timeout 10000 test/headless",
     "dev:webextension:updateCheck": "webpack --watch --progress --config webpackConfig/webextension.updateCheck.config.js"
   },
   "dependencies": {
