@@ -1,4 +1,5 @@
 import * as helper from "./../provider/AniList/helper";
+import {pageSearch} from './../pages/pages';
 import {entryClass} from "./../provider/AniList/entryClass";
 import {userList} from "./../provider/AniList/userList";
 
@@ -48,6 +49,7 @@ export class anilistClass{
         malid: NaN,
         type: urlpart
       }
+      this.siteSearch();
       this.streamingUI();
       helper.aniListToMal(this.page.id, this.page.type).then((malid)=>{
         this.page!.malid = malid;
@@ -144,6 +146,65 @@ export class anilistClass{
         });
       });
     })
+  }
+
+  siteSearch(){
+    var This = this;
+    $(document).ready(function(){
+      con.log('Site Search');
+      $('#mal-sync-search-links').remove();
+      $('.sidebar .data').before(`
+        <div id="mal-sync-search-links" style="
+            background: rgb(var(--color-foreground));
+            border-radius: 3px;
+            display: block;
+            padding: 8px 12px;
+            width: 100%;
+            margin-bottom: 16px;
+            font-size: 1.2rem;
+        ">
+          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">Search</span>
+          <div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />
+        </div>
+      `);
+      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
+      $('.MALSync-search').one('click', () => {
+        var title = $('meta[property="og:title"]').attr('content')
+        var titleEncoded = encodeURI(title!);
+        var html = '';
+        var imgStyle = 'position: relative; top: 0px;'
+
+        for (var key in pageSearch) {
+          var page = pageSearch[key];
+          if(page.type !== This.page!.type) continue;
+
+          var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
+          if( typeof page.completeSearchTag === 'undefined'){
+            var link =
+            `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+              ${linkContent}
+            </a>`
+          }else{
+            var link = page.completeSearchTag(title, linkContent);
+          }
+
+          var googleSeach = '';
+          if( typeof page.googleSearchDomain !== 'undefined'){
+            googleSeach =`<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}">
+              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
+            </a>`;
+          }
+
+          html +=
+          `<div class="mal_links" id="${key}" style="padding: 1px 0;">
+              ${link}
+              ${googleSeach}
+          </div>`;
+        }
+
+        $('.MALSync-search').html(html);
+      });
+    });
   }
 
   async streamingUI(){
