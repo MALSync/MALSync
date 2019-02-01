@@ -5,33 +5,28 @@ const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
 
 var testsArray = [
   {
-    title: 'MyAnimeList',
-    url: 'https://myanimelist.net/',
+    title: 'Crunchyroll',
+    url: 'https://www.crunchyroll.com/',
     testCases: [
       {
-        url: 'https://myanimelist.net/',
-        expectedInput: 'MyAnimeList.net'
+        url: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe',
+        expected: {
+          sync: false,
+          title: 'Ai-Mai-Mi Mousou Catastrophe',
+          identifier: 'Ai-Mai-Mi Mousou Catastrophe'
+        }
       },
       {
-        url: 'https://myanimelist.net/2',
-        expectedInput: 'MyAnimeList.net'
+        url: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-3-untitled-658389',
+        expected: {
+          sync: true,
+          title: 'Ai-Mai-Mi Mousou Catastrophe',
+          identifier: 'Ai-Mai-Mi Mousou Catastrophe',
+          episode: 3
+        }
       },
     ]
   },
-  {
-    title: 'MyAnimeList2',
-    url: 'https://myanimelist.net/',
-    testCases: [
-      {
-        url: 'https://myanimelist.net/',
-        expectedInput: 'MyAnimeList.net'
-      },
-      {
-        url: 'https://myanimelist.net/2',
-        expectedInput: 'MyAnimeList.net'
-      },
-    ]
-  }
 ];
 
 // Define global variables
@@ -76,7 +71,13 @@ testsArray.forEach(function(testPage) {
         await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
         await page.addScriptTag({content: script});
         const text = await page.evaluate(() => MalSyncTest())
-        expect(text).to.equal(testCase.expectedInput);
+
+        expect(text.sync).to.equal(testCase.expected.sync);
+        expect(text.title).to.equal(testCase.expected.title);
+        expect(text.identifier).to.equal(testCase.expected.identifier);
+        if(text.sync){
+          expect(text.episode).to.equal(testCase.expected.episode);
+        }
       })
     });
   });
