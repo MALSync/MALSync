@@ -216,6 +216,7 @@ export class myanimelistClass{
   }
 
   siteSearch(){
+    if(!api.settings.get('SiteSearch')) return;
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');

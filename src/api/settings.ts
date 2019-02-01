@@ -18,6 +18,7 @@ export var settingsObj = {
     malThumbnail: 100,
     friendScore: true,
 
+    SiteSearch: true,
     '9anime': true,
     Crunchyroll: true,
     Gogoanime: true,

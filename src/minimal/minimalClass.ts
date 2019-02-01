@@ -450,6 +450,7 @@ export class minimal{
             <h2 class="mdl-card__title-text">Streaming Site Links</h2>
             ${utils.getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.')}
           </div>
+          ${materialCheckbox('SiteSearch','Search')}
           ${materialCheckbox('Kissanime','KissAnime')}
           ${materialCheckbox('Masterani','MasterAnime')}
           ${materialCheckbox('9anime','9anime')}
