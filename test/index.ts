@@ -21,6 +21,8 @@ window.MalSyncTest = async function(){
         value.identifier = page.overview.getIdentifier(window.location.href);
       }
       resolve(value);
+    }, cdn: function(){
+      resolve('retry');
     }});
   });
   return page.domain;
