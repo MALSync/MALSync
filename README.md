@@ -47,11 +47,6 @@ Update Check [BETA]
   - Makes current episode estimation more accurate  
 !This feature is disabled by default. You will need to enable it in the miniMAL popup!
 
-___
-![alt tag](https://raw.githubusercontent.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/master/Screenshots/MAL_details_features_overview.png)
-
-___
-
 ## Want to Contribute?
 Then let me know on [Discord](https://discordapp.com/invite/cTH4yaw).  
 
