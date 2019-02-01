@@ -74,8 +74,8 @@ testsArray.forEach(function(testPage) {
           page.waitForNavigation({timeout:0}),
         ]);
         await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
-
-        const text = await page.evaluate(script)
+        await page.addScriptTag({content: script});
+        const text = await page.evaluate(() => MalSyncTest())
         expect(text).to.equal(testCase.expectedInput);
       })
     });
