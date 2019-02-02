@@ -406,6 +406,24 @@ export function notifications(url:string, title:string, message:string, iconUrl 
    };
 
   con.log('Notification', url, messageObj );
+
+  api.storage.get('notificationHistory').then((history) => {
+    if(typeof history === 'undefined'){
+      history = [];
+    }
+    if (history.length >= 10){
+      history.shift();
+    }
+    history.push({
+      url: url,
+      title: messageObj.title,
+      message: messageObj.message,
+      iconUrl: messageObj.iconUrl,
+      timestamp: Date.now()
+    });
+    api.storage.set('notificationHistory', history);
+  })
+
   try{
     return chrome.notifications.create(url, messageObj );
   }catch(e){
