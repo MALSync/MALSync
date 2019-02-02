@@ -1271,8 +1271,29 @@ export class minimal{
         `;
       }
 
-      html += '</table>';
+      html += '</table><div class="history"></div>';
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
+
+      api.storage.get('notificationHistory').then((history) => {
+        var historyHtml = '<h3>Notification History</h3>';
+        history.reverse().forEach((entry) => {
+          var timeDiff:any = Date.now() - entry.timestamp;
+          timeDiff = Math.floor(timeDiff/1000/60)+'Min ago';
+
+          historyHtml += `
+          <a href="${entry.url}" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">
+            <img src="${entry.iconUrl}" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;">
+            <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
+              <span style="font-size: 20px; font-weight: 400; line-height: 1;">${entry.title}</span>
+              <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">${entry.message}</p>
+              <p style="margin-bottom: 0; line-height: 20px;">${timeDiff}</p>
+            </div>
+          </a>
+          `;
+          this.minimal.find('#fixed-tab-4 #malSearchPopInner .history').first().html(historyHtml);
+            console.log(entry);
+        });
+      });
 
       this.minimal.find('.refresh-updateCheck').click(() => {
         clearTimeout(refreshTo);
