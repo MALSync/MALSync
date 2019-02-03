@@ -22,6 +22,7 @@ var testsArray = [
           sync: true,
           title: 'Ai-Mai-Mi Mousou Catastrophe',
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
+          overviewUrl: 'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
           episode: 3
         }
       },
@@ -46,6 +47,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life (Dub)',
           identifier: 'No-Game-No-Life-Dub',
+          overviewUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub',
           episode: 4
         }
       },
@@ -62,6 +64,7 @@ var testsArray = [
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
+          overviewUrl: 'https://www2.9anime.to/watch/no-game-no-life-dub.y2p0',
           episode: 4
         }
       },
@@ -86,6 +89,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: '55-no-game-no-life',
+          overviewUrl: 'https://www.masterani.me/anime/info/55-no-game-no-life',
           episode: 4
         }
       },
@@ -110,6 +114,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
+          overviewUrl: 'https://gogoanimes.co/category/no-game-no-life',
           episode: 5
         }
       },
@@ -126,6 +131,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
+          overviewUrl: 'https://twist.moe/a/no-game-no-life/1',
           episode: 4
         }
       },
@@ -150,6 +156,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: '779',
+          overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
           episode: 4
         }
       },
@@ -174,6 +181,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
+          overviewUrl: 'http://www.turkanime.tv/anime/no-game-no-life',
           episode: 6
         }
       },
@@ -198,6 +206,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
+          overviewUrl: 'https://kissmanga.com/Manga/No-Game-No-Life',
           episode: 3
         }
       },
@@ -222,6 +231,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: '8173',
+          overviewUrl: 'https://www.mangadex.org/title/8173/no-game-no-life',
           episode: 4
         }
       },
@@ -246,6 +256,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: '179306',
+          overviewUrl: 'https://mangarock.com/manga/mrs-serie-179306',
           episode: 6
         }
       },
@@ -308,6 +319,7 @@ testsArray.forEach(function(testPage) {
         expect(text.identifier).to.equal(testCase.expected.identifier);
         if(text.sync){
           expect(text.episode).to.equal(testCase.expected.episode);
+          expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
         }
       })
     });
