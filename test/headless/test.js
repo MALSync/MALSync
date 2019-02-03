@@ -23,6 +23,7 @@ var testsArray = [
           title: 'Ai-Mai-Mi Mousou Catastrophe',
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
           overviewUrl: 'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
+          nextEpUrl: 'http://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
           episode: 3
         }
       },
@@ -48,6 +49,7 @@ var testsArray = [
           title: 'No Game No Life (Dub)',
           identifier: 'No-Game-No-Life-Dub',
           overviewUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub',
+          nextEpUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-005?id=112020',
           episode: 4
         }
       },
@@ -65,6 +67,7 @@ var testsArray = [
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://www2.9anime.to/watch/no-game-no-life-dub.y2p0',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
           episode: 4
         }
       },
@@ -90,6 +93,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '55-no-game-no-life',
           overviewUrl: 'https://www.masterani.me/anime/info/55-no-game-no-life',
+          nextEpUrl: 'https://www.masterani.me/anime/watch/55-no-game-no-life/5',
           episode: 4
         }
       },
@@ -115,6 +119,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'https://gogoanimes.co/category/no-game-no-life',
+          nextEpUrl: 'https://gogoanimes.co/no-game-no-life-episode-6',
           episode: 5
         }
       },
@@ -132,6 +137,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'https://twist.moe/a/no-game-no-life/1',
+          nextEpUrl: 'https://twist.moe/a/no-game-no-life/5',
           episode: 4
         }
       },
@@ -157,6 +163,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '779',
           overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
+          nextEpUrl: 'https://www.anime4you.one//show/1/aid/779/epi/5/?host=#vidplayer',
           episode: 4
         }
       },
@@ -182,6 +189,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'http://www.turkanime.tv/anime/no-game-no-life',
+          nextEpUrl: 'http://www.turkanime.tv/video/no-game-no-life-7-bolum',
           episode: 6
         }
       },
@@ -320,6 +328,7 @@ testsArray.forEach(function(testPage) {
         if(text.sync){
           expect(text.episode).to.equal(testCase.expected.episode);
           expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
+          expect(text.nextEpUrl).to.equal(testCase.expected.nextEpUrl);
         }
       })
     });

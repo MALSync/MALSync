@@ -16,6 +16,9 @@ window.MalSyncTest = async function(){
         value.identifier = page.sync.getIdentifier(window.location.href);
         value.episode = parseInt(page.sync.getEpisode(window.location.href)+'');
         value.overviewUrl = page.sync.getOverviewUrl(window.location.href);
+        if(typeof page.sync.nextEpUrl !== 'undefined'){
+          value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
+        }
       }else{
         value.sync = false;
         value.title = page.overview.getTitle(window.location.href);
