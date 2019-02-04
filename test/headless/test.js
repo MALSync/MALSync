@@ -163,7 +163,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '779',
           overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
-          nextEpUrl: 'https://www.anime4you.one//show/1/aid/779/epi/5/?host=#vidplayer',
+          nextEpUrl: 'https://www.anime4you.one/show/1/aid/779/epi/5/?host=#vidplayer',
           episode: 4
         }
       },
