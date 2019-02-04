@@ -36,7 +36,7 @@ export const Anime4you: pageInterface = {
       }
     },
     init(page){
-      if(document.title == "Please wait 5 seconds..."){
+      if(document.title == "Just a moment..."){
           con.log("loading");
           page.cdn();
           return;
