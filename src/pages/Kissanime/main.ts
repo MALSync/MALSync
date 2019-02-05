@@ -20,7 +20,6 @@ export const Kissanime: pageInterface = {
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 5);
         episodePart = episodePart.replace(/1080p/i, ' ').replace(/720p/i, ' ');
-        alert(episodePart);
         var temp = [];
         temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d{3}/);
         if(temp !== null){
