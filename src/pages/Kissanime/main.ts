@@ -19,6 +19,8 @@ export const Kissanime: pageInterface = {
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 5);
+        episodePart = episodePart.replace(/1080p/i, ' ').replace(/720p/i, ' ');
+        alert(episodePart);
         var temp = [];
         temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d{3}/);
         if(temp !== null){
@@ -28,7 +30,7 @@ export const Kissanime: pageInterface = {
         if(temp === null){
             temp = episodePart.match(/\d{2,}\-/);
             if(temp === null){
-                episodePart = 0;
+                episodePart = 1;
             }else{
                 episodePart = temp[0];
             }
