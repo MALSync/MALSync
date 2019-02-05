@@ -87,6 +87,7 @@ export class minimal{
       // @ts-ignore
       var url = utils.absoluteLink(j.$(this).attr('href'), 'https://myanimelist.net');
       if(!This.fill(url)){
+        This.minimal.find('#material').removeClass('settings-only');
         var win = window.open(url, '_blank');
         if (win) {
             win.focus();
