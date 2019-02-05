@@ -893,6 +893,12 @@ export class minimal{
               </i>
             </div>
           </div>
+          <a href="https://discordapp.com/invite/cTH4yaw" class="discord">
+            <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
+            <div style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
+              <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
+            </div>
+          </a>
         `;
 
         This.minimal.find('#contributer').html(html).click(()=>{
