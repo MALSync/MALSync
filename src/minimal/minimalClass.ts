@@ -718,26 +718,9 @@ export class minimal{
           function setUpdateCheckLast(){
             api.storage.get("updateCheckLast").then((updateCheckTime) => {
               if(isNaN(updateCheckTime)) return;
-              var delta = Math.abs(updateCheckTime - Date.now()) / 1000;
-              var text = '';
+              var delta = Math.abs(updateCheckTime - Date.now());
 
-              var diffDays = Math.floor(delta / 86400);
-              delta -= diffDays * 86400;
-              if(diffDays){
-                text += diffDays+'d ';
-              }
-
-              var diffHours = Math.floor(delta / 3600) % 24;
-              delta -= diffHours * 3600;
-              if(diffHours){
-                text += diffHours+'h ';
-              }
-
-              var diffMinutes = Math.floor(delta / 60) % 60;
-              delta -= diffMinutes * 60;
-              if(!diffDays){
-                text += diffMinutes+'min ';
-              }
+              var text = utils.timeDiffToText(delta);
 
               if(text != ''){
                 text += 'ago';
@@ -1278,7 +1261,9 @@ export class minimal{
         var historyHtml = '<h3>Notification History</h3>';
         history.reverse().forEach((entry) => {
           var timeDiff:any = Date.now() - entry.timestamp;
-          timeDiff = Math.floor(timeDiff/1000/60)+'Min ago';
+
+          timeDiff = utils.timeDiffToText(timeDiff);
+          timeDiff += 'ago';
 
           historyHtml += `
           <a href="${entry.url}" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">

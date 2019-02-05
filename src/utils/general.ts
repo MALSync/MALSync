@@ -263,6 +263,32 @@ export async function epPredictionUI(malid, type = 'anime', callback){
   });
 }
 
+export function timeDiffToText(delta){
+  var text = '';
+
+  delta = delta / 1000;
+
+  var diffDays = Math.floor(delta / 86400);
+  delta -= diffDays * 86400;
+  if(diffDays){
+    text += diffDays+'d ';
+  }
+
+  var diffHours = Math.floor(delta / 3600) % 24;
+  delta -= diffHours * 3600;
+  if(diffHours){
+    text += diffHours+'h ';
+  }
+
+  var diffMinutes = Math.floor(delta / 60) % 60;
+  delta -= diffMinutes * 60;
+  if(!diffDays){
+    text += diffMinutes+'min ';
+  }
+
+  return text;
+}
+
 export function canHideTabs(){
   if(typeof browser != 'undefined' && typeof browser.tabs.hide != 'undefined'){
     return true;
