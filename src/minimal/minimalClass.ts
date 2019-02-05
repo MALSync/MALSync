@@ -885,6 +885,16 @@ export class minimal{
           }
         }
 
+        html += `
+          <div class="user pop">
+            <div class="image align-middle">
+              <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
+                arrow_right_alt
+              </i>
+            </div>
+          </div>
+        `;
+
         This.minimal.find('#contributer').html(html).click(()=>{
           This.minimal.find('#contributer').toggleClass("open");
         });
