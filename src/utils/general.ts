@@ -276,13 +276,13 @@ export function timeDiffToText(delta){
 
   var diffHours = Math.floor(delta / 3600) % 24;
   delta -= diffHours * 3600;
-  if(diffHours){
+  if(diffHours && diffDays < 2){
     text += diffHours+'h ';
   }
 
   var diffMinutes = Math.floor(delta / 60) % 60;
   delta -= diffMinutes * 60;
-  if(!diffDays){
+  if(diffMinutes && !diffDays && diffHours < 3){
     text += diffMinutes+'min ';
   }
 
