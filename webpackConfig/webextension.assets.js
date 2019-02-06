@@ -80,7 +80,7 @@ const generateManifest = () => {
       "https://myanimelist.cdn-dena.com/",
       "https://cdn.myanimelist.net/",
       "https://s3.anilist.co/",
-      "https://graphql.anilist.co",
+      "https://graphql.anilist.co/",
       "tabHide"
     ],
     "optional_permissions": [
