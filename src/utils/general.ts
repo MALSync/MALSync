@@ -215,6 +215,7 @@ export async function epPredictionUI(malid, type = 'anime', callback){
 
   utils.epPrediction(malid, async function(pre){
     var updateCheckTime = await api.storage.get("updateCheckTime");
+    var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
     var elCache:any = undefined;
     if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){
       elCache = await api.storage.get('updateCheck/'+type+'/'+malid);
@@ -227,11 +228,33 @@ export async function epPredictionUI(malid, type = 'anime', callback){
       colorStyle: '',
       tagEpisode: false,
       prediction: pre,
+      aniCache: aniCache,
       elCache: elCache
     };
     //
     var airing = pre.airing;
     var episode = pre.episode;
+
+    if(typeof aniCache != 'undefined'){
+      var timestamp = aniCache.nextEpTime * 1000;
+      if(Date.now() < timestamp){
+        episode = aniCache.currentEp;
+        var delta = (timestamp - Date.now()) / 1000;
+        pre.diffDays = Math.floor(delta / 86400);
+        delta -= pre.diffDays * 86400;
+
+        pre.diffHours = Math.floor(delta / 3600) % 24;
+        delta -= pre.diffHours * 3600;
+
+        pre.diffMinutes = Math.floor(delta / 60) % 60;
+        delta -= pre.diffMinutes * 60;
+      }else{
+        if(Date.now() - timestamp < 1000 * 60 * 60 * 24){
+          episode = aniCache.currentEp + 1;
+        }
+      }
+    }
+
     if(typeof elCache != 'undefined' && typeof elCache.error == 'undefined'){
       if(!elCache.finished){
         airing = true;
