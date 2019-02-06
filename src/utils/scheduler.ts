@@ -66,10 +66,13 @@ export async function malSchedule(){
   }
 }
 
-export async function anilistScheduler(){
+export async function anilistScheduler(page = 0){
   var query = `
-    query{
-      Page(page: 0, perPage: 200){
+    query($page: Int){
+      Page(page: $page, perPage: 50){
+        pageInfo{
+          hasNextPage
+        }
         airingSchedules(notYetAired:true){
           episode
           airingAt
@@ -83,6 +86,7 @@ export async function anilistScheduler(){
   `;
   ​
   var variables = {
+    page: page
   };
 
   return api.request.xhr('POST', {
@@ -96,11 +100,19 @@ export async function anilistScheduler(){
       variables: variables
     })
   }).then((response) => {
-    console.groupCollapsed('Anilist Scheduler');
+    console.groupCollapsed('Anilist Scheduler '+page);
     var res = JSON.parse(response.responseText);
+    if(typeof res.errors !== 'undefined'){
+      con.log('Anilist api limit')
+      setTimeout(function(){
+        anilistScheduler(page);
+      }, 1000 * 60);
+      return;
+    }
     if(typeof res.data.Page.airingSchedules == 'undefined'){
       throw 'anilistScheduler empty';
     }
+    con.log(res.data.Page.pageInfo);
     res.data.Page.airingSchedules.forEach(function(el) {
       var malId = el.media.idMal;
       if(malId && malId !== 'null' && malId !== null && typeof malId !== 'undefined'){
@@ -117,5 +129,8 @@ export async function anilistScheduler(){
     });
     con.log(res);
     console.groupEnd();
+    if(res.data.Page.pageInfo.hasNextPage){
+      return anilistScheduler(page + 1);
+    }
   });
 }
