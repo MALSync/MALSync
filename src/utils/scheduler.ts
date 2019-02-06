@@ -1,7 +1,12 @@
 export async function scheduleUpdate(){
+  await malSchedule();
+  await anilistScheduler();
+}
+
+export async function malSchedule(){
   var url = 'https://myanimelist.net/anime/season/schedule';
   return api.request.xhr('GET', url).then(async (response) => {
-    console.groupCollapsed('Schedule');
+    console.groupCollapsed('MyAnimeList Scheduler');
     con.log('Recived');
     var found = 0;
     var parsed = $.parseHTML(response.responseText);
@@ -62,7 +67,6 @@ export async function scheduleUpdate(){
 }
 
 export async function anilistScheduler(){
-  con.error('anilistScheduler');
   var query = `
     query{
       Page(page: 0, perPage: 200){
