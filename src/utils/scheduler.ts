@@ -51,7 +51,7 @@ export async function scheduleUpdate(){
 
     $.each( cacheArray, function( index, cache){
       //@ts-ignore
-      if(/^mal\/[^/]+\/(release|eps)$/.test(index)){
+      if(/^mal\/[^/]+\/(release|eps|aniSch)$/.test(index)){
         api.storage.remove(index);
         deleted++;
       }
@@ -59,4 +59,59 @@ export async function scheduleUpdate(){
 
     con.log("Cache Cleared ["+deleted+"]");
   }
+}
+
+export async function anilistScheduler(){
+  con.error('anilistScheduler');
+  var query = `
+    query{
+      Page(page: 0, perPage: 200){
+        airingSchedules(notYetAired:true){
+          episode
+          airingAt
+          media {
+            id
+            idMal
+          }
+        }
+      }
+    }
+  `;
+  ​
+  var variables = {
+  };
+
+  return api.request.xhr('POST', {
+    url: 'https://graphql.anilist.co',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    data: JSON.stringify({
+      query: query,
+      variables: variables
+    })
+  }).then((response) => {
+    console.groupCollapsed('Anilist Scheduler');
+    var res = JSON.parse(response.responseText);
+    if(typeof res.data.Page.airingSchedules == 'undefined'){
+      throw 'anilistScheduler empty';
+    }
+    res.data.Page.airingSchedules.forEach(function(el) {
+      var malId = el.media.idMal;
+      if(malId && malId !== 'null' && malId !== null && typeof malId !== 'undefined'){
+        if(el.episode > 1){
+          var elObj = {
+            aniId: el.media.id,
+            currentEp: el.episode - 1,
+            nextEpTime: el.airingAt
+          };
+          con.log(elObj);
+          api.storage.set('mal/'+malId+'/aniSch', elObj);
+        }
+      }
+    });
+    con.log(res);
+    console.groupEnd();
+  });
 }
