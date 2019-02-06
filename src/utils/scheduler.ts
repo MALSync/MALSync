@@ -67,18 +67,29 @@ export async function malSchedule(){
 }
 
 export async function anilistScheduler(page = 0){
+  `
+  media (type: "ANIME", status: "RELEASING", isAdult: false) {
+    id
+    idMal
+    nextAiringEpisode{
+      episode
+      airingAt
+    }
+  }
+
+  `
   var query = `
     query($page: Int){
       Page(page: $page, perPage: 50){
         pageInfo{
           hasNextPage
         }
-        airingSchedules(notYetAired:true){
-          episode
-          airingAt
-          media {
-            id
-            idMal
+        media (type: ANIME, status: RELEASING, isAdult: false) {
+          id
+          idMal
+          nextAiringEpisode{
+            episode
+            airingAt
           }
         }
       }
@@ -103,24 +114,24 @@ export async function anilistScheduler(page = 0){
     console.groupCollapsed('Anilist Scheduler '+page);
     var res = JSON.parse(response.responseText);
     if(typeof res.errors !== 'undefined'){
-      con.log('Anilist api limit')
+      con.log('Anilist api limit', res);
       setTimeout(function(){
         anilistScheduler(page);
       }, 1000 * 60);
       return;
     }
-    if(typeof res.data.Page.airingSchedules == 'undefined'){
+    if(typeof res.data.Page.media == 'undefined'){
       throw 'anilistScheduler empty';
     }
     con.log(res.data.Page.pageInfo);
-    res.data.Page.airingSchedules.forEach(function(el) {
-      var malId = el.media.idMal;
+    res.data.Page.media.forEach(function(el) {
+      var malId = el.idMal;
       if(malId && malId !== 'null' && malId !== null && typeof malId !== 'undefined'){
-        if(el.episode > 1){
+        if(el.nextAiringEpisode != null && el.nextAiringEpisode.episode > 1){
           var elObj = {
-            aniId: el.media.id,
-            currentEp: el.episode - 1,
-            nextEpTime: el.airingAt
+            aniId: el.id,
+            currentEp: el.nextAiringEpisode.episode - 1,
+            nextEpTime: el.nextAiringEpisode.airingAt
           };
           con.log(elObj);
           api.storage.set('mal/'+malId+'/aniSch', elObj);
