@@ -84,7 +84,7 @@ export async function anilistScheduler(page = 0){
         pageInfo{
           hasNextPage
         }
-        media (type: ANIME, status: RELEASING, isAdult: false) {
+        media (type: ANIME, status: RELEASING) {
           id
           idMal
           nextAiringEpisode{
