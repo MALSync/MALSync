@@ -154,6 +154,7 @@ export class entryClass{
   }
 
   setStatus(status:number){
+    if(this.animeInfo.mediaListEntry.status == 'REPEATING' && parseInt(status.toString()) == 1) return;
     this.animeInfo.mediaListEntry.status = helper.translateList(status, parseInt(status.toString()));
   }
 
@@ -166,17 +167,16 @@ export class entryClass{
   }
 
   getRewatching(): 1|0{
-    if(this.type == "manga"){
-      return this.animeInfo[".add_manga[is_rereading]"];
+    if(this.animeInfo.mediaListEntry.status == 'REPEATING'){
+      return 1;
     }
-    return this.animeInfo[".add_anime[is_rewatching]"];
+    return 0;
   }
 
   setRewatching(rewatching:1|0){
-    if(this.type == "manga"){
-      this.animeInfo[".add_manga[is_rereading]"] = rewatching;
+    if(rewatching == 1){
+      this.animeInfo.mediaListEntry.status = 'REPEATING';
     }
-    this.animeInfo[".add_anime[is_rewatching]"] = rewatching;
   }
 
   setCompletionDateToNow(){
