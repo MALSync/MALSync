@@ -426,7 +426,7 @@ export class minimal{
             <span class="mdl-list__item-secondary-action">
               <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;">
                 <option value="MAL">MyAnimeList</option>
-                <option value="ANILIST">AniList [ALPHA]</option>
+                <option value="ANILIST">AniList</option>
               </select>
             </span>
           </li>
