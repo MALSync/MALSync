@@ -46,11 +46,11 @@ function getSyncMode(){
   return api.settings.get('syncMode');
 }
 
-export function entryClass(url:string, miniMAL:boolean = false): entryClass{
+export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
   if(getSyncMode() == 'MAL'){
     return new mal.entryClass(url, miniMAL);
   }else{
-    return new anilist.entryClass(url, miniMAL);
+    return new anilist.entryClass(url, miniMAL, silent);
   }
 }
 

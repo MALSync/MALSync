@@ -17,7 +17,7 @@ export class entryClass{
 
   private animeInfo;
 
-  constructor(public url:string, public miniMAL:boolean = false){
+  constructor(public url:string, public miniMAL:boolean = false, public silent:boolean = false){
     this.type = utils.urlPart(url, 3);
     if(typeof url !== 'undefined' && url.indexOf("myanimelist.net") > -1){
       this.id = utils.urlPart(url, 4);
@@ -94,7 +94,7 @@ export class entryClass{
       var res = JSON.parse(response.responseText);
       con.log(res);
       this.login = true;
-      helper.errorHandling(res);
+      helper.errorHandling(res, this.silent);
       this.animeInfo = res.data.Media;
 
       this.aniId = this.animeInfo.id;
@@ -388,7 +388,7 @@ export class entryClass{
         }).then((response) => {
           var res = JSON.parse(response.responseText);
           con.log(res);
-          helper.errorHandling(res);
+          helper.errorHandling(res, This.silent);
           con.log('Update Succeeded');
           resolve();
         });

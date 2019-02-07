@@ -17,18 +17,18 @@ export function accessToken(){
   return api.settings.get('anilistToken');
 }
 
-export function errorHandling(res){
+export function errorHandling(res, silent:boolean = false){
   if(typeof res.errors != 'undefined'){
     res.errors.forEach( (error) => {
       switch(error.status) {
         case 400:
-          utils.flashm('Please Authenticate <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Here</a>', {error: true});
+          if(!silent) utils.flashm('Please Authenticate <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Here</a>', {error: true});
           break;
         case 404:
-          utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
           break;
         default:
-          utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
           throw error.message;
       }
     })

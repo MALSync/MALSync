@@ -374,7 +374,7 @@ export class animeType{
         var el = $(this);
         var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if(typeof url != 'undefined'){
-          var malObj = entryClass(url, true);
+          var malObj = entryClass(url, true, true);
           malObj.init().then(() => {
             var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
             if(tag){
