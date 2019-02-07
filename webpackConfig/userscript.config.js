@@ -4,6 +4,7 @@ const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
 const resourcesJson = require('./resources');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const generateMatchExcludes = () => {
   var match = [];
@@ -99,6 +100,11 @@ module.exports = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [{ loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
+      },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader'
       }
     ]
   },
@@ -122,7 +128,8 @@ module.exports = {
     new wrapper({
       test: /\.js$/,
       header: generateMetadataBlock(metadata)
-    })
+    }),
+    new VueLoaderPlugin()
   ],
   optimization: {
     minimize: false
