@@ -29,6 +29,8 @@ export class anilistClass{
       var ogUrl = $('meta[property="og:url"]').attr('content');
       if(typeof ogUrl !== 'undefined' && ogUrl.split('/').length > 4){
         return ogUrl.split('/').slice(0,6).join('/');
+      }else{
+        ogUrl = window.location.href;
       }
       return ogUrl;
     });
