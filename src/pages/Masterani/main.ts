@@ -19,7 +19,13 @@ export const Masterani: pageInterface = {
       getEpisode: function(url){
         return parseInt(utils.urlPart(url, 6))
       },
-      nextEpUrl: function(url){return Masterani.domain+j.$('#watch .anime-info .actions a').last().attr('href');}
+      nextEpUrl: function(url){
+        var nexUrl = Masterani.domain+j.$('#watch .anime-info .actions a').last().attr('href');
+        if(!Masterani.isSyncPage(nexUrl)){
+          return undefined;
+        }
+        return nexUrl;
+      }
     },
     overview:{
       getTitle: function(url){return Masterani.sync.getIdentifier(url).replace(/^\d*-/,'');},
