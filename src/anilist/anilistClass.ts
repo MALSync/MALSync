@@ -26,7 +26,11 @@ export class anilistClass{
       if(this.page !== null && this.page.page == "bookmarks" && $('.lists').length){
         return $('.lists').first().height();
       }
-      return $('meta[property="og:url"]').attr('content');
+      var ogUrl = $('meta[property="og:url"]').attr('content');
+      if(typeof ogUrl !== 'undefined' && ogUrl.split('/').length > 4){
+        return ogUrl.split('/').slice(0,6).join('/');
+      }
+      return ogUrl;
     });
 
     if(this.url.indexOf("access_token=") > -1){
