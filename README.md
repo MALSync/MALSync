@@ -19,7 +19,6 @@ Makes it possible to use your MyAnimeList anime/mangalist as a centralized bookm
 | [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) |                                          |
 | [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) |                                          |
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) |                                          |
-| [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) |                                          |
 | [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) |                                          |
 
 #### **Download**  
