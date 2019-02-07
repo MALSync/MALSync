@@ -27,7 +27,7 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less' ]
+    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ]
   },
   mode: 'development',
   output: {
@@ -35,12 +35,13 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist', 'webextension')
   },
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
-    new VueLoaderPlugin()
+
   ]
 };

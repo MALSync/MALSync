@@ -27,7 +27,7 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less' ]
+    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ]
   },
   mode: 'development',
   output: {

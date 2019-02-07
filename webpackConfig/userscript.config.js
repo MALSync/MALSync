@@ -109,7 +109,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less' ]
+    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ]
   },
   output: {
     filename: 'malsync.user.js',

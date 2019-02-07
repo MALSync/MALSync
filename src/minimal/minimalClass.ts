@@ -1,10 +1,18 @@
 import {animeType} from "./types/anime";
 import * as provider from "./../provider/provider.ts";
+import Vue from 'vue';
+import minimalApp from './minimalApp.vue';
 
 export class minimal{
   private history:(string)[] = [];
 
   constructor(public minimal){
+    this.minimal.find("body").append('<div id="minimalApp"></div>');
+    new Vue({
+      el: '#minimalApp',
+      render: h => h(minimalApp)
+    })
+    return;
     var material = `
       <div id="material" style="height: 100%;">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
