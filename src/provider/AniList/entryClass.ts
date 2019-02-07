@@ -199,6 +199,7 @@ export class entryClass{
   }
 
   async getRating(){
+    if(this.animeInfo.averageScore == null) return 'N/A';
     return this.animeInfo.averageScore;
   }
 
