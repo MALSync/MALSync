@@ -15,6 +15,7 @@
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
           <p v-html="description" style="color: black;">
           </p>
+          <div v-show="streaming" v-html="streaming" class="mdl-card__actions mdl-card--border" style="padding-left: 0;"></div>
         </div>
       </div>
       <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
@@ -26,10 +27,16 @@
 </template>
 
 <script type="text/javascript">
+  import {entryClass} from "./../../provider/provider";
   export default {
     data: function(){
       return {
         xhr: '',
+        mal: {
+          malObj: null,
+          resumeUrl: null,
+          continueUrl: null
+        }
       }
     },
     props: {
@@ -41,8 +48,19 @@
     watch: {
       url: async function(url){
         this.xhr = '';
-        return api.request.xhr('GET', this.url).then((response) => {
+        this.mal.malObj = null;
+        this.mal.resumeUrl = null;
+        this.mal.continueUrl = null;
+
+        api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
+        });
+
+        var malObj = entryClass(this.url, true);
+        malObj.init().then(async() => {
+          this.mal.malObj = malObj;
+          this.mal.resumeUrl = await malObj.getResumeWaching();
+          this.mal.continueUrl = await malObj.getContinueWaching();
         });
       }
     },
@@ -101,6 +119,39 @@
             altTitle = altTitle.replace(/<\/div>/g,'</span></div>');
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return altTitle;
+      },
+      streaming: function(){
+        var streamhtml = null;
+        var malObj = this.mal.malObj;
+        var streamUrl = malObj.getStreamingUrl();
+        if(typeof streamUrl !== 'undefined'){
+
+          streamhtml =
+          `
+            <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
+              <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
+                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
+              </a>`;
+
+          con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
+          if(typeof this.mal.continueUrl !== 'undefined' && this.mal.continueUrl && this.mal.continueUrl.ep === (malObj.getEpisode()+1)){
+            streamhtml +=
+              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Continue watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Next Episode
+              </a>`;
+          }else if(typeof this.mal.resumeUrl !== 'undefined' && this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()){
+            streamhtml +=
+              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Resume watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Resume Episode
+              </a>`;
+          }
+
+          streamhtml +=
+            `</div>
+          `;
+
+        }
+        return streamhtml;
       },
       myinfo: function(){
         var myinfo = '';
