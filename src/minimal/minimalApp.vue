@@ -51,7 +51,9 @@
           <div class="page-content malClear" id="malSearchPopInner"></div>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
-          <div class="page-content malClear" id="malConfig"></div>
+          <div class="page-content malClear" id="malConfig">
+            <settingsVue/>
+          </div>
         </section></main>
       </div>
     </div>
@@ -59,7 +61,11 @@
 </template>
 
 <script type="text/javascript">
+  import settingsVue from './minimalApp/settings.vue'
   export default {
+    components: {
+      settingsVue
+    },
     data: () => ({
       tabs: {
         overview: {
