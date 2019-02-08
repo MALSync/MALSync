@@ -24,7 +24,7 @@
             </select>
           </span>
         </li>
-        <li class="mdl-list__item anilistShow" style="display: none;">
+        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
           <span class="mdl-list__item-primary-content">
             AniList
           </span>

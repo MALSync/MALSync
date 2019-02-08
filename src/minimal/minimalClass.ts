@@ -383,12 +383,6 @@ export class minimal{
       // @ts-ignore
       var value = j.$(this).val();
       api.settings.set('syncMode', value);
-      if(value == 'ANILIST'){
-        This.minimal.find('.anilistShow').show();
-      }else{
-        This.minimal.find('.anilistShow').hide();
-      }
-
     });
     this.minimal.find("#syncMode").val(api.settings.get('syncMode')).change();
 
