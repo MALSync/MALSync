@@ -1,7 +1,27 @@
 <template>
   <div class="page-content">
     <div v-show="xhr == ''" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-    <div v-if="xhr != ''" v-html="html" />
+    <div class="mdl-grid" v-if="xhr != ''">
+      <div v-html="statistics" class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
+      <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
+        <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
+          <img class="malImage malClear" style="width: 100%; height: auto;" :src="image"></img>
+        </div>
+        <div class="mdl-cell mdl-cell--12-col">
+          <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" :href="url" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
+          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;">{{title}}</h1>
+          <div v-html="altTitle" class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;"></div>
+        </div>
+        <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
+          <p v-html="description" style="color: black;">
+          </p>
+        </div>
+      </div>
+      <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
+      <div v-html="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear"></div>
+      <div v-html="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear"></div>
+      <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
+    </div>
   </div>
 </template>
 
@@ -23,45 +43,14 @@
         this.xhr = '';
         return api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
-          return response.responseText;
-          //This.vars = response.responseText;
-          //resolve(response.responseText);
         });
       }
     },
     computed: {
-      html: function(){
-        var data = this.xhr;
-        if(data == '' || this.url == '') return '';
-        var html = '';
-
-        var image = '';
-        var title = '';
-        var description  = '';
-        var altTitle = '';
+      statistics: function(){
         var stats = '';
-
         try{
-            image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        try{
-            title = data.split('itemprop="name">')[1].split('<')[0];
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        try{
-            description = data.split('itemprop="description">')[1].split('</span')[0];
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        try{
-            altTitle = data.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
-            altTitle = altTitle.replace(/spaceit_pad/g,'mdl-chip" style="margin-right: 5px;');
-            altTitle = altTitle.replace(/<\/span>/g,'</span><span class="mdl-chip__text">');
-            altTitle = altTitle.replace(/<\/div>/g,'</span></div>');
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        try{
-            var statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
+            var statsBlock = this.xhr.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
             // @ts-ignore
             var tempHtml = j.$.parseHTML( statsBlock );
             var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
@@ -80,13 +69,45 @@
             statsHtml += '</ul>';
             stats = statsHtml;
         }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        html += overviewElement(this.url, title, image, description, altTitle, stats);
+        return stats;
+      },
+      image: function(){
+        var image = '';
+        try{
+            image = this.xhr.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return image;
+      },
+      title: function(){
+        var title = '';
+        try{
+            title = this.xhr.split('itemprop="name">')[1].split('<')[0];
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return title;
+      },
+      description: function(){
+        var description  = '';
+        try{
+            description = this.xhr.split('itemprop="description">')[1].split('</span')[0];
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return description;
+      },
+      altTitle: function(){
+        var altTitle = '';
+        try{
+            altTitle = this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
+            altTitle = altTitle.replace(/spaceit_pad/g,'mdl-chip" style="margin-right: 5px;');
+            altTitle = altTitle.replace(/<\/span>/g,'</span><span class="mdl-chip__text">');
+            altTitle = altTitle.replace(/<\/div>/g,'</span></div>');
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return altTitle;
+      },
+      myinfo: function(){
+        var myinfo = '';
         try{
           var localType = utils.urlPart(this.url, 3);
-          html +=
-          `<div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
-            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          myinfo +=
+          ` <table border="0" cellpadding="0" cellspacing="0" width="100%">
               <tbody>
                 <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
                   <span class="mdl-list__item-primary-content">
@@ -116,7 +137,7 @@
                 </li>
             `;
             if(localType == 'manga'){
-              html +=`
+              myinfo +=`
                 <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
                   <span class="mdl-list__item-primary-content">
                     <span>Volume:</span>
@@ -131,7 +152,7 @@
                 </li>
               `;
             }
-            html +=`
+            myinfo +=`
                 <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
                   <span class="mdl-list__item-primary-content">
                     <span>Your Score:</span>
@@ -161,11 +182,14 @@
 
               </tbody>
             </table>
-          </div>`;
+          `;
         }catch(e) {console.log('[iframeOverview] Error:',e);}
-
+        return myinfo;
+      },
+      related: function(){
+        var html = '';
         try{
-          var relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
+          var relatedBlock = this.xhr.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
           var related = j.$.parseHTML( relatedBlock );
           var relatedHtml = '<ul class="mdl-list">';
           j.$.each(j.$(related).filter('table').find('tr'), function( index, value ) {
@@ -185,24 +209,18 @@
           });
           relatedHtml += '</ul>';
 
-          html += `<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
-                    ${relatedHtml}
-                  </div>`
+          html += relatedHtml;
         }catch(e) {console.log('[iframeOverview] Error:',e);}
-
+        return html;
+      },
+      characters: function(){
+        var html = '';
         try{
-          html += `<div style="display: none;" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
-                    <ul class="mdl-list stream-block-inner">
-                    </ul>
-                  </div>`;
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        try{
-          var characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
+          var characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
           var charHtml = j.$.parseHTML( '<div class="detail-characters-list '+characterBlock );
           var temphtml = '';
           var charFound = 0;
-          var tempWrapHtml = '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">\
+          var tempWrapHtml = '\
           <div class="mdl-card__actions clicker" >\
             <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>\
           </div>\
@@ -235,62 +253,41 @@
           for(var i=0; i < 10; i++){
             tempWrapHtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
           }
-          tempWrapHtml += '</div></div>';
+          tempWrapHtml += '</div>';
           if(charFound) html += tempWrapHtml;
 
         }catch(e) {console.log('[iframeOverview] Error:',e);}
-
+        return html;
+      },
+      info: function(){
+        var html = '';
         try{
-            var infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
-            var infoData = j.$.parseHTML( infoBlock );
-            var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
-            j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
-                if((index + 4) % 4 == 0 && index != 0){
-                    //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-                }
-                infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-                    infoHtml += '<span class="mdl-list__item-primary-content">';
-                        infoHtml += '<span>';
-                            infoHtml += j.$(value).find('.dark_text').text();
-                        infoHtml += '</span>';
-                        infoHtml += '<span class="mdl-list__item-text-body">';
-                            j.$(value).find('.dark_text').remove();
-                            infoHtml += j.$(value).html();
-                            //j.$(value).find('*').each(function(){infoHtml += j.$(value)[0].outerHTML});
-                            //infoHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
-                        infoHtml += '</span>';
-                    infoHtml += '</span>';
-                infoHtml += '</li>';
-            });
-            infoHtml += '</ul>';
-            html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
+          var infoBlock = this.xhr.split('<h2>Information</h2>')[1].split('<h2>')[0];
+          var infoData = j.$.parseHTML( infoBlock );
+          var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
+          j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
+            if((index + 4) % 4 == 0 && index != 0){
+            //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
+            }
+            infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
+              infoHtml += '<span class="mdl-list__item-primary-content">';
+                infoHtml += '<span>';
+                  infoHtml += j.$(value).find('.dark_text').text();
+                infoHtml += '</span>';
+                infoHtml += '<span class="mdl-list__item-text-body">';
+                  j.$(value).find('.dark_text').remove();
+                  infoHtml += j.$(value).html();
+                  //j.$(value).find('*').each(function(){infoHtml += j.$(value)[0].outerHTML});
+                  //infoHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
+                infoHtml += '</span>';
+            infoHtml += '</span>';
+            infoHtml += '</li>';
+          });
+          infoHtml += '</ul>';
+          html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
         }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        return '<div class="mdl-grid">'+html+'</div>';
-      }
+        return html;
+      },
     }
-  }
-
-  function overviewElement(url, title, image, description, altTitle, stats){
-    return `
-      <div class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
-        ${stats}
-      </div>
-      <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
-        <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
-          <img class="malImage malClear" style="width: 100%; height: auto;" src="${image}"></img>
-        </div>
-        <div class="mdl-cell mdl-cell--12-col">
-          <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" href="${url}" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
-          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;">${title}</h1>
-          <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;">${altTitle}</div>
-        </div>
-        <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p style="color: black;">
-            ${description}
-          </p>
-        </div>
-      </div>
-    `;
   }
 </script>
