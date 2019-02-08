@@ -9,7 +9,7 @@ export class minimal{
   constructor(public minimal){
     this.minimal.find("body").append('<div id="minimalApp"></div>');
     new Vue({
-      el: '#minimalApp',
+      el: this.minimal.find("#minimalApp").get(0),
       render: h => h(minimalApp)
     })
     return;
