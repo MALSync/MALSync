@@ -7,7 +7,12 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">General</h2>
         </div>
-        <checkbox option="autoTracking">'Autotracking'+utils.getTooltip('Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.','','bottom')</checkbox>
+        <checkbox option="autoTracking">
+          Autotracking
+          <tooltip direction="bottom">
+            Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.
+          </tooltip>
+        </checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             Mode
@@ -29,7 +34,7 @@
         </li>
         <li class="mdl-list__item">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-                <input class="mdl-textfield__input" type="number" step="1" id="malDelay" value="${api.settings.get('delay')}">
+                <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay">
             <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>
             </div>
         </li>
@@ -38,7 +43,7 @@
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Streaming Site Links</h2>
-          ${utils.getTooltip('If disabled, the streaming site will no longer appear in an animes sidebar on MAL.')}
+          <tooltip>If disabled, the streaming site will no longer appear in an animes sidebar on MAL.</tooltip>
         </div>
         <checkbox option="SiteSearch">Search</checkbox>
         <checkbox option="Kissanime">KissAnime</checkbox>
@@ -60,7 +65,7 @@
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             Thumbnails
-            ${utils.getTooltip('The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.')}
+            <tooltip>The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.</tooltip>
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -79,7 +84,12 @@
           <h2 class="mdl-card__title-text">MyAnimeList / AniList</h2>
         </div>
         <checkbox option="epPredictions">Estimate episode number</checkbox>
-        <checkbox option="malTags">Use Tags/Notes'+utils.getTooltip('If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.','','bottom')</checkbox>
+        <checkbox option="malTags">
+          Use Tags/Notes
+          <tooltip direction="bottom">
+            If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.
+          </tooltip>
+        </checkbox>
         <checkbox option="malContinue">Continue watching links</checkbox>
         <checkbox option="malResume">Resume watching links</checkbox>
       </div>
@@ -121,7 +131,9 @@
       <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Update Check</h2>
-          ${utils.getTooltip('Checks for new episodes in the background.')}
+          <tooltip>
+            Checks for new episodes in the background.
+          </tooltip>
           <div id="updateCheckAgo" style="margin-left: auto;"></div>
         </div>
 
@@ -150,7 +162,7 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">ETC</h2>
         </div>
-        <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">Userscript mode'+utils.getTooltip('Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.','','bottom')</checkbox></span>
+        <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">Userscript mode<tooltip direction="bottom">Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">Strict Cookies</checkbox></span>
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
       </div>
@@ -198,8 +210,10 @@
 
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
+  import tooltip from './components/tooltip.vue'
   export default {
     components: {
+      tooltip,
       checkbox
     },
     data: function() {
