@@ -20,7 +20,7 @@
       </div>
       <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
       <div v-html="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear"></div>
-      <div v-html="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear"></div>
+      <div v-show="characters" v-html="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear"></div>
       <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
   </div>
@@ -123,6 +123,7 @@
       streaming: function(){
         var streamhtml = null;
         var malObj = this.mal.malObj;
+        if(malObj == null) return null;
         var streamUrl = malObj.getStreamingUrl();
         if(typeof streamUrl !== 'undefined'){
 
