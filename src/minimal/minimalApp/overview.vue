@@ -20,6 +20,23 @@
       </div>
       <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
       <div v-html="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear"></div>
+      <div v-show="kiss2mal" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
+        <ul class="mdl-list stream-block-inner">
+          <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
+            <span class="mdl-list__item-primary-content">
+              <span>
+                <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(streams)">
+                {{ page }}
+              </span>
+              <span id="KissAnimeLinks" class="mdl-list__item-text-body">
+                <div class="mal_links" v-for="stream in streams">
+                  <a target="_blank" :href="stream.url">{{stream.title}}</a>
+                </div>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
       <div v-show="characters" v-html="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear"></div>
       <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
@@ -36,7 +53,8 @@
           malObj: null,
           resumeUrl: null,
           continueUrl: null
-        }
+        },
+        kiss2mal: {},
       }
     },
     props: {
@@ -51,6 +69,7 @@
         this.mal.malObj = null;
         this.mal.resumeUrl = null;
         this.mal.continueUrl = null;
+        this.kiss2mal = {};
 
         api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
@@ -62,6 +81,13 @@
           this.mal.resumeUrl = await malObj.getResumeWaching();
           this.mal.continueUrl = await malObj.getContinueWaching();
         });
+
+        if(this.url.split('').length > 3){
+          utils.getMalToKissArray(utils.urlPart(this.url, 3), utils.urlPart(this.url, 4)).then((links) => {
+            con.log(links);
+            this.kiss2mal = links;
+          });
+        }
       }
     },
     computed: {
@@ -340,6 +366,11 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return html;
       },
+    },
+    methods: {
+      getMal2KissFavicon: function(streams){
+        return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+      }
     }
   }
 </script>
