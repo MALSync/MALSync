@@ -19,7 +19,22 @@
         </div>
       </div>
       <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
-      <div v-html="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear"></div>
+      <div v-show="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
+        <ul class="mdl-list">
+          <li class="mdl-list__item mdl-list__item--two-line" v-for="relatedType in related">
+            <span class="mdl-list__item-primary-content">
+              <span>
+                {{relatedType.type}}
+              </span>
+              <span class="mdl-list__item-sub-title">
+                <div v-for="link in relatedType.links">
+                  <a :href="link.url">{{link.title}}</a>
+                </div>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
       <div v-show="kiss2mal" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
         <ul class="mdl-list stream-block-inner">
           <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
@@ -55,6 +70,7 @@
           continueUrl: null
         },
         kiss2mal: {},
+        related: [],
       }
     },
     props: {
@@ -70,9 +86,11 @@
         this.mal.resumeUrl = null;
         this.mal.continueUrl = null;
         this.kiss2mal = {};
+        this.related = [];
 
         api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
+          this.related = this.getRelated();
         });
 
         var malObj = entryClass(this.url, true);
@@ -270,33 +288,6 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return myinfo;
       },
-      related: function(){
-        var html = '';
-        try{
-          var relatedBlock = this.xhr.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
-          var related = j.$.parseHTML( relatedBlock );
-          var relatedHtml = '<ul class="mdl-list">';
-          j.$.each(j.$(related).filter('table').find('tr'), function( index, value ) {
-            relatedHtml += '<li class="mdl-list__item mdl-list__item--two-line">';
-              relatedHtml += '<span class="mdl-list__item-primary-content">';
-                relatedHtml += '<span>';
-                  relatedHtml += j.$(value).find('.borderClass').first().text();
-                relatedHtml += '</span>';
-                relatedHtml += '<span class="mdl-list__item-sub-title">';
-                                  j.$(value).find('.borderClass').last().each(function( index, value){
-                                     j.$(value).html(j.$(value).children());
-                                  })
-                  relatedHtml += j.$(value).find('.borderClass').last().html();
-                relatedHtml += '</span>';
-              relatedHtml += '</span>';
-            relatedHtml += '</li>';
-          });
-          relatedHtml += '</ul>';
-
-          html += relatedHtml;
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return html;
-      },
       characters: function(){
         var html = '';
         try{
@@ -376,6 +367,29 @@
     methods: {
       getMal2KissFavicon: function(streams){
         return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+      },
+      getRelated: function(){
+        var html = '';
+        var el = [];
+        try{
+          var relatedBlock = this.xhr.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
+          var related = j.$.parseHTML( relatedBlock );
+          j.$.each(j.$(related).filter('table').find('tr'), function( index, value ) {
+            var links = [];
+            j.$(value).find('.borderClass').last().find('a').each(function( index, value ) {
+              links.push({
+                url: j.$(value).attr('href'),
+                title: j.$(value).text(),
+                statusTag: ''
+              });
+            });
+            el.push({
+              type: j.$(value).find('.borderClass').first().text(),
+              links: links
+            })
+          });
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return el;
       }
     }
   }
