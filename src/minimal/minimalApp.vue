@@ -2,13 +2,13 @@
   <div id="material" style="height: 100%;">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
-        <button @click="backbuttonClick()" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
+        <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
-          <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
+          <button :style="backbuttonBookStyle" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
             <i class="material-icons md-48 bookIcon">book</i>
             <i class="material-icons md-48 settingsIcon" style="display:none;">settings</i>
           </button>
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
+          <div :style="backbuttonSearchStyle" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
             </label>
@@ -93,6 +93,24 @@
       renderUrl: '',
       history: [],
     }),
+    computed: {
+      backbutton: function(){
+        if(this.history.length > 1) return true;
+        return false;
+      },
+      backbuttonSearchStyle: function(){
+        if(this.backbutton){
+          return {'margin-left': '-17px'};
+        }
+        return {'margin-left': '-57px'};
+      },
+      backbuttonBookStyle: function(){
+        if(this.backbutton){
+          return {'left': '40px'};
+        }
+        return {'left': '0px'};
+      },
+    },
     watch: {
       renderUrl: function(url){
         this.currentTab = 'overview';
@@ -131,7 +149,6 @@
           minimal.find("#book.open").toggleClass('open');
           minimal.removeClass('settings-only').removeClass('pop-over');
           this.history.push(url);
-          if(this.history.length > 1) this.backbuttonShow();
           minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
           return true;
         }
@@ -154,34 +171,15 @@
       },
       backbuttonClick(){
         con.log('History', this.history);
-
         if(this.history.length > 1){
           this.history.pop(); //Remove current page
           var url = this.history.pop();
 
           if(typeof url != 'undefined'){
             this.fill(url);
-            if(this.history.length > 1){
-              return;
-            }
           }
-
         }
-
-        this.backbuttonHide();
       },
-      backbuttonShow(){
-        var minimal = j.$(this.$el);
-        minimal.find("#backbutton").show();
-        minimal.find('#SearchButton').css('margin-left', '-17px');
-        minimal.find('#book').css('left', '40px');
-      },
-      backbuttonHide(){
-        var minimal = j.$(this.$el);
-        minimal.find("#backbutton").hide();
-        minimal.find('#SearchButton').css('margin-left', '-57px');
-        minimal.find('#book').css('left', '0px');
-      }
     }
   }
 </script>
