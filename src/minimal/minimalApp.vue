@@ -99,7 +99,6 @@
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
         this.setScroll(this.tabs[tab].scroll);
-        con.error(this.tabs);
       }
     },
     methods: {
