@@ -81,8 +81,8 @@
             </li>
             <li class="mdl-list__item" style="width: 100%;">
 
-              <input v-if="mal.malObj && mal.malObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
-              <input v-else type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
+              <input @click="malSync()" v-if="mal.malObj && mal.malObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
+              <input @click="malSync()" v-else type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
               <small v-if="editUrl && mal.malObj">
                 <a :href="editUrl" target="_blank">Edit Details</a>
               </small>
@@ -418,6 +418,14 @@
       },
     },
     methods: {
+      malSync: function(){
+        this.mal.malObj.sync()
+          .then(function(){
+            utils.flashm('Updated');
+          }, function(){
+            utils.flashm( "Update failed" , {error: true});
+          });
+      },
       getMal2KissFavicon: function(streams){
         return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
       },
