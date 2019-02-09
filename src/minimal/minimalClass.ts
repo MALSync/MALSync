@@ -77,9 +77,9 @@ export class minimal{
       clearTimeout(timer);
       timer = setTimeout(function(){
         if(This.minimal.find("#headMalSearch").val() == ''){
-          This.minimal.find('#material').removeClass('pop-over');
+          This.minimalVue.$children[0].closePopOver();
         }else{
-          This.minimal.find('#material').addClass('pop-over');
+          This.minimalVue.$children[0].openPopOver();
           This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
             This.minimal.find('#loadMalSearchPop').hide();
           });
@@ -93,10 +93,10 @@ export class minimal{
     this.minimal.find("#book").click(function() {
       if(This.minimal.find('#material.pop-over #malList').length){
         This.minimal.find("#book").toggleClass('open');
-        This.minimal.find('#material').removeClass('pop-over');
+        This.minimalVue.$children[0].closePopOver();
       }else{
         This.minimal.find("#book").toggleClass('open');
-        This.minimal.find('#material').addClass('pop-over');
+        This.minimalVue.$children[0].openPopOver();
         This.bookmarks();
       }
     });
@@ -816,7 +816,7 @@ export class minimal{
   }
 
   updateCheckUi(type = 'anime'){
-    this.minimal.find('#material').addClass('pop-over');
+    this.minimalVue.$children[0].openPopOver();
     if(!this.minimal.find('.refresh-updateCheck').length){
       this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
     }

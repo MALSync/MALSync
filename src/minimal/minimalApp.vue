@@ -1,5 +1,5 @@
 <template>
-  <div id="material" style="height: 100%;">
+  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
@@ -43,7 +43,7 @@
         <section v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel" id="fixed-tab-3">
           <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
-        <section class="mdl-layout__tab-panel" id="fixed-tab-4">
+        <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
           <div id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
           <div class="page-content malClear" id="malSearchPopInner"></div>
         </section>
@@ -88,6 +88,10 @@
           title: 'settings',
           scroll: 0,
         },
+        'pop-over': {
+          title: 'pop-over',
+          scroll: 0,
+        }
       },
       currentTab: 'overview',
       renderUrl: '',
@@ -110,6 +114,16 @@
         }
         return {'left': '0px'};
       },
+      popOver: function(){
+        if(this.currentTab == this.tabs['pop-over'].title){
+          return true;
+        }
+        return false;
+      },
+      navigation: function(){
+        if(!this.popOver) return true;
+        return false;
+      }
     },
     watch: {
       renderUrl: function(url){
@@ -135,6 +149,12 @@
         if(j.$('#Mal-Sync-Popup').length) return true;
         return false;
       },
+      openPopOver(){
+        this.currentTab = 'pop-over';
+      },
+      closePopOver(){
+        this.currentTab = 'overview';
+      },
       fill(url){
         var minimal = j.$(this.$el);
         if(url == null){
@@ -147,7 +167,7 @@
         if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
           this.renderUrl = url;
           minimal.find("#book.open").toggleClass('open');
-          minimal.removeClass('settings-only').removeClass('pop-over');
+          this.closePopOver();
           this.history.push(url);
           minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
           return true;
@@ -158,7 +178,7 @@
         }
         return false;
       },
-      fillBase(url){alert();
+      fillBase(url){
         con.log('Fill Base', url, this.history);
         if(!this.history.length){
           this.fill(url);
