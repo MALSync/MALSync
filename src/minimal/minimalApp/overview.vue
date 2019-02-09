@@ -29,6 +29,7 @@
               <span class="mdl-list__item-sub-title">
                 <div v-for="link in relatedType.links">
                   <a :href="link.url">{{link.title}}</a>
+                  <span v-html="link.statusTag"></span>
                 </div>
               </span>
             </span>
@@ -91,6 +92,7 @@
         api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
           this.related = this.getRelated();
+          this.updateStatusTags();
         });
 
         var malObj = entryClass(this.url, true);
@@ -102,7 +104,6 @@
 
         if(this.url.split('').length > 3){
           utils.getMalToKissArray(utils.urlPart(this.url, 3), utils.urlPart(this.url, 4)).then((links) => {
-            con.log(links);
             this.kiss2mal = links;
           });
         }
@@ -390,6 +391,23 @@
           });
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return el;
+      },
+      updateStatusTags: async function(){
+        for(var relatedKey in this.related){
+          var relate = this.related[relatedKey];
+          for(var linkKey in relate.links){
+            var link = relate.links[linkKey];
+            var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
+            if(typeof url != 'undefined'){
+              var malObj = entryClass(url, true, true);
+              await malObj.init();
+              var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+              if(tag){
+                this.related[relatedKey].links[linkKey].statusTag = tag;
+              }
+            }
+          }
+        }
       }
     }
   }
