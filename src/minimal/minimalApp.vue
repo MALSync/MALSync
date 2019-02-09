@@ -2,7 +2,7 @@
   <div id="material" style="height: 100%;">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
-        <button class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
+        <button @click="backbuttonClick()" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
             <i class="material-icons md-48 bookIcon">book</i>
@@ -152,11 +152,35 @@
           this.fill(url);
         }
       },
+      backbuttonClick(){
+        con.log('History', this.history);
+
+        if(this.history.length > 1){
+          this.history.pop(); //Remove current page
+          var url = this.history.pop();
+
+          if(typeof url != 'undefined'){
+            this.fill(url);
+            if(this.history.length > 1){
+              return;
+            }
+          }
+
+        }
+
+        this.backbuttonHide();
+      },
       backbuttonShow(){
         var minimal = j.$(this.$el);
         minimal.find("#backbutton").show();
         minimal.find('#SearchButton').css('margin-left', '-17px');
         minimal.find('#book').css('left', '40px');
+      },
+      backbuttonHide(){
+        var minimal = j.$(this.$el);
+        minimal.find("#backbutton").hide();
+        minimal.find('#SearchButton').css('margin-left', '-57px');
+        minimal.find('#book').css('left', '0px');
       }
     }
   }

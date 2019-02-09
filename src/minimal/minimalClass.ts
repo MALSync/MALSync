@@ -44,25 +44,6 @@ export class minimal{
       }
     });
 
-    this.minimal.find("#backbutton").click( function(){
-      con.log('History', This.minimalVue.$children[0].history);
-
-      if(This.minimalVue.$children[0].history.length > 1){
-        This.minimalVue.$children[0].history.pop(); //Remove current page
-        var url = This.minimalVue.$children[0].history.pop();
-
-        if(typeof url != 'undefined'){
-          This.fill(url);
-          if(This.minimalVue.$children[0].history.length > 1){
-            return;
-          }
-        }
-
-      }
-
-      This.backbuttonHide();
-    });
-
     this.minimal.find("#close-info-popup").click( function(){
         if(This.isPopup()){
           window.close();
@@ -278,12 +259,6 @@ export class minimal{
       this.minimal.find('#page-config').css('border', '1px solid red');
     }
 
-  }
-
-  backbuttonHide(){
-    this.minimal.find("#backbutton").hide();
-    this.minimal.find('#SearchButton').css('margin-left', '-57px');
-    this.minimal.find('#book').css('left', '0px');
   }
 
   loadSettings(){
