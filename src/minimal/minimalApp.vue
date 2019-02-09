@@ -88,6 +88,11 @@
       currentTab: 'Overview',
       renderUrl: '',
     }),
+    watch: {
+      renderUrl: function(url){
+        this.currentTab = 'Overview';
+      }
+    },
     methods: {
       selectTab(selectedTab) {
         con.log('Tab Changed', selectedTab);

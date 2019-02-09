@@ -308,7 +308,6 @@ export class minimal{
     var This = this;
     this.minimal.find("#book.open").toggleClass('open');
     this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
-    this.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
     this.history.push(url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
