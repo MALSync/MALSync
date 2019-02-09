@@ -25,7 +25,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>Status:</span>
                 <span class="mdl-list__item-text-body">
-                  <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none; visibility: hidden;">
+                  <select v-model="malStatus" :disabled="!this.mal.malObj" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
                     <option selected="selected" value="1">{{utils.watching(localType)}}</option>
                     <option value="2">Completed</option>
                     <option value="3">On-Hold</option>
@@ -39,7 +39,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(localType)}}:</span>
                 <span class="mdl-list__item-text-body">
-                  <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
+                  <input v-model="malEpisode" :disabled="!this.mal.malObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -51,7 +51,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>Volume:</span>
                 <span class="mdl-list__item-text-body">
-                  <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" v-if="mal.malObj">{{mal.malObj.totalVol}}<span v-if="!mal.malObj.totalVol">?</span></span>
+                  <input v-model="malVolume" :disabled="!this.mal.malObj" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="mal.malObj">{{mal.malObj.totalVol}}<span v-if="!mal.malObj.totalVol">?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -63,7 +63,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>Your Score:</span>
                 <span class="mdl-list__item-text-body">
-                  <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; visibility: hidden;">
+                  <select v-model="malScore" :disabled="!this.mal.malObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option value="" selected="selected">Select</option>
                     <option value="10">(10) Masterpiece</option>
                     <option value="9">(9) Great</option>
@@ -80,8 +80,10 @@
               </span>
             </li>
             <li class="mdl-list__item" style="width: 100%;">
-              <input type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
-              <small v-if="editUrl">
+
+              <input v-if="mal.malObj && mal.malObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
+              <input v-else type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
+              <small v-if="editUrl && mal.malObj">
                 <a :href="editUrl" target="_blank">Edit Details</a>
               </small>
             </li>
@@ -187,6 +189,62 @@
       editUrl: function(){
         if(this.url.split('/').length > 3) return `https://myanimelist.net/ownlist/${this.localType}/${utils.urlPart(this.url, 4)}/edit`;
         return null;
+      },
+      malStatus: {
+        get: function () {
+          if(this.mal.malObj){
+            if(this.mal.malObj.getScore() == 0) return 1;
+            return this.mal.malObj.getStatus()
+          }
+          return null;
+        },
+        set: function (value) {
+          if(this.mal.malObj){
+            this.mal.malObj.setStatus(value);
+          }
+        }
+      },
+      malEpisode: {
+        get: function () {
+          if(this.mal.malObj){
+            if(this.mal.malObj.addAnime) return null;
+            return this.mal.malObj.getEpisode();
+          }
+          return null;
+        },
+        set: function (value) {
+          if(this.mal.malObj){
+            this.mal.malObj.setEpisode(value);
+          }
+        }
+      },
+      malVolume: {
+        get: function () {
+          if(this.mal.malObj){
+            if(this.mal.malObj.addAnime) return null;
+            return this.mal.malObj.getVolume();
+          }
+          return null;
+        },
+        set: function (value) {
+          if(this.mal.malObj){
+            this.mal.malObj.setVolume(value);
+          }
+        }
+      },
+      malScore: {
+        get: function () {
+          if(this.mal.malObj){
+            if(this.mal.malObj.getScore() == 0) return '';
+            return this.mal.malObj.getScore()
+          }
+          return null;
+        },
+        set: function (value) {
+          if(this.mal.malObj){
+            this.mal.malObj.setScore(value);
+          }
+        }
       },
       statistics: function(){
         var stats = '';
