@@ -121,9 +121,15 @@
         return false;
       },
       navigation: function(){
-        if(!this.popOver) return true;
-        return false;
-      }
+        if(this.popOver || this.onlySettings) return false;
+        return true;
+      },
+      onlySettings: function(){
+        if(this.renderUrl !== ''){
+          return false;
+        }
+        return true;
+      },
     },
     watch: {
       renderUrl: function(url){
@@ -136,6 +142,7 @@
     },
     methods: {
       selectTab(selectedTab) {
+        if(this.onlySettings && (selectedTab == 'overview' || selectedTab == 'reviews' || selectedTab == 'recommendations')) selectedTab = 'settings';
         con.log('Tab Changed', selectedTab);
         this.currentTab = selectedTab;
       },
@@ -150,15 +157,14 @@
         return false;
       },
       openPopOver(){
-        this.currentTab = 'pop-over';
+        this.selectTab('pop-over');
       },
       closePopOver(){
-        this.currentTab = 'overview';
+        this.selectTab('overview');
       },
       fill(url){
         var minimal = j.$(this.$el);
         if(url == null){
-          minimal.find('#material').addClass('settings-only');
           if(this.isPopup()){
             minimal.find('#book').first().click();
           }
@@ -172,7 +178,6 @@
           minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
           return true;
         }
-        minimal.addClass('settings-only');
         if(this.isPopup()){
           minimal.find('#book').first().click();
         }
