@@ -19,6 +19,7 @@
         </div>
       </div>
       <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
+        <li v-if="prediction && prediction.prediction.airing" class="mdl-list__item" style="width: 100%;">{{prediction.text}}</li>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
@@ -39,7 +40,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(localType)}}:</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malEpisode" :disabled="!this.mal.malObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
+                  <input v-model="malEpisode" :disabled="!this.mal.malObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -143,6 +144,7 @@
         },
         kiss2mal: {},
         related: [],
+        prediction: null,
         utils,
       }
     },
@@ -160,6 +162,7 @@
         this.mal.continueUrl = null;
         this.kiss2mal = {};
         this.related = [];
+        this.prediction = null;
 
         api.request.xhr('GET', this.url).then((response) => {
           this.xhr = response.responseText;
@@ -177,6 +180,9 @@
         if(this.url.split('').length > 3){
           utils.getMalToKissArray(utils.urlPart(this.url, 3), utils.urlPart(this.url, 4)).then((links) => {
             this.kiss2mal = links;
+          });
+          utils.epPredictionUI(utils.urlPart(this.url, 4), utils.urlPart(this.url, 3), (prediction) => {
+            this.prediction = prediction;
           });
         }
       }
