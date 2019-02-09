@@ -39,7 +39,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(localType)}}:</span>
                 <span class="mdl-list__item-text-body">
-                  <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">?</span>
+                  <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -51,7 +51,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>Volume:</span>
                 <span class="mdl-list__item-text-body">
-                  <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" style="visibility: hidden;">?</span>
+                  <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" v-if="mal.malObj">{{mal.malObj.totalVol}}<span v-if="!mal.malObj.totalVol">?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
