@@ -9,7 +9,7 @@
         </div>
         <div class="mdl-cell mdl-cell--12-col">
           <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" :href="displayUrl" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
-          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;">{{title}}</h1>
+          <h1 v-html="title" class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;"></h1>
           <div v-html="altTitle" class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;"></div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
