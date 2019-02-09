@@ -35,16 +35,13 @@
       </header>
       <main class="mdl-layout__content" data-simplebar style="height:  100%;">
         <section v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel" id="fixed-tab-1">
-          <div id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-          <div class="page-content"></div>
+          <overviewVue :url="renderUrl"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel" id="fixed-tab-2">
-          <div id="loadReviews" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-          <div class="page-content malClear" id="malReviews"></div>
+          <reviewsVue :url="renderUrl" :state="currentTab == tabs.reviews.title"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel" id="fixed-tab-3">
-          <div id="loadRecommendations" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-          <div class="page-content malClear" id="malRecommendations"></div>
+          <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section class="mdl-layout__tab-panel" id="fixed-tab-4">
           <div id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
@@ -62,8 +59,15 @@
 
 <script type="text/javascript">
   import settingsVue from './minimalApp/settings.vue'
+  import overviewVue from './minimalApp/overview.vue'
+  import recommendationsVue from './minimalApp/recommendations.vue'
+  import reviewsVue from './minimalApp/reviews.vue'
+
   export default {
     components: {
+      overviewVue,
+      recommendationsVue,
+      reviewsVue,
       settingsVue
     },
     data: () => ({
@@ -82,6 +86,7 @@
         },
       },
       currentTab: 'Overview',
+      renderUrl: '',
     }),
     methods: {
       selectTab(selectedTab) {

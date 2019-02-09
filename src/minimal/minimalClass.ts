@@ -1,14 +1,14 @@
-import {animeType} from "./types/anime";
 import * as provider from "./../provider/provider.ts";
 import Vue from 'vue';
 import minimalApp from './minimalApp.vue';
 
 export class minimal{
   private history:(string)[] = [];
+  private minimalVue;
 
   constructor(public minimal){
     this.minimal.find("body").append('<div id="minimalApp"></div>');
-    new Vue({
+    this.minimalVue = new Vue({
       el: this.minimal.find("#minimalApp").get(0),
       render: h => h(minimalApp)
     })
@@ -145,7 +145,7 @@ export class minimal{
       return false;
     }
     if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
-      this.loadOverview(new animeType(url));
+      this.loadOverview(url);
       return true;
     }
     this.minimal.find('#material').addClass('settings-only');
@@ -303,42 +303,15 @@ export class minimal{
 
   }
 
-  loadOverview(overviewObj){
+  loadOverview(url){
+    this.minimalVue.$children[0].renderUrl = url;
     var This = this;
     this.minimal.find("#book.open").toggleClass('open');
     this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
     this.minimal.find('.mdl-layout__tab:eq(0) span').trigger( "click" );
-    this.history.push(overviewObj.url);
+    this.history.push(url);
     if(this.history.length > 1) this.backbuttonShow();
     this.minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
-    this.minimal.find('#fixed-tab-1 .page-content, #fixed-tab-2 .page-content, #fixed-tab-3 .page-content').html('');
-    overviewObj.init()
-      .then(() => {
-
-        this.minimal.find('.reviewsTab').off("click").one('click', function(){
-          overviewObj.reviews(This.minimal)
-            .then((html) => {
-              This.minimal.find('#fixed-tab-2 .page-content').html(html);
-              This.minimal.find('#loadReviews').hide();
-              overviewObj.lazyLoadReviews(This.minimal);
-            })
-        });
-
-        this.minimal.find('.recommendationTab').off("click").one('click', function(){
-          overviewObj.recommendations(This.minimal)
-            .then((html) => {
-              This.minimal.find('#fixed-tab-3 .page-content').html(html);
-              This.minimal.find('#loadRecommendations').hide();
-              overviewObj.lazyLoadRecommendations(This.minimal);
-            })
-        });
-
-        return overviewObj.overview(this.minimal);
-      }).then((html) => {
-        this.minimal.find('#fixed-tab-1 .page-content').html(html);
-        this.minimal.find('#loadOverview').hide();
-        overviewObj.lazyLoadOverview(this.minimal);
-      });
   }
 
   backbuttonShow(){
