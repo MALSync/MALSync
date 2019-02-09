@@ -90,12 +90,7 @@ export class minimal{
     });
 
     this.minimal.find("#book").click(function() {
-      if(This.minimal.find('#material.pop-over #malList').length){
-        This.minimal.find("#book").toggleClass('open');
-        This.minimalVue.$children[0].closePopOver();
-      }else{
-        This.minimal.find("#book").toggleClass('open');
-        This.minimalVue.$children[0].openPopOver();
+      if(This.minimalVue.$children[0].bookClick()){
         This.bookmarks();
       }
     });

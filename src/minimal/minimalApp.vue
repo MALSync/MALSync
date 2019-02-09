@@ -5,8 +5,7 @@
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
           <button :style="backbuttonBookStyle" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
-            <i class="material-icons md-48 bookIcon">book</i>
-            <i class="material-icons md-48 settingsIcon" style="display:none;">settings</i>
+            <i class="material-icons md-48 bookIcon">{{bookIcon}}</i>
           </button>
           <div :style="backbuttonSearchStyle" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
@@ -130,6 +129,16 @@
         }
         return true;
       },
+      bookIcon: function(){
+        var minimal = j.$(this.$el);
+        if(this.popOver && minimal.find('#malList').length){
+          if(this.onlySettings){
+            return 'settings';
+          }
+          return 'collections_bookmark';
+        }
+        return 'book';
+      }
     },
     watch: {
       renderUrl: function(url){
@@ -205,6 +214,16 @@
           }
         }
       },
+      bookClick(){
+        var minimal = j.$(this.$el);
+        if(this.bookIcon != 'book'){
+          this.closePopOver();
+          return false;
+        }else{
+          this.openPopOver();
+          return true;
+        }
+      }
     }
   }
 </script>
