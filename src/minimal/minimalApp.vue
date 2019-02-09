@@ -181,10 +181,8 @@
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
           this.renderUrl = url;
-          minimal.find("#book.open").toggleClass('open');
           this.closePopOver();
           this.history.push(url);
-          minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
           return true;
         }
         if(this.isPopup()){
