@@ -73,30 +73,45 @@
     data: () => ({
       tabs: {
         overview: {
-          title: 'Overview'
+          title: 'overview',
+          scroll: 0,
         },
         reviews: {
-          title: 'Reviews'
+          title: 'reviews',
+          scroll: 0,
         },
         recommendations: {
-          title: 'Recommendations'
+          title: 'recommendations',
+          scroll: 0,
         },
         settings: {
-          title: 'Settings'
+          title: 'settings',
+          scroll: 0,
         },
       },
-      currentTab: 'Overview',
+      currentTab: 'overview',
       renderUrl: '',
     }),
     watch: {
       renderUrl: function(url){
-        this.currentTab = 'Overview';
+        this.currentTab = 'overview';
+      },
+      currentTab: function(tab, oldtab){
+        this.tabs[oldtab].scroll = this.getScroll();
+        this.setScroll(this.tabs[tab].scroll);
+        con.error(this.tabs);
       }
     },
     methods: {
       selectTab(selectedTab) {
         con.log('Tab Changed', selectedTab);
         this.currentTab = selectedTab;
+      },
+      getScroll(){
+        return j.$(this.$el).find('.simplebar-scroll-content').first().scrollTop();
+      },
+      setScroll(scroll){
+        return j.$(this.$el).find('.simplebar-scroll-content').first().scrollTop(scroll);
       }
     }
   }
