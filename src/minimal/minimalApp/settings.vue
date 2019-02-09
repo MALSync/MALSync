@@ -32,7 +32,7 @@
             <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
           </span>
         </li>
-        <li class="mdl-list__item">
+        <li class="mdl-list__item" v-show="options.autoTracking">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
                 <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay">
             <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>
@@ -90,8 +90,8 @@
             If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.
           </tooltip>
         </checkbox>
-        <checkbox option="malContinue">Continue watching links</checkbox>
-        <checkbox option="malResume">Resume watching links</checkbox>
+        <checkbox option="malContinue" v-show="options.malTags">Continue watching links</checkbox>
+        <checkbox option="malResume" v-show="options.malTags">Resume watching links</checkbox>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
