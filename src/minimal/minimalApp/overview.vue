@@ -18,7 +18,76 @@
           <div v-show="streaming" v-html="streaming" class="mdl-card__actions mdl-card--border" style="padding-left: 0;"></div>
         </div>
       </div>
-      <div v-html="myinfo" class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"></div>
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tbody>
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+              <span class="mdl-list__item-primary-content">
+                <span>Status:</span>
+                <span class="mdl-list__item-text-body">
+                  <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none; visibility: hidden;">
+                    <option selected="selected" value="1">{{utils.watching(localType)}}</option>
+                    <option value="2">Completed</option>
+                    <option value="3">On-Hold</option>
+                    <option value="4">Dropped</option>
+                    <option value="6">{{utils.planTo(localType)}}</option>
+                  </select>
+                </span>
+              </span>
+            </li>
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+              <span class="mdl-list__item-primary-content">
+                <span>{{utils.episode(localType)}}:</span>
+                <span class="mdl-list__item-text-body">
+                  <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">?</span>
+                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
+                    <i class="fa fa-plus-circle ml4">
+                    </i>
+                  </a>
+                </span>
+              </span>
+            </li>
+            <li v-show="localType == 'manga'" class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+              <span class="mdl-list__item-primary-content">
+                <span>Volume:</span>
+                <span class="mdl-list__item-text-body">
+                  <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" style="visibility: hidden;">?</span>
+                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
+                    <i class="fa fa-plus-circle ml4">
+                    </i>
+                  </a>
+                </span>
+              </span>
+            </li>
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+              <span class="mdl-list__item-primary-content">
+                <span>Your Score:</span>
+                <span class="mdl-list__item-text-body">
+                  <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; visibility: hidden;">
+                    <option value="" selected="selected">Select</option>
+                    <option value="10">(10) Masterpiece</option>
+                    <option value="9">(9) Great</option>
+                    <option value="8">(8) Very Good</option>
+                    <option value="7">(7) Good</option>
+                    <option value="6">(6) Fine</option>
+                    <option value="5">(5) Average</option>
+                    <option value="4">(4) Bad</option>
+                    <option value="3">(3) Very Bad</option>
+                    <option value="2">(2) Horrible</option>
+                    <option value="1">(1) Appalling</option>
+                  </select>
+                </span>
+              </span>
+            </li>
+            <li class="mdl-list__item" style="width: 100%;">
+              <input type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!mal.malObj">
+              <small v-if="editUrl">
+                <a :href="editUrl" target="_blank">Edit Details</a>
+              </small>
+            </li>
+          </tbody>
+        </table>
+      </div>
       <div v-show="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
         <ul class="mdl-list">
           <li class="mdl-list__item mdl-list__item--two-line" v-for="relatedType in related">
@@ -72,6 +141,7 @@
         },
         kiss2mal: {},
         related: [],
+        utils,
       }
     },
     props: {
@@ -110,6 +180,14 @@
       }
     },
     computed: {
+      localType: function(){
+        if(this.url.split('/').length > 3) return utils.urlPart(this.url, 3);
+        return '';
+      },
+      editUrl: function(){
+        if(this.url.split('/').length > 3) return `https://myanimelist.net/ownlist/${this.localType}/${utils.urlPart(this.url, 4)}/edit`;
+        return null;
+      },
       statistics: function(){
         var stats = '';
         try{
@@ -204,90 +282,6 @@
 
         }
         return streamhtml;
-      },
-      myinfo: function(){
-        var myinfo = '';
-        try{
-          var localType = utils.urlPart(this.url, 3);
-          myinfo +=
-          ` <table border="0" cellpadding="0" cellspacing="0" width="100%">
-              <tbody>
-                <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
-                  <span class="mdl-list__item-primary-content">
-                    <span>Status:</span>
-                    <span class="mdl-list__item-text-body">
-                      <select name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none; visibility: hidden;">
-                        <option selected="selected" value="1">${utils.watching(localType)}</option>
-                        <option value="2">Completed</option>
-                        <option value="3">On-Hold</option>
-                        <option value="4">Dropped</option>
-                        <option value="6">${utils.planTo(localType)}</option>
-                      </select>
-                    </span>
-                  </span>
-                </li>
-                <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
-                  <span class="mdl-list__item-primary-content">
-                    <span>${utils.episode(localType)}:</span>
-                    <span class="mdl-list__item-text-body">
-                      <input type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curEps" style="visibility: hidden;">?</span>
-                      <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
-                        <i class="fa fa-plus-circle ml4">
-                        </i>
-                      </a>
-                    </span>
-                  </span>
-                </li>
-            `;
-            if(localType == 'manga'){
-              myinfo +=`
-                <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
-                  <span class="mdl-list__item-primary-content">
-                    <span>Volume:</span>
-                    <span class="mdl-list__item-text-body">
-                      <input type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block; visibility: hidden;"> / <span id="curVolumes" style="visibility: hidden;">?</span>
-                      <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
-                        <i class="fa fa-plus-circle ml4">
-                        </i>
-                      </a>
-                    </span>
-                  </span>
-                </li>
-              `;
-            }
-            myinfo +=`
-                <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
-                  <span class="mdl-list__item-primary-content">
-                    <span>Your Score:</span>
-                    <span class="mdl-list__item-text-body">
-                      <select name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; visibility: hidden;">
-                        <option value="" selected="selected">Select</option>
-                        <option value="10">(10) Masterpiece</option>
-                        <option value="9">(9) Great</option>
-                        <option value="8">(8) Very Good</option>
-                        <option value="7">(7) Good</option>
-                        <option value="6">(6) Fine</option>
-                        <option value="5">(5) Average</option>
-                        <option value="4">(4) Bad</option>
-                        <option value="3">(3) Very Bad</option>
-                        <option value="2">(2) Horrible</option>
-                        <option value="1">(1) Appalling</option>
-                      </select>
-                    </span>
-                  </span>
-                </li>
-                <li class="mdl-list__item" style="width: 100%;">
-                  <input type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton">
-                  <small>
-                    <a href="https://myanimelist.net/ownlist/${localType}/${utils.urlPart(this.url, 4)}/edit" target="_blank">Edit Details</a>
-                  </small>
-                </li>
-
-              </tbody>
-            </table>
-          `;
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return myinfo;
       },
       characters: function(){
         var html = '';
