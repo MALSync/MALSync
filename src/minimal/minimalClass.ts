@@ -141,15 +141,7 @@ export class minimal{
   }
 
   fillBase(url: string){
-    con.log('Fill Base', url, this.minimalVue.$children[0].history);
-    if(!this.minimalVue.$children[0].history.length){
-      this.fill(url);
-    }else if(this.minimalVue.$children[0].history[0] !== url){
-      while(this.minimalVue.$children[0].history.length > 0) {
-          this.minimalVue.$children[0].history.pop();
-      }
-      this.fill(url);
-    }
+    return this.minimalVue.$children[0].fillBase(url);
   }
 
   private pageSync;

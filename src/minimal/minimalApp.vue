@@ -141,6 +141,17 @@
         }
         return false;
       },
+      fillBase(url){alert();
+        con.log('Fill Base', url, this.history);
+        if(!this.history.length){
+          this.fill(url);
+        }else if(this.history[0] !== url){
+          while(this.history.length > 0) {
+              this.history.pop();
+          }
+          this.fill(url);
+        }
+      },
       backbuttonShow(){
         var minimal = j.$(this.$el);
         minimal.find("#backbutton").show();
