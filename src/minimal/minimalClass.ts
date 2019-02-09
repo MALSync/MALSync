@@ -249,7 +249,9 @@ export class minimal{
 
     if(typeof page.malObj != 'undefined' && page.malObj.wrong){
       con.log('config click');
-      this.minimal.find('.mdl-layout__tab.settingsTab span').trigger( "click" );
+      setTimeout(() => {//TODO: Fix
+        this.minimalVue.$children[0].selectTab('settings');
+      });
       this.minimal.find('#page-config').css('border', '1px solid red');
     }
 
