@@ -26,16 +26,17 @@
       },
     },
     updated: function(){
-      j.$(this.$el).find('.js-similar-recommendations-button').addClass('nojs').click(function(){j.$(this).parent().find('.more').toggle();});
-      j.$(this.$el).find('.js-toggle-recommendation-button').addClass('nojs').click(function(){
+      var minimal = j.$(this.$el);
+      minimal.find('.js-similar-recommendations-button').addClass('nojs').click(function(){j.$(this).parent().find('.more').toggle();});
+      minimal.find('.js-toggle-recommendation-button').addClass('nojs').click(function(){
         var revID = j.$(this).attr('data-id');
-        j.$(this.$el).find('#recommend'+revID).css('display','initial');
+        minimal.find('#recommend'+revID).css('display','initial');
 
         j.$(this).remove();
       });
-      j.$(this.$el).find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
+      minimal.find('#malRecommendations .more .borderClass').addClass('mdl-shadow--2dp').css('padding','10px');
 
-      j.$(this.$el).find('.lazyload').each(function() { j.$(this).attr('src', j.$(this).attr('data-src'));});//TODO: use lazyloading
+      minimal.find('.lazyload').each(function() { j.$(this).attr('src', j.$(this).attr('data-src'));});//TODO: use lazyloading
     },
     watch: {
       url: async function(url){
@@ -85,10 +86,6 @@
             recommendationsHtml += '</div>';
           });
           recommendationsHtml += '';
-
-          if(recommendationsHtml == '<div class="mdl-grid"></div>'){
-            recommendationsHtml = '<span class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">Nothing Found</span></span>';
-          }
 
           html = recommendationsHtml;
         }catch(e) {console.log('[iframeRecommendations] Error:',e);}
