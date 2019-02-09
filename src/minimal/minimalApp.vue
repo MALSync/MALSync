@@ -91,6 +91,7 @@
       },
       currentTab: 'overview',
       renderUrl: '',
+      history: [],
     }),
     watch: {
       renderUrl: function(url){
@@ -111,6 +112,40 @@
       },
       setScroll(scroll){
         return j.$(this.$el).find('.simplebar-scroll-content').first().scrollTop(scroll);
+      },
+      isPopup(){
+        if(j.$('#Mal-Sync-Popup').length) return true;
+        return false;
+      },
+      fill(url){
+        var minimal = j.$(this.$el);
+        if(url == null){
+          minimal.find('#material').addClass('settings-only');
+          if(this.isPopup()){
+            minimal.find('#book').first().click();
+          }
+          return false;
+        }
+        if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
+          this.renderUrl = url;
+          minimal.find("#book.open").toggleClass('open');
+          minimal.removeClass('settings-only').removeClass('pop-over');
+          this.history.push(url);
+          if(this.history.length > 1) this.backbuttonShow();
+          minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
+          return true;
+        }
+        minimal.addClass('settings-only');
+        if(this.isPopup()){
+          minimal.find('#book').first().click();
+        }
+        return false;
+      },
+      backbuttonShow(){
+        var minimal = j.$(this.$el);
+        minimal.find("#backbutton").show();
+        minimal.find('#SearchButton').css('margin-left', '-17px');
+        minimal.find('#book').css('left', '40px');
       }
     }
   }

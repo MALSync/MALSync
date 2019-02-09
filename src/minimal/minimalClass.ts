@@ -45,15 +45,15 @@ export class minimal{
     });
 
     this.minimal.find("#backbutton").click( function(){
-      con.log('History', This.history);
+      con.log('History', This.minimalVue.$children[0].history);
 
-      if(This.history.length > 1){
-        This.history.pop(); //Remove current page
-        var url = This.history.pop();
+      if(This.minimalVue.$children[0].history.length > 1){
+        This.minimalVue.$children[0].history.pop(); //Remove current page
+        var url = This.minimalVue.$children[0].history.pop();
 
         if(typeof url != 'undefined'){
           This.fill(url);
-          if(This.history.length > 1){
+          if(This.minimalVue.$children[0].history.length > 1){
             return;
           }
         }
@@ -137,31 +137,16 @@ export class minimal{
   }
 
   fill(url: string|null){
-    if(url == null){
-      this.minimal.find('#material').addClass('settings-only');
-      if(this.isPopup()){
-        this.minimal.find('#book').first().click();
-      }
-      return false;
-    }
-    if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
-      this.loadOverview(url);
-      return true;
-    }
-    this.minimal.find('#material').addClass('settings-only');
-    if(this.isPopup()){
-      this.minimal.find('#book').first().click();
-    }
-    return false;
+    return this.minimalVue.$children[0].fill(url);
   }
 
   fillBase(url: string){
-    con.log('Fill Base', url, this.history);
-    if(!this.history.length){
+    con.log('Fill Base', url, this.minimalVue.$children[0].history);
+    if(!this.minimalVue.$children[0].history.length){
       this.fill(url);
-    }else if(this.history[0] !== url){
-      while(this.history.length > 0) {
-          this.history.pop();
+    }else if(this.minimalVue.$children[0].history[0] !== url){
+      while(this.minimalVue.$children[0].history.length > 0) {
+          this.minimalVue.$children[0].history.pop();
       }
       this.fill(url);
     }
@@ -301,22 +286,6 @@ export class minimal{
       this.minimal.find('#page-config').css('border', '1px solid red');
     }
 
-  }
-
-  loadOverview(url){
-    this.minimalVue.$children[0].renderUrl = url;
-    var This = this;
-    this.minimal.find("#book.open").toggleClass('open');
-    this.minimal.find('#material').removeClass('settings-only').removeClass('pop-over');
-    this.history.push(url);
-    if(this.history.length > 1) this.backbuttonShow();
-    this.minimal.find('#loadOverview, #loadReviews, #loadRecommendations').show();
-  }
-
-  backbuttonShow(){
-    this.minimal.find("#backbutton").show();
-    this.minimal.find('#SearchButton').css('margin-left', '-17px');
-    this.minimal.find('#book').css('left', '40px');
   }
 
   backbuttonHide(){
