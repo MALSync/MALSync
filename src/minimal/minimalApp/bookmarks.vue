@@ -3,8 +3,13 @@
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
 
       <div v-for="item in items" :key="item.id">
-        <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
+        <div :title="item.prediction && item.prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
           <div class="data title lazyBack init" :data-src="imageHi(item)" style="background-image: url(); background-color: grey; background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">
+
+            <div v-if="item.prediction && item.prediction.text" class="mdl-shadow--2dp" style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0px 5px; margin: 5px 0; text-align: center;">
+              {{preTexter(item.prediction)}}
+            </div>
+
             <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
             <span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">
               <a :href="item.url" style="color: black; text-decoration: none;">
@@ -87,6 +92,12 @@
             this.$set( item, 'continueUrl', continueUrl);
           }
 
+          if(typeof item.prediction === 'undefined'){
+            utils.epPredictionUI(utils.urlPart(item.url, 4), utils.urlPart(item.url, 3), (prediction) => {
+              this.$set( item, 'prediction', prediction);
+            });
+          }
+
         });
       }
     },
@@ -111,6 +122,33 @@
       },
       assetUrl: function(asset){
         return api.storage.assetUrl(asset);
+      },
+      preTexter: function(prediction){
+        var pre = prediction.prediction;
+        var diffDays = pre.diffDays;
+        var diffHours = pre.diffHours;
+        var diffMinutes = pre.diffMinutes;
+        //Round hours
+        if(diffDays > 1 && diffHours > 12){
+          diffDays++;
+        }
+
+        var text = '';
+        if(diffDays > 1){
+          return text+diffDays+' Days';
+        }
+        if(diffDays == 1){
+          text += diffDays+' Day ';
+        }
+
+        if(diffHours > 1){
+          return text+diffHours+' Hours';
+        }
+        if(diffHours == 1){
+          text += diffHours+' Hour ';
+        }
+
+        return text+diffMinutes+' mins';
       },
     }
   }
