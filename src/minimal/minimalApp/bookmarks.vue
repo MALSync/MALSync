@@ -54,10 +54,16 @@
     },
     methods: {
       imageHi: function(item){
-        return 'https://myanimelist.cdn-dena.com/images/anime/5/65187.jpg';
+        var imageHi = item.image;
+        var regexDimensions = /\/r\/\d*x\d*/g;
+        if ( regexDimensions.test(imageHi) ) {
+          imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
+        }
+        return imageHi;
       },
       progress: function(item){
-        return 'width: 50%;'
+        var width = ( item.watchedEp / item.totalEp ) * 100;
+        return 'width: '+width+'%;'
       }
     }
   }
