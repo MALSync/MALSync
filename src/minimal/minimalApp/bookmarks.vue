@@ -63,43 +63,39 @@
       provider.userList(this.state, this.listType, {
         fullListCallback: (list) => {
           this.items = list;
+          this.items.forEach(async (item) => {
+
+            if(typeof item.resume === 'undefined'){
+              var resumeUrl = null;
+              var continueUrl = null;
+              var id = utils.urlPart(item.url, 4);
+              var type = utils.urlPart(item.url, 3);
+              var resumeUrlObj = await utils.getResumeWaching(type, id);
+              var continueUrlObj = await utils.getContinueWaching(type, id);
+              var curEp = parseInt(item.watchedEp.toString());
+
+              con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+              if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+                continueUrl = continueUrlObj.url;
+              }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+                resumeUrl = resumeUrlObj.url;
+              }
+              this.$set( item, 'resumeUrl', resumeUrl);
+              this.$set( item, 'continueUrl', continueUrl);
+            }
+
+            if(typeof item.prediction === 'undefined'){
+              utils.epPredictionUI(utils.urlPart(item.url, 4), utils.urlPart(item.url, 3), (prediction) => {
+                this.$set( item, 'prediction', prediction);
+              });
+            }
+
+          });
         }
       });
     },
     updated: function(){
       utils.lazyload(j.$(this.$el));
-    },
-    watch:{
-      items: function(){
-        this.items.forEach(async (item) => {
-
-          if(typeof item.resume === 'undefined'){
-            var resumeUrl = null;
-            var continueUrl = null;
-            var id = utils.urlPart(item.url, 4);
-            var type = utils.urlPart(item.url, 3);
-            var resumeUrlObj = await utils.getResumeWaching(type, id);
-            var continueUrlObj = await utils.getContinueWaching(type, id);
-            var curEp = parseInt(item.watchedEp.toString());
-
-            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-              continueUrl = continueUrlObj.url;
-            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-              resumeUrl = resumeUrlObj.url;
-            }
-            this.$set( item, 'resumeUrl', resumeUrl);
-            this.$set( item, 'continueUrl', continueUrl);
-          }
-
-          if(typeof item.prediction === 'undefined'){
-            utils.epPredictionUI(utils.urlPart(item.url, 4), utils.urlPart(item.url, 3), (prediction) => {
-              this.$set( item, 'prediction', prediction);
-            });
-          }
-
-        });
-      }
     },
     methods: {
       imageHi: function(item){
