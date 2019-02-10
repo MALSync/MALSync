@@ -20,6 +20,12 @@
                 <a class="mal-sync-stream" v-if="streamUrl(item)" :title="streamUrl(item).split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl(item)">
                   <img :src="favicon(streamUrl(item).split('/')[2])">
                 </a>
+                <a v-if="item.continueUrl" class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="item.continueUrl">
+                  <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16">
+                </a>
+                <a v-if="item.resumeUrl" class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="item.resumeUrl">
+                  <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
+                </a>
               </div>
             </span>
           </div>
@@ -58,6 +64,32 @@
     updated: function(){
       utils.lazyload(j.$(this.$el));
     },
+    watch:{
+      items: function(){
+        this.items.forEach(async (item) => {
+
+          if(typeof item.resume === 'undefined'){
+            var resumeUrl = null;
+            var continueUrl = null;
+            var id = utils.urlPart(item.url, 4);
+            var type = utils.urlPart(item.url, 3);
+            var resumeUrlObj = await utils.getResumeWaching(type, id);
+            var continueUrlObj = await utils.getContinueWaching(type, id);
+            var curEp = parseInt(item.watchedEp.toString());
+
+            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+              continueUrl = continueUrlObj.url;
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+              resumeUrl = resumeUrlObj.url;
+            }
+            this.$set( item, 'resumeUrl', resumeUrl);
+            this.$set( item, 'continueUrl', continueUrl);
+          }
+
+        });
+      }
+    },
     methods: {
       imageHi: function(item){
         var imageHi = item.image;
@@ -76,7 +108,10 @@
       },
       favicon: function(domain){
         return utils.favicon(domain);
-      }
+      },
+      assetUrl: function(asset){
+        return api.storage.assetUrl(asset);
+      },
     }
   }
 </script>
