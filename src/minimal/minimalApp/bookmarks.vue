@@ -17,7 +17,7 @@
               </a>
               <div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;">
                 <div class="progressbar bar bar1" :style="progress(item)"></div>
-                <div class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
+                <div v-if="hasTotalEp(item)" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
                 <div v-if="item.prediction && item.prediction.tagEpisode" class="predictionbar bar kal-ep-pre" :style="predictionBar(item)"></div>
                 <div class="auxbar bar bar3" style="width: 0%;"></div>
               </div>
@@ -107,12 +107,27 @@
         }
         return imageHi;
       },
+      barTotal: function(item){
+
+        if(item.prediction && item.prediction.tagEpisode && !this.hasTotalEp(item)){
+          if(item.prediction.tagEpisode > item.watchedEp){
+            return Math.ceil(item.prediction.tagEpisode * 1.2);
+          }else{
+            return Math.ceil(item.watchedEp * 1.2);
+          }
+        }
+
+        return item.totalEp;
+      },
+      hasTotalEp: function(item){
+        return parseInt(item.totalEp) != 0
+      },
       progress: function(item){
-        var width = ( item.watchedEp / item.totalEp ) * 100;
+        var width = ( item.watchedEp / this.barTotal(item) ) * 100;
         return 'width: '+width+'%;'
       },
       predictionBar: function(item){
-        var predictionProgress = ( item.prediction.tagEpisode / item.totalEp ) * 100;
+        var predictionProgress = ( item.prediction.tagEpisode / this.barTotal(item) ) * 100;
         var color = 'orange';
         if(item.prediction.color != ''){
           color = item.prediction.color;
