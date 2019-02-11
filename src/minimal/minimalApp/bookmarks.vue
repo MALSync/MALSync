@@ -62,9 +62,10 @@
     },
     mounted: function(){
       provider.userList(this.state, this.listType, {
-        fullListCallback: (list) => {
+        fullListCallback: async (list) => {
           this.items = list;
-          this.items.forEach(async (item) => {
+          for(var itemKey in this.items ){
+            var item = this.items[itemKey];
 
             if(typeof item.resume === 'undefined'){
               var resumeUrl = null;
@@ -81,17 +82,25 @@
               }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
                 resumeUrl = resumeUrlObj.url;
               }
-              this.$set( item, 'resumeUrl', resumeUrl);
-              this.$set( item, 'continueUrl', continueUrl);
+              item.resumeUrl = resumeUrl;
+              item.continueUrl = continueUrl;
             }
 
             if(typeof item.prediction === 'undefined'){
-              utils.epPredictionUI(utils.urlPart(item.url, 4), utils.urlPart(item.url, 3), (prediction) => {
-                this.$set( item, 'prediction', prediction);
-              });
+              await new Promise((resolve, reject) => {con.log('test');
+                utils.epPredictionUI(utils.urlPart(item.url, 4), utils.urlPart(item.url, 3), (prediction) => {
+                  item.prediction = prediction;
+                  resolve();
+                });
+              })
             }
 
-          });
+            if(itemKey && (itemKey % 50 === 0)){
+              this.$forceUpdate()
+            }
+
+          }
+          this.$forceUpdate()
         }
       });
     },

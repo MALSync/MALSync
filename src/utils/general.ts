@@ -214,6 +214,7 @@ export function getTooltip(text, style = '', direction = 'top'){
 export async function epPredictionUI(malid, type = 'anime', callback){
 
   utils.epPrediction(malid, async function(pre){
+    if(!pre) callback(false);
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
     var elCache:any = undefined;

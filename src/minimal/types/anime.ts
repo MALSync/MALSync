@@ -267,6 +267,7 @@ export class animeType{
     try{
       utils.epPredictionUI(utils.urlPart(this.url, 4), utils.urlPart(this.url, 3), function(prediction){
         con.log(prediction);
+        if(!prediction) return;
         minimal.find('[id="curEps"]').before(prediction.tag+' ');
         if(!prediction.prediction.airing){
           minimal.find('.data-block').prepend('<li class="mdl-list__item" style="width: 100%;">'+prediction.text+'</li>');
