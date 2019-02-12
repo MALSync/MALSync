@@ -51,11 +51,11 @@
               </select>
               <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="7">All</option>
-                <option value="1" selected>'+localWatching+'</option>
+                <option value="1" selected >{{utils.watching(tabs.bookmarks.type)}}</option>
                 <option value="2">Completed</option>
                 <option value="3">On-Hold</option>
                 <option value="4">Dropped</option>
-                <option value="6">'+localPlanTo+'</option>
+                <option value="6" >{{utils.planTo(tabs.bookmarks.type)}}</option>
               </select>
             </div>
           </bookmarksVue>
@@ -119,6 +119,9 @@
       history: [],
     }),
     computed: {
+      utils: function(){
+        return utils;
+      },
       backbutton: function(){
         if(this.history.length > 1) return true;
         return false;
