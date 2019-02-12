@@ -74,9 +74,6 @@
         });
       }
     },
-    updated: function(){
-
-    },
     computed: {
       imageHi: function(){
         var imageHi = this.item.image;

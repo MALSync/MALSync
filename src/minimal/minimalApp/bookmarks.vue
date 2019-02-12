@@ -46,9 +46,6 @@
         this.load();
       }
     },
-    updated: function(){
-      utils.lazyload(j.$(this.$el));
-    },
     methods: {
       load: function(){
         this.loading = true;
@@ -56,6 +53,9 @@
           fullListCallback: async (list) => {
             this.loading = false;
             this.items = list;
+            this.$nextTick(()=>{
+              utils.lazyload(j.$(this.$el));
+            })
           }
         });
       }
