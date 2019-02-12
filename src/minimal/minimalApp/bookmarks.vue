@@ -38,6 +38,11 @@
     mounted: function(){
       this.load();
     },
+    activated: function(){
+      this.$nextTick(()=>{
+      j.$(this.$el).closest('html').find("head").click();
+      })
+    },
     watch: {
       listType: function(type){
         this.load();

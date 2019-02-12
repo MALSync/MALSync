@@ -4,7 +4,7 @@
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
-          <button :style="backbuttonBookStyle" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
+          <button :style="backbuttonBookStyle" @click="bookClick()" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
             <i class="material-icons md-48 bookIcon">{{bookIcon}}</i>
           </button>
           <div :style="backbuttonSearchStyle" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
@@ -43,7 +43,8 @@
           <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
-          <bookmarksVue :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
+          <keep-alive>
+          <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
             <div class="mdl-grid" id="malList" style="justify-content: space-around;">
               <select v-model="tabs.bookmarks.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="anime">Anime</option>
@@ -59,6 +60,7 @@
               </select>
             </div>
           </bookmarksVue>
+        </keep-alive>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
@@ -109,10 +111,6 @@
           state: 1,
           type: 'anime',
         },
-        'pop-over': {
-          title: 'pop-over',
-          scroll: 0,
-        }
       },
       currentTab: 'overview',
       renderUrl: '',
@@ -139,7 +137,7 @@
         return {'left': '0px'};
       },
       popOver: function(){
-        if(this.currentTab == this.tabs['pop-over'].title){
+        if(this.currentTab == this.tabs['bookmarks'].title){
           return true;
         }
         return false;
@@ -156,7 +154,7 @@
       },
       bookIcon: function(){
         var minimal = j.$(this.$el);
-        if(this.popOver && minimal.find('#malList').length){
+        if(this.currentTab === 'bookmarks'){
           if(this.onlySettings){
             return 'settings';
           }
@@ -190,28 +188,21 @@
         if(j.$('#Mal-Sync-Popup').length) return true;
         return false;
       },
-      openPopOver(){
-        this.selectTab('pop-over');
-      },
-      closePopOver(){
-        this.selectTab('overview');
-      },
       fill(url){
         var minimal = j.$(this.$el);
         if(url == null){
           if(this.isPopup()){
-            minimal.find('#book').first().click();
+            this.selectTab('bookmarks');
           }
           return false;
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
           this.renderUrl = url;
-          this.closePopOver();
           this.history.push(url);
           return true;
         }
         if(this.isPopup()){
-          minimal.find('#book').first().click();
+          this.selectTab('bookmarks');
         }
         return false;
       },
@@ -240,13 +231,11 @@
       bookClick(){
         var minimal = j.$(this.$el);
         if(this.bookIcon != 'book'){
-          this.closePopOver();
-          return false;
+          this.selectTab('overview');
         }else{
-          this.openPopOver();
-          return true;
+          this.selectTab('bookmarks');
         }
-      }
+      },
     }
   }
 </script>
