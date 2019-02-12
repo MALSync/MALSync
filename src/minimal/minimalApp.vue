@@ -7,7 +7,7 @@
           <button :style="backbuttonBookStyle" @click="bookClick()" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
             <i class="material-icons md-48 bookIcon">{{bookIcon}}</i>
           </button>
-          <div :style="backbuttonSearchStyle" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
+          <div :style="backbuttonSearchStyle" v-bind:class="{ 'is-dirty': currentTab == tabs.search.title }" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
             </label>
