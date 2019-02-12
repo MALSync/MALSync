@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
+    <slot></slot>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
       <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>
       <div v-for="item in items" :key="item.id">
@@ -35,18 +36,29 @@
       },
     },
     mounted: function(){
-      this.loading = true;
-      provider.userList(this.state, this.listType, {
-        fullListCallback: async (list) => {
-          this.loading = false;
-          this.items = list;
-        }
-      });
+      this.load();
+    },
+    watch: {
+      listType: function(type){
+        this.load();
+      },
+      state: function(state){
+        this.load();
+      }
     },
     updated: function(){
       utils.lazyload(j.$(this.$el));
     },
     methods: {
+      load: function(){
+        this.loading = true;
+        provider.userList(this.state, this.listType, {
+          fullListCallback: async (list) => {
+            this.loading = false;
+            this.items = list;
+          }
+        });
+      }
     }
   }
 </script>

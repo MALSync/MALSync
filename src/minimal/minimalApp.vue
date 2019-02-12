@@ -43,8 +43,22 @@
           <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
-          <div id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-          <div class="page-content malClear" id="malSearchPopInner"></div>
+          <bookmarksVue :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
+            <div class="mdl-grid" id="malList" style="justify-content: space-around;">
+              <select v-model="tabs.bookmarks.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+                <option value="anime">Anime</option>
+                <option value="manga">Manga</option>
+              </select>
+              <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+                <option value="7">All</option>
+                <option value="1" selected>'+localWatching+'</option>
+                <option value="2">Completed</option>
+                <option value="3">On-Hold</option>
+                <option value="4">Dropped</option>
+                <option value="6">'+localPlanTo+'</option>
+              </select>
+            </div>
+          </bookmarksVue>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
@@ -60,6 +74,7 @@
   import settingsVue from './minimalApp/settings.vue'
   import overviewVue from './minimalApp/overview.vue'
   import recommendationsVue from './minimalApp/recommendations.vue'
+  import bookmarksVue from './minimalApp/bookmarks.vue'
   import reviewsVue from './minimalApp/reviews.vue'
 
   export default {
@@ -67,6 +82,7 @@
       overviewVue,
       recommendationsVue,
       reviewsVue,
+      bookmarksVue,
       settingsVue
     },
     data: () => ({
@@ -86,6 +102,12 @@
         settings: {
           title: 'settings',
           scroll: 0,
+        },
+        bookmarks: {
+          title: 'bookmarks',
+          scroll: 0,
+          state: 1,
+          type: 'anime',
         },
         'pop-over': {
           title: 'pop-over',
