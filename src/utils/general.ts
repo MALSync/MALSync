@@ -619,19 +619,6 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
    * `<img src="blank.gif" data-src="my_image.png" width="600" height="400" class="lazy">`
    */
 
-  processScroll = function(){
-    for (var i = 0; i < lazyimages.length; i++) {
-      if (elementInViewport(lazyimages[i])) {
-        loadImage(lazyimages[i], function () {
-          lazyimages.splice(i, i);
-        });
-      }
-      if(!$(lazyimages[i]).length){
-        lazyimages.splice(i, i);
-      }
-    };
-  }
-
   function loadImage (el, fn) {
     if(!j.$(el).is(':visible')) return false;
     if(j.$(el).hasClass('lazyBack')){
@@ -663,6 +650,9 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
             loadImage(lazyimages[i], function () {
               lazyimages.splice(i, i);
             });
+          }
+          if(!$(lazyimages[i]).length){
+            lazyimages.splice(i, i);
           }
         };
       }
