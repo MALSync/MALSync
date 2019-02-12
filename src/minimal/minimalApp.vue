@@ -12,7 +12,7 @@
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" type="text" id="headMalSearch">
+              <input v-on:keyup="keywordSet()" v-model="keyword" class="mdl-textfield__input" type="text" id="headMalSearch">
               <label class="mdl-textfield__label" for="headMalSearch"></label>
             </div>
           </div>
@@ -44,7 +44,7 @@
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
           <keep-alive>
-          <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
+          <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :type="tabs.bookmarks.type">
             <div class="mdl-grid" id="malList" style="justify-content: space-around;">
               <select v-model="tabs.bookmarks.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="anime">Anime</option>
@@ -60,6 +60,14 @@
               </select>
             </div>
           </bookmarksVue>
+          <searchVue v-if="currentTab == tabs.search.title" :keyword="tabs.search.keyword" :type="tabs.search.type">
+            <div class="mdl-grid" style="justify-content: space-around;">
+              <select v-model="tabs.search.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+                <option value="anime">Anime</option>
+                <option value="manga">Manga</option>
+              </select>
+            </div>
+          </searchVue>
         </keep-alive>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
@@ -77,7 +85,10 @@
   import overviewVue from './minimalApp/overview.vue'
   import recommendationsVue from './minimalApp/recommendations.vue'
   import bookmarksVue from './minimalApp/bookmarks.vue'
+  import searchVue from './minimalApp/search.vue'
   import reviewsVue from './minimalApp/reviews.vue'
+
+  var timer;
 
   export default {
     components: {
@@ -85,6 +96,7 @@
       recommendationsVue,
       reviewsVue,
       bookmarksVue,
+      searchVue,
       settingsVue
     },
     data: () => ({
@@ -111,7 +123,14 @@
           state: 1,
           type: 'anime',
         },
+        search: {
+          title: 'search',
+          scroll: 0,
+          type: 'anime',
+          keyword: '',
+        },
       },
+      keyword: '',
       currentTab: 'overview',
       renderUrl: '',
       history: [],
@@ -138,6 +157,9 @@
       },
       popOver: function(){
         if(this.currentTab == this.tabs['bookmarks'].title){
+          return true;
+        }
+        if(this.currentTab == this.tabs['search'].title){
           return true;
         }
         return false;
@@ -175,6 +197,13 @@
           this.$nextTick(()=>{
             utils.lazyload(j.$(this.$el));
           })
+        }
+      },
+      keyword: function(keyword){
+        if(keyword !== ''){
+          this.selectTab('search');
+        }else{
+          this.selectTab('overview');
         }
       }
     },
@@ -242,6 +271,12 @@
           this.selectTab('bookmarks');
         }
       },
+      keywordSet(){
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.tabs.search.keyword = this.keyword;
+        }, 300);
+      }
     }
   }
 </script>

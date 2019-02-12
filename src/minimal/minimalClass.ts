@@ -64,30 +64,7 @@ export class minimal{
         }
     });
 
-    var timer;
-    this.minimal.find("#headMalSearch").on("input", function(){
-      var listType = 'anime';
-      if(typeof This.pageSync != 'undefined'){
-        listType = This.pageSync.page.type;
-      }
 
-      This.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
-      This.minimal.find('#loadMalSearchPop').show();
-      clearTimeout(timer);
-      timer = setTimeout(function(){
-        if(This.minimal.find("#headMalSearch").val() == ''){
-          This.minimalVue.$children[0].closePopOver();
-        }else{
-          This.minimalVue.$children[0].openPopOver();
-          This.searchMal(This.minimal.find("#headMalSearch").val(), listType, '#malSearchPopInner', function(){
-            This.minimal.find('#loadMalSearchPop').hide();
-          });
-        }
-      }, 300);
-    });
-    this.minimal.on('click', '.searchItem', function(e){
-      This.minimal.find("#headMalSearch").val('').trigger("input").parent().parent().removeClass('is-dirty');
-    });
 
   }
 
