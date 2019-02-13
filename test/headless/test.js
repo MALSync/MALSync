@@ -13,7 +13,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'Ai-Mai-Mi Mousou Catastrophe',
-          identifier: 'Ai-Mai-Mi Mousou Catastrophe'
+          identifier: 'Ai-Mai-Mi Mousou Catastrophe',
+          uiSelector: true,
         }
       },
       {
@@ -24,7 +25,8 @@ var testsArray = [
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
           overviewUrl: 'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
           nextEpUrl: 'http://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
-          episode: 3
+          episode: 3,
+          uiSelector: false,
         }
       },
     ]
@@ -39,7 +41,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life (Sub)',
-          identifier: 'No-Game-No-Life'
+          identifier: 'No-Game-No-Life',
+          uiSelector: true,
         }
       },
       {
@@ -50,7 +53,8 @@ var testsArray = [
           identifier: 'No-Game-No-Life-Dub',
           overviewUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub',
           nextEpUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-005?id=112020',
-          episode: 4
+          episode: 4,
+          uiSelector: false,
         }
       },
     ]
@@ -68,7 +72,8 @@ var testsArray = [
           identifier: 'y2p0',
           overviewUrl: 'https://www2.9anime.to/watch/no-game-no-life-dub.y2p0',
           nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
-          episode: 4
+          episode: 4,
+          uiSelector: true,
         }
       },
     ]
@@ -83,7 +88,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'no-game-no-life',
-          identifier: '55-no-game-no-life'
+          identifier: '55-no-game-no-life',
+          uiSelector: true,
         }
       },
       {
@@ -94,7 +100,8 @@ var testsArray = [
           identifier: '55-no-game-no-life',
           overviewUrl: 'https://www.masterani.me/anime/info/55-no-game-no-life',
           nextEpUrl: 'https://www.masterani.me/anime/watch/55-no-game-no-life/5',
-          episode: 4
+          episode: 4,
+          uiSelector: false,
         }
       },
     ]
@@ -109,7 +116,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'no-game-no-life',
-          identifier: 'no-game-no-life'
+          identifier: 'no-game-no-life',
+          uiSelector: true,
         }
       },
       {
@@ -120,7 +128,8 @@ var testsArray = [
           identifier: 'no-game-no-life',
           overviewUrl: 'https://gogoanimes.co/category/no-game-no-life',
           nextEpUrl: 'https://gogoanimes.co/no-game-no-life-episode-6',
-          episode: 5
+          episode: 5,
+          uiSelector: false,
         }
       },
     ]
@@ -138,7 +147,8 @@ var testsArray = [
           identifier: 'no-game-no-life',
           overviewUrl: 'https://twist.moe/a/no-game-no-life/1',
           nextEpUrl: 'https://twist.moe/a/no-game-no-life/5',
-          episode: 4
+          episode: 4,
+          uiSelector: true,
         }
       },
     ]
@@ -153,7 +163,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: '781'
+          identifier: '781',
+          uiSelector: true,
         }
       },
       {
@@ -164,7 +175,8 @@ var testsArray = [
           identifier: '779',
           overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
           nextEpUrl: 'https://www.anime4you.one/show/1/aid/779/epi/5/?host=#vidplayer',
-          episode: 4
+          episode: 4,
+          uiSelector: true,
         }
       },
     ]
@@ -179,7 +191,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life'
+          identifier: 'no-game-no-life',
+          uiSelector: true,
         }
       },
       {
@@ -190,7 +203,8 @@ var testsArray = [
           identifier: 'no-game-no-life',
           overviewUrl: 'http://www.turkanime.tv/anime/no-game-no-life',
           nextEpUrl: 'http://www.turkanime.tv/video/no-game-no-life-7-bolum',
-          episode: 6
+          episode: 6,
+          uiSelector: false,
         }
       },
     ]
@@ -205,7 +219,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'No-Game-No-Life'
+          identifier: 'No-Game-No-Life',
+          uiSelector: true,
         }
       },
       {
@@ -215,7 +230,8 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://kissmanga.com/Manga/No-Game-No-Life',
-          episode: 3
+          episode: 3,
+          uiSelector: false,
         }
       },
     ]
@@ -230,7 +246,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: '8173'
+          identifier: '8173',
+          uiSelector: true,
         }
       },
       {
@@ -240,7 +257,8 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '8173',
           overviewUrl: 'https://www.mangadex.org/title/8173/no-game-no-life',
-          episode: 4
+          episode: 4,
+          uiSelector: false,
         }
       },
     ]
@@ -255,7 +273,8 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: '179306'
+          identifier: '179306',
+          uiSelector: true,
         }
       },
       {
@@ -265,7 +284,8 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '179306',
           overviewUrl: 'https://mangarock.com/manga/mrs-serie-179306',
-          episode: 6
+          episode: 6,
+          uiSelector: false,
         }
       },
     ]
@@ -329,6 +349,9 @@ testsArray.forEach(function(testPage) {
           expect(text.episode).to.equal(testCase.expected.episode);
           expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
           expect(text.nextEpUrl).to.equal(testCase.expected.nextEpUrl);
+        }
+        if(typeof text.uiSelector != 'undefined'){
+          expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
         }
       })
     });

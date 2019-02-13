@@ -19,10 +19,18 @@ window.MalSyncTest = async function(){
         if(typeof page.sync.nextEpUrl !== 'undefined'){
           value.nextEpUrl = page.sync.nextEpUrl(window.location.href);
         }
+        if(typeof page.sync.uiSelector !== 'undefined'){
+          page.sync.uiSelector(j.$('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'));
+          value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+        }
       }else{
         value.sync = false;
         value.title = page.overview.getTitle(window.location.href);
         value.identifier = page.overview.getIdentifier(window.location.href);
+        if(typeof page.overview.uiSelector !== 'undefined'){
+          page.overview.uiSelector(j.$('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'));
+          value.uiSelector = j.$('#MAL-SYNC-TEST').text();
+        }
       }
       resolve(value);
     }, cdn: function(){
