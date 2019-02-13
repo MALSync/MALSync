@@ -86,7 +86,7 @@ export class minimal{
     return this.minimalVue.$children[0].fill(url);
   }
 
-  fillBase(url: string){
+  fillBase(url: string|null){
     return this.minimalVue.$children[0].fillBase(url);
   }
 

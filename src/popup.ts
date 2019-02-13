@@ -21,9 +21,9 @@ api.settings.init()
       // @ts-ignore
       chrome.tabs.sendMessage(tabs[0].id, {action: "TabMalUrl"}, function(response) {
         if(typeof response != 'undefined'){
-          minimalObj.fill(response);
+          minimalObj.fillBase(response);
         }else{
-          minimalObj.fill(null);
+          minimalObj.fillBase(null);
         }
       });
     });

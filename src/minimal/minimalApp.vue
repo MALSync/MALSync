@@ -1,5 +1,5 @@
 <template>
-  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">{{history}}
+  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">{{base}}{{history}}
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
@@ -139,9 +139,10 @@
         }
       },
       keyword: '',
-      currentTab: 'overview',
+      currentTab: 'settings',
       renderUrl: '',
       history: [],
+      base: '',
     }),
     computed: {
       utils: function(){
@@ -231,6 +232,14 @@
         }else{
           this.selectTab('overview');
         }
+      },
+      base: function(base, oldBase){
+        if(base !== oldBase){
+          while(this.history.length > 0) {
+              this.history.pop();
+          }
+          this.fill(base, true);
+        }
       }
     },
     methods: {
@@ -249,7 +258,7 @@
         if(j.$('#Mal-Sync-Popup').length) return true;
         return false;
       },
-      fill(url){
+      fill(url, isBase = false){
         var minimal = j.$(this.$el);
         if(url == null){
           if(this.isPopup()){
@@ -258,7 +267,9 @@
           return false;
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
-          this.history.push(this.getCurrent(this.currentTab));
+          if(!isBase){
+            this.history.push(this.getCurrent(this.currentTab));
+          }
           this.renderUrl = url;
           this.currentTab = 'overview';
           return true;
@@ -270,14 +281,7 @@
       },
       fillBase(url){
         con.log('Fill Base', url, this.history);
-        if(!this.history.length){
-          this.fill(url);
-        }else if(this.history[0].currentTab !== url){
-          while(this.history.length > 0) {
-              this.history.pop();
-          }
-          this.fill(url);
-        }
+        this.base = url;
       },
       backbuttonClick(){
         con.log('History', this.history);
