@@ -1,12 +1,12 @@
 <template>
   <div>
-    <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
+    <button @click="load()" class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
       Refresh
     </button>
-    <button class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
+    <button @click="startCheck()" class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
       Start Check
     </button>
-    <button class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
+    <button @click="notificationTest()" class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
       Notification Check
     </button>
     <select v-model="listType" style="float: right;" class="typeSelect-updateCheck">
@@ -99,6 +99,20 @@
         con.log('delete', delPath, item);
         api.storage.remove(delPath);
         item.trColor = 'black';
+      },
+      notificationTest(){
+        utils.notifications(
+          'https://malsync.lolamtisch.de/',
+          'MyAnimeList-Sync',
+          'by lolamtisch',
+          'https://cdn.myanimelist.net/images/anime/5/65187.jpg'
+        );
+      },
+      startCheck(){
+        chrome.alarms.create("updateCheckNow", {
+          when: Date.now() + 1000
+        });
+        utils.flashm("Check started");
       }
     }
   }
