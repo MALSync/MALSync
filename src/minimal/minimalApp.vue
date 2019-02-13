@@ -1,5 +1,5 @@
 <template>
-  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">{{base}}{{history}}
+  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
@@ -92,6 +92,17 @@
 
   var timer;
   var ignoreCurrentTab = true;
+  var ignoreNullBase = false;
+  var STORAGE_KEY = 'VUE-MAL-SYNC';
+  var popupStorage = {
+    fetch: function () {
+      var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      return state;
+    },
+    save: function (state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+  }
 
   export default {
     components: {
@@ -197,6 +208,20 @@
         return 'book';
       }
     },
+    mounted: function(){
+      if(this.isPopup()){
+        var state = popupStorage.fetch();
+        if(typeof state !== 'undefined' && typeof state.currentTab !== 'undefined' ){
+          ignoreNullBase = true;
+          this.setCurrent(state);
+        }
+      }
+    },
+    updated: function(){
+      if(this.isPopup()){
+        popupStorage.save(this.getCurrent(this.currentTab));
+      }
+    },
     watch: {
       renderUrl: function(url, oldUrl){
       },
@@ -223,7 +248,6 @@
             this.history.push(this.getCurrent(oldtab));
           }
         }
-
 
       },
       keyword: function(keyword){
@@ -281,7 +305,10 @@
       },
       fillBase(url){
         con.log('Fill Base', url, this.history);
-        this.base = url;
+        if(!(ignoreNullBase && url === null)){
+          this.base = url;
+        }
+
       },
       backbuttonClick(){
         con.log('History', this.history);
