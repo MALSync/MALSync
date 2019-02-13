@@ -375,7 +375,7 @@ export class minimal{
       this.minimal.find('#updateCheck').show();
     }
     this.minimal.find('#updateCheckUi').click(() => {
-      this.updateCheckUi();
+      this.minimalVue.$children[0].selectTab('updateCheck')
     })
 
     try{
@@ -563,138 +563,6 @@ export class minimal{
       });
       callback();
     });
-  }
-
-  updateCheckUi(type = 'anime'){
-    this.minimalVue.$children[0].openPopOver();
-    if(!this.minimal.find('.refresh-updateCheck').length){
-      this.minimal.find('#fixed-tab-4 #malSearchPopInner').html('');
-    }
-
-    var refreshTo = setTimeout(() => {
-      if(this.minimal.find('.refresh-updateCheck').length && this.minimal.find('#fixed-tab-4').css('display') != 'none'){
-        this.updateCheckUi(type);
-      }
-    }, 5000)
-
-    provider.userList(1, type, {fullListCallback: async (list) => {
-      var html = `
-      <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
-        Refresh
-      </button>
-      <button class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
-        Start Check
-      </button>
-      <button class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
-        Notification Check
-      </button>
-      <select style="float: right;" class="typeSelect-updateCheck">
-        <option value="anime">Anime</option>
-        <option value="manga"${(type == 'manga') ? 'selected="selected"' : ''}>Manga</option>
-      </select>
-      <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
-        <tr>
-          <th class="mdl-data-table__cell--non-numeric"></th>
-          <th>Episode</th>
-          <th>Message</th>
-        </tr>`;
-
-      for (var i = 0; i < list.length; i++) {
-        var el = list[i];
-        var episode = '';
-        var error = '';
-        var trColor = '';
-        con.log('el', el);
-        var elCache = await api.storage.get('updateCheck/'+type+'/'+el.id);
-        con.log('elCache', elCache);
-        if(typeof elCache != 'undefined'){
-          episode = elCache['newestEp']+'/'+el.totalEp;
-          trColor = 'orange';
-          if(elCache['finished']){
-            error = 'finished';
-            trColor = 'green';
-          }
-          if(typeof elCache['error'] != 'undefined'){
-            error = elCache['error'];
-            trColor = 'red';
-          }
-        }
-        html += `
-        <tr style="background-color: ${trColor};">
-          <th class="mdl-data-table__cell--non-numeric">
-            <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" data-delete="${'updateCheck/'+type+'/'+el.id}"><i class="material-icons">delete</i></button>
-            <a href="${el.url}" style="color: black;">
-              ${el.title}
-            </a>
-          </th>
-          <th>${episode}</th>
-          <th>${error}</th>
-        </tr>
-        `;
-      }
-
-      html += '</table><div class="history"></div>';
-      this.minimal.find('#fixed-tab-4 #malSearchPopInner').html(html);
-
-      api.storage.get('notificationHistory').then((history) => {
-        var historyHtml = '<h3>Notification History</h3>';
-        history.reverse().forEach((entry) => {
-          var timeDiff:any = Date.now() - entry.timestamp;
-
-          timeDiff = utils.timeDiffToText(timeDiff);
-          timeDiff += 'ago';
-
-          historyHtml += `
-          <a href="${entry.url}" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">
-            <img src="${entry.iconUrl}" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;">
-            <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
-              <span style="font-size: 20px; font-weight: 400; line-height: 1;">${entry.title}</span>
-              <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">${entry.message}</p>
-              <p style="margin-bottom: 0; line-height: 20px;">${timeDiff}</p>
-            </div>
-          </a>
-          `;
-          this.minimal.find('#fixed-tab-4 #malSearchPopInner .history').first().html(historyHtml);
-            console.log(entry);
-        });
-      });
-
-      this.minimal.find('.refresh-updateCheck').click(() => {
-        clearTimeout(refreshTo);
-        this.updateCheckUi(type);
-      });
-
-      this.minimal.find('.notification-updateCheck').click(() => {
-        utils.notifications(
-          'https://malsync.lolamtisch.de/',
-          'MyAnimeList-Sync',
-          'by lolamtisch',
-          'https://cdn.myanimelist.net/images/anime/5/65187.jpg'
-        );
-      });
-
-      this.minimal.find('.startCheck-updateCheck').click(() => {
-        chrome.alarms.create("updateCheckNow", {
-          when: Date.now() + 1000
-        });
-        utils.flashm("Check started");
-      });
-
-      this.minimal.find('.delete-updateCheck').click(function(){
-        //@ts-ignore
-        var thisEl = $(this);
-        var delData = thisEl.data('delete');
-        con.log('delete', delData);
-        api.storage.remove(delData);
-        thisEl.parent().parent().css('background-color', 'black');
-      });
-
-      this.minimal.find('.typeSelect-updateCheck').change(() => {
-        clearTimeout(refreshTo);
-        this.updateCheckUi(this.minimal.find('.typeSelect-updateCheck').val());
-      })
-    }});
-
   }
 
   flashm(text, closefn = function(){}){

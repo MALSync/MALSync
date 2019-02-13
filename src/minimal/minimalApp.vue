@@ -69,6 +69,7 @@
             </div>
           </searchVue>
         </keep-alive>
+        <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
@@ -86,6 +87,7 @@
   import recommendationsVue from './minimalApp/recommendations.vue'
   import bookmarksVue from './minimalApp/bookmarks.vue'
   import searchVue from './minimalApp/search.vue'
+  import updateCheckVue from './minimalApp/updateCheck.vue'
   import reviewsVue from './minimalApp/reviews.vue'
 
   var timer;
@@ -97,6 +99,7 @@
       reviewsVue,
       bookmarksVue,
       searchVue,
+      updateCheckVue,
       settingsVue
     },
     data: () => ({
@@ -129,6 +132,10 @@
           type: 'anime',
           keyword: '',
         },
+        updateCheck: {
+          title: 'updateCheck',
+          scroll: 0,
+        }
       },
       keyword: '',
       currentTab: 'overview',
@@ -160,6 +167,9 @@
           return true;
         }
         if(this.currentTab == this.tabs['search'].title){
+          return true;
+        }
+        if(this.currentTab == this.tabs['updateCheck'].title){
           return true;
         }
         return false;
