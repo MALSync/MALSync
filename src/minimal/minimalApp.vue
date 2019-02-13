@@ -1,5 +1,5 @@
 <template>
-  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">
+  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation }">{{history}}
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
@@ -91,6 +91,7 @@
   import reviewsVue from './minimalApp/reviews.vue'
 
   var timer;
+  var ignoreCurrentTab = true;
 
   export default {
     components: {
@@ -147,7 +148,7 @@
         return utils;
       },
       backbutton: function(){
-        if(this.history.length > 1) return true;
+        if(this.history.length > 0) return true;
         return false;
       },
       backbuttonSearchStyle: function(){
@@ -196,8 +197,7 @@
       }
     },
     watch: {
-      renderUrl: function(url){
-        this.currentTab = 'overview';
+      renderUrl: function(url, oldUrl){
       },
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
@@ -208,6 +208,22 @@
             utils.lazyload(j.$(this.$el));
           })
         }
+
+        if(ignoreCurrentTab){
+          ignoreCurrentTab = false;
+        }else{
+          if(this.currentTab == this.tabs['bookmarks'].title){
+            this.history.push(this.getCurrent(oldtab));
+          }
+          if(this.currentTab == this.tabs['search'].title){
+            this.history.push(this.getCurrent(oldtab));
+          }
+          if(this.currentTab == this.tabs['updateCheck'].title){
+            this.history.push(this.getCurrent(oldtab));
+          }
+        }
+
+
       },
       keyword: function(keyword){
         if(keyword !== ''){
@@ -242,8 +258,9 @@
           return false;
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\//i.test(url)){
+          this.history.push(this.getCurrent(this.currentTab));
           this.renderUrl = url;
-          this.history.push(url);
+          this.currentTab = 'overview';
           return true;
         }
         if(this.isPopup()){
@@ -255,7 +272,7 @@
         con.log('Fill Base', url, this.history);
         if(!this.history.length){
           this.fill(url);
-        }else if(this.history[0] !== url){
+        }else if(this.history[0].currentTab !== url){
           while(this.history.length > 0) {
               this.history.pop();
           }
@@ -264,13 +281,8 @@
       },
       backbuttonClick(){
         con.log('History', this.history);
-        if(this.history.length > 1){
-          this.history.pop(); //Remove current page
-          var url = this.history.pop();
-
-          if(typeof url != 'undefined'){
-            this.fill(url);
-          }
+        if(this.history.length > 0){
+          this.setCurrent(this.history.pop())
         }
       },
       bookClick(){
@@ -286,6 +298,26 @@
         timer = setTimeout(() => {
           this.tabs.search.keyword = this.keyword;
         }, 300);
+      },
+      getCurrent(tab, url = this.renderUrl){
+        return {
+          renderUrl: url,
+          currentTab: tab,
+          tabData: $.extend(true,{},this.tabs[tab]),
+        }
+      },
+      setCurrent(historyElement){
+        con.log('Set Current', historyElement);
+        if(typeof historyElement.tabData.keyword !== 'undefined'){
+          this.keyword = historyElement.tabData.keyword;
+        }
+        this.tabs[historyElement.currentTab] = historyElement.tabData;
+        this.renderUrl = historyElement.renderUrl;
+        if(this.currentTab !== historyElement.currentTab){
+          ignoreCurrentTab = true;
+        }
+        this.currentTab = historyElement.currentTab;
+
       }
     }
   }
