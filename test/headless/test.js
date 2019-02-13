@@ -152,7 +152,7 @@ var testsArray = [
         url: 'https://www.anime4you.one/show/1/aid/781/',
         expected: {
           sync: false,
-          title: 'No Game No LifeGerSub',
+          title: 'No Game No Life',
           identifier: '781'
         }
       },
