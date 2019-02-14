@@ -227,8 +227,9 @@
       },
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
-        this.setScroll(this.tabs[tab].scroll);
-
+        this.$nextTick(()=>{
+          this.setScroll(this.tabs[tab].scroll);
+        });
         if(tab == 'settings'){
           this.$nextTick(()=>{
             utils.lazyload(j.$(this.$el));
