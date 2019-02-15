@@ -69,9 +69,10 @@
       }
 
       if(typeof this.prediction === 'undefined'){
-        utils.epPredictionUI(utils.urlPart(this.item.url, 4), utils.urlPart(this.item.url, 3), (prediction) => {
-          this.prediction = prediction;
-        });
+        this.setPrediction();
+        setInterval(() => {
+          this.setPrediction();
+        }, 60 * 1000);
       }
     },
     watch: {
@@ -153,6 +154,11 @@
       assetUrl: function(asset){
         return api.storage.assetUrl(asset);
       },
+      setPrediction: function(){
+        utils.epPredictionUI(utils.urlPart(this.item.url, 4), utils.urlPart(this.item.url, 3), (prediction) => {
+          this.prediction = prediction;
+        });
+      }
     }
   }
 </script>
