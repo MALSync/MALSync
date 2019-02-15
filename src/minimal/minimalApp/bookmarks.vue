@@ -5,7 +5,7 @@
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
       <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>
       <div v-for="item in items" :key="item.id">
-        <bookmarksItem :item="item"/>
+        <bookmarksItem :item="item" :ref="item.id"/>
       </div>
 
     </div>
@@ -63,6 +63,26 @@
             })
           }
         });
+      },
+      sortByPrediction: function(){
+        if(this.state != 1 && this.state != '1') return;
+
+        this.items = this.items.sort((a, b) => {
+          var vueA = this.$refs[a.id][0];
+          var vueB = this.$refs[b.id][0];
+          var preA = 99;
+          var preB = 99;
+
+          if(vueA.prediction && vueA.prediction.prediction && vueA.prediction.prediction.diffDays){
+            preA = vueA.prediction.prediction.diffDays;
+          }
+          if(vueB.prediction && vueB.prediction.prediction && vueB.prediction.prediction.diffDays){
+            preB = vueB.prediction.prediction.diffDays;
+          }
+
+          return preA - preB;
+        });
+
       }
     }
   }
