@@ -15,6 +15,9 @@
 <script type="text/javascript">
   import * as provider from "./../../provider/provider.ts";
   import bookmarksItem from './bookmarksItem.vue';
+
+  var timer;
+
   export default {
     components: {
       bookmarksItem,
@@ -67,21 +70,31 @@
       sortByPrediction: function(){
         if(this.state != 1 && this.state != '1') return;
 
-        this.items = this.items.sort((a, b) => {
-          var vueA = this.$refs[a.id][0];
-          var vueB = this.$refs[b.id][0];
-          var preA = 99;
-          var preB = 99;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          this.items = this.items.sort((a, b) => {
+            var vueA = this.$refs[a.id][0];
+            var vueB = this.$refs[b.id][0];
+            var preA = 99999999;
+            var preB = preA;
 
-          if(vueA.prediction && vueA.prediction.prediction && vueA.prediction.prediction.diffDays){
-            preA = vueA.prediction.prediction.diffDays;
-          }
-          if(vueB.prediction && vueB.prediction.prediction && vueB.prediction.prediction.diffDays){
-            preB = vueB.prediction.prediction.diffDays;
-          }
+            if(vueA.prediction && vueA.prediction.prediction){
+              preA = (vueA.prediction.prediction.diffDays * 1440)
+                    + (vueA.prediction.prediction.diffHours * 60)
+                    + vueA.prediction.prediction.diffMinutes;
+            }
+            if(vueB.prediction && vueB.prediction.prediction){
+              preB = (vueB.prediction.prediction.diffDays * 1440)
+                    + (vueB.prediction.prediction.diffHours * 60)
+                    + vueB.prediction.prediction.diffMinutes;
+            }
 
-          return preA - preB;
-        });
+            return preA - preB;
+          });
+          this.$nextTick(()=>{
+            j.$(this.$el).closest('.simplebar-scroll-content').first().scroll();
+          })
+        }, 50);
 
       }
     }
