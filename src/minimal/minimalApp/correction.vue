@@ -43,8 +43,8 @@
 
       <div class="mdl-list__item">
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
+        <button @click="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
+        <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
       </div>
   </div>
 </template>
@@ -64,6 +64,9 @@
     data: function() {
       return {
       }
+    },
+    mounted: function(){
+      j.$(this.$el).closest('html').find("head").click();
     },
     computed: {
       title: function(){
@@ -97,6 +100,29 @@
             }
           }
         }
+      }
+    },
+    methods: {
+      submit: function(malUrl){
+        var toDatabase = false;
+        if (typeof this.page.page.database != 'undefined' && confirm('Submit database correction request?')) {
+            toDatabase = 'correction';
+        }
+        this.page.malObj = undefined;
+        this.page.setCache(malUrl, toDatabase);
+        utils.flashm( "new url '"+malUrl+"' set." , false);
+        this.page.handlePage();
+        con.error(this);
+        //This.fillBase(malUrl);
+        //this.$parent.$parent.fillBase(malUrl);
+      },
+      noMal: function(){
+        this.submit('');
+      },
+      reset: function(){
+        this.page.deleteCache();
+        utils.flashm( "MyAnimeList url reset" , false);
+        //This.minimal.find("#close-info-popup").trigger( "click" );
       }
     }
   }

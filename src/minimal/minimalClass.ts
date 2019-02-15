@@ -93,6 +93,8 @@ export class minimal{
   private pageSync;
 
   setPageSync(page){
+    this.minimalVue.$children[0].page = page;
+    return;
     this.pageSync = page;
     var This = this;
 
