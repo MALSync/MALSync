@@ -17,7 +17,7 @@
       </div>
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" :value="url">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" v-model="malUrl">
           <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>
           <tooltip direction="left" style="float: right; margin-top: -17px;">
             Only change this URL if it points to the wrong anime page on MAL.
@@ -42,10 +42,12 @@
       </div>
 
       <div class="mdl-list__item">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
+        <button @click="update()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">Update</button>
         <button @click="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
         <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
       </div>
+  }
+  }
   </div>
 </template>
 
@@ -63,9 +65,16 @@
     },
     data: function() {
       return {
+        malUrl: '',
       }
     },
+    watch: {
+      url: function(url){
+        this.malUrl = this.url;
+      },
+    },
     mounted: function(){
+      this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
     },
     computed: {
@@ -122,7 +131,12 @@
       reset: function(){
         this.page.deleteCache();
         utils.flashm( "MyAnimeList url reset" , false);
+        this.page.handlePage();
+        //this.$parent.$parent.fillBase('');
         //This.minimal.find("#close-info-popup").trigger( "click" );
+      },
+      update: function(){
+        this.submit(this.malUrl);
       }
     }
   }
