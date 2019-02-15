@@ -2,13 +2,13 @@
   <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
     <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text">
-          ${title}
+          {{title}}
         </h2>
         <a href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting" style="margin-left: auto;">Help</a>
       </div>
       <div class="mdl-list__item">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" value="${page.getOffset()}">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" v-model="offset">
           <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>
           <tooltip direction="left" style="float: right; margin-top: -17px;">
             Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.
@@ -17,7 +17,7 @@
       </div>
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" value="${malUrl}">
+          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" :value="url">
           <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>
           <tooltip direction="left" style="float: right; margin-top: -17px;">
             Only change this URL if it points to the wrong anime page on MAL.
@@ -56,13 +56,47 @@
       tooltip,
     },
     props: {
-      malObj: {
+      page: {
         type: Object,
         default: null
       },
     },
     data: function() {
       return {
+      }
+    },
+    computed: {
+      title: function(){
+        if(typeof this.page.malObj != 'undefined'){
+          return this.page.malObj.name;
+        }
+        return 'Not Found';
+      },
+      url: function(){
+        if(typeof this.page.malObj != 'undefined'){
+          return this.page.malObj.url;
+        }
+        return '';
+      },
+      offset: {
+        get: function () {
+          var offset = this.page.getOffset();
+          if(offset == 0){
+            return '';
+          }
+          return offset;
+        },
+        set: function(offset){
+          if(offset !== null){
+            if(offset !== ''){
+              this.page.setOffset(offset);
+              utils.flashm("New Offset ("+offset+") set.");
+            }else{
+              this.page.setOffset("0");
+              utils.flashm("Offset reset");
+            }
+          }
+        }
       }
     }
   }

@@ -73,7 +73,7 @@
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
-            <settingsVue :malObj="malObj"/>
+            <settingsVue :page="page"/>
           </div>
         </section></main>
       </div>
@@ -154,7 +154,7 @@
       renderUrl: '',
       history: [],
       base: '',
-      malObj: null,
+      page: null,
     }),
     computed: {
       utils: function(){
