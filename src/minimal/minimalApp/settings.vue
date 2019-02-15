@@ -3,6 +3,8 @@
     <div class="mdl-grid">
       <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;"></div>
 
+      <correction v-if="malObj" :malObj="malObj"></correction>
+
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">General</h2>
@@ -211,10 +213,18 @@
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
   import tooltip from './components/tooltip.vue'
+  import correction from './correction.vue';
   export default {
     components: {
+      correction,
       tooltip,
       checkbox
+    },
+    props: {
+      malObj: {
+        type: Object,
+        default: null
+      },
     },
     data: function() {
       return {

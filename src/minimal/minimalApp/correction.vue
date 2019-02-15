@@ -55,6 +55,12 @@
     components: {
       tooltip,
     },
+    props: {
+      malObj: {
+        type: Object,
+        default: null
+      },
+    },
     data: function() {
       return {
       }
