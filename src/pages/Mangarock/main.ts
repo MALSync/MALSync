@@ -29,7 +29,7 @@ export const Mangarock: pageInterface = {
       getTitle: function(){return j.$('h1').first().text().trim();},
       getIdentifier: function(url){return utils.urlPart(url, 4).replace(/mrs-serie-/i,'')},
       uiSelector: function(selector){
-        selector.insertBefore($( ".block-title div:contains('Chapters')" ).first().parent().parent());
+        selector.insertBefore($( "h2:contains('Chapters')" ).first().parent().parent().parent());
       },
       list:{
         offsetHandler: false,
