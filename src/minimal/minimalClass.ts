@@ -93,6 +93,9 @@ export class minimal{
   private pageSync;
 
   setPageSync(page){
+    if(typeof page.malObj == undefined){
+      page.malObj = null;
+    }
     this.minimalVue.$children[0].page = page;
     return;
     this.pageSync = page;

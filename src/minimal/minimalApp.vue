@@ -153,10 +153,18 @@
       currentTab: 'settings',
       renderUrl: '',
       history: [],
-      base: '',
+      baseFallback: '',
       page: null,
     }),
     computed: {
+      base: function(){
+        if(this.page){
+          if(this.page.malObj) return this.page.malObj.url;
+          this.renderUrl = '';
+          return '';
+        }
+        return this.baseFallback;
+      },
       utils: function(){
         return utils;
       },
@@ -308,7 +316,10 @@
       fillBase(url){
         con.log('Fill Base', url, this.history);
         if(!(ignoreNullBase && url === null)){
-          this.base = url;
+          this.baseFallback = url;
+        }
+        if(url == ''){
+          this.renderUrl = url;
         }
 
       },

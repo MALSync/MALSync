@@ -46,8 +46,6 @@
         <button @click="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
         <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
       </div>
-  }
-  }
   </div>
 </template>
 
@@ -121,19 +119,15 @@
         this.page.setCache(malUrl, toDatabase);
         utils.flashm( "new url '"+malUrl+"' set." , false);
         this.page.handlePage();
-        con.error(this);
-        //This.fillBase(malUrl);
-        //this.$parent.$parent.fillBase(malUrl);
       },
       noMal: function(){
         this.submit('');
       },
       reset: function(){
         this.page.deleteCache();
+        this.page.malObj = undefined;
         utils.flashm( "MyAnimeList url reset" , false);
         this.page.handlePage();
-        //this.$parent.$parent.fillBase('');
-        //This.minimal.find("#close-info-popup").trigger( "click" );
       },
       update: function(){
         this.submit(this.malUrl);
