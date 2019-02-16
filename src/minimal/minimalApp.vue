@@ -323,6 +323,12 @@
         }
 
       },
+      setPage(page){
+        this.page = page;
+        if(typeof this.page.malObj == 'undefined'){alert();
+          this.$set(this.page, 'malObj', undefined);
+        }
+      },
       backbuttonClick(){
         con.log('History', this.history);
         if(this.history.length > 0){
