@@ -30,7 +30,7 @@
           <label class="mdl-textfield__label" for="malSearch">
             Correction Search
           </label>
-          <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
+          <input v-model="searchKeyword" class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
           <tooltip direction="left" style="float: right; margin-top: -17px;">
             This field is for finding an anime, when you need to correct the "MyAnimeList Url" shown above.<br>
             To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.
@@ -46,14 +46,26 @@
         <button @click="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">Reset</button>
         <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
       </div>
+
+      <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword">
+        <div class="mdl-grid" style="justify-content: space-around;">
+          <select v-model="searchType" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+            <option value="anime">Anime</option>
+            <option value="manga">Manga</option>
+          </select>
+        </div>
+      </searchVue>
   </div>
 </template>
 
 <script type="text/javascript">
   import tooltip from './components/tooltip.vue'
+  import searchVue from './search.vue'
+
   export default {
     components: {
       tooltip,
+      searchVue,
     },
     props: {
       page: {
@@ -64,6 +76,8 @@
     data: function() {
       return {
         malUrl: '',
+        searchType: 'anime',
+        searchKeyword: '',
       }
     },
     watch: {
@@ -74,6 +88,10 @@
     mounted: function(){
       this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
+      var This = this;
+      j.$(this.$el).on('click', '.searchItem', function(e){
+        This.submit(j.$(this).attr('href'));
+      });
     },
     computed: {
       title: function(){
