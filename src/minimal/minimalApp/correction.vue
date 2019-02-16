@@ -76,7 +76,7 @@
     data: function() {
       return {
         malUrl: '',
-        searchType: 'anime',
+        searchType: this.page.page.type,
         searchKeyword: '',
       }
     },
