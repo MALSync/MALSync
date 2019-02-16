@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
     <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text">
           {{title}}
@@ -93,6 +93,11 @@
       url: function(url){
         this.malUrl = this.url;
       },
+      wrong: function(wrong){
+        if(wrong){
+          this.$parent.$parent.currentTab = 'settings';
+        }
+      }
     },
     mounted: function(){
       this.malUrl = this.url;
@@ -102,6 +107,9 @@
         e.preventDefault();
         This.submit(j.$(this).attr('href'));
       });
+      if(this.wrong){
+        this.$parent.$parent.currentTab = 'settings';
+      }
     },
     computed: {
       title: function(){
@@ -115,6 +123,12 @@
           return this.page.malObj.url;
         }
         return '';
+      },
+      wrong: function(){
+        if(typeof this.page != 'undefined' && typeof this.page.malObj != 'undefined' && this.page.malObj.wrong){
+          return true;
+        }
+        return false;
       },
       offset: {
         get: function () {
