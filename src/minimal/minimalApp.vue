@@ -325,7 +325,7 @@
       },
       setPage(page){
         this.page = page;
-        if(typeof this.page.malObj == 'undefined'){alert();
+        if(typeof this.page.malObj == 'undefined'){
           this.$set(this.page, 'malObj', undefined);
         }
       },
