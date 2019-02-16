@@ -115,7 +115,7 @@
         if (typeof this.page.page.database != 'undefined' && confirm('Submit database correction request?')) {
             toDatabase = 'correction';
         }
-        this.page.malObj = undefined;
+        this.$set(this.page, 'malObj', undefined);
         this.page.setCache(malUrl, toDatabase);
         utils.flashm( "new url '"+malUrl+"' set." , false);
         this.page.handlePage();
@@ -125,7 +125,7 @@
       },
       reset: function(){
         this.page.deleteCache();
-        this.page.malObj = undefined;
+        this.$set(this.page, 'malObj', undefined);
         utils.flashm( "MyAnimeList url reset" , false);
         this.page.handlePage();
       },
