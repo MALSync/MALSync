@@ -417,11 +417,38 @@
             infoHtml += '</span>';
             infoHtml += '</li>';
           });
+          infoHtml += this.externalLinks;
           infoHtml += '</ul>';
           html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return html;
       },
+      externalLinks: function(){
+        var html = '';
+        try{
+          var infoBlock = this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]+'</div>';
+          var infoData = j.$.parseHTML( infoBlock );
+
+          var infoHtml = '';
+          infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
+            infoHtml += '<span class="mdl-list__item-primary-content">';
+              infoHtml += '<span>';
+                infoHtml += 'External Links';
+              infoHtml += '</span>';
+              infoHtml += '<span class="mdl-list__item-text-body">';
+
+          j.$.each(j.$(infoData).find('a'), ( index, value ) => {
+            if(index) infoHtml += ', '
+            infoHtml += '<a href="'+j.$(value).attr('href')+'">'+j.$(value).text()+'</a>'
+          })
+              infoHtml += '</span>';
+          infoHtml += '</span>';
+          infoHtml += '</li>';
+          html = infoHtml;
+
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return html;
+      }
     },
     methods: {
       malSync: function(){
