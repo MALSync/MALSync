@@ -18,7 +18,7 @@
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
           <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" v-model="malUrl">
-          <label class="mdl-textfield__label" for="malUrlInput">MyAnimeList Url</label>
+          <label class="mdl-textfield__label" for="malUrlInput" style="color: rgb(63,81,181); font-size: 12px; top: 4px; visibility: visible;">MyAnimeList Url</label>
           <tooltip direction="left" style="float: right; margin-top: -17px;">
             Only change this URL if it points to the wrong anime page on MAL.
           </tooltip>
