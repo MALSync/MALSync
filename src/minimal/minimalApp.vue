@@ -239,11 +239,6 @@
         this.$nextTick(()=>{
           this.setScroll(this.tabs[tab].scroll);
         });
-        if(tab == 'settings'){
-          this.$nextTick(()=>{
-            utils.lazyload(j.$(this.$el));
-          })
-        }
 
         if(ignoreCurrentTab){
           ignoreCurrentTab = false;

@@ -61,9 +61,6 @@
           fullListCallback: async (list) => {
             this.loading = false;
             this.items = list;
-            this.$nextTick(()=>{
-              utils.lazyload(j.$(this.$el));
-            })
           }
         });
       },

@@ -1,8 +1,9 @@
 import * as provider from "./../provider/provider.ts";
 import Vue from 'vue';
 import minimalApp from './minimalApp.vue';
-import VueClazyLoad from 'vue-clazy-load';
+import * as VueClazyLoad from 'vue-clazy-load';
 
+//@ts-ignore
 Vue.use(VueClazyLoad);
 
 export class minimal{
@@ -389,8 +390,6 @@ export class minimal{
         This.minimal.find('#contributer').html(html).click(()=>{
           This.minimal.find('#contributer').toggleClass("open");
         });
-
-        utils.lazyload(This.minimal);
 
       }, 100)
   }
