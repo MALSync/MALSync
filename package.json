@@ -22,6 +22,7 @@
     "ts-loader": "^4.4.2",
     "typescript": "^3.0.1",
     "vue": "^2.6.3",
+    "vue-clazy-load": "^0.4.2",
     "vue-loader": "^15.6.2",
     "vue-template-compiler": "^2.6.3",
     "web-ext": "^2.9.1",

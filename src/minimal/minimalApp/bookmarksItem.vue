@@ -1,7 +1,11 @@
 <template>
   <div :title="prediction && prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
-    <div class="data title lazyBack init" :data-src="imageHi" style="background-image: url(); background-color: grey; background-size: cover; background-position: center center; background-repeat: no-repeat; width: 100%; position: relative; padding-top: 5px;">
-
+    <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
+        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
+          <img :src="imageHi" width="100%">
+        </clazy-load>
+      </div>
       <div v-if="prediction && prediction.text" class="mdl-shadow--2dp" style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0px 5px; margin: 5px 0; text-align: center;">
         {{preTexter}}
       </div>

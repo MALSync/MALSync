@@ -1,6 +1,9 @@
 import * as provider from "./../provider/provider.ts";
 import Vue from 'vue';
 import minimalApp from './minimalApp.vue';
+import VueClazyLoad from 'vue-clazy-load';
+
+Vue.use(VueClazyLoad);
 
 export class minimal{
   private history:(string)[] = [];
