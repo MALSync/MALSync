@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
-const resourcesJson = require('./resources');
+const resourcesJson = require('./resourcesUserscript');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const generateMatchExcludes = () => {
