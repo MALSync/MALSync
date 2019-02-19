@@ -46,7 +46,7 @@
       this.load();
     },
     activated: function(){
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         j.$(this.$el).closest('html').find("head").click();
       })
     },

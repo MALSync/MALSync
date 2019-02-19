@@ -215,7 +215,7 @@
       malStatus: {
         get: function () {
           if(this.mal.malObj){
-            if(this.mal.malObj.getScore() == 0) return 1;
+            if(this.mal.malObj.getScore() === 0) return 1;
             return this.mal.malObj.getStatus()
           }
           return null;
@@ -257,7 +257,7 @@
       malScore: {
         get: function () {
           if(this.mal.malObj){
-            if(this.mal.malObj.getScore() == 0) return '';
+            if(this.mal.malObj.getScore() === 0) return '';
             return this.mal.malObj.getScore()
           }
           return null;
@@ -396,7 +396,7 @@
           var infoData = j.$.parseHTML( infoBlock );
           var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
           j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
-            if((index + 4) % 4 == 0 && index != 0){
+            if((index + 4) % 4 == 0 && index !== 0){
             //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
             }
             infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';

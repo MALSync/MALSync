@@ -106,7 +106,7 @@
         return this.item.totalEp;
       },
       hasTotalEp: function(){
-        return parseInt(this.item.totalEp) != 0
+        return parseInt(this.item.totalEp) !== 0
       },
       progress: function(){
         var width = ( this.item.watchedEp / this.barTotal ) * 100;
@@ -115,7 +115,7 @@
       predictionBar: function(){
         var predictionProgress = ( this.prediction.tagEpisode / this.barTotal ) * 100;
         var color = 'orange';
-        if(this.prediction.color != ''){
+        if(this.prediction.color !== ''){
           color = this.prediction.color;
         }
         return 'width: '+predictionProgress+'%; background-color: '+color;
@@ -137,14 +137,14 @@
         if(diffDays > 1){
           return text+diffDays+' Days';
         }
-        if(diffDays == 1){
+        if(diffDays === 1){
           text += diffDays+' Day ';
         }
 
         if(diffHours > 1){
           return text+diffHours+' Hours';
         }
-        if(diffHours == 1){
+        if(diffHours === 1){
           text += diffHours+' Hour ';
         }
 

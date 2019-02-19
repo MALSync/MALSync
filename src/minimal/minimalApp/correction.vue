@@ -133,7 +133,7 @@
       offset: {
         get: function () {
           var offset = this.page.getOffset();
-          if(offset == 0){
+          if(offset === 0){
             return '';
           }
           return offset;

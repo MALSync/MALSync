@@ -236,20 +236,20 @@
       },
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           this.setScroll(this.tabs[tab].scroll);
         });
 
         if(ignoreCurrentTab){
           ignoreCurrentTab = false;
         }else{
-          if(this.currentTab == this.tabs['bookmarks'].title){
+          if(this.currentTab === this.tabs['bookmarks'].title){
             this.history.push(this.getCurrent(oldtab));
           }
-          if(this.currentTab == this.tabs['search'].title){
+          if(this.currentTab === this.tabs['search'].title){
             this.history.push(this.getCurrent(oldtab));
           }
-          if(this.currentTab == this.tabs['updateCheck'].title){
+          if(this.currentTab === this.tabs['updateCheck'].title){
             this.history.push(this.getCurrent(oldtab));
           }
         }
@@ -273,7 +273,7 @@
     },
     methods: {
       selectTab(selectedTab) {
-        if(this.onlySettings && (selectedTab == 'overview' || selectedTab == 'reviews' || selectedTab == 'recommendations')) selectedTab = 'settings';
+        if(this.onlySettings && (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')) selectedTab = 'settings';
         con.log('Tab Changed', selectedTab);
         this.currentTab = selectedTab;
       },
@@ -313,7 +313,7 @@
         if(!(ignoreNullBase && url === null)){
           this.baseFallback = url;
         }
-        if(url == ''){
+        if(url === ''){
           this.renderUrl = url;
         }
 
@@ -332,7 +332,7 @@
       },
       bookClick(){
         var minimal = j.$(this.$el);
-        if(this.bookIcon != 'book'){
+        if(this.bookIcon !== 'book'){
           this.selectTab('overview');
         }else{
           this.selectTab('bookmarks');

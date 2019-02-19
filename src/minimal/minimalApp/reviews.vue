@@ -48,7 +48,7 @@
         }
       },
       state: async function(state){
-        if(state && this.xhr == ''){
+        if(state && this.xhr === ''){
           api.request.xhr('GET', this.url+'/reviews').then((response) => {
             this.xhr = response.responseText;
           });
@@ -72,7 +72,7 @@
               reviewsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
                 j.$(value).find('.textReadability, .textReadability > span').contents().filter(function(){
                   // @ts-ignore
-                  return this.nodeType == 3 && j.$.trim(this.nodeValue).length;
+                  return this.nodeType === 3 && j.$.trim(this.nodeValue).length;
                 }).wrap('<p style="margin:0;padding=0;"/>');
                 j.$(value).find('br').css('line-height','10px');
                 reviewsHtml += j.$(value).find('.textReadability').html();

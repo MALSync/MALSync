@@ -48,7 +48,7 @@
         }
       },
       state: async function(state){
-        if(state && this.xhr == ''){
+        if(state && this.xhr === ''){
           api.request.xhr('GET', this.url+'/userrecs').then((response) => {
             this.xhr = response.responseText;
           });
@@ -60,9 +60,9 @@
         var html = '';
         try{
           var recommendationsBlock = this.xhr.split('Make a recommendation</a>')[1].split('</h2>')[1].split('<div class="mauto')[0];
-          var html = j.$.parseHTML( recommendationsBlock );
+          var htmlT = j.$.parseHTML( recommendationsBlock );
           var recommendationsHtml = '';
-          j.$.each(j.$(html).filter('.borderClass'),( index, value ) => {
+          j.$.each(j.$(htmlT).filter('.borderClass'),( index, value ) => {
             recommendationsHtml += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
               recommendationsHtml += '<div class="mdl-card__media" style="background-color: transparent; margin: 8px;">';
                 recommendationsHtml += j.$(value).find('.picSurround').html();
