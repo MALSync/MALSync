@@ -168,7 +168,42 @@
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">Strict Cookies</checkbox></span>
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
       </div>
-      <div id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"></div>
+      <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div v-for="(contributerGroup, group) in contributer" class="inline-block">
+          <div class="group">{{group}}</div>
+          <div v-for="contr in contributerGroup" class="inline-block">
+            <div class="user">
+              <div class="image align-middle">
+                <clazy-load :src="contr.gif" v-if="contr.gif">
+                  <img :src="contr.gif" class="lazy init gif">
+                </clazy-load>
+                <clazy-load :src="contr.image">
+                  <img :src="contr.image" class="lazy init">
+                </clazy-load>
+              </div>
+              <div class="text align-middle">
+                <div class="name" :style="'color:'+ contr.color" :title="contr.name">
+                  {{contr.name}}
+                </div>
+                <div class="subtext" v-if="contr.subText">{{contr.subText}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="user pop">
+          <div class="image align-middle">
+            <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
+              arrow_right_alt
+            </i>
+          </div>
+        </div>
+        <a href="https://discordapp.com/invite/cTH4yaw" class="discord">
+          <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
+          <clazy-load src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3" style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
+            <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
+          </clazy-load>
+        </a>
+      </div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 
         <li class="mdl-list__item">
@@ -226,8 +261,26 @@
         default: null
       },
     },
+    mounted: function(){
+      api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
+        try{
+          this.contributer = JSON.parse(response.responseText.replace(/(^"|"$)/gi,'').replace(/\\"/g, '"'));
+        }catch(e){
+          con.error('Contributer Could not be retieved', e);
+          return;
+        }
+        con.log('Contributer', contr);
+      });
+    },
+    methods: {
+      myOpen: function(){
+        this.isOpen = !this.isOpen;
+      }
+    },
     data: function() {
       return {
+        contributer: [],
+        isOpen: false,
         options: api.settings.options,
         version: {
           link: `https://malsync.lolamtisch.de/changelog#${api.storage.version()}`,

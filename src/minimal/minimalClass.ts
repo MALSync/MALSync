@@ -328,70 +328,7 @@ export class minimal{
         }
       });
 
-      api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
-        try{
-          var contr = JSON.parse(response.responseText.replace(/(^"|"$)/gi,'').replace(/\\"/g, '"'));
-        }catch(e){
-          con.error('Contributer Could not be retieved', e);
-          return;
-        }
-        con.log('Contributer', contr);
 
-        var html = '';
-
-        for (var group in contr){
-          html += `<div class="group">${group}</div>`;
-          for(var user in contr[group]){
-            var userVal = contr[group][user];
-
-            if(typeof userVal.subText != 'undefined' && userVal.subText){
-              userVal.subText = `<div class="subtext">${userVal.subText}</div>`;
-            }else{
-              userVal.subText = '';
-            }
-            if(typeof userVal.gif != 'undefined' && userVal.gif){
-              userVal.gif = `<img data-src="${userVal.gif}" class="lazy init gif">`;
-            }else{
-              userVal.gif = '';
-            }
-            html += `
-              <div class="user">
-                <div class="image align-middle">
-                  ${userVal.gif}
-                  <img data-src="${userVal.image}" class="lazy init">
-                </div>
-                <div class="text align-middle">
-                  <div class="name" style="color: ${userVal.color}" title="${userVal.name}">
-                    ${userVal.name}
-                  </div>
-                  ${userVal.subText}
-                </div>
-              </div>
-            `;
-          }
-        }
-
-        html += `
-          <div class="user pop">
-            <div class="image align-middle">
-              <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
-                arrow_right_alt
-              </i>
-            </div>
-          </div>
-          <a href="https://discordapp.com/invite/cTH4yaw" class="discord">
-            <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
-            <div style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
-              <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
-            </div>
-          </a>
-        `;
-
-        This.minimal.find('#contributer').html(html).click(()=>{
-          This.minimal.find('#contributer').toggleClass("open");
-        });
-
-      }, 100)
   }
 
   searchMal(keyword, type = 'all', selector, callback){
