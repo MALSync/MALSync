@@ -207,36 +207,62 @@
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 
         <li class="mdl-list__item">
-
           <div style="line-height: 30px;">
 
-            <a :href="version.link">
+            <clazy-load tag="a" :href="version.link" :src="version.img">
               <img :src="version.img"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://discordapp.com/invite/cTH4yaw">
+            <clazy-load tag="a" href="https://discordapp.com/invite/cTH4yaw" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA">
               <img src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://github.com/lolamtisch/MALSync">
+            <clazy-load tag="a" href="https://github.com/lolamtisch/MALSync" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github">
               <img src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://github.com/lolamtisch/MALSync/issues">
+            <clazy-load tag="a" href="https://github.com/lolamtisch/MALSync/issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white">
               <img src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en">
+            <clazy-load tag="a" href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en" src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white">
               <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync">
+            <clazy-load tag="a" href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync" src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white">
               <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white"/>
-            </a><br/>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
+            <br/>
 
-            <a href="https://greasyfork.org/de/scripts/372847-mal-sync">
+            <clazy-load tag="a" href="https://greasyfork.org/de/scripts/372847-mal-sync" src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white">
               <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white"/>
-            </a>
+              <span slot="placeholder">
+                Loading
+              </span>
+            </clazy-load>
 
           </div>
         </li>
