@@ -364,18 +364,11 @@
         return streamhtml;
       },
       characters: function(){
-        var html = '';
         var charArray = [];
         try{
           var characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
           var charHtml = j.$.parseHTML( '<div class="detail-characters-list '+characterBlock );
-          var temphtml = '';
           var charFound = 0;
-          var tempWrapHtml = '\
-          <div class="mdl-card__actions clicker" >\
-            <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>\
-          </div>\
-          <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; ">';
 
           j.$.each(j.$(charHtml).find(':not(td) > table'), ( index, value ) => {
             if(!index) charFound = 1;
@@ -389,29 +382,12 @@
 
             charImg = utils.handleMalImages(charImg);
 
-            tempWrapHtml += '<div>';
-              tempWrapHtml += '<div class="mdl-grid" style="width: 126px;">';
-                tempWrapHtml += '<div style="width: 100%; height: auto;">';
-                  tempWrapHtml += '<img style="height: auto; width: 100%;"src="'+charImg+'">';
-                tempWrapHtml += '</div>';
-                tempWrapHtml += '<div class="">';
-                  tempWrapHtml += j.$(value).find('.borderClass .spaceit_pad').first().parent().html();
-                tempWrapHtml += '</div>';
-              tempWrapHtml += '</div>';
-            tempWrapHtml += '</div>';
-
             charArray.push({img: charImg, html: j.$(value).find('.borderClass .spaceit_pad').first().parent().html()});
 
           });
-          for(var i=0; i < 10; i++){
-            tempWrapHtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
-          }
-          tempWrapHtml += '</div>';
-          if(charFound) html += tempWrapHtml;
 
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return charArray;
-        return html;
       },
       info: function(){
         var html = '';
