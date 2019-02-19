@@ -125,7 +125,23 @@
           </li>
         </ul>
       </div>
-      <div v-show="characters" v-html="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear"></div>
+      <div v-show="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
+        <div class="mdl-card__actions clicker" >
+          <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>
+        </div>
+        <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; ">
+          <div v-for="character in characters">
+            <div class="mdl-grid" style="width: 126px;">
+              <div style="width: 100%; height: auto;">
+                <img style="height: auto; width: 100%;" :src="character.img">
+              </div>
+              <div class="" v-html="character.html">
+              </div>
+            </div>
+          </div>
+          <div v-for="n in 10" class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>
+        </div>
+      </div>
       <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
   </div>
@@ -349,6 +365,7 @@
       },
       characters: function(){
         var html = '';
+        var charArray = [];
         try{
           var characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
           var charHtml = j.$.parseHTML( '<div class="detail-characters-list '+characterBlock );
@@ -383,6 +400,8 @@
               tempWrapHtml += '</div>';
             tempWrapHtml += '</div>';
 
+            charArray.push({img: charImg, html: j.$(value).find('.borderClass .spaceit_pad').first().parent().html()});
+
           });
           for(var i=0; i < 10; i++){
             tempWrapHtml +='<div class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>';
@@ -391,6 +410,7 @@
           if(charFound) html += tempWrapHtml;
 
         }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return charArray;
         return html;
       },
       info: function(){
