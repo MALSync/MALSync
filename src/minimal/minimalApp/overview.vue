@@ -125,16 +125,16 @@
           </li>
         </ul>
       </div>
-      <div v-show="characters" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
+      <div v-show="characters.length > 0" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
         <div class="mdl-card__actions clicker" >
           <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>
         </div>
         <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; ">
           <div v-for="character in characters">
             <div class="mdl-grid" style="width: 126px;">
-              <div style="width: 100%; height: auto;">
-                <img style="height: auto; width: 100%;" :src="character.img">
-              </div>
+              <clazy-load :src="character.img" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="width: 100%; height: auto;">
+                <img :src="character.img" style="height: auto; width: 100%;">
+              </clazy-load>
               <div class="" v-html="character.html">
               </div>
             </div>
