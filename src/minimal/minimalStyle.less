@@ -106,12 +106,12 @@ a{
 }
 
 #material{
+  .mdl-layout__tab{
+    cursor: pointer;
+  }
   &.settings-only, &.pop-over{
     .mdl-layout__header .mdl-layout__tab-bar-container{
       display: none;
-    }
-    .mdl-layout__tab-panel{
-      display: none !important;
     }
   }
   &.settings-only{
@@ -119,14 +119,11 @@ a{
       display: block !important;
     }
   }
-  &.pop-over{
-    #fixed-tab-5.mdl-layout__tab-panel{
-      display: none !important;
-    }
-    #fixed-tab-4.mdl-layout__tab-panel{
-      display: block !important;
-    }
-  }
+}
+
+#characterList .loading{
+  background-color: #cdcdcd;
+  min-height: 196px;
 }
 
 #Mal-Sync-Popup{
@@ -206,7 +203,6 @@ a{
     &.dropped:hover{
       opacity: .7
     }
-
   }
 
 
@@ -264,6 +260,10 @@ a{
     .discord{
       display: none;
     }
+
+    .inline-block{
+      display: inline-block;
+    }
   }
 
   #contributer.open{
@@ -289,6 +289,10 @@ a{
     }
 
     .discord{
+      display: block;
+    }
+
+    .inline-block{
       display: block;
     }
   }

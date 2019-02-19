@@ -28,6 +28,13 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
       xhr.onreadystatechange = function(){
         if (xhr.readyState == 4) {
           console.log(xhr);
+          if(xhr.status === 429){
+            con.error('RATE LIMIT');
+            setTimeout(() => {
+              messageHandler(message, sender, sendResponse);
+            }, 10000)
+            return;
+          }
           var responseObj: xhrResponseI = {
             finalUrl: xhr.responseURL,
             responseText: xhr.responseText,

@@ -214,6 +214,7 @@ export function getTooltip(text, style = '', direction = 'top'){
 export async function epPredictionUI(malid, type = 'anime', callback){
 
   utils.epPrediction(malid, async function(pre){
+    if(!pre) callback(false);
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
     var elCache:any = undefined;
@@ -618,19 +619,6 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
    * `<img src="blank.gif" data-src="my_image.png" width="600" height="400" class="lazy">`
    */
 
-  processScroll = function(){
-    for (var i = 0; i < lazyimages.length; i++) {
-      if (elementInViewport(lazyimages[i])) {
-        loadImage(lazyimages[i], function () {
-          lazyimages.splice(i, i);
-        });
-      }
-      if(!$(lazyimages[i]).length){
-        lazyimages.splice(i, i);
-      }
-    };
-  }
-
   function loadImage (el, fn) {
     if(!j.$(el).is(':visible')) return false;
     if(j.$(el).hasClass('lazyBack')){
@@ -662,6 +650,9 @@ export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
             loadImage(lazyimages[i], function () {
               lazyimages.splice(i, i);
             });
+          }
+          if(!$(lazyimages[i]).length){
+            lazyimages.splice(i, i);
           }
         };
       }

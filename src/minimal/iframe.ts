@@ -22,9 +22,9 @@ function createIframe(page){
         minimalObj = new minimal(j.$("#info-iframe").contents().find('html'));
         if(typeof(page) != 'undefined'){
           if(typeof(page.malObj) != 'undefined'){
-            minimalObj.fill(page.malObj.url);
+            minimalObj.fillBase(page.malObj.url);
           }else{
-            minimalObj.fill(null);
+            minimalObj.fillBase(null);
           }
           minimalObj.setPageSync(page);
         }

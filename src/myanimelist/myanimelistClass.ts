@@ -178,6 +178,7 @@ export class myanimelistClass{
   setEpPrediction(){
     con.log('setEpPrediction');
     utils.epPredictionUI(this.id, this.type, function(prediction){
+      if(!prediction) return;
       con.log(prediction);
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist').prev().before('<div class="mal-sync-pre-remove">'+prediction.text+'</div>');
@@ -396,6 +397,7 @@ export class myanimelistClass{
         }
 
         utils.epPredictionUI(id, type, function(prediction){
+          if(!prediction) return;
           var element = book.getElement(malUrl);
           book.predictionPos(element, prediction.tag);
         });
