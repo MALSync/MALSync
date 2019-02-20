@@ -185,13 +185,13 @@
         return {'left': '0px'};
       },
       popOver: function(){
-        if(this.currentTab == this.tabs['bookmarks'].title){
+        if(this.currentTab === this.tabs['bookmarks'].title){
           return true;
         }
-        if(this.currentTab == this.tabs['search'].title){
+        if(this.currentTab === this.tabs['search'].title){
           return true;
         }
-        if(this.currentTab == this.tabs['updateCheck'].title){
+        if(this.currentTab === this.tabs['updateCheck'].title){
           return true;
         }
         return false;

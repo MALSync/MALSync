@@ -65,7 +65,7 @@
         });
       },
       sortByPrediction: function(){
-        if(this.state != 1 && this.state != '1') return;
+        if(this.state !== 1 && this.state !== '1') return;
 
         clearTimeout(timer);
         timer = setTimeout(() => {
@@ -88,7 +88,7 @@
 
             return preA - preB;
           });
-          this.$nextTick(()=>{
+          this.$nextTick(() => {
             j.$(this.$el).closest('.simplebar-scroll-content').first().scroll();
           })
         }, 50);
