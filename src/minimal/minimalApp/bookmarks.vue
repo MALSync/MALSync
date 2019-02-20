@@ -69,9 +69,32 @@
 
         clearTimeout(timer);
         timer = setTimeout(() => {
-          this.items = this.items.sort((a, b) => {
-            var vueA = this.$refs[a.id][0];
-            var vueB = this.$refs[b.id][0];
+          var This = this;
+
+          var normalItems = [];
+          var preItems = [];
+          var watchedItems = [];
+          this.items.forEach((item) => {
+            var vue = this.$refs[item.id][0];
+            if(vue.prediction && vue.prediction.prediction){
+              if(item.watchedEp < vue.prediction.tagEpisode){
+                preItems.push(item);
+              }else{
+                watchedItems.push(item);
+              }
+            }else{
+              normalItems.push(item);
+            }
+          });
+
+          preItems = preItems.sort(sortItems).reverse();
+          watchedItems = watchedItems.sort(sortItems);
+
+          this.items = preItems.concat(watchedItems, normalItems);
+
+          function sortItems(a,b) {
+            var vueA = This.$refs[a.id][0];
+            var vueB = This.$refs[b.id][0];
             var preA = 99999999;
             var preB = preA;
 
@@ -87,7 +110,8 @@
             }
 
             return preA - preB;
-          });
+          }
+
           this.$nextTick(() => {
             j.$(this.$el).closest('.simplebar-scroll-content').first().scroll();
           })
