@@ -5,6 +5,7 @@ const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
 const resourcesJson = require('./resourcesUserscript');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const generateMatchExcludes = () => {
   var match = [];
@@ -125,11 +126,21 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1
     }),
+    new VueLoaderPlugin(),
+    new TerserPlugin({
+      terserOptions: {
+        output: {
+          beautify: true,
+          comments: false
+        },
+        mangle: false,
+        compress: true,
+      }
+    }),
     new wrapper({
       test: /\.js$/,
       header: generateMetadataBlock(metadata)
     }),
-    new VueLoaderPlugin()
   ],
   optimization: {
     minimize: false
