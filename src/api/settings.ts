@@ -13,7 +13,7 @@ export var settingsObj = {
     miniMALonMal: false,
     displayFloatButton: true,
     outWay: true,
-    miniMalWidth: '30%',
+    miniMalWidth: '500px',
     miniMalHeight: '90%',
     malThumbnail: 100,
     friendScore: true,
