@@ -5,7 +5,9 @@
       <div v-html="statistics" class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
       <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
         <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
-          <img class="malImage malClear" style="width: 100%; height: auto;" :src="image"></img>
+          <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
+            <img :src="image" style="height: auto; width: 100%;">
+          </clazy-load>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
           <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" :href="displayUrl" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
