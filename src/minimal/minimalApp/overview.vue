@@ -42,7 +42,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(localType)}}:</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malEpisode" :disabled="!this.mal.malObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="mal.malObj">{{mal.malObj.totalEp}}<span v-if="!mal.malObj.totalEp">?</span></span>
+                  <input v-model="malEpisode" :disabled="!this.mal.malObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="mal.malObj && mal.malObj.totalEp">{{mal.malObj.totalEp}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -54,7 +54,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>Volume:</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malVolume" :disabled="!this.mal.malObj" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="mal.malObj">{{mal.malObj.totalVol}}<span v-if="!mal.malObj.totalVol">?</span></span>
+                  <input v-model="malVolume" :disabled="!this.mal.malObj" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="mal.malObj && mal.malObj.totalVol">{{mal.malObj.totalVol}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
