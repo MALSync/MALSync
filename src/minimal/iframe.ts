@@ -50,7 +50,7 @@ export function initIframeModal(page){
   if( !(j.$('#info-popup').length) ){
     api.storage.addStyle('.modal-content-kal.fullscreen{width: 100% !important;height: 100% !important; bottom: 0 !important;'+ posLeft +': 0 !important;}\
       .modal-content-kal{-webkit-transition: all 0.5s ease; -moz-transition: all 0.5s ease; -o-transition: all 0.5s ease; transition: all 0.5s ease;}\
-      .floatbutton:hover {background-color:rgb(63,81,181);}\
+      .floatbutton:hover {background-color:rgb(63,81,181) !important;}\
       .floatbutton:hover div {background-color:white;}\
       .floatbutton div {background-color:black;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-o-transition: all 0.5s ease;transition: all 0.5s ease;}\
       .floatbutton {\
@@ -60,6 +60,12 @@ export function initIframeModal(page){
       .mdl-button{\
        background: #3f51b5; color: #fff;box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);\
        border: none; border-radius: 2px;\
+      }\
+      .floatbutton.stealth {\
+        background: rgba(158,158,158,.03);\
+      }\
+      .floatbutton.stealth .open-info-popup{\
+        visibility: hidden;\
       }');
 
     //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
