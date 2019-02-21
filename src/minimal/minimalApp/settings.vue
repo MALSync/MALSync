@@ -101,6 +101,7 @@
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
         </div>
+        <checkbox option="floatButtonStealth">Stealth floating menu button</checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             Display to the

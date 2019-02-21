@@ -11,7 +11,7 @@ export var settingsObj = {
 
     posLeft: 'left',
     miniMALonMal: false,
-    displayFloatButton: true,
+    floatButtonStealth: false,
     outWay: true,
     miniMalWidth: '500px',
     miniMalHeight: '90%',
