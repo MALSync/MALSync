@@ -482,6 +482,20 @@ export function notifications(url:string, title:string, message:string, iconUrl 
 
 }
 
+export async function timeCache(key, dataFunction, ttl){
+  return new Promise(async (resolve, reject) => {
+    var value = await api.storage.get(key);
+    if(typeof value !== 'undefined' && new Date().getTime() < value.timestamp){
+      resolve(value.data);
+      return;
+    }
+    var result = await dataFunction();
+    api.storage.set(key, {data: result, timestamp: new Date().getTime() + ttl}).then(()=>{
+      resolve(result);
+    });
+  });
+}
+
 //flashm
 export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom"}){
     if(!j.$('#flash-div-top').length){
