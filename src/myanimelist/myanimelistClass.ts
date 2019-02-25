@@ -413,9 +413,12 @@ export class myanimelistClass{
         var el = $(this);
         var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if(typeof url != 'undefined'){
-          var malObj = new entryClass(url);
-          malObj.init().then(() => {
-            var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+          utils.timeCache('MALTAG/'+url, async function(){
+            var malObj = new entryClass(url);
+            await malObj.init();
+            return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+          }, 1 * 60 * 60 * 1000)
+          .then(function(tag){
             if(tag){
               el.after(tag)
             }
