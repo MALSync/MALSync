@@ -198,7 +198,7 @@
             </i>
           </div>
         </div>
-        <a href="https://discordapp.com/invite/cTH4yaw" class="discord">
+        <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord">
           <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
           <clazy-load src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3" style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
             <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
@@ -210,7 +210,7 @@
         <li class="mdl-list__item">
           <div style="line-height: 30px;">
 
-            <clazy-load tag="a" :href="version.link" :src="version.img">
+            <clazy-load tag="a" rel="noreferrer" :href="version.link" :src="version.img">
               <img :src="version.img"/>
               <span slot="placeholder">
                 Loading
@@ -218,7 +218,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://discordapp.com/invite/cTH4yaw" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA">
+            <clazy-load tag="a" rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA">
               <img src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"/>
               <span slot="placeholder">
                 Loading
@@ -226,7 +226,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://github.com/lolamtisch/MALSync" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github">
+            <clazy-load tag="a" rel="noreferrer" href="https://github.com/lolamtisch/MALSync" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github">
               <img src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"/>
               <span slot="placeholder">
                 Loading
@@ -234,7 +234,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://github.com/lolamtisch/MALSync/issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white">
+            <clazy-load tag="a" rel="noreferrer" href="https://github.com/lolamtisch/MALSync/issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white">
               <img src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"/>
               <span slot="placeholder">
                 Loading
@@ -242,7 +242,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en" src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white">
+            <clazy-load tag="a" rel="noreferrer" href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en" src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white">
               <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white"/>
               <span slot="placeholder">
                 Loading
@@ -250,7 +250,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync" src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white">
+            <clazy-load tag="a" rel="noreferrer" href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync" src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white">
               <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white"/>
               <span slot="placeholder">
                 Loading
@@ -258,7 +258,7 @@
             </clazy-load>
             <br/>
 
-            <clazy-load tag="a" href="https://greasyfork.org/de/scripts/372847-mal-sync" src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white">
+            <clazy-load tag="a" rel="noreferrer" href="https://greasyfork.org/de/scripts/372847-mal-sync" src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white">
               <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white"/>
               <span slot="placeholder">
                 Loading
