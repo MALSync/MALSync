@@ -490,9 +490,13 @@
             var link = relate.links[linkKey];
             var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
             if(typeof url != 'undefined'){
-              var malObj = entryClass(url, true, true);
-              await malObj.init();
-              var tag = utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+
+              var tag = await utils.timeCache('MALTAG/'+url, async function(){
+                var malObj = entryClass(url, true, true);
+                await malObj.init();
+                return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+              }, 1 * 60 * 60 * 1000);
+
               if(tag){
                 this.related[relatedKey].links[linkKey].statusTag = tag;
               }
