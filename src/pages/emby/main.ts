@@ -40,7 +40,11 @@ export const Emby: pageInterface = {
     isSyncPage: function(url){return true;},
     sync:{
       getTitle: function(url){return item.SeriesName + ((item.ParentIndexNumber > 1) ? ' Season '+item.ParentIndexNumber : '');},
-      getIdentifier: function(url){return item.SeasonId},
+      getIdentifier: function(url){
+        if(typeof item.SeasonId !== 'undefined') return item.SeasonId;
+        if(typeof item.SeriesId !== 'undefined') return item.SeriesId;
+        return item.Id;
+      },
       getOverviewUrl: function(url){return Emby.domain + '/#!/itemdetails.html?id=' + Emby.sync.getIdentifier(url);},
       getEpisode: function(url){return item.IndexNumber},
     },
