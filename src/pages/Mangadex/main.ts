@@ -13,14 +13,14 @@ export const Mangadex: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return j.$('.manga-link').text().trim()},
+      getTitle: function(url){return j.$('.manga-link, a.manga_title').text().trim()},
       getIdentifier: function(url){return utils.urlPart(Mangadex.sync.getOverviewUrl(url), 4);},
-      getOverviewUrl: function(url){return utils.absoluteLink(j.$('a.manga-link').first().attr('href'), Mangadex.domain);},
+      getOverviewUrl: function(url){return utils.absoluteLink(j.$('a.manga-link, a.manga_title').first().attr('href'), Mangadex.domain);},
       getEpisode: function(url){
         var chapterId = url.split('/')[4];
-        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"]');
+        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"], #jump_chapter option[value="'+chapterId+'"]');
         if(curOption.length){
-          var temp = curOption.text().trim().match(/ch\.\D?\d+/i);
+          var temp = curOption.text().trim().match(/(ch\.|chapter)\D?\d+/i);
           if(temp !== null){
             return EpisodePartToEpisode(temp[0]);
           }
@@ -29,9 +29,9 @@ export const Mangadex: pageInterface = {
       },
       getVolume: function(url){
         var chapterId = url.split('/')[4];
-        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"]');
+        var curOption = j.$('#jump-chapter option[value="'+chapterId+'"], #jump_chapter option[value="'+chapterId+'"]');
         if(curOption.length){
-          var temp = curOption.text().trim().match(/vol\.\D?\d+/i);
+          var temp = curOption.text().trim().match(/(vol\.|volume)\D?\d+/i);
           if(temp !== null){
             temp = temp[0].match(/\d+/);
             if(temp !== null){
@@ -98,7 +98,7 @@ function EpisodePartToEpisode(string) {
         return string;
     }
     var temp = [];
-    temp = string.match(/ch\.\D?\d+/i);
+    temp = string.match(/(ch\.|chapter)\D?\d+/i);
     console.log(temp);
     if(temp !== null){
         string = temp[0];
