@@ -14,8 +14,8 @@ before_install:
 install:
   - npm install
 script:
-  - npm run build
   - npm run test
+  - npm run build
 before_deploy:
   - npm run package
   - npm run package:chrome
