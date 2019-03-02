@@ -10,19 +10,19 @@
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
           <input class="mdl-textfield__input" style="padding-right: 18px;" type="number" step="1" id="malOffset" v-model="offset">
           <label class="mdl-textfield__label" for="malOffset">Episode Offset</label>
-          <tooltip direction="left" style="float: right; margin-top: -17px;">
-            Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.
-          </tooltip>
         </div>
+        <tooltip direction="left" style="float: right; margin-bottom: -17px;">
+          Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type " +1 " in the episode offset.
+        </tooltip>
       </div>
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
           <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" v-model="malUrl">
           <label class="mdl-textfield__label" for="malUrlInput" style="color: rgb(63,81,181); font-size: 12px; top: 4px; visibility: visible;">MyAnimeList Url</label>
-          <tooltip direction="left" style="float: right; margin-top: -17px;">
-            Only change this URL if it points to the wrong anime page on MAL.
-          </tooltip>
         </div>
+        <tooltip direction="left" style="float: right; margin-bottom: -17px;">
+          Only change this URL if it points to the wrong anime page on MAL.
+        </tooltip>
       </div>
 
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
@@ -31,11 +31,11 @@
             Correction Search
           </label>
           <input v-model="searchKeyword" class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
-          <tooltip direction="left" style="float: right; margin-top: -17px;">
-            This field is for finding an anime, when you need to correct the "MyAnimeList Url" shown above.<br>
-            To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.
-          </tooltip>
         </div>
+        <tooltip direction="left" style="float: right; margin-bottom: -17px;">
+          This field is for finding an anime, when you need to correct the "MyAnimeList Url" shown above.<br>
+          To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.
+        </tooltip>
       </div>
       <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">
         <div class="malResults" id="malSearchResults"></div>
