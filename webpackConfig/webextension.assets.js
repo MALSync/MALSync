@@ -33,6 +33,11 @@ const generateManifest = () => {
     'version': package.version,
     'description': package.description,
     'author': package['author'],
+    'applications': {
+      'gecko': {
+        'id': '{c84d89d9-a826-4015-957b-affebd9eb603}'
+      }
+    },
     'background': {
       'scripts': [
         'vendor/jquery.min.js',
