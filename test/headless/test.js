@@ -29,6 +29,17 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {
+        url: 'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-125-short-version-digest-758955',
+        expected: {
+          sync: true,
+          title: 'Katana Maidens ~ Toji No Miko',
+          identifier: 'Katana Maidens ~ Toji No Miko',
+          episode: 12,
+          overviewUrl: 'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=Katana Maidens ~ Toji No Miko',
+          nextEpUrl: 'http://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501'
+        }
+      },
     ]
   },
 
