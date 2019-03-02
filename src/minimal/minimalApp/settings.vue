@@ -166,7 +166,7 @@
           <h2 class="mdl-card__title-text">ETC</h2>
         </div>
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">Userscript mode<tooltip direction="bottom">Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.</tooltip></checkbox></span>
-        <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">Strict Cookies</checkbox></span>
+        <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">Strict Cookies<tooltip>This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option</tooltip></checkbox></span>
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
