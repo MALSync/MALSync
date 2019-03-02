@@ -117,7 +117,6 @@ function episodeHelper(url, episodeText){
   var episodePart = utils.urlPart(urlHandling(url), 4);
   try{
     if(/\d+\.\d+/.test(episodeText)){
-      alert(episodeText.match(/\d+\.\d+/)[0]);
       episodePart = 'episode'+episodeText.match(/\d+\.\d+/)[0];
     }
   }catch(e){
