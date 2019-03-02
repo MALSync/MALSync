@@ -23,21 +23,7 @@ export const Crunchyroll: pageInterface = {
       },
       getOverviewUrl: function(url){return urlHandling(url).split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(urlHandling(url));},
       getEpisode: function(url){
-        var episodePart = utils.urlPart(urlHandling(url), 4);
-        var temp = [];
-        temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
-        if(temp !== null){
-          episodePart = temp[0];
-        }else{
-          episodePart = '';
-        }
-        temp = episodePart.match(/\d+/);
-        if(temp === null){
-          episodePart = 1;
-        }else{
-          episodePart = temp[0];
-        }
-        return episodePart;
+        return episodeHelper(url, j.$('h1.ellipsis').text().replace( j.$('h1.ellipsis > a').text(), '').trim());
       },
       nextEpUrl: function(url){return Crunchyroll.domain+j.$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');}
     },
@@ -61,7 +47,7 @@ export const Crunchyroll: pageInterface = {
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);},
         elementEp: function(selector){
           var url = Crunchyroll.overview!.list!.elementUrl(selector);
-          return Crunchyroll.sync.getEpisode(urlHandling(url));
+          return episodeHelper(urlHandling(url), selector.find('.series-title').text().trim());
         },
       }
     },
@@ -125,4 +111,30 @@ function urlHandling(url){
     return url.replace(langslug, '');
   }
 
+}
+
+function episodeHelper(url, episodeText){
+  var episodePart = utils.urlPart(urlHandling(url), 4);
+  try{
+    if(/\d+\.\d+/.test(episodeText)){
+      alert(episodeText.match(/\d+\.\d+/)[0]);
+      episodePart = 'episode'+episodeText.match(/\d+\.\d+/)[0];
+    }
+  }catch(e){
+    con.error(e);
+  }
+  var temp = [];
+  temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
+  if(temp !== null){
+    episodePart = temp[0];
+  }else{
+    episodePart = '';
+  }
+  temp = episodePart.match(/\d+/);
+  if(temp === null){
+    episodePart = 1;
+  }else{
+    episodePart = temp[0];
+  }
+  return episodePart;
 }
