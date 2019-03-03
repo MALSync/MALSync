@@ -21,6 +21,7 @@ async function setBase(key){
 function checkApi(page){
   var videoEl = $('video');
   if(videoEl.length){
+    $('html').addClass('miniMAL-hide');
     var url = videoEl.attr('src');
     con.log(url);
     var apiBase = url!.split('/').splice(0,4).join('/');
@@ -45,6 +46,7 @@ function checkApi(page){
         if(genre.Name === 'Anime'){
           con.info('Anime detected')
           page.handlePage();
+          $('html').removeClass('miniMAL-hide');
           break;
         }
       }
@@ -53,6 +55,7 @@ function checkApi(page){
 }
 
 async function urlChange(page){
+  if(!(window.location.href.indexOf('video') !== -1)) $('html').addClass('miniMAL-hide');
   if(window.location.href.indexOf('id=') !== -1){
     var id = utils.urlParam(window.location.href, 'id');
     var reqUrl = '/Items?ids='+id;
@@ -71,6 +74,7 @@ async function urlChange(page){
               if(genre.Name === 'Anime'){
                 con.info('Anime detected');
                 page.handlePage();
+                $('html').removeClass('miniMAL-hide');
                 break;
               }
             }
