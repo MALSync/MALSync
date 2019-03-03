@@ -55,7 +55,7 @@ function checkApi(page){
 }
 
 async function urlChange(page){
-  if(!(window.location.href.indexOf('video') !== -1)) $('html').addClass('miniMAL-hide');
+  $('html').addClass('miniMAL-hide');
   if(window.location.href.indexOf('id=') !== -1){
     var id = utils.urlParam(window.location.href, 'id');
     var reqUrl = '/Items?ids='+id;
@@ -138,12 +138,16 @@ export const Emby: pageInterface = {
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
         checkApi(page);
       }, () => {
-        return $('video').first().attr('src');
+        var src = $('video').first().attr('src');
+        if(typeof src === 'undefined') return 'NaN';
+        return src;
       });
       utils.urlChangeDetect(function(){
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-        page.UILoaded = false;
-        urlChange(page);
+        if(!(window.location.href.indexOf('video') !== -1)){
+          $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+          page.UILoaded = false;
+          urlChange(page);
+        }
       });
       j.$(document).ready(function(){
         utils.waitUntilTrue(function(){
