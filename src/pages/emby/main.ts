@@ -2,6 +2,22 @@ import {pageInterface} from "./../pageInterface";
 
 var item:any = undefined;
 
+async function getApiKey(){
+  return api.storage.get('emby_Api_Key');
+}
+
+async function setApiKey(key){
+  return api.storage.set('emby_Api_Key', key);
+}
+
+async function getBase(){
+  return api.storage.get('emby_Base');
+}
+
+async function setBase(key){
+  return api.storage.set('emby_Base', key);
+}
+
 function checkApi(page){
   var videoEl = $('video');
   if(videoEl.length){
@@ -13,6 +29,8 @@ function checkApi(page){
     con.log('api', apiBase);
     var reqUrl = apiBase+'/Items?ids='+itemId+'&api_key='+apiKey;
     con.log('Emby Api', reqUrl);
+    setApiKey(apiKey);
+    setBase(apiBase);
     api.request.xhr('GET', reqUrl).then((response) => {
       var data = JSON.parse(response.responseText);
       item = data.Items[0];
@@ -25,12 +43,48 @@ function checkApi(page){
       for (var i = 0; i < genres.Items.length; i++) {
         var genre = genres.Items[i];
         if(genre.Name === 'Anime'){
+          con.info('Anime detected')
           page.handlePage();
           break;
         }
       }
     });
   }
+}
+
+async function urlChange(page){
+  if(window.location.href.indexOf('id=') !== -1){
+    var id = utils.urlParam(window.location.href, 'id');
+    var reqUrl = '/Items?ids='+id;
+    apiCall(reqUrl).then((response) => {
+      var data = JSON.parse(response.responseText);
+      switch(data.Items[0].Type) {
+        case 'Season':
+          con.log('Season', data);
+          break;
+        case 'Series':
+          con.log('Series', data);
+          break;
+        default:
+          con.log('Not recognized', data);
+      }
+
+    });
+  }
+}
+
+//Helper
+async function apiCall(url, apiKey = null, base = null){
+  if(apiKey === null) apiKey = await getApiKey();
+  if(base === null) base = await getBase()
+  if(url.indexOf('?') !== -1){
+    var pre = '&';
+  }else{
+    var pre = '?';
+  }
+  url = base+url+pre+'api_key='+apiKey;
+  con.log('Api Call', url);
+  return api.request.xhr('GET', url);
 }
 
 export const Emby: pageInterface = {
@@ -60,6 +114,7 @@ export const Emby: pageInterface = {
       });
       utils.urlChangeDetect(function(){
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        urlChange(page);
       });
       document.addEventListener("fullscreenchange", function() {
         //@ts-ignore
