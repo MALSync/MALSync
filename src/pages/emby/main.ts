@@ -61,6 +61,20 @@ async function urlChange(page){
       switch(data.Items[0].Type) {
         case 'Season':
           con.log('Season', data);
+          item = data.Items[0];
+          reqUrl = '/Genres?Ids='+item.SeriesId;
+          apiCall(reqUrl).then((response) => {
+            var genres:any = JSON.parse(response.responseText);
+            con.log('genres', genres);
+            for (var i = 0; i < genres.Items.length; i++) {
+              var genre = genres.Items[i];
+              if(genre.Name === 'Anime'){
+                con.info('Anime detected');
+                page.handlePage();
+                break;
+              }
+            }
+          });
           break;
         case 'Series':
           con.log('Series', data);
@@ -91,7 +105,12 @@ export const Emby: pageInterface = {
     name: 'Emby',
     domain: 'http://app.emby.media',
     type: 'anime',
-    isSyncPage: function(url){return true;},
+    isSyncPage: function(url){
+      if(item.Type === 'Episode'){
+        return true;
+      }
+      return false;
+    },
     sync:{
       getTitle: function(url){return item.SeriesName + ((item.ParentIndexNumber > 1) ? ' Season '+item.ParentIndexNumber : '');},
       getIdentifier: function(url){
@@ -101,6 +120,11 @@ export const Emby: pageInterface = {
       },
       getOverviewUrl: function(url){return Emby.domain + '/#!/itemdetails.html?id=' + Emby.sync.getIdentifier(url);},
       getEpisode: function(url){return item.IndexNumber},
+    },
+    overview:{
+      getTitle: function(url){return item.SeriesName + ((item.IndexNumber > 1) ? ' Season '+item.IndexNumber : '');},
+      getIdentifier: function(url){return item.Id;},
+      uiSelector: function(selector){selector.appendTo(j.$(".page:not(.hide) .detailSection").first());},
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
@@ -113,7 +137,8 @@ export const Emby: pageInterface = {
         return $('video').first().attr('src');
       });
       utils.urlChangeDetect(function(){
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+        page.UILoaded = false;
         urlChange(page);
       });
       document.addEventListener("fullscreenchange", function() {
