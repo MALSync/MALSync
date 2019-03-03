@@ -141,6 +141,13 @@ export const Emby: pageInterface = {
         page.UILoaded = false;
         urlChange(page);
       });
+      j.$(document).ready(function(){
+        utils.waitUntilTrue(function(){
+          return j.$('.page').length;
+        }, function(){
+          urlChange(page);
+        });
+      });
       document.addEventListener("fullscreenchange", function() {
         //@ts-ignore
         if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
