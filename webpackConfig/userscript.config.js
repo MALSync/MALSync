@@ -94,8 +94,11 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
       },
       {
         test: /\.less$/,
@@ -110,7 +113,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ]
+    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
   },
   output: {
     filename: 'malsync.user.js',
