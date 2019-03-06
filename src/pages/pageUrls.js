@@ -108,6 +108,12 @@ module.exports = {
       '*://*.anime4you.one/show/1/aid/*',
     ]
   },
+  Branitube: {
+    match: [
+      '*://branitube.org/assistir/*',
+      '*://branitube.org/animes/*'
+    ]
+  },
   Turkanime: {
     match: [
       '*://*.www.turkanime.tv/video/*',

@@ -7,6 +7,7 @@ import {Mangadex} from "./Mangadex/main";
 import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
 import {Anime4you} from "./Anime4you/main";
+import {Branitube} from "./Branitube/main";
 import {Turkanime} from "./Turkanime/main";
 import {Twistmoe} from "./Twistmoe/main";
 
@@ -22,6 +23,7 @@ export const pages = {
     Mangarock: Mangarock,
     Gogoanime: Gogoanime,
     Anime4you: Anime4you,
+    Branitube: Branitube,
     Turkanime: Turkanime,
     Twistmoe: Twistmoe,
 };
