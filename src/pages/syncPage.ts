@@ -52,10 +52,10 @@ export class syncPage{
     return null;
   }
 
-  async handlePage(){
+  async handlePage(curUrl = window.location.href){
     var state: pageState;
     var This = this;
-    this.url = window.location.href;
+    this.url = curUrl;
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){

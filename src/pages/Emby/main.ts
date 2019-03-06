@@ -44,8 +44,9 @@ function checkApi(page){
       for (var i = 0; i < genres.Items.length; i++) {
         var genre = genres.Items[i];
         if(genre.Name === 'Anime'){
-          con.info('Anime detected')
-          page.handlePage();
+          con.info('Anime detected');
+          page.url = window.location.origin+'/#!/itemdetails.html?id='+itemId;
+          page.handlePage(page.url);
           $('html').removeClass('miniMAL-hide');
           break;
         }
@@ -133,7 +134,6 @@ export const Emby: pageInterface = {
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       utils.changeDetect(() => {
-        page.url = window.location.href;
         page.UILoaded = false;
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
         checkApi(page);
