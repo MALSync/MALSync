@@ -10,6 +10,7 @@ import {Anime4you} from "./Anime4you/main";
 import {Branitube} from "./Branitube/main";
 import {Turkanime} from "./Turkanime/main";
 import {Twistmoe} from "./Twistmoe/main";
+import {Emby} from "./Emby/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -26,6 +27,7 @@ export const pages = {
     Branitube: Branitube,
     Turkanime: Turkanime,
     Twistmoe: Twistmoe,
+    Emby,
 };
 
 export const pageSearch:pageSearchObj = {

@@ -124,5 +124,10 @@ module.exports = {
     match: [
       '*://twist.moe/*'
     ]
+  },
+  Emby: {
+    match: [
+      '*://app.emby.media/*'
+    ]
   }
 };
