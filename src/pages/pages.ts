@@ -58,13 +58,6 @@ export const pageSearch:pageSearchObj = {
       googleSearchDomain: '9anime.to/watch',
       searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
     },
-    MasterAnime: {
-      name: 'MasterAnime',
-      type: 'anime',
-      domain: 'www.masterani.me',
-      googleSearchDomain: 'www.masterani.me/anime/info/',
-      searchUrl: (titleEncoded) => {return 'https://www.masterani.me/anime?search='+titleEncoded}
-    },
     Gogoanime: {
       name: 'Gogoanime',
       type: 'anime',
