@@ -18,8 +18,8 @@ async function setBase(key){
   return api.storage.set('Plex_Base', key);
 }
 
-async function urlChange(page){
-  var path = utils.urlParam(window.location.href, 'key')
+async function urlChange(page, curUrl = window.location.href, player = false){
+  var path = utils.urlParam(curUrl, 'key')
   if(!path) return;
   if(!(path.indexOf('metadata') !== -1)) return;
 
@@ -30,7 +30,26 @@ async function urlChange(page){
       con.error(e);
       return;
     }
-    con.log(data);
+
+    if(!/(anime|asian)/i.test(data.MediaContainer.librarySectionTitle)){
+      con.info('!Not an Anime!');
+      return;
+    }
+
+    item = data.MediaContainer.Metadata[0];
+    switch(item.type) {
+      case 'show':
+        con.log('Show', data);
+        break;
+      case 'episode':
+        con.log('Episode', data);
+        if(player){
+          page.handlePage(curUrl);
+        }
+        break;
+      default:
+        con.log('Not recognized', data);
+    }
   });
 }
 
@@ -58,20 +77,20 @@ export const Plex: pageInterface = {
     domain: 'http://app.plex.tv',
     type: 'anime',
     isSyncPage: function(url){
-      if(item.Type === 'Episode'){
+      if(item.type === 'episode'){
         return true;
       }
       return false;
     },
     sync:{
-      getTitle: function(url){return item.SeriesName + ((item.ParentIndexNumber > 1) ? ' Season '+item.ParentIndexNumber : '');},
+      getTitle: function(url){return item.grandparentTitle + ((item.parentIndex > 1) ? ' Season '+item.parentIndex : '');},
       getIdentifier: function(url){
-        if(typeof item.SeasonId !== 'undefined') return item.SeasonId;
-        if(typeof item.SeriesId !== 'undefined') return item.SeriesId;
-        return item.Id;
+        if(typeof item.parentKey !== 'undefined') return item.parentKey;
+        if(typeof item.grandparentKey !== 'undefined') return item.grandparentKey;
+        return item.key;
       },
-      getOverviewUrl: function(url){return Plex.domain + '/#!/itemdetails.html?id=' + Plex.sync.getIdentifier(url);},
-      getEpisode: function(url){return item.IndexNumber},
+      getOverviewUrl: function(url){return Plex.domain + $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"][data-qa-id="metadataTitleLink"]').first().attr('href')!;},
+      getEpisode: function(url){return item.index},
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
@@ -90,6 +109,22 @@ export const Plex: pageInterface = {
 
       utils.urlChangeDetect(function(){
         urlChange(page);
+      });
+
+      utils.changeDetect(() => {
+        page.UILoaded = false;
+        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        var metaUrl = $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').first().attr('href');
+        if(typeof metaUrl === 'undefined') return;
+        urlChange(
+          page,
+          Plex.domain + metaUrl,
+          true
+          );
+      }, () => {
+        var src = $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').first().attr('href');
+        if(typeof src === 'undefined') return 'NaN';
+        return src;
       });
 
       document.addEventListener("fullscreenchange", function() {
