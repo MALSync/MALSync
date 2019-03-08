@@ -102,6 +102,7 @@
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
         </div>
         <checkbox option="floatButtonStealth">Stealth floating menu button</checkbox>
+        <checkbox option="autoCloseMinimal">Clicking outside closes miniMAL</checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             Display to the

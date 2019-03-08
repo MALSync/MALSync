@@ -90,7 +90,7 @@ export function initIframeModal(page){
     j.$('#info-popup').after(floatbutton);
 
     j.$(".open-info-popup").show();
-
+    if(api.settings.get('autoCloseMinimal')) j.$(".modal-kal").css('pointer-events', 'initial')
     document.addEventListener("click", function (e) {
       if (j.$(e.target).hasClass('open-info-popup')) {
         con.log("Open miniMAL");
@@ -108,6 +108,10 @@ export function initIframeModal(page){
             document.getElementById('info-popup')!.style.display = "none";
             j.$('.floatbutton').fadeIn();
         }
+      }
+      if(j.$(e.target).hasClass('modal-kal')){
+        document.getElementById('info-popup')!.style.display = "none";
+        j.$('.floatbutton').fadeIn();
       }
     });
   }
