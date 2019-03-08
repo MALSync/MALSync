@@ -119,7 +119,9 @@ export const Plex: pageInterface = {
       });
 
       utils.urlChangeDetect(function(){
-        urlChange(page);
+        if(!$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length){
+          urlChange(page);
+        }
       });
 
       utils.changeDetect(() => {
