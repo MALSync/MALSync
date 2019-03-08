@@ -40,6 +40,10 @@ async function urlChange(page, curUrl = window.location.href, player = false){
     switch(item.type) {
       case 'show':
         con.log('Show', data);
+        utils.waitUntilTrue(function(){return j.$('[data-qa-id="preplayMainTitle"]').length}, function(){
+          page.UILoaded = false;
+          page.handlePage(curUrl);
+        });
         break;
       case 'episode':
         con.log('Episode', data);
@@ -85,12 +89,17 @@ export const Plex: pageInterface = {
     sync:{
       getTitle: function(url){return item.grandparentTitle + ((item.parentIndex > 1) ? ' Season '+item.parentIndex : '');},
       getIdentifier: function(url){
-        if(typeof item.parentKey !== 'undefined') return item.parentKey;
-        if(typeof item.grandparentKey !== 'undefined') return item.grandparentKey;
-        return item.key;
+        if(typeof item.parentKey !== 'undefined') return item.parentKey.split('/')[3];
+        if(typeof item.grandparentKey !== 'undefined') return item.grandparentKey.split('/')[3];
+        return item.key.split('/')[3];
       },
       getOverviewUrl: function(url){return Plex.domain + $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"][data-qa-id="metadataTitleLink"]').first().attr('href')!;},
       getEpisode: function(url){return item.index},
+    },
+    overview:{
+      getTitle: function(url){return item.title;},
+      getIdentifier: function(url){return item.key.split('/')[3];},
+      uiSelector: function(selector){selector.insertAfter(j.$('[data-qa-id="preplayMainTitle"]').first()); },
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
