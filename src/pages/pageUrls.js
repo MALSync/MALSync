@@ -129,5 +129,10 @@ module.exports = {
     match: [
       '*://app.emby.media/*'
     ]
+  },
+  Plex: {
+    match: [
+      '*://app.plex.tv/*',
+    ]
   }
 };

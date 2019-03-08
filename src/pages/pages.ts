@@ -11,6 +11,7 @@ import {Branitube} from "./Branitube/main";
 import {Turkanime} from "./Turkanime/main";
 import {Twistmoe} from "./Twistmoe/main";
 import {Emby} from "./Emby/main";
+import {Plex} from "./Plex/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -28,6 +29,7 @@ export const pages = {
     Turkanime: Turkanime,
     Twistmoe: Twistmoe,
     Emby,
+    Plex,
 };
 
 export const pageSearch:pageSearchObj = {
