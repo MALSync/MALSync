@@ -124,6 +124,12 @@ export const Plex: pageInterface = {
         }
       });
 
+      j.$(document).ready(function(){
+        if(!$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length){
+          urlChange(page);
+        }
+      });
+
       utils.changeDetect(() => {
         page.UILoaded = false;
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
