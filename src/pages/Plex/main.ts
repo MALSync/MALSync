@@ -19,6 +19,7 @@ async function setBase(key){
 }
 
 async function urlChange(page, curUrl = window.location.href, player = false){
+  $('html').addClass('miniMAL-hide');
   var path = utils.urlParam(curUrl, 'key')
   if(!path) return;
   if(!(path.indexOf('metadata') !== -1)) return;
@@ -44,12 +45,14 @@ async function urlChange(page, curUrl = window.location.href, player = false){
         utils.waitUntilTrue(function(){return j.$('[data-qa-id="preplayMainTitle"]').length}, function(){
           page.UILoaded = false;
           page.handlePage(curUrl);
+          $('html').removeClass('miniMAL-hide');
         });
         break;
       case 'episode':
         con.log('Episode', data);
         if(player){
           page.handlePage(curUrl);
+          $('html').removeClass('miniMAL-hide');
         }
         break;
       default:
