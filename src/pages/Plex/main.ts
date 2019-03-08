@@ -28,6 +28,7 @@ async function urlChange(page, curUrl = window.location.href, player = false){
       var data:any = JSON.parse(response.responseText);
     }catch(e){
       con.error(e);
+      $('html').addClass('noApiKey');
       return;
     }
 
@@ -111,6 +112,7 @@ export const Plex: pageInterface = {
         con.info('Set Api', apiBase, apiKey);
         setApiKey(apiKey);
         setBase(apiBase);
+        $('html').removeClass('noApiKey');
       }, () => {
         var src = $('[download]').length;
         return src;
