@@ -4,9 +4,9 @@
     <slot></slot>
     <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
-      <div v-for="item in items" :key="item.id">
-        <bookmarksItem :item="item" :ref="item.id"/>
-      </div>
+      <template v-for="item in items">
+        <bookmarksItem :item="item" :ref="item.id" :key="item.id"/>
+      </template>
 
       <div v-for="n in 10" class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>
 
