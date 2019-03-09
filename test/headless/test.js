@@ -273,6 +273,34 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Branitube',
+    url: 'https://www.branitube.org/',
+    testCases: [
+      {
+        url: 'https://www.branitube.org/animes/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://www.branitube.org/assistir/no-game-no-life/episodio/005',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://branitube.org/animes/no-game-no-life',
+          nextEpUrl: 'https://branitube.org/assistir/no-game-no-life/episodio/006',
+          episode: 5,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
