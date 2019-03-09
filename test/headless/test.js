@@ -91,34 +91,6 @@ var testsArray = [
   },
 
   {
-    title: 'MasterAnime',
-    url: 'https://www.masterani.me/',
-    testCases: [
-      {
-        url: 'https://www.masterani.me/anime/info/55-no-game-no-life',
-        expected: {
-          sync: false,
-          title: 'no-game-no-life',
-          identifier: '55-no-game-no-life',
-          uiSelector: true,
-        }
-      },
-      {
-        url: 'https://www.masterani.me/anime/watch/55-no-game-no-life/4',
-        expected: {
-          sync: true,
-          title: 'No Game No Life',
-          identifier: '55-no-game-no-life',
-          overviewUrl: 'https://www.masterani.me/anime/info/55-no-game-no-life',
-          nextEpUrl: 'https://www.masterani.me/anime/watch/55-no-game-no-life/5',
-          episode: 4,
-          uiSelector: false,
-        }
-      },
-    ]
-  },
-
-  {
     title: 'Gogoanime',
     url: 'https://www1.gogoanime.io',
     testCases: [
