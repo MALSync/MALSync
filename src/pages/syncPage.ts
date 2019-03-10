@@ -207,13 +207,33 @@ export class syncPage{
                 });
             }*/
           if(typeof This.oldMalObj != "undefined"){
-            message += '<br><button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Undo</button>';
+            message += `
+              <br>
+              <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+                Undo
+              </button>
+              <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+                Wrong?
+              </button>`;
           }
-          utils.flashm(message, {hoverInfo: true, type: 'update'}).find('.undoButton').on('click', function(this){
+          var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
+          flashmItem.find('.undoButton').on('click', function(this){
             this.closest('.flash').remove();
             This.malObj = This.oldMalObj;
             This.oldMalObj = undefined;
             This.syncHandling();
+          });
+          flashmItem.find('.wrongButton').on('click', function(this){
+            This.malObj.wrong = true;
+            if(!This.malObj.miniMAL){
+              var miniButton = j.$('button.open-info-popup');
+              if(miniButton.css('display') != 'none'){
+                miniButton.click();
+              }else{
+                miniButton.click();
+                miniButton.click();
+              }
+            }
           });
         }else{
           utils.flashm(message);
