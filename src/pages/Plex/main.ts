@@ -25,6 +25,11 @@ async function urlChange(page, curUrl = window.location.href, player = false){
   if(!(path.indexOf('metadata') !== -1)) return;
 
   apiCall(decodeURIComponent(path)).then((response) => {
+    if(response.status !== 200){
+      con.error('No Api Key');
+      $("html").addClass("noApiKey");
+      return;
+    }
     try{
       var data:any = JSON.parse(response.responseText);
     }catch(e){
