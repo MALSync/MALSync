@@ -35,7 +35,7 @@ const generateManifest = () => {
     'author': package['author'],
     'applications': {
       'gecko': {
-        'id': '{c84d89d9-a826-4015-957b-affebd9eb603}'
+        'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
       }
     },
     'background': {
