@@ -12,6 +12,7 @@ export var settingsObj = {
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,
+    floatButtonHide: false,
     autoCloseMinimal: false,
     outWay: true,
     miniMalWidth: '500px',

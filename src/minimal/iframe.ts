@@ -66,6 +66,9 @@ export function initIframeModal(page){
       }\
       .floatbutton.stealth .open-info-popup{\
         visibility: hidden;\
+      }\
+      .floatbutton.floatHide{\
+        visibility: hidden !important;\
       }');
 
     //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
@@ -83,6 +86,9 @@ export function initIframeModal(page){
     var additionalClasses = '';
     if(api.settings.get('floatButtonStealth')){
       additionalClasses += 'stealth ';
+    }
+    if(api.settings.get('floatButtonHide')){
+      additionalClasses += 'floatHide ';
     }
 
     var floatbutton = '<button class="open-info-popup floatbutton '+additionalClasses+'" style="">';
