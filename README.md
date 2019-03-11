@@ -4,22 +4,23 @@
 [![Codacy Badge](https://img.shields.io/codacy/grade/e07fabd76b97499788614bf48f8248db.svg?style=flat-square&logo=codacy&logoColor=white)](https://www.codacy.com/app/francisco.seipel/MALSync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lolamtisch/MALSync&amp;utm_campaign=Badge_Grade)
 
 # MAL-Sync
-**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList and multiple anime streaming websites.  
+**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist and multiple anime streaming websites.  
 
-Makes it possible to use your MyAnimeList anime/mangalist as a centralized bookmarks system for all supported pages.  
+Makes it possible to use your MyAnimeList/Anilist anime/mangalist as a centralized bookmarks system for all supported pages.  
 
 #### **Supported Pages** <a id="anchor-link"></a>
 
-| Anime                                    | Manga                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| [![KissAnime](https://www.google.com/s2/favicons?domain=kissanime.ru "KissAnime")](http://kissanime.ru) [kissanime.ru](http://kissanime.ru) | [![KissManga](https://www.google.com/s2/favicons?domain=kissmanga.com "KissManga")](http://kissmanga.com) [kissmanga.com](http://kissmanga.com) |
-| [![9anime](https://www.google.com/s2/favicons?domain=9anime.to "9anime")](http://9anime.to)  [9anime.to](http://9anime.to) | [![mangadex](https://www.google.com/s2/favicons?domain=mangadex.org "mangadex")](https://mangadex.org) [mangadex.org](https://mangadex.org) |
-| [![MasterAni.me](https://www.google.com/s2/favicons?domain=masterani.me "MasterAni.me")](http://masterani.me)  [masterani.me](http://masterani.me) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) |
-| [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) |                                          |
-| [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) |                                          |
-| [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) |                                          |
-| [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) |                                          |
-| [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) |                                          |
+| Anime                                    | Manga                                    | Media Server                             |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [![KissAnime](https://www.google.com/s2/favicons?domain=kissanime.ru "KissAnime")](http://kissanime.ru) [kissanime.ru](http://kissanime.ru) | [![KissManga](https://www.google.com/s2/favicons?domain=kissmanga.com "KissManga")](http://kissmanga.com) [kissmanga.com](http://kissmanga.com) | [![Emby](https://www.google.com/s2/favicons?domain=app.emby.media "Emby")](http://app.emby.media) [Emby](http://app.emby.media) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
+| [![9anime](https://www.google.com/s2/favicons?domain=9anime.to "9anime")](http://9anime.to)  [9anime.to](http://9anime.to) | [![mangadex](https://www.google.com/s2/favicons?domain=mangadex.org "mangadex")](https://mangadex.org) [mangadex.org](https://mangadex.org) | [![Plex](https://www.google.com/s2/favicons?domain=http://app.plex.tv "Plex")](http://app.plex.tv) [Plex](http://app.plex.tv) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
+| [![MasterAni.me](https://www.google.com/s2/favicons?domain=masterani.me "MasterAni.me")](http://masterani.me)  [masterani.me](http://masterani.me) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) | |
+| [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) | | |
+| [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) | | |
+| [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) | | |
+| [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) | | |
+| [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) | | |
+| [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
