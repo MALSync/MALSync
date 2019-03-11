@@ -12,6 +12,7 @@ import {Turkanime} from "./Turkanime/main";
 import {Twistmoe} from "./Twistmoe/main";
 import {Emby} from "./Emby/main";
 import {Plex} from "./Plex/main";
+import {Netflix} from "./Netflix/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -30,6 +31,7 @@ export const pages = {
     Twistmoe: Twistmoe,
     Emby,
     Plex,
+    Netflix,
 };
 
 export const pageSearch:pageSearchObj = {

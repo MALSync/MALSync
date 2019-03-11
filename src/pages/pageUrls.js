@@ -134,5 +134,10 @@ module.exports = {
     match: [
       '*://app.plex.tv/*',
     ]
+  },
+  Netflix: {
+    match: [
+      '*://www.netflix.com/*'
+    ]
   }
 };
