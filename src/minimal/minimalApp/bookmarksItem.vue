@@ -22,7 +22,7 @@
           <div class="auxbar bar bar3" style="width: 0%;"></div>
         </div>
         <div class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100" style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;">
-          <div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;">{{item.watchedEp}}</div>
+          <div class="link mdl-chip__contact mdl-color--primary mdl-color-text--white" style="line-height: 20px; height: 20px; margin-right: 0;" :title="'['+item.watchedEp+'/'+item.totalEp+']'">{{item.watchedEp}}</div>
           <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
             <img :src="favicon(streamUrl.split('/')[2])">
           </a>
