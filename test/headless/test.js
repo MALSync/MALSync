@@ -301,6 +301,34 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Otakustream',
+    url: 'https://otakustream.tv',
+    testCases: [
+      {
+        url: 'https://otakustream.tv/anime/no-game-no-life/',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://otakustream.tv/anime/no-game-no-life/episode-10/',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://otakustream.tv/anime/no-game-no-life',
+          nextEpUrl: 'https://otakustream.tv/anime/no-game-no-life/episode-11/',
+          episode: 10,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
