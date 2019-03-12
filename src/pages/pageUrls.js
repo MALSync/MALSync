@@ -110,8 +110,8 @@ module.exports = {
   },
   Branitube: {
     match: [
-      '*://branitube.org/assistir/*',
-      '*://branitube.org/animes/*'
+      '*://*.branitube.org/assistir/*',
+      '*://*.branitube.org/animes/*'
     ]
   },
   Turkanime: {
