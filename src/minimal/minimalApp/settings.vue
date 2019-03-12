@@ -3,7 +3,7 @@
     <div class="mdl-grid">
       <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;"></div>
 
-      <correction v-if="page && page.malObj" :page="page"></correction>
+      <correction v-if="page && page.UILoaded" :page="page"></correction>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
