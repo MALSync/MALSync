@@ -139,5 +139,10 @@ module.exports = {
     match: [
       '*://www.netflix.com/*'
     ]
+  },
+  Otakustream: {
+    match: [
+      '*://otakustream.tv/anime/*'
+    ]
   }
 };
