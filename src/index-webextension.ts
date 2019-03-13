@@ -37,6 +37,8 @@ function messagePageListener(page){
     }
     if(msg.action == 'videoTime'){
       con.log('videoTime', msg.item);
+      var progress = msg.item.current / msg.item.duration * 100
+      j.$('#testProgressMalSync').css('width', progress+'%');
     }
   });
 }
@@ -63,3 +65,12 @@ function messageAniListListener(anilist){
     }
   });
 }
+
+//TestingProgressBar
+j.$(document).ready(function(){
+  j.$('body').after(`
+    <div class="testingProgress" style="background-color: red; position: fixed; bottom: 0; left: 0; right: 0; height: 3px;">
+      <div id="testProgressMalSync" style="background-color: green; width: 0%; height: 100%;"></div>
+    </div>
+  `)
+});
