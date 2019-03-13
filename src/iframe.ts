@@ -11,6 +11,7 @@ setInterval(function(){
         duration
       }
       con.info(window.location.href, item);
+      chrome.runtime.sendMessage({name: "videoTime", item: item});
       break;
     }
 

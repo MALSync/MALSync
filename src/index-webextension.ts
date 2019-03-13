@@ -35,6 +35,9 @@ function messagePageListener(page){
       con.log('TabMalUrl Message', page.malObj.url);
       sendResponse(page.malObj.url);
     }
+    if(msg.action == 'videoTime'){
+      con.log('videoTime', msg.item);
+    }
   });
 }
 

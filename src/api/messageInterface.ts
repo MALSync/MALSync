@@ -9,6 +9,17 @@ export interface xhrResponseI {
     status: number
 }
 
-export type sendMessageI = xhrI | {name: 'iframeDone', id: string, epList: any};
+export interface videoTime {
+    name: "videoTime",
+    item: { current:number, duration:number}
+}
+
+export interface iframeDone {
+    name: 'iframeDone',
+    id: string,
+    epList: any
+}
+
+export type sendMessageI = xhrI | iframeDone | videoTime;
 
 export type responseMessageI = xhrResponseI;
