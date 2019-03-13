@@ -4,7 +4,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/index-webextension.ts')
+    'content-script': path.join(__dirname, '..', 'src/index-webextension.ts'),
+    iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   },
   module: {
     rules: [
@@ -37,7 +38,7 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    filename: 'content-script.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '..', 'dist', 'webextension')
   },
   plugins: [
