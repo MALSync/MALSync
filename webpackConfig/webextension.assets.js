@@ -1,5 +1,6 @@
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
+const playerUrls = require('../src/pages/playerUrls');
 
 const path = require('path');
 const extra = require('fs-extra');
@@ -8,11 +9,11 @@ const mkdirp = require('mkdirp');
 const download = require('download-file');
 const resourcesJson = require('./resources');
 
-const generateMatchExcludes = () => {
+const generateMatchExcludes = (urls) => {
   var match = [];
   var exclude = [];
-  for (var key in pageUrls) {
-    var el = pageUrls[key];
+  for (var key in urls) {
+    var el = urls[key];
     if(typeof el.match !== "undefined") match = match.concat(el.match);
     if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
   }
@@ -50,8 +51,8 @@ const generateManifest = () => {
     },
     'content_scripts': [
       {
-        'matches': generateMatchExcludes().match,
-        'exclude_globs': generateMatchExcludes().exclude.concat(['*mal-sync-background=*']),
+        'matches': generateMatchExcludes(pageUrls).match,
+        'exclude_globs': generateMatchExcludes(pageUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'
@@ -59,10 +60,18 @@ const generateManifest = () => {
         "run_at": "document_start"
       },
       {
-        'matches': backgroundMatch(generateMatchExcludes().match),
+        'matches': backgroundMatch(generateMatchExcludes(pageUrls).match),
         'js': [
           'vendor/jquery.min.js',
           'update-check.js'
+        ],
+        "all_frames": true,
+        "run_at": "document_start"
+      },
+      {
+        'matches': generateMatchExcludes(playerUrls).match,
+        'js': [
+          'iframe.js',
         ],
         "all_frames": true,
         "run_at": "document_start"
