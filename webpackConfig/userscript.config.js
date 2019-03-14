@@ -3,15 +3,16 @@ const webpack = require("webpack");
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
+const playerUrls = require('../src/pages/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const generateMatchExcludes = () => {
+const generateMatchExcludes = (urls) => {
   var match = [];
   var exclude = [];
-  for (var key in pageUrls) {
-    var el = pageUrls[key];
+  for (var key in urls) {
+    var el = urls[key];
     if(typeof el.match !== "undefined") match = match.concat(el.match);
     if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
   }
@@ -50,8 +51,8 @@ const metadata = {
     'GM.setValue'
   ],
   'noframes': '',
-  'match' : generateMatchExcludes().match,
-  'exclude' : generateMatchExcludes().exclude,
+  'match' : generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
+  'exclude' : generateMatchExcludes(pageUrls).exclude,
   'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
   'resource' : generateResources(),
   'run-at': 'document_start',
