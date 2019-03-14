@@ -2,7 +2,6 @@ import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {anilistClass} from "./anilist/anilistClass";
 import {firebaseNotification} from "./utils/firebaseNotification";
-import {getPlayerTime} from "./utils/player";
 
 function main() {
   if(api.settings.get('userscriptMode')) return;
@@ -37,25 +36,9 @@ function messagePageListener(page){
       sendResponse(page.malObj.url);
     }
     if(msg.action == 'videoTime'){
-      setVideoTime(msg.item);
+      page.setVideoTime(msg.item);
     }
   });
-}
-
-getPlayerTime(function(item){
-  setVideoTime(item);
-});
-
-function setVideoTime(item){
-  var syncDuration = 50;
-  var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
-  if(progress < 100){
-    j.$('.ms-progress').css('width', progress+'%');
-    j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-  }else{
-    j.$('#malSyncProgress').addClass('ms-done');
-  }
-
 }
 
 function messageMalListener(mal){

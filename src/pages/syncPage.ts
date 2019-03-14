@@ -3,6 +3,7 @@ import {pageInterface, pageState} from "./pageInterface";
 import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
+import {getPlayerTime} from "./../utils/player";
 
 export class syncPage{
   page: pageInterface;
@@ -52,6 +53,17 @@ export class syncPage{
     return null;
   }
 
+  public setVideoTime(item){
+    var syncDuration = 50;
+    var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
+    if(progress < 100){
+      j.$('.ms-progress').css('width', progress+'%');
+      j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+    }else{
+      j.$('#malSyncProgress').addClass('ms-done');
+    }
+  }
+
   async handlePage(curUrl = window.location.href){
     var state: pageState;
     var This = this;
@@ -67,6 +79,11 @@ export class syncPage{
       state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
       if (typeof(this.page.sync.getVolume) != "undefined"){
         state.volume = this.page.sync.getVolume(this.url)
+      }
+      if(this.page.type == 'anime'){alert('a');
+        getPlayerTime((item) => {
+          this.setVideoTime(item);
+        });
       }
       con.log('Sync', state);
     }else{
