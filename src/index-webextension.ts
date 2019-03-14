@@ -47,9 +47,15 @@ getPlayerTime(function(item){
 });
 
 function setVideoTime(item){
-  var progress = item.current / item.duration * 100;
-  j.$('#testProgressMalSync').css('width', progress+'%');
-  j.$('#malSyncProgress').removeClass('ms-loading');
+  var syncDuration = 50;
+  var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
+  if(progress < 100){
+    j.$('.ms-progress').css('width', progress+'%');
+    j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+  }else{
+    j.$('#malSyncProgress').addClass('ms-done');
+  }
+
 }
 
 function messageMalListener(mal){
