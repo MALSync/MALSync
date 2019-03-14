@@ -101,7 +101,7 @@ const generateManifest = () => {
       "cookies",
       "webRequest",
       "webRequestBlocking"
-    ].concat(generateMatchExcludes().match),
+    ].concat(generateMatchExcludes(pageUrls).match),
   }, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
