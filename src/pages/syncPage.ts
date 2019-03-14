@@ -121,7 +121,7 @@ export class syncPage{
               var epis = 'chapter: <b>'+state.episode+'</b>';
             }
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
-            var options = {hoverInfo: true, error: true, type: 'update'}
+            var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(1 == 1){
               message = `
