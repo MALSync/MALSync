@@ -20,6 +20,14 @@ function main() {
       return;
     }
     page.init();
+    api.storage.set("iframePlayer", 'null');
+    setInterval(async function(){
+      var item = await api.storage.get("iframePlayer");
+      if(typeof item != 'undefined' && item != 'null'){
+        page.setVideoTime(item);
+        api.storage.set("iframePlayer", 'null');
+      }
+    }, 2000);
   }
   firebaseNotification();
 }
@@ -42,16 +50,7 @@ async function scheduler(){
 }
 
 function iframe(){
-
-
   getPlayerTime(function(item){
-    con.log(item);
-    var isInIframe = (parent !== window), parentUrl = null;
-
-        if (isInIframe) {
-          //@ts-ignore
-            parentUrl = document.referrer;
-        }
-        alert(parentUrl);
+    api.storage.set("iframePlayer", item);
   });
 }
