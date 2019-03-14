@@ -2,6 +2,7 @@ import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {anilistClass} from "./anilist/anilistClass";
 import {firebaseNotification} from "./utils/firebaseNotification";
+import {getPlayerTime} from "./utils/player";
 
 function main() {
   if(api.settings.get('userscriptMode')) return;
@@ -36,12 +37,19 @@ function messagePageListener(page){
       sendResponse(page.malObj.url);
     }
     if(msg.action == 'videoTime'){
-      con.log('videoTime', msg.item);
-      var progress = msg.item.current / msg.item.duration * 100
-      j.$('#testProgressMalSync').css('width', progress+'%');
-      j.$('.testingProgress').css('background-color', 'orange');
+      setVideoTime(msg.item);
     }
   });
+}
+
+getPlayerTime(function(item){
+  setVideoTime(item);
+});
+
+function setVideoTime(item){
+  var progress = item.current / item.duration * 100;
+  j.$('#testProgressMalSync').css('width', progress+'%');
+  j.$('#malSyncProgress').removeClass('ms-loading');
 }
 
 function messageMalListener(mal){
@@ -70,8 +78,8 @@ function messageAniListListener(anilist){
 //TestingProgressBar
 j.$(document).ready(function(){
   j.$('body').after(`
-    <div class="testingProgress" style="background-color: red; position: fixed; bottom: 0; left: 0; right: 0; height: 3px;">
-      <div id="testProgressMalSync" style="background-color: green; width: 0%; height: 100%; transition: width 1s;"></div>
+    <div id="malSyncProgress" class="ms-loading" style="background-color: #ddd; position: fixed; bottom: 0; left: 0; right: 0; height: 4px;">
+      <div id="testProgressMalSync" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
     </div>
   `)
 });
