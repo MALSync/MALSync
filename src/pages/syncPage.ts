@@ -132,7 +132,7 @@ export class syncPage{
         if(await this.handleAnimeUpdate(state)){
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
-          if(api.settings.get('autoTracking')){
+          if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
             setTimeout(()=>{
               sync();
             }, api.settings.get('delay') * 1000);
@@ -145,7 +145,7 @@ export class syncPage{
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
-            if(1 == 1 && this.page.type == 'anime'){
+            if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
