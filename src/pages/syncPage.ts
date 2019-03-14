@@ -56,7 +56,7 @@ export class syncPage{
   private syncFn = function(){}
 
   public setVideoTime(item){
-    var syncDuration = 85;
+    var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
     if(progress < 100){
       j.$('.ms-progress').css('width', progress+'%');

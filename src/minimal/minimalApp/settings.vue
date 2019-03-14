@@ -51,7 +51,13 @@
             <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
           </span>
         </li>
-        <li class="mdl-list__item" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">
+        <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+                <input class="mdl-textfield__input" type="number" step="1" min="10" max="99" id="videoDuration" :value="options.videoDuration">
+            <label class="mdl-textfield__label" for="videoDuration">Video progress update (%)</label>
+            </div>
+        </li>
+        <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
                 <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay">
             <label class="mdl-textfield__label" for="malDelay">Instant autotracking delay (Seconds)</label>

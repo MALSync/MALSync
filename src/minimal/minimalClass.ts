@@ -189,6 +189,19 @@ export class minimal{
         }
     });
 
+    this.minimal.find("#videoDuration").on("input", function(){
+        var tempDelay = This.minimal.find("#videoDuration").val();
+        if(tempDelay !== null){
+            if(tempDelay !== ''){
+                api.settings.set( 'videoDuration', tempDelay );
+                utils.flashm( ""+tempDelay+"% set." );
+            }else{
+                api.settings.set( 'videoDuration', 85 );
+                utils.flashm( "Delay reset" );
+            }
+        }
+    });
+
     if(api.type == 'webextension'){
       this.minimal.find('.option-extension').show();
     }
