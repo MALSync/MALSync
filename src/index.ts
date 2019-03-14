@@ -3,6 +3,7 @@ import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {anilistClass} from "./anilist/anilistClass";
 import {scheduleUpdate} from "./utils/scheduler";
 import {firebaseNotification} from "./utils/firebaseNotification";
+import {getPlayerTime} from "./utils/player";
 
 function main() {
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
@@ -11,7 +12,13 @@ function main() {
   }else if(window.location.href.indexOf("anilist.co") > -1 ){
     var anilist = new anilistClass(window.location.href);
   }else{
-    var page = new syncPage(window.location.href);
+    try{
+      var page = new syncPage(window.location.href);
+    }catch(e){
+      con.info(e);
+      iframe();
+      return;
+    }
     page.init();
   }
   firebaseNotification();
@@ -32,4 +39,19 @@ async function scheduler(){
     await scheduleUpdate();
     api.storage.set('timestampUpdate/release', j.$.now());
   }
+}
+
+function iframe(){
+
+
+  getPlayerTime(function(item){
+    con.log(item);
+    var isInIframe = (parent !== window), parentUrl = null;
+
+        if (isInIframe) {
+          //@ts-ignore
+            parentUrl = document.referrer;
+        }
+        alert(parentUrl);
+  });
 }

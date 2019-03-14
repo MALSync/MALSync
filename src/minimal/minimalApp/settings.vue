@@ -54,7 +54,7 @@
         <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
                 <input class="mdl-textfield__input" type="number" step="1" min="10" max="99" id="videoDuration" :value="options.videoDuration">
-            <label class="mdl-textfield__label" for="videoDuration">Video progress update (%)</label>
+            <label class="mdl-textfield__label" for="videoDuration">Update on {{options.videoDuration}}% of video progress</label>
             </div>
         </li>
         <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">

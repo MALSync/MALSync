@@ -193,11 +193,11 @@ export class minimal{
         var tempDelay = This.minimal.find("#videoDuration").val();
         if(tempDelay !== null){
             if(tempDelay !== ''){
+              if( tempDelay > 9 &&  tempDelay < 100){
                 api.settings.set( 'videoDuration', tempDelay );
-                utils.flashm( ""+tempDelay+"% set." );
+              }
             }else{
-                api.settings.set( 'videoDuration', 85 );
-                utils.flashm( "Delay reset" );
+                //api.settings.set( 'videoDuration', 85 );
             }
         }
     });

@@ -50,7 +50,6 @@ const metadata = {
     'GM.getValue',
     'GM.setValue'
   ],
-  'noframes': '',
   'match' : generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
   'exclude' : generateMatchExcludes(pageUrls).exclude,
   'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
