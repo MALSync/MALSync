@@ -535,7 +535,7 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
 
     if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
       messClass += " flashinfo";
-      mess = '<div class="'+messClass+'" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; "><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>';
+      mess = '<div class="'+messClass+'" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>';
       j.$('#flashinfo-div').addClass('hover');
       var flashm = j.$(mess).appendTo('#flashinfo-div')
       if(typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized) flashm.css('max-height', '8px');

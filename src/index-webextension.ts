@@ -74,12 +74,3 @@ function messageAniListListener(anilist){
     }
   });
 }
-
-//TestingProgressBar
-j.$(document).ready(function(){
-  j.$('body').after(`
-    <div id="malSyncProgress" class="ms-loading" style="background-color: #ddd; position: fixed; bottom: 0; left: 0; right: 0; height: 4px;">
-      <div id="testProgressMalSync" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
-    </div>
-  `)
-});

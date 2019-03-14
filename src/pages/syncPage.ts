@@ -121,7 +121,18 @@ export class syncPage{
               var epis = 'chapter: <b>'+state.episode+'</b>';
             }
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
-            utils.flashm( message , {hoverInfo: true, error: true, type: 'update'}).find('.sync').on('click', function(){
+            var options = {hoverInfo: true, error: true, type: 'update'}
+
+            if(1 == 1){
+              message = `
+                <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
+                  <div id="testProgressMalSync" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
+                </div>
+              `+message;
+              options = {hoverInfo: true, error: false, type: 'update', minimized: true}
+            }
+
+            utils.flashm( message , options).find('.sync').on('click', function(){
               j.$('.flashinfo').remove();
               sync();
             });
