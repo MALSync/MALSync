@@ -9,12 +9,6 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">General</h2>
         </div>
-        <checkbox option="autoTracking">
-          Autotracking
-          <tooltip direction="bottom">
-            Autotracking is the function where this script automatically updates the anime`s you watch with your MAL account.
-          </tooltip>
-        </checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             Mode
@@ -26,6 +20,29 @@
             </select>
           </span>
         </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Anime sync
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="autoTrackingModeanime" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="video">Video</option>
+              <option value="instant">Instant</option>
+              <option value="manual">Manual</option>
+            </select>
+          </span>
+        </li>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Manga sync
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="autoTrackingModemanga" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="instant">Instant</option>
+              <option value="manual">Manual</option>
+            </select>
+          </span>
+        </li>
         <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
           <span class="mdl-list__item-primary-content">
             AniList
@@ -34,10 +51,10 @@
             <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
           </span>
         </li>
-        <li class="mdl-list__item" v-show="options.autoTracking">
+        <li class="mdl-list__item" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
                 <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay">
-            <label class="mdl-textfield__label" for="malDelay">Autotracking delay (Seconds)</label>
+            <label class="mdl-textfield__label" for="malDelay">Instant autotracking delay (Seconds)</label>
             </div>
         </li>
       </div>

@@ -1,6 +1,7 @@
 export var settingsObj = {
   options: {
-    autoTracking: true,
+    autoTrackingModeanime: 'video',
+    autoTrackingModemanga: 'instant',
     userscriptMode: false,
     syncMode: 'MAL',
     delay: 0,

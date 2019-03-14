@@ -114,6 +114,18 @@ export class minimal{
       j.$('#modal-content').css('right', 'auto').css('left', 'auto').css(j.$(this).val(), '0');
     });
 
+    this.minimal.find("#autoTrackingModeanime").val(api.settings.get('autoTrackingModeanime'));
+    this.minimal.find("#autoTrackingModeanime").change(function(){
+      // @ts-ignore
+      api.settings.set('autoTrackingModeanime', j.$(this).val());
+    });
+
+    this.minimal.find("#autoTrackingModemanga").val(api.settings.get('autoTrackingModemanga'));
+    this.minimal.find("#autoTrackingModemanga").change(function(){
+      // @ts-ignore
+      api.settings.set('autoTrackingModemanga', j.$(this).val());
+    });
+
     this.minimal.find("#miniMalWidth").on("input", function(){
         var miniMalWidth = This.minimal.find("#miniMalWidth").val();
         if(miniMalWidth !== null){
