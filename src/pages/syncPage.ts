@@ -53,14 +53,18 @@ export class syncPage{
     return null;
   }
 
+  private syncFn = function(){}
+
   public setVideoTime(item){
-    var syncDuration = 50;
+    var syncDuration = 85;
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
     if(progress < 100){
       j.$('.ms-progress').css('width', progress+'%');
       j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
     }else{
       j.$('#malSyncProgress').addClass('ms-done');
+      this.syncFn();
+      this.syncFn = function(){};
     }
   }
 
@@ -68,6 +72,7 @@ export class syncPage{
     var state: pageState;
     var This = this;
     this.url = curUrl;
+    this.syncFn = function(){};
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){
@@ -80,7 +85,7 @@ export class syncPage{
       if (typeof(this.page.sync.getVolume) != "undefined"){
         state.volume = this.page.sync.getVolume(this.url)
       }
-      if(this.page.type == 'anime'){alert('a');
+      if(this.page.type == 'anime'){
         getPlayerTime((item) => {
           this.setVideoTime(item);
         });
@@ -140,13 +145,14 @@ export class syncPage{
             var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
-            if(1 == 1){
+            if(1 == 1 && this.page.type == 'anime'){
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
                 </div>
               `+message;
               options = {hoverInfo: true, error: false, type: 'update', minimized: true}
+              this.syncFn = sync;
             }
 
             utils.flashm( message , options).find('.sync').on('click', function(){
