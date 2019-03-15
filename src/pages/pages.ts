@@ -37,25 +37,17 @@ export const pages = {
 };
 
 export const pageSearch:pageSearchObj = {
-    Kissanime: {
-      name: 'Kissanime',
-      type: 'anime',
-      domain: 'kissanime.ru',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="http://kissanime.ru/Search/Anime" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
-    },
-    Kissmanga: {
-      name: 'Kissmanga',
-      type: 'manga',
-      domain: 'kissmanga.com',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="http://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
-    },
     Crunchyroll: {
       name: 'Crunchyroll',
       type: 'anime',
       domain: 'www.crunchyroll.com',
       searchUrl: (titleEncoded) => {return 'http://www.crunchyroll.com/search?q='+titleEncoded}
+    },
+    Netflix: {
+      name: 'Netflix',
+      type: 'anime',
+      domain: 'www.netflix.com',
+      searchUrl: (titleEncoded) => {return 'https://www.netflix.com/search?q='+titleEncoded}
     },
     nineAnime: {
       name: '9Anime',
@@ -63,6 +55,19 @@ export const pageSearch:pageSearchObj = {
       domain: '9anime.to',
       googleSearchDomain: '9anime.to/watch',
       searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
+    },
+    Otakustream: {
+      name: 'Otakustream',
+      type: 'anime',
+      domain: 'otakustream.tv',
+      searchUrl: (titleEncoded) => {return 'https://otakustream.tv/?s='+titleEncoded},
+    },
+    Kissanime: {
+      name: 'Kissanime',
+      type: 'anime',
+      domain: 'kissanime.ru',
+      searchUrl: (titleEncoded) => {return ''},
+      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissanime.ru/Search/Anime" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
     },
     Gogoanime: {
       name: 'Gogoanime',
@@ -88,6 +93,13 @@ export const pageSearch:pageSearchObj = {
       type: 'manga',
       domain: 'mangarock.com',
       searchUrl: (titleEncoded) => {return 'https://mangarock.com/search?q='+titleEncoded}
+    },
+    Kissmanga: {
+      name: 'Kissmanga',
+      type: 'manga',
+      domain: 'kissmanga.com',
+      searchUrl: (titleEncoded) => {return ''},
+      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
     },
     AniList: {
       name: 'AniList',
