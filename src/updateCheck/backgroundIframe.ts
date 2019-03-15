@@ -87,7 +87,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
     if(typeof streamUrl != 'undefined'){
       var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
       con.log('cached', elCache);
-      if(typeof elCache != 'undefined' && elCache.finished){
+      if((typeof elCache != 'undefined' && elCache.finished) || !isSupported(streamUrl)){
         resolve()
         return;
       }
@@ -230,4 +230,11 @@ function setBadgeText(text:string){
   }catch(e){
     con.error(e);
   }
+}
+
+function isSupported(url:string){
+  if( url.indexOf('netflix.') > -1 ) return false;
+  if( url.indexOf('emby.') > -1 ) return false;
+  if( url.indexOf('plex.') > -1 ) return false;
+  return true;
 }
