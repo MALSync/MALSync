@@ -53,8 +53,6 @@ export class syncPage{
     return null;
   }
 
-  private syncFn = function(){}
-
   public setVideoTime(item){
     var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
@@ -63,8 +61,7 @@ export class syncPage{
       j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
     }else{
       j.$('#malSyncProgress').addClass('ms-done');
-      this.syncFn();
-      this.syncFn = function(){};
+      j.$('.flash .sync').click();
     }
   }
 
@@ -72,7 +69,6 @@ export class syncPage{
     var state: pageState;
     var This = this;
     this.url = curUrl;
-    this.syncFn = function(){};
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){
@@ -152,7 +148,6 @@ export class syncPage{
                 </div>
               `+message;
               options = {hoverInfo: true, error: false, type: 'update', minimized: true}
-              this.syncFn = sync;
             }
 
             utils.flashm( message , options).find('.sync').on('click', function(){
