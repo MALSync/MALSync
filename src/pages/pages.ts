@@ -14,6 +14,7 @@ import {Emby} from "./Emby/main";
 import {Plex} from "./Plex/main";
 import {Netflix} from "./Netflix/main";
 import {Otakustream} from "./Otakustream/main";
+import {animepahe} from "./animepahe/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -34,6 +35,7 @@ export const pages = {
     Plex,
     Netflix,
     Otakustream,
+    animepahe,
 };
 
 export const pageSearch:pageSearchObj = {
