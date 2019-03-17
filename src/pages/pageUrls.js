@@ -144,5 +144,11 @@ module.exports = {
     match: [
       '*://otakustream.tv/anime/*'
     ]
-  }
+  },
+  animepahe: {
+    match: [
+      '*://animepahe.com/play/*',
+      '*://animepahe.com/anime/*'
+    ]
+  },
 };

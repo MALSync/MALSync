@@ -111,4 +111,9 @@ module.exports = {
       '*://*.vidlox.me/*',
     ]
   },
+  kwik: {
+    match: [
+      '*://*.kwik.cx/*',
+    ]
+  },
 };
