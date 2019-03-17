@@ -17,6 +17,7 @@ var testsArray = [
           uiSelector: true,
         }
       },
+
       {
         url: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-3-untitled-658389',
         expected: {
@@ -325,6 +326,34 @@ var testsArray = [
           nextEpUrl: 'https://otakustream.tv/anime/no-game-no-life/episode-11/',
           episode: 10,
           uiSelector: false,
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Animepahe',
+    url: 'https://animepahe.com',
+    testCases: [
+      {
+        url: 'https://animepahe.com/anime/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://animepahe.com/anime/no-game-no-life/52832',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://animepahe.com/anime/no-game-no-life',
+          nextEpUrl: 'https://animepahe.com/anime/no-game-no-life/52834',
+          episode: 8,
+          uiSelector: true,
         }
       },
     ]
