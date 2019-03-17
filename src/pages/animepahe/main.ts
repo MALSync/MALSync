@@ -1,3 +1,4 @@
+/*By Deterio*/
 import { pageInterface } from "./../pageInterface";
 
 export const animepahe: pageInterface = {
