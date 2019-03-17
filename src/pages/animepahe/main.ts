@@ -25,7 +25,7 @@ export const animepahe: pageInterface = {
     uiSelector: function(selector){selector.insertAfter(j.$(".anime-season"));},
   },
   overview:{
-    getTitle: function(url){return j.$('.title-wrapper h1').first().text();},
+    getTitle: function(url){return utils.getBaseText(j.$('.title-wrapper h1').first()).trim();},
     getIdentifier: function(url){return utils.urlPart(url, 4);},
     uiSelector: function(selector){
       selector.insertAfter(j.$( ".anime-detail"));

@@ -19,6 +19,15 @@ export function urlParam(url, name){
   }
 }
 
+export function getBaseText(element){
+  var text = element.text();
+  element.children().each(function(){
+    //@ts-ignore
+    text = text.replace(j.$(this).text(),'');
+  })
+  return text;
+}
+
 export function favicon(domain){
   if(domain.indexOf('animeheaven') !== -1) return 'http://animeheaven.eu/favicon.ico';
   return 'https://www.google.com/s2/favicons?domain='+domain;
