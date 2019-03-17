@@ -147,7 +147,8 @@ module.exports = {
   },
   animepahe: {
     match: [
-      '*://animepahe.com/play/*'
+      '*://animepahe.com/play/*',
+      '*://animepahe.com/anime/*'
     ]
   },
 };
