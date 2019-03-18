@@ -9,6 +9,13 @@ const mkdirp = require('mkdirp');
 const download = require('download-file');
 const resourcesJson = require('./resources');
 
+var malUrls = {myanimelist: pageUrls.myanimelist};
+var aniUrls = {anilist: pageUrls.anilist};
+
+var contentUrls = pageUrls;
+delete contentUrls.anilist;
+delete contentUrls.myanimelist;
+
 const generateMatchExcludes = (urls) => {
   var match = [];
   var exclude = [];
@@ -51,11 +58,29 @@ const generateManifest = () => {
     },
     'content_scripts': [
       {
-        'matches': generateMatchExcludes(pageUrls).match,
-        'exclude_globs': generateMatchExcludes(pageUrls).exclude.concat(['*mal-sync-background=*']),
+        'matches': generateMatchExcludes(contentUrls).match,
+        'exclude_globs': generateMatchExcludes(contentUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
           'content-script.js'
+        ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': generateMatchExcludes(malUrls).match,
+        'exclude_globs': generateMatchExcludes(malUrls).exclude.concat(['*mal-sync-background=*']),
+        'js': [
+          'vendor/jquery.min.js',
+          'mal-script.js'
+        ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': generateMatchExcludes(aniUrls).match,
+        'exclude_globs': generateMatchExcludes(aniUrls).exclude.concat(['*mal-sync-background=*']),
+        'js': [
+          'vendor/jquery.min.js',
+          'anilist-script.js'
         ],
         "run_at": "document_start"
       },
