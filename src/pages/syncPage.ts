@@ -65,6 +65,26 @@ export class syncPage{
     }
   }
 
+  private handleVideoResume(item, timeCb){
+    if(!j.$('#MALSyncResume').length){
+      var resumeTime = 58;
+      utils.flashm(
+        '<button id="MALSyncResume" class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Resume at '+resumeTime+'</button>' ,
+        {
+          permanent: true,
+          error: false,
+          type: 'resume',
+          minimized: false,
+          position: "top"
+        }
+      ).find('.sync').on('click', function(){
+        timeCb(resumeTime);
+        //@ts-ignore
+        $(this).parent().parent().remove();
+      });
+    }
+  }
+
   async handlePage(curUrl = window.location.href){
     var state: pageState;
     var This = this;
