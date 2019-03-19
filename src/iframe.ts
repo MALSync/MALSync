@@ -16,10 +16,12 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       return;
     }
     if(typeof msg.time !== 'undefined'){
+      tempPlayer.play();
       tempPlayer.currentTime = msg.time;
       return;
     }
     if(typeof msg.timeAdd !== 'undefined'){
+      tempPlayer.play();
       tempPlayer.currentTime = tempPlayer.currentTime + msg.timeAdd;
       return;
     }

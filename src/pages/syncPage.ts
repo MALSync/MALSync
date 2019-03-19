@@ -66,27 +66,58 @@ export class syncPage{
   }
 
   private handleVideoResume(item, timeCb){
-    if(!j.$('#MALSyncResume').length){
-      var resumeTime = 58;
-      utils.flashm(
-        '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
-        {
-          permanent: true,
-          error: false,
-          type: 'resume',
-          minimized: false,
-          position: "top"
-        }
-      ).find('.sync').on('click', function(){
-        timeCb(resumeTime);
-        //@ts-ignore
-        $(this).parent().parent().remove();
-      });
+    if(typeof this.curState === 'undefined' || typeof this.curState.identifier === 'undefined' || typeof this.curState.episode === 'undefined') return;
+    var This = this;
+    var localSelector = this.curState.identifier+'/'+this.curState.episode;
+
+    //@ts-ignore
+    if(typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked){
+      if(this.curState.videoChecked > 1){
+        con.info('Set Resume',item.current);
+        localStorage.setItem(localSelector, item.current);
+        this.curState.videoChecked = true;
+        setTimeout(() => {
+          this.curState.videoChecked = 2;
+        }, 10000)
+      }
+
+    }else{
+      var localItem = localStorage.getItem(localSelector);
+      con.info('Resume', localItem);
+      if(localItem !== null && (parseInt(localItem) - 30) > item.current && parseInt(localItem) > 30){
+        if(!j.$('#MALSyncResume').length) $('#MALSyncResume').parent().parent().remove();
+        var resumeTime = localItem;
+        utils.flashm(
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
+          {
+            permanent: true,
+            error: false,
+            type: 'resume',
+            minimized: false,
+            position: "top"
+          }
+        ).find('.sync').on('click', function(){
+          timeCb(resumeTime);
+          This.curState.videoChecked = 2;
+          //@ts-ignore
+          $(this).parent().parent().remove();
+        });
+      }else{
+        setTimeout(() => {
+          this.curState.videoChecked = 2;
+        }, 30000)
+      }
+
+      //@ts-ignore
+      this.curState.videoChecked = true;
     }
   }
 
+  curState:any = undefined;
+
   async handlePage(curUrl = window.location.href){
     var state: pageState;
+    this.curState = undefined;
     var This = this;
     this.url = curUrl;
 
@@ -109,6 +140,7 @@ export class syncPage{
               return;
             }
             if(typeof time !== 'undefined'){
+              player.play();
               player.currentTime = time;
               return;
             }
@@ -128,6 +160,8 @@ export class syncPage{
       this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
       con.log('Overview', state);
     }
+
+    this.curState = state;
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
