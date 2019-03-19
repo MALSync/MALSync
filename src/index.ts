@@ -13,6 +13,7 @@ function main() {
     var anilist = new anilistClass(window.location.href);
   }else{
     try{
+      if(window.location.href.indexOf( 'static.crunchyroll.com' ) > -1) throw 'static.crunchyroll.com';
       var page = new syncPage(window.location.href);
     }catch(e){
       con.info(e);
