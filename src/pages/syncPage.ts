@@ -53,7 +53,7 @@ export class syncPage{
     return null;
   }
 
-  public setVideoTime(item){
+  public setVideoTime(item, timeCb){
     var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
     if(progress < 100){
@@ -82,8 +82,17 @@ export class syncPage{
         state.volume = this.page.sync.getVolume(this.url)
       }
       if(this.page.type == 'anime'){
-        getPlayerTime((item) => {
-          this.setVideoTime(item);
+        getPlayerTime((item, player) => {
+          this.setVideoTime(item, function(time){
+            if(typeof player === 'undefined'){
+              con.error('No player Found');
+              return;
+            }
+            if(typeof time !== 'undefined'){
+              player.currentTime = time;
+              return;
+            }
+          });
         });
       }
       con.log('Sync', state);

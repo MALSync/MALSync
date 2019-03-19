@@ -25,7 +25,9 @@ function messagePageListener(page){
       sendResponse(page.malObj.url);
     }
     if(msg.action == 'videoTime'){
-      page.setVideoTime(msg.item);
+      page.setVideoTime(msg.item, function(time){
+        chrome.runtime.sendMessage({name: "videoTimeSet", time: time, sender: msg.sender});
+      });
     }
   });
 }
