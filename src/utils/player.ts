@@ -15,7 +15,7 @@ export function getPlayerTime(callback){
           duration
         }
         con.info(window.location.href, item);
-        callback(item);
+        callback(item, player);
         break;
       }
 
