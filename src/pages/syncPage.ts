@@ -69,7 +69,7 @@ export class syncPage{
     if(!j.$('#MALSyncResume').length){
       var resumeTime = 58;
       utils.flashm(
-        '<button id="MALSyncResume" class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Resume at '+resumeTime+'</button>' ,
+        '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
         {
           permanent: true,
           error: false,
