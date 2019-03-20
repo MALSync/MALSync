@@ -1,3 +1,4 @@
+/*By kaiserdj*/
 import {pageInterface} from "./../pageInterface";
 
 export const animeflv: pageInterface = {
@@ -19,40 +20,42 @@ export const animeflv: pageInterface = {
       uiSelector: function(selector){selector.insertAfter(j.$(".CapOptns"));},
     },
     overview:{
-      getTitle: function(url){
-        document.body.insertAdjacentHTML( 'afterbegin', '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>' );
-          var idMALSync = document.getElementById('MALSyncUl');
-          var patron = /<script>\s\s   var([^]*?)<\/script>/g;
-          var html = document.body.innerHTML;
-          var scriptEps = patron.exec(html);
-            if(scriptEps != null){
-              // @ts-ignore
-              scriptEps = scriptEps[1] || null;
-              if(scriptEps != null){
-                // @ts-ignore
-                console.log(scriptEps);
-                var patron2 = /\[([^\[\]]{0,10},{0,10})\]/g;
-                var eps = scriptEps.toString().match(patron2);
-                if(eps != null){
-                  // @ts-ignore
-                  console.log(eps);
-                  eps.forEach(element => {
-                    if(idMALSync != null){
-                      var Url = animeflv.domain+'/ver/'+element.split(',')[1].replace(']','')+'/'+utils.urlPart(url, 5)+'-'+element.split(',')[0].replace('[','');
-                      var Episodio = element.split(',')[0].replace('[','');
-                      console.log(element);
-                      idMALSync.innerHTML += '<li><a href="'+Url+'" epi="'+Episodio+'"></a> </li>';
-                    }
-                  });
-                }
-              }
-            }
-        return j.$('h2.Title').text();},
+      getTitle: function(url){return j.$('h2.Title').text();},
       getIdentifier: function(url){return utils.urlPart(url, 4)+'/'+utils.urlPart(url, 5);},
       uiSelector: function(selector){selector.insertAfter(j.$(".Description"));},
-      list:{ //Bug no carga todos los episodios, si hay muchos
+      list:{
         offsetHandler: false,
-        elementsSelector: function(){return j.$(".MALSync a");},
+        elementsSelector: function(){
+          var url = window.location.href;
+          document.body.insertAdjacentHTML( 'afterbegin', '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>' );
+            var idMALSync = document.getElementById('MALSyncUl');
+            var patron = /<script>\s\s   var([^]*?)<\/script>/g;
+            var html = document.body.innerHTML;
+            var scriptEps = patron.exec(html);
+              if(scriptEps != null){
+                // @ts-ignore
+                scriptEps = scriptEps[1] || null;
+                if(scriptEps != null){
+                  // @ts-ignore
+                  console.log(scriptEps);
+                  var patron2 = /\[([^\[\]]{0,10},{0,10})\]/g;
+                  // @ts-ignore
+                  var eps = scriptEps.toString().match(patron2);
+                  if(eps != null){
+                    // @ts-ignore
+                    console.log(eps);
+                    eps.forEach(element => {
+                      if(idMALSync != null){
+                        var Url = animeflv.domain+'/ver/'+element.split(',')[1].replace(']','')+'/'+utils.urlPart(url, 5)+'-'+element.split(',')[0].replace('[','');
+                        var Episodio = element.split(',')[0].replace('[','');
+                        console.log(element);
+                        idMALSync.innerHTML += '<li><a href="'+Url+'" epi="'+Episodio+'"></a> </li>';
+                      }
+                    });
+                  }
+                }
+              }
+          return j.$(".MALSync a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), animeflv.domain);},
         elementEp: function(selector){return selector.attr('epi')},
       }
