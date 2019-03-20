@@ -32,7 +32,7 @@
     "wrapper-webpack-plugin": "^2.0.0"
   },
   "scripts": {
-    "clean": "rmdir .\\dist /Q /S",
+    "clean": "rm -rf dist",
     "build": "npm run clean && npm run build:userscript && npm run build:webextension",
     "build:userscript": "webpack --config webpackConfig/userscript.config.js",
     "build:webextension": "npm run build:webextension:content && npm run build:webextension:background && npm run build:webextension:popup && npm run build:webextension:updateCheck && npm run build:webextension:assets",
