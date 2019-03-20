@@ -116,4 +116,19 @@ module.exports = {
       '*://*.kwik.cx/*',
     ]
   },
+  mega: {
+    match: [
+      '*://*.mega.nz/*',
+    ]
+  },
+  animeflv: {
+    match: [
+      '*://*.animeflv.net/*',
+    ]
+  },
+  netu: {
+    match: [
+      '*://*.hqq.tv/*',
+    ]
+  },
 };

@@ -9,7 +9,7 @@ export function getPlayerTime(callback){
       var duration = player.duration;
       var current = player.currentTime;
 
-      if(duration){
+      if(duration && duration > 60){
         var item = {
           current,
           duration
