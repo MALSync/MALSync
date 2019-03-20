@@ -15,6 +15,7 @@ import {Plex} from "./Plex/main";
 import {Netflix} from "./Netflix/main";
 import {Otakustream} from "./Otakustream/main";
 import {animepahe} from "./animepahe/main";
+import {animeflv} from "./Animeflv/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -31,6 +32,7 @@ export const pages = {
     Branitube: Branitube,
     Turkanime: Turkanime,
     Twistmoe: Twistmoe,
+    animeflv: animeflv,
     Emby,
     Plex,
     Netflix,
@@ -83,6 +85,12 @@ export const pageSearch:pageSearchObj = {
       domain: 'www.turkanime.tv/',
       searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:turkanime.tv/anime/'},
       googleSearchDomain: 'turkanime.tv/anime/'
+    },
+    animeflv: {
+      name: 'animeflv',
+      type: 'anime',
+      domain: 'animeflv.net',
+      searchUrl: (titleEncoded) => {return 'https://animeflv.net/browse?q='+titleEncoded}
     },
     Mangadex: {
       name: 'Mangadex',
