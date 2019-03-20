@@ -151,4 +151,10 @@ module.exports = {
       '*://animepahe.com/anime/*'
     ]
   },
+  animeflv: {
+    match: [
+      '*://animeflv.net/anime/*',
+      '*://animeflv.net/ver/*',
+    ]
+  },
 };
