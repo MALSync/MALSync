@@ -443,6 +443,7 @@ export class syncPage{
         this.offsetHandler(epList);
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
+        if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.malObj.getEpisode(), epList);
         var curEp = epList[this.malObj.getEpisode()];
         if (typeof(curEp) != "undefined" && curEp){
           curEp.addClass('mal-sync-active');

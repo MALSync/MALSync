@@ -24,6 +24,7 @@ export interface pageInterface {
         elementUrl: (selector) => string,
         elementEp: (selector) => number,
         paginationNext?: () => boolean,
+        handleListHook?: (ep:number, epList) => void,
       }
     },
     database?: string, //ignore, only for first party implementations
