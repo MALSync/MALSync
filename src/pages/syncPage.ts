@@ -56,12 +56,14 @@ export class syncPage{
   public setVideoTime(item, timeCb){
     var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
-    if(progress < 100){
-      j.$('.ms-progress').css('width', progress+'%');
-      j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-    }else{
-      j.$('#malSyncProgress').addClass('ms-done');
-      j.$('.flash .sync').click();
+    if(j.$('#malSyncProgress').length){
+      if(progress < 100){
+        j.$('.ms-progress').css('width', progress+'%');
+        j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
+      }else{
+        j.$('#malSyncProgress').addClass('ms-done');
+        j.$('.flash .sync').click();
+      }
     }
   }
 
