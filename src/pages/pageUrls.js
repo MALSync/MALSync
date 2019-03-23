@@ -157,4 +157,15 @@ module.exports = {
       '*://animeflv.net/ver/*',
     ]
   },
+  jkanime: {
+    match: [
+      '*://jkanime.net/*',
+    ],
+    exclude: [
+      '*://jkanime.net/',
+      '*://jkanime.net/letra/*',
+	  '*://jkanime.net/buscar/*',
+      '*://jkanime.net/terminos-condiciones/',	  
+    ]
+  },
 };

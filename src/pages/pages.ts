@@ -16,6 +16,7 @@ import {Netflix} from "./Netflix/main";
 import {Otakustream} from "./Otakustream/main";
 import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
+import {Jkanime} from "./Jkanime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -33,6 +34,7 @@ export const pages = {
     Turkanime: Turkanime,
     Twistmoe: Twistmoe,
     animeflv: animeflv,
+    Jkanime: Jkanime,
     Emby,
     Plex,
     Netflix,
@@ -91,6 +93,12 @@ export const pageSearch:pageSearchObj = {
       type: 'anime',
       domain: 'animeflv.net',
       searchUrl: (titleEncoded) => {return 'https://animeflv.net/browse?q='+titleEncoded}
+    },
+    Jkanime: {
+      name: 'Jkanime',
+      type: 'anime',
+      domain: 'jkanime.net',
+      searchUrl: (titleEncoded) => {return 'https://jkanime.net/buscar/'+titleEncoded+'/1/'}
     },
     Mangadex: {
       name: 'Mangadex',
