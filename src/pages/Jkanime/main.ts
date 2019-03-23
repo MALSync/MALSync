@@ -53,7 +53,7 @@ export const Jkanime: pageInterface = {
 			      		if(obj.innerText.split(' ')[1] == epi){
                   j.$('#episodes-content .cap-post').eq(i).addClass('mal-sync-active');
                   console.log(j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first());
-                  if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}			      			
+                  if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}
 			      		}
 			      	});
 			      }, 500);
@@ -62,9 +62,9 @@ export const Jkanime: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      j.$(document).ready(function(){page.handlePage();});    
+      j.$(document).ready(function(){page.handlePage();});
 		  j.$('.navigation a').click(function(){
 		  	if(check==1){page.handleList();}
-		  });			
+		  });
     }
 };
