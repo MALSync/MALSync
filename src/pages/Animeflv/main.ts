@@ -1,6 +1,5 @@
 /*By kaiserdj*/
 import {pageInterface} from "./../pageInterface";
-import { link } from "fs";
 
 export const animeflv: pageInterface = {
     name: 'animeflv',
