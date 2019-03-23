@@ -360,7 +360,7 @@ var testsArray = [
   },
 
   {
-    title: 'Animefly',
+    title: 'Animeflv',
     url: 'https://animeflv.net',
     testCases: [
       {
@@ -380,6 +380,34 @@ var testsArray = [
           identifier: '3825/no-game-no-life',
           overviewUrl: 'https://animeflv.net/anime/3825/no-game-no-life',
           nextEpUrl: 'https://animeflv.net/ver/25904/no-game-no-life-12',
+          episode: 11,
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Jkanime',
+    url: 'https://jkanime.net',
+    testCases: [
+      {
+        url: 'https://jkanime.net/no-game-no-life/',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://jkanime.net/no-game-no-life/11/',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://jkanime.net/no-game-no-life/',
+          nextEpUrl: 'https://jkanime.net/no-game-no-life/12/',
           episode: 11,
           uiSelector: true,
         }
