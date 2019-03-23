@@ -395,7 +395,7 @@ var testsArray = [
         url: 'https://jkanime.net/no-game-no-life/',
         expected: {
           sync: false,
-          title: 'NO GAME NO LIFE',
+          title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
         }
