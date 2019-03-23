@@ -59,9 +59,11 @@ export const animeflv: pageInterface = {
         handleListHook: function(epi, epilist){
           var cover = j.$('.AnimeCover img').attr('src');
           var name = j.$('.Container h2').text();
-          var linkEpi = j.$(".MALSync a")[epi].toString();
-          var epiAct = '<li class="fa-play-circle Next"><a href="' + linkEpi + '"><figure><img src="' + cover + '" alt=""></figure><h3 class="Title">' + name + '</h3><p>Episodio ' + epi + '</p><span style="position: absolute; top: 0; bottom: 0; margin: auto; right: 20px; line-height: 30px; font-size: 16px; font-weight: 700; height: 30px;">Episodio Actual</span></a></li>';
-          j.$('.Main .ListCaps').prepend(epiAct);
+          setTimeout(function(){
+            var linkEpi = j.$(".mal-sync-active").attr('href');
+            var epiAct = '<li class="fa-play-circle Next"><a href="' + linkEpi + '"><figure><img src="' + cover + '" alt=""></figure><h3 class="Title">' + name + '</h3><p>Episodio ' + epi + '</p><span style="position: absolute; top: 0; bottom: 0; margin: auto; right: 20px; line-height: 30px; font-size: 16px; font-weight: 700; height: 30px;">Episodio Actual</span></a></li>';
+            j.$('.Main .ListCaps').prepend(epiAct);
+          }, 500);
         },
       }
     },
