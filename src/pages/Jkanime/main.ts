@@ -1,3 +1,4 @@
+/*By kaiserdj*/
 var check=0;
 import {pageInterface} from "./../pageInterface";
 
@@ -17,7 +18,11 @@ export const Jkanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 3);},
       getOverviewUrl: function(url){return j.$('.vnav-list').attr('href');},
       getEpisode: function(url){return j.$('.video-header h1').text().split(" - ")[1];},
-      nextEpUrl: function(url){return j.$('.vnav-right').attr('href');},
+      nextEpUrl: function(url){
+        var nextUrl = j.$('.vnav-right').attr('href');
+        if(nextUrl == '#') return undefined;
+        return nextUrl;
+      },
       uiSelector: function(selector){selector.insertAfter(j.$(".server-box"));},
     },
     overview:{
