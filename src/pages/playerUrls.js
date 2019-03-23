@@ -131,4 +131,14 @@ module.exports = {
       '*://*.hqq.tv/*',
     ]
   },
+  jkanime: {
+    match: [
+      '*://*.jkanime.net/*',
+    ]
+  },
+  ok: {
+    match: [
+      '*://*.ok.ru/*',
+    ]
+  },
 };
