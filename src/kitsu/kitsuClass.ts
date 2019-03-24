@@ -38,9 +38,9 @@ export class kitsuClass{
   }
 
   authentication(){
-    $(document).ready(function(){alert();
+    $(document).ready(function(){
       $('body').after(`
-        <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <div id="mal-sync-login" style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
           <h1>MAL-Sync</h1>
           <br>
           <p style="text-align: left;">
@@ -53,12 +53,33 @@ export class kitsuClass{
             <input type="password" id="pass" name="password" placeholder="Password" required>
           </div>
           <div class="form-cta" style="margin-top: 30px;">
-            <button class="btn button--primary" type="submit">
+            <button class="btn button--primary" type="submit" id="mal-sync-button">
                 Login
             </button>
           </div>
         </div>
       `);
+      $('#mal-sync-login #mal-sync-button').click(function(){
+        $('#mal-sync-login #mal-sync-button').attr("disabled","disabled");
+        $.ajax({
+          type: "POST",
+          url: 'https://kitsu.io/api/oauth/token',
+          data: 'grant_type=password&username='+$('#mal-sync-login #email').val()+'&password='+$('#mal-sync-login #pass').val(),
+          success: function(result){
+            var token = result.access_token;
+            con.info('token', token);
+          },
+          error: function(result){
+            con.error(result);
+            $('#mal-sync-login #mal-sync-button').prop("disabled", false);
+            if(result.responseJSON.error == 'invalid_grant'){
+              utils.flashm('Credentials wrong');
+              return;
+            }
+            utils.flashm(result.responseJSON.error_description);
+          }
+        });
+      })
     });
   }
 }
