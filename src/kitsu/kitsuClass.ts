@@ -70,13 +70,18 @@ export class kitsuClass{
             con.info('token', token);
           },
           error: function(result){
-            con.error(result);
-            $('#mal-sync-login #mal-sync-button').prop("disabled", false);
-            if(result.responseJSON.error == 'invalid_grant'){
-              utils.flashm('Credentials wrong');
-              return;
+            try{
+              con.error(result);
+              $('#mal-sync-login #mal-sync-button').prop("disabled", false);
+              if(result.responseJSON.error == 'invalid_grant'){
+                utils.flashm('Credentials wrong');
+                return;
+              }
+              utils.flashm(result.responseJSON.error_description);
+            }catch(e){
+              con.error(e);
+              utils.flashm(result.responseText);
             }
-            utils.flashm(result.responseJSON.error_description);
           }
         });
       })
