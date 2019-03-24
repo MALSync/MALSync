@@ -20,6 +20,11 @@ module.exports = {
       '*://anilist.co/*'
     ]
   },
+  kitsu: {
+    match: [
+      '*://kitsu.io/*'
+    ]
+  },
   Kissanime: {
     match: [
       '*://kissanime.ru/Anime/*',
@@ -164,8 +169,8 @@ module.exports = {
     exclude: [
       '*://jkanime.net/',
       '*://jkanime.net/letra/*',
-	  '*://jkanime.net/buscar/*',
-      '*://jkanime.net/terminos-condiciones/',	  
+      '*://jkanime.net/buscar/*',
+      '*://jkanime.net/terminos-condiciones/',
     ]
   },
 };

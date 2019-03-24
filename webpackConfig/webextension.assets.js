@@ -11,10 +11,12 @@ const resourcesJson = require('./resources');
 
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
+var kitsuUrls = {anilist: pageUrls.kitsu};
 
 var contentUrls = pageUrls;
 delete contentUrls.anilist;
 delete contentUrls.myanimelist;
+delete contentUrls.kitsu;
 
 const generateMatchExcludes = (urls) => {
   var match = [];
@@ -85,6 +87,15 @@ const generateManifest = () => {
         "run_at": "document_start"
       },
       {
+        'matches': generateMatchExcludes(kitsuUrls).match,
+        'exclude_globs': generateMatchExcludes(kitsuUrls).exclude.concat(['*mal-sync-background=*']),
+        'js': [
+          'vendor/jquery.min.js',
+          'kitsu-script.js'
+        ],
+        "run_at": "document_start"
+      },
+      {
         'matches': backgroundMatch(generateMatchExcludes(pageUrls).match),
         'js': [
           'vendor/jquery.min.js',
@@ -120,6 +131,7 @@ const generateManifest = () => {
       "https://cdn.myanimelist.net/",
       "https://s3.anilist.co/",
       "https://graphql.anilist.co/",
+      "https://kitsu.io",
       "tabHide"
     ],
     "optional_permissions": [

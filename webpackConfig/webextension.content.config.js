@@ -7,6 +7,7 @@ module.exports = {
     'content-script': path.join(__dirname, '..', 'src/index-webextension/content.ts'),
     'mal-script': path.join(__dirname, '..', 'src/index-webextension/myanimelist.ts'),
     'anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilist.ts'),
+    'kitsu-script': path.join(__dirname, '..', 'src/index-webextension/kitsu.ts'),
     iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   },
   module: {
