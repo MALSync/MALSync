@@ -24,7 +24,7 @@ export class kitsuClass{
       this.init();
     });
 
-    if(this.url.indexOf("access_token=") > -1){
+    if(this.url.indexOf("?mal-sync=authentication") > -1){
       this.init();
     }
 
@@ -32,28 +32,33 @@ export class kitsuClass{
   }
 
   init(){
-    if(this.url.indexOf("access_token=") > -1){
+    if(this.url.indexOf("?mal-sync=authentication") > -1){
       this.authentication();
     }
-    alert();
   }
 
   authentication(){
-    var tokens = /access_token=[^&]+/gi.exec(this.url);
-    if(tokens != null && typeof tokens[0] != 'undefined' && tokens[0]){
-      var token = tokens[0].toString().replace(/access_token=/gi, '');
-      con.log('Token Found', token);
-      api.settings.set('anilistToken', token).then(() => {
-        $(document).ready(function(){
-          $('.page-content .container').html(`
-            <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
-              <h1>MAL-Sync</h1>
-              <br>
-              Token saved you can close this page now
-            </div>
-          `);
-        });
-      });
-    }
+    $(document).ready(function(){alert();
+      $('body').after(`
+        <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
+          <h1>MAL-Sync</h1>
+          <br>
+          <p style="text-align: left;">
+            To login with Kitsu, you need to enter your account's e-mail and password.</br>
+            Your credentials are not stored on your computer or anywhere else. </br>
+            They are directly sent to kitsu. Only the returned access token is saved.</br>
+          </p>
+          <div class="modal-content">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="pass" name="password" placeholder="Password" required>
+          </div>
+          <div class="form-cta" style="margin-top: 30px;">
+            <button class="btn button--primary" type="submit">
+                Login
+            </button>
+          </div>
+        </div>
+      `);
+    });
   }
 }
