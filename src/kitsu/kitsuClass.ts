@@ -68,6 +68,9 @@ export class kitsuClass{
           success: function(result){
             var token = result.access_token;
             con.info('token', token);
+            api.settings.set('kitsuToken', token).then(() => {
+              $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>Token saved you can close this page now')
+            });
           },
           error: function(result){
             try{

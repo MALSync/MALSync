@@ -38,6 +38,7 @@ export var settingsObj = {
     updateCheckNotifications: true,
 
     'anilistToken': '',
+    'kitsuToken': '',
   },
 
   init: async function (){
