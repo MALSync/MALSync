@@ -21,6 +21,11 @@ Makes it possible to use your MyAnimeList/Anilist anime/mangalist as a centraliz
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) | | |
 | [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) | | |
 | [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) | | |
+| [![animepahe](https://www.google.com/s2/favicons?domain=https://animepahe.com "animepahe")](https://animepahe.com) [animepahe.com](https://animepahe.com) | | |
+| [![Netflix](https://www.google.com/s2/favicons?domain=https://www.netflix.com "Netflix")](https://www.netflix.com) [netflix.com](https://www.netflix.com) | | |
+| [![otakustream](https://www.google.com/s2/favicons?domain=https://otakustream.tv "otakustream")](https://otakustream.tv) [otakustream.tv](https://otakustream.tv) | | |
+| [![animeflv](https://www.google.com/s2/favicons?domain=https://animeflv.net "animeflv")](https://animeflv.net) [animeflv.net](https://animeflv.net) | | |
+| [![Jkanime](https://www.google.com/s2/favicons?domain=https://jkanime.net "Jkanime")](https://jkanime.net) [jkanime.net](https://jkanime.net) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  

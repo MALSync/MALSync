@@ -9,6 +9,7 @@ export class entryClass{
   addAnime: boolean = false;
   login: boolean = false;
   wrong: boolean = false;
+  pending: boolean = false;
 
   private animeInfo;
 
@@ -224,6 +225,10 @@ export class entryClass{
     return new Promise((resolve, reject) => {
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
+      if(this.pending){
+        utils.flashm('This '+this.type+' is currently pending approval. It can´t be saved to mal for now')
+        return;
+      }
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
@@ -373,12 +378,16 @@ export class entryClass{
     }
 
     this.addAnime = false;
+    this.pending = false;
 
     if(this.type == 'anime'){
       var anime = {};
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
       if(data.indexOf('Add Anime') > -1) {
         this.addAnime = true;
+      }
+      if(data.indexOf('pending approval') > -1){
+        this.pending = true;
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 
@@ -420,6 +429,9 @@ export class entryClass{
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
       if(data.indexOf('Add Manga') > -1) {
           this.addAnime = true;
+      }
+      if(data.indexOf('pending approval') > -1){
+        this.pending = true;
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 

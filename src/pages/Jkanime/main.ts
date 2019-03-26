@@ -44,24 +44,26 @@ export const Jkanime: pageInterface = {
           elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Jkanime.domain);},
           elementEp: function(selector){return selector.attr('epi')},
           handleListHook: function(epi, epilist){
-            if(check==0){
-				      var buttons = j.$('.navigation a');
-				      for(var i=0; i<buttons.length;i++){
-				        if(buttons[i].text.split('-')[0].split()<=epi && buttons[i].text.split('-')[1].split()>=epi){
-				        	buttons[i].click();
+            epi++;
+            if(epilist.length>=epi){
+              if(check==0){
+				        var buttons = j.$('.navigation a');
+				        for(var i=0; i<buttons.length;i++){
+				          if(buttons[i].text.split('-')[0].split()<=epi && buttons[i].text.split('-')[1].split()>=epi){
+				          	buttons[i].click();
+				          }
 				        }
-				      }
-				      check=1;
-			      }
-			      setTimeout(function(){
-			      	j.$('#episodes-content .cap-post').each(function(i, obj) {
-			      		if(obj.innerText.split(' ')[1] == epi){
-                  j.$('#episodes-content .cap-post').eq(i).addClass('mal-sync-active');
-                  console.log(j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first());
-                  if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}
-			      		}
-			      	});
-			      }, 500);
+				        check=1;
+			        }
+			        setTimeout(function(){
+			        	j.$('#episodes-content .cap-post').each(function(i, obj) {
+			        		if(obj.innerText.split(' ')[1] == epi){
+                    j.$('#episodes-content .cap-post').eq(i).addClass('mal-sync-active');
+                    if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}
+			        		}
+			        	});
+              }, 500);
+            }
           },
       }
     },
