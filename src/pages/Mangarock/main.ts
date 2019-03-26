@@ -83,6 +83,8 @@ function EpisodePartToEpisode(string) {
   if(!(isNaN(parseInt(string)))){
       return string;
   }
+  //https://mangarock.com/manga/mrs-serie-124208
+  string = string.replace(/(campaign|battle)/i,'Chapter');
   var temp = [];
   temp = string.match(/Chapter\ \d+/i);
   con.log(temp);
