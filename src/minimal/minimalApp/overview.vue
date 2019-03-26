@@ -144,6 +144,30 @@
           <div v-for="n in 10" class="listPlaceholder" style="height: 0;"><div class="mdl-grid" style="width: 126px;"></div></div>
         </div>
       </div>
+
+      <div v-if="openingSongs.length || endingSongs.length" class="mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+        <li v-if="openingSongs.length" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet" style="padding: 0; height: auto;">
+          <span class="mdl-list__item-primary-content" style="height: auto;">
+              <span>Opening Theme:</span>
+              <span class="mdl-list__item-text-body" style="height: auto;">
+                <span v-for="openingSong in openingSongs" style="display: block; color: rgb(255,64,129);">
+                  {{ openingSong }}
+                </span>
+            </span>
+          </span>
+        </li>
+        <li v-if="endingSongs.length" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet" style="padding: 0; height: auto;">
+          <span class="mdl-list__item-primary-content" style="height: auto;">
+              <span>Ending Theme:</span>
+              <span class="mdl-list__item-text-body" style="height: auto;">
+                <span v-for="endingSong in endingSongs" style="display: block; color: rgb(255,64,129);">
+                  {{ endingSong }}
+                </span>
+            </span>
+          </span>
+        </li>
+      </div>
+
       <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
   </div>
@@ -446,6 +470,28 @@
 
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return html;
+      },
+      openingSongs: function(){
+        var openingSongs = [];
+
+        try{
+          var openingBlock = '<div>'+this.xhr.split('opnening">')[1].split('</div>')[0]+'</div>';
+          var openingData = j.$.parseHTML( openingBlock );
+          openingSongs = $.map(j.$(openingData).find('.theme-song'), $.text);
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        return openingSongs;
+      },
+      endingSongs: function(){
+        var endingSongs = [];
+
+        try{
+          var endingBlock = '<div>'+this.xhr.split(' ending">')[1].split('</div>')[0]+'</div>';
+          var endingData = j.$.parseHTML( endingBlock );
+          endingSongs = $.map(j.$(endingData).find('.theme-song'), $.text);
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+
+        return endingSongs;
       }
     },
     methods: {
