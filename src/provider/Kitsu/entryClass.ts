@@ -52,7 +52,7 @@ export class entryClass{
     }
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]=137140&filter[kind]='+this.type+'&filter['+this.type+'_id]='+this.kitsuId+'&page[limit]=1&page[limit]=1&include='+this.type+'&fields['+this.type+']=slug,titles,averageRating,'+(this.type == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]=137140&filter[kind]='+this.type+'&filter['+this.type+'_id]='+this.kitsuId+'&page[limit]=1&page[limit]=1&include='+this.type+'&fields['+this.type+']=slug,titles,averageRating,posterImage,'+(this.type == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/vnd.api+json',
@@ -193,7 +193,7 @@ export class entryClass{
   }
 
   async getImage():Promise<string>{
-    return this.animeInfo.coverImage.large;
+    return this.animeI().attributes.posterImage.large;
   }
 
   clone() {
