@@ -200,7 +200,9 @@ export class entryClass{
       const copy = new (this.constructor as { new () })();
       Object.assign(copy, this);
       copy.animeInfo = Object.assign( {},this.animeInfo);
-      copy.animeInfo.mediaListEntry = Object.assign( {},this.animeInfo.mediaListEntry);
+      copy.animeInfo.data = Object.assign( {},this.animeInfo.data);
+      copy.animeInfo.data[0] = Object.assign( {},this.animeInfo.data[0]);
+      copy.animeInfo.data[0].attributes = Object.assign( {},this.animeInfo.data[0].attributes);
       return copy;
   }
 
