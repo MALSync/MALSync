@@ -76,7 +76,7 @@ export class entryClass{
             volumesOwned: 0,
             reconsuming: false,
             reconsumeCount: false,
-            ratingTwenty: 0,
+            ratingTwenty: null,
             status: 'planned'
           }
         }
@@ -130,6 +130,10 @@ export class entryClass{
   }
 
   setScore(score:number){
+    if(score == 0){
+      this.listI().attributes.ratingTwenty = null;
+      return;
+    }
     this.listI().attributes.ratingTwenty = score*2;
   }
 
@@ -321,40 +325,53 @@ export class entryClass{
 
       continueCall();
       function continueCall(){
-
-
-        //TODO volumesOwned
-        var query = `
-          mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
-            SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
-              id
-              status
-              progress
+        var variables:any = {
+          data:{
+            attributes: {
+              notes: This.listI().attributes.notes,
+              progress: This.listI().attributes.progress,
+              volumesOwned: This.listI().attributes.volumesOwned,
+              reconsuming: This.listI().attributes.reconsuming,
+              reconsumeCount: This.listI().attributes.reconsumeCount,
+              ratingTwenty: This.listI().attributes.ratingTwenty,
+              status: This.listI().attributes.status
+            },
+            type: "library-entries",
+          }
+        };
+        ​if(!This.addAnime){
+          var updateUrl = 'https://kitsu.io/api/edge/library-entries/'+This.listI().id;
+          variables.data.id = This.listI().id;
+          var post = 'PATCH';
+        }else{
+          var updateUrl = 'https://kitsu.io/api/edge/library-entries/';
+          variables.data.relationships = {
+            anime: {
+              data: {
+                type: This.type,
+                id: This.kitsuId
+              }
+            },
+            user: {
+              data: {
+                type: "users",
+                id: "137140"
+              }
             }
           }
-        `;
-        ​
-        var variables = {
-            "mediaId": This.kitsuSlug,
-            "status": This.animeInfo.mediaListEntry.status,
-            "progress": This.animeInfo.mediaListEntry.progress,
-            "scoreRaw": This.animeInfo.mediaListEntry.score * 10,
-            "notes": This.animeInfo.mediaListEntry.notes
-        };
+          var post = 'POST';
+        }
 
         con.log('[SET] Object:', variables);
 
-        api.request.xhr('POST', {
-          url: 'https://graphql.Kitsu.co',
+        api.request.xhr(post, {
+          url: updateUrl,
           headers: {
             'Authorization': 'Bearer ' + helper.accessToken(),
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            'Content-Type': 'application/vnd.api+json',
+            'Accept': 'application/vnd.api+json',
           },
-          data: JSON.stringify({
-            query: query,
-            variables: variables
-          })
+          data: JSON.stringify(variables)
         }).then((response) => {
           var res = JSON.parse(response.responseText);
           con.log(res);
