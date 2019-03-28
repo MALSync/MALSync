@@ -47,7 +47,8 @@ export class entryClass{
   async update(){
     con.log('Update Kitsu info', this.id? 'MAL: '+this.id : 'Kitsu: '+this.kitsuId);
     if(isNaN(this.kitsuId)){
-      this.kitsuId = await helper.malToKitsu(this.id, this.type);
+       var kitsuRes = await helper.malToKitsu(this.id, this.type);
+       this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
     }
 
     return api.request.xhr('GET', {
@@ -79,6 +80,7 @@ export class entryClass{
             status: 'planned'
           }
         }
+        this.animeInfo.included = kitsuRes.included;
       }
 
       this.name = this.animeI().attributes.titles.en;

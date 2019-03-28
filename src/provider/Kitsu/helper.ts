@@ -43,7 +43,7 @@ export function malToKitsu(malid: number, type: "anime"|"manga"){
     }
   }).then((response) => {
     var res = JSON.parse(response.responseText);
-    return res.data[0].relationships.item.data.id;
+    return res;
   });
 }
 
