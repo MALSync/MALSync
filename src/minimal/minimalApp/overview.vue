@@ -477,7 +477,7 @@
         try{
           var openingBlock = '<div>'+this.xhr.split('opnening">')[1].split('</div>')[0]+'</div>';
           var openingData = j.$.parseHTML( openingBlock );
-          openingSongs = $.map(j.$(openingData).find('.theme-song'), $.text);
+          openingSongs = j.$.map(j.$(openingData).find('.theme-song'), j.$.text);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         return openingSongs;
@@ -488,7 +488,7 @@
         try{
           var endingBlock = '<div>'+this.xhr.split(' ending">')[1].split('</div>')[0]+'</div>';
           var endingData = j.$.parseHTML( endingBlock );
-          endingSongs = $.map(j.$(endingData).find('.theme-song'), $.text);
+          endingSongs = j.$.map(j.$(endingData).find('.theme-song'), j.$.text);
         }catch(e) {console.log('[iframeOverview] Error:',e);}
 
         return endingSongs;
@@ -504,7 +504,12 @@
           });
       },
       getMal2KissFavicon: function(streams){
-        return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+        try{
+          return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+        }catch(e){
+          con.error(e);
+          return '';
+        }
       },
       getRelated: function(){
         var html = '';
