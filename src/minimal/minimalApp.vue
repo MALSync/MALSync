@@ -348,7 +348,7 @@
         return {
           renderUrl: url,
           currentTab: tab,
-          tabData: $.extend(true,{},this.tabs[tab]),
+          tabData: j.$.extend(true,{},this.tabs[tab]),
         }
       },
       setCurrent(historyElement){

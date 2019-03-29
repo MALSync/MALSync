@@ -87,7 +87,7 @@ export class syncPage{
       var localItem = localStorage.getItem(localSelector);
       con.info('Resume', localItem);
       if(localItem !== null && (parseInt(localItem) - 30) > item.current && parseInt(localItem) > 30){
-        if(!j.$('#MALSyncResume').length) $('#MALSyncResume').parent().parent().remove();
+        if(!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
         var resumeTime = localItem;
         utils.flashm(
           '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
@@ -102,7 +102,7 @@ export class syncPage{
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
           //@ts-ignore
-          $(this).parent().parent().remove();
+          j.$(this).parent().parent().remove();
         });
       }else{
         setTimeout(() => {
@@ -776,7 +776,7 @@ export class syncPage{
 
     j.$( "#malEpisodes, #malVolumes" ).on('input', function(){
       //@ts-ignore
-      var el = $(this);
+      var el = j.$(this);
       var numberlength = el.val()!.toString().length;
       if(numberlength < 1) numberlength = 1;
       var numberWidth = (numberlength * 7.7) + 3;
