@@ -17,7 +17,7 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
 
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50'+sorting+'&include='+localListType+','+localListType+'.mappings,anime.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50'+sorting+'&include='+localListType+','+localListType+'.mappings,'+localListType+'.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/vnd.api+json',
