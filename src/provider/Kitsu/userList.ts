@@ -4,17 +4,20 @@ import * as helper from "./helper";
 export async function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
     status = parseInt(status.toString());
     var statusPart = '';
+    var sorting = '';
     if(status !== 7){
+      if(status === 1) sorting = '&sort=-progressed_at';
       status = helper.translateList(status, status);
       statusPart = '&filter[status]='+status;
     }
+
 
     username = await helper.userId();
     con.log('[UserList][Kitsu]', 'user: '+username, 'status: '+status, 'offset: '+offset);
 
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50&sort=-progressed_at&include='+localListType+','+localListType+'.mappings,anime.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50'+sorting+'&include='+localListType+','+localListType+'.mappings,anime.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/vnd.api+json',
@@ -86,8 +89,9 @@ export function prepareData(data, listType): listElement[]{
       if(mapping.type == 'mappings'){
         if(mapping.attributes.externalSite === 'myanimelist/'+listType){
           if(mapping.relationships.item.data.id == el.id){
-            con.log(name, mapping);
             malId = mapping.attributes.externalId;
+            data.included.splice(k, 1);
+            break;
           }
         }
       }
