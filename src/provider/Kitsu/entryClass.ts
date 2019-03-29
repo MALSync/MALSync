@@ -52,7 +52,7 @@ export class entryClass{
     }
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]=137140&filter[kind]='+this.type+'&filter['+this.type+'_id]='+this.kitsuId+'&page[limit]=1&page[limit]=1&include='+this.type+'&fields['+this.type+']=slug,titles,averageRating,posterImage,'+(this.type == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+'&filter[kind]='+this.type+'&filter['+this.type+'_id]='+this.kitsuId+'&page[limit]=1&page[limit]=1&include='+this.type+'&fields['+this.type+']=slug,titles,averageRating,posterImage,'+(this.type == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/vnd.api+json',
@@ -82,8 +82,13 @@ export class entryClass{
         }
         this.animeInfo.included = kitsuRes.included;
       }
+      if(this.getEpisode() === NaN) this.setEpisode(0);
+      this.setScore(this.getScore());
 
       this.name = this.animeI().attributes.titles.en;
+      if(typeof this.name == 'undefined') this.name = this.animeI().attributes.titles.en_jp;
+      if(typeof this.name == 'undefined') this.name = this.animeI().attributes.titles.ja_jp;
+
       this.totalEp = this.animeI().attributes.episodeCount? this.animeI().attributes.episodeCount: this.animeI().attributes.chapterCount;
       if(this.animeI().attributes.volumeCount){
         this.totalVol = this.animeI().attributes.volumeCount;
@@ -326,7 +331,7 @@ export class entryClass{
       }
 
       continueCall();
-      function continueCall(){
+      async function continueCall(){
         var variables:any = {
           data:{
             attributes: {
@@ -357,7 +362,7 @@ export class entryClass{
             user: {
               data: {
                 type: "users",
-                id: "137140"
+                id: await helper.userId()
               }
             }
           }

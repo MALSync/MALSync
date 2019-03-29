@@ -79,3 +79,28 @@ export function kitsuToMal(kitsuSlug: string, type: "anime"|"manga"){
     return res.data.Media.idMal;
   });
 }
+
+export async function userId(){
+  var userId = await api.storage.get('kitsuUserId');
+  if(typeof userId !== 'undefined'){
+    return userId;
+  }else{
+    return api.request.xhr('Get', {
+      url: 'https://kitsu.io/api/edge/users?filter[self]=true',
+      headers: {
+        'Authorization': 'Bearer ' + accessToken(),
+        'Content-Type': 'application/vnd.api+json',
+        'Accept': 'application/vnd.api+json',
+      }
+    }).then((response) => {
+      var res = JSON.parse(response.responseText);
+      con.log(res);
+      if(res.data[0] == 'undefined'){
+        con.error('Not authentificated');
+        return '';
+      }
+      api.storage.set('kitsuUserId', res.data[0].id);
+      return res.data[0].id;
+    });
+  }
+}
