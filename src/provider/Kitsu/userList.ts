@@ -80,8 +80,8 @@ export function prepareData(data, listType): listElement[]{
     var el = data.included[i];
 
     var name = el.attributes.titles.en;
-    if(typeof name == 'undefined') name = el.attributes.titles.en_jp;
-    if(typeof name == 'undefined') name = el.attributes.titles.ja_jp;
+    if(typeof name == 'undefined' || !name) name = el.attributes.titles.en_jp;
+    if(typeof name == 'undefined' || !name) name = el.attributes.titles.ja_jp;
 
     var malId = NaN;
     for (var k = 0; k < data.included.length; k++) {

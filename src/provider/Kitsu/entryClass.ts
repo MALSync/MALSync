@@ -86,8 +86,8 @@ export class entryClass{
       this.setScore(this.getScore());
 
       this.name = this.animeI().attributes.titles.en;
-      if(typeof this.name == 'undefined') this.name = this.animeI().attributes.titles.en_jp;
-      if(typeof this.name == 'undefined') this.name = this.animeI().attributes.titles.ja_jp;
+      if(typeof this.name == 'undefined' || !this.name) this.name = this.animeI().attributes.titles.en_jp;
+      if(typeof this.name == 'undefined' || !this.name) this.name = this.animeI().attributes.titles.ja_jp;
 
       this.totalEp = this.animeI().attributes.episodeCount? this.animeI().attributes.episodeCount: this.animeI().attributes.chapterCount;
       if(this.animeI().attributes.volumeCount){
