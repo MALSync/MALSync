@@ -143,7 +143,7 @@ export const Emby: pageInterface = {
         return src;
       });
       utils.urlChangeDetect(function(){
-        if(!(window.location.href.indexOf('video') !== -1)){
+        if(!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)){
           $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
           page.UILoaded = false;
           urlChange(page);
