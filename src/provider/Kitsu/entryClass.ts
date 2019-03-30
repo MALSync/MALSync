@@ -45,11 +45,17 @@ export class entryClass{
   }
 
   async update(){
-    con.log('Update Kitsu info', this.id? 'MAL: '+this.id : 'Kitsu: '+this.kitsuId);
+    con.log('Update Kitsu info', this.id? 'MAL: '+this.id : 'Kitsu: '+this.kitsuSlug);
+    if(isNaN(this.id)){
+      var kitsuSlugRes = await helper.kitsuSlugtoKitsu(this.kitsuSlug, this.type);
+      this.kitsuId = kitsuSlugRes.res.data[0].id;
+      this.id = kitsuSlugRes.malId;
+    }
     if(isNaN(this.kitsuId)){
        var kitsuRes = await helper.malToKitsu(this.id, this.type);
        this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
     }
+
 
     return api.request.xhr('GET', {
       url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+'&filter[kind]='+this.type+'&filter['+this.type+'_id]='+this.kitsuId+'&page[limit]=1&page[limit]=1&include='+this.type+'&fields['+this.type+']=slug,titles,averageRating,posterImage,'+(this.type == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
@@ -80,7 +86,12 @@ export class entryClass{
             status: 'planned'
           }
         }
-        this.animeInfo.included = kitsuRes.included;
+        if(typeof kitsuRes !== 'undefined'){
+          this.animeInfo.included = kitsuRes.included;
+        }else{
+          this.animeInfo.included = kitsuSlugRes.res.data;
+        }
+
       }
       if(this.getEpisode() === NaN) this.setEpisode(0);
       this.setScore(this.getScore());

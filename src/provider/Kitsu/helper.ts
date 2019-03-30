@@ -50,36 +50,27 @@ export function malToKitsu(malid: number, type: "anime"|"manga"){
   });
 }
 
-export function kitsuToMal(kitsuSlug: string, type: "anime"|"manga"){
-  var query = `
-  query ($id: Int, $type: MediaType) {
-    Media (id: $id, type: $type) {
-      id
-      idMal
-    }
-  }
-  `;
-  ​
-  var variables = {
-    id: kitsuSlug,
-    type: type.toUpperCase()
-  };
-
-  return api.request.xhr('POST', {
-    url: 'https://graphql.anilist.co',
+export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
+  return api.request.xhr('Get', {
+    url: 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings',
     headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-    data: JSON.stringify({
-      query: query,
-      variables: variables
-    })
+      'Content-Type': 'application/vnd.api+json',
+      'Accept': 'application/vnd.api+json',
+    }
   }).then((response) => {
     var res = JSON.parse(response.responseText);
-    con.log(res);
-    errorHandling(res);
-    return res.data.Media.idMal;
+    var malId = NaN;
+    for (var k = 0; k < res.included.length; k++) {
+      var mapping = res.included[k];
+      if(mapping.type == 'mappings'){
+        if(mapping.attributes.externalSite === 'myanimelist/'+type){
+          malId = mapping.attributes.externalId;
+          res.included.splice(k, 1);
+          break;
+        }
+      }
+    }
+    return {res: res, malId: malId};
   });
 }
 
