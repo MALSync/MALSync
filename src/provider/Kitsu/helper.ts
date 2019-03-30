@@ -1,3 +1,5 @@
+import {kitsu} from "./templates";
+
 export function translateList(aniStatus, malStatus:null|number = null){
   var list = {
     'current': 1,
@@ -19,15 +21,16 @@ export function accessToken(){
 export function errorHandling(res, silent:boolean = false){
   if(typeof res.errors != 'undefined'){
     res.errors.forEach( (error) => {
-      switch(error.status) {
-        case 400:
-          if(!silent) utils.flashm('Please Authenticate <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Here</a>', {error: true});
+      switch(parseInt(error.code)) {
+        case 403:
+          if(!silent) utils.flashm(kitsu.noLogin, {error: true});
+          throw error.message;
           break;
         case 404:
-          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.detail, {error: true});
           break;
         default:
-          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.detail, {error: true});
           throw error.message;
       }
     })
@@ -95,9 +98,9 @@ export async function userId(){
     }).then((response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
-      if(res.data[0] == 'undefined'){
-        con.error('Not authentificated');
-        return '';
+      if(!res.data.length || res.data[0] == 'undefined'){
+        utils.flashm(kitsu.noLogin, {error: true});
+        throw('Not authentificated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);
       return res.data[0].id;
