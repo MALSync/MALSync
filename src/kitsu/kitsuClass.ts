@@ -51,6 +51,7 @@ export class kitsuClass{
       }
       con.log('page', this.page);
       this.streamingUI();
+      this.malToKiss();
 
 
     }
@@ -154,4 +155,53 @@ export class kitsuClass{
       });
     }
   }
+
+  malToKiss(){
+    con.log('malToKiss');
+    $('.mal_links').remove();
+    utils.getMalToKissArray(this.page!.type, this.page!.malid).then((links) => {
+      var html = '';
+      for(var pageKey in links){
+        var page = links[pageKey];
+
+        var tempHtml = '';
+        var tempUrl = '';
+        for(var streamKey in page){
+          var stream = page[streamKey];
+          tempHtml += `
+          <div class="mal_links" style="margin-top: 5px;">
+            <a target="_blank" href="${stream['url']}">
+              ${stream['title']}
+            </a>
+          </div>`;
+          tempUrl = stream['url'];
+        }
+        html += `
+          <div id="${pageKey}Links" class="mal_links library-state with-header" style="
+            background: rgb(var(--color-foreground));
+            border-radius: 3px;
+            display: block;
+            padding: 8px 12px;
+            width: 100%;
+            font-size: 12px;
+
+          ">
+            <img src="${utils.favicon(tempUrl.split('/')[2])}">
+            <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${pageKey}</span>
+            <span title="${pageKey}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
+            ${tempHtml}
+          </div>`;
+
+      }
+      $(document).ready(function(){
+        $('.where-to-watch-widget').after(html);
+        $('.remove-mal-sync').click(function(){
+          var key = $(this).attr('title');
+          api.settings.set(key, false);
+          location.reload();
+        });
+      });
+    })
+  }
+
 }
