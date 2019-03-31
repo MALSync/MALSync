@@ -4,7 +4,7 @@ export class entryClass{
 
   id: number;
   private kitsuSlug: string = '';
-  private kitsuId: number = NaN;
+  kitsuId: number = NaN;
   readonly type: "anime"|"manga";
 
   name: string = "";

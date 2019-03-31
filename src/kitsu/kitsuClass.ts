@@ -1,13 +1,14 @@
-//import * as helper from "./../provider/AniList/helper";
+import * as helper from "./../provider/Kitsu/helper";
 import {pageSearch} from './../pages/pages';
-//import {entryClass} from "./../provider/AniList/entryClass";
-//import {userList} from "./../provider/AniList/userList";
+import {entryClass} from "./../provider/Kitsu/entryClass";
+import {userList} from "./../provider/Kitsu/userList";
 
 interface detail{
   page: "detail",
   id: number,
   malid: number,
-  type: "anime"|"manga"
+  type: "anime"|"manga",
+  malObj: undefined
 }
 
 interface bookmarks{
@@ -31,10 +32,29 @@ export class kitsuClass{
     api.storage.addStyle(require('./style.less').toString());
   }
 
-  init(){
+  async init(){
     if(this.url.indexOf("?mal-sync=authentication") > -1){
       this.authentication();
     }
+
+    var urlpart = utils.urlPart(this.url, 3);
+    if(urlpart == 'anime' || urlpart == 'manga'){
+      var malObj = new entryClass(this.url);
+      await malObj.init();
+
+      this.page = {
+        page: "detail",
+        id: malObj.kitsuId,
+        malid: malObj.id,
+        type: urlpart,
+        malObj: malObj,
+      }
+      con.log('page', this.page);
+      this.streamingUI();
+
+
+    }
+
   }
 
   authentication(){
@@ -89,5 +109,42 @@ export class kitsuClass{
         });
       })
     });
+  }
+
+  async streamingUI(){
+    con.log('Streaming UI');
+    $('#mal-sync-stream-div').remove();
+    var malObj = this.page.malObj;
+
+    var streamUrl = malObj.getStreamingUrl();
+    if(typeof streamUrl !== 'undefined'){
+
+      $(document).ready(async function(){
+        $('.media--title h3').first().after(`
+        <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: -4px; display: inline;">
+          <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
+            <img src="${utils.favicon(streamUrl.split('/')[2])}">
+          </a>
+        </div>`);
+
+        var resumeUrlObj = await malObj.getResumeWaching();
+        var continueUrlObj = await malObj.getContinueWaching();
+        con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
+          $('#mal-sync-stream-div').append(
+            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+            </a>`
+            );
+        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
+          $('#mal-sync-stream-div').append(
+            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+            </a>`
+            );
+        }
+
+      });
+    }
   }
 }
