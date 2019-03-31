@@ -21,16 +21,17 @@ export function accessToken(){
 export function errorHandling(res, silent:boolean = false){
   if(typeof res.errors != 'undefined'){
     res.errors.forEach( (error) => {
-      switch(parseInt(error.code)) {
+      switch(parseInt(error.status)) {
+        case 401:
         case 403:
           if(!silent) utils.flashm(kitsu.noLogin, {error: true});
           throw error.message;
           break;
         case 404:
-          if(!silent) utils.flashm('kitsu: '+error.detail, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.title, {error: true});
           break;
         default:
-          if(!silent) utils.flashm('kitsu: '+error.detail, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.title, {error: true});
           throw error.message;
       }
     })

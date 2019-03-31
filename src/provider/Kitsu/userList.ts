@@ -100,6 +100,7 @@ export function prepareData(data, listType): listElement[]{
     if(listType === "anime"){
       var tempData = {
         id: malId,
+        kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
         url: 'https://myanimelist.net/'+listType+'/'+malId+'/'+name,
@@ -112,6 +113,7 @@ export function prepareData(data, listType): listElement[]{
     }else{
       var tempData = {
         id: malId,
+        kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
         url: 'https://myanimelist.net/'+listType+'/'+malId+'/'+name,

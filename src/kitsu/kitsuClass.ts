@@ -58,6 +58,18 @@ export class kitsuClass{
 
     }
 
+    var urlpart4 = utils.urlPart(this.url, 5);
+    if(urlpart4 == 'library'){
+      var type = 'anime';
+      if(utils.urlParam(this.url, 'media') == 'manga') type = 'manga';
+      this.page = {
+        page: "bookmarks",
+        type: type
+      }
+      con.log('page', this.page);
+      this.bookmarks();
+    }
+
   }
 
   authentication(){
@@ -199,7 +211,7 @@ export class kitsuClass{
         if($('#mal-sync-search-links').length){
           $('#mal-sync-search-links').first().after(html);
         }else{
-          $('.where-to-watch-widget').first().after(html);
+          $('.where-to-watch-widget, .library-state').first().after(html);
         }
 
         $('.remove-mal-sync').click(function(){
@@ -217,7 +229,7 @@ export class kitsuClass{
     $(document).ready(function(){
       con.log('Site Search');
       $('#mal-sync-search-links').remove();
-      $('.where-to-watch-widget').after(`
+      $('.where-to-watch-widget, .library-state').first().after(`
         <div id="mal-sync-search-links" style="
             background: rgb(var(--color-foreground));
             border-radius: 3px;
@@ -267,6 +279,90 @@ export class kitsuClass{
 
         $('.MALSync-search').html(html);
       });
+    });
+  }
+
+  private tempAnimelist = null;
+  private tempMangalist = null;
+
+  bookmarks(){
+    var This = this;
+    $(document).ready(() => {
+
+      if(this.page!.type == 'anime'){
+        if(this.tempAnimelist != null){
+          fullListCallback(this.tempAnimelist);
+          return;
+        }
+      }else{
+        if(this.tempMangalist != null){
+          fullListCallback(this.tempMangalist);
+          return;
+        }
+      }
+
+      userList(1, this.page!.type, {fullListCallback: (list) => {
+        if(this.page!.type == 'anime'){
+          this.tempAnimelist = list;
+        }else{
+          this.tempMangalist = list;
+        }
+        fullListCallback(list);
+      }});
+
+      function fullListCallback(list){
+        con.log(list);
+        $.each(list, async (index, en) => {
+          con.log('en', en);
+          if(typeof en.id !== 'undefined' && en.id !== null && en.id){
+            var element = $('.library-grid-popover:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"]').first().parent().parent().parent();
+            con.log(element);
+            element.parent().addClass('malSyncDone2');
+
+            var streamUrl = utils.getUrlFromTags(en.tags);
+            if(typeof streamUrl !== 'undefined'){
+              con.log(streamUrl);
+              element.prepend(`
+                <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; max-height: 14px; z-index: 22; position:absolute; left: 10px; top: 5px;" href="${streamUrl}">
+                  <img src="${utils.favicon(streamUrl.split('/')[2])}">
+                </a>`);
+
+            }
+
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.id);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.id);
+
+            var curEp = en.watchedEp;
+
+            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+              element.prepend(
+                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 5px; left: 35px;" href="${continueUrlObj.url}">
+                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+              element.prepend(
+                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 5px; left: 35px;" href="${resumeUrlObj.url}">
+                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }
+
+            utils.epPredictionUI(en.id, This.page!.type, (prediction) => {
+              if(!prediction) return;
+              element.parent().find('.progress').append(prediction.tag);
+            });
+
+          }
+
+
+
+        })
+
+
+
+      }
     });
   }
 
