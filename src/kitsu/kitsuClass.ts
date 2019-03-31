@@ -111,6 +111,13 @@ export class kitsuClass{
     });
   }
 
+  async getMalUrl(){
+    if(this.page !== null && this.page.page == 'detail' && this.page.malid){
+      return 'https://myanimelist.net/'+this.page.type+'/'+this.page.malid+'/'+utils.urlPart(this.url, 5);
+    }
+    return '';
+  }
+
   async streamingUI(){
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
