@@ -323,7 +323,7 @@ export class kitsuClass{
             if(typeof streamUrl !== 'undefined'){
               con.log(streamUrl);
               element.prepend(`
-                <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; max-height: 14px; z-index: 22; position:absolute; left: 10px; top: 5px;" href="${streamUrl}">
+                <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; z-index: 22; position:absolute; left: 0px; top: 0px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${streamUrl}">
                   <img src="${utils.favicon(streamUrl.split('/')[2])}">
                 </a>`);
 
@@ -337,13 +337,13 @@ export class kitsuClass{
             con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
             if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
               element.prepend(
-                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 5px; left: 35px;" href="${continueUrlObj.url}">
+                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${continueUrlObj.url}">
                   <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                 </a>`
                 );
             }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
               element.prepend(
-                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 5px; left: 35px;" href="${resumeUrlObj.url}">
+                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${resumeUrlObj.url}">
                   <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                 </a>`
                 );
