@@ -18,16 +18,35 @@ interface bookmarks{
 
 export class kitsuClass{
   page: any = null
+  same:boolean = false;
 
   constructor(public url:string){
-    utils.urlChangeDetect(() => {
+    var oldUrl = window.location.href.split('/').slice(0,5).join('/');
+    utils.changeDetect(() => {
+      this.same = false;
+      if(this.page !== null && this.page.page == "detail"){
+        var tempUrl = window.location.href.split('/').slice(0,5).join('/');
+        if(tempUrl === oldUrl){
+          this.same = true;
+        }
+        oldUrl = tempUrl;
+      }
+
       this.url = window.location.href;
       this.init();
+    }, () => {
+      if(this.page !== null && this.page.page == "bookmarks" && $('.library-content').length){
+        return $('.library-content').first().height();
+      }
+
+      return window.location.href;
     });
 
-    if(this.url.indexOf("?mal-sync=authentication") > -1){
-      this.init();
-    }
+    $(document).ready(() => {
+      utils.waitUntilTrue(function(){return $('.global-container').length}, () => {
+        this.init();
+      });
+    });
 
     api.storage.addStyle(require('./style.less').toString());
   }
@@ -39,6 +58,10 @@ export class kitsuClass{
 
     var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
+      if(this.same && typeof this.page !== 'undefined' && this.page.malObj !== 'undefined'){
+        this.streamingUI();
+        return;
+      }
       var malObj = new entryClass(this.url);
       await malObj.init();
 
