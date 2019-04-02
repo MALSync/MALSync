@@ -146,6 +146,10 @@ export class kitsuClass{
           }
         });
       })
+
+      utils.waitUntilTrue(function(){return $('body h1').length}, () => {
+        $('body h1').remove();
+      });
     });
   }
 
