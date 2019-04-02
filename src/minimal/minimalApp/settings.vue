@@ -17,7 +17,24 @@
             <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
+              <option value="KITSU">Kitsu</option>
             </select>
+          </span>
+        </li>
+        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
+          <span class="mdl-list__item-primary-content">
+            AniList
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
+          </span>
+        </li>
+        <li class="mdl-list__item" v-if="options.syncMode == 'KITSU'">
+          <span class="mdl-list__item-primary-content">
+            Kitsu
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">Authenticate</a>
           </span>
         </li>
         <li class="mdl-list__item">
@@ -41,14 +58,6 @@
               <option value="instant">Instant</option>
               <option value="manual">Manual</option>
             </select>
-          </span>
-        </li>
-        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
-          <span class="mdl-list__item-primary-content">
-            AniList
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
           </span>
         </li>
         <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'">
