@@ -338,21 +338,31 @@ export class kitsuClass{
       }});
 
       function fullListCallback(list){
+        var cover = true;
+        if($('.library-list tbody tr').length) cover = false;
         con.log(list);
         $.each(list, async (index, en) => {
           con.log('en', en);
           if(typeof en.id !== 'undefined' && en.id !== null && en.id){
-            var element = $('.library-grid-popover:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"]').first().parent().parent().parent();
+            var element = $('.library-grid-popover:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"], .library-list tbody tr:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"]').first().parent().parent().parent();
             con.log(element);
             element.addClass('malSyncDone2');
 
             var streamUrl = utils.getUrlFromTags(en.tags);
             if(typeof streamUrl !== 'undefined'){
               con.log(streamUrl);
-              element.prepend(`
-                <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; z-index: 22; position:absolute; left: 0px; top: 0px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${streamUrl}">
-                  <img src="${utils.favicon(streamUrl.split('/')[2])}">
-                </a>`);
+              if(cover){
+                element.prepend(`
+                  <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0; z-index: 22; position:absolute; left: 0px; top: 0px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${streamUrl}">
+                    <img src="${utils.favicon(streamUrl.split('/')[2])}">
+                  </a>`);
+              }else{
+                element.find('.title-wrapper').append(`
+                  <a class="mal-sync-stream mal-rem" title="${streamUrl.split('/')[2]}" target="_blank" style="padding: 0 5px;" href="${streamUrl}">
+                    <img src="${utils.favicon(streamUrl.split('/')[2])}">
+                  </a>`);
+              }
+
 
             }
 
@@ -363,22 +373,38 @@ export class kitsuClass{
 
             con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
             if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-              element.prepend(
-                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${continueUrlObj.url}">
-                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
-                </a>`
-                );
+              if(cover){
+                element.prepend(
+                  `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${continueUrlObj.url}">
+                    <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                  </a>`
+                  );
+              }else{
+                element.find('.title-wrapper').append(
+                  `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="padding: 0;" href="${continueUrlObj.url}">
+                    <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                  </a>`
+                  );
+              }
             }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-              element.prepend(
-                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${resumeUrlObj.url}">
-                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
-                </a>`
-                );
+              if(cover){
+                element.prepend(
+                  `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${resumeUrlObj.url}">
+                    <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+                  </a>`
+                  );
+              }else{
+                element.find('.title-wrapper').append(
+                  `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="padding: 0;" href="${resumeUrlObj.url}">
+                    <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+                  </a>`
+                  );
+              }
             }
 
             utils.epPredictionUI(en.id, This.page!.type, (prediction) => {
               if(!prediction) return;
-              element.parent().find('.entry-unit').append(prediction.tag);
+              element.parent().find('.entry-unit, .progress-cell > span:last-of-type').append(prediction.tag);
             });
 
           }
