@@ -340,7 +340,7 @@ export class kitsuClass{
           if(typeof en.id !== 'undefined' && en.id !== null && en.id){
             var element = $('.library-grid-popover:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"]').first().parent().parent().parent();
             con.log(element);
-            element.parent().addClass('malSyncDone2');
+            element.addClass('malSyncDone2');
 
             var streamUrl = utils.getUrlFromTags(en.tags);
             if(typeof streamUrl !== 'undefined'){
@@ -374,7 +374,7 @@ export class kitsuClass{
 
             utils.epPredictionUI(en.id, This.page!.type, (prediction) => {
               if(!prediction) return;
-              element.parent().find('.progress').append(prediction.tag);
+              element.parent().find('.entry-unit').append(prediction.tag);
             });
 
           }
