@@ -58,6 +58,15 @@ const generateManifest = () => {
       'default_popup': 'popup.html',
       'default_icon': 'icons/icon16.png'
     },
+    'commands': {
+      '_execute_browser_action': {
+        'suggested_key': {
+          'default': 'Alt+M',
+          'windows': 'Alt+M',
+          'mac': 'Alt+M'
+        }
+      },
+    },
     'content_scripts': [
       {
         'matches': generateMatchExcludes(contentUrls).match,
@@ -131,7 +140,7 @@ const generateManifest = () => {
       "https://cdn.myanimelist.net/",
       "https://s3.anilist.co/",
       "https://graphql.anilist.co/",
-      "https://kitsu.io",
+      "https://kitsu.io/",
       "tabHide"
     ],
     "optional_permissions": [
