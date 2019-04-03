@@ -29,5 +29,24 @@ function messagePageListener(page){
         chrome.runtime.sendMessage({name: "videoTimeSet", time: time, sender: msg.sender});
       });
     }
+
+    if(msg.action == 'videoTimeSet'){
+      con.log('[Iframe] Set Time', msg);
+      if(typeof page.tempPlayer === 'undefined'){
+        con.error('[Iframe] No player Found');
+        return;
+      }
+      if(typeof msg.time !== 'undefined'){
+        page.tempPlayer.play();
+        page.tempPlayer.currentTime = msg.time;
+        return;
+      }
+      if(typeof msg.timeAdd !== 'undefined'){
+        page.tempPlayer.play();
+        page.tempPlayer.currentTime = page.tempPlayer.currentTime + msg.timeAdd;
+        return;
+      }
+    }
+
   });
 }

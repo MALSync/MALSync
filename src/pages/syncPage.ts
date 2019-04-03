@@ -116,6 +116,7 @@ export class syncPage{
   }
 
   curState:any = undefined;
+  tempPlayer:any = undefined;
 
   async handlePage(curUrl = window.location.href){
     var state: pageState;
@@ -136,7 +137,8 @@ export class syncPage{
       }
       if(this.page.type == 'anime'){
         getPlayerTime((item, player) => {
-          this.setVideoTime(item, function(time){
+          this.tempPlayer = player;
+          this.setVideoTime(item, (time) => {
             if(typeof player === 'undefined'){
               con.error('No player Found');
               return;
