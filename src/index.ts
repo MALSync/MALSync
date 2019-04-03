@@ -13,7 +13,7 @@ function main() {
     var anilist = new anilistClass(window.location.href);
   }else{
     try{
-      if(window.location.href.indexOf( 'static.crunchyroll.com' ) > -1) throw 'static.crunchyroll.com';
+      if(inIframe()) throw 'iframe';
       var page = new syncPage(window.location.href);
     }catch(e){
       con.info(e);
@@ -54,4 +54,12 @@ function iframe(){
   getPlayerTime(function(item){
     api.storage.set("iframePlayer", item);
   });
+}
+
+function inIframe() {
+    try {
+        return window.self !== window.top;
+    } catch (e) {
+        return true;
+    }
 }
