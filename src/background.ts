@@ -86,14 +86,17 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
     }
     case "iframeDone": {
       checkContinue(message);
+      return;
     }
     case "videoTime": {
       //@ts-ignore
       chrome.tabs.sendMessage(sender.tab.id, {action: "videoTime", item: message.item, sender: sender});
+      return;
     }
     case "videoTimeSet": {
       //@ts-ignore
       chrome.tabs.sendMessage(message.sender.tab.id, {action: "videoTimeSet", time: message.time, timeAdd: message.timeAdd}, {frameId: message.sender.frameId});
+      return;
     }
   }
   return undefined;
