@@ -88,9 +88,18 @@ export class syncPage{
       con.info('Resume', localItem);
       if(localItem !== null && (parseInt(localItem) - 30) > item.current && parseInt(localItem) > 30){
         if(!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
-        var resumeTime = localItem;
+        var resumeTime = Math.round(parseInt(localItem));
+        var resumeTimeString = '';
+
+        var delta = resumeTime;
+        var minutes = Math.floor(delta / 60);
+        delta -= minutes * 60;
+        var sec = delta+"";
+        while (sec.length < 2) sec = "0" + sec;
+        resumeTimeString = minutes+':'+sec;
+
         utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTimeString+'</button>' ,
           {
             permanent: true,
             error: false,
@@ -107,7 +116,7 @@ export class syncPage{
       }else{
         setTimeout(() => {
           this.curState.videoChecked = 2;
-        }, 30000)
+        }, 15000)
       }
 
       //@ts-ignore
