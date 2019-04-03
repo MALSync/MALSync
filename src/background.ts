@@ -17,6 +17,18 @@ chrome.runtime.onInstalled.addListener(function(details){
     chrome.alarms.clearAll();
 });
 
+chrome.commands.onCommand.addListener(function(command) {
+  con.log('Command:', command);
+  switch (command) {
+    case "intro_skip_forward": {
+      return;
+    }
+    case "intro_skip_backward": {
+      return;
+    }
+  }
+});
+
 chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse)  => {
   return messageHandler(message, sender, sendResponse)
 });

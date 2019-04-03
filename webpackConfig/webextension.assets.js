@@ -66,6 +66,22 @@ const generateManifest = () => {
           'mac': 'Alt+M'
         }
       },
+      'intro_skip_forward': {
+        'suggested_key': {
+          'default': 'Ctrl+Right',
+          'windows': 'Ctrl+Right',
+          'mac': 'Ctrl+Right'
+        },
+        'description': 'Skip intro forward',
+      },
+      'intro_skip_backward': {
+        'suggested_key': {
+          'default': 'Ctrl+Left',
+          'windows': 'Ctrl+Left',
+          'mac': 'Ctrl+Left'
+        },
+        'description': 'Skip intro backward',
+      },
     },
     'content_scripts': [
       {
