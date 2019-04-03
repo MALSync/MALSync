@@ -21,10 +21,20 @@ chrome.commands.onCommand.addListener(function(command) {
   con.log('Command:', command);
   switch (command) {
     case "intro_skip_forward": {
+      addVideoTime(true);
       return;
     }
     case "intro_skip_backward": {
+      addVideoTime(false);
       return;
+    }
+    function addVideoTime(forward:boolean){
+      var time = 85;
+      if(!forward) time = 0 - time;
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        // @ts-ignore
+        chrome.tabs.sendMessage(tabs[0].id, {action: "videoTimeSet", timeAdd: time});
+      });
     }
   }
 });
