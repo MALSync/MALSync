@@ -36,7 +36,7 @@
           return api.settings.get(this.option);
         },
         set: function (value) {
-          if(value >= this.min && value <= this.max){
+          if(value !== '' && value !== null && value >= this.min && value <= this.max){
             api.settings.set(this.option, value);
             this.$emit('changed', value);
           }

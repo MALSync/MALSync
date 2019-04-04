@@ -60,26 +60,9 @@
             </select>
           </span>
         </li>
-        <li class="mdl-list__item" v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'">
-          <span class="mdl-list__item-primary-content">
-            Update on {{options.videoDuration}}% of video progress
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <div class="mdl-textfield mdl-js-textfield" style="min-width: 35px; max-width: 35px; width: 100%; padding: 0;">
-                <input class="mdl-textfield__input" type="number" step="1" min="10" max="99" id="videoDuration" :value="options.videoDuration" style="text-align: center;">
-            </div>
-          </span>
-        </li>
-        <li class="mdl-list__item" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">
-          <span class="mdl-list__item-primary-content">
-            Delay instant autotracking by {{options.delay}} Seconds
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <div class="mdl-textfield mdl-js-textfield" style="min-width: 35px; max-width: 35px; width: 100%; padding: 0;">
-                <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay" style="text-align: center;">
-            </div>
-          </span>
-        </li>
+        <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">Update on {{options.videoDuration}}% of video progress</numberInput>
+
+        <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">Delay instant autotracking by {{options.delay}} Seconds</numberInput>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
