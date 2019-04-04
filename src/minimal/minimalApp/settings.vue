@@ -173,6 +173,43 @@
         </li>
       </div>
 
+      <div v-if="commands" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Shortcuts</h2>
+        </div>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Open miniMAL
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands._execute_browser_action.shortcut}}
+            <span v-if="!commands._execute_browser_action.shortcut">Not Set</span>
+          </span>
+        </li>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            {{commands.intro_skip_forward.description}}
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands.intro_skip_forward.shortcut}}
+            <span v-if="!commands.intro_skip_forward.shortcut">Not Set</span>
+          </span>
+        </li>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            {{commands.intro_skip_backward.description}}
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands.intro_skip_backward.shortcut}}
+            <span v-if="!commands.intro_skip_backward.shortcut">Not Set</span>
+          </span>
+        </li>
+
+      </div>
+
       <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Update Check</h2>
@@ -330,6 +367,9 @@
         default: null
       },
     },
+    data: () => ({
+      commands: null,
+    }),
     mounted: function(){
       api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
         try{
@@ -340,6 +380,19 @@
         }
         con.log('Contributer', contr);
       });
+      if(api.type == 'webextension' && j.$('#Mal-Sync-Popup').length){
+        chrome.commands.getAll((commands) => {
+          con.info('Commands', commands);
+
+          var tempCommands = commands.reduce(function ( total, current ) {
+            total[ current.name ] = current;
+            return total;
+          }, {});
+
+          this.commands = tempCommands;
+        })
+      }
+
     },
     methods: {
       myOpen: function(){
