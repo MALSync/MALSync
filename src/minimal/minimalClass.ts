@@ -176,32 +176,6 @@ export class minimal{
       utils.flashm("Cache Cleared ["+deleted+"]");
     });
 
-    this.minimal.find("#malDelay").on("input", function(){
-        var tempDelay = This.minimal.find("#malDelay").val();
-        if(tempDelay !== null){
-            if(tempDelay !== ''){
-                api.settings.set( 'delay', tempDelay );
-                utils.flashm( "New delay ("+tempDelay+") set." );
-            }else{
-                api.settings.set( 'delay', 0 );
-                utils.flashm( "Delay reset" );
-            }
-        }
-    });
-
-    this.minimal.find("#videoDuration").on("input", function(){
-        var tempDelay = This.minimal.find("#videoDuration").val();
-        if(tempDelay !== null){
-            if(tempDelay !== ''){
-              if( tempDelay > 9 &&  tempDelay < 100){
-                api.settings.set( 'videoDuration', tempDelay );
-              }
-            }else{
-                //api.settings.set( 'videoDuration', 85 );
-            }
-        }
-    });
-
     if(api.type == 'webextension'){
       this.minimal.find('.option-extension').show();
     }

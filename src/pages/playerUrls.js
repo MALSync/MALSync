@@ -74,11 +74,6 @@ module.exports = {
       '*://*.vimple.ru/*',
     ]
   },
-  crunchyroll: {
-    match: [
-      '*://*.static.crunchyroll.com/*',
-    ]
-  },
   href: {
     match: [
       '*://*.href.li/*',

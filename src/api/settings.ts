@@ -35,9 +35,12 @@ export var settingsObj = {
     Mangadex: true,
     Mangarock: true,
 
+    introSkip: 85,
+
     updateCheckNotifications: true,
 
     'anilistToken': '',
+    'kitsuToken': '',
   },
 
   init: async function (){
@@ -64,6 +67,10 @@ export var settingsObj = {
     }else{
       con.error(name+' is not a defined option');
     }
+  },
+
+  getAsync: async function(name: string){
+    return api.storage.get('settings/'+name);
   }
 
 }

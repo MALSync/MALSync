@@ -2,8 +2,8 @@
   "name": "MALSync",
   "productName": "MAL-Sync",
   "author": "lolamtisch@gmail.com",
-  "version": "0.4.8",
-  "description": "Integrates MyAnimeList/AniList into various sites, with auto episode tracking.",
+  "version": "0.4.9",
+  "description": "Integrates MyAnimeList/AniList/Kitsu into various sites, with auto episode tracking.",
   "devDependencies": {
     "@types/jquery": "^3.3.6",
     "@types/node": "^10.7.1",
@@ -37,11 +37,9 @@
     "build": "npm run clean && npm run build:userscript && npm run build:webextension",
     "build:win": "npm run clean:win && npm run build:userscript && npm run build:webextension",
     "build:userscript": "webpack --config webpackConfig/userscript.config.js",
-    "build:webextension": "npm run build:webextension:content && npm run build:webextension:background && npm run build:webextension:popup && npm run build:webextension:updateCheck && npm run build:webextension:assets",
+    "build:webextension": "npm run build:webextension:content && npm run build:webextension:background && npm run build:webextension:assets",
     "build:webextension:content": "webpack --mode=production --config webpackConfig/webextension.content.config.js",
     "build:webextension:background": "webpack --mode=production --config webpackConfig/webextension.background.config.js",
-    "build:webextension:popup": "webpack --mode=production --config webpackConfig/webextension.popup.config.js",
-    "build:webextension:updateCheck": "webpack --mode=production --config webpackConfig/webextension.updateCheck.config.js",
     "build:webextension:assets": "node webpackConfig/webextension.assets.js",
     "package": "npm run package:webextension",
     "package:webextension": "node package/webextension.js",
@@ -49,12 +47,9 @@
     "package:chrome": "CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID} REFRESH_TOKEN=${REFRESH_TOKEN} node ./package/deployChrome",
     "dev:webextension:userscript": "npm run dev:webextension | npm run dev:userscript",
     "dev:userscript": "webpack --watch --progress --config webpackConfig/userscript.config.js",
-    "dev:webextension": "npm run dev:webextension:content | npm run dev:webextension:background | npm run dev:webextension:popup | npm run dev:webextension:updateCheck",
     "dev:webextension:content": "webpack --watch --progress --config webpackConfig/webextension.content.config.js",
     "dev:webextension:background": "webpack --watch --progress --config webpackConfig/webextension.background.config.js",
-    "dev:webextension:popup": "webpack --watch --progress --config webpackConfig/webextension.popup.config.js",
-    "test": "webpack --config webpackConfig/test.config.js && mocha --recursive --timeout 30000 --retries 2 test/headless",
-    "dev:webextension:updateCheck": "webpack --watch --progress --config webpackConfig/webextension.updateCheck.config.js"
+    "test": "webpack --config webpackConfig/test.config.js && mocha --recursive --timeout 45000 --retries 5 test/headless"
   },
   "dependencies": {
     "@types/chrome": "0.0.72",

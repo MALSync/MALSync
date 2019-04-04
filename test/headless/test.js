@@ -166,7 +166,7 @@ var testsArray = [
     ]
   },
 
-  {
+  /*{
     title: 'Turkanime',
     url: 'http://www.turkanime.tv',
     testCases: [
@@ -192,7 +192,7 @@ var testsArray = [
         }
       },
     ]
-  },
+  },*/
 
   {
     title: 'Kissmanga',

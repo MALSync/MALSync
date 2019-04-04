@@ -17,6 +17,28 @@ chrome.runtime.onInstalled.addListener(function(details){
     chrome.alarms.clearAll();
 });
 
+chrome.commands.onCommand.addListener(function(command) {
+  con.log('Command:', command);
+  switch (command) {
+    case "intro_skip_forward": {
+      addVideoTime(true);
+      return;
+    }
+    case "intro_skip_backward": {
+      addVideoTime(false);
+      return;
+    }
+    async function addVideoTime(forward:boolean){
+      var time = parseInt(await api.settings.getAsync('introSkip'));
+      if(!forward) time = 0 - time;
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        // @ts-ignore
+        chrome.tabs.sendMessage(tabs[0].id, {action: "videoTimeSet", timeAdd: time});
+      });
+    }
+  }
+});
+
 chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse)  => {
   return messageHandler(message, sender, sendResponse)
 });
@@ -64,14 +86,17 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
     }
     case "iframeDone": {
       checkContinue(message);
+      return;
     }
     case "videoTime": {
       //@ts-ignore
       chrome.tabs.sendMessage(sender.tab.id, {action: "videoTime", item: message.item, sender: sender});
+      return;
     }
     case "videoTimeSet": {
       //@ts-ignore
       chrome.tabs.sendMessage(message.sender.tab.id, {action: "videoTimeSet", time: message.time, timeAdd: message.timeAdd}, {frameId: message.sender.frameId});
+      return;
     }
   }
   return undefined;

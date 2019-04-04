@@ -1,14 +1,18 @@
 import {mal} from "./MyAnimeList/templates";
 import {anilist} from "./AniList/templates";
+import {kitsu} from "./Kitsu/templates";
 
 function getSyncMode(){
   return api.settings.get('syncMode');
 }
 
 export function providerTemplates(){
-  if(getSyncMode() == 'MAL'){
+  var syncMode = getSyncMode();
+  if(syncMode == 'MAL'){
     return mal;
-  }else{
+  }else if(syncMode == 'ANILIST'){
     return anilist;
+  }else{
+    return kitsu;
   }
 }

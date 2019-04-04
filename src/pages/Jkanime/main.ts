@@ -47,21 +47,21 @@ export const Jkanime: pageInterface = {
             epi++;
             if(epilist.length>=epi){
               if(check==0){
-				        var buttons = j.$('.navigation a');
-				        for(var i=0; i<buttons.length;i++){
-				          if(buttons[i].text.split('-')[0].split()<=epi && buttons[i].text.split('-')[1].split()>=epi){
-				          	buttons[i].click();
-				          }
-				        }
-				        check=1;
-			        }
-			        setTimeout(function(){
-			        	j.$('#episodes-content .cap-post').each(function(i, obj) {
-			        		if(obj.innerText.split(' ')[1] == epi){
+                var buttons = j.$('.navigation a');
+                for(var i=0; i<buttons.length;i++){
+                  if(buttons[i].text.split('-')[0].split()<=epi && buttons[i].text.split('-')[1].split()>=epi){
+                    buttons[i].click();
+                  }
+                }
+                check=1;
+              }
+              setTimeout(function(){
+                j.$('#episodes-content .cap-post').each(function(i, obj) {
+                  if(obj.innerText.split(' ')[1] == epi){
                     j.$('#episodes-content .cap-post').eq(i).addClass('mal-sync-active');
                     if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}
-			        		}
-			        	});
+                  }
+                });
               }, 500);
             }
           },
@@ -70,8 +70,8 @@ export const Jkanime: pageInterface = {
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){page.handlePage();});
-		  j.$('.navigation a').click(function(){
-		  	if(check==1){page.handleList();}
-		  });
+      j.$('.navigation a').click(function(){
+        if(check==1){page.handleList();}
+      });
     }
 };

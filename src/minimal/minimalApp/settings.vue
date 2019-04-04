@@ -17,7 +17,24 @@
             <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
+              <option value="KITSU">Kitsu</option>
             </select>
+          </span>
+        </li>
+        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
+          <span class="mdl-list__item-primary-content">
+            AniList
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
+          </span>
+        </li>
+        <li class="mdl-list__item" v-if="options.syncMode == 'KITSU'">
+          <span class="mdl-list__item-primary-content">
+            Kitsu
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">Authenticate</a>
           </span>
         </li>
         <li class="mdl-list__item">
@@ -43,26 +60,9 @@
             </select>
           </span>
         </li>
-        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
-          <span class="mdl-list__item-primary-content">
-            AniList
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
-          </span>
-        </li>
-        <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-                <input class="mdl-textfield__input" type="number" step="1" min="10" max="99" id="videoDuration" :value="options.videoDuration">
-            <label class="mdl-textfield__label" for="videoDuration">Update on {{options.videoDuration}}% of video progress</label>
-            </div>
-        </li>
-        <li class="mdl-list__item" style="padding: 8px 16px;" v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-                <input class="mdl-textfield__input" type="number" step="1" id="malDelay" :value="options.delay">
-            <label class="mdl-textfield__label" for="malDelay">Instant autotracking delay (Seconds)</label>
-            </div>
-        </li>
+        <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">Update on {{options.videoDuration}}% of video progress</numberInput>
+
+        <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">Delay instant autotracking by {{options.delay}} Seconds</numberInput>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -154,6 +154,45 @@
             <label class="mdl-textfield__label" for="miniMalWidth">Width (px / %)</label>
           </div>
         </li>
+      </div>
+
+      <div v-if="commands" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Shortcuts</h2>
+        </div>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Open miniMAL
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands._execute_browser_action.shortcut}}
+            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+          </span>
+        </li>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            {{commands.intro_skip_forward.description}}
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands.intro_skip_forward.shortcut}}
+            <span v-if="!commands.intro_skip_forward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+          </span>
+        </li>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            {{commands.intro_skip_backward.description}}
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands.intro_skip_backward.shortcut}}
+            <span v-if="!commands.intro_skip_backward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+          </span>
+        </li>
+
+        <numberInput option="introSkip" :min="5">Skips {{options.introSkip}} Seconds</numberInput>
+
       </div>
 
       <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
@@ -299,13 +338,15 @@
 
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
+  import numberInput from './components/settingsNumberInput.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
   export default {
     components: {
       correction,
       tooltip,
-      checkbox
+      checkbox,
+      numberInput
     },
     props: {
       page: {
@@ -313,6 +354,9 @@
         default: null
       },
     },
+    data: () => ({
+      commands: null,
+    }),
     mounted: function(){
       api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
         try{
@@ -323,6 +367,19 @@
         }
         con.log('Contributer', contr);
       });
+      if(api.type == 'webextension' && j.$('#Mal-Sync-Popup').length){
+        chrome.commands.getAll((commands) => {
+          con.info('Commands', commands);
+
+          var tempCommands = commands.reduce(function ( total, current ) {
+            total[ current.name ] = current;
+            return total;
+          }, {});
+
+          this.commands = tempCommands;
+        })
+      }
+
     },
     methods: {
       myOpen: function(){

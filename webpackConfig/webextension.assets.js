@@ -11,10 +11,12 @@ const resourcesJson = require('./resources');
 
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
+var kitsuUrls = {anilist: pageUrls.kitsu};
 
 var contentUrls = pageUrls;
 delete contentUrls.anilist;
 delete contentUrls.myanimelist;
+delete contentUrls.kitsu;
 
 const generateMatchExcludes = (urls) => {
   var match = [];
@@ -56,6 +58,31 @@ const generateManifest = () => {
       'default_popup': 'popup.html',
       'default_icon': 'icons/icon16.png'
     },
+    'commands': {
+      '_execute_browser_action': {
+        'suggested_key': {
+          'default': 'Alt+M',
+          'windows': 'Alt+M',
+          'mac': 'Alt+M'
+        }
+      },
+      'intro_skip_forward': {
+        'suggested_key': {
+          'default': 'Ctrl+Right',
+          'windows': 'Ctrl+Right',
+          'mac': 'Ctrl+Right'
+        },
+        'description': 'Skip intro forward',
+      },
+      'intro_skip_backward': {
+        'suggested_key': {
+          'default': 'Ctrl+Left',
+          'windows': 'Ctrl+Left',
+          'mac': 'Ctrl+Left'
+        },
+        'description': 'Skip intro backward',
+      },
+    },
     'content_scripts': [
       {
         'matches': generateMatchExcludes(contentUrls).match,
@@ -81,6 +108,15 @@ const generateManifest = () => {
         'js': [
           'vendor/jquery.min.js',
           'anilist-script.js'
+        ],
+        "run_at": "document_start"
+      },
+      {
+        'matches': generateMatchExcludes(kitsuUrls).match,
+        'exclude_globs': generateMatchExcludes(kitsuUrls).exclude.concat(['*mal-sync-background=*']),
+        'js': [
+          'vendor/jquery.min.js',
+          'kitsu-script.js'
         ],
         "run_at": "document_start"
       },
@@ -120,6 +156,8 @@ const generateManifest = () => {
       "https://cdn.myanimelist.net/",
       "https://s3.anilist.co/",
       "https://graphql.anilist.co/",
+      "https://kitsu.io/",
+      "https://media.kitsu.io/",
       "tabHide"
     ],
     "optional_permissions": [

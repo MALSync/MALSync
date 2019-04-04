@@ -2,6 +2,8 @@ import * as mal from "./MyAnimeList/entryClass";
 import * as malUserList from "./MyAnimeList/userList";
 import * as anilist from "./AniList/entryClass";
 import * as anilistUserList from "./AniList/userList";
+import * as kitsu from "./Kitsu/entryClass";
+import * as kitsuUserList from "./Kitsu/userList";
 
 interface entryClass {
   readonly id: number,
@@ -47,10 +49,13 @@ function getSyncMode(){
 }
 
 export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
-  if(getSyncMode() == 'MAL'){
+  var syncMode = getSyncMode();
+  if(syncMode == 'MAL'){
     return new mal.entryClass(url, miniMAL);
-  }else{
+  }else if(syncMode == 'ANILIST'){
     return new anilist.entryClass(url, miniMAL, silent);
+  }else{
+    return new kitsu.entryClass(url, miniMAL, silent);
   }
 }
 
@@ -67,9 +72,12 @@ export function userList(
   offset = 0,
   templist = []
 ){
-  if(getSyncMode() == 'MAL'){
+  var syncMode = getSyncMode();
+  if(syncMode == 'MAL'){
     return malUserList.userList(status, localListType, callbacks, username, offset, templist);
-  }else{
+  }else if(syncMode == 'ANILIST'){
     return anilistUserList.userList(status, localListType, callbacks, username, offset, templist);
+  }else{
+    return kitsuUserList.userList(status, localListType, callbacks, username, offset, templist);
   }
 }

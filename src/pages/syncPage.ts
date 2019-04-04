@@ -65,6 +65,7 @@ export class syncPage{
         j.$('.flash .sync').click();
       }
     }
+    this.handleVideoResume(item, timeCb);
   }
 
   private handleVideoResume(item, timeCb){
@@ -88,9 +89,18 @@ export class syncPage{
       con.info('Resume', localItem);
       if(localItem !== null && (parseInt(localItem) - 30) > item.current && parseInt(localItem) > 30){
         if(!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
-        var resumeTime = localItem;
-        utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTime+'</button>' ,
+        var resumeTime = Math.round(parseInt(localItem));
+        var resumeTimeString = '';
+
+        var delta = resumeTime;
+        var minutes = Math.floor(delta / 60);
+        delta -= minutes * 60;
+        var sec = delta+"";
+        while (sec.length < 2) sec = "0" + sec;
+        resumeTimeString = minutes+':'+sec;
+
+        var resumeMsg = utils.flashm(
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTimeString+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
           {
             permanent: true,
             error: false,
@@ -98,16 +108,25 @@ export class syncPage{
             minimized: false,
             position: "top"
           }
-        ).find('.sync').on('click', function(){
+        );
+
+        resumeMsg.find('.sync').on('click', function(){
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
           //@ts-ignore
           j.$(this).parent().parent().remove();
         });
+
+        resumeMsg.find('.resumeClose').on('click', function(){
+          This.curState.videoChecked = 2;
+          //@ts-ignore
+          j.$(this).parent().parent().remove();
+        });
+
       }else{
         setTimeout(() => {
           this.curState.videoChecked = 2;
-        }, 30000)
+        }, 15000)
       }
 
       //@ts-ignore
@@ -116,6 +135,7 @@ export class syncPage{
   }
 
   curState:any = undefined;
+  tempPlayer:any = undefined;
 
   async handlePage(curUrl = window.location.href){
     var state: pageState;
@@ -136,7 +156,8 @@ export class syncPage{
       }
       if(this.page.type == 'anime'){
         getPlayerTime((item, player) => {
-          this.setVideoTime(item, function(time){
+          this.tempPlayer = player;
+          this.setVideoTime(item, (time) => {
             if(typeof player === 'undefined'){
               con.error('No player Found');
               return;
