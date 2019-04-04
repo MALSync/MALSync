@@ -28,8 +28,8 @@ chrome.commands.onCommand.addListener(function(command) {
       addVideoTime(false);
       return;
     }
-    function addVideoTime(forward:boolean){
-      var time = 85;
+    async function addVideoTime(forward:boolean){
+      var time = parseInt(await api.settings.getAsync('introSkip'));
       if(!forward) time = 0 - time;
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
         // @ts-ignore

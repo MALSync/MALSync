@@ -67,6 +67,10 @@ export var settingsObj = {
     }else{
       con.error(name+' is not a defined option');
     }
+  },
+
+  getAsync: async function(name: string){
+    return api.storage.get('settings/'+name);
   }
 
 }
