@@ -65,6 +65,7 @@ export class syncPage{
         j.$('.flash .sync').click();
       }
     }
+    this.handleVideoResume(item, timeCb);
   }
 
   private handleVideoResume(item, timeCb){
