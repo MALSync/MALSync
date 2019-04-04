@@ -98,8 +98,8 @@ export class syncPage{
         while (sec.length < 2) sec = "0" + sec;
         resumeTimeString = minutes+':'+sec;
 
-        utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTimeString+'</button>' ,
+        var resumeMsg = utils.flashm(
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTimeString+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
           {
             permanent: true,
             error: false,
@@ -107,12 +107,21 @@ export class syncPage{
             minimized: false,
             position: "top"
           }
-        ).find('.sync').on('click', function(){
+        );
+
+        resumeMsg.find('.sync').on('click', function(){
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
           //@ts-ignore
           j.$(this).parent().parent().remove();
         });
+
+        resumeMsg.find('.resumeClose').on('click', function(){
+          This.curState.videoChecked = 2;
+          //@ts-ignore
+          j.$(this).parent().parent().remove();
+        });
+
       }else{
         setTimeout(() => {
           this.curState.videoChecked = 2;
