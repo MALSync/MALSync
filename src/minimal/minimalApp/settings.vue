@@ -167,7 +167,7 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands._execute_browser_action.shortcut}}
-            <span v-if="!commands._execute_browser_action.shortcut">Not Set</span>
+            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
           </span>
         </li>
 
@@ -177,7 +177,7 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands.intro_skip_forward.shortcut}}
-            <span v-if="!commands.intro_skip_forward.shortcut">Not Set</span>
+            <span v-if="!commands.intro_skip_forward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
           </span>
         </li>
 
@@ -187,7 +187,7 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands.intro_skip_backward.shortcut}}
-            <span v-if="!commands.intro_skip_backward.shortcut">Not Set</span>
+            <span v-if="!commands.intro_skip_backward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
           </span>
         </li>
 
