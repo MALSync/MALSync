@@ -208,6 +208,8 @@
           </span>
         </li>
 
+        <numberInput option="introSkip" :min="5">Skips {{options.introSkip}} Seconds</numberInput>
+
       </div>
 
       <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
@@ -353,13 +355,15 @@
 
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
+  import numberInput from './components/settingsNumberInput.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
   export default {
     components: {
       correction,
       tooltip,
-      checkbox
+      checkbox,
+      numberInput
     },
     props: {
       page: {

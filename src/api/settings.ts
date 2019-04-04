@@ -35,6 +35,8 @@ export var settingsObj = {
     Mangadex: true,
     Mangarock: true,
 
+    introSkip: 85,
+
     updateCheckNotifications: true,
 
     'anilistToken': '',
