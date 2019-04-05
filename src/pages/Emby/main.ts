@@ -18,20 +18,27 @@ async function setBase(key){
   return api.storage.set('emby_Base', key);
 }
 
-function checkApi(page){
+async function checkApi(page){
   var videoEl = $('video');
   if(videoEl.length){
     $('html').addClass('miniMAL-hide');
     var url = videoEl.attr('src');
     con.log(url);
-    var apiBase = url!.split('/').splice(0,4).join('/');
-    var itemId = utils.urlPart(url, 5);
-    var apiKey = utils.urlParam(url, 'api_key');
-    con.log('api', apiBase);
+    //@ts-ignore
+    if(/blob\:/i.test(url)){
+      var apiBase:any = await getBase();
+      var itemId = await returnPlayingItemId();
+      var apiKey = await getApiKey();
+    }else{
+      var apiBase:any = url!.split('/').splice(0,4).join('/');
+      var itemId = utils.urlPart(url, 5);
+      var apiKey = utils.urlParam(url, 'api_key');
+      setApiKey(apiKey);
+      setBase(apiBase);
+    }
     var reqUrl = apiBase+'/Items?ids='+itemId+'&api_key='+apiKey;
-    con.log('Emby Api', reqUrl);
-    setApiKey(apiKey);
-    setBase(apiBase);
+    con.log('reqUrl', reqUrl, 'base', apiBase, 'apiKey', apiKey);
+
     api.request.xhr('GET', reqUrl).then((response) => {
       var data = JSON.parse(response.responseText);
       item = data.Items[0];
@@ -90,6 +97,25 @@ async function urlChange(page){
 
     });
   }
+}
+
+async function returnPlayingItemId(){
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {resolve()}, 10000);
+  }).then(() => {
+    return apiCall('/Sessions').then((response) => {
+        con.error(response);
+        var data = JSON.parse(response.responseText);
+        con.log(data);
+        for (var i = 0; i < data.length; i++) {
+          var sess = data[i];
+          if(typeof sess.NowPlayingItem !== 'undefined'){
+            con.log(sess.NowPlayingItem);
+            return sess.NowPlayingItem.Id;
+          }
+        }
+      });
+  });
 }
 
 //Helper
