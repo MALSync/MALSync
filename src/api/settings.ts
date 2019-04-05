@@ -70,7 +70,9 @@ export var settingsObj = {
   },
 
   getAsync: async function(name: string){
-    return api.storage.get('settings/'+name);
+    var value = await api.storage.get('settings/'+name);
+    if(typeof value === 'undefined' && typeof this.options[name] !== undefined) return this.options[name];
+    return value;
   }
 
 }
