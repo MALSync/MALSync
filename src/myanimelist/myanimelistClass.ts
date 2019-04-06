@@ -60,6 +60,7 @@ export class myanimelistClass{
         this.siteSearch();
         this.related();
         this.friendScore();
+        this.relatedTag();
         setInterval(() => {
           this.setEpPrediction();
         }, 1000 * 60)
@@ -429,6 +430,7 @@ export class myanimelistClass{
   }
 
   relatedTag(){
+    var This = this;
     $(document).ready(function(){
       $('a.button_edit').each(function(){
         var el = $(this);
@@ -438,7 +440,11 @@ export class myanimelistClass{
         var state = el.attr('title');
         if(typeof state != 'undefined' && state){
           var tag = utils.statusTag(state, type, id);
-          el.parent().parent().find('> a').after(tag);
+          if(This.page == 'detail'){alert();
+            el.parent().find('> a').first().after(tag);
+          }else{
+            el.parent().parent().find('> a').after(tag);
+          }
           el.remove();
         }
       });

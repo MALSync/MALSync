@@ -122,7 +122,8 @@ export class kitsuClass{
         $.ajax({
           type: "POST",
           url: 'https://kitsu.io/api/oauth/token',
-          data: 'grant_type=password&username='+$('#mal-sync-login #email').val()+'&password='+$('#mal-sync-login #pass').val(),
+          //@ts-ignore
+          data: 'grant_type=password&username='+encodeURIComponent($('#mal-sync-login #email').val())+'&password='+encodeURIComponent($('#mal-sync-login #pass').val()),
           success: function(result){
             var token = result.access_token;
             con.info('token', token);

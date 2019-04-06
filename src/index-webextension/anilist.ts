@@ -21,8 +21,10 @@ function messageAniListListener(anilist){
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
       anilist.getMalUrl().then((malUrl)=>{
-        con.log('TabMalUrl Message', malUrl);
-        sendResponse(malUrl);
+        if(malUrl !== ''){
+          con.log('TabMalUrl Message', malUrl);
+          sendResponse(malUrl);
+        }
       })
       return true;
     }
