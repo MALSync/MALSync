@@ -34,6 +34,7 @@ export var settingsObj = {
     Kissmanga: true,
     Mangadex: true,
     Mangarock: true,
+    Netflix: true,
 
     introSkip: 85,
 

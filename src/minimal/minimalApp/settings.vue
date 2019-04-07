@@ -75,6 +75,7 @@
         <checkbox option="Masterani">MasterAnime</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
+        <checkbox option="Netflix">Netflix</checkbox>
         <checkbox option="Gogoanime">Gogoanime</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
