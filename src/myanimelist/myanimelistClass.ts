@@ -440,7 +440,7 @@ export class myanimelistClass{
         var state = el.attr('title');
         if(typeof state != 'undefined' && state){
           var tag = utils.statusTag(state, type, id);
-          if(This.page == 'detail'){alert();
+          if(This.page == 'detail'){
             el.parent().find('> a').first().after(tag);
           }else{
             el.parent().parent().find('> a').after(tag);

@@ -51,6 +51,7 @@ function getSeries(page){
 export const Netflix: pageInterface = {
     name: 'Netflix',
     domain: 'https://www.netflix.com',
+    database: 'Netflix',
     type: 'anime',
     isSyncPage: function(url){
       return true;
