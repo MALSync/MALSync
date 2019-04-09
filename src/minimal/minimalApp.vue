@@ -295,7 +295,10 @@
           }
           return false;
         }
-        if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url)){
+        if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
+           /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
+           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url)
+          ){
           if(!isBase){
             this.history.push(this.getCurrent(this.currentTab));
           }
