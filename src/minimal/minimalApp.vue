@@ -32,7 +32,7 @@
           <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">Settings</a>
         </div>
       </header>
-      <main class="mdl-layout__content" data-simplebar style="height:  100%;">
+      <main class="mdl-layout__content" style="height: 100%;">
         <section v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel" id="fixed-tab-1">
           <overviewVue :url="renderUrl"/>
         </section>
@@ -278,10 +278,10 @@
         this.currentTab = selectedTab;
       },
       getScroll(){
-        return j.$(this.$el).find('.simplebar-scroll-content').first().scrollTop();
+        return j.$(this.$el).find('.mdl-layout__content').first().scrollTop();
       },
       setScroll(scroll){
-        return j.$(this.$el).find('.simplebar-scroll-content').first().scrollTop(scroll);
+        return j.$(this.$el).find('.mdl-layout__content').first().scrollTop(scroll);
       },
       isPopup(){
         if(j.$('#Mal-Sync-Popup').length) return true;

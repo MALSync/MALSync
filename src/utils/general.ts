@@ -635,7 +635,7 @@ function initflashm(){
 var lazyloaded = false;
 var lazyimages = new Array();
 
-export function lazyload(doc, scrollElement = '.simplebar-scroll-content'){
+export function lazyload(doc, scrollElement = '.mdl-layout__content'){
   /* lazyload.js (c) Lorenzo Giuliani
    * MIT License (http://www.opensource.org/licenses/mit-license.html)
    *
