@@ -1,0 +1,171 @@
+{
+    "hello": {
+      "message": "hello world",
+      "description": "Test area"
+    },
+    "info": {
+        "message": "%cMAL-Sync $css$ Version: $version$",
+        "description": "Test area",
+        "placeholders": {
+          "css": {
+            "content": "$1",
+            "example": "css."
+          },
+          "version": {
+            "content": "$2",
+            "example": "Version api."
+          }
+        }
+    },
+    "syncPage_flashm_resumeMsg": {
+      "message": "Resume at ",
+      "description": "Video resume message"
+    },
+    "syncPage_flashm_sync": {
+      "message": "Update $anime$ to $epi$",
+      "description": "Update anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        },
+        "epi": {
+          "content": "$2"
+        }
+      }
+    },
+    "syncPage_flashm_sync_undefined_1": {
+      "message": "Undo",
+      "description": "undefined anime - 1ºtext"
+    },
+    "syncPage_flashm_sync_undefined_2": {
+      "message": "Wrong?",
+      "description": "undefined anime - 2ºtext"
+    },
+    "syncPage_flashm_failded": {
+      "message": "Update failed",
+      "description": "Update failed"
+    },
+    "syncPage_flashConfirm_complete_1": {
+      "message": "Set as completed?",
+      "description": "Question to be completed - 1ºtext"
+    },
+    "syncPage_flashConfirm_complete_2": {
+      "message": "complete",
+      "description": "complete - 2ºtext"
+    },
+    "syncPage_flashConfirm_start_1": {
+      "message": "Start $anime$ ?",
+      "description": "Start anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_start_2": {
+      "message": "start",
+      "description": "start - 2ºtext"
+    },
+    "syncPage_malObj_addAnime": {
+      "message": "Add to $anime$",
+      "description": "add anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+      "message": "A possible Episode offset of $calcOffset$ was detected. Is that correct? ",
+      "description": "offsetHandler Episode",
+      "placeholders": {
+        "calcOffset": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_2": {
+      "message": "offset",
+      "description": "offset - 2ºtext"
+    },
+    "syncPage_UI_Loading": {
+      "message": "Loading",
+      "description": "Loading"
+    },
+    "syncPage_UI_Status": {
+      "message": "Status: ",
+      "description": "Status"
+    },
+    "syncPage_UI_Status_Completed": {
+      "message": "Completed",
+      "description": "Completed"
+    },
+    "syncPage_UI_Status_OnHold": {
+      "message": "On-Hold",
+      "description": "On-Hold"
+    },
+    "syncPage_UI_Status_Dropped": {
+      "message": "Dropped",
+      "description": "Dropped"
+    },
+    "syncPage_UI_Episode": {
+      "message": "Episode: ",
+      "description": "Episode"
+    },
+    "syncPage_UI_Volume": {
+      "message": "Volume: ",
+      "description": "Volume"
+    },
+    "syncPage_UI_Chapter": {
+      "message": "Chapter: ",
+      "description": "Chapter"
+    },
+    "syncPage_UI_Score": {
+      "message": "Your Score: ",
+      "description": "Score"
+    },
+    "syncPage_UI_Score_Masterpiece": {
+      "message": "(10) Masterpiece",
+      "description": "Masterpiece - Score"
+    },
+    "syncPage_UI_Score_Great": {
+      "message": "(9) Great",
+      "description": "Great - Score"
+    },
+    "syncPage_UI_Score_VeryGood": {
+      "message": "(8) Very Good",
+      "description": "Very Good - Score"
+    },
+    "syncPage_UI_Score_Good": {
+      "message": "(7) Good",
+      "description": "Good - Score"
+    },
+    "syncPage_UI_Score_Fine": {
+      "message": "(6) Fine",
+      "description": "Fine - Score"
+    },
+    "syncPage_UI_Score_Average": {
+      "message": "(5) Average",
+      "description": "Average - Score"
+    },
+    "syncPage_UI_Score_Bad": {
+      "message": "(4) Bad",
+      "description": "Bad - Score"
+    },
+    "syncPage_UI_Score_VeryBad": {
+      "message": "(3) Very Bad",
+      "description": "Very Bad - Score"
+    },
+    "syncPage_UI_Score_Horrible": {
+      "message": "(2) Horrible",
+      "description": "Horrible - Score"
+    },
+    "syncPage_UI_Score_Appalling": {
+      "message": "(1) Appalling",
+      "description": "Appalling - Score"
+    },
+    "anilistClass_authentication": {
+      "message": "Token saved you can close this page now",
+      "description": "The token has been obtained and saved"
+    }
+}

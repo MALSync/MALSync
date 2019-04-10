@@ -100,7 +100,7 @@ export class syncPage{
         resumeTimeString = minutes+':'+sec;
 
         var resumeMsg = utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">Resume at '+resumeTimeString+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg")+resumeTimeString+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
           {
             permanent: true,
             error: false,
@@ -224,7 +224,7 @@ export class syncPage{
             }else{
               var epis = 'chapter: <b>'+state.episode+'</b>';
             }
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Update '+providerTemplates().shortName+' to '+epis+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync", [providerTemplates().shortName, epis])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -325,10 +325,10 @@ export class syncPage{
             message += `
               <br>
               <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                Undo
+                `+api.storage.lang("syncPage_flashm_sync_undefined_1")+`
               </button>
               <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                Wrong?
+                `+api.storage.lang("syncPage_flashm_sync_undefined_2")+`
               </button>`;
           }
           var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
@@ -359,7 +359,7 @@ export class syncPage{
         return;
       }).catch(function(e){
         con.error(e);
-        utils.flashm( "Update failed" , {error: true});
+        utils.flashm( api.storage.lang("syncPage_flashm_failded") , {error: true});
         return;
       });
   }
@@ -383,7 +383,7 @@ export class syncPage{
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      if (await utils.flashConfirm('Set as completed?', 'complete')) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete_1"), api.storage.lang("syncPage_flashConfirm_complete_2"))) {
         this.malObj.setStatus(status.completed);
         this.malObj.setCompletionDateToNow()
         return true;
@@ -391,7 +391,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm('Start '+utils.watching(this.page.type).toLowerCase()+'?', 'start')) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_1", [utils.watching(this.page.type).toLowerCase()]), api.storage.lang("syncPage_flashConfirm_start_2"))) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;
@@ -418,7 +418,7 @@ export class syncPage{
 
     if(this.malObj.addAnime){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>Add to "+providerTemplates().shortName+"</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates().shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);
@@ -517,7 +517,7 @@ export class syncPage{
         con.log('Offset', i);
         if(i > 1){
           var calcOffset = 1 - i;
-          utils.flashConfirm('A possible Episode offset of '+calcOffset+' was detected. Is that correct? ', 'offset', () => {
+          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [calcOffset]), api.storage.lang("syncPage_flashConfirm_offsetHandler_2"), () => {
             this.setOffset(calcOffset);
           }, () => {
             this.setOffset(0);
@@ -694,7 +694,7 @@ export class syncPage{
     var wrapEnd = '</span>';
 
     var ui = '<p id="malp">';
-    ui += '<span id="MalInfo">Loading</span>';
+    ui += '<span id="MalInfo">'+api.storage.lang("syncPage_UI_Loading")+'</span>';
 
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
@@ -707,13 +707,13 @@ export class syncPage{
     wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
-    ui += '<span class="info">Status: </span>';
+    ui += '<span class="info">'+api.storage.lang("syncPage_UI_Status")+'</span>';
     ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
     ui += '<option value="1" >'+utils.watching(this.page.type)+'</option>';
-    ui += '<option value="2" >Completed</option>';
-    ui += '<option value="3" >On-Hold</option>';
-    ui += '<option value="4" >Dropped</option>';
+    ui += '<option value="2" >'+api.storage.lang("syncPage_UI_Status_Completed")+'</option>';
+    ui += '<option value="3" >'+api.storage.lang("syncPage_UI_Status_OnHold")+'</option>';
+    ui += '<option value="4" >'+api.storage.lang("syncPage_UI_Status_Dropped")+'</option>';
     ui += '<option value="6" >'+utils.planTo(this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
@@ -721,7 +721,7 @@ export class syncPage{
     if(this.page.type == 'anime'){
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">Episode: </span>';
+        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Episode")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
@@ -731,7 +731,7 @@ export class syncPage{
     }else{
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">Volume: </span>';
+        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Volume")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
@@ -740,7 +740,7 @@ export class syncPage{
 
 
         middle += wrapStart;
-        middle += '<span class="info">Chapter: </span>';
+        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Chapter")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
@@ -752,18 +752,18 @@ export class syncPage{
 
 
     ui += wrapStart;
-    ui += '<span class="info">Your Score: </span>';
+    ui += '<span class="info">'+api.storage.lang("syncPage_UI_Score")+'</span>';
     ui += '<select id="malUserRating"><option value="" >Select</option>';
-    ui += '<option value="10" >(10) Masterpiece</option>';
-    ui += '<option value="9" >(9) Great</option>';
-    ui += '<option value="8" >(8) Very Good</option>';
-    ui += '<option value="7" >(7) Good</option>';
-    ui += '<option value="6" >(6) Fine</option>';
-    ui += '<option value="5" >(5) Average</option>';
-    ui += '<option value="4" >(4) Bad</option>';
-    ui += '<option value="3" >(3) Very Bad</option>';
-    ui += '<option value="2" >(2) Horrible</option>';
-    ui += '<option value="1" >(1) Appalling</option>';
+    ui += '<option value="10" >'+api.storage.lang("syncPage_UI_Score_Masterpiece")+'</option>';
+    ui += '<option value="9" >'+api.storage.lang("syncPage_UI_Score_Great")+'</option>';
+    ui += '<option value="8" >'+api.storage.lang("syncPage_UI_Score_VeryGood")+'</option>';
+    ui += '<option value="7" >'+api.storage.lang("syncPage_UI_Score_Good")+'</option>';
+    ui += '<option value="6" >'+api.storage.lang("syncPage_UI_Score_Fine")+'</option>';
+    ui += '<option value="5" >'+api.storage.lang("syncPage_UI_Score_Average")+'e</option>';
+    ui += '<option value="4" >'+api.storage.lang("syncPage_UI_Score_Bad")+'</option>';
+    ui += '<option value="3" >'+api.storage.lang("syncPage_UI_Score_VeryBad")+'</option>';
+    ui += '<option value="2" >'+api.storage.lang("syncPage_UI_Score_Horrible")+'</option>';
+    ui += '<option value="1" >'+api.storage.lang("syncPage_UI_Score_Appalling")+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 

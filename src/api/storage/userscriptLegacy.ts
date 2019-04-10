@@ -38,6 +38,10 @@ export const userscriptLegacy: storageInterface = {
       return GM_info.script.version;
     },
 
+    lang(...args){
+      return "test";
+    },
+
     assetUrl(filename){
       return 'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/assets/'+filename;
     },

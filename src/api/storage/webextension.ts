@@ -49,6 +49,11 @@ export const webextension: storageInterface = {
       return chrome.runtime.getManifest().version;
     },
 
+    lang(...args){
+      // @ts-ignore
+      return chrome.i18n.getMessage(...args);
+    },
+
     assetUrl(filename){
       return chrome.extension.getURL('assets/'+filename);
     },

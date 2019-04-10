@@ -86,7 +86,7 @@ export class anilistClass{
             <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
               <h1>MAL-Sync</h1>
               <br>
-              Token saved you can close this page now
+              ` + api.storage.lang("anilistClass_authentication") + `
             </div>
           `);
         });

@@ -1,0 +1,171 @@
+{
+    "hello": {
+      "message": "hola mundo",
+      "description": "Zona de pruebas"
+    },
+    "info": {
+        "message": "%cMAL-Sync español $css$ Version: $version$",
+        "description": "Test area",
+        "placeholders": {
+          "css": {
+            "content": "$1",
+            "example": "Failed to fetch RSS feed."
+          },
+          "version": {
+            "content": "$2",
+            "example": "Version api."
+          }
+        }
+    },
+    "syncPage_flashm_resumeMsg": {
+      "message": "Reanudar en ",
+      "description": "Mensaje de reanudación del vídeo"
+    },
+    "syncPage_flashm_sync": {
+      "message": "Actualizar $anime$ al $epi$",
+      "description": "Actualizar anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        },
+        "epi": {
+          "content": "$2"
+        }
+      }
+    },
+    "syncPage_flashm_sync_undefined_1": {
+      "message": "Deshacer",
+      "description": "undefined anime - 1ºtexto"
+    },
+    "syncPage_flashm_sync_undefined_2": {
+      "message": "¿Incorrecto?",
+      "description": "undefined anime - 2ºtexto"
+    },
+    "syncPage_flashm_failded": {
+      "message": "Actualización fallida",
+      "description": "Actualización fallida"
+    },
+    "syncPage_flashConfirm_complete_1": {
+      "message": "¿Establecer como completado?",
+      "description": "Pregunta si a sido completado - 1ºtexto"
+    },
+    "syncPage_flashConfirm_complete_2": {
+      "message": "completado",
+      "description": "completado - 2ºtexto"
+    },
+    "syncPage_flashConfirm_start_1": {
+      "message": "¿Empezar $anime$ ?",
+      "description": "Empezar anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_start_2": {
+      "message": "empezar",
+      "description": "empezar - 2ºtexto"
+    },
+    "syncPage_malObj_addAnime": {
+      "message": "Añadir $anime$",
+      "description": "añadir anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+      "message": "A possible Episode offset of $calcOffset$ was detected. Is that correct? ",
+      "description": "offsetHandler Episode",
+      "placeholders": {
+        "calcOffset": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_2": {
+      "message": "offset",
+      "description": "offset - 2ºtext"
+    },
+    "syncPage_UI_Loading": {
+      "message": "Cargando",
+      "description": "Cargando"
+    },
+    "syncPage_UI_Status": {
+      "message": "Estado: ",
+      "description": "Estado"
+    },
+    "syncPage_UI_Status_Completed": {
+      "message": "Terminada",
+      "description": "Terminada"
+    },
+    "syncPage_UI_Status_OnHold": {
+      "message": "En espera",
+      "description": "En espera"
+    },
+    "syncPage_UI_Status_Dropped": {
+      "message": "Dropped",
+      "description": "Dropped"
+    },
+    "syncPage_UI_Episode": {
+      "message": "Episodio: ",
+      "description": "Episodio"
+    },
+    "syncPage_UI_Volume": {
+      "message": "Volumen: ",
+      "description": "Volumen"
+    },
+    "syncPage_UI_Chapter": {
+      "message": "Capítulo: ",
+      "description": "Capítulo"
+    },
+    "syncPage_UI_Score": {
+      "message": "Tu puntuación: ",
+      "description": "puntuación"
+    },
+    "syncPage_UI_Score_Masterpiece": {
+      "message": "(10) Obra maestra",
+      "description": "Obra maestra - puntuación"
+    },
+    "syncPage_UI_Score_Great": {
+      "message": "(9) Genial",
+      "description": "Genial - puntuación"
+    },
+    "syncPage_UI_Score_VeryGood": {
+      "message": "(8) Muy bien",
+      "description": "Muy bien - puntuación"
+    },
+    "syncPage_UI_Score_Good": {
+      "message": "(7) Bien",
+      "description": "Bien - puntuación"
+    },
+    "syncPage_UI_Score_Fine": {
+      "message": "(6) Buena",
+      "description": "Buena - puntuación"
+    },
+    "syncPage_UI_Score_Average": {
+      "message": "(5) Average",
+      "description": "Average - puntuación"
+    },
+    "syncPage_UI_Score_Bad": {
+      "message": "(4) Mala",
+      "description": "Mala - puntuación"
+    },
+    "syncPage_UI_Score_VeryBad": {
+      "message": "(3) Muy mala",
+      "description": "Muy mala - puntuación"
+    },
+    "syncPage_UI_Score_Horrible": {
+      "message": "(2) Horrible",
+      "description": "Horrible - puntuación"
+    },
+    "syncPage_UI_Score_Appalling": {
+      "message": "(1) Pésima",
+      "description": "Pésima - puntuación"
+    },
+    "anilistClass_authentication": {
+      "message": "Token guardado puedes cerrar esta página ahora",
+      "description": "El token ha sido obtenido y guardado"
+    }
+}
