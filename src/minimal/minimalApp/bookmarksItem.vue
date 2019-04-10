@@ -57,8 +57,8 @@
       if(typeof this.item.resume === 'undefined'){
         var resumeUrl = null;
         var continueUrl = null;
-        var id = utils.urlPart(this.item.url, 4);
-        var type = utils.urlPart(this.item.url, 3);
+        var id = this.item.malId;
+        var type = this.item.type;
         var resumeUrlObj = await utils.getResumeWaching(type, id);
         var continueUrlObj = await utils.getContinueWaching(type, id);
         var curEp = parseInt(this.item.watchedEp.toString());
@@ -159,7 +159,7 @@
         return api.storage.assetUrl(asset);
       },
       setPrediction: function(){
-        utils.epPredictionUI(utils.urlPart(this.item.url, 4), utils.urlPart(this.item.url, 3), (prediction) => {
+        utils.epPredictionUI(this.item.malId, this.item.type, (prediction) => {
           this.prediction = prediction;
         });
       }
