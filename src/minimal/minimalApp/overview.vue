@@ -2,7 +2,7 @@
   <div class="page-content">
     <div v-show="xhr == ''" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
     <div class="mdl-grid" v-if="xhr != ''">
-      <div v-html="statistics" class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
+      <div v-show="statistics" v-html="statistics" class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
       <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
         <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
           <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
@@ -93,7 +93,7 @@
           </tbody>
         </table>
       </div>
-      <div v-show="related" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
+      <div v-show="related.length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
         <ul class="mdl-list">
           <li class="mdl-list__item mdl-list__item--two-line" v-for="relatedType in related">
             <span class="mdl-list__item-primary-content">
@@ -110,7 +110,7 @@
           </li>
         </ul>
       </div>
-      <div v-show="kiss2mal" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
+      <div v-show="Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
         <ul class="mdl-list stream-block-inner">
           <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
             <span class="mdl-list__item-primary-content">
@@ -168,7 +168,7 @@
         </li>
       </div>
 
-      <div v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
+      <div v-show="info" v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
   </div>
 </template>
