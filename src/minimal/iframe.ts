@@ -10,13 +10,11 @@ function createIframe(page){
     iframe.onload = function() {
       var head = j.$("#info-iframe").contents().find("head");
 
-      api.storage.injectjsResource('simpleBar.js', head);
       api.storage.injectjsResource('material.js', head);
       api.storage.updateDom(head);
 
       api.storage.injectCssResource('material.css', head);
       api.storage.injectCssResource('materialFont.css', head);
-      api.storage.injectCssResource('simpleBar.css', head);
 
       setTimeout(function(){
         minimalObj = new minimal(j.$("#info-iframe").contents().find('html'));

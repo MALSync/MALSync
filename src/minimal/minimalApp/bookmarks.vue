@@ -115,7 +115,7 @@
           }
 
           this.$nextTick(() => {
-            j.$(this.$el).closest('.simplebar-scroll-content').first().scroll();
+            j.$(this.$el).closest('.mdl-layout__content').first().scroll();
           })
         }, 50);
 
