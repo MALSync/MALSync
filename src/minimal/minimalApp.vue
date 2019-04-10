@@ -27,20 +27,20 @@
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 
           <a v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" @click="selectTab(tabs.overview.title)" class="mdl-layout__tab">Overview</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">Reviews</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">Recommendations</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">Reviews</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">Recommendations</a>
           <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">Settings</a>
         </div>
       </header>
       <main class="mdl-layout__content" style="height: 100%;">
         <section v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel" id="fixed-tab-1">
-          <overviewVue :url="renderUrl"/>
+          <overviewVue :renderObj="renderObj"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel" id="fixed-tab-2">
-          <reviewsVue :url="renderUrl" :state="currentTab == tabs.reviews.title"/>
+          <reviewsVue :url="renderMalUrl" :state="currentTab == tabs.reviews.title"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel" id="fixed-tab-3">
-          <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
+          <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
           <keep-alive>
@@ -89,6 +89,7 @@
   import searchVue from './minimalApp/search.vue'
   import updateCheckVue from './minimalApp/updateCheck.vue'
   import reviewsVue from './minimalApp/reviews.vue'
+  import {entryClass} from './../provider/provider';
 
   var timer;
   var ignoreCurrentTab = true;
@@ -152,6 +153,7 @@
       keyword: '',
       currentTab: 'settings',
       renderUrl: '',
+      renderObj: null,
       history: [],
       baseFallback: '',
       page: null,
@@ -164,6 +166,16 @@
           return '';
         }
         return this.baseFallback;
+      },
+      renderMalUrl: function(){
+        if(this.renderObj !== null){
+          return this.renderObj.getMalUrl()
+        }
+        return null;
+      },
+      showReviewAndRecom: function(){
+        if(this.renderMalUrl === null && this.renderObj !== null) return false;
+        return true;
       },
       utils: function(){
         return utils;
@@ -233,6 +245,11 @@
     },
     watch: {
       renderUrl: function(url, oldUrl){
+        this.renderObj = null;
+        var tempRenderObj = new entryClass(url);
+        tempRenderObj.init().then(() => {
+          this.renderObj = tempRenderObj;
+        });
       },
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
@@ -295,7 +312,10 @@
           }
           return false;
         }
-        if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url)){
+        if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
+           /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
+           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url)
+          ){
           if(!isBase){
             this.history.push(this.getCurrent(this.currentTab));
           }

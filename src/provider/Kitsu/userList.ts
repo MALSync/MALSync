@@ -1,4 +1,5 @@
 import * as helper from "./helper";
+import {listElement} from "./../listInterface";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export async function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
@@ -61,18 +62,6 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
     });
 }
 
-export interface listElement {
-  id: number,
-  type: "anime"|"manga"
-  title: string,
-  url: string,
-  watchedEp: number,
-  totalEp: number,
-  image: string,
-  tags: string,
-  airingState: number,
-}
-
 export function prepareData(data, listType): listElement[]{
   var newData = [] as listElement[];
   for (var i = 0; i < data.data.length; i++) {
@@ -99,11 +88,12 @@ export function prepareData(data, listType): listElement[]{
 
     if(listType === "anime"){
       var tempData = {
-        id: malId,
+        malId: malId,
+        uid: el.id,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
-        url: 'https://myanimelist.net/'+listType+'/'+malId+'/'+name,
+        url: 'https://kitsu.io/'+listType+'/'+el.attributes.slug,
         watchedEp: list.attributes.progress,
         totalEp: el.attributes.episodeCount,
         image: el.attributes.posterImage.large,
@@ -112,11 +102,12 @@ export function prepareData(data, listType): listElement[]{
       }
     }else{
       var tempData = {
-        id: malId,
+        malId: malId,
+        uid: el.id,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
-        url: 'https://myanimelist.net/'+listType+'/'+malId+'/'+name,
+        url: 'https://kitsu.io/'+listType+'/'+el.attributes.slug,
         watchedEp: list.attributes.progress,
         totalEp: el.attributes.chapterCount,
         image: el.attributes.posterImage.large,

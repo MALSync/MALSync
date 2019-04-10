@@ -75,7 +75,7 @@ async function startCheck(type = "anime"){
 
 async function updateElement(el, type = "anime", retryNum = 0){
   return new Promise(async (resolve, reject) => {
-    var anime_id = el.id;
+    var anime_id = el.malId;
     var anime_num_episodes = el.totalEp;
     var anime_image_path = el.image;
     var anime_title = el.title;

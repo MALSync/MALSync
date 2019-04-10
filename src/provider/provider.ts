@@ -4,6 +4,7 @@ import * as anilist from "./AniList/entryClass";
 import * as anilistUserList from "./AniList/userList";
 import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
+import {listElement} from "./listInterface";
 
 interface entryClass {
   readonly id: number,
@@ -20,6 +21,7 @@ interface entryClass {
   init(),
   update(),
   getDisplayUrl(),
+  getMalUrl():string|null,
   getEpisode(),
   setEpisode(ep:number),
   getVolume(),
@@ -63,9 +65,9 @@ export function userList(
   status = 1,
   localListType = 'anime',
   callbacks: {
-    singleCallback?: (el: malUserList.listElement, index: number, total: number) => void,
+    singleCallback?: (el: listElement, index: number, total: number) => void,
     finishCallback?,
-    fullListCallback?: (list: malUserList.listElement[]) => void,
+    fullListCallback?: (list: listElement[]) => void,
     continueCall?,
   },
   username = null,
