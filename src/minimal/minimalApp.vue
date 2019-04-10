@@ -34,7 +34,7 @@
       </header>
       <main class="mdl-layout__content" style="height: 100%;">
         <section v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel" id="fixed-tab-1">
-          <overviewVue :url="renderUrl"/>
+          <overviewVue :renderObj="renderObj"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel" id="fixed-tab-2">
           <reviewsVue :url="renderUrl" :state="currentTab == tabs.reviews.title"/>
