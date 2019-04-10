@@ -1,3 +1,5 @@
+import {listElement} from "./../listInterface";
+
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist = []){
     con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
@@ -47,18 +49,6 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       }
 
     });
-}
-
-export interface listElement {
-  id: number,
-  type: "anime"|"manga"
-  title: string,
-  url: string,
-  watchedEp: number,
-  totalEp: number,
-  image: string,
-  tags: string,
-  airingState: number,
 }
 
 export function prepareData(data, listType): listElement[]{
