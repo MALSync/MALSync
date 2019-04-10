@@ -84,7 +84,7 @@
               var error = '';
               var trColor = '';
               con.log('el', el);
-              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.id);
+              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.malId);
               con.log('elCache', elCache);
               if(typeof elCache != 'undefined'){
                 episode = elCache['newestEp']+'/'+el.totalEp;

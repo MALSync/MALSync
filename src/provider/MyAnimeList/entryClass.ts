@@ -11,6 +11,8 @@ export class entryClass{
   wrong: boolean = false;
   pending: boolean = false;
 
+  renderNoImage: boolean = true;
+
   private animeInfo;
 
   constructor(public url:string, public miniMAL:boolean = false){
@@ -24,6 +26,10 @@ export class entryClass{
 
   getDisplayUrl(){
     return this.url;
+  }
+
+  getMalUrl(){
+    return this.getDisplayUrl();
   }
 
   update(){

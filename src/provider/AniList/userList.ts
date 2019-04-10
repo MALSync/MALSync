@@ -1,4 +1,5 @@
 import * as helper from "./helper";
+import {listElement} from "./../listInterface";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
@@ -37,6 +38,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
           progressVolumes
           notes
           media {
+            siteUrl
             id
             idMal
             episodes
@@ -138,28 +140,17 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     });
 }
 
-export interface listElement {
-  id: number,
-  type: "anime"|"manga"
-  title: string,
-  url: string,
-  watchedEp: number,
-  totalEp: number,
-  image: string,
-  tags: string,
-  airingState: number,
-}
-
 export function prepareData(data, listType): listElement[]{
   var newData = [] as listElement[];
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
     if(listType === "anime"){
       var tempData = {
-        id: el.media.idMal,
+        uid: el.media.id,
+        malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
-        url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,
+        url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.episodes,
         image: el.media.coverImage.large,
@@ -168,10 +159,11 @@ export function prepareData(data, listType): listElement[]{
       }
     }else{
       var tempData = {
-        id: el.media.idMal,
+        uid: el.media.id,
+        malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
-        url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,
+        url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.chapters,
         image: el.media.coverImage.large,

@@ -365,7 +365,7 @@ export class myanimelistClass{
         var streamUrl = utils.getUrlFromTags(el.tags);
         var malUrl = el.url.replace('https://myanimelist.net','');
         con.log(malUrl);
-        var id = el.id;
+        var id = el.malId;
         var type = el.type;
 
         if(typeof streamUrl !== 'undefined'){

@@ -36,6 +36,13 @@ export class entryClass{
     return 'https://kitsu.io/'+this.type+'/'+this.animeI().attributes.slug;
   }
 
+  getMalUrl(){
+    if(!isNaN(this.id)){
+      return 'https://myanimelist.net/'+this.type+'/'+this.id+'/'+encodeURIComponent(this.name);
+    }
+    return null;
+  }
+
   listI(){
     return this.animeInfo.data[0];
   }

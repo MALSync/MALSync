@@ -37,6 +37,13 @@ export class entryClass{
     return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
   }
 
+  getMalUrl(){
+    if(!isNaN(this.id)){
+      return 'https://myanimelist.net/'+this.type+'/'+this.id+'/'+encodeURIComponent(this.name);
+    }
+    return null;
+  }
+
   update(){
     con.log('Update AniList info', this.id? 'MAL: '+this.id : 'AniList: '+this.aniId);
     var selectId = this.id;
