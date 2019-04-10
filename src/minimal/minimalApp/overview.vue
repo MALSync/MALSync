@@ -332,7 +332,7 @@
             image = this.xhr.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         try{
-            if(this.image !== null && this.image !== ''){
+            if(this.imageTemp !== null && this.imageTemp !== ''){
               image = this.imageTemp;
             }
         }catch(e) {console.log('[iframeOverview] Error:',e);}
