@@ -88,7 +88,8 @@ export function prepareData(data, listType): listElement[]{
 
     if(listType === "anime"){
       var tempData = {
-        id: malId,
+        malId: malId,
+        uid: el.id,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
@@ -101,7 +102,8 @@ export function prepareData(data, listType): listElement[]{
       }
     }else{
       var tempData = {
-        id: malId,
+        malId: malId,
+        uid: el.id,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,

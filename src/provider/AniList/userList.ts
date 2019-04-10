@@ -145,7 +145,8 @@ export function prepareData(data, listType): listElement[]{
     var el = data[i];
     if(listType === "anime"){
       var tempData = {
-        id: el.media.idMal,
+        uid: el.media.id,
+        malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
         url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,
@@ -157,7 +158,8 @@ export function prepareData(data, listType): listElement[]{
       }
     }else{
       var tempData = {
-        id: el.media.idMal,
+        uid: el.media.id,
+        malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
         url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,

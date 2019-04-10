@@ -1,5 +1,6 @@
 export interface listElement {
-  id: number,
+  uid: number,
+  malId: number,
   type: "anime"|"manga"
   title: string,
   url: string,

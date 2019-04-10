@@ -57,7 +57,8 @@ export function prepareData(data, listType): listElement[]{
     var el = data[i];
     if(listType === "anime"){
       newData.push({
-        id: el['anime_id'],
+        uid: el['anime_id'],
+        malId: el['anime_id'],
         type: listType,
         title: el['anime_title'],
         url: 'https://myanimelist.net'+el['anime_url'],
@@ -69,7 +70,8 @@ export function prepareData(data, listType): listElement[]{
       })
     }else{
       newData.push({
-        id: el['manga_id'],
+        uid: el['manga_id'],
+        malId: el['manga_id'],
         type: listType,
         title: el['manga_title'],
         url: 'https://myanimelist.net'+el['manga_url'],
