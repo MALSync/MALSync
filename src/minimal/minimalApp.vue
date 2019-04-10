@@ -89,6 +89,7 @@
   import searchVue from './minimalApp/search.vue'
   import updateCheckVue from './minimalApp/updateCheck.vue'
   import reviewsVue from './minimalApp/reviews.vue'
+  import {entryClass} from './../provider/provider';
 
   var timer;
   var ignoreCurrentTab = true;
@@ -152,6 +153,7 @@
       keyword: '',
       currentTab: 'settings',
       renderUrl: '',
+      renderObj: null,
       history: [],
       baseFallback: '',
       page: null,
@@ -303,6 +305,10 @@
             this.history.push(this.getCurrent(this.currentTab));
           }
           this.renderUrl = url;
+          var tempRenderObj = new entryClass(url);
+          tempRenderObj.init().then(() => {
+            this.renderObj = tempRenderObj;
+          });
           this.currentTab = 'overview';
           return true;
         }
