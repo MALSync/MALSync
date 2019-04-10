@@ -344,7 +344,7 @@ export class kitsuClass{
         con.log(list);
         $.each(list, async (index, en) => {
           con.log('en', en);
-          if(typeof en.id !== 'undefined' && en.id !== null && en.id){
+          if(typeof en.malId !== 'undefined' && en.malId !== null && en.malId){
             var element = $('.library-grid-popover:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"], .library-list tbody tr:not(.malSyncDone2) a[href^="/'+This.page!.type+'/'+en.kitsuSlug+'"]').first().parent().parent().parent();
             con.log(element);
             element.addClass('malSyncDone2');
@@ -367,8 +367,8 @@ export class kitsuClass{
 
             }
 
-            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.id);
-            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.id);
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.malId);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.malId);
 
             var curEp = en.watchedEp;
 
@@ -403,7 +403,7 @@ export class kitsuClass{
               }
             }
 
-            utils.epPredictionUI(en.id, This.page!.type, (prediction) => {
+            utils.epPredictionUI(en.malId, This.page!.type, (prediction) => {
               if(!prediction) return;
               element.parent().find('.entry-unit, .progress-cell > span:last-of-type').append(prediction.tag);
             });
