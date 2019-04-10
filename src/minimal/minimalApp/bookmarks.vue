@@ -95,8 +95,8 @@
           this.items = preItems.concat(watchedItems, normalItems);
 
           function sortItems(a,b) {
-            var vueA = This.$refs[a.id][0];
-            var vueB = This.$refs[b.id][0];
+            var vueA = This.$refs[a.uid][0];
+            var vueB = This.$refs[b.uid][0];
             var preA = 99999999;
             var preB = preA;
 

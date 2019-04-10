@@ -38,6 +38,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
           progressVolumes
           notes
           media {
+            siteUrl
             id
             idMal
             episodes
@@ -149,7 +150,7 @@ export function prepareData(data, listType): listElement[]{
         malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
-        url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,
+        url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.episodes,
         image: el.media.coverImage.large,
@@ -162,7 +163,7 @@ export function prepareData(data, listType): listElement[]{
         malId: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
-        url: 'https://myanimelist.net/'+listType+'/'+el.media.idMal+'/'+el.media.title.userPreferred,
+        url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.chapters,
         image: el.media.coverImage.large,
