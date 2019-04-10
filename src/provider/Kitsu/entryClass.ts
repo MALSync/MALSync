@@ -37,7 +37,7 @@ export class entryClass{
   }
 
   getMalUrl(){
-    if(this.id != NaN){
+    if(!isNaN(this.id){
       return 'https://myanimelist.net/'+this.type+'/'+this.id+'/'+encodeURIComponent(this.name);
     }
     return null;
