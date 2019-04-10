@@ -364,7 +364,7 @@ export class entryClass{
         }else{
           var updateUrl = 'https://kitsu.io/api/edge/library-entries/';
           variables.data.relationships = {
-            anime: {
+            [This.type]: {
               data: {
                 type: This.type,
                 id: This.kitsuId
