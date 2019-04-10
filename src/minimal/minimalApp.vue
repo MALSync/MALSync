@@ -27,8 +27,8 @@
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 
           <a v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" @click="selectTab(tabs.overview.title)" class="mdl-layout__tab">Overview</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">Reviews</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">Recommendations</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">Reviews</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">Recommendations</a>
           <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">Settings</a>
         </div>
       </header>
@@ -37,10 +37,10 @@
           <overviewVue :renderObj="renderObj"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel" id="fixed-tab-2">
-          <reviewsVue :url="renderUrl" :state="currentTab == tabs.reviews.title"/>
+          <reviewsVue :url="renderMalUrl" :state="currentTab == tabs.reviews.title"/>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel" id="fixed-tab-3">
-          <recommendationsVue :url="renderUrl" :state="currentTab == tabs.recommendations.title"/>
+          <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
           <keep-alive>
@@ -166,6 +166,16 @@
           return '';
         }
         return this.baseFallback;
+      },
+      renderMalUrl: function(){
+        if(this.renderObj !== null){
+          return this.renderObj.getMalUrl()
+        }
+        return null;
+      },
+      showReviewAndRecom: function(){
+        if(this.renderMalUrl === null && this.renderObj !== null) return false;
+        return true;
       },
       utils: function(){
         return utils;
