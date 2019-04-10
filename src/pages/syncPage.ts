@@ -100,7 +100,7 @@ export class syncPage{
         resumeTimeString = minutes+':'+sec;
 
         var resumeMsg = utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg")+resumeTimeString+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
+          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
           {
             permanent: true,
             error: false,
@@ -325,10 +325,10 @@ export class syncPage{
             message += `
               <br>
               <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_1")+`
+                `+api.storage.lang("syncPage_flashm_sync_undefined_undo")+`
               </button>
               <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_2")+`
+                `+api.storage.lang("syncPage_flashm_sync_undefined_wrong")+`
               </button>`;
           }
           var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
@@ -391,7 +391,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_1", [utils.watching(this.page.type).toLowerCase()]), api.storage.lang("syncPage_flashConfirm_start_2"))) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_1_"+this.page.type), api.storage.lang("syncPage_flashConfirm_start_2"))) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;
@@ -483,7 +483,7 @@ export class syncPage{
 
         var nextEp = epList[this.malObj.getEpisode() + 1];
         if (typeof(nextEp) != "undefined" && nextEp && !this.page.isSyncPage(this.url)){
-          var message = '<a href="'+elementUrl(nextEp)+'">'+utils.episode(this.page.type)+' '+( this.malObj.getEpisode()+1 )+'</a>';
+          var message = '<a href="'+elementUrl(nextEp)+'">'+api.storage.lang("syncPage_malObj_nextEp_"+this.page.type, [this.malObj.getEpisode()+1])+'</a>';
           utils.flashm( message , {hoverInfo: true, type: 'nextEp'});
         }
 
@@ -710,11 +710,11 @@ export class syncPage{
     ui += '<span class="info">'+api.storage.lang("syncPage_UI_Status")+'</span>';
     ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
-    ui += '<option value="1" >'+utils.watching(this.page.type)+'</option>';
+    ui += '<option value="1" >'+api.storage.lang("syncPage_UI_Status_watching_"+this.page.type)+'</option>';
     ui += '<option value="2" >'+api.storage.lang("syncPage_UI_Status_Completed")+'</option>';
     ui += '<option value="3" >'+api.storage.lang("syncPage_UI_Status_OnHold")+'</option>';
     ui += '<option value="4" >'+api.storage.lang("syncPage_UI_Status_Dropped")+'</option>';
-    ui += '<option value="6" >'+utils.planTo(this.page.type)+'</option>';
+    ui += '<option value="6" >'+api.storage.lang("syncPage_UI_Status_planTo_"+this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 

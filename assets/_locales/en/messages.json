@@ -1,25 +1,12 @@
 {
-    "hello": {
-      "message": "hello world",
-      "description": "Test area"
-    },
-    "info": {
-        "message": "%cMAL-Sync $css$ Version: $version$",
-        "description": "Test area",
-        "placeholders": {
-          "css": {
-            "content": "$1",
-            "example": "css."
-          },
-          "version": {
-            "content": "$2",
-            "example": "Version api."
-          }
-        }
-    },
     "syncPage_flashm_resumeMsg": {
-      "message": "Resume at ",
-      "description": "Video resume message"
+      "message": "Resume at $time$",
+      "description": "Video resume message",
+      "placeholders": {
+        "time": {
+          "content": "$1"
+        }
+      }
     },
     "syncPage_flashm_sync": {
       "message": "Update $anime$ to $epi$",
@@ -33,11 +20,11 @@
         }
       }
     },
-    "syncPage_flashm_sync_undefined_1": {
+    "syncPage_flashm_sync_undefined_undo": {
       "message": "Undo",
       "description": "undefined anime - 1ºtext"
     },
-    "syncPage_flashm_sync_undefined_2": {
+    "syncPage_flashm_sync_undefined_wrong": {
       "message": "Wrong?",
       "description": "undefined anime - 2ºtext"
     },
@@ -53,14 +40,13 @@
       "message": "complete",
       "description": "complete - 2ºtext"
     },
-    "syncPage_flashConfirm_start_1": {
-      "message": "Start $anime$ ?",
-      "description": "Start anime",
-      "placeholders": {
-        "anime": {
-          "content": "$1"
-        }
-      }
+    "syncPage_flashConfirm_start_1_anime": {
+      "message": "Start watching?",
+      "description": "Start anime - 1ºtext"
+    },
+    "syncPage_flashConfirm_start_1_manga": {
+      "message": "Start reading?",
+      "description": "Start manga - 1ºtext"
     },
     "syncPage_flashConfirm_start_2": {
       "message": "start",
@@ -71,6 +57,24 @@
       "description": "add anime",
       "placeholders": {
         "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_malObj_nextEp_anime": {
+      "message": "Episode $episode$",
+      "description": "next episode",
+      "placeholders": {
+        "episode": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_malObj_nextEp_manga": {
+      "message": "Chapter $chapter$",
+      "description": "next chapter",
+      "placeholders": {
+        "chapter": {
           "content": "$1"
         }
       }
@@ -96,6 +100,14 @@
       "message": "Status: ",
       "description": "Status"
     },
+    "syncPage_UI_Status_watching_anime": {
+      "message": "Watching",
+      "description": "Watching"
+    },
+    "syncPage_UI_Status_watching_manga": {
+      "message": "Reading",
+      "description": "Reading"
+    },
     "syncPage_UI_Status_Completed": {
       "message": "Completed",
       "description": "Completed"
@@ -107,6 +119,14 @@
     "syncPage_UI_Status_Dropped": {
       "message": "Dropped",
       "description": "Dropped"
+    },
+    "syncPage_UI_Status_planTo_anime": {
+      "message": "Plan to Watch",
+      "description": "Plan to Watch"
+    },
+    "syncPage_UI_Status_planTo_manga": {
+      "message": "Plan to Read",
+      "description": "Plan to Read"
     },
     "syncPage_UI_Episode": {
       "message": "Episode: ",
