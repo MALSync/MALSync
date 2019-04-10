@@ -235,6 +235,11 @@
     },
     watch: {
       renderUrl: function(url, oldUrl){
+        this.renderObj = null;
+        var tempRenderObj = new entryClass(url);
+        tempRenderObj.init().then(() => {
+          this.renderObj = tempRenderObj;
+        });
       },
       currentTab: function(tab, oldtab){
         this.tabs[oldtab].scroll = this.getScroll();
@@ -305,10 +310,6 @@
             this.history.push(this.getCurrent(this.currentTab));
           }
           this.renderUrl = url;
-          var tempRenderObj = new entryClass(url);
-          tempRenderObj.init().then(() => {
-            this.renderObj = tempRenderObj;
-          });
           this.currentTab = 'overview';
           return true;
         }

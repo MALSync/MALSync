@@ -206,6 +206,8 @@
         this.prediction = null;
         this.imageTemp = null;
 
+        if(renderObj == null) return;
+
         if(renderObj.getMalUrl() !== null){
           api.request.xhr('GET', renderObj.getMalUrl()).then((response) => {
             this.xhr = response.responseText;
