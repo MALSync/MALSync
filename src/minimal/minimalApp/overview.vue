@@ -174,6 +174,7 @@
 </template>
 
 <script type="text/javascript">
+  import {entryClass} from "./../../provider/provider";
   export default {
     data: function(){
       return {
