@@ -178,7 +178,7 @@
     data: function(){
       return {
         xhr: '',
-        image: null,
+        imageTemp: null,
         mal: {
           resumeUrl: null,
           continueUrl: null
@@ -203,7 +203,7 @@
         this.kiss2mal = {};
         this.related = [];
         this.prediction = null;
-        this.image = null;
+        this.imageTemp = null;
 
         if(renderObj.getMalUrl() !== null){
           api.request.xhr('GET', renderObj.getMalUrl()).then((response) => {
@@ -227,8 +227,8 @@
         }else{
           this.xhr = ' ';
         }
-        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){alert();
-          this.image = await this.renderObj.getImage();
+        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
+          this.imageTemp = await this.renderObj.getImage();
         }
 
 
@@ -332,7 +332,7 @@
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         try{
             if(this.image !== null && this.image !== ''){
-              image = this.image;
+              image = this.imageTemp;
             }
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return image;
