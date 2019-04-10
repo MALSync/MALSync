@@ -26,6 +26,10 @@ export class entryClass{
     return this.url;
   }
 
+  getMalUrl(){
+    return this.getDisplayUrl();
+  }
+
   update(){
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.id+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);

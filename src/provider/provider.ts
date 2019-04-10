@@ -20,6 +20,7 @@ interface entryClass {
   init(),
   update(),
   getDisplayUrl(),
+  getMalUrl():string|null,
   getEpisode(),
   setEpisode(ep:number),
   getVolume(),
