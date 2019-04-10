@@ -178,6 +178,7 @@
     data: function(){
       return {
         xhr: '',
+        image: null,
         mal: {
           resumeUrl: null,
           continueUrl: null
@@ -202,6 +203,7 @@
         this.kiss2mal = {};
         this.related = [];
         this.prediction = null;
+        this.image = null;
 
         if(renderObj.getMalUrl() !== null){
           api.request.xhr('GET', renderObj.getMalUrl()).then((response) => {
@@ -225,6 +227,10 @@
         }else{
           this.xhr = ' ';
         }
+        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){alert();
+          this.image = await this.renderObj.getImage();
+        }
+
 
       }
     },
@@ -324,12 +330,20 @@
         try{
             image = this.xhr.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
         }catch(e) {console.log('[iframeOverview] Error:',e);}
+        try{
+            if(this.image !== null && this.image !== ''){
+              image = this.image;
+            }
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
         return image;
       },
       title: function(){
         var title = '';
         try{
             title = this.xhr.split('itemprop="name">')[1].split('<')[0];
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        try{
+            title = this.renderObj.name;
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return title;
       },
