@@ -2,7 +2,7 @@
   <div>
     <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
     <slot></slot>
-    <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">No Entries</span></span>
+    <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("bookmarks_NoEntries")}}</span></span>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
       <template v-for="item in items">
         <bookmarksItem :item="item" :ref="item.uid" :key="item.uid"/>
@@ -57,6 +57,7 @@
       }
     },
     methods: {
+      lang: api.storage.lang,
       load: function(){
         this.loading = true;
         provider.userList(this.state, this.listType, {

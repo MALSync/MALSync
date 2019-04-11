@@ -135,20 +135,20 @@
 
         var text = '';
         if(diffDays > 1){
-          return text+diffDays+' Days';
+          return text+diffDays+api.storage.lang("bookmarksItem_Days");
         }
         if(diffDays === 1){
-          text += diffDays+' Day ';
+          text += diffDays+api.storage.lang("bookmarksItem_Day");
         }
 
         if(diffHours > 1){
-          return text+diffHours+' Hours';
+          return text+diffHours+api.storage.lang("bookmarksItem_Hours");
         }
         if(diffHours === 1){
-          text += diffHours+' Hour ';
+          text += diffHours+api.storage.lang("bookmarksItem_Hour");
         }
 
-        return text+diffMinutes+' mins';
+        return text+diffMinutes+api.storage.lang("bookmarksItem_mins");
       },
     },
     methods: {
