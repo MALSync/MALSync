@@ -10,7 +10,7 @@
     },
     "syncPage_flashm_sync_anime": {
       "message": "Update $page$ to episode $epNr$",
-      "description": "Update anime",
+      "description": "Update MAL to episode 3",
       "placeholders": {
         "page": {
           "description": "Name of the sync page (MAL/Anilist/Kitsu)",
@@ -23,7 +23,7 @@
     },
     "syncPage_flashm_sync_manga": {
       "message": "Update $page$ to chapter $epNr$",
-      "description": "Update manga",
+      "description": "Update MAL to chapter 3",
       "placeholders": {
         "page": {
           "description": "Name of the sync page (MAL/Anilist/Kitsu)",
@@ -36,19 +36,19 @@
     },
     "syncPage_flashm_sync_undefined_undo": {
       "message": "Undo",
-      "description": "undefined anime - 1ºtext"
+      "description": "Undo button on 'synced' message"
     },
     "syncPage_flashm_sync_undefined_wrong": {
       "message": "Wrong?",
-      "description": "undefined anime - 2ºtext"
+      "description": "Wrong/correction button on 'synced' message"
     },
     "syncPage_flashm_failded": {
       "message": "Update failed",
-      "description": "Update failed"
+      "description": "When update to MAL failes"
     },
     "syncPage_flashConfirm_complete_1": {
       "message": "Set as completed?",
-      "description": "Question to be completed - 1ºtext"
+      "description": "Question when last episode is synced"
     },
     "syncPage_flashConfirm_complete_2": {
       "message": "complete",
@@ -56,11 +56,11 @@
     },
     "syncPage_flashConfirm_start_1_anime": {
       "message": "Start watching?",
-      "description": "Start anime - 1ºtext"
+      "description": "Start watching anime message"
     },
     "syncPage_flashConfirm_start_1_manga": {
       "message": "Start reading?",
-      "description": "Start manga - 1ºtext"
+      "description": "Start reading manga message"
     },
     "syncPage_flashConfirm_start_2": {
       "message": "start",
@@ -77,7 +77,7 @@
     },
     "syncPage_malObj_nextEp_anime": {
       "message": "Episode $episode$",
-      "description": "next episode",
+      "description": "Next episode message on streaming overview pages",
       "placeholders": {
         "episode": {
           "content": "$1"
@@ -86,7 +86,7 @@
     },
     "syncPage_malObj_nextEp_manga": {
       "message": "Chapter $chapter$",
-      "description": "next chapter",
+      "description": "Next chapter message on streaming overview pages",
       "placeholders": {
         "chapter": {
           "content": "$1"
