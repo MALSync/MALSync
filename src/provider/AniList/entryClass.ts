@@ -166,10 +166,12 @@ export class entryClass{
   }
 
   getScore(){
+    if(this.animeInfo.mediaListEntry.score === 0) return '';
     return this.animeInfo.mediaListEntry.score;
   }
 
   setScore(score:number){
+    if(score === '') score = 0;
     this.animeInfo.mediaListEntry.score = score;
   }
 

@@ -149,11 +149,13 @@ export class entryClass{
   }
 
   getScore(){
-    return this.listI().attributes.ratingTwenty/2;
+    var score = this.listI().attributes.ratingTwenty/2;
+    if(score === 0) return '';
+    return score;
   }
 
   setScore(score:number){
-    if(score == 0){
+    if(score == 0 && score === ''){
       this.listI().attributes.ratingTwenty = null;
       return;
     }
