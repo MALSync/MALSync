@@ -219,12 +219,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            if(This.page.type == 'anime'){
-              var epis = 'episode: '+state.episode;
-            }else{
-              var epis = 'chapter: <b>'+state.episode+'</b>';
-            }
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync", [providerTemplates().shortName, epis])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){

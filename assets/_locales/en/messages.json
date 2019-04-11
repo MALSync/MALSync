@@ -8,14 +8,28 @@
         }
       }
     },
-    "syncPage_flashm_sync": {
-      "message": "Update $anime$ to $epi$",
+    "syncPage_flashm_sync_anime": {
+      "message": "Update $page$ to episode $epNr$",
       "description": "Update anime",
       "placeholders": {
-        "anime": {
+        "page": {
+          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
           "content": "$1"
         },
-        "epi": {
+        "epNr": {
+          "content": "$2"
+        }
+      }
+    },
+    "syncPage_flashm_sync_manga": {
+      "message": "Update $page$ to chapter $epNr$",
+      "description": "Update manga",
+      "placeholders": {
+        "page": {
+          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
+          "content": "$1"
+        },
+        "epNr": {
           "content": "$2"
         }
       }
