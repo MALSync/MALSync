@@ -80,7 +80,7 @@
     }
   },
   "syncPage_flashConfirm_offsetHandler_1": {
-    "message": "Un posible episodio offset de $calcOffset ha sido detectado. ¿Es esto correcto? ",
+    "message": "Un posible episodio offset de $calcOffset$ ha sido detectado. ¿Es esto correcto? ",
     "description": "offsetHandler Episode",
     "placeholders": {
       "calcOffset": {
