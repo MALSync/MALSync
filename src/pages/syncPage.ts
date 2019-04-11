@@ -219,12 +219,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            if(This.page.type == 'anime'){
-              var epis = 'episode: '+state.episode;
-            }else{
-              var epis = 'chapter: <b>'+state.episode+'</b>';
-            }
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync", [providerTemplates().shortName, epis])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -383,7 +378,7 @@ export class syncPage{
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete_1"), api.storage.lang("syncPage_flashConfirm_complete_2"))) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete"), 'complete')) {
         this.malObj.setStatus(status.completed);
         this.malObj.setCompletionDateToNow()
         return true;
@@ -391,7 +386,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_1_"+this.page.type), api.storage.lang("syncPage_flashConfirm_start_2"))) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.page.type), 'start')) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;
