@@ -512,7 +512,7 @@ export class syncPage{
         con.log('Offset', i);
         if(i > 1){
           var calcOffset = 1 - i;
-          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [calcOffset]), api.storage.lang("syncPage_flashConfirm_offsetHandler_2"), () => {
+          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [calcOffset]), 'offset', () => {
             this.setOffset(calcOffset);
           }, () => {
             this.setOffset(0);

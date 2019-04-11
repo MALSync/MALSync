@@ -94,10 +94,6 @@
       }
     }
   },
-  "syncPage_flashConfirm_offsetHandler_2": {
-    "message": "offset",
-    "description": "offset - 2ºtext"
-  },
   "syncPage_UI_Loading": {
     "message": "Cargando",
     "description": "Loading"

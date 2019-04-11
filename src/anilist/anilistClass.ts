@@ -170,8 +170,8 @@ export class anilistClass{
             margin-bottom: 16px;
             font-size: 1.2rem;
         ">
-          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">Search</span>
-          <div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />
+          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">`+api.storage.lang("Search")+`</span>
+          <div class="MALSync-search"><a>[`+api.storage.lang("Show")+`]</a></div><br class="mal_links" />
         </div>
       `);
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');

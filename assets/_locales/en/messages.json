@@ -1,4 +1,24 @@
 {
+    "Search": {
+      "message": "Search",
+      "description": "Search"
+    },
+    "Show": {
+      "message": "Show",
+      "description": "Show"
+    },
+    "Help": {
+      "message": "Help",
+      "description": "Help"
+    },
+    "Update": {
+      "message": "Update",
+      "description": "Update"
+    },
+    "Reset": {
+      "message": "Reset",
+      "description": "Reset"
+    },
     "syncPage_flashm_resumeMsg": {
       "message": "Resume at $time$",
       "description": "Video resume message",
@@ -93,10 +113,6 @@
           "content": "$1"
         }
       }
-    },
-    "syncPage_flashConfirm_offsetHandler_2": {
-      "message": "offset",
-      "description": "offset - 2ºtext"
     },
     "syncPage_UI_Loading": {
       "message": "Loading",
@@ -193,5 +209,103 @@
     "anilistClass_authentication": {
       "message": "Token saved you can close this page now",
       "description": "The token has been obtained and saved"
+    },
+    "kitsuClass_authentication_text": {
+      "message": "To login with Kitsu, you need to enter your account's e-mail and password.</br> Your credentials are not stored on your computer or anywhere else. </br> They are directly sent to kitsu. Only the returned access token is saved.</br>",
+      "description": "Authentication text in Kitsu"
+    },
+    "kitsuClass_authentication_Password": {
+      "message": "Password",
+      "description": "Password"
+    },
+    "kitsuClass_authentication_Login": {
+      "message": "Login",
+      "description": "Login"
+    },
+    "kitsuClass_authentication_Success": {
+      "message": "Token saved you can close this page now",
+      "description": "Authentication success"
+    },
+    "kitsuClass_authentication_Wrong": {
+      "message": "Credentials wrong",
+      "description": "Credentials wrong"
+    },
+    "bookmarks_NoEntries": {
+      "message": "No Entries",
+      "description": "No Entries"
+    },
+    "bookmarksItem_Days": {
+      "message": " Days",
+      "description": "Days"
+    },
+    "bookmarksItem_Day": {
+      "message": " Day ",
+      "description": "Day"
+    },
+    "bookmarksItem_Hours": {
+      "message": " Hours",
+      "description": "Hours"
+    },
+    "bookmarksItem_Hour": {
+      "message": " Hour ",
+      "description": "Hour"
+    },
+    "bookmarksItem_mins": {
+      "message": " mins",
+      "description": "mins"
+    },
+    "correction_Offset": {
+      "message": "Episode Offset",
+      "description": "Episode Offset"
+    },
+    "correction_Offset_text": {
+      "message": "Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type \" +1 \" in the episode offset.",
+      "description": "Episode Offset"
+    },
+    "correction_WrongUrl": {
+      "message": "Only change this URL if it points to the wrong anime page on MAL.",
+      "description": "Episode Offset"
+    },
+    "correction_Search": {
+      "message": "Correction Search",
+      "description": "Episode Offset"
+    },
+    "correction_Search_text": {
+      "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList Url\" shown above.<br> To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
+      "description": "Episode Offset"
+    },
+    "correction_NoMal": {
+      "message": "If the Anime/Manga can't be found on MAL",
+      "description": "Episode Offset"
+    },
+    "correction_NoEntry": {
+      "message": "No entry on MyAnimeList",
+      "description": "Episode Offset"
+    },
+    "correction_NewOffset": {
+      "message": "New Offset ($offset$) set.",
+      "description": "Episode Offset",
+      "placeholders": {
+        "offset": {
+          "content": "$1"
+        }
+      }
+    },
+    "correction_OffsetReset": {
+      "message": "Offset reset",
+      "description": "Episode Offset"
+    },
+    "correction_NewUrl": {
+      "message": "new url '$malUrl$' set.",
+      "description": "Episode Offset",
+      "placeholders": {
+        "malUrl": {
+          "content": "$1"
+        }
+      }
+    },
+    "correction_NewUrlReset": {
+      "message": "MyAnimeList url reset",
+      "description": "Episode Offset"
     }
 }
