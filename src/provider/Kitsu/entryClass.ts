@@ -108,8 +108,10 @@ export class entryClass{
       if(typeof this.name == 'undefined' || !this.name) this.name = this.animeI().attributes.titles.ja_jp;
 
       this.totalEp = this.animeI().attributes.episodeCount? this.animeI().attributes.episodeCount: this.animeI().attributes.chapterCount;
-      if(this.animeI().attributes.volumeCount){
+      if(this.totalEp == null) this.totalEp = 0;
+      if(typeof this.animeI().attributes.volumeCount !== 'undefined'){
         this.totalVol = this.animeI().attributes.volumeCount;
+        if(this.totalVol == null) this.totalVol = 0;
       }
     });
 
@@ -148,13 +150,13 @@ export class entryClass{
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 
-  getScore(){
+  getScore():any{
     var score = this.listI().attributes.ratingTwenty/2;
     if(score === 0) return '';
     return score;
   }
 
-  setScore(score:number){
+  setScore(score:any){
     if(score == 0 && score === ''){
       this.listI().attributes.ratingTwenty = null;
       return;
