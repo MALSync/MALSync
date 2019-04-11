@@ -1,0 +1,191 @@
+{
+    "syncPage_flashm_resumeMsg": {
+      "message": "Resume at $time$",
+      "description": "Video resume message",
+      "placeholders": {
+        "time": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashm_sync": {
+      "message": "Update $anime$ to $epi$",
+      "description": "Update anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        },
+        "epi": {
+          "content": "$2"
+        }
+      }
+    },
+    "syncPage_flashm_sync_undefined_undo": {
+      "message": "Undo",
+      "description": "undefined anime - 1ºtext"
+    },
+    "syncPage_flashm_sync_undefined_wrong": {
+      "message": "Wrong?",
+      "description": "undefined anime - 2ºtext"
+    },
+    "syncPage_flashm_failded": {
+      "message": "Update failed",
+      "description": "Update failed"
+    },
+    "syncPage_flashConfirm_complete_1": {
+      "message": "Set as completed?",
+      "description": "Question to be completed - 1ºtext"
+    },
+    "syncPage_flashConfirm_complete_2": {
+      "message": "complete",
+      "description": "complete - 2ºtext"
+    },
+    "syncPage_flashConfirm_start_1_anime": {
+      "message": "Start watching?",
+      "description": "Start anime - 1ºtext"
+    },
+    "syncPage_flashConfirm_start_1_manga": {
+      "message": "Start reading?",
+      "description": "Start manga - 1ºtext"
+    },
+    "syncPage_flashConfirm_start_2": {
+      "message": "start",
+      "description": "start - 2ºtext"
+    },
+    "syncPage_malObj_addAnime": {
+      "message": "Add to $anime$",
+      "description": "add anime",
+      "placeholders": {
+        "anime": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_malObj_nextEp_anime": {
+      "message": "Episode $episode$",
+      "description": "next episode",
+      "placeholders": {
+        "episode": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_malObj_nextEp_manga": {
+      "message": "Chapter $chapter$",
+      "description": "next chapter",
+      "placeholders": {
+        "chapter": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_1": {
+      "message": "A possible Episode offset of $calcOffset$ was detected. Is that correct? ",
+      "description": "offsetHandler Episode",
+      "placeholders": {
+        "calcOffset": {
+          "content": "$1"
+        }
+      }
+    },
+    "syncPage_flashConfirm_offsetHandler_2": {
+      "message": "offset",
+      "description": "offset - 2ºtext"
+    },
+    "syncPage_UI_Loading": {
+      "message": "Loading",
+      "description": "Loading"
+    },
+    "syncPage_UI_Status": {
+      "message": "Status: ",
+      "description": "Status"
+    },
+    "syncPage_UI_Status_watching_anime": {
+      "message": "Watching",
+      "description": "Watching"
+    },
+    "syncPage_UI_Status_watching_manga": {
+      "message": "Reading",
+      "description": "Reading"
+    },
+    "syncPage_UI_Status_Completed": {
+      "message": "Completed",
+      "description": "Completed"
+    },
+    "syncPage_UI_Status_OnHold": {
+      "message": "On-Hold",
+      "description": "On-Hold"
+    },
+    "syncPage_UI_Status_Dropped": {
+      "message": "Dropped",
+      "description": "Dropped"
+    },
+    "syncPage_UI_Status_planTo_anime": {
+      "message": "Plan to Watch",
+      "description": "Plan to Watch"
+    },
+    "syncPage_UI_Status_planTo_manga": {
+      "message": "Plan to Read",
+      "description": "Plan to Read"
+    },
+    "syncPage_UI_Episode": {
+      "message": "Episode: ",
+      "description": "Episode"
+    },
+    "syncPage_UI_Volume": {
+      "message": "Volume: ",
+      "description": "Volume"
+    },
+    "syncPage_UI_Chapter": {
+      "message": "Chapter: ",
+      "description": "Chapter"
+    },
+    "syncPage_UI_Score": {
+      "message": "Your Score: ",
+      "description": "Score"
+    },
+    "syncPage_UI_Score_Masterpiece": {
+      "message": "(10) Masterpiece",
+      "description": "Masterpiece - Score"
+    },
+    "syncPage_UI_Score_Great": {
+      "message": "(9) Great",
+      "description": "Great - Score"
+    },
+    "syncPage_UI_Score_VeryGood": {
+      "message": "(8) Very Good",
+      "description": "Very Good - Score"
+    },
+    "syncPage_UI_Score_Good": {
+      "message": "(7) Good",
+      "description": "Good - Score"
+    },
+    "syncPage_UI_Score_Fine": {
+      "message": "(6) Fine",
+      "description": "Fine - Score"
+    },
+    "syncPage_UI_Score_Average": {
+      "message": "(5) Average",
+      "description": "Average - Score"
+    },
+    "syncPage_UI_Score_Bad": {
+      "message": "(4) Bad",
+      "description": "Bad - Score"
+    },
+    "syncPage_UI_Score_VeryBad": {
+      "message": "(3) Very Bad",
+      "description": "Very Bad - Score"
+    },
+    "syncPage_UI_Score_Horrible": {
+      "message": "(2) Horrible",
+      "description": "Horrible - Score"
+    },
+    "syncPage_UI_Score_Appalling": {
+      "message": "(1) Appalling",
+      "description": "Appalling - Score"
+    },
+    "anilistClass_authentication": {
+      "message": "Token saved you can close this page now",
+      "description": "The token has been obtained and saved"
+    }
+}

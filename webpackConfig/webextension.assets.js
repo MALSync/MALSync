@@ -43,6 +43,7 @@ const generateManifest = () => {
     'version': package.version,
     'description': package.description,
     'author': package['author'],
+    'default_locale': 'en',
     'applications': {
       'gecko': {
         //'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
