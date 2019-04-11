@@ -1,4 +1,5 @@
 import {storageInterface} from "./storageInterface";
+var i18n = require('./../../../assets/_locales/en/messages.json');
 
 declare var GM_setValue: any;
 declare var GM_getValue: any;
@@ -39,7 +40,18 @@ export const userscriptLegacy: storageInterface = {
     },
 
     lang(...args){
-      return "test";
+      var lEl = i18n[args[0]];
+      var message = lEl.message;
+      if(typeof lEl.placeholders !== 'undefined' && typeof args[1] !== 'undefined'){
+        var i = 0;
+        for(var index in lEl.placeholders) {
+          if(typeof args[1][i] !== 'undefined'){
+            message = message.replace("$"+index+"$", args[1][i]);
+          }
+          i++;
+        }
+      }
+      return message;
     },
 
     assetUrl(filename){
