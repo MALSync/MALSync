@@ -378,7 +378,7 @@ export class syncPage{
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete_1"), api.storage.lang("syncPage_flashConfirm_complete_2"))) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete"), 'complete')) {
         this.malObj.setStatus(status.completed);
         this.malObj.setCompletionDateToNow()
         return true;
@@ -386,7 +386,7 @@ export class syncPage{
     }
 
     if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_1_"+this.page.type), api.storage.lang("syncPage_flashConfirm_start_2"))) {
+      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.page.type), 'start')) {
         this.malObj.setStatus(status.watching);
       }else{
         return false;

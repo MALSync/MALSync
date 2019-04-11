@@ -46,25 +46,17 @@
     "message": "Actualización fallida",
     "description": "Update failed"
   },
-  "syncPage_flashConfirm_complete_1": {
+  "syncPage_flashConfirm_complete": {
     "message": "¿Marcar como finalizado?",
     "description": "Question to be completed - 1ºtext"
   },
-  "syncPage_flashConfirm_complete_2": {
-    "message": "finalizado",
-    "description": "complete - 2ºtext"
-  },
-  "syncPage_flashConfirm_start_1_anime": {
+  "syncPage_flashConfirm_start_anime": {
     "message": "¿Empezar a ver?",
     "description": "Start anime - 1ºtext"
   },
-  "syncPage_flashConfirm_start_1_manga": {
+  "syncPage_flashConfirm_start_manga": {
     "message": "¿Empezar a leer?",
     "description": "Start manga - 1ºtext"
-  },
-  "syncPage_flashConfirm_start_2": {
-    "message": "Empezar",
-    "description": "start - 2ºtext"
   },
   "syncPage_malObj_addAnime": {
     "message": "Añadir $anime$",

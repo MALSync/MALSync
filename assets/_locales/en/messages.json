@@ -46,25 +46,17 @@
       "message": "Update failed",
       "description": "When update to MAL failes"
     },
-    "syncPage_flashConfirm_complete_1": {
+    "syncPage_flashConfirm_complete": {
       "message": "Set as completed?",
       "description": "Question when last episode is synced"
     },
-    "syncPage_flashConfirm_complete_2": {
-      "message": "complete",
-      "description": "complete - 2ºtext"
-    },
-    "syncPage_flashConfirm_start_1_anime": {
+    "syncPage_flashConfirm_start_anime": {
       "message": "Start watching?",
       "description": "Start watching anime message"
     },
-    "syncPage_flashConfirm_start_1_manga": {
+    "syncPage_flashConfirm_start_manga": {
       "message": "Start reading?",
       "description": "Start reading manga message"
-    },
-    "syncPage_flashConfirm_start_2": {
-      "message": "start",
-      "description": "start - 2ºtext"
     },
     "syncPage_malObj_addAnime": {
       "message": "Add to $anime$",
