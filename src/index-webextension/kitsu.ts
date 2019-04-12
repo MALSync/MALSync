@@ -20,10 +20,16 @@ function messageKitsuListener(kitsu){
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
+      con.info('miniMAL');
       kitsu.getMalUrl().then((malUrl)=>{
         if(malUrl !== ''){
           con.log('TabMalUrl Message', malUrl);
           sendResponse(malUrl);
+        }else{
+          if(api.settings.get('syncMode') === 'KITSU'){
+            con.log('TabUrl Message', kitsu.url);
+            sendResponse(kitsu.url);
+          }
         }
       })
       return true;

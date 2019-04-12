@@ -22,13 +22,13 @@ export function errorHandling(res, silent:boolean = false){
     res.errors.forEach( (error) => {
       switch(error.status) {
         case 400:
-          if(!silent) utils.flashm('Please Authenticate <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Here</a>', {error: true});
+          if(!silent) utils.flashm('Please Authenticate <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Here</a>', {error: true, type: 'error'});
           break;
         case 404:
-          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
           break;
         default:
-          if(!silent) utils.flashm('anilist: '+error.message, {error: true});
+          if(!silent) utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
           throw error.message;
       }
     })

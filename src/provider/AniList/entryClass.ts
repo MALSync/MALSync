@@ -124,8 +124,10 @@ export class entryClass{
 
       this.name = this.animeInfo.title.userPreferred;
       this.totalEp = this.animeInfo.episodes? this.animeInfo.episodes: this.animeInfo.chapters;
-      if(this.animeInfo.volumes){
+      if(this.totalEp == null) this.totalEp = 0;
+      if(typeof this.animeInfo.volumes != 'undefined'){
         this.totalVol = this.animeInfo.volumes;
+        if(this.totalVol == null) this.totalVol = 0;
       }
     });
 
@@ -166,10 +168,12 @@ export class entryClass{
   }
 
   getScore(){
+    if(this.animeInfo.mediaListEntry.score === 0) return '';
     return this.animeInfo.mediaListEntry.score;
   }
 
-  setScore(score:number){
+  setScore(score:any){
+    if(score === '') score = 0;
     this.animeInfo.mediaListEntry.score = score;
   }
 
