@@ -20,10 +20,16 @@ function messageAniListListener(anilist){
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
+      con.info('miniMAL');
       anilist.getMalUrl().then((malUrl)=>{
         if(malUrl !== ''){
           con.log('TabMalUrl Message', malUrl);
           sendResponse(malUrl);
+        }else{
+          if(api.settings.get('syncMode') === 'ANILIST'){
+            con.log('TabUrl Message', anilist.url);
+            sendResponse(anilist.url);
+          }
         }
       })
       return true;

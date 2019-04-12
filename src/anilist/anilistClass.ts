@@ -99,6 +99,7 @@ export class anilistClass{
     if(urlpart == 'anime' || urlpart == 'manga'){
       var aniListId = utils.urlPart(this.url, 4);
       return helper.aniListToMal(aniListId, urlpart).then((malId)=>{
+        if(!malId) return '';
         return 'https://myanimelist.net/'+urlpart+'/'+malId+'/'+utils.urlPart(this.url, 5);
       });
     }
