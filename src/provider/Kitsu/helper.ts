@@ -24,14 +24,14 @@ export function errorHandling(res, silent:boolean = false){
       switch(parseInt(error.status)) {
         case 401:
         case 403:
-          if(!silent) utils.flashm(kitsu.noLogin, {error: true});
+          if(!silent) utils.flashm(kitsu.noLogin, {error: true, type: 'error'});
           throw error.message;
           break;
         case 404:
-          if(!silent) utils.flashm('kitsu: '+error.title, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.title, {error: true, type: 'error'});
           break;
         default:
-          if(!silent) utils.flashm('kitsu: '+error.title, {error: true});
+          if(!silent) utils.flashm('kitsu: '+error.title, {error: true, type: 'error'});
           throw error.message;
       }
     })
@@ -91,7 +91,7 @@ export async function userId(){
       var res = JSON.parse(response.responseText);
       con.log(res);
       if(!res.data.length || res.data[0] == 'undefined'){
-        utils.flashm(kitsu.noLogin, {error: true});
+        utils.flashm(kitsu.noLogin, {error: true, type: 'error'});
         throw('Not authentificated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);

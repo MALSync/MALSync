@@ -205,7 +205,7 @@ export class syncPage{
       this.fillUI();
 
       if(!this.malObj.login){
-        utils.flashm( providerTemplates().noLogin, {error: true});
+        utils.flashm( providerTemplates().noLogin, {error: true, type: 'error'});
         return;
       }
 
