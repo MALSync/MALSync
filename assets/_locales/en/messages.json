@@ -332,6 +332,30 @@
       "message": "MyAnimeList url reset",
       "description": "url reset"
     },
+    "overview_Continue_anime": {
+      "message": "Continue watching",
+      "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+      "message": "Continue reading",
+      "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+      "message": "Next Episode",
+      "description": "Next Episode"
+    },
+    "overview_Next_Episode_manga": {
+      "message": "Next Chapter",
+      "description": "Next Chapter"
+    },
+    "overview_Resume_Episode_anime": {
+      "message": "Resume Episode",
+      "description": "Resume Episode"
+    },
+    "overview_Resume_Episode_manga": {
+      "message": "Resume Chapter",
+      "description": "Resume Chapter"
+    },
     "overview_EditDetails": {
       "message": "Edit Details",
       "description": "Edit Details"
