@@ -748,13 +748,13 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="" >Select</option>';
+    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("Select")+'</option>';
     ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
     ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
     ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
     ui += '<option value="7" >'+api.storage.lang("UI_Score_Good")+'</option>';
     ui += '<option value="6" >'+api.storage.lang("UI_Score_Fine")+'</option>';
-    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'e</option>';
+    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'</option>';
     ui += '<option value="4" >'+api.storage.lang("UI_Score_Bad")+'</option>';
     ui += '<option value="3" >'+api.storage.lang("UI_Score_VeryBad")+'</option>';
     ui += '<option value="2" >'+api.storage.lang("UI_Score_Horrible")+'</option>';
