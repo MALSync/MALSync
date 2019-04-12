@@ -59,8 +59,16 @@ export class entryClass{
       this.id = kitsuSlugRes.malId;
     }
     if(isNaN(this.kitsuId)){
-       var kitsuRes = await helper.malToKitsu(this.id, this.type);
-       this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
+      var kitsuRes = await helper.malToKitsu(this.id, this.type);
+      try{
+        this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
+      }catch(e){
+        con.error('Not found', e);
+        if(!this.silent){
+          utils.flashm('Kitsu: Not found', {error: true, type: 'not found'});
+        }
+      }
+
     }
 
 
