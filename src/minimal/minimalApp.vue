@@ -9,7 +9,7 @@
           </button>
           <div :style="backbuttonSearchStyle" v-bind:class="{ 'is-dirty': currentTab == tabs.search.title }" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
-              <i class="material-icons">search</i>
+              <i class="material-icons">{{lang("Search")}}</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
               <input v-on:keyup="keywordSet()" v-model="keyword" class="mdl-textfield__input" type="text" id="headMalSearch">
@@ -17,19 +17,19 @@
             </div>
           </div>
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="material-fullscreen" style="left: initial; right: 40px;">
-            <i class="material-icons md-48">fullscreen</i>
+            <i class="material-icons md-48">{{lang("fullscreen")}}</i>
           </button>
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="close-info-popup" style="left: initial; right: 0;">
-            <i class="material-icons close">close</i>
+            <i class="material-icons close">{{lang("close")}}</i>
           </button>
         </div>
         <!-- Tabs -->
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 
-          <a v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" @click="selectTab(tabs.overview.title)" class="mdl-layout__tab">Overview</a>
-          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">Reviews</a>
-          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">Recommendations</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">Settings</a>
+          <a v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" @click="selectTab(tabs.overview.title)" class="mdl-layout__tab">{{lang("minimalApp_Overview")}}</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">{{lang("minimalApp_Reviews")}}</a>
+          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">{{lang("minimalApp_Recommendations")}}</a>
+          <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">{{lang("minimalApp_Settings")}}</a>
         </div>
       </header>
       <main class="mdl-layout__content" style="height: 100%;">
@@ -51,12 +51,12 @@
                 <option value="manga">Manga</option>
               </select>
               <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
-                <option value="7">All</option>
-                <option value="1" selected >{{utils.watching(tabs.bookmarks.type)}}</option>
-                <option value="2">Completed</option>
-                <option value="3">On-Hold</option>
-                <option value="4">Dropped</option>
-                <option value="6" >{{utils.planTo(tabs.bookmarks.type)}}</option>
+                <option value="7">{{lang("All")}}</option>
+                <option value="1" selected >{{lang("UI_Status_watching_",[tabs.bookmarks.type])}}</option>
+                <option value="2">{{lang("UI_Status_Completed")}}</option>
+                <option value="3">{{lang("UI_Status_OnHold")}}</option>
+                <option value="4">{{lang("UI_Status_Dropped")}}</option>
+                <option value="6">{{lang("UI_Status_planTo_",[tabs.bookmarks.type])}}</option>
               </select>
             </div>
           </bookmarksVue>
@@ -289,6 +289,7 @@
       }
     },
     methods: {
+      lang: api.storage.lang,
       selectTab(selectedTab) {
         if(this.onlySettings && (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')) selectedTab = 'settings';
         con.log('Tab Changed', selectedTab);

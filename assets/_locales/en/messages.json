@@ -35,6 +35,22 @@
       "message": "No Entries",
       "description": "No Entries"
     },
+    "fullscreen": {
+      "message": "fullscreen",
+      "description": "fullscreen"
+    },
+    "close": {
+      "message": "close",
+      "description": "close"
+    },
+    "All": {
+      "message": "All",
+      "description": "All"
+    },
+    "Package_Description": {
+      "message": "Integrates MyAnimeList/AniList/Kitsu into various sites, with auto episode tracking.",
+      "description": "Description MALSync"
+    },
     "UI_Status": {
       "message": "Status: ",
       "description": "Status"
@@ -268,11 +284,11 @@
     },
     "correction_Offset_text": {
       "message": "Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type \" +1 \" in the episode offset.",
-      "description": ""
+      "description": "Episode Offset - Text"
     },
     "correction_WrongUrl": {
       "message": "Only change this URL if it points to the wrong anime page on MAL.",
-      "description": ""
+      "description": "Url is Wrong"
     },
     "correction_Search": {
       "message": "Correction Search",
@@ -280,19 +296,19 @@
     },
     "correction_Search_text": {
       "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList Url\" shown above.<br> To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
-      "description": ""
+      "description": "Search text"
     },
     "correction_NoMal": {
       "message": "If the Anime/Manga can't be found on MAL",
-      "description": ""
+      "description": "Anime/Manga no found in MAL"
     },
     "correction_NoEntry": {
       "message": "No entry on MyAnimeList",
-      "description": ""
+      "description": "No entry on MyAnimeList"
     },
     "correction_NewOffset": {
       "message": "New Offset ($offset$) set.",
-      "description": "",
+      "description": "New Offset",
       "placeholders": {
         "offset": {
           "content": "$1"
@@ -301,11 +317,11 @@
     },
     "correction_OffsetReset": {
       "message": "Offset reset",
-      "description": ""
+      "description": "Offset reset"
     },
     "correction_NewUrl": {
       "message": "new url '$malUrl$' set.",
-      "description": "",
+      "description": "new url",
       "placeholders": {
         "malUrl": {
           "content": "$1"
@@ -314,7 +330,7 @@
     },
     "correction_NewUrlReset": {
       "message": "MyAnimeList url reset",
-      "description": ""
+      "description": "url reset"
     },
     "overview_EditDetails": {
       "message": "Edit Details",
@@ -378,7 +394,7 @@
     },
     "settings_AutoTracking_Video": {
       "message": "Update on $videoDuration$ of video progress",
-      "description": "",
+      "description": "Update Episode of video progress",
       "placeholders": {
         "videoDuration": {
           "content": "$1"
@@ -387,7 +403,7 @@
     },
     "settings_AutoTracking_Instant": {
       "message": "Delay instant autotracking by $delay$ Seconds",
-      "description": "",
+      "description": "Delay instant autotracking",
       "placeholders": {
         "delay": {
           "content": "$1"
@@ -574,5 +590,67 @@
     "updateCheck_NotificationHistory": {
       "message": "Notification History",
       "description": "Notification History"
+    },
+    "minimalApp_Overview": {
+      "message": "Overview",
+      "description": "Overview"
+    },
+    "minimalApp_Reviews": {
+      "message": "Reviews",
+      "description": "Reviews"
+    },
+    "minimalApp_Recommendations": {
+      "message": "Recommendations",
+      "description": "Recommendations"
+    },
+    "minimalApp_Settings": {
+      "message": "Settings",
+      "description": "Settings"
+    },
+    "minimalClass_Popup": {
+      "message": "Please allow popups for this website",
+      "description": "Please allow popups for this website"
+    },
+    "minimalClass_versionMsg": {
+      "message": "Updated to version $Version$ $Link$ $Version$$Link2$CHANGELOG$Link3$",
+      "description": "Update version",
+      "placeholders": {
+        "Version": {
+          "content": "$1"
+        },
+        "Link": {
+          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#"
+        },
+        "Link2": {
+          "content": "'\">"
+        },
+        "Link3": {
+          "content": "</a>]"
+        }
+      }
+    },
+    "minimalClass_versionMsg_Text_1": {
+      "message": "Thanks for installing MAL-Sync",
+      "description": "Update version - Text 1"
+    },
+    "minimalClass_versionMsg_Text_2": {
+      "message": "Having Questions?",
+      "description": "Update version - Text 2"
+    },
+    "minimalClass_versionMsg_Text_3": {
+      "message": "Open Source Code:",
+      "description": "Update version - Text 3"
+    },
+    "Anilist_Authenticate": {
+      "message": "Please Authenticate $Link1$Here$Link2$",
+      "description": "Update version - Text 3",
+      "placeholders": {
+        "Link1": {
+          "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">"
+        },
+        "Link2": {
+          "content": "</a>"
+        }
+      }
     }
 }
