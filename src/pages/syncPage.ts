@@ -689,7 +689,7 @@ export class syncPage{
     var wrapEnd = '</span>';
 
     var ui = '<p id="malp">';
-    ui += '<span id="MalInfo">'+api.storage.lang("syncPage_UI_Loading")+'</span>';
+    ui += '<span id="MalInfo">'+api.storage.lang("Loading")+'</span>';
 
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
@@ -702,21 +702,21 @@ export class syncPage{
     wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("syncPage_UI_Status")+'</span>';
+    ui += '<span class="info">'+api.storage.lang("UI_Status")+'</span>';
     ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
-    ui += '<option value="1" >'+api.storage.lang("syncPage_UI_Status_watching_"+this.page.type)+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("syncPage_UI_Status_Completed")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("syncPage_UI_Status_OnHold")+'</option>';
-    ui += '<option value="4" >'+api.storage.lang("syncPage_UI_Status_Dropped")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("syncPage_UI_Status_planTo_"+this.page.type)+'</option>';
+    ui += '<option value="1" >'+api.storage.lang("UI_Status_watching_"+this.page.type)+'</option>';
+    ui += '<option value="2" >'+api.storage.lang("UI_Status_Completed")+'</option>';
+    ui += '<option value="3" >'+api.storage.lang("UI_Status_OnHold")+'</option>';
+    ui += '<option value="4" >'+api.storage.lang("UI_Status_Dropped")+'</option>';
+    ui += '<option value="6" >'+api.storage.lang("UI_Status_planTo_"+this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 
     if(this.page.type == 'anime'){
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Episode")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Episode")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
@@ -726,7 +726,7 @@ export class syncPage{
     }else{
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Volume")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Volume")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
@@ -735,7 +735,7 @@ export class syncPage{
 
 
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("syncPage_UI_Chapter")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+'</span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
@@ -747,18 +747,18 @@ export class syncPage{
 
 
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("syncPage_UI_Score")+'</span>';
+    ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
     ui += '<select id="malUserRating"><option value="" >Select</option>';
-    ui += '<option value="10" >'+api.storage.lang("syncPage_UI_Score_Masterpiece")+'</option>';
-    ui += '<option value="9" >'+api.storage.lang("syncPage_UI_Score_Great")+'</option>';
-    ui += '<option value="8" >'+api.storage.lang("syncPage_UI_Score_VeryGood")+'</option>';
-    ui += '<option value="7" >'+api.storage.lang("syncPage_UI_Score_Good")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("syncPage_UI_Score_Fine")+'</option>';
-    ui += '<option value="5" >'+api.storage.lang("syncPage_UI_Score_Average")+'e</option>';
-    ui += '<option value="4" >'+api.storage.lang("syncPage_UI_Score_Bad")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("syncPage_UI_Score_VeryBad")+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("syncPage_UI_Score_Horrible")+'</option>';
-    ui += '<option value="1" >'+api.storage.lang("syncPage_UI_Score_Appalling")+'</option>';
+    ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
+    ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
+    ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
+    ui += '<option value="7" >'+api.storage.lang("UI_Score_Good")+'</option>';
+    ui += '<option value="6" >'+api.storage.lang("UI_Score_Fine")+'</option>';
+    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'e</option>';
+    ui += '<option value="4" >'+api.storage.lang("UI_Score_Bad")+'</option>';
+    ui += '<option value="3" >'+api.storage.lang("UI_Score_VeryBad")+'</option>';
+    ui += '<option value="2" >'+api.storage.lang("UI_Score_Horrible")+'</option>';
+    ui += '<option value="1" >'+api.storage.lang("UI_Score_Appalling")+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 

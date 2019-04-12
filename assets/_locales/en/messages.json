@@ -19,6 +19,110 @@
       "message": "Reset",
       "description": "Reset"
     },
+    "Loading": {
+      "message": "Loading",
+      "description": "Loading"
+    },
+    "Select": {
+      "message": "Select",
+      "description": "Select"
+    },
+    "NothingFound": {
+      "message": "Nothing Found",
+      "description": "Nothing Found"
+    },
+    "NoEntries": {
+      "message": "No Entries",
+      "description": "No Entries"
+    },
+    "UI_Status": {
+      "message": "Status: ",
+      "description": "Status"
+    },
+    "UI_Status_watching_anime": {
+      "message": "Watching",
+      "description": "Watching"
+    },
+    "UI_Status_watching_manga": {
+      "message": "Reading",
+      "description": "Reading"
+    },
+    "UI_Status_Completed": {
+      "message": "Completed",
+      "description": "Completed"
+    },
+    "UI_Status_OnHold": {
+      "message": "On-Hold",
+      "description": "On-Hold"
+    },
+    "UI_Status_Dropped": {
+      "message": "Dropped",
+      "description": "Dropped"
+    },
+    "UI_Status_planTo_anime": {
+      "message": "Plan to Watch",
+      "description": "Plan to Watch"
+    },
+    "UI_Status_planTo_manga": {
+      "message": "Plan to Read",
+      "description": "Plan to Read"
+    },
+    "UI_Episode": {
+      "message": "Episode: ",
+      "description": "Episode"
+    },
+    "UI_Volume": {
+      "message": "Volume: ",
+      "description": "Volume"
+    },
+    "UI_Chapter": {
+      "message": "Chapter: ",
+      "description": "Chapter"
+    },
+    "UI_Score": {
+      "message": "Your Score: ",
+      "description": "Score"
+    },
+    "UI_Score_Masterpiece": {
+      "message": "(10) Masterpiece",
+      "description": "Masterpiece - Score"
+    },
+    "UI_Score_Great": {
+      "message": "(9) Great",
+      "description": "Great - Score"
+    },
+    "UI_Score_VeryGood": {
+      "message": "(8) Very Good",
+      "description": "Very Good - Score"
+    },
+    "UI_Score_Good": {
+      "message": "(7) Good",
+      "description": "Good - Score"
+    },
+    "UI_Score_Fine": {
+      "message": "(6) Fine",
+      "description": "Fine - Score"
+    },
+    "UI_Score_Average": {
+      "message": "(5) Average",
+      "description": "Average - Score"
+    },
+    "UI_Score_Bad": {
+      "message": "(4) Bad",
+      "description": "Bad - Score"
+    },
+    "UI_Score_VeryBad": {
+      "message": "(3) Very Bad",
+      "description": "Very Bad - Score"
+    },
+    "UI_Score_Horrible": {
+      "message": "(2) Horrible",
+      "description": "Horrible - Score"
+    },
+    "UI_Score_Appalling": {
+      "message": "(1) Appalling",
+      "description": "Appalling - Score"
+    },
     "syncPage_flashm_resumeMsg": {
       "message": "Resume at $time$",
       "description": "Video resume message",
@@ -114,98 +218,6 @@
         }
       }
     },
-    "syncPage_UI_Loading": {
-      "message": "Loading",
-      "description": "Loading"
-    },
-    "syncPage_UI_Status": {
-      "message": "Status: ",
-      "description": "Status"
-    },
-    "syncPage_UI_Status_watching_anime": {
-      "message": "Watching",
-      "description": "Watching"
-    },
-    "syncPage_UI_Status_watching_manga": {
-      "message": "Reading",
-      "description": "Reading"
-    },
-    "syncPage_UI_Status_Completed": {
-      "message": "Completed",
-      "description": "Completed"
-    },
-    "syncPage_UI_Status_OnHold": {
-      "message": "On-Hold",
-      "description": "On-Hold"
-    },
-    "syncPage_UI_Status_Dropped": {
-      "message": "Dropped",
-      "description": "Dropped"
-    },
-    "syncPage_UI_Status_planTo_anime": {
-      "message": "Plan to Watch",
-      "description": "Plan to Watch"
-    },
-    "syncPage_UI_Status_planTo_manga": {
-      "message": "Plan to Read",
-      "description": "Plan to Read"
-    },
-    "syncPage_UI_Episode": {
-      "message": "Episode: ",
-      "description": "Episode"
-    },
-    "syncPage_UI_Volume": {
-      "message": "Volume: ",
-      "description": "Volume"
-    },
-    "syncPage_UI_Chapter": {
-      "message": "Chapter: ",
-      "description": "Chapter"
-    },
-    "syncPage_UI_Score": {
-      "message": "Your Score: ",
-      "description": "Score"
-    },
-    "syncPage_UI_Score_Masterpiece": {
-      "message": "(10) Masterpiece",
-      "description": "Masterpiece - Score"
-    },
-    "syncPage_UI_Score_Great": {
-      "message": "(9) Great",
-      "description": "Great - Score"
-    },
-    "syncPage_UI_Score_VeryGood": {
-      "message": "(8) Very Good",
-      "description": "Very Good - Score"
-    },
-    "syncPage_UI_Score_Good": {
-      "message": "(7) Good",
-      "description": "Good - Score"
-    },
-    "syncPage_UI_Score_Fine": {
-      "message": "(6) Fine",
-      "description": "Fine - Score"
-    },
-    "syncPage_UI_Score_Average": {
-      "message": "(5) Average",
-      "description": "Average - Score"
-    },
-    "syncPage_UI_Score_Bad": {
-      "message": "(4) Bad",
-      "description": "Bad - Score"
-    },
-    "syncPage_UI_Score_VeryBad": {
-      "message": "(3) Very Bad",
-      "description": "Very Bad - Score"
-    },
-    "syncPage_UI_Score_Horrible": {
-      "message": "(2) Horrible",
-      "description": "Horrible - Score"
-    },
-    "syncPage_UI_Score_Appalling": {
-      "message": "(1) Appalling",
-      "description": "Appalling - Score"
-    },
     "anilistClass_authentication": {
       "message": "Token saved you can close this page now",
       "description": "The token has been obtained and saved"
@@ -229,10 +241,6 @@
     "kitsuClass_authentication_Wrong": {
       "message": "Credentials wrong",
       "description": "Credentials wrong"
-    },
-    "bookmarks_NoEntries": {
-      "message": "No Entries",
-      "description": "No Entries"
     },
     "bookmarksItem_Days": {
       "message": " Days",
@@ -260,31 +268,31 @@
     },
     "correction_Offset_text": {
       "message": "Input the episode offset, if an anime has 12 episodes, but uses the numbers 0-11 rather than 1-12, you simply type \" +1 \" in the episode offset.",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_WrongUrl": {
       "message": "Only change this URL if it points to the wrong anime page on MAL.",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_Search": {
       "message": "Correction Search",
-      "description": "Episode Offset"
+      "description": "Correction Search"
     },
     "correction_Search_text": {
       "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList Url\" shown above.<br> To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_NoMal": {
       "message": "If the Anime/Manga can't be found on MAL",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_NoEntry": {
       "message": "No entry on MyAnimeList",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_NewOffset": {
       "message": "New Offset ($offset$) set.",
-      "description": "Episode Offset",
+      "description": "",
       "placeholders": {
         "offset": {
           "content": "$1"
@@ -293,11 +301,11 @@
     },
     "correction_OffsetReset": {
       "message": "Offset reset",
-      "description": "Episode Offset"
+      "description": ""
     },
     "correction_NewUrl": {
       "message": "new url '$malUrl$' set.",
-      "description": "Episode Offset",
+      "description": "",
       "placeholders": {
         "malUrl": {
           "content": "$1"
@@ -306,6 +314,265 @@
     },
     "correction_NewUrlReset": {
       "message": "MyAnimeList url reset",
-      "description": "Episode Offset"
+      "description": ""
+    },
+    "overview_EditDetails": {
+      "message": "Edit Details",
+      "description": "Edit Details"
+    },
+    "overview_Characters": {
+      "message": "Characters",
+      "description": "Characters"
+    },
+    "overview_OpeningTheme": {
+      "message": "Opening Theme:",
+      "description": "Opening Theme"
+    },
+    "overview_EndingTheme": {
+      "message": "Opening Theme:",
+      "description": "Opening Theme"
+    },
+    "search_Type": {
+      "message": "Type: ",
+      "description": "Type"
+    },
+    "search_Score": {
+      "message": "Score: ",
+      "description": "Score"
+    },
+    "search_Year": {
+      "message": "Year: ",
+      "description": "Year"
+    },
+    "settings_General": {
+      "message": "General",
+      "description": "General"
+    },
+    "settings_Mode": {
+      "message": "Mode",
+      "description": "Mode"
+    },
+    "settings_Authenticate": {
+      "message": "Authenticate",
+      "description": "Authenticate"
+    },
+    "settings_Animesync": {
+      "message": "Anime sync",
+      "description": "Anime sync"
+    },
+    "settings_Animesync_Video": {
+      "message": "Video",
+      "description": "Video"
+    },
+    "settings_Animesync_Instant": {
+      "message": "Instant",
+      "description": "Instant"
+    },
+    "settings_Animesync_Manual": {
+      "message": "Manual",
+      "description": "Manual"
+    },
+    "settings_Mangasync": {
+      "message": "Manga sync",
+      "description": "Manga sync"
+    },
+    "settings_AutoTracking_Video": {
+      "message": "Update on $videoDuration$ of video progress",
+      "description": "",
+      "placeholders": {
+        "videoDuration": {
+          "content": "$1"
+        }
+      }
+    },
+    "settings_AutoTracking_Instant": {
+      "message": "Delay instant autotracking by $delay$ Seconds",
+      "description": "",
+      "placeholders": {
+        "delay": {
+          "content": "$1"
+        }
+      }
+    },
+    "settings_StreamingSite": {
+      "message": "Streaming Site Links",
+      "description": "Streaming Site Links"
+    },
+    "settings_StreamingSite_text": {
+      "message": "If disabled, the streaming site will no longer appear in an animes sidebar on MAL.",
+      "description": "Streaming Site Links - Text"
+    },
+    "settings_Thumbnails": {
+      "message": "Thumbnails",
+      "description": "Thumbnails"
+    },
+    "settings_Thumbnails_text": {
+      "message": "The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.",
+      "description": "Thumbnails - Text"
+    },
+    "settings_Thumbnails_Large": {
+      "message": "Large",
+      "description": "Thumbnails Large"
+    },
+    "settings_Thumbnails_Medium": {
+      "message": "Medium",
+      "description": "Thumbnails Medium"
+    },
+    "settings_Thumbnails_Small": {
+      "message": "Small",
+      "description": "Thumbnails Small"
+    },
+    "settings_Thumbnails_Default": {
+      "message": "MAL Default",
+      "description": "Thumbnails MAL Default"
+    },
+    "settings_FriendScore": {
+      "message": "Friend scores on detail page",
+      "description": "Friend scores on detail page"
+    },
+    "settings_epPredictions": {
+      "message": "Estimate episode number",
+      "description": "Estimate episode number"
+    },
+    "settings_malTags": {
+      "message": "Use Tags/Notes",
+      "description": "Use Tags/Notes"
+    },
+    "settings_malTags_Text": {
+      "message": "If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.",
+      "description": "Use Tags/Notes - Text"
+    },
+    "settings_malContinue": {
+      "message": ">Continue watching links",
+      "description": ">Continue watching links"
+    },
+    "settings_malResume": {
+      "message": "Resume watching links",
+      "description": "Resume watching links"
+    },
+    "settings_miniMAL_floatButtonStealth": {
+      "message": "Stealth floating menu button",
+      "description": "Stealth floating menu button"
+    },
+    "settings_miniMAL_floatButtonHide": {
+      "message": "Hide miniMAL floating menu button",
+      "description": "Hide miniMAL floating menu button"
+    },
+    "settings_miniMAL_autoCloseMinimal": {
+      "message": "Clicking outside closes miniMAL",
+      "description": "Clicking outside closes miniMAL"
+    },
+    "settings_miniMAL_Display": {
+      "message": "Display to the",
+      "description": "Display to the"
+    },
+    "settings_miniMAL_Display_Left": {
+      "message": "Left",
+      "description": "miniMAL Display Left"
+    },
+    "settings_miniMAL_Display_Right": {
+      "message": "Right",
+      "description": "miniMAL Display Right"
+    },
+    "settings_miniMAL_Height": {
+      "message": "Height (px / %)",
+      "description": "miniMAL Height"
+    },
+    "settings_miniMAL_Width": {
+      "message": "Width (px / %)",
+      "description": "miniMAL Width"
+    },
+    "settings_Shortcuts": {
+      "message": "Shortcuts",
+      "description": "Shortcuts"
+    },
+    "settings_miniMAL_Open": {
+      "message": "Open miniMAL",
+      "description": "miniMAL Open"
+    },
+    "settings_miniMAL_NotSet": {
+      "message": "Not Set",
+      "description": "miniMAL Not Set"
+    },
+    "settings_introSkip": {
+      "message": "Skips $Seconds$ Seconds",
+      "description": "Skips video Seconds",
+      "placeholders": {
+        "Seconds": {
+          "content": "$1"
+        }
+      }
+    },
+    "settings_UpdateCheck": {
+      "message": "Update Check",
+      "description": "Update Check"
+    },
+    "settings_UpdateCheck_Text": {
+      "message": "Checks for new episodes in the background.",
+      "description": "Update Check - Text"
+    },
+    "settings_Interval": {
+      "message": "Interval",
+      "description": "Interval"
+    },
+    "settings_Interval_Off": {
+      "message": "Off",
+      "description": "Interval - Off"
+    },
+    "settings_Notifications": {
+      "message": "Notifications",
+      "description": "Notifications"
+    },
+    "settings_Debugging": {
+      "message": "Debugging",
+      "description": "Debugging"
+    },
+    "settings_ETC": {
+      "message": "ETC",
+      "description": "ETC"
+    },
+    "settings_Userscriptmode": {
+      "message": "Userscript mode",
+      "description": "Userscript mode"
+    },
+    "settings_Userscriptmode_Text": {
+      "message": "Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.",
+      "description": "Userscript mode - Text"
+    },
+    "settings_StrictCookies": {
+      "message": "Strict Cookies",
+      "description": "Strict Cookies"
+    },
+    "settings_StrictCookies_Text": {
+      "message": "This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option",
+      "description": "Strict Cookies - Text"
+    },
+    "settings_ClearCache": {
+      "message": "Clear Cache",
+      "description": "Clear Cache"
+    },
+    "updateCheck_Refresh": {
+      "message": "Refresh",
+      "description": "Refresh"
+    },
+    "updateCheck_StartCheck": {
+      "message": "Start Check",
+      "description": "Start Check"
+    },
+    "updateCheck_NotificationCheck": {
+      "message": "Notification Check",
+      "description": "Notification Check"
+    },
+    "updateCheck_Episode": {
+      "message": "Episode",
+      "description": "Episode"
+    },
+    "updateCheck_Message": {
+      "message": "Message",
+      "description": "Message"
+    },
+    "updateCheck_NotificationHistory": {
+      "message": "Notification History",
+      "description": "Notification History"
     }
 }

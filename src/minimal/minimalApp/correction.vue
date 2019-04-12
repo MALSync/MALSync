@@ -43,7 +43,7 @@
       <div class="mdl-list__item">
         <button @click="update()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="malSubmit">{{lang("Update")}}</button>
         <button @click="reset()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="malReset" style="margin-left: 5px;">{{lang("Reset")}}</button>
-        <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="If the Anime/Manga can't be found on MAL">No MAL</button>
+        <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" title="{{lang(`correction_NoMal`)}}">No MAL</button>
       </div>
 
       <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword">
