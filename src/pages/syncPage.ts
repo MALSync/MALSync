@@ -189,10 +189,10 @@ export class syncPage{
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
-      j.$("#MalInfo").text("Not Found!");
+      j.$("#MalInfo").text(api.storage.lang('Not_Found'));
       con.log('Not on mal');
     }else if(!malUrl){
-      j.$("#MalInfo").text("Nothing Found!");
+      j.$("#MalInfo").text(api.storage.lang('NothingFound'));
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);

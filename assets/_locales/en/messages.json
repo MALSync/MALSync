@@ -27,9 +27,21 @@
       "message": "Select",
       "description": "Select"
     },
+    "Yes": {
+      "message": "Yes",
+      "description": "Yes"
+    },
+    "No": {
+      "message": "No",
+      "description": "No"
+    },
     "NothingFound": {
       "message": "Nothing Found",
       "description": "Nothing Found"
+    },
+    "Not_Found": {
+      "message": "Not Found!",
+      "description": "Anime/Manga Not Found"
     },
     "NoEntries": {
       "message": "No Entries",
@@ -197,6 +209,16 @@
     "syncPage_flashConfirm_start_manga": {
       "message": "Start reading?",
       "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_Anime_Correct": {
+      "message": "Is \"$anime$\" correct?",
+      "description": "Is anime correct",
+      "placeholders": {
+        "anime": {
+          "content": "$1",
+          "example": "No Game No Life"
+        }
+      }
     },
     "syncPage_malObj_addAnime": {
       "message": "Add to $anime$",
