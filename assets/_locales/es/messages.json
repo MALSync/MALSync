@@ -58,15 +58,6 @@
     "message": "¿Empezar a leer?",
     "description": "Start manga - 1ºtext"
   },
-  "syncPage_malObj_addAnime": {
-    "message": "Añadir $anime$",
-    "description": "add anime",
-    "placeholders": {
-      "anime": {
-        "content": "$1"
-      }
-    }
-  },
   "syncPage_malObj_nextEp_anime": {
     "message": "Episodio $episode$",
     "description": "next episode",

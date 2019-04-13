@@ -156,7 +156,8 @@
       "description": "Video resume message",
       "placeholders": {
         "time": {
-          "content": "$1"
+          "content": "$1",
+          "example": "13:37"
         }
       }
     },
@@ -165,11 +166,12 @@
       "description": "Update MAL to episode 3",
       "placeholders": {
         "page": {
-          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
-          "content": "$1"
+          "content": "$1",
+          "example": "MAL"
         },
         "epNr": {
-          "content": "$2"
+          "content": "$2",
+          "example": "3"
         }
       }
     },
@@ -178,11 +180,12 @@
       "description": "Update MAL to chapter 3",
       "placeholders": {
         "page": {
-          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
-          "content": "$1"
+          "content": "$1",
+          "example": "MAL"
         },
         "epNr": {
-          "content": "$2"
+          "content": "$2",
+          "example": "3"
         }
       }
     },
@@ -221,11 +224,12 @@
       }
     },
     "syncPage_malObj_addAnime": {
-      "message": "Add to $anime$",
+      "message": "Add to $page$",
       "description": "add anime",
       "placeholders": {
-        "anime": {
-          "content": "$1"
+        "page": {
+          "content": "$1",
+          "example": "AniList"
         }
       }
     },
@@ -234,7 +238,8 @@
       "description": "Next episode message on streaming overview pages",
       "placeholders": {
         "episode": {
-          "content": "$1"
+          "content": "$1",
+          "example": "5"
         }
       }
     },
@@ -243,7 +248,8 @@
       "description": "Next chapter message on streaming overview pages",
       "placeholders": {
         "chapter": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -252,7 +258,8 @@
       "description": "offsetHandler Episode",
       "placeholders": {
         "calcOffset": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -333,7 +340,8 @@
       "description": "New Offset",
       "placeholders": {
         "offset": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -346,7 +354,8 @@
       "description": "new url",
       "placeholders": {
         "malUrl": {
-          "content": "$1"
+          "content": "$1",
+          "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
         }
       }
     },
@@ -439,11 +448,12 @@
       "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
-      "message": "Update on $videoDuration$ of video progress",
+      "message": "Update on $videoDuration$% of video progress",
       "description": "Update Episode of video progress",
       "placeholders": {
         "videoDuration": {
-          "content": "$1"
+          "content": "$1",
+          "example": "85"
         }
       }
     },
@@ -452,7 +462,8 @@
       "description": "Delay instant autotracking",
       "placeholders": {
         "delay": {
-          "content": "$1"
+          "content": "$1",
+          "example": "15"
         }
       }
     },
@@ -505,8 +516,8 @@
       "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
-      "message": ">Continue watching links",
-      "description": ">Continue watching links"
+      "message": "Continue watching links",
+      "description": "Continue watching links"
     },
     "settings_malResume": {
       "message": "Resume watching links",
@@ -561,7 +572,8 @@
       "description": "Skips video Seconds",
       "placeholders": {
         "Seconds": {
-          "content": "$1"
+          "content": "$1",
+          "example": "30"
         }
       }
     },
@@ -662,16 +674,20 @@
       "description": "Update version",
       "placeholders": {
         "Version": {
-          "content": "$1"
+          "content": "$1",
+          "example": "0.1.4"
         },
         "Link": {
-          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#"
+          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#",
+          "example": "[<a href=\""
         },
         "Link2": {
-          "content": "'\">"
+          "content": "'\">",
+          "example": "'\">"
         },
         "Link3": {
-          "content": "</a>]"
+          "content": "</a>]",
+          "example": "</a>]"
         }
       }
     },
@@ -692,10 +708,12 @@
       "description": "Update version - Text 3",
       "placeholders": {
         "Link1": {
-          "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">"
+          "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+          "example": "<a>"
         },
         "Link2": {
-          "content": "</a>"
+          "content": "</a>",
+          "example": "</a>"
         }
       }
     }
