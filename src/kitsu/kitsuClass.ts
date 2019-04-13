@@ -102,17 +102,15 @@ export class kitsuClass{
           <h1>MAL-Sync</h1>
           <br>
           <p style="text-align: left;">
-            To login with Kitsu, you need to enter your account's e-mail and password.</br>
-            Your credentials are not stored on your computer or anywhere else. </br>
-            They are directly sent to kitsu. Only the returned access token is saved.</br>
+            `+api.storage.lang("kitsuClass_authentication_text")+`
           </p>
           <div class="modal-content">
             <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="pass" name="password" placeholder="Password" required>
+            <input type="password" id="pass" name="password" placeholder="`+api.storage.lang("kitsuClass_authentication_Password")+`" required>
           </div>
           <div class="form-cta" style="margin-top: 30px;">
             <button class="btn button--primary" type="submit" id="mal-sync-button">
-                Login
+              `+api.storage.lang("kitsuClass_authentication_Login")+`
             </button>
           </div>
         </div>
@@ -128,7 +126,7 @@ export class kitsuClass{
             var token = result.access_token;
             con.info('token', token);
             api.settings.set('kitsuToken', token).then(() => {
-              $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>Token saved you can close this page now')
+              $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>'+api.storage.lang("kitsuClass_authentication_Success"))
             });
           },
           error: function(result){
@@ -136,7 +134,7 @@ export class kitsuClass{
               con.error(result);
               $('#mal-sync-login #mal-sync-button').prop("disabled", false);
               if(result.responseJSON.error == 'invalid_grant'){
-                utils.flashm('Credentials wrong');
+                utils.flashm(api.storage.lang("kitsuClass_authentication_Wrong"));
                 return;
               }
               utils.flashm(result.responseJSON.error_description);
@@ -182,13 +180,13 @@ export class kitsuClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
         }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );
@@ -266,8 +264,8 @@ export class kitsuClass{
             width: 100%;
             font-size: 12px;
         " class="library-state with-header">
-          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">Search</span>
-          <div class="MALSync-search"><a>[Show]</a></div>
+          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">`+api.storage.lang("Search")+`</span>
+          <div class="MALSync-search"><a>[`+api.storage.lang("Show")+`]</a></div>
         </div>
       `);
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');

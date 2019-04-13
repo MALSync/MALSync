@@ -1,7 +1,7 @@
 <template>
   <div class="page-content malClear" id="malRecommendations">
     <div v-show="xhr == ''" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-    <span class="mdl-chip" v-show="xhr != '' && recommendations == ''" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">Nothing Found</span></span>
+    <span class="mdl-chip" v-show="xhr != '' && recommendations == ''" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("NothingFound")}}</span></span>
     <div v-html="recommendations" class="mdl-grid" v-if="xhr != ''">
     </div>
   </div>
@@ -93,6 +93,7 @@
       },
     },
     methods: {
+      lang: api.storage.lang
     }
   }
 </script>

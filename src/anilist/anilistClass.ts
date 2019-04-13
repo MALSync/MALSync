@@ -171,8 +171,8 @@ export class anilistClass{
             margin-bottom: 16px;
             font-size: 1.2rem;
         ">
-          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">Search</span>
-          <div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />
+          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">`+api.storage.lang("Search")+`</span>
+          <div class="MALSync-search"><a>[`+api.storage.lang("Show")+`]</a></div><br class="mal_links" />
         </div>
       `);
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
@@ -237,13 +237,13 @@ export class anilistClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
         }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );

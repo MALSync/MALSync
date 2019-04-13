@@ -7,11 +7,11 @@
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">General</h2>
+          <h2 class="mdl-card__title-text">{{lang("settings_General")}}</h2>
         </div>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Mode
+            {{lang("settings_Mode")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -26,7 +26,7 @@
             AniList
           </span>
           <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">Authenticate</a>
+            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
         <li class="mdl-list__item" v-if="options.syncMode == 'KITSU'">
@@ -34,43 +34,43 @@
             Kitsu
           </span>
           <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">Authenticate</a>
+            <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Anime sync
+            {{lang("settings_Animesync")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="autoTrackingModeanime" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="video">Video</option>
-              <option value="instant">Instant</option>
-              <option value="manual">Manual</option>
+              <option value="video">{{lang("settings_Animesync_Video")}}</option>
+              <option value="instant">{{lang("settings_Animesync_Instant")}}</option>
+              <option value="manual">{{lang("settings_Animesync_Manual")}}</option>
             </select>
           </span>
         </li>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Manga sync
+            {{lang("settings_Mangasync")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="autoTrackingModemanga" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="instant">Instant</option>
-              <option value="manual">Manual</option>
+              <option value="instant">{{lang("settings_Animesync_Instant")}}</option>
+              <option value="manual">{{lang("settings_Animesync_Manual")}}</option>
             </select>
           </span>
         </li>
-        <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">Update on {{options.videoDuration}}% of video progress</numberInput>
+        <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">{{lang("settings_AutoTracking_Video",[options.videoDuration])}}</numberInput>
 
-        <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">Delay instant autotracking by {{options.delay}} Seconds</numberInput>
+        <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">Streaming Site Links</h2>
-          <tooltip>If disabled, the streaming site will no longer appear in an animes sidebar on MAL.</tooltip>
+          <h2 class="mdl-card__title-text">{{lang("settings_StreamingSite")}}</h2>
+          <tooltip>{{lang("settings_StreamingSite_text")}}</tooltip>
         </div>
-        <checkbox option="SiteSearch">Search</checkbox>
+        <checkbox option="SiteSearch">{{lang("Search")}}</checkbox>
         <checkbox option="Kissanime">KissAnime</checkbox>
         <checkbox option="Masterani">MasterAnime</checkbox>
         <checkbox option="9anime">9anime</checkbox>
@@ -90,34 +90,34 @@
         </div>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Thumbnails
-            <tooltip>The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.</tooltip>
+            {{lang("settings_Thumbnails")}}
+            <tooltip>{{lang("settings_Thumbnails_text")}}</tooltip>
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="144">Large</option>
-              <option value="100">Medium</option>
-              <option value="60">Small</option>
-              <option value="0">MAL Default</option>
+              <option value="144">{{lang("settings_Thumbnails_Large")}}</option>
+              <option value="100">{{lang("settings_Thumbnails_Medium")}}</option>
+              <option value="60">{{lang("settings_Thumbnails_Small")}}</option>
+              <option value="0">{{lang("settings_Thumbnails_Default")}}</option>
             </select>
           </span>
         </li>
-        <checkbox option="friendScore">Friend scores on detail page</checkbox>
+        <checkbox option="friendScore">{{lang("settings_FriendScore")}}</checkbox>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">MyAnimeList / AniList</h2>
         </div>
-        <checkbox option="epPredictions">Estimate episode number</checkbox>
+        <checkbox option="epPredictions">{{lang("settings_epPredictions")}}</checkbox>
         <checkbox option="malTags">
-          Use Tags/Notes
+          {{lang("settings_malTags")}}
           <tooltip direction="bottom">
-            If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.
+            {{lang("settings_malTags_Text")}}
           </tooltip>
         </checkbox>
-        <checkbox option="malContinue" v-show="options.malTags">Continue watching links</checkbox>
-        <checkbox option="malResume" v-show="options.malTags">Resume watching links</checkbox>
+        <checkbox option="malContinue" v-show="options.malTags">{{lang("settings_malContinue")}}</checkbox>
+        <checkbox option="malResume" v-show="options.malTags">{{lang("settings_malResume")}}</checkbox>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -125,17 +125,17 @@
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
         </div>
-        <checkbox option="floatButtonStealth">Stealth floating menu button</checkbox>
-        <checkbox option="floatButtonHide">Hide miniMAL floating menu button</checkbox>
-        <checkbox option="autoCloseMinimal">Clicking outside closes miniMAL</checkbox>
+        <checkbox option="floatButtonStealth">{{lang("settings_miniMAL_floatButtonStealth")}}</checkbox>
+        <checkbox option="floatButtonHide">{{lang("settings_miniMAL_floatButtonHide")}}</checkbox>
+        <checkbox option="autoCloseMinimal">{{lang("settings_miniMAL_autoCloseMinimal")}}</checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Display to the
+            {{lang("settings_miniMAL_Display")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="posLeft" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="left">Left</option>
-              <option value="right">Right</option>
+              <option value="left">{{lang("settings_miniMAL_Display_Left")}}</option>
+              <option value="right">{{lang("settings_miniMAL_Display_Right")}}</option>
             </select>
           </span>
         </li>
@@ -145,30 +145,33 @@
         <li class="mdl-list__item" style="display: inline-block; width: 49%;">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
             <input class="mdl-textfield__input" type="text" step="1" id="miniMalHeight" :value="options.miniMalHeight">
-            <label class="mdl-textfield__label" for="miniMalHeight">Height (px / %)
+            <label class="mdl-textfield__label" for="miniMalHeight">
+              {{lang("settings_miniMAL_Height")}}
             </label>
           </div>
         </li>
         <li class="mdl-list__item" style="display: inline-block; width: 50%;">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
             <input class="mdl-textfield__input" type="text" step="1" id="miniMalWidth" :value="options.miniMalWidth">
-            <label class="mdl-textfield__label" for="miniMalWidth">Width (px / %)</label>
+            <label class="mdl-textfield__label" for="miniMalWidth">
+              {{lang("settings_miniMAL_Width")}}
+            </label>
           </div>
         </li>
       </div>
 
       <div v-if="commands" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">Shortcuts</h2>
+          <h2 class="mdl-card__title-text">{{lang("settings_Shortcuts")}}</h2>
         </div>
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Open miniMAL
+            {{lang("settings_miniMAL_Open")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands._execute_browser_action.shortcut}}
-            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
           </span>
         </li>
 
@@ -178,7 +181,7 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands.intro_skip_forward.shortcut}}
-            <span v-if="!commands.intro_skip_forward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+            <span v-if="!commands.intro_skip_forward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
           </span>
         </li>
 
@@ -188,30 +191,30 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             {{commands.intro_skip_backward.shortcut}}
-            <span v-if="!commands.intro_skip_backward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">Not Set</a></span>
+            <span v-if="!commands.intro_skip_backward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
           </span>
         </li>
 
-        <numberInput option="introSkip" :min="5">Skips {{options.introSkip}} Seconds</numberInput>
+        <numberInput option="introSkip" :min="5">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
 
       </div>
 
       <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">Update Check</h2>
+          <h2 class="mdl-card__title-text">{{lang("settings_UpdateCheck")}}</h2>
           <tooltip>
-            Checks for new episodes in the background.
+            {{lang("settings_UpdateCheck_Text")}}
           </tooltip>
           <div id="updateCheckAgo" style="margin-left: auto;"></div>
         </div>
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Interval
+            {{lang("settings_Interval")}}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="updateCheckTime" id="updateCheckTime" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="0">Off</option>
+              <option value="0">{{lang("settings_Interval_Off")}}</option>
               <option value="60">1h</option>
               <option value="240">4h</option>
               <option value="720">12h</option>
@@ -221,18 +224,18 @@
           </span>
         </li>
         <span class="updateCheckEnable" style="display: none;">
-          <checkbox option="updateCheckNotifications">Notifications</checkbox>
+          <checkbox option="updateCheckNotifications">{{lang("settings_Notifications")}}</checkbox>
         </span>
-        <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Debugging</button></li>
+        <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_Debugging")}}</button></li>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">ETC</h2>
+          <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
-        <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">Userscript mode<tooltip direction="bottom">Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.</tooltip></checkbox></span>
-        <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">Strict Cookies<tooltip>This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option</tooltip></checkbox></span>
-        <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Clear Cache</button></li>
+        <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
+        <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
+        <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div v-for="(contributerGroup, group) in contributer" class="inline-block">
@@ -278,7 +281,7 @@
             <clazy-load tag="a" rel="noreferrer" :href="version.link" :src="version.img">
               <img :src="version.img"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -286,7 +289,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA">
               <img src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -294,7 +297,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://github.com/lolamtisch/MALSync" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github">
               <img src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -302,7 +305,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://github.com/lolamtisch/MALSync/issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white">
               <img src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -310,7 +313,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en" src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white">
               <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -318,7 +321,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync" src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white">
               <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
             <br/>
@@ -326,7 +329,7 @@
             <clazy-load tag="a" rel="noreferrer" href="https://greasyfork.org/de/scripts/372847-mal-sync" src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white">
               <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white"/>
               <span slot="placeholder">
-                Loading
+                {{lang("Loading")}}
               </span>
             </clazy-load>
 
@@ -383,6 +386,7 @@
 
     },
     methods: {
+      lang: api.storage.lang,
       myOpen: function(){
         this.isOpen = !this.isOpen;
       }

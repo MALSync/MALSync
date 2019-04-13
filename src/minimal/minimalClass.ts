@@ -42,7 +42,7 @@ export class minimal{
         if (win) {
             win.focus();
         } else {
-            alert('Please allow popups for this website');
+            alert(api.storage.lang("minimalClass_Popup"));
         }
       }
     });
@@ -289,7 +289,7 @@ export class minimal{
         var versionMsg = '';
 
         if(version != api.storage.version()){
-          versionMsg = 'Updated to version '+api.storage.version()+' [<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">CHANGELOG</a>]';
+          versionMsg = api.storage.lang("minimalClass_versionMsg",[api.storage.version()]);
         }
         con.log(version);
         if(typeof version == 'undefined'){
@@ -303,9 +303,9 @@ export class minimal{
               background-color: #3d4e9a;
               margin-top: -5px;
             ">
-              <span style="text-decoration: underline; font-size: 15px;">Thanks for installing MAL-Sync</span><br>
+              <span style="text-decoration: underline; font-size: 15px;">`+api.storage.lang("minimalClass_versionMsg_Text_1")+`</span><br>
               <br>
-              Having Questions?<br>
+              `+api.storage.lang("minimalClass_versionMsg_Text_2")+`<br>
               <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
                 <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
               </a><br>
@@ -313,7 +313,7 @@ export class minimal{
                 <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
               </a><br>
               <br>
-              Open Source Code:<br>
+              `+api.storage.lang("minimalClass_versionMsg_Text_3")+`<br>
               <a target="_blank" href="https://github.com/lolamtisch/MALSync">
                 <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
               </a>
@@ -357,9 +357,9 @@ export class minimal{
                   <img src="'+value['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                     <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+value['name']+'</span>\
-                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">Type: '+value['payload']['media_type']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">Score: '+value['payload']['score']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">Year: '+value['payload']['start_year']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">'+api.storage.lang("search_Type")+' '+value['payload']['media_type']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Score")+' '+value['payload']['score']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Year")+' '+value['payload']['start_year']+'</p>\
                   </div>\
                   </a>');
               }

@@ -1,13 +1,13 @@
 <template>
   <div>
     <button @click="load()" class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck">
-      Refresh
+      {{lang("updateCheck_Refresh")}}
     </button>
     <button @click="startCheck()" class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck">
-      Start Check
+      {{lang("updateCheck_StartCheck")}}
     </button>
     <button @click="notificationTest()" class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck">
-      Notification Check
+      {{lang("updateCheck_NotificationCheck")}}
     </button>
     <select v-model="listType" style="float: right;" class="typeSelect-updateCheck">
       <option value="anime">Anime</option>
@@ -16,8 +16,8 @@
     <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
       <tr>
         <th class="mdl-data-table__cell--non-numeric"></th>
-        <th>Episode</th>
-        <th>Message</th>
+        <th>{{lang("updateCheck_Episode")}}</th>
+        <th>{{lang("updateCheck_Message")}}</th>
       </tr>
       <tr v-for="item in items" :key="item.id" v-bind:style="{ backgroundColor: item.trColor}">
         <th class="mdl-data-table__cell--non-numeric">
@@ -31,7 +31,7 @@
       </tr>
     </table>
     <div class="history">
-      <h3>Notification History</h3>
+      <h3>{{lang("updateCheck_NotificationHistory")}}</h3>
       <a  v-for="historyItem in history" :key="historyItem.id" :href="historyItem.url" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">
         <img :src="historyItem.iconUrl" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;">
         <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
@@ -75,6 +75,7 @@
       },
     },
     methods: {
+      lang: api.storage.lang,
       load: function(){
         provider.userList(1, this.listType, {
           fullListCallback: async (list) => {

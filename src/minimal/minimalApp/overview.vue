@@ -26,21 +26,21 @@
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>Status:</span>
+                <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malStatus" :disabled="!this.renderObj" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
-                    <option selected="selected" value="1">{{utils.watching(renderObj.type)}}</option>
-                    <option value="2">Completed</option>
-                    <option value="3">On-Hold</option>
-                    <option value="4">Dropped</option>
-                    <option value="6">{{utils.planTo(renderObj.type)}}</option>
+                    <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.type)}}</option>
+                    <option value="2">{{lang("UI_Status_Completed")}}</option>
+                    <option value="3">{{lang("UI_Status_OnHold")}}</option>
+                    <option value="4">{{lang("UI_Status_Dropped")}}</option>
+                    <option value="6">{{lang("UI_Status_planTo_"+renderObj.type)}}</option>
                   </select>
                 </span>
               </span>
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{utils.episode(renderObj.type)}}:</span>
+                <span>{{utils.episode(renderObj.type)}}</span>
                 <span class="mdl-list__item-text-body">
                   <input v-model="malEpisode" :disabled="!this.renderObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.totalEp">{{renderObj.totalEp}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
@@ -52,7 +52,7 @@
             </li>
             <li v-show="renderObj.type == 'manga'" class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>Volume:</span>
+                <span>{{lang("UI_Volume")}}</span>
                 <span class="mdl-list__item-text-body">
                   <input v-model="malVolume" :disabled="!this.renderObj" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.totalVol">{{renderObj.totalVol}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
@@ -64,20 +64,20 @@
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>Your Score:</span>
+                <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malScore" :disabled="!this.renderObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
-                    <option value="" selected="selected">Select</option>
-                    <option value="10">(10) Masterpiece</option>
-                    <option value="9">(9) Great</option>
-                    <option value="8">(8) Very Good</option>
-                    <option value="7">(7) Good</option>
-                    <option value="6">(6) Fine</option>
-                    <option value="5">(5) Average</option>
-                    <option value="4">(4) Bad</option>
-                    <option value="3">(3) Very Bad</option>
-                    <option value="2">(2) Horrible</option>
-                    <option value="1">(1) Appalling</option>
+                    <option value="" selected="selected">{{lang("Select")}}</option>
+                    <option value="10">{{lang("UI_Score_Masterpiece")}}</option>
+                    <option value="9">{{lang("UI_Score_Great")}}</option>
+                    <option value="8">{{lang("UI_Score_VeryGood")}}</option>
+                    <option value="7">{{lang("UI_Score_Good")}}</option>
+                    <option value="6">{{lang("UI_Score_Fine")}}</option>
+                    <option value="5">{{lang("UI_Score_Average")}}</option>
+                    <option value="4">{{lang("UI_Score_Bad")}}</option>
+                    <option value="3">{{lang("UI_Score_VeryBad")}}</option>
+                    <option value="2">{{lang("UI_Score_Horrible")}}</option>
+                    <option value="1">{{lang("UI_Score_Appalling")}}</option>
                   </select>
                 </span>
               </span>
@@ -85,9 +85,9 @@
             <li class="mdl-list__item" style="width: 100%;">
 
               <input @click="malSync()" v-if="renderObj && renderObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
-              <input @click="malSync()" v-else type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
+              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
               <small v-if="editUrl && renderObj">
-                <a :href="editUrl" target="_blank">Edit Details</a>
+                <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
             </li>
           </tbody>
@@ -129,7 +129,7 @@
       </div>
       <div v-show="characters.length > 0" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
         <div class="mdl-card__actions clicker" >
-          <h1 class="mdl-card__title-text" style="float: left;">Characters</h1>
+          <h1 class="mdl-card__title-text" style="float: left;">{{lang("overview_Characters")}}</h1>
         </div>
         <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; ">
           <div v-for="character in characters">
@@ -148,7 +148,7 @@
       <div v-if="openingSongs.length || endingSongs.length" class="mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
         <li v-if="openingSongs.length" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet" style="padding: 0; height: auto;">
           <span class="mdl-list__item-primary-content" style="height: auto;">
-              <span>Opening Theme:</span>
+              <span>{{lang("overview_OpeningTheme")}}</span>
               <span class="mdl-list__item-text-body" style="height: auto;">
                 <span v-for="openingSong in openingSongs" style="display: block; color: rgb(255,64,129);">
                   {{ openingSong }}
@@ -158,7 +158,7 @@
         </li>
         <li v-if="endingSongs.length" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet" style="padding: 0; height: auto;">
           <span class="mdl-list__item-primary-content" style="height: auto;">
-              <span>Ending Theme:</span>
+              <span>{{lang("overview_EndingTheme")}}</span>
               <span class="mdl-list__item-text-body" style="height: auto;">
                 <span v-for="endingSong in endingSongs" style="display: block; color: rgb(255,64,129);">
                   {{ endingSong }}
@@ -378,19 +378,19 @@
           `
             <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
               <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
+                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Continue_'+malObj.type)}
               </a>`;
 
           con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
           if(typeof this.mal.continueUrl !== 'undefined' && this.mal.continueUrl && this.mal.continueUrl.ep === (malObj.getEpisode()+1)){
             streamhtml +=
-              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Continue watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Next Episode
+              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Next_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Next_Episode_'+malObj.type)}
               </a>`;
           }else if(typeof this.mal.resumeUrl !== 'undefined' && this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()){
             streamhtml +=
-              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Resume watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Resume Episode
+              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Resume_Episode_'+malObj.type)}
               </a>`;
           }
 
@@ -507,6 +507,7 @@
       }
     },
     methods: {
+      lang: api.storage.lang,
       malSync: function(){
         this.renderObj.sync()
           .then(function(){

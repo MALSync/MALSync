@@ -250,7 +250,7 @@ export class entryClass{
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
-          Is "${this.name}" correct?
+          ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", this.name)}
           <br>
           <img id="${imgSelector}" style="
             height: 200px;
@@ -293,8 +293,8 @@ export class entryClass{
             j.$('#'+imgSelector).attr('src', image);
           })
 
-          j.$('.Yes').text('YES');
-          j.$('.Cancel').text('NO');
+          j.$('.Yes').text(api.storage.lang("Yes"));
+          j.$('.Cancel').text(api.storage.lang("No"));
         }
 
         return;

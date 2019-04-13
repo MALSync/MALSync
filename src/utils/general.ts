@@ -44,8 +44,8 @@ export function planTo(type: "anime"|"manga"){
 }
 
 export function episode(type: "anime"|"manga"){
-  if(type == "manga") return 'Chapter';
-  return 'Episode';
+  if(type == "manga") return api.storage.lang("UI_Chapter");
+  return api.storage.lang("UI_Episode");
 }
 
 export var syncRegex = /(^settings\/.*|^resume\/.*|^continue\/.*|^.*\/Offset$|^updateCheckTime$|^tempVersion$)/

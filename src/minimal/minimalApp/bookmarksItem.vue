@@ -26,10 +26,10 @@
           <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
             <img :src="favicon(streamUrl.split('/')[2])">
           </a>
-          <a v-if="continueUrl" class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="continueUrl">
+          <a v-if="continueUrl" class="nextStream" :title="lang('overview_Continue_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="continueUrl">
             <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16">
           </a>
-          <a v-if="resumeUrl" class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="resumeUrl">
+          <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="resumeUrl">
             <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
           </a>
         </div>
@@ -135,23 +135,24 @@
 
         var text = '';
         if(diffDays > 1){
-          return text+diffDays+' Days';
+          return text+diffDays+api.storage.lang("bookmarksItem_Days");
         }
         if(diffDays === 1){
-          text += diffDays+' Day ';
+          text += diffDays+api.storage.lang("bookmarksItem_Day");
         }
 
         if(diffHours > 1){
-          return text+diffHours+' Hours';
+          return text+diffHours+api.storage.lang("bookmarksItem_Hours");
         }
         if(diffHours === 1){
-          text += diffHours+' Hour ';
+          text += diffHours+api.storage.lang("bookmarksItem_Hour");
         }
 
-        return text+diffMinutes+' mins';
+        return text+diffMinutes+api.storage.lang("bookmarksItem_mins");
       },
     },
     methods: {
+      lang: api.storage.lang,
       favicon: function(domain){
         return utils.favicon(domain);
       },
