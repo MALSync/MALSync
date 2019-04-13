@@ -275,34 +275,34 @@ export class syncPage{
           var statusString = "";
           switch (parseInt(This.malObj.getStatus())) {
             case 1:
-              statusString = api.storage.lang("syncPage_UI_Status_watching_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_watching_"+This.page.type);
               break;
             case 2:
-              statusString = api.storage.lang("syncPage_UI_Status_Completed");
+              statusString = api.storage.lang("UI_Status_Completed");
               break;
             case 3:
-              statusString = api.storage.lang("syncPage_UI_Status_OnHold");
+              statusString = api.storage.lang("UI_Status_OnHold");
               break;
             case 4:
-              statusString = api.storage.lang("syncPage_UI_Status_Dropped");
+              statusString = api.storage.lang("UI_Status_Dropped");
               break;
             case 6:
-              statusString = api.storage.lang("syncPage_UI_Status_planTo_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_planTo_"+This.page.type);
               break;
           }
           message += split + statusString;
           split = ' | '
         }
         if(This.page.type == 'manga' && ( typeof This.oldMalObj == "undefined" || This.malObj.getVolume() != This.oldMalObj.getVolume() )){
-          message += split + api.storage.lang("syncPage_UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
+          message += split + api.storage.lang("UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + api.storage.lang("syncPage_UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
+          message += split + api.storage.lang("UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
-          message += split + api.storage.lang("syncPage_UI_Score") + ' ' + This.malObj.getScore();
+          message += split + api.storage.lang("UI_Score") + ' ' + This.malObj.getScore();
           split = ' | '
         }
         if(hoverInfo){
