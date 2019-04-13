@@ -26,7 +26,7 @@
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{lang("UI_Status")}}</span>
+                <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malStatus" :disabled="!this.renderObj" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
                     <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.type)}}</option>
@@ -64,7 +64,7 @@
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{lang("UI_Score")}}</span>
+                <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malScore" :disabled="!this.renderObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option value="" selected="selected">{{lang("Select")}}</option>

@@ -294,15 +294,15 @@ export class syncPage{
           split = ' | '
         }
         if(This.page.type == 'manga' && ( typeof This.oldMalObj == "undefined" || This.malObj.getVolume() != This.oldMalObj.getVolume() )){
-          message += split + api.storage.lang("syncPage_UI_Volume") + This.malObj.getVolume()+"/"+totalVol;
+          message += split + api.storage.lang("syncPage_UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + api.storage.lang("syncPage_UI_Episode") + This.malObj.getEpisode()+"/"+totalEp;
+          message += split + api.storage.lang("syncPage_UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
-          message += split + api.storage.lang("syncPage_UI_Score") + This.malObj.getScore();
+          message += split + api.storage.lang("syncPage_UI_Score") + ' ' + This.malObj.getScore();
           split = ' | '
         }
         if(hoverInfo){
@@ -702,7 +702,7 @@ export class syncPage{
     wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("UI_Status")+'</span>';
+    ui += '<span class="info">'+api.storage.lang("UI_Status")+' </span>';
     ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
     ui += '<option value="1" >'+api.storage.lang("UI_Status_watching_"+this.page.type)+'</option>';
@@ -716,7 +716,7 @@ export class syncPage{
     if(this.page.type == 'anime'){
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Episode")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Episode")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
@@ -726,7 +726,7 @@ export class syncPage{
     }else{
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Volume")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Volume")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
@@ -735,7 +735,7 @@ export class syncPage{
 
 
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';

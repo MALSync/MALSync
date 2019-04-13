@@ -357,9 +357,9 @@ export class minimal{
                   <img src="'+value['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                     <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+value['name']+'</span>\
-                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">'+api.storage.lang("search_Type")+value['payload']['media_type']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Score")+value['payload']['score']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Year")+value['payload']['start_year']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">'+api.storage.lang("search_Type")+' '+value['payload']['media_type']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Score")+' '+value['payload']['score']+'</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Year")+' '+value['payload']['start_year']+'</p>\
                   </div>\
                   </a>');
               }

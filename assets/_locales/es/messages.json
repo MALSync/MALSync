@@ -99,7 +99,7 @@
     "description": "Loading"
   },
   "syncPage_UI_Status": {
-    "message": "Estado: ",
+    "message": "Estado:",
     "description": "Status"
   },
   "syncPage_UI_Status_watching_anime": {
@@ -131,19 +131,19 @@
     "description": "Plan to Read"
   },
   "syncPage_UI_Episode": {
-    "message": "Episodio: ",
+    "message": "Episodio:",
     "description": "Episode"
   },
   "syncPage_UI_Volume": {
-    "message": "Volumen: ",
+    "message": "Volumen:",
     "description": "Volume"
   },
   "syncPage_UI_Chapter": {
-    "message": "Capítulo: ",
+    "message": "Capítulo:",
     "description": "Chapter"
   },
   "syncPage_UI_Score": {
-    "message": "Tu puntuación: ",
+    "message": "Tu puntuación:",
     "description": "Score"
   },
   "syncPage_UI_Score_Masterpiece": {

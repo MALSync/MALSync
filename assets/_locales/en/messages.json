@@ -52,7 +52,7 @@
       "description": "Description MALSync"
     },
     "UI_Status": {
-      "message": "Status: ",
+      "message": "Status:",
       "description": "Status"
     },
     "UI_Status_watching_anime": {
@@ -84,19 +84,19 @@
       "description": "Plan to Read"
     },
     "UI_Episode": {
-      "message": "Episode: ",
+      "message": "Episode:",
       "description": "Episode"
     },
     "UI_Volume": {
-      "message": "Volume: ",
+      "message": "Volume:",
       "description": "Volume"
     },
     "UI_Chapter": {
-      "message": "Chapter: ",
+      "message": "Chapter:",
       "description": "Chapter"
     },
     "UI_Score": {
-      "message": "Your Score: ",
+      "message": "Your Score:",
       "description": "Score"
     },
     "UI_Score_Masterpiece": {
@@ -373,15 +373,15 @@
       "description": "Opening Theme"
     },
     "search_Type": {
-      "message": "Type: ",
+      "message": "Type:",
       "description": "Type"
     },
     "search_Score": {
-      "message": "Score: ",
+      "message": "Score:",
       "description": "Score"
     },
     "search_Year": {
-      "message": "Year: ",
+      "message": "Year:",
       "description": "Year"
     },
     "settings_General": {
