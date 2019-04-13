@@ -189,10 +189,10 @@ export class syncPage{
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
     if(malUrl === null){
-      j.$("#MalInfo").text("Not Found!");
+      j.$("#MalInfo").text(api.storage.lang('Not_Found'));
       con.log('Not on mal');
     }else if(!malUrl){
-      j.$("#MalInfo").text("Nothing Found!");
+      j.$("#MalInfo").text(api.storage.lang('NothingFound'));
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
@@ -275,34 +275,34 @@ export class syncPage{
           var statusString = "";
           switch (parseInt(This.malObj.getStatus())) {
             case 1:
-              statusString = api.storage.lang("syncPage_UI_Status_watching_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_watching_"+This.page.type);
               break;
             case 2:
-              statusString = api.storage.lang("syncPage_UI_Status_Completed");
+              statusString = api.storage.lang("UI_Status_Completed");
               break;
             case 3:
-              statusString = api.storage.lang("syncPage_UI_Status_OnHold");
+              statusString = api.storage.lang("UI_Status_OnHold");
               break;
             case 4:
-              statusString = api.storage.lang("syncPage_UI_Status_Dropped");
+              statusString = api.storage.lang("UI_Status_Dropped");
               break;
             case 6:
-              statusString = api.storage.lang("syncPage_UI_Status_planTo_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_planTo_"+This.page.type);
               break;
           }
           message += split + statusString;
           split = ' | '
         }
         if(This.page.type == 'manga' && ( typeof This.oldMalObj == "undefined" || This.malObj.getVolume() != This.oldMalObj.getVolume() )){
-          message += split + api.storage.lang("syncPage_UI_Volume") + This.malObj.getVolume()+"/"+totalVol;
+          message += split + api.storage.lang("UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + api.storage.lang("syncPage_UI_Episode") + This.malObj.getEpisode()+"/"+totalEp;
+          message += split + api.storage.lang("UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
-          message += split + api.storage.lang("syncPage_UI_Score") + This.malObj.getScore();
+          message += split + api.storage.lang("UI_Score") + ' ' + This.malObj.getScore();
           split = ' | '
         }
         if(hoverInfo){
@@ -702,7 +702,7 @@ export class syncPage{
     wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("UI_Status")+'</span>';
+    ui += '<span class="info">'+api.storage.lang("UI_Status")+' </span>';
     ui += '<select id="malStatus">';
     //ui += '<option value="0" ></option>';
     ui += '<option value="1" >'+api.storage.lang("UI_Status_watching_"+this.page.type)+'</option>';
@@ -716,7 +716,7 @@ export class syncPage{
     if(this.page.type == 'anime'){
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Episode")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Episode")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotal">0</span>';
@@ -726,7 +726,7 @@ export class syncPage{
     }else{
         var middle = '';
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Volume")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Volume")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalVol">0</span>';
@@ -735,7 +735,7 @@ export class syncPage{
 
 
         middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+'</span>';
+        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+' </span>';
         middle += '<span style=" text-decoration: none; outline: medium none;">';
         middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
         middle += '/<span id="malTotalCha">0</span>';
@@ -748,13 +748,13 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="" >Select</option>';
+    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("Select")+'</option>';
     ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
     ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
     ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
     ui += '<option value="7" >'+api.storage.lang("UI_Score_Good")+'</option>';
     ui += '<option value="6" >'+api.storage.lang("UI_Score_Fine")+'</option>';
-    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'e</option>';
+    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'</option>';
     ui += '<option value="4" >'+api.storage.lang("UI_Score_Bad")+'</option>';
     ui += '<option value="3" >'+api.storage.lang("UI_Score_VeryBad")+'</option>';
     ui += '<option value="2" >'+api.storage.lang("UI_Score_Horrible")+'</option>';

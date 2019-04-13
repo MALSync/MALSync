@@ -9,7 +9,7 @@
           </button>
           <div :style="backbuttonSearchStyle" v-bind:class="{ 'is-dirty': currentTab == tabs.search.title }" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
-              <i class="material-icons">{{lang("Search")}}</i>
+              <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
               <input v-on:keyup="keywordSet()" v-model="keyword" class="mdl-textfield__input" type="text" id="headMalSearch">
@@ -17,10 +17,10 @@
             </div>
           </div>
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="material-fullscreen" style="left: initial; right: 40px;">
-            <i class="material-icons md-48">{{lang("fullscreen")}}</i>
+            <i class="material-icons md-48">fullscreen</i>
           </button>
           <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="close-info-popup" style="left: initial; right: 0;">
-            <i class="material-icons close">{{lang("close")}}</i>
+            <i class="material-icons close">close</i>
           </button>
         </div>
         <!-- Tabs -->
@@ -52,11 +52,11 @@
               </select>
               <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="7">{{lang("All")}}</option>
-                <option value="1" selected >{{lang("UI_Status_watching_",[tabs.bookmarks.type])}}</option>
+                <option value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
                 <option value="2">{{lang("UI_Status_Completed")}}</option>
                 <option value="3">{{lang("UI_Status_OnHold")}}</option>
                 <option value="4">{{lang("UI_Status_Dropped")}}</option>
-                <option value="6">{{lang("UI_Status_planTo_",[tabs.bookmarks.type])}}</option>
+                <option value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
               </select>
             </div>
           </bookmarksVue>

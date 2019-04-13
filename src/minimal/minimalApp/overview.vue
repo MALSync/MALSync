@@ -26,7 +26,7 @@
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{lang("UI_Status")}}</span>
+                <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malStatus" :disabled="!this.renderObj" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
                     <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.type)}}</option>
@@ -40,7 +40,7 @@
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{utils.episode(renderObj.type)}}:</span>
+                <span>{{utils.episode(renderObj.type)}}</span>
                 <span class="mdl-list__item-text-body">
                   <input v-model="malEpisode" :disabled="!this.renderObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.totalEp">{{renderObj.totalEp}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
@@ -64,7 +64,7 @@
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{lang("UI_Score")}}</span>
+                <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malScore" :disabled="!this.renderObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option value="" selected="selected">{{lang("Select")}}</option>
@@ -85,7 +85,7 @@
             <li class="mdl-list__item" style="width: 100%;">
 
               <input @click="malSync()" v-if="renderObj && renderObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
-              <input @click="malSync()" v-else type="button" name="myinfo_submit" value="Update" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
+              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
               <small v-if="editUrl && renderObj">
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
@@ -378,19 +378,19 @@
           `
             <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
               <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Continue ${utils.watching(malObj.type)}
+                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Continue_'+malObj.type)}
               </a>`;
 
           con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
           if(typeof this.mal.continueUrl !== 'undefined' && this.mal.continueUrl && this.mal.continueUrl.ep === (malObj.getEpisode()+1)){
             streamhtml +=
-              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Continue watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Next Episode
+              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Next_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Next_Episode_'+malObj.type)}
               </a>`;
           }else if(typeof this.mal.resumeUrl !== 'undefined' && this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()){
             streamhtml +=
-              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="Resume watching" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">Resume Episode
+              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Resume_Episode_'+malObj.type)}
               </a>`;
           }
 

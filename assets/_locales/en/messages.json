@@ -27,9 +27,21 @@
       "message": "Select",
       "description": "Select"
     },
+    "Yes": {
+      "message": "Yes",
+      "description": "Yes"
+    },
+    "No": {
+      "message": "No",
+      "description": "No"
+    },
     "NothingFound": {
       "message": "Nothing Found",
       "description": "Nothing Found"
+    },
+    "Not_Found": {
+      "message": "Not Found!",
+      "description": "Anime/Manga Not Found"
     },
     "NoEntries": {
       "message": "No Entries",
@@ -52,7 +64,7 @@
       "description": "Description MALSync"
     },
     "UI_Status": {
-      "message": "Status: ",
+      "message": "Status:",
       "description": "Status"
     },
     "UI_Status_watching_anime": {
@@ -84,19 +96,19 @@
       "description": "Plan to Read"
     },
     "UI_Episode": {
-      "message": "Episode: ",
+      "message": "Episode:",
       "description": "Episode"
     },
     "UI_Volume": {
-      "message": "Volume: ",
+      "message": "Volume:",
       "description": "Volume"
     },
     "UI_Chapter": {
-      "message": "Chapter: ",
+      "message": "Chapter:",
       "description": "Chapter"
     },
     "UI_Score": {
-      "message": "Your Score: ",
+      "message": "Your Score:",
       "description": "Score"
     },
     "UI_Score_Masterpiece": {
@@ -144,7 +156,8 @@
       "description": "Video resume message",
       "placeholders": {
         "time": {
-          "content": "$1"
+          "content": "$1",
+          "example": "13:37"
         }
       }
     },
@@ -153,11 +166,12 @@
       "description": "Update MAL to episode 3",
       "placeholders": {
         "page": {
-          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
-          "content": "$1"
+          "content": "$1",
+          "example": "MAL"
         },
         "epNr": {
-          "content": "$2"
+          "content": "$2",
+          "example": "3"
         }
       }
     },
@@ -166,11 +180,12 @@
       "description": "Update MAL to chapter 3",
       "placeholders": {
         "page": {
-          "description": "Name of the sync page (MAL/Anilist/Kitsu)",
-          "content": "$1"
+          "content": "$1",
+          "example": "MAL"
         },
         "epNr": {
-          "content": "$2"
+          "content": "$2",
+          "example": "3"
         }
       }
     },
@@ -198,12 +213,23 @@
       "message": "Start reading?",
       "description": "Start reading manga message"
     },
-    "syncPage_malObj_addAnime": {
-      "message": "Add to $anime$",
-      "description": "add anime",
+    "syncPage_flashConfirm_Anime_Correct": {
+      "message": "Is \"$anime$\" correct?",
+      "description": "Is anime correct",
       "placeholders": {
         "anime": {
-          "content": "$1"
+          "content": "$1",
+          "example": "No Game No Life"
+        }
+      }
+    },
+    "syncPage_malObj_addAnime": {
+      "message": "Add to $page$",
+      "description": "add anime",
+      "placeholders": {
+        "page": {
+          "content": "$1",
+          "example": "AniList"
         }
       }
     },
@@ -212,7 +238,8 @@
       "description": "Next episode message on streaming overview pages",
       "placeholders": {
         "episode": {
-          "content": "$1"
+          "content": "$1",
+          "example": "5"
         }
       }
     },
@@ -221,7 +248,8 @@
       "description": "Next chapter message on streaming overview pages",
       "placeholders": {
         "chapter": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -230,7 +258,8 @@
       "description": "offsetHandler Episode",
       "placeholders": {
         "calcOffset": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -311,7 +340,8 @@
       "description": "New Offset",
       "placeholders": {
         "offset": {
-          "content": "$1"
+          "content": "$1",
+          "example": "6"
         }
       }
     },
@@ -324,13 +354,38 @@
       "description": "new url",
       "placeholders": {
         "malUrl": {
-          "content": "$1"
+          "content": "$1",
+          "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
         }
       }
     },
     "correction_NewUrlReset": {
       "message": "MyAnimeList url reset",
       "description": "url reset"
+    },
+    "overview_Continue_anime": {
+      "message": "Continue watching",
+      "description": "Continue watching"
+    },
+    "overview_Continue_manga": {
+      "message": "Continue reading",
+      "description": "Continue reading"
+    },
+    "overview_Next_Episode_anime": {
+      "message": "Next Episode",
+      "description": "Next Episode"
+    },
+    "overview_Next_Episode_manga": {
+      "message": "Next Chapter",
+      "description": "Next Chapter"
+    },
+    "overview_Resume_Episode_anime": {
+      "message": "Resume Episode",
+      "description": "Resume Episode"
+    },
+    "overview_Resume_Episode_manga": {
+      "message": "Resume Chapter",
+      "description": "Resume Chapter"
     },
     "overview_EditDetails": {
       "message": "Edit Details",
@@ -349,15 +404,15 @@
       "description": "Opening Theme"
     },
     "search_Type": {
-      "message": "Type: ",
+      "message": "Type:",
       "description": "Type"
     },
     "search_Score": {
-      "message": "Score: ",
+      "message": "Score:",
       "description": "Score"
     },
     "search_Year": {
-      "message": "Year: ",
+      "message": "Year:",
       "description": "Year"
     },
     "settings_General": {
@@ -393,11 +448,12 @@
       "description": "Manga sync"
     },
     "settings_AutoTracking_Video": {
-      "message": "Update on $videoDuration$ of video progress",
+      "message": "Update on $videoDuration$% of video progress",
       "description": "Update Episode of video progress",
       "placeholders": {
         "videoDuration": {
-          "content": "$1"
+          "content": "$1",
+          "example": "85"
         }
       }
     },
@@ -406,7 +462,8 @@
       "description": "Delay instant autotracking",
       "placeholders": {
         "delay": {
-          "content": "$1"
+          "content": "$1",
+          "example": "15"
         }
       }
     },
@@ -459,8 +516,8 @@
       "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
-      "message": ">Continue watching links",
-      "description": ">Continue watching links"
+      "message": "Continue watching links",
+      "description": "Continue watching links"
     },
     "settings_malResume": {
       "message": "Resume watching links",
@@ -515,7 +572,8 @@
       "description": "Skips video Seconds",
       "placeholders": {
         "Seconds": {
-          "content": "$1"
+          "content": "$1",
+          "example": "30"
         }
       }
     },
@@ -616,16 +674,20 @@
       "description": "Update version",
       "placeholders": {
         "Version": {
-          "content": "$1"
+          "content": "$1",
+          "example": "0.1.4"
         },
         "Link": {
-          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#"
+          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#",
+          "example": "[<a href=\""
         },
         "Link2": {
-          "content": "'\">"
+          "content": "'\">",
+          "example": "'\">"
         },
         "Link3": {
-          "content": "</a>]"
+          "content": "</a>]",
+          "example": "</a>]"
         }
       }
     },
@@ -646,10 +708,12 @@
       "description": "Update version - Text 3",
       "placeholders": {
         "Link1": {
-          "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">"
+          "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+          "example": "<a>"
         },
         "Link2": {
-          "content": "</a>"
+          "content": "</a>",
+          "example": "</a>"
         }
       }
     }
