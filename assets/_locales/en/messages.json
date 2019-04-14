@@ -288,23 +288,23 @@
       "description": "Credentials wrong"
     },
     "bookmarksItem_Days": {
-      "message": " Days",
+      "message": "Days",
       "description": "Days"
     },
     "bookmarksItem_Day": {
-      "message": " Day ",
+      "message": "Day",
       "description": "Day"
     },
     "bookmarksItem_Hours": {
-      "message": " Hours",
+      "message": "Hours",
       "description": "Hours"
     },
     "bookmarksItem_Hour": {
-      "message": " Hour ",
+      "message": "Hour",
       "description": "Hour"
     },
     "bookmarksItem_mins": {
-      "message": " mins",
+      "message": "mins",
       "description": "mins"
     },
     "correction_Offset": {
