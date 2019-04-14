@@ -135,20 +135,20 @@
 
         var text = '';
         if(diffDays > 1){
-          return text+diffDays+api.storage.lang("bookmarksItem_Days");
+          return text+diffDays+' '+api.storage.lang("bookmarksItem_Days");
         }
         if(diffDays === 1){
-          text += diffDays+api.storage.lang("bookmarksItem_Day");
+          text += diffDays+' '+api.storage.lang("bookmarksItem_Day")+' ';
         }
 
         if(diffHours > 1){
-          return text+diffHours+api.storage.lang("bookmarksItem_Hours");
+          return text+diffHours+' '+api.storage.lang("bookmarksItem_Hours");
         }
         if(diffHours === 1){
-          text += diffHours+api.storage.lang("bookmarksItem_Hour");
+          text += diffHours+' '+api.storage.lang("bookmarksItem_Hour")+' ';
         }
 
-        return text+diffMinutes+api.storage.lang("bookmarksItem_mins");
+        return text+diffMinutes+' '+api.storage.lang("bookmarksItem_mins");
       },
     },
     methods: {

@@ -49,9 +49,9 @@ export const webextension: storageInterface = {
       return chrome.runtime.getManifest().version;
     },
 
-    lang(...args){
+    lang(selector, args){
       // @ts-ignore
-      return chrome.i18n.getMessage(...args);
+      return chrome.i18n.getMessage(selector, args);
     },
 
     assetUrl(filename){

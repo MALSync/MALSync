@@ -288,23 +288,23 @@
       "description": "Credentials wrong"
     },
     "bookmarksItem_Days": {
-      "message": " Days",
+      "message": "Days",
       "description": "Days"
     },
     "bookmarksItem_Day": {
-      "message": " Day ",
+      "message": "Day",
       "description": "Day"
     },
     "bookmarksItem_Hours": {
-      "message": " Hours",
+      "message": "Hours",
       "description": "Hours"
     },
     "bookmarksItem_Hour": {
-      "message": " Hour ",
+      "message": "Hour",
       "description": "Hour"
     },
     "bookmarksItem_mins": {
-      "message": " mins",
+      "message": "mins",
       "description": "mins"
     },
     "correction_Offset": {
@@ -400,8 +400,8 @@
       "description": "Opening Theme"
     },
     "overview_EndingTheme": {
-      "message": "Opening Theme:",
-      "description": "Opening Theme"
+      "message": "Ending Theme:",
+      "description": "Ending Theme"
     },
     "search_Type": {
       "message": "Type:",
@@ -670,7 +670,7 @@
       "description": "Please allow popups for this website"
     },
     "minimalClass_versionMsg": {
-      "message": "Updated to version $Version$ $Link$ $Version$$Link2$CHANGELOG$Link3$",
+      "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
       "description": "Update version",
       "placeholders": {
         "Version": {
@@ -678,14 +678,10 @@
           "example": "0.1.4"
         },
         "Link": {
-          "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#",
-          "example": "[<a href=\""
+          "content": "$2",
+          "example": "[<a>"
         },
-        "Link2": {
-          "content": "'\">",
-          "example": "'\">"
-        },
-        "Link3": {
+        "LinkEnd": {
           "content": "</a>]",
           "example": "</a>]"
         }

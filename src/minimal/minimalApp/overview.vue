@@ -110,7 +110,7 @@
           </li>
         </ul>
       </div>
-      <div v-show="Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
+      <div v-show="kiss2mal && Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
         <ul class="mdl-list stream-block-inner">
           <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
             <span class="mdl-list__item-primary-content">
