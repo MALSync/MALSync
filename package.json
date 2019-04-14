@@ -2,7 +2,7 @@
   "name": "MALSync",
   "productName": "MAL-Sync",
   "author": "lolamtisch@gmail.com",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "description": "__MSG_Package_Description__",
   "devDependencies": {
     "@types/jquery": "^3.3.6",
