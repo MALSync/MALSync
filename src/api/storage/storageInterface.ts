@@ -11,7 +11,7 @@ export interface storageInterface {
 
   version(): string;
 
-  lang(...args: string[]): string;
+  lang(selector, args:string[]): string;
 
   assetUrl(filename: string): string;
 

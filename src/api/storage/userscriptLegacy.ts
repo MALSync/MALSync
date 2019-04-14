@@ -39,16 +39,21 @@ export const userscriptLegacy: storageInterface = {
       return GM_info.script.version;
     },
 
-    lang(...args){
-      var lEl = i18n[args[0]];
+    lang(selector, args){
+      var lEl = i18n[selector];
       var message = lEl.message;
-      if(typeof lEl.placeholders !== 'undefined' && typeof args[1] !== 'undefined'){
-        var i = 0;
+      if(typeof lEl.placeholders !== 'undefined'){
         for(var index in lEl.placeholders) {
-          if(typeof args[1][i] !== 'undefined'){
-            message = message.replace("$"+index+"$", args[1][i]);
+
+          var placeholder = lEl.placeholders[index];
+          var pContent = placeholder.content;
+          if(typeof args !== 'undefined'){
+            for(var argIndex = 0; argIndex < args.length; argIndex++) {
+              pContent = pContent.replace("$"+(argIndex + 1), args[argIndex]);
+            }
           }
-          i++;
+
+          message = message.replace("$"+index+"$", pContent);
         }
       }
       return message;
