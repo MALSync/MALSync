@@ -670,7 +670,7 @@
     "description": "Please allow popups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Actualizado a la versión $Version$ $Link$ $Version$$Link2$CAMBIOS$Link3$",
+    "message": "Actualizado a la versión $Version$ $Link$CHANGELOG$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
@@ -678,14 +678,10 @@
         "example": "0.1.4"
       },
       "Link": {
-        "content": "[<a class=\"close\" target=\"_blank\" href=\"https://malsync.lolamtisch.de/changelog#",
-        "example": "[<a href=\""
+        "content": "$2",
+        "example": "[<a>"
       },
-      "Link2": {
-        "content": "'\">",
-        "example": "'\">"
-      },
-      "Link3": {
+      "LinkEnd": {
         "content": "</a>]",
         "example": "</a>]"
       }
