@@ -41,7 +41,7 @@ const generateManifest = () => {
     'manifest_version': 2,
     'name': package.productName,
     'version': package.version,
-    'description': package.description,
+    'description': "__MSG_Package_Description__",
     'author': package['author'],
     'default_locale': 'en',
     'applications': {
