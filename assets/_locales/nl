@@ -1,0 +1,716 @@
+{
+  "Search": {
+    "message": "Zoeken",
+    "description": "Search"
+  },
+  "Show": {
+    "message": "Laat zien",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "Help",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "Update",
+    "description": "Update"
+  },
+  "Reset": {
+    "message": "Reset",
+    "description": "Reset"
+  },
+  "Loading": {
+    "message": "Laden",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "Selecteer",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "Ja",
+    "description": "Yes"
+  },
+  "No": {
+    "message": "Nee",
+    "description": "No"
+  },
+  "NothingFound": {
+    "message": "Niets gevonden",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "Niet gevonden!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "Geen inzendingen",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "Volle scherm",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "Sluit",
+    "description": "close"
+  },
+  "All": {
+    "message": "Alle",
+    "description": "All"
+  },
+  "Package_Description": {
+    "message": "Integreert MyAnimeList/AniList/Kitsu naar verschillende sites, met automatische afleveringen tracker.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "Status:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "Aan het kijken",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "Aan het lezen",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Compleet",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "In de wacht",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Laten vallen",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "Ingepland om te Kijken",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Ingepland om te Lezen",
+    "description": "Plan to Read"
+  },
+  "UI_Episode": {
+    "message": "Aflevering:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "Volume:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Hoofdstuk:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "Jouw score:",
+    "description": "Score"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) Meesterwerk",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) Super goed",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) Heel goed",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) Goed",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) Oké",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) Gemiddeld",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) Slecht",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) Heel slecht",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) Super slecht",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) Verschrikkelijk",
+    "description": "Appalling - Score"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "Hervatten op $time$",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "Update $page$ naar aflevering $epNr$",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "Update $page$ naar hoofdstuk $epNr$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "Ongedaan maken",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "Fout?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Update gefaald",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "Als compleet markeren?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "Starten met kijken?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "Starten met lezen?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "Is \"$anime$\"  wat je zocht?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "Voeg toe aan $page$",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "Aflevering $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "Hoofdstuk $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "Er was een mogelijke Extra aflevering van $calcOffset$ was gedetecteerd. Kan dat kloppen?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "Bewijs ontvangen en opgeslagen je kan de pagina sluiten",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "Om in te loggen met Kitsu, moet je je account's e-mail en wachtwoord invullen. </br> Je inlog gegevens zijn niet opgeslagen op je computer of ergens anders. </br> Het is direct naar Kitsu verzonden. Alleen de terug gekregen bewijs is opgeslagen.</br>",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "Wachtwoord",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "Inloggen",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "Bewijs is ontvangen en opgeslagen je kan de pagina sluiten",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "Gegevens zijn fout",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Days": {
+    "message": "Dagen",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "Dag",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "Uren",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "Uur",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "minuten",
+    "description": "mins"
+  },
+  "correction_Offset": {
+    "message": "Extra Aflevering",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "Invoer van de Extra Aflevering, als een anime 12 aflevering heeft, maar het nummert van 0-11 in plaats van 1-12, dan typ je simpel weg \"+1\" in de Extra Aflevering.",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "Verander alleen deze URL als het je naar de verkeerde anime pagina brengt in MAL.",
+    "description": "Url is Wrong"
+  },
+  "correction_Search": {
+    "message": "Zoek correct op",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "Dit veld is voor het vinden van anime, wanneer je de correcte \"MyAnimeList URL\" moet corrigeren.</br>Om te zoeken begin je simpelweg met het intypen van de naam van de anime en een lijst met de resultaten zullen automatisch verschijnen terwijl je typt.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "Anime/Manga kan niet worden gevonden op MAL",
+    "description": "Anime/Manga no found in MAL"
+  },
+  "correction_NoEntry": {
+    "message": "Geen resultaten op MAL",
+    "description": "No entry on MyAnimeList"
+  },
+  "correction_NewOffset": {
+    "message": "Nieuwe Extra ($offset$) set.",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "Extra reset",
+    "description": "Offset reset"
+  },
+  "correction_NewUrl": {
+    "message": "nieuwe URL '$malUrl$' set.",
+    "description": "new url",
+    "placeholders": {
+      "malUrl": {
+        "content": "$1",
+        "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+      }
+    }
+  },
+  "correction_NewUrlReset": {
+    "message": "Reset MyAnimeList url",
+    "description": "url reset"
+  },
+  "overview_Continue_anime": {
+    "message": "Verder gaan met kijken",
+    "description": "Continue watching"
+  },
+  "overview_Continue_manga": {
+    "message": "Verder gaan met lezen",
+    "description": "Continue reading"
+  },
+  "overview_Next_Episode_anime": {
+    "message": "Volgende aflevering",
+    "description": "Next Episode"
+  },
+  "overview_Next_Episode_manga": {
+    "message": "Volgende hoofdstuk",
+    "description": "Next Chapter"
+  },
+  "overview_Resume_Episode_anime": {
+    "message": "Hervat aflevering",
+    "description": "Resume Episode"
+  },
+  "overview_Resume_Episode_manga": {
+    "message": "Hervat hoofdstuk",
+    "description": "Resume Chapter"
+  },
+  "overview_EditDetails": {
+    "message": "Bewerk details",
+    "description": "Edit Details"
+  },
+  "overview_Characters": {
+    "message": "Karakters",
+    "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Opening Thema:",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Einde Thema:",
+    "description": "Ending Theme"
+  },
+  "search_Type": {
+    "message": "Type:",
+    "description": "Type"
+  },
+  "search_Score": {
+    "message": "Score:",
+    "description": "Score"
+  },
+  "search_Year": {
+    "message": "Jaar:",
+    "description": "Year"
+  },
+  "settings_General": {
+    "message": "Algemeen",
+    "description": "General"
+  },
+  "settings_Mode": {
+    "message": "Mode",
+    "description": "Mode"
+  },
+  "settings_Authenticate": {
+    "message": "Authenticatie",
+    "description": "Authenticate"
+  },
+  "settings_Animesync": {
+    "message": "Anime synchronisatie",
+    "description": "Anime sync"
+  },
+  "settings_Animesync_Video": {
+    "message": "Video",
+    "description": "Video"
+  },
+  "settings_Animesync_Instant": {
+    "message": "Ogenblik",
+    "description": "Instant"
+  },
+  "settings_Animesync_Manual": {
+    "message": "Handleiding",
+    "description": "Manual"
+  },
+  "settings_Mangasync": {
+    "message": "Manga synchronisatie",
+    "description": "Manga sync"
+  },
+  "settings_AutoTracking_Video": {
+    "message": "Bijwerken van $videoDuration$% van de video progressie",
+    "description": "Update Episode of video progress",
+    "placeholders": {
+      "videoDuration": {
+        "content": "$1",
+        "example": "85"
+      }
+    }
+  },
+  "settings_AutoTracking_Instant": {
+    "message": "Vertraag directe autotracking tot $delay$ Seconden.",
+    "description": "Delay instant autotracking",
+    "placeholders": {
+      "delay": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "settings_StreamingSite": {
+    "message": "Streaming Site Links",
+    "description": "Streaming Site Links"
+  },
+  "settings_StreamingSite_text": {
+    "message": "Wanneer uitgezet, zal de streaming site niet langer meer anime laten zien op de zijbar op MAL",
+    "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "Thumbnails",
+    "description": "Thumbnails"
+  },
+  "settings_Thumbnails_text": {
+    "message": "De optie van het vergroten of verkleinen van de thumbnails van MAL. </br> Zoals thumbnails van karakters, mensen, aanbevelingen, etc.",
+    "description": "Thumbnails - Text"
+  },
+  "settings_Thumbnails_Large": {
+    "message": "Groot",
+    "description": "Thumbnails Large"
+  },
+  "settings_Thumbnails_Medium": {
+    "message": "Normaal",
+    "description": "Thumbnails Medium"
+  },
+  "settings_Thumbnails_Small": {
+    "message": "Klein",
+    "description": "Thumbnails Small"
+  },
+  "settings_Thumbnails_Default": {
+    "message": "MAL Standaard",
+    "description": "Thumbnails MAL Default"
+  },
+  "settings_FriendScore": {
+    "message": "Score van vrienden op details pagina",
+    "description": "Friend scores on detail page"
+  },
+  "settings_epPredictions": {
+    "message": "Ingeschatte nummer van afleveringen",
+    "description": "Estimate episode number"
+  },
+  "settings_malTags": {
+    "message": "Gebruik notities",
+    "description": "Use Tags/Notes"
+  },
+  "settings_malTags_Text": {
+    "message": "Als het aan staat: Op je MAL Anime Lijst en de bladwijzer op miniMAL, zal een icoon-link worden toegevoegd op de laatst gebruikte streaming site die je gebruikte om de anime te bekijken.</br>Klik dan simpelweg de icoon om de anime verder te kijken.",
+    "description": "Use Tags/Notes - Text"
+  },
+  "settings_malContinue": {
+    "message": "Bevorder kijk links",
+    "description": "Continue watching links"
+  },
+  "settings_malResume": {
+    "message": "Hervat kijk links",
+    "description": "Resume watching links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Verborgen menu knop",
+    "description": "Stealth floating menu button"
+  },
+  "settings_miniMAL_floatButtonHide": {
+    "message": "Verberg miniMAL menu knop",
+    "description": "Hide miniMAL floating menu button"
+  },
+  "settings_miniMAL_autoCloseMinimal": {
+    "message": "Buiten klikken doet miniMAL dicht",
+    "description": "Clicking outside closes miniMAL"
+  },
+  "settings_miniMAL_Display": {
+    "message": "Toon de",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_Display_Left": {
+    "message": "Links",
+    "description": "miniMAL Display Left"
+  },
+  "settings_miniMAL_Display_Right": {
+    "message": "Rechts",
+    "description": "miniMAL Display Right"
+  },
+  "settings_miniMAL_Height": {
+    "message": "Hoogte (px / %)",
+    "description": "miniMAL Height"
+  },
+  "settings_miniMAL_Width": {
+    "message": "Breedte (px / %)",
+    "description": "miniMAL Width"
+  },
+  "settings_Shortcuts": {
+    "message": "Snelkoppeling",
+    "description": "Shortcuts"
+  },
+  "settings_miniMAL_Open": {
+    "message": "Open miniMAL",
+    "description": "miniMAL Open"
+  },
+  "settings_miniMAL_NotSet": {
+    "message": "Niet gezet",
+    "description": "miniMAL Not Set"
+  },
+  "settings_introSkip": {
+    "message": "Sla $Seconds$ over",
+    "description": "Skips video Seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_UpdateCheck": {
+    "message": "Update Check",
+    "description": "Update Check"
+  },
+  "settings_UpdateCheck_Text": {
+    "message": "Check of er nieuwe aflevering zijn op het achtergrond",
+    "description": "Update Check - Text"
+  },
+  "settings_Interval": {
+    "message": "Interval",
+    "description": "Interval"
+  },
+  "settings_Interval_Off": {
+    "message": "Uit",
+    "description": "Interval - Off"
+  },
+  "settings_Notifications": {
+    "message": "Meldingen",
+    "description": "Notifications"
+  },
+  "settings_Debugging": {
+    "message": "Debugging",
+    "description": "Debugging"
+  },
+  "settings_ETC": {
+    "message": "ETC",
+    "description": "ETC"
+  },
+  "settings_Userscriptmode": {
+    "message": "Gebruikersscript modus",
+    "description": "Userscript mode"
+  },
+  "settings_Userscriptmode_Text": {
+    "message": "Doet het content script uit. Dit maakt het mogelijk om de extensie en de gebruikersscript aan te hebben tegelijkertijd.",
+    "description": "Userscript mode - Text"
+  },
+  "settings_StrictCookies": {
+    "message": "Stricte Cookies",
+    "description": "Strict Cookies"
+  },
+  "settings_StrictCookies_Text": {
+    "message": "Deze optie voegt Firefox Multi-Account Containers support. Zorg ervoor dat je browser opnieuw opstart na het aan doen van deze optie",
+    "description": "Strict Cookies - Text"
+  },
+  "settings_ClearCache": {
+    "message": "Maak Cache schoon",
+    "description": "Clear Cache"
+  },
+  "updateCheck_Refresh": {
+    "message": "Ververs",
+    "description": "Refresh"
+  },
+  "updateCheck_StartCheck": {
+    "message": "Start de Check",
+    "description": "Start Check"
+  },
+  "updateCheck_NotificationCheck": {
+    "message": "Meldingen Check",
+    "description": "Notification Check"
+  },
+  "updateCheck_Episode": {
+    "message": "Aflevering",
+    "description": "Episode"
+  },
+  "updateCheck_Message": {
+    "message": "Bericht",
+    "description": "Message"
+  },
+  "updateCheck_NotificationHistory": {
+    "message": "Meldingen geschiedenis",
+    "description": "Notification History"
+  },
+  "minimalApp_Overview": {
+    "message": "Overzicht",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "Recensies",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "Aanbevelingen",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "Opties",
+    "description": "Settings"
+  },
+  "minimalClass_Popup": {
+    "message": "Sta de pop-ups toe van deze websites alstublieft",
+    "description": "Please allow popups for this website"
+  },
+  "minimalClass_versionMsg": {
+    "message": "Geupdated naar de versie $Version$ $Link$CHANGELOG$LinkEnd$",
+    "description": "Update version",
+    "placeholders": {
+      "Version": {
+        "content": "$1",
+        "example": "0.1.4"
+      },
+      "Link": {
+        "content": "$2",
+        "example": "[<a>"
+      },
+      "LinkEnd": {
+        "content": "</a>]",
+        "example": "</a>]"
+      }
+    }
+  },
+  "minimalClass_versionMsg_Text_1": {
+    "message": "Bedankt voor het installeren van MAL-Sync",
+    "description": "Update version - Text 1"
+  },
+  "minimalClass_versionMsg_Text_2": {
+    "message": "Heb je vragen?",
+    "description": "Update version - Text 2"
+  },
+  "minimalClass_versionMsg_Text_3": {
+    "message": "Open Source Code:",
+    "description": "Update version - Text 3"
+  },
+  "Anilist_Authenticate": {
+    "message": "Authentiseer $Link1$Here$link2$ alstublieft",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  }
+}
