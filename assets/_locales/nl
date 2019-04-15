@@ -268,7 +268,7 @@
     "description": "The token has been obtained and saved"
   },
   "kitsuClass_authentication_text": {
-    "message": "Om in te loggen met Kitsu, moet je je account's e-mail en wachtwoord invullen. </br> Je inlog gegevens zijn niet opgeslagen op je computer of ergens anders. </br> Het is direct naar Kitsu verzonden. Alleen de terug gekregen bewijs is opgeslagen.</br>",
+    "message": "Om in te loggen met Kitsu, moet je je account's e-mail en wachtwoord invullen. <br> Je inlog gegevens zijn niet opgeslagen op je computer of ergens anders. <br> Het is direct naar Kitsu verzonden. Alleen de terug gekregen bewijs is opgeslagen.<br>",
     "description": "Authentication text in Kitsu"
   },
   "kitsuClass_authentication_Password": {
@@ -324,7 +324,7 @@
     "description": "Correction Search"
   },
   "correction_Search_text": {
-    "message": "Dit veld is voor het vinden van anime, wanneer je de correcte \"MyAnimeList URL\" moet corrigeren.</br>Om te zoeken begin je simpelweg met het intypen van de naam van de anime en een lijst met de resultaten zullen automatisch verschijnen terwijl je typt.",
+    "message": "Dit veld is voor het vinden van anime, wanneer je de correcte \"MyAnimeList URL\" moet corrigeren.<br>Om te zoeken begin je simpelweg met het intypen van de naam van de anime en een lijst met de resultaten zullen automatisch verschijnen terwijl je typt.",
     "description": "Search text"
   },
   "correction_NoMal": {
@@ -480,7 +480,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "De optie van het vergroten of verkleinen van de thumbnails van MAL. </br> Zoals thumbnails van karakters, mensen, aanbevelingen, etc.",
+    "message": "De optie van het vergroten of verkleinen van de thumbnails van MAL. <br> Zoals thumbnails van karakters, mensen, aanbevelingen, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {
@@ -512,7 +512,7 @@
     "description": "Use Tags/Notes"
   },
   "settings_malTags_Text": {
-    "message": "Als het aan staat: Op je MAL Anime Lijst en de bladwijzer op miniMAL, zal een icoon-link worden toegevoegd op de laatst gebruikte streaming site die je gebruikte om de anime te bekijken.</br>Klik dan simpelweg de icoon om de anime verder te kijken.",
+    "message": "Als het aan staat: Op je MAL Anime Lijst en de bladwijzer op miniMAL, zal een icoon-link worden toegevoegd op de laatst gebruikte streaming site die je gebruikte om de anime te bekijken.<br>Klik dan simpelweg de icoon om de anime verder te kijken.",
     "description": "Use Tags/Notes - Text"
   },
   "settings_malContinue": {
