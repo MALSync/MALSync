@@ -1,0 +1,716 @@
+{
+  "Search": {
+    "message": "Sök",
+    "description": "Search"
+  },
+  "Show": {
+    "message": "Visa",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "Hjälp",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "Uppdatera",
+    "description": "Update"
+  },
+  "Reset": {
+    "message": "Återställ",
+    "description": "Reset"
+  },
+  "Loading": {
+    "message": "Laddar",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "Välj",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "Ja",
+    "description": "Yes"
+  },
+  "No": {
+    "message": "Nej",
+    "description": "No"
+  },
+  "NothingFound": {
+    "message": "Inget hittat",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "Hittades inte!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "Inga poster",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "Fullskärm",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "Stäng",
+    "description": "close"
+  },
+  "All": {
+    "message": "Alla",
+    "description": "All"
+  },
+  "Package_Description": {
+    "message": "Integrerar MyAnimeList/AniList/Kitsu till olika platser, med automatisk episodspårning.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "Status:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "Tittar på",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "Läser",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Avslutad",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "Pausad",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Slutat följa",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "Planerar att titta på",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Planerar att läsa",
+    "description": "Plan to Read"
+  },
+  "UI_Episode": {
+    "message": "Episod:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "Volym:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Kapitel:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "Ditt betyg:",
+    "description": "Score"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) Mästerverk",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) Utmärkt",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) Mycket bra",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) Bra",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) Rätt bra",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) Medel",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) Dålig",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) Väldigt dålig",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) Hemsk",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) Förfärlig",
+    "description": "Appalling - Score"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "Fortsätt vid $time$",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "Uppdatera $page$ till episod $epNr$",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "Uppdatera $page$ till kapitel $epNr$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "Ångra",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "Fel?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Uppdatering misslyckades",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "Markera som färdig?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "Börja titta?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "Börja läsa?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "Är \"$anime$\" korrekt?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "Lägg till på $page$",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "Episod $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "Kapitel $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "En möjlig episodförskjutning av $calcOffset$ upptäcktes. Är det rätt?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "Åtkomsttoken har sparats, du kan nu stänga denna sida",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "För att logga in med Kitsu måste du ange ditt kontos e-postadress och lösenord.<br>Dina inloggningsuppgifter är inte lagrade på din dator eller någon annanstans.<br>De skickas direkt till Kitsu. Endast den returnerade åtkomsttoken är sparad.",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "Lösenord",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "Logga in",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "Åtkomsttoken har sparats, du kan nu stänga denna sida",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "Fel inloggningsuppgifter",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Days": {
+    "message": "Dagar",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "Dag",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "Timmar",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "Timme",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "minuter",
+    "description": "mins"
+  },
+  "correction_Offset": {
+    "message": "Episodförskjutning",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "Ställ in episodförskjutning, ifall en anime har 12 episoder",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "Ändra bara den här webbadressen om den pekar på fel sida på MyAnimeList.",
+    "description": "Url is Wrong"
+  },
+  "correction_Search": {
+    "message": "Korrigeringssökning",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "Det här fältet är för att hitta en anime när du behöver korrigera MyAnimeList webbadressen ovan.<br>För att göra en sökning, börja helt enkelt att skriva namnet på en anime, en lista med resultat visas automatiskt när du skriver.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "Ifall Animen/Mangan inte kan hittas på MyAnimeList",
+    "description": "Anime/Manga no found in MAL"
+  },
+  "correction_NoEntry": {
+    "message": "Ingen post på MyAnimeList",
+    "description": "No entry on MyAnimeList"
+  },
+  "correction_NewOffset": {
+    "message": "Ny förskjutning ",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "Förskjutningsåterställning",
+    "description": "Offset reset"
+  },
+  "correction_NewUrl": {
+    "message": "ny webbadress '$malUrl$' inställd.",
+    "description": "new url",
+    "placeholders": {
+      "malUrl": {
+        "content": "$1",
+        "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+      }
+    }
+  },
+  "correction_NewUrlReset": {
+    "message": "MyAnimeList webbadress återställning",
+    "description": "url reset"
+  },
+  "overview_Continue_anime": {
+    "message": "Fortsätt titta",
+    "description": "Continue watching"
+  },
+  "overview_Continue_manga": {
+    "message": "Fortsätt läsa",
+    "description": "Continue reading"
+  },
+  "overview_Next_Episode_anime": {
+    "message": "Nästa episod",
+    "description": "Next Episode"
+  },
+  "overview_Next_Episode_manga": {
+    "message": "Nästa kapitel",
+    "description": "Next Chapter"
+  },
+  "overview_Resume_Episode_anime": {
+    "message": "Återuppta episod",
+    "description": "Resume Episode"
+  },
+  "overview_Resume_Episode_manga": {
+    "message": "Återuppta kapitel",
+    "description": "Resume Chapter"
+  },
+  "overview_EditDetails": {
+    "message": "Redigera detaljer",
+    "description": "Edit Details"
+  },
+  "overview_Characters": {
+    "message": "Karaktärer",
+    "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Öppnande tema:",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Avslutande tema:",
+    "description": "Ending Theme"
+  },
+  "search_Type": {
+    "message": "Typ:",
+    "description": "Type"
+  },
+  "search_Score": {
+    "message": "Betyg:",
+    "description": "Score"
+  },
+  "search_Year": {
+    "message": "År:",
+    "description": "Year"
+  },
+  "settings_General": {
+    "message": "Allmän",
+    "description": "General"
+  },
+  "settings_Mode": {
+    "message": "Läge",
+    "description": "Mode"
+  },
+  "settings_Authenticate": {
+    "message": "Autentisera",
+    "description": "Authenticate"
+  },
+  "settings_Animesync": {
+    "message": "Anime synkronisering",
+    "description": "Anime sync"
+  },
+  "settings_Animesync_Video": {
+    "message": "Video",
+    "description": "Video"
+  },
+  "settings_Animesync_Instant": {
+    "message": "Omedelbar",
+    "description": "Instant"
+  },
+  "settings_Animesync_Manual": {
+    "message": "Manuell",
+    "description": "Manual"
+  },
+  "settings_Mangasync": {
+    "message": "Manga synkronisering",
+    "description": "Manga sync"
+  },
+  "settings_AutoTracking_Video": {
+    "message": "Uppdatera vid $videoDuration$% av videons gång",
+    "description": "Update Episode of video progress",
+    "placeholders": {
+      "videoDuration": {
+        "content": "$1",
+        "example": "85"
+      }
+    }
+  },
+  "settings_AutoTracking_Instant": {
+    "message": "Fördröj omedelbar spårning med $delay$ sekunder",
+    "description": "Delay instant autotracking",
+    "placeholders": {
+      "delay": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "settings_StreamingSite": {
+    "message": "Streaming sidlänkar",
+    "description": "Streaming Site Links"
+  },
+  "settings_StreamingSite_text": {
+    "message": "Vid inaktivering så kommer streaming sidan inte längre visas vid sidofältet bredvid en anime på MyAnimeList/AniList/Kitsu.",
+    "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "Miniatyrbilder",
+    "description": "Thumbnails"
+  },
+  "settings_Thumbnails_text": {
+    "message": "Alternativet är för att ändra storlek på miniatyrbilder på MyAnimeList.<br>Som miniatyrbilder för karaktärer, personer, rekommendationer, etc.",
+    "description": "Thumbnails - Text"
+  },
+  "settings_Thumbnails_Large": {
+    "message": "Stor",
+    "description": "Thumbnails Large"
+  },
+  "settings_Thumbnails_Medium": {
+    "message": "Medium",
+    "description": "Thumbnails Medium"
+  },
+  "settings_Thumbnails_Small": {
+    "message": "Liten",
+    "description": "Thumbnails Small"
+  },
+  "settings_Thumbnails_Default": {
+    "message": "MyAnimeList standard",
+    "description": "Thumbnails MAL Default"
+  },
+  "settings_FriendScore": {
+    "message": "Vänners betyg på detalj sidan",
+    "description": "Friend scores on detail page"
+  },
+  "settings_epPredictions": {
+    "message": "Uppskatta episodnummer",
+    "description": "Estimate episode number"
+  },
+  "settings_malTags": {
+    "message": "Använd Taggar/Anteckningar",
+    "description": "Use Tags/Notes"
+  },
+  "settings_malTags_Text": {
+    "message": "Vid aktivering så kommer det att läggas en ikon-länk till den streaming sida du senast använde för att titta på en anime, vid din anime lista på MyAnimeList/AniList och i miniMAL.<br>Klicka bara på ikonen för att fortsätta titta på animen.",
+    "description": "Use Tags/Notes - Text"
+  },
+  "settings_malContinue": {
+    "message": "Länkar för att fortsätta titta på episoder",
+    "description": "Continue watching links"
+  },
+  "settings_malResume": {
+    "message": "Länkar för att återuppta episoden",
+    "description": "Resume watching links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Stealth flytande menyknapp",
+    "description": "Stealth floating menu button"
+  },
+  "settings_miniMAL_floatButtonHide": {
+    "message": "Göm miniMAL flytande menyknapp",
+    "description": "Hide miniMAL floating menu button"
+  },
+  "settings_miniMAL_autoCloseMinimal": {
+    "message": "Klicka på utsidan stänger miniMAL",
+    "description": "Clicking outside closes miniMAL"
+  },
+  "settings_miniMAL_Display": {
+    "message": "Visa till",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_Display_Left": {
+    "message": "Vänster",
+    "description": "miniMAL Display Left"
+  },
+  "settings_miniMAL_Display_Right": {
+    "message": "Höger",
+    "description": "miniMAL Display Right"
+  },
+  "settings_miniMAL_Height": {
+    "message": "Höjd (px / %)",
+    "description": "miniMAL Height"
+  },
+  "settings_miniMAL_Width": {
+    "message": "Bredd (px /  %)",
+    "description": "miniMAL Width"
+  },
+  "settings_Shortcuts": {
+    "message": "Genvägar",
+    "description": "Shortcuts"
+  },
+  "settings_miniMAL_Open": {
+    "message": "Öppna miniMAL",
+    "description": "miniMAL Open"
+  },
+  "settings_miniMAL_NotSet": {
+    "message": "Inte inställd",
+    "description": "miniMAL Not Set"
+  },
+  "settings_introSkip": {
+    "message": "Skippar $Seconds$ sekunder",
+    "description": "Skips video Seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_UpdateCheck": {
+    "message": "Uppdateringssökning",
+    "description": "Update Check"
+  },
+  "settings_UpdateCheck_Text": {
+    "message": "Letar efter nya episoder i bakgrunden.",
+    "description": "Update Check - Text"
+  },
+  "settings_Interval": {
+    "message": "Intervall",
+    "description": "Interval"
+  },
+  "settings_Interval_Off": {
+    "message": "Av",
+    "description": "Interval - Off"
+  },
+  "settings_Notifications": {
+    "message": "Aviseringar",
+    "description": "Notifications"
+  },
+  "settings_Debugging": {
+    "message": "Felsökning",
+    "description": "Debugging"
+  },
+  "settings_ETC": {
+    "message": "ETC",
+    "description": "ETC"
+  },
+  "settings_Userscriptmode": {
+    "message": "Användarskript läge",
+    "description": "Userscript mode"
+  },
+  "settings_Userscriptmode_Text": {
+    "message": "Inaktiverar innehållsskriptet. Detta gör det möjligt att ha både tillägget och användarskriptet aktiverat samtidigt.",
+    "description": "Userscript mode - Text"
+  },
+  "settings_StrictCookies": {
+    "message": "Stränga kakor",
+    "description": "Strict Cookies"
+  },
+  "settings_StrictCookies_Text": {
+    "message": "Detta alternativ lägger till stöd för \"Firefox Multi-Account Containers\". Se till att starta om webbläsaren efter att ha aktiverat det här alternativet.",
+    "description": "Strict Cookies - Text"
+  },
+  "settings_ClearCache": {
+    "message": "Rensa cache",
+    "description": "Clear Cache"
+  },
+  "updateCheck_Refresh": {
+    "message": "Uppdatera",
+    "description": "Refresh"
+  },
+  "updateCheck_StartCheck": {
+    "message": "Starta kontrollen",
+    "description": "Start Check"
+  },
+  "updateCheck_NotificationCheck": {
+    "message": "Aviseringskontroll",
+    "description": "Notification Check"
+  },
+  "updateCheck_Episode": {
+    "message": "Episod",
+    "description": "Episode"
+  },
+  "updateCheck_Message": {
+    "message": "Meddelande",
+    "description": "Message"
+  },
+  "updateCheck_NotificationHistory": {
+    "message": "Aviseringshistorik",
+    "description": "Notification History"
+  },
+  "minimalApp_Overview": {
+    "message": "Översikt",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "Recensioner",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "Rekommendationer",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "Inställningar",
+    "description": "Settings"
+  },
+  "minimalClass_Popup": {
+    "message": "Vänligen tillåt pop-ups för denna webbsida",
+    "description": "Please allow popups for this website"
+  },
+  "minimalClass_versionMsg": {
+    "message": "Uppdaterad till version $Version$ $Link$ÄNDRINGSLOGG$LinkEnd$",
+    "description": "Update version",
+    "placeholders": {
+      "Version": {
+        "content": "$1",
+        "example": "0.1.4"
+      },
+      "Link": {
+        "content": "$2",
+        "example": "[<a>"
+      },
+      "LinkEnd": {
+        "content": "</a>]",
+        "example": "</a>]"
+      }
+    }
+  },
+  "minimalClass_versionMsg_Text_1": {
+    "message": "Tack för att du installerar MAL-Sync",
+    "description": "Update version - Text 1"
+  },
+  "minimalClass_versionMsg_Text_2": {
+    "message": "Har du några frågor?",
+    "description": "Update version - Text 2"
+  },
+  "minimalClass_versionMsg_Text_3": {
+    "message": "Öppen källkod:",
+    "description": "Update version - Text 3"
+  },
+  "Anilist_Authenticate": {
+    "message": "Vänligen autentisera $Link1$här$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  }
+}

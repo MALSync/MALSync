@@ -268,7 +268,7 @@
       "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-      "message": "To login with Kitsu, you need to enter your account's e-mail and password.</br> Your credentials are not stored on your computer or anywhere else. </br> They are directly sent to kitsu. Only the returned access token is saved.</br>",
+      "message": "To login with Kitsu, you need to enter your account's e-mail and password.<br>Your credentials are not stored on your computer or anywhere else.<br>They are directly sent to Kitsu. Only the returned access token is saved.<br>",
       "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -317,19 +317,19 @@
     },
     "correction_WrongUrl": {
       "message": "Only change this URL if it points to the wrong anime page on MAL.",
-      "description": "Url is Wrong"
+      "description": "URL is Wrong"
     },
     "correction_Search": {
       "message": "Correction Search",
       "description": "Correction Search"
     },
     "correction_Search_text": {
-      "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList Url\" shown above.<br> To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
+      "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList URL\" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
       "description": "Search text"
     },
     "correction_NoMal": {
       "message": "If the Anime/Manga can't be found on MAL",
-      "description": "Anime/Manga no found in MAL"
+      "description": "Anime/Manga not found in MAL"
     },
     "correction_NoEntry": {
       "message": "No entry on MyAnimeList",
@@ -350,8 +350,8 @@
       "description": "Offset reset"
     },
     "correction_NewUrl": {
-      "message": "new url '$malUrl$' set.",
-      "description": "new url",
+      "message": "new URL '$malUrl$' set.",
+      "description": "new URL",
       "placeholders": {
         "malUrl": {
           "content": "$1",
@@ -360,8 +360,8 @@
       }
     },
     "correction_NewUrlReset": {
-      "message": "MyAnimeList url reset",
-      "description": "url reset"
+      "message": "MyAnimeList URL reset",
+      "description": "URL reset"
     },
     "overview_Continue_anime": {
       "message": "Continue watching",
@@ -458,7 +458,7 @@
       }
     },
     "settings_AutoTracking_Instant": {
-      "message": "Delay instant autotracking by $delay$ Seconds",
+      "message": "Delay instant autotracking by $delay$ seconds",
       "description": "Delay instant autotracking",
       "placeholders": {
         "delay": {
@@ -472,7 +472,7 @@
       "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-      "message": "If disabled, the streaming site will no longer appear in an animes sidebar on MAL.",
+      "message": "If disabled, the streaming site will no longer appear in an animes sidebar on MyAnimeList/AniList/Kitsu.",
       "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -480,7 +480,7 @@
       "description": "Thumbnails"
     },
     "settings_Thumbnails_text": {
-      "message": "The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.",
+      "message": "The option is for resizing the thumbnails on MyAnimeList.<br>Like thumbnails for characters, people, recommendations, etc.",
       "description": "Thumbnails - Text"
     },
     "settings_Thumbnails_Large": {
@@ -512,7 +512,7 @@
       "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
-      "message": "If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.",
+      "message": "If enabled: On your MyAnimeList/Anilist Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.",
       "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
@@ -568,8 +568,8 @@
       "description": "miniMAL Not Set"
     },
     "settings_introSkip": {
-      "message": "Skips $Seconds$ Seconds",
-      "description": "Skips video Seconds",
+      "message": "Skips $Seconds$ seconds",
+      "description": "Skips video seconds",
       "placeholders": {
         "Seconds": {
           "content": "$1",
@@ -666,8 +666,8 @@
       "description": "Settings"
     },
     "minimalClass_Popup": {
-      "message": "Please allow popups for this website",
-      "description": "Please allow popups for this website"
+      "message": "Please allow pop-ups for this website",
+      "description": "Please allow pop-ups for this website"
     },
     "minimalClass_versionMsg": {
       "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
