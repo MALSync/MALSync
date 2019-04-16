@@ -33,7 +33,7 @@
           <input v-model="searchKeyword" class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
         </div>
         <tooltip direction="left" style="float: right; margin-bottom: -17px;">
-          {{lang("correction_Search_text")}}
+          <span v-html="lang('correction_Search_text')"></span>
         </tooltip>
       </div>
       <div class="mdl-list__item" style="min-height: 0; padding-bottom: 0; padding-top: 0;">

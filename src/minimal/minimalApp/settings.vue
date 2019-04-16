@@ -91,7 +91,7 @@
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Thumbnails")}}
-            <tooltip>{{lang("settings_Thumbnails_text")}}</tooltip>
+            <tooltip><span v-html="lang('settings_Thumbnails_text')"></span></tooltip>
           </span>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="malThumbnail" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -107,13 +107,13 @@
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">MyAnimeList / AniList</h2>
+          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu</h2>
         </div>
         <checkbox option="epPredictions">{{lang("settings_epPredictions")}}</checkbox>
         <checkbox option="malTags">
           {{lang("settings_malTags")}}
           <tooltip direction="bottom">
-            {{lang("settings_malTags_Text")}}
+            <span v-html="lang('settings_malTags_Text')"></span>
           </tooltip>
         </checkbox>
         <checkbox option="malContinue" v-show="options.malTags">{{lang("settings_malContinue")}}</checkbox>
