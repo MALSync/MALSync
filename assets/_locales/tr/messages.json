@@ -112,43 +112,43 @@
     "description": "Score"
   },
   "UI_Score_Masterpiece": {
-    "message": "Şaheser",
+    "message": "(10) Şaheser",
     "description": "Masterpiece - Score"
   },
   "UI_Score_Great": {
-    "message": "Müthiş",
+    "message": "(9) Müthiş",
     "description": "Great - Score"
   },
   "UI_Score_VeryGood": {
-    "message": "Çok iyi",
+    "message": "(8) Çok iyi",
     "description": "Very Good - Score"
   },
   "UI_Score_Good": {
-    "message": "İyi",
+    "message": "(7) İyi",
     "description": "Good - Score"
   },
   "UI_Score_Fine": {
-    "message": "Fena değil",
+    "message": "(6) Fena değil",
     "description": "Fine - Score"
   },
   "UI_Score_Average": {
-    "message": "Averaj",
+    "message": "(5) Averaj",
     "description": "Average - Score"
   },
   "UI_Score_Bad": {
-    "message": "Kötü",
+    "message": "(4) Kötü",
     "description": "Bad - Score"
   },
   "UI_Score_VeryBad": {
-    "message": "Çok kötü",
+    "message": "(3) Çok kötü",
     "description": "Very Bad - Score"
   },
   "UI_Score_Horrible": {
-    "message": "Berbat",
+    "message": "(2) Berbat",
     "description": "Horrible - Score"
   },
   "UI_Score_Appalling": {
-    "message": "Dehşet verici",
+    "message": "(1) Dehşet verici",
     "description": "Appalling - Score"
   },
   "syncPage_flashm_resumeMsg": {
