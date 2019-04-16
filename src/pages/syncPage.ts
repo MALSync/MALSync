@@ -694,7 +694,7 @@ export class syncPage{
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+providerTemplates().score+' </span>';
+    ui += '<span class="info">'+api.storage.lang("search_Score")+' </span>';
     ui += '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 

@@ -24,7 +24,7 @@
     "description": "Loading"
   },
   "Select": {
-    "message": "Keine Bewertung",
+    "message": "Select",
     "description": "Select"
   },
   "Yes": {
@@ -108,7 +108,7 @@
     "description": "Chapter"
   },
   "UI_Score": {
-    "message": "Bewertung:",
+    "message": "Deine Wertung:",
     "description": "Score"
   },
   "UI_Score_Masterpiece": {
@@ -312,7 +312,7 @@
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Bespiel: Falls die 2. Staffel die Episoden 13-24 hat, kann durch den Offset von \"-12\" die richtige Episoden getrackt werden.",
+    "message": "Bespiel: Falls eine 2. Staffel die Episoden 13-24 besitzt, kann durch den Offset von \"-12\" die richtige Episodennummer getrackt werden.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
@@ -488,7 +488,7 @@
     "description": "Thumbnails MAL Default"
   },
   "settings_FriendScore": {
-    "message": "Bewertung von Freunden auf der Detail Seite",
+    "message": "Bewertung von Freunden auf der Detailseite",
     "description": "Friend scores on detail page"
   },
   "settings_epPredictions": {
@@ -556,7 +556,7 @@
     "description": "miniMAL Not Set"
   },
   "settings_introSkip": {
-    "message": "Springe $Seconds$ vor oder zurück",
+    "message": "Springe $Seconds$ Sekunden vor oder zurück",
     "description": "Skips video Seconds",
     "placeholders": {
       "Seconds": {
@@ -642,7 +642,7 @@
     "description": "Overview"
   },
   "minimalApp_Reviews": {
-    "message": "Reviews",
+    "message": "Rezensionen",
     "description": "Reviews"
   },
   "minimalApp_Recommendations": {
