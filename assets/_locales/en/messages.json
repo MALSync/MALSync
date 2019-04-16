@@ -350,8 +350,8 @@
       "description": "Offset reset"
     },
     "correction_NewUrl": {
-      "message": "new URL '$malUrl$' set.",
-      "description": "new URL",
+      "message": "New URL '$malUrl$' set.",
+      "description": "New URL",
       "placeholders": {
         "malUrl": {
           "content": "$1",
