@@ -152,7 +152,7 @@
     "description": "Appalling - Score"
   },
   "syncPage_flashm_resumeMsg": {
-    "message": "Bei $time$ wieder aufnehmen",
+    "message": "Bei $time$ wiederaufnehmen",
     "description": "Video resume message",
     "placeholders": {
       "time": {
@@ -162,7 +162,7 @@
     }
   },
   "syncPage_flashm_sync_anime": {
-    "message": "Update $page$ auf Episode $epNr$",
+    "message": "$page$ auf Episode $epNr$ updaten",
     "description": "Update MAL to episode 3",
     "placeholders": {
       "page": {
@@ -176,7 +176,7 @@
     }
   },
   "syncPage_flashm_sync_manga": {
-    "message": "Update $page$ auf Kapitel $epNr$",
+    "message": "$page$ auf Kapitel $epNr$ updaten",
     "description": "Update MAL to chapter 3",
     "placeholders": {
       "page": {
