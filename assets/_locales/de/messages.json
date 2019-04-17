@@ -592,11 +592,11 @@
     "description": "miniMAL Not Set"
   },
   "settings_Shortcuts_Skip_Forward": {
-    "message": "Überspringe des Intros vorwärts",
+    "message": "Überspringt das Intros",
     "description": "Description for the intro skip shortcut"
   },
   "settings_Shortcuts_Skip_Backward": {
-    "message": "Überspringe des Intros rückwärts",
+    "message": "Springt zum Anfang des Intros",
     "description": "Description for the intro skip shortcut"
   },
   "settings_introSkip": {

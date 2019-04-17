@@ -592,15 +592,15 @@
       "description": "miniMAL Not Set"
     },
     "settings_Shortcuts_Skip_Forward": {
-      "message": "Skip intro forward",
-      "description": "Description for the intro skip shortcut"
+      "message": "Skips the opening",
+      "description": "Description for the the opening skip shortcut"
     },
     "settings_Shortcuts_Skip_Backward": {
-      "message": "Skip intro backward",
-      "description": "Description for the intro skip shortcut"
+      "message": "Jump back to opening's beginning",
+      "description": "Description for the the opening skip shortcut"
     },
     "settings_introSkip": {
-      "message": "Skips $Seconds$ seconds",
+      "message": "Set opening skip length ($Seconds$ Seconds)",
       "description": "Skips video seconds",
       "placeholders": {
         "Seconds": {
