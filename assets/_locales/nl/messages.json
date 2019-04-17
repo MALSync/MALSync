@@ -111,6 +111,10 @@
     "message": "Jouw score:",
     "description": "Score"
   },
+  "UI_Score_Not_Rated": {
+    "message": "Geen cijfer gegeven",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
   "UI_Score_Masterpiece": {
     "message": "(10) Meesterwerk",
     "description": "Masterpiece - Score"
@@ -307,6 +311,26 @@
     "message": "minuten",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Volgende aflevering is ingeschat in $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "Uitzending in $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Extra Aflevering",
     "description": "Episode Offset"
@@ -317,7 +341,7 @@
   },
   "correction_WrongUrl": {
     "message": "Verander alleen deze URL als het je naar de verkeerde anime pagina brengt in MAL.",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Zoek correct op",
@@ -329,7 +353,7 @@
   },
   "correction_NoMal": {
     "message": "Anime/Manga kan niet worden gevonden op MAL",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "Geen resultaten op MAL",
@@ -350,8 +374,8 @@
     "description": "Offset reset"
   },
   "correction_NewUrl": {
-    "message": "nieuwe URL '$malUrl$' set.",
-    "description": "new url",
+    "message": "Nieuwe URL '$malUrl$' gezet.",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -361,7 +385,7 @@
   },
   "correction_NewUrlReset": {
     "message": "Reset MyAnimeList url",
-    "description": "url reset"
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "Verder gaan met kijken",
@@ -472,7 +496,7 @@
     "description": "Streaming Site Links"
   },
   "settings_StreamingSite_text": {
-    "message": "Wanneer uitgezet, zal de streaming site niet langer meer anime laten zien op de zijbar op MAL",
+    "message": "Wanneer uitgezet, zal de streaming site niet langer meer anime weergeven op de zijbar op MAL",
     "description": "Streaming Site Links - Text"
   },
   "settings_Thumbnails": {
@@ -567,9 +591,17 @@
     "message": "Niet gezet",
     "description": "miniMAL Not Set"
   },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Sla de opening over",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Spring terug naar het begin van de opening",
+    "description": "Description for the the opening skip shortcut"
+  },
   "settings_introSkip": {
-    "message": "Sla $Seconds$ over",
-    "description": "Skips video Seconds",
+    "message": "Sla de opening lengte $Seconds$ seconden over",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -666,8 +698,8 @@
     "description": "Settings"
   },
   "minimalClass_Popup": {
-    "message": "Sta de pop-ups toe van deze websites alstublieft",
-    "description": "Please allow popups for this website"
+    "message": "Sta alstublieft de pop-ups toe voor deze website",
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "Geupdated naar de versie $Version$ $Link$CHANGELOG$LinkEnd$",
