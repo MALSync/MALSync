@@ -311,6 +311,26 @@
       "message": "mins",
       "description": "mins"
     },
+    "prediction_Episode":{
+      "message": "Next episode estimated in $time$",
+      "description": "Text for next episode estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
+    "prediction_Airing":{
+      "message": "Airing in $time$",
+      "description": "Text for airing estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
     "correction_Offset": {
       "message": "Episode Offset",
       "description": "Episode Offset"

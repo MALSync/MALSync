@@ -281,7 +281,7 @@ export async function epPredictionUI(malid, type = 'anime', callback){
     //
     if(airing){
       if(pre.airing){
-        UI.text = 'Next episode estimated in '+pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m' ;
+        UI.text = api.storage.lang("prediction_Episode", [pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m']);
       }
       if(episode){
         UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">[<span style="'+UI.colorStyle+';">'+episode+'</span>]</span>';
@@ -289,7 +289,9 @@ export async function epPredictionUI(malid, type = 'anime', callback){
       }
     }else{
       if(pre){
-        UI.text = '<span class="mal-sync-ep-pre">Airing in '+((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m </span>';
+        UI.text = '<span class="mal-sync-ep-pre">';
+        UI.text += api.storage.lang("prediction_Airing", [((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m ']);
+        UI.text += '</span>';
       }
     }
     callback(UI);
