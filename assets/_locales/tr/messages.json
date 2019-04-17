@@ -111,6 +111,10 @@
     "message": "Skorun",
     "description": "Score"
   },
+  "UI_Score_Not_Rated": {
+    "message": "Oylanmamış",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
   "UI_Score_Masterpiece": {
     "message": "(10) Şaheser",
     "description": "Masterpiece - Score"
@@ -307,6 +311,26 @@
     "message": "Dakikalar",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Tahmini yeni bölüm $time$'da",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "$time$'da yayınlanacak",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Bölüm dengelemesi",
     "description": "Episode Offset"
@@ -317,7 +341,7 @@
   },
   "correction_WrongUrl": {
     "message": "URL'yi sadece Mal'da yanlış sayfayı açıyorsa değiştir",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Düzgün arama",
@@ -329,7 +353,7 @@
   },
   "correction_NoMal": {
     "message": "Eğer Anime/Manga MAL'da bulunamazsa",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "MAL'da böyle bir girdi yok",
@@ -351,7 +375,7 @@
   },
   "correction_NewUrl": {
     "message": "Yeni url ayarla '$malUrl$'",
-    "description": "new url",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -361,7 +385,7 @@
   },
   "correction_NewUrlReset": {
     "message": "MAL url sıfırla",
-    "description": "url reset"
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "İzlemeye devam et",
@@ -567,9 +591,17 @@
     "message": "Ayarlanmamış",
     "description": "miniMAL Not Set"
   },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Açılışları atlar",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Açılışların başından başlar",
+    "description": "Description for the the opening skip shortcut"
+  },
   "settings_introSkip": {
-    "message": "$Seconds$ Saniye Atla",
-    "description": "Skips video Seconds",
+    "message": "$Seconds$ Açılış atlama süresini ayarla",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -667,7 +699,7 @@
   },
   "minimalClass_Popup": {
     "message": "Lütfen bu websitesi için açılır pencerelere izin verin",
-    "description": "Please allow popups for this website"
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "$Version$ Sürümüne güncellendi. $Link$CHANGELOG$LinkEnd$",
