@@ -567,6 +567,14 @@
       "message": "Not Set",
       "description": "miniMAL Not Set"
     },
+    "settings_Shortcuts_Skip_Forward": {
+      "message": "Skip intro forward",
+      "description": "Description for the intro skip shortcut"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+      "message": "Skip intro backward",
+      "description": "Description for the intro skip shortcut"
+    },
     "settings_introSkip": {
       "message": "Skips $Seconds$ seconds",
       "description": "Skips video seconds",

@@ -73,7 +73,7 @@ const generateManifest = () => {
           'windows': 'Ctrl+Right',
           'mac': 'Ctrl+Right'
         },
-        'description': 'Skip intro forward',
+        'description': '__MSG_settings_Shortcuts_Skip_Forward__',
       },
       'intro_skip_backward': {
         'suggested_key': {
@@ -81,7 +81,7 @@ const generateManifest = () => {
           'windows': 'Ctrl+Left',
           'mac': 'Ctrl+Left'
         },
-        'description': 'Skip intro backward',
+        'description': '__MSG_settings_Shortcuts_Skip_Backward__',
       },
     },
     'content_scripts': [
