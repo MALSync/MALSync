@@ -159,6 +159,7 @@ const generateManifest = () => {
       "https://graphql.anilist.co/",
       "https://kitsu.io/",
       "https://media.kitsu.io/",
+      "https://www.netflix.com/",
       "tabHide"
     ],
     "optional_permissions": [

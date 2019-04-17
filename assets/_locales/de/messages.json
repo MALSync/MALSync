@@ -202,7 +202,7 @@
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
-    "message": "Auf Abgeschlossen setzen?",
+    "message": "Als Abgeschlossen setzen?",
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
