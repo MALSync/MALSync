@@ -748,7 +748,7 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("Select")+'</option>';
+    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("UI_Score_Not_Rated")+'</option>';
     ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
     ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
     ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';

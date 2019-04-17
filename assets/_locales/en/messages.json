@@ -111,6 +111,10 @@
       "message": "Your Score:",
       "description": "Score"
     },
+    "UI_Score_Not_Rated": {
+      "message": "Not rated",
+      "description": "Text if nothing is selected in the rating dropdown"
+    },
     "UI_Score_Masterpiece": {
       "message": "(10) Masterpiece",
       "description": "Masterpiece - Score"

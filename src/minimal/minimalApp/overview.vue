@@ -67,7 +67,7 @@
                 <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malScore" :disabled="!this.renderObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
-                    <option value="" selected="selected">{{lang("Select")}}</option>
+                    <option value="" selected="selected">{{lang("UI_Score_Not_Rated")}}</option>
                     <option value="10">{{lang("UI_Score_Masterpiece")}}</option>
                     <option value="9">{{lang("UI_Score_Great")}}</option>
                     <option value="8">{{lang("UI_Score_VeryGood")}}</option>
