@@ -201,6 +201,21 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 
 checkInit();
 
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(info) {
+    var headers = info.requestHeaders;
+    headers!.forEach(function(header, i) {
+      if (header.name.toLowerCase() == 'user-agent') {
+        header.value = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+      }
+    });
+    return {requestHeaders: headers};
+  }, {
+    urls: ["https://myanimelist.net/*"],
+    types: ["xmlhttprequest"]
+  },["blocking", "requestHeaders"]
+);
+
 function webRequestListener(){
   chrome.permissions.contains({
     permissions: ['webRequest']

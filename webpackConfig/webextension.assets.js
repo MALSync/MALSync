@@ -151,6 +151,8 @@ const generateManifest = () => {
     'permissions': [
       "storage",
       "alarms",
+      "webRequest",
+      "webRequestBlocking",
       "https://myanimelist.net/",
       "notifications",
       "https://myanimelist.cdn-dena.com/",
@@ -163,9 +165,7 @@ const generateManifest = () => {
       "tabHide"
     ],
     "optional_permissions": [
-      "cookies",
-      "webRequest",
-      "webRequestBlocking"
+      "cookies"
     ].concat(generateMatchExcludes(pageUrls).match),
   }, null, 2);
 };
