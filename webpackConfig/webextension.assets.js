@@ -8,6 +8,7 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const download = require('download-file');
 const resourcesJson = require('./resources');
+const i18n = require('./utils/i18n');
 
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
@@ -90,6 +91,7 @@ const generateManifest = () => {
         'exclude_globs': generateMatchExcludes(contentUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
+          'i18n.js',
           'content-script.js'
         ],
         "run_at": "document_start"
@@ -99,6 +101,7 @@ const generateManifest = () => {
         'exclude_globs': generateMatchExcludes(malUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
+          'i18n.js',
           'mal-script.js'
         ],
         "run_at": "document_start"
@@ -108,6 +111,7 @@ const generateManifest = () => {
         'exclude_globs': generateMatchExcludes(aniUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
+          'i18n.js',
           'anilist-script.js'
         ],
         "run_at": "document_start"
@@ -117,6 +121,7 @@ const generateManifest = () => {
         'exclude_globs': generateMatchExcludes(kitsuUrls).exclude.concat(['*mal-sync-background=*']),
         'js': [
           'vendor/jquery.min.js',
+          'i18n.js',
           'kitsu-script.js'
         ],
         "run_at": "document_start"
@@ -125,6 +130,7 @@ const generateManifest = () => {
         'matches': backgroundMatch(generateMatchExcludes(pageUrls).match),
         'js': [
           'vendor/jquery.min.js',
+          'i18n.js',
           'update-check.js'
         ],
         "all_frames": true,
@@ -173,6 +179,13 @@ const generateManifest = () => {
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
 
   fs.writeFile(path.join(__dirname, '../dist/webextension/manifest.json'), generateManifest(), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  fs.writeFile(path.join(__dirname, '../dist/webextension/i18n.js'), 'const i18n = '+JSON.stringify(i18n()), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
