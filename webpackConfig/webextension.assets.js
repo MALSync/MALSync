@@ -69,19 +69,19 @@ const generateManifest = () => {
         }
       },
       'intro_skip_forward': {
-        'suggested_key': {
-          'default': 'Ctrl+Right',
-          'windows': 'Ctrl+Right',
-          'mac': 'Ctrl+Right'
-        },
+        //'suggested_key': {
+        //  'default': 'Ctrl+Right',
+        //  'windows': 'Ctrl+Right',
+        //  'mac': 'Ctrl+Right'
+        //},
         'description': '__MSG_settings_Shortcuts_Skip_Forward__',
       },
       'intro_skip_backward': {
-        'suggested_key': {
-          'default': 'Ctrl+Left',
-          'windows': 'Ctrl+Left',
-          'mac': 'Ctrl+Left'
-        },
+        //'suggested_key': {
+        //  'default': 'Ctrl+Left',
+        //  'windows': 'Ctrl+Left',
+        //  'mac': 'Ctrl+Left'
+        //},
         'description': '__MSG_settings_Shortcuts_Skip_Backward__',
       },
     },
