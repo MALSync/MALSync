@@ -702,7 +702,7 @@
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Geupdated naar de versie $Version$ $Link$CHANGELOG$LinkEnd$",
+    "message": "Geüpdate naar de versie $Version$ $Link$CHANGELOG$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
