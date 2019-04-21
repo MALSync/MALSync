@@ -155,7 +155,7 @@ async function testApi(){
 async function askForApiKey(){
   return new Promise((resolve, reject) => {
     var msg = utils.flashm(
-     `<p>MAL-Sync needs the emby api key to work. More infos <a href="https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key" target="_blank">Here</a></p>
+     `<p>${api.storage.lang('Emby_Authenticate')}</p>
       <p><input id="MS-ApiKey" type="text" placeholder="Please enter the Api Key here" style="width: 100%;"></p>
       <div style="display: flex; justify-content: space-around;">
         <button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button>

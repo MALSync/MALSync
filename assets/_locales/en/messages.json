@@ -744,5 +744,19 @@
           "example": "</a>"
         }
       }
+    },
+    "Emby_Authenticate": {
+      "message": "MAL-Sync needs an emby api key to work. More infos $Link1$Here$Link2$",
+      "description": "Emby Authentication",
+      "placeholders": {
+        "Link1": {
+          "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+          "example": "<a>"
+        },
+        "Link2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
     }
 }
