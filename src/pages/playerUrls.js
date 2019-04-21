@@ -136,4 +136,9 @@ module.exports = {
       '*://*.ok.ru/*',
     ]
   },
+  novelplanet: {
+    match: [
+      '*://*.novelplanet.me/*'
+    ]
+  }
 };
