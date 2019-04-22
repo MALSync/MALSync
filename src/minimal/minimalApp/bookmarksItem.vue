@@ -110,7 +110,7 @@
       },
       progress: function(){
         var width = ( this.item.watchedEp / this.barTotal ) * 100;
-        return 'width: '+width+'%;'
+        return 'width: '+width+'%; max-width: 100%;'
       },
       predictionBar: function(){
         var predictionProgress = ( this.prediction.tagEpisode / this.barTotal ) * 100;
