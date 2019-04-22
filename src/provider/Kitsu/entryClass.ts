@@ -249,7 +249,7 @@ export class entryClass{
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
-          ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", this.name)}
+          ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", [this.name])}
           <br>
           <img id="${imgSelector}" style="
             height: 200px;
