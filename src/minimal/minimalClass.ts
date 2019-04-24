@@ -305,9 +305,7 @@ export class minimal{
             ">
               <span style="text-decoration: underline; font-size: 15px;">`+api.storage.lang("minimalClass_versionMsg_Text_1")+`</span><br>
               <br>
-              uBlock users please subscribe to this filter list!<br>
-              This fixes some problems like broken images<br>
-
+              ${api.storage.lang("minimalClass_versionMsg_Text_4")}<br>
               <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
                 <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square">
               </a><br>
