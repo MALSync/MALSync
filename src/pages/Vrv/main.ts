@@ -3,6 +3,8 @@ import {pageInterface} from "./../pageInterface";
 var json:any = undefined;
 var ident:any = undefined;
 
+var seasonInterval = undefined;
+
 function getSeries(page, overview = ''){
   json = undefined;
   ident = undefined;
@@ -65,12 +67,25 @@ export const Vrv: pageInterface = {
       });
 
       function ready(){
+        clearInterval(seasonInterval);
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+        page.UILoaded = false;
         if(utils.urlPart(window.location.href, 3) == 'watch'){
           getSeries(page);
         }
         if(utils.urlPart(window.location.href, 3) == 'series'){
-          getSeries(page, $('.controls-select-trigger .season-info').text().trim());
+          utils.waitUntilTrue(function(){
+            return j.$('.erc-series-info .series-title').first().length;
+          }, function(){
+            getSeries(page, $('.controls-select-trigger .season-info').text().trim());
+            seasonInterval = utils.changeDetect(function(){
+              $('#malp').remove();
+              page.UILoaded = false;
+              getSeries(page, $('.controls-select-trigger .season-info').text().trim());
+            }, function(){
+              return $('.controls-select-trigger .season-info').text().trim();
+            })
+          });
         }
       }
     }
