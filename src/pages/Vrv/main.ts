@@ -23,6 +23,10 @@ export const Vrv: pageInterface = {
       getIdentifier: function(url){return json.watch.mediaResource.json.season_id;},
       getOverviewUrl: function(url){return Vrv.domain+'/series/'+json.watch.mediaResource.json.series_id;},
       getEpisode: function(url){return json.watch.mediaResource.json.episode_number;},
+      nextEpUrl: function(url){
+        if(typeof json.watch.mediaResource.json.next_episode_id === 'undefined') return '';
+        return Vrv.domain+'/watch/'+json.watch.mediaResource.json.next_episode_id;
+      },
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
