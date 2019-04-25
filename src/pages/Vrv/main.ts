@@ -19,7 +19,7 @@ export const Vrv: pageInterface = {
       return true;
     },
     sync:{
-      getTitle: function(url){return json.watch.mediaResource.json.season_title;},
+      getTitle: function(url){return json.watch.mediaResource.json.series_title+' - '+ json.watch.mediaResource.json.season_title.replace(json.watch.mediaResource.json.series_title, '');},
       getIdentifier: function(url){return json.watch.mediaResource.json.season_id;},
       getOverviewUrl: function(url){return Vrv.domain+'/series/'+json.watch.mediaResource.json.series_id;},
       getEpisode: function(url){return json.watch.mediaResource.json.episode_number;},
