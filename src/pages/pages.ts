@@ -17,6 +17,7 @@ import {Otakustream} from "./Otakustream/main";
 import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
+import {Vrv} from "./Vrv/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -40,6 +41,7 @@ export const pages = {
     Netflix,
     Otakustream,
     animepahe,
+    Vrv,
 };
 
 export const pageSearch:pageSearchObj = {

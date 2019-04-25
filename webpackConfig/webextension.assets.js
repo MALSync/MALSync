@@ -169,6 +169,7 @@ const generateManifest = () => {
       "https://kitsu.io/",
       "https://media.kitsu.io/",
       "https://www.netflix.com/",
+      "https://vrv.co/",
       "tabHide"
     ],
     "optional_permissions": [

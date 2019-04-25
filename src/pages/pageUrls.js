@@ -176,4 +176,9 @@ module.exports = {
       '*://jkanime.net/terminos-condiciones/',
     ]
   },
+  Vrv: {
+    match: [
+      '*://vrv.co/*',
+    ]
+  },
 };
