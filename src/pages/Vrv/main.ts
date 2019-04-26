@@ -90,7 +90,9 @@ export const Vrv: pageInterface = {
           utils.waitUntilTrue(function(){
             return j.$('.erc-series-info .series-title').first().length;
           }, function(){
-            getSeries(page, $('.controls-select-trigger .season-info').text().trim());
+            if( !j.$('.erc-series-media-list-element').length || typeof j.$('.erc-series-media-list-element a').first().attr('href') !== 'undefined'){
+              getSeries(page, $('.controls-select-trigger .season-info').text().trim());
+            }
             seasonInterval = utils.changeDetect(function(){
               $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
               page.UILoaded = false;

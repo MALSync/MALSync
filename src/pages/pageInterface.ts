@@ -23,7 +23,7 @@ export interface pageInterface {
         elementsSelector: () => JQuery<HTMLElement>,
         elementUrl: (selector) => string,
         elementEp: (selector) => number,
-        paginationNext?: () => boolean,
+        paginationNext?: (updateCheck:boolean) => boolean,
         handleListHook?: (ep:number, epList) => void,
       }
     },

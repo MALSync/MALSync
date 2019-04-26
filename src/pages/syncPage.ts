@@ -468,7 +468,7 @@ export class syncPage{
         }else if(this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
           con.log('Pagination next');
           var This = this;
-          if(this.page.overview.list.paginationNext()){
+          if(this.page.overview.list.paginationNext(false)){
             setTimeout(function(){
               reTry++;
               This.handleList(true, reTry);

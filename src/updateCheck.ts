@@ -50,7 +50,7 @@ api.settings.init()
           con.log('Pagination next');
           var This = this;
           try{
-            if(this.page.overview.list.paginationNext()){
+            if(this.page.overview.list.paginationNext(true)){
               setTimeout(function(){
                 This.handlePage();
               }, 500);
