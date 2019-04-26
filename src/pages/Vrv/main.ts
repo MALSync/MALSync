@@ -55,6 +55,19 @@ export const Vrv: pageInterface = {
       uiSelector: function(selector){
         selector.insertAfter($( '.erc-series-info .series-title' ).first());
       },
+      list:{
+        offsetHandler: true,
+        elementsSelector: function(){return j.$('.erc-series-media-list-element');},
+        elementUrl: function(selector){return utils.absoluteLink(selector.find("a").first().attr('href'), Vrv.domain);},
+        elementEp: function(selector){
+          var epInfo = selector.find('.episode-title').text().trim();
+          var temp = epInfo.match(/^E\d+/i);
+          if(temp !== null){
+              return temp[0].replace('E','');
+          }
+          return '';
+        },
+      }
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
@@ -79,11 +92,11 @@ export const Vrv: pageInterface = {
           }, function(){
             getSeries(page, $('.controls-select-trigger .season-info').text().trim());
             seasonInterval = utils.changeDetect(function(){
-              $('#malp').remove();
+              $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
               page.UILoaded = false;
               getSeries(page, $('.controls-select-trigger .season-info').text().trim());
             }, function(){
-              return $('.controls-select-trigger .season-info').text().trim();
+              return j.$('.erc-series-media-list-element a').first().attr('href');
             })
           });
         }
