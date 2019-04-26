@@ -19,7 +19,7 @@
         <th>{{lang("updateCheck_Episode")}}</th>
         <th>{{lang("updateCheck_Message")}}</th>
       </tr>
-      <tr v-for="item in items" :key="item.id" v-bind:style="{ backgroundColor: item.trColor}">
+      <tr v-for="item in items" :key="item.uid" v-bind:style="{ backgroundColor: item.trColor}">
         <th class="mdl-data-table__cell--non-numeric">
           <button @click="deleteItem(item)" class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" ><i class="material-icons">delete</i></button>
           <a :href="item.url" style="color: black;">
@@ -120,7 +120,7 @@
         });
       },
       deleteItem(item){
-        var delPath = 'updateCheck/'+this.listType+'/'+item.id;
+        var delPath = 'updateCheck/'+this.listType+'/'+item.malId;
         con.log('delete', delPath, item);
         api.storage.remove(delPath);
         item.trColor = 'black';
