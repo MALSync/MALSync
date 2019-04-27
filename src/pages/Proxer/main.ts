@@ -12,16 +12,14 @@ export const Proxer: pageInterface = {
         return false;
       }
     },
-	
     sync:{
       getTitle: function(url){
 		if (window.location.href.indexOf("watch") != -1){
 			return j.$('.wName').text().trim();
 		}else{ if (window.location.href.indexOf("read") != -1){
-	  return j.$("div#breadcrumb a:first").text();}
+			return j.$("div#breadcrumb a:first").text();}
 		}
 		},
-	  
       getIdentifier: function(url){
 		  return url.split('/')[4];
 		  },
@@ -30,20 +28,18 @@ export const Proxer: pageInterface = {
         },
       getEpisode: function(url){
         return url.split('/')[5];
-      },
-     nextEpUrl: function(url){return Proxer.domain+$('.no_details a')!.last()!.attr('href')!;},
+        },
+	  nextEpUrl: function(url){return Proxer.domain+$('.no_details a')!.last()!.attr('href')!;},
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
       j.$(document).ready(function(){
         page.handlePage();
       });
-	  
 	if (window.location.href.indexOf("watch") != -1) {
         Proxer.type = 'anime';
-    } else if (window.location.href.indexOf("read") != -1){
+    }else if (window.location.href.indexOf("read") != -1){
         Proxer.type = 'manga';
     }
-	  
     }
 };
