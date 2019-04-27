@@ -181,4 +181,14 @@ module.exports = {
       '*://vrv.co/*',
     ]
   },
+  Proxeranime: {
+    match: [
+      '*://proxer.me/watch/*',
+    ],
+  },
+  Proxermanga {
+  match: [
+    '*://proxer.me/read/*',
+  ],
+},
 };
