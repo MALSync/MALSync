@@ -18,8 +18,7 @@ import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
-import {Proxeranime} from "./Proxeranime/main";
-import {Proxermanga}  from "./Proxermanga/main";
+import {Proxer} from "./Proxer/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -44,8 +43,7 @@ export const pages = {
     Otakustream,
     animepahe,
     Vrv,
-    Proxeranime,
-    Proxermanga,
+    Proxer,
 };
 
 export const pageSearch:pageSearchObj = {
