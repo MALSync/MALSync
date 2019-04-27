@@ -4,7 +4,7 @@ export const Proxer: pageInterface = {
     name: 'Proxer',
     domain: 'https://proxer.me',
     database: 'Proxer',
-	type: 'anime',
+  	type: 'anime',
     isSyncPage: function(url){
       if(url.split('/')[3] === 'watch'||url.split('/')[3] === 'read'){
         return true;
