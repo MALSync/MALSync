@@ -42,6 +42,8 @@ export const pages = {
     Otakustream,
     animepahe,
     Vrv,
+    Proxeranime,
+    Proxermanga,
 };
 
 export const pageSearch:pageSearchObj = {
