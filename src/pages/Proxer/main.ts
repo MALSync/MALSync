@@ -17,8 +17,10 @@ export const Proxer: pageInterface = {
       getTitle: function(url){
 		if (window.location.href.indexOf("watch") != -1){
 			return j.$('.wName').text().trim();
-		}else{
-	  return j.$("div#breadcrumb a:first").text();}},
+		}else{ if (window.location.href.indexOf("read") != -1){
+	  return j.$("div#breadcrumb a:first").text();}
+		}
+		},
 	  
       getIdentifier: function(url){
 		  return url.split('/')[4];
