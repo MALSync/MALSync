@@ -186,7 +186,7 @@ module.exports = {
       '*://proxer.me/watch/*',
     ],
   },
-  Proxermanga {
+  Proxermanga: {
   match: [
     '*://proxer.me/read/*',
   ],
