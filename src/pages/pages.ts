@@ -18,6 +18,7 @@ import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
+import {Proxer} from "./Proxer/main";
 
 import {pageSearchObj} from "./pageInterface";
 
