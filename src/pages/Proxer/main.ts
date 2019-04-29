@@ -49,6 +49,32 @@ export const Proxer: pageInterface = {
     getTitle: function(url){return j.$('#pageMetaAjax').text().split(' - ')[0];},
     getIdentifier: function(url){return Proxer.sync.getIdentifier(url);},
     uiSelector: function(selector){selector.insertAfter(j.$(".hreview-aggregate > span").first());},
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){return j.$('span[id^="listTitle"]').parent().parent();},
+      elementUrl: function(selector){return utils.absoluteLink(selector.find('a[href^="/watch"],a[href^="/read"],a[href^="/chapter"]').first().attr('href'), Proxer.domain);},
+      elementEp: function(selector){return Proxer.sync!.getEpisode(Proxer.overview!.list!.elementUrl(selector))},
+      paginationNext: function(updateCheck){
+        con.error('sadsad', updateCheck)
+        if(updateCheck){
+          var el = j.$('.menu').last();
+          if(typeof el[0] == 'undefined' || el.hasClass('active')){
+            return false;
+          }else{
+            el[0].click();
+            return true;
+          }
+        }else{
+          var el = j.$('.menu.active').first().next();
+          if(typeof el[0] == 'undefined'){
+            return false;
+          }else{
+            el[0].click();
+            return true;
+          }
+        }
+      }
+    }
   },
   init(page) {
     api.storage.addStyle(require("./style.less").toString());
@@ -74,6 +100,8 @@ export const Proxer: pageInterface = {
   }
 };
 
+var current = 0;
+
 function ajaxHandle(page){
   var detailPart = utils.urlPart(page.url, 5);
   con.info('page', detailPart);
@@ -86,13 +114,27 @@ function ajaxHandle(page){
       }else{
         Proxer.type = "anime";
       }
-      page.handlePage();
+
+      var tempCurrent:number = parseInt(Proxer.overview!.getIdentifier(page.url));
+      if(tempCurrent !== current){
+        current = tempCurrent;
+        page.handlePage();
+      }else{
+        try{
+          page.handleList();
+        }catch(e){
+          con.error(e);
+          page.handlePage();
+        }
+      }
+
     });
   }
   if(detailPart == 'details'){
     utils.waitUntilTrue(function(){
       return j.$(".hreview-aggregate").length;
     }, function(){
+      current = parseInt(Proxer.overview!.getIdentifier(page.url));
       if(j.$('#simple-navi a[href*="manga"]').length){
         Proxer.type = "manga";
       }else{
