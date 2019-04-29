@@ -181,4 +181,9 @@ module.exports = {
       '*://vrv.co/*',
     ]
   },
+  Proxer: {
+    match: [
+      '*://proxer.me/*',
+    ],
+  },
 };
