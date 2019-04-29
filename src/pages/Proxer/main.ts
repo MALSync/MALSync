@@ -14,13 +14,13 @@ export const Proxer: pageInterface = {
   },
   sync: {
     getTitle: function(url) {
-      if (window.location.href.indexOf("watch") != -1) {
+      if (url.indexOf("watch") != -1) {
         return j
           .$(".wName")
           .text()
           .trim();
       } else {
-        if (window.location.href.indexOf("read") != -1) {
+        if (url.indexOf("read") != -1) {
           return j.$("div#breadcrumb a:first").text();
         }
       }
