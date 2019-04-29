@@ -78,12 +78,26 @@ function ajaxHandle(page){
   var detailPart = utils.urlPart(page.url, 5);
   con.info('page', detailPart);
   if(detailPart == 'list'){
-    page.handlePage();
+    utils.waitUntilTrue(function(){
+      return j.$("#contentList").length;
+    }, function(){
+      if(j.$('#simple-navi a[href*="manga"]').length){
+        Proxer.type = "manga";
+      }else{
+        Proxer.type = "anime";
+      }
+      page.handlePage();
+    });
   }
   if(detailPart == 'details'){
     utils.waitUntilTrue(function(){
       return j.$(".hreview-aggregate").length;
     }, function(){
+      if(j.$('#simple-navi a[href*="manga"]').length){
+        Proxer.type = "manga";
+      }else{
+        Proxer.type = "anime";
+      }
       page.handlePage();
     });
   }
