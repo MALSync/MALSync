@@ -103,6 +103,7 @@ export const Proxer: pageInterface = {
 var current = 0;
 
 function ajaxHandle(page){
+  if(utils.urlPart(page.url, 3) !== 'info') return;
   var detailPart = utils.urlPart(page.url, 5);
   con.info('page', detailPart);
   if(detailPart == 'list'){
@@ -130,7 +131,7 @@ function ajaxHandle(page){
 
     });
   }
-  if(detailPart == 'details'){
+  if(detailPart == 'details' || typeof detailPart == 'undefined'){
     utils.waitUntilTrue(function(){
       return j.$(".hreview-aggregate").length;
     }, function(){
