@@ -414,6 +414,24 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Proxer',
+    url: 'https://proxer.me/',
+    testCases: [
+      {
+        url: 'https://proxer.me/watch/6587/2/gerdub',
+        expected: {
+          sync: true,
+          identifier: '6587',
+          episode: 2,
+          title: 'No Game No Life',
+          overviewUrl: 'https://proxer.me/info/6587/list',
+          nextEpUrl: 'https://proxer.me/watch/6587/3/gerdub'
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
