@@ -145,5 +145,10 @@ module.exports = {
     match: [
       '*://*.novelplanet.me/*'
     ]
-  }
+  },
+  proxer: {
+    match: [
+      '*://*.stream.proxer.me/*',
+    ]
+  },
 };
