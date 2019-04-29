@@ -34,7 +34,11 @@ export const Proxer: pageInterface = {
       );
     },
     getEpisode: function(url) {
-      return url.split("/")[5];
+      if (url.indexOf("watch") != -1) {
+        return getEpisodeFallback('episode '+$('.wEp').last().text().trim(), url.split("/")[5]);
+      }else{
+        return getEpisodeFallback($('#breadcrumb > a').last().text().trim(), url.split("/")[5]);
+      }
     },
     nextEpUrl: function(url) {
       return (
@@ -53,7 +57,9 @@ export const Proxer: pageInterface = {
       offsetHandler: false,
       elementsSelector: function(){return j.$('span[id^="listTitle"]').parent().parent();},
       elementUrl: function(selector){return utils.absoluteLink(selector.find('a[href^="/watch"],a[href^="/read"],a[href^="/chapter"]').first().attr('href'), Proxer.domain);},
-      elementEp: function(selector){return Proxer.sync!.getEpisode(Proxer.overview!.list!.elementUrl(selector))},
+      elementEp: function(selector){
+        return getEpisodeFallback(selector.find('span[id^="listTitle"]').first().text().trim(), Proxer.overview!.list!.elementUrl(selector).split("/")[5] );
+      },
       paginationNext: function(updateCheck){
         con.error('sadsad', updateCheck)
         if(updateCheck){
@@ -145,3 +151,28 @@ function ajaxHandle(page){
     });
   }
 }
+
+function getEpisodeFallback(string, fallback){
+  var exclude = string.match(/(special)/gi);
+  if(exclude !== null){
+    return '';
+  }
+
+  var temp = string.match(/(kapitel |ep. |chapter |episode )\d+/gi);
+  if(temp !== null){
+    return temp[0].match(/\d+/)[0];
+  }
+
+  return fallback;
+}
+
+/*
+Chapter 10
+Ep. 10
+Kapitel 10
+Episode 10
+*/
+
+/* Exclude
+Special 1
+*/
