@@ -2,7 +2,7 @@ declare var browser: any;
 
 export function urlPart(url:string, part:number){
   try{
-      return url.split("/")[part].split("?")[0];
+      return url.split("/")[part].split("?")[0].split("#")[0];
     }catch(e){
       return undefined;
     }

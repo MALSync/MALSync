@@ -45,15 +45,46 @@ export const Proxer: pageInterface = {
       );
     }
   },
+  overview:{
+    getTitle: function(url){return j.$('#pageMetaAjax').text().split(' - ')[0];},
+    getIdentifier: function(url){return Proxer.sync.getIdentifier(url);},
+    uiSelector: function(selector){selector.insertAfter(j.$(".hreview-aggregate > span").first());},
+  },
   init(page) {
     api.storage.addStyle(require("./style.less").toString());
-    j.$(document).ready(function() {
-      page.handlePage();
-    });
-    if (window.location.href.indexOf("watch") != -1) {
-      Proxer.type = "anime";
-    } else if (window.location.href.indexOf("read") != -1) {
-      Proxer.type = "manga";
+    if (page.url.split("/")[3] === "watch" || page.url.split("/")[3] === "read") {
+      if (page.url.split("/")[3] === "watch") {
+        Proxer.type = "anime";
+      } else if (page.url.split("/")[3] === "read") {
+        Proxer.type = "manga";
+      }
+      j.$(document).ready(function() {
+        page.handlePage();
+      });
     }
+
+
+    ajaxHandle(page);
+    utils.urlChangeDetect(function(){
+      page.url = window.location.href;
+      page.UILoaded = false;
+      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      ajaxHandle(page);
+    });
   }
 };
+
+function ajaxHandle(page){
+  var detailPart = utils.urlPart(page.url, 5);
+  con.info('page', detailPart);
+  if(detailPart == 'list'){
+    page.handlePage();
+  }
+  if(detailPart == 'details'){
+    utils.waitUntilTrue(function(){
+      return j.$(".hreview-aggregate").length;
+    }, function(){
+      page.handlePage();
+    });
+  }
+}
