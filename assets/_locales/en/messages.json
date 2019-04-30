@@ -600,7 +600,7 @@
       "description": "Description for the the opening skip shortcut"
     },
     "settings_introSkip": {
-      "message": "Set opening skip length ($Seconds$ Seconds)",
+      "message": "Set opening skip length ($Seconds$ seconds)",
       "description": "Skips video seconds",
       "placeholders": {
         "Seconds": {
@@ -750,7 +750,7 @@
       }
     },
     "Emby_Authenticate": {
-      "message": "MAL-Sync needs an emby api key to work. More infos $Link1$Here$Link2$",
+      "message": "MAL-Sync needs an Emby API key to work. More infos $Link1$Here$Link2$",
       "description": "Emby Authentication",
       "placeholders": {
         "Link1": {
