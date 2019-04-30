@@ -33,6 +33,12 @@ export function prepareData(data, listType): listElement[]{
       'https://proxer.me/info/6587/list',
       'https://twist.moe/a/no-game-no-life/1',
       'https://vrv.co/series/G68V1JGD6?season=GYZX2Q546',
+      'https://otakustream.tv/anime/no-game-no-life/',
+      'https://www.branitube.org/animes/no-game-no-life',
+      'http://www.turkanime.tv/anime/no-game-no-life',
+      'https://animepahe.com/anime/no-game-no-life',
+      'https://animeflv.net/anime/3825/no-game-no-life',
+      'https://jkanime.net/no-game-no-life/',
     ];
   }else{
     data = [
