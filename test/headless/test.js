@@ -430,6 +430,24 @@ var testsArray = [
           nextEpUrl: 'https://proxer.me/watch/6587/3/gerdub'
         }
       },
+      {
+        url: 'https://proxer.me/info/6587',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: '6587',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://proxer.me/info/6587/list',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: '6587',
+          uiSelector: false,
+        }
+      },
     ]
   },
 ];
