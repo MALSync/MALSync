@@ -36,6 +36,8 @@ export var settingsObj = {
     Mangadex: true,
     Mangarock: true,
     Netflix: true,
+    Proxeranime: true,
+    Proxermanga: true,
 
     introSkip: 85,
 

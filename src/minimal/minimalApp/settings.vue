@@ -82,6 +82,8 @@
         <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="Mangarock">Mangarock</checkbox>
+        <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
+        <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
       </div>
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
