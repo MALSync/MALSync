@@ -87,8 +87,10 @@ export const Proxer: pageInterface = {
     if (page.url.split("/")[3] === "watch" || page.url.split("/")[3] === "read") {
       if (page.url.split("/")[3] === "watch") {
         Proxer.type = "anime";
+        Proxer.database = "Proxeranime";
       } else if (page.url.split("/")[3] === "read") {
         Proxer.type = "manga";
+        Proxer.database = "Proxermanga";
       }
       j.$(document).ready(function() {
         page.handlePage();
@@ -118,8 +120,10 @@ function ajaxHandle(page){
     }, function(){
       if(j.$('#simple-navi a[href*="manga"]').length){
         Proxer.type = "manga";
+        Proxer.database = "Proxermanga";
       }else{
         Proxer.type = "anime";
+        Proxer.database = "Proxeranime";
       }
 
       var tempCurrent:number = parseInt(Proxer.overview!.getIdentifier(page.url));
@@ -144,8 +148,10 @@ function ajaxHandle(page){
       current = parseInt(Proxer.overview!.getIdentifier(page.url));
       if(j.$('#simple-navi a[href*="manga"]').length){
         Proxer.type = "manga";
+        Proxer.database = "Proxermanga";
       }else{
         Proxer.type = "anime";
+        Proxer.database = "Proxeranime";
       }
       page.handlePage();
     });
