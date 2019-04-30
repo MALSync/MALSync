@@ -186,4 +186,9 @@ module.exports = {
       '*://proxer.me/*',
     ],
   },
+  Verystream:{
+    match: [
+      '*://verystream.com/*'
+    ],
+  }
 };
