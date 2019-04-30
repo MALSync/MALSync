@@ -7,6 +7,7 @@ const playerUrls = require('../src/pages/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const i18n = require('./utils/i18n');
 
 const generateMatchExcludes = (urls) => {
   var match = [];
@@ -83,7 +84,8 @@ const generateMetadataBlock = (metadata) => {
 
   return '// ==UserScript==\n'
     + block
-    + '// ==/UserScript==\n\n';
+    + '// ==/UserScript==\n\n'
+    + 'var i18n = ' + JSON.stringify(i18n()) + '\n';
 };
 
 module.exports = {

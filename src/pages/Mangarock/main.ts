@@ -94,6 +94,14 @@ function EpisodePartToEpisode(string) {
       if(temp !== null){
           return temp[0];
       }
+  }else{
+    var tempString = string.replace(/vol(ume)?.?\d+/i,'');
+    tempString = tempString.replace(/:.+/i,'');
+    temp = tempString.match(/\d+/i);
+    if(temp !== null && temp.length === 1){
+      return temp[0];
+    }
   }
+
   return '';
 }

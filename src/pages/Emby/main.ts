@@ -32,8 +32,7 @@ async function checkApi(page){
     }else{
       var apiBase:any = url!.split('/').splice(0,4).join('/');
       var itemId = utils.urlPart(url, 5);
-      var apiKey = utils.urlParam(url, 'api_key');
-      setApiKey(apiKey);
+      var apiKey = await getApiKey();
       setBase(apiBase);
     }
     var reqUrl = apiBase+'/Items?ids='+itemId+'&api_key='+apiKey;
@@ -118,10 +117,79 @@ async function returnPlayingItemId(){
   });
 }
 
+async function waitForBase(){
+  return new Promise((resolve, reject) => {
+    utils.waitUntilTrue(function(){
+      return j.$('*[data-url]').length;
+    }, function(){
+      var base = j.$('*[data-url]').first().attr('data-url').split('/').splice(0,4).join('/');
+      con.log('Base Found', base);
+      resolve(base);
+    });
+  });
+}
+
+async function testApi(){
+  return new Promise(async (resolve, reject) => {
+    var base = await getBase();
+    if(typeof base === 'undefined' || base === ''){
+      con.info('No base');
+      base = await waitForBase();
+    }
+
+    setBase(base);
+
+    apiCall('/System/Info', null, base).then((response) => {
+      if(response.status !== 200){
+        con.error('Not Authenticated');
+        setBase('');
+        reject();
+        return false;
+      }
+      resolve();
+      return true;
+    });
+  });
+}
+
+async function askForApiKey(){
+  return new Promise((resolve, reject) => {
+    var msg = utils.flashm(
+     `<p>${api.storage.lang('Emby_Authenticate')}</p>
+      <p><input id="MS-ApiKey" type="text" placeholder="Please enter the Api Key here" style="width: 100%;"></p>
+      <div style="display: flex; justify-content: space-around;">
+        <button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button>
+        <button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button>
+      </div>
+      `,
+      {position: 'bottom', permanent: true, type: 'getApi'}
+    );
+    msg.find( '.Yes' ).click(function(evt){
+      var api = j.$('#MS-ApiKey').val();
+      con.info('api', api);
+      setApiKey(api);
+      j.$(evt.target).parentsUntil('.flash').remove();
+      testApi()
+        .then(()=>{
+          resolve(true);
+        }).catch(async ()=>{
+          utils.flashm('Could not Authenticate');
+          await askForApiKey();
+          resolve(true);
+        })
+    });
+    msg.find( '.Cancel' ).click(function(evt){
+      j.$(evt.target).parentsUntil('.flash').remove();
+      reject(false);
+    });
+
+  });
+}
+
 //Helper
 async function apiCall(url, apiKey = null, base = null){
   if(apiKey === null) apiKey = await getApiKey();
-  if(base === null) base = await getBase()
+  if(base === null) base = await getBase();
   if(url.indexOf('?') !== -1){
     var pre = '&';
   }else{
@@ -159,36 +227,44 @@ export const Emby: pageInterface = {
     },
     init(page){
       api.storage.addStyle(require('./style.less').toString());
-      utils.changeDetect(() => {
-        page.UILoaded = false;
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
-        checkApi(page);
-      }, () => {
-        var src = $('video').first().attr('src');
-        if(typeof src === 'undefined') return 'NaN';
-        return src;
-      });
-      utils.urlChangeDetect(function(){
-        if(!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)){
-          $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-          page.UILoaded = false;
-          urlChange(page);
-        }
-      });
-      j.$(document).ready(function(){
-        utils.waitUntilTrue(function(){
-          return j.$('.page').length;
-        }, function(){
-          urlChange(page);
+      testApi()
+        .catch(() => {
+          con.info('Not Authenticated');
+          return askForApiKey();
+        })
+        .then(() => {
+          con.info('Authenticated');
+          utils.changeDetect(() => {
+            page.UILoaded = false;
+            $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+            checkApi(page);
+          }, () => {
+            var src = $('video').first().attr('src');
+            if(typeof src === 'undefined') return 'NaN';
+            return src;
+          });
+          utils.urlChangeDetect(function(){
+            if(!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)){
+              $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+              page.UILoaded = false;
+              urlChange(page);
+            }
+          });
+          j.$(document).ready(function(){
+            utils.waitUntilTrue(function(){
+              return j.$('.page').length;
+            }, function(){
+              urlChange(page);
+            });
+          });
+          document.addEventListener("fullscreenchange", function() {
+            //@ts-ignore
+            if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+              $('html').addClass('miniMAL-Fullscreen');
+            } else {
+              $('html').removeClass('miniMAL-Fullscreen');
+            }
+          });
         });
-      });
-      document.addEventListener("fullscreenchange", function() {
-        //@ts-ignore
-        if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-          $('html').addClass('miniMAL-Fullscreen');
-        } else {
-          $('html').removeClass('miniMAL-Fullscreen');
-        }
-      });
     }
 };

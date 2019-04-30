@@ -1,5 +1,7 @@
 import {storageInterface} from "./storageInterface";
 
+declare var i18n: string[];
+
 export const webextension: storageInterface = {
     async set(key: string, value: string): Promise<any> {
       const obj = {} as any;
@@ -50,6 +52,15 @@ export const webextension: storageInterface = {
     },
 
     lang(selector, args){
+      if(api.settings.get('forceEn')){
+        var message = i18n[selector];
+        if(typeof args !== 'undefined'){
+          for(var argIndex = 0; argIndex < args.length; argIndex++) {
+            message = message.replace("$"+(argIndex + 1), args[argIndex]);
+          }
+        }
+        return message;
+      }
       // @ts-ignore
       return chrome.i18n.getMessage(selector, args);
     },

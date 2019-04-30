@@ -74,15 +74,15 @@ var testsArray = [
 
   {
     title: '9anime',
-    url: 'https://www3.9anime.to/',
+    url: 'https://www4.9anime.to/',
     testCases: [
       {
-        url: 'https://www3.9anime.to/watch/no-game-no-life-dub.y2p0/mlkqnp',
+        url: 'https://www4.9anime.to/watch/no-game-no-life-dub.y2p0/mlkqnp',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
-          overviewUrl: 'https://www3.9anime.to/watch/no-game-no-life-dub.y2p0',
+          overviewUrl: 'https://www4.9anime.to/watch/no-game-no-life-dub.y2p0',
           nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
           episode: 4,
           uiSelector: true,
@@ -410,6 +410,24 @@ var testsArray = [
           nextEpUrl: 'https://jkanime.net/no-game-no-life/12/',
           episode: 11,
           uiSelector: true,
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'Proxer',
+    url: 'https://proxer.me/',
+    testCases: [
+      {
+        url: 'https://proxer.me/watch/6587/2/gerdub',
+        expected: {
+          sync: true,
+          identifier: '6587',
+          episode: 2,
+          title: 'No Game No Life',
+          overviewUrl: 'https://proxer.me/info/6587/list',
+          nextEpUrl: 'https://proxer.me/watch/6587/3/gerdub'
         }
       },
     ]

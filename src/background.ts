@@ -17,27 +17,31 @@ chrome.runtime.onInstalled.addListener(function(details){
     chrome.alarms.clearAll();
 });
 
-chrome.commands.onCommand.addListener(function(command) {
-  con.log('Command:', command);
-  switch (command) {
-    case "intro_skip_forward": {
-      addVideoTime(true);
-      return;
+if(typeof chrome.commands !== 'undefined'){
+  chrome.commands.onCommand.addListener(function(command) {
+    con.log('Command:', command);
+    switch (command) {
+      case "intro_skip_forward": {
+        addVideoTime(true);
+        return;
+      }
+      case "intro_skip_backward": {
+        addVideoTime(false);
+        return;
+      }
+      async function addVideoTime(forward:boolean){
+        var time = parseInt(await api.settings.getAsync('introSkip'));
+        if(!forward) time = 0 - time;
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+          // @ts-ignore
+          chrome.tabs.sendMessage(tabs[0].id, {action: "videoTimeSet", timeAdd: time});
+        });
+      }
     }
-    case "intro_skip_backward": {
-      addVideoTime(false);
-      return;
-    }
-    async function addVideoTime(forward:boolean){
-      var time = parseInt(await api.settings.getAsync('introSkip'));
-      if(!forward) time = 0 - time;
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-        // @ts-ignore
-        chrome.tabs.sendMessage(tabs[0].id, {action: "videoTimeSet", timeAdd: time});
-      });
-    }
-  }
-});
+  });
+}else{
+  con.info('Shortcuts not supported');
+}
 
 chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse)  => {
   return messageHandler(message, sender, sendResponse)
@@ -196,6 +200,21 @@ chrome.alarms.onAlarm.addListener(function(alarm) {
 });
 
 checkInit();
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(info) {
+    var headers = info.requestHeaders;
+    headers!.forEach(function(header, i) {
+      if (header.name.toLowerCase() == 'user-agent') {
+        header.value = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+      }
+    });
+    return {requestHeaders: headers};
+  }, {
+    urls: ["https://myanimelist.net/*"],
+    types: ["xmlhttprequest"]
+  },["blocking", "requestHeaders"]
+);
 
 function webRequestListener(){
   chrome.permissions.contains({

@@ -5,6 +5,7 @@ export const Otakustream: pageInterface = {
     domain: 'https://otakustream.tv',
     type: 'anime',
     isSyncPage: function(url){
+      if(url.split('/')[3] === 'movie') return true;
       if(typeof url.split('/')[5] === 'undefined' || url.split('/')[5] == ''){
         return false;
       }else{
@@ -12,7 +13,10 @@ export const Otakustream: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return j.$('#breadcrumbs a').last().text().trim();},
+      getTitle: function(url){
+        if(url.split('/')[3] === 'movie') return Otakustream.overview!.getTitle(url);
+        return j.$('#breadcrumbs a').last().text().trim();
+      },
       getIdentifier: function(url){return utils.urlPart(url, 4).toLowerCase();},
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){

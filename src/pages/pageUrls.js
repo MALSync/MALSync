@@ -149,7 +149,8 @@ module.exports = {
   },
   Otakustream: {
     match: [
-      '*://otakustream.tv/anime/*'
+      '*://otakustream.tv/anime/*',
+      '*://otakustream.tv/movie/*',
     ]
   },
   animepahe: {
@@ -174,5 +175,15 @@ module.exports = {
       '*://jkanime.net/buscar/*',
       '*://jkanime.net/terminos-condiciones/',
     ]
+  },
+  Vrv: {
+    match: [
+      '*://vrv.co/*',
+    ]
+  },
+  Proxer: {
+    match: [
+      '*://proxer.me/*',
+    ],
   },
 };

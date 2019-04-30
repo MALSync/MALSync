@@ -1,5 +1,4 @@
 import {storageInterface} from "./storageInterface";
-var i18n = require('./../../../assets/_locales/en/messages.json');
 
 declare var GM_setValue: any;
 declare var GM_getValue: any;
@@ -8,6 +7,7 @@ declare var GM_addStyle: any;
 declare var GM_getResourceText: any;
 declare var GM_info: any;
 declare var GM_listValues: any;
+declare var i18n: string[];
 
 export const userscriptLegacy: storageInterface = {
     async set(key: string, value: string): Promise<void> {
@@ -40,20 +40,10 @@ export const userscriptLegacy: storageInterface = {
     },
 
     lang(selector, args){
-      var lEl = i18n[selector];
-      var message = lEl.message;
-      if(typeof lEl.placeholders !== 'undefined'){
-        for(var index in lEl.placeholders) {
-
-          var placeholder = lEl.placeholders[index];
-          var pContent = placeholder.content;
-          if(typeof args !== 'undefined'){
-            for(var argIndex = 0; argIndex < args.length; argIndex++) {
-              pContent = pContent.replace("$"+(argIndex + 1), args[argIndex]);
-            }
-          }
-
-          message = message.replace("$"+index+"$", pContent);
+      var message = i18n[selector];
+      if(typeof args !== 'undefined'){
+        for(var argIndex = 0; argIndex < args.length; argIndex++) {
+          message = message.replace("$"+(argIndex + 1), args[argIndex]);
         }
       }
       return message;

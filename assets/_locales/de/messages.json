@@ -111,6 +111,10 @@
     "message": "Deine Wertung:",
     "description": "Score"
   },
+  "UI_Score_Not_Rated": {
+    "message": "Keine Wertung",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
   "UI_Score_Masterpiece": {
     "message": "(10) Meisterwerk",
     "description": "Masterpiece - Score"
@@ -152,7 +156,7 @@
     "description": "Appalling - Score"
   },
   "syncPage_flashm_resumeMsg": {
-    "message": "Bei $time$ wieder aufnehmen",
+    "message": "Bei $time$ wiederaufnehmen",
     "description": "Video resume message",
     "placeholders": {
       "time": {
@@ -162,7 +166,7 @@
     }
   },
   "syncPage_flashm_sync_anime": {
-    "message": "Update $page$ auf Episode $epNr$",
+    "message": "$page$ auf Episode $epNr$ updaten",
     "description": "Update MAL to episode 3",
     "placeholders": {
       "page": {
@@ -176,7 +180,7 @@
     }
   },
   "syncPage_flashm_sync_manga": {
-    "message": "Update $page$ auf Kapitel $epNr$",
+    "message": "$page$ auf Kapitel $epNr$ updaten",
     "description": "Update MAL to chapter 3",
     "placeholders": {
       "page": {
@@ -202,7 +206,7 @@
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
-    "message": "Auf Abgeschlossen setzen?",
+    "message": "Als Abgeschlossen setzen?",
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
@@ -307,6 +311,26 @@
     "message": "mins",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Nächste Episode erwartet in $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "Wird ausgestrahlt in $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Episoden Offset",
     "description": "Episode Offset"
@@ -317,7 +341,7 @@
   },
   "correction_WrongUrl": {
     "message": "Ersetze diese URL nur wenn es auf einen falschen Anime/Manga zeigt.",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Verbesserungs Suche",
@@ -329,7 +353,7 @@
   },
   "correction_NoMal": {
     "message": "Falls der Anime/Manga nicht auf MAL existiert",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "Kein Eintrag auf MyAnimeList",
@@ -351,7 +375,7 @@
   },
   "correction_NewUrl": {
     "message": "Neue URL '$malUrl$' gesetzt.",
-    "description": "new url",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -361,7 +385,7 @@
   },
   "correction_NewUrlReset": {
     "message": "URL zurückgesetzt",
-    "description": "url reset"
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "Weiterschauen",
@@ -394,6 +418,14 @@
   "overview_Characters": {
     "message": "Charaktere",
     "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Titelmusik",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Abspannmusik:",
+    "description": "Ending Theme"
   },
   "search_Type": {
     "message": "Typ:",
@@ -466,6 +498,10 @@
   "settings_StreamingSite_text": {
     "message": "Die deaktivierten Seiten erscheinen nicht mehr in der Seitenleiste auf MAL.",
     "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "Vorschaubilder",
+    "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
     "message": "Diese Option definiert die größe der Thumbnails auf MAL.<br>Wie zum Beispiel für characters, people und recommendations",
@@ -555,9 +591,17 @@
     "message": "Nicht gesetzt",
     "description": "miniMAL Not Set"
   },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Überspringt das Intros",
+    "description": "Description for the intro skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Springt zum Anfang des Intros",
+    "description": "Description for the intro skip shortcut"
+  },
   "settings_introSkip": {
     "message": "Springe $Seconds$ Sekunden vor oder zurück",
-    "description": "Skips video Seconds",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -655,7 +699,7 @@
   },
   "minimalClass_Popup": {
     "message": "bitte erlaube Popups für diese Webseite",
-    "description": "Please allow popups for this website"
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "Version $Version$  wurde installiert $Link$CHANGELOG$LinkEnd$",

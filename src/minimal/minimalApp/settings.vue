@@ -233,6 +233,7 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
+        <checkbox option="forceEn">Force english</checkbox>
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>

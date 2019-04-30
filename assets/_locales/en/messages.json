@@ -111,6 +111,10 @@
       "message": "Your Score:",
       "description": "Score"
     },
+    "UI_Score_Not_Rated": {
+      "message": "Not rated",
+      "description": "Text if nothing is selected in the rating dropdown"
+    },
     "UI_Score_Masterpiece": {
       "message": "(10) Masterpiece",
       "description": "Masterpiece - Score"
@@ -307,6 +311,26 @@
       "message": "mins",
       "description": "mins"
     },
+    "prediction_Episode":{
+      "message": "Next episode estimated in $time$",
+      "description": "Text for next episode estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
+    "prediction_Airing":{
+      "message": "Airing in $time$",
+      "description": "Text for airing estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
     "correction_Offset": {
       "message": "Episode Offset",
       "description": "Episode Offset"
@@ -350,8 +374,8 @@
       "description": "Offset reset"
     },
     "correction_NewUrl": {
-      "message": "new URL '$malUrl$' set.",
-      "description": "new URL",
+      "message": "New URL '$malUrl$' set.",
+      "description": "New URL",
       "placeholders": {
         "malUrl": {
           "content": "$1",
@@ -567,8 +591,16 @@
       "message": "Not Set",
       "description": "miniMAL Not Set"
     },
+    "settings_Shortcuts_Skip_Forward": {
+      "message": "Skips the opening",
+      "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+      "message": "Jump back to opening's beginning",
+      "description": "Description for the the opening skip shortcut"
+    },
     "settings_introSkip": {
-      "message": "Skips $Seconds$ seconds",
+      "message": "Set opening skip length ($Seconds$ Seconds)",
       "description": "Skips video seconds",
       "placeholders": {
         "Seconds": {
@@ -699,12 +731,30 @@
       "message": "Open Source Code:",
       "description": "Update version - Text 3"
     },
+    "minimalClass_versionMsg_Text_4": {
+      "message": "uBlock users please subscribe to this filter list!<br>This fixes some problems like broken images",
+      "description": "Update version - Text 4"
+    },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",
       "description": "Update version - Text 3",
       "placeholders": {
         "Link1": {
           "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+          "example": "<a>"
+        },
+        "Link2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
+    },
+    "Emby_Authenticate": {
+      "message": "MAL-Sync needs an emby api key to work. More infos $Link1$Here$Link2$",
+      "description": "Emby Authentication",
+      "placeholders": {
+        "Link1": {
+          "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
           "example": "<a>"
         },
         "Link2": {

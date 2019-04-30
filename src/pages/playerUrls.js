@@ -34,6 +34,11 @@ module.exports = {
       '*://*.static.crunchyroll.com/*',
     ]
   },
+  Vrv: {
+    match: [
+      '*://*.static.vrv.co/*',
+    ]
+  },
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',
@@ -134,6 +139,16 @@ module.exports = {
   ok: {
     match: [
       '*://*.ok.ru/*',
+    ]
+  },
+  novelplanet: {
+    match: [
+      '*://*.novelplanet.me/*'
+    ]
+  },
+  proxer: {
+    match: [
+      '*://*.stream.proxer.me/*',
     ]
   },
 };
