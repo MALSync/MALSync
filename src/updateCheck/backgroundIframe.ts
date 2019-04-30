@@ -34,7 +34,7 @@ export function checkContinue(message){
   removeIframes();
 
   if(continueCheck[id]){
-    continueCheck[id](message.epList);
+    continueCheck[id](message.epList, message.len);
     delete continueCheck[id];
   }
 }
@@ -107,14 +107,19 @@ async function updateElement(el, type = "anime", retryNum = 0){
         }
         resolve();
       },60000);
-      continueCheck[id] = async function(list){
+      continueCheck[id] = async function(list, len){
         clearTimeout(timeout);
-        if (typeof list !== 'undefined' && list.length > 0) {
-          var newestEpisode = list.length - 1;
-          var newestEpisodeUrl = list[newestEpisode];
+        var newestEpisode = 0;
+        if(typeof list !== 'undefined' && list.length > 0){
+          newestEpisode = list.length - 1;
+        }
+        if (typeof len !== 'undefined' && len) {
+          newestEpisode = len;
+        }
+
+        if (newestEpisode) {
           con.log('Episode list found',{
-            newestEpisode: newestEpisode,
-            newestEpisodeUrl: newestEpisodeUrl
+            newestEpisode: newestEpisode
           });
 
           var finished = false;
@@ -148,19 +153,21 @@ async function updateElement(el, type = "anime", retryNum = 0){
             con.log('No new episode')
           }
 
-          //Update next Episode link
-          var continueUrlObj = await utils.getContinueWaching(type, anime_id);
-          var nextUserEp = parseInt(num_watched_episodes)+1;
+          if(typeof list !== 'undefined' && list.length > 0){
+            //Update next Episode link
+            var continueUrlObj = await utils.getContinueWaching(type, anime_id);
+            var nextUserEp = parseInt(num_watched_episodes)+1;
 
-          con.log('Continue', continueUrlObj);
-          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === nextUserEp){
-            con.log('Continue link up to date');
-          }else{
-            con.log('Update continue link');
-            var nextUserEpUrl = list[nextUserEp];
-            if(typeof nextUserEpUrl != 'undefined'){
-              con.log('set continue link', nextUserEpUrl, nextUserEp);
-              utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, anime_id);
+            con.log('Continue', continueUrlObj);
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === nextUserEp){
+              con.log('Continue link up to date');
+            }else{
+              con.log('Update continue link');
+              var nextUserEpUrl = list[nextUserEp];
+              if(typeof nextUserEpUrl != 'undefined'){
+                con.log('set continue link', nextUserEpUrl, nextUserEp);
+                utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, anime_id);
+              }
             }
           }
 

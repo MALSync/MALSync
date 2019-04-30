@@ -67,7 +67,11 @@ api.settings.init()
           }
         }else{
           con.log('send');
-          api.request.sendMessage({name: "iframeDone", id: id, epList: episodeList});
+          var len:undefined|number = undefined;
+          if(typeof this.page.overview.list.getTotal != "undefined"){
+            len = this.page.overview.list.getTotal();
+          }
+          api.request.sendMessage({name: "iframeDone", id: id, epList: episodeList, len: len});
         }
       }
     }
