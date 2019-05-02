@@ -166,7 +166,7 @@ function ajaxHandle(page){
 }
 
 function getEpisodeFallback(string, fallback){
-  var exclude = string.match(/(special)/gi);
+  var exclude = string.match(/(special|extra)/gi);
   if(exclude !== null){
     return '';
   }
@@ -188,4 +188,5 @@ Episode 10
 
 /* Exclude
 Special 1
+Extra Story
 */
