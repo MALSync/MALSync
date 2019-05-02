@@ -79,6 +79,13 @@ export const Proxer: pageInterface = {
             return true;
           }
         }
+      },
+      getTotal: function(){
+        var el = $('img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]').last().parent().parent().parent().parent();
+        if(el.length){
+          return Proxer.overview!.list!.elementEp(el);
+        }
+        return undefined;
       }
     }
   },

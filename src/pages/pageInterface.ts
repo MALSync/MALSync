@@ -25,7 +25,7 @@ export interface pageInterface {
         elementEp: (selector) => number,
         paginationNext?: (updateCheck:boolean) => boolean,
         handleListHook?: (ep:number, epList) => void,
-        getTotal?: () => number,
+        getTotal?: () => number|undefined,
       }
     },
     database?: string, //ignore, only for first party implementations
