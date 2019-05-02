@@ -115,6 +115,9 @@ body{
     position: fixed;
     height: 100%;
     width: 100%;
+    max-height: 100vh;
+    overflow-y: scroll;
+    padding-bottom: 10px;
     -webkit-transition: background-color 1s;
     -o-transition: background-color 1s;
     transition: background-color 1s;
