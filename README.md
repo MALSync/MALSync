@@ -16,6 +16,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![9anime](https://www.google.com/s2/favicons?domain=9anime.to "9anime")](http://9anime.to)  [9anime.to](http://9anime.to) | [![mangadex](https://www.google.com/s2/favicons?domain=mangadex.org "mangadex")](https://mangadex.org) [mangadex.org](https://mangadex.org) | [![Plex](https://www.google.com/s2/favicons?domain=http://app.plex.tv "Plex")](http://app.plex.tv) [Plex](http://app.plex.tv) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
 | [![otakustream](https://www.google.com/s2/favicons?domain=https://otakustream.tv "otakustream")](https://otakustream.tv) [otakustream.tv](https://otakustream.tv) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) | |
 | [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) | | |
+| [![VRV](https://www.google.com/s2/favicons?domain=vrv.co "VRV")](https://vrv.co) [vrv.co](https://vrv.co) | | |
 | [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) | | |
 | [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) | | |
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) | | |
@@ -25,6 +26,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![Netflix](https://www.google.com/s2/favicons?domain=https://www.netflix.com "Netflix")](https://www.netflix.com) [netflix.com](https://www.netflix.com) | | |
 | [![animeflv](https://www.google.com/s2/favicons?domain=https://animeflv.net "animeflv")](https://animeflv.net) [animeflv.net](https://animeflv.net) | | |
 | [![Jkanime](https://www.google.com/s2/favicons?domain=https://jkanime.net "Jkanime")](https://jkanime.net) [jkanime.net](https://jkanime.net) | | |
+| [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
