@@ -35,7 +35,7 @@ export const Jkanime: pageInterface = {
           document.body.insertAdjacentHTML( 'afterbegin', '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>' );
           var idMALSync = document.getElementById('MALSyncUl');
           var lastEps = j.$('.navigation a').last().text().split('-')[1].trim();
-          for(var i=1;i<lastEps;i++){
+          for(var i=1;i<=lastEps;i++){
             if(idMALSync != null){
               idMALSync.innerHTML += '<li><a href="'+document.URL+i+'" epi="'+i+'"></a> </li>';
             }
