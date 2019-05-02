@@ -33,8 +33,18 @@ export function checkContinue(message){
   con.log('Iframe update check done', id);
   removeIframes();
 
+  if(id == null){
+    var contObj = Object.keys(continueCheck)
+    con.info('Missing Id', contObj.length);
+    if(contObj.length === 1){
+      id = contObj[0];
+      con.log('Auto set Id', contObj[0]);
+    }
+
+  }
+
   if(continueCheck[id]){
-    continueCheck[id](message.epList, message.len);
+    continueCheck[id](message.epList, message.len, message.error);
     delete continueCheck[id];
   }
 }
@@ -107,8 +117,15 @@ async function updateElement(el, type = "anime", retryNum = 0){
         }
         resolve();
       },60000);
-      continueCheck[id] = async function(list, len){
+      continueCheck[id] = async function(list, len, error){
         clearTimeout(timeout);
+
+        if(typeof error !== undefined && error){
+          api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, error));
+          resolve();
+          return;
+        }
+
         var newestEpisode = 0;
         if(typeof list !== 'undefined' && list.length > 0){
           newestEpisode = list.length - 1;

@@ -67,6 +67,10 @@ export const Vrv: pageInterface = {
           }
           return '';
         },
+        getTotal: function(){
+          throw 'Not supported';
+          return 0;
+        }
       }
     },
     init(page){
