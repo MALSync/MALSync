@@ -591,6 +591,16 @@
       "message": "Not Set",
       "description": "miniMAL Not Set"
     },
+
+    "settings_Video_Player": {
+      "message": "Video Player",
+      "description": "Video settings header"
+    },
+    "settings_Video_Fullscreen": {
+      "message": "Auto fullscreen",
+      "description": "Auto fullscreen toggle"
+    },
+
     "settings_Shortcuts_Skip_Forward": {
       "message": "Skips the opening",
       "description": "Description for the the opening skip shortcut"

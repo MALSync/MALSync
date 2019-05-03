@@ -61,13 +61,15 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
   }).then((response) => {
     var res = JSON.parse(response.responseText);
     var malId = NaN;
-    for (var k = 0; k < res.included.length; k++) {
-      var mapping = res.included[k];
-      if(mapping.type == 'mappings'){
-        if(mapping.attributes.externalSite === 'myanimelist/'+type){
-          malId = mapping.attributes.externalId;
-          res.included.splice(k, 1);
-          break;
+    if(typeof res !== 'undefined' && typeof res.included !== 'undefined'){
+      for (var k = 0; k < res.included.length; k++) {
+        var mapping = res.included[k];
+        if(mapping.type == 'mappings'){
+          if(mapping.attributes.externalSite === 'myanimelist/'+type){
+            malId = mapping.attributes.externalId;
+            res.included.splice(k, 1);
+            break;
+          }
         }
       }
     }
@@ -98,4 +100,18 @@ export async function userId(){
       return res.data[0].id;
     });
   }
+}
+
+export function getTitle(titles){
+  var title = titles.en;
+  if(typeof title == 'undefined' || !title) title = titles.en_jp;
+  if(typeof title == 'undefined' || !title) title = titles.ja_jp;
+  if(typeof title == 'undefined' || !title){
+    var keys = Object.keys(titles);
+    if(!keys.length){
+      return 'No Title';
+    }
+    title = titles[keys[0]];
+  }
+  return title;
 }

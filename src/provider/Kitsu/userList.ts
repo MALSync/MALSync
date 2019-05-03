@@ -68,9 +68,7 @@ export function prepareData(data, listType): listElement[]{
     var list = data.data[i];
     var el = data.included[i];
 
-    var name = el.attributes.titles.en;
-    if(typeof name == 'undefined' || !name) name = el.attributes.titles.en_jp;
-    if(typeof name == 'undefined' || !name) name = el.attributes.titles.ja_jp;
+    var name =  helper.getTitle(el.attributes.titles);
 
     var malId = NaN;
     for (var k = 0; k < data.included.length; k++) {

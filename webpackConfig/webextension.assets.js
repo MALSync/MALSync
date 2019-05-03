@@ -139,6 +139,8 @@ const generateManifest = () => {
       {
         'matches': generateMatchExcludes(playerUrls).match,
         'js': [
+          'vendor/jquery.min.js',
+          'i18n.js',
           'iframe.js',
         ],
         "all_frames": true,

@@ -111,9 +111,7 @@ export class entryClass{
       if(this.getEpisode() === NaN) this.setEpisode(0);
       this.setScore(this.getScore());
 
-      this.name = this.animeI().attributes.titles.en;
-      if(typeof this.name == 'undefined' || !this.name) this.name = this.animeI().attributes.titles.en_jp;
-      if(typeof this.name == 'undefined' || !this.name) this.name = this.animeI().attributes.titles.ja_jp;
+      this.name = helper.getTitle(this.animeI().attributes.titles);
 
       this.totalEp = this.animeI().attributes.episodeCount? this.animeI().attributes.episodeCount: this.animeI().attributes.chapterCount;
       if(this.totalEp == null) this.totalEp = 0;

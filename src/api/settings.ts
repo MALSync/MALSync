@@ -39,6 +39,7 @@ export var settingsObj = {
     Proxeranime: true,
     Proxermanga: true,
 
+    autofull: false,
     introSkip: 85,
 
     updateCheckNotifications: true,
