@@ -61,13 +61,15 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
   }).then((response) => {
     var res = JSON.parse(response.responseText);
     var malId = NaN;
-    for (var k = 0; k < res.included.length; k++) {
-      var mapping = res.included[k];
-      if(mapping.type == 'mappings'){
-        if(mapping.attributes.externalSite === 'myanimelist/'+type){
-          malId = mapping.attributes.externalId;
-          res.included.splice(k, 1);
-          break;
+    if(typeof res !== 'undefined' && typeof res.included !== 'undefined'){
+      for (var k = 0; k < res.included.length; k++) {
+        var mapping = res.included[k];
+        if(mapping.type == 'mappings'){
+          if(mapping.attributes.externalSite === 'myanimelist/'+type){
+            malId = mapping.attributes.externalId;
+            res.included.splice(k, 1);
+            break;
+          }
         }
       }
     }
