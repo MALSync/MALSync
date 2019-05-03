@@ -1,0 +1,84 @@
+#material {
+  @black: #000000;
+  @primary: #212121;
+  @light: #484848;
+  @white: #ffffff;
+  @lighttransparent: #484848e6;
+  @blue: rgb(76, 97, 214);
+  @pink: #f71461;
+  p {
+    color: @white !important;
+  }
+  .mdl-layout__header-row {
+    background-color: @primary;
+  }
+  .is-casting-shadow {
+    background-color: @primary;
+  }
+  .mdl-layout__content {
+    background-color: @primary;
+  }
+  .mdl-cell {
+    background-color: @light;
+    div.mdl-shadow--2dp {
+      background-color: @light !important;
+    }
+    div span {
+      background-color: @lighttransparent !important;
+      a {
+        color: @white !important;
+      }
+    }
+    .mdl-chip__text {
+      background-color: #dedede !important;
+    }
+    .mdl-card__supporting-text {
+      color: @white !important ;
+      a {
+        color: ;
+      }
+    }
+    .mdl-card__title-text {
+      color: @white !important ;
+    }
+    li {
+      color: @white !important;
+      span {
+        color: @white !important;
+      }
+    }
+  }
+  div.mdl-grid {
+    color: @white;
+  }
+  .mdl-textfield__input {
+    background-color: @light !important;
+  }
+  .mdl-layout__content::-webkit-scrollbar {
+    background-color: @light;
+  }
+  .mdl-layout__content::-webkit-scrollbar-thumb {
+    background-color: @white !important;
+  }
+  .mdl-progress > .bufferbar {
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
+      ),
+      linear-gradient(to right, @blue, @blue);
+  }
+  .mdl-switch.is-checked .mdl-switch__thumb {
+    background-color: @blue;
+  }
+  .mdl-switch.is-checked .mdl-switch__track {
+    background-color: @blue;
+  }
+
+  .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
+    background-color: @pink !important;
+  }
+  .mdl-layout__content a {
+    color: @pink !important;
+  }
+}
