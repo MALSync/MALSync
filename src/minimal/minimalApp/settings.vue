@@ -67,6 +67,13 @@
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Video Player</h2>
+        </div>
+        <checkbox option="autofull">Auto fullscreen</checkbox>
+      </div>
+
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_StreamingSite")}}</h2>
           <tooltip>{{lang("settings_StreamingSite_text")}}</tooltip>
         </div>

@@ -36,7 +36,8 @@ function playerExtras(item, player){
   }
 }
 
-function setFullscreen(player){
+async function setFullscreen(player){
+  if(!await api.settings.getAsync('autofull')) return;
   //@ts-ignore
   if((window.fullScreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
     con.info('Browser already in fullscreen');
