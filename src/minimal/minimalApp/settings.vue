@@ -67,13 +67,6 @@
 
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">Video Player</h2>
-        </div>
-        <checkbox option="autofull">Auto fullscreen</checkbox>
-      </div>
-
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
-        <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_StreamingSite")}}</h2>
           <tooltip>{{lang("settings_StreamingSite_text")}}</tooltip>
         </div>
@@ -137,6 +130,17 @@
         <checkbox option="floatButtonStealth">{{lang("settings_miniMAL_floatButtonStealth")}}</checkbox>
         <checkbox option="floatButtonHide">{{lang("settings_miniMAL_floatButtonHide")}}</checkbox>
         <checkbox option="autoCloseMinimal">{{lang("settings_miniMAL_autoCloseMinimal")}}</checkbox>
+
+        <li v-if="commands" class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            {{lang("settings_miniMAL_Open")}}
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            {{commands._execute_browser_action.shortcut}}
+            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
+          </span>
+        </li>
+
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_miniMAL_Display")}}
@@ -169,22 +173,14 @@
         </li>
       </div>
 
-      <div v-if="commands" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">{{lang("settings_Shortcuts")}}</h2>
+          <h2 class="mdl-card__title-text">{{lang("settings_Video_Player")}}</h2>
         </div>
 
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            {{lang("settings_miniMAL_Open")}}
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            {{commands._execute_browser_action.shortcut}}
-            <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
-          </span>
-        </li>
+        <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
 
-        <li class="mdl-list__item">
+        <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{commands.intro_skip_forward.description}}
           </span>
@@ -194,7 +190,7 @@
           </span>
         </li>
 
-        <li class="mdl-list__item">
+        <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{commands.intro_skip_backward.description}}
           </span>
