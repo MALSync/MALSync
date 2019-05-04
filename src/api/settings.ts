@@ -12,6 +12,7 @@ export var settingsObj = {
     malResume: true,
     epPredictions: true,
 
+    theme: 'light',
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,
