@@ -1,8 +1,8 @@
 <template>
   <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
     <div class="mdl-card__title mdl-card--border">
-        <h2 class="mdl-card__title-text">
-          {{title}}
+        <h2 class="mdl-card__title-text" v-html="title">
+
         </h2>
         <a href="https://github.com/lolamtisch/MALSync/wiki/Troubleshooting" style="margin-left: auto;">{{lang("Help")}}</a>
       </div>
