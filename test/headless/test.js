@@ -478,7 +478,7 @@ after(async function () {
 testsArray.forEach(function(testPage) {
   if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
-
+    var doSkip = false;
     it('Online', async function () {
       const [response] = await Promise.all([
         page.goto(testPage.url, {timeout:0}),
@@ -487,11 +487,19 @@ testsArray.forEach(function(testPage) {
 
       if(parseInt(response.headers().status) != 200){
         console.log('    X Online '+response.headers().status);
+
+        var content = await page.evaluate(() => document.body.innerHTML);
+        if(content.indexOf('Why do I have to complete a CAPTCHA?') !== -1){
+          console.log('    X CAPTCHA');
+          doSkip = true;
+          this.skip();
+        }
       }
     })
 
     testPage.testCases.forEach(function(testCase) {
       it(testCase.url, async function () {
+        if(doSkip) this.skip();
         const [response] = await Promise.all([
           page.goto(testCase.url, {timeout:0}),
           page.waitForNavigation({timeout:0}),
