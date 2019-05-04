@@ -455,6 +455,8 @@ var testsArray = [
 // Define global variables
 let browser
 let page
+let debugging = false;
+//var caseTitle = 'Turkanime';
 
 before(async function () {
   browser = await puppeteer.launch()
@@ -474,6 +476,7 @@ after(async function () {
 })
 
 testsArray.forEach(function(testPage) {
+  if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
 
     it('Online', async function () {
@@ -496,6 +499,8 @@ testsArray.forEach(function(testPage) {
         await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
         await page.addScriptTag({content: script});
         const text = await page.evaluate(() => MalSyncTest())
+
+        if(debugging) console.log(text);
 
         if(text == 'retry'){
           this.retries(3);
