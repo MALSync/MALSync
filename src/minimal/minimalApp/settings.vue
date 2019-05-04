@@ -143,6 +143,18 @@
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
+            Theme
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </span>
+        </li>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
             {{lang("settings_miniMAL_Display")}}
           </span>
           <span class="mdl-list__item-secondary-action">

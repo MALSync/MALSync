@@ -120,6 +120,12 @@ export class minimal{
       api.settings.set('autoTrackingModeanime', j.$(this).val());
     });
 
+    this.minimal.find("#theme").val(api.settings.get('theme'));
+    this.minimal.find("#theme").change(function(){
+      // @ts-ignore
+      api.settings.set('theme', j.$(this).val());
+    });
+
     this.minimal.find("#autoTrackingModemanga").val(api.settings.get('autoTrackingModemanga'));
     this.minimal.find("#autoTrackingModemanga").change(function(){
       // @ts-ignore
