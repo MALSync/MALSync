@@ -34,9 +34,6 @@
     }
     .mdl-card__supporting-text {
       color: @white !important ;
-      a {
-        color: ;
-      }
     }
     .mdl-card__title-text {
       color: @white !important ;
@@ -47,9 +44,15 @@
         color: @white !important;
       }
     }
+    div.data.title {
+      background-color: @light !important ;
+    }
   }
   div.mdl-grid {
     color: @white;
+    #updateCheckAgo {
+      color: @white !important;
+    }
   }
   .mdl-textfield__input {
     background-color: @light !important;
@@ -60,25 +63,52 @@
   .mdl-layout__content::-webkit-scrollbar-thumb {
     background-color: @white !important;
   }
-  .mdl-progress > .bufferbar {
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)
-      ),
-      linear-gradient(to right, @blue, @blue);
+  .mdl-progress {
+    .bufferbar {
+      background-image: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)
+        ),
+        linear-gradient(to right, @blue, @blue);
+    }
+    .auxbar {
+      visibility: hidden !important;
+    }
   }
+
   .mdl-switch.is-checked .mdl-switch__thumb {
     background-color: @blue;
   }
   .mdl-switch.is-checked .mdl-switch__track {
-    background-color: @blue;
+    background-color: rgb(110, 127, 221);
   }
 
   .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
     background-color: @pink !important;
   }
-  .mdl-layout__content a {
+  .mdl-layout__content a:not(table .mdl-data-table) {
     color: @pink !important;
+  }
+  .mdl-textfield__label {
+    color: @pink;
+  }
+
+  .discord {
+    div:not(.loaded) {
+      background-image: -webkit-linear-gradient(
+        top,
+        @light 0%,
+        rgb(115, 139, 215) 74%
+      ) !important;
+    }
+  }
+  div .history {
+    h3 {
+      color: @white;
+    }
+    a {
+      color: @pink !important;
+    }
   }
 }
