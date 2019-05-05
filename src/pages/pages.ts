@@ -2,7 +2,6 @@ import {Kissanime} from "./Kissanime/main";
 import {Kissmanga} from "./Kissmanga/main";
 import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
-import {Masterani} from "./Masterani/main";
 import {Mangadex} from "./Mangadex/main";
 import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
@@ -27,7 +26,6 @@ export const pages = {
     Kissmanga: Kissmanga,
     nineAnime: nineAnime,
     Crunchyroll: Crunchyroll,
-    Masterani: Masterani,
     Mangadex: Mangadex,
     Mangarock: Mangarock,
     Gogoanime: Gogoanime,
