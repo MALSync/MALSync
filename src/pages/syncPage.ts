@@ -190,9 +190,11 @@ export class syncPage{
 
     if(malUrl === null){
       j.$("#MalInfo").text(api.storage.lang('Not_Found'));
+      j.$("#MalData").css("display","none");
       con.log('Not on mal');
     }else if(!malUrl){
       j.$("#MalInfo").text(api.storage.lang('NothingFound'));
+      j.$("#MalData").css("display","none");
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
@@ -398,7 +400,7 @@ export class syncPage{
 
   fillUI(){
     j.$('.MalLogin').css("display","initial");
-    j.$('#AddMalDiv').remove();
+    j.$('#AddMalDiv, #LoginMalDiv').remove();
 
     j.$("#malRating").attr("href", this.malObj.getDisplayUrl());
     this.malObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
