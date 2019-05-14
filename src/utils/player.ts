@@ -57,11 +57,15 @@ async function setFullscreen(player){
       'AT-player',
       'plyr',
       'AkiraPlayer',
+      'video-js',
     ];
+
+    var found = false;
 
     for (var i in ids) {
       var playerTemp = document.getElementById(ids[i]);
       if(playerTemp !== null){
+        found = true;
         playerEl = playerTemp;
         break;
       }
@@ -70,9 +74,14 @@ async function setFullscreen(player){
     for (var i in classes) {
       var classTemp = document.getElementsByClassName(classes[i]).item(0);
       if(classTemp !== null){
+        found = true;
         playerEl = classTemp;
         break;
       }
+    }
+
+    if(!found){
+      player.setAttribute("controls","controls");
     }
 
     if (playerEl.requestFullscreen) {

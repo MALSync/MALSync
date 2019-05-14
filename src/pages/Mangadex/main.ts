@@ -64,6 +64,10 @@ export const Mangadex: pageInterface = {
       }
       api.storage.addStyle(require('./style.less').toString());
       if(j.$('.card-header').length){
+        if(/chapter\/\d+\/comments/i.test(window.location.href)){
+          con.info('Comments');
+          return;
+        }
         j.$(document).ready(function(){page.handlePage()});
       }else{
         con.info('Waiting');

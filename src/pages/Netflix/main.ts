@@ -1,6 +1,7 @@
 import {pageInterface} from "./../pageInterface";
 
 var ident:any = undefined;
+var ses:any = undefined;
 
 var genres = [
   '2797624',
@@ -42,10 +43,20 @@ function getSeries(page){
       con.info('No Anime');
       return;
     }
-    ident = utils.urlPart(response.finalUrl, 4);
+    ses = getSeason();
+    ident = utils.urlPart(response.finalUrl, 4) + ses;
     page.handlePage();
     $('html').removeClass('miniMAL-hide');
   });
+
+  function getSeason(){
+    var sesText = j.$('.ellipsize-text span').first().text().trim();
+    var temp = sesText.match(/^S\d+/);
+    if(temp !== null){
+      return '?s='+ temp[0].replace('S', '');
+    }
+    throw 'No Season found';
+  }
 }
 
 export const Netflix: pageInterface = {
@@ -57,7 +68,7 @@ export const Netflix: pageInterface = {
       return true;
     },
     sync:{
-      getTitle: function(url){return j.$('.ellipsize-text h4').text().trim();},
+      getTitle: function(url){return j.$('.ellipsize-text h4').text().trim() + ' Season '+ses.replace('?s=', '');},
       getIdentifier: function(url){return ident;},
       getOverviewUrl: function(url){
         return Netflix.domain+'/title/'+Netflix.sync.getIdentifier(url);

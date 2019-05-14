@@ -77,12 +77,6 @@ module.exports = {
       '*crunchyroll.com/affiliate_iframeplayer*'
     ]
   },
-  Masterani: {
-    match: [
-      '*://www.masterani.me/anime/info/*',
-      '*://www.masterani.me/anime/watch/*',
-    ]
-  },
   Mangadex: {
     match: [
       '*://*.mangadex.org/manga/*',

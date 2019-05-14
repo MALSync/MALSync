@@ -72,7 +72,6 @@
         </div>
         <checkbox option="SiteSearch">{{lang("Search")}}</checkbox>
         <checkbox option="Kissanime">KissAnime</checkbox>
-        <checkbox option="Masterani">MasterAnime</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
         <checkbox option="Netflix">Netflix</checkbox>

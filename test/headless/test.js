@@ -74,15 +74,15 @@ var testsArray = [
 
   {
     title: '9anime',
-    url: 'https://www4.9anime.to/',
+    url: 'https://www1.9anime.nl/',
     testCases: [
       {
-        url: 'https://www4.9anime.to/watch/no-game-no-life-dub.y2p0/mlkqnp',
+        url: 'https://www1.9anime.nl/watch/no-game-no-life-dub.y2p0/mlkqnp',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
-          overviewUrl: 'https://www4.9anime.to/watch/no-game-no-life-dub.y2p0',
+          overviewUrl: 'https://www1.9anime.nl/watch/no-game-no-life-dub.y2p0',
           nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
           episode: 4,
           uiSelector: true,
@@ -93,10 +93,10 @@ var testsArray = [
 
   {
     title: 'Gogoanime',
-    url: 'https://www2.gogoanime.io',
+    url: 'https://www3.gogoanime.io',
     testCases: [
       {
-        url: 'https://www2.gogoanime.io/category/no-game-no-life',
+        url: 'https://www3.gogoanime.io/category/no-game-no-life',
         expected: {
           sync: false,
           title: 'no-game-no-life',
@@ -105,13 +105,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www2.gogoanime.io/no-game-no-life-episode-5',
+        url: 'https://www3.gogoanime.io/no-game-no-life-episode-5',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://www2.gogoanime.io/category/no-game-no-life',
-          nextEpUrl: 'https://www2.gogoanime.io/no-game-no-life-episode-6',
+          overviewUrl: 'https://www3.gogoanime.io/category/no-game-no-life',
+          nextEpUrl: 'https://www3.gogoanime.io/no-game-no-life-episode-6',
           episode: 5,
           uiSelector: false,
         }
@@ -478,7 +478,7 @@ after(async function () {
 testsArray.forEach(function(testPage) {
   if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
-
+    var doSkip = false;
     it('Online', async function () {
       const [response] = await Promise.all([
         page.goto(testPage.url, {timeout:0}),
@@ -487,11 +487,19 @@ testsArray.forEach(function(testPage) {
 
       if(parseInt(response.headers().status) != 200){
         console.log('    X Online '+response.headers().status);
+
+        var content = await page.evaluate(() => document.body.innerHTML);
+        if(content.indexOf('Why do I have to complete a CAPTCHA?') !== -1){
+          console.log('    X CAPTCHA');
+          doSkip = true;
+          this.skip();
+        }
       }
     })
 
     testPage.testCases.forEach(function(testCase) {
       it(testCase.url, async function () {
+        if(doSkip) this.skip();
         const [response] = await Promise.all([
           page.goto(testCase.url, {timeout:0}),
           page.waitForNavigation({timeout:0}),
