@@ -1,3 +1,5 @@
+// local://crunchyroll/anime/nogamenolife
+
 export class entryClass{
 
   readonly id: number;
@@ -16,6 +18,7 @@ export class entryClass{
   private animeInfo;
 
   constructor(public url:string, public miniMAL:boolean = false){
+    this.url = '';
     this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
   }
@@ -51,7 +54,7 @@ export class entryClass{
         volumeprogress: 0,
         rewatching: false,
         rewatchingCount: 0,
-        score: 0,
+        score: '',
         status: 6
       }
     }

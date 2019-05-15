@@ -188,6 +188,11 @@ export class syncPage{
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
+    if(malUrl === null || !malUrl){
+      con.log('Local Fallback');
+      malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+    }
+
     if(malUrl === null){
       j.$("#MalInfo").text(api.storage.lang('Not_Found'));
       j.$("#MalData").css("display","none");

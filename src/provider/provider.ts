@@ -4,6 +4,7 @@ import * as anilist from "./AniList/entryClass";
 import * as anilistUserList from "./AniList/userList";
 import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
+import * as local from "./Local/entryClass";
 import {listElement} from "./listInterface";
 
 interface entryClass {
@@ -51,6 +52,9 @@ function getSyncMode(){
 }
 
 export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
+  if(/^local:\/\//i.test(url)){
+    return new local.entryClass(url, miniMAL);
+  }
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){
     return new mal.entryClass(url, miniMAL);
