@@ -21,6 +21,7 @@ interface entryClass {
 
   init(),
   update(),
+  delete?(),
   getDisplayUrl(),
   getDetailUrl?: () => string|null,
   getMalUrl():string|null,

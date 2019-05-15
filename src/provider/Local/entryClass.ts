@@ -50,7 +50,7 @@ export class entryClass{
       if(this.state == null) throw 'No state info';
       this.addAnime = true;
       this.animeInfo = {
-        name: 'this.state!.title',
+        name: this.state!.title,
         tags: "",
         progress: 0,
         volumeprogress: 0,
@@ -168,6 +168,10 @@ export class entryClass{
       Object.assign(copy, this);
       copy.animeInfo = Object.assign( {},this.animeInfo);
       return copy;
+  }
+
+  delete(){
+    return api.storage.remove(this.key);
   }
 
   sync(){

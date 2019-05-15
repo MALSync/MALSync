@@ -19,6 +19,10 @@
       "message": "Reset",
       "description": "Reset"
     },
+    "Remove": {
+      "message": "Remove",
+      "description": "Button for removing entry from MAL..."
+    },
     "Loading": {
       "message": "Loading",
       "description": "Loading"
