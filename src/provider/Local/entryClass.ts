@@ -69,8 +69,6 @@ export class entryClass{
     }
 
     this.name = this.animeInfo.name;
-
-    con.error('lol', this.animeInfo);
   }
 
   getEpisode(){
