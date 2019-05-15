@@ -47,7 +47,12 @@ export class entryClass{
     this.animeInfo = await api.storage.get(this.key , null);
 
     if(this.animeInfo === 'undefined' || this.animeInfo === null || !this.animeInfo){
-      if(this.state == null) throw 'No state info';
+      if(this.state == null){
+        con.error('No state found')
+        this.state = {
+          title: 'Unknown',
+        }
+      }
       this.addAnime = true;
       this.animeInfo = {
         name: this.state!.title,
