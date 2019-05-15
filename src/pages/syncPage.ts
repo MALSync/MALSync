@@ -203,7 +203,7 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.malObj = entryClass(malUrl);
+      this.malObj = entryClass(malUrl, false, false, state);
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 

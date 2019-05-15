@@ -51,9 +51,9 @@ function getSyncMode(){
   return api.settings.get('syncMode');
 }
 
-export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
+export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false, state:any = null): entryClass{
   if(/^local:\/\//i.test(url)){
-    return new local.entryClass(url, miniMAL);
+    return new local.entryClass(url, miniMAL, state);
   }
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){

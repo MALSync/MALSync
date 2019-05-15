@@ -19,7 +19,7 @@ export class entryClass{
 
   private animeInfo;
 
-  constructor(private key:string, public miniMAL:boolean = false){
+  constructor(private key:string, public miniMAL:boolean = false, private state:any = null){
     this.id = utils.urlPart(key, 4);
     this.type = utils.urlPart(key, 3);
   }
@@ -37,19 +37,21 @@ export class entryClass{
   }
 
   async update(){
-    con.log('Update MAL info', this.key);
+    con.log('Update MAL info', this.key, this.state);
     this.login = true;
     this.addAnime = false;
 
-    this.name = "No Game No Life";
+
     this.totalEp = 0;
     this.totalVol = 0;
 
     this.animeInfo = await api.storage.get(this.key , null);
 
     if(this.animeInfo === 'undefined' || this.animeInfo === null || !this.animeInfo){
+      if(this.state == null) throw 'No state info';
       this.addAnime = true;
       this.animeInfo = {
+        name: 'this.state!.title',
         tags: "",
         progress: 0,
         volumeprogress: 0,
@@ -58,7 +60,12 @@ export class entryClass{
         score: '',
         status: 6
       }
+    }else if(this.state !== null){
+      this.animeInfo.name = this.state!.title;
     }
+
+    this.name = this.animeInfo.name;
+
     con.error('lol', this.animeInfo);
   }
 
