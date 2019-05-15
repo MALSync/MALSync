@@ -15,8 +15,6 @@ export class entryClass{
   wrong: boolean = false;
   pending: boolean = false;
 
-  renderNoImage: boolean = true;
-
   private animeInfo;
 
   constructor(private key:string, public miniMAL:boolean = false, private state:any = null){
@@ -162,7 +160,7 @@ export class entryClass{
   }
 
   async getImage():Promise<string>{
-    return 'https://cdn.myanimelist.net/images/anime/5/65187.jpg';
+    return api.storage.assetUrl('questionmark.gif');
   }
 
   clone() {
