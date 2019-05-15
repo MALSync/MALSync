@@ -91,7 +91,7 @@
     },
     watch: {
       url: function(url){
-        this.malUrl = this.url;
+        if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       },
       wrong: function(wrong){
         if(wrong){
@@ -100,7 +100,7 @@
       }
     },
     mounted: function(){
-      this.malUrl = this.url;
+      if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
       var This = this;
       j.$(this.$el).on('click', '.searchItem', function(e){
