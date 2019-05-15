@@ -30,7 +30,7 @@
           <label class="mdl-textfield__label" for="malSearch">
             {{lang("correction_Search")}}
           </label>
-          <input v-model="searchKeyword" class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
+          <input v-model="searchKeyword" @focus="searchFocus()"  class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
         </div>
         <tooltip direction="left" style="float: right; margin-bottom: -17px;">
           <span v-html="lang('correction_Search_text')"></span>
@@ -174,6 +174,11 @@
       },
       update: function(){
         this.submit(this.malUrl);
+      },
+      searchFocus: function(){
+        if(this.searchKeyword == ''){
+          this.searchKeyword = this.title;
+        }
       }
     }
   }
