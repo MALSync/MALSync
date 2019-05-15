@@ -239,7 +239,7 @@
     },
     computed: {
       editUrl: function(){
-        if(this.renderObj.id) return `https://myanimelist.net/ownlist/${this.renderObj.type}/${this.renderObj.id}/edit`;
+        if(typeof this.renderObj.getDetailUrl !== 'undefined') return this.renderObj.getDetailUrl();
         return null;
       },
       malStatus: {

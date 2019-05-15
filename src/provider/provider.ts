@@ -22,6 +22,7 @@ interface entryClass {
   init(),
   update(),
   getDisplayUrl(),
+  getDetailUrl?: () => string|null,
   getMalUrl():string|null,
   getEpisode(),
   setEpisode(ep:number),

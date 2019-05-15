@@ -32,6 +32,10 @@ export class entryClass{
     return this.getDisplayUrl();
   }
 
+  getDetailUrl(){
+    return `https://myanimelist.net/ownlist/${this.type}/${this.id}/edit`;
+  }
+
   update(){
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.id+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);
