@@ -140,7 +140,7 @@ export class entryClass{
   }
 
   async getRating(){
-    return this.getScore();
+    return 'Local';
   }
 
   async setResumeWaching(url:string, ep:number){
