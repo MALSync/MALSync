@@ -307,6 +307,7 @@
         return false;
       },
       fill(url, isBase = false){
+        con.log('fill', url);
         var minimal = j.$(this.$el);
         if(url == null){
           if(this.isPopup()){
@@ -316,7 +317,8 @@
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
            /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
-           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url)
+           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url) ||
+           /^local:\/\//i.test(url)
           ){
           if(!isBase){
             this.history.push(this.getCurrent(this.currentTab));
