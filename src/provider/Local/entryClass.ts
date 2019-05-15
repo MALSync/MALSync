@@ -5,6 +5,8 @@ export class entryClass{
   readonly id: number;
   readonly type: "anime"|"manga";
 
+  url = '';
+
   name: string = "";
   totalEp: number = NaN;
   totalVol?: number;
@@ -17,10 +19,9 @@ export class entryClass{
 
   private animeInfo;
 
-  constructor(public url:string, public miniMAL:boolean = false){
-    this.url = '';
-    this.id = utils.urlPart(url, 4);
-    this.type = utils.urlPart(url, 3);
+  constructor(private key:string, public miniMAL:boolean = false){
+    this.id = utils.urlPart(key, 4);
+    this.type = utils.urlPart(key, 3);
   }
 
   init(){
@@ -28,7 +29,7 @@ export class entryClass{
   };
 
   getDisplayUrl(){
-    return this.url;
+    return this.key;
   }
 
   getMalUrl(){
@@ -36,7 +37,7 @@ export class entryClass{
   }
 
   async update(){
-    con.log('Update MAL info', this.url);
+    con.log('Update MAL info', this.key);
     this.login = true;
     this.addAnime = false;
 
@@ -44,7 +45,7 @@ export class entryClass{
     this.totalEp = 0;
     this.totalVol = 0;
 
-    this.animeInfo = await api.storage.get(this.url , null);
+    this.animeInfo = await api.storage.get(this.key , null);
 
     if(this.animeInfo === 'undefined' || this.animeInfo === null || !this.animeInfo){
       this.addAnime = true;
@@ -256,7 +257,7 @@ export class entryClass{
       async function continueCall(){
         con.log('[SET] Object:', This.animeInfo);
 
-        await api.storage.set(This.url , This.animeInfo);
+        await api.storage.set(This.key , This.animeInfo);
 
         resolve();
 
