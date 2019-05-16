@@ -4,7 +4,7 @@ import {listElement} from "./../listInterface";
 export async function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist = []){
   // @ts-ignore
   status = parseInt(status);
-  var data = prepareData(await api.storage.list(), localListType, status);
+  var data = prepareData(await api.storage.list('sync'), localListType, status);
   if(typeof callbacks.singleCallback !== 'undefined'){
     // @ts-ignore
     if(!data.length) callbacks.singleCallback(false, 0, 0);
