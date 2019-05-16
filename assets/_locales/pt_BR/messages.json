@@ -591,6 +591,14 @@
     "message": "Não configurado",
     "description": "miniMAL Not Set"
   },
+  "settings_Video_Player": {
+    "message": "Vídeo Player",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Tela cheia automática",
+    "description": "Auto fullscreen toggle"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Pula a abertura",
     "description": "Description for the the opening skip shortcut"
@@ -731,12 +739,30 @@
     "message": "Código fonte aberto:",
     "description": "Update version - Text 3"
   },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "Usuários do uBlock por favor inscrevam-se nesta lista de filtros!<br>Isso corrige alguns problemas, como imagens quebradas",
+    "description": "Update version - Text 4"
+  },
   "Anilist_Authenticate": {
     "message": "Por favor autentique $Link1$Aqui$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
         "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "O MAL-Sync precisa de acesso ao API do Emby para funcionar. Mais informação $Link1$Aqui$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
         "example": "<a>"
       },
       "Link2": {
