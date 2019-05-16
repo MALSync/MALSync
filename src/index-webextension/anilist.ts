@@ -2,7 +2,7 @@ import {anilistClass} from "./../anilist/anilistClass";
 import {firebaseNotification} from "./../utils/firebaseNotification";
 
 function main() {
-  if(api.settings.get('userscriptMode')) return;
+  if(api.settings.get('userscriptMode')) throw 'Userscript mode';
   var anilist = new anilistClass(window.location.href);
   messageAniListListener(anilist);
   firebaseNotification();
