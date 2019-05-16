@@ -82,7 +82,7 @@ export async function userList(
   templist: listElement[] = []
 ){
 
-  templist = templist.concat(await getLocalList());
+  if(api.settings.get('localSyncAlpha')) templist = templist.concat(await getLocalList());
 
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){

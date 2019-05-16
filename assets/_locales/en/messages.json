@@ -455,6 +455,10 @@
       "message": "Authenticate",
       "description": "Authenticate"
     },
+    "settings_LocalSync": {
+      "message": "Local storage fallback",
+      "description": "Option to activate the local storage fallback sync"
+    },
     "settings_Animesync": {
       "message": "Anime sync",
       "description": "Anime sync"

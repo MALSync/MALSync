@@ -5,6 +5,7 @@ export var settingsObj = {
     forceEn: false,
     userscriptMode: false,
     syncMode: 'MAL',
+    localSyncAlpha: false,
     delay: 0,
     videoDuration: 85,
     malTags: true,

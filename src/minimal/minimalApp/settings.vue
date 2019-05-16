@@ -37,6 +37,7 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
+        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
