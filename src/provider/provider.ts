@@ -5,6 +5,7 @@ import * as anilistUserList from "./AniList/userList";
 import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
 import * as local from "./Local/entryClass";
+import * as localUserList from "./Local/userList";
 import {listElement} from "./listInterface";
 
 interface entryClass {
@@ -67,7 +68,7 @@ export function entryClass(url:string, miniMAL:boolean = false, silent:boolean =
   }
 }
 
-export function userList(
+export async function userList(
   status = 1,
   localListType = 'anime',
   callbacks: {
@@ -78,8 +79,11 @@ export function userList(
   },
   username = null,
   offset = 0,
-  templist = []
+  templist: listElement[] = []
 ){
+
+  templist = templist.concat(await getLocalList());
+
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){
     return malUserList.userList(status, localListType, callbacks, username, offset, templist);
@@ -88,4 +92,13 @@ export function userList(
   }else{
     return kitsuUserList.userList(status, localListType, callbacks, username, offset, templist);
   }
+
+  async function getLocalList():Promise<listElement[]>{
+    return new Promise((resolve, reject) => {
+      localUserList.userList(status, localListType, {fullListCallback: (list) => {
+        resolve(list)
+      }});
+    })
+  }
+
 }
