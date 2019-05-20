@@ -115,3 +115,10 @@ export function getTitle(titles){
   }
   return title;
 }
+
+export function getCacheKey(id, kitsuId){
+  if(isNaN(id) || !id){
+    return 'kitsu:'+kitsuId;
+  }
+  return id;
+}

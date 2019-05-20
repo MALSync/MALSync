@@ -188,6 +188,11 @@ export class syncPage{
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
+    if((malUrl === null || !malUrl) && api.settings.get('localSyncAlpha')){
+      con.log('Local Fallback');
+      malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+    }
+
     if(malUrl === null){
       j.$("#MalInfo").text(api.storage.lang('Not_Found'));
       j.$("#MalData").css("display","none");
@@ -198,7 +203,7 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.malObj = entryClass(malUrl);
+      this.malObj = entryClass(malUrl, false, false, state);
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 
@@ -221,7 +226,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates(malUrl).shortName, state.episode])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -415,7 +420,7 @@ export class syncPage{
 
     if(this.malObj.addAnime){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates().shortName])+"</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);
@@ -678,7 +683,7 @@ export class syncPage{
     }
     var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
     if(typeof this.malObj != 'undefined'){
-      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.id)
+      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
     }
     return returnValue;
   }

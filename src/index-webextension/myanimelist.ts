@@ -2,7 +2,7 @@ import {myanimelistClass} from "./../myanimelist/myanimelistClass";
 import {firebaseNotification} from "./../utils/firebaseNotification";
 
 function main() {
-  if(api.settings.get('userscriptMode')) return;
+  if(api.settings.get('userscriptMode')) throw 'Userscript mode';
   var mal = new myanimelistClass(window.location.href);
   messageMalListener(mal);
   mal.init();

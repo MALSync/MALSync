@@ -36,7 +36,9 @@ export class minimal{
       }
       e.preventDefault();
       // @ts-ignore
-      var url = utils.absoluteLink(j.$(this).attr('href'), 'https://myanimelist.net');
+      var url = j.$(this).attr('href');
+      if(!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
+
       if(!This.fill(url)){
         var win = window.open(url, '_blank');
         if (win) {

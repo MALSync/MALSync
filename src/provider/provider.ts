@@ -4,6 +4,8 @@ import * as anilist from "./AniList/entryClass";
 import * as anilistUserList from "./AniList/userList";
 import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
+import * as local from "./Local/entryClass";
+import * as localUserList from "./Local/userList";
 import {listElement} from "./listInterface";
 
 interface entryClass {
@@ -20,7 +22,9 @@ interface entryClass {
 
   init(),
   update(),
+  delete?(),
   getDisplayUrl(),
+  getDetailUrl?: () => string|null,
   getMalUrl():string|null,
   getEpisode(),
   setEpisode(ep:number),
@@ -37,6 +41,7 @@ interface entryClass {
   getStreamingUrl(),
   setStreamingUrl(url:string),
   getRating: () => Promise<any>,
+  getCacheKey: () => string|number,
   setResumeWaching: (url:string, ep:number) => Promise<any>,
   getResumeWaching: () => Promise<{url:string, ep:number}>,
   setContinueWaching: (url:string, ep:number) => Promise<any>,
@@ -50,7 +55,10 @@ function getSyncMode(){
   return api.settings.get('syncMode');
 }
 
-export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
+export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false, state:any = null): entryClass{
+  if(/^local:\/\//i.test(url)){
+    return new local.entryClass(url, miniMAL, state);
+  }
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){
     return new mal.entryClass(url, miniMAL);
@@ -61,7 +69,7 @@ export function entryClass(url:string, miniMAL:boolean = false, silent:boolean =
   }
 }
 
-export function userList(
+export async function userList(
   status = 1,
   localListType = 'anime',
   callbacks: {
@@ -72,8 +80,11 @@ export function userList(
   },
   username = null,
   offset = 0,
-  templist = []
+  templist: listElement[] = []
 ){
+
+  if(api.settings.get('localSyncAlpha')) templist = templist.concat(await getLocalList());
+
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){
     return malUserList.userList(status, localListType, callbacks, username, offset, templist);
@@ -82,4 +93,13 @@ export function userList(
   }else{
     return kitsuUserList.userList(status, localListType, callbacks, username, offset, templist);
   }
+
+  async function getLocalList():Promise<listElement[]>{
+    return new Promise((resolve, reject) => {
+      localUserList.userList(status, localListType, {fullListCallback: (list) => {
+        resolve(list)
+      }});
+    })
+  }
+
 }

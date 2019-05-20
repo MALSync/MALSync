@@ -19,6 +19,10 @@
       "message": "Reset",
       "description": "Reset"
     },
+    "Remove": {
+      "message": "Remove",
+      "description": "Button for removing entry from MAL..."
+    },
     "Loading": {
       "message": "Loading",
       "description": "Loading"
@@ -450,6 +454,10 @@
     "settings_Authenticate": {
       "message": "Authenticate",
       "description": "Authenticate"
+    },
+    "settings_LocalSync": {
+      "message": "Local storage fallback",
+      "description": "Option to activate the local storage fallback sync"
     },
     "settings_Animesync": {
       "message": "Anime sync",

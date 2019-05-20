@@ -32,7 +32,7 @@
     </table>
     <div class="history">
       <h3>{{lang("updateCheck_NotificationHistory")}}</h3>
-      <a  v-for="historyItem in history" :key="historyItem.id" :href="historyItem.url" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">
+      <a  v-for="historyItem in history" :key="historyItem.id" :href="historyItem.url" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid" style="text-decoration: none !important; color: black;">
         <img :src="historyItem.iconUrl" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;">
         <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
           <span style="font-size: 20px; font-weight: 400; line-height: 1;">{{historyItem.title}}</span>
@@ -85,7 +85,7 @@
               var error = '';
               var trColor = '';
               con.log('el', el);
-              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.malId);
+              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.cacheKey);
               con.log('elCache', elCache);
               if(typeof elCache != 'undefined'){
                 episode = elCache['newestEp']+'/'+el.totalEp;
@@ -120,7 +120,7 @@
         });
       },
       deleteItem(item){
-        var delPath = 'updateCheck/'+this.listType+'/'+item.malId;
+        var delPath = 'updateCheck/'+this.listType+'/'+item.cacheKey;
         con.log('delete', delPath, item);
         api.storage.remove(delPath);
         item.trColor = 'black';

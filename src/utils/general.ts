@@ -48,7 +48,7 @@ export function episode(type: "anime"|"manga"){
   return api.storage.lang("UI_Episode");
 }
 
-export var syncRegex = /(^settings\/.*|^resume\/.*|^continue\/.*|^.*\/Offset$|^updateCheckTime$|^tempVersion$)/
+export var syncRegex = /(^settings\/.*|^resume\/.*|^continue\/.*|^.*\/Offset$|^updateCheckTime$|^tempVersion$|^local:\/\/)/
 
 export enum status {
   watching = 1,
@@ -220,7 +220,7 @@ export function getTooltip(text, style = '', direction = 'top'){
   <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
 }
 
-export async function epPredictionUI(malid, type = 'anime', callback){
+export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
 
   utils.epPrediction(malid, async function(pre){
     if(!pre) callback(false);
@@ -228,7 +228,7 @@ export async function epPredictionUI(malid, type = 'anime', callback){
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
     var elCache:any = undefined;
     if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){
-      elCache = await api.storage.get('updateCheck/'+type+'/'+malid);
+      elCache = await api.storage.get('updateCheck/'+type+'/'+cacheKey);
     }
     if(pre === false && typeof elCache == 'undefined') return;
     var UI = {

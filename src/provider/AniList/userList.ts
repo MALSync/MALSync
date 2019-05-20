@@ -2,7 +2,7 @@ import * as helper from "./helper";
 import {listElement} from "./../listInterface";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
-export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist = []){
+export function userList(status = 1, localListType = 'anime', callbacks, username: null|string = null, offset = 0, templist: listElement[] = []){
     if(offset < 1) offset = 1;
     var anilist = false;
     status = parseInt(status.toString());
@@ -148,6 +148,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
+        cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,
@@ -161,6 +162,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
+        cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,
@@ -211,13 +213,14 @@ export function UserName(callback){
 }
 
 function prepareAnilist(data, listType){
-  var newData = [] as {malid: number, id: number, watchedEp: number}[];
+  var newData = [] as {malid: number, id: number, watchedEp: number, cacheKey: string|number}[];
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
     newData.push({
       malid: el.media.idMal,
       id: el.media.id,
       watchedEp: el.progress,
+      cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
     })
   }
   return newData;

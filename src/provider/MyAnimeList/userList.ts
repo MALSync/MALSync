@@ -1,7 +1,7 @@
 import {listElement} from "./../listInterface";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
-export function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist = []){
+export function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist: listElement[] = []){
     con.log('[UserList]', 'username: '+username, 'status: '+status, 'offset: '+offset);
     if(username == null){
         UserName(function(usernameTemp){
@@ -59,6 +59,7 @@ export function prepareData(data, listType): listElement[]{
       newData.push({
         uid: el['anime_id'],
         malId: el['anime_id'],
+        cacheKey: el['anime_id'],
         type: listType,
         title: el['anime_title'],
         url: 'https://myanimelist.net'+el['anime_url'],
@@ -72,6 +73,7 @@ export function prepareData(data, listType): listElement[]{
       newData.push({
         uid: el['manga_id'],
         malId: el['manga_id'],
+        cacheKey: el['anime_id'],
         type: listType,
         title: el['manga_title'],
         url: 'https://myanimelist.net'+el['manga_url'],

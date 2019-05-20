@@ -2,7 +2,7 @@ import {syncPage} from "./../pages/syncPage";
 import {firebaseNotification} from "./../utils/firebaseNotification";
 
 function main() {
-  if(api.settings.get('userscriptMode')) return;
+  if(api.settings.get('userscriptMode')) throw 'Userscript mode';
   var page = new syncPage(window.location.href);
   messagePageListener(page);
   page.init();
