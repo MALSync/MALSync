@@ -220,9 +220,6 @@
             utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
               this.kiss2mal = links;
             });
-            utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, (prediction) => {
-              this.prediction = prediction;
-            });
           }
 
         }else{
@@ -235,6 +232,9 @@
         this.mal.resumeUrl = await renderObj.getResumeWaching();
         this.mal.continueUrl = await renderObj.getContinueWaching();
 
+        utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, (prediction) => {
+          this.prediction = prediction;
+        });
       }
     },
     computed: {
