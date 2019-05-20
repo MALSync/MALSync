@@ -226,7 +226,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates(malUrl).shortName, state.episode])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -420,7 +420,7 @@ export class syncPage{
 
     if(this.malObj.addAnime){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates().shortName])+"</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);

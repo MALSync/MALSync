@@ -190,7 +190,7 @@ export class entryClass{
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
 
-        var flashConfirmText = `Add "${this.name}" to MAL?`;
+        var flashConfirmText = `Save "${this.name}" to local storage?`;
 
         utils.flashConfirm(flashConfirmText, 'add', function(){
           continueCall();
