@@ -215,7 +215,7 @@ export class entryClass{
   }
 
   getCacheKey(){
-    return this.id;
+    return helper.getCacheKey(this.id, this.aniId);
   }
 
   async setResumeWaching(url:string, ep:number){

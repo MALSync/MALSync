@@ -148,7 +148,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
-        cacheKey: el.media.idMal,
+        cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,
@@ -162,7 +162,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
-        cacheKey: el.media.idMal,
+        cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,
@@ -220,7 +220,7 @@ function prepareAnilist(data, listType){
       malid: el.media.idMal,
       id: el.media.id,
       watchedEp: el.progress,
-      cacheKey: el.media.idMal,
+      cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
     })
   }
   return newData;
