@@ -216,9 +216,6 @@
             this.updateStatusTags();
           });
 
-          this.mal.resumeUrl = await renderObj.getResumeWaching();
-          this.mal.continueUrl = await renderObj.getContinueWaching();
-
           if(renderObj.getMalUrl().split('').length > 3){
             utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
               this.kiss2mal = links;
@@ -235,6 +232,8 @@
           this.imageTemp = await this.renderObj.getImage();
         }
 
+        this.mal.resumeUrl = await renderObj.getResumeWaching();
+        this.mal.continueUrl = await renderObj.getContinueWaching();
 
       }
     },

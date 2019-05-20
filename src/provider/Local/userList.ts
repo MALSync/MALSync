@@ -1,4 +1,5 @@
 import {listElement} from "./../listInterface";
+import * as helper from "./helper";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
 export async function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist = []){
@@ -54,6 +55,7 @@ export function prepareData(data, listType, status): listElement[]{
           //@ts-ignore
           uid: key,
           url: key,
+          cacheKey: helper.getCacheKey(utils.urlPart(key, 4)),
           watchedEp: el.progress,
         });
       }else{
@@ -68,6 +70,7 @@ export function prepareData(data, listType, status): listElement[]{
           //@ts-ignore
           uid: key,
           url: key,
+          cacheKey: helper.getCacheKey(utils.urlPart(key, 4)),
           watchedEp: el.progress,
         });
       }

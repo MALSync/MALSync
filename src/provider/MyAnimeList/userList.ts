@@ -59,6 +59,7 @@ export function prepareData(data, listType): listElement[]{
       newData.push({
         uid: el['anime_id'],
         malId: el['anime_id'],
+        cacheKey: el['anime_id'],
         type: listType,
         title: el['anime_title'],
         url: 'https://myanimelist.net'+el['anime_url'],
@@ -72,6 +73,7 @@ export function prepareData(data, listType): listElement[]{
       newData.push({
         uid: el['manga_id'],
         malId: el['manga_id'],
+        cacheKey: el['anime_id'],
         type: listType,
         title: el['manga_title'],
         url: 'https://myanimelist.net'+el['manga_url'],

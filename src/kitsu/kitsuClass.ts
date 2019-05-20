@@ -365,8 +365,8 @@ export class kitsuClass{
 
             }
 
-            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.malId);
-            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.malId);
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.cacheKey);
 
             var curEp = en.watchedEp;
 

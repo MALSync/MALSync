@@ -1,5 +1,7 @@
 // local://crunchyroll/anime/nogamenolife
 
+import * as helper from "./helper";
+
 export class entryClass{
 
   readonly id: number;
@@ -147,19 +149,19 @@ export class entryClass{
   }
 
   async setResumeWaching(url:string, ep:number){
-    return utils.setResumeWaching(url, ep, this.type, this.id);
+    return utils.setResumeWaching(url, ep, this.type, helper.getCacheKey(this.id));
   }
 
   async getResumeWaching():Promise<{url:string, ep:number}>{
-    return utils.getResumeWaching(this.type, this.id)
+    return utils.getResumeWaching(this.type, helper.getCacheKey(this.id))
   }
 
   async setContinueWaching(url:string, ep:number){
-    return utils.setContinueWaching(url, ep,this.type, this.id)
+    return utils.setContinueWaching(url, ep,this.type, helper.getCacheKey(this.id))
   }
 
   async getContinueWaching():Promise<{url:string, ep:number}>{
-    return utils.getContinueWaching(this.type, this.id)
+    return utils.getContinueWaching(this.type, helper.getCacheKey(this.id))
   }
 
   async getImage():Promise<string>{

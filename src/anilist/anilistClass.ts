@@ -313,8 +313,8 @@ export class anilistClass{
             con.log(element);
             element.parent().addClass('malSyncDone2');
 
-            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.malid);
-            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.malid);
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.cacheKey);
 
             var curEp = en.watchedEp;
 

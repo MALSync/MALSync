@@ -148,6 +148,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
+        cacheKey: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,
@@ -161,6 +162,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         uid: el.media.id,
         malId: el.media.idMal,
+        cacheKey: el.media.idMal,
         type: listType,
         title: el.media.title.userPreferred,
         url: el.media.siteUrl,

@@ -375,8 +375,8 @@ export class myanimelistClass{
               <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
-          var resumeUrlObj = await utils.getResumeWaching(type, id);
-          var continueUrlObj = await utils.getContinueWaching(type, id);
+          var resumeUrlObj = await utils.getResumeWaching(type, el.cacheKey);
+          var continueUrlObj = await utils.getContinueWaching(type, el.cacheKey);
 
           var curEp = parseInt(el.watchedEp);
 

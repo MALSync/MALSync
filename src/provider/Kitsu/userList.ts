@@ -88,6 +88,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         malId: malId,
         uid: el.id,
+        cacheKey: malId,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,
@@ -102,6 +103,7 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         malId: malId,
         uid: el.id,
+        cacheKey: malId,
         kitsuSlug: el.attributes.slug,
         type: listType,
         title: name,

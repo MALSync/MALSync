@@ -95,7 +95,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
     con.log(utils.getUrlFromTags(el.tags));
     var streamUrl = utils.getUrlFromTags(el.tags);
     if(typeof streamUrl != 'undefined'){
-      var elCache = await api.storage.get('updateCheck/'+type+'/'+anime_id);
+      var elCache = await api.storage.get('updateCheck/'+type+'/'+el.cacheKey);
       con.log('cached', elCache);
       if((typeof elCache != 'undefined' && elCache.finished) || !isSupported(streamUrl)){
         resolve()
@@ -108,7 +108,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
       openInvisiblePage(streamUrl, id);
 
       var timeout = setTimeout(async function(){
-        api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, 'Timeout'));
+        api.storage.set('updateCheck/'+type+'/'+el.cacheKey, checkError(elCache, 'Timeout'));
         if(retry && retryNum < 3){
           con.log('retry', retryNum);
           retry = false;
@@ -121,7 +121,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
         clearTimeout(timeout);
 
         if(typeof error !== undefined && error){
-          api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, error));
+          api.storage.set('updateCheck/'+type+'/'+el.cacheKey, checkError(elCache, error));
           resolve();
           return;
         }
@@ -145,7 +145,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
             finished = true;
           }
 
-          api.storage.set('updateCheck/'+type+'/'+anime_id, {newestEp: newestEpisode, finished: finished});
+          api.storage.set('updateCheck/'+type+'/'+el.cacheKey, {newestEp: newestEpisode, finished: finished});
 
           if(typeof elCache != 'undefined' && newestEpisode > elCache.newestEp && elCache.newestEp != ''){
             con.log('new Episode');
@@ -172,7 +172,7 @@ async function updateElement(el, type = "anime", retryNum = 0){
 
           if(typeof list !== 'undefined' && list.length > 0){
             //Update next Episode link
-            var continueUrlObj = await utils.getContinueWaching(type, anime_id);
+            var continueUrlObj = await utils.getContinueWaching(type, el.cacheKey);
             var nextUserEp = parseInt(num_watched_episodes)+1;
 
             con.log('Continue', continueUrlObj);
@@ -183,14 +183,14 @@ async function updateElement(el, type = "anime", retryNum = 0){
               var nextUserEpUrl = list[nextUserEp];
               if(typeof nextUserEpUrl != 'undefined'){
                 con.log('set continue link', nextUserEpUrl, nextUserEp);
-                utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, anime_id);
+                utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, el.cacheKey);
               }
             }
           }
 
         }else{
           con.log(checkError(elCache, 'Episode list empty'));
-          api.storage.set('updateCheck/'+type+'/'+anime_id, checkError(elCache, 'Episode list empty'));
+          api.storage.set('updateCheck/'+type+'/'+el.cacheKey, checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty')
         }
         resolve();
