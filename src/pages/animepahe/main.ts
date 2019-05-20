@@ -44,7 +44,7 @@ export const animepahe: pageInterface = {
         page.handlePage();
       });
     } else{
-      j.$(document).ready(function(){
+      $(document).ready(function(){
         page.handlePage();
       });
     }
