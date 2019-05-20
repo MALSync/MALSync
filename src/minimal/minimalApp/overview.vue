@@ -2,8 +2,8 @@
   <div class="page-content">
     <div v-show="xhr == ''" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
     <div class="mdl-grid" v-if="xhr != ''">
-      <div v-show="statistics" v-html="statistics" class="mdl-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
-      <div class="mdl-grid mdl-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
+      <div v-show="statistics" v-html="statistics" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
+      <div class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
         <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
           <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
             <img :src="image" style="height: auto; width: 100%;">
@@ -20,7 +20,7 @@
           <div v-show="streaming" v-html="streaming" class="mdl-card__actions mdl-card--border" style="padding-left: 0;"></div>
         </div>
       </div>
-      <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
+      <div class="mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
         <li v-if="prediction && prediction.prediction.airing" class="mdl-list__item" style="width: 100%;">{{prediction.text}}</li>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tbody>
@@ -94,7 +94,7 @@
           </tbody>
         </table>
       </div>
-      <div v-show="related.length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
+      <div v-show="related.length" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
         <ul class="mdl-list">
           <li class="mdl-list__item mdl-list__item--two-line" v-for="relatedType in related">
             <span class="mdl-list__item-primary-content">
@@ -111,7 +111,7 @@
           </li>
         </ul>
       </div>
-      <div v-show="kiss2mal && Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
+      <div v-show="kiss2mal && Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing bg-cell mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
         <ul class="mdl-list stream-block-inner">
           <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
             <span class="mdl-list__item-primary-content">
@@ -128,7 +128,7 @@
           </li>
         </ul>
       </div>
-      <div v-show="characters.length > 0" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
+      <div v-show="characters.length > 0" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp characters-block mdl-grid malClear">
         <div class="mdl-card__actions clicker" >
           <h1 class="mdl-card__title-text" style="float: left;">{{lang("overview_Characters")}}</h1>
         </div>
@@ -146,7 +146,7 @@
         </div>
       </div>
 
-      <div v-if="openingSongs.length || endingSongs.length" class="mdl-grid mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+      <div v-if="openingSongs.length || endingSongs.length" class="mdl-grid mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
         <li v-if="openingSongs.length" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet" style="padding: 0; height: auto;">
           <span class="mdl-list__item-primary-content" style="height: auto;">
               <span>{{lang("overview_OpeningTheme")}}</span>
@@ -169,7 +169,7 @@
         </li>
       </div>
 
-      <div v-show="info" v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
+      <div v-show="info" v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
     </div>
   </div>
 </template>

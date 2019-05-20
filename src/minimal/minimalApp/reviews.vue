@@ -63,7 +63,7 @@
           var reviewsData = j.$.parseHTML( reviews );
           var reviewsHtml = '';
           j.$.each(j.$(reviewsData).filter('.borderDark'), ( index, value ) => {
-            reviewsHtml += '<div class="mdl-cell mdl-cell--12-col mdl-shadow--4dp">';
+            reviewsHtml += '<div class="mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp">';
               reviewsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
                 j.$(value).find('.spaceit > div').css('max-width','60%');
                 reviewsHtml += j.$(value).find('.spaceit').first().html();

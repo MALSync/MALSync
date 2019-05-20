@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
+  <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
     <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text" v-html="title">
 
