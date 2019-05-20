@@ -28,7 +28,7 @@ export class entryClass{
   };
 
   getDisplayUrl(){
-    return this.key;
+    return 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync';
   }
 
   getMalUrl(){
