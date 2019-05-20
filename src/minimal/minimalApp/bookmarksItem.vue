@@ -160,7 +160,7 @@
         return api.storage.assetUrl(asset);
       },
       setPrediction: function(){
-        utils.epPredictionUI(this.item.malId, this.item.type, (prediction) => {
+        utils.epPredictionUI(this.item.malId, this.item.cacheKey, this.item.type, (prediction) => {
           this.prediction = prediction;
         });
       }

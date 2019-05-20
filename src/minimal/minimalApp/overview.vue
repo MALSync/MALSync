@@ -220,7 +220,7 @@
             utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
               this.kiss2mal = links;
             });
-            utils.epPredictionUI(renderObj.id, renderObj.type, (prediction) => {
+            utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, (prediction) => {
               this.prediction = prediction;
             });
           }

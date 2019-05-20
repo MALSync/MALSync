@@ -333,7 +333,7 @@ export class anilistClass{
                 );
             }
 
-            utils.epPredictionUI(en.malid, This.page!.type, (prediction) => {
+            utils.epPredictionUI(en.malid, en.cacheKey, This.page!.type, (prediction) => {
               if(!prediction) return;
               element.parent().find('.progress').append(prediction.tag);
             });

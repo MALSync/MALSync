@@ -41,6 +41,7 @@ interface entryClass {
   getStreamingUrl(),
   setStreamingUrl(url:string),
   getRating: () => Promise<any>,
+  getCacheKey: () => string|number,
   setResumeWaching: (url:string, ep:number) => Promise<any>,
   getResumeWaching: () => Promise<{url:string, ep:number}>,
   setContinueWaching: (url:string, ep:number) => Promise<any>,

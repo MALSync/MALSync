@@ -683,7 +683,7 @@ export class syncPage{
     }
     var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
     if(typeof this.malObj != 'undefined'){
-      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.id)
+      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
     }
     return returnValue;
   }

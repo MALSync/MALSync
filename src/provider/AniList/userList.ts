@@ -213,13 +213,14 @@ export function UserName(callback){
 }
 
 function prepareAnilist(data, listType){
-  var newData = [] as {malid: number, id: number, watchedEp: number}[];
+  var newData = [] as {malid: number, id: number, watchedEp: number, cacheKey: string|number}[];
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
     newData.push({
       malid: el.media.idMal,
       id: el.media.id,
       watchedEp: el.progress,
+      cacheKey: el.media.idMal,
     })
   }
   return newData;

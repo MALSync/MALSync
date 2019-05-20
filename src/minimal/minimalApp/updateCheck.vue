@@ -85,7 +85,7 @@
               var error = '';
               var trColor = '';
               con.log('el', el);
-              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.malId);
+              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.cacheKey);
               con.log('elCache', elCache);
               if(typeof elCache != 'undefined'){
                 episode = elCache['newestEp']+'/'+el.totalEp;
@@ -120,7 +120,7 @@
         });
       },
       deleteItem(item){
-        var delPath = 'updateCheck/'+this.listType+'/'+item.malId;
+        var delPath = 'updateCheck/'+this.listType+'/'+item.cacheKey;
         con.log('delete', delPath, item);
         api.storage.remove(delPath);
         item.trColor = 'black';

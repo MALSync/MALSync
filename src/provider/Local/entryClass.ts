@@ -148,20 +148,24 @@ export class entryClass{
     return 'Local';
   }
 
+  getCacheKey(){
+    return helper.getCacheKey(this.id);
+  }
+
   async setResumeWaching(url:string, ep:number){
-    return utils.setResumeWaching(url, ep, this.type, helper.getCacheKey(this.id));
+    return utils.setResumeWaching(url, ep, this.type, this.getCacheKey());
   }
 
   async getResumeWaching():Promise<{url:string, ep:number}>{
-    return utils.getResumeWaching(this.type, helper.getCacheKey(this.id))
+    return utils.getResumeWaching(this.type, this.getCacheKey())
   }
 
   async setContinueWaching(url:string, ep:number){
-    return utils.setContinueWaching(url, ep,this.type, helper.getCacheKey(this.id))
+    return utils.setContinueWaching(url, ep,this.type, this.getCacheKey())
   }
 
   async getContinueWaching():Promise<{url:string, ep:number}>{
-    return utils.getContinueWaching(this.type, helper.getCacheKey(this.id))
+    return utils.getContinueWaching(this.type, this.getCacheKey())
   }
 
   async getImage():Promise<string>{
