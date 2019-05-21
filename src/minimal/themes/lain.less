@@ -1,0 +1,165 @@
+#material.lain {
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.27861;
+    }
+    5% {
+      opacity: 0.34769;
+    }
+    10% {
+      opacity: 0.23604;
+    }
+    15% {
+      opacity: 0.90626;
+    }
+    20% {
+      opacity: 0.18128;
+    }
+    25% {
+      opacity: 0.83891;
+    }
+    30% {
+      opacity: 0.65583;
+    }
+    35% {
+      opacity: 0.67807;
+    }
+    40% {
+      opacity: 0.26559;
+    }
+    45% {
+      opacity: 0.84693;
+    }
+    50% {
+      opacity: 0.96019;
+    }
+    55% {
+      opacity: 0.08594;
+    }
+    60% {
+      opacity: 0.20313;
+    }
+    65% {
+      opacity: 0.71988;
+    }
+    70% {
+      opacity: 0.53455;
+    }
+    75% {
+      opacity: 0.37288;
+    }
+    80% {
+      opacity: 0.71428;
+    }
+    85% {
+      opacity: 0.70419;
+    }
+    90% {
+      opacity: 0.7003;
+    }
+    95% {
+      opacity: 0.36108;
+    }
+    100% {
+      opacity: 0.24387;
+    }
+  }
+
+  @keyframes fadein {
+    0%{
+      box-shadow: 0 0 2px 0px #bddbe040;
+      filter:brightness(30);
+      opacity:0.1;
+    }
+    2%{
+      -webkit-filter:contrast(0) brightness(0) ;
+      filter:contrast(0) brightness(0);
+      opacity:0;
+    }
+    40%{
+      filter:contrast(1) brightness(1.1) saturate(1.1);
+      opacity:1;
+    }
+    100%{
+      filter:contrast(1) brightness(1) saturate(1);
+      opacity:1;
+    }
+  }
+
+  .mdl-layout__header{
+    box-shadow: 0 0 10px 0px #bddbe04f;
+  }
+
+
+  .bg-cell, .bookEntry, #malList select{
+    position:relative;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0px #bddbe040;
+    animation: fadein 2s;
+
+    &::after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(18, 16, 16, 0.03);
+      opacity: 0;
+      z-index: 99;
+      pointer-events: none;
+      animation: flicker 1.15s infinite;
+    }
+    &::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.50) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.12), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.12));
+      z-index: 99;
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+  }
+
+
+  .bg-cell{
+
+  }
+
+  .mdl-layout__content{
+    filter: contrast(130%);
+    &::-webkit-scrollbar-thumb{
+      box-shadow: 0 0 31px 24px #feffff;
+    }
+    &::-webkit-scrollbar{
+      background-color: transparent !important;
+    }
+  }
+
+  img{
+    filter: contrast(130%);
+    background-blend-mode: screen, difference, lighten;
+  }
+
+  .mdl-layout__header{
+    position: relative;
+    &::before{
+      content: '';
+      position: absolute;
+      background-size: cover;
+      top: -115px;
+      top: -52%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+}
