@@ -126,6 +126,7 @@ export class minimal{
     this.minimal.find("#theme").change(function(){
       // @ts-ignore
       api.settings.set('theme', j.$(this).val());
+      This.minimal.attr('id','cr');
     });
 
     this.minimal.find("#autoTrackingModemanga").val(api.settings.get('autoTrackingModemanga'));
