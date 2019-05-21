@@ -149,6 +149,7 @@
             <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
+              <option value="lain">Lain</option>
             </select>
           </span>
         </li>
