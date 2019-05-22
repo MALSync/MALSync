@@ -192,6 +192,7 @@
         </div>
 
         <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
+        <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
         <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">

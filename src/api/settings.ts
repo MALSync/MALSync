@@ -42,6 +42,7 @@ export var settingsObj = {
     Proxermanga: true,
 
     autofull: false,
+    autoresume: false,
     introSkip: 85,
 
     updateCheckNotifications: true,

@@ -608,6 +608,10 @@
       "message": "Auto fullscreen",
       "description": "Auto fullscreen toggle"
     },
+    "settings_Video_Resume": {
+      "message": "Auto resume",
+      "description": "Auto resume video where you left off toggle"
+    },
 
     "settings_Shortcuts_Skip_Forward": {
       "message": "Skips the opening",

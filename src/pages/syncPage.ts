@@ -92,36 +92,42 @@ export class syncPage{
         var resumeTime = Math.round(parseInt(localItem));
         var resumeTimeString = '';
 
-        var delta = resumeTime;
-        var minutes = Math.floor(delta / 60);
-        delta -= minutes * 60;
-        var sec = delta+"";
-        while (sec.length < 2) sec = "0" + sec;
-        resumeTimeString = minutes+':'+sec;
-
-        var resumeMsg = utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
-          {
-            permanent: true,
-            error: false,
-            type: 'resume',
-            minimized: false,
-            position: "top"
-          }
-        );
-
-        resumeMsg.find('.sync').on('click', function(){
+        if(api.settings.get('autoresume')){
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
-        });
+          return;
+        }else{
+          var delta = resumeTime;
+          var minutes = Math.floor(delta / 60);
+          delta -= minutes * 60;
+          var sec = delta+"";
+          while (sec.length < 2) sec = "0" + sec;
+          resumeTimeString = minutes+':'+sec;
 
-        resumeMsg.find('.resumeClose').on('click', function(){
-          This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
-        });
+          var resumeMsg = utils.flashm(
+            '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
+            {
+              permanent: true,
+              error: false,
+              type: 'resume',
+              minimized: false,
+              position: "top"
+            }
+          );
+
+          resumeMsg.find('.sync').on('click', function(){
+            timeCb(resumeTime);
+            This.curState.videoChecked = 2;
+            //@ts-ignore
+            j.$(this).parent().parent().remove();
+          });
+
+          resumeMsg.find('.resumeClose').on('click', function(){
+            This.curState.videoChecked = 2;
+            //@ts-ignore
+            j.$(this).parent().parent().remove();
+          });
+        }
 
       }else{
         setTimeout(() => {
