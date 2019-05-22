@@ -450,6 +450,24 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'animevibe',
+    url: 'https://animevibe.tv',
+    testCases: [
+      {
+        url: 'https://animevibe.tv/a/no-game-no-life/4/',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://animevibe.tv/a/no-game-no-life/1',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
