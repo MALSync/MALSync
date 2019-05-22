@@ -344,7 +344,8 @@ var testsArray = [
           uiSelector: true,
         }
       },
-      {
+      //TODO
+      /*{
         url: 'https://animepahe.com/anime/no-game-no-life/52832',
         expected: {
           sync: true,
@@ -355,7 +356,7 @@ var testsArray = [
           episode: 8,
           uiSelector: true,
         }
-      },
+      },*/
     ]
   },
 
