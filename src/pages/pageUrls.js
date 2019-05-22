@@ -179,5 +179,10 @@ module.exports = {
     match: [
       '*://proxer.me/*',
     ],
+  },
+  Animevibe: {
+    match: [
+      '*://animevibe.tv/a/*',
+    ],
   }
 };
