@@ -182,7 +182,7 @@ module.exports = {
   },
   animevibe: {
     match: [
-      '*://animevibe.tv/*',
+      '*://animevibe.tv/a/*',
     ],
   }
 };

@@ -3,7 +3,6 @@ import { pageInterface } from "./../pageInterface";
 export const animevibe: pageInterface = {
   name: "animevibe",
   domain: "https://animevibe.tv",
-  database: "animevibe",
   type: "anime",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "a") {
