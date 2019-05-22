@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
-export const animevibe: pageInterface = {
-  name: "animevibe",
+export const Animevibe: pageInterface = {
+  name: "Animevibe",
   domain: "https://animevibe.tv",
   type: "anime",
   isSyncPage: function(url) {
@@ -17,7 +17,7 @@ export const animevibe: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return animevibe.domain+'/a/'+animevibe.sync.getIdentifier(url)+'/1';
+      return Animevibe.domain+'/a/'+Animevibe.sync.getIdentifier(url)+'/1';
     },
     getEpisode: function(url){
       if (utils.urlPart(url, 5) === "") {

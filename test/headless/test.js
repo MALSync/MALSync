@@ -453,7 +453,7 @@ var testsArray = [
   },
 
   {
-    title: 'animevibe',
+    title: 'Animevibe',
     url: 'https://animevibe.tv',
     testCases: [
       {

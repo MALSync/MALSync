@@ -180,7 +180,7 @@ module.exports = {
       '*://proxer.me/*',
     ],
   },
-  animevibe: {
+  Animevibe: {
     match: [
       '*://animevibe.tv/a/*',
     ],
