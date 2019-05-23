@@ -178,7 +178,7 @@ export class myanimelistClass{
 
   setEpPrediction(){
     con.log('setEpPrediction');
-    utils.epPredictionUI(this.id, this.type, function(prediction){
+    utils.epPredictionUI(this.id, this.id, this.type, function(prediction){
       if(!prediction) return;
       con.log(prediction);
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
@@ -375,8 +375,8 @@ export class myanimelistClass{
               <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
-          var resumeUrlObj = await utils.getResumeWaching(type, id);
-          var continueUrlObj = await utils.getContinueWaching(type, id);
+          var resumeUrlObj = await utils.getResumeWaching(type, el.cacheKey);
+          var continueUrlObj = await utils.getContinueWaching(type, el.cacheKey);
 
           var curEp = parseInt(el.watchedEp);
 
@@ -397,7 +397,7 @@ export class myanimelistClass{
 
         }
 
-        utils.epPredictionUI(id, type, function(prediction){
+        utils.epPredictionUI(id, el.cacheKey, type, function(prediction){
           if(!prediction) return;
           var element = book.getElement(malUrl);
           book.predictionPos(element, prediction.tag);

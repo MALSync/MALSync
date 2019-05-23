@@ -18,6 +18,7 @@ import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
+import {Animevibe} from "./Animevibe/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -42,6 +43,7 @@ export const pages = {
     animepahe,
     Vrv,
     Proxer,
+    Animevibe,
 };
 
 export const pageSearch:pageSearchObj = {

@@ -1,7 +1,13 @@
+// local://crunchyroll/anime/nogamenolife
+
+import * as helper from "./helper";
+
 export class entryClass{
 
   readonly id: number;
   readonly type: "anime"|"manga";
+
+  url = '';
 
   name: string = "";
   totalEp: number = NaN;
@@ -11,13 +17,12 @@ export class entryClass{
   wrong: boolean = false;
   pending: boolean = false;
 
-  renderNoImage: boolean = true;
-
   private animeInfo;
 
-  constructor(public url:string, public miniMAL:boolean = false){
-    this.id = utils.urlPart(url, 4);
-    this.type = utils.urlPart(url, 3);
+  constructor(private key:string, public miniMAL:boolean = false, private state:any = null){
+    this.url = key;
+    this.id = utils.urlPart(key, 4);
+    this.type = utils.urlPart(key, 3);
   }
 
   init(){
@@ -25,37 +30,47 @@ export class entryClass{
   };
 
   getDisplayUrl(){
-    return this.url;
+    return 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync';
   }
 
   getMalUrl(){
-    return this.getDisplayUrl();
+    return null;
   }
 
   async update(){
-    con.log('Update MAL info', this.url);
+    con.log('Update MAL info', this.key, this.state);
     this.login = true;
     this.addAnime = false;
 
-    this.name = "No Game No Life";
+
     this.totalEp = 0;
     this.totalVol = 0;
 
-    this.animeInfo = await api.storage.get(this.url , null);
+    this.animeInfo = await api.storage.get(this.key , null);
 
     if(this.animeInfo === 'undefined' || this.animeInfo === null || !this.animeInfo){
+      if(this.state == null){
+        con.error('No state found')
+        this.state = {
+          title: 'Unknown',
+        }
+      }
       this.addAnime = true;
       this.animeInfo = {
+        name: this.state!.title,
         tags: "",
         progress: 0,
         volumeprogress: 0,
         rewatching: false,
         rewatchingCount: 0,
-        score: 0,
+        score: '',
         status: 6
       }
+    }else if(this.state !== null){
+      this.animeInfo.name = this.state!.title;
     }
-    con.error('lol', this.animeInfo);
+
+    this.name = this.animeInfo.name;
   }
 
   getEpisode(){
@@ -130,27 +145,31 @@ export class entryClass{
   }
 
   async getRating(){
-    return this.getScore();
+    return 'Local';
+  }
+
+  getCacheKey(){
+    return helper.getCacheKey(this.id);
   }
 
   async setResumeWaching(url:string, ep:number){
-    return utils.setResumeWaching(url, ep, this.type, this.id);
+    return utils.setResumeWaching(url, ep, this.type, this.getCacheKey());
   }
 
   async getResumeWaching():Promise<{url:string, ep:number}>{
-    return utils.getResumeWaching(this.type, this.id)
+    return utils.getResumeWaching(this.type, this.getCacheKey())
   }
 
   async setContinueWaching(url:string, ep:number){
-    return utils.setContinueWaching(url, ep,this.type, this.id)
+    return utils.setContinueWaching(url, ep,this.type, this.getCacheKey())
   }
 
   async getContinueWaching():Promise<{url:string, ep:number}>{
-    return utils.getContinueWaching(this.type, this.id)
+    return utils.getContinueWaching(this.type, this.getCacheKey())
   }
 
   async getImage():Promise<string>{
-    return 'https://cdn.myanimelist.net/images/anime/5/65187.jpg';
+    return api.storage.assetUrl('questionmark.gif');
   }
 
   clone() {
@@ -160,6 +179,10 @@ export class entryClass{
       return copy;
   }
 
+  delete(){
+    return api.storage.remove(this.key);
+  }
+
   sync(){
     var status = utils.status;
     return new Promise((resolve, reject) => {
@@ -167,7 +190,7 @@ export class entryClass{
       if(this.addAnime){
         var imgSelector = 'malSyncImg'+this.id;
 
-        var flashConfirmText = `Add "${this.name}" to MAL?`;
+        var flashConfirmText = `Save "${this.name}" to local storage?`;
 
         utils.flashConfirm(flashConfirmText, 'add', function(){
           continueCall();
@@ -253,7 +276,7 @@ export class entryClass{
       async function continueCall(){
         con.log('[SET] Object:', This.animeInfo);
 
-        await api.storage.set(This.url , This.animeInfo);
+        await api.storage.set(This.key , This.animeInfo);
 
         resolve();
 

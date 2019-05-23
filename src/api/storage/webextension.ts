@@ -29,11 +29,17 @@ export const webextension: storageInterface = {
       });
     },
 
-    async list(): Promise<any> {
+    async list(type = 'local'): Promise<any> {
       return new Promise((resolve, reject) => {
+        if(type === 'local'){
           chrome.storage.local.get(null, function(results){
               resolve(results);
           });
+        }else{
+          chrome.storage.sync.get(null, function(results){
+              resolve(results);
+          });
+        }
       });
     },
 

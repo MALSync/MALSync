@@ -1,11 +1,11 @@
 <template>
   <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
     <div class="mdl-grid">
-      <div id="page-config" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;"></div>
+      <div id="page-config" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;"></div>
 
       <correction v-if="page && page.UILoaded" :page="page"></correction>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_General")}}</h2>
         </div>
@@ -37,6 +37,7 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
+        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
@@ -65,7 +66,7 @@
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_StreamingSite")}}</h2>
           <tooltip>{{lang("settings_StreamingSite_text")}}</tooltip>
@@ -85,7 +86,7 @@
         <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">MyAnimeList</h2>
         </div>
@@ -106,7 +107,7 @@
         <checkbox option="friendScore">{{lang("settings_FriendScore")}}</checkbox>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu</h2>
         </div>
@@ -121,7 +122,7 @@
         <checkbox option="malResume" v-show="options.malTags">{{lang("settings_malResume")}}</checkbox>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
@@ -148,6 +149,7 @@
             <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
+              <option value="serial">Serial</option>
             </select>
           </span>
         </li>
@@ -184,12 +186,13 @@
         </li>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_Video_Player")}}</h2>
         </div>
 
         <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
+        <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
         <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
@@ -215,7 +218,7 @@
 
       </div>
 
-      <div id="updateCheck" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
+      <div id="updateCheck" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" style="display: none;">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_UpdateCheck")}}</h2>
           <tooltip>
@@ -245,7 +248,7 @@
         <li class="mdl-list__item updateCheckEnable" style="display: none;"><button type="button" id="updateCheckUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_Debugging")}}</button></li>
       </div>
 
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
@@ -254,7 +257,7 @@
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
       </div>
-      <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div v-for="(contributerGroup, group) in contributer" class="inline-block">
           <div class="group">{{group}}</div>
           <div v-for="contr in contributerGroup" class="inline-block">
@@ -290,7 +293,7 @@
           </clazy-load>
         </a>
       </div>
-      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 
         <li class="mdl-list__item">
           <div style="line-height: 30px;">

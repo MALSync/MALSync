@@ -365,8 +365,8 @@ export class kitsuClass{
 
             }
 
-            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.malId);
-            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.malId);
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.cacheKey);
 
             var curEp = en.watchedEp;
 
@@ -401,7 +401,7 @@ export class kitsuClass{
               }
             }
 
-            utils.epPredictionUI(en.malId, This.page!.type, (prediction) => {
+            utils.epPredictionUI(en.malId, en.cacheKey, This.page!.type, (prediction) => {
               if(!prediction) return;
               element.parent().find('.entry-unit, .progress-cell > span:last-of-type').append(prediction.tag);
             });

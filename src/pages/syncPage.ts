@@ -92,36 +92,42 @@ export class syncPage{
         var resumeTime = Math.round(parseInt(localItem));
         var resumeTimeString = '';
 
-        var delta = resumeTime;
-        var minutes = Math.floor(delta / 60);
-        delta -= minutes * 60;
-        var sec = delta+"";
-        while (sec.length < 2) sec = "0" + sec;
-        resumeTimeString = minutes+':'+sec;
-
-        var resumeMsg = utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
-          {
-            permanent: true,
-            error: false,
-            type: 'resume',
-            minimized: false,
-            position: "top"
-          }
-        );
-
-        resumeMsg.find('.sync').on('click', function(){
+        if(api.settings.get('autoresume')){
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
-        });
+          return;
+        }else{
+          var delta = resumeTime;
+          var minutes = Math.floor(delta / 60);
+          delta -= minutes * 60;
+          var sec = delta+"";
+          while (sec.length < 2) sec = "0" + sec;
+          resumeTimeString = minutes+':'+sec;
 
-        resumeMsg.find('.resumeClose').on('click', function(){
-          This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
-        });
+          var resumeMsg = utils.flashm(
+            '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
+            {
+              permanent: true,
+              error: false,
+              type: 'resume',
+              minimized: false,
+              position: "top"
+            }
+          );
+
+          resumeMsg.find('.sync').on('click', function(){
+            timeCb(resumeTime);
+            This.curState.videoChecked = 2;
+            //@ts-ignore
+            j.$(this).parent().parent().remove();
+          });
+
+          resumeMsg.find('.resumeClose').on('click', function(){
+            This.curState.videoChecked = 2;
+            //@ts-ignore
+            j.$(this).parent().parent().remove();
+          });
+        }
 
       }else{
         setTimeout(() => {
@@ -188,6 +194,11 @@ export class syncPage{
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
+    if((malUrl === null || !malUrl) && api.settings.get('localSyncAlpha')){
+      con.log('Local Fallback');
+      malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+    }
+
     if(malUrl === null){
       j.$("#MalInfo").text(api.storage.lang('Not_Found'));
       j.$("#MalData").css("display","none");
@@ -198,7 +209,7 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.malObj = entryClass(malUrl);
+      this.malObj = entryClass(malUrl, false, false, state);
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 
@@ -221,7 +232,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates(malUrl).shortName, state.episode])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -415,7 +426,7 @@ export class syncPage{
 
     if(this.malObj.addAnime){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates().shortName])+"</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);
@@ -678,7 +689,7 @@ export class syncPage{
     }
     var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
     if(typeof this.malObj != 'undefined'){
-      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.id)
+      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
     }
     return returnValue;
   }

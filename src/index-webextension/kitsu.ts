@@ -2,7 +2,7 @@ import {kitsuClass} from "./../kitsu/kitsuClass";
 import {firebaseNotification} from "./../utils/firebaseNotification";
 
 function main() {
-  if(api.settings.get('userscriptMode')) return;
+  if(api.settings.get('userscriptMode')) throw 'Userscript mode';
   var kitsu = new kitsuClass(window.location.href);
   messageKitsuListener(kitsu);
   firebaseNotification();

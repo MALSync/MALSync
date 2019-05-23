@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
+  <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
     <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text" v-html="title">
 
@@ -30,7 +30,7 @@
           <label class="mdl-textfield__label" for="malSearch">
             {{lang("correction_Search")}}
           </label>
-          <input v-model="searchKeyword" class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
+          <input v-model="searchKeyword" @focus="searchFocus()"  class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malSearch">
         </div>
         <tooltip direction="left" style="float: right; margin-bottom: -17px;">
           <span v-html="lang('correction_Search_text')"></span>
@@ -91,7 +91,7 @@
     },
     watch: {
       url: function(url){
-        this.malUrl = this.url;
+        if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       },
       wrong: function(wrong){
         if(wrong){
@@ -100,7 +100,7 @@
       }
     },
     mounted: function(){
-      this.malUrl = this.url;
+      if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
       var This = this;
       j.$(this.$el).on('click', '.searchItem', function(e){
@@ -174,6 +174,11 @@
       },
       update: function(){
         this.submit(this.malUrl);
+      },
+      searchFocus: function(){
+        if(this.searchKeyword == ''){
+          this.searchKeyword = this.title;
+        }
       }
     }
   }

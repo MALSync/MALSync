@@ -63,7 +63,7 @@
           var htmlT = j.$.parseHTML( recommendationsBlock );
           var recommendationsHtml = '';
           j.$.each(j.$(htmlT).filter('.borderClass'),( index, value ) => {
-            recommendationsHtml += '<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
+            recommendationsHtml += '<div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
               recommendationsHtml += '<div class="mdl-card__media" style="background-color: transparent; margin: 8px;">';
                 recommendationsHtml += j.$(value).find('.picSurround').html();
               recommendationsHtml += '</div>';

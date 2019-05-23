@@ -67,3 +67,10 @@ export function aniListToMal(anilistId: number, type: "anime"|"manga"){
     return res.data.Media.idMal;
   });
 }
+
+export function getCacheKey(id, kitsuId){
+  if(isNaN(id) || !id){
+    return 'anilist:'+kitsuId;
+  }
+  return id;
+}

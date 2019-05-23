@@ -1,4 +1,4 @@
-#material.dark {
+#material.dark, #material.serial {
   @black: #000000;
   @primary: #212121;
   @light: #484848;
@@ -9,17 +9,19 @@
   p {
     color: @white !important;
   }
-  .mdl-layout__header-row {
+  .mdl-layout__header {
     background-color: @primary;
   }
-  .is-casting-shadow {
-    background-color: @primary;
-  }
+
   .mdl-layout__content {
     background-color: @primary;
   }
   #malList{
     .mdl-cell {
+      div.mdl-shadow--2dp {
+        background-color: @lighttransparent !important;
+      }
+
       div span {
         background-color: @lighttransparent !important;
         a {
@@ -34,11 +36,8 @@
       color: white;
     }
   }
-  .mdl-cell {
+  .bg-cell {
     background-color: @light;
-    div.mdl-shadow--2dp {
-      background-color: @light !important;
-    }
 
     .mdl-chip__text {
       background-color: #dedede !important;
@@ -78,6 +77,9 @@
   }
   .mdl-layout__content::-webkit-scrollbar-thumb {
     background-color: @white !important;
+  }
+  .mdl-layout__content{
+    scrollbar-color: @white @light;
   }
   .mdl-progress {
     .bufferbar {
@@ -148,3 +150,5 @@
     }
   }
 }
+
+@import "./serial.less";

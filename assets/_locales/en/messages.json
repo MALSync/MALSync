@@ -19,6 +19,10 @@
       "message": "Reset",
       "description": "Reset"
     },
+    "Remove": {
+      "message": "Remove",
+      "description": "Button for removing entry from MAL..."
+    },
     "Loading": {
       "message": "Loading",
       "description": "Loading"
@@ -451,6 +455,10 @@
       "message": "Authenticate",
       "description": "Authenticate"
     },
+    "settings_LocalSync": {
+      "message": "Local storage fallback",
+      "description": "Option to activate the local storage fallback sync"
+    },
     "settings_Animesync": {
       "message": "Anime sync",
       "description": "Anime sync"
@@ -599,6 +607,10 @@
     "settings_Video_Fullscreen": {
       "message": "Auto fullscreen",
       "description": "Auto fullscreen toggle"
+    },
+    "settings_Video_Resume": {
+      "message": "Auto resume",
+      "description": "Auto resume video where you left off toggle"
     },
 
     "settings_Shortcuts_Skip_Forward": {

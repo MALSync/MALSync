@@ -59,8 +59,8 @@
         var continueUrl = null;
         var id = this.item.malId;
         var type = this.item.type;
-        var resumeUrlObj = await utils.getResumeWaching(type, id);
-        var continueUrlObj = await utils.getContinueWaching(type, id);
+        var resumeUrlObj = await utils.getResumeWaching(type, this.item.cacheKey);
+        var continueUrlObj = await utils.getContinueWaching(type, this.item.cacheKey);
         var curEp = parseInt(this.item.watchedEp.toString());
 
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
@@ -160,7 +160,7 @@
         return api.storage.assetUrl(asset);
       },
       setPrediction: function(){
-        utils.epPredictionUI(this.item.malId, this.item.type, (prediction) => {
+        utils.epPredictionUI(this.item.malId, this.item.cacheKey, this.item.type, (prediction) => {
           this.prediction = prediction;
         });
       }

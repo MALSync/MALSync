@@ -2,7 +2,7 @@
   <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation, [options.theme]: true }">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
       <header class="mdl-layout__header" style="min-height: 0;">
-        <button @click="backbuttonClick()" v-show="backbutton" class="mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
+        <button @click="backbuttonClick()" v-show="backbutton" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
           <button :style="backbuttonBookStyle" @click="bookClick()" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
             <i class="material-icons md-48 bookIcon">{{bookIcon}}</i>
@@ -307,6 +307,7 @@
         return false;
       },
       fill(url, isBase = false){
+        con.log('fill', url);
         var minimal = j.$(this.$el);
         if(url == null){
           if(this.isPopup()){
@@ -316,7 +317,8 @@
         }
         if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
            /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
-           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url)
+           /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url) ||
+           /^local:\/\//i.test(url)
           ){
           if(!isBase){
             this.history.push(this.getCurrent(this.currentTab));
