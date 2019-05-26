@@ -88,5 +88,9 @@ export const userscriptLegacy: storageInterface = {
         this.remove();
       };
       head.get(0).appendChild(s);
+    },
+
+    storageOnChanged(cb){
+
     }
 };

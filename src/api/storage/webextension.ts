@@ -111,6 +111,10 @@ export const webextension: storageInterface = {
         this.remove();
       };
       head.get(0).appendChild(s);
+    },
+
+    storageOnChanged(cb){
+      chrome.storage.onChanged.addListener(cb);
     }
 };
 
