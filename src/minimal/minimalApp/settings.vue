@@ -40,6 +40,9 @@
         <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
         <fileUpload option="localSyncAlpha" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
         <li class="mdl-list__item">
+          <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
+        </li>
+        <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
           </span>
@@ -427,6 +430,21 @@
           alert('File has wrong formating');
           con.error('File has wrong formating:', e);
         }
+      },
+      exportFallbackSync: function(){
+        var filecontent = 'data:text/csv;charset=utf-8,test123';
+        var encodedUri = encodeURI(filecontent);
+        try{
+          var link = document.createElement("a");
+          link.setAttribute("href", encodedUri);
+          link.setAttribute("download", "malsync_"+new Date().toJSON().slice(0,10).replace(/-/g,'/')+".txt");
+          document.body.appendChild(link);
+
+          link.click();
+        }catch(e){
+          window.open(encodedUri);
+        }
+
       }
     },
     data: function() {
