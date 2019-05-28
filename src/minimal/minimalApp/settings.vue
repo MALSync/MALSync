@@ -370,6 +370,9 @@
   import fileUpload from './components/settingsFileUpload.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
+
+  import {exportData} from "./../../provider/Local/userList";
+
   export default {
     components: {
       correction,
@@ -431,8 +434,11 @@
           con.error('File has wrong formating:', e);
         }
       },
-      exportFallbackSync: function(){
-        var filecontent = 'data:text/csv;charset=utf-8,test123';
+      exportFallbackSync: async function(){
+        var exportObj = await exportData();
+        con.log('Export', exportObj);
+
+        var filecontent = 'data:text/csv;charset=utf-8,'+JSON.stringify(exportObj);
         var encodedUri = encodeURI(filecontent);
         try{
           var link = document.createElement("a");
@@ -444,7 +450,7 @@
         }catch(e){
           window.open(encodedUri);
         }
-
+        utils.flashm('File exported');
       }
     },
     data: function() {

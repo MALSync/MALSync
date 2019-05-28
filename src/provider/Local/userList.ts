@@ -5,15 +5,8 @@ import * as helper from "./helper";
 export async function userList(status = 1, localListType = 'anime', callbacks, username = null, offset = 0, templist = []){
   // @ts-ignore
   status = parseInt(status);
-  if(api.type == 'userscript') {
-    var list = await api.storage.list('sync');
-    for (var key in list) {
-      list[key] = await api.storage.get(key);
-    }
-    var data = prepareData(list, localListType, status);
-  }else{
-    var data = prepareData(await api.storage.list('sync'), localListType, status);
-  }
+
+  var data = prepareData(await getSyncList(), localListType, status);
 
   if(typeof callbacks.singleCallback !== 'undefined'){
     // @ts-ignore
@@ -36,8 +29,7 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
 export function prepareData(data, listType, status): listElement[]{
   var newData = [] as listElement[];
   for (var key in data) {
-    var re = new RegExp("^local:\/\/[^\/]*\/"+listType, "i");
-    if(re.test(key)){
+    if(getRegex(listType).test(key)){
       var el = data[key];
       con.log(key, el);
       if(status !== 7 && parseInt(el.status) !== status){
@@ -79,4 +71,34 @@ export function prepareData(data, listType, status): listElement[]{
 
   con.log('data', newData);
   return newData;
+}
+
+export async function exportData(){
+  var data = await getSyncList();
+  var newData = {};
+  for (var key in data) {
+    if(getRegex("(anime|manga)").test(key)){
+      newData[key] = data[key];
+    }
+  }
+  return newData;
+}
+
+//Helper
+
+function getRegex(listType){
+  return new RegExp("^local:\/\/[^\/]*\/"+listType, "i");
+}
+
+async function getSyncList(){
+  if(api.type == 'userscript') {
+    var list = await api.storage.list('sync');
+    for (var key in list) {
+      list[key] = await api.storage.get(key);
+    }
+    var data = list;
+  }else{
+    var data = api.storage.list('sync');
+  }
+  return data;
 }
