@@ -38,6 +38,7 @@
           </span>
         </li>
         <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
+        <fileUpload option="localSyncAlpha" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
@@ -363,6 +364,7 @@
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
   import numberInput from './components/settingsNumberInput.vue'
+  import fileUpload from './components/settingsFileUpload.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
   export default {
@@ -370,7 +372,8 @@
       correction,
       tooltip,
       checkbox,
-      numberInput
+      numberInput,
+      fileUpload
     },
     props: {
       page: {
@@ -406,6 +409,24 @@
       lang: api.storage.lang,
       myOpen: function(){
         this.isOpen = !this.isOpen;
+      },
+      importFallbackSync: function(filecontent){
+        con.log('Import FallbackSync', filecontent);
+        try{
+          var importData = JSON.parse(filecontent);
+          con.log('data', importData);
+          var firstData = importData[Object.keys(importData)[0]];
+          if(!firstData.hasOwnProperty("name")) throw 'No name';
+          if(!firstData.hasOwnProperty("progress")) throw 'No progress';
+          if(!firstData.hasOwnProperty("score")) throw 'No score';
+          if(!firstData.hasOwnProperty("status")) throw 'No status';
+          if(!firstData.hasOwnProperty("tags")) throw 'No tags';
+
+          utils.flashm('File imported');
+        }catch(e){
+          alert('File has wrong formating');
+          con.error('File has wrong formating:', e);
+        }
       }
     },
     data: function() {
