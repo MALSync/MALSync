@@ -38,9 +38,10 @@
           </span>
         </li>
         <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
-        <fileUpload option="localSyncAlpha" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
+
         <li class="mdl-list__item">
           <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
+          <fileUpload @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
         </li>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">

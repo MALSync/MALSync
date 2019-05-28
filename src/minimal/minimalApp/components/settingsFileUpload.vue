@@ -1,19 +1,22 @@
 <template>
-  <li class="mdl-list__item">
-    <span class="mdl-list__item-primary-content">
-      <slot/>
-    </span>
-    <span class="mdl-list__item-secondary-action">
-      <label>
-        <input type="file" v-on:change="handleFileUpload($event)" />
-      </label>
-    </span>
-  </li>
+  <span>
+    <button v-if="button" @click="buttonClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><slot/></button>
+    <input v-else type="file" v-on:change="handleFileUpload($event)" />
+  </span>
 </template>
 
 <script type="text/javascript">
   export default {
+    props: {
+      button: {
+        type: Boolean,
+        default: true
+      }
+    },
     methods: {
+      buttonClick(){
+        this.button = false;
+      },
       handleFileUpload(event){
         con.log('File Found', event);
 
