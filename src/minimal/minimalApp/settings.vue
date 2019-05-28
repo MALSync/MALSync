@@ -371,7 +371,7 @@
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
 
-  import {exportData} from "./../../provider/Local/userList";
+  import {exportData, importData} from "./../../provider/Local/userList";
 
   export default {
     components: {
@@ -419,16 +419,19 @@
       importFallbackSync: function(filecontent){
         con.log('Import FallbackSync', filecontent);
         try{
-          var importData = JSON.parse(filecontent);
-          con.log('data', importData);
-          var firstData = importData[Object.keys(importData)[0]];
+          var iData = JSON.parse(filecontent);
+          con.log('data', iData);
+          var firstData = iData[Object.keys(iData)[0]];
           if(!firstData.hasOwnProperty("name")) throw 'No name';
           if(!firstData.hasOwnProperty("progress")) throw 'No progress';
           if(!firstData.hasOwnProperty("score")) throw 'No score';
           if(!firstData.hasOwnProperty("status")) throw 'No status';
           if(!firstData.hasOwnProperty("tags")) throw 'No tags';
 
-          utils.flashm('File imported');
+          importData(iData).then(() => {
+            utils.flashm('File imported');
+          });
+
         }catch(e){
           alert('File has wrong formating');
           con.error('File has wrong formating:', e);

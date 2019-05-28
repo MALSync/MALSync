@@ -84,8 +84,27 @@ export async function exportData(){
   return newData;
 }
 
-//Helper
+export async function importData(newData: {}){
+  var data = await getSyncList();
 
+  //Delete old data
+  for (var key in data) {
+    if(getRegex("(anime|manga)").test(key)){
+      con.log('Remove', key);
+      api.storage.remove(key);
+    }
+  }
+
+  //import Data
+  for (var k in newData){
+    con.log('Set', k, newData[k]);
+    api.storage.set(k, newData[k]);
+  }
+
+  return 1;
+}
+
+//Helper
 function getRegex(listType){
   return new RegExp("^local:\/\/[^\/]*\/"+listType, "i");
 }
