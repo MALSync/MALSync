@@ -19,6 +19,7 @@ import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
 import {Animevibe} from "./Animevibe/main";
+import {Novelplanet} from "./Novelplanet/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -44,6 +45,7 @@ export const pages = {
     Vrv,
     Proxer,
     Animevibe,
+    Novelplanet,
 };
 
 export const pageSearch:pageSearchObj = {
