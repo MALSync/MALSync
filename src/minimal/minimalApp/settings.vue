@@ -37,7 +37,7 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
-        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
+
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
@@ -64,6 +64,15 @@
         <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">{{lang("settings_AutoTracking_Video",[options.videoDuration])}}</numberInput>
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
+
+        <checkbox option="localSync">{{lang("settings_LocalSync")}}
+          <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
+        </checkbox>
+        <li v-show="options.localSync" class="mdl-list__item">
+          <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
+          <fileUpload style="margin-left: 15px;" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
+        </li>
+
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -363,14 +372,19 @@
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
   import numberInput from './components/settingsNumberInput.vue'
+  import fileUpload from './components/settingsFileUpload.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
+
+  import {exportData, importData} from "./../../provider/Local/userList";
+
   export default {
     components: {
       correction,
       tooltip,
       checkbox,
-      numberInput
+      numberInput,
+      fileUpload
     },
     props: {
       page: {
@@ -406,6 +420,45 @@
       lang: api.storage.lang,
       myOpen: function(){
         this.isOpen = !this.isOpen;
+      },
+      importFallbackSync: function(filecontent){
+        con.log('Import FallbackSync', filecontent);
+        try{
+          var iData = JSON.parse(filecontent);
+          con.log('data', iData);
+          var firstData = iData[Object.keys(iData)[0]];
+          if(!firstData.hasOwnProperty("name")) throw 'No name';
+          if(!firstData.hasOwnProperty("progress")) throw 'No progress';
+          if(!firstData.hasOwnProperty("score")) throw 'No score';
+          if(!firstData.hasOwnProperty("status")) throw 'No status';
+          if(!firstData.hasOwnProperty("tags")) throw 'No tags';
+
+          importData(iData).then(() => {
+            utils.flashm('File imported');
+          });
+
+        }catch(e){
+          alert('File has wrong formating');
+          con.error('File has wrong formating:', e);
+        }
+      },
+      exportFallbackSync: async function(){
+        var exportObj = await exportData();
+        con.log('Export', exportObj);
+
+        var filecontent = 'data:text/csv;charset=utf-8,'+JSON.stringify(exportObj);
+        var encodedUri = encodeURI(filecontent);
+        try{
+          var link = document.createElement("a");
+          link.setAttribute("href", encodedUri);
+          link.setAttribute("download", "malsync_"+new Date().toJSON().slice(0,10).replace(/-/g,'/')+".txt");
+          document.body.appendChild(link);
+
+          link.click();
+        }catch(e){
+          window.open(encodedUri);
+        }
+        utils.flashm('File exported');
       }
     },
     data: function() {

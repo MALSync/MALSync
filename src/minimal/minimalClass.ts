@@ -151,8 +151,9 @@ export class minimal{
       // @ts-ignore
       var value = j.$(this).val();
       api.settings.set('syncMode', value);
+      This.minimal.find('#clearCache').click();
     });
-    this.minimal.find("#syncMode").val(api.settings.get('syncMode')).change();
+    this.minimal.find("#syncMode").val(api.settings.get('syncMode'));
 
     this.minimal.find("#miniMalHeight").on("input", function(){
         var miniMalHeight = This.minimal.find("#miniMalHeight").val();

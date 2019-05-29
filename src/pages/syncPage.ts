@@ -194,7 +194,7 @@ export class syncPage{
 
     var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
 
-    if((malUrl === null || !malUrl) && api.settings.get('localSyncAlpha')){
+    if((malUrl === null || !malUrl) && api.settings.get('localSync')){
       con.log('Local Fallback');
       malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
     }

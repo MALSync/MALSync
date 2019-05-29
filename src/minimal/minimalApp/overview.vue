@@ -28,7 +28,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malStatus" :disabled="!this.renderObj" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
+                  <select v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.login" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
                     <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.type)}}</option>
                     <option value="2">{{lang("UI_Status_Completed")}}</option>
                     <option value="3">{{lang("UI_Status_OnHold")}}</option>
@@ -42,7 +42,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(renderObj.type)}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malEpisode" :disabled="!this.renderObj" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.totalEp">{{renderObj.totalEp}}</span><span v-else>?</span></span>
+                  <input v-model="malEpisode" :disabled="!this.renderObj || !this.renderObj.login" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.totalEp">{{renderObj.totalEp}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -54,7 +54,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Volume")}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malVolume" :disabled="!this.renderObj" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.totalVol">{{renderObj.totalVol}}</span><span v-else>?</span></span>
+                  <input v-model="malVolume" :disabled="!this.renderObj || !this.renderObj.login" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.totalVol">{{renderObj.totalVol}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -66,7 +66,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malScore" :disabled="!this.renderObj" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+                  <select v-model="malScore" :disabled="!this.renderObj || !this.renderObj.login" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option value="" selected="selected">{{lang("UI_Score_Not_Rated")}}</option>
                     <option value="10">{{lang("UI_Score_Masterpiece")}}</option>
                     <option value="9">{{lang("UI_Score_Great")}}</option>
@@ -84,8 +84,8 @@
             </li>
             <li class="mdl-list__item" style="width: 100%;">
 
-              <input @click="malSync()" v-if="renderObj && renderObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
-              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj">
+              <input @click="malSync()" v-if="renderObj && renderObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.login">
+              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.login">
               <small v-if="editUrl && renderObj">
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
@@ -213,7 +213,9 @@
           api.request.xhr('GET', renderObj.getMalUrl()).then((response) => {
             this.xhr = response.responseText;
             this.related = this.getRelated();
-            this.updateStatusTags();
+            if(renderObj.login){
+              this.updateStatusTags();
+            }
           });
 
           if(renderObj.getMalUrl().split('').length > 3){
@@ -244,56 +246,56 @@
       },
       malStatus: {
         get: function () {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             if(this.renderObj.getScore() === 0) return 1;
             return this.renderObj.getStatus()
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             this.renderObj.setStatus(value);
           }
         }
       },
       malEpisode: {
         get: function () {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             if(this.renderObj.addAnime) return null;
             return this.renderObj.getEpisode();
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             this.renderObj.setEpisode(value);
           }
         }
       },
       malVolume: {
         get: function () {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             if(this.renderObj.addAnime) return null;
             return this.renderObj.getVolume();
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             this.renderObj.setVolume(value);
           }
         }
       },
       malScore: {
         get: function () {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             if(this.renderObj.getScore() === 0) return '';
             return this.renderObj.getScore()
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj){
+          if(this.renderObj && this.renderObj.login){
             this.renderObj.setScore(value);
           }
         }
@@ -370,7 +372,7 @@
       streaming: function(){
         var streamhtml = null;
         var malObj = this.renderObj;
-        if(malObj == null) return null;
+        if(malObj == null || !malObj.login) return null;
         var streamUrl = malObj.getStreamingUrl();
         if(typeof streamUrl !== 'undefined'){
 

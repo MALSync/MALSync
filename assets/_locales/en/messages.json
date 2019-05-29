@@ -459,6 +459,14 @@
       "message": "Local storage fallback",
       "description": "Option to activate the local storage fallback sync"
     },
+    "settings_LocalSync_Import": {
+      "message": "Import",
+      "description": "Button to import local storage fallback data"
+    },
+    "settings_LocalSync_Export": {
+      "message": "Export",
+      "description": "Button to Export Local storage fallback data"
+    },
     "settings_Animesync": {
       "message": "Anime sync",
       "description": "Anime sync"
