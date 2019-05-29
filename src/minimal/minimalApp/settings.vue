@@ -65,10 +65,10 @@
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
 
-        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}
+        <checkbox option="localSync">{{lang("settings_LocalSync")}}
           <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
         </checkbox>
-        <li v-show="options.localSyncAlpha" class="mdl-list__item">
+        <li v-show="options.localSync" class="mdl-list__item">
           <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
           <fileUpload style="margin-left: 15px;" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
         </li>
