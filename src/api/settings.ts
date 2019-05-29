@@ -61,6 +61,19 @@ export var settingsObj = {
       }
       con.log('Settings', this.options);
       resolve(this);
+
+      api.storage.storageOnChanged((changes, namespace) => {
+        if(namespace === 'sync'){
+          for (var key in changes) {
+            var storageChange = changes[key];
+            if(/^settings\//i.test(key)){
+              this.options[key.replace('settings/','')] = storageChange.newValue;
+              con.info('Update '+key+' option to '+storageChange.newValue);
+            }
+          }
+        }
+      });
+
     });
   },
 

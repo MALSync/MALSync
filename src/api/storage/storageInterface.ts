@@ -20,4 +20,6 @@ export interface storageInterface {
   injectjsResource(res: string, head): void;
 
   updateDom(head): void;
+
+  storageOnChanged(cb: (changes, namespace) => void): any;
 }
