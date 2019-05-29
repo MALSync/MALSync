@@ -37,12 +37,7 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
-        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}</checkbox>
 
-        <li class="mdl-list__item">
-          <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
-          <fileUpload @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
-        </li>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Animesync")}}
@@ -69,6 +64,15 @@
         <numberInput v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'" option="videoDuration" :min="10" :max="99">{{lang("settings_AutoTracking_Video",[options.videoDuration])}}</numberInput>
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
+
+        <checkbox option="localSyncAlpha">{{lang("settings_LocalSync")}}
+          <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
+        </checkbox>
+        <li v-show="options.localSyncAlpha" class="mdl-list__item">
+          <button type="button" id="export" v-on:click="exportFallbackSync()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_LocalSync_Export")}}</button>
+          <fileUpload style="margin-left: 15px;" @upload="importFallbackSync">{{lang("settings_LocalSync_Import")}}</fileUpload>
+        </li>
+
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
