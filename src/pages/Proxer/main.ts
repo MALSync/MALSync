@@ -26,7 +26,7 @@ export const Proxer: pageInterface = {
       }
     },
     getIdentifier: function(url) {
-      return url.split("/")[4];
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url) {
       return (
