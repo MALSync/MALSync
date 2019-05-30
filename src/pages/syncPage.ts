@@ -10,6 +10,8 @@ export class syncPage{
   malObj;
   oldMalObj;
 
+  public novel = false;
+
   constructor(public url){
     this.page = this.getPage(url);
     if (this.page == null) {
@@ -584,6 +586,9 @@ export class syncPage{
 
     function malSearch(){
       var url = "https://myanimelist.net/"+page.type+".php?q=" + encodeURI(title);
+      if(This.novel){
+        url = "https://myanimelist.net/"+page.type+".php?type=2&q=" + encodeURI(title);
+      }
       con.log("malSearch", url);
       return api.request.xhr('GET', url).then((response) => {
         if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){

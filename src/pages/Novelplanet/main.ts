@@ -42,6 +42,7 @@ export const Novelplanet: pageInterface = {
       }
     },
     init(page){
+      page.novel = true;
       if(document.title == "Just a moment..."){
           con.log("loading");
           page.cdn();
