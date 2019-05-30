@@ -592,26 +592,46 @@ export class syncPage{
       con.log("malSearch", url);
       return api.request.xhr('GET', url).then((response) => {
         if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){
-          try{
-            var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
-            This.setCache(link, true, identifier);
-            return link
-          }catch(e){
-            con.error(e);
-            try{
-              var link = response.responseText.split('class="picSurround')[1].split('<a')[1].split('href="')[1].split('"')[0];
-              This.setCache(link, true, identifier);
-              return link
-            }catch(e){
-              con.error(e);
-              return false;
-            }
-          }
-
+          return handleResult(response);
         }else{
           return false;
         }
       });
+
+      function handleResult(response, i = 1){
+        var link = getLink(response, i);
+        if(link !== false){
+
+          if(page.type === 'manga' && !This.novel){
+            try{
+              var typeCheck = response.responseText.split('href="'+link+'" id="si')[1].split('</tr>')[0];
+              if(typeCheck.indexOf("Novel") !== -1){
+                con.log('Novel Found check next entry')
+                return handleResult(response, i+1);
+              }
+            }catch(e){
+              con.error(e);
+            }
+          }
+
+          This.setCache(link, true, identifier);
+        }
+        return link;
+      }
+
+      function getLink(response, i){
+        try{
+          return response.responseText.split('<a class="hoverinfo_trigger" href="')[i].split('"')[0];
+        }catch(e){
+          con.error(e);
+          try{
+            return response.responseText.split('class="picSurround')[i].split('<a')[1].split('href="')[1].split('"')[0];
+          }catch(e){
+            con.error(e);
+            return false;
+          }
+        }
+      }
     }
 
     //Helper
