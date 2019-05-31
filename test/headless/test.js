@@ -469,6 +469,33 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Novelplanet',
+    url: 'https://novelplanet.com',
+    testCases: [
+      {
+        url: 'https://novelplanet.com/Novel/No-Game-No-Life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'No-Game-No-Life',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-3?id=125572',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'No-Game-No-Life',
+          overviewUrl: 'https://novelplanet.com/Novel/No-Game-No-Life',
+          episode: 3,
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

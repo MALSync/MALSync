@@ -13,7 +13,7 @@
       <option value="anime">Anime</option>
       <option value="manga">Manga</option>
     </select>
-    <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp">
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table__cell--non-numeric mdl-shadow--2dp" style="white-space: normal;">
       <tr>
         <th class="mdl-data-table__cell--non-numeric"></th>
         <th>{{lang("updateCheck_Episode")}}</th>

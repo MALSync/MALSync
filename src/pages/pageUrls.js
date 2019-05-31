@@ -184,5 +184,10 @@ module.exports = {
     match: [
       '*://animevibe.tv/a/*',
     ],
-  }
+  },
+  Novelplanet: {
+    match: [
+      '*://novelplanet.com/Novel/*',
+    ],
+  },
 };
