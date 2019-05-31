@@ -1,25 +1,25 @@
 <template>
   <div>
-    <div>
+    <div style="display: inline-block; margin-right: 40px;">
       MyAnimeList <br>
       {{listProvider.mal.text}} <br>
       <span v-if="listProvider.mal.list">List: {{listProvider.mal.list.length}}</span><br>
       <br>
     </div>
-    <div>
+    <div style="display: inline-block; margin-right: 40px;">
       AniList <br>
       {{listProvider.anilist.text}} <br>
       <span v-if="listProvider.anilist.list">List: {{listProvider.anilist.list.length}}</span><br>
       <br>
     </div>
-    <div>
+    <div style="display: inline-block; margin-right: 40px;">
       Kitsu <br>
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
       <br>
     </div>
 
-    <div v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex;">
+    <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex;">
       <div style="width: 50px; border-right: 1px solid black;">
         {{index}}
       </div>
@@ -27,9 +27,10 @@
         ID: {{item.master.uid}}<br>
         EP: {{item.master.watchedEp}}
       </div>
-      <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" style="border-right: 1px solid black; padding: 5px 10px; width: 70px;">
+      <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" style="border-right: 1px solid black; padding: 5px 10px; width: 100px;">
         ID: {{slave.uid}}<br>
         EP: {{slave.watchedEp}}
+        <span v-if="slave.diff" style="color: green;">→ {{slave.diff.watchedEp}}</span>
       </div>
     </div>
 
@@ -68,6 +69,7 @@
     },
     mounted: async function(){
       var type = 'anime';
+      var mode = 'mirror';
       var listP = [];
 
       this.listProvider.mal.text = 'Loading';
@@ -94,6 +96,10 @@
       this.mapToArray(this.listProvider.anilist.list, this.list, false);
       this.mapToArray(this.listProvider.kitsu.list, this.list, false);
 
+      for (var i in this.list) {
+        changeCheck(this.list[i], mode);
+      }
+
     },
     destroyed: function(){
     },
@@ -108,6 +114,7 @@
           var temp = resultList[el.malId];
           if(typeof temp === "undefined"){
             temp = {
+              diff: false,
               master: {},
               slaves: []
             };
@@ -116,6 +123,7 @@
           if(masterM){
             temp.master = el;
           }else{
+            el.diff = false;
             temp.slaves.push(el);
           }
           this.$set(resultList, el.malId, temp);
@@ -134,5 +142,17 @@
     });
   }
 
+  function changeCheck(item, mode){
+    if(item.master && item.master.uid){;
+      for (var i = 0; i < item.slaves.length; i++) {
+        var slave = item.slaves[i];
+        if(slave.watchedEp !== item.master.watchedEp){
+          item.diff = true;
+          slave.diff = {watchedEp: item.master.watchedEp};
+        }
+      }
+    }
+
+  }
 
 </script>
