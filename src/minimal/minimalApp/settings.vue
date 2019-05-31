@@ -91,6 +91,7 @@
         <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="Mangarock">Mangarock</checkbox>
+        <checkbox option="Novelplanet">Novelplanet</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
         <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
       </div>

@@ -40,6 +40,7 @@ export var settingsObj = {
     Netflix: true,
     Proxeranime: true,
     Proxermanga: true,
+    Novelplanet: true,
 
     autofull: false,
     autoresume: false,

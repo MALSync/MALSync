@@ -19,6 +19,7 @@ import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
 import {Animevibe} from "./Animevibe/main";
+import {Novelplanet} from "./Novelplanet/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -44,6 +45,7 @@ export const pages = {
     Vrv,
     Proxer,
     Animevibe,
+    Novelplanet,
 };
 
 export const pageSearch:pageSearchObj = {
@@ -122,6 +124,12 @@ export const pageSearch:pageSearchObj = {
       domain: 'kissmanga.com',
       searchUrl: (titleEncoded) => {return ''},
       completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
+    },
+    Novelplanet: {
+      name: 'Novelplanet',
+      type: 'manga',
+      domain: 'novelplanet.com',
+      searchUrl: (titleEncoded) => {return 'https://novelplanet.com/NovelList?name='+titleEncoded}
     },
     AniList: {
       name: 'AniList',
