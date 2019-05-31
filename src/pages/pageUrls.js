@@ -192,7 +192,7 @@ module.exports = {
   },
   WonderfulSubs: {
     match: [
-      '*://*.wonderfulsubs.com/watch/*',
+      '*://*.wonderfulsubs.com/*',
     ],
   }
 };
