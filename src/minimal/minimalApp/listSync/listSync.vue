@@ -25,12 +25,18 @@
       </div>
       <div class="master" v-if="item.master && item.master.uid" style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;">
         ID: {{item.master.uid}}<br>
-        EP: {{item.master.watchedEp}}
+        EP: {{item.master.watchedEp}}<br>
+        Status: {{item.master.status}}<br>
+        Score: {{item.master.score}}
       </div>
       <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" style="border-right: 1px solid black; padding: 5px 10px; width: 100px;">
         ID: {{slave.uid}}<br>
         EP: {{slave.watchedEp}}
-        <span v-if="slave.diff" style="color: green;">→ {{slave.diff.watchedEp}}</span>
+          <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;">→ {{slave.diff.watchedEp}}</span><br>
+        Status: {{slave.status}}
+          <span v-if="slave.diff && slave.diff.status" style="color: green;">→ {{slave.diff.status}}</span><br>
+        Score: {{slave.score}}
+          <span v-if="slave.diff && slave.diff.score" style="color: green;">→ {{slave.diff.score}}</span>
       </div>
     </div>
 
@@ -123,7 +129,7 @@
           if(masterM){
             temp.master = el;
           }else{
-            el.diff = false;
+            el.diff = {};
             temp.slaves.push(el);
           }
           this.$set(resultList, el.malId, temp);
@@ -148,7 +154,15 @@
         var slave = item.slaves[i];
         if(slave.watchedEp !== item.master.watchedEp){
           item.diff = true;
-          slave.diff = {watchedEp: item.master.watchedEp};
+          slave.diff.watchedEp = item.master.watchedEp;
+        }
+        if(slave.status !== item.master.status){
+          item.diff = true;
+          slave.diff.status = item.master.status;
+        }
+        if(slave.rating !== item.master.rating){
+          item.diff = true;
+          slave.diff.rating = item.master.rating;
         }
       }
     }
