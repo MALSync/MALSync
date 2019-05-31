@@ -8,6 +8,7 @@ export interface listElement {
   watchedEp: number,
   totalEp: number,
   status: number,
+  score: number,
   image: string,
   tags: string,
   airingState: number,
