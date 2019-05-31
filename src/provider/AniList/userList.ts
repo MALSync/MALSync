@@ -44,6 +44,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
             episodes
             chapters
             volumes
+            status
             averageScore
             coverImage{
               large
@@ -154,6 +155,7 @@ export function prepareData(data, listType): listElement[]{
         url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.episodes,
+        status: helper.translateList(el.status),
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],
@@ -168,6 +170,7 @@ export function prepareData(data, listType): listElement[]{
         url: el.media.siteUrl,
         watchedEp: el.progress,
         totalEp: el.media.chapters,
+        status: helper.translateList(el.status),
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],
