@@ -19,6 +19,7 @@ export const Novelplanet: pageInterface = {
         return getEp($('.selectChapter option').first().text());
       },
       getVolume: function(url){
+        url = $('.selectChapter option').first().text();
         try{
           url = url.match(/vol(ume)\D?\d+/i)[0];
           url = url.match(/\d+/)[0];

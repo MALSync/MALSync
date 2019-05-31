@@ -376,8 +376,15 @@ export class syncPage{
 
   private async handleAnimeUpdate(state){
     var status = utils.status;
+
     if(
       this.malObj.getEpisode() >= state.episode &&
+      // Novel Volume
+      !(
+        this.novel &&
+        typeof(state.volume) != "undefined" &&
+        state.volume > this.malObj.getVolume()
+      ) &&
       //Rewatching
       !(
         this.malObj.getStatus() == status.completed &&
@@ -389,6 +396,7 @@ export class syncPage{
       return false;
     }
     this.malObj.setEpisode(state.episode);
+    if( typeof(state.volume) != "undefined" ) this.malObj.setVolume(state.volume);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
     this.malObj.setStartingDateToNow();
 
