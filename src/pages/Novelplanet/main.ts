@@ -3,7 +3,7 @@ import {pageInterface} from "./../pageInterface";
 export const Novelplanet: pageInterface = {
     name: 'Novelplanet',
     domain: 'https://novelplanet.com',
-    //database: 'Novelplanet',
+    database: 'Novelplanet',
     type: 'manga',
     isSyncPage: function(url){
       if(typeof utils.urlPart(url, 5) != 'undefined'){
