@@ -125,6 +125,12 @@ export const pageSearch:pageSearchObj = {
       searchUrl: (titleEncoded) => {return ''},
       completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
     },
+    Novelplanet: {
+      name: 'Novelplanet',
+      type: 'manga',
+      domain: 'novelplanet.com',
+      searchUrl: (titleEncoded) => {return 'https://novelplanet.com/NovelList?name='+titleEncoded}
+    },
     AniList: {
       name: 'AniList',
       type: 'anime',
