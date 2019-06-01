@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div :style="getTypeColor('myanimelist.net')" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
+    <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       MyAnimeList <br>
       {{listProvider.mal.text}} <br>
       <span v-if="listProvider.mal.list">List: {{listProvider.mal.list.length}}</span><br>
       <br>
     </div>
-    <div :style="getTypeColor('anilist.co')" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
+    <div :style="getTypeColor(getType('anilist.co'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       AniList <br>
       {{listProvider.anilist.text}} <br>
       <span v-if="listProvider.anilist.list">List: {{listProvider.anilist.list.length}}</span><br>
       <br>
     </div>
-    <div :style="getTypeColor('kitsu.io')" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
+    <div :style="getTypeColor(getType('kitsu.io'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       Kitsu <br>
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
@@ -23,13 +23,13 @@
       <div style="width: 50px; border-right: 1px solid black;">
         {{index}}
       </div>
-      <div class="master" v-if="item.master && item.master.uid" :style="getTypeColor(item.master.url)" style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;">
+      <div class="master" v-if="item.master && item.master.uid" :style="getTypeColor(getType(item.master.url))" style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;">
         ID: {{item.master.uid}}<br>
         EP: {{item.master.watchedEp}}<br>
         Status: {{item.master.status}}<br>
         Score: {{item.master.score}}
       </div>
-      <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" :style="getTypeColor(slave.url)" style="border-right: 1px solid black; padding: 5px 10px; width: 100px;">
+      <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" :style="getTypeColor(getType(slave.url))" style="border-right: 1px solid black; padding: 5px 10px; width: 100px;">
         ID: {{slave.uid}}<br>
         EP: {{slave.watchedEp}}
           <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;">→ {{slave.diff.watchedEp}}</span><br>
@@ -40,6 +40,20 @@
       </div>
     </div>
 
+    <div v-if="missing.length">
+      <h2>Missing</h2>
+      <div v-for="item in missing"  style="border: 1px solid black; display: flex;">
+        <div style="width: 50px; border-right: 1px solid black;">
+          {{item.malId}}
+        </div>
+        <div :style="getTypeColor(item.syncType)" style="padding: 5px 10px;">
+          {{item.title}}<br>
+          EP: {{item.watchedEp}}<br>
+          Status: {{item.status}}<br>
+          Score: {{item.score}}
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -71,11 +85,13 @@
           }
         },
         list: {},
+        missing: [],
       };
     },
     mounted: async function(){
       var type = 'anime';
       var mode = 'mirror';
+      var typeArray = ['MAL', 'ANILIST', 'KITSU'];
       var listP = [];
 
       this.listProvider.mal.text = 'Loading';
@@ -104,6 +120,7 @@
 
       for (var i in this.list) {
         changeCheck(this.list[i], mode);
+        missingCheck(this.list[i], this.missing, typeArray, mode);
       }
 
     },
@@ -114,8 +131,7 @@
     methods: {
       lang: api.storage.lang,
       getType: getType,
-      getTypeColor: function(url){
-        var type = this.getType(url);
+      getTypeColor: function(type){
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
         return 'border-left: 5px solid #2e51a2';
@@ -176,6 +192,30 @@
 
   }
 
+  function missingCheck(item, missing, types, mode){
+    if(item.master && item.master.uid){
+      var tempTypes = [];
+      tempTypes.push(getType(item.master.url));
+      for (var i = 0; i < item.slaves.length; i++) {
+        var slave = item.slaves[i];
+        tempTypes.push(getType(slave.url));
+      }
+      for (var t in types) {
+        var type = types[t];
+        if(!tempTypes.includes(type)){
+          missing.push({
+            'title': item.master.title,
+            'syncType': type,
+            'malId': item.master.malId,
+            'watchedEp': item.master.watchedEp,
+            'score': item.master.score,
+            'status': item.master.status,
+            'url': 'https://myanimelist.net/'+item.master.type+'/'+item.master.malId
+          })
+        }
+      }
+    }
+  }
 
   function getType(url){
     if(url.indexOf('anilist.co') !== -1) return 'ANILIST';
