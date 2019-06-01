@@ -190,4 +190,9 @@ module.exports = {
       '*://novelplanet.com/Novel/*',
     ],
   },
+  WonderfulSubs: {
+    match: [
+      '*://*.wonderfulsubs.com/*',
+    ],
+  }
 };

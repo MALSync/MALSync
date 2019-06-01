@@ -43,6 +43,8 @@ export function prepareData(data, listType, status): listElement[]{
           tags: el.tags,
           title: el.name,
           totalEp: 0,
+          status: el.status,
+          score: el.score,
           type: "anime",
           //@ts-ignore
           uid: key,
@@ -58,6 +60,8 @@ export function prepareData(data, listType, status): listElement[]{
           tags: el.tags,
           title: el.name,
           totalEp: 0,
+          status: el.status,
+          score: el.score,
           type: "manga",
           //@ts-ignore
           uid: key,
