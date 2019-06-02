@@ -21,37 +21,37 @@ export const kawaiifu: pageInterface = {
         .$("h2.title")
         .text()
         .replace(
-          /(?:^|\W)+[uU][nN][cC][eE][nN][sS][oO][rR][eE][dD]+(?:$|\W)/g,
-          " "
-        )
+          /(?:^|\W)+[uU][nN][cC][eE][nN][sS][oO][rR][eE][dD]+(?:$|\W)/g," ")
         .replace(/(?:^|\W)+[dD][uU][bB]+(?:$|\W)/g, " ")
         .trim();
     },
     getIdentifier: function(url) {
       if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series") {
-        return url.split("/")[4];
+        return url.split("/")[4].replace(/\.[^.]*$/g, "");
       } else {
-        return url.split("/")[5];
+        return url.split("/")[5].replace(/\.[^.]*$/g, "");
       }
     },
     getOverviewUrl: function(url) {
       if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series") {
-        return kawaiifu.domain + url.split("/")[3] + url.split("/")[4];
+        return (
+          "https://kawaiifu.com/" +url.split("/")[3] + "/" + url.split("/")[4].replace(/\?[^?]*$/g)
+        );
       } else {
         return (
-          kawaiifu.domain +
-          url.split("/")[3] +
-          url.split("/")[4] +
-          url.split("/")[5]
+          "https://kawaiifu.com/" + url.split("/")[3] + "/" + url.split("/")[4] + "/" + url.split("/")[5].replace(/\?[^?]*$/g)
         );
       }
     },
     getEpisode: function(url) {
       {
-        return j
-          .$("ul.list-ep a.active")
-          .text()
-          .replace(/\D+/g, "");
+        if (
+          j.$("ul.list-ep a.active").text().toLowerCase().indexOf("trailer") !== -1
+        ) {
+          return 0;
+        } else {
+          return j.$("ul.list-ep a.active").text().replace(/\D+/g, "");
+        }
       }
     }
   },
