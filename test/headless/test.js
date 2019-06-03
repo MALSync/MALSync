@@ -514,6 +514,24 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: '4anime',
+    url: 'https://4anime.to/',
+    testCases: [
+      {
+        url: 'https://4anime.to/no-game-no-life-episode-04?id=10620',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://4anime.to/anime/no-game-no-life',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
