@@ -17,7 +17,10 @@
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
       <br>
-    </div>
+    </div><br>
+
+    <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
+    <span v-if="listLength">{{listLength - listSyncLength}}/{{listLength}}</span>
 
     <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex;">
       <div style="width: 50px; border-right: 1px solid black;">
@@ -84,6 +87,8 @@
             list: null
           }
         },
+        listReady: false,
+        listLength: 0,
         list: {},
         missing: [],
       };
@@ -123,10 +128,16 @@
         missingCheck(this.list[i], this.missing, typeArray, mode);
       }
 
+      this.listReady = true;
     },
     destroyed: function(){
     },
     watch: {
+    },
+    computed: {
+      listSyncLength: function(){
+        return Object.values(this.list).filter(el => el.diff).length;
+      }
     },
     methods: {
       lang: api.storage.lang,
@@ -157,7 +168,12 @@
           }
           this.$set(resultList, el.malId, temp);
         }
-      }
+      },
+
+      syncList: function(){
+        this.listReady = false;
+        this.listLength = this.listSyncLength;
+      },
 
     }
   }
