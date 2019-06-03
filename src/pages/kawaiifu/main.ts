@@ -35,11 +35,11 @@ export const kawaiifu: pageInterface = {
     getOverviewUrl: function(url) {
       if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series") {
         return (
-          "https://kawaiifu.com/" +url.split("/")[3] + "/" + url.split("/")[4].replace(/\?[^?]*$/g)
+          "https://kawaiifu.com/" +url.split("/")[3] + "/" + url.split("/")[4].replace(/\?[^?]*$/g, "")
         );
       } else {
         return (
-          "https://kawaiifu.com/" + url.split("/")[3] + "/" + url.split("/")[4] + "/" + url.split("/")[5].replace(/\?[^?]*$/g)
+          "https://kawaiifu.com/" + url.split("/")[3] + "/" + url.split("/")[4] + "/" + url.split("/")[5].replace(/\?[^?]*$/g, "")
         );
       }
     },
