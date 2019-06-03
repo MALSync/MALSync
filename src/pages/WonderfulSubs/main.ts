@@ -62,7 +62,7 @@ export const WonderfulSubs: pageInterface = {
     });
   }
 };
-var var betaWonderfulSubs: pageInterface = {
+var betaWonderfulSubs: pageInterface = {
   name: "betaWonderfulSubs",
   domain: "https://beta.wonderfulsubs.com",
   type: "anime",
