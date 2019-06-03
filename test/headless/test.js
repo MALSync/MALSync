@@ -496,6 +496,24 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Kawaiifu',
+    url: 'https://kawaiifu.com/',
+    testCases: [
+      {
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html?ep=4',
+        expected: {
+          sync: true,
+          title: 'Plastic Memories (Bluray Ver.)',
+          identifier: 'plastic-memories-bluray-ver',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

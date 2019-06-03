@@ -21,6 +21,7 @@ import {Proxer} from "./Proxer/main";
 import {Animevibe} from "./Animevibe/main";
 import {Novelplanet} from "./Novelplanet/main";
 import {WonderfulSubs} from "./WonderfulSubs/main";
+import {kawaiifu} from "./kawaiifu/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -48,6 +49,7 @@ export const pages = {
     Animevibe,
     Novelplanet,
     WonderfulSubs,
+    kawaiifu,
 };
 
 export const pageSearch:pageSearchObj = {

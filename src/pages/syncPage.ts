@@ -64,7 +64,7 @@ export class syncPage{
         j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
       }else{
         j.$('#malSyncProgress').addClass('ms-done');
-        j.$('.flash .sync').click();
+        j.$('.flash.type-update .sync').click();
       }
     }
     this.handleVideoResume(item, timeCb);
