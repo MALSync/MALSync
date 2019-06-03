@@ -204,7 +204,7 @@ module.exports = {
   },
   fourAnime: {
     match: [
-      '*://4anime.to*',
+      '*://4anime.to/*',
     ],
   }
 };
