@@ -23,6 +23,22 @@ export class minimal{
     this.loadSettings();
     this.updateDom();
 
+    function handleConnectionChange(event){
+      if(event.type == "offline"){
+        con.log("Offline");
+        utils.flashm("You're offline check your connection", {
+          error: true,
+          type: 'offline',
+          permanent: true,
+        })
+      }
+      if(event.type == "online"){
+        con.log("You are now back online.");
+        $('.type-offline').remove();
+      }
+    }
+    window.addEventListener('online', handleConnectionChange);
+    window.addEventListener('offline', handleConnectionChange);
   }
 
   uiListener(){
