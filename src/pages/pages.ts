@@ -22,6 +22,7 @@ import {Animevibe} from "./Animevibe/main";
 import {Novelplanet} from "./Novelplanet/main";
 import {WonderfulSubs} from "./WonderfulSubs/main";
 import {kawaiifu} from "./kawaiifu/main";
+import {fourAnime} from "./fourAnime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -50,6 +51,7 @@ export const pages = {
     Novelplanet,
     WonderfulSubs,
     kawaiifu,
+    fourAnime,
 };
 
 export const pageSearch:pageSearchObj = {
