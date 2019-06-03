@@ -194,5 +194,12 @@ module.exports = {
     match: [
       '*://*.wonderfulsubs.com/*',
     ],
+  },
+  kawaiifu: {
+    match: [
+      '*://kawaiifu.com/season/*',
+      '*://kawaiifu.com/dub/*',
+      '*://kawaiifu.com/tv-series/*',
+    ],
   }
 };
