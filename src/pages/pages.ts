@@ -50,6 +50,7 @@ export const pages = {
     Animevibe,
     Novelplanet,
     WonderfulSubs,
+    kawaiifu,
     fourAnime,
 };
 
