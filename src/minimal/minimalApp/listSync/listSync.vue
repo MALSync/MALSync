@@ -170,9 +170,17 @@
         }
       },
 
-      syncList: function(){
+      syncList: async function(){
         this.listReady = false;
         this.listLength = this.listSyncLength;
+
+        for (var i in this.list) {
+          var el = this.list[i];
+          if(el.diff){
+            await syncListItem(el);
+            el.diff = false;
+          }
+        }
       },
 
     }
@@ -185,6 +193,22 @@
         resolve(list)
       }});
     });
+  }
+
+  async function syncListItem(item){
+    for (var i = 0; i < item.slaves.length; i++) {
+      var slave = item.slaves[i];
+      await syncItem(slave);
+    }
+
+    function syncItem(slave){
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve();
+        }, 1000)
+      });
+    }
+
   }
 
   function changeCheck(item, mode){
