@@ -23,7 +23,11 @@ export const WonderfulSubs: pageInterface = {
         .replace(/ /g, "-");
     },
     getOverviewUrl: function(url) {
-      return WonderfulSubs.domain + "/watch/" + url.split("/")[4].replace(/\?[^?]*$/g, "");
+      return (
+        WonderfulSubs.domain +
+        "/watch/" +
+        url.split("/")[4].replace(/\?[^?]*$/g, "")
+      );
     },
     getEpisode: function(url) {
       return j
@@ -35,20 +39,10 @@ export const WonderfulSubs: pageInterface = {
   init(page) {
     api.storage.addStyle(require("./style.less").toString());
     page.url = window.location.href;
-    if (page.url.split("/")[3] === "watch") {
-      utils.waitUntilTrue(
-        function() {
-          return j.$("span.card-title p.hide-truncate.activator").text();
-        },
-        function() {
-          page.handlePage();
-        }
-      );
-    }
-    utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+    if (page.url.split("/")[2] === "beta.wonderfulsubs.com") {
+      WonderfulSubs.isSyncPage = betaWonderfulSubs.isSyncPage;
+      betaWonderfulSubs.init(page);
+    } else {
       if (page.url.split("/")[3] === "watch") {
         utils.waitUntilTrue(
           function() {
@@ -59,9 +53,25 @@ export const WonderfulSubs: pageInterface = {
           }
         );
       }
-    });
+      utils.urlChangeDetect(function() {
+        page.url = window.location.href;
+        page.UILoaded = false;
+        $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+        if (page.url.split("/")[3] === "watch") {
+          utils.waitUntilTrue(
+            function() {
+              return j.$("span.card-title p.hide-truncate.activator").text();
+            },
+            function() {
+              page.handlePage();
+            }
+          );
+        }
+      });
+    }
   }
 };
+
 var betaWonderfulSubs: pageInterface = {
   name: "betaWonderfulSubs",
   domain: "https://beta.wonderfulsubs.com",
@@ -85,7 +95,11 @@ var betaWonderfulSubs: pageInterface = {
         .replace(/ /g, "-");
     },
     getOverviewUrl: function(url) {
-      return "https://beta.wonderfulsubs.com" + "/watch/" + url.split("/")[4].replace(/\?[^?]*$/g, "");
+      return (
+        "https://beta.wonderfulsubs.com" +
+        "/watch/" +
+        url.split("/")[4].replace(/\?[^?]*$/g, "")
+      );
     },
     getEpisode: function(url) {
       return j
