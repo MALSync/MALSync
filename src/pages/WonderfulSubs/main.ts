@@ -23,7 +23,7 @@ export const WonderfulSubs: pageInterface = {
         .replace(/ /g, "-");
     },
     getOverviewUrl: function(url) {
-      return WonderfulSubs.domain + "/watch/" + url.split("/")[4].replace(/\?[^?]*$/g);
+      return WonderfulSubs.domain + "/watch/" + url.split("/")[4].replace(/\?[^?]*$/g, "");
     },
     getEpisode: function(url) {
       return j
