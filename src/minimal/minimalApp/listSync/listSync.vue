@@ -27,13 +27,13 @@
         {{index}}
       </div>
       <div class="master" v-if="item.master && item.master.uid" :style="getTypeColor(getType(item.master.url))" style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;">
-        ID: {{item.master.uid}}<br>
+        ID: <a target="_blank" :href="item.master.url">{{item.master.uid}}</a><br>
         EP: {{item.master.watchedEp}}<br>
         Status: {{item.master.status}}<br>
         Score: {{item.master.score}}
       </div>
       <div class="slave" v-for="slave in item.slaves" v-bind:key="slave.uid" :style="getTypeColor(getType(slave.url))" style="border-right: 1px solid black; padding: 5px 10px; width: 100px;">
-        ID: {{slave.uid}}<br>
+        ID: <a target="_blank" :href="slave.url">{{slave.uid}}</a><br>
         EP: {{slave.watchedEp}}
           <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;">→ {{slave.diff.watchedEp}}</span><br>
         Status: {{slave.status}}
@@ -202,11 +202,23 @@
     }
 
     function syncItem(slave){
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve();
-        }, 1000)
-      });
+      if(Object.keys(slave.diff).length !== 0){
+        var pageType = getType(slave.url);
+        if(pageType == 'MAL'){
+          var entryClass = new mal.entryClass(slave.url);
+        }else if(pageType == 'ANILIST'){
+          var entryClass = new anilist.entryClass(slave.url);
+        }else{
+          var entryClass = new kitsu.entryClass(slave.url);
+        }
+
+        return entryClass.init().then(() => {
+          if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
+          if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
+          if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
+          return entryClass.sync();
+        });
+      }
     }
 
   }
