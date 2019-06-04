@@ -532,6 +532,24 @@ var testsArray = [
       },
     ]
   },
+
+  {
+    title: 'Dreamanimes',
+    url: 'https://dreamanimes.com.br/',
+    testCases: [
+      {
+        url: 'https://dreamanimes.com.br/online/legendado/no-game-no-life/episodio/4',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
