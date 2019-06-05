@@ -156,4 +156,9 @@ module.exports = {
       '*://verystream.com/*'
     ]
   },
+  animeultima:{
+  match: [
+    '*://*.animeultima.eu/e/*'
+  ]
+}
 };
