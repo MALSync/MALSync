@@ -250,8 +250,15 @@
       for (var i = 0; i < item.slaves.length; i++) {
         var slave = item.slaves[i];
         if(slave.watchedEp !== item.master.watchedEp){
-          item.diff = true;
-          slave.diff.watchedEp = item.master.watchedEp;
+          if(item.master.watchedEp > slave.totalEp){
+            if(slave.watchedEp !== slave.totalEp){
+              item.diff = true;
+              slave.diff.watchedEp = slave.totalEp;
+            }
+          }else{
+            item.diff = true;
+            slave.diff.watchedEp = item.master.watchedEp;
+          }
         }
         if(slave.status !== item.master.status){
           item.diff = true;
