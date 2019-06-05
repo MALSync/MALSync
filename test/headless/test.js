@@ -550,6 +550,24 @@ var testsArray = [
       },
     ]
   },
+  
+  {
+    title: 'animeultima',
+    url: 'https://www10.animeultima.eu/',
+    testCases: [
+      {
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789/episode-4_760357-sub',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life_804789',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
