@@ -166,7 +166,12 @@
             el.diff = {};
             temp.slaves.push(el);
           }
-          this.$set(resultList, el.malId, temp);
+          if(!isNaN(el.malId) && el.malId){
+            this.$set(resultList, el.malId, temp);
+          }else{
+            //TODO: List them
+          }
+
         }
       },
 
