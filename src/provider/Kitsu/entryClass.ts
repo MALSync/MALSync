@@ -422,6 +422,8 @@ export class entryClass{
           helper.errorHandling(res, This.silent);
           con.log('Update Succeeded');
           resolve();
+        }).catch((e)=>{
+          reject(e);
         });
 
       }

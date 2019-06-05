@@ -216,6 +216,7 @@
   async function syncListItem(item){
     for (var i = 0; i < item.slaves.length; i++) {
       var slave = item.slaves[i];
+      con.log('sync list item', slave);
       await syncItem(slave, getType(slave.url));
     }
   }
