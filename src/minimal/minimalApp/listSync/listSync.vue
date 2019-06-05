@@ -255,7 +255,7 @@
       for (var i = 0; i < item.slaves.length; i++) {
         var slave = item.slaves[i];
         if(slave.watchedEp !== item.master.watchedEp){
-          if(item.master.watchedEp > slave.totalEp){
+          if(item.master.status == 2){
             if(slave.watchedEp !== slave.totalEp){
               item.diff = true;
               slave.diff.watchedEp = slave.totalEp;
