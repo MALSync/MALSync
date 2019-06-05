@@ -163,7 +163,7 @@ export class entryClass{
   }
 
   setScore(score:any){
-    if(score == 0 && score === ''){
+    if(score == 0 || score === ''){
       this.listI().attributes.ratingTwenty = null;
       return;
     }
