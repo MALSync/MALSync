@@ -181,6 +181,19 @@
             el.diff = false;
           }
         }
+
+        var missing = this.missing.slice();
+        for (var i in missing) {
+          var miss = missing[i];
+          con.log("Sync missing", miss);
+          await syncMissing(miss)
+            .then(() => {
+              this.missing.splice(this.missing.indexOf(miss), 1);
+            })
+            .catch((e) => {
+              con.error('Error', e)
+            });
+        }
       },
 
     }
@@ -198,29 +211,38 @@
   async function syncListItem(item){
     for (var i = 0; i < item.slaves.length; i++) {
       var slave = item.slaves[i];
-      await syncItem(slave);
+      await syncItem(slave, getType(slave.url));
     }
+  }
 
-    function syncItem(slave){
-      if(Object.keys(slave.diff).length !== 0){
-        var pageType = getType(slave.url);
-        if(pageType == 'MAL'){
-          var entryClass = new mal.entryClass(slave.url);
-        }else if(pageType == 'ANILIST'){
-          var entryClass = new anilist.entryClass(slave.url);
-        }else{
-          var entryClass = new kitsu.entryClass(slave.url);
-        }
+  async function syncMissing(item){
+    item.diff = {
+      watchedEp: item.watchedEp,
+      status: item.status,
+      score: item.score
+    };
+    return syncItem(item, item.syncType);
+  }
 
-        return entryClass.init().then(() => {
-          if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
-          if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
-          if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
-          return entryClass.sync();
-        });
+  function syncItem(slave, pageType){
+    if(Object.keys(slave.diff).length !== 0){
+      if(pageType == 'MAL'){
+        var entryClass = new mal.entryClass(slave.url);
+      }else if(pageType == 'ANILIST'){
+        var entryClass = new anilist.entryClass(slave.url);
+      }else if(pageType == 'KITSU'){
+        var entryClass = new kitsu.entryClass(slave.url);
+      }else{
+        throw('No sync type');
       }
-    }
 
+      return entryClass.init().then(() => {
+        if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
+        if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
+        if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
+        //return entryClass.sync();
+      });
+    }
   }
 
   function changeCheck(item, mode){
