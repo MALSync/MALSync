@@ -252,6 +252,10 @@ export class entryClass{
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
       if(this.addAnime){
+        if(this.silent){
+          continueCall();
+          return;
+        }
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
           ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", [this.name])}
@@ -407,6 +411,8 @@ export class entryClass{
           helper.errorHandling(res, This.silent);
           con.log('Update Succeeded');
           resolve();
+        }).catch((e)=>{
+          reject(e);
         });
 
       }

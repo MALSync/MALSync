@@ -19,6 +19,7 @@ interface entryClass {
   addAnime: boolean,
   login: boolean,
   wrong: boolean,
+  silent: boolean,
 
   init(),
   update(),
@@ -57,7 +58,7 @@ function getSyncMode(){
 
 export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false, state:any = null): entryClass{
   if(/^local:\/\//i.test(url)){
-    return new local.entryClass(url, miniMAL, state);
+    return new local.entryClass(url, miniMAL, silent, state);
   }
   var syncMode = getSyncMode();
   if(syncMode == 'MAL'){

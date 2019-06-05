@@ -129,6 +129,7 @@ export class entryClass{
 
   setEpisode(ep:number){
     if(ep+'' === '') ep = 0;
+    if(parseInt(ep+'') > this.totalEp && this.totalEp) ep = this.totalEp;
     this.listI().attributes.progress = parseInt(ep+'');
   }
 
@@ -163,7 +164,7 @@ export class entryClass{
   }
 
   setScore(score:any){
-    if(score == 0 && score === ''){
+    if(score == 0 || score === ''){
       this.listI().attributes.ratingTwenty = null;
       return;
     }
@@ -249,6 +250,10 @@ export class entryClass{
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
       if(this.addAnime){
+        if(this.silent){
+          continueCall();
+          return;
+        }
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
           ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", [this.name])}
@@ -417,6 +422,8 @@ export class entryClass{
           helper.errorHandling(res, This.silent);
           con.log('Update Succeeded');
           resolve();
+        }).catch((e)=>{
+          reject(e);
         });
 
       }

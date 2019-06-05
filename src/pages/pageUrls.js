@@ -201,5 +201,15 @@ module.exports = {
       '*://kawaiifu.com/dub/*',
       '*://kawaiifu.com/tv-series/*',
     ],
+  },
+  fourAnime: {
+    match: [
+      '*://4anime.to/*',
+    ],
+  },
+  Dreamanimes: {
+    match: [
+      '*://www.dreamanimes.com.br/online/*'
+    ],
   }
 };

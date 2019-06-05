@@ -15,7 +15,7 @@ export class entryClass{
 
   private animeInfo;
 
-  constructor(public url:string, public miniMAL:boolean = false){
+  constructor(public url:string, public miniMAL:boolean = false, public silent:boolean = false){
     this.id = utils.urlPart(url, 4);
     this.type = utils.urlPart(url, 3);
   }
@@ -244,6 +244,10 @@ export class entryClass{
         return;
       }
       if(this.addAnime){
+        if(this.silent){
+          continueCall();
+          return;
+        }
         var imgSelector = 'malSyncImg'+this.id;
         var flashConfirmText = `
           ${api.storage.lang("syncPage_flashConfirm_Anime_Correct", [this.name])}

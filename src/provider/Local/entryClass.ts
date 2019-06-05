@@ -19,7 +19,7 @@ export class entryClass{
 
   private animeInfo;
 
-  constructor(private key:string, public miniMAL:boolean = false, private state:any = null){
+  constructor(private key:string, public miniMAL:boolean = false, public silent:boolean = false, private state:any = null){
     this.url = key;
     this.id = utils.urlPart(key, 4);
     this.type = utils.urlPart(key, 3);
