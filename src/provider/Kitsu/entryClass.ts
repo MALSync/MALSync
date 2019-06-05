@@ -129,7 +129,7 @@ export class entryClass{
 
   setEpisode(ep:number){
     if(ep+'' === '') ep = 0;
-    if(parseInt(ep+'') > this.totalEp) ep = this.totalEp;
+    if(parseInt(ep+'') > this.totalEp && this.totalEp) ep = this.totalEp;
     this.listI().attributes.progress = parseInt(ep+'');
   }
 
