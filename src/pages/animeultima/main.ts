@@ -12,7 +12,8 @@ export const animeultima: pageInterface = {
     }
   },
   sync: {
-    getTitle: function(url){return j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile").text().replace(/\n.*/g, "").trim();},
+    getTitle: function(url){return j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile").text().replace(/\n.*/g, "").trim();
+    },
     getIdentifier: function(url) {
       return url.split("/")[4];
     },
@@ -22,6 +23,17 @@ export const animeultima: pageInterface = {
     getEpisode: function(url){
       return j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile").text().replace(/.*\n/g, "").replace(/\D+/g, "");
     }
+  },
+  overview:{
+    getTitle: function(url){
+      return utils.getBaseText($('h1.title.is-marginless.is-paddingless').first()).replace(/[^ \w]+/g, "").trim();
+    },
+    getIdentifier: function(url){
+      return url.split("/")[4];
+    },
+    uiSelector: function(selector){
+      selector.insertAfter(j.$("div.tags.is-marginless").first());
+    },
   },
   init(page){
     if(document.title == "Just a moment..."){
