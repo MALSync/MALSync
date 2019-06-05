@@ -227,11 +227,11 @@
   function syncItem(slave, pageType){
     if(Object.keys(slave.diff).length !== 0){
       if(pageType == 'MAL'){
-        var entryClass = new mal.entryClass(slave.url);
+        var entryClass = new mal.entryClass(slave.url, true, true);
       }else if(pageType == 'ANILIST'){
-        var entryClass = new anilist.entryClass(slave.url);
+        var entryClass = new anilist.entryClass(slave.url, true, true);
       }else if(pageType == 'KITSU'){
-        var entryClass = new kitsu.entryClass(slave.url);
+        var entryClass = new kitsu.entryClass(slave.url, true, true);
       }else{
         throw('No sync type');
       }
