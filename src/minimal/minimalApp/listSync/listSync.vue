@@ -1,19 +1,19 @@
 <template>
   <div class="mdl-grid bg-cell" style="display: block;">
     <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
-      MyAnimeList <br>
+      MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br>
       {{listProvider.mal.text}} <br>
       <span v-if="listProvider.mal.list">List: {{listProvider.mal.list.length}}</span><br>
       <br>
     </div>
     <div :style="getTypeColor(getType('anilist.co'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
-      AniList <br>
+      AniList <span v-if="listProvider.anilist.master">(Master)</span><br>
       {{listProvider.anilist.text}} <br>
       <span v-if="listProvider.anilist.list">List: {{listProvider.anilist.list.length}}</span><br>
       <br>
     </div>
     <div :style="getTypeColor(getType('kitsu.io'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
-      Kitsu <br>
+      Kitsu <span v-if="listProvider.kitsu.master">(Master)</span><br>
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
       <br>
@@ -78,15 +78,18 @@
         listProvider: {
           mal: {
             text: 'Init',
-            list: null
+            list: null,
+            master: false
           },
           anilist: {
             text: 'Init',
-            list: null
+            list: null,
+            master: false
           },
           kitsu: {
             text: 'Init',
-            list: null
+            list: null,
+            master: false
           }
         },
         listReady: false,
@@ -99,31 +102,35 @@
       var type = 'anime';
       var mode = 'mirror';
       var typeArray = ['MAL', 'ANILIST', 'KITSU'];
+      var master = api.settings.get('syncMode');
       var listP = [];
 
       this.listProvider.mal.text = 'Loading';
       listP.push( getList(malUserList, type).then((list) => {
         this.listProvider.mal.list = list;
         this.listProvider.mal.text = 'Done';
+        if(master == 'MAL') this.listProvider.mal.master = true;
       }) );
 
       this.listProvider.anilist.text = 'Loading';
       listP.push( getList(anilistUserList, type).then((list) => {
         this.listProvider.anilist.list = list;
         this.listProvider.anilist.text = 'Done';
+        if(master == 'ANILIST') this.listProvider.anilist.master = true;
       }) );
 
       this.listProvider.kitsu.text = 'Loading';
       listP.push( getList(kitsuUserList, type).then((list) => {
         this.listProvider.kitsu.list = list;
         this.listProvider.kitsu.text = 'Done';
+        if(master == 'KITSU') this.listProvider.kitsu.master = true;
       }) );
 
       await Promise.all(listP);
 
-      this.mapToArray(this.listProvider.mal.list, this.list, true);
-      this.mapToArray(this.listProvider.anilist.list, this.list, false);
-      this.mapToArray(this.listProvider.kitsu.list, this.list, false);
+      this.mapToArray(this.listProvider.mal.list, this.list, this.listProvider.mal.master);
+      this.mapToArray(this.listProvider.anilist.list, this.list, this.listProvider.anilist.master);
+      this.mapToArray(this.listProvider.kitsu.list, this.list, this.listProvider.kitsu.master);
 
       for (var i in this.list) {
         changeCheck(this.list[i], mode);
