@@ -1,5 +1,10 @@
 <template>
   <div class="mdl-grid bg-cell" style="display: block;">
+    <div style="margin-bottom: 20px;">
+      This feature is still in alpha. Use at your own risk. More info
+      <a href="https://github.com/lolamtisch/MALSync/wiki/List-Sync">Here</a>
+    </div>
+
     <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br>
       {{listProvider.mal.text}} <br>
@@ -256,7 +261,7 @@
         if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
         if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
         if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
-        //return entryClass.sync();
+        return entryClass.sync();
       });
     }
   }
