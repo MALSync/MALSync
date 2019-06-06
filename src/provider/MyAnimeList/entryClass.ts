@@ -102,6 +102,7 @@ export class entryClass{
   }
 
   setScore(score:number){
+    //@ts-ignore
     if(score === 0) score = "";
     if(this.type == "manga"){
       this.animeInfo[".add_manga[score]"] = score;

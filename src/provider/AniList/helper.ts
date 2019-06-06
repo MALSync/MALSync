@@ -22,11 +22,15 @@ export function errorHandling(res, silent:boolean = false){
     res.errors.forEach( (error) => {
       switch(error.status) {
         case 400:
-          if(!silent) utils.flashm(api.storage.lang("Anilist_Authenticate"), {error: true, type: 'error'});
-          break;
+          if(!silent){
+            utils.flashm(api.storage.lang("Anilist_Authenticate"), {error: true, type: 'error'});
+            break;
+          }
         case 404:
-          if(!silent) utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
-          break;
+          if(!silent){
+            utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
+            break;
+          }
         default:
           if(!silent) utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
           throw error.message;
