@@ -41,6 +41,7 @@ export const WonderfulSubs: pageInterface = {
     page.url = window.location.href;
     if (page.url.split("/")[2] === "beta.wonderfulsubs.com") {
       WonderfulSubs.isSyncPage = betaWonderfulSubs.isSyncPage;
+      WonderfulSubs.sync = betaWonderfulSubs.sync
       betaWonderfulSubs.init(page);
     } else {
       if (page.url.split("/")[3] === "watch") {
