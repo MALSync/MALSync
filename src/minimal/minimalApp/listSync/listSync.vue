@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mdl-grid bg-cell">
     <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       MyAnimeList <br>
       {{listProvider.mal.text}} <br>
@@ -22,8 +22,9 @@
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
     <span v-if="listLength">{{listLength - listSyncLength}}/{{listLength}}</span>
 
-    <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex;">
-      <div style="width: 50px; border-right: 1px solid black;">
+    <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;">
+      <div style="width: 100%; border-bottom: 1px solid black; padding: 0px 5px;">{{item.master.title}}</div>
+      <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
         {{index}}
       </div>
       <div class="master" v-if="item.master && item.master.uid" :style="getTypeColor(getType(item.master.url))" style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;">
@@ -46,8 +47,8 @@
     <div v-if="missing.length">
       <h2>Missing</h2>
       <div v-for="item in missing"  style="border: 1px solid black; display: flex;">
-        <div style="width: 50px; border-right: 1px solid black;">
-          {{item.malId}}
+        <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
+          <a target="_blank" :href="item.url">{{item.malId}}</a>
         </div>
         <div :style="getTypeColor(item.syncType)" style="padding: 5px 10px;">
           {{item.title}}<br>
