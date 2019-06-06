@@ -28,6 +28,11 @@ export const Animevibe: pageInterface = {
     }
   },
   init(page){
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
       page.handlePage();

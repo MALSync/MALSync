@@ -454,10 +454,10 @@ var testsArray = [
 
   {
     title: 'Animevibe',
-    url: 'https://animevibe.tv',
+    url: 'https://animevibe.xyz',
     testCases: [
       {
-        url: 'https://animevibe.tv/a/no-game-no-life/4/',
+        url: 'https://animevibe.xyz/a/no-game-no-life/4/',
         expected: {
           sync: true,
           title: 'No Game No Life',
