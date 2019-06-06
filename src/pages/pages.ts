@@ -24,6 +24,7 @@ import {WonderfulSubs} from "./WonderfulSubs/main";
 import {kawaiifu} from "./kawaiifu/main";
 import {fourAnime} from "./fourAnime/main";
 import {Dreamanimes} from "./Dreamanimes/main";
+import {animeultima} from "./animeultima/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -54,6 +55,7 @@ export const pages = {
     kawaiifu,
     fourAnime,
     Dreamanimes,
+    animeultima,
 };
 
 export const pageSearch:pageSearchObj = {

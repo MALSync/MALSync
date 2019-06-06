@@ -211,5 +211,10 @@ module.exports = {
     match: [
       '*://www.dreamanimes.com.br/online/*'
     ],
+  },
+  animeultima: {
+    match: [
+      '*://*.animeultima.eu/a/*'
+    ],
   }
 };
