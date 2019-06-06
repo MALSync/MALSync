@@ -515,7 +515,7 @@ var testsArray = [
     ]
   },
 
-  {
+    {
     title: '4anime',
     url: 'https://4anime.to/',
     testCases: [
@@ -528,6 +528,15 @@ var testsArray = [
           overviewUrl: 'https://4anime.to/anime/no-game-no-life',
           episode: 4,
           uiSelector: false,
+        }
+      },
+      {
+        url: 'https://4anime.to/anime/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
         }
       },
     ]
