@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-grid bg-cell">
+  <div class="mdl-grid bg-cell" style="display: block;">
     <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       MyAnimeList <br>
       {{listProvider.mal.text}} <br>
@@ -46,7 +46,7 @@
 
     <div v-if="missing.length">
       <h2>Missing</h2>
-      <div v-for="item in missing"  style="border: 1px solid black; display: flex;">
+      <div v-for="item in missing"  style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;">
         <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
           <a target="_blank" :href="item.url">{{item.malId}}</a>
         </div>
@@ -56,6 +56,7 @@
           Status: {{item.status}}<br>
           Score: {{item.score}}
         </div>
+        <div v-if="item.error" style="color: red; width: 100%; border-top: 1px solid;">{{item.error}}</div>
       </div>
     </div>
 
@@ -197,7 +198,8 @@
               this.missing.splice(this.missing.indexOf(miss), 1);
             })
             .catch((e) => {
-              con.error('Error', e)
+              con.error('Error', e);
+              miss.error = e;
             });
         }
       },
@@ -298,7 +300,8 @@
             'watchedEp': item.master.watchedEp,
             'score': item.master.score,
             'status': item.master.status,
-            'url': 'https://myanimelist.net/'+item.master.type+'/'+item.master.malId
+            'url': 'https://myanimelist.net/'+item.master.type+'/'+item.master.malId,
+            'error': null
           })
         }
       }
