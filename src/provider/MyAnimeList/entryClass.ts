@@ -102,6 +102,8 @@ export class entryClass{
   }
 
   setScore(score:number){
+    //@ts-ignore
+    if(score === 0) score = "";
     if(this.type == "manga"){
       this.animeInfo[".add_manga[score]"] = score;
     }
@@ -245,6 +247,11 @@ export class entryClass{
       }
       if(this.addAnime){
         if(this.silent){
+          if(this.type == 'anime'){
+            url = "https://myanimelist.net/ownlist/anime/add?selected_series_id="+this.id;
+          }else{
+            url = "https://myanimelist.net/ownlist/manga/add?selected_manga_id="+this.id;
+          }
           continueCall();
           return;
         }

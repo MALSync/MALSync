@@ -454,10 +454,10 @@ var testsArray = [
 
   {
     title: 'Animevibe',
-    url: 'https://animevibe.tv',
+    url: 'https://animevibe.xyz',
     testCases: [
       {
-        url: 'https://animevibe.tv/a/no-game-no-life/4/',
+        url: 'https://animevibe.xyz/a/no-game-no-life/4/',
         expected: {
           sync: true,
           title: 'No Game No Life',
@@ -546,6 +546,33 @@ var testsArray = [
           overviewUrl: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
           episode: 4,
           uiSelector: false,
+        }
+      },
+    ]
+  },
+
+  {
+    title: 'animeultima',
+    url: 'https://www10.animeultima.eu/',
+    testCases: [
+      {
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789/episode-4_760357-sub',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life_804789',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life_804789',
+          uiSelector: true,
         }
       },
     ]

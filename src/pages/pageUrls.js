@@ -183,6 +183,7 @@ module.exports = {
   Animevibe: {
     match: [
       '*://animevibe.tv/a/*',
+      '*://animevibe.xyz/a/*',
     ],
   },
   Novelplanet: {
@@ -210,6 +211,11 @@ module.exports = {
   Dreamanimes: {
     match: [
       '*://www.dreamanimes.com.br/online/*'
+    ],
+  },
+  animeultima: {
+    match: [
+      '*://*.animeultima.eu/a/*'
     ],
   }
 };

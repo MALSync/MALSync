@@ -151,9 +151,14 @@ module.exports = {
       '*://*.stream.proxer.me/*',
     ]
   },
-  Verystream:{
+  Verystream: {
     match: [
       '*://verystream.com/*'
     ]
   },
+  animeultima: {
+    match: [
+      '*://*.animeultima.eu/e/*'
+    ]
+  }
 };
