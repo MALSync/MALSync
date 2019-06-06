@@ -158,7 +158,7 @@ module.exports = {
   },
   animeultima: {
     match: [
-    '*://*.animeultima.eu/e/*'
+      '*://*.animeultima.eu/e/*'
   ]
 }
 };
