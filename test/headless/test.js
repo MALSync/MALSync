@@ -509,7 +509,7 @@ var testsArray = [
           identifier: 'plastic-memories-bluray-ver',
           overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html',
           episode: 4,
-          uiSelector: false,
+          uiSelector: true,
         }
       },
     ]
