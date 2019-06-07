@@ -577,6 +577,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'aniflix',
+    url: 'https://www.aniflix.tv/',
+    testCases: [
+      {
+        url: 'https://www.aniflix.tv/stream/no-game-no-life-folge-4-ger-dub/',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+          episode: 4,
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
