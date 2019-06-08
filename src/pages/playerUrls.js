@@ -160,5 +160,30 @@ module.exports = {
     match: [
       '*://*.animeultima.eu/e/*'
     ]
-  }
+  },
+  vidoza: {
+    match: [
+      '*://*.vidoza.net/*'
+    ]
+  },
+  crazyload: {
+    match: [
+      '*://crazyload.co/*'
+    ]
+  }, 
+  gounlimited: {
+    match: [
+      '*://gounlimited.to/*'
+    ]
+  },
+  anistream: {
+    match: [
+      '*://www.ani-stream.com/*'
+    ]
+  },
+  aniflex: {
+    match: [
+      '*://flex.aniflex.org/public/dist/*'
+    ]
+  },  
 };

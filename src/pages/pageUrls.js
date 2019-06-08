@@ -217,5 +217,11 @@ module.exports = {
     match: [
       '*://*.animeultima.eu/a/*'
     ],
+  },
+  Aniflix: {
+    match: [
+      '*://www.aniflix.tv/stream/*',
+      '*://www.aniflix.tv/anime/*'
+    ],
   }
 };

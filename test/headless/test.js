@@ -503,12 +503,12 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html?ep=4',
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html',
+          identifier: 'plastic-memories-bluray-ver-hd',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd.html',
           episode: 4,
           uiSelector: true,
         }
@@ -582,6 +582,32 @@ var testsArray = [
           sync: false,
           title: 'No Game No Life',
           identifier: 'no-game-no-life_804789',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'aniflix',
+    url: 'https://www.aniflix.tv/',
+    testCases: [
+      {
+        url: 'https://www.aniflix.tv/stream/no-game-no-life-folge-4-ger-dub/',
+        expected: {
+          sync: true,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          overviewUrl: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+          episode: 4,
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
           uiSelector: true,
         }
       },
