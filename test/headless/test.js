@@ -613,6 +613,23 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'wonderfulsubs',
+    url: 'https://www.wonderfulsubs.com/',
+    testCases: [
+      {
+        url: 'https://www.wonderfulsubs.com/watch/theirregularatmagichighschool?s=cr&t=subs&ss=0&e=3',
+        expected: {
+          sync: true,
+          title: 'The Irregular at Magic High School',
+          identifier: 'the-irregular-at-magic-high-school',
+          overviewUrl: 'https://www.wonderfulsubs.com/watch/theirregularatmagichighschool',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
