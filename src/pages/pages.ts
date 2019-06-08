@@ -25,6 +25,7 @@ import {kawaiifu} from "./kawaiifu/main";
 import {fourAnime} from "./fourAnime/main";
 import {Dreamanimes} from "./Dreamanimes/main";
 import {animeultima} from "./animeultima/main";
+import {Aniflix} from "./Aniflix/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -56,6 +57,7 @@ export const pages = {
     fourAnime,
     Dreamanimes,
     animeultima,
+    Aniflix,
 };
 
 export const pageSearch:pageSearchObj = {
