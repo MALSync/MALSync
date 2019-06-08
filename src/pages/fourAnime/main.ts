@@ -14,9 +14,9 @@ export const fourAnime: pageInterface = {
   sync: {
     getTitle: function(url) {
       return j
-        .$("span.singletitletop a")
-        .text()
-        .trim();
+      .$("span.singletitletop a")
+      .text()
+      .trim();
     },
     getIdentifier: function(url) {
       return url.split("/")[3].replace(/\-episode[^]*$/g, "");
@@ -26,16 +26,29 @@ export const fourAnime: pageInterface = {
     },
     getEpisode: function(url) {
       return j
-        .$("ul.episodes a.active")
-        .text()
-        .replace(/\D+/g, "")
-        .replace(/^0+/g, "");
+      .$("ul.episodes a.active")
+      .text()
+      .replace(/\D+/g, "")
+      .replace(/^0+/g, "");
     }
+  },
+  overview:{
+    getTitle: function(url){
+      return j .$("p.single-anime-desktop").text().trim();
+    },
+    getIdentifier: function(url){
+      return url.split("/")[4].replace(/\-episode[^]*$/g, "");
+    },
+    uiSelector: function(selector){
+      selector.insertAfter(j.$("p.description-mobile").first());
+    },
   },
   init(page) {
     api.storage.addStyle(require("./style.less").toString());
     j.$(document).ready(function() {
+      if (j.$(".singletitletop")[0] && j.$(".episodes")[0] || page.url.split("/")[3] == "anime") {
       page.handlePage();
+      }
     });
   }
 };

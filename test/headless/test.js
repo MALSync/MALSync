@@ -1,5 +1,7 @@
 const {expect} = require('chai');
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer-extra");
+const pluginStealth = require("puppeteer-extra-plugin-stealth");
+
 const fs = require('fs');
 const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
 
@@ -344,8 +346,7 @@ var testsArray = [
           uiSelector: true,
         }
       },
-      //TODO
-      /*{
+      {
         url: 'https://animepahe.com/anime/no-game-no-life/52832',
         expected: {
           sync: true,
@@ -356,7 +357,7 @@ var testsArray = [
           episode: 8,
           uiSelector: true,
         }
-      },*/
+      },
     ]
   },
 
@@ -509,13 +510,13 @@ var testsArray = [
           identifier: 'plastic-memories-bluray-ver',
           overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver.html',
           episode: 4,
-          uiSelector: false,
+          uiSelector: true,
         }
       },
     ]
   },
 
-  {
+    {
     title: '4anime',
     url: 'https://4anime.to/',
     testCases: [
@@ -528,6 +529,15 @@ var testsArray = [
           overviewUrl: 'https://4anime.to/anime/no-game-no-life',
           episode: 4,
           uiSelector: false,
+        }
+      },
+      {
+        url: 'https://4anime.to/anime/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
         }
       },
     ]
@@ -586,12 +596,13 @@ let debugging = false;
 //var caseTitle = 'Turkanime';
 
 before(async function () {
-  browser = await puppeteer.launch()
-  page = await browser.newPage()
+  puppeteer.use(pluginStealth());
+  browser = await puppeteer.launch({ headless: true })
 })
 
 beforeEach(async function () {
   page = await browser.newPage()
+  await page.setViewport({ width: 800, height: 600 })
 })
 
 afterEach(async function () {
@@ -639,7 +650,16 @@ testsArray.forEach(function(testPage) {
 
         if(text == 'retry'){
           this.retries(3);
-          await new Promise(function(resolve, reject) {setTimeout(()=>{resolve()}, 7000)});
+          await new Promise(function(resolve, reject) {
+            setTimeout(async ()=>{
+              var content = await page.evaluate(() => document.body.innerHTML);
+              if(content.indexOf('Why do I have to complete a CAPTCHA?') !== -1){
+                console.log('    X CAPTCHA');
+                doSkip = true;
+              }
+              resolve()
+            }, 7000)
+          });
         }
 
         expect(text.sync).to.equal(testCase.expected.sync);
