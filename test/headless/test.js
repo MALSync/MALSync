@@ -613,6 +613,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'animedaisuki',
+    url: 'https://animedaisuki.moe/',
+    testCases: [
+      {
+        url: 'https://animedaisuki.moe/watch/6380/initial-d-first-stage-5',
+        expected: {
+          sync: true,
+          title: 'Initial D: First Stage',
+          identifier: 'initial-d-first-stage',
+          overviewUrl: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
+          episode: 5,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
+        expected: {
+          sync: false,
+          title: 'Initial D: First Stage',
+          identifier: 'initial-d-first-stage',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
