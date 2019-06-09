@@ -37,7 +37,9 @@ export const Animefreak: pageInterface = {
   init(page) {
     api.storage.addStyle(require("./style.less").toString());
     j.$(document).ready(function() {
-      page.handlePage();
-    });
+      if (page.url.split("/")[3] === "watch") {
+        page.handlePage();
+    }
+  });
   }
 };
