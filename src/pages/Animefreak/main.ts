@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const Animefreak: pageInterface = {
   name: "Animefreak",
-  domain: "https://www.animefreak.tv/",
+  domain: "https://www.animefreak.tv",
   type: "anime",
   isSyncPage: function(url) {
     if (url.split("/")[5] === "episode") {
