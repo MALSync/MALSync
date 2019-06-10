@@ -20,7 +20,7 @@ export const AnimePlanet: pageInterface = {
       return AnimePlanet.domain + j.$("h2.sub a").attr('href');
     },
     getEpisode: function(url){
-      return j.$("h2.sub").text().replace(/\D+/g, "");
+      return utils.getBaseText($('h2.sub')).replace(/\D+/g, "");
     },
     uiSelector: function(selector){
       selector.insertBefore(j.$("#siteContainer > nav").first());
