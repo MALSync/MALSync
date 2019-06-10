@@ -229,5 +229,10 @@ module.exports = {
       '*://animedaisuki.moe/watch/*',
       '*://animedaisuki.moe/anime/*'
     ],
+  },
+  Animefreak: {
+    match: [
+      '*://www.animefreak.tv/watch*'
+    ],
   }
 };
