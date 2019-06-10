@@ -22,6 +22,9 @@ export const AnimePlanet: pageInterface = {
     getEpisode: function(url){
       return j.$("h2.sub").text().replace(/\D+/g, "");
     },
+    uiSelector: function(selector){
+      selector.insertBefore(j.$("#siteContainer > nav").first());
+    },
   },
   overview:{
     getTitle: function(url){
@@ -31,7 +34,7 @@ export const AnimePlanet: pageInterface = {
       return url.split("/")[4];
     },
     uiSelector: function(selector){
-      selector.insertAfter(j.$("#siteContainer > h2").first());
+      selector.insertBefore(j.$("#siteContainer > nav").first());
     },
   },
   init(page){

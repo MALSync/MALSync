@@ -677,7 +677,7 @@ var testsArray = [
           identifier: 'the-rising-of-the-shield-hero',
           overviewUrl: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
           episode: 3,
-          uiSelector: false,
+          uiSelector: true,
         }
       },
       {
