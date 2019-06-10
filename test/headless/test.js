@@ -665,6 +665,41 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'animeplanet',
+    url: 'https://www.anime-planet.com/',
+    testCases: [
+      {
+        url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos/229861',
+        expected: {
+          sync: true,
+          title: 'The Rising of the Shield Hero',
+          identifier: 'the-rising-of-the-shield-hero',
+          overviewUrl: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
+          episode: 3,
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero',
+        expected: {
+          sync: false,
+          title: 'The Rising of the Shield Hero',
+          identifier: 'the-rising-of-the-shield-hero',
+          uiSelector: true,
+        }
+      },
+      {
+        url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
+        expected: {
+          sync: false,
+          title: 'The Rising of the Shield Hero',
+          identifier: 'the-rising-of-the-shield-hero',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
