@@ -613,6 +613,58 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'animedaisuki',
+    url: 'https://animedaisuki.moe/',
+    testCases: [
+      {
+        url: 'https://animedaisuki.moe/watch/6380/initial-d-first-stage-5',
+        expected: {
+          sync: true,
+          title: 'Initial D: First Stage',
+          identifier: 'initial-d-first-stage',
+          overviewUrl: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
+          episode: 5,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
+        expected: {
+          sync: false,
+          title: 'Initial D: First Stage',
+          identifier: 'initial-d-first-stage',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'animefreak',
+    url: 'https://www.animefreak.tv/',
+    testCases: [
+      {
+        url: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-23',
+        expected: {
+          sync: true,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: 'mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei',
+          episode: 23,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei',
+        expected: {
+          sync: false,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: 'mahouka-koukou-no-rettousei',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

@@ -26,6 +26,8 @@ import {fourAnime} from "./fourAnime/main";
 import {Dreamanimes} from "./Dreamanimes/main";
 import {animeultima} from "./animeultima/main";
 import {Aniflix} from "./Aniflix/main";
+import {AnimeDaisuki} from "./AnimeDaisuki/main";
+import {Animefreak} from "./Animefreak/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -58,6 +60,8 @@ export const pages = {
     Dreamanimes,
     animeultima,
     Aniflix,
+    AnimeDaisuki,
+    Animefreak,
 };
 
 export const pageSearch:pageSearchObj = {

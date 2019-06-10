@@ -15,8 +15,8 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![KissAnime](https://www.google.com/s2/favicons?domain=kissanime.ru "KissAnime")](http://kissanime.ru) [kissanime.ru](http://kissanime.ru) | [![KissManga](https://www.google.com/s2/favicons?domain=kissmanga.com "KissManga")](http://kissmanga.com) [kissmanga.com](http://kissmanga.com) | [![Emby](https://www.google.com/s2/favicons?domain=app.emby.media "Emby")](http://app.emby.media) [Emby](http://app.emby.media) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
 | [![9anime](https://www.google.com/s2/favicons?domain=9anime.to "9anime")](http://9anime.to)  [9anime.to](http://9anime.to) | [![mangadex](https://www.google.com/s2/favicons?domain=mangadex.org "mangadex")](https://mangadex.org) [mangadex.org](https://mangadex.org) | [![Plex](https://www.google.com/s2/favicons?domain=http://app.plex.tv "Plex")](http://app.plex.tv) [Plex](http://app.plex.tv) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
 | [![otakustream](https://www.google.com/s2/favicons?domain=https://otakustream.tv "otakustream")](https://otakustream.tv) [otakustream.tv](https://otakustream.tv) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) | |
-| [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | |
-| [![VRV](https://www.google.com/s2/favicons?domain=vrv.co "VRV")](https://vrv.co) [vrv.co](https://vrv.co) | | |
+| [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) | [![novelplanet.com](https://www.google.com/s2/favicons?domain=https://novelplanet.com "Novelplanet.com")](novelplanet.com) [novelplanet.com](https://novelplanet.com) | |
+| [![VRV](https://www.google.com/s2/favicons?domain=vrv.co "VRV")](https://vrv.co) [vrv.co](https://vrv.co) | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | |
 | [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) | | |
 | [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) | | |
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) | | |
@@ -28,6 +28,14 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![Jkanime](https://www.google.com/s2/favicons?domain=https://jkanime.net "Jkanime")](https://jkanime.net) [jkanime.net](https://jkanime.net) | | |
 | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | | |
 | [![animevibe.tv](https://www.google.com/s2/favicons?domain=https://animevibe.tv "Animevibe.tv")](animevibe.tv) [animevibe.tv](https://animevibe.tv) | | |
+| [![wonderfulsubs.com](https://www.google.com/s2/favicons?domain=https://wonderfulsubs.com "Wonderfulsubs.com")](wonderfulsubs.com) [wonderfulsubs.com](https://wonderfulsubs.com) | | |
+| [![kawaiifu.com](https://www.google.com/s2/favicons?domain=https://kawaiifu.com "Kawaiifu.com")](kawaiifu.com) [kawaiifu.com](https://kawaiifu.com) | | |
+| [![4Anime.to](https://www.google.com/s2/favicons?domain=https://4Anime.to "4Anime.to")](4Anime.to) [4Anime.to](https://4Anime.to) | | |
+| [![dreamanimes.com.br](https://www.google.com/s2/favicons?domain=https://dreamanimes.com.br "dreamanimes.com.br")](dreamanimes.com.br) [dreamanimes.com.br](https://dreamanimes.com.br) | | |
+| [![animeultima.eu](https://www.google.com/s2/favicons?domain=https://animeultima.eu "animeultima.eu")](animeultima.eu) [animeultima.eu](https://animeultima.eu) | | |
+| [![aniflix.tv](https://www.google.com/s2/favicons?domain=https://aniflix.tv "aniflix.tv")](aniflix.tv) [aniflix.tv](https://aniflix.tv) | | |
+| [![animefreak.tv](https://www.google.com/s2/favicons?domain=https://animefreak.tv "animefreak.tv")](animefreak.tv) [animefreak.tv](https://animefreak.tv) | | |
+| [![animedaisuki.moe](https://www.google.com/s2/favicons?domain=https://animedaisuki.moe "animedaisuki.moe")](animedaisuki.moe) [animedaisuki.moe](https://animedaisuki.moe) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  

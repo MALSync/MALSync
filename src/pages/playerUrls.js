@@ -185,5 +185,10 @@ module.exports = {
     match: [
       '*://flex.aniflex.org/public/dist/*'
     ]
-  },  
+  },
+  animedaisuki: {
+    match: [
+      '*://animedaisuki.moe/embed/*'
+    ]
+  },
 };
