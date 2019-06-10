@@ -232,7 +232,12 @@ module.exports = {
   },
   Animefreak: {
     match: [
-      '*://www.animefreak.tv/watch*'
+      '*://www.animefreak.tv/watch/*'
+    ],
+  },
+  AnimePlanet: {
+    match: [
+      '*://www.anime-planet.com/anime/*'
     ],
   }
 };
