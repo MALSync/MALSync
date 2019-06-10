@@ -224,9 +224,15 @@ module.exports = {
       '*://www.aniflix.tv/anime/*'
     ],
   },
+  AnimeDaisuki: {
+    match: [
+      '*://animedaisuki.moe/watch/*',
+      '*://animedaisuki.moe/anime/*'
+    ],
+  },
   Animefreak: {
     match: [
       '*://www.animefreak.tv/watch*'
     ],
-  }  
+  }
 };
