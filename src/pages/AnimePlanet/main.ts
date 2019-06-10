@@ -20,7 +20,13 @@ export const AnimePlanet: pageInterface = {
       return AnimePlanet.domain + j.$("h2.sub a").attr('href');
     },
     getEpisode: function(url){
-      return utils.getBaseText($('h2.sub')).replace(/\D+/g, "");
+      var episodePart = utils.getBaseText($('h2.sub')).replace(/\r?\n|\r/g,"");
+      if(episodePart.length){
+        var temp = episodePart.match(/.*-/g);
+        if(temp !== null){
+          return temp[0].replace(/\D+/g, "");
+        }
+      }
     },
     uiSelector: function(selector){
       selector.insertBefore(j.$("#siteContainer > nav").first());
