@@ -223,5 +223,10 @@ module.exports = {
       '*://www.aniflix.tv/stream/*',
       '*://www.aniflix.tv/anime/*'
     ],
-  }
+  },
+  Animefreak: {
+    match: [
+      '*://www.animefreak.tv/watch*'
+    ],
+  }  
 };
