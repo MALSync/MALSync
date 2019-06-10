@@ -36,6 +36,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![aniflix.tv](https://www.google.com/s2/favicons?domain=https://aniflix.tv "aniflix.tv")](aniflix.tv) [aniflix.tv](https://aniflix.tv) | | |
 | [![animefreak.tv](https://www.google.com/s2/favicons?domain=https://animefreak.tv "animefreak.tv")](animefreak.tv) [animefreak.tv](https://animefreak.tv) | | |
 | [![animedaisuki.moe](https://www.google.com/s2/favicons?domain=https://animedaisuki.moe "animedaisuki.moe")](animedaisuki.moe) [animedaisuki.moe](https://animedaisuki.moe) | | |
+| [![anime-planet.com](https://www.google.com/s2/favicons?domain=https://anime-planet.com "anime-planet.com")](anime-planet.com) [anime-planet.com](https://anime-planet.com) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
