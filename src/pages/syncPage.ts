@@ -467,6 +467,7 @@ export class syncPage{
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");
 
+    this.calcSelectWidth(j.$( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ));
     j.$( "#malEpisodes, #malVolumes" ).trigger('input');
 
     try{
@@ -729,6 +730,7 @@ export class syncPage{
 
   UILoaded:boolean = false;
   private loadUI(){
+    var This = this;
     if(this.UILoaded) return;
     this.UILoaded = true;
     var wrapStart = '<span style="display: inline-block;">';
@@ -834,6 +836,9 @@ export class syncPage{
     var This = this;
     j.$( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
         This.buttonclick();
+        //@ts-ignore
+        var el = j.$(this);
+        This.calcSelectWidth(el)
     });
 
     j.$( "#malEpisodes, #malVolumes" ).on('input', function(){
@@ -845,6 +850,16 @@ export class syncPage{
       el.css('width', numberWidth+'px');
     }).trigger('input');
 
+  }
+
+  private calcSelectWidth(selectors){
+    selectors.each(function(index, selector) {
+      var text = j.$(selector).find('option:selected').text();
+      var aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
+      j.$('#malp').append(aux);
+      j.$(selector).width(aux.width()+5);
+      aux.remove();
+    });
   }
 
   private buttonclick(){
