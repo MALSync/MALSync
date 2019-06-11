@@ -19,7 +19,6 @@ lib-cov
 build/Release
 
 # Dependency directories
-package-lock.json
 yarn.lock
 node_modules/
 jspm_packages/
