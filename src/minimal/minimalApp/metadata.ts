@@ -37,12 +37,12 @@ export class metadata{
   }
 
   getAltTitle(){
-    var altTitle = '';
+    var altTitle = [];
     try{
-        altTitle = this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
-        altTitle = altTitle.replace(/spaceit_pad/g,'mdl-chip" style="margin-right: 5px;');
-        altTitle = altTitle.replace(/<\/span>/g,'</span><span class="mdl-chip__text">');
-        altTitle = altTitle.replace(/<\/div>/g,'</span></div>');
+      var tempHtml = j.$.parseHTML( '<div>'+this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]+'</div>' );
+      altTitle = j.$(tempHtml).find('.spaceit_pad').toArray().map(function(i){
+        return utils.getBaseText(j.$(i)).trim();
+      });
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return altTitle;
   }
