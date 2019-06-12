@@ -2,7 +2,19 @@
   <div class="page-content">
     <div v-show="!metaObj" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
     <div class="mdl-grid" v-if="metaObj">
-      <div v-show="statistics" v-html="statistics" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
+      <div v-show="statistics" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
+        <ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">
+          <li v-for="stat in statistics" class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">
+            <span class="mdl-list__item-primary-content">
+              <span>
+                  {{stat.title}}
+              </span>
+              <span v-html="stat.body" class="mdl-list__item-sub-title">
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
       <div class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
         <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
           <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">

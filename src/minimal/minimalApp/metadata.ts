@@ -75,26 +75,21 @@ export class metadata{
   }
 
   getStatistics(){
-    var stats = '';
+    var stats: any[] = [];
     try{
         var statsBlock = this.xhr.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
         // @ts-ignore
         var tempHtml = j.$.parseHTML( statsBlock );
-        var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
+
         j.$.each(j.$(tempHtml).filter('div').slice(0,5), function( index, value ) {
-            statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
-                statsHtml += '<span class="mdl-list__item-primary-content">';
-                    statsHtml += '<span>';
-                        statsHtml += j.$(value).find('.dark_text').text();
-                    statsHtml += '</span>';
-                    statsHtml += '<span class="mdl-list__item-sub-title">';
-                        statsHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
-                    statsHtml += '</span>';
-                statsHtml += '</span>';
-            statsHtml += '</li>';
+          var title = j.$(value).find('.dark_text').text();
+          var body = j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
+          stats.push({
+            title,
+            body: body.trim()
+          })
         });
-        statsHtml += '</ul>';
-        stats = statsHtml;
+
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return stats;
   }
@@ -113,7 +108,6 @@ export class metadata{
         })
       });
       this.getExternalLinks(html);
-      con.error(html);
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return html;
   }
