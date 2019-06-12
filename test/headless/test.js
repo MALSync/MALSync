@@ -700,6 +700,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'kickassanime',
+    url: 'https://www17.kickassanime.io/',
+    testCases: [
+      {
+        url: 'https://www17.kickassanime.io/anime/overlord-iii-954770/episode-10-439507',
+        expected: {
+          sync: true,
+          title: 'Overlord III',
+          identifier: 'overlord-iii-954770',
+          overviewUrl: 'https://www17.kickassanime.io/anime/overlord-iii-954770',
+          episode: 10,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www17.kickassanime.io/anime/overlord-iii-954770',
+        expected: {
+          sync: false,
+          title: 'Overlord III',
+          identifier: 'overlord-iii-954770',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
