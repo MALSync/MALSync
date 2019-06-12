@@ -100,61 +100,41 @@ export class metadata{
   }
 
   getInfo(){
-    var html = '';
+    var html: any[] = [];
     try{
       var infoBlock = this.xhr.split('<h2>Information</h2>')[1].split('<h2>')[0];
       var infoData = j.$.parseHTML( infoBlock );
-      var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
       j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
-        if((index + 4) % 4 === 0 && index !== 0){
-        //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-        }
-        infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-          infoHtml += '<span class="mdl-list__item-primary-content">';
-            infoHtml += '<span>';
-              infoHtml += j.$(value).find('.dark_text').text();
-            infoHtml += '</span>';
-            infoHtml += '<span class="mdl-list__item-text-body">';
-              j.$(value).find('.dark_text').remove();
-              infoHtml += j.$(value).html();
-              //j.$(value).find('*').each(function(){infoHtml += j.$(value)[0].outerHTML});
-              //infoHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
-            infoHtml += '</span>';
-        infoHtml += '</span>';
-        infoHtml += '</li>';
+        var title = j.$(value).find('.dark_text').text();
+        j.$(value).find('.dark_text').remove();
+        html.push({
+          title: title.trim(),
+          body: j.$(value).html().trim()
+        })
       });
-      infoHtml += this.getExternalLinks();
-      infoHtml += '</ul>';
-      html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
+      this.getExternalLinks(html);
+      con.error(html);
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return html;
   }
 
-  getExternalLinks(){
-    var html = '';
+  getExternalLinks(html){
     try{
       var infoBlock = this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]+'</div>';
       var infoData = j.$.parseHTML( infoBlock );
 
-      var infoHtml = '';
-      infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-        infoHtml += '<span class="mdl-list__item-primary-content">';
-          infoHtml += '<span>';
-            infoHtml += 'External Links';
-          infoHtml += '</span>';
-          infoHtml += '<span class="mdl-list__item-text-body">';
-
+      var body = '';
       j.$.each(j.$(infoData).find('a'), ( index, value ) => {
-        if(index) infoHtml += ', '
-        infoHtml += '<a href="'+j.$(value).attr('href')+'">'+j.$(value).text()+'</a>'
+        if(index) body += ', '
+        body += '<a href="'+j.$(value).attr('href')+'">'+j.$(value).text()+'</a>'
       })
-          infoHtml += '</span>';
-      infoHtml += '</span>';
-      infoHtml += '</li>';
-      html = infoHtml;
-
+      if(body !== ''){
+        html.push({
+          title: 'External Links',
+          body: body
+        })
+      }
     }catch(e) {console.log('[iframeOverview] Error:',e);}
-    return html;
   }
 
   getOpeningSongs(){

@@ -173,7 +173,21 @@
         </li>
       </div>
 
-      <div v-show="info" v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
+      <div v-show="info" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+        <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+          <ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">
+            <li v-for="inf in info" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">
+              <span class="mdl-list__item-primary-content">
+                <span>
+                  {{inf.title}}
+                </span>
+                <span class="mdl-list__item-text-body" v-html="inf.body">
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
