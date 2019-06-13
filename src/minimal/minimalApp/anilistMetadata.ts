@@ -64,6 +64,18 @@ export class metadata{
                 }
             }
         }
+        popularity
+        favourites
+        rankings {
+          id
+          rank
+          type
+          format
+          year
+          season
+          allTime
+          context
+        }
       }
     }
     `;
@@ -121,7 +133,7 @@ export class metadata{
     try{
       for (var prop in this.xhr.data.Media.title) {
         var el = this.xhr.data.Media.title[prop];
-        if(el !== this.getTitle()){
+        if(el !== this.getTitle() && el){
           altTitle.push(el);
         }
       }
@@ -133,7 +145,6 @@ export class metadata{
     var charArray:any[] = [];
     try{
       this.xhr.data.Media.characters.edges.forEach(function(i){
-        con.error(i);
         var name = ''
         if(i.node.name.last !== null) name += i.node.name.last;
         if(i.node.name.first !== "" && i.node.name.last !== "" && i.node.name.first !== null && i.node.name.last !== null ){
@@ -153,7 +164,32 @@ export class metadata{
   getStatistics(){
     var stats: any[] = [];
     try{
+      if(this.xhr.data.Media.averageScore !== null) stats.push({
+        title: 'Score:',
+        body: this.xhr.data.Media.averageScore
+      });
 
+      if(this.xhr.data.Media.favourites !== null) stats.push({
+        title: 'Favourites:',
+        body: this.xhr.data.Media.favourites
+      });
+
+      if(this.xhr.data.Media.popularity !== null) stats.push({
+        title: 'Popularity:',
+        body: this.xhr.data.Media.popularity
+      });
+
+      this.xhr.data.Media.rankings.forEach(function(i){
+        if(stats.length < 4 && i.allTime){
+          var title = i.context.replace('all time', '').trim()+':';
+          title = title.charAt(0).toUpperCase() + title.slice(1)
+
+          stats.push({
+            title,
+            body: i.rank
+          });
+        }
+      });
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return stats;
   }
