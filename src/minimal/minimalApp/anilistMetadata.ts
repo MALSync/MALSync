@@ -89,6 +89,37 @@ export class metadata{
                 }
             }
         }
+        format
+        episodes
+        duration
+        status
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
+        season
+        studios {
+            edges {
+                isMain
+                node {
+                    siteUrl
+                    id
+                    name
+                }
+            }
+        }
+        source(version: 2)
+        genres
+        externalLinks {
+          site
+          url
+        }
       }
     }
     `;
@@ -210,6 +241,90 @@ export class metadata{
   getInfo(){
     var html: any[] = [];
     try{
+      if(this.xhr.data.Media.format !== null){
+        var format = this.xhr.data.Media.format.toLowerCase().replace('_', ' ');
+        format = format.charAt(0).toUpperCase() + format.slice(1)
+        html.push({
+          title: 'Format:',
+          body: format
+        });
+      }
+
+      if(this.xhr.data.Media.episodes !== null) html.push({
+        title: 'Episodes:',
+        body: this.xhr.data.Media.episodes
+      });
+
+      if(this.xhr.data.Media.duration !== null) html.push({
+        title: 'Episode Duration:',
+        body: this.xhr.data.Media.duration+' mins'
+      });
+
+      if(this.xhr.data.Media.status !== null){
+        var status = this.xhr.data.Media.status.toLowerCase().replace('_', ' ');
+        status = status.charAt(0).toUpperCase() + status.slice(1)
+        html.push({
+          title: 'Status:',
+          body: status
+        });
+      }
+
+      if(this.xhr.data.Media.startDate.year !== null) html.push({
+        title: 'Start Date:',
+        body: this.xhr.data.Media.startDate.year+'-'+this.xhr.data.Media.startDate.month+'-'+this.xhr.data.Media.startDate.day
+      });
+
+      if(this.xhr.data.Media.endDate.year !== null) html.push({
+        title: 'Start Date:',
+        body: this.xhr.data.Media.endDate.year+'-'+this.xhr.data.Media.endDate.month+'-'+this.xhr.data.Media.endDate.day
+      });
+
+      if(this.xhr.data.Media.season !== null){
+        var season = this.xhr.data.Media.season.toLowerCase().replace('_', ' ');
+        season = season.charAt(0).toUpperCase() + season.slice(1)
+        if(this.xhr.data.Media.endDate.year !== null) season += ' '+this.xhr.data.Media.endDate.year
+        html.push({
+          title: 'Season:',
+          body: season
+        });
+      }
+
+      var studios = "";
+      this.xhr.data.Media.studios.edges.forEach(function(i, index){
+        if(i.isMain){
+          if(studios !== "") studios += ', ';
+          studios += '<a href="'+i.node.siteUrl+'">'+i.node.name+'</a>';
+        }
+      })
+      if(studios !== "") html.push({
+        title: 'Studios:',
+        body: studios
+      });
+
+      if(this.xhr.data.Media.source !== null){
+        var source = this.xhr.data.Media.source.toLowerCase().replace('_', ' ');
+        source = source.charAt(0).toUpperCase() + source.slice(1)
+        html.push({
+          title: 'Source:',
+          body: source
+        });
+      }
+
+      if(this.xhr.data.Media.genres !== null) html.push({
+        title: 'Genres:',
+        body: this.xhr.data.Media.genres.join(', ')
+      });
+
+
+      var external = "";
+      this.xhr.data.Media.externalLinks.forEach(function(i, index){
+        if(external !== "") external += ', ';
+        external += '<a href="'+i.url+'">'+i.site+'</a>';
+      })
+      if(external !== "") html.push({
+        title: 'External Links:',
+        body: external
+      });
 
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return html;
