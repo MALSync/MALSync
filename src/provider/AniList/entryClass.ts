@@ -372,8 +372,6 @@ export class entryClass{
       continueCall();
       function continueCall(){
 
-
-        //TODO progressVolumes
         var query = `
           mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
             SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
@@ -391,6 +389,20 @@ export class entryClass{
             "scoreRaw": This.animeInfo.mediaListEntry.score * 10,
             "notes": This.animeInfo.mediaListEntry.notes
         };
+
+        if(This.type == 'manga'){
+          query = `
+            mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
+              SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {
+                id
+                status
+                progress
+                progressVolumes
+              }
+            }
+          `;
+          variables['volumes'] = This.animeInfo.mediaListEntry.progressVolumes;
+        }
 
         con.log('[SET] Object:', variables);
 
