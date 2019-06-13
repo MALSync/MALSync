@@ -1,4 +1,6 @@
-export class metadata{
+import {metadataInterface} from "./../listInterface";
+
+export class metadata implements metadataInterface{
   private xhr = "";
 
   constructor(public malUrl:string){

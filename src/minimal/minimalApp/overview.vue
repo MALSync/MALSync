@@ -206,7 +206,7 @@
 
 <script type="text/javascript">
   import {entryClass} from "./../../provider/provider";
-  import {metadata} from "./metadata";
+  import {metadata} from "./../../provider/MyAnimeList/metadata";
   export default {
     data: function(){
       return {

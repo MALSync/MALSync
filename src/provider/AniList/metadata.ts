@@ -1,4 +1,6 @@
-export class metadata{
+import {metadataInterface} from "./../listInterface";
+
+export class metadata implements metadataInterface{
   private xhr;
 
   id: number;
@@ -352,7 +354,7 @@ export class metadata{
 
   getRelated(){
     var html = '';
-    var el:{type: string, links: any[]}[] = [];
+    var el:{type: string, links: {url: string, title: string, statusTag: string}[]}[] = [];
     var links: any = {};
     try{
       this.xhr.data.Media.relations.edges.forEach(function(i){

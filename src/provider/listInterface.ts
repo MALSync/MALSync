@@ -13,3 +13,17 @@ export interface listElement {
   tags: string,
   airingState: number,
 }
+
+export interface metadataInterface {
+  init(),
+  getTitle: () => string,
+  getDescription: () => string,
+  getImage: () => string,
+  getAltTitle: () => string[],
+  getCharacters: () => {img: string, html: string}[],
+  getStatistics: () => {title: string, body: string}[],
+  getInfo: () => {title: string, body: string}[],
+  getOpeningSongs: () => string[],
+  getEndingSongs: () => string[],
+  getRelated: () => {type: string, links: {url: string, title: string, statusTag: string}[]}[]
+}
