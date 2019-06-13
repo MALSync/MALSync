@@ -239,5 +239,10 @@ module.exports = {
     match: [
       '*://www.anime-planet.com/anime/*'
     ],
+  },
+  KickAssAnime: {
+    match: [
+      '*://*.kickassanime.io/anime/*'
+    ],
   }
 };

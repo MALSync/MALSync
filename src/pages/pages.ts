@@ -29,6 +29,7 @@ import {Aniflix} from "./Aniflix/main";
 import {AnimeDaisuki} from "./AnimeDaisuki/main";
 import {Animefreak} from "./Animefreak/main";
 import {AnimePlanet} from "./AnimePlanet/main";
+import {KickAssAnime} from "./KickAssAnime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -64,6 +65,7 @@ export const pages = {
     AnimeDaisuki,
     Animefreak,
     AnimePlanet,
+    KickAssAnime,
 };
 
 export const pageSearch:pageSearchObj = {
