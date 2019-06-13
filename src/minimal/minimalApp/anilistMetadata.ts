@@ -76,6 +76,19 @@ export class metadata{
           allTime
           context
         }
+        relations {
+            edges {
+                id
+                relationType (version: 2)
+                node {
+                    id
+                    siteUrl
+                    title {
+                        userPreferred
+                    }
+                }
+            }
+        }
       }
     }
     `;
@@ -225,8 +238,25 @@ export class metadata{
   getRelated(){
     var html = '';
     var el:{type: string, links: any[]}[] = [];
+    var links: any = {};
     try{
+      this.xhr.data.Media.relations.edges.forEach(function(i){
+        if(typeof links[i.relationType] === "undefined" ){
+          var title = i.relationType.toLowerCase().replace('_', ' ');
+          title = title.charAt(0).toUpperCase() + title.slice(1)
 
+          links[i.relationType] = {
+            type: title,
+            links: []
+          };
+        }
+        links[i.relationType]['links'].push({
+          url: i.node.siteUrl,
+          title: i.node.title.userPreferred,
+          statusTag: ''
+        });
+      });
+      el = Object.keys(links).map(key => links[key]);
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return el;
   }
