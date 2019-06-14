@@ -63,7 +63,7 @@ export class metadata implements metadataInterface{
         if ( regexDimensions.test(charImg)){
           charImg = charImg.replace(regexDimensions, '');
         }else{
-          charImg = 'https://myanimelist.cdn-dena.com/images/questionmark_23.gif';
+          charImg = api.storage.assetUrl('questionmark.gif');
         }
 
         charImg = utils.handleMalImages(charImg);

@@ -124,7 +124,7 @@ export class metadata implements metadataInterface{
           }
 
           charArray.push({
-            img: i.attributes.image.original,
+            img: (i.attributes.image !== null) ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
             html: name
           });
         }
@@ -162,6 +162,55 @@ export class metadata implements metadataInterface{
   getInfo(){
     var html: any[] = [];
     try{
+
+      if(typeof this.animeI().attributes.showType !== "undefined" && this.animeI().attributes.showType !== null){
+        var format = this.animeI().attributes.showType.toLowerCase().replace('_', ' ');
+        format = format.charAt(0).toUpperCase() + format.slice(1)
+        html.push({
+          title: 'Format:',
+          body: format
+        });
+      }
+
+      if(typeof this.animeI().attributes.episodeCount !== "undefined" && this.animeI().attributes.episodeCount !== null) html.push({
+        title: 'Episodes:',
+        body: this.animeI().attributes.episodeCount
+      });
+
+      if(typeof this.animeI().attributes.episodeLength !== "undefined" && this.animeI().attributes.episodeLength !== null) html.push({
+        title: 'Episode Duration:',
+        body: this.animeI().attributes.episodeLength+' mins'
+      });
+
+      if(typeof this.animeI().attributes.status !== "undefined" && this.animeI().attributes.status !== null){
+        var status = this.animeI().attributes.status.toLowerCase().replace('_', ' ');
+        status = status.charAt(0).toUpperCase() + status.slice(1)
+        html.push({
+          title: 'Status:',
+          body: status
+        });
+      }
+
+      if(typeof this.animeI().attributes.startDate !== "undefined" && this.animeI().attributes.startDate !== null) html.push({
+        title: 'Start Date:',
+        body: this.animeI().attributes.startDate
+      });
+
+      if(typeof this.animeI().attributes.endDate !== "undefined" && this.animeI().attributes.endDate !== null) html.push({
+        title: 'Start Date:',
+        body: this.animeI().attributes.endDate
+      });
+
+      if(typeof this.animeI().attributes.ageRating !== "undefined" && this.animeI().attributes.ageRating !== null) html.push({
+        title: 'Rating:',
+        body: this.animeI().attributes.ageRating
+      });
+
+      if(typeof this.animeI().attributes.totalLength !== "undefined" && this.animeI().attributes.totalLength !== null) html.push({
+        title: 'Total playtime:',
+        body: this.animeI().attributes.totalLength+' mins'
+      });
+
 
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return html;
