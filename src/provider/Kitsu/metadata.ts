@@ -47,7 +47,7 @@ export class metadata implements metadataInterface{
 
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'',
+      url: 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'?include=characters.character,mediaRelationships.destination',
       headers: {
         'Content-Type': 'application/vnd.api+json',
         'Accept': 'application/vnd.api+json',
@@ -116,7 +116,19 @@ export class metadata implements metadataInterface{
   getCharacters(){
     var charArray:any[] = [];
     try{
+      this.animeInfo.included.forEach(function(i){
+        if(i.type === "characters" && charArray.length < 10){
+          var name = i.attributes.name;
+          if(typeof i.attributes.malId !== 'undefined' && i.attributes.malId !== null && i.attributes.malId){
+            name = '<a href="https://myanimelist.net/character/'+i.attributes.malId+'">'+name+'</a>'
+          }
 
+          charArray.push({
+            img: i.attributes.image.original,
+            html: name
+          });
+        }
+      })
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return charArray;
   }
@@ -180,7 +192,33 @@ export class metadata implements metadataInterface{
     var el:{type: string, links: {url: string, title: string, statusTag: string}[]}[] = [];
     var links: any = {};
     try{
+      var an: any[] = [];
+      this.animeInfo.included.forEach(function(i){
+        if(i.type === 'manga' || i.type === 'anime'){
+          an[i.id] = {
+            url: 'https://kitsu.io/'+i.type+'/'+i.attributes.slug,
+            title: helper.getTitle(i.attributes.titles),
+            statusTag: ''
+          };
+        }
+      });
 
+      this.animeInfo.included.forEach(function(i){
+        if(i.type === "mediaRelationships"){
+          if(typeof links[i.attributes.role] === "undefined" ){
+            var title = i.attributes.role.toLowerCase().replace('_', ' ');
+            title = title.charAt(0).toUpperCase() + title.slice(1)
+
+            links[i.attributes.role] = {
+              type: title,
+              links: []
+            };
+          }
+          var el = an[i.relationships.destination.data.id]
+          links[i.attributes.role]['links'].push(el);
+        }
+      });
+      el = Object.keys(links).map(key => links[key]);
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return el;
   }
