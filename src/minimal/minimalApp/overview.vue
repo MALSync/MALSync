@@ -206,7 +206,9 @@
 
 <script type="text/javascript">
   import {entryClass} from "./../../provider/provider";
-  import {metadata} from "./../../provider/MyAnimeList/metadata";
+  import {metadata as malMeta}  from "./../../provider/MyAnimeList/metadata";
+  import {metadata as aniMeta} from "./../../provider/AniList/metadata";
+  import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
   export default {
     data: function(){
       return {
@@ -242,9 +244,23 @@
 
         if(renderObj == null) return;
 
-        if(renderObj.getMalUrl() !== null){
-          this.metaObj = await new metadata(renderObj.getMalUrl()).init();
+        var syncMode = api.settings.get('syncMode');
+        if(syncMode === 'ANILIST'){
+          this.metaObj = await new aniMeta(renderObj.url).init();
+        }else if(syncMode === 'KITSU'){
+          this.metaObj = await new kitsuMeta(renderObj.url).init();
+        }else if(renderObj.getMalUrl() !== null){
+          this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
+        }else{
+
+        }
+
+        if(this.metaObj !== null){
           this.related = this.getRelated();
+        }
+
+        if(renderObj.getMalUrl() !== null){
+
           if(renderObj.login){
             this.updateStatusTags();
           }
@@ -256,9 +272,8 @@
             });
           }
 
-        }else{
-
         }
+
         if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
           this.imageTemp = await this.renderObj.getImage();
         }
