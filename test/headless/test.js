@@ -726,6 +726,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'RiiE',
+    url: 'https://www.riie.net/',
+    testCases: [
+      {
+        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-23-subtitle-indonesia/',
+        expected: {
+          sync: true,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
+          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+          episode: 23,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+        expected: {
+          sync: false,
+          title: 'tate no yuusha no nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

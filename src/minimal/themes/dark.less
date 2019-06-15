@@ -5,7 +5,7 @@
   @white: #ffffff;
   @lighttransparent: #484848e6;
   @blue: rgb(76, 97, 214);
-  @pink: #f71461;
+  @pink: #F43B7A;
   p {
     color: @white !important;
   }
@@ -15,6 +15,9 @@
 
   .mdl-layout__content {
     background-color: @primary;
+    a{
+      color:@pink;
+    }
   }
   #malList{
     .mdl-cell {
@@ -84,11 +87,11 @@
   .mdl-progress {
     .bufferbar {
       background-image: linear-gradient(
-          to right,
-          rgba(0, 0, 0, 0.7),
-          rgba(0, 0, 0, 0.7)
+        to right,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.7)
         ),
-        linear-gradient(to right, @blue, @blue);
+      linear-gradient(to right, @blue, @blue);
     }
     .auxbar {
       visibility: hidden !important;
@@ -138,7 +141,7 @@
         top,
         @light 0%,
         rgb(115, 139, 215) 74%
-      ) !important;
+        ) !important;
     }
   }
   div .history {
