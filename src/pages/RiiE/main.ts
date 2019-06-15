@@ -48,7 +48,7 @@ export const RiiE: pageInterface = {
     }
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] = "anime" || j.$("#lightsVideo")[0] && j.$("#content > div.postarea > div > div.post > div.newzone > div.right")[0])
+      if (page.url.split("/")[3] == "anime" || j.$("#lightsVideo")[0] && j.$("#content > div.postarea > div > div.post > div.newzone > div.right")[0])
       page.handlePage();
     });
   }
