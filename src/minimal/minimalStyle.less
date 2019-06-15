@@ -5,6 +5,22 @@
   background-color: red !important;
 }
 
+#fixed-tab-1{
+  .loading, .loaded{
+    -o-transition: opacity .3s linear;
+    -moz-transition: opacity .3s linear;
+    -webkit-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+  }
+
+  .loading{
+    opacity: 0.5;
+  }
+
+  .loaded{
+    opacity: 1;
+  }
+}
 
 .alternative-list{
   .mdl-list{
