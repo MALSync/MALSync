@@ -87,13 +87,6 @@ export class entryClass{
       helper.errorHandling(res, this.silent);
       this.animeInfo = res;
 
-      try{
-        this.animeI()
-      }catch(e){
-        con.error(e);
-        throw 'Not Found';
-      }
-
       this.addAnime = false;
       if(!this.animeInfo.data.length){
         this.addAnime = true;
@@ -115,6 +108,14 @@ export class entryClass{
         }
 
       }
+
+      try{
+        this.animeI()
+      }catch(e){
+        con.error(e);
+        throw 'Not Found';
+      }
+
       if(this.getEpisode() === NaN) this.setEpisode(0);
       this.setScore(this.getScore());
 
