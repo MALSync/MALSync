@@ -1,4 +1,4 @@
-import {metadataInterface} from "./../listInterface";
+import {metadataInterface, searchInterface} from "./../listInterface";
 
 export class metadata implements metadataInterface{
   private xhr;
@@ -379,3 +379,67 @@ export class metadata implements metadataInterface{
   }
 
 }
+
+export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
+  var query = `
+    query ($search: String) {
+      ${type}: Page (perPage: 10) {
+        pageInfo {
+          total
+        }
+        results: media (type: ${type.toUpperCase()}, search: $search) {
+          id
+          siteUrl
+          idMal
+          title {
+            userPreferred
+          }
+          coverImage {
+            medium
+          }
+          type
+          format
+          averageScore
+          startDate {
+            year
+          }
+        }
+      }
+    }
+  `;
+
+  ​
+  var variables = {
+    search: keyword,
+  };
+
+  return api.request.xhr('POST', {
+    url: 'https://graphql.anilist.co',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    data: JSON.stringify({
+      query: query,
+      variables: variables
+    })
+  }).then((response) => {
+    var res = JSON.parse(response.responseText);
+    con.log(res);
+
+    var resItems:any = [];
+    j.$.each(res.data[type].results, function( index, item ) {
+      resItems.push({
+        id: item.id,
+        name: item.title.userPreferred,
+        url: item.siteUrl,
+        malUrl: (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null,
+        image: item.coverImage.medium,
+        media_type: (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '),
+        score: item.averageScore,
+        year: item.startDate.year
+      })
+    });
+    return resItems;
+  });
+};

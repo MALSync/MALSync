@@ -193,6 +193,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         id: item.id,
         name: item.name,
         url: item.url,
+        malUrl: item.url,
         image: item.image_url,
         media_type: item.payload.media_type,
         score: item.payload.score,
