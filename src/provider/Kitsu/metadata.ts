@@ -1,4 +1,4 @@
-import {metadataInterface} from "./../listInterface";
+import {metadataInterface, searchInterface} from "./../listInterface";
 import * as helper from "./helper";
 
 export class metadata implements metadataInterface{
@@ -163,8 +163,8 @@ export class metadata implements metadataInterface{
     var html: any[] = [];
     try{
 
-      if(typeof this.animeI().attributes.showType !== "undefined" && this.animeI().attributes.showType !== null){
-        var format = this.animeI().attributes.showType.toLowerCase().replace('_', ' ');
+      if(typeof this.animeI().attributes.subtype !== "undefined" && this.animeI().attributes.subtype !== null){
+        var format = this.animeI().attributes.subtype.toLowerCase().replace('_', ' ');
         format = format.charAt(0).toUpperCase() + format.slice(1)
         html.push({
           title: 'Format:',
@@ -273,3 +273,46 @@ export class metadata implements metadataInterface{
   }
 
 }
+
+export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
+  return api.request.xhr('GET', {
+    url: 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&include=mappings,mappings.item&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype',
+    headers: {
+      'Content-Type': 'application/vnd.api+json',
+      'Accept': 'application/vnd.api+json',
+    },
+    data: {},
+  }).then((response) => {
+    var res = JSON.parse(response.responseText);
+    con.log('search',res);
+
+    var resItems:any = [];
+    j.$.each(res.data, function( index, item ) {
+      var malId = null;
+      for (var k = 0; k < res.included.length; k++) {
+        var mapping = res.included[k];
+        if(mapping.type == 'mappings'){
+          if(mapping.attributes.externalSite === 'myanimelist/'+type){
+            if(mapping.relationships.item.data.id == item.id){
+              malId = mapping.attributes.externalId;
+              res.included.splice(k, 1);
+              break;
+            }
+          }
+        }
+      }
+
+      resItems.push({
+        id: item.id,
+        name: helper.getTitle(item.attributes.titles),
+        url: 'https://kitsu.io/'+type+'/'+item.attributes.slug,
+        malUrl: (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null,
+        image: (item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== "undefined")? item.attributes.posterImage.tiny : "",
+        media_type: item.attributes.subtype,
+        score: item.attributes.averageRating,
+        year: item.attributes.startDate
+      })
+    });
+    return resItems;
+  });
+};
