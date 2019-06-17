@@ -312,10 +312,16 @@ export class metadata implements metadataInterface{
         });
       }
 
-      if(this.xhr.data.Media.genres !== null) html.push({
-        title: 'Genres:',
-        body: this.xhr.data.Media.genres.join(', ')
-      });
+      if(this.xhr.data.Media.genres !== null){
+        var gen: string[] = [];
+        this.xhr.data.Media.genres.forEach(function(i, index){
+          gen.push('<a href="https://anilist.co/search/anime?includedGenres='+i+'">'+i+'</a>')
+        })
+        html.push({
+          title: 'Genres:',
+          body: gen.join(', ')
+        });
+      }
 
 
       var external = "";
