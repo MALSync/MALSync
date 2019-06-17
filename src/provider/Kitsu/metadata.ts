@@ -47,7 +47,7 @@ export class metadata implements metadataInterface{
 
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'?include=characters.character,mediaRelationships.destination',
+      url: 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'?include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&',
       headers: {
         'Content-Type': 'application/vnd.api+json',
         'Accept': 'application/vnd.api+json',
@@ -199,6 +199,17 @@ export class metadata implements metadataInterface{
       if(typeof this.animeI().attributes.endDate !== "undefined" && this.animeI().attributes.endDate !== null) html.push({
         title: 'Start Date:',
         body: this.animeI().attributes.endDate
+      });
+
+      var genres: string[] = [];
+      this.animeInfo.included.forEach((i) => {
+        if(i.type === 'categories' && genres.length < 6){
+          genres.push('<a href="https://kitsu.io/'+this.type+'?categories='+i.attributes.slug+'">'+i.attributes.title+'</a>');
+        }
+      });
+      if(genres.length) html.push({
+        title: 'Genres:',
+        body: genres.join(', ')
       });
 
       if(typeof this.animeI().attributes.ageRating !== "undefined" && this.animeI().attributes.ageRating !== null) html.push({
