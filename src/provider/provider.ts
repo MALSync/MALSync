@@ -6,6 +6,9 @@ import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
 import * as local from "./Local/entryClass";
 import * as localUserList from "./Local/userList";
+import {search as malSearch}  from "./MyAnimeList/metadata";
+import {search as aniSearch}  from "./AniList/metadata";
+import {search as kitsuSearch}  from "./Kitsu/metadata";
 import {listElement} from "./listInterface";
 
 interface entryClass {
@@ -103,4 +106,15 @@ export async function userList(
     })
   }
 
+}
+
+export function search(keyword, type: "anime"|"manga", options = {}, sync = false){
+  var syncMode = getSyncMode();
+  if(syncMode == 'KITSU'){
+    return kitsuSearch(keyword, type, options, sync);
+  }else if(syncMode == 'ANILIST'){
+    return aniSearch(keyword, type, options, sync);
+  }else{
+    return malSearch(keyword, type, options, sync);
+  }
 }

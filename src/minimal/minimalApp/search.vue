@@ -20,7 +20,7 @@
 </template>
 
 <script type="text/javascript">
-  import {search}  from "./../../provider/MyAnimeList/metadata";
+  import {search}  from "./../../provider/provider";
   export default {
     components: {
     },
