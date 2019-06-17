@@ -105,7 +105,11 @@
       var This = this;
       j.$(this.$el).on('click', '.searchItem', function(e){
         e.preventDefault();
-        This.submit(j.$(this).attr('href'));
+        if(typeof j.$(this).data('mal') !== 'undefined'){
+          This.submit(j.$(this).data('mal'));
+        }else{
+          This.submit(j.$(this).attr('href'));
+        }
       });
       if(this.wrong){
         this.$parent.$parent.currentTab = 'settings';
