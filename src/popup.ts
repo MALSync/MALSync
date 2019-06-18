@@ -20,11 +20,13 @@ api.settings.init()
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
       // @ts-ignore
       chrome.tabs.sendMessage(tabs[0].id, {action: "TabMalUrl"}, function(response) {
-        if(typeof response != 'undefined'){
-          minimalObj.fillBase(response);
-        }else{
-          minimalObj.fillBase(null);
-        }
+        setTimeout(() => {
+          if(typeof response != 'undefined'){
+            minimalObj.fillBase(response);
+          }else{
+            minimalObj.fillBase(null);
+          }
+        }, 500);
       });
     });
 

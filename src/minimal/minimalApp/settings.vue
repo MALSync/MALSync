@@ -411,7 +411,7 @@
           con.error('Contributer Could not be retieved', e);
           return;
         }
-        con.log('Contributer', contr);
+        con.log('Contributer', this.contributer);
       });
       if(api.type == 'webextension' && j.$('#Mal-Sync-Popup').length){
         chrome.commands.getAll((commands) => {
