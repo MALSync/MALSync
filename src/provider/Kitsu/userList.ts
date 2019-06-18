@@ -13,12 +13,22 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
     }
 
 
-    username = await helper.userId();
+    try {
+      username = await helper.userId()
+    } catch(e){
+      con.error(e);
+      // @ts-ignore
+      if(typeof callbacks.fullListCallback !== 'undefined') callbacks.fullListCallback([]);
+      // @ts-ignore
+      if(typeof callbacks.finishCallback !== 'undefined') callbacks.finishCallback();
+      return;
+    };
+
     con.log('[UserList][Kitsu]', 'user: '+username, 'status: '+status, 'offset: '+offset);
 
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+await helper.userId()+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50'+sorting+'&include='+localListType+','+localListType+'.mappings,'+localListType+'.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+username+statusPart+'&filter[kind]='+localListType+'&page[offset]='+offset+'&page[limit]=50'+sorting+'&include='+localListType+','+localListType+'.mappings,'+localListType+'.mappings.item&fields['+localListType+']=slug,titles,averageRating,posterImage,'+(localListType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + helper.accessToken(),
         'Content-Type': 'application/vnd.api+json',

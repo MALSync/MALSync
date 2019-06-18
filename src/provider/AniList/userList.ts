@@ -14,7 +14,6 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
     if(username == null){
         UserName(function(usernameTemp){
             if(usernameTemp == false){
-                utils.flashm( "Please log in on <a target='_blank' href='https://myanimelist.net/login.php'>MyAnimeList!<a>" );
                 // @ts-ignore
                 if(typeof callbacks.fullListCallback !== 'undefined') callbacks.fullListCallback([]);
                 // @ts-ignore
@@ -213,8 +212,13 @@ export function UserName(callback){
   }).then((response) => {
     var res = JSON.parse(response.responseText);
     con.log(res);
-    helper.errorHandling(res);
-    callback(res.data.Viewer.name);
+    try{
+      helper.errorHandling(res);
+      callback(res.data.Viewer.name);
+    }catch(e){
+      con.error(e);
+      callback(false);
+    }
   });
 }
 
