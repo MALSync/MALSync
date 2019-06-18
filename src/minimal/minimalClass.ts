@@ -275,6 +275,10 @@ export class minimal{
       this.minimalVue.$children[0].selectTab('updateCheck')
     })
 
+    this.minimal.find('#listSyncUi').click(() => {
+      this.minimalVue.$children[0].selectTab('listSync')
+    })
+
     try{
       if(api.type == 'webextension'){
         chrome.permissions.contains({

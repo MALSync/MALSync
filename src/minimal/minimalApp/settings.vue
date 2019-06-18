@@ -265,6 +265,16 @@
         <checkbox option="forceEn">Force english</checkbox>
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            List Sync
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <button type="button" id="listSyncUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Sync</button>
+          </span>
+        </li>
+
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
