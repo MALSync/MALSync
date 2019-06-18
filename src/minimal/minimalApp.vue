@@ -70,6 +70,12 @@
           </searchVue>
         </keep-alive>
         <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
+        <listSyncVue :listType="tabs.listSync.type" v-if="currentTab == tabs.listSync.title" >
+          <select v-model="tabs.listSync.type" @change="rebuildListSync()" style="margin-bottom: 20px;" class="typeSelect-updateCheck">
+            <option value="anime">Anime</option>
+            <option value="manga">Manga</option>
+          </select>
+        </listSyncVue>
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
@@ -88,6 +94,7 @@
   import bookmarksVue from './minimalApp/bookmarks.vue'
   import searchVue from './minimalApp/search.vue'
   import updateCheckVue from './minimalApp/updateCheck.vue'
+  import listSyncVue from './minimalApp/listSync/listSync.vue'
   import reviewsVue from './minimalApp/reviews.vue'
   import {entryClass} from './../provider/provider';
 
@@ -113,6 +120,7 @@
       bookmarksVue,
       searchVue,
       updateCheckVue,
+      listSyncVue,
       settingsVue
     },
     data: () => ({
@@ -148,6 +156,11 @@
         updateCheck: {
           title: 'updateCheck',
           scroll: 0,
+        },
+        listSync: {
+          title: 'listSync',
+          scroll: 0,
+          type: 'anime'
         }
       },
       keyword: '',
@@ -205,6 +218,9 @@
           return true;
         }
         if(this.currentTab === this.tabs['updateCheck'].title){
+          return true;
+        }
+        if(this.currentTab === this.tabs['listSync'].title){
           return true;
         }
         return false;
@@ -268,6 +284,9 @@
             this.history.push(this.getCurrent(oldtab));
           }
           if(this.currentTab === this.tabs['updateCheck'].title){
+            this.history.push(this.getCurrent(oldtab));
+          }
+          if(this.currentTab === this.tabs['listSync'].title){
             this.history.push(this.getCurrent(oldtab));
           }
         }
@@ -387,6 +406,13 @@
         }
         this.currentTab = historyElement.currentTab;
 
+      },
+      rebuildListSync(){
+        this.currentTab = '';
+
+        this.$nextTick(() => {
+          this.currentTab = 'listSync';
+        });
       }
     }
   }

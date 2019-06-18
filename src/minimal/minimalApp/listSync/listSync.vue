@@ -5,6 +5,10 @@
       <a href="https://github.com/lolamtisch/MALSync/wiki/List-Sync">Here</a>
     </div>
 
+    <div>
+      <slot></slot>
+    </div>
+
     <div :style="getTypeColor(getType('myanimelist.net'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
       MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br>
       {{listProvider.mal.text}} <br>
@@ -103,8 +107,14 @@
         missing: [],
       };
     },
+    props: {
+      listType: {
+        type: String,
+        default: 'anime'
+      }
+    },
     mounted: async function(){
-      var type = 'anime';
+      var type = this.listType;
       var mode = 'mirror';
       var typeArray = [];
       var master = api.settings.get('syncMode');
