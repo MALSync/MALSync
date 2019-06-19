@@ -284,10 +284,10 @@
             <div class="user">
               <div class="image align-middle">
                 <clazy-load :src="contr.gif" v-if="contr.gif">
-                  <img :src="contr.gif" class="lazy init gif">
+                  <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;">
                 </clazy-load>
                 <clazy-load :src="contr.image">
-                  <img :src="contr.image" class="lazy init">
+                  <img :src="contr.image" class="lazy init" style="max-width: 100%;">
                 </clazy-load>
               </div>
               <div class="text align-middle">
