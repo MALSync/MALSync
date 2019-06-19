@@ -232,7 +232,7 @@ export class metadata implements metadataInterface{
 
           stats.push({
             title,
-            body: i.rank
+            body: '#'+i.rank
           });
         }
       });
