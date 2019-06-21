@@ -265,6 +265,16 @@
         <checkbox option="forceEn">Force english</checkbox>
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
+
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            List Sync
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <button type="button" id="listSyncUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Sync</button>
+          </span>
+        </li>
+
         <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -274,10 +284,10 @@
             <div class="user">
               <div class="image align-middle">
                 <clazy-load :src="contr.gif" v-if="contr.gif">
-                  <img :src="contr.gif" class="lazy init gif">
+                  <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;">
                 </clazy-load>
                 <clazy-load :src="contr.image">
-                  <img :src="contr.image" class="lazy init">
+                  <img :src="contr.image" class="lazy init" style="max-width: 100%;">
                 </clazy-load>
               </div>
               <div class="text align-middle">
@@ -401,7 +411,7 @@
           con.error('Contributer Could not be retieved', e);
           return;
         }
-        con.log('Contributer', contr);
+        con.log('Contributer', this.contributer);
       });
       if(api.type == 'webextension' && j.$('#Mal-Sync-Popup').length){
         chrome.commands.getAll((commands) => {

@@ -1,8 +1,20 @@
 <template>
   <div class="page-content">
-    <div v-show="xhr == ''" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-    <div class="mdl-grid" v-if="xhr != ''">
-      <div v-show="statistics" v-html="statistics" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;"></div>
+    <div v-show="!metaObj" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
+    <div class="mdl-grid" v-if="metaObj">
+      <div v-show="statistics.length" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
+        <ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">
+          <li v-for="stat in statistics" class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">
+            <span class="mdl-list__item-primary-content">
+              <span>
+                  {{stat.title}}
+              </span>
+              <span v-html="stat.body" class="mdl-list__item-sub-title">
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
       <div class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp coverinfo malClear" style="display:block; flex-grow: 100; min-width: 70%;">
         <div class="mdl-card__media mdl-cell mdl-cell--2-col" style="background-color: transparent; float:left; padding-right: 16px;">
           <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
@@ -12,7 +24,11 @@
         <div class="mdl-cell mdl-cell--12-col">
           <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" :href="displayUrl" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
           <h1 v-html="title" class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;"></h1>
-          <div v-html="altTitle" class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;"></div>
+          <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;">
+            <div v-for="altTitl in altTitle" class="mdl-chip" style="margin-right: 5px;">
+              <span class="mdl-chip__text">{{altTitl}}</span>
+            </div>
+          </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
           <p v-html="description" style="color: black;">
@@ -169,17 +185,34 @@
         </li>
       </div>
 
-      <div v-show="info" v-html="info" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"></div>
+      <div v-show="info.length" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+        <div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">
+          <ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">
+            <li v-for="inf in info" class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet" style="height: auto;">
+              <span class="mdl-list__item-primary-content" style="height: auto;">
+                <span>
+                  {{inf.title}}
+                </span>
+                <span class="mdl-list__item-text-body" v-html="inf.body">
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
   import {entryClass} from "./../../provider/provider";
+  import {metadata as malMeta}  from "./../../provider/MyAnimeList/metadata";
+  import {metadata as aniMeta} from "./../../provider/AniList/metadata";
+  import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
   export default {
     data: function(){
       return {
-        xhr: '',
+        metaObj: null,
         imageTemp: null,
         mal: {
           resumeUrl: null,
@@ -199,7 +232,9 @@
     },
     watch: {
       renderObj: async function(renderObj){
-        this.xhr = '';
+
+        this.metaObj = null;
+
         this.mal.resumeUrl = null;
         this.mal.continueUrl = null;
         this.kiss2mal = {};
@@ -209,14 +244,27 @@
 
         if(renderObj == null) return;
 
+        var syncMode = api.settings.get('syncMode');
+        if(syncMode === 'ANILIST'){
+          this.metaObj = await new aniMeta(renderObj.url).init();
+        }else if(syncMode === 'KITSU'){
+          this.metaObj = await new kitsuMeta(renderObj.url).init();
+        }else if(renderObj.getMalUrl() !== null){
+          this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
+        }else{
+
+        }
+
+        if(this.metaObj !== null){
+          this.related = this.getRelated();
+        }
+
         if(renderObj.getMalUrl() !== null){
-          api.request.xhr('GET', renderObj.getMalUrl()).then((response) => {
-            this.xhr = response.responseText;
-            this.related = this.getRelated();
-            if(renderObj.login){
-              this.updateStatusTags();
-            }
-          });
+
+          if(renderObj.login){
+            this.updateStatusTags();
+          }
+
 
           if(renderObj.getMalUrl().split('').length > 3){
             utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
@@ -224,9 +272,8 @@
             });
           }
 
-        }else{
-          this.xhr = ' ';
         }
+
         if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
           this.imageTemp = await this.renderObj.getImage();
         }
@@ -301,28 +348,7 @@
         }
       },
       statistics: function(){
-        var stats = '';
-        try{
-            var statsBlock = this.xhr.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
-            // @ts-ignore
-            var tempHtml = j.$.parseHTML( statsBlock );
-            var statsHtml = '<ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">';
-            j.$.each(j.$(tempHtml).filter('div').slice(0,5), function( index, value ) {
-                statsHtml += '<li class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">';
-                    statsHtml += '<span class="mdl-list__item-primary-content">';
-                        statsHtml += '<span>';
-                            statsHtml += j.$(value).find('.dark_text').text();
-                        statsHtml += '</span>';
-                        statsHtml += '<span class="mdl-list__item-sub-title">';
-                            statsHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
-                        statsHtml += '</span>';
-                    statsHtml += '</span>';
-                statsHtml += '</li>';
-            });
-            statsHtml += '</ul>';
-            stats = statsHtml;
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return stats;
+        return this.metaObj.getStatistics();
       },
       displayUrl: function(){
         if(this.renderObj != null){
@@ -333,7 +359,7 @@
       image: function(){
         var image = '';
         try{
-            image = this.xhr.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
+            image = this.metaObj.getImage();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         try{
             if(this.imageTemp !== null && this.imageTemp !== ''){
@@ -345,7 +371,7 @@
       title: function(){
         var title = '';
         try{
-            title = this.xhr.split('itemprop="name">')[1].split('<')[0];
+            title = this.metaObj.getTitle();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         try{
             title = this.renderObj.name;
@@ -353,21 +379,10 @@
         return title;
       },
       description: function(){
-        var description  = '';
-        try{
-            description = this.xhr.split('itemprop="description">')[1].split('</span')[0];
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return description;
+        return this.metaObj.getDescription();
       },
       altTitle: function(){
-        var altTitle = '';
-        try{
-            altTitle = this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0];
-            altTitle = altTitle.replace(/spaceit_pad/g,'mdl-chip" style="margin-right: 5px;');
-            altTitle = altTitle.replace(/<\/span>/g,'</span><span class="mdl-chip__text">');
-            altTitle = altTitle.replace(/<\/div>/g,'</span></div>');
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return altTitle;
+        return this.metaObj.getAltTitle();
       },
       streaming: function(){
         var streamhtml = null;
@@ -404,108 +419,16 @@
         return streamhtml;
       },
       characters: function(){
-        var charArray = [];
-        try{
-          var characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
-          var charHtml = j.$.parseHTML( '<div class="detail-characters-list '+characterBlock );
-          var charFound = 0;
-
-          j.$.each(j.$(charHtml).find(':not(td) > table'), ( index, value ) => {
-            if(!index) charFound = 1;
-            var regexDimensions = /\/r\/\d*x\d*/g;
-            var charImg = j.$(value).find('img').first().attr("data-src");
-            if ( regexDimensions.test(charImg)){
-              charImg = charImg.replace(regexDimensions, '');
-            }else{
-              charImg = 'https://myanimelist.cdn-dena.com/images/questionmark_23.gif';
-            }
-
-            charImg = utils.handleMalImages(charImg);
-
-            charArray.push({img: charImg, html: j.$(value).find('.borderClass .spaceit_pad').first().parent().html()});
-
-          });
-
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return charArray;
+        return this.metaObj.getCharacters();
       },
       info: function(){
-        var html = '';
-        try{
-          var infoBlock = this.xhr.split('<h2>Information</h2>')[1].split('<h2>')[0];
-          var infoData = j.$.parseHTML( infoBlock );
-          var infoHtml = '<ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">';
-          j.$.each(j.$(infoData).filter('div'), ( index, value ) => {
-            if((index + 4) % 4 === 0 && index !== 0){
-            //infoHtml +='</ul><ul class="mdl-list mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-            }
-            infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-              infoHtml += '<span class="mdl-list__item-primary-content">';
-                infoHtml += '<span>';
-                  infoHtml += j.$(value).find('.dark_text').text();
-                infoHtml += '</span>';
-                infoHtml += '<span class="mdl-list__item-text-body">';
-                  j.$(value).find('.dark_text').remove();
-                  infoHtml += j.$(value).html();
-                  //j.$(value).find('*').each(function(){infoHtml += j.$(value)[0].outerHTML});
-                  //infoHtml += j.$(value).find('span[itemprop=ratingValue]').height() != null ? j.$(value).find('span[itemprop=ratingValue]').text() : j.$(value).clone().children().remove().end().text();
-                infoHtml += '</span>';
-            infoHtml += '</span>';
-            infoHtml += '</li>';
-          });
-          infoHtml += this.externalLinks;
-          infoHtml += '</ul>';
-          html += '<div class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear">'+infoHtml+'</div>';
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return html;
-      },
-      externalLinks: function(){
-        var html = '';
-        try{
-          var infoBlock = this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]+'</div>';
-          var infoData = j.$.parseHTML( infoBlock );
-
-          var infoHtml = '';
-          infoHtml += '<li class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet">';
-            infoHtml += '<span class="mdl-list__item-primary-content">';
-              infoHtml += '<span>';
-                infoHtml += 'External Links';
-              infoHtml += '</span>';
-              infoHtml += '<span class="mdl-list__item-text-body">';
-
-          j.$.each(j.$(infoData).find('a'), ( index, value ) => {
-            if(index) infoHtml += ', '
-            infoHtml += '<a href="'+j.$(value).attr('href')+'">'+j.$(value).text()+'</a>'
-          })
-              infoHtml += '</span>';
-          infoHtml += '</span>';
-          infoHtml += '</li>';
-          html = infoHtml;
-
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return html;
+        return this.metaObj.getInfo();
       },
       openingSongs: function(){
-        var openingSongs = [];
-
-        try{
-          var openingBlock = '<div>'+this.xhr.split('opnening">')[1].split('</div>')[0]+'</div>';
-          var openingData = j.$.parseHTML( openingBlock );
-          openingSongs = j.$.map(j.$(openingData).find('.theme-song'), j.$.text);
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        return openingSongs;
+        return this.metaObj.getOpeningSongs();
       },
       endingSongs: function(){
-        var endingSongs = [];
-
-        try{
-          var endingBlock = '<div>'+this.xhr.split(' ending">')[1].split('</div>')[0]+'</div>';
-          var endingData = j.$.parseHTML( endingBlock );
-          endingSongs = j.$.map(j.$(endingData).find('.theme-song'), j.$.text);
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-
-        return endingSongs;
+        return this.metaObj.getEndingSongs();
       }
     },
     methods: {
@@ -536,27 +459,7 @@
         }
       },
       getRelated: function(){
-        var html = '';
-        var el = [];
-        try{
-          var relatedBlock = this.xhr.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
-          var related = j.$.parseHTML( relatedBlock );
-          j.$.each(j.$(related).filter('table').find('tr'), function( index, value ) {
-            var links = [];
-            j.$(value).find('.borderClass').last().find('a').each(function( index, value ) {
-              links.push({
-                url: j.$(value).attr('href'),
-                title: j.$(value).text(),
-                statusTag: ''
-              });
-            });
-            el.push({
-              type: j.$(value).find('.borderClass').first().text(),
-              links: links
-            })
-          });
-        }catch(e) {console.log('[iframeOverview] Error:',e);}
-        return el;
+        return this.metaObj.getRelated();
       },
       updateStatusTags: async function(){
         for(var relatedKey in this.related){

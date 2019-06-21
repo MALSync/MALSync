@@ -313,7 +313,7 @@ export class syncPage{
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + api.storage.lang("UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
+          message += split + utils.episode(This.page.type)+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
           split = ' | '
         }
         if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){

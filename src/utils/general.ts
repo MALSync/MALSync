@@ -191,7 +191,7 @@ export async function getMalToKissArray(type, id){
           var streamUrl = 'https://kissanimelist.firebaseio.com/Data2/'+stream+'/'+encodeURIComponent(streamKey)+'.json';
 
           var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), null);
-          if(typeof(cache) != "undefined"){
+          if(typeof(cache) !== "undefined" && cache.constructor === Object && Object.keys(cache).length !== 0){
             var streamJson = cache;
           }else{
             var streamRespose = await api.request.xhr('GET', streamUrl);

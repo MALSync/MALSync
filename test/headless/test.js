@@ -503,12 +503,12 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd.html?ep=4',
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-hd',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd.html',
+          identifier: 'plastic-memories-bluray-ver-720p',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html',
           episode: 4,
           uiSelector: true,
         }
@@ -721,6 +721,32 @@ var testsArray = [
           sync: false,
           title: 'Overlord III',
           identifier: 'overlord-iii-954770',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'RiiE',
+    url: 'https://www.riie.net/',
+    testCases: [
+      {
+        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-23-subtitle-indonesia/',
+        expected: {
+          sync: true,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
+          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+          episode: 23,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+        expected: {
+          sync: false,
+          title: 'tate no yuusha no nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
           uiSelector: true,
         }
       },
