@@ -184,7 +184,7 @@ def repo_info
   url = `git config --get "remote.#{remote}.url"`.strip
   project = File.basename(url, '.git')
   user = File.basename(File.dirname(url)).split(':').last
-  return user, project
+  return "lolamtisch", "MALSync"
 end
 
 locales = locale_status()
