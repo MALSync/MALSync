@@ -24,7 +24,7 @@
       "description": "Button for removing entry from MAL..."
     },
     "Loading": {
-      "message": "Loading",
+      "message": "Loading__",
       "description": "Loading"
     },
     "Select": {

@@ -14,7 +14,8 @@ before_install:
 install:
   - npm install
 script:
-  - npm run test
+  #- npm run test
+  - sh ./package/localization/deploy.sh
   - npm run build
 before_deploy:
   - npm run package
