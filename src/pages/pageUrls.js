@@ -250,4 +250,10 @@ module.exports = {
       '*://www.riie.net/*'
     ],
   },
+  Meowstream: {
+    match: [
+      '*://meowstream.com/*'
+    ],
+  },
+
 };
