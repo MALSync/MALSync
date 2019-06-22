@@ -52,6 +52,6 @@ export const Meowstream: pageInterface = {
       if (page.url.split("/")[3] = "nonton" || j.$("div.video-content")[0] && j.$("h1.entry-title.title-font")[0] && j.$("#plv > div.contentsembed > div.episode-nav > div > div.eps-nav.pilih")[0]) {
         page.handlePage();
       }
-    });  
+    });
   }
 };
