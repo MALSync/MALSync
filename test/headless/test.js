@@ -753,6 +753,31 @@ var testsArray = [
     ]
   },
   {
+    title: 'meowstream',
+    url: 'https://meowstream.com/',
+    testCases: [
+      {
+        url: 'https://meowstream.com/tante-yuusha-11-sub-indo/',
+        expected: {
+          sync: true,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tante-yuusha',
+          overviewUrl: 'https://meowstream.com/nonton/tante-yuusha',
+          episode: 11,
+        }
+      },
+      {
+        url: 'https://meowstream.com/nonton/tante-yuusha-sub-indo/',
+        expected: {
+          sync: false,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tante-yuusha',
+          uiSelector: false,
+        }
+      },
+    ]
+  },
+  {
     title: 'AnimeKisa',
     url: 'https://animekisa.tv/',
     testCases: [
@@ -764,18 +789,17 @@ var testsArray = [
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
-          uiSelector: false,
         }
       },
       {
-        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+       url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
         expected: {
           sync: false,
           title: 'Phantom Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           uiSelector: true,
         }
-      },
+      }
     ]
   },
 ];
