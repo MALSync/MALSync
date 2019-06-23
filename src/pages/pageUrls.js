@@ -250,4 +250,9 @@ module.exports = {
       '*://www.riie.net/*'
     ],
   },
+  AnimeKisa: {
+    match: [
+      '*://animekisa.tv/*'
+    ],
+  },
 };

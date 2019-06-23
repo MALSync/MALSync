@@ -752,6 +752,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'AnimeKisa',
+    url: 'https://animekisa.tv/',
+    testCases: [
+      {
+        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9',
+        expected: {
+          sync: true,
+          title: 'Phantom Requiem for the Phantom',
+          identifier: 'phantom-requiem-for-the-phantom',
+          overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+          episode: 9,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+        expected: {
+          sync: false,
+          title: 'Phantom Requiem for the Phantom',
+          identifier: 'phantom-requiem-for-the-phantom',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
