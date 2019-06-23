@@ -764,6 +764,7 @@ var testsArray = [
           identifier: 'tante-yuusha',
           overviewUrl: 'https://meowstream.com/nonton/tante-yuusha',
           episode: 11,
+          uiSelector: false,
         }
       },
       {
@@ -772,7 +773,7 @@ var testsArray = [
           sync: false,
           title: 'Tate no Yuusha no Nariagari',
           identifier: 'tante-yuusha',
-          uiSelector: false,
+          uiSelector: true,
         }
       },
     ]
@@ -789,6 +790,7 @@ var testsArray = [
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
+          uiSelector: false,
         }
       },
       {
