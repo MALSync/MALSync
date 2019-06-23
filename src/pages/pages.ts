@@ -32,6 +32,7 @@ import {AnimePlanet} from "./AnimePlanet/main";
 import {KickAssAnime} from "./KickAssAnime/main";
 import {RiiE} from "./RiiE/main";
 import {Meowstream} from "./Meowstream/main";
+import {AnimeKisa} from "./AnimeKisa/main"
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -70,6 +71,7 @@ export const pages = {
     KickAssAnime,
     RiiE,
     Meowstream,
+    AnimeKisa,
 };
 
 export const pageSearch:pageSearchObj = {

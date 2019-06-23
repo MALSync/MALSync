@@ -255,5 +255,9 @@ module.exports = {
       '*://meowstream.com/*'
     ],
   },
-
+  AnimeKisa: {
+    match: [
+      '*://animekisa.tv/*'
+    ],
+  },
 };

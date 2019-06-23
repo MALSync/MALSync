@@ -44,11 +44,11 @@
     "description": "Nothing Found"
   },
   "Not_Found": {
-    "message": "Tidak Ditemukan!",
+    "message": "Anime/Manga Tidak Ditemukan!",
     "description": "Anime/Manga Not Found"
   },
   "NoEntries": {
-    "message": "Tidak Ada Entri",
+    "message": "Entri Tidak Ditemukan",
     "description": "No Entries"
   },
   "fullscreen": {
@@ -88,15 +88,15 @@
     "description": "On-Hold"
   },
   "UI_Status_Dropped": {
-    "message": "Jatuh",
+    "message": "Dihentikan",
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "Rencana Menonton",
+    "message": "Direncanakan",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Rencama Membaca",
+    "message": "Direncanakan",
     "description": "Plan to Read"
   },
   "UI_Episode": {
@@ -112,7 +112,7 @@
     "description": "Chapter"
   },
   "UI_Score": {
-    "message": "Penilaian Anda:",
+    "message": "Penilaianmu:",
     "description": "Score"
   },
   "UI_Score_Not_Rated": {
@@ -210,7 +210,7 @@
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
-    "message": "Tetapkan selesai?",
+    "message": "Tetapkan sebagai tamat?",
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
@@ -222,7 +222,7 @@
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
-    "message": "Apakah $anime$ benar?",
+    "message": "Apakah ini adalah \"$anime$\"?",
     "description": "Is anime correct",
     "placeholders": {
       "anime": {
@@ -262,7 +262,7 @@
     }
   },
   "syncPage_flashConfirm_offsetHandler_1": {
-    "message": "Kemungkinan offset Episode $calcOffset$ terdeteksi. Apa itu benar?",
+    "message": "Kemungkinan offset episode dari $calcOffset$ terdeteksi. Apakah itu benar?",
     "description": "offsetHandler Episode",
     "placeholders": {
       "calcOffset": {
@@ -272,11 +272,11 @@
     }
   },
   "anilistClass_authentication": {
-    "message": "Token telah tersimpan, Anda dapat menutup laman ini",
+    "message": "Token tersimpan, kamu dapat menutup laman ini",
     "description": "The token has been obtained and saved"
   },
   "kitsuClass_authentication_text": {
-    "message": "Untuk masuk dengan Kitsu, Anda perlu mengisi email dan password akun Anda.<br> Informasi Anda tidak tersimpadn di komputer Anda ataupun dimana saja.<br>Informasi langsung dikirim ke Kitsu. Hanya token akses yang dikembalikan disimpan<br>",
+    "message": "Untuk masuk dengan Kitsu, kamu perlu mengisi email dan password akunmu.<br> Informasi kamu tidak tersimpan di komputermu atau dimana saja.<br>Informasi tersebut langsung dikirim ke Kitsu. Hanya token akses yang dikembalikan yang disimpan<br>",
     "description": "Authentication text in Kitsu"
   },
   "kitsuClass_authentication_Password": {
@@ -288,11 +288,11 @@
     "description": "Login"
   },
   "kitsuClass_authentication_Success": {
-    "message": "Token tersimpan, Anda dapat menutup laman ini.",
+    "message": "Token tersimpan, kamu dapat menutup laman ini.",
     "description": "Authentication success"
   },
   "kitsuClass_authentication_Wrong": {
-    "message": "Kredensial salah",
+    "message": "Otentikasi salah",
     "description": "Credentials wrong"
   },
   "bookmarksItem_Days": {
@@ -316,7 +316,7 @@
     "description": "mins"
   },
   "prediction_Episode": {
-    "message": "Prakiraan episode selanjutnya dalam $time$",
+    "message": "Episode berikutnya diperkirakan mengudara dalam $time$",
     "description": "Text for next episode estimation",
     "placeholders": {
       "time": {
@@ -340,11 +340,11 @@
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Masukkan offset episode. Apabila sebuah anime memiliki 12 episode, tetapi menggunakan angka 0-11 daripada 1-12, Anda dapat mengetik \"+1\" di offset episode.",
+    "message": "Masukkan offset episode. Apabila anime memiliki 12 episode, tapi menggunakan angka 0-11 daripada 1-12, kamu dapat mengetik \"+1\" di offset episode.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "Ubah hanya URL/tautan ini jika di MAL menunjuk ke halaman anime yang salah.",
+    "message": "Ubah URL/tautan ini jika MAL menunjuk ke halaman anime yang salah.",
     "description": "URL is Wrong"
   },
   "correction_Search": {
@@ -356,7 +356,7 @@
     "description": "Search text"
   },
   "correction_NoMal": {
-    "message": "Anime/Manga tidak ditemukan di MAL",
+    "message": "Klik tombol ini apabila anime/manga tidak ditemukan di MAL",
     "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
@@ -364,7 +364,7 @@
     "description": "No entry on MyAnimeList"
   },
   "correction_NewOffset": {
-    "message": "Offset ($offset$) tersetel.",
+    "message": "Offset ($offset$) baru disetel.",
     "description": "New Offset",
     "placeholders": {
       "offset": {
@@ -374,7 +374,7 @@
     }
   },
   "correction_OffsetReset": {
-    "message": "Offset tereset",
+    "message": "Offset direset",
     "description": "Offset reset"
   },
   "correction_NewUrl": {
@@ -416,7 +416,7 @@
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
-    "message": "Sunting Detail",
+    "message": "Sunting Rincian",
     "description": "Edit Details"
   },
   "overview_Characters": {
@@ -448,16 +448,24 @@
     "description": "General"
   },
   "settings_Mode": {
-    "message": "Mode",
+    "message": "Sumber",
     "description": "Mode"
   },
   "settings_Authenticate": {
-    "message": "Autentikasi",
+    "message": "Otentikasi",
     "description": "Authenticate"
   },
   "settings_LocalSync": {
-    "message": "Fallback penyimpanan lokal",
+    "message": "Pencadangan penyimpanan lokal",
     "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Impor",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Ekspor",
+    "description": "Button to Export Local storage fallback data"
   },
   "settings_Animesync": {
     "message": "Sinkronisasi Anime",
@@ -504,7 +512,7 @@
     "description": "Streaming Site Links"
   },
   "settings_StreamingSite_text": {
-    "message": "Jika dimatikan, situs streaming tidak akan muncul lagi di sidebar anime di MyAnimeList/AniList/Kitsu.",
+    "message": "Jika dimatikan, situs streaming tidak akan muncul di sidebar anime MyAnimeList/AniList/Kitsu.",
     "description": "Streaming Site Links - Text"
   },
   "settings_Thumbnails": {
@@ -544,19 +552,19 @@
     "description": "Use Tags/Notes"
   },
   "settings_malTags_Text": {
-    "message": "Jika diaktifkan: di daftar Anime MyAnimeList/Anilist Anda dan daftar bookmark di miniMAL, tautan ikon akan ditambahkan ke situs streaming yang terakhir Anda gunakan untuk menonton anime. <br> Cukup klik ikon untuk melanjutkan menonton anime.",
+    "message": "Jika diaktifkan: Terdapat di daftar Anime MyAnimeList/Anilist kamu dan daftar bookmark  miniMAL, tautan ikon akan ditambahkan ke situs streaming yang terakhir kamu kunjungi untuk menonton anime. <br> Cukup klik ikon untuk melanjutkan menonton anime.",
     "description": "Use Tags/Notes - Text"
   },
   "settings_malContinue": {
-    "message": "Tautan melanjutkan menonton",
+    "message": "Tautan lanjutkan episode",
     "description": "Continue watching links"
   },
   "settings_malResume": {
-    "message": "Tautan melanjutkan menonton",
+    "message": "Tautan kembali melanjutkan menonton",
     "description": "Resume watching links"
   },
   "settings_miniMAL_floatButtonStealth": {
-    "message": "Tombol menu mengambang sembunyi",
+    "message": "Samarkan tombol menu mengambang",
     "description": "Stealth floating menu button"
   },
   "settings_miniMAL_floatButtonHide": {
@@ -564,11 +572,11 @@
     "description": "Hide miniMAL floating menu button"
   },
   "settings_miniMAL_autoCloseMinimal": {
-    "message": "Tutup miniMAL ketika mengetuk di luar",
+    "message": "Tutup miniMAL ketika mengklik di luar",
     "description": "Clicking outside closes miniMAL"
   },
   "settings_miniMAL_Display": {
-    "message": "Tampilkan ke",
+    "message": "Tampilkan miniMAL ke",
     "description": "Display to the"
   },
   "settings_miniMAL_Display_Left": {
@@ -604,19 +612,23 @@
     "description": "Video settings header"
   },
   "settings_Video_Fullscreen": {
-    "message": "Otomatis layar penuh",
+    "message": "Otomatiskan layar penuh",
     "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Lanjutkan video secara otomatis",
+    "description": "Auto resume video where you left off toggle"
   },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Lewati lagu pembuka",
     "description": "Description for the the opening skip shortcut"
   },
   "settings_Shortcuts_Skip_Backward": {
-    "message": "Mundur ke awal lagu pembuka",
+    "message": "Mundur ke permulaan lagu pembuka",
     "description": "Description for the the opening skip shortcut"
   },
   "settings_introSkip": {
-    "message": "Setel durasi lewati lagu opening ($seconds$ detik)",
+    "message": "Atur durasi lewati lagu opening  selama ($seconds$ detik)",
     "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
@@ -630,11 +642,11 @@
     "description": "Update Check"
   },
   "settings_UpdateCheck_Text": {
-    "message": "Periksa episode baru di latar belakang.",
+    "message": "Periksa episode terbaru pada latar belakang.",
     "description": "Update Check - Text"
   },
   "settings_Interval": {
-    "message": "Interval",
+    "message": "Selang waktu",
     "description": "Interval"
   },
   "settings_Interval_Off": {
@@ -650,11 +662,11 @@
     "description": "Debugging"
   },
   "settings_ETC": {
-    "message": "DLL",
+    "message": "Lainnya",
     "description": "ETC"
   },
   "settings_Userscriptmode": {
-    "message": "Mode Userscrip",
+    "message": "Mode Userscript",
     "description": "Userscript mode"
   },
   "settings_Userscriptmode_Text": {
@@ -662,11 +674,11 @@
     "description": "Userscript mode - Text"
   },
   "settings_StrictCookies": {
-    "message": "Keras terhadap Cookies",
+    "message": "Perketat Cookies",
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
-    "message": "Opsi ini untuk menambah dukungan dengan Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
+    "message": "Opsi ini untuk menambah dukungan terhadapt Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
     "description": "Strict Cookies - Text"
   },
   "settings_ClearCache": {
@@ -690,7 +702,7 @@
     "description": "Episode"
   },
   "updateCheck_Message": {
-    "message": "Pesan",
+    "message": "Catatan",
     "description": "Message"
   },
   "updateCheck_NotificationHistory": {
@@ -714,7 +726,7 @@
     "description": "Settings"
   },
   "minimalClass_Popup": {
-    "message": "Mohon untuk izinkan pop-up di situs ini",
+    "message": "Mohon untuk aktifkan pop-up di situs ini",
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
@@ -748,11 +760,11 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Pengguna uBlock tolong untuk subscribe ini ke dalam list filter!<br>Hal ini dapat memperbaiki beberapa masalah seperti gambar menghilang.",
+    "message": "Pengguna uBlock tolong untuk subscribe ke dalam list filter!<br>Hal ini dapat memperbaiki beberapa masalah seperti gambar menghilang.",
     "description": "Update version - Text 4"
   },
   "Anilist_Authenticate": {
-    "message": "Tolong Autentikasi $Link1$Disini$Link2$",
+    "message": "Tolong Otentikasikan $Link1$Disini$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
@@ -766,7 +778,7 @@
     }
   },
   "Emby_Authenticate": {
-    "message": "MAL-Sync memerlukan Key API Emby agar bekerja. Informasi lebih lanjut $Link1$disini$Link2$",
+    "message": "MAL-Sync memerlukan Key API Emby agar dapat bekerja. Informasi lebih lanjut $Link1$disini$Link2$",
     "description": "Emby Authentication",
     "placeholders": {
       "Link1": {
