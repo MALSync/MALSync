@@ -192,4 +192,9 @@ module.exports = {
       '*://animedaisuki.moe/embed/*'
     ]
   },
+  meowstream: {
+    match: [
+      '*://meowstream.com/embed/*',
+    ]
+  }
 };
