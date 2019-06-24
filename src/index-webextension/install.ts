@@ -16,11 +16,9 @@ document.getElementsByTagName('head')[0].onclick = function(e){
 
 api.settings.init()
   .then(()=>{
-    $("body").append('<div id="minimalApp"></div>');
     var minimalVue = new Vue({
-      el: $("#minimalApp").get(0),
       render: h => h(main)
-    })
+    }).$mount('#app')
   })
 
 

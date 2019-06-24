@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style lang="less">
   .test{
     background-color: red;
   }
