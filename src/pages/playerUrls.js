@@ -196,5 +196,10 @@ module.exports = {
     match: [
       '*://meowstream.com/embed/*',
     ]
-  }
+  },
+  Wakanim: {
+    match: [
+      '*://wakanim.tv/*/*/*/embeddedplayer/*',
+    ]
+  },
 };
