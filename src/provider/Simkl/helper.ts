@@ -1,5 +1,12 @@
 import {data} from "./data";
 
+export function getCacheKey(id, simklId){
+  if(isNaN(id) || !id){
+    return 'simkl:'+simklId;
+  }
+  return id;
+}
+
 export async function syncList(){
   var lastCheck = await api.storage.get('simklLastCheck');
   var activity = await call('https://api.simkl.com/sync/activities');
@@ -19,7 +26,7 @@ export async function syncList(){
     if(lastCheck.all === activity.anime.all){
       con.log('Up to date');
       alert('Up to date');
-      return;
+      return cacheList;
     }
   }
 
