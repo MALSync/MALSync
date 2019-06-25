@@ -260,4 +260,9 @@ module.exports = {
       '*://animekisa.tv/*'
     ],
   },
+  Wakanim: {
+    match: [
+      '*://*.wakanim.tv/*'
+    ],
+  },
 };
