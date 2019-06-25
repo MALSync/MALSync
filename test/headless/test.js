@@ -911,8 +911,12 @@ testsArray.forEach(function(testPage) {
         expect(text.identifier).to.equal(testCase.expected.identifier);
         if(text.sync){
           expect(text.episode).to.equal(testCase.expected.episode);
-          expect(text.overviewUrl.replace(/www[^.]*\./,'')).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
-          expect(text.nextEpUrl.replace(/www[^.]*\./,'')).to.equal(testCase.expected.nextEpUrl.replace(/www[^.]*\./,''));
+          var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
+          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
+          expect(textOverview).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
+          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
+          expect(textOverview).to.equal(testCaseOverview);
         }
         if(typeof text.uiSelector != 'undefined'){
           expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
