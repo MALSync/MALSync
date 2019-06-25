@@ -911,8 +911,8 @@ testsArray.forEach(function(testPage) {
         expect(text.identifier).to.equal(testCase.expected.identifier);
         if(text.sync){
           expect(text.episode).to.equal(testCase.expected.episode);
-          expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
-          expect(text.nextEpUrl).to.equal(testCase.expected.nextEpUrl);
+          expect(text.overviewUrl.replace(/www[^.]*\./,'')).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          expect(text.nextEpUrl.replace(/www[^.]*\./,'')).to.equal(testCase.expected.nextEpUrl.replace(/www[^.]*\./,''));
         }
         if(typeof text.uiSelector != 'undefined'){
           expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
