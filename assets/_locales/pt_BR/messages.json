@@ -19,6 +19,10 @@
     "message": "Reiniciar",
     "description": "Reset"
   },
+  "Remove": {
+    "message": "Remover",
+    "description": "Button for removing entry from MAL..."
+  },
   "Loading": {
     "message": "Carregando",
     "description": "Loading"
@@ -451,6 +455,18 @@
     "message": "Autenticar",
     "description": "Authenticate"
   },
+  "settings_LocalSync": {
+    "message": "Armazenamento local",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Importar",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Exportar",
+    "description": "Button to Export Local storage fallback data"
+  },
   "settings_Animesync": {
     "message": "Sincronização do anime",
     "description": "Anime sync"
@@ -598,6 +614,10 @@
   "settings_Video_Fullscreen": {
     "message": "Tela cheia automática",
     "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Resumo automático (Vídeo)",
+    "description": "Auto resume video where you left off toggle"
   },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Pula a abertura",

@@ -94,6 +94,7 @@ module.exports = {
     match: [
       '*://*.fembed.net/*',
       '*://*.fembed.com/*',
+      '*://*.animeproxy.info/*'
     ]
   },
   youpload: {
@@ -170,7 +171,7 @@ module.exports = {
     match: [
       '*://crazyload.co/*'
     ]
-  }, 
+  },
   gounlimited: {
     match: [
       '*://gounlimited.to/*'
@@ -189,6 +190,16 @@ module.exports = {
   animedaisuki: {
     match: [
       '*://animedaisuki.moe/embed/*'
+    ]
+  },
+  meowstream: {
+    match: [
+      '*://meowstream.com/embed/*',
+    ]
+  },
+  Wakanim: {
+    match: [
+      '*://wakanim.tv/*/*/*/embeddedplayer/*',
     ]
   },
 };
