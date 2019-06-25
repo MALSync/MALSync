@@ -40,7 +40,7 @@ export const Wakanim: pageInterface = {
     }
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
-      if(Wakanim.isSyncPage(page.url)){alert();
+      if(Wakanim.isSyncPage(page.url)){
         if (j.$("#jwplayer-container")[0]){
           page.handlePage();
         }
