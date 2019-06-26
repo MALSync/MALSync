@@ -64,7 +64,7 @@ export function prepareData(data, listType, status): listElement[]{
         status: st,
         score: el.user_rating,
         image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
-        tags: "list.attributes.notes",
+        tags: el.private_memo,
         airingState: el['anime_airing_status'],
       }
       newData.push(tempData);
