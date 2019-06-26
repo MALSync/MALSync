@@ -94,7 +94,7 @@ export async function syncList(){
   return cacheList;
 }
 
-export async function getSingle(ids:{id?:string, malId?:string}){
+export async function getSingle(ids:{id?:string|number, malId?:string|number}){
   var list = await syncList();
   if(ids.id){
     if(list[ids.id] != undefined){
