@@ -17,6 +17,18 @@ export async function syncList(){
   //removed_from_list
   if(lastCheck && (lastCheck.removed_from_list !== activity.anime.removed_from_list)){
     alert('removed');
+    var checkRemoveList = await call('https://api.simkl.com/sync/all-items/anime');
+    var newCacheList = {};
+    if(checkRemoveList){
+      for (var i = 0; i < checkRemoveList.anime.length; i++) {
+        const el = checkRemoveList.anime[i];
+        if(cacheList[el.show.ids.simkl] != undefined){
+          newCacheList[el.show.ids.simkl] = cacheList[el.show.ids.simkl];
+        }
+      }
+    }
+    cacheList = newCacheList;
+    con.log('remove', cacheList);
   }
 
   //Check if update Needed
