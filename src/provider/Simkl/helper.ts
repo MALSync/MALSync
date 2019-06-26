@@ -23,7 +23,7 @@ export function getEpisode(episode: string):number{
 export async function syncList(){
   var lastCheck = await api.storage.get('simklLastCheck');
   var activity = await call('https://api.simkl.com/sync/activities');
-  con.log('Activity', lastCheck, activity);
+  con.log('Activity', lastCheck, activity.anime);
 
   var cacheList = await api.storage.get('simklList');
 
@@ -56,6 +56,17 @@ export async function syncList(){
   }
 
   if(!cacheList) cacheList = {};
+
+  if(lastCheck && (lastCheck.rated_at !== activity.anime.rated_at)){
+    var rated = await call('https://api.simkl.com/sync/ratings/anime?'+dateFrom);
+    con.log('ratedUpdate', rated);
+    if(rated){
+      for (var i = 0; i < rated.anime.length; i++) {
+        const el = rated.anime[i];
+        cacheList[el.show.ids.simkl] = el;
+      }
+    }
+  }
 
   var list = await call('https://api.simkl.com/sync/all-items/anime?'+dateFrom);
   con.log('listUpdate', list);
