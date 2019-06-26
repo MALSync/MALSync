@@ -1,4 +1,4 @@
-import {syncList, getCacheKey} from "./helper";
+import * as helper from "./helper";
 import {listElement} from "./../listInterface";
 
 //Status: 1 = watching | 2 = completed | 3 = onhold | 4 = dropped | 6 = plan to watch | 7 = all
@@ -6,7 +6,7 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
     status = parseInt(status.toString());
     con.log('[UserList][Kitsu]', 'user: '+username, 'status: '+status, 'offset: '+offset);
 
-    return syncList()
+    return helper.syncList()
     .then((list) => {
       var data = prepareData(Object.values(list), localListType);
       con.error(data);
@@ -52,11 +52,11 @@ export function prepareData(data, listType): listElement[]{
       var tempData = {
         malId: el.show.ids.mal,
         uid: el.show.ids.simkl,
-        cacheKey: getCacheKey(el.show.ids.mal, el.show.ids.simkl),
+        cacheKey: helper.getCacheKey(el.show.ids.mal, el.show.ids.simkl),
         type: listType,
         title: el.show.title,
         url: 'https://simkl.com/'+listType+'/'+el.show.ids.simkl,
-        watchedEp: el.last_watched,
+        watchedEp: helper.getEpisode(el.last_watched),
         totalEp: el.total_episodes_count,
         status: el.status,
         score: el.user_rating,

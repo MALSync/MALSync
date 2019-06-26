@@ -7,6 +7,19 @@ export function getCacheKey(id, simklId){
   return id;
 }
 
+export function getEpisode(episode: string):number{
+  if(episode){
+    var temp = episode.match(/e\d+/i);
+    if(temp !== null){
+      con.log(temp);
+      var episodePart = parseInt(temp[0].replace(/\D/, ''));
+      if( isNaN(episodePart) ) return 0;
+      return episodePart;
+    }
+  }
+  return 0;
+}
+
 export async function syncList(){
   var lastCheck = await api.storage.get('simklLastCheck');
   var activity = await call('https://api.simkl.com/sync/activities');
