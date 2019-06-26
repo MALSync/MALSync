@@ -57,10 +57,10 @@ export function prepareData(data, listType): listElement[]{
         title: el.show.title,
         url: 'https://simkl.com/'+listType+'/'+el.show.ids.simkl,
         watchedEp: el.last_watched,
-        totalEp: 22,
+        totalEp: el.total_episodes_count,
         status: el.status,
         score: el.user_rating,
-        image: "https://cdn.myanimelist.net/r/96x136/images/anime/5/65187.webp",
+        image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
         tags: "list.attributes.notes",
         airingState: el['anime_airing_status'],
       }

@@ -22,7 +22,7 @@ export async function syncList(){
   //Check if update Needed
   var dateFrom = '';
   if(lastCheck && cacheList){
-    dateFrom = '&date_from='+lastCheck.all;
+    dateFrom = 'date_from='+lastCheck.all;
     if(lastCheck.all === activity.anime.all){
       con.log('Up to date');
       alert('Up to date');
@@ -32,7 +32,7 @@ export async function syncList(){
 
   if(!cacheList) cacheList = {};
 
-  var list = await call('https://api.simkl.com/sync/all-items/anime?extended=full'+dateFrom);
+  var list = await call('https://api.simkl.com/sync/all-items/anime?'+dateFrom);
   con.log('listUpdate', list);
   if(list){
     for (var i = 0; i < list.anime.length; i++) {
