@@ -25,7 +25,6 @@ export function getEpisode(episode: string):number{
   if(episode){
     var temp = episode.match(/e\d+/i);
     if(temp !== null){
-      con.log(temp);
       var episodePart = parseInt(temp[0].replace(/\D/, ''));
       if( isNaN(episodePart) ) return 0;
       return episodePart;
@@ -94,6 +93,27 @@ export async function syncList(){
   await api.storage.set('simklList', cacheList);
   await api.storage.set('simklLastCheck', activity.anime);
   return cacheList;
+}
+
+export async function getSingle(ids:{id?:string, malId?:string}){
+  var list = await syncList();
+  if(ids.id){
+    if(list[ids.id] != undefined){
+      return list[ids.id];
+    }
+  }else if(ids.malId){
+    //TODO: Use map for better performance
+    var listVal = Object.values(list);
+    for (var i = 0; i < listVal.length; i++) {
+      var el:any = listVal[i];
+      if(typeof el.show.ids.mal !== 'undefined' && el.show.ids.mal == ids.malId){
+        return el;
+      }
+    }
+  }else{
+    throw 'No id passed';
+  }
+  return null;
 }
 
 async function call(url, sData = {}){
