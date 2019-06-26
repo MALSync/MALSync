@@ -1,5 +1,19 @@
 import {data} from "./data";
 
+export function translateList(simklStatus, malStatus:null|number = null){
+  var list = {
+    'watching': 1,
+    'plantowatch': 6,
+    'completed': 2,
+    'notinteresting': 4,
+    'hold': 3,
+  }
+  if(malStatus != null){
+    return Object.keys(list).find(key => list[key] === malStatus);
+  }
+  return list[simklStatus];
+}
+
 export function getCacheKey(id, simklId){
   if(isNaN(id) || !id){
     return 'simkl:'+simklId;

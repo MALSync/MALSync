@@ -8,7 +8,7 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
 
     return helper.syncList()
     .then((list) => {
-      var data = prepareData(Object.values(list), localListType);
+      var data = prepareData(Object.values(list), localListType, status);
       con.error(data);
 
       if(typeof callbacks.singleCallback !== 'undefined'){
@@ -42,11 +42,14 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
     });
 }
 
-export function prepareData(data, listType): listElement[]{
+export function prepareData(data, listType, status): listElement[]{
   var newData = [] as listElement[];
   for (var i = 0; i < data.length; i++) {
     var el = data[i];
-    con.log(el)
+    var st = helper.translateList(el.status);
+    if(status !== 7 && parseInt(st) !== status){
+      continue;
+    }
 
     if(listType === "anime"){
       var tempData = {
@@ -58,7 +61,7 @@ export function prepareData(data, listType): listElement[]{
         url: 'https://simkl.com/'+listType+'/'+el.show.ids.simkl,
         watchedEp: helper.getEpisode(el.last_watched),
         totalEp: el.total_episodes_count,
-        status: el.status,
+        status: st,
         score: el.user_rating,
         image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
         tags: "list.attributes.notes",
