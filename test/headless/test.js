@@ -808,7 +808,7 @@ var testsArray = [
     title: 'Wakanim',
     url: 'https://www.wakanim.tv',
     testCases: [
-      {
+      /*{
         url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
         expected: {
           sync: true,
@@ -819,7 +819,7 @@ var testsArray = [
           episode: 4,
           uiSelector: false,
         }
-      },
+      },*/
       {
        url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
         expected: {

@@ -63,7 +63,6 @@ export async function syncList(){
     dateFrom = 'date_from='+lastCheck.all;
     if(lastCheck.all === activity.anime.all){
       con.log('Up to date');
-      alert('Up to date');
       return cacheList;
     }
   }
