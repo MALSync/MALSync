@@ -42,7 +42,6 @@ export async function syncList(){
 
   //removed_from_list
   if(lastCheck && (lastCheck.removed_from_list !== activity.anime.removed_from_list)){
-    alert('removed');
     var checkRemoveList = await call('https://api.simkl.com/sync/all-items/anime');
     var newCacheList = {};
     if(checkRemoveList){
@@ -115,17 +114,18 @@ export async function getSingle(ids:{simkl?:string|number, mal?:string|number}){
   return null;
 }
 
-export async function call(url, sData = {}, asParameter = false){
+export async function call(url, sData = {}, asParameter = false, methode = 'GET'){
   if(asParameter){
     url += '?'+j.$.param(sData);
   }
-  con.log('call', url, sData);
-  return api.request.xhr('GET', {
+  con.log('call', methode, url, sData);
+  return api.request.xhr(methode, {
     url: url,
     headers: {
       'Authorization': 'Bearer ' + data.access_token,
       'simkl-api-key': data.client_id,
       'Accept': 'application/vnd.api+json',
+      'Content-Type': 'application/json'
     },
     data: sData,
   }).then(async (response) => {

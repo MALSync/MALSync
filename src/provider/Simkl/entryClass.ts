@@ -197,7 +197,7 @@ export class entryClass{
   }
 
   sync(){
-    /*var status = utils.status;
+    var status = utils.status;
     return new Promise((resolve, reject) => {
       var This = this;
       var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.id+"/edit";
@@ -224,7 +224,7 @@ export class entryClass{
 
         if(This.miniMAL){
           flashConfirmText = `
-                    Add "${this.name}" to Kitsu?`;
+                    Add "${this.name}" to Simkl?`;
         }
 
         if(this.type == 'anime'){
@@ -318,65 +318,24 @@ export class entryClass{
 
       continueCall();
       async function continueCall(){
-        var variables:any = {
-          data:{
-            attributes: {
-              notes: This.listI().attributes.notes,
-              progress: This.listI().attributes.progress,
-              volumesOwned: This.listI().attributes.volumesOwned,
-              reconsuming: This.listI().attributes.reconsuming,
-              reconsumeCount: This.listI().attributes.reconsumeCount,
-              ratingTwenty: This.listI().attributes.ratingTwenty,
-              status: This.listI().attributes.status
-            },
-            type: "library-entries",
-          }
-        };
-        ​if(!This.addAnime){
-          var updateUrl = 'https://kitsu.io/api/edge/library-entries/'+This.listI().id;
-          variables.data.id = This.listI().id;
-          var post = 'PATCH';
-        }else{
-          var updateUrl = 'https://kitsu.io/api/edge/library-entries/';
-          variables.data.relationships = {
-            [This.type]: {
-              data: {
-                type: This.type,
-                id: This.kitsuId
-              }
-            },
-            user: {
-              data: {
-                type: "users",
-                id: await helper.userId()
+        con.log('[SET] Object:', This.animeInfo);
+
+        //Status
+        var response = await helper.call('https://api.simkl.com/sync/add-to-list', JSON.stringify({
+          shows: [
+            {
+              'to': This.animeInfo.status,
+              'ids': {
+                'simkl': This.simklId
               }
             }
-          }
-          var post = 'POST';
-        }
+          ]
+        }), false, 'POST');
+        con.log('Status response', response);
 
-        con.log('[SET] Object:', variables);
-
-        api.request.xhr(post, {
-          url: updateUrl,
-          headers: {
-            'Authorization': 'Bearer ' + helper.accessToken(),
-            'Content-Type': 'application/vnd.api+json',
-            'Accept': 'application/vnd.api+json',
-          },
-          data: JSON.stringify(variables)
-        }).then((response) => {
-          var res = JSON.parse(response.responseText);
-          con.log(res);
-          helper.errorHandling(res, This.silent);
-          con.log('Update Succeeded');
-          resolve();
-        }).catch((e)=>{
-          reject(e);
-        });
-
+        resolve();
       }
-    });*/
+    });
   }
 
 }
