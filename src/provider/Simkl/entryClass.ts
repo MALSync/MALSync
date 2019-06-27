@@ -13,6 +13,8 @@ export class entryClass{
   login: boolean = false;
   wrong: boolean = false;
 
+  minWatchedEp = 1;
+
   private animeInfo;
 
   constructor(public url:string, public miniMAL:boolean = false, public silent:boolean = false){
@@ -87,12 +89,14 @@ export class entryClass{
 
       this.name = this.animeInfo.show.title;
       this.totalEp = this.animeInfo.total_episodes_count;
+      this.animeInfo.last_watched = helper.getEpisode(this.animeInfo.last_watched);
+      if(this.animeInfo.last_watched) this.minWatchedEp = this.animeInfo.last_watched+1;
     });
 
   }
 
   getEpisode(){
-    return helper.getEpisode(this.animeInfo.last_watched);
+    return this.animeInfo.last_watched;
   }
 
   setEpisode(ep:number){
@@ -332,6 +336,38 @@ export class entryClass{
           ]
         }), false, 'POST');
         con.log('Status response', response);
+
+        //Episode
+        var curEp = This.animeInfo.last_watched;
+        var episodes:{'number': number}[] = [];
+
+        if(This.minWatchedEp <= curEp){
+          if(curEp){
+            for(var i = This.minWatchedEp; i <= curEp; i++){
+              episodes.push({
+                'number': i
+              });
+            }
+
+            var response = await helper.call('https://api.simkl.com/sync/history', JSON.stringify({
+              shows: [
+                {
+                  'ids': {
+                    'simkl': This.simklId
+                  },
+                  'seasons': [
+                    {
+                      'number': 1,
+                      episodes
+                    }
+                  ]
+                }
+              ]
+            }), false, 'POST');
+            con.log('Episode response', response);
+          }
+        }
+
 
         resolve();
       }
