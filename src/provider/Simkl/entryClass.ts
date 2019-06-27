@@ -156,7 +156,13 @@ export class entryClass{
   }
 
   async getRating(){
-    return 'N/A';
+    try{
+      var el = await helper.call('https://api.simkl.com/ratings', {simkl: this.simklId}, true);
+      return el.simkl.rating;
+    }catch(e){
+      con.error(e);
+      return 'N/A';
+    }
   }
 
   getCacheKey(){
