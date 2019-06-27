@@ -19,7 +19,17 @@ export const Dreamanimes: pageInterface = {
     },
     getEpisode: function(url){return parseInt(utils.urlPart(url, 7));},
   },
-  init(page){
+  overview: {
+    getTitle: function(url){return j.$("h3.truncate").text()},
+    getIdentifier: function(url){return url.split("/")[4];},
+    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent br div"));},
+  },
+  init(page) {
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
       page.handlePage();

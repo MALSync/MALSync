@@ -210,7 +210,8 @@ module.exports = {
   },
   Dreamanimes: {
     match: [
-      '*://www.dreamanimes.com.br/online/*'
+      '*://www.dreamanimes.com.br/online/*',
+      '*://www.dreamanimes.com.br/anime-info/*'
     ],
   },
   animeultima: {
