@@ -124,11 +124,12 @@ export class entryClass{
 
   getScore():any{
     var score = this.animeInfo.user_rating;
-    if(score === 0) return '';
+    if(score === null) return '';
     return score;
   }
 
   setScore(score:any){
+    if(score === '') score = null;
     this.animeInfo.user_rating = score;
   }
 
@@ -388,7 +389,33 @@ export class entryClass{
               }
             ]
           }), false, 'POST');
-          con.log('Episode response', response);
+          con.log('Episode remove response', response);
+        }
+
+        //Rating
+        if(This.animeInfo.user_rating){
+          var response = await helper.call('https://api.simkl.com/sync/ratings', JSON.stringify({
+            shows: [
+              {
+                'rating': This.animeInfo.user_rating,
+                'ids': {
+                  'simkl': This.simklId
+                }
+              }
+            ]
+          }), false, 'POST');
+          con.log('Rating response', response);
+        }else{
+          var response = await helper.call('https://api.simkl.com/sync/ratings/remove', JSON.stringify({
+            shows: [
+              {
+                'ids': {
+                  'simkl': This.simklId
+                }
+              }
+            ]
+          }), false, 'POST');
+          con.log('Rating remove response', response);
         }
 
         resolve();
