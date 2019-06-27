@@ -22,17 +22,25 @@ export const Dreamanimes: pageInterface = {
   overview: {
     getTitle: function(url){return j.$("h3.truncate").text()},
     getIdentifier: function(url){return url.split("/")[4];},
-    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent br div"));},
+    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent br h3"));},
   },
-  init(page) {
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page){
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
-      page.handlePage();
+      start();
+
+      utils.urlChangeDetect(function(){
+        page.url = window.location.href;
+        page.UILoaded = false;
+        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        start();
+      });
     });
+
+    function start(){
+      if(utils.urlPart(page.url, 3) == 'online' || utils.urlPart(page.url, 3) == 'anime-info'){
+        page.handlePage();
+      }
+    }
   }
 };
