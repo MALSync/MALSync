@@ -192,11 +192,6 @@ module.exports = {
       '*://animedaisuki.moe/embed/*'
     ]
   },
-  meowstream: {
-    match: [
-      '*://meowstream.com/embed/*',
-    ]
-  },
   Wakanim: {
     match: [
       '*://wakanim.tv/*/*/*/embeddedplayer/*',

@@ -753,32 +753,6 @@ var testsArray = [
     ]
   },
   {
-    title: 'meowstream',
-    url: 'https://meowstream.com/',
-    testCases: [
-      {
-        url: 'https://meowstream.com/tante-yuusha-11-sub-indo/',
-        expected: {
-          sync: true,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          overviewUrl: 'https://meowstream.com/nonton/tante-yuusha',
-          episode: 11,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://meowstream.com/nonton/tante-yuusha-sub-indo/',
-        expected: {
-          sync: false,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
     title: 'AnimeKisa',
     url: 'https://animekisa.tv/',
     testCases: [
