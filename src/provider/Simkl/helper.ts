@@ -94,18 +94,18 @@ export async function syncList(){
   return cacheList;
 }
 
-export async function getSingle(ids:{id?:string|number, malId?:string|number}){
+export async function getSingle(ids:{simkl?:string|number, mal?:string|number}){
   var list = await syncList();
-  if(ids.id){
-    if(list[ids.id] != undefined){
-      return list[ids.id];
+  if(ids.simkl){
+    if(list[ids.simkl] != undefined){
+      return list[ids.simkl];
     }
-  }else if(ids.malId){
+  }else if(ids.mal){
     //TODO: Use map for better performance
     var listVal = Object.values(list);
     for (var i = 0; i < listVal.length; i++) {
       var el:any = listVal[i];
-      if(typeof el.show.ids.mal !== 'undefined' && el.show.ids.mal == ids.malId){
+      if(typeof el.show.ids.mal !== 'undefined' && el.show.ids.mal == ids.mal){
         return el;
       }
     }
@@ -115,8 +115,11 @@ export async function getSingle(ids:{id?:string|number, malId?:string|number}){
   return null;
 }
 
-async function call(url, sData = {}){
-  con.log('call', url);
+export async function call(url, sData = {}, asParameter = false){
+  if(asParameter){
+    url += '?'+j.$.param(sData);
+  }
+  con.log('call', url, sData);
   return api.request.xhr('GET', {
     url: url,
     headers: {
@@ -126,6 +129,12 @@ async function call(url, sData = {}){
     },
     data: sData,
   }).then(async (response) => {
-    return JSON.parse(response.responseText);
+    try{
+      return JSON.parse(response.responseText);
+    }catch(e){
+      con.error(response);
+      throw e;
+    }
+
   });
 }

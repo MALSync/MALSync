@@ -45,13 +45,14 @@ export class entryClass{
   async update(){
     con.log('Update Kitsu info', this.id? 'MAL: '+this.id : 'Simkl: '+this.simklId);
     if(isNaN(this.id)){
-      var de = {id: this.simklId};
+      var de = {simkl: this.simklId};
     }else{
-      var de = {malId: this.id};
+      //@ts-ignore
+      var de = {mal: this.id};
     }
 
     return helper.getSingle(de)
-    .then((res) => {
+    .then(async (res) => {
       con.log(res);
       this.login = true;
       //helper.errorHandling(res, this.silent);
@@ -60,6 +61,21 @@ export class entryClass{
       this.addAnime = false;
       if(!this.animeInfo){
         this.addAnime = true;
+        var el = await helper.call('https://api.simkl.com/search/id', de, true);
+        if(!el) throw 'Anime not found';
+        this.animeInfo = {
+          last_watched: "",
+          last_watched_at: "",
+          next_to_watch: "",
+          not_aired_episodes_count: 0,
+          private_memo: "",
+          status: "plantowatch",
+          total_episodes_count: 0,
+          user_rating: null,
+          watched_episodes_count: 0,
+          show: el[0]
+        }
+        con.log('Add anime', this.animeInfo);
       }
 
       if(isNaN(this.simklId)){
