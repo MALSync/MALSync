@@ -90,7 +90,7 @@ export class entryClass{
       this.name = this.animeInfo.show.title;
       this.totalEp = this.animeInfo.total_episodes_count;
       this.animeInfo.last_watched = helper.getEpisode(this.animeInfo.last_watched);
-      if(this.animeInfo.last_watched) this.minWatchedEp = this.animeInfo.last_watched+1;
+      this.minWatchedEp = this.animeInfo.last_watched+1;
     });
 
   }
@@ -366,8 +366,30 @@ export class entryClass{
             }), false, 'POST');
             con.log('Episode response', response);
           }
-        }
+        }else{
+          for(var i = This.minWatchedEp-1; i > curEp; i = i-1){
+            episodes.push({
+              'number': i
+            });
+          }
 
+          var response = await helper.call('https://api.simkl.com/sync/history/remove', JSON.stringify({
+            shows: [
+              {
+                'ids': {
+                  'simkl': This.simklId
+                },
+                'seasons': [
+                  {
+                    'number': 1,
+                    episodes
+                  }
+                ]
+              }
+            ]
+          }), false, 'POST');
+          con.log('Episode response', response);
+        }
 
         resolve();
       }
