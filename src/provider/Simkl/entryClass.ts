@@ -338,7 +338,7 @@ export class entryClass{
         }), false, 'POST');
         con.log('Status response', response);
 
-        //Episode
+        //Episode and memo
         var curEp = This.animeInfo.last_watched;
         var episodes:{'number': number}[] = [];
 
@@ -356,6 +356,7 @@ export class entryClass{
                   'ids': {
                     'simkl': This.simklId
                   },
+                  'private_memo': This.animeInfo.private_memo,
                   'seasons': [
                     {
                       'number': 1,
