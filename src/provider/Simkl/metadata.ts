@@ -204,7 +204,7 @@ export class metadata implements metadataInterface{
 
 }
 
-export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
+export function search(keyword, type: "anime"|"manga", options = {}, sync = false): Promise<searchInterface>{
   return helper.call('https://api.simkl.com/search/'+type, {'q': keyword}, true).then((res) => {
     var resItems:any = [];
     con.log('search', res);
