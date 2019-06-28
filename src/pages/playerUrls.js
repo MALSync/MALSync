@@ -197,4 +197,9 @@ module.exports = {
       '*://wakanim.tv/*/*/*/embeddedplayer/*',
     ]
   },
+  superitu: {
+    match: [
+      '*://superitu.com/embed/*',
+    ]
+  },
 };
