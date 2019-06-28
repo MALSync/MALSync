@@ -116,6 +116,57 @@ export class metadata implements metadataInterface{
     var html: any[] = [];
     try{
 
+      if(typeof this.animeInfo.anime_type !== "undefined" && this.animeInfo.anime_type !== null) html.push({
+        title: 'Type:',
+        body: this.animeInfo.anime_type
+      });
+
+      if(typeof this.animeInfo.total_episodes !== "undefined" && this.animeInfo.total_episodes !== null) html.push({
+        title: 'Episode:',
+        body: this.animeInfo.total_episodes
+      });
+
+      if(typeof this.animeInfo.status !== "undefined" && this.animeInfo.status !== null) html.push({
+        title: 'Status:',
+        body: this.animeInfo.status
+      });
+
+      if(typeof this.animeInfo.year !== "undefined" && this.animeInfo.year !== null) html.push({
+        title: 'Year:',
+        body: this.animeInfo.year
+      });
+
+      if(typeof this.animeInfo.airs !== "undefined" && this.animeInfo.airs !== null) html.push({
+        title: 'Broadcast:',
+        body: this.animeInfo.airs.day+' at '+this.animeInfo.airs.time
+      });
+
+      if(typeof this.animeInfo.network !== "undefined" && this.animeInfo.network !== null) html.push({
+        title: 'Licensors:',
+        body: this.animeInfo.network
+      });
+
+      var genres: string[] = [];
+      this.animeInfo.genres.forEach((i) => {
+        if(genres.length < 6){
+          genres.push('<a href="https://simkl.com/'+this.type+'/'+i.toLowerCase()+'">'+i+'</a>');
+        }
+      });
+      if(genres.length) html.push({
+        title: 'Genres:',
+        body: genres.join(', ')
+      });
+
+      if(typeof this.animeInfo.runtime !== "undefined" && this.animeInfo.runtime !== null) html.push({
+        title: 'Duration:',
+        body: this.animeInfo.runtime
+      });
+
+      if(typeof this.animeInfo.certification !== "undefined" && this.animeInfo.certification !== null) html.push({
+        title: 'Rating:',
+        body: this.animeInfo.certification
+      });
+
 
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return html;
