@@ -752,6 +752,59 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'AnimeKisa',
+    url: 'https://animekisa.tv/',
+    testCases: [
+      {
+        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9',
+        expected: {
+          sync: true,
+          title: 'Phantom Requiem for the Phantom',
+          identifier: 'phantom-requiem-for-the-phantom',
+          overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+          episode: 9,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+        expected: {
+          sync: false,
+          title: 'Phantom Requiem for the Phantom',
+          identifier: 'phantom-requiem-for-the-phantom',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
+  {
+    title: 'Wakanim',
+    url: 'https://www.wakanim.tv',
+    testCases: [
+      /*{
+        url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
+        expected: {
+          sync: true,
+          title: 'AFTERLOST (OmU.)',
+          identifier: '493',
+          overviewUrl: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+          nextEpUrl: 'https://www.wakanim.tv/de/v2/catalogue/episode/8788/afterlost-omu-staffel-1-folge-5-omu',
+          episode: 4,
+          uiSelector: false,
+        }
+      },*/
+      {
+       url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+        expected: {
+          sync: false,
+          title: 'AFTERLOST',
+          identifier: '493',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
 ];
 
 // Define global variables
@@ -832,8 +885,12 @@ testsArray.forEach(function(testPage) {
         expect(text.identifier).to.equal(testCase.expected.identifier);
         if(text.sync){
           expect(text.episode).to.equal(testCase.expected.episode);
-          expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
-          expect(text.nextEpUrl).to.equal(testCase.expected.nextEpUrl);
+          var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
+          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
+          expect(textOverview).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
+          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
+          expect(textOverview).to.equal(testCaseOverview);
         }
         if(typeof text.uiSelector != 'undefined'){
           expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);

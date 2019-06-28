@@ -9,13 +9,12 @@ cache:
   npm: true
   directories:
   - node_modules
-before_install:
-  - npm install --global web-ext
 install:
   - npm install
 script:
   - npm run test
   - npm run build
+  - sh ./package/localization/deploy.sh
 before_deploy:
   - npm run package
   - npm run package:chrome
