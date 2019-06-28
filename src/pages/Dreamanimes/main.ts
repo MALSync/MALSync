@@ -20,9 +20,9 @@ export const Dreamanimes: pageInterface = {
     getEpisode: function(url){return parseInt(utils.urlPart(url, 7));},
   },
   overview: {
-    getTitle: function(url){return j.$("h3.truncate").text()},
+    getTitle: function(url){return j.$(".truncate").text()},
     getIdentifier: function(url){return url.split("/")[4];},
-    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent br h3"));},
+    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent h3"));},
   },
   init(page){
     api.storage.addStyle(require('./style.less').toString());
