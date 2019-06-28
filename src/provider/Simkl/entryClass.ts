@@ -49,7 +49,7 @@ export class entryClass{
   }
 
   async update(){
-    con.log('Update Kitsu info', this.id? 'MAL: '+this.id : 'Simkl: '+this.simklId);
+    con.log('Update Simkl info', this.id? 'MAL: '+this.id : 'Simkl: '+this.simklId);
     if(isNaN(this.id)){
       var de = {simkl: this.simklId};
     }else{
@@ -89,6 +89,10 @@ export class entryClass{
 
       if(isNaN(this.simklId)){
         this.simklId = this.animeInfo.show.ids.simkl
+      }
+
+      if(isNaN(this.id) && typeof this.animeInfo.show.ids.mal !== 'undefined'){
+        this.id = this.animeInfo.show.ids.mal;
       }
 
       if(this.getEpisode() === NaN) this.setEpisode(0);
