@@ -15,6 +15,10 @@ export class entryClass{
 
   minWatchedEp = 1;
 
+  episodeUpdate = false;
+  statusUpdate = false;
+  ratingUpdate = false;
+
   private animeInfo;
 
   constructor(public url:string, public miniMAL:boolean = false, public silent:boolean = false){
@@ -57,6 +61,9 @@ export class entryClass{
     .then(async (res) => {
       con.log(res);
       this.login = true;
+      this.episodeUpdate = false;
+      this.statusUpdate = false;
+      this.ratingUpdate = false;
       //helper.errorHandling(res, this.silent);
       this.animeInfo = res;
 
@@ -102,6 +109,7 @@ export class entryClass{
   setEpisode(ep:number){
     if(ep+'' === '') ep = 0;
     if(parseInt(ep+'') > this.totalEp && this.totalEp) ep = this.totalEp;
+    if(ep != this.animeInfo.last_watched) this.episodeUpdate = true;
     this.animeInfo.last_watched = ep;
   }
 
@@ -119,7 +127,9 @@ export class entryClass{
   }
 
   setStatus(status:number){
-    this.animeInfo.status = helper.translateList(status, parseInt(status.toString()));
+    status = helper.translateList(status, parseInt(status.toString()));
+    if(status !== this.animeInfo.status) this.statusUpdate = true;
+    this.animeInfo.status = status;
   }
 
   getScore():any{
@@ -130,6 +140,7 @@ export class entryClass{
 
   setScore(score:any){
     if(score === '') score = null;
+    if(score != this.animeInfo.user_rating) this.ratingUpdate = true;
     this.animeInfo.user_rating = score;
   }
 
@@ -323,40 +334,67 @@ export class entryClass{
 
       continueCall();
       async function continueCall(){
-        con.log('[SET] Object:', This.animeInfo);
+        con.log('[SET] Object:', This.animeInfo, 'status', This.statusUpdate, 'episode', This.episodeUpdate, 'rating', This.ratingUpdate);
 
         //Status
-        var response = await helper.call('https://api.simkl.com/sync/add-to-list', JSON.stringify({
-          shows: [
-            {
-              'to': This.animeInfo.status,
-              'ids': {
-                'simkl': This.simklId
+        if(This.statusUpdate || This.addAnime){
+          var response = await helper.call('https://api.simkl.com/sync/add-to-list', JSON.stringify({
+            shows: [
+              {
+                'to': This.animeInfo.status,
+                'ids': {
+                  'simkl': This.simklId
+                }
               }
-            }
-          ]
-        }), false, 'POST');
-        con.log('Status response', response);
+            ]
+          }), false, 'POST');
+          con.log('Status response', response);
+        }
 
         //Episode and memo
-        var curEp = This.animeInfo.last_watched;
-        var episodes:{'number': number}[] = [];
+        if(This.episodeUpdate || This.addAnime){
+          var curEp = This.animeInfo.last_watched;
+          var episodes:{'number': number}[] = [];
 
-        if(This.minWatchedEp <= curEp){
-          if(curEp){
-            for(var i = This.minWatchedEp; i <= curEp; i++){
+          if(This.minWatchedEp <= curEp){
+            if(curEp){
+              for(var i = This.minWatchedEp; i <= curEp; i++){
+                episodes.push({
+                  'number': i
+                });
+              }
+
+              var response = await helper.call('https://api.simkl.com/sync/history', JSON.stringify({
+                shows: [
+                  {
+                    'ids': {
+                      'simkl': This.simklId
+                    },
+                    'private_memo': This.animeInfo.private_memo,
+                    'seasons': [
+                      {
+                        'number': 1,
+                        episodes
+                      }
+                    ]
+                  }
+                ]
+              }), false, 'POST');
+              con.log('Episode response', response);
+            }
+          }else{
+            for(var i = This.minWatchedEp-1; i > curEp; i = i-1){
               episodes.push({
                 'number': i
               });
             }
 
-            var response = await helper.call('https://api.simkl.com/sync/history', JSON.stringify({
+            var response = await helper.call('https://api.simkl.com/sync/history/remove', JSON.stringify({
               shows: [
                 {
                   'ids': {
                     'simkl': This.simklId
                   },
-                  'private_memo': This.animeInfo.private_memo,
                   'seasons': [
                     {
                       'number': 1,
@@ -366,57 +404,36 @@ export class entryClass{
                 }
               ]
             }), false, 'POST');
-            con.log('Episode response', response);
+            con.log('Episode remove response', response);
           }
-        }else{
-          for(var i = This.minWatchedEp-1; i > curEp; i = i-1){
-            episodes.push({
-              'number': i
-            });
-          }
-
-          var response = await helper.call('https://api.simkl.com/sync/history/remove', JSON.stringify({
-            shows: [
-              {
-                'ids': {
-                  'simkl': This.simklId
-                },
-                'seasons': [
-                  {
-                    'number': 1,
-                    episodes
-                  }
-                ]
-              }
-            ]
-          }), false, 'POST');
-          con.log('Episode remove response', response);
         }
 
         //Rating
-        if(This.animeInfo.user_rating){
-          var response = await helper.call('https://api.simkl.com/sync/ratings', JSON.stringify({
-            shows: [
-              {
-                'rating': This.animeInfo.user_rating,
-                'ids': {
-                  'simkl': This.simklId
+        if(This.ratingUpdate){
+          if(This.animeInfo.user_rating){
+            var response = await helper.call('https://api.simkl.com/sync/ratings', JSON.stringify({
+              shows: [
+                {
+                  'rating': This.animeInfo.user_rating,
+                  'ids': {
+                    'simkl': This.simklId
+                  }
                 }
-              }
-            ]
-          }), false, 'POST');
-          con.log('Rating response', response);
-        }else{
-          var response = await helper.call('https://api.simkl.com/sync/ratings/remove', JSON.stringify({
-            shows: [
-              {
-                'ids': {
-                  'simkl': This.simklId
+              ]
+            }), false, 'POST');
+            con.log('Rating response', response);
+          }else{
+            var response = await helper.call('https://api.simkl.com/sync/ratings/remove', JSON.stringify({
+              shows: [
+                {
+                  'ids': {
+                    'simkl': This.simklId
+                  }
                 }
-              }
-            ]
-          }), false, 'POST');
-          con.log('Rating remove response', response);
+              ]
+            }), false, 'POST');
+            con.log('Rating remove response', response);
+          }
         }
 
         resolve();
