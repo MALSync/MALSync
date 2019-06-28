@@ -122,7 +122,7 @@ export class metadata implements metadataInterface{
       });
 
       if(typeof this.animeInfo.total_episodes !== "undefined" && this.animeInfo.total_episodes !== null) html.push({
-        title: 'Episode:',
+        title: 'Episodes:',
         body: this.animeInfo.total_episodes
       });
 
@@ -142,7 +142,7 @@ export class metadata implements metadataInterface{
       });
 
       if(typeof this.animeInfo.network !== "undefined" && this.animeInfo.network !== null) html.push({
-        title: 'Licensors:',
+        title: 'Licensor:',
         body: this.animeInfo.network
       });
 
@@ -159,7 +159,7 @@ export class metadata implements metadataInterface{
 
       if(typeof this.animeInfo.runtime !== "undefined" && this.animeInfo.runtime !== null) html.push({
         title: 'Duration:',
-        body: this.animeInfo.runtime
+        body: this.animeInfo.runtime+'mins'
       });
 
       if(typeof this.animeInfo.certification !== "undefined" && this.animeInfo.certification !== null) html.push({
@@ -205,46 +205,21 @@ export class metadata implements metadataInterface{
 }
 
 export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
-  var resItems:any = [];
-  return resItems;
-  /*return api.request.xhr('GET', {
-    url: 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&include=mappings,mappings.item&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype',
-    headers: {
-      'Content-Type': 'application/vnd.api+json',
-      'Accept': 'application/vnd.api+json',
-    },
-    data: {},
-  }).then((response) => {
-    var res = JSON.parse(response.responseText);
-    con.log('search',res);
-
+  return helper.call('https://api.simkl.com/search/'+type, {'q': keyword}, true).then((res) => {
     var resItems:any = [];
-    j.$.each(res.data, function( index, item ) {
-      var malId = null;
-      for (var k = 0; k < res.included.length; k++) {
-        var mapping = res.included[k];
-        if(mapping.type == 'mappings'){
-          if(mapping.attributes.externalSite === 'myanimelist/'+type){
-            if(mapping.relationships.item.data.id == item.id){
-              malId = mapping.attributes.externalId;
-              res.included.splice(k, 1);
-              break;
-            }
-          }
-        }
-      }
-
+    con.log('search', res);
+    j.$.each(res, function( index, item ) {
       resItems.push({
-        id: item.id,
-        name: helper.getTitle(item.attributes.titles),
-        url: 'https://kitsu.io/'+type+'/'+item.attributes.slug,
-        malUrl: (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null,
-        image: (item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== "undefined")? item.attributes.posterImage.tiny : "",
-        media_type: item.attributes.subtype,
-        score: item.attributes.averageRating,
-        year: item.attributes.startDate
+        id: item.ids.simkl_id,
+        name: item.title,
+        url: 'https://simkl.com/'+type+'/'+item.ids.simkl_id+'/'+item.ids.slug,
+        malUrl: null,
+        image: 'https://simkl.in/posters/'+item.poster+'_cm.jpg',
+        media_type: item.type,
+        score: null,
+        year: item.year
       })
     });
     return resItems;
-  });*/
+  });
 };
