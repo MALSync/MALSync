@@ -26,6 +26,9 @@ export const Dreamanimes: pageInterface = {
   },
   init(page){
     api.storage.addStyle(require('./style.less').toString());
+
+    var Interval;
+
     j.$(document).ready(function(){
       start();
 
@@ -39,7 +42,14 @@ export const Dreamanimes: pageInterface = {
 
     function start(){
       if(utils.urlPart(page.url, 3) == 'online' || utils.urlPart(page.url, 3) == 'anime-info'){
-        page.handlePage();
+        if(Dreamanimes.isSyncPage(page.url)){
+          page.handlePage();
+        }else{
+          clearInterval(Interval);
+          Interval = utils.waitUntilTrue(function(){return Dreamanimes.overview!.getTitle(page.url)}, function(){
+            page.handlePage();
+          });
+        }
       }
     }
   }
