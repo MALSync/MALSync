@@ -558,6 +558,15 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {
+        url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
     ]
   },
 
