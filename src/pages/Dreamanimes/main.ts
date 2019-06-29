@@ -19,10 +19,28 @@ export const Dreamanimes: pageInterface = {
     },
     getEpisode: function(url){return parseInt(utils.urlPart(url, 7));},
   },
+  overview: {
+    getTitle: function(url){return j.$(".truncate").text()},
+    getIdentifier: function(url){return url.split("/")[4];},
+    uiSelector: function(selector){selector.insertAfter(j.$("#pcontent h3"));},
+  },
   init(page){
     api.storage.addStyle(require('./style.less').toString());
     j.$(document).ready(function(){
-      page.handlePage();
+      start();
+
+      utils.urlChangeDetect(function(){
+        page.url = window.location.href;
+        page.UILoaded = false;
+        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        start();
+      });
     });
+
+    function start(){
+      if(utils.urlPart(page.url, 3) == 'online' || utils.urlPart(page.url, 3) == 'anime-info'){
+        page.handlePage();
+      }
+    }
   }
 };
