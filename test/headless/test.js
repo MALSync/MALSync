@@ -889,20 +889,20 @@ testsArray.forEach(function(testPage) {
           });
         }
 
-        expect(text.sync).to.equal(testCase.expected.sync);
-        expect(text.title).to.equal(testCase.expected.title);
-        expect(text.identifier).to.equal(testCase.expected.identifier);
+        expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
+        expect(text.title, 'Title').to.equal(testCase.expected.title);
+        expect(text.identifier, 'Identifier').to.equal(testCase.expected.identifier);
         if(text.sync){
-          expect(text.episode).to.equal(testCase.expected.episode);
+          expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
           var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
           var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
-          expect(textOverview).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          expect(textOverview, 'Overview Url').to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
           var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
           var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
-          expect(textOverview).to.equal(testCaseOverview);
+          expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
         }
         if(typeof text.uiSelector != 'undefined'){
-          expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
+          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(testCase.expected.uiSelector);
         }
       })
     });
