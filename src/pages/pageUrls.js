@@ -260,4 +260,9 @@ module.exports = {
       '*://*.wakanim.tv/*'
     ],
   },
+  AnimeIndo: {
+    match: [
+      '*://animeindo.moe/*'
+    ],
+  },
 };

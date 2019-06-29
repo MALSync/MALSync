@@ -814,6 +814,32 @@ var testsArray = [
       }
     ]
   },
+  {
+    title: 'AnimeIndo',
+    url: 'http://animeindo.moe/',
+    testCases: [
+      {
+        url: 'http://animeindo.moe/zankyou-no-terror-episode-06.html',
+        expected: {
+          sync: true,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
+          overviewUrl: 'http://animeindo.moe/anime/zankyou-no-terror',
+          episode: 6,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'http://animeindo.moe/anime/zankyou-no-terror',
+        expected: {
+          sync: false,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
 ];
 
 // Define global variables
