@@ -51,9 +51,14 @@ function getSeries(page){
 
   function getSeason(){
     var sesText = j.$('.ellipsize-text span').first().text().trim();
-    var temp = sesText.match(/^S\d+/);
+    var temp = sesText.match(/^(S|St.\ )\d+/);
     if(temp !== null){
-      return '?s='+ temp[0].replace('S', '');
+      return '?s='+ temp[0].replace(/^\D*/, '').trim();
+    }
+
+    temp = sesText.match(/\d+/);
+    if(temp !== null){
+      return '?s='+ temp[0];
     }
     throw 'No Season found';
   }
