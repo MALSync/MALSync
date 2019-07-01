@@ -106,8 +106,7 @@ export const pageSearch:pageSearchObj = {
       name: 'Kissanime',
       type: 'anime',
       domain: 'kissanime.ru',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissanime.ru/Search/Anime" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
+      searchUrl: (titleEncoded) => {return 'https://kissanime.ru/Search/Anime?keyword='+titleEncoded},
     },
     Gogoanime: {
       name: 'Gogoanime',
@@ -150,8 +149,7 @@ export const pageSearch:pageSearchObj = {
       name: 'Kissmanga',
       type: 'manga',
       domain: 'kissmanga.com',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
+      searchUrl: (titleEncoded) => {return 'https://kissmanga.com/Search/Manga?keyword='+titleEncoded},
     },
     Novelplanet: {
       name: 'Novelplanet',
