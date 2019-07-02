@@ -203,6 +203,11 @@ export async function getMalToKissArray(type, id){
             delete json[pageKey][streamKey];
             continue;
           }
+          if(!(id in streamJson['Mal'])){
+            con.error('[K2M] Wrong mal id', streamJson);
+            delete json[pageKey][streamKey];
+            continue;
+          }
           if(pageKey == 'Crunchyroll'){
             streamJson['url'] = streamJson['url'] + '?season=' + streamKey;
           }
