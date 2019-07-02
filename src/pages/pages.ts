@@ -169,5 +169,16 @@ export const pageSearch:pageSearchObj = {
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
     },
-
+    Proxeranime: {
+      name: 'Proxer',
+      type: 'anime',
+      domain: 'proxer.me',
+      searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-anime&tags=&notags=#top'}
+    },
+    Proxermanga: {
+      name: 'Proxer',
+      type: 'manga',
+      domain: 'proxer.me',
+      searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-manga&tags=&notags=#top'}
+    },
 }
