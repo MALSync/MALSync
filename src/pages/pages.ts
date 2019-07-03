@@ -31,8 +31,9 @@ import {Animefreak} from "./Animefreak/main";
 import {AnimePlanet} from "./AnimePlanet/main";
 import {KickAssAnime} from "./KickAssAnime/main";
 import {RiiE} from "./RiiE/main";
-import {Meowstream} from "./Meowstream/main";
-import {AnimeKisa} from "./AnimeKisa/main"
+import {AnimeKisa} from "./AnimeKisa/main";
+import {Wakanim} from "./Wakanim/main";
+import {AnimeIndo} from "./AnimeIndo/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -70,8 +71,9 @@ export const pages = {
     AnimePlanet,
     KickAssAnime,
     RiiE,
-    Meowstream,
     AnimeKisa,
+    Wakanim,
+    AnimeIndo,
 };
 
 export const pageSearch:pageSearchObj = {
@@ -104,8 +106,7 @@ export const pageSearch:pageSearchObj = {
       name: 'Kissanime',
       type: 'anime',
       domain: 'kissanime.ru',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissanime.ru/Search/Anime" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
+      searchUrl: (titleEncoded) => {return 'https://kissanime.ru/Search/Anime?keyword='+titleEncoded},
     },
     Gogoanime: {
       name: 'Gogoanime',
@@ -148,8 +149,7 @@ export const pageSearch:pageSearchObj = {
       name: 'Kissmanga',
       type: 'manga',
       domain: 'kissmanga.com',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
+      searchUrl: (titleEncoded) => {return 'https://kissmanga.com/Search/Manga?keyword='+titleEncoded},
     },
     Novelplanet: {
       name: 'Novelplanet',
@@ -163,11 +163,28 @@ export const pageSearch:pageSearchObj = {
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
     },
+    Proxeranime: {
+      name: 'Proxer',
+      type: 'anime',
+      domain: 'proxer.me',
+      searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-anime&tags=&notags=#top'}
+    },
+    Proxermanga: {
+      name: 'Proxer',
+      type: 'manga',
+      domain: 'proxer.me',
+      searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-manga&tags=&notags=#top'}
+    },
+    Novelupdates: {
+      name: 'Novel Updates [No Sync]',
+      type: 'manga',
+      domain: 'www.novelupdates.com',
+      searchUrl: (titleEncoded) => {return 'https://www.novelupdates.com/?s='+titleEncoded}
+    },
     AniListManga: {
       name: 'AniList',
       type: 'manga',
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
     },
-
 }
