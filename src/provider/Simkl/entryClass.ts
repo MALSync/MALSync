@@ -70,8 +70,15 @@ export class entryClass{
       this.addAnime = false;
       if(!this.animeInfo){
         this.addAnime = true;
-        var el = await helper.call('https://api.simkl.com/search/id', de, true);
-        if(!el) throw 'Anime not found';
+        if(de.simkl){
+          var el = await helper.call('https://api.simkl.com/anime/'+de.simkl, {'extended': 'full'}, true);
+          if(!el) throw 'Anime not found';
+        }else{
+          var el = await helper.call('https://api.simkl.com/search/id', de, true);
+          if(!el) throw 'Anime not found';
+          el = el[0];
+        }
+
         this.animeInfo = {
           last_watched: "",
           last_watched_at: "",
@@ -82,7 +89,7 @@ export class entryClass{
           total_episodes_count: 0,
           user_rating: null,
           watched_episodes_count: 0,
-          show: el[0]
+          show: el
         }
         con.log('Add anime', this.animeInfo);
       }
