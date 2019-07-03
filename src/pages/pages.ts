@@ -163,12 +163,6 @@ export const pageSearch:pageSearchObj = {
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
     },
-    AniListManga: {
-      name: 'AniList',
-      type: 'manga',
-      domain: 'anilist.co',
-      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
-    },
     Proxeranime: {
       name: 'Proxer',
       type: 'anime',
@@ -180,5 +174,17 @@ export const pageSearch:pageSearchObj = {
       type: 'manga',
       domain: 'proxer.me',
       searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-manga&tags=&notags=#top'}
+    },
+    Novelupdates: {
+      name: 'Novel Updates [No Sync]',
+      type: 'manga',
+      domain: 'www.novelupdates.com',
+      searchUrl: (titleEncoded) => {return 'https://www.novelupdates.com/?s='+titleEncoded}
+    },
+    AniListManga: {
+      name: 'AniList',
+      type: 'manga',
+      domain: 'anilist.co',
+      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
     },
 }
