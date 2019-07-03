@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="malkiss">
     <div>
       streamUrl: {{streamUrl}}
     </div>

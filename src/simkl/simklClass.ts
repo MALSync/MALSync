@@ -50,7 +50,8 @@ export class simklClass{
       }
       con.log('page', this.page);
 
-      $('.SimklTVAboutBlockTitle').after('<div id="malkiss"></div>')
+      if(!$('#malkiss').length) $('.SimklTVAboutBlockTitle').after('<div id="malkiss"></div>');
+      if(this.malkiss) this.malkiss.$destroy();
       this.malkiss = new Vue({
         el: "#malkiss",
         render: h => h(malkiss)
