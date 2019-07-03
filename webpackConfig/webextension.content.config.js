@@ -30,7 +30,10 @@ module.exports = {
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        loader: 'vue-loader'
+        loader: 'vue-loader',
+        options: {
+          shadowMode: true,
+        }
       }
     ]
   },

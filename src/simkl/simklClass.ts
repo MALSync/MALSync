@@ -1,4 +1,6 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
+import Vue from 'vue';
+import malkiss from './malkiss.vue';
 
 interface detail{
   page: "detail",
@@ -12,6 +14,7 @@ export class simklClass{
   page: any = null
 
   private interval;
+  private malkiss;
 
   constructor(public url:string){
     utils.urlChangeDetect(() => {
@@ -25,7 +28,9 @@ export class simklClass{
     });
 
     api.storage.addStyle(require('./style.less').toString());
-    this.init();
+    $(document).ready(() => {
+      this.init();
+    });
   }
 
   async init(){
@@ -44,6 +49,12 @@ export class simklClass{
         malObj: malObj,
       }
       con.log('page', this.page);
+
+      $('.SimklTVAboutBlockTitle').after('<div id="malkiss"></div>')
+      this.malkiss = new Vue({
+        el: "#malkiss",
+        render: h => h(malkiss)
+      })
 
       this.streamingUI();
     }
