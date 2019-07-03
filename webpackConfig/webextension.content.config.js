@@ -25,7 +25,7 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{ loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
+        use: ['vue-style-loader', { loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
       },
       {
         test: /\.vue$/,
