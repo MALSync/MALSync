@@ -1,4 +1,4 @@
-import {data} from "./data";
+export var client_id = "39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0";
 
 export function translateList(simklStatus, malStatus:null|number = null){
   var list = {
@@ -122,8 +122,8 @@ export async function call(url, sData = {}, asParameter = false, methode = 'GET'
   return api.request.xhr(methode, {
     url: url,
     headers: {
-      'Authorization': 'Bearer ' + data.access_token,
-      'simkl-api-key': data.client_id,
+      'Authorization': 'Bearer ' + api.settings.get('simklToken'),
+      'simkl-api-key': client_id,
       'Accept': 'application/vnd.api+json',
       'Content-Type': 'application/json'
     },

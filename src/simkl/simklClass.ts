@@ -1,4 +1,5 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
+import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
 import malkiss from './malkiss.vue';
 
@@ -36,6 +37,10 @@ export class simklClass{
   async init(){
     con.log(this.url);
 
+    if(this.url.indexOf("apps/chrome/mal-sync") > -1){
+      this.authentication();
+    }
+
     var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
       var malObj = new entryClass(this.url);
@@ -60,6 +65,41 @@ export class simklClass{
       this.streamingUI();
       this.malToKiss();
     }
+  }
+
+  authentication(){
+    try{
+      var code = utils.urlParam(this.url, 'code');
+      if(!code) throw 'No code found!';
+      helper.call('https://api.simkl.com/oauth/token', JSON.stringify({
+        "code"          : code,
+        "client_id"     : helper.client_id,
+        "client_secret" : "3f883e8e6cdd60d2d5e765aaf0612953f743dc77f44c422af98b38e083cf038b",
+        "redirect_uri"  : "https://simkl.com/apps/chrome/mal-sync/connected/",
+        "grant_type"    : "authorization_code"
+      }), false, 'POST')
+        .then((access_token) => {
+          if(typeof access_token.error !== 'undefined' || typeof access_token.access_token === 'undefined') throw access_token;
+          return api.settings.set('simklToken', access_token.access_token);
+        })
+        .then((access_token) => {
+          $('.firstStage').addClass('HideImportant');
+          $('.secondStage').removeClass('HideImportant');
+          $('.secondStage .SimklTVKodiheaddesc').css('text-align', 'center');
+        })
+        .catch((e) => {
+          ee(e);
+        });
+
+    }catch(e){
+      ee(e);
+    }
+
+    function ee(e){
+      con.error(e);
+      $('.firstStage .SimklTVKodititletext, .secondStage .SimklTVKodititletext').text('Something went wrong');
+    }
+
   }
 
   async streamingUI(){
