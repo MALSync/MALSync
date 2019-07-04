@@ -265,4 +265,10 @@ module.exports = {
       '*://animeindo.moe/*'
     ],
   },
+  Shinden: {
+    match: [
+      '*://shinden.pl/episode/*',
+      '*://shinden.pl/series/*'
+    ],
+  }
 };

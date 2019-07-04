@@ -840,6 +840,33 @@ var testsArray = [
       }
     ]
   },
+  // does not work because of geoblocking
+  /*{
+    title: 'Shinden',
+    url: 'https://shinden.pl/',
+    testCases: [
+      {
+        url: 'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
+        expected: {
+          sync: true,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+          episode: 14,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+        expected: {
+          sync: false,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
+          uiSelector: true,
+        }
+      }
+    ]
+  },*/
 ];
 
 // Define global variables
