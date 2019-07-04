@@ -765,6 +765,14 @@
       "message": "uBlock users please subscribe to this filter list!<br>This fixes some problems like broken images",
       "description": "Update version - Text 4"
     },
+    "installPage_Welcome": {
+      "message": "Welcome",
+      "description": "Welcome"
+    },
+    "installPage_Mode": {
+      "message": "Please select which Anime database you use",
+      "description": "Please select which Anime database you use"
+    },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",
       "description": "Update version - Text 3",
