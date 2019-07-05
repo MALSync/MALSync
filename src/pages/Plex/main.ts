@@ -111,7 +111,7 @@ export const Plex: pageInterface = {
       uiSelector: function(selector){selector.insertAfter(j.$('[data-qa-id="preplayMainTitle"]').first()); },
     },
     init(page){
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
       utils.changeDetect(() => {
         var href = $('[download]').attr('href');

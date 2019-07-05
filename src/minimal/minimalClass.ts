@@ -101,7 +101,7 @@ export class minimal{
 
   injectCss(){
     this.minimal.find("head").append(j.$('<style>')
-        .html(require('./minimalStyle.less').toString()));
+        .html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
   }
 
   fill(url: string|null){

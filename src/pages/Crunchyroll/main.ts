@@ -57,7 +57,7 @@ export const Crunchyroll: pageInterface = {
           page.cdn();
           return;
       }
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
       page.setCacheTemp = page.setCache;
       page.setCache = function(url, toDatabase:boolean|'correction', identifier:any = null){

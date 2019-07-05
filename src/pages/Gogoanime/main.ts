@@ -49,7 +49,7 @@ export const Gogoanime: pageInterface = {
       }
     },
     init(page){
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       if(Gogoanime.isSyncPage(page.url)){
         j.$(document).ready(function(){
           start();
