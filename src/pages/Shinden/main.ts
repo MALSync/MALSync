@@ -38,7 +38,7 @@ export const Shinden: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(require('./style.less').toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
       if (page.url.split("/")[3] === "series" || page.url.split("/")[3] === "episode") {
         page.handlePage();
