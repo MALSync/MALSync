@@ -1,4 +1,5 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
+import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
 import malkiss from './malkiss.vue';
@@ -64,6 +65,7 @@ export class simklClass{
 
       this.streamingUI();
       this.malToKiss();
+      this.siteSearch();
     }
   }
 
@@ -154,6 +156,42 @@ export class simklClass{
     utils.getMalToKissArray(this.page!.type, this.page!.malid).then((links) => {
       this.malkiss.links = links;
     })
+  }
+
+  siteSearch(){
+    if(!api.settings.get('SiteSearch')) return;
+    con.log('PageSearch');
+    var newSearch:any = [];
+
+    var title = $('h1').first().text().trim();
+    var titleEncoded = encodeURI(title!);
+
+
+    for (var key in pageSearch) {
+      var page = pageSearch[key];
+
+      if(page.type !== this.page!.type) continue;
+
+      var tempAdd = {
+        favicon: utils.favicon(page.domain),
+        name: page.name,
+        search: '',
+        googleSeach: ''
+      }
+
+
+      if( typeof page.completeSearchTag === 'undefined'){
+        tempAdd.search = page.searchUrl(titleEncoded);
+      }
+
+      var googleSeach = '';
+      if( typeof page.googleSearchDomain !== 'undefined'){
+        tempAdd.googleSeach = `https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}`;
+      }
+      newSearch.push(tempAdd);
+    }
+
+    this.malkiss.pageSearch = newSearch;
   }
 
 }

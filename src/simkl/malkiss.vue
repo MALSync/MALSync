@@ -26,15 +26,18 @@
       </div>
     </div>
     <div class="simkltvdetailonlineitems Search">
-      <div class="simkltvdetailonlineitemsearch">
-        <a href="#" class="simkltvdetailonlineitemsearchhref">
-          <div class="simkltvdetailonlineitemsearchico"><img src="https://www.google.com/s2/favicons?domain=www2.9anime.to" alt="" class="simkltvdetailonlineitemsearchicoimg"></div>
-          <div class="simkltvdetailonlineitemsearchtitle">9anime</div>
+
+      <div class="simkltvdetailonlineitemsearch" v-for="(page) in pageSearch">
+        <a :href="page.search" target="_blank" class="simkltvdetailonlineitemsearchhref">
+          <div class="simkltvdetailonlineitemsearchico"><img :src="page.favicon" class="simkltvdetailonlineitemsearchicoimg"></div>
+          <div class="simkltvdetailonlineitemsearchtitle">{{page.name}}</div>
         </a>
-        <a href="#" target="_blank" class="simkltvdetailonlineitemsearchgoogle"></a>
+        <a v-if="page.googleSeach.length" :href="page.googleSeach" target="_blank" class="simkltvdetailonlineitemsearchgoogle"></a>
       </div>
+
     </div>
     <div class="simkltvdetailonlineitems Links">
+
       <div class="simkltvdetailonlineitem" v-for="(streams, page) in links">
         <div class="simkltvdetailonlineitemtop">
           <div class="simkltvdetailonlineitemico"><img :src="getMal2KissFavicon(streams)" alt=""></div>
@@ -45,6 +48,7 @@
           <a v-for="stream in streams" target="_blank" :href="stream.url" class="simkltvdetailonlineitemhref">{{stream.title}}</a>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -86,6 +90,7 @@
       continueUrl: null,
       resumeUrl: null,
       links: null,
+      pageSearch: null,
       classes: {
         minimized: true,
         search: false,
