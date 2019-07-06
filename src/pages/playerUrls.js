@@ -203,4 +203,9 @@ module.exports = {
       '*://superitu.com/embed/*',
     ]
   },
+  dailymotion: {
+    match: [
+      '*://www.dailymotion.com/embed/*',
+    ]
+  },
 };
