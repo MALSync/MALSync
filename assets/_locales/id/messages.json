@@ -678,7 +678,7 @@
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
-    "message": "Opsi ini untuk menambah dukungan terhadapt Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
+    "message": "Opsi ini untuk menambah dukungan terhadap Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
     "description": "Strict Cookies - Text"
   },
   "settings_ClearCache": {
@@ -756,7 +756,7 @@
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
-    "message": "Kode Open Source",
+    "message": "Kode Open Source:",
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
