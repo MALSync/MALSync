@@ -575,22 +575,22 @@ var testsArray = [
     url: 'https://www10.animeultima.eu/',
     testCases: [
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789/episode-4_760357-sub',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444/episode-4_760357-sub',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
-          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+          identifier: 'no-game-no-life_607444',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
           episode: 4,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
+          identifier: 'no-game-no-life_607444',
           uiSelector: true,
         }
       },
@@ -769,7 +769,7 @@ var testsArray = [
         url: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9',
         expected: {
           sync: true,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
@@ -780,7 +780,7 @@ var testsArray = [
        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
         expected: {
           sync: false,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           uiSelector: true,
         }
