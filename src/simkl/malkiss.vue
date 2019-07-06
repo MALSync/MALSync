@@ -3,17 +3,23 @@
     <div class="simkltvdetailonlinehead">
       <div class="simkltvdetailonlineheadleft">
         <div class="simkltvdetailonlineheadtitle">Stream online:</div>
-        <a href="#" target="_blank" class="simkltvdetailonlineheadbutton">
-          <div class="simkltvdetailonlineheadbuttonimage"><img src="https://www.google.com/s2/favicons?domain=www.crunchyroll.com" alt=""></div>
+        <a :href="streamUrl" v-if="streamUrl" target="_blank" class="simkltvdetailonlineheadbutton">
+          <div class="simkltvdetailonlineheadbuttonimage"><img :src="favicon(streamUrl.split('/')[2])" alt="" :title="streamUrl.split('/')[2]"></div>
+        </a>
+        <a :href="continueUrl" v-if="continueUrl" target="_blank" class="simkltvdetailonlineheadbutton">
           <div class="simkltvdetailonlineheadbuttontitle">Watch next episode</div>
-          <div class="simkltvdetailonlineheadbuttonico"></div>
+          <div class="simkltvdetailonlineheadbuttonico" style="margin-top: -4px;"></div>
+        </a>
+        <a :href="resumeUrl" v-if="resumeUrl && !continueUrl" target="_blank" class="simkltvdetailonlineheadbutton">
+          <div class="simkltvdetailonlineheadbuttontitle">Resume episode</div>
+          <img :src="assetUrl('arrow-16px.png')" width="16" height="16" style="filter: invert(1); margin-top: -1px;">
         </a>
         <div class="simkltvdetailonlineheadbutton Sources" @click="toggleMinimized()" v-if="links === null || Object.keys(links).length">
           <div class="simkltvdetailonlineheadbuttontitle" v-if="links !== null && Object.keys(links).length">{{Object.keys(links).length}} streaming sources</div>
           <div class="simkltvdetailonlineheadbuttontitle" v-else>Loading</div>
           <div class="simkltvdetailonlineheadbuttonicoarrow"></div>
         </div>
-        <div class="simkltvdetailonlineheadbutton Search" @click="toggleSearch()">
+        <div class="simkltvdetailonlineheadbutton Search" @click="toggleSearch()"  v-if="pageSearch !== null">
           <div class="simkltvdetailonlineheadbuttontitle">Search</div>
           <div class="simkltvdetailonlineheadbuttonicoarrow"></div>
         </div>
@@ -98,6 +104,8 @@
     }),
     methods: {
       lang: api.storage.lang,
+      favicon: utils.favicon,
+      assetUrl: api.storage.assetUrl,
       getMal2KissFavicon: function(streams){
         try{
           return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
