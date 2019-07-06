@@ -37,7 +37,7 @@ export const WonderfulSubs: pageInterface = {
     }
   },
   init(page) {
-    api.storage.addStyle(require("./style.less").toString());
+    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
     page.url = window.location.href;
     if (page.url.split("/")[2] === "beta.wonderfulsubs.com") {
       WonderfulSubs.isSyncPage = betaWonderfulSubs.isSyncPage;
@@ -110,7 +110,7 @@ var betaWonderfulSubs: pageInterface = {
     }
   },
   init(page) {
-    api.storage.addStyle(require("./style.less").toString());
+    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
     page.url = window.location.href;
     if (page.url.split("/")[3] === "watch") {
       utils.waitUntilTrue(

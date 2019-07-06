@@ -558,6 +558,15 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {
+        url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
     ]
   },
 
@@ -753,32 +762,6 @@ var testsArray = [
     ]
   },
   {
-    title: 'meowstream',
-    url: 'https://meowstream.com/',
-    testCases: [
-      {
-        url: 'https://meowstream.com/tante-yuusha-11-sub-indo/',
-        expected: {
-          sync: true,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          overviewUrl: 'https://meowstream.com/nonton/tante-yuusha',
-          episode: 11,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://meowstream.com/nonton/tante-yuusha-sub-indo/',
-        expected: {
-          sync: false,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
     title: 'AnimeKisa',
     url: 'https://animekisa.tv/',
     testCases: [
@@ -808,7 +791,7 @@ var testsArray = [
     title: 'Wakanim',
     url: 'https://www.wakanim.tv',
     testCases: [
-      {
+      /*{
         url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
         expected: {
           sync: true,
@@ -819,13 +802,39 @@ var testsArray = [
           episode: 4,
           uiSelector: false,
         }
-      },
+      },*/
       {
        url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
         expected: {
           sync: false,
           title: 'AFTERLOST',
           identifier: '493',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
+  {
+    title: 'AnimeIndo',
+    url: 'http://animeindo.moe/',
+    testCases: [
+      {
+        url: 'http://animeindo.moe/zankyou-no-terror-episode-06.html',
+        expected: {
+          sync: true,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
+          overviewUrl: 'http://animeindo.moe/anime/zankyou-no-terror',
+          episode: 6,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'http://animeindo.moe/anime/zankyou-no-terror',
+        expected: {
+          sync: false,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
           uiSelector: true,
         }
       }
@@ -906,20 +915,20 @@ testsArray.forEach(function(testPage) {
           });
         }
 
-        expect(text.sync).to.equal(testCase.expected.sync);
-        expect(text.title).to.equal(testCase.expected.title);
-        expect(text.identifier).to.equal(testCase.expected.identifier);
+        expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
+        expect(text.title, 'Title').to.equal(testCase.expected.title);
+        expect(text.identifier, 'Identifier').to.equal(testCase.expected.identifier);
         if(text.sync){
-          expect(text.episode).to.equal(testCase.expected.episode);
+          expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
           var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
           var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
-          expect(textOverview).to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          expect(textOverview, 'Overview Url').to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
           var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
           var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
-          expect(textOverview).to.equal(testCaseOverview);
+          expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
         }
         if(typeof text.uiSelector != 'undefined'){
-          expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
+          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(testCase.expected.uiSelector);
         }
       })
     });

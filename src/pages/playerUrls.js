@@ -2,6 +2,7 @@ module.exports = {
   openload: {
     match: [
       '*://*.openload.co/*',
+      '*://*.openload.pw/*',
     ]
   },
   streamango: {
@@ -192,14 +193,14 @@ module.exports = {
       '*://animedaisuki.moe/embed/*'
     ]
   },
-  meowstream: {
-    match: [
-      '*://meowstream.com/embed/*',
-    ]
-  },
   Wakanim: {
     match: [
       '*://wakanim.tv/*/*/*/embeddedplayer/*',
+    ]
+  },
+  superitu: {
+    match: [
+      '*://superitu.com/embed/*',
     ]
   },
 };

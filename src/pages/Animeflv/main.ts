@@ -67,7 +67,7 @@ export const animeflv: pageInterface = {
       }
     },
     init(page){
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       if(document.title == "Just a moment..."){
         con.log("loading");
         page.cdn();

@@ -1,28 +1,28 @@
 import { pageInterface } from "./../pageInterface";
 
-export const RiiE: pageInterface = {
-  name: "RiiE",
-  domain: "https://www.riie.net",
+export const AnimeIndo: pageInterface = {
+  name: "AnimeIndo",
+  domain: "http://animeindo.moe",
   type: "anime",
   isSyncPage: function(url) {
-    if (j.$("#lightsVideo")[0]) {
+    if (url.split("/")[1] !== null && j.$("#sct_content > div > div.preview")[0]) {
       return true;
     } else {
       return false;
     }
   },
   sync: {
-    getTitle: function(url){return j.$("#content > div.postarea > div > div.post > div:nth-child(1) > b").text().replace(/episode.*/gmi,"").trim()},
+    getTitle: function(url){return j.$("#sct_content > div > div.infobox > h3").text()},
     getIdentifier: function(url) {
-      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:nth-child(2)").attr('href').split("/")[4];
+      return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href").split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:nth-child(2)").attr('href');
+      return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href");
     },
     getEpisode: function(url){
       var episodePart = url.split("/")[3];
       if(episodePart.length){
-        var temp = episodePart.match(/-episode-\d*-/g);
+        var temp = episodePart.match(/-episode-\d*/g);
         if(temp !== null){
           return temp[0].replace(/\D+/g, "");
         }
@@ -31,13 +31,13 @@ export const RiiE: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return url.split("/")[4].replace(/-/g, " ");
+      return j.$("#sct_content > div.nodeinfo > h2").first().text().replace(/sinopsis/gi,"").trim();
     },
     getIdentifier: function(url){
       return url.split("/")[4];
     },
     uiSelector: function(selector){
-      selector.insertAfter(j.$("#content > div.naru > div.areaxb").first());
+      selector.insertAfter(j.$("#sct_content > h1").first());
     },
   },
   init(page){
@@ -48,8 +48,9 @@ export const RiiE: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] == "anime" || j.$("#lightsVideo")[0] && j.$("#content > div.postarea > div > div.post > div.newzone > div.right")[0])
-      page.handlePage();
-    });
+      if(page.url.split("/")[3] === "anime" || page.url.split("/")[3] !== null && j.$("#sct_content > div > div.preview")[0]) {
+        page.handlePage();
+      }
+  });
   }
 };

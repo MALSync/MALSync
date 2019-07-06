@@ -210,7 +210,7 @@ module.exports = {
   },
   Dreamanimes: {
     match: [
-      '*://www.dreamanimes.com.br/online/*'
+      '*://www.dreamanimes.com.br/*'
     ],
   },
   animeultima: {
@@ -250,11 +250,6 @@ module.exports = {
       '*://www.riie.net/*'
     ],
   },
-  Meowstream: {
-    match: [
-      '*://meowstream.com/*'
-    ],
-  },
   AnimeKisa: {
     match: [
       '*://animekisa.tv/*'
@@ -263,6 +258,11 @@ module.exports = {
   Wakanim: {
     match: [
       '*://*.wakanim.tv/*'
+    ],
+  },
+  AnimeIndo: {
+    match: [
+      '*://animeindo.moe/*'
     ],
   },
 };

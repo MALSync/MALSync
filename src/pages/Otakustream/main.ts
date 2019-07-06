@@ -45,7 +45,7 @@ export const Otakustream: pageInterface = {
       }
     },
     init(page){
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       j.$(document).ready(function(){
         page.handlePage();
       });

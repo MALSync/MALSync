@@ -61,7 +61,7 @@ export const Kissanime: pageInterface = {
           page.cdn();
           return;
       }
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       j.$(document).ready(function(){page.handlePage()});
     }
 };
