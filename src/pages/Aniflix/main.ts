@@ -20,7 +20,7 @@ export const Aniflix: pageInterface = {
       }
     },
     getIdentifier: function(url) {
-      return url.split("/")[4] + "?s=" + url.split("/")[7]; 
+      return url.split("/")[4] + "?s=" + url.split("/")[7];
     },
     getOverviewUrl: function(url){
       return Aniflix.domain+ j.$("episode-showname").attr("href");
@@ -30,7 +30,7 @@ export const Aniflix: pageInterface = {
     },
   },
   overview:{
-    getTitle: function(url){ 
+    getTitle: function(url){
       if (j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "") == 1) {
         return j.$("h1.show-name").text();
       }else{
