@@ -62,7 +62,7 @@
 <script type="text/javascript">
   export default {
     data: () => ({
-      streamUrl: null,
+      streamUrl: undefined,
       continueUrl: null,
       resumeUrl: null,
       links: null,
@@ -72,6 +72,13 @@
         search: false,
       }
     }),
+    watch: {
+      streamUrl: function(url, oldUrl){
+        if(url === null){
+          this.classes.minimized = false;
+        }
+      }
+    },
     methods: {
       lang: api.storage.lang,
       favicon: utils.favicon,

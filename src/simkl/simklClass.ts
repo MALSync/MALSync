@@ -111,20 +111,19 @@ export class simklClass{
 
     var streamUrl = malObj.getStreamingUrl();
     if(typeof streamUrl !== 'undefined'){
+      this.malkiss.streamUrl = streamUrl;
 
-      $(document).ready(async () => {
-        this.malkiss.streamUrl = streamUrl;
+      var resumeUrlObj = await malObj.getResumeWaching();
+      var continueUrlObj = await malObj.getContinueWaching();
+      con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+      if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
+        this.malkiss.continueUrl = continueUrlObj.url;
 
-        var resumeUrlObj = await malObj.getResumeWaching();
-        var continueUrlObj = await malObj.getContinueWaching();
-        con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
-          this.malkiss.continueUrl = continueUrlObj.url;
-
-        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
-          this.malkiss.resumeUrl = resumeUrlObj.url;
-        }
-      });
+      }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
+        this.malkiss.resumeUrl = resumeUrlObj.url;
+      }
+    }else{
+      this.malkiss.streamUrl = null;
     }
   }
 
