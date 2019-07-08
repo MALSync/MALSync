@@ -44,6 +44,8 @@
     </div>
     <div class="simkltvdetailonlineitems Links">
 
+      <div v-if="links === null">Loading</div>
+
       <div class="simkltvdetailonlineitem" v-for="(streams, page) in links">
         <div class="simkltvdetailonlineitemtop">
           <div class="simkltvdetailonlineitemico"><img :src="getMal2KissFavicon(streams)" alt=""></div>
@@ -60,6 +62,7 @@
 </template>
 
 <script type="text/javascript">
+  var STORAGE_KEY = 'SIMKL-MAL-SYNC';
   export default {
     data: () => ({
       streamUrl: undefined,
@@ -72,10 +75,17 @@
         search: false,
       }
     }),
+    created: function(){
+      var classes = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if(classes){
+        this.classes = classes;
+      }
+    },
     watch: {
       streamUrl: function(url, oldUrl){
-        if(url === null){
-          this.classes.minimized = false;
+        if(url){
+          this.classes.minimized = true;
+          this.classes.search = false;
         }
       }
     },
@@ -93,6 +103,7 @@
       },
       toggleSearch: function(){
         this.classes.search = !this.classes.search;
+        this.saveClasses();
       },
       pressMinimized: function(){
         if(this.links === null || Object.keys(this.links).length){
@@ -100,14 +111,19 @@
         }else{
           this.toggleSearch();
         }
+        this.saveClasses();
       },
       toggleMinimized: function(){
         this.classes.minimized = !this.classes.minimized;
         if(this.classes.search && this.classes.minimized) this.toggleSearch();
+        this.saveClasses();
       },
       removeSource: function(key){
         api.settings.set(key, false);
         this.$delete(this.links, key);
+      },
+      saveClasses: function(){
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.classes));
       }
     }
   }
