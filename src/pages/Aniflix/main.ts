@@ -52,20 +52,7 @@ export const Aniflix: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     page.url = window.location.href;
-    if(page.url.split("/")[3] === "show"){
-      utils.waitUntilTrue(
-        function() {
-          if (j.$("a.episode-showname").length || (j.$("h1.show-name").length && j.$("h1.show-name").first().text())) {
-            return true;
-          } else {
-            return false;
-          }
-        },
-        function() {
-          page.handlePage();
-          ready();
-        });
-    }
+    ready();
     utils.urlChangeDetect(function() {
       ready();
     });
