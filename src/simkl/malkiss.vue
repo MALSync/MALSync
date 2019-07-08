@@ -24,7 +24,7 @@
           <div class="simkltvdetailonlineheadbuttonicoarrow"></div>
         </div>
       </div>
-      <div class="simkltvdetailonlineheadright" @click="toggleMinimized()">
+      <div class="simkltvdetailonlineheadright" @click="pressMinimized()">
         <div class="simkltvdetailonlineheadrightclose">
           <div class="simkltvdetailonlineheadrightname" style="--data-online-block-title:'MAL-Sync';"></div>
           <div class="simkltvdetailonlineheadrightcloseico"></div>
@@ -57,36 +57,6 @@
 
     </div>
   </div>
-
-
-  <!--<div id="malkiss">
-    <div>
-      streamUrl: {{streamUrl}}
-    </div>
-    <div>
-      continueUrl: {{continueUrl}}
-    </div>
-    <div>
-      resumeUrl: {{resumeUrl}}
-    </div>
-    <div v-show="links && Object.keys(links).length">
-      <ul>
-        <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in links">
-          <span class="mdl-list__item-primary-content">
-            <span>
-              <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(streams)">
-              {{ page }}
-            </span>
-            <span id="KissAnimeLinks" class="mdl-list__item-text-body">
-              <div class="mal_links" v-for="stream in streams">
-                <a target="_blank" :href="stream.url">{{stream.title}}</a>
-              </div>
-            </span>
-          </span>
-        </li>
-      </ul>
-    </div>
-  </div>-->
 </template>
 
 <script type="text/javascript">
@@ -116,6 +86,13 @@
       },
       toggleSearch: function(){
         this.classes.search = !this.classes.search;
+      },
+      pressMinimized: function(){
+        if(this.links === null || Object.keys(this.links).length){
+          this.toggleMinimized();
+        }else{
+          this.toggleSearch();
+        }
       },
       toggleMinimized: function(){
         this.classes.minimized = !this.classes.minimized;
