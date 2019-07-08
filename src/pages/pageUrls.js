@@ -220,8 +220,7 @@ module.exports = {
   },
   Aniflix: {
     match: [
-      '*://www.aniflix.tv/stream/*',
-      '*://www.aniflix.tv/anime/*'
+      '*://*.aniflix.tv/show/*',
     ],
   },
   AnimeDaisuki: {

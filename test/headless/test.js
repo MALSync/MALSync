@@ -598,25 +598,36 @@ var testsArray = [
   },
   {
     title: 'aniflix',
-    url: 'https://www.aniflix.tv/',
+    url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www.aniflix.tv/stream/no-game-no-life-folge-4-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/1/episode/6',
         expected: {
           sync: true,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
-          episode: 4,
-          uiSelector: true,
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 6,
+          uiSelector: false,
         }
       },
       {
-        url: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/2/episode/7',
+        expected: {
+          sync: true,
+          title: 'Noragami season 2',
+          identifier: 'noragami?s=2',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www1.aniflix.tv/show/noragami',
         expected: {
           sync: false,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
           uiSelector: true,
         }
       },
