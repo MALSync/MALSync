@@ -34,6 +34,7 @@ import {RiiE} from "./RiiE/main";
 import {AnimeKisa} from "./AnimeKisa/main";
 import {Wakanim} from "./Wakanim/main";
 import {AnimeIndo} from "./AnimeIndo/main";
+import {Shinden} from "./Shinden/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -74,6 +75,7 @@ export const pages = {
     AnimeKisa,
     Wakanim,
     AnimeIndo,
+    Shinden,
 };
 
 export const pageSearch:pageSearchObj = {
