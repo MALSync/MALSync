@@ -5,7 +5,7 @@ export const Branitube: pageInterface = {
     domain: 'https://branitube.org',
     type: 'anime',
     isSyncPage: function(url){
-      if(url.split('/')[3] !== 'assistir'){
+      if(url.split('/')[3] !== 'watch'){
         return false;
       }else{
         return true;
@@ -18,7 +18,7 @@ export const Branitube: pageInterface = {
         return Branitube.domain+'/animes/'+Branitube.sync.getIdentifier(url);
       },
       getEpisode: function(url){
-        return parseInt(utils.urlPart(url, 6))
+        return parseInt(toEp($('.epEpisodio').text().trim()));
       },
       nextEpUrl: function(url){return utils.absoluteLink(j.$('[title^="Proximo Episodio"]').first().attr('href'), Branitube.domain);},
     },
@@ -30,7 +30,7 @@ export const Branitube: pageInterface = {
         offsetHandler: false,
         elementsSelector: function(){return j.$('.imgefeito > .episodio');},
         elementUrl: function(selector){return utils.absoluteLink(selector.find("a.episodioImages").first().attr('href'), Branitube.domain);},
-        elementEp: function(selector){return Branitube.sync!.getEpisode(Branitube.overview!.list!.elementUrl(selector))},
+        elementEp: function(selector){return parseInt(toEp(selector.find('.numeroEpisodio').first().text().trim()))},
       }
     },
     init(page){
@@ -40,3 +40,11 @@ export const Branitube: pageInterface = {
       });
     }
 };
+
+function toEp(string){
+  var temp = string.match(/\d*$/);
+  if(temp !== null){
+      return temp[0];
+  }
+  return 1;
+}

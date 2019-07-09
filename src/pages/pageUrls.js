@@ -111,7 +111,7 @@ module.exports = {
   },
   Branitube: {
     match: [
-      '*://*.branitube.org/assistir/*',
+      '*://*.branitube.org/watch/*',
       '*://*.branitube.org/animes/*'
     ]
   },
