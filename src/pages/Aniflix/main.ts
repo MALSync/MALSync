@@ -86,7 +86,7 @@ export const Aniflix: pageInterface = {
             },
             function() {
               page.handlePage();
-              $( "div.seasons-wrapper" ).click(function() {
+              $( "div.seasons-wrapper" ).unbind("click").click(function() {
                 j.$('#malp').remove();
                 page.UILoaded = false;
                 page.handlePage();
