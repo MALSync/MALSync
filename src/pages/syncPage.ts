@@ -396,7 +396,7 @@ export class syncPage{
       return false;
     }
     this.malObj.setEpisode(state.episode);
-    if( typeof(state.volume) != "undefined" ) this.malObj.setVolume(state.volume);
+    if( typeof(state.volume) != "undefined" && state.volume > this.malObj.getVolume()) this.malObj.setVolume(state.volume);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
     this.malObj.setStartingDateToNow();
 
