@@ -291,13 +291,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www.branitube.org/assistir/no-game-no-life/episodio/005',
+        url: 'https://www.branitube.org/watch/1818',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'https://branitube.org/animes/no-game-no-life',
-          nextEpUrl: 'https://branitube.org/assistir/no-game-no-life/episodio/006',
+          nextEpUrl: 'https://www.branitube.org/watch/1819',
           episode: 5,
           uiSelector: false,
         }

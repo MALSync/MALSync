@@ -13,18 +13,18 @@ export const Branitube: pageInterface = {
     },
     sync:{
       getTitle: function(url){return j.$('.infosAtulEpisodio .nomeAnime').text();},
-      getIdentifier: function(url){return utils.urlPart(url, 4);},
+      getIdentifier: function(url){return Branitube.overview!.getIdentifier(Branitube.sync.getOverviewUrl(url));},
       getOverviewUrl: function(url){
-        return Branitube.domain+'/animes/'+Branitube.sync.getIdentifier(url);
+        return Branitube.domain+$('.optionsAssistir a[href^="/animes/"]').first().attr('href')!;
       },
       getEpisode: function(url){
         return parseInt(toEp($('.epEpisodio').text().trim()));
       },
-      nextEpUrl: function(url){return utils.absoluteLink(j.$('[title^="Proximo Episodio"]').first().attr('href'), Branitube.domain);},
+      nextEpUrl: function(url){return utils.absoluteLink(j.$('[title^="Próximo Episodio"]').first().attr('href'), Branitube.domain);},
     },
     overview:{
       getTitle: function(url){return j.$('.nameAnime').text();},
-      getIdentifier: function(url){return Branitube.sync.getIdentifier(url)},
+      getIdentifier: function(url){return utils.urlPart(url, 4);},
       uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 10px; padding: 12px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$(".theUpdates .contentLastUpdatesEps").first()); },
       list:{
         offsetHandler: false,
