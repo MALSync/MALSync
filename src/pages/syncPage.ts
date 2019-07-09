@@ -548,7 +548,23 @@ export class syncPage{
   }
 
   cdn(){
-
+    api.storage.addStyle(`
+      .bubbles {
+        display: none !important;
+      }
+      div#cf-content:before {
+        content: '';
+        background-image: url(https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png);
+        height: 64px;
+        width: 64px;
+        display: block;
+        background-size: cover;
+        animation: rotate 3s linear infinite;
+        background-color: #251e2b;
+        border-radius: 50%;
+      }
+      @keyframes rotate{ to{ transform: rotate(360deg); } }
+    `);
   }
 
   async getMalUrl(identifier: string, title: string, page){
