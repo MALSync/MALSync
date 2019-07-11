@@ -38,7 +38,7 @@ export const Wakanim: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(require('./style.less').toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
       if(Wakanim.isSyncPage(page.url)){
         if (j.$("#jwplayer-container")[0]){

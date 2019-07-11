@@ -25,7 +25,7 @@ export const Dreamanimes: pageInterface = {
     uiSelector: function(selector){selector.insertAfter(j.$("#pcontent h3"));},
   },
   init(page){
-    api.storage.addStyle(require('./style.less').toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     var Interval;
 

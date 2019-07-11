@@ -396,7 +396,7 @@ export class syncPage{
       return false;
     }
     this.malObj.setEpisode(state.episode);
-    if( typeof(state.volume) != "undefined" ) this.malObj.setVolume(state.volume);
+    if( typeof(state.volume) != "undefined" && state.volume > this.malObj.getVolume()) this.malObj.setVolume(state.volume);
     this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
     this.malObj.setStartingDateToNow();
 
@@ -548,7 +548,23 @@ export class syncPage{
   }
 
   cdn(){
-
+    api.storage.addStyle(`
+      .bubbles {
+        display: none !important;
+      }
+      div#cf-content:before {
+        content: '';
+        background-image: url(https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png);
+        height: 64px;
+        width: 64px;
+        display: block;
+        background-size: cover;
+        animation: rotate 3s linear infinite;
+        background-color: #251e2b;
+        border-radius: 50%;
+      }
+      @keyframes rotate{ to{ transform: rotate(360deg); } }
+    `);
   }
 
   async getMalUrl(identifier: string, title: string, page){

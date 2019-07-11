@@ -48,6 +48,7 @@ module.exports = {
   xstreamcdn: {
     match: [
       '*://*.xstreamcdn.com/*',
+      '*://*.gcloud.live/*'
     ]
   },
   oload: {
@@ -201,6 +202,18 @@ module.exports = {
   superitu: {
     match: [
       '*://superitu.com/embed/*',
+    ]
+  },
+  dailymotion: {
+    match: [
+      '*://www.dailymotion.com/embed/*',
+    ]
+  },
+  //gogoanime
+  theVideo: {
+    match: [
+      '*://vev.io/embed/*',
+      '*://vev.red/embed/*',
     ]
   },
 };

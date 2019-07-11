@@ -50,6 +50,7 @@ export var settingsObj = {
 
     'anilistToken': '',
     'kitsuToken': '',
+    'simklToken': ''
   },
 
   init: async function (){

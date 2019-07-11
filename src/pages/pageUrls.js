@@ -111,7 +111,7 @@ module.exports = {
   },
   Branitube: {
     match: [
-      '*://*.branitube.org/assistir/*',
+      '*://*.branitube.org/watch/*',
       '*://*.branitube.org/animes/*'
     ]
   },
@@ -182,8 +182,8 @@ module.exports = {
   },
   Animevibe: {
     match: [
-      '*://animevibe.tv/a/*',
-      '*://animevibe.xyz/a/*',
+      '*://*.animevibe.tv/a/*',
+      '*://*.animevibe.xyz/a/*',
     ],
   },
   Novelplanet: {
@@ -220,8 +220,7 @@ module.exports = {
   },
   Aniflix: {
     match: [
-      '*://www.aniflix.tv/stream/*',
-      '*://www.aniflix.tv/anime/*'
+      '*://*.aniflix.tv/*',
     ],
   },
   AnimeDaisuki: {
@@ -265,4 +264,10 @@ module.exports = {
       '*://animeindo.moe/*'
     ],
   },
+  Shinden: {
+    match: [
+      '*://shinden.pl/episode/*',
+      '*://shinden.pl/series/*'
+    ],
+  }
 };

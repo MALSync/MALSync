@@ -291,13 +291,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www.branitube.org/assistir/no-game-no-life/episodio/005',
+        url: 'https://www.branitube.org/watch/1818',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'https://branitube.org/animes/no-game-no-life',
-          nextEpUrl: 'https://branitube.org/assistir/no-game-no-life/episodio/006',
+          nextEpUrl: 'https://www.branitube.org/watch/1819',
           episode: 5,
           uiSelector: false,
         }
@@ -575,22 +575,22 @@ var testsArray = [
     url: 'https://www10.animeultima.eu/',
     testCases: [
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789/episode-4_760357-sub',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444/episode-4_760357-sub',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
-          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+          identifier: 'no-game-no-life_607444',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
           episode: 4,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
+          identifier: 'no-game-no-life_607444',
           uiSelector: true,
         }
       },
@@ -598,25 +598,36 @@ var testsArray = [
   },
   {
     title: 'aniflix',
-    url: 'https://www.aniflix.tv/',
+    url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www.aniflix.tv/stream/no-game-no-life-folge-4-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/1/episode/6',
         expected: {
           sync: true,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
-          episode: 4,
-          uiSelector: true,
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 6,
+          uiSelector: false,
         }
       },
       {
-        url: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/2/episode/7',
+        expected: {
+          sync: true,
+          title: 'Noragami season 2',
+          identifier: 'noragami?s=2',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www1.aniflix.tv/show/noragami',
         expected: {
           sync: false,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
           uiSelector: true,
         }
       },
@@ -769,7 +780,7 @@ var testsArray = [
         url: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9',
         expected: {
           sync: true,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
@@ -780,7 +791,7 @@ var testsArray = [
        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
         expected: {
           sync: false,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           uiSelector: true,
         }
@@ -840,6 +851,33 @@ var testsArray = [
       }
     ]
   },
+  // does not work because of geoblocking
+  /*{
+    title: 'Shinden',
+    url: 'https://shinden.pl/',
+    testCases: [
+      {
+        url: 'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
+        expected: {
+          sync: true,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+          episode: 14,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+        expected: {
+          sync: false,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
+          uiSelector: true,
+        }
+      }
+    ]
+  },*/
 ];
 
 // Define global variables
