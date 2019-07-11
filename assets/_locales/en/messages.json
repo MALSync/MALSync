@@ -762,16 +762,32 @@
       "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-      "message": "uBlock users please subscribe to this filter list!<br>This fixes some problems like broken images",
+      "message": "uBlock users please subscribe to this filter list! This fixes some problems like broken images",
       "description": "Update version - Text 4"
     },
-    "installPage_Welcome": {
-      "message": "Welcome",
-      "description": "Welcome"
-    },
     "installPage_Mode": {
-      "message": "Please select which Anime database you use",
-      "description": "Please select which Anime database you use"
+      "message": "Please select which Anime database you want use:",
+      "description": "Please select which Anime database you want use:"
+    },
+    "installPage_Howto": {
+      "message": "How to use?",
+      "description": "How to use?"
+    },
+    "installPage_Howto_Description": {
+      "message": "Just open the episode or chapter on any of the supported pages. The sync waits by default for 85% of the video before it gets synced. For mangas It syncs on page load. This can be changed in the options. They can be found in the browser popup (mal-sync icon) next to your urlbar.",
+      "description": "Just open the episode or chapter on any of the supported pages. The sync waits by default for 85% of the video before it gets synced. For mangas It syncs on page load. This can be changed in the options. They can be found in the browser popup (mal-sync icon) next to your urlbar."
+    },
+    "installPage_Wrong": {
+      "message": "It syncs to the wrong entry?",
+      "description": "It syncs to the wrong entry?"
+    },
+      "installPage_Wrong_Description": {
+      "message": "You can easily change the relation like shown in the gif below. There can also be an episode offset set.",
+      "description": "You can easily change the relation like shown in the gif below. There can also be an episode offset set."
+    },
+    "installPage_Open_Close": {
+      "message": "OPEN/CLOSE",
+      "description": "OPEN/CLOSE"
     },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",
