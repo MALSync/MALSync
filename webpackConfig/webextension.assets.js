@@ -60,6 +60,10 @@ const generateManifest = () => {
       'default_popup': 'popup.html',
       'default_icon': 'icons/icon16.png'
     },
+    'options_ui': {
+      'page': 'settings.html',
+      'browser_style': false,
+    },
     'commands': {
       '_execute_browser_action': {
         'suggested_key': {
@@ -203,6 +207,13 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
   });
 
   extra.copy(path.join(__dirname, '../src/minimal/popup.html'), path.join(__dirname, '../dist/webextension/popup.html'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  extra.copy(path.join(__dirname, '../src/minimal/settings.html'), path.join(__dirname, '../dist/webextension/settings.html'), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);
