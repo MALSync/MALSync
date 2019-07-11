@@ -27,7 +27,7 @@
       <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
       <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
 
-        <h3>{{lang("minimalClass_versionMsg_Text_1")}}</h3>
+        <h2 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h2>
         <h4>{{lang("installPage_Mode")}}</h4>
         <span class="mdl-list__item-secondary-action">
           <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
@@ -133,6 +133,14 @@
 
 .demo-content h3 {
   margin-top: 48px;
+}
+
+.noMarginTop{
+  margin-top: 0;
+}
+
+.mainHeader{
+  margin-bottom: 56px;
 }
 </style>
 
