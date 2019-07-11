@@ -16,8 +16,8 @@
   <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
     <div class="mdl-layout__header-row">
 
-      <span class="mdl-layout-title"> 
-      <img id=iconimage src="https://github.com/lolamtisch/MALSync/blob/master/assets/icons/icon128.png?raw=true" alt="Mal-Sync Icon"></img>Mal-Sync</span>
+      <span class="mdl-layout-title">
+      <img id=iconimage height="32" width="32" src="https://github.com/lolamtisch/MALSync/blob/master/assets/icons/icon128.png?raw=true"></img>Mal-Sync</span>
       <div class="mdl-layout-spacer"></div>
     </div>
   </header>
@@ -61,7 +61,7 @@
         <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           {{lang("installPage_Open_Close")}}
         </button>
-        <p v-if="show"><img id=hiddenimage src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition"></p>  
+        <p v-if="show"><img id=hiddenimage src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition"></p>
 
         <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
         <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
@@ -87,10 +87,13 @@
 
 <style lang="less">
 #iconimage {
-  height:15%;
-  width:15%;
+  filter: contrast(1.1);
   margin-top:-5px;
-  margin-right:15px;
+  margin-right:10px;
+  border: 7px solid white;
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
 }
 #hiddenimage {
   height:100%;
