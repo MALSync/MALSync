@@ -62,7 +62,9 @@
         <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           {{lang("installPage_Open_Close")}}
         </button>
-        <p v-if="show"><img id=hiddenimage src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition"></p>
+        <p v-if="show">
+          <img id=hiddenimage height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
+        </p>
 
         <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
         <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
@@ -97,8 +99,10 @@
   width: 32px;
 }
 #hiddenimage {
-  height:100%;
-  width:100%;
+  background-color: black;
+  max-width: 100%;
+  min-height: 500px;
+  height: auto;
 }
 .demo-ribbon {
   width: 100%;
