@@ -9,6 +9,8 @@ const mkdirp = require('mkdirp');
 const download = require('download-file');
 const resourcesJson = require('./resources');
 const i18n = require('./utils/i18n');
+const mode = process.env.MODE || 'default';
+console.log('Mode', mode);
 
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
@@ -37,6 +39,14 @@ const backgroundMatch = (matches) => {
   return matches;
 }
 
+var applications = {
+  'gecko': {
+    'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
+  }
+};
+
+if(mode === 'travis') applications = {};
+
 const generateManifest = () => {
   return JSON.stringify({
     'manifest_version': 2,
@@ -45,11 +55,7 @@ const generateManifest = () => {
     'description': "__MSG_Package_Description__",
     'author': package['author'],
     'default_locale': 'en',
-    'applications': {
-      'gecko': {
-        //'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
-      }
-    },
+    'applications': applications,
     'background': {
       'scripts': [
         'vendor/jquery.min.js',
