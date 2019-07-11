@@ -31,6 +31,7 @@
         <h4>{{lang("installPage_Mode")}}</h4>
         <span class="mdl-list__item-secondary-action">
           <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
+            <option value="" disabled selected hidden>-- Select --</option>
             <option value="MAL">MyAnimeList</option>
             <option value="ANILIST">AniList</option>
             <option value="KITSU">Kitsu</option>
@@ -151,6 +152,7 @@
     data: () => ({
       options: api.settings.options,
       show: false,
+      mode: '',
     }),
     watch: {
     },
@@ -163,9 +165,11 @@
     computed: {
       syncMode: {
         get: function () {
-          return api.settings.get('syncMode');
+          return this.mode;
         },
         set: function (value) {
+          this.mode = value;
+          if(!value) return;
           api.settings.set('syncMode', value);
         }
       },
