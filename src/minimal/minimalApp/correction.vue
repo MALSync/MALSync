@@ -46,7 +46,7 @@
         <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" :title="lang('correction_NoMal')">No MAL</button>
       </div>
 
-      <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword">
+      <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword" @clicked="searchClick">
         <div class="mdl-grid" style="justify-content: space-around;">
           <select v-model="searchType" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
             <option value="anime">Anime</option>
@@ -102,15 +102,6 @@
     mounted: function(){
       if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
-      var This = this;
-      j.$(this.$el).on('click', '.searchItem', function(e){
-        e.preventDefault();
-        if(typeof j.$(this).data('mal') !== 'undefined'){
-          This.submit(j.$(this).data('mal'));
-        }else{
-          This.submit(j.$(this).attr('href'));
-        }
-      });
       if(this.wrong){
         this.$parent.$parent.currentTab = 'settings';
       }
@@ -182,6 +173,14 @@
       searchFocus: function(){
         if(this.searchKeyword == ''){
           this.searchKeyword = this.title;
+        }
+      },
+      searchClick: async function(item){
+        var malUrl = await item.malUrl();
+        if(typeof malUrl !== 'undefined' && malUrl){
+          this.submit(malUrl);
+        }else{
+          this.submit(item.url);
         }
       }
     }

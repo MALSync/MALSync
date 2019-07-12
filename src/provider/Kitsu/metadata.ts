@@ -317,7 +317,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         id: item.id,
         name: helper.getTitle(item.attributes.titles),
         url: 'https://kitsu.io/'+type+'/'+item.attributes.slug,
-        malUrl: (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null,
+        malUrl: () => {return (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null},
         image: (item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== "undefined")? item.attributes.posterImage.tiny : "",
         media_type: item.attributes.subtype,
         score: item.attributes.averageRating,
