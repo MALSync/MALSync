@@ -27,7 +27,7 @@
       <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
       <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
 
-        <h2 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h2>
+        <h3 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h3>
         <h4>{{lang("installPage_Mode")}}</h4>
         <span class="mdl-list__item-secondary-action">
           <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
@@ -60,10 +60,10 @@
         <h4>{{lang("installPage_Wrong")}}</h4>
         <p>{{lang("installPage_Wrong_Description")}}</p>
         <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          {{lang("installPage_Open_Close")}}
+          {{lang("Show")}}
         </button>
-        <p v-if="show">
-          <img id=hiddenimage height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
+        <p v-if="show" class="correctionGif">
+          <img id="hiddenimage" height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
         </p>
 
         <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
@@ -98,12 +98,23 @@
   height: 32px;
   width: 32px;
 }
-#hiddenimage {
+.correctionGif{
   background-color: black;
   max-width: 100%;
   min-height: 500px;
-  height: auto;
+  position: relative;
+  #hiddenimage {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
+
 .demo-ribbon {
   width: 100%;
   height: 40vh;
@@ -134,10 +145,6 @@
 
 .demo-layout.is-small-screen .demo-content {
   padding: 40px 28px;
-}
-
-.demo-content h3 {
-  margin-top: 48px;
 }
 
 .noMarginTop{
