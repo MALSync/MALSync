@@ -575,22 +575,22 @@ var testsArray = [
     url: 'https://www10.animeultima.eu/',
     testCases: [
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444/episode-4_760357-sub',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_669823/episode-4_760357-sub',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_607444',
-          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
+          identifier: 'no-game-no-life_669823',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_669823',
           episode: 4,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_607444',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_669823',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_607444',
+          identifier: 'no-game-no-life_669823',
           uiSelector: true,
         }
       },
