@@ -750,7 +750,7 @@
       }
     },
     "minimalClass_versionMsg_Text_1": {
-      "message": "Thanks for installing MAL-Sync",
+      "message": "Thank you for installing MAL-Sync",
       "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
@@ -767,27 +767,23 @@
     },
     "installPage_Mode": {
       "message": "Please select which Anime database you want use:",
-      "description": "Please select which Anime database you want use:"
+      "description": "Header for the MAL-sync provider dropdown"
     },
     "installPage_Howto": {
       "message": "How to use?",
-      "description": "How to use?"
+      "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
       "message": "Just open the episode or chapter on any of the supported pages. The sync waits by default for 85% of the video before it gets synced. For mangas It syncs on page load. This can be changed in the options. They can be found in the browser popup (mal-sync icon) next to your urlbar.",
-      "description": "Just open the episode or chapter on any of the supported pages. The sync waits by default for 85% of the video before it gets synced. For mangas It syncs on page load. This can be changed in the options. They can be found in the browser popup (mal-sync icon) next to your urlbar."
+      "description": "How to use description text"
     },
     "installPage_Wrong": {
       "message": "It syncs to the wrong entry?",
-      "description": "It syncs to the wrong entry?"
+      "description": "Header of the wrong section on the install page"
     },
       "installPage_Wrong_Description": {
-      "message": "You can easily change the relation like shown in the gif below. There can also be an episode offset set.",
-      "description": "You can easily change the relation like shown in the gif below. There can also be an episode offset set."
-    },
-    "installPage_Open_Close": {
-      "message": "OPEN/CLOSE",
-      "description": "OPEN/CLOSE"
+      "message": "You can easily change the relation like shown in the gif below. An episode offset can be defined in that section too",
+      "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",
