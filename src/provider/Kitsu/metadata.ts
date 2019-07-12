@@ -287,7 +287,7 @@ export class metadata implements metadataInterface{
 
 export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
   return api.request.xhr('GET', {
-    url: 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&include=mappings,mappings.item&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype',
+    url: 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype',
     headers: {
       'Content-Type': 'application/vnd.api+json',
       'Accept': 'application/vnd.api+json',
@@ -299,25 +299,14 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
 
     var resItems:any = [];
     j.$.each(res.data, function( index, item ) {
-      var malId = null;
-      for (var k = 0; k < res.included.length; k++) {
-        var mapping = res.included[k];
-        if(mapping.type == 'mappings'){
-          if(mapping.attributes.externalSite === 'myanimelist/'+type){
-            if(mapping.relationships.item.data.id == item.id){
-              malId = mapping.attributes.externalId;
-              res.included.splice(k, 1);
-              break;
-            }
-          }
-        }
-      }
-
       resItems.push({
         id: item.id,
         name: helper.getTitle(item.attributes.titles),
         url: 'https://kitsu.io/'+type+'/'+item.attributes.slug,
-        malUrl: () => {return (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null},
+        malUrl: async () => {
+          var malId = await helper.kitsuToMal(item.id, type);
+          return (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null;
+        },
         image: (item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== "undefined")? item.attributes.posterImage.tiny : "",
         media_type: item.attributes.subtype,
         score: item.attributes.averageRating,
