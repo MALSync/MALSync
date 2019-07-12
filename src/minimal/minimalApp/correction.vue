@@ -52,7 +52,7 @@
             <option value="anime">Anime</option>
             <option value="manga">Manga</option>
           </select>
-          <a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem nojs" href="" style="cursor: pointer;">
+          <a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem nojs" href="" style="cursor: pointer;" @click="noMal($event)">
             <div style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"/>
             <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
               <span style="font-size: 20px; font-weight: 400; line-height: 1;">
@@ -158,7 +158,8 @@
         utils.flashm(api.storage.lang("correction_NewUrl",[malUrl]) , false);
         this.page.handlePage();
       },
-      noMal: function(){
+      noMal: function(e = false){
+        if(e) e.preventDefault();
         this.submit('');
       },
       reset: function(){
