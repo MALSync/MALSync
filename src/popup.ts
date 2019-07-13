@@ -33,7 +33,7 @@ api.settings.init()
     try{
       var mode = $('html').attr('mode');
       con.log('Mode', mode);
-      if(mode === 'popup'){
+      if(mode === 'popup' && api.settings.get('minimalWindow')){
         chrome.runtime.sendMessage({name: "minimalWindow"}, function(response){
           $('html').css('height', '0');
           if(!isFirefox()){

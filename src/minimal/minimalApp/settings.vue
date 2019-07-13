@@ -137,6 +137,19 @@
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
         </div>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Theme
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="serial">Serial</option>
+            </select>
+          </span>
+        </li>
+        <span class="option-extension" style="display: none;"><checkbox option="minimalWindow">{{lang("settings_miniMAL_window")}}</checkbox></span>
         <checkbox option="floatButtonStealth">{{lang("settings_miniMAL_floatButtonStealth")}}</checkbox>
         <checkbox option="floatButtonHide">{{lang("settings_miniMAL_floatButtonHide")}}</checkbox>
         <checkbox option="autoCloseMinimal">{{lang("settings_miniMAL_autoCloseMinimal")}}</checkbox>
@@ -148,19 +161,6 @@
           <span class="mdl-list__item-secondary-action">
             {{commands._execute_browser_action.shortcut}}
             <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
-          </span>
-        </li>
-
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            Theme
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="serial">Serial</option>
-            </select>
           </span>
         </li>
 
