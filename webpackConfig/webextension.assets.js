@@ -212,6 +212,13 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
     }
   });
 
+  extra.copy(path.join(__dirname, '../src/minimal/window.html'), path.join(__dirname, '../dist/webextension/window.html'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
   extra.copy(path.join(__dirname, '../src/minimal/popup.html'), path.join(__dirname, '../dist/webextension/popup.html'), (err) => {
     if (err) {
       console.error(err);

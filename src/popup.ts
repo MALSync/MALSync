@@ -30,6 +30,24 @@ api.settings.init()
       });
     });
 
+    try{
+      var mode = $('html').attr('mode');
+      con.log('Mode', mode);
+      if(mode === 'popup'){
+        chrome.runtime.sendMessage({name: "minimalWindow"}, function(response){
+          $('html').css('height', '0');
+          if(!isFirefox()){
+            window.close();
+          }
+        });
+      }
+    }catch(e){
+      con.error(e);
+    }
+
   })
 
-
+function isFirefox(){
+  if($('#Mal-Sync-Popup').css('min-height') === '600px') return true;
+  return false;
+}
