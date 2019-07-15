@@ -106,6 +106,8 @@
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
               <input v-if="!(renderObj && renderObj.addAnime) && (typeof renderObj.delete !== 'undefined')" @click="remove()" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')">
+
+              <i class="material-icons" @click="reload()" style="margin-right: 0; margin-left: auto; cursor: pointer;">autorenew</i>
             </li>
           </tbody>
         </table>
@@ -449,6 +451,10 @@
             utils.flashm( "Removing failed" , {error: true});
             this.renderObj.update();
           });
+      },
+      reload: function(){
+        utils.flashm('Loading');
+        this.renderObj.update();
       },
       getMal2KissFavicon: function(streams){
         try{
