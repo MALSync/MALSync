@@ -4,11 +4,14 @@ import * as anilist from "./AniList/entryClass";
 import * as anilistUserList from "./AniList/userList";
 import * as kitsu from "./Kitsu/entryClass";
 import * as kitsuUserList from "./Kitsu/userList";
+import * as simkl from "./Simkl/entryClass";
+import * as simklUserList from "./Simkl/userList";
 import * as local from "./Local/entryClass";
 import * as localUserList from "./Local/userList";
 import {search as malSearch}  from "./MyAnimeList/metadata";
 import {search as aniSearch}  from "./AniList/metadata";
 import {search as kitsuSearch}  from "./Kitsu/metadata";
+import {search as simklSearch}  from "./Simkl/metadata";
 import {listElement} from "./listInterface";
 
 interface entryClass {
@@ -68,9 +71,12 @@ export function entryClass(url:string, miniMAL:boolean = false, silent:boolean =
     return new mal.entryClass(url, miniMAL);
   }else if(syncMode == 'ANILIST'){
     return new anilist.entryClass(url, miniMAL, silent);
-  }else{
+  }else if(syncMode == 'KITSU'){
     return new kitsu.entryClass(url, miniMAL, silent);
+  }else if(syncMode == 'SIMKL'){
+    return new simkl.entryClass(url, miniMAL, silent);
   }
+  throw 'Unknown sync mode';
 }
 
 export async function userList(
@@ -94,8 +100,12 @@ export async function userList(
     return malUserList.userList(status, localListType, callbacks, username, offset, templist);
   }else if(syncMode == 'ANILIST'){
     return anilistUserList.userList(status, localListType, callbacks, username, offset, templist);
-  }else{
+  }else if(syncMode == 'KITSU'){
     return kitsuUserList.userList(status, localListType, callbacks, username, offset, templist);
+  }else if(syncMode == 'SIMKL'){
+    return simklUserList.userList(status, localListType, callbacks, username, offset, templist);
+  }else{
+    throw 'Unknown sync mode';
   }
 
   async function getLocalList():Promise<listElement[]>{
@@ -114,6 +124,8 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
     return kitsuSearch(keyword, type, options, sync);
   }else if(syncMode == 'ANILIST'){
     return aniSearch(keyword, type, options, sync);
+  }else if(syncMode == 'SIMKL'){
+    return simklSearch(keyword, type, options, sync);
   }else{
     return malSearch(keyword, type, options, sync);
   }
