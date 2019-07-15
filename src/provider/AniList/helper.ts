@@ -17,13 +17,15 @@ export function accessToken(){
   return api.settings.get('anilistToken');
 }
 
-export function errorHandling(res, silent:boolean = false){
+export function errorHandling(res, silent:boolean = false): any{
   if(typeof res.errors != 'undefined'){
-    res.errors.forEach( (error) => {
+    for (var i = 0, len = res.errors.length; i < len; i++) {
+      var error = res.errors[i];
       switch(error.status) {
         case 400:
           if(!silent){
             utils.flashm(api.storage.lang("Anilist_Authenticate"), {error: true, type: 'error'});
+            return 'noLogin';
             break;
           }
         case 404:
@@ -35,8 +37,9 @@ export function errorHandling(res, silent:boolean = false){
           if(!silent) utils.flashm('anilist: '+error.message, {error: true, type: 'error'});
           throw error.message;
       }
-    })
+    }
   }
+  return true;
 }
 
 export function aniListToMal(anilistId: number, type: "anime"|"manga"){
