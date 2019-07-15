@@ -211,6 +211,7 @@
   import {metadata as malMeta}  from "./../../provider/MyAnimeList/metadata";
   import {metadata as aniMeta} from "./../../provider/AniList/metadata";
   import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
+  import {metadata as simklMeta} from "./../../provider/Simkl/metadata";
   export default {
     data: function(){
       return {
@@ -251,6 +252,8 @@
           this.metaObj = await new aniMeta(renderObj.url).init();
         }else if(syncMode === 'KITSU'){
           this.metaObj = await new kitsuMeta(renderObj.url).init();
+        }else if(syncMode === 'SIMKL'){
+          this.metaObj = await new simklMeta(renderObj.url).init();
         }else if(renderObj.getMalUrl() !== null){
           this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
         }else{
