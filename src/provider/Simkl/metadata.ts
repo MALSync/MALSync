@@ -213,7 +213,10 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         id: item.ids.simkl_id,
         name: item.title,
         url: 'https://simkl.com/'+type+'/'+item.ids.simkl_id+'/'+item.ids.slug,
-        malUrl: null,
+        malUrl: async () => {
+          var malId = await helper.simklIdToMal(item.ids.simkl_id);
+          return (malId) ? 'https://myanimelist.net/'+type+'/'+malId : null;
+        },
         image: 'https://simkl.in/posters/'+item.poster+'_cm.jpg',
         media_type: item.type,
         score: null,

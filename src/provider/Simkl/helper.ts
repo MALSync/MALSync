@@ -33,6 +33,14 @@ export function getEpisode(episode: string):number{
   return 0;
 }
 
+export function simklIdToMal(simklId){
+  return call('https://api.simkl.com/search/id', {simkl: simklId}, true).then((res) => {
+    con.error(res);
+    if(typeof res.ids.mal === 'undefined') return null;
+    return res.ids.mal;
+  });
+}
+
 var cacheList;
 
 export async function syncList(lazy = false){
