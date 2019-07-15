@@ -25,6 +25,11 @@ module.exports = {
       '*://kitsu.io/*'
     ]
   },
+  simkl: {
+    match: [
+      '*://simkl.com/*'
+    ]
+  },
   Kissanime: {
     match: [
       '*://kissanime.ru/Anime/*',
