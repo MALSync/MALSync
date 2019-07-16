@@ -168,7 +168,7 @@ export async function call(url, sData = {}, asParameter = false, methode = 'GET'
         throw getThrowError();
         break;
       default:
-        utils.flashm('Simkl: '+getError(), {error: true, type: 'error'});
+        utils.flashm('Simkl: '+getErrorText(), {error: true, type: 'error'});
         throw getThrowError();
     }
 

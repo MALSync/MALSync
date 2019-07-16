@@ -57,10 +57,15 @@ export class entryClass{
       var de = {mal: this.id};
     }
 
+    this.login = true;
+
     return helper.getSingle(de)
+    .catch((error) => {
+      this.login = false;
+    })
     .then(async (res) => {
       con.log(res);
-      this.login = true;
+
       this.episodeUpdate = false;
       this.statusUpdate = false;
       this.ratingUpdate = false;
