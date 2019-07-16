@@ -22,6 +22,7 @@ export function getCacheKey(id, simklId){
 }
 
 export function getEpisode(episode: string):number{
+  if(typeof episode === 'number') return episode;
   if(episode){
     var temp = episode.match(/e\d+/i);
     if(temp !== null){
