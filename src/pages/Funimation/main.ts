@@ -4,7 +4,7 @@ export const Funimation: pageInterface = {
   name: "Funimation",
   domain: "https://www.funimation.com/",
   type: "anime",
-  isSyncPage: function(url) {    
+  isSyncPage: function(url) {
     if (j.$("h1.show-headline.video-title")[0] && j.$("h2.episode-headline")[0]) {
       return true;
     } else {
@@ -43,7 +43,7 @@ export const Funimation: pageInterface = {
       return;
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){ 
+    j.$(document).ready(function(){
       if(page.url.split("/")[3] === "shows" && (j.$("h1.show-headline.video-title")[0] || j.$("h1.heroTitle")[0])) {
         page.handlePage();
       }
