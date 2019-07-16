@@ -1,4 +1,5 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
+import {userList} from "./../provider/Simkl/userList";
 import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
@@ -10,6 +11,11 @@ interface detail{
   malid: number,
   type: "anime"|"manga",
   malObj: undefined
+}
+
+interface bookmarks{
+  page: "bookmarks",
+  type: "anime"|"manga"
 }
 
 export class simklClass{
@@ -66,6 +72,19 @@ export class simklClass{
       this.streamingUI();
       this.malToKiss();
       this.siteSearch();
+      return;
+    }
+
+    urlpart = utils.urlPart(this.url, 4);
+    if(urlpart == 'anime' || urlpart == 'manga'){
+      var status = utils.urlPart(this.url, 5);
+      if(status === "watching"){
+        this.page = {
+          page: "bookmarks",
+          type: urlpart
+        }
+        this.bookmarksProfile();
+      }
     }
   }
 
@@ -168,6 +187,48 @@ export class simklClass{
     }
 
     this.malkiss.pageSearch = newSearch;
+  }
+
+  bookmarksProfile(){
+    userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+      con.error(list);
+      $.each(list, async (index, en) => {
+        con.log('en', en);
+        var element = $('a[href^="/'+this.page!.type+'/'+en.uid+'"]');
+        var streamUrl = utils.getUrlFromTags(en.tags);
+        if(typeof streamUrl !== 'undefined'){
+          con.log(streamUrl);
+          element.after(`
+            <a class="mal-sync-stream mal-rem" onclick="event.preventDefault()" title="${streamUrl.split('/')[2]}" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${streamUrl}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
+            </a>`);
+
+          var resumeUrlObj = await utils.getResumeWaching(this.page!.type, en.cacheKey);
+          var continueUrlObj = await utils.getContinueWaching(this.page!.type, en.cacheKey);
+
+          var curEp = en.watchedEp;
+
+          con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+            element.parent().append(
+              `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${continueUrlObj.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+            element.parent().append(
+              `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${resumeUrlObj.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }
+
+
+
+        }
+      });
+
+    }});
   }
 
 }
