@@ -2,6 +2,7 @@ import {syncPage} from "./pages/syncPage";
 import {myanimelistClass} from "./myanimelist/myanimelistClass";
 import {anilistClass} from "./anilist/anilistClass";
 import {kitsuClass} from "./kitsu/kitsuClass";
+import {simklClass} from "./simkl/simklClass";
 import {scheduleUpdate} from "./utils/scheduler";
 import {firebaseNotification} from "./utils/firebaseNotification";
 import {getPlayerTime} from "./utils/player";
@@ -14,6 +15,8 @@ function main() {
     var anilist = new anilistClass(window.location.href);
   }else if(window.location.href.indexOf("kitsu.io") > -1 ){
     var kitsu = new kitsuClass(window.location.href);
+  }else if(window.location.href.indexOf("simkl.com") > -1 ){
+    var simkl = new simklClass(window.location.href);
   }else{
     try{
       if(inIframe()) throw 'iframe';
