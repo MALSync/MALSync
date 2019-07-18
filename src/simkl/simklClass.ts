@@ -199,7 +199,7 @@ export class simklClass{
         if(typeof streamUrl !== 'undefined'){
           con.log(streamUrl);
           element.after(`
-            <a class="mal-sync-stream mal-rem" onclick="event.preventDefault()" title="${streamUrl.split('/')[2]}" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${streamUrl}">
+            <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${streamUrl.split('/')[2]}" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${streamUrl}">
               <img src="${utils.favicon(streamUrl.split('/')[2])}">
             </a>`);
 
@@ -211,13 +211,13 @@ export class simklClass{
           con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
           if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
             element.parent().append(
-              `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${continueUrlObj.url}">
+              `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${continueUrlObj.url}">
                 <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
               </a>`
               );
           }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
             element.parent().append(
-              `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${resumeUrlObj.url}">
+              `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${resumeUrlObj.url}">
                 <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
               </a>`
               );
