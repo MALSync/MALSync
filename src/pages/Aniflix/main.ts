@@ -13,7 +13,7 @@ export const Aniflix: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      if (url.split("/")[7] == 1) {
+      if (url.split("/")[7] == 1 || url.split("/")[7] == 0) {
         return j.$("a.episode-showname").text();
       }else {
         return j.$("a.episode-showname").text() + " season " + url.split("/")[7];
@@ -23,7 +23,7 @@ export const Aniflix: pageInterface = {
       return url.split("/")[4] + "?s=" + url.split("/")[7];
     },
     getOverviewUrl: function(url){
-      return Aniflix.domain+ j.$("episode-showname").attr("href");
+      return Aniflix.domain+ j.$("a.episode-showname").attr("href");
     },
     getEpisode: function(url){
       return url.split("/")[9];
@@ -31,14 +31,18 @@ export const Aniflix: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      if (j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "") == 1) {
+      if (j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "") == 1 || j.$("div.seasons-wrapper > div.season.season-active > div").first().text() === "Specials") {
         return j.$("h1.show-name").text();
-      }else{
+      }else {
         return j.$("h1.show-name").text() + " season " + j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "");
       }
     },
     getIdentifier: function(url){
-      return url.split("/")[4] +"?s=" + j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "");
+      if (j.$("div.seasons-wrapper > div.season.season-active > div").first().text() === "Specials"){
+        return url.split("/")[4] +"?s=0";
+      }else{
+        return url.split("/")[4] +"?s=" + j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "");
+      }
     },
     uiSelector: function(selector){
       selector.insertBefore(j.$("div.episodes").first());
