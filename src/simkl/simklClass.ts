@@ -195,6 +195,8 @@ export class simklClass{
       $.each(list, async (index, en) => {
         con.log('en', en);
         var element = $('a[href^="/'+this.page!.type+'/'+en.uid+'"]');
+        if(!element || element.hasClass('malSyncDone2')) return;
+        element.addClass('malSyncDone2');
         var streamUrl = utils.getUrlFromTags(en.tags);
         if(typeof streamUrl !== 'undefined'){
           con.log(streamUrl);
