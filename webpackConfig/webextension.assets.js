@@ -21,6 +21,7 @@ var contentUrls = pageUrls;
 delete contentUrls.anilist;
 delete contentUrls.myanimelist;
 delete contentUrls.kitsu;
+delete contentUrls.simkl;
 
 const generateMatchExcludes = (urls) => {
   var match = [];
