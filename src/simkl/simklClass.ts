@@ -67,7 +67,7 @@ export class simklClass{
       }
       con.log('page', this.page);
 
-      if(!$('#malkiss').length) $('.SimklTVAboutBlockTitle').after('<div id="malkiss"></div>');
+      if(!$('#malkiss').length) $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after('<div id="malkiss"></div>');
       if(this.malkiss) this.malkiss.$destroy();
       this.malkiss = new Vue({
         el: "#malkiss",
