@@ -503,12 +503,12 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html?ep=4',
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-720p',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html',
+          identifier: 'plastic-memories-bluray-ver-720p-hd',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html',
           episode: 4,
           uiSelector: true,
         }
@@ -573,6 +573,7 @@ var testsArray = [
   {
     title: 'animeultima',
     url: 'https://www10.animeultima.eu/',
+    skip: true, //Changing identifier
     testCases: [
       {
         url: 'https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub',
@@ -851,10 +852,10 @@ var testsArray = [
       }
     ]
   },
-  // does not work because of geoblocking
-  /*{
+  {
     title: 'Shinden',
     url: 'https://shinden.pl/',
+    skip: true, // does not work because of geoblocking
     testCases: [
       {
         url: 'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
@@ -877,7 +878,7 @@ var testsArray = [
         }
       }
     ]
-  },*/
+  },
 ];
 
 // Define global variables
@@ -908,7 +909,9 @@ testsArray.forEach(function(testPage) {
   if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
     var doSkip = false;
+    if(typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
     it('Online', async function () {
+      if(doSkip) this.skip();
       const [response] = await Promise.all([
         page.goto(testPage.url, {timeout:0}),
         page.waitForNavigation({timeout:0}),
