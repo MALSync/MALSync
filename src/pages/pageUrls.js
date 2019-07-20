@@ -269,5 +269,10 @@ module.exports = {
       '*://shinden.pl/episode/*',
       '*://shinden.pl/series/*'
     ],
+  },
+  Funimation: {
+    match: [
+      '*://www.funimation.com/shows/*'
+    ],
   }
 };

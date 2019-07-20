@@ -216,4 +216,9 @@ module.exports = {
       '*://vev.red/embed/*',
     ]
   },
+  Funimation: {
+    match: [
+      '*://www.funimation.com/player/*'
+    ]
+  },
 };
