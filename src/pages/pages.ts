@@ -36,6 +36,7 @@ import {Wakanim} from "./Wakanim/main";
 import {AnimeIndo} from "./AnimeIndo/main";
 import {Shinden} from "./Shinden/main";
 import {Funimation} from "./Funimation/main";
+import {Voiranime} from "./Voiranime/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -78,6 +79,7 @@ export const pages = {
     AnimeIndo,
     Shinden,
     Funimation,
+    Voiranime,
 };
 
 export const pageSearch:pageSearchObj = {

@@ -274,5 +274,10 @@ module.exports = {
     match: [
       '*://www.funimation.com/shows/*'
     ],
+  },
+  voiranime: {
+    match: [
+      '*://voiranime.com/*'
+    ]
   }
 };

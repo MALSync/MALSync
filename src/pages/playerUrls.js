@@ -221,4 +221,16 @@ module.exports = {
       '*://www.funimation.com/player/*'
     ]
   },
+  //voiranime
+  jwpstream: {
+    match: [
+      '*://jwpstream.com/jwps/yplayer.php*'
+    ]
+  },
+  //voiranime
+  vaplayer: {
+    match: [
+      '*://www.vaplayer.xyz/v/*'
+    ]
+  },
 };
