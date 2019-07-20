@@ -26,6 +26,10 @@ export interface iframeDone {
     epList: any
 }
 
-export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet;
+export interface minimalWindow {
+    name: 'minimalWindow',
+}
+
+export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow;
 
 export type responseMessageI = xhrResponseI;

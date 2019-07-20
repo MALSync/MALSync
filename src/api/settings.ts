@@ -14,6 +14,7 @@ export var settingsObj = {
     epPredictions: true,
 
     theme: 'light',
+    minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,
@@ -50,6 +51,7 @@ export var settingsObj = {
 
     'anilistToken': '',
     'kitsuToken': '',
+    'simklToken': ''
   },
 
   init: async function (){

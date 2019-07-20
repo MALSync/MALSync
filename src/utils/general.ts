@@ -90,7 +90,7 @@ export function urlChangeDetect(callback){
           currentPage = window.location.href;
           callback();
       }
-  }, 1000);
+  }, 100);
 }
 
 export function changeDetect(callback, func){
@@ -101,7 +101,7 @@ export function changeDetect(callback, func){
       currentPage = func();
       callback();
     }
-  }, 1000);
+  }, 500);
 }
 
 export function waitUntilTrue(condition, callback){
@@ -111,7 +111,7 @@ export function waitUntilTrue(condition, callback){
           clearInterval(Interval);
           callback();
       }
-  }, 1000);
+  }, 100);
   return Interval;
 }
 
@@ -191,12 +191,22 @@ export async function getMalToKissArray(type, id){
           var streamUrl = 'https://kissanimelist.firebaseio.com/Data2/'+stream+'/'+encodeURIComponent(streamKey)+'.json';
 
           var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), null);
-          if(typeof(cache) !== "undefined" && cache.constructor === Object && Object.keys(cache).length !== 0){
+          if(typeof(cache) !== "undefined" && cache !== null && cache.constructor === Object && Object.keys(cache).length !== 0){
             var streamJson = cache;
           }else{
             var streamRespose = await api.request.xhr('GET', streamUrl);
             var streamJson = j.$.parseJSON(streamRespose.responseText);
             api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
+          }
+          if(!streamJson){
+            con.error('[K2M] '+pageKey+'/'+streamKey+' not found');
+            delete json[pageKey][streamKey];
+            continue;
+          }
+          if(!(id in streamJson['Mal'])){
+            con.error('[K2M] Wrong mal id', streamJson);
+            delete json[pageKey][streamKey];
+            continue;
           }
           if(pageKey == 'Crunchyroll'){
             streamJson['url'] = streamJson['url'] + '?season=' + streamKey;

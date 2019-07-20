@@ -10,6 +10,13 @@
         {{preTexter}}
       </div>
 
+      <div v-if="item.score" style=" position: absolute; top: 0; left: 0; padding: 0px 5px; margin: 5px 0; text-align: center;">
+        <div style="width: 38px; height: 38px; position: relative;">
+          <i class="material-icons" style="color: #3f51b5; position: absolute; left: 0; top: 0px; font-size: 38px;">star</i>
+          <div style="color: white; position: absolute; left: 0; top: 0px; right: 0; bottom: 0px; text-align: center; line-height: 38px;padding-top: 1px;">{{item.score}}</div>
+        </div>
+      </div>
+
       <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
       <span class="mdl-shadow--2dp" style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;">
         <a :href="item.url" style="color: black; text-decoration: none;">

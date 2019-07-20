@@ -347,10 +347,10 @@ export class entryClass{
           utils.flashConfirm(rewatchFinishText, 'add', () => {
             this.setRewatching(0);
 
-            if(this.animeInfo[watchCounter] === ''){
-                this.animeInfo[watchCounter] = 1;
+            if(this.listI().attributes.reconsumeCount === ''){
+                this.listI().attributes.reconsumeCount = 1;
             }else{
-                this.animeInfo[watchCounter] = parseInt(this.animeInfo[watchCounter])+1;
+                this.listI().attributes.reconsumeCount = parseInt(this.listI().attributes.reconsumeCount)+1;
             }
 
             continueCall();

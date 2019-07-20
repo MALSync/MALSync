@@ -9,6 +9,8 @@ const mkdirp = require('mkdirp');
 const download = require('download-file');
 const resourcesJson = require('./resources');
 const i18n = require('./utils/i18n');
+const mode = process.env.MODE || 'default';
+console.log('Mode', mode);
 
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
@@ -37,6 +39,14 @@ const backgroundMatch = (matches) => {
   return matches;
 }
 
+var applications = {
+  'gecko': {
+    'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
+  }
+};
+
+if(mode === 'travis') applications = {};
+
 const generateManifest = () => {
   return JSON.stringify({
     'manifest_version': 2,
@@ -45,11 +55,7 @@ const generateManifest = () => {
     'description': "__MSG_Package_Description__",
     'author': package['author'],
     'default_locale': 'en',
-    'applications': {
-      'gecko': {
-        //'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
-      }
-    },
+    'applications': applications,
     'background': {
       'scripts': [
         'vendor/jquery.min.js',
@@ -59,6 +65,10 @@ const generateManifest = () => {
     'browser_action': {
       'default_popup': 'popup.html',
       'default_icon': 'icons/icon16.png'
+    },
+    'options_ui': {
+      'page': 'settings.html',
+      'browser_style': false,
     },
     'commands': {
       '_execute_browser_action': {
@@ -202,7 +212,21 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
     }
   });
 
+  extra.copy(path.join(__dirname, '../src/minimal/window.html'), path.join(__dirname, '../dist/webextension/window.html'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
   extra.copy(path.join(__dirname, '../src/minimal/popup.html'), path.join(__dirname, '../dist/webextension/popup.html'), (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+
+  extra.copy(path.join(__dirname, '../src/minimal/settings.html'), path.join(__dirname, '../dist/webextension/settings.html'), (err) => {
     if (err) {
       console.error(err);
       process.exit(1);

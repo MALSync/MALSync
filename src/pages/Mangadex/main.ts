@@ -62,7 +62,7 @@ export const Mangadex: pageInterface = {
           page.cdn();
           return;
       }
-      api.storage.addStyle(require('./style.less').toString());
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       if(j.$('.card-header').length){
         if(/chapter\/\d+\/comments/i.test(window.location.href)){
           con.info('Comments');

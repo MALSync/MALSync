@@ -27,6 +27,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![animeflv](https://www.google.com/s2/favicons?domain=https://animeflv.net "animeflv")](https://animeflv.net) [animeflv.net](https://animeflv.net) | | |
 | [![Jkanime](https://www.google.com/s2/favicons?domain=https://jkanime.net "Jkanime")](https://jkanime.net) [jkanime.net](https://jkanime.net) | | |
 | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | | |
+| [![wakanim.tv](https://www.google.com/s2/favicons?domain=https://wakanim.tv "wakanim.tv")](wakanim.tv) [wakanim.tv](wakanim.tv) | | |
 | [![animevibe.tv](https://www.google.com/s2/favicons?domain=https://animevibe.tv "Animevibe.tv")](animevibe.tv) [animevibe.tv](https://animevibe.tv) | | |
 | [![wonderfulsubs.com](https://www.google.com/s2/favicons?domain=https://wonderfulsubs.com "Wonderfulsubs.com")](wonderfulsubs.com) [wonderfulsubs.com](https://wonderfulsubs.com) | | |
 | [![kawaiifu.com](https://www.google.com/s2/favicons?domain=https://kawaiifu.com "Kawaiifu.com")](kawaiifu.com) [kawaiifu.com](https://kawaiifu.com) | | |
@@ -39,6 +40,9 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![anime-planet.com](https://www.google.com/s2/favicons?domain=https://anime-planet.com "anime-planet.com")](anime-planet.com) [anime-planet.com](https://anime-planet.com) | | |
 | [![kickassanime.io](https://www.google.com/s2/favicons?domain=https://kickassanime.io "kickassanime.io")](kickassanime.io) [kickassanime.io](https://kickassanime.io) | | |
 | [![riie.net](https://www.google.com/s2/favicons?domain=https://riie.net "riie.net")](riie.net) [riie.net](https://riie.net) | | |
+| [![animekisa.tv](https://www.google.com/s2/favicons?domain=https://animekisa.tv "animekisa.tv")](animekisa.tv) [animekisa.tv](https://animekisa.tv) | | |
+| [![animeindo.moe](https://www.google.com/s2/favicons?domain=https://animeindo.moe "animeindo.moe")](animeindo.moe) [animeindo.moe](https://animeindo.moe) | | |
+| [![shinden.pl](https://www.google.com/s2/favicons?domain=https://shinden.pl "shinden.pl")](shinden.pl) [shinden.pl](https://shinden.pl) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  

@@ -291,13 +291,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www.branitube.org/assistir/no-game-no-life/episodio/005',
+        url: 'https://www.branitube.org/watch/1818',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           overviewUrl: 'https://branitube.org/animes/no-game-no-life',
-          nextEpUrl: 'https://branitube.org/assistir/no-game-no-life/episodio/006',
+          nextEpUrl: 'https://www.branitube.org/watch/1819',
           episode: 5,
           uiSelector: false,
         }
@@ -503,12 +503,12 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html?ep=4',
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-720p',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p.html',
+          identifier: 'plastic-memories-bluray-ver-720p-hd',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html',
           episode: 4,
           uiSelector: true,
         }
@@ -558,30 +558,40 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {
+        url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'No Game No Life',
+          identifier: 'no-game-no-life',
+          uiSelector: true,
+        }
+      },
     ]
   },
 
   {
     title: 'animeultima',
     url: 'https://www10.animeultima.eu/',
+    skip: true, //Changing identifier
     testCases: [
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789/episode-4_760357-sub',
+        url: 'https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
-          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+          identifier: 'no-game-no-life_797937',
+          overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_797937',
           episode: 4,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www10.animeultima.eu/a/no-game-no-life_804789',
+        url: 'https://www10.animeultima.eu/a/no-game-no-life_797937',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life_804789',
+          identifier: 'no-game-no-life_797937',
           uiSelector: true,
         }
       },
@@ -589,25 +599,36 @@ var testsArray = [
   },
   {
     title: 'aniflix',
-    url: 'https://www.aniflix.tv/',
+    url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www.aniflix.tv/stream/no-game-no-life-folge-4-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/1/episode/6',
         expected: {
           sync: true,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
-          episode: 4,
-          uiSelector: true,
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 6,
+          uiSelector: false,
         }
       },
       {
-        url: 'https://www.aniflix.tv/anime/tv/no-game-no-life-ger-dub/',
+        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/2/episode/7',
+        expected: {
+          sync: true,
+          title: 'Noragami season 2',
+          identifier: 'noragami?s=2',
+          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www1.aniflix.tv/show/noragami',
         expected: {
           sync: false,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
+          title: 'Noragami',
+          identifier: 'noragami?s=1',
           uiSelector: true,
         }
       },
@@ -753,32 +774,6 @@ var testsArray = [
     ]
   },
   {
-    title: 'meowstream',
-    url: 'https://meowstream.com/',
-    testCases: [
-      {
-        url: 'https://meowstream.com/tante-yuusha-11-sub-indo/',
-        expected: {
-          sync: true,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          overviewUrl: 'https://meowstream.com/nonton/tante-yuusha',
-          episode: 11,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://meowstream.com/nonton/tante-yuusha-sub-indo/',
-        expected: {
-          sync: false,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tante-yuusha',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
     title: 'AnimeKisa',
     url: 'https://animekisa.tv/',
     testCases: [
@@ -786,7 +781,7 @@ var testsArray = [
         url: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9',
         expected: {
           sync: true,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
@@ -797,8 +792,88 @@ var testsArray = [
        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
         expected: {
           sync: false,
-          title: 'Phantom Requiem for the Phantom',
+          title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
+  {
+    title: 'Wakanim',
+    url: 'https://www.wakanim.tv',
+    testCases: [
+      /*{
+        url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
+        expected: {
+          sync: true,
+          title: 'AFTERLOST (OmU.)',
+          identifier: '493',
+          overviewUrl: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+          nextEpUrl: 'https://www.wakanim.tv/de/v2/catalogue/episode/8788/afterlost-omu-staffel-1-folge-5-omu',
+          episode: 4,
+          uiSelector: false,
+        }
+      },*/
+      {
+       url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+        expected: {
+          sync: false,
+          title: 'AFTERLOST',
+          identifier: '493',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
+  {
+    title: 'AnimeIndo',
+    url: 'http://animeindo.moe/',
+    testCases: [
+      {
+        url: 'http://animeindo.moe/zankyou-no-terror-episode-06.html',
+        expected: {
+          sync: true,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
+          overviewUrl: 'http://animeindo.moe/anime/zankyou-no-terror',
+          episode: 6,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'http://animeindo.moe/anime/zankyou-no-terror',
+        expected: {
+          sync: false,
+          title: 'Zankyou no Terror',
+          identifier: 'zankyou-no-terror',
+          uiSelector: true,
+        }
+      }
+    ]
+  },
+  {
+    title: 'Shinden',
+    url: 'https://shinden.pl/',
+    skip: true, // does not work because of geoblocking
+    testCases: [
+      {
+        url: 'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
+        expected: {
+          sync: true,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+          episode: 14,
+          uiSelector: false,
+        }
+      },
+      {
+       url: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+        expected: {
+          sync: false,
+          title: 'Mahouka Koukou no Rettousei',
+          identifier: '16238-mahouka-koukou-no-rettousei',
           uiSelector: true,
         }
       }
@@ -834,7 +909,9 @@ testsArray.forEach(function(testPage) {
   if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
     var doSkip = false;
+    if(typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
     it('Online', async function () {
+      if(doSkip) this.skip();
       const [response] = await Promise.all([
         page.goto(testPage.url, {timeout:0}),
         page.waitForNavigation({timeout:0}),
@@ -879,16 +956,20 @@ testsArray.forEach(function(testPage) {
           });
         }
 
-        expect(text.sync).to.equal(testCase.expected.sync);
-        expect(text.title).to.equal(testCase.expected.title);
-        expect(text.identifier).to.equal(testCase.expected.identifier);
+        expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
+        expect(text.title, 'Title').to.equal(testCase.expected.title);
+        expect(text.identifier, 'Identifier').to.equal(testCase.expected.identifier);
         if(text.sync){
-          expect(text.episode).to.equal(testCase.expected.episode);
-          expect(text.overviewUrl).to.equal(testCase.expected.overviewUrl);
-          expect(text.nextEpUrl).to.equal(testCase.expected.nextEpUrl);
+          expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
+          var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
+          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
+          expect(textOverview, 'Overview Url').to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
+          var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
+          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
+          expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
         }
         if(typeof text.uiSelector != 'undefined'){
-          expect(text.uiSelector === 'TEST-UI').to.equal(testCase.expected.uiSelector);
+          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(testCase.expected.uiSelector);
         }
       })
     });

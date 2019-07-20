@@ -111,7 +111,7 @@ module.exports = {
   },
   Branitube: {
     match: [
-      '*://*.branitube.org/assistir/*',
+      '*://*.branitube.org/watch/*',
       '*://*.branitube.org/animes/*'
     ]
   },
@@ -182,8 +182,8 @@ module.exports = {
   },
   Animevibe: {
     match: [
-      '*://animevibe.tv/a/*',
-      '*://animevibe.xyz/a/*',
+      '*://*.animevibe.tv/a/*',
+      '*://*.animevibe.xyz/a/*',
     ],
   },
   Novelplanet: {
@@ -210,7 +210,7 @@ module.exports = {
   },
   Dreamanimes: {
     match: [
-      '*://www.dreamanimes.com.br/online/*'
+      '*://www.dreamanimes.com.br/*'
     ],
   },
   animeultima: {
@@ -220,8 +220,7 @@ module.exports = {
   },
   Aniflix: {
     match: [
-      '*://www.aniflix.tv/stream/*',
-      '*://www.aniflix.tv/anime/*'
+      '*://*.aniflix.tv/*',
     ],
   },
   AnimeDaisuki: {
@@ -250,11 +249,6 @@ module.exports = {
       '*://www.riie.net/*'
     ],
   },
-  Meowstream: {
-    match: [
-      '*://meowstream.com/*'
-    ],
-  },
   AnimeKisa: {
     match: [
       '*://animekisa.tv/*'
@@ -265,4 +259,15 @@ module.exports = {
       '*://*.wakanim.tv/*'
     ],
   },
+  AnimeIndo: {
+    match: [
+      '*://animeindo.moe/*'
+    ],
+  },
+  Shinden: {
+    match: [
+      '*://shinden.pl/episode/*',
+      '*://shinden.pl/series/*'
+    ],
+  }
 };

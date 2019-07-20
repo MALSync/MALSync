@@ -90,7 +90,7 @@ export const Proxer: pageInterface = {
     }
   },
   init(page) {
-    api.storage.addStyle(require("./style.less").toString());
+    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
     if (page.url.split("/")[3] === "watch" || page.url.split("/")[3] === "read") {
       if (page.url.split("/")[3] === "watch") {
         Proxer.type = "anime";
