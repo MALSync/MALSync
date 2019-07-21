@@ -102,6 +102,7 @@ module.exports = {
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
+      '*gogoanime*.*/user*',
     ]
   },
   Anime4you: {
