@@ -107,6 +107,7 @@ module.exports = {
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
+      '*gogoanime*.*/user*',
     ]
   },
   Anime4you: {
@@ -274,5 +275,15 @@ module.exports = {
       '*://shinden.pl/episode/*',
       '*://shinden.pl/series/*'
     ],
+  },
+  Funimation: {
+    match: [
+      '*://www.funimation.com/shows/*'
+    ],
+  },
+  voiranime: {
+    match: [
+      '*://voiranime.com/*'
+    ]
   }
 };
