@@ -247,7 +247,9 @@
         if(renderObj == null) return;
 
         var syncMode = api.settings.get('syncMode');
-        if(syncMode === 'ANILIST'){
+        if(/^local:\/\//i.test(renderObj.url)){
+          this.metaObj = {};
+        }else if(syncMode === 'ANILIST'){
           this.metaObj = await new aniMeta(renderObj.url).init();
         }else if(syncMode === 'KITSU'){
           this.metaObj = await new kitsuMeta(renderObj.url).init();
@@ -350,7 +352,11 @@
         }
       },
       statistics: function(){
-        return this.metaObj.getStatistics();
+        var stats = {};
+        try{
+            stats = this.metaObj.getStatistics();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return stats;
       },
       displayUrl: function(){
         if(this.renderObj != null){
@@ -381,10 +387,18 @@
         return title;
       },
       description: function(){
-        return this.metaObj.getDescription();
+        var description = '';
+        try{
+          description = this.metaObj.getDescription();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return description;
       },
       altTitle: function(){
-        return this.metaObj.getAltTitle();
+        var altTitle = {};
+        try{
+            altTitle = this.metaObj.getAltTitle();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return altTitle;
       },
       streaming: function(){
         var streamhtml = null;
@@ -421,16 +435,32 @@
         return streamhtml;
       },
       characters: function(){
-        return this.metaObj.getCharacters();
+        var char = {};
+        try{
+          char = this.metaObj.getCharacters();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return char;
       },
       info: function(){
-        return this.metaObj.getInfo();
+        var info = {};
+        try{
+          info = this.metaObj.getInfo();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return info;
       },
       openingSongs: function(){
-        return this.metaObj.getOpeningSongs();
+        var opening = {};
+        try{
+          opening = this.metaObj.getOpeningSongs();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return opening;
       },
       endingSongs: function(){
-        return this.metaObj.getEndingSongs();
+        var ending = {};
+        try{
+          ending = this.metaObj.getEndingSongs();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return ending;
       }
     },
     methods: {
@@ -465,7 +495,11 @@
         }
       },
       getRelated: function(){
-        return this.metaObj.getRelated();
+        var related = {};
+        try{
+          related = this.metaObj.getRelated();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return related;
       },
       updateStatusTags: async function(){
         for(var relatedKey in this.related){
