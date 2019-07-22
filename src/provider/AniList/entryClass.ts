@@ -97,11 +97,29 @@ export class entryClass{
         query: query,
         variables: variables
       })
-    }).then((response) => {
+    }).then(async (response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
       this.login = true;
-      helper.errorHandling(res, this.silent);
+      var error = helper.errorHandling(res, this.silent);
+      if(error === 'noLogin'){
+        this.login = false;
+
+        response = await api.request.xhr('POST', {
+          url: 'https://graphql.anilist.co',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          data: JSON.stringify({
+            query: query,
+            variables: variables
+          })
+        });
+
+        var res = JSON.parse(response.responseText);
+        con.log('noLogin', res);
+      }
       this.animeInfo = res.data.Media;
 
       this.aniId = this.animeInfo.id;

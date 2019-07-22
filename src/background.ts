@@ -102,6 +102,28 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
       chrome.tabs.sendMessage(message.sender.tab.id, {action: "videoTimeSet", time: message.time, timeAdd: message.timeAdd}, {frameId: message.sender.frameId});
       return;
     }
+    case "minimalWindow": {
+      api.storage.get('windowId').then((winId) => {
+        if(typeof winId === 'undefined') winId = 22;
+        chrome.windows.update(winId, {focused: true}, function() {
+          if (chrome.runtime.lastError) {
+            chrome.windows.create({
+              url: chrome.runtime.getURL("window.html"),
+              type: "popup"
+            }, function(win) {
+              api.storage.set('windowId', win!.id);
+              sendResponse();
+            });
+          }else{
+            sendResponse();
+          }
+
+
+        });
+
+      });
+      return true;
+    }
   }
   return undefined;
 }

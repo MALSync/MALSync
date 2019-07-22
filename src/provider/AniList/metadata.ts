@@ -439,7 +439,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         id: item.id,
         name: item.title.userPreferred,
         url: item.siteUrl,
-        malUrl: (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null,
+        malUrl: () => {return (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null},
         image: item.coverImage.medium,
         media_type: (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '),
         score: item.averageScore,

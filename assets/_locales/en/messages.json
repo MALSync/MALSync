@@ -579,6 +579,10 @@
       "message": "Display to the",
       "description": "Display to the"
     },
+    "settings_miniMAL_window": {
+      "message": "Open in separate window",
+      "description": "Open miniMAL in separate window checkbox"
+    },
     "settings_miniMAL_Display_Left": {
       "message": "Left",
       "description": "miniMAL Display Left"

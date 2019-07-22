@@ -216,4 +216,21 @@ module.exports = {
       '*://vev.red/embed/*',
     ]
   },
+  Funimation: {
+    match: [
+      '*://www.funimation.com/player/*'
+    ]
+  },
+  //voiranime
+  jwpstream: {
+    match: [
+      '*://jwpstream.com/jwps/yplayer.php*'
+    ]
+  },
+  //voiranime
+  vaplayer: {
+    match: [
+      '*://www.vaplayer.xyz/v/*'
+    ]
+  },
 };

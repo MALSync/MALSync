@@ -14,6 +14,7 @@ export var settingsObj = {
     epPredictions: true,
 
     theme: 'light',
+    minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,
