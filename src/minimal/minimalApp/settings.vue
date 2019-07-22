@@ -9,6 +9,7 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_General")}}</h2>
         </div>
+
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Mode")}}
@@ -22,6 +23,7 @@
             </select>
           </span>
         </li>
+
         <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
           <span class="mdl-list__item-primary-content">
             AniList
@@ -30,6 +32,7 @@
             <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
+
         <li class="mdl-list__item" v-if="options.syncMode == 'KITSU'">
           <span class="mdl-list__item-primary-content">
             Kitsu
@@ -38,6 +41,12 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
+
+        <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
+          <option value="MAL">MyAnimeList</option>
+          <option value="ANILIST">AniList</option>
+          <option value="KITSU">Kitsu</option>
+        </dropdown>
         <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
           <span class="mdl-list__item-primary-content">
             Simkl
@@ -392,6 +401,7 @@
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
   import numberInput from './components/settingsNumberInput.vue'
+  import dropdown from './components/settingsDropdown.vue'
   import fileUpload from './components/settingsFileUpload.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
@@ -404,6 +414,7 @@
       tooltip,
       checkbox,
       numberInput,
+      dropdown,
       fileUpload
     },
     props: {
