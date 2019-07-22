@@ -36,8 +36,7 @@ export function getEpisode(episode: string):number{
 }
 
 export function simklIdToMal(simklId){
-  return call('https://api.simkl.com/search/id', {simkl: simklId}, true).then((res) => {
-    con.error(res);
+  return call('https://api.simkl.com/anime/'+simklId, {extended: 'full'}, true).then((res) => {
     if(typeof res.ids.mal === 'undefined') return null;
     return res.ids.mal;
   });

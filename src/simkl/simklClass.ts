@@ -100,6 +100,18 @@ export class simklClass{
     }
   }
 
+  async getMalUrl(){
+    var urlpart = utils.urlPart(this.url, 3);
+    if(urlpart == 'anime' || urlpart == 'manga'){
+      var simklId = utils.urlPart(this.url, 4);
+      return helper.simklIdToMal(simklId).then((malId)=>{
+        if(!malId) return '';
+        return 'https://myanimelist.net/'+urlpart+'/'+malId+'/'+utils.urlPart(this.url, 5);
+      });
+    }
+    return '';
+  }
+
   authentication(){
     try{
       var code = utils.urlParam(this.url, 'code');
