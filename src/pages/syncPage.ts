@@ -440,6 +440,9 @@ export class syncPage{
       var This = this;
       j.$('#AddMal').click(function() {
         This.malObj.setStatus(6);
+        if(!This.page.isSyncPage(This.url)){
+          This.malObj.setStreamingUrl(This.url);
+        }
         This.syncHandling()
           .then(() => {
             return This.malObj.update();
@@ -883,6 +886,9 @@ export class syncPage{
     if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
     this.malObj.setScore(j.$("#malUserRating").val());
     this.malObj.setStatus(j.$("#malStatus").val());
+    if(!this.page.isSyncPage(this.url)){
+      this.malObj.setStreamingUrl(this.url);
+    }
 
     this.syncHandling()
       .then(() => {

@@ -3,7 +3,7 @@
     <div class="simkltvdetailonlinehead">
       <div class="simkltvdetailonlineheadleft">
         <div class="simkltvdetailonlineheadtitle">Stream online:</div>
-        <a :href="streamUrl" v-if="streamUrl" target="_blank" class="simkltvdetailonlineheadbutton">
+        <a :href="streamUrl" v-if="streamUrl" target="_blank" class="simkltvdetailonlineheadbutton simkltvdetailonlineheadbuttonstream">
           <div class="simkltvdetailonlineheadbuttonimage"><img :src="favicon(streamUrl.split('/')[2])" alt="" :title="streamUrl.split('/')[2]"></div>
         </a>
         <a :href="continueUrl" v-if="continueUrl" target="_blank" class="simkltvdetailonlineheadbutton">
@@ -132,5 +132,9 @@
 <style lang="less" scoped>
   .Sources{
     min-width: 178px;
+  }
+  .simkltvdetailonlineheadbuttonstream{
+    width: auto;
+    min-width: auto;
   }
 </style>

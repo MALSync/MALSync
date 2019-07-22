@@ -107,7 +107,7 @@ export async function userId(){
     }).then((response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
-      if(!res.data.length || res.data[0] == 'undefined'){
+      if(typeof res.data == 'undefined' || !res.data.length || typeof res.data[0] == 'undefined'){
         utils.flashm(kitsu.noLogin, {error: true, type: 'error'});
         throw('Not authentificated');
       }

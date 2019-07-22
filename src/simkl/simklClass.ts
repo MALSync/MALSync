@@ -1,4 +1,5 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
+import {userList} from "./../provider/Simkl/userList";
 import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
@@ -12,14 +13,21 @@ interface detail{
   malObj: undefined
 }
 
+interface bookmarks{
+  page: "bookmarks",
+  type: "anime"|"manga"
+}
+
 export class simklClass{
   page: any = null
 
   private interval;
+  private interval2;
   private malkiss;
 
   constructor(public url:string){
     utils.urlChangeDetect(() => {
+      clearInterval(this.interval);
       this.interval = utils.waitUntilTrue(function(){
         return (!$('#global_div').length || parseInt($('#global_div').css('opacity')) === 1) &&
         (!$('#tvMainTable').length || parseInt($('#tvMainTable').css('opacity')) === 1);
@@ -38,12 +46,15 @@ export class simklClass{
   async init(){
     con.log(this.url);
 
+    clearInterval(this.interval2);
+
     if(this.url.indexOf("apps/chrome/mal-sync") > -1){
       this.authentication();
     }
 
     var urlpart = utils.urlPart(this.url, 3);
-    if(urlpart == 'anime' || urlpart == 'manga'){
+    var url2part = utils.urlPart(this.url, 4);
+    if( (urlpart == 'anime' || urlpart == 'manga') && !isNaN(url2part)){
       var malObj = new entryClass(this.url);
       await malObj.init();
 
@@ -56,7 +67,7 @@ export class simklClass{
       }
       con.log('page', this.page);
 
-      if(!$('#malkiss').length) $('.SimklTVAboutBlockTitle').after('<div id="malkiss"></div>');
+      if(!$('#malkiss').length) $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after('<div id="malkiss"></div>');
       if(this.malkiss) this.malkiss.$destroy();
       this.malkiss = new Vue({
         el: "#malkiss",
@@ -66,6 +77,26 @@ export class simklClass{
       this.streamingUI();
       this.malToKiss();
       this.siteSearch();
+      return;
+    }
+
+    if( (urlpart == 'anime' || urlpart == 'manga') && url2part === 'all'){
+      this.page = {
+        page: "bookmarks",
+        type: urlpart
+      }
+      this.bookmarksAnime();
+    }
+
+    if(url2part == 'anime' || url2part == 'manga'){
+      var status = utils.urlPart(this.url, 5);
+      if(status === "watching"){
+        this.page = {
+          page: "bookmarks",
+          type: url2part
+        }
+        this.bookmarksProfile();
+      }
     }
   }
 
@@ -168,6 +199,106 @@ export class simklClass{
     }
 
     this.malkiss.pageSearch = newSearch;
+  }
+
+  bookmarksProfile(){
+    userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+      con.error(list);
+      $.each(list, async (index, en) => {
+        con.log('en', en);
+        var element = $('a[href^="/'+this.page!.type+'/'+en.uid+'"]');
+        if(!element || element.hasClass('malSyncDone2')) return;
+        element.addClass('malSyncDone2');
+        var streamUrl = utils.getUrlFromTags(en.tags);
+        if(typeof streamUrl !== 'undefined'){
+          con.log(streamUrl);
+          element.after(`
+            <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${streamUrl.split('/')[2]}" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${streamUrl}">
+              <img src="${utils.favicon(streamUrl.split('/')[2])}">
+            </a>`);
+
+          var resumeUrlObj = await utils.getResumeWaching(this.page!.type, en.cacheKey);
+          var continueUrlObj = await utils.getContinueWaching(this.page!.type, en.cacheKey);
+
+          var curEp = en.watchedEp;
+
+          con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+            element.parent().append(
+              `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${continueUrlObj.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+            element.parent().append(
+              `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${resumeUrlObj.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+              </a>`
+              );
+          }
+
+
+
+        }
+      });
+
+    }});
+  }
+
+  bookmarksAnime(){
+    var This = this;
+    userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+
+      exec();
+
+      this.interval2 = utils.changeDetect(() => {
+        exec();
+      }, () => {
+        return $('#tv_best_left_addContainer li').length + $('#tv_best_left_addContainer > div').height()!;
+      });
+
+      function exec(){
+        con.info('list');
+        $.each(list, async (index, en) => {
+          var element = $('#c'+en.uid);
+          if(!element || !element.length || element.hasClass('malSyncDone2')) return;
+          element.addClass('malSyncDone2').css('position', 'relative');
+          var streamUrl = utils.getUrlFromTags(en.tags);
+          if(typeof streamUrl !== 'undefined'){
+            con.log(streamUrl);
+            element.append(`
+              <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${streamUrl.split('/')[2]}" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 0; background-color: #00000057; padding: 5px;" href="${streamUrl}">
+                <img src="${utils.favicon(streamUrl.split('/')[2])}">
+              </a>`);
+
+            var resumeUrlObj = await utils.getResumeWaching(This.page!.type, en.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(This.page!.type, en.cacheKey);
+
+            var curEp = en.watchedEp;
+
+            con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+              element.append(
+                `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${continueUrlObj.url}">
+                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+              element.append(
+                `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${resumeUrlObj.url}">
+                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+                </a>`
+                );
+            }
+
+
+
+          }
+        });
+      }
+
+
+    }});
   }
 
 }

@@ -15,11 +15,13 @@ console.log('Mode', mode);
 var malUrls = {myanimelist: pageUrls.myanimelist};
 var aniUrls = {anilist: pageUrls.anilist};
 var kitsuUrls = {anilist: pageUrls.kitsu};
+var simklUrls = {anilist: pageUrls.simkl};
 
 var contentUrls = pageUrls;
 delete contentUrls.anilist;
 delete contentUrls.myanimelist;
 delete contentUrls.kitsu;
+delete contentUrls.simkl;
 
 const generateMatchExcludes = (urls) => {
   var match = [];
@@ -137,6 +139,16 @@ const generateManifest = () => {
         "run_at": "document_start"
       },
       {
+        'matches': generateMatchExcludes(simklUrls).match,
+        'exclude_globs': generateMatchExcludes(simklUrls).exclude.concat(['*mal-sync-background=*']),
+        'js': [
+          'vendor/jquery.min.js',
+          'i18n.js',
+          'simkl-script.js'
+        ],
+        "run_at": "document_start"
+      },
+      {
         'matches': backgroundMatch(generateMatchExcludes(pageUrls).match),
         'js': [
           'vendor/jquery.min.js',
@@ -180,6 +192,7 @@ const generateManifest = () => {
       "https://graphql.anilist.co/",
       "https://kitsu.io/",
       "https://media.kitsu.io/",
+      "https://api.simkl.com/",
       "https://www.netflix.com/",
       "https://vrv.co/",
       "tabHide"

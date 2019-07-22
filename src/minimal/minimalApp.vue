@@ -337,6 +337,7 @@
         if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
            /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
            /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url) ||
+           /^https:\/\/simkl.com\/(anime|manga)\/\d+/i.test(url) ||
            /^local:\/\//i.test(url)
           ){
           if(!isBase){
