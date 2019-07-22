@@ -31,6 +31,7 @@ export class entryClass{
     }else{
       this.id = NaN;
     }
+    if(this.type === 'manga') throw 'Simkl has no manga support';
   }
 
   init(){

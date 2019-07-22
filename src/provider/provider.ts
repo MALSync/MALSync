@@ -58,15 +58,22 @@ interface entryClass {
   sync(),
 }
 
-function getSyncMode(){
-  return api.settings.get('syncMode');
+function getSyncMode(type = ''){
+  var mode = api.settings.get('syncMode');
+  //
+  if(mode === 'SIMKL' && (type === 'manga' || type.indexOf('/manga/') !== -1)){
+    return api.settings.get('syncModeSimkl');
+  }
+  //
+  return mode;
 }
 
 export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false, state:any = null): entryClass{
   if(/^local:\/\//i.test(url)){
     return new local.entryClass(url, miniMAL, silent, state);
   }
-  var syncMode = getSyncMode();
+  var syncMode = getSyncMode(url);
+  con.log('Entry', url, syncMode);
   if(syncMode == 'MAL'){
     return new mal.entryClass(url, miniMAL);
   }else if(syncMode == 'ANILIST'){
@@ -95,7 +102,7 @@ export async function userList(
 
   if(api.settings.get('localSync')) templist = templist.concat(await getLocalList());
 
-  var syncMode = getSyncMode();
+  var syncMode = getSyncMode(localListType);
   if(syncMode == 'MAL'){
     return malUserList.userList(status, localListType, callbacks, username, offset, templist);
   }else if(syncMode == 'ANILIST'){
@@ -119,7 +126,7 @@ export async function userList(
 }
 
 export function search(keyword, type: "anime"|"manga", options = {}, sync = false){
-  var syncMode = getSyncMode();
+  var syncMode = getSyncMode(type);
   if(syncMode == 'KITSU'){
     return kitsuSearch(keyword, type, options, sync);
   }else if(syncMode == 'ANILIST'){

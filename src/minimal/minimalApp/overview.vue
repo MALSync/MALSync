@@ -248,6 +248,12 @@
         if(renderObj == null) return;
 
         var syncMode = api.settings.get('syncMode');
+        //
+        if(syncMode === 'SIMKL' && renderObj.type === 'manga'){
+          syncMode = api.settings.get('syncModeSimkl');
+        }
+        //
+
         if(/^local:\/\//i.test(renderObj.url)){
           this.metaObj = {};
         }else if(syncMode === 'ANILIST'){
