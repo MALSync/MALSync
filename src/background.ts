@@ -12,6 +12,9 @@ api.request.sendMessage = function(message: sendMessageI){
 
 chrome.runtime.onInstalled.addListener(function(details){
     if(details.reason == "install"){
+      chrome.tabs.create({url: chrome.extension.getURL('install.html')}, function (tab) {
+        con.info("Open installPage");
+      });
     }else if(details.reason == "update"){
     }
     chrome.alarms.clearAll();
