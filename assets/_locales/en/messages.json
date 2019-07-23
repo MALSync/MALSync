@@ -800,11 +800,11 @@
       }
     },
     "installPage_Wrong": {
-      "message": "It syncs to the wrong entry?",
+      "message": "It syncs to the wrong MAL entry?",
       "description": "Header of the wrong section on the install page"
     },
       "installPage_Wrong_Description": {
-      "message": "You can easily change the relation like shown in the gif below. An episode offset can be defined in that section too",
+      "message": "You can easily change the relation like shown in the gif below. An episode offset can be set on that page too.",
       "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
