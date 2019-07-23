@@ -322,7 +322,7 @@ export class minimal{
           versionMsg = api.storage.lang("minimalClass_versionMsg",[api.storage.version(), '[<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">']);
         }
         con.log(version);
-        if(typeof version == 'undefined'){
+        if(typeof version == 'undefined' && api.type !== 'webextension'){
           versionMsg = `
             <div style="
               text-align: left;
