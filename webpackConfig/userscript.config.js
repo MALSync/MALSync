@@ -60,6 +60,8 @@ const metadata = {
     'myanimelist.net',
     'kissanimelist.firebaseio.com',
     'graphql.anilist.co',
+    'media.kitsu.io',
+    'api.simkl.com',
     '*'
   ]
 };

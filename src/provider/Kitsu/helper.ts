@@ -51,6 +51,21 @@ export function malToKitsu(malid: number, type: "anime"|"manga"){
   });
 }
 
+export function kitsuToMal(kitsuId: number, type: "anime"|"manga"){
+  return api.request.xhr('Get', {
+    url: 'https://kitsu.io/api/edge/'+type+'/'+kitsuId+'/mappings?filter[externalSite]=myanimelist/'+type,
+    headers: {
+      'Content-Type': 'application/vnd.api+json',
+      'Accept': 'application/vnd.api+json',
+    }
+  }).then((response) => {
+    var res = JSON.parse(response.responseText);
+    con.log('[KtoM]',res);
+    if(typeof res.data === 'undefined' || !res.data.length) return null;
+    return res.data[0].attributes.externalId;
+  });
+}
+
 export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
   return api.request.xhr('Get', {
     url: 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings',
@@ -92,7 +107,7 @@ export async function userId(){
     }).then((response) => {
       var res = JSON.parse(response.responseText);
       con.log(res);
-      if(!res.data.length || res.data[0] == 'undefined'){
+      if(typeof res.data == 'undefined' || !res.data.length || typeof res.data[0] == 'undefined'){
         utils.flashm(kitsu.noLogin, {error: true, type: 'error'});
         throw('Not authentificated');
       }

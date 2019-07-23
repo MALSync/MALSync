@@ -760,7 +760,7 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Usuários do uBlock por favor inscrevam-se nesta lista de filtros!<br>Isso corrige alguns problemas, como imagens quebradas",
+    "message": "Usuários do uBlock por favor inscrevam-se nesta lista de filtros! Isso corrige alguns problemas, como imagens quebradas",
     "description": "Update version - Text 4"
   },
   "Anilist_Authenticate": {

@@ -42,6 +42,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a cen
 | [![riie.net](https://www.google.com/s2/favicons?domain=https://riie.net "riie.net")](riie.net) [riie.net](https://riie.net) | | |
 | [![animekisa.tv](https://www.google.com/s2/favicons?domain=https://animekisa.tv "animekisa.tv")](animekisa.tv) [animekisa.tv](https://animekisa.tv) | | |
 | [![animeindo.moe](https://www.google.com/s2/favicons?domain=https://animeindo.moe "animeindo.moe")](animeindo.moe) [animeindo.moe](https://animeindo.moe) | | |
+| [![shinden.pl](https://www.google.com/s2/favicons?domain=https://shinden.pl "shinden.pl")](shinden.pl) [shinden.pl](https://shinden.pl) | | |
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  

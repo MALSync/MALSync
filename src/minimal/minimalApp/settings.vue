@@ -9,6 +9,7 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_General")}}</h2>
         </div>
+
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{lang("settings_Mode")}}
@@ -18,10 +19,26 @@
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
+              <option value="SIMKL">Simkl</option>
             </select>
           </span>
         </li>
-        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST'">
+
+        <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
+          <span class="mdl-list__item-primary-content">
+            Simkl
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a target="_blank" href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/">{{lang("settings_Authenticate")}}</a>
+          </span>
+        </li>
+        <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
+          <option value="MAL">MyAnimeList</option>
+          <option value="ANILIST">AniList</option>
+          <option value="KITSU">Kitsu</option>
+        </dropdown>
+
+        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')">
           <span class="mdl-list__item-primary-content">
             AniList
           </span>
@@ -29,7 +46,8 @@
             <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
-        <li class="mdl-list__item" v-if="options.syncMode == 'KITSU'">
+
+        <li class="mdl-list__item" v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')">
           <span class="mdl-list__item-primary-content">
             Kitsu
           </span>
@@ -37,6 +55,7 @@
             <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
           </span>
         </li>
+
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
@@ -137,6 +156,19 @@
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
         </div>
+        <li class="mdl-list__item">
+          <span class="mdl-list__item-primary-content">
+            Theme
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="serial">Serial</option>
+            </select>
+          </span>
+        </li>
+        <span class="option-extension" style="display: none;"><checkbox option="minimalWindow">{{lang("settings_miniMAL_window")}}</checkbox></span>
         <checkbox option="floatButtonStealth">{{lang("settings_miniMAL_floatButtonStealth")}}</checkbox>
         <checkbox option="floatButtonHide">{{lang("settings_miniMAL_floatButtonHide")}}</checkbox>
         <checkbox option="autoCloseMinimal">{{lang("settings_miniMAL_autoCloseMinimal")}}</checkbox>
@@ -148,19 +180,6 @@
           <span class="mdl-list__item-secondary-action">
             {{commands._execute_browser_action.shortcut}}
             <span v-if="!commands._execute_browser_action.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
-          </span>
-        </li>
-
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            Theme
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <select name="myinfo_score" id="theme" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="serial">Serial</option>
-            </select>
           </span>
         </li>
 
@@ -383,6 +402,7 @@
 <script type="text/javascript">
   import checkbox from './components/settingsCheckbox.vue'
   import numberInput from './components/settingsNumberInput.vue'
+  import dropdown from './components/settingsDropdown.vue'
   import fileUpload from './components/settingsFileUpload.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
@@ -395,6 +415,7 @@
       tooltip,
       checkbox,
       numberInput,
+      dropdown,
       fileUpload
     },
     props: {

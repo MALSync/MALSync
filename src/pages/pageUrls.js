@@ -25,6 +25,11 @@ module.exports = {
       '*://kitsu.io/*'
     ]
   },
+  simkl: {
+    match: [
+      '*://simkl.com/*'
+    ]
+  },
   Kissanime: {
     match: [
       '*://kissanime.ru/Anime/*',
@@ -102,6 +107,7 @@ module.exports = {
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
+      '*gogoanime*.*/user*',
     ]
   },
   Anime4you: {
@@ -111,7 +117,7 @@ module.exports = {
   },
   Branitube: {
     match: [
-      '*://*.branitube.org/assistir/*',
+      '*://*.branitube.org/watch/*',
       '*://*.branitube.org/animes/*'
     ]
   },
@@ -182,8 +188,8 @@ module.exports = {
   },
   Animevibe: {
     match: [
-      '*://animevibe.tv/a/*',
-      '*://animevibe.xyz/a/*',
+      '*://*.animevibe.tv/a/*',
+      '*://*.animevibe.xyz/a/*',
     ],
   },
   Novelplanet: {
@@ -220,8 +226,7 @@ module.exports = {
   },
   Aniflix: {
     match: [
-      '*://www.aniflix.tv/stream/*',
-      '*://www.aniflix.tv/anime/*'
+      '*://*.aniflix.tv/*',
     ],
   },
   AnimeDaisuki: {
@@ -265,4 +270,20 @@ module.exports = {
       '*://animeindo.moe/*'
     ],
   },
+  Shinden: {
+    match: [
+      '*://shinden.pl/episode/*',
+      '*://shinden.pl/series/*'
+    ],
+  },
+  Funimation: {
+    match: [
+      '*://www.funimation.com/shows/*'
+    ],
+  },
+  voiranime: {
+    match: [
+      '*://voiranime.com/*'
+    ]
+  }
 };

@@ -106,6 +106,8 @@
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
               <input v-if="!(renderObj && renderObj.addAnime) && (typeof renderObj.delete !== 'undefined')" @click="remove()" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')">
+
+              <i class="material-icons" @click="reload()" style="margin-right: 0; margin-left: auto; cursor: pointer;">autorenew</i>
             </li>
           </tbody>
         </table>
@@ -209,6 +211,7 @@
   import {metadata as malMeta}  from "./../../provider/MyAnimeList/metadata";
   import {metadata as aniMeta} from "./../../provider/AniList/metadata";
   import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
+  import {metadata as simklMeta} from "./../../provider/Simkl/metadata";
   export default {
     data: function(){
       return {
@@ -245,10 +248,20 @@
         if(renderObj == null) return;
 
         var syncMode = api.settings.get('syncMode');
-        if(syncMode === 'ANILIST'){
+        //
+        if(syncMode === 'SIMKL' && renderObj.type === 'manga'){
+          syncMode = api.settings.get('syncModeSimkl');
+        }
+        //
+
+        if(/^local:\/\//i.test(renderObj.url)){
+          this.metaObj = {};
+        }else if(syncMode === 'ANILIST'){
           this.metaObj = await new aniMeta(renderObj.url).init();
         }else if(syncMode === 'KITSU'){
           this.metaObj = await new kitsuMeta(renderObj.url).init();
+        }else if(syncMode === 'SIMKL'){
+          this.metaObj = await new simklMeta(renderObj.url).init();
         }else if(renderObj.getMalUrl() !== null){
           this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
         }else{
@@ -348,7 +361,11 @@
         }
       },
       statistics: function(){
-        return this.metaObj.getStatistics();
+        var stats = {};
+        try{
+            stats = this.metaObj.getStatistics();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return stats;
       },
       displayUrl: function(){
         if(this.renderObj != null){
@@ -379,10 +396,18 @@
         return title;
       },
       description: function(){
-        return this.metaObj.getDescription();
+        var description = '';
+        try{
+          description = this.metaObj.getDescription();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return description;
       },
       altTitle: function(){
-        return this.metaObj.getAltTitle();
+        var altTitle = {};
+        try{
+            altTitle = this.metaObj.getAltTitle();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return altTitle;
       },
       streaming: function(){
         var streamhtml = null;
@@ -419,16 +444,32 @@
         return streamhtml;
       },
       characters: function(){
-        return this.metaObj.getCharacters();
+        var char = {};
+        try{
+          char = this.metaObj.getCharacters();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return char;
       },
       info: function(){
-        return this.metaObj.getInfo();
+        var info = {};
+        try{
+          info = this.metaObj.getInfo();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return info;
       },
       openingSongs: function(){
-        return this.metaObj.getOpeningSongs();
+        var opening = {};
+        try{
+          opening = this.metaObj.getOpeningSongs();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return opening;
       },
       endingSongs: function(){
-        return this.metaObj.getEndingSongs();
+        var ending = {};
+        try{
+          ending = this.metaObj.getEndingSongs();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return ending;
       }
     },
     methods: {
@@ -450,6 +491,10 @@
             this.renderObj.update();
           });
       },
+      reload: function(){
+        utils.flashm('Loading');
+        this.renderObj.update();
+      },
       getMal2KissFavicon: function(streams){
         try{
           return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
@@ -459,7 +504,11 @@
         }
       },
       getRelated: function(){
-        return this.metaObj.getRelated();
+        var related = {};
+        try{
+          related = this.metaObj.getRelated();
+        }catch(e) {console.log('[iframeOverview] Error:',e);}
+        return related;
       },
       updateStatusTags: async function(){
         for(var relatedKey in this.related){

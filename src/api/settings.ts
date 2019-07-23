@@ -5,6 +5,7 @@ export var settingsObj = {
     forceEn: false,
     userscriptMode: false,
     syncMode: 'MAL',
+    syncModeSimkl: 'MAL',
     localSync: true,
     delay: 0,
     videoDuration: 85,
@@ -14,6 +15,7 @@ export var settingsObj = {
     epPredictions: true,
 
     theme: 'light',
+    minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,

@@ -1,5 +1,5 @@
 <!doctype html>
-<html mode="popup" style="min-width: 500px; min-height: 600px; background-color: #f9f9f9;">
+<html style="min-width: 500px; min-height: 500px; background-color: #f9f9f9;">
   <head>
     <title>Mal-Sync</title>
     <meta charset="utf-8">
@@ -14,6 +14,9 @@
           height: 100vh;
           margin: 0 !important;
         }
+        html{
+          min-height: 600px !important;
+        }
       }
       @supports (-moz-appearance:none) {
         #Mal-Sync-Popup{
@@ -22,6 +25,18 @@
           height: 100vh;
           margin: 0 !important;
         }
+        html{
+          min-height: 600px !important;
+        }
+      }
+      .mdl-layout__header{
+        display: none !important;
+      }
+      .mdl-layout__content > * {
+        display: none !important;
+      }
+      #fixed-tab-5{
+        display: block !important;
       }
     </style>
   </head>

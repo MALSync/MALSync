@@ -1,3 +1,4 @@
+import {simkl} from "./templates";
 export var client_id = "39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0";
 
 export function translateList(simklStatus, malStatus:null|number = null){
@@ -22,6 +23,7 @@ export function getCacheKey(id, simklId){
 }
 
 export function getEpisode(episode: string):number{
+  if(typeof episode === 'number') return episode;
   if(episode){
     var temp = episode.match(/e\d+/i);
     if(temp !== null){
@@ -33,12 +35,25 @@ export function getEpisode(episode: string):number{
   return 0;
 }
 
-export async function syncList(){
+export function simklIdToMal(simklId){
+  return call('https://api.simkl.com/anime/'+simklId, {extended: 'full'}, true).then((res) => {
+    if(typeof res.ids.mal === 'undefined') return null;
+    return res.ids.mal;
+  });
+}
+
+var cacheList;
+
+export async function syncList(lazy = false){
+  if(typeof cacheList === 'undefined'){
+    cacheList = await api.storage.get('simklList');
+  }else if(lazy){
+    return cacheList;
+  }
+
   var lastCheck = await api.storage.get('simklLastCheck');
   var activity = await call('https://api.simkl.com/sync/activities');
   con.log('Activity', lastCheck, activity.anime);
-
-  var cacheList = await api.storage.get('simklList');
 
   //removed_from_list
   if(lastCheck && (lastCheck.removed_from_list !== activity.anime.removed_from_list)){
@@ -93,8 +108,8 @@ export async function syncList(){
   return cacheList;
 }
 
-export async function getSingle(ids:{simkl?:string|number, mal?:string|number}){
-  var list = await syncList();
+export async function getSingle(ids:{simkl?:string|number, mal?:string|number}, lazy = false){
+  var list = await syncList(lazy);
   if(ids.simkl){
     if(list[ids.simkl] != undefined){
       return list[ids.simkl];
@@ -114,26 +129,61 @@ export async function getSingle(ids:{simkl?:string|number, mal?:string|number}){
   return null;
 }
 
-export async function call(url, sData = {}, asParameter = false, methode = 'GET'){
+export async function call(url, sData = {}, asParameter = false, methode = 'GET', login = true){
   if(asParameter){
     url += '?'+j.$.param(sData);
   }
   con.log('call', methode, url, sData);
+
+  var headers = {
+    'Authorization': 'Bearer ' + api.settings.get('simklToken'),
+    'simkl-api-key': client_id,
+    'Accept': 'application/vnd.api+json',
+    'Content-Type': 'application/json'
+  };
+
+  if(!login){
+    con.log('No login')
+    delete headers.Authorization;
+  }
+
   return api.request.xhr(methode, {
     url: url,
-    headers: {
-      'Authorization': 'Bearer ' + api.settings.get('simklToken'),
-      'simkl-api-key': client_id,
-      'Accept': 'application/vnd.api+json',
-      'Content-Type': 'application/json'
-    },
+    headers: headers,
     data: sData,
   }).then(async (response) => {
+    switch(response.status) {
+      case 200:
+      case 201:
+      case 204:
+      case 302:
+        break;
+      case 401:
+        if(login){
+          return call(url, sData, asParameter, methode, false);
+          break;
+        }
+        utils.flashm(simkl.noLogin, {error: true, type: 'error'});
+        throw getThrowError();
+        break;
+      default:
+        utils.flashm('Simkl: '+getErrorText(), {error: true, type: 'error'});
+        throw getThrowError();
+    }
+
     try{
       return JSON.parse(response.responseText);
     }catch(e){
       con.error(response);
       throw e;
+    }
+
+    function getErrorText(){
+      return JSON.parse(response.responseText).error;
+    }
+
+    function getThrowError(){
+      return {status: response.status, message: getErrorText()};
     }
 
   });

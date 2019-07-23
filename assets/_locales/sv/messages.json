@@ -732,7 +732,7 @@
       "description": "Update version - Text 3"
     },
      "minimalClass_versionMsg_Text_4": {
-      "message": "uBlock användare, prenumerera gärna på denna filter lista!<br>Detta fixar några problem som t.ex. trasiga bilder",
+      "message": "uBlock användare, prenumerera gärna på denna filter lista! Detta fixar några problem som t.ex. trasiga bilder",
       "description": "Update version - Text 4"
     },
     "Anilist_Authenticate": {

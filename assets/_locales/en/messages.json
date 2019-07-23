@@ -579,6 +579,10 @@
       "message": "Display to the",
       "description": "Display to the"
     },
+    "settings_miniMAL_window": {
+      "message": "Open in separate window",
+      "description": "Open miniMAL in separate window checkbox"
+    },
     "settings_miniMAL_Display_Left": {
       "message": "Left",
       "description": "miniMAL Display Left"
@@ -750,7 +754,7 @@
       }
     },
     "minimalClass_versionMsg_Text_1": {
-      "message": "Thanks for installing MAL-Sync",
+      "message": "Thank you for installing MAL-Sync",
       "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
@@ -762,8 +766,46 @@
       "description": "Update version - Text 3"
     },
     "minimalClass_versionMsg_Text_4": {
-      "message": "uBlock users please subscribe to this filter list!<br>This fixes some problems like broken images",
+      "message": "uBlock users please subscribe to this filter list! This fixes some problems like broken images",
       "description": "Update version - Text 4"
+    },
+    "installPage_Mode": {
+      "message": "Please select which Anime database you want use:",
+      "description": "Header for the MAL-sync provider dropdown"
+    },
+    "installPage_Howto": {
+      "message": "How to use?",
+      "description": "Header for how to use section"
+    },
+    "installPage_Howto_Description": {
+      "message": "Just open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$. The sync waits until 85% of the video is watched. For mangas it syncs on page load. This can be changed in the $Link2$settings$LinkEnd2$.",
+      "description": "How to use description text",
+      "placeholders": {
+        "Link1": {
+          "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+          "example": "<a>"
+        },
+        "LinkEnd1": {
+          "content": "</a>",
+          "example": "</a>"
+        },
+        "Link2": {
+          "content": "<a class=\"open-settings\" href=\"#\">",
+          "example": "<a>"
+        },
+        "LinkEnd2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
+    },
+    "installPage_Wrong": {
+      "message": "It syncs to the wrong MAL entry?",
+      "description": "Header of the wrong section on the install page"
+    },
+      "installPage_Wrong_Description": {
+      "message": "You can easily change the relation like shown in the gif below. An episode offset can be set on that page too.",
+      "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",

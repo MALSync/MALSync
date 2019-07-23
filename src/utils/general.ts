@@ -90,7 +90,7 @@ export function urlChangeDetect(callback){
           currentPage = window.location.href;
           callback();
       }
-  }, 1000);
+  }, 100);
 }
 
 export function changeDetect(callback, func){
@@ -101,7 +101,7 @@ export function changeDetect(callback, func){
       currentPage = func();
       callback();
     }
-  }, 1000);
+  }, 500);
 }
 
 export function waitUntilTrue(condition, callback){
@@ -111,7 +111,7 @@ export function waitUntilTrue(condition, callback){
           clearInterval(Interval);
           callback();
       }
-  }, 1000);
+  }, 100);
   return Interval;
 }
 

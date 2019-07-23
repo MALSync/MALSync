@@ -46,13 +46,13 @@
         <button @click="noMal()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="malNotOnMal" style="margin-left: 5px; float: right; margin-left: auto;" :title="lang('correction_NoMal')">No MAL</button>
       </div>
 
-      <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword">
+      <searchVue :keyword="searchKeyword" :type="searchType" v-show="searchKeyword" @clicked="searchClick">
         <div class="mdl-grid" style="justify-content: space-around;">
           <select v-model="searchType" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
             <option value="anime">Anime</option>
             <option value="manga">Manga</option>
           </select>
-          <a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem nojs" href="" style="cursor: pointer;">
+          <a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem nojs" href="" style="cursor: pointer;" @click="noMal($event)">
             <div style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"/>
             <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
               <span style="font-size: 20px; font-weight: 400; line-height: 1;">
@@ -102,15 +102,6 @@
     mounted: function(){
       if(!/^local:\/\//i.test(this.url)) this.malUrl = this.url;
       j.$(this.$el).closest('html').find("head").click();
-      var This = this;
-      j.$(this.$el).on('click', '.searchItem', function(e){
-        e.preventDefault();
-        if(typeof j.$(this).data('mal') !== 'undefined'){
-          This.submit(j.$(this).data('mal'));
-        }else{
-          This.submit(j.$(this).attr('href'));
-        }
-      });
       if(this.wrong){
         this.$parent.$parent.currentTab = 'settings';
       }
@@ -167,7 +158,8 @@
         utils.flashm(api.storage.lang("correction_NewUrl",[malUrl]) , false);
         this.page.handlePage();
       },
-      noMal: function(){
+      noMal: function(e = false){
+        if(e) e.preventDefault();
         this.submit('');
       },
       reset: function(){
@@ -182,6 +174,14 @@
       searchFocus: function(){
         if(this.searchKeyword == ''){
           this.searchKeyword = this.title;
+        }
+      },
+      searchClick: async function(item){
+        var malUrl = await item.malUrl();
+        if(typeof malUrl !== 'undefined' && malUrl){
+          this.submit(malUrl);
+        }else{
+          this.submit(item.url);
         }
       }
     }

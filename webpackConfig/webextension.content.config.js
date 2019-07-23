@@ -8,8 +8,10 @@ module.exports = {
     'mal-script': path.join(__dirname, '..', 'src/index-webextension/myanimelist.ts'),
     'anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilist.ts'),
     'kitsu-script': path.join(__dirname, '..', 'src/index-webextension/kitsu.ts'),
+    'simkl-script': path.join(__dirname, '..', 'src/index-webextension/simkl.ts'),
     'iframe': path.join(__dirname, '..', 'src/iframe.ts'),
     'popup': path.join(__dirname, '..', 'src/popup.ts'),
+    'install': path.join(__dirname, '..', 'src/index-webextension/install.ts'),
     'update-check': path.join(__dirname, '..', 'src/updateCheck.ts'),
   },
   module: {

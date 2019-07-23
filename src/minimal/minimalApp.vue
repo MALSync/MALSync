@@ -60,7 +60,7 @@
               </select>
             </div>
           </bookmarksVue>
-          <searchVue v-if="currentTab == tabs.search.title" :keyword="tabs.search.keyword" :type="tabs.search.type">
+          <searchVue v-if="currentTab == tabs.search.title" :keyword="tabs.search.keyword" :type="tabs.search.type" @clicked="searchClick">
             <div class="mdl-grid" style="justify-content: space-around;">
               <select v-model="tabs.search.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="anime">Anime</option>
@@ -337,6 +337,7 @@
         if(/^https:\/\/myanimelist.net\/(anime|manga)\/\d+/i.test(url) ||
            /^https:\/\/kitsu.io\/(anime|manga)\/.+/i.test(url) ||
            /^https:\/\/anilist.co\/(anime|manga)\/\d+/i.test(url) ||
+           /^https:\/\/simkl.com\/(anime|manga)\/\d+/i.test(url) ||
            /^local:\/\//i.test(url)
           ){
           if(!isBase){
@@ -350,6 +351,18 @@
           this.selectTab('bookmarks');
         }
         return false;
+      },
+      urlClick(url){
+        if(!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
+
+        if(!this.fill(url)){
+          var win = window.open(url, '_blank');
+          if (win) {
+              win.focus();
+          } else {
+              alert(api.storage.lang("minimalClass_Popup"));
+          }
+        }
       },
       fillBase(url){
         con.log('Fill Base', url, this.history);
@@ -413,6 +426,9 @@
         this.$nextTick(() => {
           this.currentTab = 'listSync';
         });
+      },
+      searchClick(item){
+        this.urlClick(item.url);
       }
     }
   }
