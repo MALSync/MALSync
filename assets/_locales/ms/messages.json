@@ -579,6 +579,10 @@
     "message": "Munculkan miniMAL ke",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "Buka dalam tetingkap yang berasingan",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Kiri",
     "description": "miniMAL Display Left"
@@ -748,7 +752,7 @@
     }
   },
   "minimalClass_versionMsg_Text_1": {
-    "message": "Terima kasih kerana memasang MAL-Sync",
+    "message": "Terima kasih kerana telah memasang MAL-Sync",
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
@@ -760,8 +764,46 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Pengguna UBlock sila melanggan ke senarai penapis!<br>Ini dapat membetulkan beberapa masalah seperti imej yang hilang.",
+    "message": "Pengguna uBlock sila melanggan ke senarai penapis!<br>Hal ini dapat membetulkan beberapa masalah seperti imej yang hilang.",
     "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Sila pilih pangkalan data anime yang akan anda gunakan:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Bagaimana nak guna?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Hanya buka episod atau bab pada mana-mana $Link1$halaman yang disokong$LinkEnd1$. Penyegerakan akan melambatkan sehingga 85% kemajuan video. Untuk manga ia akan disegerakkan apabila memuatkan halaman. Anda boleh menukar terapan ini pada $Link2$tetapan$LinkEnd2$",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Disegerakkan kepada entri MAL yang salah?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Anda boleh menukar hubungan antara halaman dan entri seperti yang ditunjukkan dalam GIF berikut. Offset episod juga boleh ditetapkan melalui halaman juga.",
+    "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
     "message": "Sila sahkan $Link1$disini$Link2$",
