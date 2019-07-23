@@ -579,6 +579,10 @@
     "message": "Tampilkan miniMAL ke",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "Buka di jendela terpisah",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Kiri",
     "description": "miniMAL Display Left"
@@ -748,7 +752,7 @@
     }
   },
   "minimalClass_versionMsg_Text_1": {
-    "message": "Terimakasih untuk memasang MAL-Sync",
+    "message": "Terimakasih untuk telah memasang MAL-Sync",
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
@@ -762,6 +766,44 @@
   "minimalClass_versionMsg_Text_4": {
     "message": "Pengguna uBlock tolong untuk subscribe ke dalam list filter! Hal ini dapat memperbaiki beberapa masalah seperti gambar menghilang.",
     "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Silahkan pilih database anime apa yang kamu akan gunakan",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Bagaimana cara menggunaka?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Cukup buka satu episode atau bab di salah satu $Link1$halaman yang didukung $LinkEnd1$. Sinkronisasi akan ditunda (di-delay) sampai 85% dari kemajuan video. Untuk manga akan disinkronkan pada saat memuat laman. Kamu dapat mengubah setelan ini di $Link2$pengaturan$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Disinkronkan ke entri MAL yang salah?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Kamu dapat mengubahnya dengan mudah  relasi antara laman dan entri seperti yang ditunjukkan pada GIF berikut. Offset episode dapat diatur melalui halaman juga.",
+    "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
     "message": "Tolong Otentikasikan $Link1$Disini$Link2$",
