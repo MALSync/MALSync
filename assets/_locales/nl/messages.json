@@ -12,12 +12,16 @@
     "description": "Help"
   },
   "Update": {
-    "message": "Update",
+    "message": "Updaten",
     "description": "Update"
   },
   "Reset": {
     "message": "Reset",
     "description": "Reset"
+  },
+  "Remove": {
+    "message": "Verwijder",
+    "description": "Button for removing entry from MAL..."
   },
   "Loading": {
     "message": "Laden",
@@ -451,6 +455,18 @@
     "message": "Authenticatie",
     "description": "Authenticate"
   },
+  "settings_LocalSync": {
+    "message": "Fallback lokale inhoud",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Importeren",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Exporteren",
+    "description": "Button to Export Local storage fallback data"
+  },
   "settings_Animesync": {
     "message": "Anime synchronisatie",
     "description": "Anime sync"
@@ -563,6 +579,10 @@
     "message": "Toon de",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "Openen in een apart venster",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Links",
     "description": "miniMAL Display Left"
@@ -590,6 +610,18 @@
   "settings_miniMAL_NotSet": {
     "message": "Niet gezet",
     "description": "miniMAL Not Set"
+  },
+  "settings_Video_Player": {
+    "message": "Video speler",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Automatisch volledig scherm",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Automatisch hervatten",
+    "description": "Auto resume video where you left off toggle"
   },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Sla de opening over",
@@ -646,7 +678,7 @@
     "description": "Userscript mode - Text"
   },
   "settings_StrictCookies": {
-    "message": "Stricte Cookies",
+    "message": "Strikte Cookies",
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
@@ -731,12 +763,68 @@
     "message": "Open Source Code:",
     "description": "Update version - Text 3"
   },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "uBlock gebruikers voeg dit alstublieft toe aan uw filter lijst! Dit voorkomt problemen zoals niet werkende afbeeldingen.",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Kies alstublieft welke Anime database u wilt gebruiken:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Gebruiksaanwijzing?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Open geen een aflevering of hoofdstuk van een willekeurig $Link1$supported pages$LinkEnd1$. De synchronisatie wacht dan totdat 85% van de video is bekeken. Voor manga's synchroniseert het wanneer het de pagina laad. Dit kan veranderd worden in de $Link2$settings$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Synchroniseert het de verkeerde MAL resultaat?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Je kunt gemakkelijk de relatie veranderen in het gif beneden. Een offset aflevering kan ook op die pagina worden gekozen.",
+    "description": "Description of the wrong section on the install page"
+  },
   "Anilist_Authenticate": {
     "message": "Authentiseer $Link1$Here$link2$ alstublieft",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
         "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync heeft een Emby API key nodig om te werken. Meer info $Link1$Here$Link2",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
         "example": "<a>"
       },
       "Link2": {
