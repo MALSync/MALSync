@@ -202,6 +202,12 @@
     },
     mounted() {
       componentHandler.upgradeDom();
+
+      var settingsEl = document.getElementsByClassName("open-settings")[0];
+      settingsEl.addEventListener("click", function(e){
+        con.log('Open Settings');
+        chrome.runtime.openOptionsPage();
+      });
     },
     computed: {
       syncMode: {
