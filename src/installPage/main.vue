@@ -111,6 +111,10 @@
 </template>
 
 <style lang="less">
+p{
+  font-size: 16px;
+}
+
 #iconimage {
   filter: contrast(1.1);
   margin-top:-5px;
