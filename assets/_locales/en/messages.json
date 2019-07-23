@@ -778,8 +778,26 @@
       "description": "Header for how to use section"
     },
     "installPage_Howto_Description": {
-      "message": "Just open the episode or chapter on any of the supported pages. The sync waits by default for 85% of the video before it gets synced. For mangas It syncs on page load. This can be changed in the options. They can be found in the browser popup (mal-sync icon) next to your urlbar.",
-      "description": "How to use description text"
+      "message": "Just open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$. The sync waits until 85% of the video is watched. For mangas it syncs on page load. This can be changed in the $Link2$settings$LinkEnd2$.",
+      "description": "How to use description text",
+      "placeholders": {
+        "Link1": {
+          "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+          "example": "<a>"
+        },
+        "LinkEnd1": {
+          "content": "</a>",
+          "example": "</a>"
+        },
+        "Link2": {
+          "content": "<a class=\"open-settings\" href=\"#\">",
+          "example": "<a>"
+        },
+        "LinkEnd2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
     },
     "installPage_Wrong": {
       "message": "It syncs to the wrong entry?",
