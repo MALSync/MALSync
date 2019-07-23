@@ -764,7 +764,7 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Utilisateur de uBlock users s'il vous plaît abonné vous a cette liste de filtre !<br>Cela corrigera certain problème comme les images cassé",
+    "message": "Utilisateur de uBlock users s'il vous plaît abonné vous a cette liste de filtre !Cela corrigera certain problème comme les images cassé",
     "description": "Update version - Text 4"
   },
   "Anilist_Authenticate": {
