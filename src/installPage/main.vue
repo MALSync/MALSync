@@ -25,80 +25,85 @@
   <main class="demo-main mdl-layout__content">
     <div class="demo-container mdl-grid">
       <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-      <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+      <div class="mdl-cell mdl-cell--8-col">
+        <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
 
-        <h3 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h3>
-        <h4>{{lang("installPage_Mode")}}</h4>
-        <span class="mdl-list__item-secondary-action">
-          <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
-            <option value="" disabled selected hidden>-- Select --</option>
-            <option value="MAL">MyAnimeList</option>
-            <option value="ANILIST">AniList</option>
-            <option value="KITSU">Kitsu</option>
-            <option value="SIMKL">Simkl</option>
-          </select>
-        </span>
-        <div class="syncExtended" v-if="options.syncMode !== 'MAL'">
-          <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
-            <span class="mdl-list__item-primary-content">
-              Simkl
-            </span>
-            <span class="mdl-list__item-secondary-action">
-              <a target="_blank" href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/">{{lang("settings_Authenticate")}}</a>
-            </span>
-          </li>
-          <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
-            <option value="MAL">MyAnimeList</option>
-            <option value="ANILIST">AniList</option>
-            <option value="KITSU">Kitsu</option>
-          </dropdown>
 
-          <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')">
-            <span class="mdl-list__item-primary-content">
-              AniList
-            </span>
-            <span class="mdl-list__item-secondary-action">
-              <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
-            </span>
-          </li>
-          <li class="mdl-list__item" v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')">
-            <span class="mdl-list__item-primary-content">
-              Kitsu
-            </span>
-            <span class="mdl-list__item-secondary-action">
-              <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
-            </span>
-          </li>
+          <h3 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h3>
+          <h4>{{lang("installPage_Mode")}}</h4>
+          <span class="mdl-list__item-secondary-action">
+            <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
+              <option value="" disabled selected hidden>-- Select --</option>
+              <option value="MAL">MyAnimeList</option>
+              <option value="ANILIST">AniList</option>
+              <option value="KITSU">Kitsu</option>
+              <option value="SIMKL">Simkl</option>
+            </select>
+          </span>
+          <div class="syncExtended" v-if="options.syncMode !== 'MAL'">
+            <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
+              <span class="mdl-list__item-primary-content">
+                Simkl
+              </span>
+              <span class="mdl-list__item-secondary-action">
+                <a target="_blank" href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/">{{lang("settings_Authenticate")}}</a>
+              </span>
+            </li>
+            <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
+              <option value="MAL">MyAnimeList</option>
+              <option value="ANILIST">AniList</option>
+              <option value="KITSU">Kitsu</option>
+            </dropdown>
+
+            <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')">
+              <span class="mdl-list__item-primary-content">
+                AniList
+              </span>
+              <span class="mdl-list__item-secondary-action">
+                <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
+              </span>
+            </li>
+            <li class="mdl-list__item" v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')">
+              <span class="mdl-list__item-primary-content">
+                Kitsu
+              </span>
+              <span class="mdl-list__item-secondary-action">
+                <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
+              </span>
+            </li>
+          </div>
+
+          <h4>{{lang("installPage_Howto")}}</h4>
+          <p>{{lang("installPage_Howto_Description")}}</p>
+
+          <h4>{{lang("installPage_Wrong")}}</h4>
+          <p>{{lang("installPage_Wrong_Description")}}</p>
+          <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            {{lang("Show")}}
+          </button>
+          <p v-if="show" class="correctionGif">
+            <img id="hiddenimage" height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
+          </p>
+
+          <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
+          <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
+            <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square">
+          </a>
+          <h4>{{lang("minimalClass_versionMsg_Text_2")}}</h4>
+          <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
+            <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
+          </a>
+          <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
+            <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
+          </a>
+
+          <h4>{{lang("minimalClass_versionMsg_Text_3")}}</h4>
+          <a target="_blank" href="https://github.com/lolamtisch/MALSync">
+            <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
+          </a>
+
+
         </div>
-
-        <h4>{{lang("installPage_Howto")}}</h4>
-        <p>{{lang("installPage_Howto_Description")}}</p>
-
-        <h4>{{lang("installPage_Wrong")}}</h4>
-        <p>{{lang("installPage_Wrong_Description")}}</p>
-        <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-          {{lang("Show")}}
-        </button>
-        <p v-if="show" class="correctionGif">
-          <img id="hiddenimage" height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
-        </p>
-
-        <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
-        <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
-          <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square">
-        </a>
-        <h4>{{lang("minimalClass_versionMsg_Text_2")}}</h4>
-        <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
-          <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
-        </a>
-        <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
-          <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
-        </a>
-
-        <h4>{{lang("minimalClass_versionMsg_Text_3")}}</h4>
-        <a target="_blank" href="https://github.com/lolamtisch/MALSync">
-          <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
-        </a>
       </div>
     </div>
   </main>
