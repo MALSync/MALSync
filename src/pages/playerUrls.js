@@ -28,6 +28,7 @@ module.exports = {
   rapidvideo: {
     match: [
       '*://*.rapidvideo.com/*',
+      '*://*.rapidvid.to/*'
     ]
   },
   crunchyroll: {
