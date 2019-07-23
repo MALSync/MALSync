@@ -19,6 +19,10 @@
     "message": "Sıfırla",
     "description": "Reset"
   },
+  "Remove": {
+    "message": "Kaldır",
+    "description": "Button for removing entry from MAL..."
+  },
   "Loading": {
     "message": "Yükleniyor",
     "description": "Loading"
@@ -451,6 +455,18 @@
     "message": "Doğrulama",
     "description": "Authenticate"
   },
+  "settings_LocalSync": {
+    "message": "Yerel depoya geridönüş (log gibi)",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "İçeri aktarmak",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Dışarı aktarmak",
+    "description": "Button to Export Local storage fallback data"
+  },
   "settings_Animesync": {
     "message": "Anime senkronizasyonu",
     "description": "Anime sync"
@@ -563,6 +579,10 @@
     "message": "miniMAL yeri",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "Ayrı bir pencerede aç",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Sol",
     "description": "miniMAL Display Left"
@@ -590,6 +610,18 @@
   "settings_miniMAL_NotSet": {
     "message": "Ayarlanmamış",
     "description": "miniMAL Not Set"
+  },
+  "settings_Video_Player": {
+    "message": "Video Oynatıcısı",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Otomatik Tam ekran",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Otomatik Devam Ettirme",
+    "description": "Auto resume video where you left off toggle"
   },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Açılışları atlar",
@@ -731,12 +763,68 @@
     "message": "Açık Kaynak Kodu:",
     "description": "Update version - Text 3"
   },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "uBlock kullanıcıları lütfen bu filtreler listesine abone olun! Bu bozuk resimler gibi problemleri çözer  ",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Hangi Anime veritabanını kullanmak istediğinizi seçin:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Nasıl Kullanılır?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Sadece desteklenen sitelerden $Link1$supported pages$LinkEnd1$ bir bölüm yada manga bölümü açın. Senkronize işlemi videonun %85'inin izlenmesini bekler. Mangalar için sayfaların yüklenmesini bekler. Bu ayar burdan değiştirilebilir $Link2$settings$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "MAL girdisi yanlış mı senkronize oldu?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Kolaylıkla anime ilişkilerini alttaki gifte gösterildiği gibi değiştirebilirsiniz. Bir bölüm dengelemesini de bu sayfadan ayarlayabilirsiniz.",
+    "description": "Description of the wrong section on the install page"
+  },
   "Anilist_Authenticate": {
     "message": "Lütfen doğrulamayı yapın $Link1$Here$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
         "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$Here$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
         "example": "<a>"
       },
       "Link2": {
