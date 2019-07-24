@@ -767,6 +767,44 @@
     "message": "Utilisateur de uBlock users s'il vous plaît abonné vous a cette liste de filtre !Cela corrigera certain problème comme les images cassé",
     "description": "Update version - Text 4"
   },
+  "installPage_Mode": {
+    "message": "Veuillez sélectionner quelle base d'animés vous voulez utiliser :",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Comment utiliser",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Regardez un épisode ou un chapitre de n'importe quel $Link1$sites supportés$LinkEnd1$. La synchronisation se fait quand 85% de la vidéo est vue. Pour les mangas la synchronisation se fait à chaque changement de page.  Vous pouvez modifier celà dans les $Link2$paramètres$LinkEnd2$",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Synchronisation avec une mauvaise saisie MAL",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Vous pouvez facilement changer la relation comme montré dans le gif ci-dessous. Un décalage d'épisode peut aussi être sélectionnée sur cette page",
+    "description": "Description of the wrong section on the install page"
+  },
   "Anilist_Authenticate": {
     "message": "S'il vous plait connecter vous $Link1$Here$Link2$",
     "description": "Update version - Text 3",
