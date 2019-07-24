@@ -12,8 +12,8 @@ cache:
 install:
   - npm install
 script:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh ./package/localization/deploy.sh; fi
   - npm run build
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh ./package/localization/deploy.sh; fi
   - npm run test
 before_deploy:
   - npm run package
