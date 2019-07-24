@@ -4,9 +4,9 @@
 [![Codacy Badge](https://img.shields.io/codacy/grade/e07fabd76b97499788614bf48f8248db.svg?style=flat-square&logo=codacy&logoColor=white)](https://www.codacy.com/app/francisco.seipel/MALSync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lolamtisch/MALSync&amp;utm_campaign=Badge_Grade)
 
 # MAL-Sync
-**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu and multiple anime streaming websites.  
+**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.  
 
-Makes it possible to use your MyAnimeList/Anilist/Kitsu anime/mangalist as a centralized bookmarks system for all supported pages.  
+Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as a centralized bookmarks system for all supported pages.  
 
 #### **Supported Pages** <a id="anchor-link"></a>
 

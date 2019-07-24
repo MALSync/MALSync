@@ -138,7 +138,7 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu</h2>
+          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu / Simkl</h2>
         </div>
         <checkbox option="epPredictions">{{lang("settings_epPredictions")}}</checkbox>
         <checkbox option="malTags">
