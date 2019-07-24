@@ -19,6 +19,10 @@
     "message": "Azzera",
     "description": "Reset"
   },
+  "Remove": {
+    "message": "Rimuovi",
+    "description": "Button for removing entry from MAL..."
+  },
   "Loading": {
     "message": "Caricamento",
     "description": "Loading"
@@ -110,6 +114,10 @@
   "UI_Score": {
     "message": "Voto:",
     "description": "Score"
+  },
+  "UI_Score_Not_Rated": {
+    "message": "Senza Voto",
+    "description": "Text if nothing is selected in the rating dropdown"
   },
   "UI_Score_Masterpiece": {
     "message": "(10) Capolavoro",
@@ -307,6 +315,26 @@
     "message": "minuti",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Prossimo episodio tra $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "In onda tra $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Sfasamento Episodi",
     "description": "Episode Offset"
@@ -317,7 +345,7 @@
   },
   "correction_WrongUrl": {
     "message": "Cambia questo URL solo se porta alla pagina sbagliata su MAL.",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Cerca Anime Corretto",
@@ -329,7 +357,7 @@
   },
   "correction_NoMal": {
     "message": "Se l'Anime/Manga non viene trovato su MAL",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "Nessuna Voce su MyAnimeList",
@@ -351,7 +379,7 @@
   },
   "correction_NewUrl": {
     "message": "nuovo URL '$malUrl$' impostato.",
-    "description": "new url",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -361,7 +389,7 @@
   },
   "correction_NewUrlReset": {
     "message": "URL di MyAnimeList azzerato",
-    "description": "url reset"
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "Continua a guardare",
@@ -426,6 +454,18 @@
   "settings_Authenticate": {
     "message": "Autenticati",
     "description": "Authenticate"
+  },
+  "settings_LocalSync": {
+    "message": "Archiviazione locale di riserva",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Importa",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Esporta",
+    "description": "Button to Export Local storage fallback data"
   },
   "settings_Animesync": {
     "message": "Sincronizzazione Anime",
@@ -539,6 +579,10 @@
     "message": "Mostra a",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "Apri in una finestra separata",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Sinistra",
     "description": "miniMAL Display Left"
@@ -567,9 +611,29 @@
     "message": "Non Inserito",
     "description": "miniMAL Not Set"
   },
+  "settings_Video_Player": {
+    "message": "Lettore Video",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Schermo intero automatico",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Riprendi il video in automatico",
+    "description": "Auto resume video where you left off toggle"
+  },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Salta la sigla iniziale",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Torna all'inizio della sigla",
+    "description": "Description for the the opening skip shortcut"
+  },
   "settings_introSkip": {
     "message": "Salta $Seconds$ Secondi",
-    "description": "Skips video Seconds",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -667,7 +731,7 @@
   },
   "minimalClass_Popup": {
     "message": "Permetti i popup su questo sito",
-    "description": "Please allow popups for this website"
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "Aggiornato alla versione $Version$ $Link$CAMBIAMENTI$LinkEnd$",
@@ -699,12 +763,68 @@
     "message": "Codice Open Source:",
     "description": "Update version - Text 3"
   },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "Utenti di uBlock iscrivetevi a questo filtro! Corregge alcuni problemi. Ad esempio",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Seleziona il database di anime che vuoi usare",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Come si usa?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Riproduci un episodio o inizia a leggere un manga da uno dei $Link1$siti supportati$LinkEnd1$. La sincronizzazione avviene dopo aver guaradato l'85% dell'episodio. Per i manga la sincronizzazione avviene quando carica la pagina. Puoi modificare queste opzioni dalle $Link2$impostazioni$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Viene sincronizzata  la serie sbagliata da MAL?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Puoi impostare la serie giusta come mostrato nella gif qui sotto. Puoi anche impostare lo sfasamento degli episodi.",
+    "description": "Description of the wrong section on the install page"
+  },
   "Anilist_Authenticate": {
     "message": "Autenticati $Link1$Qui$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
         "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync ha bisogno di un'API key di Emby per funzionare. $Link1$Maggiori informazioni$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
         "example": "<a>"
       },
       "Link2": {
