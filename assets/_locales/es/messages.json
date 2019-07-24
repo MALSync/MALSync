@@ -111,6 +111,10 @@
     "message": "Tu puntuación:",
     "description": "Score"
   },
+  "UI_Score_Not_Rated": {
+    "message": "No calificado",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
   "UI_Score_Masterpiece": {
     "message": "(10) Obra maestra",
     "description": "Masterpiece - Score"
@@ -307,6 +311,26 @@
     "message": "mins",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Siguiente episodio estimado en $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "Emisión en $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Episodio Offset",
     "description": "Episode Offset"
@@ -317,7 +341,7 @@
   },
   "correction_WrongUrl": {
     "message": "Solo cambia esta URL si apunta a la página de anime incorrecta en MAL.",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Búsqueda de corrección",
@@ -329,7 +353,7 @@
   },
   "correction_NoMal": {
     "message": "Si el Anime / Manga no se puede encontrar en MAL",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "No hay entrada en MyAnimeList",
@@ -350,8 +374,8 @@
     "description": "Offset reset"
   },
   "correction_NewUrl": {
-    "message": "nueva url '$malUrl$' establecida.",
-    "description": "new url",
+    "message": "Nueva URL '$malUrl$' establecida.",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -360,8 +384,8 @@
     }
   },
   "correction_NewUrlReset": {
-    "message": "MyAnimeList url reiniciada",
-    "description": "url reset"
+    "message": "MyAnimeList URL reiniciada",
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "Continuar viendo",
@@ -401,7 +425,7 @@
   },
   "overview_EndingTheme": {
     "message": "Ending:",
-    "description": "Opening Theme"
+    "description": "Ending Theme"
   },
   "search_Type": {
     "message": "Tipo:",
@@ -567,9 +591,17 @@
     "message": "No establecido",
     "description": "miniMAL Not Set"
   },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Saltar la introducción",
+    "description": "Description for the intro skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Saltar los créditos(Final)",
+    "description": "Description for the intro skip shortcut"
+  },
   "settings_introSkip": {
     "message": "Salta $Seconds$ Segundos",
-    "description": "Skips video Seconds",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -666,8 +698,8 @@
     "description": "Settings"
   },
   "minimalClass_Popup": {
-    "message": "Por favor permita popups para este sitio web",
-    "description": "Please allow popups for this website"
+    "message": "Por favor permita pop-ups para este sitio web",
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "Actualizado a la versión $Version$ $Link$CHANGELOG$LinkEnd$",
