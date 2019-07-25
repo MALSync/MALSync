@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integreert MyAnimeList/AniList/Kitsu naar verschillende sites, met automatische afleveringen tracker.",
+    "message": "Integreert MyAnimeList/AniList/Kitsu/Simkl naar verschillende sites, met automatische afleveringen tracker.",
     "description": "Description MALSync"
   },
   "UI_Status": {

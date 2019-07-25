@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integrerar MyAnimeList/AniList/Kitsu till olika platser, med automatisk episodspårning.",
+    "message": "Integrerar MyAnimeList/AniList/Kitsu/Simkl till olika platser, med automatisk episodspårning.",
     "description": "Description MALSync"
   },
   "UI_Status": {

@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integra MyAnimeList/AniList/Kitsu en varios sitios, con seguimiento automático de episodios.",
+    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl en varios sitios, con seguimiento automático de episodios.",
     "description": "Description MALSync"
   },
   "UI_Status": {

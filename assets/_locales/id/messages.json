@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Mengintegrasi MyAnimeList/AniList/Kitsu ke beragam situs dengan pelacak episode otomatis.",
+    "message": "Mengintegrasi MyAnimeList/AniList/Kitsu/Simkl ke beragam situs dengan pelacak episode otomatis.",
     "description": "Description MALSync"
   },
   "UI_Status": {
