@@ -455,6 +455,14 @@
     "message": "Autentisera",
     "description": "Authenticate"
   },
+  "settings_LocalSync_Import": {
+    "message": "Import",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Export",
+    "description": "Button to Export Local storage fallback data"
+  },
   "settings_Animesync": {
     "message": "Anime synkronisering",
     "description": "Anime sync"
@@ -566,6 +574,10 @@
   "settings_miniMAL_Display": {
     "message": "Visa till",
     "description": "Display to the"
+  },
+  "settings_miniMAL_window": {
+    "message": "Öppna i ett separat fönster",
+    "description": "Open miniMAL in separate window checkbox"
   },
   "settings_miniMAL_Display_Left": {
     "message": "Vänster",
@@ -780,6 +792,14 @@
         "example": "</a>"
       }
     }
+  },
+  "installPage_Wrong": {
+    "message": "Syncronyseras den till fel MAL \"avdelning\"?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Du kan lätt ändra anslutningen \"som visad i gifen under\". Om nummret på episode inte stämmer så kan du  ändra det här också.",
+    "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
     "message": "Vänligen autentisera $Link1$här$Link2$",
