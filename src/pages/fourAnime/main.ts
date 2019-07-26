@@ -30,7 +30,13 @@ export const fourAnime: pageInterface = {
       .text()
       .replace(/\D+/g, "")
       .replace(/^0+/g, "");
-    }
+    },
+    nextEpUrl: function(url){
+      var href = j.$(".anipager-next a").first().attr('href');
+      if(typeof href !== 'undefined'){
+        return utils.absoluteLink(href, fourAnime.domain);
+      }
+    },
   },
   overview:{
     getTitle: function(url){

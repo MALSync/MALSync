@@ -21,7 +21,13 @@ export const Animefreak: pageInterface = {
     },
     getEpisode: function(url){
       return url.split("/")[6].replace(/\D+/g, "");;
-    }
+    },
+    nextEpUrl: function(url){
+      var href = j.$(".fa-step-forward").first().parent().attr('href');
+      if(typeof href !== 'undefined'){
+        return utils.absoluteLink(href, Animefreak.domain);
+      }
+    },
   },
   overview:{
     getTitle: function(url){

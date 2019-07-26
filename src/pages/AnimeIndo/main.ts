@@ -28,6 +28,12 @@ export const AnimeIndo: pageInterface = {
         }
       }
     },
+    nextEpUrl: function(url){
+      var href = j.$(".nav.next a").first().attr('href');
+      if(typeof href !== 'undefined'){
+        return utils.absoluteLink(href, AnimeIndo.domain);
+      }
+    },
   },
   overview:{
     getTitle: function(url){

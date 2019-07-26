@@ -510,6 +510,7 @@ var testsArray = [
           identifier: 'plastic-memories-bluray-ver-720p-hd',
           overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html',
           episode: 4,
+          nextEpUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html?ep=5',
           uiSelector: true,
         }
       },
@@ -528,6 +529,7 @@ var testsArray = [
           identifier: 'no-game-no-life',
           overviewUrl: 'https://4anime.to/anime/no-game-no-life',
           episode: 4,
+          nextEpUrl: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
           uiSelector: false,
         }
       },
@@ -646,6 +648,7 @@ var testsArray = [
           identifier: 'initial-d-first-stage',
           overviewUrl: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
           episode: 5,
+          nextEpUrl: 'https://animedaisuki.moe/watch/6381/initial-d-first-stage-6',
           uiSelector: false,
         }
       },
@@ -670,8 +673,9 @@ var testsArray = [
           sync: true,
           title: 'Mahouka Koukou no Rettousei',
           identifier: 'mahouka-koukou-no-rettousei',
-          overviewUrl: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei',
           episode: 23,
+          nextEpUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-24',
           uiSelector: false,
         }
       },
@@ -752,6 +756,18 @@ var testsArray = [
     url: 'https://www.riie.net/',
     testCases: [
       {
+        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-1-subtitle-indonesia/',
+        expected: {
+          sync: true,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
+          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+          episode: 1,
+          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-2-subtitle-indonesia/',
+          uiSelector: false,
+        }
+      },
+      {
         url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-23-subtitle-indonesia/',
         expected: {
           sync: true,
@@ -759,6 +775,7 @@ var testsArray = [
           identifier: 'tate-no-yuusha-no-nariagari',
           overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
           episode: 23,
+          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-24-subtitle-indonesia/',
           uiSelector: false,
         }
       },
@@ -785,6 +802,7 @@ var testsArray = [
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
+          nextEpUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-10',
           uiSelector: false,
         }
       },
@@ -838,6 +856,7 @@ var testsArray = [
           identifier: 'zankyou-no-terror',
           overviewUrl: 'http://animeindo.moe/anime/zankyou-no-terror',
           episode: 6,
+          nextEpUrl: 'http://animeindo.moe/zankyou-no-terror-episode-07.html',
           uiSelector: false,
         }
       },

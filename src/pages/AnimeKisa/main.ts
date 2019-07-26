@@ -20,29 +20,37 @@ export const AnimeKisa: pageInterface = {
       return AnimeKisa.domain + "/" + j.$("div.c a.infoan2").attr("href");
     },
     getEpisode: function(url){
-      return j.$("#playerselector option:selected").text().replace(/\D+/g, "");}
+      return j.$("#playerselector option:selected").text().replace(/\D+/g, "");
     },
-    overview:{
-      getTitle: function(url){
-        return j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
-      },
-      getIdentifier: function(url){
-        return url.split("/")[3];
-      },
-      uiSelector: function(selector){selector.insertBefore(j.$(".infoepboxmain").first());},
-    },
-    init(page){
-      if(document.title == "Just a moment..."){
-        con.log("loading");
-        page.cdn();
-        return;
+    nextEpUrl: function(url){
+      var num = $("#playerselector").find("option:selected").next().attr('value');
+      var href = url.replace(/\d+$/, num);
+      if(typeof num !== 'undefined' && href !== url){
+        return utils.absoluteLink(href, AnimeKisa.domain);
       }
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-      j.$(document).ready(function(){
-        if (page.url.split("/")[3] !== null && j.$("div.c a.infoan2")[0] && j.$("#playerselector option:selected")[0] || page.url.split("/")[3] !== null && j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("#body > div.notmain > div > div.infobox > div.infoepboxmain")[0])
-        {
-         page.handlePage();
-       }
-     });
+    },
+  },
+  overview:{
+    getTitle: function(url){
+      return j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
+    },
+    getIdentifier: function(url){
+      return url.split("/")[3];
+    },
+    uiSelector: function(selector){selector.insertBefore(j.$(".infoepboxmain").first());},
+  },
+  init(page){
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
     }
-  };
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    j.$(document).ready(function(){
+      if (page.url.split("/")[3] !== null && j.$("div.c a.infoan2")[0] && j.$("#playerselector option:selected")[0] || page.url.split("/")[3] !== null && j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("#body > div.notmain > div > div.infobox > div.infoepboxmain")[0])
+      {
+       page.handlePage();
+     }
+   });
+  }
+};
