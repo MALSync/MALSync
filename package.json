@@ -5,11 +5,13 @@
   "version": "0.6.0",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
     "@types/jquery": "^3.3.6",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^10.14.8",
     "archiver": "^3.0.0",
     "async-mutex": "^0.1.3",
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chrome-webstore-upload": "^0.2.2",
     "css-loader": "^1.0.0",
     "fs-extra": "^7.0.0",
@@ -24,7 +26,9 @@
     "terser-webpack-plugin": "^1.3.0",
     "to-string-loader": "^1.1.5",
     "ts-loader": "^4.4.2",
-    "typescript": "^3.5.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "typings": "^2.1.1",
     "vue": "^2.6.10",
     "vue-clazy-load": "^0.4.2",
     "vue-loader": "^15.6.2",
@@ -55,7 +59,9 @@
     "content": "npm run dev:webextension:content",
     "background": "npm run dev:webextension:background",
     "assets": "npm run build:webextension:assets",
-    "test": "webpack --config webpackConfig/test.config.js && mocha --recursive --timeout 45000 --retries 5 test/headless"
+    "test": "npm run test:ts && npm run test:headless",
+    "test:headless": "webpack --config webpackConfig/test.config.js && mocha --recursive --timeout 45000 --retries 5 test/headless",
+    "test:ts": "set TS_NODE_COMPILER_OPTIONS={\"module\":\"commonjs\"} && mocha -r  ts-node/register test/src/**/*.test.ts --module CommonJS && set TS_NODE_COMPILER_OPTIONS={\"module\":\"es6\"} "
   },
   "dependencies": {
     "@types/chrome": "0.0.72",

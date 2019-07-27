@@ -2,7 +2,8 @@
 export function getType(url){
   if(url.indexOf('anilist.co') !== -1) return 'ANILIST';
   if(url.indexOf('kitsu.io') !== -1) return 'KITSU';
-  return 'MAL';
+  if(url.indexOf('myanimelist.net') !== -1) return 'MAL';
+  throw 'Type not found';
 }
 
 export function changeCheck(item, mode){
