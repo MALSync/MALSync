@@ -44,7 +44,9 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![animeindo.moe](https://www.google.com/s2/favicons?domain=https://animeindo.moe "animeindo.moe")](animeindo.moe) [animeindo.moe](https://animeindo.moe) | | |
 | [![shinden.pl](https://www.google.com/s2/favicons?domain=https://shinden.pl "shinden.pl")](shinden.pl) [shinden.pl](https://shinden.pl) | | |
 | [![funimation.com](https://www.google.com/s2/favicons?domain=https://funimation.com "funimation.com")](funimation.com) [funimation.com](https://funimation.com) | | |
-| [![voiranime.com](https://www.google.com/s2/favicons?domain=http://voiranime.com "voiranime.com")](voiranime.com) [voiranime.com](http://voiranime.com) | | |
+| [![voiranime.com](https://www.google.com/s2/favicons?domain=http://voiranime.com "voiranime.com")](voiranime.com) [voiranime.com](http://voiranime.com) | | |  
+
+[List of supported features by page](pages.md)
 
 #### **Download**  
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
