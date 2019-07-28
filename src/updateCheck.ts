@@ -1,4 +1,5 @@
 import {syncPage} from "./pages/syncPage";
+import {pages} from "./pages/pages";
 
 con.log('updateCheck.ts');
 
@@ -9,7 +10,7 @@ api.settings.init()
     con.log(id);
     var episodeList = [];
 
-    var page = new syncPage(window.location.href);
+    var page = new syncPage(window.location.href, pages);
     page.cdn = function(){
       api.request.sendMessage({name: "iframeDone", id: 'retry', epList: []});
     }

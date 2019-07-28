@@ -1,4 +1,3 @@
-import {pages} from "./pages";
 import {pageInterface, pageState} from "./pageInterface";
 import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
@@ -12,7 +11,7 @@ export class syncPage{
 
   public novel = false;
 
-  constructor(public url){
+  constructor(public url, public pages){
     this.page = this.getPage(url);
     if (this.page == null) {
       throw new Error('Page could not be recognized');
@@ -28,8 +27,8 @@ export class syncPage{
   }
 
   private getPage(url){
-    for (var key in pages) {
-      var page = pages[key];
+    for (var key in this.pages) {
+      var page = this.pages[key];
       if(j.$.isArray(page.domain)){
         for (var k in page.domain) {
           var singleDomain = page.domain[k];
