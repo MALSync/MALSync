@@ -4,7 +4,7 @@ export const KissHentai: pageInterface = {
   name: "KissHentai",
   domain: "http://kisshentai.net",
   type: "anime",
-  isSyncPage: function(url) { 
+  isSyncPage: function(url) {
     if (url.split("/")[3] === "Hentai" && j.$('div#videoKissHentai')[0]){
       return true;
     } else {
