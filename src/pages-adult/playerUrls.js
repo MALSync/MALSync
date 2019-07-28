@@ -31,11 +31,6 @@ module.exports = {
       '*://*.rapidvid.to/*'
     ]
   },
-  crunchyroll: {
-    match: [
-      '*://*.static.crunchyroll.com/*',
-    ]
-  },
   Vrv: {
     match: [
       '*://*.static.vrv.co/*',
@@ -125,19 +120,9 @@ module.exports = {
       '*://*.mega.nz/*',
     ]
   },
-  animeflv: {
-    match: [
-      '*://*.animeflv.net/*',
-    ]
-  },
   netu: {
     match: [
       '*://*.hqq.tv/*',
-    ]
-  },
-  jkanime: {
-    match: [
-      '*://*.jkanime.net/*',
     ]
   },
   ok: {
@@ -145,24 +130,9 @@ module.exports = {
       '*://*.ok.ru/*',
     ]
   },
-  novelplanet: {
-    match: [
-      '*://*.novelplanet.me/*'
-    ]
-  },
-  proxer: {
-    match: [
-      '*://*.stream.proxer.me/*',
-    ]
-  },
   Verystream: {
     match: [
       '*://verystream.com/*'
-    ]
-  },
-  animeultima: {
-    match: [
-      '*://*.animeultima.eu/e/*'
     ]
   },
   vidoza: {
@@ -190,16 +160,6 @@ module.exports = {
       '*://flex.aniflex.org/public/dist/*'
     ]
   },
-  animedaisuki: {
-    match: [
-      '*://animedaisuki.moe/embed/*'
-    ]
-  },
-  Wakanim: {
-    match: [
-      '*://wakanim.tv/*/*/*/embeddedplayer/*',
-    ]
-  },
   superitu: {
     match: [
       '*://superitu.com/embed/*',
@@ -215,11 +175,6 @@ module.exports = {
     match: [
       '*://vev.io/embed/*',
       '*://vev.red/embed/*',
-    ]
-  },
-  Funimation: {
-    match: [
-      '*://www.funimation.com/player/*'
     ]
   },
   //voiranime
