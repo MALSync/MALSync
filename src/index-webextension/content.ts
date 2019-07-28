@@ -1,9 +1,10 @@
 import {syncPage} from "./../pages/syncPage";
 import {firebaseNotification} from "./../utils/firebaseNotification";
+import {pages} from "./../pages/pages";
 
 function main() {
   if(api.settings.get('userscriptMode')) throw 'Userscript mode';
-  var page = new syncPage(window.location.href);
+  var page = new syncPage(window.location.href, pages);
   messagePageListener(page);
   page.init();
   firebaseNotification();
