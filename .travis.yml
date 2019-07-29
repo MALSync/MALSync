@@ -27,6 +27,7 @@ deploy:
   file:
   - "./dist/mal_sync-*.xpi"
   - "./dist/malsync.user.js"
+  - "./dist/malsync-adult.user.js"
   - "./dist/webextension.zip"
   on:
     tags: true
