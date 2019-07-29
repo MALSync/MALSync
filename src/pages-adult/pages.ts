@@ -4,7 +4,6 @@ import {Hentaigasm} from "./Hentaigasm/main";
 import {KissHentai} from "./KissHentai/main";
 import {UnderHentai} from "./UnderHentai/main";
 
-
 import {pageSearchObj} from "./../pages/pageInterface";
 
 export const pages = {
