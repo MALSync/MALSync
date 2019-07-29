@@ -937,6 +937,128 @@ var testsArray = [
       }
     ]
   },
+  {
+    title: 'hanime', //nsfw
+    url: 'https://hanime.tv/',
+    testCases: [
+      {
+        url: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-2',
+        expected: {
+          sync: true,
+          title: 'Majuu Jouka Shoujo Utea',
+          identifier: 'majuu-jouka-shoujo-utea',
+          overviewUrl: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-1',
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
+  {
+    title: 'hentaihaven', //nsfw
+    url: 'https://hentaihaven.org/',
+    testCases: [
+      {
+        url: 'https://hentaihaven.org/rape-gouhouka-episode-2/',
+        expected: {
+          sync: true,
+          title: 'Rape Gouhouka!!!',
+          identifier: 'rape-gouhouka',
+          overviewUrl: 'https://hentaihaven.org/series/rape-gouhouka/',
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://hentaihaven.org/series/rape-gouhouka/',
+        expected: {
+          sync: false,
+          title: 'Rape Gouhouka!!!',
+          identifier: 'rape-gouhouka',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'hentaigasm', //nsfw
+    url: 'http://hentaigasm.com/',
+    testCases: [
+      {
+        url: 'http://hentaigasm.com/pinkerton-3-subbed/',
+        expected: {
+          sync: true,
+          title: 'Pinkerton',
+          identifier: 'pinkerton',
+          overviewUrl: 'http://hentaigasm.com/category/pinkerton/',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'http://hentaigasm.com/category/pinkerton/',
+        expected: {
+          sync: false,
+          title: 'Pinkerton',
+          identifier: 'pinkerton',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'KissHentai', //nsfw
+    url: 'http://kisshentai.net/',
+    testCases: [
+      {
+        url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2/Episode-001?id=51',
+        expected: {
+          sync: true,
+          title: 'Bloods: Inraku no Ketsuzoku 2',
+          identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
+          overviewUrl: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
+        expected: {
+          sync: false,
+          title: 'Bloods: Inraku no Ketsuzoku 2',
+          identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'UnderHentai', //nsfw
+    url: 'https://www.underhentai.net/',
+    testCases: [
+    //this part seems broken
+     /* {
+        url: 'https://www.underhentai.net/watch/?id=647&ep=2',
+        expected: {
+          sync: true,
+          title: 'Resort Boin',
+          identifier: 'resort-boin',
+          overviewUrl: 'https://www.underhentai.net/resort-boin',
+          episode: 2,
+          uiSelector: false,
+        }
+      },*/
+      {
+        url: 'https://www.underhentai.net/resort-boin/',
+        expected: {
+          sync: false,
+          title: 'Resort Boin',
+          identifier: 'resort-boin',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
