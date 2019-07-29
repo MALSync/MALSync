@@ -50,6 +50,7 @@
     "build:webextension:content": "webpack --mode=production --config webpackConfig/webextension.content.config.js",
     "build:webextension:background": "webpack --mode=production --config webpackConfig/webextension.background.config.js",
     "build:webextension:assets": "node webpackConfig/webextension.assets.js",
+    "build:descriptions": "node webpackConfig/descriptions.js",
     "package": "npm run package:webextension",
     "package:webextension": "node package/webextension.js",
     "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $sign_key --api-secret $sign_secret --id $sign_id",

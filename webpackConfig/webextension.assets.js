@@ -41,23 +41,19 @@ const backgroundMatch = (matches) => {
   return matches;
 }
 
-var applications = {
-  'gecko': {
-    'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
-  }
-};
-
-if(mode === 'travis') applications = {};
-
 const generateManifest = () => {
-  return JSON.stringify({
+  var mani = {
     'manifest_version': 2,
     'name': package.productName,
     'version': package.version,
     'description': "__MSG_Package_Description__",
     'author': package['author'],
     'default_locale': 'en',
-    'applications': applications,
+    'applications': {
+      'gecko': {
+        'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
+      }
+    },
     'background': {
       'scripts': [
         'vendor/jquery.min.js',
@@ -200,7 +196,13 @@ const generateManifest = () => {
     "optional_permissions": [
       "cookies"
     ].concat(generateMatchExcludes(pageUrls).match),
-  }, null, 2);
+  };
+
+  if(mode === 'travis'){
+    delete mani.applications;
+  }
+
+  return JSON.stringify(mani, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
 
@@ -277,65 +279,3 @@ mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
   }
 
 });
-
-
-// Supported pages list
-require('ts-node').register({
-  "project": "./tsconfig.node.json",
-  "files": "./globals.d.ts"
-})
-
-var pages = Object.values(require("./../src/pages/pages.ts").pages);
-
-createTable();
-function createTable(){
-  pages.sort(function(a, b) {
-    var textA = a.name.toUpperCase();
-    var textB = b.name.toUpperCase();
-    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-  });
-
-  var html = `
-  <table>
-    <thead>
-      <tr>
-        <th>Page</th>
-        <th>Overview Page</th>
-        <th>Next Episode</th>
-        <th>Database Support</th>
-        <th>Update Check</th>
-      </tr>
-    </thead>
-    <tbody>
-      `;
-  for (var page in pages){
-    page = pages[page];
-
-    if(typeof page.domain === 'object') page.domain = page.domain[0];
-
-    html += `<tr>
-              <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
-              ${rowCondition(typeof page.overview !== 'undefined')}
-              ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
-              ${rowCondition(typeof page.database !== 'undefined')}
-              ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
-            </tr>`;
-  }
-  html += `
-    </tbody>
-  </table>
-  `;
-
-  fs.writeFile(path.join(__dirname, '../pages.md'), html, (err) => {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-  });
-
-  function rowCondition(con){
-    if(con) return '<td>:heavy_check_mark:</td>';
-    return '<td>:x:</td>';
-  }
-}
-
