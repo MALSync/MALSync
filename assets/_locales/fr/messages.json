@@ -4,7 +4,7 @@
     "description": "Search"
   },
   "Show": {
-    "message": "Montrer",
+    "message": "Afficher",
     "description": "Show"
   },
   "Help": {
@@ -12,11 +12,11 @@
     "description": "Help"
   },
   "Update": {
-    "message": "Mise a jour",
+    "message": "Mise à jour",
     "description": "Update"
   },
   "Reset": {
-    "message": "Reset",
+    "message": "Réinitialiser",
     "description": "Reset"
   },
   "Remove": {
@@ -40,11 +40,11 @@
     "description": "No"
   },
   "NothingFound": {
-    "message": "Rien trouvé",
+    "message": "Aucun résultat",
     "description": "Nothing Found"
   },
   "Not_Found": {
-    "message": "Non trouvé!",
+    "message": "Aucun résultat !",
     "description": "Anime/Manga Not Found"
   },
   "NoEntries": {
@@ -64,11 +64,11 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Intergres MyAnimeList/AniList/Kitsu/Simkl a differents sites, avec suivi automatique des épisodes",
+    "message": "Intègre MyAnimeList/AniList/Kitsu/Simkl à de nombreux sites, avec un suivi automatique des épisodes",
     "description": "Description MALSync"
   },
   "UI_Status": {
-    "message": "Statut",
+    "message": "Statut :",
     "description": "Status"
   },
   "UI_Status_watching_anime": {
@@ -76,7 +76,7 @@
     "description": "Watching"
   },
   "UI_Status_watching_manga": {
-    "message": "Lire",
+    "message": "En cours de lecture",
     "description": "Reading"
   },
   "UI_Status_Completed": {
@@ -92,27 +92,27 @@
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "Planifiez de regarder",
+    "message": "À regarder",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Planifiez de lire",
+    "message": "À lire",
     "description": "Plan to Read"
   },
   "UI_Episode": {
-    "message": "Episode:",
+    "message": "Épisode :",
     "description": "Episode"
   },
   "UI_Volume": {
-    "message": "Volume:",
+    "message": "Volume :",
     "description": "Volume"
   },
   "UI_Chapter": {
-    "message": "Chapitre:",
+    "message": "Chapitre :",
     "description": "Chapter"
   },
   "UI_Score": {
-    "message": "Votre note:",
+    "message": "Votre note :",
     "description": "Score"
   },
   "UI_Score_Not_Rated": {
@@ -160,7 +160,7 @@
     "description": "Appalling - Score"
   },
   "syncPage_flashm_resumeMsg": {
-    "message": "Reprendre a $time$",
+    "message": "Reprendre à $time$",
     "description": "Video resume message",
     "placeholders": {
       "time": {
@@ -170,7 +170,7 @@
     }
   },
   "syncPage_flashm_sync_anime": {
-    "message": "Mise a jour $page$ de l'épisode $epNr$",
+    "message": "Mise à jour $page$ de l'épisode $epNr$",
     "description": "Update MAL to episode 3",
     "placeholders": {
       "page": {
@@ -184,7 +184,7 @@
     }
   },
   "syncPage_flashm_sync_manga": {
-    "message": "Mise a jour $page$ du chapitre $epNr$",
+    "message": "Mise à jour $page$ du chapitre $epNr$",
     "description": "Update MAL to chapter 3",
     "placeholders": {
       "page": {
@@ -206,7 +206,7 @@
     "description": "Wrong/correction button on 'synced' message"
   },
   "syncPage_flashm_failded": {
-    "message": "La mise a jour a échouer",
+    "message": "La mise à jour a échoué",
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
@@ -232,7 +232,7 @@
     }
   },
   "syncPage_malObj_addAnime": {
-    "message": "Ajouter a $page$",
+    "message": "Ajouter à $page$",
     "description": "add anime",
     "placeholders": {
       "page": {
@@ -242,7 +242,7 @@
     }
   },
   "syncPage_malObj_nextEp_anime": {
-    "message": "Episode $episode$",
+    "message": "Épisode $episode$",
     "description": "Next episode message on streaming overview pages",
     "placeholders": {
       "episode": {
@@ -262,7 +262,7 @@
     }
   },
   "syncPage_flashConfirm_offsetHandler_1": {
-    "message": "Un possible decalage du nombre d'épisode de $calcOffset$ a été detecté. Est-il correct ? ",
+    "message": "Un possible décalage du nombre d'épisodes de $calcOffset$ a été détecté. Est-il correct ?",
     "description": "offsetHandler Episode",
     "placeholders": {
       "calcOffset": {
@@ -272,23 +272,23 @@
     }
   },
   "anilistClass_authentication": {
-    "message": "Token sauvegardé vous pouvez fermer cette page maintenent",
+    "message": "Token sauvegardé, vous pouvez fermer cette page maintenant",
     "description": "The token has been obtained and saved"
   },
   "kitsuClass_authentication_text": {
-    "message": "Pour vous connecter avec Kitsu, vous devez entrer l'email de votre compte ainsi que le mots de passe.<br>Vos identifiants ne sont pas stocké sur votre ordinateur ou nul par ailleurs.<br>Ils sont directements envoyé a Kitsu. Seul le token de connection est sauvegardé.<br>",
+    "message": "Pour vous connecter avec Kitsu, vous devez entrer l'e-mail de votre compte ainsi que le mot de passe.<br>Vos identifiants ne sont pas stockés sur votre ordinateur ou nulle part ailleurs.<br>Ils sont directement envoyés a Kitsu. Seul le token de connexion est sauvegardé.<br>",
     "description": "Authentication text in Kitsu"
   },
   "kitsuClass_authentication_Password": {
-    "message": "Mots de passe",
+    "message": "Mot de passe",
     "description": "Password"
   },
   "kitsuClass_authentication_Login": {
-    "message": "Connection",
+    "message": "Connexion",
     "description": "Login"
   },
   "kitsuClass_authentication_Success": {
-    "message": "Token sauvegardé vous pouvez fermer cette page maintenent",
+    "message": "Token sauvegardé, vous pouvez fermer cette page maintenant",
     "description": "Authentication success"
   },
   "kitsuClass_authentication_Wrong": {
@@ -316,7 +316,7 @@
     "description": "mins"
   },
   "prediction_Episode": {
-    "message": "Prochaine episode dans environ $time$",
+    "message": "Prochain épisode estimé dans $time$",
     "description": "Text for next episode estimation",
     "placeholders": {
       "time": {
@@ -326,7 +326,7 @@
     }
   },
   "prediction_Airing": {
-    "message": "Diffuser dans $time$",
+    "message": "Diffusé dans $time$",
     "description": "Text for airing estimation",
     "placeholders": {
       "time": {
@@ -336,35 +336,35 @@
     }
   },
   "correction_Offset": {
-    "message": "Decalage des épisode",
+    "message": "Décalage des épisodes",
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Taper le decalage des episode, si un anime a 12 episodes, mais que les nombres de 0-11 sont utilisé a la place de 1-12, vous devez simplement tapez \" +1 \" dans le décalage des épisodes.",
+    "message": "Tapez le décalage des épisodes, si un anime a 12 épisodes, mais que les nombres de 0-11 sont utilisés à la place de 1-12, vous devez simplement taper \" +1 \" dans le décalage des épisodes.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "Changer cette URL iniquements si il pointe vers le mauvais anime sur MAL.",
+    "message": "Changer cette URL uniquement s'il pointe vers le mauvais anime sur MAL.",
     "description": "URL is Wrong"
   },
   "correction_Search": {
-    "message": "Corrigé Recherche",
+    "message": "Corriger Recherche",
     "description": "Correction Search"
   },
   "correction_Search_text": {
-    "message": "Ce champ est utilisé pour rechercher un anime, quand vous devez corriger le \"MyAnimeList URL\" affiché au dessus.<br>Pour faire une recherche,commencer simplement a taper le nom de l'anime, et la liste avec les resultats va apparaitre automatiquement pendants que vous tapez.",
+    "message": "Ce champ est utilisé pour rechercher un anime, quand vous devez corriger le \"MyAnimeList URL\" affiché au dessus.<br>Pour faire une recherche, commencez simplement à taper le nom de l'anime, et la liste avec les résultats va apparaître automatiquement pendant que vous tapez.",
     "description": "Search text"
   },
   "correction_NoMal": {
-    "message": "Si l'Anime/le Manga ne peuvent pas etre trouvé sur MAL",
+    "message": "Si l'Anime/le Manga ne peuvent pas être trouvés sur MAL",
     "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
-    "message": "Pas de resultat sur MyAnimeList",
+    "message": "Pas de résultat sur MyAnimeList",
     "description": "No entry on MyAnimeList"
   },
   "correction_NewOffset": {
-    "message": "Nouveau décalage ($offset$) définit.",
+    "message": "Nouveau décalage ($offset$) défini.",
     "description": "New Offset",
     "placeholders": {
       "offset": {
@@ -374,11 +374,11 @@
     }
   },
   "correction_OffsetReset": {
-    "message": "Reset décalage",
+    "message": "Réinitialiser le décalage",
     "description": "Offset reset"
   },
   "correction_NewUrl": {
-    "message": "Nouvelle URL '$malUrl$' définit.",
+    "message": "Nouvelle URL '$malUrl$' définie.",
     "description": "New URL",
     "placeholders": {
       "malUrl": {
@@ -388,19 +388,19 @@
     }
   },
   "correction_NewUrlReset": {
-    "message": "MyAnimeList URL reset",
+    "message": "Réinitialiser l'URL MyAnimeList",
     "description": "URL reset"
   },
   "overview_Continue_anime": {
-    "message": "Continué de regarder",
+    "message": "Continuer de regarder",
     "description": "Continue watching"
   },
   "overview_Continue_manga": {
-    "message": "Continué de lire",
+    "message": "Continuer de lire",
     "description": "Continue reading"
   },
   "overview_Next_Episode_anime": {
-    "message": "Prochaine épisode",
+    "message": "Prochain Épisode",
     "description": "Next Episode"
   },
   "overview_Next_Episode_manga": {
@@ -408,15 +408,15 @@
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
-    "message": "Continué l'Episode",
+    "message": "Continuer l'Épisode",
     "description": "Resume Episode"
   },
   "overview_Resume_Episode_manga": {
-    "message": "Continué le Chapitre",
+    "message": "Continuer le Chapitre",
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
-    "message": "Modifié les détails",
+    "message": "Modifier les détails",
     "description": "Edit Details"
   },
   "overview_Characters": {
@@ -432,15 +432,15 @@
     "description": "Ending Theme"
   },
   "search_Type": {
-    "message": "Genre:",
+    "message": "Genre :",
     "description": "Type"
   },
   "search_Score": {
-    "message": "Note:",
+    "message": "Note :",
     "description": "Score"
   },
   "search_Year": {
-    "message": "Année:",
+    "message": "Année :",
     "description": "Year"
   },
   "settings_General": {
@@ -468,7 +468,7 @@
     "description": "Button to Export Local storage fallback data"
   },
   "settings_Animesync": {
-    "message": "Anime synchronisation",
+    "message": "Anime sync",
     "description": "Anime sync"
   },
   "settings_Animesync_Video": {
@@ -484,11 +484,11 @@
     "description": "Manual"
   },
   "settings_Mangasync": {
-    "message": "Manga synchronisation",
+    "message": "Manga sync",
     "description": "Manga sync"
   },
   "settings_AutoTracking_Video": {
-    "message": "Mise a jour au bout de $videoDuration$% de visionnage",
+    "message": "Mise à jour après $videoDuration$% de visionnage",
     "description": "Update Episode of video progress",
     "placeholders": {
       "videoDuration": {
@@ -498,7 +498,7 @@
     }
   },
   "settings_AutoTracking_Instant": {
-    "message": "Retarde la déctection instantané de $delay$ secondes",
+    "message": "Retarde la détection instantanée de $delay$ secondes",
     "description": "Delay instant autotracking",
     "placeholders": {
       "delay": {
@@ -512,7 +512,7 @@
     "description": "Streaming Site Links"
   },
   "settings_StreamingSite_text": {
-    "message": "Si desactivé, les sites de streaming ne vont plus apparaitre dans l'encadré a coté de MyAnimeList/AniList/Kitsu.",
+    "message": "Si désactivé, les sites de streaming n’apparaîtront plus dans l'encadré à coté de MyAnimeList/AniList/Kitsu.",
     "description": "Streaming Site Links - Text"
   },
   "settings_Thumbnails": {
@@ -520,7 +520,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Cette option sert a redimmetionner les miniatures sur MyAnimeList.<br>Comme les thumbnails pour les personnages, les personnes, les recommandations, etc.",
+    "message": "Cette option sert à redimensionner les miniatures sur MyAnimeList.<br>Comme les miniatures pour les personnages, les personnes, les recommandations, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {
@@ -536,23 +536,23 @@
     "description": "Thumbnails Small"
   },
   "settings_Thumbnails_Default": {
-    "message": "MAL par Defaut",
+    "message": "MAL par défaut",
     "description": "Thumbnails MAL Default"
   },
   "settings_FriendScore": {
-    "message": "Notes des amis sur la page detail",
+    "message": "Notes des amis sur la page détail",
     "description": "Friend scores on detail page"
   },
   "settings_epPredictions": {
-    "message": "Nombres d'épisodes estimé",
+    "message": "Nombre d'épisodes estimé",
     "description": "Estimate episode number"
   },
   "settings_malTags": {
-    "message": "Utilise Tags/Notes",
+    "message": "Utilisez les Tags/Notes",
     "description": "Use Tags/Notes"
   },
   "settings_malTags_Text": {
-    "message": "Si activé: Sur votre liste d'anime de MyAnimeList/Anilist et sur vos marques pages dans miniMAL, un icones-liens va etre ajouté avec le liens du dernier sites de streaming que vous avez utilisé pour regarder l'anime.<br>Cliquer simplement dessus pour continuer a le regarder.",
+    "message": "Si activé : Sur votre liste d'animes de MyAnimeList/Anilist et sur vos marques pages dans miniMAL, un lien-icône va être ajouté avec le lien du dernier site de streaming que vous avez utilisé pour regarder l'anime.<br>Cliquez simplement dessus pour continuer à le regarder.",
     "description": "Use Tags/Notes - Text"
   },
   "settings_malContinue": {
@@ -564,11 +564,11 @@
     "description": "Resume watching links"
   },
   "settings_miniMAL_floatButtonStealth": {
-    "message": "Bouton discrets pour le menu flotant",
+    "message": "Bouton discret pour le menu flottant",
     "description": "Stealth floating menu button"
   },
   "settings_miniMAL_floatButtonHide": {
-    "message": "Cacher le menu flotant de miniMAL",
+    "message": "Cacher le menu flottant de miniMAL",
     "description": "Hide miniMAL floating menu button"
   },
   "settings_miniMAL_autoCloseMinimal": {
@@ -580,7 +580,7 @@
     "description": "Display to the"
   },
   "settings_miniMAL_window": {
-    "message": "Ouvrir dans une fenètres separée",
+    "message": "Ouvrir dans une fenêtre separée",
     "description": "Open miniMAL in separate window checkbox"
   },
   "settings_miniMAL_Display_Left": {
@@ -608,7 +608,7 @@
     "description": "miniMAL Open"
   },
   "settings_miniMAL_NotSet": {
-    "message": "Non Définit",
+    "message": "Non défini",
     "description": "miniMAL Not Set"
   },
   "settings_Video_Player": {
@@ -632,7 +632,7 @@
     "description": "Description for the the opening skip shortcut"
   },
   "settings_introSkip": {
-    "message": "Definir le temps de l'opening qui va etre passé ($Seconds$ seconds)",
+    "message": "Définir le temps de l'opening qui va être passé ($Seconds$ seconds)",
     "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
@@ -642,11 +642,11 @@
     }
   },
   "settings_UpdateCheck": {
-    "message": "Vérifier mise a jour",
+    "message": "Vérifier mise à jour",
     "description": "Update Check"
   },
   "settings_UpdateCheck_Text": {
-    "message": "Vérifier en arrière-plans si il y a de nouveau épisode.",
+    "message": "Vérifier en arrière-plan s'il y a de nouveaux épisodes.",
     "description": "Update Check - Text"
   },
   "settings_Interval": {
@@ -682,7 +682,7 @@
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
-    "message": "Cette option ajouts le support du 'Firefox Multi-Account Containers'. Penser a redemarrer votre navigateur après avoir activé cette option",
+    "message": "Cette option ajoute le support du 'Firefox Multi-Account Containers'. Pensez à redémarrer votre navigateur après avoir activé cette option",
     "description": "Strict Cookies - Text"
   },
   "settings_ClearCache": {
@@ -694,15 +694,15 @@
     "description": "Refresh"
   },
   "updateCheck_StartCheck": {
-    "message": "Commencer Vérification",
+    "message": "Commencer la Vérification",
     "description": "Start Check"
   },
   "updateCheck_NotificationCheck": {
-    "message": "Notification Vérification",
+    "message": "Notification de Vérification",
     "description": "Notification Check"
   },
   "updateCheck_Episode": {
-    "message": "Episode",
+    "message": "Épisode",
     "description": "Episode"
   },
   "updateCheck_Message": {
@@ -710,7 +710,7 @@
     "description": "Message"
   },
   "updateCheck_NotificationHistory": {
-    "message": "Historique des notifications",
+    "message": "Historique de Notifications",
     "description": "Notification History"
   },
   "minimalApp_Overview": {
@@ -726,15 +726,15 @@
     "description": "Recommendations"
   },
   "minimalApp_Settings": {
-    "message": "Réglages",
+    "message": "Paramètres",
     "description": "Settings"
   },
   "minimalClass_Popup": {
-    "message": "S'il vous plaît autoriser les pop-ups pour ce site",
+    "message": "Veuillez autoriser les pop-ups pour ce site",
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Mis a jour vers la version $Version$ $Link$CHANGELOG$LinkEnd$",
+    "message": "Mis à jour vers la version $Version$ $Link$CHANGELOG$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
@@ -756,7 +756,7 @@
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
-    "message": "Avez-vous des questions ?",
+    "message": "Vous avez des questions ?",
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
@@ -764,19 +764,19 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Utilisateur de uBlock users s'il vous plaît abonné vous a cette liste de filtre !Cela corrigera certain problème comme les images cassé",
+    "message": "Utilisateurs de uBlock, veuillez utiliser cette liste de filtres ! Cela corrigera certains problèmes comme les images défectueuses",
     "description": "Update version - Text 4"
   },
   "installPage_Mode": {
-    "message": "Veuillez sélectionner quelle base d'animés vous voulez utiliser :",
+    "message": "Veuillez sélectionner quelle base de données d'animes vous souhaitez utiliser :",
     "description": "Header for the MAL-sync provider dropdown"
   },
   "installPage_Howto": {
-    "message": "Comment utiliser",
+    "message": "Comment ça marche ?",
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "Regardez un épisode ou un chapitre de n'importe quel $Link1$sites supportés$LinkEnd1$. La synchronisation se fait quand 85% de la vidéo est vue. Pour les mangas la synchronisation se fait à chaque changement de page.  Vous pouvez modifier celà dans les $Link2$paramètres$LinkEnd2$",
+    "message": "Regardez un épisode ou un chapitre de n'importe lequel des $Link1$sites supportés$LinkEnd1$. La synchronisation se fait quand la vidéo a été regardée à 85%. Pour les mangas, la synchronisation se fait à chaque chargement de la page. Vous pouvez modifier cela dans les $Link2$paramètres$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -798,15 +798,15 @@
     }
   },
   "installPage_Wrong": {
-    "message": "Synchronisation avec une mauvaise saisie MAL",
+    "message": "La synchronisation se fait avec la mauvaise entrée MAL ?",
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "Vous pouvez facilement changer la relation comme montré dans le gif ci-dessous. Un décalage d'épisode peut aussi être sélectionnée sur cette page",
+    "message": "Vous pouvez facilement changer la relation comme montré dans le gif ci-dessous. Un décalage d'épisodes peut aussi être sélectionné sur cette page",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
-    "message": "S'il vous plait connecter vous $Link1$Here$Link2$",
+    "message": "Veuillez vous connecter $Link1$ici$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
@@ -820,7 +820,7 @@
     }
   },
   "Emby_Authenticate": {
-    "message": "MAL-Sync a besoins de la clé d'api d'Emby pour fonctionner. Plus d'informations ici: $Link1$Here$Link2$",
+    "message": "MAL-Sync a besoin de la clé API d'Emby pour fonctionner. Plus d'informations $Link1$ici$Link2$",
     "description": "Emby Authentication",
     "placeholders": {
       "Link1": {

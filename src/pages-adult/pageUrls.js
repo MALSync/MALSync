@@ -14,10 +14,29 @@ module.exports = {
       '*://simkl.com/apps/chrome/mal-sync/connected*'
     ]
   },
-  Kissanime: {
+  hanime: {
+    match : [
+      '*://hanime.tv/*'
+    ]
+  },
+  HentaiHaven: {
+    match : [
+      '*://hentaihaven.org/*'
+    ]
+  },
+  Hentaigasm: {
+    match : [
+      '*://hentaigasm.com/*'
+    ]
+  },
+  KissHentai: {
     match: [
-      '*://kissanime.ru/Anime/*',
-      '*://kissanime.to/Anime/*'
+      '*://kisshentai.net/Hentai/*'
+    ]
+  },
+  UnderHentai: {
+    match: [
+      '*://www.underhentai.net/*'
     ]
   },
 };
