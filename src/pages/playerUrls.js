@@ -234,4 +234,10 @@ module.exports = {
       '*://www.vaplayer.xyz/v/*'
     ]
   },
+  //dubbedanime
+  mp4sh: {
+    match: [
+      '*://mp4.sh/embed/*'
+    ]
+  },
 };
