@@ -41,23 +41,19 @@ const backgroundMatch = (matches) => {
   return matches;
 }
 
-var applications = {
-  'gecko': {
-    'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
-  }
-};
-
-if(mode === 'travis') applications = {};
-
 const generateManifest = () => {
-  return JSON.stringify({
+  var mani = {
     'manifest_version': 2,
     'name': package.productName,
     'version': package.version,
     'description': "__MSG_Package_Description__",
     'author': package['author'],
     'default_locale': 'en',
-    'applications': applications,
+    'applications': {
+      'gecko': {
+        'id': '{ceb9801e-aa0c-4bc6-a6b0-9494f3164cc7}'
+      }
+    },
     'background': {
       'scripts': [
         'vendor/jquery.min.js',
@@ -200,7 +196,13 @@ const generateManifest = () => {
     "optional_permissions": [
       "cookies"
     ].concat(generateMatchExcludes(pageUrls).match),
-  }, null, 2);
+  };
+
+  if(mode === 'travis'){
+    delete mani.applications;
+  }
+
+  return JSON.stringify(mani, null, 2);
 };
 mkdirp(path.join(__dirname, '../dist/webextension'), (err) => {
 
