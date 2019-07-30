@@ -170,6 +170,7 @@
       }
 
       sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
+      this.list = Object.assign({}, this.list);
 
       this.listReady = true;
     },
