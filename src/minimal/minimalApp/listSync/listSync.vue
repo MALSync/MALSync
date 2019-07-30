@@ -151,14 +151,28 @@
 
       await Promise.all(listP);
 
-      sync.mapToArray(this.listProvider.mal.list, this.list, this.listProvider.mal.master);
-      sync.mapToArray(this.listProvider.anilist.list, this.list, this.listProvider.anilist.master);
-      sync.mapToArray(this.listProvider.kitsu.list, this.list, this.listProvider.kitsu.master);
+      var master = false;
+      var slaves = [];
 
-      for (var i in this.list) {
-        sync.changeCheck(this.list[i], mode);
-        sync.missingCheck(this.list[i], this.missing, typeArray, mode);
+      if(this.listProvider.mal.master){
+        master = this.listProvider.mal.list;
+      }else{
+        slaves.push(this.listProvider.mal.list);
       }
+
+      if(this.listProvider.anilist.master){
+        master = this.listProvider.anilist.list;
+      }else{
+        slaves.push(this.listProvider.anilist.list);
+      }
+
+      if(this.listProvider.kitsu.master){
+        master = this.listProvider.kitsu.list;
+      }else{
+        slaves.push(this.listProvider.kitsu.list);
+      }
+
+      sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
 
       this.listReady = true;
     },

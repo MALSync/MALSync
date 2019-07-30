@@ -1,4 +1,17 @@
 
+export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
+  mapToArray(masterList, list, true);
+
+  for (var i in slaveLists) {
+    mapToArray(slaveLists[i], list, false);
+  }
+
+  for (var i in list) {
+    changeCheck(list[i], mode);
+    missingCheck(list[i], missing, typeArray, mode);
+  }
+}
+
 export function getType(url){
   if(url.indexOf('anilist.co') !== -1) return 'ANILIST';
   if(url.indexOf('kitsu.io') !== -1) return 'KITSU';
