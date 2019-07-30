@@ -285,5 +285,10 @@ module.exports = {
     match: [
       '*://voiranime.com/*'
     ]
-  }
+  },
+  DubbedAnime: {
+    match: [
+      '*://*.dubbedanime.net/*'
+    ]
+  },
 };

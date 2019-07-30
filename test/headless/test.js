@@ -1059,6 +1059,54 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'dubbedanime',
+    url: 'https://ww5.dubbedanime.net/',
+    testCases: [
+      {//check for ova
+        url: 'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
+        expected: {
+          sync: true,
+          title: 'Golden Boy',
+          identifier: '796-golden-boy',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {//check for movie
+        url: 'https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed',
+        expected: {
+          sync: true,
+          title: 'A Silent Voice MOVIE',
+          identifier: '2678-a-silent-voice',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {//check for anime/episode
+        url: 'https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed',
+        expected: {
+          sync: true,
+          title: 'Golgo 13',
+          identifier: '3072-golgo-13',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
+          episode: 36,
+          uiSelector: false,
+        }
+      },
+      {//overview
+        url: 'https://ww5.dubbedanime.net/anime/3072-golgo-13',
+        expected: {
+          sync: false,
+          title: 'Golgo 13',
+          identifier: '3072-golgo-13',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
