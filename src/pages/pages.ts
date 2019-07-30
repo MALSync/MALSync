@@ -38,6 +38,7 @@ import {Shinden} from "./Shinden/main";
 import {Funimation} from "./Funimation/main";
 import {Voiranime} from "./Voiranime/main";
 import {DubbedAnime} from "./DubbedAnime/main";
+import {VIZ} from "./VIZ/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -82,6 +83,7 @@ export const pages = {
     Funimation,
     Voiranime,
     DubbedAnime,
+    VIZ,
 };
 
 export const pageSearch:pageSearchObj = {

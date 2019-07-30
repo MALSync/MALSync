@@ -291,4 +291,9 @@ module.exports = {
       '*://*.dubbedanime.net/*'
     ]
   },
+  VIZ: {
+    match: [
+      '*://www.viz.com/*'
+    ]
+  },
 };

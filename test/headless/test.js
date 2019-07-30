@@ -1107,6 +1107,21 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'viz',
+    url: 'https://www.viz.com/',
+    testCases: [
+      {//overview
+        url: 'https://www.viz.com/shonenjump/chapters/one-piece',
+        expected: {
+          sync: false,
+          title: '"One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
