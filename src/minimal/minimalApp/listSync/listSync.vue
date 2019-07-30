@@ -26,6 +26,12 @@
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
       <br>
+    </div>
+    <div :style="getTypeColor(getType('simkl.com'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
+      Simkl <span v-if="listProvider.simkl.master">(Master)</span><br>
+      {{listProvider.simkl.text}} <br>
+      <span v-if="listProvider.simkl.list">List: {{listProvider.simkl.list.length}}</span><br>
+      <br>
     </div><br>
 
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
@@ -77,6 +83,7 @@
   import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
   import * as anilistUserList from "./../../../provider/AniList/userList.ts";
   import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
+  import * as simklUserList from "./../../../provider/Simkl/userList.ts";
 
   import * as sync from "./syncHandler.ts";
 
@@ -95,6 +102,11 @@
             master: false
           },
           kitsu: {
+            text: 'Init',
+            list: null,
+            master: false
+          },
+          simkl: {
             text: 'Init',
             list: null,
             master: false
@@ -146,6 +158,15 @@
         if(!list.length) this.listProvider.kitsu.text = 'Error';
       }) );
 
+      this.listProvider.simkl.text = 'Loading';
+      listP.push( getList(simklUserList, type).then((list) => {
+        this.listProvider.simkl.list = list;
+        this.listProvider.simkl.text = 'Done';
+        if(master == 'SIMKL') this.listProvider.simkl.master = true;
+        if(list.length) typeArray.push('SIMKL');
+        if(!list.length) this.listProvider.simkl.text = 'Error';
+      }) );
+
       await Promise.all(listP);
 
       var master = false;
@@ -169,6 +190,12 @@
         slaves.push(this.listProvider.kitsu.list);
       }
 
+      if(this.listProvider.simkl.master){
+        master = this.listProvider.simkl.list;
+      }else{
+        slaves.push(this.listProvider.simkl.list);
+      }
+
       sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
       this.list = Object.assign({}, this.list);
 
@@ -189,6 +216,7 @@
       getTypeColor: function(type){
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
+        if(type == 'SIMKL') return 'border-left: 5px solid #ffbf00';
         return 'border-left: 5px solid #2e51a2';
       },
 

@@ -1,6 +1,7 @@
 import * as mal from "./../../../provider/MyAnimeList/entryClass.ts";
 import * as anilist from "./../../../provider/AniList/entryClass.ts";
 import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
+import * as simkl from "./../../../provider/Simkl/entryClass.ts";
 
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
@@ -20,6 +21,7 @@ export function getType(url){
   if(url.indexOf('anilist.co') !== -1) return 'ANILIST';
   if(url.indexOf('kitsu.io') !== -1) return 'KITSU';
   if(url.indexOf('myanimelist.net') !== -1) return 'MAL';
+  if(url.indexOf('simkl.com') !== -1) return 'SIMKL';
   throw 'Type not found';
 }
 
@@ -159,6 +161,8 @@ export function syncItem(slave, pageType){
       var entryClass:any = new anilist.entryClass(slave.url, true, true);
     }else if(pageType == 'KITSU'){
       var entryClass:any = new kitsu.entryClass(slave.url, true, true);
+    }else if(pageType == 'SIMKL'){
+      var entryClass:any = new simkl.entryClass(slave.url, true, true);
     }else{
       throw('No sync type');
     }
