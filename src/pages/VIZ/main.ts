@@ -46,15 +46,20 @@ export const VIZ: pageInterface = {
         return VIZ.domain + selector.find('a').first().attr('href').replace(/javascript:tryReadChapter\(\d+,'/gi,"").replace(/'\);/g,"");
       },
       elementEp: function(selector){
-        var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
-        if (episodePart.length == 0) {
-          episodePart = selector.find('a').first().text().trim();
-        }
-        if(episodePart.length){
-          var temp = episodePart.match(/\d+/gmi);
-          if(temp !== null){
-            return temp[0];
+        if (selector.find('a').first().attr('href') !== "javascript:void('join to read');") {
+          var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
+          if (episodePart.length == 0) {
+            episodePart = selector.find('a').first().text().trim();
           }
+          if(episodePart.length){
+            var temp = episodePart.match(/\d+/gmi);
+            if(temp !== null){
+              return temp[0];
+            }
+          }
+        }
+        else {
+          throw 'Join to read';
         }
       }
     }
