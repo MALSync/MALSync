@@ -59,6 +59,14 @@ describe('Sync Handling', function () {
       expect(item.diff).to.equal(false);
     });
 
+    it('No Master', function () {
+      var item = helper.getMasterSlave();
+      item.slaves[0].watchedEp = 22;
+      delete item.master;
+      changeCheck(item, mode);
+      expect(item.diff).to.equal(false);
+    });
+
     it('Slave Change', function () {
       var item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
@@ -154,6 +162,24 @@ describe('Sync Handling', function () {
 
       missingCheck(item, miss, typeArray, mode);
       expect(miss).to.deep.equal([res]);
+    });
+
+    it('No Master', function () {
+      var item = helper.getMasterSlave();
+      var res:any = helper.getItem();
+      var miss = [];
+      item.slaves.pop();
+      res.syncType = 'ANILIST';
+      res.error = null;
+      delete res.diff;
+      delete res.totalEp;
+      delete res.type;
+      delete res.uid;
+
+      delete item.master;
+
+      missingCheck(item, miss, typeArray, mode);
+      expect(miss).to.deep.equal([]);
     });
   });
 
