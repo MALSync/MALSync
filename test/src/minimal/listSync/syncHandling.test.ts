@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getType, changeCheck } from './../../../../src/minimal/minimalApp/listSync/syncHandler';
+import { getType, changeCheck, missingCheck } from './../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
   getItem: function(){
@@ -7,17 +7,17 @@ const helper = {
       title: 'test',
       type: 'anime',
       uid: 22,
-      malid: 22,
+      malId: 19815,
       watchedEp: 15,
       totalEp: 24,
       status: 6,
       score: 6,
       diff: {},
-      url: '123',
+      url: 'https://myanimelist.net/anime/19815',
     }
   },
   getMasterSlave(){
-    return {
+    var el = {
       diff: false,
       master: helper.getItem(),
       slaves: [
@@ -25,6 +25,10 @@ const helper = {
         helper.getItem()
       ]
     };
+
+    el.slaves[0].url = 'https://kitsu.io/anime/no-game-no-life';
+    el.slaves[1].url = 'https://anilist.co/anime/19815/No-Game-No-Life/';
+    return el;
   }
 }
 
@@ -122,6 +126,34 @@ describe('Sync Handling', function () {
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff1);
       expect(item.slaves[1].diff).to.deep.equal(diff2);
+    });
+  });
+
+  describe('missingCheck', function () {
+    var typeArray = ['MAL', 'KITSU', 'ANILIST'];
+    var mode = 'mirror';
+
+    it('No missing', function () {
+      var item = helper.getMasterSlave();
+      var miss = [];
+      missingCheck(item, miss, typeArray, mode);
+      expect(miss).to.deep.equal([]);
+    });
+
+    it('missing', function () {
+      var item = helper.getMasterSlave();
+      var res = helper.getItem();
+      var miss = [];
+      item.slaves.pop();
+      res.syncType = 'ANILIST';
+      res.error = null;
+      delete res.diff;
+      delete res.totalEp;
+      delete res.type;
+      delete res.uid;
+
+      missingCheck(item, miss, typeArray, mode);
+      expect(miss).to.deep.equal([res]);
     });
   });
 
