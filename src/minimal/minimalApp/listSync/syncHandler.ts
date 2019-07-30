@@ -1,3 +1,7 @@
+import * as mal from "./../../../provider/MyAnimeList/entryClass.ts";
+import * as anilist from "./../../../provider/AniList/entryClass.ts";
+import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
+
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
   mapToArray(masterList, list, true);
@@ -96,5 +100,74 @@ export function missingCheck(item, missing, types, mode){
         })
       }
     }
+  }
+}
+
+//Sync
+
+export async function syncList(list, thisMissing){
+  for (var i in list) {
+    var el = list[i];
+    if(el.diff){
+      try{
+        await syncListItem(el);
+        el.diff = false;
+      }catch(e){
+        con.error(e);
+      }
+
+    }
+  }
+
+  var missing = thisMissing.slice();
+  for (var i in missing) {
+    var miss = missing[i];
+    con.log("Sync missing", miss);
+    await syncMissing(miss)
+      .then(() => {
+        thisMissing.splice(thisMissing.indexOf(miss), 1);
+      })
+      .catch((e) => {
+        con.error('Error', e);
+        miss.error = e;
+      });
+  }
+}
+
+export async function syncListItem(item){
+  for (var i = 0; i < item.slaves.length; i++) {
+    var slave = item.slaves[i];
+    con.log('sync list item', slave);
+    await syncItem(slave, getType(slave.url));
+  }
+}
+
+export async function syncMissing(item){
+  item.diff = {
+    watchedEp: item.watchedEp,
+    status: item.status,
+    score: item.score
+  };
+  return syncItem(item, item.syncType);
+}
+
+export function syncItem(slave, pageType){
+  if(Object.keys(slave.diff).length !== 0){
+    if(pageType == 'MAL'){
+      var entryClass:any = new mal.entryClass(slave.url, true, true);
+    }else if(pageType == 'ANILIST'){
+      var entryClass:any = new anilist.entryClass(slave.url, true, true);
+    }else if(pageType == 'KITSU'){
+      var entryClass:any = new kitsu.entryClass(slave.url, true, true);
+    }else{
+      throw('No sync type');
+    }
+
+    return entryClass.init().then(() => {
+      if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
+      if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
+      if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
+      return entryClass.sync();
+    });
   }
 }

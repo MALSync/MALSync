@@ -74,11 +74,8 @@
 
 <script type="text/javascript">
   import * as provider from "./../../../provider/provider.ts";
-  import * as mal from "./../../../provider/MyAnimeList/entryClass.ts";
   import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
-  import * as anilist from "./../../../provider/AniList/entryClass.ts";
   import * as anilistUserList from "./../../../provider/AniList/userList.ts";
-  import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
   import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
 
   import * as sync from "./syncHandler.ts";
@@ -198,27 +195,7 @@
         this.listReady = false;
         this.listLength = this.listSyncLength;
 
-        for (var i in this.list) {
-          var el = this.list[i];
-          if(el.diff){
-            await syncListItem(el);
-            el.diff = false;
-          }
-        }
-
-        var missing = this.missing.slice();
-        for (var i in missing) {
-          var miss = missing[i];
-          con.log("Sync missing", miss);
-          await syncMissing(miss)
-            .then(() => {
-              this.missing.splice(this.missing.indexOf(miss), 1);
-            })
-            .catch((e) => {
-              con.error('Error', e);
-              miss.error = e;
-            });
-        }
+        sync.syncList(this.list, this.missing);
       },
 
     }
@@ -232,45 +209,6 @@
       }});
     });
   }
-
-  async function syncListItem(item){
-    for (var i = 0; i < item.slaves.length; i++) {
-      var slave = item.slaves[i];
-      con.log('sync list item', slave);
-      await syncItem(slave, sync.getType(slave.url));
-    }
-  }
-
-  async function syncMissing(item){
-    item.diff = {
-      watchedEp: item.watchedEp,
-      status: item.status,
-      score: item.score
-    };
-    return syncItem(item, item.syncType);
-  }
-
-  function syncItem(slave, pageType){
-    if(Object.keys(slave.diff).length !== 0){
-      if(pageType == 'MAL'){
-        var entryClass = new mal.entryClass(slave.url, true, true);
-      }else if(pageType == 'ANILIST'){
-        var entryClass = new anilist.entryClass(slave.url, true, true);
-      }else if(pageType == 'KITSU'){
-        var entryClass = new kitsu.entryClass(slave.url, true, true);
-      }else{
-        throw('No sync type');
-      }
-
-      return entryClass.init().then(() => {
-        if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
-        if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
-        if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
-        return entryClass.sync();
-      });
-    }
-  }
-
 
 
 </script>
