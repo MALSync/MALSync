@@ -20,7 +20,13 @@ export const VIZ: pageInterface = {
       return VIZ.domain+ j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").attr("href");
     },
     getEpisode: function(url){
-      return j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span").text().replace(/\D+/g, "");
+      var episodePart = j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span").text();
+      if(episodePart.length){
+        var temp = episodePart.match(/\d+/gmi);
+        if(temp !== null){
+          return temp[0];
+        }
+      }
     },
   },
   overview:{
@@ -34,12 +40,23 @@ export const VIZ: pageInterface = {
     list:{
       offsetHandler: false,
       elementsSelector: function(){
-        console.log(j.$("#section0 > div > div.o_sort_container.mar-x-0.mar-x-xl--md.mar-x-xxl--lg.clearfix > div:not('.section_future_chapter')"));
-        return j.$("#section0 > div > div.o_sort_container.mar-x-0.mar-x-xl--md.mar-x-xxl--lg.clearfix > div:not('.section_future_chapter')");},
+        return j.$(".o_sortable-b,.o_sortable");
+      },
       elementUrl: function(selector){
-        return utils.absoluteLink(selector.find('a').first().attr('href'), VIZ.domain);},
+        return VIZ.domain + selector.find('a').first().attr('href').replace(/javascript:tryReadChapter\(\d+,'/gi,"").replace(/'\);/g,"");
+      },
       elementEp: function(selector){
-        return selector.find('div.disp-id.mar-r-sm').text().replace(/\D+/g, "");},
+        var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
+        if (episodePart.length == 0) {
+          episodePart = selector.find('a').first().text().trim();
+        }
+        if(episodePart.length){
+          var temp = episodePart.match(/\d+/gmi);
+          if(temp !== null){
+            return temp[0];
+          }
+        }
+      }
     }
   },
   init(page){
