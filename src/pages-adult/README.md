@@ -1,5 +1,7 @@
 # MAL-Sync Adult
 
+**Does not work with Greasemonkey!**  
+
 This is an complementary script for <a href="https://github.com/lolamtisch/MALSync">MAL-Sync</a>. You need to have both installed. Keep in mind that the settings are independent and need to be set in both manually. For initial authentication it is possibly needed to disable the extension temporary.
 
 #### **Supported Pages** <a id="anchor-link"></a>
@@ -23,8 +25,10 @@ This is an complementary script for <a href="https://github.com/lolamtisch/MALSy
 
 #### **Download**
 
-
 [![Userscript](https://img.shields.io/badge/Userscript-Direct_Download_(No_Login_Needed)-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/scripts/387981-mal-sync-adult-fatexxxblood-edition/code/MAL-Sync%20Adult%20%5BFateXXXBlood%20Edition%5D.user.js)
 
 
 [![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/scripts/387981)
+
+#### **Tutorial**  
+[How to install user scripts](https://greasyfork.org/en/help/installing-user-scripts)  
