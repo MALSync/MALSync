@@ -25,9 +25,9 @@ export function changeCheck(item, mode){
         item.diff = true;
         slave.diff.status = item.master.status;
       }
-      if(slave.rating !== item.master.rating){
+      if(slave.score !== item.master.score){
         item.diff = true;
-        slave.diff.rating = item.master.rating;
+        slave.diff.score = item.master.score;
       }
     }
   }

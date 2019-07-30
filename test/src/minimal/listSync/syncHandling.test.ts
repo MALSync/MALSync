@@ -48,9 +48,10 @@ describe('Sync Handling', function () {
   });
 
   describe('changeCheck', function () {
+    var mode = 'mirror';
     it('No Change', function () {
       var item = helper.getMasterSlave();
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(false);
     });
 
@@ -58,7 +59,7 @@ describe('Sync Handling', function () {
       var item = helper.getMasterSlave();
       item.slaves[0].watchedEp = 22;
       var diff = {"watchedEp": 15};
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal({});
@@ -68,7 +69,7 @@ describe('Sync Handling', function () {
       var item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       var diff = {"watchedEp": 22};
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -78,7 +79,7 @@ describe('Sync Handling', function () {
       var item = helper.getMasterSlave();
       item.master.watchedEp = 22;
       var diff = {"watchedEp": 22};
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -88,7 +89,7 @@ describe('Sync Handling', function () {
       var item = helper.getMasterSlave();
       item.master.status = 2;
       var diff = {"status": 2};
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -98,7 +99,7 @@ describe('Sync Handling', function () {
       var item = helper.getMasterSlave();
       item.master.score = 2;
       var diff = {"score": 2};
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff);
       expect(item.slaves[1].diff).to.deep.equal(diff);
@@ -117,7 +118,7 @@ describe('Sync Handling', function () {
         "status": 2,
         "watchedEp": 22
       };
-      changeCheck(item);
+      changeCheck(item, mode);
       expect(item.diff).to.equal(true);
       expect(item.slaves[0].diff).to.deep.equal(diff1);
       expect(item.slaves[1].diff).to.deep.equal(diff2);
