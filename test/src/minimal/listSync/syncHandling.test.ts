@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getType, changeCheck, missingCheck } from './../../../../src/minimal/minimalApp/listSync/syncHandler';
+import { getType, changeCheck, missingCheck, mapToArray} from './../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
   getItem: function(){
@@ -154,6 +154,46 @@ describe('Sync Handling', function () {
 
       missingCheck(item, miss, typeArray, mode);
       expect(miss).to.deep.equal([res]);
+    });
+  });
+
+  describe('mapToArray', function () {
+    it('Master', function () {
+      var list = {};
+      var item = helper.getItem();
+      var item2 = helper.getItem();
+      item2.malId = 3123;
+      mapToArray([item, item2], list, true);
+      expect(list[item.malId].master).to.deep.equal(item);
+      expect(list[item.malId].slaves).to.deep.equal([]);
+      expect(list[3123].master).to.deep.equal(item2);
+      expect(list[3123].slaves).to.deep.equal([]);
+    });
+
+    it('Slaves', function () {
+      var list = {};
+      var item = helper.getItem();
+      var item2 = helper.getItem();
+      item2.malId = 3123;
+      mapToArray([item], list, true);
+      mapToArray([item, item2], list, false);
+      mapToArray([item, item2], list, false);
+      expect(list[item.malId].master).to.deep.equal(item);
+      expect(list[item.malId].slaves).to.deep.equal([item, item]);
+      expect(list[3123].master).to.deep.equal({});
+      expect(list[3123].slaves).to.deep.equal([item2, item2]);
+    });
+
+    it('No Mal id', function () {
+      var list = {};
+      var item = helper.getItem();
+      var item2 = helper.getItem();
+      item2.malId = NaN;
+      mapToArray([item], list, true);
+      mapToArray([item], list, false);
+      mapToArray([item2], list, false);
+      expect(list[item.malId].master).to.deep.equal(item);
+      expect(list[item.malId].slaves).to.deep.equal([item]);
     });
   });
 
