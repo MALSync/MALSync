@@ -6,6 +6,33 @@ export function getType(url){
   throw 'Type not found';
 }
 
+export function mapToArray(provierList, resultList, masterM = false){
+  for (var i = 0; i < provierList.length; i++) {
+    var el = provierList[i];
+    var temp = resultList[el.malId];
+    if(typeof temp === "undefined"){
+      temp = {
+        diff: false,
+        master: {},
+        slaves: []
+      };
+    }
+
+    if(masterM){
+      temp.master = el;
+    }else{
+      el.diff = {};
+      temp.slaves.push(el);
+    }
+    if(!isNaN(el.malId) && el.malId){
+      resultList[el.malId] = temp;
+    }else{
+      //TODO: List them
+    }
+
+  }
+}
+
 export function changeCheck(item, mode){
   if(item.master && item.master.uid){;
     for (var i = 0; i < item.slaves.length; i++) {

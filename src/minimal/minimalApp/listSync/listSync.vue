@@ -151,9 +151,9 @@
 
       await Promise.all(listP);
 
-      this.mapToArray(this.listProvider.mal.list, this.list, this.listProvider.mal.master);
-      this.mapToArray(this.listProvider.anilist.list, this.list, this.listProvider.anilist.master);
-      this.mapToArray(this.listProvider.kitsu.list, this.list, this.listProvider.kitsu.master);
+      sync.mapToArray(this.listProvider.mal.list, this.list, this.listProvider.mal.master);
+      sync.mapToArray(this.listProvider.anilist.list, this.list, this.listProvider.anilist.master);
+      sync.mapToArray(this.listProvider.kitsu.list, this.list, this.listProvider.kitsu.master);
 
       for (var i in this.list) {
         sync.changeCheck(this.list[i], mode);
@@ -178,33 +178,6 @@
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
         return 'border-left: 5px solid #2e51a2';
-      },
-      mapToArray: function(provierList, resultList, masterM = false){
-
-        for (var i = 0; i < provierList.length; i++) {
-          var el = provierList[i];
-          var temp = resultList[el.malId];
-          if(typeof temp === "undefined"){
-            temp = {
-              diff: false,
-              master: {},
-              slaves: []
-            };
-          }
-
-          if(masterM){
-            temp.master = el;
-          }else{
-            el.diff = {};
-            temp.slaves.push(el);
-          }
-          if(!isNaN(el.malId) && el.malId){
-            this.$set(resultList, el.malId, temp);
-          }else{
-            //TODO: List them
-          }
-
-        }
       },
 
       syncList: async function(){

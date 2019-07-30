@@ -142,7 +142,7 @@ describe('Sync Handling', function () {
 
     it('missing', function () {
       var item = helper.getMasterSlave();
-      var res = helper.getItem();
+      var res:any = helper.getItem();
       var miss = [];
       item.slaves.pop();
       res.syncType = 'ANILIST';
