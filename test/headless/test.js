@@ -1110,6 +1110,7 @@ var testsArray = [
   {
     title: 'viz',
     url: 'https://www.viz.com/',
+    skip: true,
     testCases: [
       {//overview
         url: 'https://www.viz.com/shonenjump/chapters/one-piece',
