@@ -44,7 +44,7 @@ describe('Sync Handling', function () {
       expect(getType('https://kitsu.io/anime/no-game-no-life')).to.equal("KITSU");
     });
     it('Simkl', function () {
-      expect(() => getType('https://simkl.com/anime/46128/no-game-no-life')).to.throw();
+      expect(getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal("SIMKL");
     });
     it('Random', function () {
       expect(() => getType('Random')).to.throw();
