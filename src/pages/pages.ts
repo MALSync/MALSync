@@ -39,6 +39,8 @@ import {Funimation} from "./Funimation/main";
 import {Voiranime} from "./Voiranime/main";
 import {DubbedAnime} from "./DubbedAnime/main";
 import {VIZ} from "./VIZ/main";
+import {MangaNelo} from "./MangaNelo/main";
+import {Mangakakalot} from "./Mangakakalot/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -84,6 +86,8 @@ export const pages = {
     Voiranime,
     DubbedAnime,
     VIZ,
+    MangaNelo,
+    Mangakakalot,
 };
 
 export const pageSearch:pageSearchObj = {
