@@ -296,4 +296,14 @@ module.exports = {
       '*://www.viz.com/*'
     ]
   },
+  MangaNelo: {
+    match: [
+      '*://manganelo.com/*'
+    ]
+  },
+  Mangakakalot: {
+    match: [
+      '*://mangakakalot.com/*'
+    ]
+  },
 };

@@ -1123,6 +1123,58 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'manganelo',
+    url: 'https://manganelo.com/',
+    testCases: [
+      {
+        url: 'https://manganelo.com/chapter/dr_stone/chapter_114',
+        expected: {
+          sync: true,
+          title: 'Dr. Stone',
+          identifier: 'dr_stone',
+          overviewUrl: 'https://manganelo.com/manga/dr_stone',
+          episode: 114,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://manganelo.com/manga/dr_stone',
+        expected: {
+          sync: false,
+          title: 'Dr. Stone',
+          identifier: 'dr_stone',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'mangakakalot',
+    url: 'https://mangakakalot.com/',
+    testCases: [
+      {
+        url: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_203',
+        expected: {
+          sync: true,
+          title: 'Domestic na Kanojo',
+          identifier: 'domestic_na_kanojo',
+          overviewUrl: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+          episode: 203,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+        expected: {
+          sync: false,
+          title: 'Domestic na Kanojo',
+          identifier: 'domestic_na_kanojo',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
