@@ -913,7 +913,7 @@ export class syncPage{
   private presence(info, sender, sendResponse) {
     try{
       if(info.action === 'presence'){
-        console.log('Presence requested', info, this.curState, this.malObj);
+        console.log('Presence requested', info, this.curState);
         if(this.curState){
           if(typeof this.curState.episode !== 'undefined'){
             var ep = this.curState.episode;
@@ -936,8 +936,14 @@ export class syncPage{
             };
 
             if(typeof this.curState.lastVideoTime !== 'undefined'){
-              var timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
-              pres.presence.endTimestamp = Date.now() + (timeleft * 1000);
+              if(this.curState.lastVideoTime.paused){
+                pres.presence.smallImageKey = 'pause';
+              }else{
+                var timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+                pres.presence.endTimestamp = Date.now() + (timeleft * 1000);
+                pres.presence.smallImageKey = 'play';
+              }
+
             }
 
             sendResponse(pres);
