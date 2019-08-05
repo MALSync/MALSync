@@ -4,6 +4,8 @@ import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
 
+var extensionId = "londahcleefkodmnlammpkcdjekmmafj";
+
 export class syncPage{
   page: pageInterface;
   malObj;
@@ -24,6 +26,15 @@ export class syncPage{
       initIframeModal(This);
     });
     this.page.init(this);
+
+    try{//Discord Presence
+      chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
+        con.log('Presence registred')
+      });
+      chrome.runtime.onMessage.addListener(this.presence);
+    }catch(e){
+      con.error(e);
+    }
   }
 
   private getPage(url){
@@ -895,6 +906,20 @@ export class syncPage{
       }).then(() => {
         this.fillUI();
       });
+  }
+
+  private presence(info, sender, sendResponse) {
+    if(info.action === 'presence'){
+      console.log('Presence requested', info);
+      sendResponse({
+      clientId: '606504719212478504',
+      presence: {
+        state: document.title,
+        details: '🍱',
+        //startTimestamp: time,
+        instance: true,
+      }});
+    }
   }
 
 }
