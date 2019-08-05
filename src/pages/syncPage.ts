@@ -930,6 +930,8 @@ export class syncPage{
                 partySize: ep,
                 partyMax: totalEp,
                 instance: true,
+                largeImageKey: this.page.name.toLowerCase(),
+                largeImageText: this.page.name,
               }
             };
 
