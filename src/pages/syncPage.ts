@@ -923,6 +923,17 @@ export class syncPage{
     try{
       if(info.action === 'presence'){
         console.log('Presence requested', info, this.curState);
+
+        var pres:any = {
+          clientId: '606504719212478504',
+          presence: {
+            details: this.curState.title,
+            largeImageKey: this.page.name.toLowerCase(),
+            largeImageText: this.page.name,
+            instance: true,
+          }
+        };
+
         if(this.curState){
           if(typeof this.curState.episode !== 'undefined'){
             var ep = this.curState.episode;
@@ -931,18 +942,9 @@ export class syncPage{
               totalEp = ep;
             }
 
-            var pres:any = {
-              clientId: '606504719212478504',
-              presence: {
-                details: this.curState.title,
-                state: api.storage.lang("UI_Status_watching_"+this.page.type),
-                partySize: ep,
-                partyMax: totalEp,
-                instance: true,
-                largeImageKey: this.page.name.toLowerCase(),
-                largeImageText: this.page.name,
-              }
-            };
+            pres.presence.state = api.storage.lang("UI_Status_watching_"+this.page.type);
+            pres.presence.partySize = ep;
+            pres.presence.partyMax = totalEp;
 
             if(typeof this.curState.lastVideoTime !== 'undefined'){
               if(this.curState.lastVideoTime.paused){
@@ -958,6 +960,8 @@ export class syncPage{
             sendResponse(pres);
             return;
           }else{
+            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [this.page.name]);
+            sendResponse(pres);
             return;
           }
         }

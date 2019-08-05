@@ -834,5 +834,15 @@
           "example": "</a>"
         }
       }
+    },
+    "Discord_rpc_browsing": {
+      "message": "Browsing $Page$",
+      "description": "Discord rich Presence text if on overview page",
+      "placeholders": {
+        "Page": {
+          "content": "$1",
+          "example": "Mangadex"
+        }
+      }
     }
 }
