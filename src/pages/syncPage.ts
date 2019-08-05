@@ -938,13 +938,9 @@ export class syncPage{
           if(typeof this.curState.episode !== 'undefined'){
             var ep = this.curState.episode;
             var totalEp = this.malObj.totalEp;
-            if(totalEp < ep){
-              totalEp = ep;
-            }
+            if(!totalEp) totalEp = '?';
 
-            pres.presence.state = api.storage.lang("UI_Status_watching_"+this.page.type);
-            pres.presence.partySize = ep;
-            pres.presence.partyMax = totalEp;
+            pres.presence.state = api.storage.lang("UI_Status_watching_"+this.page.type) + ' ('+ep+' of '+totalEp+')';
 
             if(typeof this.curState.lastVideoTime !== 'undefined'){
               if(this.curState.lastVideoTime.paused){
