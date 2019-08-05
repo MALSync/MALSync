@@ -31,7 +31,7 @@ export class syncPage{
       chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
         con.log('Presence registred')
       });
-      chrome.runtime.onMessage.addListener(this.presence);
+      chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {this.presence(info, sender, sendResponse)});
     }catch(e){
       con.error(e);
     }
@@ -84,6 +84,8 @@ export class syncPage{
     if(typeof this.curState === 'undefined' || typeof this.curState.identifier === 'undefined' || typeof this.curState.episode === 'undefined') return;
     var This = this;
     var localSelector = this.curState.identifier+'/'+this.curState.episode;
+
+    this.curState.lastVideoTime = item;
 
     //@ts-ignore
     if(typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked){
@@ -909,17 +911,43 @@ export class syncPage{
   }
 
   private presence(info, sender, sendResponse) {
-    if(info.action === 'presence'){
-      console.log('Presence requested', info);
-      sendResponse({
-      clientId: '606504719212478504',
-      presence: {
-        state: document.title,
-        details: '🍱',
-        //startTimestamp: time,
-        instance: true,
-      }});
+    try{
+      if(info.action === 'presence'){
+        console.log('Presence requested', info, this.curState, this.malObj);
+        if(this.curState){
+          if(typeof this.curState.episode !== 'undefined'){
+            var ep = this.curState.episode;
+            var totalEp = this.malObj.totalEp;
+            if(totalEp < ep){
+              totalEp = ep;
+            }
+
+            var pres = {
+              clientId: '606504719212478504',
+              presence: {
+                details: this.curState.title,
+                state: api.storage.lang("UI_Status_watching_"+this.page.type),
+                partySize: ep,
+                partyMax: totalEp,
+                instance: true,
+              }
+            };
+
+            if(typeof this.curState.lastVideoTime !== 'undefined'){
+              var timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+              pres.presence.endTimestamp = Date.now() + (timeleft * 1000);
+            }
+
+            sendResponse(pres);
+            return;
+          }
+        }
+      }
+    }catch(e){
+      con.error(e);
     }
+    sendResponse({});
+
   }
 
 }
