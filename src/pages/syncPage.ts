@@ -922,7 +922,7 @@ export class syncPage{
               totalEp = ep;
             }
 
-            var pres = {
+            var pres:any = {
               clientId: '606504719212478504',
               presence: {
                 details: this.curState.title,

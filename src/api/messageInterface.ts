@@ -11,7 +11,7 @@ export interface xhrResponseI {
 
 export interface videoTime {
     name: "videoTime",
-    item: { current:number, duration:number}
+    item: { current:number, duration:number, paused:boolean}
 }
 
 export interface videoTimeSet {
