@@ -951,6 +951,11 @@ export class syncPage{
                 pres.presence.smallImageKey = 'play';
               }
 
+            }else{
+              if(typeof this.curState.startTime === 'undefined'){
+                this.curState.startTime = Date.now();
+              }
+              pres.presence.startTimestamp = this.curState.startTime;
             }
 
             sendResponse(pres);
