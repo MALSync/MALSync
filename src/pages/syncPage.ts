@@ -27,13 +27,12 @@ export class syncPage{
     });
     this.page.init(this);
 
-    try{//Discord Presence
-      chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
-        con.log('Presence registred')
-      });
-      chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {this.presence(info, sender, sendResponse)});
-    }catch(e){
-      con.error(e);
+    if(api.type === 'webextension'){//Discord Presence
+      try{
+        chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {this.presence(info, sender, sendResponse)});
+      }catch(e){
+        con.error(e);
+      }
     }
   }
 
@@ -227,6 +226,16 @@ export class syncPage{
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 
+      //Discord Presence
+      if(api.type === 'webextension'){
+        try{
+          chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
+            con.log('Presence registred')
+          });
+        }catch(e){
+          con.error(e);
+        }
+      }
 
       //fillUI
       this.fillUI();
@@ -947,6 +956,8 @@ export class syncPage{
             }
 
             sendResponse(pres);
+            return;
+          }else{
             return;
           }
         }
