@@ -306,4 +306,9 @@ module.exports = {
       '*://mangakakalot.com/*'
     ]
   },
+  NekoSama: {
+    match: [
+      '*://*.neko-sama.fr/*'
+    ]
+  },
 };
