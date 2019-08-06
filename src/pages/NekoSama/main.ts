@@ -12,9 +12,9 @@ export const NekoSama: pageInterface = {
     }
   },
   sync: {
-    getTitle: function(url){return j.$(".details > div:nth-child(1) > h1:nth-child(1) > a:nth-child(1)").text()},
+    getTitle: function(url){return j.$(".details > div > h1 > a").text()},
     getIdentifier: function(url){return utils.urlPart(url, 5);},
-    getOverviewUrl: function(url){return NekoSama.domain+j.$(".details > div:nth-child(1) > h1:nth-child(1) > a:nth-child(1)").attr('href')},
+    getOverviewUrl: function(url){return NekoSama.domain+j.$(".details > div > h1 > a").attr('href')},
     getEpisode:function(url){return j.$("#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2").text().split(" Episode ").pop()},
     nextEpUrl: function(url){return j.$("a.ui:nth-child(2)").attr('href')},
   },
