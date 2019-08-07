@@ -1180,13 +1180,14 @@ var testsArray = [
     url: 'https://www.neko-sama.fr/',
     testCases: [
       {
-        url: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-01-vostfr',
+        url: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr',
         expected: {
           sync: true,
           title: 'Fullmetal Alchemist: Brotherhood',
-          identifier: '3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+          identifier: '3458',
           overviewUrl: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
-          episode: 64,
+          nextEpUrl: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr',
+          episode: 3,
           uiSelector: false,
         }
       },
@@ -1194,8 +1195,8 @@ var testsArray = [
         url: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
         expected: {
           sync: false,
-          title: 'Fullmetal Alchemist: Brotherhood',
-          identifier: '3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+          title: 'Fullmetal Alchemist: Brotherhood ',
+          identifier: '3458',
           uiSelector: true,
         }
       },
