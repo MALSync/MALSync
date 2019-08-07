@@ -320,4 +320,5 @@ chrome.runtime.onMessageExternal.addListener(function(request, sender, sendRespo
   chrome.tabs.sendMessage(request.tab, {action: "presence", data: request.info}, function(response){
     sendResponse(response);
   });
+  return true;
 });
