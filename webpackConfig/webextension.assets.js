@@ -174,6 +174,7 @@ const generateManifest = () => {
     'web_accessible_resources': [
       'vendor/*',
       'assets/*',
+      'icons/*'
     ],
     'permissions': [
       "storage",
