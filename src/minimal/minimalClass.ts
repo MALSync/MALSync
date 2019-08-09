@@ -293,7 +293,7 @@ export class minimal{
             if (this.minimal.find('#strictCookies')[0].checked) {
               con.log('strictCookies checked');
               chrome.permissions.request({
-                permissions: ["webRequest", "webRequestBlocking", "cookies"],
+                permissions: ["cookies"],
                 origins: [],
               }, function(granted) {
                 con.log('optional_permissions', granted);
