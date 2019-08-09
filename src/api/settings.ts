@@ -4,6 +4,7 @@ export var settingsObj = {
     autoTrackingModemanga: 'instant',
     forceEn: false,
     userscriptMode: false,
+    strictCookies: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
     localSync: true,
