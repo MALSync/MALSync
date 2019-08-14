@@ -4,7 +4,10 @@ import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
 
-var extensionId = "londahcleefkodmnlammpkcdjekmmafj";
+var extensionId = "agnaejlkbiiggajjmnpmeheigkflbnoo"; //Chrome
+if(typeof browser !== 'undefined' && typeof chrome !== "undefined"){
+  extensionId = "{57081fef-67b4-482f-bcb0-69296e63ec4f}"; //Firefox
+}
 
 export class syncPage{
   page: pageInterface;
@@ -230,7 +233,7 @@ export class syncPage{
       if(api.type === 'webextension'){
         try{
           chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
-            con.log('Presence registred')
+            con.log('Presence registred', response);
           });
         }catch(e){
           con.error(e);
