@@ -6,6 +6,7 @@ export class entryClass{
 
   readonly id: number;
   readonly type: "anime"|"manga";
+  readonly page: string;
 
   url = '';
 
@@ -23,6 +24,7 @@ export class entryClass{
     this.url = key;
     this.id = utils.urlPart(key, 4);
     this.type = utils.urlPart(key, 3);
+    this.page = utils.urlPart(key, 2);
   }
 
   init(){
@@ -149,7 +151,7 @@ export class entryClass{
   }
 
   getCacheKey(){
-    return helper.getCacheKey(this.id);
+    return helper.getCacheKey(this.id, this.page);
   }
 
   async setResumeWaching(url:string, ep:number){

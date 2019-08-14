@@ -49,7 +49,7 @@ export function prepareData(data, listType, status): listElement[]{
           //@ts-ignore
           uid: key,
           url: key,
-          cacheKey: helper.getCacheKey(utils.urlPart(key, 4)),
+          cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
           watchedEp: el.progress,
         });
       }else{
@@ -66,7 +66,7 @@ export function prepareData(data, listType, status): listElement[]{
           //@ts-ignore
           uid: key,
           url: key,
-          cacheKey: helper.getCacheKey(utils.urlPart(key, 4)),
+          cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
           watchedEp: el.progress,
         });
       }

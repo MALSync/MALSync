@@ -1,3 +1,3 @@
-export function getCacheKey(id){
-  return 'local:'+id;
+export function getCacheKey(id, page){
+  return 'local:'+id+':'+page;
 }
