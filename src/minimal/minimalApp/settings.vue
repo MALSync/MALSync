@@ -282,6 +282,16 @@
           <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
         <checkbox option="forceEn">Force english</checkbox>
+
+        <li class="mdl-list__item option-extension">
+          <span class="mdl-list__item-primary-content">
+            Discord Rich Presence
+          </span>
+          <span class="mdl-list__item-secondary-action">
+            <a href="https://github.com/lolamtisch/MALSync/wiki/Discord-Rich-Presence" target="_blank">More Info</a>
+          </span>
+        </li>
+
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
 
