@@ -17,8 +17,8 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![otakustream](https://www.google.com/s2/favicons?domain=https://otakustream.tv "otakustream")](https://otakustream.tv) [otakustream.tv](https://otakustream.tv) | [![mangarock](https://www.google.com/s2/favicons?domain=mangarock.com "mangarock")](https://mangarock.com) [mangarock.com](https://mangarock.com) | |
 | [![CrunchyRoll](https://www.google.com/s2/favicons?domain=crunchyroll.com "CrunchyRoll")](http://crunchyroll.com) [crunchyroll.com](http://crunchyroll.com) | [![novelplanet.com](https://www.google.com/s2/favicons?domain=https://novelplanet.com "Novelplanet.com")](novelplanet.com) [novelplanet.com](https://novelplanet.com) | |
 | [![VRV](https://www.google.com/s2/favicons?domain=vrv.co "VRV")](https://vrv.co) [vrv.co](https://vrv.co) | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | |
-| [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) | | |
-| [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) | | |
+| [![GoGoAnime](https://www.google.com/s2/favicons?domain=gogoanime.tv/io "GoGoAnime")](http://gogoanime.tv/io) [gogoanime.tv/io](http://gogoanime.tv/io) | [![mangakakalot.com](https://www.google.com/s2/favicons?domain=https://mangakakalot.com "mangakakalot.com")](mangakakalot.com) [mangakakalot.com](https://mangakakalot.com) | |
+| [![twist.moe](https://www.google.com/s2/favicons?domain=twist.moe "twist.moe")](https://twist.moe) [twist.moe](https://twist.moe) | [![manganelo.com](https://www.google.com/s2/favicons?domain=https://manganelo.com "manganelo.com")](manganelo.com) [manganelo.com](https://manganelo.com) | |
 | [![Anime4you](https://www.google.com/s2/favicons?domain=https://www.anime4you.one "Anime4you")](https://www.anime4you.one) [anime4you.one](https://www.anime4you.one) | | |
 | [![Branitube](https://www.google.com/s2/favicons?domain=https://branitube.org "Branitube")](https://branitube.org) [branitube.org](https://branitube.org) | | |
 | [![Turkanime](https://www.google.com/s2/favicons?domain=http://www.turkanime.tv "Turkanime")](http://www.turkanime.tv) [turkanime.tv](http://www.turkanime.tv) | | |
@@ -45,6 +45,9 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![shinden.pl](https://www.google.com/s2/favicons?domain=https://shinden.pl "shinden.pl")](shinden.pl) [shinden.pl](https://shinden.pl) | | |
 | [![funimation.com](https://www.google.com/s2/favicons?domain=https://funimation.com "funimation.com")](funimation.com) [funimation.com](https://funimation.com) | | |
 | [![voiranime.com](https://www.google.com/s2/favicons?domain=http://voiranime.com "voiranime.com")](voiranime.com) [voiranime.com](http://voiranime.com) | | |  
+| [![dubbedanime.net](https://www.google.com/s2/favicons?domain=https://dubbedanime.net "dubbedanime.net")](dubbedanime.net) [dubbedanime.net](https://dubbedanime.net) | | | 
+| [![neko-sama.fr](https://www.google.com/s2/favicons?domain=https://neko-sama.fr "neko-sama.fr")](neko-sama.fr) [neko-sama.fr](https://neko-sama.fr) | | | 
+| [![viz.com](https://www.google.com/s2/favicons?domain=https://viz.com "viz.com")](viz.com) [viz.com](https://viz.com) | | | 
 
 [List of supported features by page](pages.md)
 
