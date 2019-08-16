@@ -27,7 +27,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![animeflv](https://www.google.com/s2/favicons?domain=https://animeflv.net "animeflv")](https://animeflv.net) [animeflv.net](https://animeflv.net) | | |
 | [![Jkanime](https://www.google.com/s2/favicons?domain=https://jkanime.net "Jkanime")](https://jkanime.net) [jkanime.net](https://jkanime.net) | | |
 | [![proxer.me](https://www.google.com/s2/favicons?domain=http://proxer.me "Proxer")](http://proxer.me) [proxer.me](http://proxer.me) | | |
-| [![wakanim.tv](https://www.google.com/s2/favicons?domain=https://wakanim.tv "wakanim.tv")](wakanim.tv) [wakanim.tv](wakanim.tv) | | |
+| [![wakanim.tv](https://www.google.com/s2/favicons?domain=https://wakanim.tv "wakanim.tv")](wakanim.tv) [wakanim.tv](http://wakanim.tv) | | |
 | [![animevibe.tv](https://www.google.com/s2/favicons?domain=https://animevibe.tv "Animevibe.tv")](animevibe.tv) [animevibe.tv](https://animevibe.tv) | | |
 | [![wonderfulsubs.com](https://www.google.com/s2/favicons?domain=https://wonderfulsubs.com "Wonderfulsubs.com")](wonderfulsubs.com) [wonderfulsubs.com](https://wonderfulsubs.com) | | |
 | [![kawaiifu.com](https://www.google.com/s2/favicons?domain=https://kawaiifu.com "Kawaiifu.com")](kawaiifu.com) [kawaiifu.com](https://kawaiifu.com) | | |
