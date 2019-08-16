@@ -222,6 +222,18 @@ export const pageSearch:pageSearchObj = {
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
     },
+    Kitsu: {
+      name: 'Kitsu',
+      type: 'anime',
+      domain: 'kitsu.io',
+      searchUrl: (titleEncoded) => {return 'https://kitsu.io/anime?text='+titleEncoded}
+    },
+    KitsuManga: {
+      name: 'Kitsu',
+      type: 'manga',
+      domain: 'kitsu.io',
+      searchUrl: (titleEncoded) => {return 'https://kitsu.io/manga?text='+titleEncoded}
+    },
     SimklAnime: {
       name: 'Simkl',
       type: 'anime',
