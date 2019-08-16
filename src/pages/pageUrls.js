@@ -102,12 +102,17 @@ module.exports = {
       '*://*.gogoanime.se/*',
       '*://*.gogoanime.sh/*',
       '*://*.gogoanimes.co/*',
+      '*://*.animego.to/*',
     ],
     exclude: [
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
       '*gogoanime*.*/user*',
+      '*animego*.*/',
+      '*animego*.*/*.html',
+      '*animego*.*/anime-List*',
+      '*animego*.*/user*',
     ]
   },
   Anime4you: {
