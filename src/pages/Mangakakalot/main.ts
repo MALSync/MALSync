@@ -3,6 +3,7 @@ import { pageInterface } from "./../pageInterface";
 export const Mangakakalot: pageInterface = {
   name: "Mangakakalot",
   domain: "https://mangakakalot.com",
+  database: 'MangaNelo',
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "chapter") {

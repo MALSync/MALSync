@@ -3,6 +3,7 @@ import { pageInterface } from "./../pageInterface";
 export const MangaNelo: pageInterface = {
   name: "MangaNelo",
   domain: "https://manganelo.com",
+  database: 'MangaNelo',
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "chapter") {
