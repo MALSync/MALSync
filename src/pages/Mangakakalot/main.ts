@@ -17,7 +17,7 @@ export const Mangakakalot: pageInterface = {
       return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text()
     },
     getIdentifier: function(url) {
-      return url.split("/")[4];
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url){
       return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a").attr("href");
@@ -31,7 +31,7 @@ export const Mangakakalot: pageInterface = {
       return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text();
     },
     getIdentifier: function(url){
-      return url.split("/")[4];
+      return utils.urlPart(url, 4);
     },
     uiSelector: function(selector){
       j.$('<div id="malthing"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("#chapter").first());
