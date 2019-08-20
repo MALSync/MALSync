@@ -279,10 +279,10 @@ var testsArray = [
 
   {
     title: 'Branitube',
-    url: 'https://www.branitube.org/',
+    url: 'https://www.branitube.net/',
     testCases: [
       {
-        url: 'https://www.branitube.org/animes/no-game-no-life',
+        url: 'https://www.branitube.net/animes/no-game-no-life',
         expected: {
           sync: false,
           title: 'No Game No Life',
@@ -291,13 +291,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www.branitube.org/watch/1818',
+        url: 'https://www.branitube.net/watch/1818',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://branitube.org/animes/no-game-no-life',
-          nextEpUrl: 'https://www.branitube.org/watch/1819',
+          overviewUrl: 'https://branitube.net/animes/no-game-no-life',
+          nextEpUrl: 'https://www.branitube.net/watch/1819',
           episode: 5,
           uiSelector: false,
         }
