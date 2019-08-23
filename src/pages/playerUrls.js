@@ -253,4 +253,10 @@ module.exports = {
       '*://*.bitchute.com/embed/*'
     ]
   },
+  //animeultima
+  streamcherry: {
+    match: [
+      '*://*.streamcherry.com/embed/*'
+    ]
+  },
 };
