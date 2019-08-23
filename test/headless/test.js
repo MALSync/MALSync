@@ -1202,6 +1202,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'Animeflix',
+    url: 'https://animeflix.io/',
+    testCases: [
+      {
+        url: 'https://animeflix.io/shows/quanzhi-gaoshou/episode-7-928035/sub',
+        expected: {
+          sync: true,
+          title: 'Quanzhi Gaoshou',
+          identifier: 'quanzhi-gaoshou',
+          overviewUrl: 'https://animeflix.io/shows/quanzhi-gaoshou',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animeflix.io/shows/quanzhi-gaoshou',
+        expected: {
+          sync: false,
+          title: 'Quanzhi Gaoshou',
+          identifier: 'quanzhi-gaoshou',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
