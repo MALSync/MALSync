@@ -83,7 +83,7 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://branitube.org"><img src="https://www.google.com/s2/favicons?domain=https://branitube.org"> Branitube</a></td>
+              <td><a href="https://branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://branitube.net"> Branitube</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -170,13 +170,13 @@
               <td><a href="https://mangakakalot.com"><img src="https://www.google.com/s2/favicons?domain=https://mangakakalot.com"> Mangakakalot</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://manganelo.com"><img src="https://www.google.com/s2/favicons?domain=https://manganelo.com"> MangaNelo</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://mangarock.com"><img src="https://www.google.com/s2/favicons?domain=https://mangarock.com"> Mangarock</a></td>
