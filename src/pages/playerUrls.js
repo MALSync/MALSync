@@ -162,7 +162,8 @@ module.exports = {
   },
   animeultima: {
     match: [
-      '*://*.animeultima.eu/e/*'
+      '*://*.animeultima.eu/e/*',
+      '*://*.animeultima.eu/faststream/*',
     ]
   },
   vidoza: {
@@ -238,6 +239,18 @@ module.exports = {
   mp4sh: {
     match: [
       '*://mp4.sh/embed/*'
+    ]
+  },
+  //animeultima
+  mystream: {
+    match: [
+      '*://embed.mystream.to/*'
+    ]
+  },
+  //animeultima
+  mystream: {
+    match: [
+      '*://*.bitchute.com/embed/*'
     ]
   },
 };
