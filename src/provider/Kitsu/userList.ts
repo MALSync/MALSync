@@ -8,8 +8,8 @@ export async function userList(status = 1, localListType = 'anime', callbacks, u
     var sorting = '';
     if(status !== 7){
       if(status === 1) sorting = '&sort=-progressed_at';
-      status = helper.translateList(status, status);
-      statusPart = '&filter[status]='+status;
+      var statusTemp = helper.translateList(status, status);
+      statusPart = '&filter[status]='+statusTemp;
     }
 
 
