@@ -929,12 +929,20 @@ export class syncPage{
       if(info.action === 'presence'){
         console.log('Presence requested', info, this.curState);
 
+        if (!api.settings.get("presenceHidePage")) {
+          var largeImageKeyTemp = this.page.name.toLowerCase();
+          var largeImageTextTemp = this.page.name;
+        }else{
+          var largeImageKeyTemp = 'malsync';
+          var largeImageTextTemp = "MAL-Sync";
+        }
+
         var pres:any = {
           clientId: '606504719212478504',
           presence: {
             details: this.curState.title,
-            largeImageKey: this.page.name.toLowerCase(),
-            largeImageText: this.page.name,
+            largeImageKey: largeImageKeyTemp,
+            largeImageText: largeImageTextTemp,
             instance: true,
           }
         };
@@ -945,15 +953,17 @@ export class syncPage{
             var totalEp = this.malObj.totalEp;
             if(!totalEp) totalEp = '?';
 
-            pres.presence.state = api.storage.lang("UI_Status_watching_"+this.page.type) + ' ('+ep+' of '+totalEp+')';
+            pres.presence.state = utils.episode(this.page.type) + ' '+ep+' of '+totalEp;
 
             if(typeof this.curState.lastVideoTime !== 'undefined'){
               if(this.curState.lastVideoTime.paused){
                 pres.presence.smallImageKey = 'pause';
+                pres.presence.smallImageText = 'pause';
               }else{
                 var timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + (timeleft * 1000);
                 pres.presence.smallImageKey = 'play';
+                pres.presence.smallImageText = 'playing';
               }
 
             }else{
@@ -962,11 +972,15 @@ export class syncPage{
               }
               pres.presence.startTimestamp = this.curState.startTime;
             }
-
             sendResponse(pres);
             return;
           }else{
-            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [this.page.name]);
+            if (!api.settings.get("presenceHidePage")) {
+             var browsingTemp = this.page.name;
+            }else{
+             var browsingTemp = '';
+            }
+            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [browsingTemp]);
             sendResponse(pres);
             return;
           }

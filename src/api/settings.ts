@@ -3,6 +3,7 @@ export var settingsObj = {
     autoTrackingModeanime: 'video',
     autoTrackingModemanga: 'instant',
     forceEn: false,
+    presenceHidePage: false,
     userscriptMode: false,
     strictCookies: false,
     syncMode: 'MAL',

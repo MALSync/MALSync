@@ -319,4 +319,9 @@ module.exports = {
       '*://*.neko-sama.fr/*'
     ]
   },
+  Animeflix: {
+    match: [
+      '*://animeflix.io/shows/*'
+    ]
+  },
 };

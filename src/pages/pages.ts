@@ -42,6 +42,7 @@ import {VIZ} from "./VIZ/main";
 import {MangaNelo} from "./MangaNelo/main";
 import {Mangakakalot} from "./Mangakakalot/main";
 import {NekoSama} from "./NekoSama/main";
+import {Animeflix} from "./Animeflix/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -90,6 +91,7 @@ export const pages = {
     MangaNelo,
     Mangakakalot,
     NekoSama,
+    Animeflix,
 };
 
 export const pageSearch:pageSearchObj = {
