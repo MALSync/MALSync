@@ -930,17 +930,19 @@ export class syncPage{
         console.log('Presence requested', info, this.curState);
 
         if (!api.settings.get("presenceHidePage")) {
-          var largeImageKeyTemp = this.page.name;
+          var largeImageKeyTemp = this.page.name.toLowerCase();
+          var largeImageTextTemp = this.page.name;
         }else{
-          var largeImageKeyTemp = 'MAL-Sync';
+          var largeImageKeyTemp = 'malsync';
+          var largeImageTextTemp = "MAL-Sync";
         }
 
         var pres:any = {
           clientId: '606504719212478504',
           presence: {
             details: this.curState.title,
-            largeImageKey: largeImageKeyTemp.toLowerCase(),
-            largeImageText: largeImageKeyTemp,
+            largeImageKey: largeImageKeyTemp,
+            largeImageText: largeImageTextTemp,
             instance: true,
           }
         };
