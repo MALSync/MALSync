@@ -930,9 +930,9 @@ export class syncPage{
         console.log('Presence requested', info, this.curState);
 
         if (!api.settings.get("presenceHidePage")) {
-          var largeImageKeyTemp = this.page.name
+          var largeImageKeyTemp = this.page.name;
         }else{
-          var largeImageKeyTemp = 'MAL-Sync'
+          var largeImageKeyTemp = 'MAL-Sync';
         }
 
         var pres:any = {
@@ -970,11 +970,15 @@ export class syncPage{
               }
               pres.presence.startTimestamp = this.curState.startTime;
             }
-
             sendResponse(pres);
             return;
           }else{
-            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [this.page.name]);
+            if (!api.settings.get("presenceHidePage")) {
+             var browsingTemp = this.page.name;
+            }else{
+             var browsingTemp = '';
+            }
+            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [browsingTemp]);
             sendResponse(pres);
             return;
           }
