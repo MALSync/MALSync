@@ -280,19 +280,17 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
+          <a style="margin-left: auto;" href="https://github.com/lolamtisch/MALSync/wiki/Discord-Rich-Presence" target="_blank"> More Info</a>
+        </div>
+            <checkbox option="presenceHidePage">{{lang("settings_presenceHidePage")}}</checkbox>
+      </div>
+
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
         <checkbox option="forceEn">Force english</checkbox>
-
-        <li class="mdl-list__item option-extension">
-          <span class="mdl-list__item-primary-content">
-            Discord Rich Presence
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a href="https://github.com/lolamtisch/MALSync/wiki/Discord-Rich-Presence" target="_blank">More Info</a>
-          </span>
-        </li>
-
         <span class="option-extension" style="display: none;"><checkbox option="userscriptMode">{{lang("settings_Userscriptmode")}}<tooltip direction="bottom">{{lang("settings_Userscriptmode_Text")}}</tooltip></checkbox></span>
         <span class="option-extension-popup" style="display: none;"><checkbox option="strictCookies">{{lang("settings_StrictCookies")}}<tooltip>{{lang("settings_StrictCookies_Text")}}</tooltip></checkbox></span>
 

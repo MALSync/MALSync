@@ -16,7 +16,7 @@ export const Animeflix: pageInterface = {
       return utils.getBaseText($("h4.title.text-truncate")).replace("()", "").trim();
     },
     getIdentifier: function(url) {
-      return url.split("/")[4];
+      return utils.urlPart(url,4);
     },
     getOverviewUrl: function(url){
       return Animeflix.domain+'/shows/'+Animeflix.sync.getIdentifier(url);
@@ -36,7 +36,7 @@ export const Animeflix: pageInterface = {
       return j.$("div.flex.xs12.lg8 > h1").text().trim();
     },
     getIdentifier: function(url){
-      return url.split("/")[4];
+      return utils.urlPart(url,4);
     },
     uiSelector: function(selector){
       j.$('<div class="container"> <p id="malp">'+selector.html()+'</p></div>').insertAfter(j.$("div.my-3").first());
