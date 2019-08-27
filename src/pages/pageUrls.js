@@ -319,6 +319,17 @@ module.exports = {
       '*://*.neko-sama.fr/*'
     ]
   },
+  AnimeZone: {
+    match: [
+      '*://www.animezone.pl/odcinki/*',
+      '*://www.animezone.pl/odcinek/*'
+    ]
+  },
+  AnimeOdcinki: {
+    match: [
+      '*://anime-odcinki.pl/anime/*'
+    ]
+  },
   Animeflix: {
     match: [
       '*://animeflix.io/shows/*'

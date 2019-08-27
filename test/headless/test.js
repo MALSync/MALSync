@@ -1203,6 +1203,60 @@ var testsArray = [
     ]
   },
   {
+    title: 'AnimeZone',
+    url: 'https://www.animezone.pl/',
+    testCases: [
+      {
+        url: 'https://www.animezone.pl/odcinek/cop-craft/1',
+        expected: {
+          sync: true,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          overviewUrl: 'https://www.animezone.pl/odcinki/cop-craft',
+          nextEpUrl: 'https://www.animezone.pl/odcinek/cop-craft/2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.animezone.pl/odcinki/cop-craft',
+        expected: {
+          sync: false,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'AnimeOdcinki',
+    url: 'https://anime-odcinki.pl/',
+    testCases: [
+      {
+        url: 'https://anime-odcinki.pl/anime/cop-craft/1',
+        expected: {
+          sync: true,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          overviewUrl: 'https://anime-odcinki.pl/anime/cop-craft',
+          nextEpUrl: 'https://anime-odcinki.pl/anime/cop-craft/2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://anime-odcinki.pl/anime/cop-craft',
+        expected: {
+          sync: false,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
     title: 'Animeflix',
     url: 'https://animeflix.io/',
     testCases: [
