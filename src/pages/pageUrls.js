@@ -101,6 +101,7 @@ module.exports = {
       '*://*.gogoanime.in/*',
       '*://*.gogoanime.se/*',
       '*://*.gogoanime.sh/*',
+      '*://*.gogoanime.video/*',
       '*://*.gogoanimes.co/*',
       '*://*.animego.to/*',
     ],
