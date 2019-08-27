@@ -259,4 +259,23 @@ module.exports = {
       '*://*.streamcherry.com/embed/*'
     ]
   },
+  //anime-odcinki
+  clipwatching: {
+    match: [
+      '*://*.clipwatching.com/*'
+    ]
+  },
+  //anime-odcinki
+  flix555: {
+    match: [
+      '*://*.flix555.com/*'
+    ]
+  },
+  //anime-odcinki
+  vshare: {
+    match: [
+      '*://*.vshare.io/v/*'
+    ]
+  },
+
 };
