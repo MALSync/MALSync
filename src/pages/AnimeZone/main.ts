@@ -15,7 +15,7 @@ export const AnimeZone: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function (url) {
-      return j.$(".all-episodes > a").attr("href");
+      return utils.absoluteLink(j.$(".all-episodes > a").attr("href"), AnimeZone.domain)
     },
     getEpisode: function (url) {
       return url.split("/")[5];
