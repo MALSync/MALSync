@@ -330,4 +330,9 @@ module.exports = {
       '*://anime-odcinki.pl/anime/*'
     ]
   },
+  Animeflix: {
+    match: [
+      '*://animeflix.io/shows/*'
+    ]
+  },
 };
