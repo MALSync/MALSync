@@ -47,6 +47,42 @@ export const AnimeZone: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function () {
       page.handlePage();
+
+      const target = document.querySelector("#episode");
+      const config = { attributes: false, childList: true, subtree: true };
+      
+      const callback = function(mutationsList, observer) {
+        for(let mutation of mutationsList) {
+          if (mutation.type === 'childList') {
+    
+            let srcElement = target.querySelector("a") || target.querySelector("iframe");
+            let src = (srcElement.href || srcElement.src).replace(/^http:\/\//i, 'https://');
+            target.querySelector(".embed-container").innerHTML = null;
+              
+      
+            console.log(src);
+      
+    
+            let iframe = document.createElement("iframe");
+            target.querySelector(".embed-container").appendChild(iframe);
+            iframe.setAttribute("allowfullscreen", true);
+            iframe.src = src;
+      
+            iframe.width = "100%";
+            iframe.height = "100%";
+            observer.disconnect();
+    
+          };
+        }
+      };
+      
+      const observer = new MutationObserver(callback);
+      
+      document.querySelectorAll(".btn.btn-xs.btn-success").forEach( e => {
+        e.addEventListener("click", function () {
+          observer.observe(target, config);
+        });
+      });
     });
   }
 };
