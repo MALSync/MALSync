@@ -1,0 +1,396 @@
+{
+  "Search": {
+    "message": "Wyszukaj",
+    "description": "Search"
+  },
+  "Show": {
+    "message": "Pokaż",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "Pomoc",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "Aktualizacja",
+    "description": "Update"
+  },
+  "Reset": {
+    "message": "Reset",
+    "description": "Reset"
+  },
+  "Remove": {
+    "message": "Usuń",
+    "description": "Button for removing entry from MAL..."
+  },
+  "Loading": {
+    "message": "Ładowanie",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "Wybierz",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "Tak",
+    "description": "Yes"
+  },
+  "No": {
+    "message": "Nie",
+    "description": "No"
+  },
+  "NothingFound": {
+    "message": "Nic nie znaleziono",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "Nie znaleziono!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "Brak zapisów",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "pełny ekran",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "zamknij",
+    "description": "close"
+  },
+  "All": {
+    "message": "Wszystko",
+    "description": "All"
+  },
+  "Package_Description": {
+    "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl z różnymi stronami, z automatycznym śledzeniem epizodów.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "Status:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "Oglądane",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "Czytane",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Skończone",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "Wstrzymane",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Porzucone",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "Zaplanowane do obejrzenia",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Zaplanowane do przeczytania",
+    "description": "Plan to Read"
+  },
+  "UI_Episode": {
+    "message": "Epizod:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "Tom:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Rozdział:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "Twoja ocena:",
+    "description": "Score"
+  },
+  "UI_Score_Not_Rated": {
+    "message": "Nie ocenione",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) Arcydzieło",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) Wspaniałe",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) Bardzo dobre",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) Dobre",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) Fajne",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) Średnie",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) Złe",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) Bardzo złe",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) Okropne",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) Przerażające",
+    "description": "Appalling - Score"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "Kontynuuj w $time$",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "Aktualizuj $page$ do epizodu $epNr$",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "Aktualizuj $page$ do rozdziału $epNr$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "Cofnij",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "Źle?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Aktualizacja nieudana",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "Ustawić jako kompletne?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "Zacząć oglądanie?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "Zacząć czytanie?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "Czy \"$anime$\" jest poprawne?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "Dodaj  do $page$",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "Epizod $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "Rozdział $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "Wykryto możliwe przesunięcie odcinka o wartość $calcOffset$. Czy jest to poprawne?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "Żeton zapisany, możesz teraz zamknąć tę stronę",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "Ab zalogować się do Kitsu, musisz podać adres e-mail i hasło do swojego konta.<br>Twoje poświadczenia nie są przechowywane na komputerze ani w żadnym innym miejscu.<br>Są one wysyłane bezpośrednio do Kitsu. Zapisany jest tylko zwrócony token dostępu.<br>",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "Hasło",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "Login",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "Żeton zapisany, możesz teraz zamknąć tę stronę",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "Błędne poświadczenia",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Days": {
+    "message": "Dni",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "Dzień",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "Godziny",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "Godzina",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "minuty",
+    "description": "mins"
+  },
+  "prediction_Episode": {
+    "message": "Następny odcinek szacowany za $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "Emisja o $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "correction_Offset": {
+    "message": "Przesunięcie odcinka",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "Wprowadź przesunięcie odcinka, jeśli anime ma 12 odcinków, ale używa cyfr 0-11 zamiast 1-12, po prostu wpisz „+1” w przesunięciu odcinka.",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "Zmień ten adres URL tylko wtedy, gdy wskazuje niewłaściwą stronę anime w MAL.",
+    "description": "URL is Wrong"
+  },
+  "correction_Search": {
+    "message": "Wyszukiwanie poprawek",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "To pole służy do znalezienia anime, kiedy trzeba poprawić „MyAnimeList URL” pokazany powyżej.\nAby rozpocząć wyszukiwanie, po prostu zacznij wpisywać nazwę anime, a lista z wynikami pojawi się automatycznie podczas pisania.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "Jeśli anime/mangi nie można znaleźć w MAL",
+    "description": "Anime/Manga not found in MAL"
+  },
+  "correction_NoEntry": {
+    "message": "Brak zapisów w MyAnimeList",
+    "description": "No entry on MyAnimeList"
+  },
+  "correction_NewOffset": {
+    "message": "Nowe przesunięcie ($offset$) ustawione.",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "Resetowanie przesunięcia",
+    "description": "Offset reset"
+  },
+  "minimalApp_Overview": {
+    "message": "Przegląd",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "Recenzje",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "Rekomendacje",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "Ustawienia",
+    "description": "Settings"
+  }
+}
