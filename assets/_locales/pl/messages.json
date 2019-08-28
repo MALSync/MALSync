@@ -316,7 +316,7 @@
     "description": "mins"
   },
   "prediction_Episode": {
-    "message": "Następny odcinek szacowany za $time$",
+    "message": "Następny epizod szacowany za $time$",
     "description": "Text for next episode estimation",
     "placeholders": {
       "time": {
@@ -408,7 +408,7 @@
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
-    "message": "Wznów odcinek",
+    "message": "Wznów epizod",
     "description": "Resume Episode"
   },
   "overview_Resume_Episode_manga": {
@@ -768,7 +768,7 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Użytkownicy uBlocka zasubskrybuj tę listę filtrów! To rozwiązuje niektóre problemy, takie jak uszkodzone obrazy",
+    "message": "Jeśli jesteś użytkownicy uBlocka, zasubskrybuj tę listę filtrów! To rozwiązuje niektóre problemy, takie jak uszkodzone obrazy",
     "description": "Update version - Text 4"
   },
   "installPage_Mode": {
@@ -780,7 +780,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "Wystarczy otworzyć odcinek lub rozdział na dowolnej $Link1$obsługiwanej stronie$LinkEnd1$. Synchronizacja czeka na obejrzenie 85% filmu. W przypadku mang synchronizuje się przy ładowaniu strony. Można to zmienić w $Link2$ustawieniach$LinkEnd2$.",
+    "message": "Wystarczy otworzyć epizod lub rozdział na dowolnej $Link1$obsługiwanej stronie$LinkEnd1$. Synchronizacja czeka na obejrzenie 85% filmu. W przypadku mang synchronizuje się przy ładowaniu strony. Można to zmienić w $Link2$ustawieniach$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
