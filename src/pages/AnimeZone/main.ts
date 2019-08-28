@@ -55,13 +55,13 @@ export const AnimeZone: pageInterface = {
         for(let mutation of mutationsList) {
           if (mutation.type === 'childList') {
 
-            let srcElement = target.querySelector("a") || target.querySelector("iframe");
+            let srcElement = j.$("#episode a") || j.$(" #episode iframe");
             let src = (srcElement.href || srcElement.src).replace(/^http:\/\//i, 'https://');
-            target.querySelector(".embed-container").innerHTML = null;
+            j.$("#episode .embed-container").innerHTML = null;
 
 
             let iframe = document.createElement("iframe");
-            target.querySelector(".embed-container").appendChild(iframe);
+            j.$("#episode .embed-container").appendChild(iframe);
             iframe.setAttribute("allowfullscreen", "true");
             iframe.src = src;
 
