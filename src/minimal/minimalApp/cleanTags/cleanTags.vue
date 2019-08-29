@@ -76,7 +76,10 @@
 
   async function cleanTags(url){
     var entryClass = new provider.entryClass(url, true, true);
-    return entryClass.init();
+    return entryClass.init().then( () => {
+      entryClass.setStreamingUrl('');
+      return entryClass.sync();
+    });
   }
 
   function getList(type){
