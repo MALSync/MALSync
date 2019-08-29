@@ -76,6 +76,11 @@ export class anilistClass{
   }
 
   authentication(){
+    try{
+      utils.checkDoubleExecution();
+    }catch(e){
+      con.error(e);
+    }
     var tokens = /access_token=[^&]+/gi.exec(this.url);
     if(tokens != null && typeof tokens[0] != 'undefined' && tokens[0]){
       var token = tokens[0].toString().replace(/access_token=/gi, '');

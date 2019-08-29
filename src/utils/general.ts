@@ -115,6 +115,18 @@ export function waitUntilTrue(condition, callback){
   return Interval;
 }
 
+var doubleId = Math.random();
+export function checkDoubleExecution(){
+  if($('.mal-sync-double-detect').length){
+    $('.mal-sync-double-detect').each(function( index ) {
+      if($(this).text() !== doubleId.toString()){
+        alert('Double execution detected! Please run MAL-Sync once only.');
+      }
+    });
+  }
+  $('body').after('<div class="mal-sync-double-detect" style="display: none;">'+doubleId.toString()+'</div>')
+}
+
 export function getUrlFromTags(tags:string){
   if(!api.settings.get('malTags')) return undefined;
   if(/malSync::[\d\D]+::/.test(tags)){
