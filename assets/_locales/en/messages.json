@@ -64,7 +64,7 @@
       "description": "All"
     },
     "Package_Description": {
-      "message": "Integrates MyAnimeList/AniList/Kitsu into various sites, with auto episode tracking.",
+      "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
       "description": "Description MALSync"
     },
     "UI_Status": {
@@ -691,6 +691,10 @@
       "message": "Clear Cache",
       "description": "Clear Cache"
     },
+    "settings_presenceHidePage": {
+      "message": "Show MAL-Sync icon instead of page icon",
+      "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+    },
     "updateCheck_Refresh": {
       "message": "Refresh",
       "description": "Refresh"
@@ -832,6 +836,16 @@
         "Link2": {
           "content": "</a>",
           "example": "</a>"
+        }
+      }
+    },
+    "Discord_rpc_browsing": {
+      "message": "Browsing $Page$",
+      "description": "Discord rich Presence text if on overview page",
+      "placeholders": {
+        "Page": {
+          "content": "$1",
+          "example": "Mangadex"
         }
       }
     }

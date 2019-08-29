@@ -33,7 +33,7 @@
           <h4>{{lang("installPage_Mode")}}</h4>
           <span class="mdl-list__item-secondary-action">
             <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
-              <option value="" disabled selected hidden>-- Select --</option>
+              <option value="" disabled selected hidden>-- {{lang("Select")}} --</option>
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>

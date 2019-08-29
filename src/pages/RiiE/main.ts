@@ -14,10 +14,10 @@ export const RiiE: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("#content > div.postarea > div > div.post > div:nth-child(1) > b").text().replace(/episode.*/gmi,"").trim()},
     getIdentifier: function(url) {
-      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:nth-child(2)").attr('href').split("/")[4];
+      return RiiE.sync.getOverviewUrl(url).split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:nth-child(2)").attr('href');
+      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])").first().attr('href');
     },
     getEpisode: function(url){
       var episodePart = url.split("/")[3];
@@ -26,6 +26,12 @@ export const RiiE: pageInterface = {
         if(temp !== null){
           return temp[0].replace(/\D+/g, "");
         }
+      }
+    },
+    nextEpUrl: function(url){
+      var href = $("a[rel='next']").first().attr('href');
+      if(typeof href !== 'undefined'){
+        return utils.absoluteLink(href, RiiE.domain);
       }
     },
   },

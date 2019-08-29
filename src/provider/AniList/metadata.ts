@@ -277,7 +277,7 @@ export class metadata implements metadataInterface{
       });
 
       if(this.xhr.data.Media.endDate.year !== null) html.push({
-        title: 'Start Date:',
+        title: 'End Date:',
         body: this.xhr.data.Media.endDate.year+'-'+this.xhr.data.Media.endDate.month+'-'+this.xhr.data.Media.endDate.day
       });
 

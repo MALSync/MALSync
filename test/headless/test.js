@@ -279,10 +279,10 @@ var testsArray = [
 
   {
     title: 'Branitube',
-    url: 'https://www.branitube.org/',
+    url: 'https://www.branitube.net/',
     testCases: [
       {
-        url: 'https://www.branitube.org/animes/no-game-no-life',
+        url: 'https://www.branitube.net/animes/no-game-no-life',
         expected: {
           sync: false,
           title: 'No Game No Life',
@@ -291,13 +291,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://www.branitube.org/watch/1818',
+        url: 'https://www.branitube.net/watch/1818',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://branitube.org/animes/no-game-no-life',
-          nextEpUrl: 'https://www.branitube.org/watch/1819',
+          overviewUrl: 'https://branitube.net/animes/no-game-no-life',
+          nextEpUrl: 'https://www.branitube.net/watch/1819',
           episode: 5,
           uiSelector: false,
         }
@@ -503,13 +503,14 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html?ep=4',
+        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-720p-hd',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-720p-hd.html',
+          identifier: 'plastic-memories-bluray-ver-hd-720p',
+          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html',
           episode: 4,
+          nextEpUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
         }
       },
@@ -528,6 +529,7 @@ var testsArray = [
           identifier: 'no-game-no-life',
           overviewUrl: 'https://4anime.to/anime/no-game-no-life',
           episode: 4,
+          nextEpUrl: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
           uiSelector: false,
         }
       },
@@ -646,6 +648,7 @@ var testsArray = [
           identifier: 'initial-d-first-stage',
           overviewUrl: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
           episode: 5,
+          nextEpUrl: 'https://animedaisuki.moe/watch/6381/initial-d-first-stage-6',
           uiSelector: false,
         }
       },
@@ -670,8 +673,9 @@ var testsArray = [
           sync: true,
           title: 'Mahouka Koukou no Rettousei',
           identifier: 'mahouka-koukou-no-rettousei',
-          overviewUrl: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei',
+          overviewUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei',
           episode: 23,
+          nextEpUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-24',
           uiSelector: false,
         }
       },
@@ -752,6 +756,18 @@ var testsArray = [
     url: 'https://www.riie.net/',
     testCases: [
       {
+        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-1-subtitle-indonesia/',
+        expected: {
+          sync: true,
+          title: 'Tate no Yuusha no Nariagari',
+          identifier: 'tate-no-yuusha-no-nariagari',
+          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
+          episode: 1,
+          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-2-subtitle-indonesia/',
+          uiSelector: false,
+        }
+      },
+      {
         url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-23-subtitle-indonesia/',
         expected: {
           sync: true,
@@ -759,6 +775,7 @@ var testsArray = [
           identifier: 'tate-no-yuusha-no-nariagari',
           overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
           episode: 23,
+          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-24-subtitle-indonesia/',
           uiSelector: false,
         }
       },
@@ -785,6 +802,7 @@ var testsArray = [
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
+          nextEpUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-10',
           uiSelector: false,
         }
       },
@@ -838,6 +856,7 @@ var testsArray = [
           identifier: 'zankyou-no-terror',
           overviewUrl: 'http://animeindo.moe/anime/zankyou-no-terror',
           episode: 6,
+          nextEpUrl: 'http://animeindo.moe/zankyou-no-terror-episode-07.html',
           uiSelector: false,
         }
       },
@@ -916,6 +935,351 @@ var testsArray = [
           uiSelector: true,
         }
       }
+    ]
+  },
+  {
+    title: 'hanime', //nsfw
+    url: 'https://hanime.tv/',
+    testCases: [
+      {
+        url: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-2',
+        expected: {
+          sync: true,
+          title: 'Majuu Jouka Shoujo Utea',
+          identifier: 'majuu-jouka-shoujo-utea',
+          overviewUrl: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-1',
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+    ]
+  },
+  {
+    title: 'hentaihaven', //nsfw
+    url: 'https://hentaihaven.org/',
+    testCases: [
+      {
+        url: 'https://hentaihaven.org/rape-gouhouka-episode-2/',
+        expected: {
+          sync: true,
+          title: 'Rape Gouhouka!!!',
+          identifier: 'rape-gouhouka',
+          overviewUrl: 'https://hentaihaven.org/series/rape-gouhouka/',
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://hentaihaven.org/series/rape-gouhouka/',
+        expected: {
+          sync: false,
+          title: 'Rape Gouhouka!!!',
+          identifier: 'rape-gouhouka',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'hentaigasm', //nsfw
+    url: 'http://hentaigasm.com/',
+    testCases: [
+      {
+        url: 'http://hentaigasm.com/pinkerton-3-subbed/',
+        expected: {
+          sync: true,
+          title: 'Pinkerton',
+          identifier: 'pinkerton',
+          overviewUrl: 'http://hentaigasm.com/category/pinkerton/',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'http://hentaigasm.com/category/pinkerton/',
+        expected: {
+          sync: false,
+          title: 'Pinkerton',
+          identifier: 'pinkerton',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'KissHentai', //nsfw
+    url: 'http://kisshentai.net/',
+    testCases: [
+      {
+        url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2/Episode-001?id=51',
+        expected: {
+          sync: true,
+          title: 'Bloods: Inraku no Ketsuzoku 2',
+          identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
+          overviewUrl: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
+        expected: {
+          sync: false,
+          title: 'Bloods: Inraku no Ketsuzoku 2',
+          identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'UnderHentai', //nsfw
+    url: 'https://www.underhentai.net/',
+    testCases: [
+    //this part seems broken
+     /* {
+        url: 'https://www.underhentai.net/watch/?id=647&ep=2',
+        expected: {
+          sync: true,
+          title: 'Resort Boin',
+          identifier: 'resort-boin',
+          overviewUrl: 'https://www.underhentai.net/resort-boin',
+          episode: 2,
+          uiSelector: false,
+        }
+      },*/
+      {
+        url: 'https://www.underhentai.net/resort-boin/',
+        expected: {
+          sync: false,
+          title: 'Resort Boin',
+          identifier: 'resort-boin',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'dubbedanime',
+    url: 'https://ww5.dubbedanime.net/',
+    testCases: [
+      {//check for ova
+        url: 'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
+        expected: {
+          sync: true,
+          title: 'Golden Boy',
+          identifier: '796-golden-boy',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {//check for movie
+        url: 'https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed',
+        expected: {
+          sync: true,
+          title: 'A Silent Voice MOVIE',
+          identifier: '2678-a-silent-voice',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {//check for anime/episode
+        url: 'https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed',
+        expected: {
+          sync: true,
+          title: 'Golgo 13',
+          identifier: '3072-golgo-13',
+          overviewUrl: 'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
+          episode: 36,
+          uiSelector: false,
+        }
+      },
+      {//overview
+        url: 'https://ww5.dubbedanime.net/anime/3072-golgo-13',
+        expected: {
+          sync: false,
+          title: 'Golgo 13',
+          identifier: '3072-golgo-13',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'viz',
+    url: 'https://www.viz.com/',
+    skip: true,
+    testCases: [
+      {//overview
+        url: 'https://www.viz.com/shonenjump/chapters/one-piece',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'manganelo',
+    url: 'https://manganelo.com/',
+    testCases: [
+      {
+        url: 'https://manganelo.com/chapter/dr_stone/chapter_114',
+        expected: {
+          sync: true,
+          title: 'Dr. Stone',
+          identifier: 'dr_stone',
+          overviewUrl: 'https://manganelo.com/manga/dr_stone',
+          episode: 114,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://manganelo.com/manga/dr_stone',
+        expected: {
+          sync: false,
+          title: 'Dr. Stone',
+          identifier: 'dr_stone',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'mangakakalot',
+    url: 'https://mangakakalot.com/',
+    testCases: [
+      {
+        url: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_203',
+        expected: {
+          sync: true,
+          title: 'Domestic na Kanojo',
+          identifier: 'domestic_na_kanojo',
+          overviewUrl: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+          episode: 203,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+        expected: {
+          sync: false,
+          title: 'Domestic na Kanojo',
+          identifier: 'domestic_na_kanojo',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'NekoSama',
+    url: 'https://www.neko-sama.fr/',
+    testCases: [
+      {
+        url: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr',
+        expected: {
+          sync: true,
+          title: 'Fullmetal Alchemist: Brotherhood',
+          identifier: '3458',
+          overviewUrl: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+          nextEpUrl: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+        expected: {
+          sync: false,
+          title: 'Fullmetal Alchemist: Brotherhood ',
+          identifier: '3458',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'AnimeZone',
+    url: 'https://www.animezone.pl/',
+    testCases: [
+      {
+        url: 'https://www.animezone.pl/odcinek/cop-craft/1',
+        expected: {
+          sync: true,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          overviewUrl: 'https://www.animezone.pl/odcinki/cop-craft',
+          nextEpUrl: 'https://www.animezone.pl/odcinek/cop-craft/2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.animezone.pl/odcinki/cop-craft',
+        expected: {
+          sync: false,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'AnimeOdcinki',
+    url: 'https://anime-odcinki.pl/',
+    testCases: [
+      {
+        url: 'https://anime-odcinki.pl/anime/cop-craft/1',
+        expected: {
+          sync: true,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          overviewUrl: 'https://anime-odcinki.pl/anime/cop-craft',
+          nextEpUrl: 'https://anime-odcinki.pl/anime/cop-craft/2',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://anime-odcinki.pl/anime/cop-craft',
+        expected: {
+          sync: false,
+          title: 'Cop Craft',
+          identifier: 'cop-craft',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'Animeflix',
+    url: 'https://animeflix.io/',
+    testCases: [
+      {
+        url: 'https://animeflix.io/shows/quanzhi-gaoshou/episode-7-928035/sub',
+        expected: {
+          sync: true,
+          title: 'Quanzhi Gaoshou',
+          identifier: 'quanzhi-gaoshou',
+          overviewUrl: 'https://animeflix.io/shows/quanzhi-gaoshou',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animeflix.io/shows/quanzhi-gaoshou',
+        expected: {
+          sync: false,
+          title: 'Quanzhi Gaoshou',
+          identifier: 'quanzhi-gaoshou',
+          uiSelector: true,
+        }
+      },
     ]
   },
 ];

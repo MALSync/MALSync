@@ -315,3 +315,10 @@ try{
 }catch(e){
   con.info('Permission on change', e);
 }
+
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+  chrome.tabs.sendMessage(request.tab, {action: "presence", data: request.info}, function(response){
+    sendResponse(response);
+  });
+  return true;
+});

@@ -1,4 +1,7 @@
-import {pages} from "./../src/pages/pages";
+import {pages as part1} from "./../src/pages/pages";
+import {pages as part2} from "./../src/pages-adult/pages";
+
+const pages = {...part1, ...part2};
 
 //@ts-ignore
 window.MalSyncTest = async function(){

@@ -65,7 +65,7 @@ export function prepareData(data, listType, status): listElement[]{
         watchedEp: helper.getEpisode(el.last_watched),
         totalEp: el.total_episodes_count,
         status: st,
-        score: el.user_rating,
+        score: (el.user_rating) ? el.user_rating : 0,
         image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
         tags: el.private_memo,
         airingState: el['anime_airing_status'],

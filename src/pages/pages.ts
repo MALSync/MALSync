@@ -37,6 +37,14 @@ import {AnimeIndo} from "./AnimeIndo/main";
 import {Shinden} from "./Shinden/main";
 import {Funimation} from "./Funimation/main";
 import {Voiranime} from "./Voiranime/main";
+import {DubbedAnime} from "./DubbedAnime/main";
+import {VIZ} from "./VIZ/main";
+import {MangaNelo} from "./MangaNelo/main";
+import {Mangakakalot} from "./Mangakakalot/main";
+import {NekoSama} from "./NekoSama/main";
+import {AnimeZone} from "./AnimeZone/main";
+import {AnimeOdcinki} from "./AnimeOdcinki/main";
+import {Animeflix} from "./Animeflix/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -80,6 +88,14 @@ export const pages = {
     Shinden,
     Funimation,
     Voiranime,
+    DubbedAnime,
+    VIZ,
+    MangaNelo,
+    Mangakakalot,
+    NekoSama,
+    AnimeZone,
+    AnimeOdcinki,
+    Animeflix,
 };
 
 export const pageSearch:pageSearchObj = {
@@ -163,12 +179,7 @@ export const pageSearch:pageSearchObj = {
       domain: 'novelplanet.com',
       searchUrl: (titleEncoded) => {return 'https://novelplanet.com/NovelList?name='+titleEncoded}
     },
-    AniList: {
-      name: 'AniList',
-      type: 'anime',
-      domain: 'anilist.co',
-      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
-    },
+
     Proxeranime: {
       name: 'Proxer',
       type: 'anime',
@@ -181,16 +192,70 @@ export const pageSearch:pageSearchObj = {
       domain: 'proxer.me',
       searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-manga&tags=&notags=#top'}
     },
+    MangaUpdates: {
+      name: 'Mangaupdates',
+      type: 'manga',
+      domain: 'mangaupdates.com',
+      searchUrl: (titleEncoded) => {return 'https://www.mangaupdates.com/series.html?search='+titleEncoded}
+    },
     Novelupdates: {
       name: 'Novel Updates [No Sync]',
       type: 'manga',
       domain: 'www.novelupdates.com',
       searchUrl: (titleEncoded) => {return 'https://www.novelupdates.com/?s='+titleEncoded}
     },
+    Doujinshi: {
+      name: 'Doujinshi',
+      type: 'manga',
+      domain: 'www.doujinshi.org',
+      searchUrl: (titleEncoded) => {return 'https://www.doujinshi.org/search/simple/?T=objects&sn='+titleEncoded}
+    },
+    AniDb: {
+      name: 'aniDB',
+      type: 'anime',
+      domain: 'anidb.net',
+      searchUrl: (titleEncoded) => {return 'https://anidb.net/anime/?do.search=1&adb.search='+titleEncoded}
+    },
+    AniList: {
+      name: 'AniList',
+      type: 'anime',
+      domain: 'anilist.co',
+      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
+    },
     AniListManga: {
       name: 'AniList',
       type: 'manga',
       domain: 'anilist.co',
       searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
+    },
+    Kitsu: {
+      name: 'Kitsu',
+      type: 'anime',
+      domain: 'kitsu.io',
+      searchUrl: (titleEncoded) => {return 'https://kitsu.io/anime?text='+titleEncoded}
+    },
+    KitsuManga: {
+      name: 'Kitsu',
+      type: 'manga',
+      domain: 'kitsu.io',
+      searchUrl: (titleEncoded) => {return 'https://kitsu.io/manga?text='+titleEncoded}
+    },
+    SimklAnime: {
+      name: 'Simkl',
+      type: 'anime',
+      domain: 'simkl.com',
+      searchUrl: (titleEncoded) => {return 'https://simkl.com/search/?type=anime&q='+titleEncoded}
+    },
+    MALManga: {
+      name: 'MyAnimeList',
+      type: 'manga',
+      domain: 'myanimelist.net',
+      searchUrl: (titleEncoded) => {return 'https://myanimelist.net/manga.php?q='+titleEncoded}
+    },
+    MALAnime: {
+      name: 'MyAnimeList',
+      type: 'anime',
+      domain: 'myanimelist.net',
+      searchUrl: (titleEncoded) => {return 'https://myanimelist.net/anime.php?q='+titleEncoded}
     },
 }

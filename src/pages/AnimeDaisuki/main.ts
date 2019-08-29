@@ -24,6 +24,12 @@ export const AnimeDaisuki: pageInterface = {
     getEpisode: function(url){
       return j.$("h2.SubTitle").text().replace(/\D+/g, "");
     },
+    nextEpUrl: function(url){
+      var href = j.$(".CapNv .CapNvNx").first().attr('href')
+      if(typeof href !== 'undefined'){
+        return AnimeDaisuki.domain+href;
+      }
+    },
   },
   overview:{
     getTitle: function(url){

@@ -101,13 +101,19 @@ module.exports = {
       '*://*.gogoanime.in/*',
       '*://*.gogoanime.se/*',
       '*://*.gogoanime.sh/*',
+      '*://*.gogoanime.video/*',
       '*://*.gogoanimes.co/*',
+      '*://*.animego.to/*',
     ],
     exclude: [
       '*gogoanime*.*/',
       '*gogoanime*.*/*.html',
       '*gogoanime*.*/anime-List*',
       '*gogoanime*.*/user*',
+      '*animego*.*/',
+      '*animego*.*/*.html',
+      '*animego*.*/anime-List*',
+      '*animego*.*/user*',
     ]
   },
   Anime4you: {
@@ -117,6 +123,8 @@ module.exports = {
   },
   Branitube: {
     match: [
+      '*://*.branitube.net/watch/*',
+      '*://*.branitube.net/animes/*',
       '*://*.branitube.org/watch/*',
       '*://*.branitube.org/animes/*'
     ]
@@ -247,7 +255,8 @@ module.exports = {
   },
   KickAssAnime: {
     match: [
-      '*://*.kickassanime.io/anime/*'
+      '*://*.kickassanime.io/anime/*',
+      '*://*.kickassanime.ru/anime/*'
     ],
   },
   RiiE: {
@@ -285,5 +294,46 @@ module.exports = {
     match: [
       '*://voiranime.com/*'
     ]
-  }
+  },
+  DubbedAnime: {
+    match: [
+      '*://*.dubbedanime.net/*'
+    ]
+  },
+  VIZ: {
+    match: [
+      '*://www.viz.com/*'
+    ]
+  },
+  MangaNelo: {
+    match: [
+      '*://manganelo.com/*'
+    ]
+  },
+  Mangakakalot: {
+    match: [
+      '*://mangakakalot.com/*'
+    ]
+  },
+  NekoSama: {
+    match: [
+      '*://*.neko-sama.fr/*'
+    ]
+  },
+  AnimeZone: {
+    match: [
+      '*://www.animezone.pl/odcinki/*',
+      '*://www.animezone.pl/odcinek/*'
+    ]
+  },
+  AnimeOdcinki: {
+    match: [
+      '*://anime-odcinki.pl/anime/*'
+    ]
+  },
+  Animeflix: {
+    match: [
+      '*://animeflix.io/shows/*'
+    ]
+  },
 };

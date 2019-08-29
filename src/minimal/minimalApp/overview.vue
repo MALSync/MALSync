@@ -1,6 +1,15 @@
 <template>
   <div class="page-content">
-    <div v-show="!metaObj" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
+
+    <div v-show="!metaObj && !error" id="loadOverview" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute; top: 0;"></div>
+
+    <span v-if="error" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
+      <span class="mdl-chip__text">Error</span>
+      <button type="button" class="mdl-chip__action" @click="clickRender()">
+        <i class="material-icons">refresh</i>
+      </button>
+    </span>
+
     <div class="mdl-grid" v-if="metaObj">
       <div v-show="statistics.length" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
         <ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">
@@ -216,6 +225,7 @@
     data: function(){
       return {
         metaObj: null,
+        error: null,
         imageTemp: null,
         mal: {
           resumeUrl: null,
@@ -235,68 +245,7 @@
     },
     watch: {
       renderObj: async function(renderObj){
-
-        this.metaObj = null;
-
-        this.mal.resumeUrl = null;
-        this.mal.continueUrl = null;
-        this.kiss2mal = {};
-        this.related = [];
-        this.prediction = null;
-        this.imageTemp = null;
-
-        if(renderObj == null) return;
-
-        var syncMode = api.settings.get('syncMode');
-        //
-        if(syncMode === 'SIMKL' && renderObj.type === 'manga'){
-          syncMode = api.settings.get('syncModeSimkl');
-        }
-        //
-
-        if(/^local:\/\//i.test(renderObj.url)){
-          this.metaObj = {};
-        }else if(syncMode === 'ANILIST'){
-          this.metaObj = await new aniMeta(renderObj.url).init();
-        }else if(syncMode === 'KITSU'){
-          this.metaObj = await new kitsuMeta(renderObj.url).init();
-        }else if(syncMode === 'SIMKL'){
-          this.metaObj = await new simklMeta(renderObj.url).init();
-        }else if(renderObj.getMalUrl() !== null){
-          this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
-        }else{
-
-        }
-
-        if(this.metaObj !== null){
-          this.related = this.getRelated();
-        }
-
-        if(renderObj.getMalUrl() !== null){
-
-          if(renderObj.login){
-            this.updateStatusTags();
-          }
-
-
-          if(renderObj.getMalUrl().split('').length > 3){
-            utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
-              this.kiss2mal = links;
-            });
-          }
-
-        }
-
-        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
-          this.imageTemp = await this.renderObj.getImage();
-        }
-
-        this.mal.resumeUrl = await renderObj.getResumeWaching();
-        this.mal.continueUrl = await renderObj.getContinueWaching();
-
-        utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, (prediction) => {
-          this.prediction = prediction;
-        });
+        this.render(renderObj);
       }
     },
     computed: {
@@ -474,6 +423,80 @@
     },
     methods: {
       lang: api.storage.lang,
+      render: async function(renderObj){
+
+        this.metaObj = null;
+        this.error = null;
+
+        this.mal.resumeUrl = null;
+        this.mal.continueUrl = null;
+        this.kiss2mal = {};
+        this.related = [];
+        this.prediction = null;
+        this.imageTemp = null;
+
+        if(renderObj == null) return;
+
+        var syncMode = api.settings.get('syncMode');
+        //
+        if(syncMode === 'SIMKL' && renderObj.type === 'manga'){
+          syncMode = api.settings.get('syncModeSimkl');
+        }
+        //
+
+        try{
+          if(/^local:\/\//i.test(renderObj.url)){
+            this.metaObj = {};
+          }else if(syncMode === 'ANILIST'){
+            this.metaObj = await new aniMeta(renderObj.url).init();
+          }else if(syncMode === 'KITSU'){
+            this.metaObj = await new kitsuMeta(renderObj.url).init();
+          }else if(syncMode === 'SIMKL'){
+            this.metaObj = await new simklMeta(renderObj.url).init();
+          }else if(renderObj.getMalUrl() !== null){
+            this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
+          }else{
+
+          }
+        }catch(e){
+          con.error('Could not retrive metadata', e);
+          this.error = e;
+          return;
+        }
+
+        if(this.metaObj !== null){
+          this.related = this.getRelated();
+        }
+
+        if(renderObj.getMalUrl() !== null){
+
+          if(renderObj.login){
+            this.updateStatusTags();
+          }
+
+
+          if(renderObj.getMalUrl().split('').length > 3){
+            utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
+              this.kiss2mal = links;
+            });
+          }
+
+        }
+
+        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
+          this.imageTemp = await this.renderObj.getImage();
+        }
+
+        this.mal.resumeUrl = await renderObj.getResumeWaching();
+        this.mal.continueUrl = await renderObj.getContinueWaching();
+
+        utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, (prediction) => {
+          this.prediction = prediction;
+        });
+      },
+      clickRender: function(){
+        this.render(this.renderObj);
+      },
       malSync: function(){
         this.renderObj.sync()
           .then(function(){

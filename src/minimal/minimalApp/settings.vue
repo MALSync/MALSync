@@ -110,6 +110,7 @@
         <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="Mangarock">Mangarock</checkbox>
+        <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="Novelplanet">Novelplanet</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
         <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
@@ -138,7 +139,7 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu</h2>
+          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu / Simkl</h2>
         </div>
         <checkbox option="epPredictions">{{lang("settings_epPredictions")}}</checkbox>
         <checkbox option="malTags">
@@ -279,6 +280,14 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
+          <a style="margin-left: auto;" href="https://github.com/lolamtisch/MALSync/wiki/Discord-Rich-Presence" target="_blank"> More Info</a>
+        </div>
+            <checkbox option="presenceHidePage">{{lang("settings_presenceHidePage")}}</checkbox>
+      </div>
+
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{lang("settings_ETC")}}</h2>
         </div>
         <checkbox option="forceEn">Force english</checkbox>
@@ -294,43 +303,48 @@
           </span>
         </li>
 
-        <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
+        <li class="mdl-list__item">
+          <button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button>
+          <button type="button" id="cleanTagsUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-left: 20px;">Clean Tags</button>
+        </li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
-        <div v-for="(contributerGroup, group) in contributer" class="inline-block">
-          <div class="group">{{group}}</div>
-          <div v-for="contr in contributerGroup" class="inline-block">
-            <div class="user">
-              <div class="image align-middle">
-                <clazy-load :src="contr.gif" v-if="contr.gif">
-                  <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;">
-                </clazy-load>
-                <clazy-load :src="contr.image">
-                  <img :src="contr.image" class="lazy init" style="max-width: 100%;">
-                </clazy-load>
-              </div>
-              <div class="text align-middle">
-                <div class="name" :style="'color:'+ contr.color" :title="contr.name">
-                  {{contr.name}}
+        <div style="display: table; width: 100%;">
+          <template v-for="(contributerGroup, group) in contributer" class="inline-block">
+            <div class="group">{{group}}</div>
+            <div v-for="contr in contributerGroup" class="inline-block">
+              <div class="user">
+                <div class="image align-middle">
+                  <clazy-load :src="contr.gif" v-if="contr.gif">
+                    <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;">
+                  </clazy-load>
+                  <clazy-load :src="contr.image">
+                    <img :src="contr.image" class="lazy init" style="max-width: 100%;">
+                  </clazy-load>
                 </div>
-                <div class="subtext" v-if="contr.subText">{{contr.subText}}</div>
+                <div class="text align-middle">
+                  <div class="name" :style="'color:'+ contr.color" :title="contr.name">
+                    {{contr.name}}
+                  </div>
+                  <div class="subtext" v-if="contr.subText">{{contr.subText}}</div>
+                </div>
               </div>
             </div>
+          </template>
+          <div class="user pop">
+            <div class="image align-middle">
+              <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
+                arrow_right_alt
+              </i>
+            </div>
           </div>
+          <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord">
+            <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
+            <clazy-load src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3" style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
+              <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
+            </clazy-load>
+          </a>
         </div>
-        <div class="user pop">
-          <div class="image align-middle">
-            <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
-              arrow_right_alt
-            </i>
-          </div>
-        </div>
-        <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord">
-          <div style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"></div>
-          <clazy-load src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3" style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;">
-            <img style="margin: auto; display: block;" src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3">
-          </clazy-load>
-        </a>
       </div>
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
 

@@ -19,6 +19,10 @@
     "message": "Zurücksetzen",
     "description": "Reset"
   },
+  "Remove": {
+    "message": "Entfernen",
+    "description": "Button for removing entry from MAL..."
+  },
   "Loading": {
     "message": "Wird geladen",
     "description": "Loading"
@@ -60,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integriert MyAnimeList/AniList/Kitsu auf diversen Seiten mit automatischer Episodenverfolgung.",
+    "message": "Integriert MyAnimeList/AniList/Kitsu/Simkl auf diversen Seiten mit automatischer Episodenverfolgung.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -451,6 +455,18 @@
     "message": "Authentifizieren",
     "description": "Authenticate"
   },
+  "settings_LocalSync": {
+    "message": "Lokaler Speicher fallback",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Importieren",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Exportieren",
+    "description": "Button to Export Local storage fallback data"
+  },
   "settings_Animesync": {
     "message": "Anime sync",
     "description": "Anime sync"
@@ -464,7 +480,7 @@
     "description": "Instant"
   },
   "settings_Animesync_Manual": {
-    "message": "Manuel",
+    "message": "Manuell",
     "description": "Manual"
   },
   "settings_Mangasync": {
@@ -563,6 +579,10 @@
     "message": "Position",
     "description": "Display to the"
   },
+  "settings_miniMAL_window": {
+    "message": "in neuem Fenster öffnen",
+    "description": "Open miniMAL in separate window checkbox"
+  },
   "settings_miniMAL_Display_Left": {
     "message": "Links",
     "description": "miniMAL Display Left"
@@ -591,13 +611,25 @@
     "message": "Nicht gesetzt",
     "description": "miniMAL Not Set"
   },
+  "settings_Video_Player": {
+    "message": "Videoplayer",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Auto Vollbildmodus",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Auto fortsetzen",
+    "description": "Auto resume video where you left off toggle"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Überspringt das Intros",
-    "description": "Description for the intro skip shortcut"
+    "description": "Description for the the opening skip shortcut"
   },
   "settings_Shortcuts_Skip_Backward": {
     "message": "Springt zum Anfang des Intros",
-    "description": "Description for the intro skip shortcut"
+    "description": "Description for the the opening skip shortcut"
   },
   "settings_introSkip": {
     "message": "Springe $Seconds$ Sekunden vor oder zurück",
@@ -728,8 +760,50 @@
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
-    "message": "Open Source Code:",
+    "message": "Quellcode öffnen:",
     "description": "Update version - Text 3"
+  },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "uBlock Nutzer bitte abonniert diese Filterliste! Dies behebt einige Probleme wie kaputte Bilder",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Bitte wähle aus, welche Anime Datenbank du verwenden möchtest:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Wie wird es verwendet?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Öffne einfach eine Episode oder ein Kapitel auf einer der $Link1$unterstützen Seiten$LinkEnd1$. Die Synchronisation wartet, bis 85% des Videos angesehen wurden. Bei Mangas wird es beim Laden der Seite synchronisiert. Dies kann in den $Link2$Einstellungen$LinkEnd2$ geändert werden.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Es wird mit dem falschen MAL-Eintrag synchronisiert?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Du kannst die Beziehung ganz einfach ändern, wie in der gif unten gezeigt. Ein Episoden-Offset kann auch auf dieser Seite eingestellt werden.",
+    "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
     "message": "Bitte authentifiziere dich $Link1$hier$Link2$",
@@ -737,6 +811,20 @@
     "placeholders": {
       "Link1": {
         "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync benötigt einen Emby-API-Schlüssel, um zu funktionieren. Mehr Infos $Link1$Hier$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
         "example": "<a>"
       },
       "Link2": {

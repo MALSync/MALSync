@@ -22,7 +22,13 @@ export const animeultima: pageInterface = {
     },
     getEpisode: function(url){
       return j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile").text().replace(/.*\n/g, "").replace(/\D+/g, "");
-    }
+    },
+    nextEpUrl: function(url){
+      var href = j.$(".level-right a").first().attr('href');
+      if(typeof href !== 'undefined'){
+        return utils.absoluteLink(href, animeultima.domain);
+      }
+    },
   },
   overview:{
     getTitle: function(url){

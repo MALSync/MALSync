@@ -26,6 +26,12 @@
       {{listProvider.kitsu.text}} <br>
       <span v-if="listProvider.kitsu.list">List: {{listProvider.kitsu.list.length}}</span><br>
       <br>
+    </div>
+    <div :style="getTypeColor(getType('simkl.com'))" style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;">
+      Simkl <span v-if="listProvider.simkl.master">(Master)</span><br>
+      {{listProvider.simkl.text}} <br>
+      <span v-if="listProvider.simkl.list">List: {{listProvider.simkl.list.length}}</span><br>
+      <br>
     </div><br>
 
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
@@ -74,12 +80,12 @@
 
 <script type="text/javascript">
   import * as provider from "./../../../provider/provider.ts";
-  import * as mal from "./../../../provider/MyAnimeList/entryClass.ts";
   import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
-  import * as anilist from "./../../../provider/AniList/entryClass.ts";
   import * as anilistUserList from "./../../../provider/AniList/userList.ts";
-  import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
   import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
+  import * as simklUserList from "./../../../provider/Simkl/userList.ts";
+
+  import * as sync from "./syncHandler.ts";
 
   export default {
     data: function(){
@@ -96,6 +102,11 @@
             master: false
           },
           kitsu: {
+            text: 'Init',
+            list: null,
+            master: false
+          },
+          simkl: {
             text: 'Init',
             list: null,
             master: false
@@ -147,16 +158,46 @@
         if(!list.length) this.listProvider.kitsu.text = 'Error';
       }) );
 
+      this.listProvider.simkl.text = 'Loading';
+      listP.push( getList(simklUserList, type).then((list) => {
+        this.listProvider.simkl.list = list;
+        this.listProvider.simkl.text = 'Done';
+        if(master == 'SIMKL') this.listProvider.simkl.master = true;
+        if(list.length) typeArray.push('SIMKL');
+        if(!list.length) this.listProvider.simkl.text = 'Error';
+      }) );
+
       await Promise.all(listP);
 
-      this.mapToArray(this.listProvider.mal.list, this.list, this.listProvider.mal.master);
-      this.mapToArray(this.listProvider.anilist.list, this.list, this.listProvider.anilist.master);
-      this.mapToArray(this.listProvider.kitsu.list, this.list, this.listProvider.kitsu.master);
+      var master = false;
+      var slaves = [];
 
-      for (var i in this.list) {
-        changeCheck(this.list[i], mode);
-        missingCheck(this.list[i], this.missing, typeArray, mode);
+      if(this.listProvider.mal.master){
+        master = this.listProvider.mal.list;
+      }else{
+        slaves.push(this.listProvider.mal.list);
       }
+
+      if(this.listProvider.anilist.master){
+        master = this.listProvider.anilist.list;
+      }else{
+        slaves.push(this.listProvider.anilist.list);
+      }
+
+      if(this.listProvider.kitsu.master){
+        master = this.listProvider.kitsu.list;
+      }else{
+        slaves.push(this.listProvider.kitsu.list);
+      }
+
+      if(this.listProvider.simkl.master){
+        master = this.listProvider.simkl.list;
+      }else{
+        slaves.push(this.listProvider.simkl.list);
+      }
+
+      sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
+      this.list = Object.assign({}, this.list);
 
       this.listReady = true;
     },
@@ -171,65 +212,19 @@
     },
     methods: {
       lang: api.storage.lang,
-      getType: getType,
+      getType: sync.getType,
       getTypeColor: function(type){
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
+        if(type == 'SIMKL') return 'border-left: 5px solid #ffbf00';
         return 'border-left: 5px solid #2e51a2';
-      },
-      mapToArray: function(provierList, resultList, masterM = false){
-
-        for (var i = 0; i < provierList.length; i++) {
-          var el = provierList[i];
-          var temp = resultList[el.malId];
-          if(typeof temp === "undefined"){
-            temp = {
-              diff: false,
-              master: {},
-              slaves: []
-            };
-          }
-
-          if(masterM){
-            temp.master = el;
-          }else{
-            el.diff = {};
-            temp.slaves.push(el);
-          }
-          if(!isNaN(el.malId) && el.malId){
-            this.$set(resultList, el.malId, temp);
-          }else{
-            //TODO: List them
-          }
-
-        }
       },
 
       syncList: async function(){
         this.listReady = false;
         this.listLength = this.listSyncLength;
 
-        for (var i in this.list) {
-          var el = this.list[i];
-          if(el.diff){
-            await syncListItem(el);
-            el.diff = false;
-          }
-        }
-
-        var missing = this.missing.slice();
-        for (var i in missing) {
-          var miss = missing[i];
-          con.log("Sync missing", miss);
-          await syncMissing(miss)
-            .then(() => {
-              this.missing.splice(this.missing.indexOf(miss), 1);
-            })
-            .catch((e) => {
-              con.error('Error', e);
-              miss.error = e;
-            });
-        }
+        sync.syncList(this.list, this.missing);
       },
 
     }
@@ -244,102 +239,5 @@
     });
   }
 
-  async function syncListItem(item){
-    for (var i = 0; i < item.slaves.length; i++) {
-      var slave = item.slaves[i];
-      con.log('sync list item', slave);
-      await syncItem(slave, getType(slave.url));
-    }
-  }
-
-  async function syncMissing(item){
-    item.diff = {
-      watchedEp: item.watchedEp,
-      status: item.status,
-      score: item.score
-    };
-    return syncItem(item, item.syncType);
-  }
-
-  function syncItem(slave, pageType){
-    if(Object.keys(slave.diff).length !== 0){
-      if(pageType == 'MAL'){
-        var entryClass = new mal.entryClass(slave.url, true, true);
-      }else if(pageType == 'ANILIST'){
-        var entryClass = new anilist.entryClass(slave.url, true, true);
-      }else if(pageType == 'KITSU'){
-        var entryClass = new kitsu.entryClass(slave.url, true, true);
-      }else{
-        throw('No sync type');
-      }
-
-      return entryClass.init().then(() => {
-        if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
-        if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
-        if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
-        return entryClass.sync();
-      });
-    }
-  }
-
-  function changeCheck(item, mode){
-    if(item.master && item.master.uid){;
-      for (var i = 0; i < item.slaves.length; i++) {
-        var slave = item.slaves[i];
-        if(slave.watchedEp !== item.master.watchedEp){
-          if(item.master.status == 2){
-            if(slave.watchedEp !== slave.totalEp){
-              item.diff = true;
-              slave.diff.watchedEp = slave.totalEp;
-            }
-          }else{
-            item.diff = true;
-            slave.diff.watchedEp = item.master.watchedEp;
-          }
-        }
-        if(slave.status !== item.master.status){
-          item.diff = true;
-          slave.diff.status = item.master.status;
-        }
-        if(slave.rating !== item.master.rating){
-          item.diff = true;
-          slave.diff.rating = item.master.rating;
-        }
-      }
-    }
-
-  }
-
-  function missingCheck(item, missing, types, mode){
-    if(item.master && item.master.uid){
-      var tempTypes = [];
-      tempTypes.push(getType(item.master.url));
-      for (var i = 0; i < item.slaves.length; i++) {
-        var slave = item.slaves[i];
-        tempTypes.push(getType(slave.url));
-      }
-      for (var t in types) {
-        var type = types[t];
-        if(!tempTypes.includes(type)){
-          missing.push({
-            'title': item.master.title,
-            'syncType': type,
-            'malId': item.master.malId,
-            'watchedEp': item.master.watchedEp,
-            'score': item.master.score,
-            'status': item.master.status,
-            'url': 'https://myanimelist.net/'+item.master.type+'/'+item.master.malId,
-            'error': null
-          })
-        }
-      }
-    }
-  }
-
-  function getType(url){
-    if(url.indexOf('anilist.co') !== -1) return 'ANILIST';
-    if(url.indexOf('kitsu.io') !== -1) return 'KITSU';
-    return 'MAL';
-  }
 
 </script>

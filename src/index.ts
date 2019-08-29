@@ -6,6 +6,7 @@ import {simklClass} from "./simkl/simklClass";
 import {scheduleUpdate} from "./utils/scheduler";
 import {firebaseNotification} from "./utils/firebaseNotification";
 import {getPlayerTime} from "./utils/player";
+import {pages} from "./pages/pages";
 
 function main() {
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
@@ -20,7 +21,7 @@ function main() {
   }else{
     try{
       if(inIframe()) throw 'iframe';
-      var page = new syncPage(window.location.href);
+      var page = new syncPage(window.location.href, pages);
     }catch(e){
       con.info(e);
       iframe();

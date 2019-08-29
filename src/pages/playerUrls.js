@@ -162,7 +162,8 @@ module.exports = {
   },
   animeultima: {
     match: [
-      '*://*.animeultima.eu/e/*'
+      '*://*.animeultima.eu/e/*',
+      '*://*.animeultima.eu/faststream/*',
     ]
   },
   vidoza: {
@@ -234,4 +235,47 @@ module.exports = {
       '*://www.vaplayer.xyz/v/*'
     ]
   },
+  //dubbedanime
+  mp4sh: {
+    match: [
+      '*://mp4.sh/embed/*'
+    ]
+  },
+  //animeultima
+  mystream: {
+    match: [
+      '*://embed.mystream.to/*'
+    ]
+  },
+  //animeultima
+  mystream: {
+    match: [
+      '*://*.bitchute.com/embed/*'
+    ]
+  },
+  //animeultima
+  streamcherry: {
+    match: [
+      '*://*.streamcherry.com/embed/*'
+    ]
+  },
+  //anime-odcinki
+  clipwatching: {
+    match: [
+      '*://*.clipwatching.com/*'
+    ]
+  },
+  //anime-odcinki
+  flix555: {
+    match: [
+      '*://*.flix555.com/*'
+    ]
+  },
+  //anime-odcinki
+  vshare: {
+    match: [
+      '*://*.vshare.io/v/*'
+    ]
+  },
+
 };

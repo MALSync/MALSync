@@ -12,9 +12,9 @@ cache:
 install:
   - npm install
 script:
-  - npm run test
   - npm run build
-  - sh ./package/localization/deploy.sh
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh ./package/localization/deploy.sh; fi
+  - npm run test
 before_deploy:
   - npm run package
   - npm run package:chrome
@@ -27,6 +27,7 @@ deploy:
   file:
   - "./dist/mal_sync-*.xpi"
   - "./dist/malsync.user.js"
+  - "./dist/malsync-adult.user.js"
   - "./dist/webextension.zip"
   on:
     tags: true

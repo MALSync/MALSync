@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integra MyAnimeList/AniList/Kitsu em vários sites, com rastreamento de episódios automáticos.",
+    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl em vários sites, com rastreamento de episódios automáticos.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -232,7 +232,7 @@
     }
   },
   "syncPage_malObj_addAnime": {
-    "message": "Adicionar a $page$",
+    "message": "Adicionar ao $page$",
     "description": "add anime",
     "placeholders": {
       "page": {
@@ -544,7 +544,7 @@
     "description": "Friend scores on detail page"
   },
   "settings_epPredictions": {
-    "message": "Estimativa do número de episódio",
+    "message": "Estimativa para o próximo episódio",
     "description": "Estimate episode number"
   },
   "settings_malTags": {
@@ -578,6 +578,10 @@
   "settings_miniMAL_Display": {
     "message": "Exibir para a",
     "description": "Display to the"
+  },
+  "settings_miniMAL_window": {
+    "message": "Abrir em janela separada",
+    "description": "Open miniMAL in separate window checkbox"
   },
   "settings_miniMAL_Display_Left": {
     "message": "Esquerda",
@@ -762,6 +766,44 @@
   "minimalClass_versionMsg_Text_4": {
     "message": "Usuários do uBlock por favor inscrevam-se nesta lista de filtros! Isso corrige alguns problemas, como imagens quebradas",
     "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Por favor, selecione qual banco de dados de Anime você deseja usar:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Como usar?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Basta abrir um episódio ou capítulo em qualquer uma das $Link1$páginas suportadas$LinkEnd1$. A sincronização aguarda até 85% do vídeo ser assistido. Para mangás, sincroniza no carregamento da página. Isso pode ser alterado na $Link2$configurações$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Sincroniza para o Anime/Mangá errado no MAL?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Você pode facilmente mudar a relação como mostrado no gif abaixo. Um episódio fora de ordem também pode ser definido nessa página.",
+    "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
     "message": "Por favor autentique $Link1$Aqui$Link2$",

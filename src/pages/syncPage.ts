@@ -1,9 +1,15 @@
-import {pages} from "./pages";
 import {pageInterface, pageState} from "./pageInterface";
 import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
+
+declare var browser: any;
+
+var extensionId = "agnaejlkbiiggajjmnpmeheigkflbnoo"; //Chrome
+if(typeof browser !== 'undefined' && typeof chrome !== "undefined"){
+  extensionId = "{57081fef-67b4-482f-bcb0-69296e63ec4f}"; //Firefox
+}
 
 export class syncPage{
   page: pageInterface;
@@ -12,7 +18,7 @@ export class syncPage{
 
   public novel = false;
 
-  constructor(public url){
+  constructor(public url, public pages){
     this.page = this.getPage(url);
     if (this.page == null) {
       throw new Error('Page could not be recognized');
@@ -25,11 +31,19 @@ export class syncPage{
       initIframeModal(This);
     });
     this.page.init(this);
+
+    if(api.type === 'webextension'){//Discord Presence
+      try{
+        chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {this.presence(info, sender, sendResponse)});
+      }catch(e){
+        con.error(e);
+      }
+    }
   }
 
   private getPage(url){
-    for (var key in pages) {
-      var page = pages[key];
+    for (var key in this.pages) {
+      var page = this.pages[key];
       if(j.$.isArray(page.domain)){
         for (var k in page.domain) {
           var singleDomain = page.domain[k];
@@ -74,6 +88,8 @@ export class syncPage{
     if(typeof this.curState === 'undefined' || typeof this.curState.identifier === 'undefined' || typeof this.curState.episode === 'undefined') return;
     var This = this;
     var localSelector = this.curState.identifier+'/'+this.curState.episode;
+
+    this.curState.lastVideoTime = item;
 
     //@ts-ignore
     if(typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked){
@@ -215,6 +231,16 @@ export class syncPage{
       await this.malObj.init();
       this.oldMalObj = this.malObj.clone();
 
+      //Discord Presence
+      if(api.type === 'webextension'){
+        try{
+          chrome.runtime.sendMessage(extensionId, {mode: 'active'}, function(response) {
+            con.log('Presence registred', response);
+          });
+        }catch(e){
+          con.error(e);
+        }
+      }
 
       //fillUI
       this.fillUI();
@@ -896,6 +922,75 @@ export class syncPage{
       }).then(() => {
         this.fillUI();
       });
+  }
+
+  private presence(info, sender, sendResponse) {
+    try{
+      if(info.action === 'presence'){
+        console.log('Presence requested', info, this.curState);
+
+        if (!api.settings.get("presenceHidePage")) {
+          var largeImageKeyTemp = this.page.name.toLowerCase();
+          var largeImageTextTemp = this.page.name;
+        }else{
+          var largeImageKeyTemp = 'malsync';
+          var largeImageTextTemp = "MAL-Sync";
+        }
+
+        var pres:any = {
+          clientId: '606504719212478504',
+          presence: {
+            details: this.curState.title,
+            largeImageKey: largeImageKeyTemp,
+            largeImageText: largeImageTextTemp,
+            instance: true,
+          }
+        };
+
+        if(this.curState){
+          if(typeof this.curState.episode !== 'undefined'){
+            var ep = this.curState.episode;
+            var totalEp = this.malObj.totalEp;
+            if(!totalEp) totalEp = '?';
+
+            pres.presence.state = utils.episode(this.page.type) + ' '+ep+' of '+totalEp;
+
+            if(typeof this.curState.lastVideoTime !== 'undefined'){
+              if(this.curState.lastVideoTime.paused){
+                pres.presence.smallImageKey = 'pause';
+                pres.presence.smallImageText = 'pause';
+              }else{
+                var timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+                pres.presence.endTimestamp = Date.now() + (timeleft * 1000);
+                pres.presence.smallImageKey = 'play';
+                pres.presence.smallImageText = 'playing';
+              }
+
+            }else{
+              if(typeof this.curState.startTime === 'undefined'){
+                this.curState.startTime = Date.now();
+              }
+              pres.presence.startTimestamp = this.curState.startTime;
+            }
+            sendResponse(pres);
+            return;
+          }else{
+            if (!api.settings.get("presenceHidePage")) {
+             var browsingTemp = this.page.name;
+            }else{
+             var browsingTemp = '';
+            }
+            pres.presence.state = api.storage.lang("Discord_rpc_browsing", [browsingTemp]);
+            sendResponse(pres);
+            return;
+          }
+        }
+      }
+    }catch(e){
+      con.error(e);
+    }
+    sendResponse({});
+
   }
 
 }

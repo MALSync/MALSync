@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Mengintegrasikan MyAnimeList / AniList / Kitsu ke pelbagai laman dengan pelacak episod automatik.",
+    "message": "Mengintegrasikan MyAnimeList/AniList/Kitsu/Simkl ke pelbagai laman dengan pelacak episod automatik.",
     "description": "Description MALSync"
   },
   "UI_Status": {

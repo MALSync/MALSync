@@ -36,11 +36,13 @@ export const Twistmoe: pageInterface = {
       j.$(document).ready(function(){
         start();
 
-        utils.urlChangeDetect(function(){
+        utils.changeDetect(() => {
           page.url = window.location.href;
           page.UILoaded = false;
           $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
           start();
+        }, () => {
+          return $('.information').text();
         });
       });
 
