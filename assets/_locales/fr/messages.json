@@ -689,6 +689,10 @@
     "message": "Nettoyer le cache",
     "description": "Clear Cache"
   },
+  "settings_presenceHidePage": {
+    "message": "Afficher l'icon de MAL-Sync au lieu de l'icon de la page",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
   "updateCheck_Refresh": {
     "message": "Actualiser",
     "description": "Refresh"
@@ -830,6 +834,16 @@
       "Link2": {
         "content": "</a>",
         "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "Navigue sur $Page$",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
       }
     }
   }
