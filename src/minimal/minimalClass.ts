@@ -279,6 +279,10 @@ export class minimal{
       this.minimalVue.$children[0].selectTab('listSync')
     })
 
+    this.minimal.find('#cleanTagsUi').click(() => {
+      this.minimalVue.$children[0].selectTab('cleanTags')
+    })
+
     try{
       if(api.type == 'webextension'){
         chrome.permissions.contains({

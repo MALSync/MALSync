@@ -303,7 +303,10 @@
           </span>
         </li>
 
-        <li class="mdl-list__item"><button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button></li>
+        <li class="mdl-list__item">
+          <button type="button" id="clearCache" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">{{lang("settings_ClearCache")}}</button>
+          <button type="button" id="cleanTagsUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-left: 20px;">Clean Tags</button>
+        </li>
       </div>
       <div @click="myOpen()" v-bind:class="{'open': isOpen}" id="contributer" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div style="display: table; width: 100%;">
