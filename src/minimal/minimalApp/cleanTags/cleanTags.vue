@@ -1,13 +1,15 @@
 <template>
   <div class="mdl-grid bg-cell" style="display: block;">
-    <button type="button" :disabled="animeLoading" @click="cleanTags()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Clean Up Mal-Sync Tags</button><br>
+    <h5>This script returns all malsync::xxxxx:: from your list.</h5>
+    <button type="button" :disabled="animeLoading" @click="cleanTags()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Clean Up Mal-Sync Tags</button>
+    <br>
     Anime:
     <span v-if="animeLoading && !animelistLength">Loading</span>
     <span v-if="animelistLength">{{animelistLength - animelist.length}}/{{animelistLength}}</span>
     <br>
     Manga:
     <span v-if="mangaLoading && !mangalistLength">Loading</span>
-    <span v-if="mangalistLength">{{mangalistLength - mangalist.length}}/{{mangalistLength}}</span>
+    <span v-if="mangalistLength">{{mangalistLength - mangalist.length}}/{{mangalistLength}}</span><br>
 
   </div>
 </template>
