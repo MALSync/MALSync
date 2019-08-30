@@ -47,6 +47,9 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![voiranime.com](https://www.google.com/s2/favicons?domain=http://voiranime.com "voiranime.com")](voiranime.com) [voiranime.com](http://voiranime.com) | | |  
 | [![dubbedanime.net](https://www.google.com/s2/favicons?domain=https://dubbedanime.net "dubbedanime.net")](dubbedanime.net) [dubbedanime.net](https://dubbedanime.net) | | | 
 | [![neko-sama.fr](https://www.google.com/s2/favicons?domain=https://neko-sama.fr "neko-sama.fr")](neko-sama.fr) [neko-sama.fr](https://neko-sama.fr) | | | 
+| [![anime-odcinki.pl](https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl "anime-odcinki.pl")](anime-odcinki.pl) [anime-odcinki.pl](https://anime-odcinki.pl) | | | 
+| [![animezone.pl](https://www.google.com/s2/favicons?domain=https://animezone.pl "animezone.pl")](animezone.pl) [animezone.pl](https://animezone.pl) | | | 
+| [![animeflix.io](https://www.google.com/s2/favicons?domain=https://animeflix.io "animeflix.io")](animeflix.io) [animeflix.io](https://animeflix.io) | | | 
 
 [List of supported features by page](pages.md)
 
