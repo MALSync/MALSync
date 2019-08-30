@@ -35,6 +35,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://animeflv.net"><img src="https://www.google.com/s2/favicons?domain=https://animeflv.net"> animeflv</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -54,6 +60,12 @@
               <td>:x:</td>
             </tr><tr>
               <td><a href="https://animekisa.tv"><img src="https://www.google.com/s2/favicons?domain=https://animekisa.tv"> AnimeKisa</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -80,6 +92,12 @@
               <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
               <td>:x:</td>
               <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
