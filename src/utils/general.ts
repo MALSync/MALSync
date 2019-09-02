@@ -83,6 +83,14 @@ export function absoluteLink(url, domain) {
   return url;
 };
 
+export function parseHtml(text) {
+  var parser = new DOMParser;
+  var dom = parser.parseFromString(
+      '<!doctype html><body>' + text,
+      'text/html');
+  return dom.body.textContent;
+}
+
 export function urlChangeDetect(callback){
   var currentPage = window.location.href;
   return setInterval(function(){
