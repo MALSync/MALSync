@@ -45,6 +45,7 @@ import {NekoSama} from "./NekoSama/main";
 import {AnimeZone} from "./AnimeZone/main";
 import {AnimeOdcinki} from "./AnimeOdcinki/main";
 import {Animeflix} from "./Animeflix/main";
+import {AnimeFever} from "./AnimeFever/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -96,6 +97,7 @@ export const pages = {
     AnimeOdcinki,
     AnimeZone,
     Animeflix,
+    AnimeFever,
 };
 
 export const pageSearch:pageSearchObj = {
