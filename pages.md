@@ -11,6 +11,12 @@
     </thead>
     <tbody>
       <tr>
+              <td><a href="https://4anime.to"><img src="https://www.google.com/s2/favicons?domain=https://4anime.to"> 4Anime</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://9anime.to"><img src="https://www.google.com/s2/favicons?domain=https://9anime.to"> 9anime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -128,12 +134,6 @@
               <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=http://app.emby.media"> Emby</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
-            </tr><tr>
-              <td><a href="https://4anime.to"><img src="https://www.google.com/s2/favicons?domain=https://4anime.to"> fourAnime</a></td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
