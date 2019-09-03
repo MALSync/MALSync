@@ -1282,6 +1282,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'AnimeFever',
+    url: 'https://www.animefever.tv/',
+    testCases: [
+      {
+        url: 'https://www.animefever.tv/anime/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
+        expected: {
+          sync: true,
+          title: 'A Certain Magical Index',
+          identifier: '10344-a-certain-magical-index',
+          overviewUrl: 'https://www.animefever.tv/anime/10344-a-certain-magical-index',
+          episode: 13,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.animefever.tv/anime/10344-a-certain-magical-index',
+        expected: {
+          sync: false,
+          title: 'A Certain Magical Index',
+          identifier: '10344-a-certain-magical-index',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
