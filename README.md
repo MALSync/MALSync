@@ -10,6 +10,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 
 #### **Supported Pages** <a id="anchor-link"></a>
 
+<!--pages-->
 | Anime                                    | Manga                                    | Media Server                             |
 | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | [![KissAnime](https://www.google.com/s2/favicons?domain=kissanime.ru "KissAnime")](http://kissanime.ru) [kissanime.ru](http://kissanime.ru) | [![KissManga](https://www.google.com/s2/favicons?domain=kissmanga.com "KissManga")](http://kissmanga.com) [kissmanga.com](http://kissmanga.com) | [![Emby](https://www.google.com/s2/favicons?domain=app.emby.media "Emby")](http://app.emby.media) [Emby](http://app.emby.media) [[Wiki]](https://github.com/lolamtisch/MALSync/wiki/Emby-Plex) |
@@ -50,6 +51,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 | [![anime-odcinki.pl](https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl "anime-odcinki.pl")](anime-odcinki.pl) [anime-odcinki.pl](https://anime-odcinki.pl) | | | 
 | [![animezone.pl](https://www.google.com/s2/favicons?domain=https://animezone.pl "animezone.pl")](animezone.pl) [animezone.pl](https://animezone.pl) | | | 
 | [![animeflix.io](https://www.google.com/s2/favicons?domain=https://animeflix.io "animeflix.io")](animeflix.io) [animeflix.io](https://animeflix.io) | | | 
+<!--/pages-->
 
 [List of supported features by page](pages.md)
 

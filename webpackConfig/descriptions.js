@@ -95,7 +95,79 @@ function adultDep(){
       return console.log(err);
     }
     var result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, '<!--pages-->'+html+'<!--/pages-->');
-    console.log(result);
+
+    fs.writeFile(descFile, result, 'utf8', function (err) {
+       if (err) return console.log(err);
+    });
+  });
+}
+
+readMe();
+function readMe(){
+
+  var pageList = Object.values(require("./../src/pages/pages.ts").pages);
+
+  var animes = [];
+  var mangas = [];
+  var medias = [
+    '<a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a>'
+  ]
+
+  for (var page in pageList){
+    page = pageList[page];
+
+    if(typeof page.domain === 'object') page.domain = page.domain[0];
+
+    var str = `<a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a>`;
+
+    if(page.name === 'Emby' ||
+      page.name === 'Plex'){
+      continue;
+    }
+
+    if(page.type === 'anime'){
+      animes.push(str);
+    }else{
+      mangas.push(str);
+    }
+  }
+
+  var html = `
+  <table>
+    <thead>
+      <tr>
+        <th>Anime</th>
+        <th>Manga</th>
+        <th>Media Server</th>
+      </tr>
+    </thead>
+    <tbody>
+      `;
+    for (var page in animes){
+      anime = animes[page];
+      manga = mangas[page];
+      media = medias[page];
+      if(typeof manga === "undefined") manga = '';
+      if(typeof media === "undefined") media = '';
+
+      html += `<tr>
+                <td>${anime}</td>
+                <td>${manga}</td>
+                <td>${media}</td>
+              </tr>`;
+    }
+  html += `
+    </tbody>
+  </table>
+  `;
+
+  var descFile = path.join(__dirname, '../README.md');
+  fs.readFile(descFile, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+    var result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, '<!--pages-->'+html+'<!--/pages-->');
 
     fs.writeFile(descFile, result, 'utf8', function (err) {
        if (err) return console.log(err);
