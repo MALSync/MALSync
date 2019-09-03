@@ -126,6 +126,10 @@ function readMe(){
       continue;
     }
 
+    if(page.name === 'MangaNelo'){
+      mangas.push('<a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a>');
+    }
+
     if(page.type === 'anime'){
       animes.push(str);
     }else{
