@@ -96,6 +96,11 @@ export class kitsuClass{
   }
 
   authentication(){
+    try{
+      utils.checkDoubleExecution();
+    }catch(e){
+      con.error(e);
+    }
     $(document).ready(function(){
       $('body').after(`
         <div id="mal-sync-login" style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">

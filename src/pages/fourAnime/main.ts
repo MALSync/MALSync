@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const fourAnime: pageInterface = {
-  name: "fourAnime",
+  name: "4Anime",
   domain: "https://4anime.to",
   type: "anime",
   isSyncPage: function(url) {

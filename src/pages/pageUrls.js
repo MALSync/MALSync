@@ -333,7 +333,7 @@ module.exports = {
   },
   Animeflix: {
     match: [
-      '*://animeflix.io/shows/*'
+      '*://animeflix.io/*'
     ]
   },
 };

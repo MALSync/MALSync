@@ -15,6 +15,20 @@
           {{lang("correction_Offset_text")}}
         </tooltip>
       </div>
+      <div id="offsetUi" v-if="offset && offset !== '0'">
+        <div class="offsetBox" v-for="index in 5" :key="index">
+          <div class="mdl-color--primary top">{{index}}</div>
+          <div class="bottom">{{calcEpOffset(index)}}</div>
+        </div>
+        <div class="offsetBox">
+          <div class="mdl-color--primary top">...</div>
+          <div class="bottom">...</div>
+        </div>
+        <div class="offsetBox">
+          <div class="mdl-color--primary top">∞</div>
+          <div class="bottom">∞</div>
+        </div>
+      </div>
       <div class="mdl-list__item" style="padding-bottom: 0;padding-top: 0;">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
           <input class="mdl-textfield__input" style="padding-right: 18px;" type="text" id="malUrlInput" v-model="malUrl">
@@ -183,6 +197,9 @@
         }else{
           this.submit(item.url);
         }
+      },
+      calcEpOffset: function (ep) {
+        return parseInt(ep) - parseInt(this.offset);
       }
     }
   }

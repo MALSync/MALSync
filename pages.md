@@ -11,6 +11,12 @@
     </thead>
     <tbody>
       <tr>
+              <td><a href="https://4anime.to"><img src="https://www.google.com/s2/favicons?domain=https://4anime.to"> 4Anime</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://9anime.to"><img src="https://www.google.com/s2/favicons?domain=https://9anime.to"> 9anime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -32,6 +38,12 @@
               <td><a href="https://animedaisuki.moe"><img src="https://www.google.com/s2/favicons?domain=https://animedaisuki.moe"> AnimeDaisuki</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
@@ -59,6 +71,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -80,6 +98,12 @@
               <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
               <td>:x:</td>
               <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
@@ -110,12 +134,6 @@
               <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=http://app.emby.media"> Emby</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
-            </tr><tr>
-              <td><a href="https://4anime.to"><img src="https://www.google.com/s2/favicons?domain=https://4anime.to"> fourAnime</a></td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>

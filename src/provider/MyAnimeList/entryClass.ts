@@ -436,13 +436,13 @@ export class entryClass{
       anime['.add_anime[finish_date][month]'] = getselect(data,'add_anime[finish_date][month]');
       anime['.add_anime[finish_date][day]'] = getselect(data,'add_anime[finish_date][day]');
       anime['.add_anime[finish_date][year]'] = getselect(data,'add_anime[finish_date][year]');
-      anime['.add_anime[tags]'] = data.split('name="add_anime[tags]"')[1].split('>')[1].split('<')[0];//textarea
+      anime['.add_anime[tags]'] = utils.parseHtml(data.split('name="add_anime[tags]"')[1].split('>')[1].split('<')[0]);//textarea
       anime['.add_anime[priority]'] = getselect(data,'add_anime[priority]');
       anime['.add_anime[storage_type]'] = getselect(data,'add_anime[storage_type]');
       anime['.add_anime[storage_value]'] = data.split('name="add_anime[storage_value]"')[1].split('value="')[1].split('"')[0];
       anime['.add_anime[num_watched_times]'] = data.split('name="add_anime[num_watched_times]"')[1].split('value="')[1].split('"')[0];
       anime['.add_anime[rewatch_value]'] = getselect(data,'add_anime[rewatch_value]');
-      anime['.add_anime[comments]'] = data.split('name="add_anime[comments]"')[1].split('>')[1].split('<')[0];
+      anime['.add_anime[comments]'] = utils.parseHtml(data.split('name="add_anime[comments]"')[1].split('>')[1].split('<')[0]);
       anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
       if(anime['.add_anime[is_asked_to_discuss]'] == '') anime['.add_anime[is_asked_to_discuss]'] = 0; //#15
       anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
@@ -484,13 +484,13 @@ export class entryClass{
       anime['.add_manga[finish_date][month]'] = getselect(data,'add_manga[finish_date][month]');
       anime['.add_manga[finish_date][day]'] = getselect(data,'add_manga[finish_date][day]');
       anime['.add_manga[finish_date][year]'] = getselect(data,'add_manga[finish_date][year]');
-      anime['.add_manga[tags]'] = data.split('name="add_manga[tags]"')[1].split('>')[1].split('<')[0];//textarea
+      anime['.add_manga[tags]'] = utils.parseHtml(data.split('name="add_manga[tags]"')[1].split('>')[1].split('<')[0]);//textarea
       anime['.add_manga[priority]'] = getselect(data,'add_manga[priority]');
       anime['.add_manga[storage_type]'] = getselect(data,'add_manga[storage_type]');
       anime['.add_manga[num_retail_volumes]'] = data.split('name="add_manga[num_retail_volumes]"')[1].split('value="')[1].split('"')[0];
       anime['.add_manga[num_read_times]'] = data.split('name="add_manga[num_read_times]"')[1].split('value="')[1].split('"')[0];
       anime['.add_manga[reread_value]'] = getselect(data,'add_manga[reread_value]');
-      anime['.add_manga[comments]'] = data.split('name="add_manga[comments]"')[1].split('>')[1].split('<')[0];
+      anime['.add_manga[comments]'] = utils.parseHtml(data.split('name="add_manga[comments]"')[1].split('>')[1].split('<')[0]);
       anime['.add_manga[is_asked_to_discuss]'] = getselect(data,'add_manga[is_asked_to_discuss]');
       if(anime['.add_manga[is_asked_to_discuss]'] == '') anime['.add_manga[is_asked_to_discuss]'] = 0; //#15
       anime['.add_manga[sns_post_type]'] = getselect(data,'add_manga[sns_post_type]');

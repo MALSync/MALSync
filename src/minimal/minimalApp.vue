@@ -76,6 +76,7 @@
             <option value="manga">Manga</option>
           </select>
         </listSyncVue>
+        <cleanTagsVue v-if="currentTab == tabs.cleanTags.title" />
         </section>
         <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
           <div class="page-content malClear" id="malConfig">
@@ -95,6 +96,7 @@
   import searchVue from './minimalApp/search.vue'
   import updateCheckVue from './minimalApp/updateCheck.vue'
   import listSyncVue from './minimalApp/listSync/listSync.vue'
+  import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue'
   import reviewsVue from './minimalApp/reviews.vue'
   import {entryClass} from './../provider/provider';
 
@@ -121,6 +123,7 @@
       searchVue,
       updateCheckVue,
       listSyncVue,
+      cleanTagsVue,
       settingsVue
     },
     data: () => ({
@@ -161,7 +164,11 @@
           title: 'listSync',
           scroll: 0,
           type: 'anime'
-        }
+        },
+        cleanTags: {
+          title: 'cleanTags',
+          scroll: 0
+        },
       },
       keyword: '',
       currentTab: 'settings',
@@ -221,6 +228,9 @@
           return true;
         }
         if(this.currentTab === this.tabs['listSync'].title){
+          return true;
+        }
+        if(this.currentTab === this.tabs['cleanTags'].title){
           return true;
         }
         return false;
@@ -287,6 +297,9 @@
             this.history.push(this.getCurrent(oldtab));
           }
           if(this.currentTab === this.tabs['listSync'].title){
+            this.history.push(this.getCurrent(oldtab));
+          }
+          if(this.currentTab === this.tabs['cleanTags'].title){
             this.history.push(this.getCurrent(oldtab));
           }
         }

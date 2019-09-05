@@ -114,6 +114,11 @@ export class simklClass{
 
   authentication(){
     try{
+      utils.checkDoubleExecution();
+    }catch(e){
+      con.error(e);
+    }
+    try{
       var code = utils.urlParam(this.url, 'code');
       if(!code) throw 'No code found!';
       helper.call('https://api.simkl.com/oauth/token', JSON.stringify({
