@@ -46,6 +46,7 @@ import {AnimeZone} from "./AnimeZone/main";
 import {AnimeOdcinki} from "./AnimeOdcinki/main";
 import {Animeflix} from "./Animeflix/main";
 import {AnimeFever} from "./AnimeFever/main";
+import {mangadenizi} from "./mangadenizi/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -98,6 +99,7 @@ export const pages = {
     AnimeZone,
     Animeflix,
     AnimeFever,
+    mangadenizi,
 };
 
 export const pageSearch:pageSearchObj = {

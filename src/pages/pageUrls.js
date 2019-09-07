@@ -341,4 +341,9 @@ module.exports = {
       '*://*.animefever.tv/*'
     ]
   },
+  mangadenizi: {
+    match: [
+      '*://mangadenizi.com/*'
+    ]
+  },
 };

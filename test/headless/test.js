@@ -1308,6 +1308,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'mangadenizi',
+    url: 'https://mangadenizi.com/',
+    testCases: [
+      {
+        url: 'https://mangadenizi.com/manga/one-piece/0769/2',
+        expected: {
+          sync: true,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          overviewUrl: 'https://mangadenizi.com/manga/one-piece',
+          episode: 769,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangadenizi.com/manga/one-piece',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
