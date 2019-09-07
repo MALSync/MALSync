@@ -1308,6 +1308,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'serimanga',
+    url: 'https://serimanga.com/',
+    testCases: [
+      {
+        url: 'https://serimanga.com/manga/boku-no-hero-academia/224',
+        expected: {
+          sync: true,
+          title: 'Boku no Hero Academia',
+          identifier: 'boku-no-hero-academia',
+          overviewUrl: 'https://serimanga.com/manga/boku-no-hero-academia',
+          episode: 224,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://serimanga.com/manga/boku-no-hero-academia',
+        expected: {
+          sync: false,
+          title: 'Boku no Hero Academia',
+          identifier: 'boku-no-hero-academia',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

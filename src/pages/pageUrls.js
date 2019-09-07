@@ -341,4 +341,9 @@ module.exports = {
       '*://*.animefever.tv/*'
     ]
   },
+  serimanga: {
+    match: [
+      '*://serimanga.com/*'
+    ]
+  },
 };
