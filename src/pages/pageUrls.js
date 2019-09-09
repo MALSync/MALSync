@@ -336,11 +336,6 @@ module.exports = {
       '*://animeflix.io/*'
     ]
   },
-  AnimeFever: {
-    match: [
-      '*://*.animefever.tv/*'
-    ]
-  },
   mangadenizi: {
     match: [
       '*://mangadenizi.com/*'
