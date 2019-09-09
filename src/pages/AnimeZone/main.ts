@@ -48,20 +48,20 @@ export const AnimeZone: pageInterface = {
     j.$(document).ready(function () {
       page.handlePage();
 
-      const target = j.$("#episode");
-      const config = { attributes: false, childList: true, subtree: true };
+      var target = j.$("#episode")[0];
+      var config = { attributes: false, childList: true, subtree: true };
 
-      const callback = function(mutationsList, observer) {
-        for(let mutation of mutationsList) {
+      var callback = function (mutationsList, observer) {
+        for (let mutation of mutationsList) {
           if (mutation.type === 'childList') {
 
-            let srcElement = j.$("#episode a") || j.$(" #episode iframe");
+            let srcElement = (j.$("#episode a") || j.$(" #episode iframe"))[0];
             let src = (srcElement.href || srcElement.src).replace(/^http:\/\//i, 'https://');
-            j.$("#episode .embed-container").innerHTML = null;
+            j.$("#episode .embed-container")[0].innerHTML = null;
 
 
             let iframe = document.createElement("iframe");
-            j.$("#episode .embed-container").appendChild(iframe);
+            j.$("#episode .embed-container")[0].appendChild(iframe);
             iframe.setAttribute("allowfullscreen", "true");
             iframe.src = src;
 
@@ -73,10 +73,10 @@ export const AnimeZone: pageInterface = {
         }
       };
 
-      const observer = new MutationObserver(callback);
+      var observer = new MutationObserver(callback);
 
-      document.querySelectorAll(".btn.btn-xs.btn-success").forEach( e => {
-        e.addEventListener("click", function () {
+      j.$(".btn.btn-xs.btn-success").each(function (i, e) {
+        j.$(e).click(function () {
           observer.observe(target, config);
         });
       });
