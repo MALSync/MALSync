@@ -251,33 +251,6 @@ var testsArray = [
   },
 
   {
-    title: 'Mangarock',
-    url: 'https://mangarock.com/',
-    testCases: [
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-179306',
-        expected: {
-          sync: false,
-          title: 'No Game No Life',
-          identifier: '179306',
-          uiSelector: true,
-        }
-      },
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-179306/chapter/mrs-chapter-179312',
-        expected: {
-          sync: true,
-          title: 'No Game No Life',
-          identifier: '179306',
-          overviewUrl: 'https://mangarock.com/manga/mrs-serie-179306',
-          episode: 6,
-          uiSelector: false,
-        }
-      },
-    ]
-  },
-
-  {
     title: 'Branitube',
     url: 'https://www.branitube.net/',
     testCases: [
