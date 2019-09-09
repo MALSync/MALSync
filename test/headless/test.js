@@ -1335,8 +1335,8 @@ testsArray.forEach(function(testPage) {
       it(testCase.url, async function () {
         if(doSkip) this.skip();
         const [response] = await Promise.all([
-          page.goto(testCase.url),
-          page.waitForNavigation(),
+          page.goto(testCase.url, {timeout:0}),
+          page.waitForNavigation({timeout:0}),
         ]);
         await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
         await page.addScriptTag({content: script});
