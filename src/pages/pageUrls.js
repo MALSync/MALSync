@@ -336,11 +336,6 @@ module.exports = {
       '*://animeflix.io/*'
     ]
   },
-  AnimeFever: {
-    match: [
-      '*://*.animefever.tv/*'
-    ]
-  },
   serimanga: {
     match: [
       '*://serimanga.com/*'
