@@ -27,7 +27,7 @@ export const Kissanime: pageInterface = {
         }
         temp = episodePart.match(/\d{3}/);
         if(temp === null){
-            temp = episodePart.match(/\d{2,}\-/);
+            temp = episodePart.match(/\d{2,}\-?/);
             if(temp === null){
                 episodePart = 1;
             }else{
