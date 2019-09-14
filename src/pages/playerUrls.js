@@ -277,5 +277,11 @@ module.exports = {
       '*://*.vshare.io/v/*'
     ]
   },
+  //kissanime
+  hydrax: {
+    match: [
+      '*://*.replay.watch/*'
+    ]
+  }
 
 };
