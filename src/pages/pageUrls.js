@@ -346,4 +346,9 @@ module.exports = {
       '*://serimanga.com/*'
     ]
   },
+  mangadenizi: {
+    match: [
+      '*://mangadenizi.com/*'
+    ]
+  },
 };
