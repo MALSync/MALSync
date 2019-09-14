@@ -21,11 +21,11 @@ export const Kissanime: pageInterface = {
         var episodePart = utils.urlPart(url, 5);
         episodePart = episodePart.replace(/1080p/i, ' ').replace(/720p/i, ' ');
         var temp = [];
-        temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d{3}/);
+        temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
         if(temp !== null){
             episodePart = temp[0];
         }
-        temp = episodePart.match(/\d{3}/);
+        temp = episodePart.match(/\d+$/);
         if(temp === null){
             temp = episodePart.match(/\d{2,}\-/);
             if(temp === null){
