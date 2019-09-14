@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const serimanga: pageInterface = {
-  name: "serimanga",
+  name: "serimanga (Bad)",
   domain: "https://serimanga.com",
   type: "manga",
   isSyncPage: function(url) {
