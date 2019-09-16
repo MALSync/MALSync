@@ -50,15 +50,15 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime4you.one"><img src="https://www.google.com/s2/favicons?domain=https://www.anime4you.one"> Anime4you</a></td>
-                <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ</a></td>
+                <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://branitube.net"> Branitube</a></td>
-                <td></td>
+                <td><a href="https://serimanga.com"><img src="https://www.google.com/s2/favicons?domain=https://serimanga.com"> serimanga (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="http://www.turkanime.tv"><img src="https://www.google.com/s2/favicons?domain=http://www.turkanime.tv"> Turkanime</a></td>
-                <td></td>
+                <td><a href="https://mangadenizi.com"><img src="https://www.google.com/s2/favicons?domain=https://mangadenizi.com"> mangadenizi (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
@@ -170,6 +170,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
                 <td></td>
                 <td></td>
               </tr>

@@ -41,6 +41,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -179,6 +185,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
+              <td><a href="https://mangadenizi.com"><img src="https://www.google.com/s2/favicons?domain=https://mangadenizi.com"> mangadenizi (Bad)</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://www.mangadex.org"><img src="https://www.google.com/s2/favicons?domain=https://www.mangadex.org"> Mangadex</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -245,6 +257,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://serimanga.com"><img src="https://www.google.com/s2/favicons?domain=https://serimanga.com"> serimanga (Bad)</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://shinden.pl"><img src="https://www.google.com/s2/favicons?domain=https://shinden.pl"> Shinden</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -263,7 +281,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ</a></td>
+              <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ (Bad)</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
