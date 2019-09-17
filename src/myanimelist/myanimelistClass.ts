@@ -309,8 +309,19 @@ export class myanimelistClass{
       var book = {
         bookReady: function(callback){
           utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
-
             callback(prepareData($.parseJSON($('.list-table').attr('data-items')!), This.type));
+
+            utils.changeDetect(() => {
+              $('.tags span a').each(function( index ) {
+                if(typeof utils.getUrlFromTags($(this).text()) !== 'undefined'){
+                  var par = $(this).parent().parent().parent().parent();
+                  $(this).parent().remove();
+                  streamUI(This.type, par.find('.title .link').first().attr('href'), utils.getUrlFromTags($(this).text()), parseInt(par.find('.progress .link').first().text()), par.find('.title .link').first().attr('href')!.split('/')[1]);
+                }
+              });
+            }, () => {
+              return $('.list-table > *').length;
+            });
           });
         },
         getElement: function(malUrl){
@@ -369,32 +380,7 @@ export class myanimelistClass{
         var type = el.type;
 
         if(typeof streamUrl !== 'undefined'){
-          var element = book.getElement(malUrl);
-          element.find(book.streamingSelector).after(`
-            <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-              <img src="${utils.favicon(streamUrl.split('/')[2])}">
-            </a>`);
-
-          var resumeUrlObj = await utils.getResumeWaching(type, el.cacheKey);
-          var continueUrlObj = await utils.getContinueWaching(type, el.cacheKey);
-
-          var curEp = parseInt(el.watchedEp);
-
-          con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-          if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-            element.find('.mal-sync-stream').after(
-              `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
-              </a>`
-              );
-          }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-            element.find('.mal-sync-stream').after(
-              `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
-              </a>`
-              );
-          }
-
+          streamUI(type, malUrl, streamUrl, parseInt(el.watchedEp), el.cacheKey);
         }
 
         utils.epPredictionUI(id, el.cacheKey, type, function(prediction){
@@ -406,6 +392,32 @@ export class myanimelistClass{
       });
       book.cleanTags();
     });
+
+    async function streamUI(type, malUrl, streamUrl, curEp, cacheKey){
+      var element = book.getElement(malUrl);
+      element.find(book.streamingSelector).after(`
+        <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
+          <img src="${utils.favicon(streamUrl.split('/')[2])}">
+        </a>`);
+
+      var resumeUrlObj = await utils.getResumeWaching(type, cacheKey);
+      var continueUrlObj = await utils.getContinueWaching(type, cacheKey);
+
+      con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+      if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
+        element.find('.mal-sync-stream').after(
+          `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+          </a>`
+          );
+      }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
+        element.find('.mal-sync-stream').after(
+          `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+          </a>`
+          );
+      }
+    }
   }
 
   related(){
