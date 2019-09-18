@@ -1,9 +1,21 @@
 <template>
   <span>
     <button v-if="button" @click="buttonClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><slot/></button>
-    <input v-else type="file" v-on:change="handleFileUpload($event)" />
+    <template v-else>
+      <input type="file" v-on:change="handleFileUpload($event)" />
+      <p class="info" v-if="type() == 'webextension'">If you have problems please retry in <a @click="openWindow($event)" href="#">this window</a></p>
+    </template>
+
   </span>
 </template>
+
+<style lang="less" scoped>
+  .info {
+    height: 0;
+    padding: 0;
+    margin: 0;
+  }
+</style>
 
 <script type="text/javascript">
   export default {
@@ -14,6 +26,9 @@
       }
     },
     methods: {
+      type(){
+        return api.type;
+      },
       buttonClick(){
         this.button = false;
       },
@@ -41,6 +56,16 @@
         };
 
         reader.readAsText(event.target.files[0]);
+      },
+      openWindow(e){
+        e.preventDefault();
+        e.stopPropagation();
+        var win = window.open(chrome.extension.getURL('window.html'), '_blank');
+        if (win) {
+            win.focus();
+        } else {
+            alert(api.storage.lang("minimalClass_Popup"));
+        }
       }
     }
   }
