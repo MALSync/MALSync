@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
+    <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: fixed; z-index: 30;"></div>
     <slot></slot>
     <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("NoEntries")}}</span></span>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
@@ -19,6 +19,8 @@
   import bookmarksItem from './bookmarksItem.vue';
 
   var timer;
+
+  var cb;
 
   export default {
     components: {
@@ -47,6 +49,10 @@
       this.$nextTick(() => {
       j.$(this.$el).closest('html').find("head").click();
       })
+      this.$parent.registerScroll('books', this.handleScroll);
+    },
+    deactivated: function(){
+      this.$parent.unregisterScroll('books');
     },
     watch: {
       listType: function(type){
@@ -61,11 +67,25 @@
       load: function(){
         this.loading = true;
         provider.userList(this.state, this.listType, {
-          fullListCallback: async (list) => {
+          continueCall: async (list, continueCB) => {
             this.loading = false;
             this.items = list;
+
+            if(typeof continueCB !== 'undefined'){
+              cb = continueCB;
+            }
           }
         });
+      },
+      handleScroll: function(pos){
+        if( (pos.pos + pos.elHeight + 1000) > pos.height){
+          con.error('full', pos);
+          if(typeof cb !== 'undefined'){
+            this.loading = true;
+            cb();
+            cb = undefined;
+          }
+        }
       },
       sortByPrediction: function(){
         if(this.state !== 1 && this.state !== '1') return;

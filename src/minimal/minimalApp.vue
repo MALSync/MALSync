@@ -104,6 +104,8 @@
   var ignoreCurrentTab = true;
   var ignoreNullBase = false;
   var STORAGE_KEY = 'VUE-MAL-SYNC';
+  var scrollHandler = {};
+  var scrollHandlerArray = [];
   var popupStorage = {
     fetch: function () {
       var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -264,6 +266,18 @@
           this.setCurrent(state);
         }
       }
+      j.$(this.$el).find('.mdl-layout__content').first().scroll(() => {
+        if(scrollHandlerArray.length){
+          var pos = {
+            pos: this.getScroll(),
+            elHeight: j.$(this.$el).find('.mdl-layout__content').first().height(),
+            height: j.$(this.$el).find('.mdl-layout__content > .is-active').first().height()
+          }
+          for(var i in scrollHandlerArray){
+            scrollHandlerArray[i](pos);
+          }
+        }
+      });
     },
     updated: function(){
       if(this.isPopup()){
@@ -327,6 +341,15 @@
         if(this.onlySettings && (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')) selectedTab = 'settings';
         con.log('Tab Changed', selectedTab);
         this.currentTab = selectedTab;
+      },
+      registerScroll(key, fn){
+        scrollHandler[key] = fn;
+        scrollHandlerArray = Object.values(scrollHandler);
+      },
+      unregisterScroll(key){
+        alert(key);
+        delete scrollHandler[key];
+        scrollHandlerArray = Object.values(scrollHandler);
       },
       getScroll(){
         return j.$(this.$el).find('.mdl-layout__content').first().scrollTop();

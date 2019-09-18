@@ -119,13 +119,13 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
           callbacks.singleCallback(data[i], i+offset+1, data.length+offset);
         }
       }
-      if(typeof callbacks.fullListCallback !== 'undefined'){
-          templist = templist.concat(data);
-      }
+
+      templist = templist.concat(data);
+
       if(res.data.Page.pageInfo.hasNextPage){
         if(typeof callbacks.continueCall !== 'undefined'){
           // @ts-ignore
-          callbacks.continueCall(function(){
+          callbacks.continueCall(templist, function(){
             userList(status, localListType, callbacks, username, offset + 1, templist);
           });
         }else{
@@ -134,6 +134,8 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
       }else{
         // @ts-ignore
         if(typeof callbacks.fullListCallback !== 'undefined') callbacks.fullListCallback(templist);
+        // @ts-ignore
+        if(typeof callbacks.continueCall !== 'undefined') callbacks.continueCall(templist, undefined);
         // @ts-ignore
         if(typeof callbacks.finishCallback !== 'undefined') callbacks.finishCallback();
       }
