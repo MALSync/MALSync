@@ -130,71 +130,52 @@
       var typeArray = [];
       var master = api.settings.get('syncMode');
       var listP = [];
+      var providerList = [
+        {
+          providerType: 'MAL',
+          providerSettings: this.listProvider.mal,
+          listProvider: malUserList,
+        },
+        {
+          providerType: 'ANILIST',
+          providerSettings: this.listProvider.anilist,
+          listProvider: anilistUserList,
+        },
+        {
+          providerType: 'KITSU',
+          providerSettings: this.listProvider.kitsu,
+          listProvider: kitsuUserList,
+        },
+        {
+          providerType: 'SIMKL',
+          providerSettings: this.listProvider.simkl,
+          listProvider: simklUserList,
+        },
+      ];
 
-      this.listProvider.mal.text = 'Loading';
-      listP.push( getList(malUserList, type).then((list) => {
-        this.listProvider.mal.list = list;
-        this.listProvider.mal.text = 'Done';
-        if(master == 'MAL') this.listProvider.mal.master = true;
-        if(list.length) typeArray.push('MAL');
-        if(!list.length) this.listProvider.mal.text = 'Error';
-      }) );
-
-      this.listProvider.anilist.text = 'Loading';
-      listP.push( getList(anilistUserList, type).then((list) => {
-        this.listProvider.anilist.list = list;
-        this.listProvider.anilist.text = 'Done';
-        if(master == 'ANILIST') this.listProvider.anilist.master = true;
-        if(list.length) typeArray.push('ANILIST');
-        if(!list.length) this.listProvider.anilist.text = 'Error';
-      }) );
-
-      this.listProvider.kitsu.text = 'Loading';
-      listP.push( getList(kitsuUserList, type).then((list) => {
-        this.listProvider.kitsu.list = list;
-        this.listProvider.kitsu.text = 'Done';
-        if(master == 'KITSU') this.listProvider.kitsu.master = true;
-        if(list.length) typeArray.push('KITSU');
-        if(!list.length) this.listProvider.kitsu.text = 'Error';
-      }) );
-
-      this.listProvider.simkl.text = 'Loading';
-      listP.push( getList(simklUserList, type).then((list) => {
-        this.listProvider.simkl.list = list;
-        this.listProvider.simkl.text = 'Done';
-        if(master == 'SIMKL') this.listProvider.simkl.master = true;
-        if(list.length) typeArray.push('SIMKL');
-        if(!list.length) this.listProvider.simkl.text = 'Error';
-      }) );
+      providerList.forEach(function(pi) {
+        pi.providerSettings.text = 'Loading';
+        listP.push( getList(pi.listProvider, type).then((list) => {
+          pi.providerSettings.list = list;
+          pi.providerSettings.text = 'Done';
+          if(master == pi.providerType) pi.providerSettings.master = true;
+          if(list.length) typeArray.push(pi.providerType);
+          if(!list.length) pi.providerSettings.text = 'Error';
+        }) );
+      });
 
       await Promise.all(listP);
 
       var master = false;
       var slaves = [];
 
-      if(this.listProvider.mal.master){
-        master = this.listProvider.mal.list;
-      }else{
-        slaves.push(this.listProvider.mal.list);
-      }
-
-      if(this.listProvider.anilist.master){
-        master = this.listProvider.anilist.list;
-      }else{
-        slaves.push(this.listProvider.anilist.list);
-      }
-
-      if(this.listProvider.kitsu.master){
-        master = this.listProvider.kitsu.list;
-      }else{
-        slaves.push(this.listProvider.kitsu.list);
-      }
-
-      if(this.listProvider.simkl.master){
-        master = this.listProvider.simkl.list;
-      }else{
-        slaves.push(this.listProvider.simkl.list);
-      }
+      providerList.forEach(function(pi) {
+        if(pi.providerSettings.master){
+          master = pi.providerSettings.list;
+        }else{
+          slaves.push(pi.providerSettings.list);
+        }
+      });
 
       sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
       this.list = Object.assign({}, this.list);
