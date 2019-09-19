@@ -66,16 +66,27 @@
       lang: api.storage.lang,
       load: function(){
         this.loading = true;
-        provider.userList(this.state, this.listType, {
-          continueCall: async (list, continueCB) => {
-            this.loading = false;
-            this.items = list;
+        cb = undefined;
+        if(this.state !== 1 && this.state !== '1') {
+          provider.userList(this.state, this.listType, {
+            continueCall: async (list, continueCB) => {
+              this.loading = false;
+              this.items = list;
 
-            if(typeof continueCB !== 'undefined'){
-              cb = continueCB;
+              if(typeof continueCB !== 'undefined'){
+                cb = continueCB;
+              }
             }
-          }
-        });
+          });
+        }else{
+          provider.userList(this.state, this.listType, {
+            fullListCallback: async (list) => {
+              this.loading = false;
+              this.items = list;
+            }
+          });
+        }
+
       },
       handleScroll: function(pos){
         if( (pos.pos + pos.elHeight + 1000) > pos.height){

@@ -347,7 +347,6 @@
         scrollHandlerArray = Object.values(scrollHandler);
       },
       unregisterScroll(key){
-        alert(key);
         delete scrollHandler[key];
         scrollHandlerArray = Object.values(scrollHandler);
       },
