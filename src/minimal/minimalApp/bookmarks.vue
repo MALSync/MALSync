@@ -90,7 +90,6 @@
       },
       handleScroll: function(pos){
         if( (pos.pos + pos.elHeight + 1000) > pos.height){
-          con.error('full', pos);
           if(typeof cb !== 'undefined'){
             this.loading = true;
             cb();
