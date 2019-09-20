@@ -184,12 +184,14 @@ export function syncItem(slave, pageType){
 // retrive lists
 export async function retriveLists(providerList: {providerType: string, providerSettings: any, listProvider: any}[], type){
   var typeArray:any = [];
-  var masterMode = api.settings.get('syncMode');
+  //@ts-ignore
+  var masterMode = this.api().settings.get('syncMode');
   var listP:any = [];
 
-  providerList.forEach(function(pi) {
+  providerList.forEach((pi) => {
     pi.providerSettings.text = 'Loading';
-    listP.push( getList(pi.listProvider, type).then((list:any) => {
+    //@ts-ignore
+    listP.push( this.getList(pi.listProvider, type).then((list:any) => {
       pi.providerSettings.list = list;
       pi.providerSettings.text = 'Done';
       if(masterMode == pi.providerType) pi.providerSettings.master = true;
@@ -243,11 +245,15 @@ export function getListProvider(providerSettingList){
   ];
 }
 
-function getList(prov, type){
+export function getList(prov, type){
   return new Promise((resolve, reject) => {
     prov.userList(7, type, {fullListCallback: async function(list){
       con.log('list', list);
       resolve(list)
     }});
   });
+}
+
+export function api(){
+  return api;
 }
