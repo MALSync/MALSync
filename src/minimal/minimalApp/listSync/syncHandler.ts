@@ -175,3 +175,50 @@ export function syncItem(slave, pageType){
     });
   }
 }
+
+// retrive lists
+export async function retriveLists(providerList: {providerType: string, providerSettings: any, listProvider: any}[], type){
+  var typeArray:any = [];
+  var masterMode = api.settings.get('syncMode');
+  var listP:any = [];
+
+  providerList.forEach(function(pi) {
+    pi.providerSettings.text = 'Loading';
+    listP.push( getList(pi.listProvider, type).then((list:any) => {
+      pi.providerSettings.list = list;
+      pi.providerSettings.text = 'Done';
+      if(masterMode == pi.providerType) pi.providerSettings.master = true;
+      if(list.length) typeArray.push(pi.providerType);
+      if(!list.length) pi.providerSettings.text = 'Error';
+    }) );
+  });
+
+  await Promise.all(listP);
+
+  var master = false;
+  var slaves:any = [];
+
+  providerList.forEach(function(pi) {
+    if(pi.providerSettings.master){
+      master = pi.providerSettings.list;
+    }else{
+      slaves.push(pi.providerSettings.list);
+    }
+  });
+
+  return {
+    master: master,
+    slaves: slaves,
+    typeArray: typeArray
+  }
+}
+
+
+function getList(prov, type){
+  return new Promise((resolve, reject) => {
+    prov.userList(7, type, {fullListCallback: async function(list){
+      con.log('list', list);
+      resolve(list)
+    }});
+  });
+}

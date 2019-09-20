@@ -127,9 +127,7 @@
     mounted: async function(){
       var type = this.listType;
       var mode = 'mirror';
-      var typeArray = [];
-      var master = api.settings.get('syncMode');
-      var listP = [];
+
       var providerList = [
         {
           providerType: 'MAL',
@@ -153,31 +151,9 @@
         },
       ];
 
-      providerList.forEach(function(pi) {
-        pi.providerSettings.text = 'Loading';
-        listP.push( getList(pi.listProvider, type).then((list) => {
-          pi.providerSettings.list = list;
-          pi.providerSettings.text = 'Done';
-          if(master == pi.providerType) pi.providerSettings.master = true;
-          if(list.length) typeArray.push(pi.providerType);
-          if(!list.length) pi.providerSettings.text = 'Error';
-        }) );
-      });
+      var listOptions = await sync.retriveLists(providerList, type)
 
-      await Promise.all(listP);
-
-      var master = false;
-      var slaves = [];
-
-      providerList.forEach(function(pi) {
-        if(pi.providerSettings.master){
-          master = pi.providerSettings.list;
-        }else{
-          slaves.push(pi.providerSettings.list);
-        }
-      });
-
-      sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
+      sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
       this.list = Object.assign({}, this.list);
 
       this.listReady = true;
@@ -210,15 +186,5 @@
 
     }
   }
-
-  function getList(prov, type){
-    return new Promise((resolve, reject) => {
-      prov.userList(7, type, {fullListCallback: async function(list){
-        con.log('list', list);
-        resolve(list)
-      }});
-    });
-  }
-
 
 </script>
