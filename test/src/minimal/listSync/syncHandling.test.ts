@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+const sinon = require('sinon');
 import * as sync from './../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
@@ -241,5 +242,115 @@ describe('Sync Handling', function () {
       }
     });
   });
+
+  describe('retriveLists', function () {
+    var providerList = sync.getListProvider({
+      mal: {
+        text: 'Init',
+        list: null,
+        master: false
+      },
+      anilist: {
+        text: 'Init',
+        list: null,
+        master: false
+      },
+      kitsu: {
+        text: 'Init',
+        list: null,
+        master: false
+      },
+      simkl: {
+        text: 'Init',
+        list: null,
+        master: false
+      }
+    });
+
+    for (var i in providerList) {
+      providerList[i].listProvider = providerList[i].providerType;
+    }
+
+    sinon.stub(sync, 'getList').callsFake((prov, type) => {
+      return new Promise((resolve, reject) => {
+        resolve(prov);
+      });
+    });
+
+    it('MAL Master', async function () {
+      var api = sinon.stub(sync, 'api').callsFake(() => {
+        return {
+          settings: {
+            get: () => {
+              return 'MAL';
+            }
+          }
+        }
+      });
+      var res = await sync.retriveLists(providerList, 'anime');
+      api.restore();
+
+      expect(res.master).equal('MAL');
+      expect(res.slaves).to.not.include('MAL')
+      expect(res.slaves).to.have.length((res.typeArray.length - 1));
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
+    });
+
+    it('ANILIST Master', async function () {
+      var api = sinon.stub(sync, 'api').callsFake(() => {
+        return {
+          settings: {
+            get: () => {
+              return 'ANILIST';
+            }
+          }
+        }
+      });
+      var res = await sync.retriveLists(providerList, 'anime');
+      api.restore();
+
+      expect(res.master).equal('ANILIST')
+      expect(res.slaves).to.have.length((res.typeArray.length - 1));
+      expect(res.slaves).to.not.include('ANILIST');
+    });
+
+    it('KITSU Master', async function () {
+      var api = sinon.stub(sync, 'api').callsFake(() => {
+        return {
+          settings: {
+            get: () => {
+              return 'KITSU';
+            }
+          }
+        }
+      });
+      var res = await sync.retriveLists(providerList, 'anime');
+      api.restore();
+
+      expect(res.master).equal('KITSU');
+      expect(res.slaves).to.have.length((res.typeArray.length - 1));
+      expect(res.slaves).to.not.include('KITSU');
+    });
+
+    it('SIMKL Master', async function () {
+      var api = sinon.stub(sync, 'api').callsFake(() => {
+        return {
+          settings: {
+            get: () => {
+              return 'SIMKL';
+            }
+          }
+        }
+      });
+      var res = await sync.retriveLists(providerList, 'anime');
+      api.restore();
+
+      expect(res.master).equal('SIMKL');
+      expect(res.slaves).to.have.length((res.typeArray.length - 1));
+      expect(res.slaves).to.not.include('SIMKL');
+    });
+
+  });
+
 
 });
