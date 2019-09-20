@@ -244,31 +244,35 @@ describe('Sync Handling', function () {
   });
 
   describe('retriveLists', function () {
-    var providerList = sync.getListProvider({
-      mal: {
-        text: 'Init',
-        list: null,
-        master: false
-      },
-      anilist: {
-        text: 'Init',
-        list: null,
-        master: false
-      },
-      kitsu: {
-        text: 'Init',
-        list: null,
-        master: false
-      },
-      simkl: {
-        text: 'Init',
-        list: null,
-        master: false
-      }
-    });
+    function getProviderListList(){
+      var providerList = sync.getListProvider({
+        mal: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        anilist: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        kitsu: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        simkl: {
+          text: 'Init',
+          list: null,
+          master: false
+        }
+      });
 
-    for (var i in providerList) {
-      providerList[i].listProvider = providerList[i].providerType;
+      for (var i in providerList) {
+        providerList[i].listProvider = providerList[i].providerType;
+      }
+
+      return providerList;
     }
 
     sinon.stub(sync, 'getList').callsFake((prov, type) => {
@@ -287,6 +291,7 @@ describe('Sync Handling', function () {
           }
         }
       });
+      var providerList = getProviderListList();
       var res = await sync.retriveLists(providerList, 'anime');
       api.restore();
 
@@ -306,6 +311,7 @@ describe('Sync Handling', function () {
           }
         }
       });
+      var providerList = getProviderListList();
       var res = await sync.retriveLists(providerList, 'anime');
       api.restore();
 
@@ -324,6 +330,7 @@ describe('Sync Handling', function () {
           }
         }
       });
+      var providerList = getProviderListList();
       var res = await sync.retriveLists(providerList, 'anime');
       api.restore();
 
@@ -342,6 +349,7 @@ describe('Sync Handling', function () {
           }
         }
       });
+      var providerList = getProviderListList();
       var res = await sync.retriveLists(providerList, 'anime');
       api.restore();
 
