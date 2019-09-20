@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getType, changeCheck, missingCheck, mapToArray} from './../../../../src/minimal/minimalApp/listSync/syncHandler';
+import { getType, changeCheck, missingCheck, mapToArray, getListProvider} from './../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
   getItem: function(){
@@ -220,6 +220,25 @@ describe('Sync Handling', function () {
       mapToArray([item2], list, false);
       expect(list[item.malId].master).to.deep.equal(item);
       expect(list[item.malId].slaves).to.deep.equal([item]);
+    });
+  });
+
+  describe('getListProvider', function () {
+    var providerList = getListProvider({
+      mal: 'mal',
+      anilist: 'anilist',
+      kitsu: 'kitsu',
+      simkl: 'simkl',
+    });
+    it('providerType', function () {
+      for (var i in providerList) {
+        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
+      }
+    });
+    it('providerSettings', function () {
+      for (var i in providerList) {
+        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl']);
+      }
     });
   });
 
