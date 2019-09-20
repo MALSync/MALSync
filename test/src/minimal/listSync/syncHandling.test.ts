@@ -275,7 +275,7 @@ describe('Sync Handling', function () {
       return providerList;
     }
 
-    sinon.stub(sync, 'getList').callsFake((prov, type) => {
+    var getListStub = sinon.stub(sync, 'getList').callsFake((prov, type) => {
       return new Promise((resolve, reject) => {
         resolve(prov);
       });
@@ -358,7 +358,35 @@ describe('Sync Handling', function () {
       expect(res.slaves).to.not.include('SIMKL');
     });
 
-  });
 
+
+    it('typeArray', async function () {
+      getListStub.restore();
+      getListStub = sinon.stub(sync, 'getList').callsFake((prov, type) => {
+        return new Promise((resolve, reject) => {
+          if(prov === 'KITSU') {
+            resolve([]);
+            return;
+          }
+          resolve(prov);
+        });
+      });
+      var api = sinon.stub(sync, 'api').callsFake(() => {
+        return {
+          settings: {
+            get: () => {
+              return 'MAL';
+            }
+          }
+        }
+      });
+      var providerList = getProviderListList();
+      var res = await sync.retriveLists(providerList, 'anime');
+      api.restore();
+
+      expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL']);
+    });
+
+  });
 
 });
