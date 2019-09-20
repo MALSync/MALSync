@@ -79,12 +79,6 @@
 </template>
 
 <script type="text/javascript">
-  import * as provider from "./../../../provider/provider.ts";
-  import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
-  import * as anilistUserList from "./../../../provider/AniList/userList.ts";
-  import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
-  import * as simklUserList from "./../../../provider/Simkl/userList.ts";
-
   import * as sync from "./syncHandler.ts";
 
   export default {
@@ -128,28 +122,12 @@
       var type = this.listType;
       var mode = 'mirror';
 
-      var providerList = [
-        {
-          providerType: 'MAL',
-          providerSettings: this.listProvider.mal,
-          listProvider: malUserList,
-        },
-        {
-          providerType: 'ANILIST',
-          providerSettings: this.listProvider.anilist,
-          listProvider: anilistUserList,
-        },
-        {
-          providerType: 'KITSU',
-          providerSettings: this.listProvider.kitsu,
-          listProvider: kitsuUserList,
-        },
-        {
-          providerType: 'SIMKL',
-          providerSettings: this.listProvider.simkl,
-          listProvider: simklUserList,
-        },
-      ];
+      var providerList = sync.getListProvider({
+        mal: this.listProvider.mal,
+        anilist: this.listProvider.anilist,
+        kitsu: this.listProvider.kitsu,
+        simkl: this.listProvider.simkl,
+      });
 
       var listOptions = await sync.retriveLists(providerList, type)
 

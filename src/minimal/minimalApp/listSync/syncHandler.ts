@@ -3,6 +3,11 @@ import * as anilist from "./../../../provider/AniList/entryClass.ts";
 import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
 import * as simkl from "./../../../provider/Simkl/entryClass.ts";
 
+import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
+import * as anilistUserList from "./../../../provider/AniList/userList.ts";
+import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
+import * as simklUserList from "./../../../provider/Simkl/userList.ts";
+
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
   mapToArray(masterList, list, true);
@@ -213,6 +218,30 @@ export async function retriveLists(providerList: {providerType: string, provider
   }
 }
 
+export function getListProvider(providerSettingList){
+  return [
+    {
+      providerType: 'MAL',
+      providerSettings: providerSettingList.mal,
+      listProvider: malUserList,
+    },
+    {
+      providerType: 'ANILIST',
+      providerSettings: providerSettingList.anilist,
+      listProvider: anilistUserList,
+    },
+    {
+      providerType: 'KITSU',
+      providerSettings: providerSettingList.kitsu,
+      listProvider: kitsuUserList,
+    },
+    {
+      providerType: 'SIMKL',
+      providerSettings: providerSettingList.simkl,
+      listProvider: simklUserList,
+    },
+  ];
+}
 
 function getList(prov, type){
   return new Promise((resolve, reject) => {
