@@ -10,5 +10,9 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true
-  }
+  },
+  "exclude": [
+    "**/*.test.ts",
+    "node_modules"
+  ]
 }
