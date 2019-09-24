@@ -182,16 +182,17 @@ export function syncItem(slave, pageType){
 }
 
 // retrive lists
-export async function retriveLists(providerList: {providerType: string, providerSettings: any, listProvider: any}[], type){
+export async function retriveLists(providerList: {providerType: string, providerSettings: any, listProvider: any}[], type, apiTemp, getListF){
   var typeArray:any = [];
+
   //@ts-ignore
-  var masterMode = this.api().settings.get('syncMode');
+  var masterMode = apiTemp.settings.get('syncMode');
   var listP:any = [];
 
   providerList.forEach((pi) => {
     pi.providerSettings.text = 'Loading';
     //@ts-ignore
-    listP.push( this.getList(pi.listProvider, type).then((list:any) => {
+    listP.push( getListF(pi.listProvider, type).then((list:any) => {
       pi.providerSettings.list = list;
       pi.providerSettings.text = 'Done';
       if(masterMode == pi.providerType) pi.providerSettings.master = true;
@@ -252,8 +253,4 @@ export function getList(prov, type){
       resolve(list)
     }});
   });
-}
-
-export function api(){
-  return api;
 }

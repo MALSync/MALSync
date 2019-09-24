@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-const sinon = require('sinon');
 import * as sync from './../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
@@ -275,25 +274,24 @@ describe('Sync Handling', function () {
       return providerList;
     }
 
-    var getListStub = sinon.stub(sync, 'getList').callsFake((prov, type) => {
+    var getListStub = (prov, type) => {
       return new Promise((resolve, reject) => {
         resolve(prov);
       });
-    });
+    };
 
     it('MAL Master', async function () {
-      var api = sinon.stub(sync, 'api').callsFake(() => {
-        return {
-          settings: {
-            get: () => {
-              return 'MAL';
-            }
+      var api = {
+        settings: {
+          get: () => {
+            return 'MAL';
           }
         }
-      });
+      };
+
+
       var providerList = getProviderListList();
-      var res = await sync.retriveLists(providerList, 'anime');
-      api.restore();
+      var res = await sync.retriveLists(providerList, 'anime', api, getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL')
@@ -302,18 +300,15 @@ describe('Sync Handling', function () {
     });
 
     it('ANILIST Master', async function () {
-      var api = sinon.stub(sync, 'api').callsFake(() => {
-        return {
-          settings: {
-            get: () => {
-              return 'ANILIST';
-            }
+      var api = {
+        settings: {
+          get: () => {
+            return 'ANILIST';
           }
         }
-      });
+      };
       var providerList = getProviderListList();
-      var res = await sync.retriveLists(providerList, 'anime');
-      api.restore();
+      var res = await sync.retriveLists(providerList, 'anime', api, getListStub);
 
       expect(res.master).equal('ANILIST')
       expect(res.slaves).to.have.length((res.typeArray.length - 1));
@@ -321,18 +316,15 @@ describe('Sync Handling', function () {
     });
 
     it('KITSU Master', async function () {
-      var api = sinon.stub(sync, 'api').callsFake(() => {
-        return {
-          settings: {
-            get: () => {
-              return 'KITSU';
-            }
+      var api = {
+        settings: {
+          get: () => {
+            return 'KITSU';
           }
         }
-      });
+      };
       var providerList = getProviderListList();
-      var res = await sync.retriveLists(providerList, 'anime');
-      api.restore();
+      var res = await sync.retriveLists(providerList, 'anime', api, getListStub);
 
       expect(res.master).equal('KITSU');
       expect(res.slaves).to.have.length((res.typeArray.length - 1));
@@ -340,18 +332,16 @@ describe('Sync Handling', function () {
     });
 
     it('SIMKL Master', async function () {
-      var api = sinon.stub(sync, 'api').callsFake(() => {
-        return {
-          settings: {
-            get: () => {
-              return 'SIMKL';
-            }
+      var api = {
+        settings: {
+          get: () => {
+            return 'SIMKL';
           }
         }
-      });
+      };
+
       var providerList = getProviderListList();
-      var res = await sync.retriveLists(providerList, 'anime');
-      api.restore();
+      var res = await sync.retriveLists(providerList, 'anime', api, getListStub);
 
       expect(res.master).equal('SIMKL');
       expect(res.slaves).to.have.length((res.typeArray.length - 1));
@@ -361,28 +351,27 @@ describe('Sync Handling', function () {
 
 
     it('typeArray', async function () {
-      getListStub.restore();
-      getListStub = sinon.stub(sync, 'getList').callsFake((prov, type) => {
+
+      getListStub = (prov, type) => {
         return new Promise((resolve, reject) => {
           if(prov === 'KITSU') {
             resolve([]);
             return;
           }
           resolve(prov);
-        });
-      });
-      var api = sinon.stub(sync, 'api').callsFake(() => {
-        return {
-          settings: {
-            get: () => {
-              return 'MAL';
-            }
+        })
+      };
+
+      var api = {
+        settings: {
+          get: () => {
+            return 'MAL';
           }
         }
-      });
+      }
+
       var providerList = getProviderListList();
-      var res = await sync.retriveLists(providerList, 'anime');
-      api.restore();
+      var res = await sync.retriveLists(providerList, 'anime', api, getListStub);
 
       expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL']);
     });

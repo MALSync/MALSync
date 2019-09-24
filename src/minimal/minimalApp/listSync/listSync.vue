@@ -129,7 +129,7 @@
         simkl: this.listProvider.simkl,
       });
 
-      var listOptions = await sync.retriveLists(providerList, type)
+      var listOptions = await sync.retriveLists(providerList, type, api, sync.getList)
 
       sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
       this.list = Object.assign({}, this.list);
