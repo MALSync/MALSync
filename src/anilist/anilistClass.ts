@@ -150,6 +150,7 @@ export class anilistClass{
 
       }
       $(document).ready(function(){
+        $('.mal_links').remove();
         $('.sidebar .data').before(html);
         $('.remove-mal-sync').click(function(){
           var key = $(this).attr('title');
@@ -230,6 +231,7 @@ export class anilistClass{
     if(typeof streamUrl !== 'undefined'){
 
       $(document).ready(async function(){
+        $('#mal-sync-stream-div').remove();
         $('h1').first().append(`
         <div class="data title progress" id="mal-sync-stream-div" style="margin-top: -2px; display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${streamUrl}">
