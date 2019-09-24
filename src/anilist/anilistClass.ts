@@ -19,10 +19,15 @@ export class anilistClass{
   page: any = null
 
   constructor(public url:string){
+    var first = true;
     utils.changeDetect(() => {
       this.url = window.location.href;
       this.init();
     }, () => {
+      if(first){
+        first = false;
+        return undefined;
+      }
       if(this.page !== null && this.page.page == "bookmarks" && $('.lists').length){
         return $('.lists').first().height();
       }
