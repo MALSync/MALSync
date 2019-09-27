@@ -271,5 +271,70 @@ export var background = {
   },
   disable: function(){
     return api.storage.remove('backgroundListSync');
+  },
+  sync: async function(){
+
+    if(await background.isEnabled()) {
+      con.log('Start Background list Sync');
+
+      return syncLists('anime').then( () => {
+        return syncLists('manga');
+      })
+    }else{
+      con.error('Background list Sync not allowed');
+    }
+
+
+    async function syncLists(type){
+      var mode = 'mirror';
+      var list = {};
+      var missing = [];
+
+      var providerList = getListProvider({
+        mal: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        anilist: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        kitsu: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        simkl: {
+          text: 'Init',
+          list: null,
+          master: false
+        }
+      });
+
+      var listOptions:any = await retriveLists(providerList, type, api, getList)
+
+      generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
+
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('FUsss', type, list);
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+      con.log('-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.');
+    }
+
   }
 }
