@@ -33,7 +33,7 @@ export function userList(status = 1, localListType = 'anime', callbacks, usernam
         }
         mediaList (status: $status, type: $type, userName: $userName, sort: $sort) {
           status
-          score(format: POINT_10)
+          score(format: POINT_100)
           progress
           progressVolumes
           notes
@@ -158,7 +158,7 @@ export function prepareData(data, listType): listElement[]{
         watchedEp: el.progress,
         totalEp: el.media.episodes,
         status: helper.translateList(el.status),
-        score: el.score,
+        score: Math.round(el.score / 10),
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],
@@ -174,7 +174,7 @@ export function prepareData(data, listType): listElement[]{
         watchedEp: el.progress,
         totalEp: el.media.chapters,
         status: helper.translateList(el.status),
-        score: el.score,
+        score: Math.round(el.score / 10),
         image: el.media.coverImage.large,
         tags: el.notes,
         airingState: el['anime_airing_status'],

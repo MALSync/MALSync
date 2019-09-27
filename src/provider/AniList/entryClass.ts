@@ -73,7 +73,7 @@ export class entryClass{
           status
           progress
           progressVolumes
-          score(format: POINT_10)
+          score(format: POINT_100)
           repeat
           notes
         }
@@ -187,12 +187,13 @@ export class entryClass{
 
   getScore(){
     if(this.animeInfo.mediaListEntry.score === 0) return '';
-    return this.animeInfo.mediaListEntry.score;
+    return Math.round(this.animeInfo.mediaListEntry.score / 10);
   }
 
   setScore(score:any){
     if(score === '') score = 0;
-    this.animeInfo.mediaListEntry.score = score;
+    if(parseInt(score) === parseInt(this.getScore()+'')) return;
+    this.animeInfo.mediaListEntry.score = score * 10;
   }
 
   getRewatching(): 1|0{
@@ -404,7 +405,7 @@ export class entryClass{
             "mediaId": This.aniId,
             "status": This.animeInfo.mediaListEntry.status,
             "progress": This.animeInfo.mediaListEntry.progress,
-            "scoreRaw": This.animeInfo.mediaListEntry.score * 10,
+            "scoreRaw": This.animeInfo.mediaListEntry.score,
             "notes": This.animeInfo.mediaListEntry.notes
         };
 
