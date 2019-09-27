@@ -254,3 +254,22 @@ export function getList(prov, type){
     }});
   });
 }
+
+export var background = {
+  isEnabled: async function(){
+    return api.storage.get('backgroundListSync').then(async function(state){
+      con.info('background list sync state', state);
+      if(state && state.mode === await api.settings.getAsync('syncMode')) return true;
+      background.disable();
+      return false;
+    });
+  },
+  enable: async function(){
+    return api.storage.set('backgroundListSync', {
+      mode: await api.settings.getAsync('syncMode')
+    })
+  },
+  disable: function(){
+    return api.storage.remove('backgroundListSync');
+  }
+}

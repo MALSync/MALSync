@@ -35,6 +35,16 @@
     </div><br>
 
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
+
+    <button type="button" @click="backgroundClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px; float: right;">
+      <template v-if="isBackgroundEnabled">
+        Background Sync Enabled
+      </template>
+      <template v-else>
+        Sync in Background
+      </template>
+    </button>
+
     <span v-if="listLength">{{listLength - listSyncLength}}/{{listLength}}</span>
 
     <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;">
@@ -110,6 +120,7 @@
         listLength: 0,
         list: {},
         missing: [],
+        isBackgroundEnabled: false,
       };
     },
     props: {
@@ -119,6 +130,9 @@
       }
     },
     mounted: async function(){
+      sync.background.isEnabled().then((state) => {
+        this.isBackgroundEnabled = state;
+      });
       var type = this.listType;
       var mode = 'mirror';
 
@@ -161,6 +175,16 @@
 
         sync.syncList(this.list, this.missing);
       },
+
+      backgroundClick: async function(){
+        if(await sync.background.isEnabled()){
+          sync.background.disable();
+          this.isBackgroundEnabled = false;
+        }else{
+          sync.background.enable();
+          this.isBackgroundEnabled = true;
+        }
+      }
 
     }
   }
