@@ -1,7 +1,7 @@
 import {xhrI, xhrResponseI, sendMessageI, responseMessageI} from "./api/messageInterface";
 import {scheduleUpdate} from "./utils/scheduler";
-import {checkInit, checkContinue} from "./updateCheck/backgroundIframe";
-import {listSyncInit} from "./updateCheck/listSync";
+import {checkInit, checkContinue} from "./background/backgroundIframe";
+import {listSyncInit} from "./background/listSync";
 
 api.request.sendMessage = function(message: sendMessageI){
   return new Promise((resolve, reject) => {
