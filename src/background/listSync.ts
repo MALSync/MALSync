@@ -11,7 +11,7 @@ export function listSyncInit(){
       }
       con.log('Create listSync Alarm', listSync);
       chrome.alarms.create("listSync", {
-        periodInMinutes: 2,
+        periodInMinutes: 23 * 60,
         when: parseInt(listSync)
       });
 
