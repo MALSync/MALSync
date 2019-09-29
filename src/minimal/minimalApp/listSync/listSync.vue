@@ -36,7 +36,7 @@
 
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
 
-    <button type="button" @click="backgroundClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px; float: right;">
+    <button v-if="apiType() == 'webextension'" type="button" @click="backgroundClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px; float: right;">
       <template v-if="isBackgroundEnabled">
         Background Sync Enabled
       </template>
@@ -162,6 +162,9 @@
     methods: {
       lang: api.storage.lang,
       getType: sync.getType,
+      apiType: function() {
+        return api.type
+      },
       getTypeColor: function(type){
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
