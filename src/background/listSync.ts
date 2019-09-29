@@ -20,11 +20,13 @@ export function listSyncInit(){
     }
   });
 
-  chrome.alarms.onAlarm.addListener(async function(alarm) {
+  chrome.alarms.onAlarm.addListener(function(alarm) {
     if (alarm.name === "listSync") {
-      console.groupCollapsed('listSync');
-        await Sync.background.sync();
-      console.groupEnd();
+      api.settings.init().then(async ()=>{
+        console.groupCollapsed('listSync');
+          await Sync.background.sync();
+        console.groupEnd();
+      });
     }
   });
 }
