@@ -13,7 +13,7 @@ export const Animeflix: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      return utils.getBaseText($("h4.title.text-truncate")).replace("()", "").trim();
+      return utils.getBaseText($("h4.title.text-truncate, h4.headline.text-truncate").first()).replace("()", "").trim();
     },
     getIdentifier: function(url) {
       return utils.urlPart(url,4);
@@ -52,7 +52,7 @@ export const Animeflix: pageInterface = {
     if (page.url.split("/")[3] === "shows") {
       utils.waitUntilTrue(
         function() {
-          if (j.$("h4.title.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text()){
+          if (j.$("h4.title.text-truncate").text() || j.$("h4.headline.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text()){
             return true;
           } else {
             return false;
@@ -62,26 +62,26 @@ export const Animeflix: pageInterface = {
           page.handlePage();
         }
         );
-          }
-      utils.urlChangeDetect(function() {
-        page.url = window.location.href;
-        page.UILoaded = false;
-        $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
-        if (page.url.split("/")[3] === "shows") {
-          utils.waitUntilTrue(
-            function() {
-              if (j.$("h4.title.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text()){
-                return true;
-              } else {
-                return false;
-              }
-            },
-            function() {
-              page.handlePage();
+    }
+    utils.urlChangeDetect(function() {
+      page.url = window.location.href;
+      page.UILoaded = false;
+      $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+      if (page.url.split("/")[3] === "shows") {
+        utils.waitUntilTrue(
+          function() {
+            if (j.$("h4.title.text-truncate").text() || j.$("h4.headline.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text() ){
+              return true;
+            } else {
+              return false;
             }
-            );
-        }
-      });
+          },
+          function() {
+            page.handlePage();
+          }
+          );
+      }
+    });
 
 
   }
