@@ -222,6 +222,7 @@ export class entryClass{
 
   setStreamingUrl(url:string){
     var tags = this.animeInfo.mediaListEntry.notes;
+    if(tags == null || tags == 'null') tags = '';
 
     tags = utils.setUrlInTags(url, tags);
 
