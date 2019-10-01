@@ -3,6 +3,11 @@ import * as anilist from "./../../../provider/AniList/entryClass.ts";
 import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
 import * as simkl from "./../../../provider/Simkl/entryClass.ts";
 
+import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
+import * as anilistUserList from "./../../../provider/AniList/userList.ts";
+import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
+import * as simklUserList from "./../../../provider/Simkl/userList.ts";
+
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
   mapToArray(masterList, list, true);
@@ -173,5 +178,147 @@ export function syncItem(slave, pageType){
       if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
       return entryClass.sync();
     });
+  }
+}
+
+// retrive lists
+export async function retriveLists(providerList: {providerType: string, providerSettings: any, listProvider: any}[], type, apiTemp, getListF){
+  var typeArray:any = [];
+
+  //@ts-ignore
+  var masterMode = apiTemp.settings.get('syncMode');
+  var listP:any = [];
+
+  providerList.forEach((pi) => {
+    pi.providerSettings.text = 'Loading';
+    //@ts-ignore
+    listP.push( getListF(pi.listProvider, type).then((list:any) => {
+      pi.providerSettings.list = list;
+      pi.providerSettings.text = 'Done';
+      if(masterMode == pi.providerType) pi.providerSettings.master = true;
+      if(list.length) typeArray.push(pi.providerType);
+      if(!list.length) pi.providerSettings.text = 'Error';
+    }) );
+  });
+
+  await Promise.all(listP);
+
+  var master = false;
+  var slaves:any = [];
+
+  providerList.forEach(function(pi) {
+    if(pi.providerSettings.master){
+      master = pi.providerSettings.list;
+    }else{
+      slaves.push(pi.providerSettings.list);
+    }
+  });
+
+  return {
+    master: master,
+    slaves: slaves,
+    typeArray: typeArray
+  }
+}
+
+export function getListProvider(providerSettingList){
+  return [
+    {
+      providerType: 'MAL',
+      providerSettings: providerSettingList.mal,
+      listProvider: malUserList,
+    },
+    {
+      providerType: 'ANILIST',
+      providerSettings: providerSettingList.anilist,
+      listProvider: anilistUserList,
+    },
+    {
+      providerType: 'KITSU',
+      providerSettings: providerSettingList.kitsu,
+      listProvider: kitsuUserList,
+    },
+    {
+      providerType: 'SIMKL',
+      providerSettings: providerSettingList.simkl,
+      listProvider: simklUserList,
+    },
+  ];
+}
+
+export function getList(prov, type){
+  return new Promise((resolve, reject) => {
+    prov.userList(7, type, {fullListCallback: async function(list){
+      con.log('list', list);
+      resolve(list)
+    }});
+  });
+}
+
+export var background = {
+  isEnabled: async function(){
+    return api.storage.get('backgroundListSync').then(async function(state){
+      con.info('background list sync state', state);
+      if(state && state.mode === await api.settings.getAsync('syncMode')) return true;
+      background.disable();
+      return false;
+    });
+  },
+  enable: async function(){
+    return api.storage.set('backgroundListSync', {
+      mode: await api.settings.getAsync('syncMode')
+    })
+  },
+  disable: function(){
+    return api.storage.remove('backgroundListSync');
+  },
+  sync: async function(){
+
+    if(await background.isEnabled()) {
+      con.log('Start Background list Sync');
+
+      return syncLists('anime').then( () => {
+        return syncLists('manga');
+      })
+    }else{
+      con.error('Background list Sync not allowed');
+    }
+
+
+    async function syncLists(type){
+      var mode = 'mirror';
+      var list = {};
+      var missing = [];
+
+      var providerList = getListProvider({
+        mal: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        anilist: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        kitsu: {
+          text: 'Init',
+          list: null,
+          master: false
+        },
+        simkl: {
+          text: 'Init',
+          list: null,
+          master: false
+        }
+      });
+
+      var listOptions:any = await retriveLists(providerList, type, api, getList)
+
+      generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
+      con.log('Start syncing', list, missing);
+      syncList(list, missing);
+    }
+
   }
 }

@@ -35,6 +35,16 @@
     </div><br>
 
     <button type="button" :disabled="!listReady" @click="syncList()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Sync</button>
+
+    <button v-if="apiType() == 'webextension'" type="button" @click="backgroundClick()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px; float: right;">
+      <template v-if="isBackgroundEnabled">
+        Background Sync Enabled
+      </template>
+      <template v-else>
+        Sync in Background
+      </template>
+    </button>
+
     <span v-if="listLength">{{listLength - listSyncLength}}/{{listLength}}</span>
 
     <div v-if="item.diff" v-for="(item, index) in list" v-bind:key="index" style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;">
@@ -79,12 +89,6 @@
 </template>
 
 <script type="text/javascript">
-  import * as provider from "./../../../provider/provider.ts";
-  import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
-  import * as anilistUserList from "./../../../provider/AniList/userList.ts";
-  import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
-  import * as simklUserList from "./../../../provider/Simkl/userList.ts";
-
   import * as sync from "./syncHandler.ts";
 
   export default {
@@ -116,6 +120,7 @@
         listLength: 0,
         list: {},
         missing: [],
+        isBackgroundEnabled: false,
       };
     },
     props: {
@@ -125,78 +130,22 @@
       }
     },
     mounted: async function(){
+      sync.background.isEnabled().then((state) => {
+        this.isBackgroundEnabled = state;
+      });
       var type = this.listType;
       var mode = 'mirror';
-      var typeArray = [];
-      var master = api.settings.get('syncMode');
-      var listP = [];
 
-      this.listProvider.mal.text = 'Loading';
-      listP.push( getList(malUserList, type).then((list) => {
-        this.listProvider.mal.list = list;
-        this.listProvider.mal.text = 'Done';
-        if(master == 'MAL') this.listProvider.mal.master = true;
-        if(list.length) typeArray.push('MAL');
-        if(!list.length) this.listProvider.mal.text = 'Error';
-      }) );
+      var providerList = sync.getListProvider({
+        mal: this.listProvider.mal,
+        anilist: this.listProvider.anilist,
+        kitsu: this.listProvider.kitsu,
+        simkl: this.listProvider.simkl,
+      });
 
-      this.listProvider.anilist.text = 'Loading';
-      listP.push( getList(anilistUserList, type).then((list) => {
-        this.listProvider.anilist.list = list;
-        this.listProvider.anilist.text = 'Done';
-        if(master == 'ANILIST') this.listProvider.anilist.master = true;
-        if(list.length) typeArray.push('ANILIST');
-        if(!list.length) this.listProvider.anilist.text = 'Error';
-      }) );
+      var listOptions = await sync.retriveLists(providerList, type, api, sync.getList)
 
-      this.listProvider.kitsu.text = 'Loading';
-      listP.push( getList(kitsuUserList, type).then((list) => {
-        this.listProvider.kitsu.list = list;
-        this.listProvider.kitsu.text = 'Done';
-        if(master == 'KITSU') this.listProvider.kitsu.master = true;
-        if(list.length) typeArray.push('KITSU');
-        if(!list.length) this.listProvider.kitsu.text = 'Error';
-      }) );
-
-      this.listProvider.simkl.text = 'Loading';
-      listP.push( getList(simklUserList, type).then((list) => {
-        this.listProvider.simkl.list = list;
-        this.listProvider.simkl.text = 'Done';
-        if(master == 'SIMKL') this.listProvider.simkl.master = true;
-        if(list.length) typeArray.push('SIMKL');
-        if(!list.length) this.listProvider.simkl.text = 'Error';
-      }) );
-
-      await Promise.all(listP);
-
-      var master = false;
-      var slaves = [];
-
-      if(this.listProvider.mal.master){
-        master = this.listProvider.mal.list;
-      }else{
-        slaves.push(this.listProvider.mal.list);
-      }
-
-      if(this.listProvider.anilist.master){
-        master = this.listProvider.anilist.list;
-      }else{
-        slaves.push(this.listProvider.anilist.list);
-      }
-
-      if(this.listProvider.kitsu.master){
-        master = this.listProvider.kitsu.list;
-      }else{
-        slaves.push(this.listProvider.kitsu.list);
-      }
-
-      if(this.listProvider.simkl.master){
-        master = this.listProvider.simkl.list;
-      }else{
-        slaves.push(this.listProvider.simkl.list);
-      }
-
-      sync.generateSync(master, slaves, mode, typeArray, this.list, this.missing);
+      sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
       this.list = Object.assign({}, this.list);
 
       this.listReady = true;
@@ -213,6 +162,9 @@
     methods: {
       lang: api.storage.lang,
       getType: sync.getType,
+      apiType: function() {
+        return api.type
+      },
       getTypeColor: function(type){
         if(type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
         if(type == 'KITSU') return 'border-left: 5px solid #f75239';
@@ -227,17 +179,17 @@
         sync.syncList(this.list, this.missing);
       },
 
+      backgroundClick: async function(){
+        if(await sync.background.isEnabled()){
+          sync.background.disable();
+          this.isBackgroundEnabled = false;
+        }else{
+          sync.background.enable();
+          this.isBackgroundEnabled = true;
+        }
+      }
+
     }
   }
-
-  function getList(prov, type){
-    return new Promise((resolve, reject) => {
-      prov.userList(7, type, {fullListCallback: async function(list){
-        con.log('list', list);
-        resolve(list)
-      }});
-    });
-  }
-
 
 </script>
