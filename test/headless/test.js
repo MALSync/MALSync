@@ -76,15 +76,15 @@ var testsArray = [
 
   {
     title: '9anime',
-    url: 'https://www1.9anime.nl/',
+    url: 'https://www1.9anime.ru/',
     testCases: [
       {
-        url: 'https://www1.9anime.nl/watch/no-game-no-life-dub.y2p0/mlkqnp',
+        url: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0/mlkqnp',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
-          overviewUrl: 'https://www1.9anime.nl/watch/no-game-no-life-dub.y2p0',
+          overviewUrl: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0',
           nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
           episode: 4,
           uiSelector: true,
@@ -1339,7 +1339,7 @@ var testsArray = [
 let browser
 let page
 let debugging = false;
-//var caseTitle = 'Turkanime';
+var caseTitle = '9anime';
 
 before(async function () {
   puppeteer.use(pluginStealth());
