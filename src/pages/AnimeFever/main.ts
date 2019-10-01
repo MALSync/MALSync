@@ -31,7 +31,7 @@ export const AnimeFever: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return utils.getBaseText($("h1.anime-name > div")).trim();
+      return utils.getBaseText($("h1.anime-name > div").first()).trim();
     },
     getIdentifier: function(url){
       return utils.urlPart(url,4);
