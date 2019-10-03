@@ -351,6 +351,11 @@ module.exports = {
       '*://mangadenizi.com/*'
     ]
   },
+  mangalivre: {
+    match: [
+      '*://mangalivre.com/*'
+    ]
+  },
   tmofans: {
     match: [
       '*://tmofans.com/*'

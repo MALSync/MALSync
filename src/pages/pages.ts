@@ -48,6 +48,7 @@ import {Animeflix} from "./Animeflix/main";
 import {AnimeFever} from "./AnimeFever/main";
 import {serimanga} from "./serimanga/main";
 import {mangadenizi} from "./mangadenizi/main";
+import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
 import {unionleitor} from "./unionleitor/main";
 
@@ -104,6 +105,7 @@ export const pages = {
     AnimeFever,
     serimanga,
     mangadenizi,
+    mangalivre,
     tmofans,
     unionleitor,
 };
