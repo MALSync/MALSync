@@ -1107,6 +1107,7 @@ var testsArray = [
           title: 'Dr. Stone',
           identifier: 'dr_stone',
           overviewUrl: 'https://manganelo.com/manga/dr_stone',
+          nextEpUrl: 'https://manganelo.com/chapter/dr_stone/chapter_115',
           episode: 114,
           uiSelector: false,
         }
