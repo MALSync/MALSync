@@ -48,6 +48,7 @@ import {Animeflix} from "./Animeflix/main";
 import {AnimeFever} from "./AnimeFever/main";
 import {serimanga} from "./serimanga/main";
 import {mangadenizi} from "./mangadenizi/main";
+import {moeclip} from "./moeclip/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -102,6 +103,7 @@ export const pages = {
     AnimeFever,
     serimanga,
     mangadenizi,
+    moeclip,
 };
 
 export const pageSearch:pageSearchObj = {

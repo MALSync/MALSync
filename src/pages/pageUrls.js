@@ -351,4 +351,9 @@ module.exports = {
       '*://mangadenizi.com/*'
     ]
   },
+  moeclip: {
+    match: [
+      '*://moeclip.com/*'
+    ]
+  },
 };

@@ -1333,6 +1333,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'moeclip',
+    url: 'https://moeclip.com/',
+    testCases: [
+      {
+        url: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/',
+        expected: {
+          sync: true,
+          title: 'High School DxD Hero',
+          identifier: 'high-school-dxd-hero',
+          overviewUrl: 'https://moeclip.com/anime/high-school-dxd-hero',
+          episode: 5,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://moeclip.com/anime/high-school-dxd-hero-sub-indo/',
+        expected: {
+          sync: false,
+          title: 'High School DxD Hero',
+          identifier: 'high-school-dxd-hero',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
