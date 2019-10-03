@@ -49,6 +49,7 @@ import {AnimeFever} from "./AnimeFever/main";
 import {serimanga} from "./serimanga/main";
 import {mangadenizi} from "./mangadenizi/main";
 import {tmofans} from "./tmofans/main";
+import {unionleitor} from "./unionleitor/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -104,6 +105,7 @@ export const pages = {
     serimanga,
     mangadenizi,
     tmofans,
+    unionleitor,
 };
 
 export const pageSearch:pageSearchObj = {
