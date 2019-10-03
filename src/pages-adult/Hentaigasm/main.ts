@@ -14,7 +14,7 @@ export const Hentaigasm: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("h1#title").text().replace(/\d+ (subbed|raw)/gmi,"").trim()},
     getIdentifier: function(url) {
-      return url.split("/")[3].replace(/-\d-(subbed|raw)/gmi,"").trim();
+      return url.split("/")[6].replace(/-\d*-(subbed|raw)/gmi,"").trim();
     },
     getOverviewUrl: function(url){
       return j.$("#extras > h4:nth-child(2) > a").attr("href");
