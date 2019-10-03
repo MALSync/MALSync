@@ -1342,7 +1342,7 @@ var testsArray = [
         expected: {
           sync: true,
           title: 'Solo Leveling',
-          identifier: 'solo_leveling',
+          identifier: 'solo-leveling',
           overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
           episode: 76,
           uiSelector: false,
@@ -1353,7 +1353,7 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'Solo Leveling',
-          identifier: 'solo_leveling',
+          identifier: 'solo-leveling',
           uiSelector: true,
         }
       },
