@@ -356,4 +356,19 @@ module.exports = {
       '*://moeclip.com/*'
     ]
   },
+  mangalivre: {
+    match: [
+      '*://mangalivre.com/*'
+    ]
+  },
+  tmofans: {
+    match: [
+      '*://tmofans.com/*'
+    ]
+  },
+  unionleitor: {
+    match: [
+      '*://unionleitor.top/*'
+    ]
+  },
 };
