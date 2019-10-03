@@ -1333,6 +1333,47 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'tmofans',
+    url: 'https://tmofans.com/',
+    testCases: [
+      {
+        url: 'https://tmofans.com/library/manga/45/one-piece',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'unionleitor',
+    url: 'https://unionleitor.top/',
+    testCases: [
+      {
+        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
+        expected: {
+          sync: true,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
+          episode: 76,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://unionleitor.top/manga/solo-leveling',
+        expected: {
+          sync: false,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

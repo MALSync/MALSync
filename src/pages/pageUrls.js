@@ -356,4 +356,14 @@ module.exports = {
       '*://mangalivre.com/*'
     ]
   },
+  tmofans: {
+    match: [
+      '*://tmofans.com/*'
+    ]
+  },
+  unionleitor: {
+    match: [
+      '*://unionleitor.top/*'
+    ]
+  },
 };
