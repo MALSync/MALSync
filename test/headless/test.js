@@ -216,6 +216,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://kissmanga.com/Manga/No-Game-No-Life',
+          nextEpUrl: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-004--Game-004?id=169936',
           episode: 3,
           uiSelector: false,
         }
