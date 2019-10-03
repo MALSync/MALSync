@@ -351,4 +351,9 @@ module.exports = {
       '*://mangadenizi.com/*'
     ]
   },
+  unionleitor: {
+    match: [
+      '*://unionleitor.top/*'
+    ]
+  },
 };

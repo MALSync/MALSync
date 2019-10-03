@@ -1333,6 +1333,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'unionleitor',
+    url: 'https://unionleitor.top/',
+    testCases: [
+      {
+        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
+        expected: {
+          sync: true,
+          title: 'Solo Leveling',
+          identifier: 'solo_leveling',
+          overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
+          episode: 76,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://unionleitor.top/manga/solo-leveling',
+        expected: {
+          sync: false,
+          title: 'Solo Leveling',
+          identifier: 'solo_leveling',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
