@@ -16,7 +16,7 @@ export const unionleitor: pageInterface = {
       return utils.getBaseText($("body > div.breadcrumbs > div > div > a:nth-child(3)")).trim();
     },
     getIdentifier: function(url) {
-     return utils.urlPart(url,4).toLowerCase();
+     return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href").split("/")[4].toLowerCase();
    },
    getOverviewUrl: function(url){
     return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href");
