@@ -1,8 +1,8 @@
 import { pageInterface } from "./../pageInterface";
 
-export const Meowstream: pageInterface = {
-  name: "Meowstream",
-  domain: "https://meowstream.com",
+export const moeclip: pageInterface = {
+  name: "moeclip",
+  domain: "https://moeclip.com",
   type: "anime",
   isSyncPage: function(url) {
     if (j.$("div.video-content")[0] && j.$("h1.entry-title.title-font")[0]) {
@@ -17,8 +17,7 @@ export const Meowstream: pageInterface = {
       return url.split("/")[3].replace(/-\d*-sub-indo.*/gmi,"").trim();
     },
     getOverviewUrl: function(url){
-      //returns https://meowstream.com/nonton/Identifier which then will be changed from the website to https://meowstream.com/nonton/Indentifier-sub-indo/
-      return Meowstream.domain +  "/nonton/" + Meowstream.sync.getIdentifier(url);
+      return moeclip.domain +  "/anime/" + moeclip.sync.getIdentifier(url);
     },
     getEpisode: function(url){
       var episodePart = url.split("/")[3];
@@ -49,7 +48,7 @@ export const Meowstream: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] == "nonton" || j.$("div.video-content")[0] && j.$("h1.entry-title.title-font")[0] && j.$("#plv > div.contentsembed > div.episode-nav > div > div.eps-nav.pilih")[0]) {
+      if (page.url.split("/")[3] == "anime" || j.$("div.video-content")[0] && j.$("h1.entry-title.title-font")[0] && j.$("#plv > div.contentsembed > div.episode-nav > div > div.eps-nav.pilih")[0]) {
         page.handlePage();
       }
     });
