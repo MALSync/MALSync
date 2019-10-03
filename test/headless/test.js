@@ -1134,6 +1134,7 @@ var testsArray = [
           title: 'Domestic na Kanojo',
           identifier: 'domestic_na_kanojo',
           overviewUrl: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+          nextEpUrl: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_204',
           episode: 203,
           uiSelector: false,
         }
