@@ -41,6 +41,8 @@ export const Mangadex: pageInterface = {
         }
         return 0;
       },
+      nextEpUrl: function(url){return Mangadex.domain + j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href');
+      },
     },
     overview:{
       getTitle: function(){return j.$('.card-header').first().text().trim();},
