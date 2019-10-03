@@ -1292,6 +1292,7 @@ var testsArray = [
           title: 'Boku no Hero Academia',
           identifier: 'boku-no-hero-academia',
           overviewUrl: 'https://serimanga.com/manga/boku-no-hero-academia',
+          nextEpUrl: 'https://serimanga.com/manga/boku-no-hero-academia/225',
           episode: 224,
           uiSelector: false,
         }
