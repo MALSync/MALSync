@@ -5,7 +5,7 @@ export const Hentaigasm: pageInterface = {
   domain: "http://hentaigasm.com",
   type: "anime",
   isSyncPage: function(url) {
-    if (url.split("/")[3] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) {
+    if (url.split("/")[6] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) {
       return true;
     } else {
       return false;
@@ -14,13 +14,13 @@ export const Hentaigasm: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("h1#title").text().replace(/\d+ (subbed|raw)/gmi,"").trim()},
     getIdentifier: function(url) {
-      return url.split("/")[3].replace(/-\d-(subbed|raw)/gmi,"").trim();
+      return url.split("/")[6].replace(/-\d*-(subbed|raw)/gmi,"").trim();
     },
     getOverviewUrl: function(url){
       return j.$("#extras > h4:nth-child(2) > a").attr("href");
     },
     getEpisode: function(url){
-      var episodePart = url.split("/")[3];
+      var episodePart = url.split("/")[6];
       if(episodePart.length){
         var temp = episodePart.match(/-\d+-(subbed|raw)/gmi);
         if(temp !== null){
@@ -50,7 +50,7 @@ export const Hentaigasm: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if ((page.url.split("/")[3] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) || page.url.split("/")[3] === "category")
+      if ((page.url.split("/")[6] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) || page.url.split("/")[3] === "category")
       page.handlePage();
     });
   }
