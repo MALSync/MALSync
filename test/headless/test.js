@@ -1045,6 +1045,7 @@ var testsArray = [
           title: 'Golden Boy',
           identifier: '796-golden-boy',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
+          nextEpUrl: 'https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dubbed',
           episode: 3,
           uiSelector: false,
         }
@@ -1056,6 +1057,7 @@ var testsArray = [
           title: 'A Silent Voice MOVIE',
           identifier: '2678-a-silent-voice',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
+          nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
         }
@@ -1067,6 +1069,7 @@ var testsArray = [
           title: 'Golgo 13',
           identifier: '3072-golgo-13',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
+          nextEpUrl: 'https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dubbed',
           episode: 36,
           uiSelector: false,
         }
