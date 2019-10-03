@@ -1333,6 +1333,21 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'tmofans',
+    url: 'https://tmofans.com/',
+    testCases: [
+      {
+        url: 'https://tmofans.com/library/manga/45/one-piece',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
