@@ -1352,6 +1352,7 @@ var testsArray = [
           title: 'High School DxD Hero',
           identifier: 'high-school-dxd-hero',
           overviewUrl: 'https://moeclip.com/anime/high-school-dxd-hero',
+          nextEpUrl: 'https://moeclip.com/high-school-dxd-hero-06-sub-indo/',
           episode: 5,
           uiSelector: false,
         }
