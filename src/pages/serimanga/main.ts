@@ -23,7 +23,7 @@ export const serimanga: pageInterface = {
   },
   getEpisode: function(url){
     return url.split("/")[5];
-  }, 
+  },
   nextEpUrl: function(url){return j.$('#chapterButtons2 > div > div:nth-child(2) > a').first().attr('href');
   },
 },
