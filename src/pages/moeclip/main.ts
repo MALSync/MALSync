@@ -28,6 +28,8 @@ export const moeclip: pageInterface = {
         }
       }
     },
+    nextEpUrl: function(url){return j.$('div.episode-nav > div.select-episode > div:nth-child(3) > a').first().attr('href');
+    },
   },
   overview:{
     getTitle: function(url){
