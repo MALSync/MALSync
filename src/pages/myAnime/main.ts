@@ -33,7 +33,7 @@ overview:{
     return utils.urlPart(url,4);
   },
   uiSelector: function(selector){
-    selector.insertAfter(j.$("div#anime-header-inner").first());
+    selector.insertAfter(j.$("img.anime-bg").first());
   },
 },
 init(page){
