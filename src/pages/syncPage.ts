@@ -444,11 +444,10 @@ export class syncPage{
         </div>`, 'complete')) {
         this.malObj.setStatus(status.completed);
         this.malObj.setCompletionDateToNow();
-        console.log("yeet" + j.$('#finish_score :selected').val());
-      //if(j.$("#finish_score").val() !== 0) {
-      //  console.log("yeet" + j.$("#finish_score").val());
-      //  this.malObj.setScore(j.$("#finish_score").val());
-      //}
+        if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
+          console.log("finish_score: " + j.$('#finish_score :selected').val());
+          this.malObj.setScore(j.$("#finish_score").val());
+        }
         return true;
       }
     }
