@@ -428,7 +428,7 @@ export class syncPage{
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
       if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+
-        `<div><select id="finish_score">
+        `<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">
         <option value="0" selected="selected">${api.storage.lang("UI_Score_Not_Rated")}</option>
         <option value="10">${api.storage.lang("UI_Score_Masterpiece")}</option>
         <option value="9">${api.storage.lang("UI_Score_Great")}</option>
