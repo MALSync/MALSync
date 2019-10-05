@@ -216,6 +216,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://kissmanga.com/Manga/No-Game-No-Life',
+          nextEpUrl: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-004--Game-004?id=169936',
           episode: 3,
           uiSelector: false,
         }
@@ -243,6 +244,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '8173',
           overviewUrl: 'https://www.mangadex.org/title/8173/no-game-no-life',
+          nextEpUrl: 'https://www.mangadex.org/chapter/57339',
           episode: 4,
           uiSelector: false,
         }
@@ -1043,6 +1045,7 @@ var testsArray = [
           title: 'Golden Boy',
           identifier: '796-golden-boy',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
+          nextEpUrl: 'https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dubbed',
           episode: 3,
           uiSelector: false,
         }
@@ -1054,6 +1057,7 @@ var testsArray = [
           title: 'A Silent Voice MOVIE',
           identifier: '2678-a-silent-voice',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
+          nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
         }
@@ -1065,6 +1069,7 @@ var testsArray = [
           title: 'Golgo 13',
           identifier: '3072-golgo-13',
           overviewUrl: 'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
+          nextEpUrl: 'https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dubbed',
           episode: 36,
           uiSelector: false,
         }
@@ -1107,6 +1112,7 @@ var testsArray = [
           title: 'Dr. Stone',
           identifier: 'dr_stone',
           overviewUrl: 'https://manganelo.com/manga/dr_stone',
+          nextEpUrl: 'https://manganelo.com/chapter/dr_stone/chapter_115',
           episode: 114,
           uiSelector: false,
         }
@@ -1133,6 +1139,7 @@ var testsArray = [
           title: 'Domestic na Kanojo',
           identifier: 'domestic_na_kanojo',
           overviewUrl: 'https://mangakakalot.com/manga/domestic_na_kanojo',
+          nextEpUrl: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_204',
           episode: 203,
           uiSelector: false,
         }
@@ -1292,6 +1299,7 @@ var testsArray = [
           title: 'Boku no Hero Academia',
           identifier: 'boku-no-hero-academia',
           overviewUrl: 'https://serimanga.com/manga/boku-no-hero-academia',
+          nextEpUrl: 'https://serimanga.com/manga/boku-no-hero-academia/225',
           episode: 224,
           uiSelector: false,
         }
@@ -1344,6 +1352,7 @@ var testsArray = [
           title: 'High School DxD Hero',
           identifier: 'high-school-dxd-hero',
           overviewUrl: 'https://moeclip.com/anime/high-school-dxd-hero',
+          nextEpUrl: 'https://moeclip.com/high-school-dxd-hero-06-sub-indo/',
           episode: 5,
           uiSelector: false,
         }

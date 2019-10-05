@@ -372,4 +372,9 @@ module.exports = {
       '*://unionleitor.top/*'
     ]
   },
+  myAnime: {
+    match: [
+      '*://myanime.moe/*'
+    ]
+  },
 };

@@ -30,6 +30,8 @@ export const DubbedAnime: pageInterface = {
         }
       }
     },
+    nextEpUrl: function(url){return j.$('body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a').first().attr('href');
+    },
   },
   overview:{
     getTitle: function(url){

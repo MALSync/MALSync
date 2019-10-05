@@ -24,7 +24,9 @@ export const MangaNelo: pageInterface = {
     },
     getEpisode: function(url){
       return url.split("/")[5].match(/\d+/gmi);
-    }
+    },
+     nextEpUrl: function(url){return j.$('div.btn-navigation-chap > a.back').first().attr('href');
+    },
   },
   overview:{
     getTitle: function(url){
