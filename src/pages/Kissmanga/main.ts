@@ -51,6 +51,8 @@ export const Kissmanga: pageInterface = {
         }
         return url;
       },
+      nextEpUrl: function(url){return j.$('img.btnNext').first().parent().attr('href');
+      },
     },
     overview:{
       getTitle: function(){return j.$('.bigChar').first().text();},
