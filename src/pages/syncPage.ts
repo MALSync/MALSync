@@ -446,7 +446,7 @@ export class syncPage{
         this.malObj.setCompletionDateToNow();
         if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
           console.log("finish_score: " + j.$('#finish_score :selected').val());
-          this.malObj.setScore(j.$("#finish_score").val());
+          this.malObj.setScore(j.$("#finish_score :selected").val());
         }
         return true;
       }
