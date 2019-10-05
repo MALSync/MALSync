@@ -133,7 +133,7 @@
             </tr><tr>
               <td><a href="https://ww5.dubbedanime.net"><img src="https://www.google.com/s2/favicons?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
@@ -181,7 +181,7 @@
             </tr><tr>
               <td><a href="http://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=http://kissmanga.com"> kissmanga</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
@@ -193,19 +193,25 @@
             </tr><tr>
               <td><a href="https://www.mangadex.org"><img src="https://www.google.com/s2/favicons?domain=https://www.mangadex.org"> Mangadex</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://mangakakalot.com"><img src="https://www.google.com/s2/favicons?domain=https://mangakakalot.com"> Mangakakalot</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://manganelo.com"><img src="https://www.google.com/s2/favicons?domain=https://manganelo.com"> MangaNelo</a></td>
+              <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre (Bad)</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://manganelo.com"><img src="https://www.google.com/s2/favicons?domain=https://manganelo.com"> MangaNelo</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
@@ -214,6 +220,18 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="https://moeclip.com"><img src="https://www.google.com/s2/favicons?domain=https://moeclip.com"> moeclip</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
             </tr><tr>
               <td><a href="https://www.neko-sama.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.neko-sama.fr"> NekoSama</a></td>
               <td>:heavy_check_mark:</td>
@@ -259,11 +277,17 @@
             </tr><tr>
               <td><a href="https://serimanga.com"><img src="https://www.google.com/s2/favicons?domain=https://serimanga.com"> serimanga (Bad)</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
               <td><a href="https://shinden.pl"><img src="https://www.google.com/s2/favicons?domain=https://shinden.pl"> Shinden</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://tmofans.com"><img src="https://www.google.com/s2/favicons?domain=https://tmofans.com"> tmofans (Bad)</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
@@ -280,6 +304,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="https://unionleitor.top"><img src="https://www.google.com/s2/favicons?domain=https://unionleitor.top"> unionleitor (Bad)</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
             </tr><tr>
               <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ (Bad)</a></td>
               <td>:heavy_check_mark:</td>

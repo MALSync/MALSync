@@ -62,15 +62,15 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
-                <td></td>
+                <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.netflix.com"><img src="https://www.google.com/s2/favicons?domain=https://www.netflix.com"> Netflix</a></td>
-                <td></td>
+                <td><a href="https://tmofans.com"><img src="https://www.google.com/s2/favicons?domain=https://tmofans.com"> tmofans (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeflv.net"><img src="https://www.google.com/s2/favicons?domain=https://animeflv.net"> animeflv</a></td>
-                <td></td>
+                <td><a href="https://unionleitor.top"><img src="https://www.google.com/s2/favicons?domain=https://unionleitor.top"> unionleitor (Bad)</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
@@ -174,6 +174,14 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://moeclip.com"><img src="https://www.google.com/s2/favicons?domain=https://moeclip.com"> moeclip</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
                 <td></td>
                 <td></td>
               </tr>

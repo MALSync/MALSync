@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const unionleitor: pageInterface = {
-  name: "unionleitor",
+  name: "unionleitor (Bad)",
   domain: "https://unionleitor.top",
   type: "manga",
   isSyncPage: function(url) {

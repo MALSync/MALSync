@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const tmofans: pageInterface = {
-  name: "tmofans",
+  name: "tmofans (Bad)",
   domain: "https://tmofans.com",
   type: "manga",
   isSyncPage: function(url) {
