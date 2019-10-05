@@ -377,4 +377,9 @@ module.exports = {
       '*://myanime.moe/*'
     ]
   },
+  JapScan: {
+    match: [
+      '*://*.japscan.co/*'
+    ]
+  },
 };
