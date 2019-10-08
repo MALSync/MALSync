@@ -960,18 +960,18 @@ var testsArray = [
     url: 'http://hentaigasm.com/',
     testCases: [
       {
-        url: 'http://hentaigasm.com/pinkerton-3-subbed/',
+        url: 'http://hentaigasm.com/2017/03/16/pinkerton-3-subbed/',
         expected: {
           sync: true,
           title: 'Pinkerton',
           identifier: 'pinkerton',
-          overviewUrl: 'http://hentaigasm.com/category/pinkerton/',
+          overviewUrl: 'http://hentaigasm.com/hentai/pinkerton/',
           episode: 3,
           uiSelector: false,
         }
       },
       {
-        url: 'http://hentaigasm.com/category/pinkerton/',
+        url: 'hhttp://hentaigasm.com/hentai/pinkerton/',
         expected: {
           sync: false,
           title: 'Pinkerton',
