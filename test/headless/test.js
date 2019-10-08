@@ -971,7 +971,7 @@ var testsArray = [
         }
       },
       {
-        url: 'hhttp://hentaigasm.com/hentai/pinkerton/',
+        url: 'http://hentaigasm.com/hentai/pinkerton/',
         expected: {
           sync: false,
           title: 'Pinkerton',
