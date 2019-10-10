@@ -53,6 +53,7 @@ import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
 import {unionleitor} from "./unionleitor/main";
 import {myAnime} from "./myAnime/main";
+import {MangaKisa} from "./MangaKisa/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -112,6 +113,7 @@ export const pages = {
     tmofans,
     unionleitor,
     myAnime,
+    MangaKisa,
 };
 
 export const pageSearch:pageSearchObj = {

@@ -1409,6 +1409,33 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'MangaKisa',
+    url: 'https://mangakisa.com/',
+    testCases: [
+      {
+        url: 'https://mangakisa.com/solo-leveling-chapterid-4318',
+        expected: {
+          sync: true,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          overviewUrl: 'https://mangakisa.com/solo-leveling',
+          nextEpUrl: 'https://mangakisa.com/solo-leveling-chapterid-4228',
+          episode: 59,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangakisa.com/solo-leveling',
+        expected: {
+          sync: false,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

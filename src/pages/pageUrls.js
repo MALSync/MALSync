@@ -377,4 +377,9 @@ module.exports = {
       '*://myanime.moe/*'
     ]
   },
+  MangaKisa: {
+    match: [
+      '*://mangakisa.com/*'
+    ]
+  },
 };
