@@ -13,8 +13,14 @@ global.api = {
         };
       }
 
+      if(conf.data.variables.page == 1) {
+        return {
+          responseText: JSON.stringify(require("./api/list-Page1.json")),
+        };
+      }
+
       return {
-        responseText: JSON.stringify(require("./api/list-lastPage.json")),
+        responseText: JSON.stringify(require("./api/list-Page2.json")),
       };
     }
   },
@@ -29,7 +35,7 @@ describe('AniList userlist', function () {
   it('Single Page', function () {
     var list = new userlist(7, 'anime')
 
-    list.get().then((list) => {
+    return list.get().then((list) => {
       expect(list).to.deep.include({
         uid: 112124,
         malId: 40454,
@@ -47,6 +53,22 @@ describe('AniList userlist', function () {
         tags: null,
         airingState: undefined
       });
+      expect(list).to.deep.include({ uid: 9624,
+         malId: 9624,
+         cacheKey: 9624,
+         type: 'anime',
+         title: '30-sai no Hoken Taiiku',
+         url: 'https://anilist.co/anime/9624',
+         watchedEp: 0,
+         totalEp: 12,
+         status: 6,
+         score: 0,
+         image:
+          'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b9624-VKt16M5xFfkG.jpg',
+         tags: null,
+         airingState: undefined
+      });
+
     });
 
   });
