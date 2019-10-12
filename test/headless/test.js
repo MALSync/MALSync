@@ -1435,6 +1435,42 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'JapScan',
+    url: 'https://www.japscan.co/',
+    testCases: [
+      {
+        url: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/119/',
+        expected: {
+          sync: true,
+          title: 'One Punch Man',
+          identifier: 'one-punch-man',
+          overviewUrl: 'https://www.japscan.co/manga/one-punch-man/',
+          nextEpUrl: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/120/',
+          episode: 119,
+          uiSelector: false,
+        }
+      },
+      {//manga overview
+        url: 'https://www.japscan.co/manga/one-punch-man/',
+        expected: {
+          sync: false,
+          title: 'One Punch Man',
+          identifier: 'one-punch-man',
+          uiSelector: true,
+        }
+      },
+      {//manhwa overview
+        url: 'https://www.japscan.co/manga/solo-leveling/',
+        expected: {
+          sync: false,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

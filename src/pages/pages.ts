@@ -54,6 +54,7 @@ import {tmofans} from "./tmofans/main";
 import {unionleitor} from "./unionleitor/main";
 import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
+import {JapScan} from "./JapScan/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -114,6 +115,7 @@ export const pages = {
     unionleitor,
     myAnime,
     MangaPlus,
+    JapScan,
 };
 
 export const pageSearch:pageSearchObj = {

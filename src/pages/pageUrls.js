@@ -382,4 +382,9 @@ module.exports = {
       '*://mangaplus.shueisha.co.jp/*'
     ]
   },
+  JapScan: {
+    match: [
+      '*://*.japscan.co/*'
+    ]
+  },
 };
