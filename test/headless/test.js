@@ -960,18 +960,18 @@ var testsArray = [
     url: 'http://hentaigasm.com/',
     testCases: [
       {
-        url: 'http://hentaigasm.com/pinkerton-3-subbed/',
+        url: 'http://hentaigasm.com/2017/03/16/pinkerton-3-subbed/',
         expected: {
           sync: true,
           title: 'Pinkerton',
           identifier: 'pinkerton',
-          overviewUrl: 'http://hentaigasm.com/category/pinkerton/',
+          overviewUrl: 'http://hentaigasm.com/hentai/pinkerton/',
           episode: 3,
           uiSelector: false,
         }
       },
       {
-        url: 'http://hentaigasm.com/category/pinkerton/',
+        url: 'http://hentaigasm.com/hentai/pinkerton/',
         expected: {
           sync: false,
           title: 'Pinkerton',
@@ -1400,6 +1400,68 @@ var testsArray = [
       },
       {
         url: 'https://unionleitor.top/manga/solo-leveling',
+        expected: {
+          sync: false,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'MangaPlus',
+    url: 'https://mangaplus.shueisha.co.jp/',
+    testCases: [
+      {
+        url: 'https://mangaplus.shueisha.co.jp/viewer/1000393',
+        expected: {
+          sync: true,
+          title: 'My Hero Academia',
+          identifier: '100017',
+          overviewUrl: 'https://mangaplus.shueisha.co.jp/titles/100017',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangaplus.shueisha.co.jp/titles/100017',
+        expected: {
+          sync: false,
+          title: 'My Hero Academia',
+          identifier: '100017',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'JapScan',
+    url: 'https://www.japscan.co/',
+    testCases: [
+      {
+        url: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/119/',
+        expected: {
+          sync: true,
+          title: 'One Punch Man',
+          identifier: 'one-punch-man',
+          overviewUrl: 'https://www.japscan.co/manga/one-punch-man/',
+          nextEpUrl: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/120/',
+          episode: 119,
+          uiSelector: false,
+        }
+      },
+      {//manga overview
+        url: 'https://www.japscan.co/manga/one-punch-man/',
+        expected: {
+          sync: false,
+          title: 'One Punch Man',
+          identifier: 'one-punch-man',
+          uiSelector: true,
+        }
+      },
+      {//manhwa overview
+        url: 'https://www.japscan.co/manga/solo-leveling/',
         expected: {
           sync: false,
           title: 'Solo Leveling',

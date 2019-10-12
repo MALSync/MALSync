@@ -50,7 +50,7 @@ export const Hentaigasm: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if ((page.url.split("/")[6] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) || page.url.split("/")[3] === "category")
+      if ((page.url.split("/")[6] !== null && j.$("#extras > h4:nth-child(2) > a")[0] && j.$("div.entry-content.rich-content")[0]) || page.url.split("/")[3] === "hentai")
       page.handlePage();
     });
   }

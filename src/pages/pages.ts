@@ -53,6 +53,8 @@ import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
 import {unionleitor} from "./unionleitor/main";
 import {myAnime} from "./myAnime/main";
+import {MangaPlus} from "./MangaPlus/main";
+import {JapScan} from "./JapScan/main";
 import {MangaKisa} from "./MangaKisa/main";
 
 import {pageSearchObj} from "./pageInterface";
@@ -113,6 +115,8 @@ export const pages = {
     tmofans,
     unionleitor,
     myAnime,
+    MangaPlus,
+    JapScan,
     MangaKisa,
 };
 

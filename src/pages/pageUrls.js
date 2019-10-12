@@ -377,6 +377,16 @@ module.exports = {
       '*://myanime.moe/*'
     ]
   },
+  MangaPlus: {
+    match: [
+      '*://mangaplus.shueisha.co.jp/*'
+    ]
+  },
+  JapScan: {
+    match: [
+      '*://*.japscan.co/*'
+    ]
+  },
   MangaKisa: {
     match: [
       '*://mangakisa.com/*'
