@@ -24,7 +24,7 @@ export const Wakanim: pageInterface = {
     nextEpUrl: function(url){return j.$("body > section.episode > div > div > div.episode_main > div.episode_video > div > div.episode-bottom > div.episodeNPEp-wrapperBlock > a.episodeNPEp.episodeNextEp.active").attr('href')},
   },
   overview:{
-    getTitle: function(url){return j.$('.container > meta[itemprop="name"]').attr('content')},
+    getTitle: function(url){return j.$('.SerieV2-body .SerieHeader-thumb').attr('alt')},
     getIdentifier: function(url){
       return url.split("/")[7].trim();
     },
