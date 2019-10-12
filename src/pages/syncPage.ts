@@ -175,6 +175,13 @@ export class syncPage{
       };
       this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
       state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
+      if(!state.episode){
+        if (this.page.type == 'anime'){
+          state.episode = 1;
+        }else{
+          state.episode = 0;
+        }
+      }
       if (typeof(this.page.sync.getVolume) != "undefined"){
         state.volume = this.page.sync.getVolume(this.url)
       }
