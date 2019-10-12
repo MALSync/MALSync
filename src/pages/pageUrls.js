@@ -377,4 +377,9 @@ module.exports = {
       '*://myanime.moe/*'
     ]
   },
+  MangaPlus: {
+    match: [
+      '*://mangaplus.shueisha.co.jp/*'
+    ]
+  },
 };
