@@ -51,12 +51,12 @@
                 <option value="manga">Manga</option>
               </select>
               <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
-                <option value="7">{{lang("All")}}</option>
-                <option value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
-                <option value="2">{{lang("UI_Status_Completed")}}</option>
-                <option value="3">{{lang("UI_Status_OnHold")}}</option>
-                <option value="4">{{lang("UI_Status_Dropped")}}</option>
-                <option value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
+                <option :value="7">{{lang("All")}}</option>
+                <option :value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
+                <option :value="2">{{lang("UI_Status_Completed")}}</option>
+                <option :value="3">{{lang("UI_Status_OnHold")}}</option>
+                <option :value="4">{{lang("UI_Status_Dropped")}}</option>
+                <option :value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
               </select>
             </div>
           </bookmarksVue>
