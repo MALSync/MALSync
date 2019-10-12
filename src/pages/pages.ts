@@ -55,6 +55,7 @@ import {unionleitor} from "./unionleitor/main";
 import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
 import {JapScan} from "./JapScan/main";
+import {MangaKisa} from "./MangaKisa/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -116,6 +117,7 @@ export const pages = {
     myAnime,
     MangaPlus,
     JapScan,
+    MangaKisa,
 };
 
 export const pageSearch:pageSearchObj = {

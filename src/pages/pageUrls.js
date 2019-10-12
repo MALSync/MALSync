@@ -387,4 +387,9 @@ module.exports = {
       '*://*.japscan.co/*'
     ]
   },
+  MangaKisa: {
+    match: [
+      '*://mangakisa.com/*'
+    ]
+  },
 };
