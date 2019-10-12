@@ -29,7 +29,7 @@ export const Wakanim: pageInterface = {
       return url.split("/")[7].trim();
     },
     uiSelector: function(selector){
-      selector.insertAfter(j.$("h1.serie_title").first());
+      selector.insertBefore(j.$(".SerieV2-content").first());
     },
   },
   init(page){
