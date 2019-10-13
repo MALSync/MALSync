@@ -70,8 +70,8 @@ export abstract class ListAbstract {
   requestErrorHandling(response) {
     if(response.responseText === '') {
       throw {
-        code: 204,
-        message: 'No Content',
+        code: 444,
+        message: 'No Response',
       }
     }
   }

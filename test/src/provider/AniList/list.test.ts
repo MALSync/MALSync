@@ -95,7 +95,7 @@ describe('AniList userlist', function () {
           await new userlist(7, 'anime').get();
         } catch (error) {
           responses[index] = temp;
-          expect(error.code).to.equal(204)
+          expect(error.code).to.equal(444)
         }
 
         responses[index] = temp;
