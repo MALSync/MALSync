@@ -43,7 +43,7 @@ global.api = {
 }
 
 describe('AniList userlist', function () {
-  it('Single Page', function () {
+  it('Get List', function () {
     var list = new userlist(7, 'anime')
 
     return list.get().then((list) => {
@@ -84,7 +84,7 @@ describe('AniList userlist', function () {
 
   });
 
-  describe('Empty returns', async function () {
+  describe('Empty responses', async function () {
     Object.keys(responses).forEach(async function(index) {
       var value = responses[index];
       it( index, async function () {

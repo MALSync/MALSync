@@ -26,6 +26,7 @@ export class userlist extends ListAbstract {
         variables: []
       })
     }).then((response) => {
+      this.requestErrorHandling(response);
       var res = JSON.parse(response.responseText);
       con.log(res);
       this.errorHandling(res);
@@ -132,6 +133,7 @@ export class userlist extends ListAbstract {
         variables: variables
       })
     }).then((response) => {
+      this.requestErrorHandling(response);
       var res = JSON.parse(response.responseText);
       con.log('res', res);
       this.errorHandling(res);

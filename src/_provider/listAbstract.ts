@@ -66,4 +66,13 @@ export abstract class ListAbstract {
 
   abstract getUsername(): Promise<String>|String;
   abstract getPart(): Promise<listElement[]>;
+
+  requestErrorHandling(response) {
+    if(response.responseText === '') {
+      throw {
+        code: 204,
+        message: 'No Content',
+      }
+    }
+  }
 }
