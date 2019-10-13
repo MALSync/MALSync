@@ -3,24 +3,35 @@ import {userlist} from './../../../../src/_provider/AniList/list';
 
 global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
+
+var responses = {
+  user: JSON.stringify(require("./api/user.json")),
+  "Page1": JSON.stringify(require("./api/list-Page1.json")),
+  "Page2": JSON.stringify(require("./api/list-Page2.json"))
+};
+
+function getResponse(key) {
+  return responses[key];
+}
+
 global.api = {
   request: {
     xhr: async function(post, conf, data) {
       conf.data = JSON.parse(conf.data);
       if(!conf.data.variables.page) {
         return {
-          responseText: JSON.stringify(require("./api/user.json")),
+          responseText: getResponse('user'),
         };
       }
 
       if(conf.data.variables.page == 1) {
         return {
-          responseText: JSON.stringify(require("./api/list-Page1.json")),
+          responseText: getResponse('Page1'),
         };
       }
 
       return {
-        responseText: JSON.stringify(require("./api/list-Page2.json")),
+        responseText: getResponse('Page2'),
       };
     }
   },
@@ -72,4 +83,25 @@ describe('AniList userlist', function () {
     });
 
   });
+
+  describe('Empty returns', async function () {
+    Object.keys(responses).forEach(async function(index) {
+      var value = responses[index];
+      it( index, async function () {
+
+        var temp = responses[index];
+        responses[index] = '';
+        try {
+          await new userlist(7, 'anime').get();
+        } catch (error) {
+          responses[index] = temp;
+          expect(error.code).to.equal(204)
+        }
+
+        responses[index] = temp;
+
+      });
+    });
+  });
+
 });
