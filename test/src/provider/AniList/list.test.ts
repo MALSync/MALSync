@@ -104,4 +104,24 @@ describe('AniList userlist', function () {
     });
   });
 
+  describe('No json responses', async function () {
+    Object.keys(responses).forEach(async function(index) {
+      var value = responses[index];
+      it( index, async function () {
+
+        var temp = responses[index];
+        responses[index] = 'This is not valid json';
+        try {
+          await new userlist(7, 'anime').get();
+        } catch (error) {
+          responses[index] = temp;
+          expect(error.code).to.equal(406)
+        }
+
+        responses[index] = temp;
+
+      });
+    });
+  });
+
 });

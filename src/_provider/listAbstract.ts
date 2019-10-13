@@ -67,11 +67,21 @@ export abstract class ListAbstract {
   abstract getUsername(): Promise<String>|String;
   abstract getPart(): Promise<listElement[]>;
 
-  requestErrorHandling(response) {
+  jsonParse(response) {
     if(response.responseText === '') {
       throw {
         code: 444,
         message: 'No Response',
+      }
+    }
+
+    try {
+      return JSON.parse(response.responseText);
+    }catch(e) {
+      throw {
+        code: 406,
+        message: 'Not Acceptable',
+        error: e
       }
     }
   }

@@ -26,8 +26,7 @@ export class userlist extends ListAbstract {
         variables: []
       })
     }).then((response) => {
-      this.requestErrorHandling(response);
-      var res = JSON.parse(response.responseText);
+      var res = this.jsonParse(response);
       con.log(res);
       this.errorHandling(res);
       return res.data.Viewer.name;
@@ -133,8 +132,7 @@ export class userlist extends ListAbstract {
         variables: variables
       })
     }).then((response) => {
-      this.requestErrorHandling(response);
-      var res = JSON.parse(response.responseText);
+      var res = this.jsonParse(response);
       con.log('res', res);
       this.errorHandling(res);
       var data = res.data.Page.mediaList;
