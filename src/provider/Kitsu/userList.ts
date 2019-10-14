@@ -109,7 +109,7 @@ export function prepareData(data, listType): listElement[]{
         totalEp: el.attributes.episodeCount,
         status: helper.translateList(list.attributes.status),
         score: list.attributes.ratingTwenty/2,
-        image: el.attributes.posterImage.large,
+        image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
         tags: list.attributes.notes,
         airingState: el['anime_airing_status'],
       }
@@ -126,7 +126,7 @@ export function prepareData(data, listType): listElement[]{
         totalEp: el.attributes.chapterCount,
         status: helper.translateList(list.attributes.status),
         score: list.attributes.ratingTwenty/2,
-        image: el.attributes.posterImage.large,
+        image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
         tags: list.attributes.notes,
         airingState: el['anime_airing_status'],
       }
