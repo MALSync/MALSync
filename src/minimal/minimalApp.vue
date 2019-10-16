@@ -1,6 +1,6 @@
 <template>
   <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation, [options.theme]: true }">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button @click="backbuttonClick()" v-show="backbutton" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">

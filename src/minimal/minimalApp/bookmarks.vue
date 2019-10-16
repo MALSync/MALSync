@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: fixed; z-index: 30;"></div>
+    <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: fixed; z-index: 30; max-width: 1377px; margin-left: auto; margin-right: auto;"></div>
     <slot></slot>
     <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("NoEntries")}}</span></span>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
