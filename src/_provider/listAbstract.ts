@@ -53,7 +53,7 @@ export abstract class ListAbstract {
 
       if(typeof this.callbacks.continueCall !== 'undefined'){
         // @ts-ignore
-        await callbacks.continueCall(this.templist);
+        await this.callbacks.continueCall(this.templist);
       }
 
 
