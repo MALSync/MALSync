@@ -18,6 +18,8 @@ export abstract class ListAbstract {
 
   protected done: boolean = false;
 
+  protected abstract authenticationUrl: string;
+
   constructor(
     protected status: number = 1,
     protected listType:'anime'|'manga' = 'anime',
@@ -83,6 +85,25 @@ export abstract class ListAbstract {
         message: 'Not Acceptable',
         error: e
       }
+    }
+  }
+
+  flashmError(error) {
+    utils.flashm(this.errorMessage(error), {error: true, type: 'error'});
+  }
+
+  errorMessage(error) {
+    if(typeof error.code === 'undefined') {
+      return error;
+    }
+
+    switch (error.code) {
+      case 400:
+        return api.storage.lang("Error_Authenticate", [this.authenticationUrl]);
+        break;
+      default:
+        return error.message;
+        break;
     }
   }
 }

@@ -4,6 +4,8 @@ import * as helper from "./helper";
 export class userlist extends ListAbstract {
   public compact = false;
 
+  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
+
   getUsername() {
     var query = `
     query {

@@ -39,7 +39,13 @@ global.api = {
     get: function() {
       return '';
     }
+  },
+  storage: {
+    lang: function() {
+      return 'lang';
+    }
   }
+
 }
 
 describe('AniList userlist', function () {
@@ -193,6 +199,21 @@ describe('AniList userlist', function () {
 
     return list.get().then((list) => {
       expect(testArray).to.deep.equal([1,2,1,2,1])
+    });
+  });
+
+  describe('errorHandling', async function () {
+    var list = new userlist();
+    it('js', async function () {
+      expect(list.errorMessage('This is a error')).to.equal('This is a error');
+    });
+
+    it('400', async function () {
+      expect(list.errorMessage({code: 400, message: 'Invalid token'})).to.equal('lang');
+    });
+
+    it('999', async function () {
+      expect(list.errorMessage({code: 999, message: 'Invalid token'})).to.equal('Invalid token');
     });
   });
 
