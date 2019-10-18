@@ -531,7 +531,7 @@ export class syncPage{
     }
   }
 
-  handleList(searchCurrent = false, reTry = 0){
+    handleList(searchCurrent = false, reTry = 0){
     j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var epList = this.getEpList();
@@ -540,9 +540,15 @@ export class syncPage{
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.malObj.getEpisode(), epList);
-        var curEp = epList[this.malObj.getEpisode()];
+        var currentEpisode = parseInt(this.malObj.getEpisode());
+        var curEp = epList[currentEpisode];
         if (typeof(curEp) != "undefined" && curEp){
-          curEp.addClass('mal-sync-active');
+          for(var i = 0; i <= currentEpisode; i++) {
+            curEp = epList[i];
+          if (typeof(curEp) != "undefined" && curEp){
+            curEp.addClass('mal-sync-active');
+          }
+          }
         }else if(this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
           con.log('Pagination next');
           var This = this;
@@ -949,6 +955,8 @@ export class syncPage{
       });
   }
 
+  private browsingtime = Date.now();
+
   private presence(info, sender, sendResponse) {
     try{
       if(info.action === 'presence'){
@@ -1005,6 +1013,7 @@ export class syncPage{
             }else{
              var browsingTemp = '';
             }
+            pres.presence.startTimestamp = this.browsingtime;
             pres.presence.state = api.storage.lang("Discord_rpc_browsing", [browsingTemp]);
             sendResponse(pres);
             return;
