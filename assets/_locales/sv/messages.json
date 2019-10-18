@@ -828,5 +828,19 @@
         "example": "</a>"
       }
     }
+  },
+  "Error_Authenticate": {
+    "message": "Vänligen autentisera $Link1$här$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
   }
 }

@@ -837,6 +837,20 @@
       }
     }
   },
+  "Error_Authenticate": {
+    "message": "Veuillez vous connecter $Link1$ici$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
   "Discord_rpc_browsing": {
     "message": "Navigue sur $Page$",
     "description": "Discord rich Presence text if on overview page",
