@@ -1,6 +1,29 @@
 @import "./../pages";
 
-#malp select option {
-  color: black !important;
-  background-color: white !important;
+@textColor: inherit;
+
+#overview {
+  margin-top: 1rem;
 }
+
+#malp {
+  max-width: 890px;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  select option {
+    color: black !important;
+    background-color: white !important;
+  }
+}
+
+//Dark mode
+.uk-light {
+  #malp {
+    select option {
+      color: white !important;
+      background-color: black !important;
+    }
+  }
+}
+

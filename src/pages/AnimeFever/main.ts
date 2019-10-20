@@ -37,7 +37,7 @@ export const AnimeFever: pageInterface = {
       return utils.urlPart(url,4);
     },
     uiSelector: function(selector){
-      j.$('<div class="container"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("div#overview").first());
+      j.$('<div class="px-8"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("div#overview").first());
     },
   },
   init(page){
