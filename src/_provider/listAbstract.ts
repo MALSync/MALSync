@@ -99,6 +99,7 @@ export abstract class ListAbstract {
 
     switch (error.code) {
       case 400:
+      case 401:
         return api.storage.lang("Error_Authenticate", [this.authenticationUrl]);
         break;
       default:
