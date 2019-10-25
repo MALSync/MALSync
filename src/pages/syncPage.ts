@@ -434,19 +434,20 @@ export class syncPage{
     this.malObj.setStartingDateToNow();
 
     if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
+      var currentScore = parseInt(this.malObj.getScore());
       if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+
         `<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">
-        <option value="0" selected="selected">${api.storage.lang("UI_Score_Not_Rated")}</option>
-        <option value="10">${api.storage.lang("UI_Score_Masterpiece")}</option>
-        <option value="9">${api.storage.lang("UI_Score_Great")}</option>
-        <option value="8">${api.storage.lang("UI_Score_VeryGood")}</option>
-        <option value="7">${api.storage.lang("UI_Score_Good")}</option>
-        <option value="6">${api.storage.lang("UI_Score_Fine")}</option>
-        <option value="5">${api.storage.lang("UI_Score_Average")}</option>
-        <option value="4">${api.storage.lang("UI_Score_Bad")}</option>
-        <option value="3">${api.storage.lang("UI_Score_VeryBad")}</option>
-        <option value="2">${api.storage.lang("UI_Score_Horrible")}</option>
-        <option value="1">${api.storage.lang("UI_Score_Appalling")}</option>
+        <option value="0" ${(!currentScore) ? 'selected' : ''}>${api.storage.lang("UI_Score_Not_Rated")}</option>
+        <option value="10" ${(currentScore == 10) ? 'selected' : ''}>${api.storage.lang("UI_Score_Masterpiece")}</option>
+        <option value="9" ${(currentScore == 9) ? 'selected' : ''}>${api.storage.lang("UI_Score_Great")}</option>
+        <option value="8" ${(currentScore == 8) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryGood")}</option>
+        <option value="7" ${(currentScore == 7) ? 'selected' : ''}>${api.storage.lang("UI_Score_Good")}</option>
+        <option value="6" ${(currentScore == 6) ? 'selected' : ''}>${api.storage.lang("UI_Score_Fine")}</option>
+        <option value="5" ${(currentScore == 5) ? 'selected' : ''}>${api.storage.lang("UI_Score_Average")}</option>
+        <option value="4" ${(currentScore == 4) ? 'selected' : ''}>${api.storage.lang("UI_Score_Bad")}</option>
+        <option value="3" ${(currentScore == 3) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryBad")}</option>
+        <option value="2" ${(currentScore == 2) ? 'selected' : ''}>${api.storage.lang("UI_Score_Horrible")}</option>
+        <option value="1" ${(currentScore == 1) ? 'selected' : ''}>${api.storage.lang("UI_Score_Appalling")}</option>
         </select>
         </div>`, 'complete')) {
         this.malObj.setStatus(status.completed);
