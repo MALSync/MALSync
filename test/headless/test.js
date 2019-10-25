@@ -932,7 +932,7 @@ var testsArray = [
         expected: {
           sync: true,
           title: 'Mesu Kyoushi 4: Kegasareta Kyoudan',
-          identifier: 'mesu-kyoushi-4-kegasareta-kyouda',
+          identifier: 'mesu-kyoushi-4-kegasareta-kyoudan',
           overviewUrl: 'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-1',
           episode: 4,
           uiSelector: false,
