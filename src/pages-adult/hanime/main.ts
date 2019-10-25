@@ -5,7 +5,7 @@ export const hanime: pageInterface = {
   domain: "https://hanime.tv",
   type: "anime",
   isSyncPage: function(url) {
-    if (url.split("/")[3] === "hentai-videos") {
+    if(url.split("/")[3] === "videos" && url.split("/")[4] === "hentai") {
       return true;
     } else {
       return false;
@@ -16,19 +16,19 @@ export const hanime: pageInterface = {
       return j.$("h1.tv-title").text().replace(/ ([^a-z]*)$/gmi,"").trim();
     },
     getIdentifier: function(url) {
-      return url.split("/")[4].replace(/-([^a-z]*)$/gmi,"").trim();
+      return url.split("/")[5].replace(/-([^a-z]*)$/gmi,"").trim();
     },
     getOverviewUrl: function(url){
-      var overviewPart = url.split("/")[4];
+      var overviewPart = url.split("/")[5];
         var temp = overviewPart.match(/-([^a-z]*)$/gmi);
         if(temp !== null){
-          return hanime.domain + "/hentai-videos/" + hanime.sync.getIdentifier(url) + "-1";
+          return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url) + "-1";
         } else {
-          return hanime.domain + "/hentai-videos/" + hanime.sync.getIdentifier(url);
+          return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url);
         }
     },
     getEpisode: function(url){
-      var episodePart = url.split("/")[4];
+      var episodePart = url.split("/")[5];
       if(episodePart.length){
         var temp = episodePart.match(/-([^a-z]*)$/gmi);
         if(temp !== null){
@@ -47,7 +47,7 @@ export const hanime: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] === "hentai-videos") {
+      if (page.url.split("/")[3] === "videos" && page.url.split("/")[4] === "hentai") {
         utils.waitUntilTrue(
           function() {
             return j.$("h1.tv-title").text();
@@ -62,7 +62,7 @@ export const hanime: pageInterface = {
       page.url = window.location.href;
       page.UILoaded = false;
       $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
-      if (page.url.split("/")[3] === "hentai-videos") {
+      if (page.url.split("/")[3] === "videos" && page.url.split("/")[4] === "hentai") {
         utils.waitUntilTrue(
           function() {
             return j.$("h1.tv-title").text();
