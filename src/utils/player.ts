@@ -53,6 +53,7 @@ async function setFullscreen(player){
       'mgvideo',
       'myVideo',
       'b-video-wrapper',
+      'vilos',
     ];
 
     var classes = [
