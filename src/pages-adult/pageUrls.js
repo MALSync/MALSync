@@ -39,4 +39,9 @@ module.exports = {
       '*://www.underhentai.net/*'
     ]
   },
+  HentaiKisa: {
+    match: [
+      '*://hentaikisa.com/*'
+    ]
+  },
 };
