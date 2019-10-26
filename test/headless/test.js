@@ -917,13 +917,24 @@ var testsArray = [
     url: 'https://hanime.tv/',
     testCases: [
       {
-        url: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-2',
+        url: 'https://hanime.tv/videos/hentai/itadaki-seieki',
         expected: {
           sync: true,
-          title: 'Majuu Jouka Shoujo Utea',
-          identifier: 'majuu-jouka-shoujo-utea',
-          overviewUrl: 'https://hanime.tv/hentai-videos/majuu-jouka-shoujo-utea-1',
-          episode: 2,
+          title: 'Itadaki! Seieki',
+          identifier: 'itadaki-seieki',
+          overviewUrl: 'https://hanime.tv/videos/hentai/itadaki-seieki',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-4',
+        expected: {
+          sync: true,
+          title: 'Mesu Kyoushi 4: Kegasareta Kyoudan',
+          identifier: 'mesu-kyoushi-4-kegasareta-kyoudan',
+          overviewUrl: 'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-1',
+          episode: 4,
           uiSelector: false,
         }
       },
