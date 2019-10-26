@@ -2,7 +2,7 @@
   "name": "MALSync",
   "productName": "MAL-Sync",
   "author": "lolamtisch@gmail.com",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "devDependencies": {
     "@types/jquery": "^3.3.6",
