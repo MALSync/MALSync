@@ -36,7 +36,7 @@ export const Crunchyroll: pageInterface = {
           if(j.$('.season-dropdown').length){
             return j.$('.season-dropdown').first().text();
           }else{
-            return j.$('#source_showview h1 span').text();
+            return j.$('#showview-content-header h1 span').first().text();
           }
         }
       },
