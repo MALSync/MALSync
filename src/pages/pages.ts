@@ -56,6 +56,7 @@ import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
 import {JapScan} from "./JapScan/main";
 import {MangaKisa} from "./MangaKisa/main";
+import {Goyabu} from "./Goyabu/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -118,6 +119,7 @@ export const pages = {
     MangaPlus,
     JapScan,
     MangaKisa,
+    Goyabu,
 };
 
 export const pageSearch:pageSearchObj = {

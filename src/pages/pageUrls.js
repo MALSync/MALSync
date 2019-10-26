@@ -392,4 +392,9 @@ module.exports = {
       '*://mangakisa.com/*'
     ]
   },
+  Goyabu: {
+    match: [
+      '*://goyabu.com/*'
+    ]
+  },
 };
