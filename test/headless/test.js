@@ -79,13 +79,13 @@ var testsArray = [
     url: 'https://www1.9anime.ru/',
     testCases: [
       {
-        url: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0/mlkqnp',
+        url: 'https://www.9anime.ru/watch/no-game-no-life-dub.y2p0/252yy2',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/79qwl7',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/75m5j8',
           episode: 4,
           uiSelector: true,
         }
