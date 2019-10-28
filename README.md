@@ -74,15 +74,15 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
-                <td></td>
+                <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://www.google.com/s2/favicons?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a></td>
-                <td></td>
+                <td><a href="https://www.japscan.co"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.co"> JapScan</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.wakanim.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.wakanim.tv"> Wakanim</a></td>
-                <td></td>
+                <td><a href="https://mangakisa.com"><img src="https://www.google.com/s2/favicons?domain=https://mangakisa.com"> MangaKisa</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
@@ -182,6 +182,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://goyabu.com"><img src="https://www.google.com/s2/favicons?domain=https://goyabu.com"> Goyabu</a></td>
                 <td></td>
                 <td></td>
               </tr>

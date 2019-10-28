@@ -155,6 +155,18 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
+              <td><a href="https://goyabu.com"><img src="https://www.google.com/s2/favicons?domain=https://goyabu.com"> Goyabu</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.japscan.co"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.co"> JapScan</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -203,6 +215,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
+              <td><a href="https://mangakisa.com"><img src="https://www.google.com/s2/favicons?domain=https://mangakisa.com"> MangaKisa</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre (Bad)</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -214,6 +232,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://www.google.com/s2/favicons?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
             </tr><tr>
               <td><a href="https://mangarock.com"><img src="https://www.google.com/s2/favicons?domain=https://mangarock.com"> Mangarock</a></td>
               <td>:heavy_check_mark:</td>
