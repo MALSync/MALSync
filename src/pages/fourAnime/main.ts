@@ -29,7 +29,6 @@ export const fourAnime: pageInterface = {
       .$("ul.episodes a.active")
       .text()
       .replace(/\D+/g, "")
-      .replace(/^0+/g, "");
     },
     nextEpUrl: function(url){
       var href = j.$(".anipager-next a").first().attr('href');
@@ -48,12 +47,18 @@ export const fourAnime: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$("p.description-mobile").first());
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){return j.$(".episodes.range a");},
+      elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), fourAnime.domain);},
+      elementEp: function(selector){return selector.text()},
+    }
   },
   init(page) {
     api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
     j.$(document).ready(function() {
       if (j.$(".singletitletop")[0] && j.$(".episodes")[0] || page.url.split("/")[3] == "anime") {
-      page.handlePage();
+        page.handlePage();
       }
     });
   }
