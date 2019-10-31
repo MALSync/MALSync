@@ -541,16 +541,8 @@ export class syncPage{
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
         if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.malObj.getEpisode(), epList);
-        var currentEpisode = parseInt(this.malObj.getEpisode());
-        var curEp = epList[currentEpisode];
-        if (typeof(curEp) != "undefined" && curEp){
-          for(var i = 0; i <= currentEpisode; i++) {
-            curEp = epList[i];
-          if (typeof(curEp) != "undefined" && curEp){
-            curEp.addClass('mal-sync-active');
-          }
-          }
-        }else if(this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
+        var curEp = epList[parseInt(this.malObj.getEpisode())];
+        if(typeof(curEp) == "undefined" && !curEp && this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
           con.log('Pagination next');
           var This = this;
           if(this.page.overview.list.paginationNext(false)){
@@ -576,10 +568,14 @@ export class syncPage{
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
+      var currentEpisode = parseInt(this.malObj.getEpisode());
       this.page.overview.list.elementsSelector().each( function(index, el) {
         try{
           var elEp = parseInt(elementEp(j.$(el))+"")+parseInt(This.getOffset());
           elementArray[elEp] = j.$(el);
+          if((api.settings.get("highlightAllEp") && elEp <= currentEpisode) || elEp == currentEpisode)  {
+            j.$(el).addClass('mal-sync-active')
+          }
         }catch(e){
           con.info(e);
         }

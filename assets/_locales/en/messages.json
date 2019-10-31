@@ -687,6 +687,14 @@
       "message": "This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option",
       "description": "Strict Cookies - Text"
     },
+    "settings_highlightAllEp": {
+      "message": "Highlight all Episodes/Chapters",
+      "description": "Highlight all Episodes/Chapters"
+    },
+    "settings_highlightAllEp_Text": {
+      "message": "This option will highlight all watched chapters/episodes in the list you can find on some Anime/Manga sites",
+      "description": "Highlight all Episodes/Chapters - Text"
+    },
     "settings_ClearCache": {
       "message": "Clear Cache",
       "description": "Clear Cache"
