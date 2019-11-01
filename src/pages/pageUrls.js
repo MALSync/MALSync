@@ -258,7 +258,7 @@ module.exports = {
     match: [
       '*://*.kickassanime.io/anime/*',
       '*://*.kickassanime.ru/anime/*',
-      '*://*.kickassanime.rs/anime/*',
+      '*://*.kickassanime.rs/anime/*'
     ],
   },
   RiiE: {
