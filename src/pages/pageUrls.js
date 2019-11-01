@@ -397,4 +397,9 @@ module.exports = {
       '*://goyabu.com/*'
     ]
   },
-};
+  AnimesVision: {
+    match: [
+      '*://*.animesvision.com.br/*'
+    ]
+  }
+};    
