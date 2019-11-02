@@ -1536,6 +1536,75 @@ var testsArray = [
       }
     ]
   },
+  {
+    title: 'AnimesVision',
+    url: 'https://www.animesvision.com.br/',
+    testCases: [
+      {//anime
+        url: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
+        expected: {
+          sync: true,
+          title: 'Strike the Blood III',
+          identifier: 'strike-the-blood-3',
+          overviewUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
+          nextEpUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado',
+          episode: 4,
+          uiSelector: false,
+        }
+      },
+      {//anime overview
+        url: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
+        expected: {
+          sync: false,
+          title: 'Strike the Blood III',
+          identifier: 'strike-the-blood-3',
+          uiSelector: true,
+        }
+      },
+      {//movie
+        url: 'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo/filme-legendado/legendado',
+        expected: {
+          sync: true,
+          title: 'Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo',
+          identifier: 'mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+          overviewUrl: 'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+          nextEpUrl: undefined,
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {//movie overview
+        url: 'https://www.animesvision.com.br/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+        expected: {
+          sync: false,
+          title: 'Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo',
+          identifier: 'mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+          uiSelector: true,
+        }
+      },
+      {//dub
+        url: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-06/dublado',
+        expected: {
+          sync: true,
+          title: 'Nanatsu no Taizai',
+          identifier: 'nanatsu-no-taizai-dublado',
+          overviewUrl: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
+          nextEpUrl: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-07/dublado',
+          episode: 6,
+          uiSelector: false,
+        }
+      },
+      {//dub overview
+        url: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
+        expected: {
+          sync: false,
+          title: 'Nanatsu no Taizai',
+          identifier: 'nanatsu-no-taizai-dublado',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables

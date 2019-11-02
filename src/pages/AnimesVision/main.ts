@@ -5,34 +5,38 @@ export const AnimesVision: pageInterface = {
   domain: "https://www.animesvision.com.br",
   type: "anime",
   isSyncPage: function(url) {
-    if (url.split("/")[3] === "animes") {
-      con.log("saaas")
+    if (url.split("/")[5] !== undefined) {
       return true;
     } else {
       return false;
     }
   },
   sync: {
-    getTitle: function(url){return j.$("span.td-bred-no-url-last").text()},
+    getTitle: function(url){return utils.getBaseText($('div.goblock.play-anime > div.gobread > ol > li.active > h1')).replace(/Dublado/gmi,"").replace(/[\s-\s]*$/,"").trim();},
     getIdentifier: function(url) {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return "Animevibe.domain+'/a/'+Animevibe.sync.getIdentifier(url)+'/1'";
+      return j.$("#episodes-sv-1 > li > div.sli-name > a").attr("href");
     },
     getEpisode: function(url){
-      if (utils.urlPart(url, 5) === "") {
-        return 1;
-      } else {
-        return parseInt(utils.urlPart(url, 5));
-      }
+      return url.split("/")[5].replace(/\D+/,"");
+    },
+    nextEpUrl: function(url) {
+      return utils.absoluteLink(j.$("#nextEp").attr("href"),AnimesVision.domain);
     }
   },
+  overview: {
+    getTitle: function(url){return utils.getBaseText($('div.goblock.detail-anime > div.gobread > ol > li.active > span')).replace(/Dublado/gmi,"").replace(/[\s-\s]*$/,"").trim();},
+    getIdentifier: function(url){return utils.urlPart(url,4)},
+    uiSelector: function(selector){selector.insertAfter(j.$("div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content"));},
+  },
   init(page){
-    con.log("sees")
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      page.handlePage();
+      if(page.url.split("/")[3] === "animes" || page.url.split("/")[3] === "filmes") {
+        page.handlePage();
+      }
     });
   }
 };
