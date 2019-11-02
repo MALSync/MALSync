@@ -45,7 +45,12 @@ export const Mangadex: pageInterface = {
         }
         return 0;
       },
-      nextEpUrl: function(url){return Mangadex.domain + j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href');
+      nextEpUrl: function(url){
+        if(j.$("#content").attr("data-direction") === "rtl" && j.$('a.chapter-link-left.col-auto.arrow-link').first().attr('href').split("/")[1] === "chapter") {
+          return Mangadex.domain + j.$('a.chapter-link-left.col-auto.arrow-link').first().attr('href');
+        } else if(j.$("#content").attr("data-direction") === "ltr"  && j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href').split("/")[1] === "chapter") {
+          return Mangadex.domain + j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href');
+        }
       },
     },
     overview:{
