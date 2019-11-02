@@ -23,6 +23,10 @@ export const Mangadex: pageInterface = {
           var temp = curOption.text().trim().match(/(ch\.|chapter)\D?\d+/i);
           if(temp !== null){
             return EpisodePartToEpisode(temp[0]);
+          } else {
+            if (curOption.text().indexOf("oneshot") !== -1 || curOption.text().indexOf("Oneshot") !== -1) {
+              return 1;
+            }
           }
         }
         return NaN;
