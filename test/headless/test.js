@@ -702,7 +702,7 @@ var testsArray = [
   },
   {
     title: 'kickassanime',
-    url: 'https://www17.kickassanime.io/',
+    url: 'https://www.kickassanime.rs/',
     testCases: [
       /*{
         url: 'https://www17.kickassanime.io/anime/overlord-iii-954770/episode-10-439507',
@@ -716,7 +716,7 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www17.kickassanime.io/anime/overlord-iii-954770',
+        url: 'https://www.kickassanime.rs/anime/overlord-iii-954770',
         expected: {
           sync: false,
           title: 'Overlord III',
