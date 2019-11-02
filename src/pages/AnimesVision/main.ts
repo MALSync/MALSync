@@ -20,7 +20,12 @@ export const AnimesVision: pageInterface = {
       return j.$("#episodes-sv-1 > li > div.sli-name > a").attr("href");
     },
     getEpisode: function(url){
-      return url.split("/")[5].replace(/\D+/,"");
+      var episodetemp = url.split("/")[5].replace(/\D+/,"");
+      if(episodetemp) {
+        return episodetemp;
+      } else {
+        return 1;
+      }
     },
     nextEpUrl: function(url) {
       return utils.absoluteLink(j.$("#nextEp").attr("href"),AnimesVision.domain);
