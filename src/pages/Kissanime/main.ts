@@ -50,7 +50,7 @@ export const Kissanime: pageInterface = {
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').first().attr('href'), Kissanime.domain);},
         elementEp: function(selector){
           var url = Kissanime.overview!.list!.elementUrl(selector);
-          if(/_ED/.test(url)) return NaN;
+          if(/_ED|_OP|_Ending|_Opening|_Preview|_Trailer/i.test(selector.find('a').first().text())) return NaN;
           return Kissanime.sync.getEpisode(url);
         },
       }
