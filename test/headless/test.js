@@ -249,6 +249,18 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {//oneshot
+        url: 'https://mangadex.org/chapter/38989/3',
+        expected: {
+          sync: true,
+          title: 'High Spec Lovers',
+          identifier: '9270',
+          overviewUrl: 'https://mangadex.org/title/9270/high-spec-lovers',
+          nextEpUrl: undefined,
+          episode: 1,
+          uiSelector: false,
+        }
+      },
     ]
   },
 

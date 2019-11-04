@@ -23,6 +23,10 @@ export const Mangadex: pageInterface = {
           var temp = curOption.text().trim().match(/(ch\.|chapter)\D?\d+/i);
           if(temp !== null){
             return EpisodePartToEpisode(temp[0]);
+          } else {
+            if (curOption.text().indexOf("oneshot") !== -1 || curOption.text().indexOf("Oneshot") !== -1) {
+              return 1;
+            }
           }
         }
         return NaN;
@@ -41,7 +45,12 @@ export const Mangadex: pageInterface = {
         }
         return 0;
       },
-      nextEpUrl: function(url){return Mangadex.domain + j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href');
+      nextEpUrl: function(url){
+        if(j.$("#content").attr("data-direction") === "rtl" && j.$('a.chapter-link-left.col-auto.arrow-link').first().attr('href').split("/")[1] === "chapter") {
+          return Mangadex.domain + j.$('a.chapter-link-left.col-auto.arrow-link').first().attr('href');
+        } else if(j.$("#content").attr("data-direction") === "ltr"  && j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href').split("/")[1] === "chapter") {
+          return Mangadex.domain + j.$('a.chapter-link-right.col-auto.arrow-link').first().attr('href');
+        }
       },
     },
     overview:{
