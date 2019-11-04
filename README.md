@@ -125,7 +125,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www17.kickassanime.io"><img src="https://www.google.com/s2/favicons?domain=https://www17.kickassanime.io"> KickAssAnime</a></td>
+                <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
@@ -186,6 +186,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://goyabu.com"><img src="https://www.google.com/s2/favicons?domain=https://goyabu.com"> Goyabu</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.animesvision.com.br"><img src="https://www.google.com/s2/favicons?domain=https://www.animesvision.com.br"> AnimesVision</a></td>
                 <td></td>
                 <td></td>
               </tr>

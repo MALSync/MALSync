@@ -15,7 +15,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://9anime.to"><img src="https://www.google.com/s2/favicons?domain=https://9anime.to"> 9anime</a></td>
               <td>:heavy_check_mark:</td>
@@ -75,7 +75,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
               <td>:heavy_check_mark:</td>
@@ -92,6 +92,12 @@
               <td><a href="https://www.anime-planet.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-planet.com"> AnimePlanet</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.animesvision.com.br"><img src="https://www.google.com/s2/favicons?domain=https://www.animesvision.com.br"> AnimesVision</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
@@ -179,7 +185,7 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://www17.kickassanime.io"><img src="https://www.google.com/s2/favicons?domain=https://www17.kickassanime.io"> KickAssAnime</a></td>
+              <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
@@ -219,7 +225,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre (Bad)</a></td>
               <td>:heavy_check_mark:</td>
