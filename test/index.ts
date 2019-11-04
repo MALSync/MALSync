@@ -63,7 +63,7 @@ function getPage(url){
     }
 
     function checkDomain(domain){
-      if( url.indexOf(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
+      if( url.indexOf(utils.urlPart(domain, 2).replace(".com.br", ".br").split('.').slice(-2, -1)[0] +'.') > -1 ){
         return true;
       }
       return false;
