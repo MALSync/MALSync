@@ -60,7 +60,7 @@ var testsArray = [
         }
       },
       {
-        url: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-004?id=112019&s=rapidvideo',
+        url: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-004?id=112019&s=hydrax',
         expected: {
           sync: true,
           title: 'No Game No Life (Dub)',
