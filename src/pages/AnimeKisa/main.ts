@@ -38,6 +38,18 @@ export const AnimeKisa: pageInterface = {
       return url.split("/")[3];
     },
     uiSelector: function(selector){selector.insertBefore(j.$(".infoepboxmain").first());},
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("div.infoepbox > a");
+      },
+      elementUrl: function(selector){
+        return AnimeKisa.domain + "/" + selector.find('.infoepmain').first().parent().attr('href');
+      },
+      elementEp: function(selector){
+        return selector.find('div.infoept2r > div, div.infoept2 > div').first().text();
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){
