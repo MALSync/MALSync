@@ -282,6 +282,11 @@ module.exports = {
     match: [
       '*://*.replay.watch/*'
     ]
+  },
+  //animeflv
+  streamium: {
+    match: [
+      '*://*.streamium.xyz/*'
+      ]
   }
-
 };
