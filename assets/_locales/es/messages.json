@@ -685,9 +685,21 @@
     "message": "Esta opción agrega compatibilidad con las multi-cuentas de Firefox. Asegúrese de reiniciar el navegador después de habilitar esta opción",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Destacar todos los episodios/capítulos",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Esta opción resaltará todos los capítulos/episodios vistos en la lista que puede encontrar en algunas paginas de Animes/Mangas",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Limpiar cache",
     "description": "Clear Cache"
+  },
+  "settings_presenceHidePage": {
+    "message": "Mostrar icono de MAL-Sync en lugar del icono de la página",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
   "updateCheck_Refresh": {
     "message": "Refrescar",
@@ -844,6 +856,16 @@
       "Link2": {
         "content": "</a>",
         "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "Viendo $Page$",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
       }
     }
   }
