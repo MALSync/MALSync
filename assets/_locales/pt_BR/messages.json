@@ -685,6 +685,14 @@
     "message": "Esta opção adiciona suporte a contêineres de várias contas do Firefox. Certifique-se de reiniciar o navegador depois de ativar esta opção",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Destacar todos os Episódios/Capítulos",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Esta opção destacará todos os capítulos/episódios assistidos na lista de alguns sites de Anime/Mangá",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Limpar cache",
     "description": "Clear Cache"
