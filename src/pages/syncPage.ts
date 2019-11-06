@@ -568,7 +568,11 @@ export class syncPage{
     if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
-      var currentEpisode = parseInt(this.malObj.getEpisode());
+      var currentEpisode = 0;
+      if(this.malObj) {
+        currentEpisode = parseInt(this.malObj.getEpisode());
+      }
+
       this.page.overview.list.elementsSelector().each( function(index, el) {
         try{
           var elEp = parseInt(elementEp(j.$(el))+"")+parseInt(This.getOffset());

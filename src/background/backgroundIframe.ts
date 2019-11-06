@@ -30,7 +30,7 @@ export function checkContinue(message){
   }
 
   var id = message.id;
-  con.log('Iframe update check done', id);
+  con.log('Iframe update check done', message);
   removeIframes();
 
   if(id == null){
