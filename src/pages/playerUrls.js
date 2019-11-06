@@ -277,10 +277,11 @@ module.exports = {
       '*://*.vshare.io/v/*'
     ]
   },
-  //kissanime
+  //kissanime/9anime
   hydrax: {
     match: [
-      '*://*.replay.watch/*'
+      '*://*.replay.watch/*',
+      '*://hydrax.net/*'
     ]
   }
 
