@@ -283,6 +283,11 @@ module.exports = {
       '*://*.replay.watch/*',
       '*://hydrax.net/*'
     ]
+  },
+  //animeflv
+  streamium: {
+    match: [
+      '*://*.streamium.xyz/*'
+      ]
   }
-
 };
