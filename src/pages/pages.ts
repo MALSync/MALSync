@@ -140,12 +140,6 @@ export const pageSearch:pageSearchObj = {
       googleSearchDomain: '9anime.to/watch',
       searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
     },
-    Otakustream: {
-      name: 'Otakustream',
-      type: 'anime',
-      domain: 'otakustream.tv',
-      searchUrl: (titleEncoded) => {return 'https://otakustream.tv/?s='+titleEncoded},
-    },
     Kissanime: {
       name: 'Kissanime',
       type: 'anime',
