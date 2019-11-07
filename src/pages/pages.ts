@@ -12,7 +12,6 @@ import {Twistmoe} from "./Twistmoe/main";
 import {Emby} from "./Emby/main";
 import {Plex} from "./Plex/main";
 import {Netflix} from "./Netflix/main";
-import {Otakustream} from "./Otakustream/main";
 import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
@@ -64,7 +63,6 @@ export const pages = {
     Kissanime,
     Kissmanga,
     nineAnime,
-    Otakustream,
     Crunchyroll,
     Vrv,
     Mangadex,

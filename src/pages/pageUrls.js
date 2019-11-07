@@ -156,12 +156,6 @@ module.exports = {
       '*://www.netflix.com/*'
     ]
   },
-  Otakustream: {
-    match: [
-      '*://otakustream.tv/anime/*',
-      '*://otakustream.tv/movie/*',
-    ]
-  },
   animepahe: {
     match: [
       '*://animepahe.com/play/*',
