@@ -195,12 +195,6 @@ module.exports = {
       '*://proxer.me/*',
     ],
   },
-  Animevibe: {
-    match: [
-      '*://*.animevibe.tv/a/*',
-      '*://*.animevibe.xyz/a/*',
-    ],
-  },
   Novelplanet: {
     match: [
       '*://novelplanet.com/Novel/*',

@@ -18,7 +18,6 @@ import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
-import {Animevibe} from "./Animevibe/main";
 import {Novelplanet} from "./Novelplanet/main";
 import {WonderfulSubs} from "./WonderfulSubs/main";
 import {kawaiifu} from "./kawaiifu/main";
@@ -81,7 +80,6 @@ export const pages = {
     Jkanime,
     Proxer,
     Wakanim,
-    Animevibe,
     WonderfulSubs,
     kawaiifu,
     Emby,

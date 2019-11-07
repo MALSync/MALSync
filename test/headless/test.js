@@ -439,25 +439,7 @@ var testsArray = [
       },
     ]
   },
-
-  {
-    title: 'Animevibe',
-    url: 'https://animevibe.xyz',
-    testCases: [
-      {
-        url: 'https://animevibe.xyz/a/no-game-no-life/4/',
-        expected: {
-          sync: true,
-          title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://animevibe.tv/a/no-game-no-life/1',
-          episode: 4,
-          uiSelector: false,
-        }
-      },
-    ]
-  },
-
+  
   {
     title: 'Novelplanet',
     url: 'https://novelplanet.com',
