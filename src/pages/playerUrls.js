@@ -288,6 +288,12 @@ module.exports = {
   streamium: {
     match: [
       '*://*.streamium.xyz/*'
-      ]
+    ]
+  },
+  //kickassanime
+  animopacestream: {
+    match: [
+      '*://animo-pace-stream.io/*'
+    ]
   }
 };
