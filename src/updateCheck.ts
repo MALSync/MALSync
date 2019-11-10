@@ -84,3 +84,18 @@ api.settings.init()
     }
     page.init();
   });
+
+try {
+  setInterval( () => {
+    document.querySelectorAll("video, audio").forEach( elem => {
+      //@ts-ignore
+      elem.muted = true;elem.pause();
+    } );
+    var iframes = document.querySelectorAll('iframe');
+    for (var i = 0; i < iframes.length; i++) {
+        iframes[i].parentNode.removeChild(iframes[i]);
+    }
+  },500)
+}catch(e) {
+  con.error(e);
+}
