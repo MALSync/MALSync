@@ -12,13 +12,11 @@ import {Twistmoe} from "./Twistmoe/main";
 import {Emby} from "./Emby/main";
 import {Plex} from "./Plex/main";
 import {Netflix} from "./Netflix/main";
-import {Otakustream} from "./Otakustream/main";
 import {animepahe} from "./animepahe/main";
 import {animeflv} from "./Animeflv/main";
 import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
-import {Animevibe} from "./Animevibe/main";
 import {Novelplanet} from "./Novelplanet/main";
 import {WonderfulSubs} from "./WonderfulSubs/main";
 import {kawaiifu} from "./kawaiifu/main";
@@ -65,7 +63,6 @@ export const pages = {
     Kissanime,
     Kissmanga,
     nineAnime,
-    Otakustream,
     Crunchyroll,
     Vrv,
     Mangadex,
@@ -81,7 +78,6 @@ export const pages = {
     Jkanime,
     Proxer,
     Wakanim,
-    Animevibe,
     WonderfulSubs,
     kawaiifu,
     Emby,
@@ -143,12 +139,6 @@ export const pageSearch:pageSearchObj = {
       domain: '9anime.to',
       googleSearchDomain: '9anime.to/watch',
       searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
-    },
-    Otakustream: {
-      name: 'Otakustream',
-      type: 'anime',
-      domain: 'otakustream.tv',
-      searchUrl: (titleEncoded) => {return 'https://otakustream.tv/?s='+titleEncoded},
     },
     Kissanime: {
       name: 'Kissanime',

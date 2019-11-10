@@ -156,12 +156,6 @@ module.exports = {
       '*://www.netflix.com/*'
     ]
   },
-  Otakustream: {
-    match: [
-      '*://otakustream.tv/anime/*',
-      '*://otakustream.tv/movie/*',
-    ]
-  },
   animepahe: {
     match: [
       '*://animepahe.com/play/*',
@@ -193,12 +187,6 @@ module.exports = {
   Proxer: {
     match: [
       '*://proxer.me/*',
-    ],
-  },
-  Animevibe: {
-    match: [
-      '*://*.animevibe.tv/a/*',
-      '*://*.animevibe.xyz/a/*',
     ],
   },
   Novelplanet: {
