@@ -192,6 +192,7 @@ const generateManifest = () => {
       "https://api.simkl.com/",
       "https://www.netflix.com/",
       "https://vrv.co/",
+      "https://discover.hulu.com/",
       "tabHide"
     ],
     "optional_permissions": [

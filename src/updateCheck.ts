@@ -91,10 +91,10 @@ try {
       //@ts-ignore
       elem.muted = true;elem.pause();
     } );
-    var iframes = document.querySelectorAll('iframe');
-    for (var i = 0; i < iframes.length; i++) {
-        iframes[i].parentNode.removeChild(iframes[i]);
-    }
+    //var iframes = document.querySelectorAll('iframe');
+    //for (var i = 0; i < iframes.length; i++) {
+    //    iframes[i].parentNode.removeChild(iframes[i]);
+    //}
   },500)
 }catch(e) {
   con.error(e);
