@@ -12,12 +12,12 @@ export const AnimeFever: pageInterface = {
     }
   },
   sync: {
-    getTitle: function(url){return j.$("#player-main > h1 > a").text()},
+    getTitle: function(url){return j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").text()},
     getIdentifier: function(url) {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return AnimeFever.domain + j.$("#player-main > h1 > a").attr("href");
+      return AnimeFever.domain + j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").attr("href");
     },
     getEpisode: function(url){
       var episodePart = url.split("/")[6];
@@ -31,44 +31,22 @@ export const AnimeFever: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return utils.getBaseText($("h1.anime-name > div").first()).trim();
+      return utils.getBaseText($("#ov-anime > div.top-detail.relative > div.backdrop-blur.uk-width-expand.relative.z-10 > div > h1 > div").first()).trim();
     },
     getIdentifier: function(url){
       return utils.urlPart(url,4);
     },
-    uiSelector: function(selector){
-      j.$('<div class="px-8"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("div#overview").first());
-    },
+    uiSelector: function(selector){},
   },
   init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    if (page.url.split("/")[3] === "anime" && page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0) {
-      utils.waitUntilTrue(
-        function() {
-          if (j.$("#player-main > h1 > a").text() || j.$("h1.anime-name").text()){
-            return true;
-          } else {
-            return false;
-          }
-        },
-        function() {
-          page.handlePage();
-        }
-        );
-    }
-    utils.urlChangeDetect(function() {
+    function checkPage() {
       page.url = window.location.href;
       page.UILoaded = false;
       $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
-      if (page.url.split("/")[3] === "anime" && page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0) {
+      if (page.url.split("/")[3] === "anime" && typeof page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0) {
         utils.waitUntilTrue(
           function() {
-            if (j.$("#player-main > h1 > a").text() || j.$("h1.anime-name").text()){
+            if (j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").text() || j.$("#ov-anime > div.top-detail.relative > div.backdrop-blur.uk-width-expand.relative.z-10 > div > h1 > div").text()){
               return true;
             } else {
               return false;
@@ -79,6 +57,16 @@ export const AnimeFever: pageInterface = {
           }
           );
       }
+    }
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    checkPage();
+    utils.urlChangeDetect(function() {
+      checkPage();
     });
   }
 };
