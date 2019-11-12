@@ -1260,7 +1260,7 @@ var testsArray = [
           sync: false,
           title: 'A Certain Magical Index',
           identifier: '10344-a-certain-magical-index',
-          uiSelector: true,
+          uiSelector: false,
         }
       },
     ]
