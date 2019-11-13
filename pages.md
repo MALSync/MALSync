@@ -107,12 +107,6 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
-              <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
-            </tr><tr>
               <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -279,12 +273,6 @@
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
-            </tr><tr>
-              <td><a href="https://otakustream.tv"><img src="https://www.google.com/s2/favicons?domain=https://otakustream.tv"> Otakustream</a></td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
-              <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"> Plex</a></td>
