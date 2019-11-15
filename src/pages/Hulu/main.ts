@@ -119,7 +119,7 @@ function checkPage(): boolean {
       if(json.items[0].season) {
         //if its a series
         huluId = json.items[0].series_id;
-        season = json.items[0].season;
+        season = parseInt(json.items[0].season);
         name = json.items[0].series_name;
         movie = false;
       } else {
