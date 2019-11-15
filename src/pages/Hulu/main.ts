@@ -71,9 +71,7 @@ export const Hulu: pageInterface = {
           return j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value").text();
         }
       }, async function(){
-        con.log("jappp")
         if(await checkPage()) {
-          con.log("YAAAAAAAA")
           page.handlePage();
           if(page.url.split("/")[3] === "series") {
             $("body").on('DOMSubtreeModified', "div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value", function() {
@@ -99,7 +97,7 @@ export const Hulu: pageInterface = {
     page.url = window.location.href;
     page.UILoaded = false;
     $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
-    con.log("change")
+    con.log("url change")
     startCheck();
   });
 }
@@ -116,7 +114,7 @@ function checkPage(): boolean {
     var json =JSON.parse(response.responseText)
     if (json.items[0].genre_names.includes("Anime") || json.items[0].genre_names.includes("Animation")) {
 
-      episode = json.items[0].number;
+      episode = parseInt(json.items[0].number);
 
       if(json.items[0].season) {
         //if its a series
@@ -133,8 +131,7 @@ function checkPage(): boolean {
           movie = true;
         }
       }
-      con.log(season)
-      if(season >= 1 && movie == false) {
+      if(season >= 1 && movie == false && window.location.href.split("/")[3] === "watch") {
         var reqUrl2 = "https://discover.hulu.com/content/v4/hubs/series/" + huluId + "/season/"+ season + "?offset=0&limit=999&schema=9&referralHost=production";
         return api.request.xhr('GET', reqUrl2).then((r) => {
          var json2 =JSON.parse(r.responseText)
@@ -142,7 +139,7 @@ function checkPage(): boolean {
            episode = episode - json2.items[0].number + 1;
            name = name + " season " + season;
          }
-         if(json2.items[episode + 1].id) {
+         if(typeof json2.items[episode + 1] !== undefined) {
           nextEp = Hulu.domain +"/watch/" + json2.items[episode + 1].id;
         } else {
           nextEp = undefined
