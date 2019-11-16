@@ -1,7 +1,8 @@
 import { expect } from 'chai';
-import {userlist} from './../../../../src/_provider/AniList/list';
+import {userlist} from './../../../../src/_provider/Kitsu/list';
 
 global.con = require('./../../../../src/utils/console');
+global.con.log = function() {};
 
 var responses = {
   user: JSON.stringify(require("./api/user.json")),
@@ -17,11 +18,10 @@ function getResponse(key) {
   return responses[key];
 }
 
-describe('AniList userlist', function () {
-  before(function () {
-    global.con = require('./../../../../src/utils/console');
-    global.con.log = function() {};
 
+
+describe('Kitsu userlist', function () {
+  before(function () {
     responses = {
       user: JSON.stringify(require("./api/user.json")),
       "Page1": JSON.stringify(require("./api/list-Page1.json")),
@@ -30,33 +30,35 @@ describe('AniList userlist', function () {
 
     elements = [
       {
-        uid: 9624,
-        malId: 9624,
-        cacheKey: 9624,
+        malId: '6547',
+        uid: '4604',
+        cacheKey: '6547',
+        kitsuSlug: 'angel-beats',
         type: 'anime',
-        title: '30-sai no Hoken Taiiku',
-        url: 'https://anilist.co/anime/9624',
-        watchedEp: 0,
-        totalEp: 12,
-        status: 6,
-        score: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b9624-VKt16M5xFfkG.jpg',
-        tags: null,
+        title: 'Angel Beats!',
+        url: 'https://kitsu.io/anime/angel-beats',
+        watchedEp: 13,
+        totalEp: 13,
+        status: 2,
+        score: 10,
+        image: 'https://media.kitsu.io/anime/poster_images/4604/large.jpg?1416274148',
+        tags: '\n=== MAL Tags ===\nScore: 8.35',
         airingState: undefined
       },
       {
-        uid: 112124,
-        malId: 40454,
-        cacheKey: 40454,
+        malId: '9776',
+        uid: '5861',
+        cacheKey: '9776',
+        kitsuSlug: 'a-channel',
         type: 'anime',
-        title: 'Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka III',
-        url: 'https://anilist.co/anime/112124',
-        watchedEp: 0,
-        totalEp: 0,
-        status: 6,
-        score: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b112124-fY30NnaklY5W.jpg',
-        tags: null,
+        title: 'A-Channel',
+        url: 'https://kitsu.io/anime/a-channel',
+        watchedEp: 12,
+        totalEp: 12,
+        status: 2,
+        score: 9,
+        image: 'https://media.kitsu.io/anime/poster_images/5861/large.jpg?1486237007',
+        tags: '\n=== MAL Tags ===\nScore: 7.04',
         airingState: undefined
       }
     ];
@@ -64,22 +66,25 @@ describe('AniList userlist', function () {
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
-          conf.data = JSON.parse(conf.data);
-          if(!conf.data.variables.page) {
+          if(conf.url.indexOf('/edge/users') !== -1) {
             return {
               responseText: getResponse('user'),
             };
           }
 
-          if(conf.data.variables.page == 1) {
+          if(conf.url.indexOf('page[offset]=0') !== -1) {
             return {
               responseText: getResponse('Page1'),
             };
           }
 
-          return {
-            responseText: getResponse('Page2'),
-          };
+          if(conf.url.indexOf('page[offset]=50') !== -1) {
+            return {
+              responseText: getResponse('Page2'),
+            };
+          }
+
+          throw conf.url;
         }
       },
       settings: {
@@ -90,12 +95,17 @@ describe('AniList userlist', function () {
       storage: {
         lang: function() {
           return 'lang';
+        },
+        get: function(key) {
+          if(key == 'kitsuUserId') return undefined;
+          return '';
+        },
+        set: function(key, val) {
         }
       }
 
     }
-  })
-
+  });
 
   it('Get List', function () {
     var list = new userlist(7, 'anime')
@@ -103,7 +113,6 @@ describe('AniList userlist', function () {
     return list.get().then((list) => {
       expect(list).to.deep.include(elements[0]);
       expect(list).to.deep.include(elements[1]);
-
     });
 
   });
