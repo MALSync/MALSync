@@ -295,5 +295,11 @@ module.exports = {
     match: [
       '*://animo-pace-stream.io/*'
     ]
+  },
+  //Neko-sama
+  pstream: {
+  	match: [
+  		'*://*.pstream.net/e/*'
+  	]
   }
 };
