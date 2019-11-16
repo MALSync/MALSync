@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import {userlist} from './../../../../src/_provider/AniList/list';
-import {generalListTests} from './../generalTests';
+import {generalListTests} from './../generalTests.exclude';
 
 global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
