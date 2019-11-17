@@ -5,7 +5,7 @@ export class userlist extends ListAbstract {
   authenticationUrl = 'https://myanimelist.net/login.php';
 
   async getUsername() {
-    var url = 'https://myanimelist.net/editlist.php?hideLayout';
+    var url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
     return api.request.xhr('GET', url).then((response) => {
       var username = false;
       try{
