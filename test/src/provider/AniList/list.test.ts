@@ -6,9 +6,15 @@ global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
 
 var responses = {
-  user: JSON.stringify(require("./api/user.json")),
-  "Page1": JSON.stringify(require("./api/list-Page1.json")),
-  "Page2": JSON.stringify(require("./api/list-Page2.json"))
+  user: {
+    data: JSON.stringify(require("./api/user.json"))
+  },
+  "Page1": {
+    data: JSON.stringify(require("./api/list-Page1.json"))
+  },
+  "Page2": {
+    data: JSON.stringify(require("./api/list-Page2.json"))
+  },
 };
 
 var elements = [
@@ -47,7 +53,7 @@ var elements = [
 global.api = {}
 
 function getResponse(key) {
-  return responses[key];
+  return responses[key].data;
 }
 
 describe('AniList userlist', function () {

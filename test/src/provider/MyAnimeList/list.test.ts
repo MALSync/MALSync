@@ -6,9 +6,16 @@ global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
 
 var responses = {
-  user: require("./api/user.json").data,
-  "Page1": JSON.stringify(require("./api/list-Page1.json")),
-  "Page2": JSON.stringify(require("./api/list-Page2.json"))
+  user: {
+    data: require("./api/user.json").data,
+    errorCode: 400
+  },
+  "Page1": {
+    data: JSON.stringify(require("./api/list-Page1.json"))
+  },
+  "Page2": {
+    data: JSON.stringify(require("./api/list-Page2.json"))
+  },
 };
 
 var elements = [
@@ -47,7 +54,7 @@ var elements = [
 global.api = {}
 
 function getResponse(key) {
-  return responses[key];
+  return responses[key].data;
 }
 
 describe('MyAnimeList userlist', function () {

@@ -14,19 +14,21 @@ export function generalListTests(userlist, elements, responses) {
 
   describe('Empty responses', async function () {
     Object.keys(responses).forEach(async function(index) {
-      var value = responses[index];
+      var value = responses[index].data;
       it( index, async function () {
 
-        var temp = responses[index];
-        responses[index] = '';
+        var temp = responses[index].data;
+        responses[index].data = '';
         try {
           await new userlist(7, 'anime').get();
         } catch (error) {
-          responses[index] = temp;
-          expect(error.code).to.equal(444)
+          responses[index].data = temp;
+          var errorRes = 444;
+          if(responses[index].errorCode) errorRes = responses[index].errorCode;
+          expect(error.code).to.equal(errorRes)
         }
 
-        responses[index] = temp;
+        responses[index].data = temp;
 
       });
     });
@@ -34,19 +36,21 @@ export function generalListTests(userlist, elements, responses) {
 
   describe('No json responses', async function () {
     Object.keys(responses).forEach(async function(index) {
-      var value = responses[index];
+      var value = responses[index].data;
       it( index, async function () {
 
-        var temp = responses[index];
-        responses[index] = 'This is not valid json';
+        var temp = responses[index].data;
+        responses[index].data = 'This is not valid json';
         try {
           await new userlist(7, 'anime').get();
         } catch (error) {
-          responses[index] = temp;
-          expect(error.code).to.equal(406)
+          responses[index].data = temp;
+          var errorRes = 406;
+          if(responses[index].errorCode) errorRes = responses[index].errorCode;
+          expect(error.code).to.equal(errorRes)
         }
 
-        responses[index] = temp;
+        responses[index].data = temp;
 
       });
     });
