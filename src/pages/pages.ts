@@ -56,7 +56,7 @@ import {JapScan} from "./JapScan/main";
 import {MangaKisa} from "./MangaKisa/main";
 import {Goyabu} from "./Goyabu/main";
 import {AnimesVision} from "./AnimesVision/main";
-import {Hulu} from "./Hulu/main"; 
+import {Hulu} from "./Hulu/main";
  
 import {pageSearchObj} from "./pageInterface";
 
