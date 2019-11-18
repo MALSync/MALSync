@@ -108,7 +108,7 @@ export class entryClass{
         this.id = this.animeInfo.show.ids.mal;
       }
 
-      if(this.getEpisode() === NaN) this.setEpisode(0);
+      if(isNaN(this.getEpisode())) this.setEpisode(0);
       this.setScore(this.getScore());
 
       this.name = this.animeInfo.show.title;

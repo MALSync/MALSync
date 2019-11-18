@@ -116,7 +116,7 @@ export class entryClass{
         throw 'Not Found';
       }
 
-      if(this.getEpisode() === NaN) this.setEpisode(0);
+      if(isNaN(this.getEpisode())) this.setEpisode(0);
       this.setScore(this.getScore());
 
       this.name = helper.getTitle(this.animeI().attributes.titles);

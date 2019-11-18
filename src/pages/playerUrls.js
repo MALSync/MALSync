@@ -248,7 +248,7 @@ module.exports = {
     ]
   },
   //animeultima
-  mystream: {
+  bitchute: {
     match: [
       '*://*.bitchute.com/embed/*'
     ]
