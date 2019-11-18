@@ -34,17 +34,17 @@ export function favicon(domain){
 }
 
 export function watching(type: "anime"|"manga"){
-  if(type == "manga") return 'Reading';
+  if(type === "manga") return 'Reading';
   return 'Watching';
 }
 
 export function planTo(type: "anime"|"manga"){
-  if(type == "manga") return 'Plan to Read';
+  if(type === "manga") return 'Plan to Read';
   return 'Plan to Watch';
 }
 
 export function episode(type: "anime"|"manga"){
-  if(type == "manga") return api.storage.lang("UI_Chapter");
+  if(type === "manga") return api.storage.lang("UI_Chapter");
   return api.storage.lang("UI_Episode");
 }
 
@@ -105,7 +105,7 @@ export function changeDetect(callback, func){
   var currentPage = func();
   return setInterval(function(){
     var temp = func();
-    if (typeof temp != 'undefined' && currentPage != temp){
+    if (typeof temp !== 'undefined' && currentPage != temp){
       currentPage = func();
       callback();
     }
@@ -232,7 +232,7 @@ export async function getMalToKissArray(type, id){
             delete json[pageKey][streamKey];
             continue;
           }
-          if(pageKey == 'Crunchyroll'){
+          if(pageKey === 'Crunchyroll'){
             streamJson['url'] = streamJson['url'] + '?season=' + streamKey;
           }
 
@@ -261,7 +261,7 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
     var elCache:any = undefined;
-    if(typeof updateCheckTime != 'undefined' && updateCheckTime && updateCheckTime != '0'){
+    if(typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0'){
       elCache = await api.storage.get('updateCheck/'+type+'/'+cacheKey);
     }
     if(pre === false && typeof elCache == 'undefined') return;
@@ -303,12 +303,12 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
       if(!elCache.finished){
         airing = true;
       }
-      if(elCache.newestEp && elCache.newestEp != '' && typeof elCache.newestEp != 'undefined'){
+      if(elCache.newestEp && elCache.newestEp !== '' && typeof elCache.newestEp !== 'undefined'){
         episode = elCache.newestEp;
         UI.color = 'red';
       }
     }
-    if(UI.color != ''){
+    if(UI.color !== ''){
       //UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
       UI.colorStyle = 'background-color: #00ff0057;'
     }
@@ -726,8 +726,8 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content'){
   // Array.prototype.slice.call is not callable under our lovely IE8
   for (var i = 0; i < query.length; i++) {
     lazyimages.push(query[i]);
-    $(query[i]).removeClass('init')
-  };
+    $(query[i]).removeClass('init');
+  }
 
   processScroll();
 
