@@ -44,6 +44,7 @@ module.exports = {
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',
+      '*://*.vidstreaming.me/*'
     ]
   },
   xstreamcdn: {
