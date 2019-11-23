@@ -433,6 +433,7 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://novelplanet.com/Novel/No-Game-No-Life',
           episode: 3,
+          nextEpUrl: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
           uiSelector: true,
         }
       },
