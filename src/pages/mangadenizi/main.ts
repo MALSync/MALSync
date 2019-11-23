@@ -21,6 +21,15 @@ export const mangadenizi: pageInterface = {
   },
   getEpisode: function(url){
     return url.split("/")[5];
+  },
+  nextEpUrl: function(url){
+    var script = j.$("body > div.container-fluid > script")[0].innerHTML;
+    script = script.match(/next_chapter\s*=\s*".*"/gmi)
+    script = script[0].match(/"(.*?)"/gm);
+    script = script[0].replace(/(^"|"$)/gm, '');
+    if(script) {
+      return script;
+    }
   }
 },
 overview:{
@@ -33,6 +42,18 @@ overview:{
   uiSelector: function(selector){
     selector.insertAfter(j.$("h2.widget-title").first());
   },
+  list:{
+    offsetHandler: false,
+    elementsSelector: function(){
+      return j.$("ul.chapters > li");
+    },
+    elementUrl: function(selector){
+      return utils.absoluteLink(selector.find('h5 > a').first().attr('href'),mangadenizi.domain);
+    },
+    elementEp: function(selector){
+      return utils.absoluteLink(selector.find('h5 > a').first().attr('href'),mangadenizi.domain).split("/")[5];
+    }
+  }
 },
 init(page){
   if(document.title == "Just a moment..."){

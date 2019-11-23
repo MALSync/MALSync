@@ -1305,6 +1305,7 @@ var testsArray = [
           identifier: 'one-piece',
           overviewUrl: 'https://mangadenizi.com/manga/one-piece',
           episode: 769,
+          nextEpUrl: "https://mangadenizi.com/manga/one-piece/0770",
           uiSelector: false,
         }
       },
