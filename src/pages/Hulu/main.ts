@@ -63,6 +63,7 @@ export const Hulu: pageInterface = {
   },
   init(page){
    function startCheck() {
+    $('html').addClass('miniMAL-hide');
     if(page.url.split("/")[3] === "watch" || page.url.split("/")[3] === "series" || page.url.split("/")[3] === "movie") {
       utils.waitUntilTrue(function(){
         if(page.url.split("/")[3] !== "series") {
@@ -73,11 +74,13 @@ export const Hulu: pageInterface = {
       }, async function(){
         if(await checkPage()) {
           page.handlePage();
+          $('html').removeClass('miniMAL-hide');
           if(page.url.split("/")[3] === "series") {
             $("body").on('DOMSubtreeModified', "div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value", function() {
               j.$('#malp').remove();
               page.UILoaded = false;
               page.handlePage();
+              $('html').removeClass('miniMAL-hide');
             });
           }
         }
