@@ -155,8 +155,7 @@ export const pageSearch:pageSearchObj = {
       name: 'Turkanime',
       type: 'anime',
       domain: 'www.turkanime.tv/',
-      searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:turkanime.tv/anime/'},
-      googleSearchDomain: 'turkanime.tv/anime/'
+      searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:turkanime.tv/anime/ OR site:turkanime.net/anime/'}
     },
     animeflv: {
       name: 'animeflv',
