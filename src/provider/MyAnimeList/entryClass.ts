@@ -22,7 +22,7 @@ export class entryClass{
 
   init(){
     return this.update();
-  };
+  }
 
   getDisplayUrl(){
     return this.url;
@@ -310,7 +310,7 @@ export class entryClass{
         var watchCounter = '.add_anime[num_watched_times]';
         var rewatchText = 'Rewatch Anime?';
         var rewatchFinishText = 'Finish rewatching?';
-        if(this.type == "manga"){
+        if(this.type === "manga"){
           watchCounter = '.add_manga[num_read_times]';
           rewatchText = 'Reread Manga?';
           rewatchFinishText = 'Finish rereading?';
@@ -332,7 +332,7 @@ export class entryClass{
         }
 
         if(
-          this.getStatus() == status.completed &&
+          this.getStatus() === status.completed &&
           this.getEpisode() === this.totalEp &&
           this.getRewatching() === 1
         ){
@@ -359,7 +359,7 @@ export class entryClass{
         This.wrong = true;
         if(!This.miniMAL){
           var miniButton = j.$('button.open-info-popup');
-          if(miniButton.css('display') != 'none'){
+          if(miniButton.css('display') !== 'none'){
             miniButton.click();
           }else{
             miniButton.click();
@@ -372,7 +372,7 @@ export class entryClass{
       function continueCall(){
         var parameter = "";
         j.$.each( This.animeInfo, function( index, value ){
-            if(index.toString().charAt(0) == "."){
+            if(index.toString().charAt(0) === "."){
                 if(!( (index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)){
                     parameter += encodeURIComponent (index.toString().substring(1))+"="+encodeURIComponent (value)+"&";
                 }
@@ -405,7 +405,7 @@ export class entryClass{
     this.addAnime = false;
     this.pending = false;
 
-    if(this.type == 'anime'){
+    if(this.type === 'anime'){
       var anime = {};
       anime['.csrf_token'] =  data.split('\'csrf_token\'')[1].split('\'')[1].split('\'')[0];
       if(data.indexOf('Add Anime') > -1) {
@@ -444,7 +444,7 @@ export class entryClass{
       anime['.add_anime[rewatch_value]'] = getselect(data,'add_anime[rewatch_value]');
       anime['.add_anime[comments]'] = utils.parseHtml(data.split('name="add_anime[comments]"')[1].split('>')[1].split('<')[0]);
       anime['.add_anime[is_asked_to_discuss]'] = getselect(data,'add_anime[is_asked_to_discuss]');
-      if(anime['.add_anime[is_asked_to_discuss]'] == '') anime['.add_anime[is_asked_to_discuss]'] = 0; //#15
+      if(anime['.add_anime[is_asked_to_discuss]'] === '') anime['.add_anime[is_asked_to_discuss]'] = 0; //#15
       anime['.add_anime[sns_post_type]'] = getselect(data,'add_anime[sns_post_type]');
       anime['.submitIt'] = data.split('name="submitIt"')[1].split('value="')[1].split('"')[0];
       con.log('[GET] Object:',anime);

@@ -95,7 +95,7 @@ export async function anilistScheduler(page = 0){
       }
     }
   `;
-  ​
+  
   var variables = {
     page: page
   };

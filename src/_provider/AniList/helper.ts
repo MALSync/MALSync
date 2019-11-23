@@ -22,7 +22,7 @@ export function aniListToMal(anilistId: number, type: "anime"|"manga"){
     }
   }
   `;
-  ​
+  
   var variables = {
     id: anilistId,
     type: type.toUpperCase()
