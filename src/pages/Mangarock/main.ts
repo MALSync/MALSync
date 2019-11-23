@@ -24,6 +24,12 @@ export const Mangarock: pageInterface = {
       getVolume: function(url){//TODO
         return 0;
       },
+      nextEpUrl: function(url){
+        var num = j.$("option:contains('Chapter')").first().parent().find(':selected').next().attr("value");
+        if(num !== undefined) {
+          return url.split('/').slice(0, 6).join('/') + "/"+ num;
+        }
+      },
     },
     overview:{
       getTitle: function(){return j.$('h1').first().text().trim();},
