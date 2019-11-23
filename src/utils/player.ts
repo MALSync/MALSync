@@ -22,7 +22,7 @@ export function getPlayerTime(callback){
         break;
       }
 
-    };
+    }
   }, 1000);
 }
 

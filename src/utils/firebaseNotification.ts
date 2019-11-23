@@ -25,7 +25,7 @@ function checkNotifications(){
         var notificationUrl = 'https://kissanimelist.firebaseio.com/Data2/Notification/list/N'+ next+'.json';
         api.request.xhr('GET', notificationUrl).then(async (response) => {
           var message = JSON.parse(response.responseText);
-          if(message != 'null' && message != null){
+          if(message !== 'null' && message !== null){
             j.$(document).ready(function(){
               var flashm = utils.flashm(
                 '<div style="text-align: left;">'+message+'</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Close</button>',

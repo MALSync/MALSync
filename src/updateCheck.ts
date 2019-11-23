@@ -87,14 +87,20 @@ api.settings.init()
 
 try {
   setInterval( () => {
-    document.querySelectorAll("video, audio").forEach( elem => {
-      //@ts-ignore
-      elem.muted = true;elem.pause();
-    } );
-    //var iframes = document.querySelectorAll('iframe');
-    //for (var i = 0; i < iframes.length; i++) {
-    //    iframes[i].parentNode.removeChild(iframes[i]);
-    //}
+    var player = document.querySelectorAll("video, audio");
+    if(player) {
+      for (var i = 0; i < player.length; i++) {
+          player[i].parentNode!.removeChild(player[i]);
+      }
+    }
+
+
+    var iframes = document.querySelectorAll('iframe');
+    if(iframes) {
+      for (var i = 0; i < iframes.length; i++) {
+          iframes[i].parentNode!.removeChild(iframes[i]);
+      }
+    }
   },500)
 }catch(e) {
   con.error(e);

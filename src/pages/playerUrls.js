@@ -44,6 +44,7 @@ module.exports = {
   vidstreaming: {
     match: [
       '*://*.vidstreaming.io/*',
+      '*://*.vidstreaming.me/*'
     ]
   },
   xstreamcdn: {
@@ -248,7 +249,7 @@ module.exports = {
     ]
   },
   //animeultima
-  mystream: {
+  bitchute: {
     match: [
       '*://*.bitchute.com/embed/*'
     ]
@@ -288,6 +289,18 @@ module.exports = {
   streamium: {
     match: [
       '*://*.streamium.xyz/*'
-      ]
+    ]
+  },
+  //kickassanime
+  animopacestream: {
+    match: [
+      '*://animo-pace-stream.io/*'
+    ]
+  },
+  //Neko-sama
+  pstream: {
+  	match: [
+  		'*://*.pstream.net/e/*'
+  	]
   }
 };

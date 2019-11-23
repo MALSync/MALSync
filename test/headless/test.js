@@ -1260,7 +1260,7 @@ var testsArray = [
           sync: false,
           title: 'A Certain Magical Index',
           identifier: '10344-a-certain-magical-index',
-          uiSelector: true,
+          uiSelector: false,
         }
       },
     ]
@@ -1510,7 +1510,7 @@ var testsArray = [
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
         expected: {
           sync: true,
-          title: 'Strike the Blood III',
+          title: 'Strike the Blood 3',
           identifier: 'strike-the-blood-3',
           overviewUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
           nextEpUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado',
@@ -1522,7 +1522,7 @@ var testsArray = [
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
         expected: {
           sync: false,
-          title: 'Strike the Blood III',
+          title: 'Strike the Blood 3',
           identifier: 'strike-the-blood-3',
           uiSelector: true,
         }
