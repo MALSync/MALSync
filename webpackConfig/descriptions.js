@@ -23,8 +23,11 @@ hpages.sort(function(a, b) {
 
 createTable();
 function createTable(){
+  var animehtml = "";
+  var mangahtml = "";
 
   var html = `
+  <h1>Anime</h1>
   <table>
     <thead>
       <tr>
@@ -39,17 +42,45 @@ function createTable(){
       `;
   for (var page in pages){
     page = pages[page];
-
     if(typeof page.domain === 'object') page.domain = page.domain[0];
-
-    html += `<tr>
+    if(typeof page.type !== undefined && page.type === "anime") {
+    animehtml += `<tr>
               <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
               ${rowCondition(typeof page.overview !== 'undefined')}
               ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
               ${rowCondition(typeof page.database !== 'undefined')}
               ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
             </tr>`;
+    } else {
+    mangahtml += `<tr>
+              <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
+              ${rowCondition(typeof page.overview !== 'undefined')}
+              ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
+              ${rowCondition(typeof page.database !== 'undefined')}
+              ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
+            </tr>`;
+    }
   }
+  html += animehtml
+  html += `
+    </tbody>
+  </table>
+  `;
+  html += `
+  <h1>Manga</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Overview Page</th>
+        <th>Next Episode</th>
+        <th>Database Support</th>
+        <th>Update Check</th>
+      </tr>
+    </thead>
+    <tbody>
+      `;
+  html += mangahtml
   html += `
     </tbody>
   </table>
