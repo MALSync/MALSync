@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./src/",
     "noImplicitAny": false,
+    "noImplicitThis": false,
     "module": "es6",
     "moduleResolution": "node",
     "target": "es6",
