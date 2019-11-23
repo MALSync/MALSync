@@ -87,6 +87,7 @@ api.settings.init()
 
 try {
   setInterval( () => {
+
     var player = document.querySelectorAll("video, audio");
     if(player) {
       for (var i = 0; i < player.length; i++) {
@@ -101,6 +102,7 @@ try {
           iframes[i].parentNode!.removeChild(iframes[i]);
       }
     }
+
   },500)
 }catch(e) {
   con.error(e);
