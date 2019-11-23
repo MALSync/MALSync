@@ -137,7 +137,6 @@ export const pageSearch:pageSearchObj = {
       name: '9Anime',
       type: 'anime',
       domain: '9anime.to',
-      googleSearchDomain: '9anime.to/watch',
       searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
     },
     Kissanime: {
@@ -195,12 +194,17 @@ export const pageSearch:pageSearchObj = {
       domain: 'novelplanet.com',
       searchUrl: (titleEncoded) => {return 'https://novelplanet.com/NovelList?name='+titleEncoded}
     },
-
     Proxeranime: {
       name: 'Proxer',
       type: 'anime',
       domain: 'proxer.me',
       searchUrl: (titleEncoded) => {return 'https://proxer.me/search?s=search&name='+titleEncoded+'&typ=all-anime&tags=&notags=#top'}
+    },
+    Animeflix: {
+      name: 'Animeflix',
+      type: 'anime',
+      domain: 'animeflix.io',
+      searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:animeflix.io/shows/'}
     },
     Proxermanga: {
       name: 'Proxer',
