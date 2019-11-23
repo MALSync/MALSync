@@ -10,7 +10,7 @@ export interface pageInterface {
       getEpisode: (url) => number,
       getVolume?: (url) => number,
 
-      nextEpUrl?: (url) => string,
+      nextEpUrl?: (url) => string | undefined,
 
       uiSelector?: (selector) => void,
     },
