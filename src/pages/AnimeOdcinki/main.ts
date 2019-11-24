@@ -40,7 +40,6 @@ export const AnimeOdcinki: pageInterface = {
         return j.$("div.view-content > ul > li.lista_odc_tytul_pozycja");
       },
       elementUrl: function(selector){
-        con.log(selector.find('a').first().attr('href'));
         return selector.find('a').first().attr('href');
       },
       elementEp: function(selector){
