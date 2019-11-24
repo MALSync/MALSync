@@ -58,7 +58,7 @@ export const kawaiifu: pageInterface = {
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("div.desc-top").first());
-    },    
+    },
   },
   overview: {
       getTitle: function(url){return '';},
