@@ -23,6 +23,18 @@ export const Voiranime: pageInterface = {
       getTitle: function(url){return $('h1').first().text().trim();},
       getIdentifier: function(url){return utils.urlPart(url, 3);},
       uiSelector: function(selector){ selector.insertAfter(j.$("h1").first()); },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("ul.video-series-list > li:not(.series-title)");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),Voiranime.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().text().replace(/\D+/,"");
+      }
+    }
     },
     init(page){
       if(document.title == "Just a moment..."){
