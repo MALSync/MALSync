@@ -35,6 +35,18 @@ export const AnimeZone: pageInterface = {
     },
     uiSelector: function (selector) {
       selector.insertAfter(j.$('.ratings .panel-body .description').first());
+    },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("table.episodes > tbody > tr");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('td:nth-child(6) > a').first().attr('href').replace(/^../gm,""),AnimeZone.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('td:nth-child(6) > a').first().attr('href').split("/")[3].replace(/\D+/,"");
+      }
     }
   },
 
