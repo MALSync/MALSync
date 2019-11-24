@@ -45,6 +45,18 @@ export const RiiE: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$("#content > div.naru > div.areaxb").first());
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("div.episodelist > ul > li");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('span.leftoff > a').first().attr('href'),RiiE.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('span.leftoff > a').first().text().replace(/\D+/,"");
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){
@@ -55,7 +67,7 @@ export const RiiE: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
       if (page.url.split("/")[3] == "anime" || j.$("#lightsVideo")[0] && j.$("#content > div.postarea > div > div.post > div.newzone > div.right")[0])
-      page.handlePage();
+        page.handlePage();
     });
   }
 };
