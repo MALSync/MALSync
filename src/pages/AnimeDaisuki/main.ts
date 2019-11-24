@@ -41,6 +41,18 @@ export const AnimeDaisuki: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$("section.WdgtCn").first());
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("ul.ListCaps > li.fa-play-circle:not(.Next,.Issues)");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),AnimeDaisuki.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('a > p').first().text().replace(/\D+/g, "");
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){
