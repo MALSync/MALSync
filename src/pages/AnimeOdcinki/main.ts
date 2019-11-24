@@ -33,6 +33,19 @@ export const AnimeOdcinki: pageInterface = {
     },
     uiSelector: function (selector) {
       selector.insertAfter(j.$('#user-anime-top').first());
+    },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("div.view-content > ul > li.lista_odc_tytul_pozycja");
+      },
+      elementUrl: function(selector){
+        con.log(selector.find('a').first().attr('href'));
+        return selector.find('a').first().attr('href');
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().attr('href').split("/")[5].match(/\d+/gmi);
+      }
     }
   },
 
@@ -44,7 +57,13 @@ export const AnimeOdcinki: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function () {
-      page.handlePage();
+      if(page.url.split("/")[5] !== undefined) {
+        page.handlePage();
+      } else {
+        utils.waitUntilTrue(function(){return j.$('div.view-content').length}, function(){
+          page.handlePage();
+        });
+      }
     });
   }
 };
