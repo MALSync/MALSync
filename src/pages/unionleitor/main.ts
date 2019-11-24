@@ -23,7 +23,14 @@ export const unionleitor: pageInterface = {
   },
   getEpisode: function(url){
     return url.split("/")[5];
-  }
+  },
+  nextEpUrl: function(url){
+    var num = $("#capitulo_trocar").find("option:selected").next().attr('value');
+    var href = url.replace(/\d+$/, num);
+    if(typeof num !== 'undefined' && href !== url){
+      return utils.absoluteLink(href, unionleitor.domain);
+    }
+  },
 },
 overview:{
   getTitle: function(url){
@@ -35,6 +42,18 @@ overview:{
   uiSelector: function(selector){
     selector.insertAfter(j.$("div.row > div.col-md-12 > h2").first());
   },
+  list:{
+    offsetHandler: false,
+    elementsSelector: function(){
+      return j.$("div.row.lancamento-linha");
+    },
+    elementUrl: function(selector){
+      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionleitor.domain);
+    },
+    elementEp: function(selector){
+      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionleitor.domain).split("/")[5];
+    }
+  }
 },
 init(page){
   if(document.title == "Just a moment..."){
