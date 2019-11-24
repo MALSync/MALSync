@@ -45,6 +45,18 @@ export const AnimeIndo: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$("#sct_content > h1").first());
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("ul.eps_lst > li:not(.hdr)");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),AnimeIndo.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().text().replace(/\D+/g, "");
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){
@@ -57,6 +69,6 @@ export const AnimeIndo: pageInterface = {
       if(page.url.split("/")[3] === "anime" || page.url.split("/")[3] !== null && j.$("#sct_content > div > div.preview")[0]) {
         page.handlePage();
       }
-  });
+    });
   }
 };
