@@ -8,7 +8,8 @@ export const kawaiifu: pageInterface = {
     if (
       url.split("/")[3] === "season" ||
       url.split("/")[3] === "dub" ||
-      url.split("/")[3] === "tv-series"
+      url.split("/")[3] === "tv-series" ||
+      url.split("/")[3] === "anime-movies"
     ) {
       return true;
     } else {
@@ -25,14 +26,14 @@ export const kawaiifu: pageInterface = {
       .trim();
     },
     getIdentifier: function(url) {
-      if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series") {
+      if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series" || url.split("/")[3] === "anime-movies") {
         return url.split("/")[4].replace(/\.[^.]*$/g, "");
       } else {
         return url.split("/")[5].replace(/\.[^.]*$/g, "");
       }
     },
     getOverviewUrl: function(url) {
-      if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series") {
+      if (url.split("/")[3] === "dub" || url.split("/")[3] === "tv-series" || url.split("/")[3] === "anime-movies") {
         return (
           "https://kawaiifu.com/" +url.split("/")[3] + "/" + url.split("/")[4].replace(/\?[^?]*$/g, "")
         );
@@ -43,7 +44,7 @@ export const kawaiifu: pageInterface = {
       }
     },
     getEpisode: function(url) {
-      if (j.$("ul.list-ep a.active").text().toLowerCase().indexOf("trailer") !== -1) {
+      if (j.$("ul.list-ep a.active").text().toLowerCase().indexOf("trailer") !== -1 || j.$("ul.list-ep a.active").text().toLowerCase().indexOf("teaser") !== -1) {
         return 0;
       } else {
         return j.$("ul.list-ep a.active").text().replace(/\D+/g, "");
@@ -57,7 +58,24 @@ export const kawaiifu: pageInterface = {
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("div.desc-top").first());
-    },
+    },    
+  },
+  overview: {
+      getTitle: function(url){return '';},
+      getIdentifier: function(url){return '';},
+      uiSelector: function(selector){},
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("ul.list-ep > li");
+      },
+      elementUrl: function(selector){
+        return selector.find('a').first().attr('href');
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().text().replace(/\D+/g, "");
+      }
+    }
   },
   init(page) {
     api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());

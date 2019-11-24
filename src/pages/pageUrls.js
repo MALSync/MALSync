@@ -206,6 +206,7 @@ module.exports = {
       '*://kawaiifu.com/season/*',
       '*://kawaiifu.com/dub/*',
       '*://kawaiifu.com/tv-series/*',
+      '*://kawaiifu.com/anime-movies/*',
     ],
   },
   fourAnime: {
