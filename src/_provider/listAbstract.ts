@@ -36,6 +36,11 @@ export abstract class ListAbstract {
 
   public api = api;
 
+  public setTemplist(list) {
+    this.templist = list;
+    return this;
+  }
+
   async get(): Promise<listElement[]> {
 
     var retList: listElement[] = [];
