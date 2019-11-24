@@ -35,6 +35,18 @@ export const AnimesVision: pageInterface = {
     getTitle: function(url){return utils.getBaseText($('div.goblock.detail-anime > div.gobread > ol > li.active > span')).replace(/Dublado/gmi,"").replace(/[\s-\s]*$/,"").trim();},
     getIdentifier: function(url){return utils.urlPart(url,4)},
     uiSelector: function(selector){selector.insertAfter(j.$("div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content"));},
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("#episodes-sv-1 > li.ep-item");
+      },
+      elementUrl: function(selector){
+        return selector.find('a').first().attr('href');
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().attr('href').split("/")[5].replace(/\D+/,"");
+      }
+    }
   },
   init(page){
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
