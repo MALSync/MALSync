@@ -28,6 +28,9 @@ export const Novelplanet: pageInterface = {
         }
         return url;
       },
+      nextEpUrl: function(url){
+        return utils.absoluteLink(j.$('div.row > div:nth-child(5)  > a').first().attr('href'), Novelplanet.domain);
+      },
     },
     overview:{
       getTitle: function(){return j.$('.post-contentDetails .title').first().text();},

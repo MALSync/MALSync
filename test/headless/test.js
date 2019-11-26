@@ -433,6 +433,7 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://novelplanet.com/Novel/No-Game-No-Life',
           episode: 3,
+          nextEpUrl: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
           uiSelector: true,
         }
       },
@@ -1304,6 +1305,7 @@ var testsArray = [
           identifier: 'one-piece',
           overviewUrl: 'https://mangadenizi.com/manga/one-piece',
           episode: 769,
+          nextEpUrl: "https://mangadenizi.com/manga/one-piece/0770",
           uiSelector: false,
         }
       },
@@ -1372,6 +1374,7 @@ var testsArray = [
           identifier: 'solo-leveling',
           overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
           episode: 76,
+          nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
           uiSelector: false,
         }
       },
@@ -1566,6 +1569,33 @@ var testsArray = [
           sync: false,
           title: 'Nanatsu no Taizai',
           identifier: 'nanatsu-no-taizai-dublado',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'Mangarock',
+    url: 'https://mangarock.com/',
+    testCases: [
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
+        expected: {
+          sync: true,
+          title: 'Initial D',
+          identifier: '116364',
+          overviewUrl: 'https://mangarock.com/manga/mrs-serie-116364',
+          nextEpUrl: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116996',
+          episode: 631,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-116364',
+        expected: {
+          sync: false,
+          title: 'Initial D',
+          identifier: '116364',
           uiSelector: true,
         }
       },

@@ -40,6 +40,18 @@ overview:{
   uiSelector: function(selector){
     selector.insertAfter(j.$("div#main > div.card > div.card-body > h1").first());
   },
+  list:{
+    offsetHandler: false,
+    elementsSelector: function(){
+      return j.$("div#chapters_list > div > div.chapters_list.text-truncate");
+    },
+    elementUrl: function(selector){
+      return utils.absoluteLink(selector.find('a').first().attr('href'),JapScan.domain);
+    },
+    elementEp: function(selector){
+      return selector.find('a').first().attr('href').split("/")[3].match(/\d+/gmi);
+    }
+  }
 },
 init(page){
   if(document.title == "Just a moment..."){

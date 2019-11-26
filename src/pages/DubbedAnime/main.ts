@@ -43,6 +43,18 @@ export const DubbedAnime: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$("#episodes > div > div.row.mb-3.pr-2").first());
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('div.da-video-tbl > a').first().attr('href'),DubbedAnime.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('div.da-video-tbl > span.ep-num').first().text().replace(/\D+/,"");
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){
@@ -52,8 +64,15 @@ export const DubbedAnime: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] === "episode" || page.url.split("/")[3] === "anime") {
+      if (page.url.split("/")[3] === "episode") {
         page.handlePage();
+        } else if (page.url.split("/")[3] === "anime") {
+          page.handlePage();
+              $( "div.col-4.px-0 > button.subdub" ).unbind("click").click(function() {
+                j.$('#malp').remove();
+                page.UILoaded = false;
+                page.handlePage();
+              })
         }
       });
   }

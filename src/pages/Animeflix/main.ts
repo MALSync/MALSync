@@ -49,28 +49,12 @@ export const Animeflix: pageInterface = {
       return;
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    if (page.url.split("/")[3] === "shows") {
-      utils.waitUntilTrue(
-        function() {
-          if (j.$("h4.title.text-truncate").text() || j.$("h4.headline.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text()){
-            return true;
-          } else {
-            return false;
-          }
-        },
-        function() {
-          page.handlePage();
-        }
-        );
-    }
-    utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+
+    function check() {
       if (page.url.split("/")[3] === "shows") {
         utils.waitUntilTrue(
           function() {
-            if (j.$("h4.title.text-truncate").text() || j.$("h4.headline.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text() ){
+            if (j.$("h4.title.text-truncate").text() || j.$("h4.headline.text-truncate").text() || j.$("div.flex.xs12.lg8 > h1").text()){
               return true;
             } else {
               return false;
@@ -79,10 +63,16 @@ export const Animeflix: pageInterface = {
           function() {
             page.handlePage();
           }
-          );
+        );
       }
+    }
+    check();
+    utils.urlChangeDetect(function() {
+      page.url = window.location.href;
+      page.UILoaded = false;
+      $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+      check();
     });
-
-
   }
 };
+

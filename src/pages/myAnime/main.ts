@@ -23,7 +23,7 @@ export const myAnime: pageInterface = {
       return parseInt(utils.urlPart(url, 5));
     },
     nextEpUrl: function(url){return myAnime.domain + j.$('div#ep-next').first().parent().attr('href');
-    },
+  },
 },
 overview:{
   getTitle: function(url){
@@ -35,6 +35,18 @@ overview:{
   uiSelector: function(selector){
     selector.insertAfter(j.$("img.anime-bg").first());
   },
+  list:{
+    offsetHandler: false,
+    elementsSelector: function(){
+      return j.$("ul.list > li.li-block");
+    },
+    elementUrl: function(selector){
+      return utils.absoluteLink(selector.find('a').first().attr('href'),myAnime.domain);
+    },
+    elementEp: function(selector){
+      return selector.find('a').first().attr('href').split("/")[3].replace(/\D+/,"");
+    }
+  }
 },
 init(page){
   if(document.title == "Just a moment..."){
