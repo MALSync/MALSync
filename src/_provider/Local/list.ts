@@ -41,6 +41,7 @@ export class userlist extends ListAbstract {
              url: key,
              cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
+             fn: this.fn()
            });
          }else{
            newData.push({
@@ -58,6 +59,7 @@ export class userlist extends ListAbstract {
              url: key,
              cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
+             fn: this.fn()
            });
          }
        }

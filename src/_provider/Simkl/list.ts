@@ -77,6 +77,7 @@ export class userlist extends ListAbstract {
           image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
           tags: el.private_memo,
           airingState: el['anime_airing_status'],
+          fn: this.fn()
         }
         newData.push(tempData);
       }else{

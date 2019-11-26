@@ -69,6 +69,7 @@ export class userlist extends ListAbstract {
           image: el['anime_image_path'],
           tags: el['tags'],
           airingState: el['anime_airing_status'],
+          fn: this.fn()
         })
       }else{
         newData.push({
@@ -85,6 +86,7 @@ export class userlist extends ListAbstract {
           image:  el['manga_image_path'],
           tags: el['tags'],
           airingState: el['anime_airing_status'],
+          fn: this.fn()
         })
       }
 

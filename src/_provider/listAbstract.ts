@@ -12,6 +12,9 @@ export interface listElement {
   image: string,
   tags: string,
   airingState: number,
+  fn: {
+    continueUrl: (item: listElement) => string,
+  },
 }
 
 export abstract class ListAbstract {
@@ -110,6 +113,25 @@ export abstract class ListAbstract {
       default:
         return error.message;
         break;
+    }
+  }
+
+  // itemFunctions;
+  fn() {
+    var continueUrlTemp: any = null;
+    return {
+      continueUrl: (item) => {
+        if(continueUrlTemp !== null) return continueUrlTemp;
+        return utils.getContinueWaching(item.type, item.cacheKey).then((obj) => {
+          var res = undefined;
+          var curEp = parseInt(item.watchedEp.toString());
+          if(typeof obj !== 'undefined' && obj.ep === (curEp+1)){
+            res = obj.url;
+          }
+          continueUrlTemp = res;
+          return continueUrlTemp;
+        });
+      }
     }
   }
 }

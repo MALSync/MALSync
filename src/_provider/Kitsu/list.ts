@@ -132,6 +132,7 @@ export class userlist extends ListAbstract {
           image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
+          fn: this.fn()
         }
       }else{
         var tempData = {
@@ -149,6 +150,7 @@ export class userlist extends ListAbstract {
           image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
+          fn: this.fn()
         }
       }
 
