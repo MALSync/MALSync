@@ -41,8 +41,9 @@ export const Hulu: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      if(j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value").text().replace(/\D+/g, "") > 1) {
-        return name + " season "+ j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
+      var curseason = j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
+      if(typeof curseason !== undefined && curseason > 1) {
+        return name + " season "+ curseason;
       }else {
         return name;
       }
@@ -54,7 +55,7 @@ export const Hulu: pageInterface = {
 
       } else {
         con.log("not a movie")
-        return huluId + "?s=" + j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
+        return huluId + "?s=" + j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value").first().text().replace(/\D+/g, "");
       }
     },
     uiSelector: function(selector){
@@ -69,7 +70,7 @@ export const Hulu: pageInterface = {
         if(page.url.split("/")[3] !== "series") {
           return true;
         } else {
-          return j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value").text();
+          return j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > .Select__control > div.Select__single-value").first().text();
         }
       }, async function(){
         if(await checkPage()) {
