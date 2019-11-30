@@ -418,6 +418,7 @@
   import numberInput from './components/settingsNumberInput.vue'
   import dropdown from './components/settingsDropdown.vue'
   import fileUpload from './components/settingsFileUpload.vue'
+  import shortcut from './components/settingsShortcut.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
 
@@ -430,7 +431,8 @@
       checkbox,
       numberInput,
       dropdown,
-      fileUpload
+      fileUpload,
+      shortcut,
     },
     props: {
       page: {
