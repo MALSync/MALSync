@@ -1733,7 +1733,7 @@ let debugging = false;
 
 before(async function () {
   puppeteer.use(pluginStealth());
-  browser = await puppeteer.launch({ headless: false })
+  browser = await puppeteer.launch({ headless: true })
 })
 
 beforeEach(async function () {
