@@ -5,6 +5,7 @@ export function generalListTests(userlist, elements, responses) {
     var list = new userlist(7, 'anime')
 
     return list.get().then((list) => {
+      list = removeFn(list);
       expect(list).to.deep.include(elements[0]);
       expect(list).to.deep.include(elements[1]);
 
@@ -59,6 +60,7 @@ export function generalListTests(userlist, elements, responses) {
   it('continueCall', async function () {
     var testArray = [];
     var list = new userlist(7, 'anime', {continueCall: function(list) {
+      list = removeFn(list, false);
       return new Promise(function(resolve, reject) {
         testArray.push(1);
 
@@ -96,4 +98,12 @@ export function generalListTests(userlist, elements, responses) {
       expect(list.errorMessage({code: 999, message: 'Invalid token'})).to.equal('Invalid token');
     });
   });
+}
+
+export function removeFn(list, test = true) {
+  for (var key in list) {
+    if(test) expect(list[key]).to.have.property("fn");
+    delete list[key]['fn'];
+  }
+  return list;
 }
