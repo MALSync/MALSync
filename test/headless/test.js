@@ -17,6 +17,9 @@ var testsArray = [
           title: 'Ai-Mai-Mi Mousou Catastrophe',
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
           uiSelector: true,
+          epList: {
+            5: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-5-untitled-658393'
+          }
         }
       },
 
@@ -57,6 +60,9 @@ var testsArray = [
           title: 'No Game No Life (Sub)',
           identifier: 'No-Game-No-Life',
           uiSelector: true,
+          epList: {
+            5: 'https://kissanime.ru/Anime/No-Game-No-Life/Episode-005?id=67493'
+          }
         }
       },
       {
@@ -88,6 +94,9 @@ var testsArray = [
           nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/75m5j8',
           episode: 4,
           uiSelector: true,
+          epList: {
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/0119vk'
+          }
         }
       },
     ]
@@ -104,6 +113,9 @@ var testsArray = [
           title: 'no-game-no-life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
+          }
         }
       },
       {
@@ -116,6 +128,9 @@ var testsArray = [
           nextEpUrl: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
           episode: 5,
           uiSelector: false,
+          epList: {
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
+          }
         }
       },
     ]
@@ -135,6 +150,9 @@ var testsArray = [
           nextEpUrl: 'https://twist.moe/a/no-game-no-life/5',
           episode: 4,
           uiSelector: true,
+          epList: {
+            5: 'https://twist.moe/a/no-game-no-life/5'
+          }
         }
       },
     ]
@@ -151,6 +169,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '781',
           uiSelector: true,
+          epList: {
+            5: 'https://anime4you.one/show/1/aid/779/epi/5/#vidplayer'
+          }
         }
       },
       {
@@ -163,6 +184,9 @@ var testsArray = [
           nextEpUrl: 'https://www.anime4you.one/show/1/aid/779/epi/5/?host=#vidplayer',
           episode: 4,
           uiSelector: true,
+          epList: {
+            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
+          }
         }
       },
     ]
@@ -179,6 +203,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'http://www.turkanime.net/video/no-game-no-life-special-5-bolum'
+          }
         }
       },
       {
@@ -235,6 +262,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '8173',
           uiSelector: true,
+          epList: {
+            5: 'https://www.mangadex.org/chapter/366833'
+          }
         }
       },
       {
@@ -275,6 +305,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'https://branitube.net/watch/1818'
+          }
         }
       },
       {
@@ -303,6 +336,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'https://animepahe.com/anime/no-game-no-life/52827'
+          }
         }
       },
       {
@@ -331,6 +367,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '3825/no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'https://animeflv.net/ver/24662/no-game-no-life-5'
+          }
         }
       },
       {
@@ -359,6 +398,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'https://jkanime.net/no-game-no-life/5'
+          }
         }
       },
       {
@@ -407,6 +449,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '6587',
           uiSelector: false,
+          epList: {
+            5: 'https://proxer.me/watch/6587/5/gerdub'
+          }
         }
       },
     ]
@@ -423,6 +468,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           uiSelector: true,
+          epList: {
+            5: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-5-Prologue?id=125835'
+          }
         }
       },
       {
@@ -433,6 +481,7 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://novelplanet.com/Novel/No-Game-No-Life',
           episode: 3,
+          nextEpUrl: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
           uiSelector: true,
         }
       },
@@ -453,6 +502,9 @@ var testsArray = [
           episode: 4,
           nextEpUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
+          epList: {
+            5: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=5'
+          }
         }
       },
     ]
@@ -472,6 +524,9 @@ var testsArray = [
           episode: 4,
           nextEpUrl: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
           uiSelector: false,
+          epList: {
+            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621'
+          }
         }
       },
       {
@@ -481,6 +536,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
+          epList: {
+            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621'
+          }
         }
       },
     ]
@@ -600,6 +658,9 @@ var testsArray = [
           title: 'Initial D: First Stage',
           identifier: 'initial-d-first-stage',
           uiSelector: true,
+          epList: {
+            5: 'https://animedaisuki.moe/watch/6380/initial-d-first-stage-5'
+          }
         }
       },
     ]
@@ -727,6 +788,9 @@ var testsArray = [
           title: 'tate no yuusha no nariagari',
           identifier: 'tate-no-yuusha-no-nariagari',
           uiSelector: true,
+          epList: {
+            5: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-5-subtitle-indonesia/'
+          }
         }
       },
     ]
@@ -754,6 +818,9 @@ var testsArray = [
           title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           uiSelector: true,
+          epList: {
+            5: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-5'
+          }
         }
       }
     ]
@@ -808,6 +875,9 @@ var testsArray = [
           title: 'Zankyou no Terror',
           identifier: 'zankyou-no-terror',
           uiSelector: true,
+          epList: {
+            5: 'http://animeindo.moe/zankyou-no-terror-episode-05.html'
+          }
         }
       }
     ]
@@ -853,6 +923,9 @@ var testsArray = [
           nextEpUrl: 'http://voiranime.com/no-game-no-life-07-vostfr/',
           episode: 6,
           uiSelector: false,
+          epList: {
+            5: 'http://voiranime.com/no-game-no-life-05-vostfr/'
+          }
         }
       },
       {
@@ -865,6 +938,9 @@ var testsArray = [
           nextEpUrl: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/',
           episode: 4,
           uiSelector: false,
+          epList: {
+            5: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/'
+          }
         }
       },
       {
@@ -1101,6 +1177,10 @@ var testsArray = [
           title: 'Dr. Stone',
           identifier: 'dr_stone',
           uiSelector: true,
+          epList: {
+            5: 'https://manganelo.com/chapter/dr_stone/chapter_5',
+            121: 'https://manganelo.com/chapter/dr_stone/chapter_121'
+          }
         }
       },
     ]
@@ -1128,6 +1208,10 @@ var testsArray = [
           title: 'Domestic na Kanojo',
           identifier: 'domestic_na_kanojo',
           uiSelector: true,
+          epList: {
+            5: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_5',
+            121: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_121'
+          }
         }
       },
     ]
@@ -1182,6 +1266,9 @@ var testsArray = [
           title: 'Cop Craft',
           identifier: 'cop-craft',
           uiSelector: true,
+          epList: {
+            5: 'https://www.animezone.pl/odcinek/cop-craft/5'
+          }
         }
       },
     ]
@@ -1209,6 +1296,9 @@ var testsArray = [
           title: 'Cop Craft',
           identifier: 'cop-craft',
           uiSelector: true,
+          epList: {
+            5: 'https://anime-odcinki.pl/anime/cop-craft/5'
+          }
         }
       },
     ]
@@ -1304,6 +1394,7 @@ var testsArray = [
           identifier: 'one-piece',
           overviewUrl: 'https://mangadenizi.com/manga/one-piece',
           episode: 769,
+          nextEpUrl: "https://mangadenizi.com/manga/one-piece/0770",
           uiSelector: false,
         }
       },
@@ -1314,6 +1405,9 @@ var testsArray = [
           title: 'One Piece',
           identifier: 'one-piece',
           uiSelector: true,
+          epList: {
+            826: 'https://mangadenizi.com/manga/one-piece/0826'
+          }
         }
       },
     ]
@@ -1341,6 +1435,9 @@ var testsArray = [
           title: 'High School DxD Hero',
           identifier: 'high-school-dxd-hero',
           uiSelector: true,
+          epList: {
+            5: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/'
+          }
         }
       },
     ]
@@ -1372,6 +1469,7 @@ var testsArray = [
           identifier: 'solo-leveling',
           overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
           episode: 76,
+          nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
           uiSelector: false,
         }
       },
@@ -1382,6 +1480,10 @@ var testsArray = [
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
+          epList: {
+            5: 'https://unionleitor.top/leitor/Solo_Leveling/05',
+            87: 'https://unionleitor.top/leitor/Solo_Leveling/87',
+          }
         }
       },
     ]
@@ -1435,6 +1537,10 @@ var testsArray = [
           title: 'One Punch Man',
           identifier: 'one-punch-man',
           uiSelector: true,
+          epList: {
+            5: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/5/',
+            166: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/166/',
+          }
         }
       },
       {//manhwa overview
@@ -1444,6 +1550,10 @@ var testsArray = [
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
+          epList: {
+            5: 'https://www.japscan.co/lecture-en-ligne/solo-leveling/5/',
+            92: 'https://www.japscan.co/lecture-en-ligne/solo-leveling/92/',
+          }
         }
       },
     ]
@@ -1471,6 +1581,10 @@ var testsArray = [
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
+          epList: {
+            5: 'https://mangakisa.com/solo-leveling-chapterid-9457',
+            92: 'https://mangakisa.com/solo-leveling-chapterid-500210',
+          }
         }
       },
     ]
@@ -1525,6 +1639,9 @@ var testsArray = [
           title: 'Strike the Blood 3',
           identifier: 'strike-the-blood-3',
           uiSelector: true,
+          epList: {
+            5: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado'
+          }
         }
       },
       {//movie
@@ -1567,6 +1684,41 @@ var testsArray = [
           title: 'Nanatsu no Taizai',
           identifier: 'nanatsu-no-taizai-dublado',
           uiSelector: true,
+          epList: {
+            5: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-05/dublado'
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'Mangarock',
+    url: 'https://mangarock.com/',
+    testCases: [
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
+        expected: {
+          sync: true,
+          title: 'Initial D',
+          identifier: '116364',
+          overviewUrl: 'https://mangarock.com/manga/mrs-serie-116364',
+          nextEpUrl: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116996',
+          episode: 631,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangarock.com/manga/mrs-serie-116364',
+        expected: {
+          sync: false,
+          title: 'Initial D',
+          identifier: '116364',
+          uiSelector: true,
+          epList: {
+            5: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116369',
+            110: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116474',
+            627: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116991',
+          }
         }
       },
     ]
@@ -1577,11 +1729,11 @@ var testsArray = [
 let browser
 let page
 let debugging = false;
-//var caseTitle = 'Turkanime';
+//var caseTitle = 'Proxer';
 
 before(async function () {
   puppeteer.use(pluginStealth());
-  browser = await puppeteer.launch({ headless: true })
+  browser = await puppeteer.launch({ headless: false })
 })
 
 beforeEach(async function () {
@@ -1662,6 +1814,11 @@ testsArray.forEach(function(testPage) {
         }
         if(typeof text.uiSelector != 'undefined'){
           expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(testCase.expected.uiSelector);
+        }
+        if(typeof text.epList !== "undefined" && typeof testCase.expected.epList !== "undefined"){
+          for(var key in testCase.expected.epList) {
+            expect(testCase.expected.epList[key].replace(/www[^.]*\./,''), 'EP'+key).to.equal(text.epList[key].replace(/www[^.]*\./,''));
+          }
         }
       })
     });
