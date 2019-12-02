@@ -2,7 +2,7 @@ import {pageInterface} from "./../pageInterface";
 //TODO: Add mal2kiss season argument
 export const Crunchyroll: pageInterface = {
     name: 'Crunchyroll',
-    domain: 'http://www.crunchyroll.com',
+    domain: 'https://www.crunchyroll.com',
     database: 'Crunchyroll',
     type: 'anime',
     isSyncPage: function(url){
