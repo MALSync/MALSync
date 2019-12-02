@@ -30,7 +30,7 @@ var testsArray = [
           title: 'Ai-Mai-Mi Mousou Catastrophe',
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
           overviewUrl: 'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
-          nextEpUrl: 'http://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
+          nextEpUrl: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
           episode: 3,
           uiSelector: false,
         }
@@ -43,7 +43,7 @@ var testsArray = [
           identifier: 'Katana Maidens ~ Toji No Miko',
           episode: 12,
           overviewUrl: 'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=Katana Maidens ~ Toji No Miko',
-          nextEpUrl: 'http://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501'
+          nextEpUrl: 'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501'
         }
       },
     ]
