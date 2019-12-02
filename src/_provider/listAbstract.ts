@@ -1,3 +1,5 @@
+import {epPredictions} from './../utils/epPrediction';
+
 export interface listElement {
   uid: number,
   malId: number,
@@ -119,6 +121,7 @@ export abstract class ListAbstract {
   // itemFunctions;
   fn() {
     var continueUrlTemp: any = null;
+    var predictionsObj: any = null;
     return {
       continueUrl: (item) => {
         if(continueUrlTemp !== null) return continueUrlTemp;
@@ -131,6 +134,10 @@ export abstract class ListAbstract {
           continueUrlTemp = res;
           return continueUrlTemp;
         });
+      },
+      predictions: (item) => {
+        if(predictionsObj !== null) return predictionsObj;
+        return new epPredictions(item.malId, item.cacheKey, item.type).init().then((obj) => predictionsObj = obj);
       }
     }
   }
