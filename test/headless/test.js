@@ -234,6 +234,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           uiSelector: true,
+          epList: {
+            5: 'http://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265'
+          }
         }
       },
       {
@@ -1134,6 +1137,10 @@ var testsArray = [
           title: 'Golgo 13',
           identifier: '3072-golgo-13',
           uiSelector: true,
+          epList: {
+            5: 'https://ww5.dubbedanime.net/episode/177287-golgo-13-episode-5-english-dubbed',
+            43: 'https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dubbed'
+          }
         }
       },
     ]
