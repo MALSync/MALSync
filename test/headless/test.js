@@ -235,7 +235,7 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           uiSelector: true,
           epList: {
-            5: 'http://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265'
+            5: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265'
           }
         }
       },
