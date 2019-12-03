@@ -35,7 +35,26 @@ window.MalSyncTest = async function(){
           value.uiSelector = j.$('#MAL-SYNC-TEST').text();
         }
       }
-      resolve(value);
+
+    if (typeof(page.overview) !== "undefined" && typeof(page.overview.list) !== "undefined"){
+      var elementEp = page.overview.list.elementEp;
+      var elementUrl = page.overview.list.elementUrl;
+      var elementArray = [] as JQuery<HTMLElement>[];
+
+      page.overview.list.elementsSelector().each( function(index, el) {
+        try{
+          var elEp = parseInt(elementEp(j.$(el))+"");
+          elementArray[elEp] = elementUrl(j.$(el));
+        }catch(e){
+          con.info(e);
+        }
+      });
+      con.log(elementArray)
+      if(elementArray.length) {
+      value.epList = elementArray;
+      }
+    }
+    resolve(value);
     }, cdn: function(){
       resolve('retry');
     }});
