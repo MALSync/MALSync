@@ -32,6 +32,7 @@ export const Jkanime: pageInterface = {
       list:{
         offsetHandler: false,
         elementsSelector: function(){
+          if(!utils.urlPart(window.location.href,4).length) {
           document.body.insertAdjacentHTML( 'afterbegin', '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>' );
           var idMALSync = document.getElementById('MALSyncUl');
           var lastEps = j.$('.navigation a').last().text().split('-')[1].trim();
@@ -40,7 +41,11 @@ export const Jkanime: pageInterface = {
               idMALSync.innerHTML += '<li><a href="'+document.URL+i+'" epi="'+i+'"></a> </li>';
             }
           }
-          return j.$('.MALSync a');},
+          return j.$('.MALSync a');
+          } else {
+            return j.$('.nowaythisexists123')
+          }
+        },
           elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), Jkanime.domain);},
           elementEp: function(selector){return selector.attr('epi')},
           handleListHook: function(epi, epilist){

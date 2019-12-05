@@ -31,7 +31,7 @@ export const AnimeFever: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return utils.getBaseText($("#ov-anime > div.top-detail.relative > div.backdrop-blur.uk-width-expand.relative.z-10 > div > h1 > div").first()).trim();
+      return utils.getBaseText($("#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div").first()).trim();
     },
     getIdentifier: function(url){
       return utils.urlPart(url,4);
@@ -43,10 +43,10 @@ export const AnimeFever: pageInterface = {
       page.url = window.location.href;
       page.UILoaded = false;
       $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
-      if (page.url.split("/")[3] === "anime" && typeof page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0) {
+      if (page.url.split("/")[3] === "shows" && typeof page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0) {
         utils.waitUntilTrue(
           function() {
-            if (j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").text() || j.$("#ov-anime > div.top-detail.relative > div.backdrop-blur.uk-width-expand.relative.z-10 > div > h1 > div").text()){
+            if (j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").text() || j.$("#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div").text()){
               return true;
             } else {
               return false;

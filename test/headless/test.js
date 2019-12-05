@@ -170,7 +170,7 @@ var testsArray = [
           identifier: '781',
           uiSelector: true,
           epList: {
-            5: 'https://anime4you.one/show/1/aid/779/epi/5/#vidplayer'
+            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
           }
         }
       },
@@ -185,7 +185,7 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
+            5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
           }
         }
       },
@@ -234,6 +234,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           uiSelector: true,
+          epList: {
+            5: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265'
+          }
         }
       },
       {
@@ -1134,6 +1137,10 @@ var testsArray = [
           title: 'Golgo 13',
           identifier: '3072-golgo-13',
           uiSelector: true,
+          epList: {
+            5: 'https://ww5.dubbedanime.net/episode/177287-golgo-13-episode-5-english-dubbed',
+            43: 'https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dubbed'
+          }
         }
       },
     ]
@@ -1345,7 +1352,7 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www.animefever.tv/anime/10344-a-certain-magical-index',
+        url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
         expected: {
           sync: false,
           title: 'A Certain Magical Index',
@@ -1719,33 +1726,6 @@ var testsArray = [
             110: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116474',
             627: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116991',
           }
-        }
-      },
-    ]
-  },
-  {
-    title: 'Mangarock',
-    url: 'https://mangarock.com/',
-    testCases: [
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
-        expected: {
-          sync: true,
-          title: 'Initial D',
-          identifier: '116364',
-          overviewUrl: 'https://mangarock.com/manga/mrs-serie-116364',
-          nextEpUrl: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116996',
-          episode: 631,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364',
-        expected: {
-          sync: false,
-          title: 'Initial D',
-          identifier: '116364',
-          uiSelector: true,
         }
       },
     ]

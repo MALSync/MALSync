@@ -55,6 +55,11 @@ export const fourAnime: pageInterface = {
     }
   },
   init(page) {
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
     api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
     j.$(document).ready(function() {
       if (j.$(".singletitletop")[0] && j.$(".episodes")[0] || page.url.split("/")[3] == "anime") {
