@@ -170,7 +170,7 @@ var testsArray = [
           identifier: '781',
           uiSelector: true,
           epList: {
-            5: 'https://anime4you.one/show/1/aid/779/epi/5/#vidplayer'
+            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
           }
         }
       },
@@ -185,7 +185,7 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
+            5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
           }
         }
       },
