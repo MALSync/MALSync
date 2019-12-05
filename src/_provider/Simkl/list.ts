@@ -48,7 +48,7 @@ export class userlist extends ListAbstract {
     return this.syncList().then((list) => {
       this.done = true;
       var data = this.prepareData(Object.values(list), this.listType, this.status);
-      con.error(data);
+      con.log(data);
       return data;
     });
   }

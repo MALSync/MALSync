@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-export function generalListTests(userlist, elements, responses) {
+export function generalListTests(userlist, elements, responses, options = {}) {
   it('Get List', function () {
     var list = new userlist(7, 'anime')
 
@@ -58,6 +58,7 @@ export function generalListTests(userlist, elements, responses) {
   });
 
   it('continueCall', async function () {
+    if(options['noContinueCall']) return;
     var testArray = [];
     var list = new userlist(7, 'anime', {continueCall: function(list) {
       list = removeFn(list, false);
