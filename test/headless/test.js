@@ -1730,33 +1730,6 @@ var testsArray = [
       },
     ]
   },
-  {
-    title: 'Mangarock',
-    url: 'https://mangarock.com/',
-    testCases: [
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
-        expected: {
-          sync: true,
-          title: 'Initial D',
-          identifier: '116364',
-          overviewUrl: 'https://mangarock.com/manga/mrs-serie-116364',
-          nextEpUrl: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116996',
-          episode: 631,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364',
-        expected: {
-          sync: false,
-          title: 'Initial D',
-          identifier: '116364',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
 ];
 
 // Define global variables
