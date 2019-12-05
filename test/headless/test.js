@@ -1352,7 +1352,7 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www.animefever.tv/anime/10344-a-certain-magical-index',
+        url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
         expected: {
           sync: false,
           title: 'A Certain Magical Index',
