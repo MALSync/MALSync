@@ -2,7 +2,7 @@
   <div>
     <div v-show="loading" id="loadMalSearchPop" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: fixed; z-index: 30; max-width: 1377px; margin-left: auto; margin-right: auto;"></div>
     <slot></slot>
-    <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("NoEntries")}}</span></span>
+    <span v-if="!loading && !items.length && !errorText" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"><span class="mdl-chip__text">{{lang("NoEntries")}}</span></span>
     <div class="mdl-grid" id="malList" style="justify-content: space-around;">
       <template v-for="item in items">
         <bookmarksItem :item="item" :ref="item.uid" :key="item.uid"/>
@@ -11,11 +11,15 @@
       <div v-for="n in 10" class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "  style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"></div>
 
     </div>
+    <span v-if="errorText" class="mdl-chip" style="margin: 16px auto 70px auto; display: table; padding-right: 5px; border: 2px solid red;" @click="(!loading) ? load() : ''">
+      <span class="mdl-chip__text" v-html="errorText"></span>
+      <button type="button" class="mdl-chip__action"><i class="material-icons">autorenew</i></button>
+    </span>
   </div>
 </template>
 
 <script type="text/javascript">
-  import * as provider from "./../../provider/provider.ts";
+  import {getList} from "./../../_provider/listFactory";
   import bookmarksItem from './bookmarksItem.vue';
 
   var timer;
@@ -30,6 +34,7 @@
       return {
         items: [],
         loading: true,
+        errorText: null,
       }
     },
     props: {
@@ -64,27 +69,33 @@
     },
     methods: {
       lang: api.storage.lang,
-      load: function(){
+      load: async function(){
         this.loading = true;
+        this.errorText = null;
         cb = undefined;
-        if(this.state !== 1 && this.state !== '1') {
-          provider.userList(this.state, this.listType, {
-            continueCall: async (list, continueCB) => {
-              this.loading = false;
-              this.items = list;
+        var listProvider = await getList(this.state, this.listType);
 
-              if(typeof continueCB !== 'undefined'){
-                cb = continueCB;
-              }
+        var listError = (e) => {
+          con.error(e);
+          this.errorText = listProvider.errorMessage(e);
+          this.loading = false;
+        }
+
+        if(this.state !== 1 && this.state !== '1') {
+          listProvider.callbacks = {continueCall: (list) => {
+            this.loading = false;
+            this.items = list;
+            if(!listProvider.isDone()) {
+              return new Promise((resolve) => {cb = () => {resolve();};});
             }
-          });
+          }}
+          listProvider.get().catch(listError);
+
         }else{
-          provider.userList(this.state, this.listType, {
-            fullListCallback: async (list) => {
-              this.loading = false;
-              this.items = list;
-            }
-          });
+          listProvider.get().then((list) => {
+            this.loading = false;
+            this.items = list;
+          }).catch(listError);
         }
 
       },

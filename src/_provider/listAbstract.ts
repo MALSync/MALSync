@@ -28,7 +28,7 @@ export abstract class ListAbstract {
   constructor(
     protected status: number = 1,
     protected listType:'anime'|'manga' = 'anime',
-    protected callbacks: {
+    public callbacks: {
       singleCallback?: (el: listElement) => void,
       continueCall?
     } = {},
@@ -44,6 +44,10 @@ export abstract class ListAbstract {
   public setTemplist(list) {
     this.templist = list;
     return this;
+  }
+
+  isDone() {
+    return this.done;
   }
 
   async get(): Promise<listElement[]> {
