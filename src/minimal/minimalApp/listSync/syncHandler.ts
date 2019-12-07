@@ -3,10 +3,10 @@ import * as anilist from "./../../../provider/AniList/entryClass.ts";
 import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
 import * as simkl from "./../../../provider/Simkl/entryClass.ts";
 
-import * as malUserList from "./../../../provider/MyAnimeList/userList.ts";
-import * as anilistUserList from "./../../../provider/AniList/userList.ts";
-import * as kitsuUserList from "./../../../provider/Kitsu/userList.ts";
-import * as simklUserList from "./../../../provider/Simkl/userList.ts";
+import {userlist as malList} from "./../../../_provider/MyAnimeList/list";
+import {userlist as anilistList} from "./../../../_provider/AniList/list";
+import {userlist as kitsuList} from "./../../../_provider/Kitsu/list";
+import {userlist as simklList} from "./../../../_provider/Simkl/list";
 
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing){
@@ -196,9 +196,10 @@ export async function retriveLists(providerList: {providerType: string, provider
       pi.providerSettings.list = list;
       pi.providerSettings.text = 'Done';
       if(masterMode == pi.providerType) pi.providerSettings.master = true;
-      if(list.length) typeArray.push(pi.providerType);
-      if(!list.length) pi.providerSettings.text = 'Error';
-    }) );
+      typeArray.push(pi.providerType);
+    }).catch((e) => {
+      pi.providerSettings.text = e;
+    }));
   });
 
   await Promise.all(listP);
@@ -210,7 +211,7 @@ export async function retriveLists(providerList: {providerType: string, provider
     if(pi.providerSettings.master){
       master = pi.providerSettings.list;
     }else{
-      slaves.push(pi.providerSettings.list);
+      if(pi.providerSettings.list !== null) slaves.push(pi.providerSettings.list);
     }
   });
 
@@ -226,33 +227,34 @@ export function getListProvider(providerSettingList){
     {
       providerType: 'MAL',
       providerSettings: providerSettingList.mal,
-      listProvider: malUserList,
+      listProvider: malList,
     },
     {
       providerType: 'ANILIST',
       providerSettings: providerSettingList.anilist,
-      listProvider: anilistUserList,
+      listProvider: anilistList,
     },
     {
       providerType: 'KITSU',
       providerSettings: providerSettingList.kitsu,
-      listProvider: kitsuUserList,
+      listProvider: kitsuList,
     },
     {
       providerType: 'SIMKL',
       providerSettings: providerSettingList.simkl,
-      listProvider: simklUserList,
+      listProvider: simklList,
     },
   ];
 }
 
 export function getList(prov, type){
-  return new Promise((resolve, reject) => {
-    prov.userList(7, type, {fullListCallback: async function(list){
-      con.log('list', list);
-      resolve(list)
-    }});
-  });
+  var listProvider = new prov(7, type);
+
+  return listProvider.get().then( (list) => {return list;})
+  .catch((e) => {
+    con.error(e);
+    throw listProvider.errorMessage(e);
+  })
 }
 
 export var background = {

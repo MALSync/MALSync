@@ -47,6 +47,7 @@ export class userlist extends ListAbstract {
 
   async getPart() {
     con.log('[UserList][Simkl]', 'status: '+this.status);
+    if(this.listType === 'manga') throw {code: 415, message: 'Does not support manga'}
     return this.syncList().then((list) => {
       this.done = true;
       var data = this.prepareData(Object.values(list), this.listType, this.status);
