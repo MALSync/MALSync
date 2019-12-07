@@ -3,6 +3,8 @@ import * as helper from "./helper";
 
 export class userlist extends ListAbstract {
 
+  name = "local";
+
   authenticationUrl = '';
 
   async getUsername() {

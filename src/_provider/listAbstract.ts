@@ -25,6 +25,8 @@ export abstract class ListAbstract {
 
   protected abstract authenticationUrl: string;
 
+  abstract readonly name;
+
   constructor(
     protected status: number = 1,
     protected listType:'anime'|'manga' = 'anime',

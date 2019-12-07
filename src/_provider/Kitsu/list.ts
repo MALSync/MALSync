@@ -2,6 +2,7 @@ import {ListAbstract, listElement} from './../listAbstract';
 import * as helper from "./helper";
 
 export class userlist extends ListAbstract {
+  name = 'Kitsu';
 
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 

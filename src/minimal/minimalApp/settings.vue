@@ -24,38 +24,15 @@
           </span>
         </li>
 
-        <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
-          <span class="mdl-list__item-primary-content">
-            Simkl
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/">{{lang("settings_Authenticate")}}</a>
-          </span>
-        </li>
+        <login option="syncMode"></login>
+
         <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
           <option value="MAL">MyAnimeList</option>
           <option value="ANILIST">AniList</option>
           <option value="KITSU">Kitsu</option>
         </dropdown>
 
-        <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')">
-          <span class="mdl-list__item-primary-content">
-            AniList
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
-          </span>
-        </li>
-
-        <li class="mdl-list__item" v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')">
-          <span class="mdl-list__item-primary-content">
-            Kitsu
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{lang("settings_Authenticate")}}</a>
-          </span>
-        </li>
-
+        <login option="syncModeSimkl" v-if="options.syncMode == 'SIMKL'"></login>
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
@@ -419,6 +396,7 @@
   import dropdown from './components/settingsDropdown.vue'
   import fileUpload from './components/settingsFileUpload.vue'
   import shortcut from './components/settingsShortcut.vue'
+  import login from './components/settingsLogin.vue'
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
 
@@ -433,6 +411,7 @@
       dropdown,
       fileUpload,
       shortcut,
+      login,
     },
     props: {
       page: {

@@ -2,6 +2,8 @@ import {ListAbstract, listElement} from './../listAbstract';
 
 export class userlist extends ListAbstract {
 
+  name = 'MyAnimeList';
+
   authenticationUrl = 'https://myanimelist.net/login.php';
 
   async getUsername() {

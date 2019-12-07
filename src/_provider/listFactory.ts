@@ -12,15 +12,32 @@ export async function getList(...args) {
     tempList = await new localList(...args).get();
   }
 
-  var syncMode = helper.getSyncMode(args[1] ? args[1]: 'anime');
+  var list = getListObj(args);
+  list.setTemplist(tempList);
+  return list;
+}
+
+export function getOnlyList(...args) {
+  return getListObj(args);
+}
+
+export function getListbyType(syncMode: string, args = []) {
+  return getListObj(args, syncMode)
+}
+
+function getListObj(args, syncMode:string = '') {
+  if(!syncMode) {
+    syncMode = helper.getSyncMode(args[1] ? args[1]: 'anime');
+  }
+
   if(syncMode == 'MAL'){
-    return new malList(...args).setTemplist(tempList);
+    return new malList(...args);
   }else if(syncMode == 'ANILIST'){
-    return new anilistList(...args).setTemplist(tempList);
+    return new anilistList(...args);
   }else if(syncMode == 'KITSU'){
-    return new kitsuList(...args).setTemplist(tempList);
+    return new kitsuList(...args);
   }else if(syncMode == 'SIMKL'){
-    return new simklList(...args).setTemplist(tempList);
+    return new simklList(...args);
   }else{
     throw 'Unknown sync mode';
   }
