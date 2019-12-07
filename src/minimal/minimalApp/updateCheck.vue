@@ -45,7 +45,7 @@
 </template>
 
 <script type="text/javascript">
-  import * as provider from "./../../provider/provider.ts";
+  import {getList} from "./../../_provider/listFactory";
   var interva;
   export default {
     data: function(){
@@ -76,36 +76,39 @@
     },
     methods: {
       lang: api.storage.lang,
-      load: function(){
-        provider.userList(1, this.listType, {
-          fullListCallback: async (list) => {
-            for (var i = 0; i < list.length; i++) {
-              var el = list[i];
-              var episode = '';
-              var error = '';
-              var trColor = '';
-              con.log('el', el);
-              var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.cacheKey);
-              con.log('elCache', elCache);
-              if(typeof elCache != 'undefined'){
-                episode = elCache['newestEp']+'/'+el.totalEp;
-                trColor = 'orange';
-                if(elCache['finished']){
-                  error = 'finished';
-                  trColor = 'green';
-                }
-                if(typeof elCache['error'] != 'undefined'){
-                  error = elCache['error'];
-                  trColor = 'red';
-                }
+      load: async function(){
+        var listProvider = await getList(1, this.listType);
+        listProvider.get().then(async (list) => {
+          for (var i = 0; i < list.length; i++) {
+            var el = list[i];
+            var episode = '';
+            var error = '';
+            var trColor = '';
+            con.log('el', el);
+            var elCache = await api.storage.get('updateCheck/'+this.listType+'/'+el.cacheKey);
+            con.log('elCache', elCache);
+            if(typeof elCache != 'undefined'){
+              episode = elCache['newestEp']+'/'+el.totalEp;
+              trColor = 'orange';
+              if(elCache['finished']){
+                error = 'finished';
+                trColor = 'green';
               }
-              el.episode = episode;
-              el.trColor = trColor;
-              el.error = error;
+              if(typeof elCache['error'] != 'undefined'){
+                error = elCache['error'];
+                trColor = 'red';
+              }
             }
-            this.items = list;
+            el.episode = episode;
+            el.trColor = trColor;
+            el.error = error;
           }
+          this.items = list;
+        }).catch((e) => {
+          con.error(e);
+          listProvider.flashmError(e);
         });
+
         api.storage.get('notificationHistory').then((history) => {
           var historyHtml = '<h3>Notification History</h3>';
           history.forEach((entry) => {
