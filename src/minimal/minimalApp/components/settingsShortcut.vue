@@ -18,7 +18,7 @@
   </li>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
   .mdl-textfield__input {
     text-align: right;
     &:focus {
