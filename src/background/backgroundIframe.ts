@@ -1,5 +1,5 @@
 import {Mutex} from 'async-mutex';
-import * as provider from "./../provider/provider.ts";
+import {getList} from "./../_provider/listFactory";
 
 declare var browser: any;
 export function checkInit(){
@@ -67,7 +67,8 @@ async function startCheck(type = "anime"){
 
   continueCheck = {};
 
-  provider.userList(1, type, {fullListCallback: async function(list){
+  var listProvider = await getList(1, type);
+  listProvider.get().then(async (list) => {
     con.log('list', list)
     for (var i = 0; i < list.length; i++) {
       con.log('el', list[i])
@@ -78,8 +79,11 @@ async function startCheck(type = "anime"){
     setBadgeText('');
     release();
     clearTimeout(mutexTimout);
-  }});
-
+  }).catch((e) => {
+    con.error(e);
+    setBadgeText('');
+    release();
+  });
 
 }
 
