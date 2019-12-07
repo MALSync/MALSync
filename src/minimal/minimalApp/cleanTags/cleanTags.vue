@@ -1,6 +1,6 @@
 <template>
   <div class="mdl-grid bg-cell" style="display: block;">
-    <h5>This script returns all malsync::xxxxx:: from your list.</h5>
+    <h5>This script removes all malsync::xxxxx:: from your list.</h5>
     <button type="button" :disabled="animeLoading" @click="cleanTags()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-bottom: 20px;">Clean Up Mal-Sync Tags</button>
     <br>
     Anime:
@@ -16,6 +16,7 @@
 
 <script type="text/javascript">
   import * as provider from "./../../../provider/provider.ts";
+  import {getOnlyList} from "./../../../_provider/listFactory";
 
   export default {
     data: function(){
@@ -85,14 +86,12 @@
   }
 
   function getList(type){
-    return new Promise((resolve, reject) => {
-      provider.userList(7, type, {
-        fullListCallback: async (list) => {
-          con.log('list', list);
-          resolve(list)
-        }
-      });
-    });
+    var listProvider = getOnlyList(7, type);
+    return listProvider.get().then( (list) => {return list;})
+    .catch((e) => {
+      con.error(e);
+      throw listProvider.errorMessage(e);
+    })
   }
 
 
