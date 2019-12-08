@@ -81,6 +81,12 @@
           this.loading = false;
         }
 
+        listProvider.modes.cached = true;
+
+        listProvider.getCached().then((list) => {
+          this.items = list;
+        });
+
         if(this.state !== 1 && this.state !== '1') {
           listProvider.callbacks = {continueCall: (list) => {
             this.loading = false;

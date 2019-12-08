@@ -1,4 +1,5 @@
 import {epPredictions} from './../utils/epPrediction';
+import {Cache} from './../utils/Cache';
 
 export interface listElement {
   uid: number,
@@ -31,6 +32,7 @@ export abstract class ListAbstract {
   //Modes
   modes = {
     sortAiring: false,
+    cached: false,
   }
 
   constructor(
@@ -76,6 +78,7 @@ export abstract class ListAbstract {
       this.templist = this.templist.concat(retList);
 
       if(typeof this.callbacks.continueCall !== 'undefined'){
+        if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 10));
         // @ts-ignore
         await this.callbacks.continueCall(this.templist);
       }
@@ -85,9 +88,25 @@ export abstract class ListAbstract {
 
     if(this.modes.sortAiring) await this.sortAiringList();
 
+    if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 10));
+
     if(typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
 
     return this.templist;
+  }
+
+  async getCached(): Promise<listElement[]> {
+    if(this.getCache().hasValue()){
+      var cachelist = await this.getCache().getValue();
+      cachelist.forEach((item) => {
+        console.log(item);
+        item.fn = this.fn()
+        item.watchedEp = '';
+        item.score = '';
+      });
+      return cachelist;
+    }
+    return [];
   }
 
   abstract getUsername(): Promise<String>|String;
@@ -195,5 +214,13 @@ export abstract class ListAbstract {
 
       return valA - valB;
     }
+  }
+
+  cacheObj:any = undefined;
+
+  getCache() {
+    if(this.cacheObj) return this.cacheObj;
+    this.cacheObj = new Cache('list/'+this.name+'/'+this.listType+'/'+this.status, (48 * 60 * 60 * 1000));
+    return this.cacheObj;
   }
 }
