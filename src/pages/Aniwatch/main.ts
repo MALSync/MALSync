@@ -3,7 +3,7 @@ import { pageInterface } from "./../pageInterface";
 var tabPage;
 
 export const Aniwatch: pageInterface = {
-  name: "Animevibe",
+  name: "Animewatch",
   domain: "https://aniwatch.me",
   type: "anime",
   isSyncPage: function(url) {
