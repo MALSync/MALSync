@@ -488,7 +488,7 @@
     "description": "Manga sync"
   },
   "settings_AutoTracking_Video": {
-    "message": "Aktualizuj na $videoDuretion$% postępu wideo",
+    "message": "Aktualizuj na $videoDuration$% postępu wideo",
     "description": "Update Episode of video progress",
     "placeholders": {
       "videoDuration": {
