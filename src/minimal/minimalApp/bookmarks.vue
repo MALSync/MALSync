@@ -92,6 +92,7 @@
           listProvider.get().catch(listError);
 
         }else{
+          listProvider.modes.sortAiring = true;
           listProvider.get().then((list) => {
             this.loading = false;
             this.items = list;
@@ -108,60 +109,7 @@
           }
         }
       },
-      sortByPrediction: function(){
-        if(this.state !== 1 && this.state !== '1') return;
 
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-          var This = this;
-
-          var normalItems = [];
-          var preItems = [];
-          var watchedItems = [];
-          this.items.forEach((item) => {
-            var vue = this.$refs[item.uid][0];
-            if(vue.prediction && vue.prediction.prediction){
-              if(item.watchedEp < vue.prediction.tagEpisode){
-                preItems.push(item);
-              }else{
-                watchedItems.push(item);
-              }
-            }else{
-              normalItems.push(item);
-            }
-          });
-
-          preItems = preItems.sort(sortItems).reverse();
-          watchedItems = watchedItems.sort(sortItems);
-
-          this.items = preItems.concat(watchedItems, normalItems);
-
-          function sortItems(a,b) {
-            var vueA = This.$refs[a.uid][0];
-            var vueB = This.$refs[b.uid][0];
-            var preA = 99999999;
-            var preB = preA;
-
-            if(vueA.prediction && vueA.prediction.prediction){
-              preA = (vueA.prediction.prediction.diffDays * 1440)
-                    + (vueA.prediction.prediction.diffHours * 60)
-                    + vueA.prediction.prediction.diffMinutes;
-            }
-            if(vueB.prediction && vueB.prediction.prediction){
-              preB = (vueB.prediction.prediction.diffDays * 1440)
-                    + (vueB.prediction.prediction.diffHours * 60)
-                    + vueB.prediction.prediction.diffMinutes;
-            }
-
-            return preA - preB;
-          }
-
-          this.$nextTick(() => {
-            j.$(this.$el).closest('.mdl-layout__content').first().scroll();
-          })
-        }, 50);
-
-      }
     }
   }
 </script>

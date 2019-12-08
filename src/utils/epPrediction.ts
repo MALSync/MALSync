@@ -28,6 +28,12 @@ export class epPredictions {
     if(this.malPrediction && this.malPrediction.episode) return {ep: this.malPrediction.episode, provider: 'MAL'};
   }
 
+  getNextEpTimestamp() {
+    if(this.aniPrediction && this.aniPrediction.nextEpTime) return this.aniPrediction.nextEpTime * 1000
+    //TODO: malPrediction
+    return false;
+  }
+
   //Mal Prediciton
   protected malPrediction;
 

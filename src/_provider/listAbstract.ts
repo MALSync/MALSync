@@ -16,6 +16,7 @@ export interface listElement {
   airingState: number,
   fn: {
     continueUrl: (item: listElement) => string,
+    predictions: (item: listElement) => any,
   },
 }
 
@@ -26,6 +27,11 @@ export abstract class ListAbstract {
   protected abstract authenticationUrl: string;
 
   abstract readonly name;
+
+  //Modes
+  modes = {
+    sortAiring: false,
+  }
 
   constructor(
     protected status: number = 1,
@@ -76,6 +82,8 @@ export abstract class ListAbstract {
 
 
     } while(!this.done);
+
+    if(this.modes.sortAiring) await this.sortAiringList();
 
     if(typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
 
@@ -145,6 +153,47 @@ export abstract class ListAbstract {
         if(predictionsObj !== null) return predictionsObj;
         return new epPredictions(item.malId, item.cacheKey, item.type).init().then((obj) => predictionsObj = obj);
       }
+    }
+  }
+
+  //Modes
+  async sortAiringList() {
+    var listP:any = [];
+    this.templist.forEach((item) => {
+      listP.push(item.fn.predictions(item));
+    });
+
+    await Promise.all(listP);
+
+    var normalItems: listElement[] = [];
+    var preItems: listElement[] = [];
+    var watchedItems: listElement[] = [];
+    this.templist.forEach((item) => {
+      var prediction = item.fn.predictions(item);
+      if(prediction.getAiring() && prediction.getNextEpTimestamp()) {
+        if(item.watchedEp < prediction.getEp().ep) {
+          preItems.push(item);
+        }else{
+          watchedItems.push(item);
+        }
+      }else{
+        normalItems.push(item);
+      }
+    });
+
+    preItems = preItems.sort(sortItems).reverse();
+    watchedItems = watchedItems.sort(sortItems);
+
+    this.templist = preItems.concat(watchedItems, normalItems);
+
+    function sortItems(a,b) {
+      var valA = a.fn.predictions(a).getNextEpTimestamp();
+      var valB = b.fn.predictions(b).getNextEpTimestamp();
+
+      if(!valA) valA = 999999999999;
+      if(!valB) valB = valA;
+
+      return valA - valB;
     }
   }
 }

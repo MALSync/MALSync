@@ -87,9 +87,6 @@
       }
     },
     watch: {
-      prediction: function(){
-        this.$parent.sortByPrediction();
-      }
     },
     computed: {
       imageHi: function(){
