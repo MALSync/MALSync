@@ -28,7 +28,7 @@ export class userlist extends ListAbstract {
            continue;
          }
          if(listType === "anime"){
-           newData.push({
+           newData.push(this.fn({
              airingState: 2,
              image: api.storage.assetUrl('questionmark.gif'),
              malId: 0,
@@ -43,10 +43,9 @@ export class userlist extends ListAbstract {
              url: key,
              cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
-             fn: this.fn()
-           });
+           }));
          }else{
-           newData.push({
+           newData.push(this.fn({
              airingState: 2,
              image: api.storage.assetUrl('questionmark.gif'),
              malId: 0,
@@ -61,8 +60,7 @@ export class userlist extends ListAbstract {
              url: key,
              cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
-             fn: this.fn()
-           });
+           }));
          }
        }
      }

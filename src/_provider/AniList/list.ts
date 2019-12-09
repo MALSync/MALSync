@@ -159,7 +159,7 @@ export class userlist extends ListAbstract {
     for (var i = 0; i < data.length; i++) {
       var el = data[i];
       if(listType === "anime"){
-        var tempData = {
+        var tempData = this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
@@ -173,10 +173,9 @@ export class userlist extends ListAbstract {
           image: el.media.coverImage.large,
           tags: el.notes,
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        }
+        });
       }else{
-        var tempData = {
+        var tempData = this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
@@ -190,8 +189,7 @@ export class userlist extends ListAbstract {
           image: el.media.coverImage.large,
           tags: el.notes,
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        }
+        });
       }
 
       if(tempData.totalEp == null){

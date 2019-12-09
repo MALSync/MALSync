@@ -16,8 +16,8 @@ export interface listElement {
   tags: string,
   airingState: number,
   fn: {
-    continueUrl: (item: listElement) => string,
-    predictions: (item: listElement) => any,
+    continueUrl: () => string,
+    predictions: () => any,
   },
 }
 
@@ -99,8 +99,7 @@ export abstract class ListAbstract {
     if(this.getCache().hasValue()){
       var cachelist = await this.getCache().getValue();
       cachelist.forEach((item) => {
-        console.log(item);
-        item.fn = this.fn()
+        item = this.fn(item);
         item.watchedEp = '';
         item.score = '';
       });
@@ -152,11 +151,11 @@ export abstract class ListAbstract {
   }
 
   // itemFunctions;
-  fn() {
+  fn(item) {
     var continueUrlTemp: any = null;
     var predictionsObj: any = null;
-    return {
-      continueUrl: (item) => {
+    item['fn'] = {
+      continueUrl: () => {
         if(continueUrlTemp !== null) return continueUrlTemp;
         return utils.getContinueWaching(item.type, item.cacheKey).then((obj) => {
           var res = undefined;
@@ -168,18 +167,19 @@ export abstract class ListAbstract {
           return continueUrlTemp;
         });
       },
-      predictions: (item) => {
+      predictions: () => {
         if(predictionsObj !== null) return predictionsObj;
         return new epPredictions(item.malId, item.cacheKey, item.type).init().then((obj) => predictionsObj = obj);
       }
     }
+    return item;
   }
 
   //Modes
   async sortAiringList() {
     var listP:any = [];
     this.templist.forEach((item) => {
-      listP.push(item.fn.predictions(item));
+      listP.push(item.fn.predictions());
     });
 
     await Promise.all(listP);
@@ -188,7 +188,7 @@ export abstract class ListAbstract {
     var preItems: listElement[] = [];
     var watchedItems: listElement[] = [];
     this.templist.forEach((item) => {
-      var prediction = item.fn.predictions(item);
+      var prediction = item.fn.predictions();
       if(prediction.getAiring() && prediction.getNextEpTimestamp()) {
         if(item.watchedEp < prediction.getEp().ep) {
           preItems.push(item);
@@ -206,8 +206,8 @@ export abstract class ListAbstract {
     this.templist = preItems.concat(watchedItems, normalItems);
 
     function sortItems(a,b) {
-      var valA = a.fn.predictions(a).getNextEpTimestamp();
-      var valB = b.fn.predictions(b).getNextEpTimestamp();
+      var valA = a.fn.predictions().getNextEpTimestamp();
+      var valB = b.fn.predictions().getNextEpTimestamp();
 
       if(!valA) valA = 999999999999;
       if(!valB) valB = valA;

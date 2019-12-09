@@ -118,7 +118,7 @@ export class userlist extends ListAbstract {
       }
 
       if(listType === "anime"){
-        var tempData = {
+        var tempData = this.fn({
           malId: malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
@@ -133,10 +133,9 @@ export class userlist extends ListAbstract {
           image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        }
+        })
       }else{
-        var tempData = {
+        var tempData = this.fn({
           malId: malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
@@ -151,8 +150,7 @@ export class userlist extends ListAbstract {
           image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        }
+        })
       }
 
       if(tempData.totalEp == null){

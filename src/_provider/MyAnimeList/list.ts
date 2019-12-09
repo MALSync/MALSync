@@ -57,7 +57,7 @@ export class userlist extends ListAbstract {
     for (var i = 0; i < data.length; i++) {
       var el = data[i];
       if(this.listType === "anime"){
-        newData.push({
+        newData.push(this.fn({
           uid: el['anime_id'],
           malId: el['anime_id'],
           cacheKey: el['anime_id'],
@@ -71,10 +71,9 @@ export class userlist extends ListAbstract {
           image: el['anime_image_path'],
           tags: el['tags'],
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        })
+        }))
       }else{
-        newData.push({
+        newData.push(this.fn({
           uid: el['manga_id'],
           malId: el['manga_id'],
           cacheKey: el['manga_id'],
@@ -88,8 +87,7 @@ export class userlist extends ListAbstract {
           image:  el['manga_image_path'],
           tags: el['tags'],
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        })
+        }))
       }
 
     }

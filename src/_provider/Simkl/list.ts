@@ -66,7 +66,7 @@ export class userlist extends ListAbstract {
       }
 
       if(listType === "anime"){
-        var tempData = {
+        var tempData = this.fn({
           malId: el.show.ids.mal,
           uid: el.show.ids.simkl,
           cacheKey: this.getCacheKey(el.show.ids.mal, el.show.ids.simkl),
@@ -80,8 +80,7 @@ export class userlist extends ListAbstract {
           image: 'https://simkl.in/posters/'+el.show.poster+'_ca.jpg',
           tags: el.private_memo,
           airingState: el['anime_airing_status'],
-          fn: this.fn()
-        }
+        })
         newData.push(tempData);
       }else{
 
