@@ -1,7 +1,7 @@
 import * as helper from "./../provider/AniList/helper";
 import {pageSearch} from './../pages/pages';
 import {entryClass} from "./../provider/AniList/entryClass";
-import {userList} from "./../provider/AniList/userList";
+import {userlist} from "./../_provider/AniList/list";
 
 interface detail{
   page: "detail",
@@ -265,8 +265,8 @@ export class anilistClass{
     }
   }
 
-  private tempAnimelist = null;
-  private tempMangalist = null;
+  private tempAnimelist:any = null;
+  private tempMangalist:any = null;
 
   bookmarks(){
     var This = this;
@@ -307,14 +307,21 @@ export class anilistClass{
         }
       }
 
-      userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
+      var listProvider = new userlist(1, this.page!.type);
+
+      listProvider.compact = true;
+
+      listProvider.get().then( (list) => {
         if(this.page!.type == 'anime'){
           this.tempAnimelist = list;
         }else{
           this.tempMangalist = list;
         }
         fullListCallback(list);
-      }});
+      }).catch((e) => {
+        con.error(e);
+        listProvider.flashmError(e);
+      });
 
       function fullListCallback(list){
         con.log(list);
