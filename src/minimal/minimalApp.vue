@@ -43,7 +43,6 @@
           <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
         <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
-          <keep-alive>
           <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
             <div class="mdl-grid" id="malList" style="justify-content: space-around;">
               <select v-model="tabs.bookmarks.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
@@ -68,7 +67,6 @@
               </select>
             </div>
           </searchVue>
-        </keep-alive>
         <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
         <listSyncVue :listType="tabs.listSync.type" v-if="currentTab == tabs.listSync.title" >
           <select v-model="tabs.listSync.type" @change="rebuildListSync()" style="margin-bottom: 20px;" class="typeSelect-updateCheck">
