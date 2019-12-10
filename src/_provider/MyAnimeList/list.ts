@@ -52,7 +52,7 @@ export class userlist extends ListAbstract {
     });
   }
 
-  private prepareData(data): listElement[]{
+  public prepareData(data): listElement[]{
     var newData = [] as listElement[];
     for (var i = 0; i < data.length; i++) {
       var el = data[i];

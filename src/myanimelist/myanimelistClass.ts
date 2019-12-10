@@ -1,6 +1,6 @@
 import {pageSearch} from './../pages/pages';
 import {entryClass} from "./../provider/MyAnimeList/entryClass";
-import {prepareData, userList} from "./../provider/MyAnimeList/userList";
+import {userlist} from "./../_provider/MyAnimeList/list";
 
 export class myanimelistClass{
   page: "detail"|"bookmarks"|"modern"|"classic"|"character"|"people"|"search"|null = null;
@@ -305,11 +305,18 @@ export class myanimelistClass{
     con.log('Bookmarks ['+this.username+']['+this.page+']');
     var This = this;
 
+    var tType: string = "anime";
+    if(this.type !== null){
+      tType = this.type;
+    }
+
+    var listProvider = new userlist(7, this.type!, {}, this.username);
+
     if(this.page == 'modern'){
       var book = {
         bookReady: function(callback){
           utils.waitUntilTrue(function(){return $('#loading-spinner').css('display') == 'none'}, function(){
-            callback(prepareData($.parseJSON($('.list-table').attr('data-items')!), This.type));
+            callback(listProvider.prepareData($.parseJSON($('.list-table').attr('data-items')!)));
 
             utils.changeDetect(() => {
               $('.tags span a').each(function( index ) {
@@ -342,13 +349,12 @@ export class myanimelistClass{
     }else if(this.page == 'classic'){
       var book = {
         bookReady: function(callback){
-          var tType: string = "anime";
-          if(This.type !== null){
-            tType = This.type;
-          }
-          userList(7, tType, {fullListCallback: function(list){
+          listProvider.get().then( (list) => {
             callback(list);
-          }}, This.username);
+          }).catch((e) => {
+            con.error(e);
+            listProvider.flashmError(e);
+          });
         },
         getElement: function(malUrl){
           return $('a[href^="'+malUrl+'"]');
