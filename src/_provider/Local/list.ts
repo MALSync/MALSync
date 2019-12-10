@@ -41,7 +41,7 @@ export class userlist extends ListAbstract {
              //@ts-ignore
              uid: key,
              url: key,
-             cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
+             cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
            }));
          }else{
@@ -58,7 +58,7 @@ export class userlist extends ListAbstract {
              //@ts-ignore
              uid: key,
              url: key,
-             cacheKey: helper.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
+             cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
              watchedEp: el.progress,
            }));
          }
@@ -69,22 +69,9 @@ export class userlist extends ListAbstract {
      return newData;
   }
 
-  private getRegex(listType){
-    return new RegExp("^local:\/\/[^\/]*\/"+listType, "i");
-  }
+  private getRegex = helper.getRegex;
 
-  private async getSyncList(){
-    if(api.type == 'userscript') {
-      var list = await api.storage.list('sync');
-      for (var key in list) {
-        list[key] = await api.storage.get(key);
-      }
-      var data = list;
-    }else{
-      var data = api.storage.list('sync');
-    }
-    return data;
-  }
-
+  protected getSyncList = helper.getSyncList;
+  protected getCacheKey = helper.getCacheKey;
 
 }

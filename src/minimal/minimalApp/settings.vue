@@ -400,7 +400,7 @@
   import tooltip from './components/tooltip.vue'
   import correction from './correction.vue';
 
-  import {exportData, importData} from "./../../provider/Local/userList";
+  import {exportData, importData} from "./../../_provider/Local/import";
 
   export default {
     components: {
