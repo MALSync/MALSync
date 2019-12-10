@@ -399,4 +399,9 @@ module.exports = {
       '*://www.hulu.com/*'
     ]
   },
+  Aniwatch: {
+    match: [
+      '*://aniwatch.me/*'
+    ]
+  },
 };    
