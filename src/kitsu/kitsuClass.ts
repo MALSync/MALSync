@@ -1,7 +1,7 @@
 import * as helper from "./../provider/Kitsu/helper";
 import {pageSearch} from './../pages/pages';
 import {entryClass} from "./../provider/Kitsu/entryClass";
-import {userList} from "./../provider/Kitsu/userList";
+import {userlist} from "./../_provider/Kitsu/list";
 
 interface detail{
   page: "detail",
@@ -313,8 +313,8 @@ export class kitsuClass{
     });
   }
 
-  private tempAnimelist = null;
-  private tempMangalist = null;
+  private tempAnimelist: any = null;
+  private tempMangalist: any = null;
 
   bookmarks(){
     var This = this;
@@ -332,14 +332,19 @@ export class kitsuClass{
         }
       }
 
-      userList(1, this.page!.type, {fullListCallback: (list) => {
+      var listProvider = new userlist(1, this.page!.type);
+
+      listProvider.get().then( (list) => {
         if(this.page!.type == 'anime'){
           this.tempAnimelist = list;
         }else{
           this.tempMangalist = list;
         }
         fullListCallback(list);
-      }});
+      }).catch((e) => {
+        con.error(e);
+        listProvider.flashmError(e);
+      });
 
       function fullListCallback(list){
         var cover = true;
