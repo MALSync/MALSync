@@ -44,9 +44,19 @@ export const Aniwatch: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    utils.changeDetect(() => {
+    utils.changeDetect(loaded, () => {
+      return window.location.href +"/"+ j.$(".md-tab.md-active").text();
+    })
+    loaded();
+    $(document).on("keydown", function(e) {
+      if ((e.which || e.keyCode) == 116) {
+        loaded();
+      }
+    });
+    function loaded() {
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       page.url = window.location.href;
+      page.UILoaded = false;
       tabPage = j.$(".md-tab.md-active").text().toLowerCase();
       if(page.url.split("/")[3] === "anime" && typeof tabPage !== "undefined" && (tabPage === "stream" || tabPage === "overview")) {
         utils.waitUntilTrue(
@@ -63,8 +73,6 @@ export const Aniwatch: pageInterface = {
           }
           );
       }
-    }, () => {
-      return window.location.href +"/"+ j.$(".md-tab.md-active").text();
-    })
+    }
   }
 };
