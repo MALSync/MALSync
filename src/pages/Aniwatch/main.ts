@@ -45,6 +45,8 @@ export const Aniwatch: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     utils.changeDetect(() => {
+      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.url = window.location.href;
       tabPage = j.$(".md-tab.md-active").text().toLowerCase();
       if(page.url.split("/")[3] === "anime" && typeof tabPage !== "undefined" && (tabPage === "stream" || tabPage === "overview")) {
         utils.waitUntilTrue(
