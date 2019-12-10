@@ -33,7 +33,7 @@ export class Cache {
     if(this.localStorage) {
       return JSON.parse(localStorage.getItem(this.key)!);
     }
-    return await api.storage.get(this.key);
+    return api.storage.get(this.key);
   }
 }
 
