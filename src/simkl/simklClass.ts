@@ -1,5 +1,5 @@
 import {entryClass} from "./../provider/Simkl/entryClass";
-import {userList} from "./../provider/Simkl/userList";
+import {userlist} from "./../_provider/Simkl/list";
 import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
@@ -219,8 +219,9 @@ export class simklClass{
   }
 
   bookmarksProfile(){
-    userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
-      con.error(list);
+    var listProvider = new userlist(1, this.page!.type);
+
+    listProvider.get().then( (list) => {
       $.each(list, async (index, en) => {
         con.log('en', en);
         var element = $('a[href^="/'+this.page!.type+'/'+en.uid+'"]');
@@ -258,14 +259,18 @@ export class simklClass{
 
         }
       });
-
-    }});
+    }).catch((e) => {
+      con.error(e);
+      listProvider.flashmError(e);
+    });
   }
 
   bookmarksAnime(){
     var This = this;
-    userList(1, this.page!.type, {anilist: true, fullListCallback: (list) => {
 
+    var listProvider = new userlist(1, this.page!.type);
+
+    listProvider.get().then( (list) => {
       exec();
 
       this.interval2 = utils.changeDetect(() => {
@@ -313,9 +318,10 @@ export class simklClass{
           }
         });
       }
-
-
-    }});
+    }).catch((e) => {
+      con.error(e);
+      listProvider.flashmError(e);
+    });
   }
 
 }
