@@ -107,6 +107,7 @@
         <checkbox option="Gogoanime">Gogoanime</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
+        <checkbox option="Aniwatch">Aniwatch</checkbox>
         <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="Mangarock">Mangarock</checkbox>
