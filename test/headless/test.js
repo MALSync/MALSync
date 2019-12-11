@@ -91,7 +91,7 @@ var testsArray = [
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/jrnw13',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13',
           episode: 4,
           uiSelector: true,
           epList: {
@@ -506,7 +506,7 @@ var testsArray = [
           nextEpUrl: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
           epList: {
-            6: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=6'
+            6: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
           }
         }
       },
