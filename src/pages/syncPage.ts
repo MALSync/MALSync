@@ -235,7 +235,17 @@ export class syncPage{
     }else{
       con.log('MyAnimeList', malUrl);
       this.malObj = entryClass(malUrl, false, false, state);
-      await this.malObj.init();
+      try {
+        await this.malObj.init();
+      }catch(e) {
+        if(e.code = 415 && api.settings.get('localSync')){
+          con.log('Local Fallback');
+          malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+          this.malObj = entryClass(malUrl, false, false, state);
+          await this.malObj.init();
+        }
+      }
+
       this.oldMalObj = this.malObj.clone();
 
       //Discord Presence
