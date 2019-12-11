@@ -207,6 +207,10 @@ module.exports = {
       '*://kawaiifu.com/dub/*',
       '*://kawaiifu.com/tv-series/*',
       '*://kawaiifu.com/anime-movies/*',
+      '*://bestwea.stream/season/*',
+      '*://bestwea.stream/dub/*',
+      '*://bestwea.stream/tv-series/*',
+      '*://bestwea.stream/anime-movies/*',
     ],
   },
   fourAnime: {

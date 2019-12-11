@@ -17,7 +17,12 @@ export const Gogoanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 3).split('-episode')[0];},
       getOverviewUrl: function(url){return url.split('/').slice(0,3).join('/') + '/category/'+Gogoanime.sync.getIdentifier(url);},
       getEpisode: function(url){return utils.urlPart(url, 3).split('episode-')[1];},
-      nextEpUrl: function(url){return Gogoanime.domain + j.$('.anime_video_body_episodes_r a').last().attr('href');}
+      nextEpUrl: function(url){
+        var href = j.$('.anime_video_body_episodes_r a').last().attr('href')
+        if(typeof href !== "undefined"){
+          return Gogoanime.domain + href;
+        }
+      }
     },
     overview:{
       getTitle: function(url){return Gogoanime.overview!.getIdentifier(url);},

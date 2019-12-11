@@ -82,20 +82,20 @@ var testsArray = [
 
   {
     title: '9anime',
-    url: 'https://www1.9anime.ru/',
+    url: 'https://9anime.ru/',
     testCases: [
       {
-        url: 'https://www.9anime.ru/watch/no-game-no-life-dub.y2p0/252yy2',
+        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/lwp1yn',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/75m5j8',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13',
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/0119vk'
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13'
           }
         }
       },
@@ -496,17 +496,17 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
+        url: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
           identifier: 'plastic-memories-bluray-ver-hd-720p',
           overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html',
           episode: 4,
-          nextEpUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
+          nextEpUrl: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
           epList: {
-            5: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=5'
+            6: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
           }
         }
       },
