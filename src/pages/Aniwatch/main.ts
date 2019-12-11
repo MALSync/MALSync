@@ -5,6 +5,7 @@ var tabPage;
 export const Aniwatch: pageInterface = {
   name: "Aniwatch",
   domain: "https://aniwatch.me",
+  database: 'Aniwatch',
   type: "anime",
   isSyncPage: function(url) {
     if (tabPage === "stream") {
