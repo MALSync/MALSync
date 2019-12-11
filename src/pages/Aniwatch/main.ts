@@ -23,7 +23,12 @@ export const Aniwatch: pageInterface = {
     },
     getEpisode: function(url){
       return parseInt(utils.urlPart(url, 5));
-    }
+    },
+    nextEpUrl: function(url){
+      if (!j.$('#anilyr-nextEpi').is('[disabled=disabled]')) {
+        return url.replace(/\d+$/, (parseInt(utils.urlPart(url, 5)) + 1));
+      };
+    },
   },
   overview:{
     getTitle: function(url){
