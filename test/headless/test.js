@@ -95,7 +95,7 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/jrnw13'
+            5: 'hhttps://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13'
           }
         }
       },
