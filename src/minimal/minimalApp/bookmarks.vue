@@ -49,12 +49,12 @@
     },
     mounted: function(){
       this.load();
+      this.$parent.registerScroll('books', this.handleScroll);
     },
     activated: function(){
       this.$nextTick(() => {
       j.$(this.$el).closest('html').find("head").click();
       })
-      this.$parent.registerScroll('books', this.handleScroll);
     },
     deactivated: function(){
       this.$parent.unregisterScroll('books');
