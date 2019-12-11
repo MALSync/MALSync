@@ -60,6 +60,8 @@ export class kitsuClass{
     if(urlpart == 'anime' || urlpart == 'manga'){
       if(this.same && typeof this.page !== 'undefined' && this.page.malObj !== 'undefined'){
         this.streamingUI();
+        this.siteSearch()
+        this.malToKiss();
         return;
       }
       var malObj = new entryClass(this.url);
@@ -223,7 +225,8 @@ export class kitsuClass{
         }
         html += `
           <div id="${pageKey}Links" class="mal_links library-state with-header" style="
-            background: rgb(var(--color-foreground));
+            background: white;
+            margin-bottom: 15px;
             border-radius: 3px;
             display: block;
             padding: 8px 12px;
@@ -242,7 +245,7 @@ export class kitsuClass{
         if($('#mal-sync-search-links').length){
           $('#mal-sync-search-links').first().after(html);
         }else{
-          $('.where-to-watch-widget, .library-state').first().after(html);
+          $('.media-summary').first().after(html);
         }
 
         $('.remove-mal-sync').click(function(){
@@ -260,9 +263,10 @@ export class kitsuClass{
     $(document).ready(function(){
       con.log('Site Search');
       $('#mal-sync-search-links').remove();
-      $('.where-to-watch-widget, .library-state').first().after(`
+      $('.media-summary').first().after(`
         <div id="mal-sync-search-links" style="
-            background: rgb(var(--color-foreground));
+            background: white;
+            margin-bottom: 15px;
             border-radius: 3px;
             display: block;
             padding: 8px 12px;
