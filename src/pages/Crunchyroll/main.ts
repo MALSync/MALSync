@@ -16,7 +16,7 @@ export const Crunchyroll: pageInterface = {
     sync:{
       getTitle: function(url){return Crunchyroll.sync.getIdentifier(urlHandling(url))},
       getIdentifier: function(url){
-        return j.$('meta[property="og:title"]').attr('content');
+        return j.$('link[rel="index"]').attr('title');
       },
       getOverviewUrl: function(url){return urlHandling(url).split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(urlHandling(url));},
       getEpisode: function(url){
