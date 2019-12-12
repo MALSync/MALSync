@@ -38,8 +38,12 @@ export class userlist extends ListAbstract {
     if(!this.username){
       this.username = await this.getUsername();
     }
-    con.log('[UserList][MAL]', 'username: '+this.username, 'status: '+this.status, 'offset: '+this.offset);
-    var url = 'https://myanimelist.net/'+this.listType+'list/'+this.username+'/load.json?offset='+this.offset+'&status='+this.status;
+    var sorting = '';
+    if(this.status === 1) {
+      sorting = '&order=5';
+    }
+    con.log('[UserList][MAL]', 'username: '+this.username, 'status: '+this.status, 'offset: '+this.offset, 'sorting: '+sorting);
+    var url = 'https://myanimelist.net/'+this.listType+'list/'+this.username+'/load.json?offset='+this.offset+'&status='+this.status+sorting;
     return api.request.xhr('GET', url).then((response) => {
       var res = this.jsonParse(response);
       var data = this.prepareData(res);
