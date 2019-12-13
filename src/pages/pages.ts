@@ -57,6 +57,7 @@ import {MangaKisa} from "./MangaKisa/main";
 import {Goyabu} from "./Goyabu/main";
 import {AnimesVision} from "./AnimesVision/main";
 import {Hulu} from "./Hulu/main";
+import {Aniwatch} from "./Aniwatch/main";
  
 import {pageSearchObj} from "./pageInterface";
 
@@ -119,7 +120,8 @@ export const pages = {
     MangaKisa,
     Goyabu,
     AnimesVision,
-    Hulu
+    Hulu,
+    Aniwatch
 };
 
 export const pageSearch:pageSearchObj = {

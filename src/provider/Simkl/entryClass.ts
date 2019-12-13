@@ -78,10 +78,11 @@ export class entryClass{
         this.addAnime = true;
         if(de.simkl){
           var el = await helper.call('https://api.simkl.com/anime/'+de.simkl, {'extended': 'full'}, true);
-          if(!el) throw 'Anime not found';
+          if(!el) throw { code: 415, message: 'Anime not found' };
         }else{
           var el = await helper.call('https://api.simkl.com/search/id', de, true);
-          if(!el) throw 'Anime not found';
+          if(!el) throw { code: 415, message: 'Anime not found' };
+          if(el[0].mal && el[0].mal.type && el[0].mal.type === 'Special') throw { code: 415, message: 'Is a special' };
           el = el[0];
         }
 

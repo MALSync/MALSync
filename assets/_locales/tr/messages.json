@@ -685,6 +685,14 @@
     "message": "Bu seçenek Firefox Multi-Account Containers desteğini aktif eder. Bu seçeneği etkinleştirdikten sonra tarayıcıyı yeniden başlattığınızdan emin olun",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Tüm Bölümleri işaretle",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Bu seçenek Bazı Anime/Manga sitelerinde bulabileceğiniz listelerde, izlediğiniz bölümleri işaretler",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Önbelleği Temizle",
     "description": "Clear Cache"

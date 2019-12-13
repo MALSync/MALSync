@@ -67,12 +67,14 @@ export function kitsuToMal(kitsuId: number, type: "anime"|"manga"){
 }
 
 export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
+  var headers = {
+    'Content-Type': 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json',
+  }
+  if(accessToken()) headers['Authorization'] = 'Bearer ' + accessToken();
   return api.request.xhr('Get', {
     url: 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings',
-    headers: {
-      'Content-Type': 'application/vnd.api+json',
-      'Accept': 'application/vnd.api+json',
-    }
+    headers
   }).then((response) => {
     var res = JSON.parse(response.responseText);
     var malId = NaN;

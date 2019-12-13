@@ -46,6 +46,7 @@ export var settingsObj = {
     Proxeranime: true,
     Proxermanga: true,
     Novelplanet: true,
+    Aniwatch: true,
 
     autofull: false,
     autoresume: false,
