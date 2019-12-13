@@ -355,7 +355,7 @@ describe('Sync Handling', function () {
       getListStub = (prov, type) => {
         return new Promise((resolve, reject) => {
           if(prov === 'KITSU') {
-            resolve([]);
+            reject([]);
             return;
           }
           resolve(prov);
