@@ -78,7 +78,7 @@ export abstract class ListAbstract {
       this.templist = this.templist.concat(retList);
 
       if(typeof this.callbacks.continueCall !== 'undefined'){
-        if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 10));
+        if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
         // @ts-ignore
         await this.callbacks.continueCall(this.templist);
       }
@@ -88,7 +88,7 @@ export abstract class ListAbstract {
 
     if(this.modes.sortAiring) await this.sortAiringList();
 
-    if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 10));
+    if(this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
     if(typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
 
