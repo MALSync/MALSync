@@ -21,15 +21,15 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
     </thead>
     <tbody>
       <tr>
-                <td><a href="http://kissanime.ru"><img src="https://www.google.com/s2/favicons?domain=http://kissanime.ru"> kissanime</a></td>
-                <td><a href="http://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=http://kissmanga.com"> kissmanga</a></td>
+                <td><a href="https://kissanime.ru"><img src="https://www.google.com/s2/favicons?domain=https://kissanime.ru"> kissanime</a></td>
+                <td><a href="https://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=https://kissmanga.com"> kissmanga</a></td>
                 <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://9anime.to"><img src="https://www.google.com/s2/favicons?domain=https://9anime.to"> 9anime</a></td>
                 <td><a href="https://www.mangadex.org"><img src="https://www.google.com/s2/favicons?domain=https://www.mangadex.org"> Mangadex</a></td>
                 <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
-                <td><a href="http://www.crunchyroll.com"><img src="https://www.google.com/s2/favicons?domain=http://www.crunchyroll.com"> Crunchyroll</a></td>
+                <td><a href="https://www.crunchyroll.com"><img src="https://www.google.com/s2/favicons?domain=https://www.crunchyroll.com"> Crunchyroll</a></td>
                 <td><a href="https://mangarock.com"><img src="https://www.google.com/s2/favicons?domain=https://mangarock.com"> Mangarock</a></td>
                 <td></td>
               </tr><tr>
@@ -182,6 +182,14 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animesvision.com.br"><img src="https://www.google.com/s2/favicons?domain=https://www.animesvision.com.br"> AnimesVision</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.hulu.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hulu.com"> Hulu</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://aniwatch.me"><img src="https://www.google.com/s2/favicons?domain=https://aniwatch.me"> Aniwatch</a></td>
                 <td></td>
                 <td></td>
               </tr>

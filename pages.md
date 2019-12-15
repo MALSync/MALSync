@@ -40,7 +40,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
               <td>:heavy_check_mark:</td>
@@ -70,7 +70,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://animekisa.tv"><img src="https://www.google.com/s2/favicons?domain=https://animekisa.tv"> AnimeKisa</a></td>
               <td>:heavy_check_mark:</td>
@@ -82,7 +82,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
               <td>:heavy_check_mark:</td>
@@ -100,7 +100,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www10.animeultima.eu"><img src="https://www.google.com/s2/favicons?domain=https://www10.animeultima.eu"> animeultima</a></td>
               <td>:heavy_check_mark:</td>
@@ -112,6 +112,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
+              <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="https://aniwatch.me"><img src="https://www.google.com/s2/favicons?domain=https://aniwatch.me"> Aniwatch</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
             </tr><tr>
               <td><a href="https://branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://branitube.net"> Branitube</a></td>
@@ -120,7 +126,7 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="http://www.crunchyroll.com"><img src="https://www.google.com/s2/favicons?domain=http://www.crunchyroll.com"> Crunchyroll</a></td>
+              <td><a href="https://www.crunchyroll.com"><img src="https://www.google.com/s2/favicons?domain=https://www.crunchyroll.com"> Crunchyroll</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -136,7 +142,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=http://app.emby.media"> Emby</a></td>
               <td>:heavy_check_mark:</td>
@@ -162,6 +168,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://www.hulu.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hulu.com"> Hulu</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -169,10 +181,10 @@
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://kawaiifu.com"><img src="https://www.google.com/s2/favicons?domain=https://kawaiifu.com"> kawaiifu</a></td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
               <td>:heavy_check_mark:</td>
@@ -180,7 +192,7 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="http://kissanime.ru"><img src="https://www.google.com/s2/favicons?domain=http://kissanime.ru"> kissanime</a></td>
+              <td><a href="https://kissanime.ru"><img src="https://www.google.com/s2/favicons?domain=https://kissanime.ru"> kissanime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -190,13 +202,13 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.neko-sama.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.neko-sama.fr"> NekoSama</a></td>
               <td>:heavy_check_mark:</td>
@@ -226,7 +238,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://shinden.pl"><img src="https://www.google.com/s2/favicons?domain=https://shinden.pl"> Shinden</a></td>
               <td>:heavy_check_mark:</td>
@@ -250,7 +262,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://vrv.co"><img src="https://www.google.com/s2/favicons?domain=https://vrv.co"> Vrv</a></td>
               <td>:heavy_check_mark:</td>
@@ -290,9 +302,9 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="http://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=http://kissmanga.com"> kissmanga</a></td>
+              <td><a href="https://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=https://kissmanga.com"> kissmanga</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -300,9 +312,9 @@
             </tr><tr>
               <td><a href="https://mangadenizi.com"><img src="https://www.google.com/s2/favicons?domain=https://mangadenizi.com"> mangadenizi (Bad)</a></td>
               <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.mangadex.org"><img src="https://www.google.com/s2/favicons?domain=https://www.mangadex.org"> Mangadex</a></td>
               <td>:heavy_check_mark:</td>
@@ -342,13 +354,13 @@
             </tr><tr>
               <td><a href="https://mangarock.com"><img src="https://www.google.com/s2/favicons?domain=https://mangarock.com"> Mangarock</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://novelplanet.com"><img src="https://www.google.com/s2/favicons?domain=https://novelplanet.com"> Novelplanet</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
@@ -366,9 +378,9 @@
             </tr><tr>
               <td><a href="https://unionleitor.top"><img src="https://www.google.com/s2/favicons?domain=https://unionleitor.top"> unionleitor (Bad)</a></td>
               <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ (Bad)</a></td>
               <td>:heavy_check_mark:</td>
