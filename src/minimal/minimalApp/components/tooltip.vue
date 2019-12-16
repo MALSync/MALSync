@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :id="id" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px;" :style="tagStyle">
-      contact_support
+      {{iconText}}
     </div>
     <div class="mdl-tooltip mdl-tooltip--large" :class="directionClass" :for="id"><slot/></div>
   </div>
@@ -22,6 +22,10 @@
       tagStyle: {
         type: String,
         default: ''
+      },
+      iconText: {
+        type: String,
+        default: 'contact_support'
       }
     },
     computed: {

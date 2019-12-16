@@ -2,6 +2,9 @@
   <li class="mdl-list__item">
     <span class="mdl-list__item-primary-content">
       <slot/>
+      <div v-show="Object.keys(value).length === 1">
+        <tooltip tagStyle="color: #8a1818; font-size: 20px; padding-bottom: 0;" iconText="info">{{lang("settings_shortcut_tooltip")}}</tooltip>
+      </div>
     </span>
     <span class="mdl-list__item-secondary-action">
       <div class="mdl-textfield mdl-js-textfield" >
@@ -34,8 +37,13 @@
 </style>
 
 <script type="text/javascript">
+  import tooltip from './tooltip.vue'
+
   var tempKeysTimeout;
   export default {
+    components: {
+      tooltip: tooltip,
+    },
     data: function(){
       return{
         keys: {},
@@ -76,6 +84,7 @@
       },
     },
     methods: {
+      lang: api.storage.lang,
       keyDown(event) {
         if(!this.keys[event.keyCode])con.log('down'+event.keyCode);
         this.$set(this.keys, event.keyCode, keyboardMap[event.keyCode]);
