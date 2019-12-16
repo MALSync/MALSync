@@ -112,3 +112,57 @@ async function setFullscreen(player){
     }
   }
 }
+
+//https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
+var init = false;
+
+var currCallback;
+
+const shortcutOptions = [];
+
+export function shortcutListener(callback) {
+  currCallback = callback;
+  con.error(api.settings.get('9anime'));
+
+  if(!init) initShortcuts();
+
+
+
+  function initShortcuts() {
+    init = true;
+    var keyMap = {};
+    onkeydown = onkeyup = function(e){
+      e = e || event;
+      var key = e.which || e.keyCode;
+      //@ts-ignore
+      keyMap[key] = e.type == 'keydown';
+
+
+
+      for (var i = 0; i < shortcutOptions.length; i++) {
+        const option = shortcutOptions[i];
+        if(checkShortcut(option)){
+          return shortcutDetected(option);
+        }
+      }
+
+      function shortcutDetected(option) {
+        keyMap = {};
+        callback({shortcut: option});
+        return false;
+      }
+    };
+    function checkShortcut(option) {
+      var keys = api.settings.get(option);
+      if(!keys.length) return false;
+      var shortcutTrue = true;
+      keys.forEach(function(sKey) {
+        if(!keyMap[sKey]) {
+          shortcutTrue = false;
+        }
+      });
+      return shortcutTrue;
+    }
+  }
+
+}
