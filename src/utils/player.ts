@@ -122,11 +122,8 @@ const shortcutOptions = [];
 
 export function shortcutListener(callback) {
   currCallback = callback;
-  con.error(api.settings.get('9anime'));
 
   if(!init) initShortcuts();
-
-
 
   function initShortcuts() {
     init = true;
@@ -136,8 +133,6 @@ export function shortcutListener(callback) {
       var key = e.which || e.keyCode;
       //@ts-ignore
       keyMap[key] = e.type == 'keydown';
-
-
 
       for (var i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];
@@ -152,6 +147,7 @@ export function shortcutListener(callback) {
         return false;
       }
     };
+
     function checkShortcut(option) {
       var keys = api.settings.get(option);
       if(!keys.length) return false;
