@@ -705,7 +705,7 @@
     },
     "settings_shortcut_tooltip": {
       "message": "It is not recommended to set the shortcut to a single key",
-      "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+      "description": "Shows this message if the users has only a single key set as shortcut"
     },
     "updateCheck_Refresh": {
       "message": "Refresh",
