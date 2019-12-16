@@ -42,7 +42,7 @@ var testsArray = [
           title: '(OmU) Katana Maidens ~ Toji No Miko',
           identifier: '(OmU) Katana Maidens ~ Toji No Miko',
           episode: 12,
-          overviewUrl: 'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=Katana Maidens ~ Toji No Miko',
+          overviewUrl: 'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=(OmU) Katana Maidens ~ Toji No Miko',
           nextEpUrl: 'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501'
         }
       },
