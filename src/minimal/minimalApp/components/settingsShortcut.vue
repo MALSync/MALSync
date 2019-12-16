@@ -7,6 +7,9 @@
       </div>
     </span>
     <span class="mdl-list__item-secondary-action">
+      <div class="icon material-icons close-icon" @click="value = {}" v-if="Object.keys(value).length">
+        close
+      </div>
       <div class="mdl-textfield mdl-js-textfield" >
         <input
           class="mdl-textfield__input"
@@ -33,6 +36,13 @@
     &.tempRec {
       border-bottom: 1px solid orange;
     }
+  }
+  .mdl-textfield {
+    width: auto;
+  }
+  .close-icon {
+    vertical-align: middle;
+    margin-bottom: 3px;
   }
 </style>
 
