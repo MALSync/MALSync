@@ -63,7 +63,7 @@ var testsArray = [
         url: 'https://kissanime.ru/Anime/No-Game-No-Life',
         expected: {
           sync: false,
-          title: 'No Game No Life (Sub)',
+          title: 'No Game No Life (Sub)s',
           identifier: 'No-Game-No-Life',
           uiSelector: true,
           epList: {
