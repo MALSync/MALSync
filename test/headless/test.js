@@ -86,7 +86,7 @@ var testsArray = [
     ]
   },
 
-  {
+  /*{
     title: '9anime',
     url: 'https://9anime.ru/',
     testCases: [
@@ -751,7 +751,7 @@ var testsArray = [
           episode: 10,
           uiSelector: false,
         }
-      },*/
+      },*
       {
         url: 'https://www.kickassanime.rs/anime/overlord-iii-954770',
         expected: {
@@ -850,7 +850,7 @@ var testsArray = [
           episode: 4,
           uiSelector: false,
         }
-      },*/
+      },*
       {
        url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
         expected: {
@@ -1085,7 +1085,7 @@ var testsArray = [
           episode: 2,
           uiSelector: false,
         }
-      },*/
+      },*
       {
         url: 'https://www.underhentai.net/resort-boin/',
         expected: {
@@ -1357,7 +1357,7 @@ var testsArray = [
           episode: 13,
           uiSelector: false,
         }
-      },*/
+      },*
       {
         url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
         expected: {
@@ -1736,7 +1736,7 @@ var testsArray = [
         }
       },
     ]
-  },
+  },*/
 ];
 
 // Define global variables
