@@ -52,6 +52,7 @@ var testsArray = [
   {
     title: 'Kissanime',
     url: 'https://kissanime.ru/',
+    skip: true
     testCases: [
       {
         url: 'https://kissanime.ru/Anime/No-Game-No-Life',
@@ -226,6 +227,7 @@ var testsArray = [
   {
     title: 'Kissmanga',
     url: 'https://kissmanga.com/',
+    skip: true
     testCases: [
       {
         url: 'https://kissmanga.com/Manga/No-Game-No-Life',

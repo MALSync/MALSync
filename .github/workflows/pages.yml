@@ -11,6 +11,6 @@ jobs:
     - name: Page Tests
       run: |
         npm ci
-        npm run test
+        npm run test:headless
       env:
         CI: true
