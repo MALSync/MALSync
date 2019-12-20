@@ -8,10 +8,9 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: npm install, build, and test
+    - name: Page Tests
       run: |
         npm ci
-        npm run build
         npm run test
       env:
         CI: true
