@@ -701,6 +701,10 @@
     "message": "Mostrar o ícone do MAL-Sync em vez do ícone da página",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
+  "settings_shortcut_tooltip": {
+    "message": "Não é recomendável definir o atalho para uma única tecla",
+    "description": "Shows this message if the users has only a single key set as shortcut"
+  },
   "updateCheck_Refresh": {
     "message": "Atualizar",
     "description": "Refresh"
