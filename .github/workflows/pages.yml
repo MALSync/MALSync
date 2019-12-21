@@ -1,5 +1,8 @@
 name: Page tests
-on: [pull_request, "schedule(0 12 * * *)"]
+on:
+  pull_request
+  schedule:
+    - cron:  '0 12 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
