@@ -14,41 +14,41 @@ export const MangaNelo: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text()
+      return j.$("div.body-site > div > div.panel-breadcrumb > a:nth-child(3)").text()
     },
     getIdentifier: function(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a").attr("href");
+      return j.$("div.body-site > div > div.panel-breadcrumb > a:nth-child(3)").attr("href");
     },
     getEpisode: function(url){
       return url.split("/")[5].match(/\d+/gmi);
     },
-     nextEpUrl: function(url){return j.$('div.btn-navigation-chap > a.back').first().attr('href');
+    nextEpUrl: function(url){return j.$('div.panel-navigation > div > a.navi-change-chapter-btn-next.a-h').first().attr('href');
     },
   },
   overview:{
     getTitle: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text();
+      return j.$("div.panel-story-info > div.story-info-right > h1").text();
     },
     getIdentifier: function(url){
       return utils.urlPart(url, 4);
     },
     uiSelector: function(selector){
-      j.$('<div id="malthing"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("#chapter").first());
+      j.$('<div id="malthing"> <p id="malp">'+selector.html()+'</p></div>').insertBefore(j.$("div.panel-story-chapter-list").first());
     },
 
     list:{
       offsetHandler: false,
       elementsSelector: function(){
-        return j.$("div.row:not('div.title-list-chapter')");
+        return j.$("div.panel-story-chapter-list > ul.row-content-chapter > li.a-h");
       },
       elementUrl: function(selector){
-        return selector.find('span:nth-child(1) > a').first().attr('href');
+        return selector.find('a').first().attr('href');
       },
       elementEp: function(selector){
-        return selector.find('span:nth-child(1) > a').first().attr('href').split("/")[5].match(/\d+/gmi);
+        return selector.find('a').first().attr('href').split("/")[5].match(/\d+/gmi);
       }
     }
   },
