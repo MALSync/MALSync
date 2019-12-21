@@ -1,6 +1,6 @@
 name: Page tests
 on:
-  pull_request
+  pull_request:
   schedule:
     - cron:  '0 12 * * *'
 jobs:
