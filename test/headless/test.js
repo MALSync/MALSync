@@ -4,6 +4,11 @@ const pluginStealth = require("puppeteer-extra-plugin-stealth");
 
 const fs = require('fs');
 const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
+const skipTest = process.env.SKIPTEST;
+
+if(skipTest) {
+  console.log('Skiptest');
+}
 
 var testsArray = [
   {
@@ -52,6 +57,7 @@ var testsArray = [
   {
     title: 'Kissanime',
     url: 'https://kissanime.ru/',
+    skip: true,
     testCases: [
       {
         url: 'https://kissanime.ru/Anime/No-Game-No-Life',
@@ -226,6 +232,7 @@ var testsArray = [
   {
     title: 'Kissmanga',
     url: 'https://kissmanga.com/',
+    skip: true,
     testCases: [
       {
         url: 'https://kissmanga.com/Manga/No-Game-No-Life',
@@ -459,7 +466,7 @@ var testsArray = [
       },
     ]
   },
-  
+
   {
     title: 'Novelplanet',
     url: 'https://novelplanet.com',
@@ -1760,7 +1767,9 @@ testsArray.forEach(function(testPage) {
   if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, function () {
     var doSkip = false;
-    if(typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
+    if(typeof testPage.skip !== 'undefined' && testPage.skip ) doSkip = true;
+    if(skipTest) doSkip = !doSkip;
+
     it('Online', async function () {
       if(doSkip) this.skip();
       const [response] = await Promise.all([
