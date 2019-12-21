@@ -613,33 +613,33 @@ var testsArray = [
     url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/1/episode/6',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
         expected: {
           sync: true,
-          title: 'Noragami',
-          identifier: 'noragami?s=1',
-          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
-          episode: 6,
+          title: 'Assassination Classroom',
+          identifier: 'assassination-classroom?s=1',
+          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          episode: 12,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/2/episode/7',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
         expected: {
           sync: true,
-          title: 'Noragami season 2',
-          identifier: 'noragami?s=2',
-          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
-          episode: 7,
+          title: 'Assassination Classroom season 2',
+          identifier: 'assassination-classroom?s=2',
+          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          episode: 15,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www1.aniflix.tv/show/noragami',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom',
         expected: {
           sync: false,
-          title: 'Noragami',
-          identifier: 'noragami?s=1',
+          title: 'Assassination Classroom',
+          identifier: 'assassination-classroom?s=1',
           uiSelector: true,
         }
       },
