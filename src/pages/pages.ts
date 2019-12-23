@@ -283,7 +283,7 @@ export const pageSearch:pageSearchObj = {
      domain: "livechart.me",
      searchUrl: titleEncoded => "https://www.livechart.me/search?q=" + titleEncoded
     },
- AnimeNewsNetwork: {
+  AnimeNewsNetwork: {
      name: "AnimeNewsNetwork",
      type: "anime",
      domain: "animenewsnetwork.com",
@@ -294,12 +294,6 @@ export const pageSearch:pageSearchObj = {
      type: "manga",
      domain: "animenewsnetwork.com",
      searchUrl: titleEncoded => "https://www.animenewsnetwork.com/encyclopedia/search/name?only=manga&q=" + titleEncoded
-    },
- AnimeNewsNetwork: {
-     name: "AnimeNewsNetwork",
-     type: "anime",
-     domain: "animenewsnetwork.com",
-     searchUrl: titleEncoded => "https://www.animenewsnetwork.com/encyclopedia/search/name?only=anime&q=" + titleEncoded
     },
  AnimePlanetAnime: {
      name: "Anime-Planet",
