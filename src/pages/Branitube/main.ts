@@ -12,19 +12,19 @@ export const Branitube: pageInterface = {
       }
     },
     sync:{
-      getTitle: function(url){return j.$('.infosAtulEpisodio .nomeAnime').text();},
-      getIdentifier: function(url){return Branitube.overview!.getIdentifier(Branitube.sync.getOverviewUrl(url));},
+      getTitle: function(url){return j.$('div.episodeInfo > div.nomeAnime').text();},
+      getIdentifier: function(url){return utils.urlPart(url, 5);},
       getOverviewUrl: function(url){
-        return Branitube.domain+$('.optionsAssistir a[href^="/animes/"]').first().attr('href')!;
+        return Branitube.domain+$('div.buttonEpisodes > a').first().attr('href')!;
       },
       getEpisode: function(url){
-        return parseInt(toEp($('.epEpisodio').text().trim()));
+        return parseInt(toEp($('div.episodeInfo > div.epInfo').text().trim()));
       },
-      nextEpUrl: function(url){return utils.absoluteLink(j.$('[title^="Próximo Episodio"]').first().attr('href'), Branitube.domain);},
+      nextEpUrl: function(url){return utils.absoluteLink(j.$('div.controlVideos > ul > li:nth-child(3) > a').first().attr('href'), Branitube.domain);},
     },
     overview:{
-      getTitle: function(url){return j.$('.nameAnime').text();},
-      getIdentifier: function(url){return utils.urlPart(url, 4);},
+      getTitle: function(url){return j.$('div.animeInfos > ul > li.largeSize').text();},
+      getIdentifier: function(url){return utils.urlPart(url, 5);},
       uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 10px; padding: 12px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$(".theUpdates .contentLastUpdatesEps").first()); },
       list:{
         offsetHandler: false,
