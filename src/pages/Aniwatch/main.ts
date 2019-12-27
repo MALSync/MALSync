@@ -17,16 +17,16 @@ export const Aniwatch: pageInterface = {
   sync: {
     getTitle: function(url){
       if(tabPage === "stream") {
-        return j.$("h1.md-headline.no-margin > span.border-right.pr-5").text()
+        return j.$("h1.md-headline.no-margin > span.border-right.pr-5").text();
       } else {
-        return j.$("h2.md-title > span.border-right > a").text()
+        return j.$("h2.md-title > span.border-right > a").text();
       }
     },
     getIdentifier: function(url) {
       if(tabPage === "stream") {
         return url.split("/")[4];
       } else {
-        return j.$("h2.md-title > span.border-right > a").attr("href").split("/")[2]
+        return j.$("h2.md-title > span.border-right > a").attr("href").split("/")[2];
       }
     },
     getOverviewUrl: function(url){
@@ -36,7 +36,7 @@ export const Aniwatch: pageInterface = {
       if(tabPage === "stream") {
         return parseInt(utils.urlPart(url, 5));
       } else {
-        return j.$("h2.md-title > span.desc-color").text().replace(/\D+/g, "")
+        return j.$("h2.md-title > span.desc-color").text().replace(/\D+/g, "");
       }
     },
     nextEpUrl: function(url){
