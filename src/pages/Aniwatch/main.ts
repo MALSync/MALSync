@@ -35,7 +35,7 @@ export const Aniwatch: pageInterface = {
     getEpisode: function(url){
       if(tabPage === "stream") {
         return parseInt(utils.urlPart(url, 5));
-      } else { 
+      } else {
         return j.$("h2.md-title > span.desc-color").text().replace(/\D+/g, "")
       }
     },
