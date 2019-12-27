@@ -211,6 +211,10 @@ module.exports = {
       '*://bestwea.stream/dub/*',
       '*://bestwea.stream/tv-series/*',
       '*://bestwea.stream/anime-movies/*',
+      '*://animestuffs.com/season/*',
+      '*://animestuffs.com/dub/*',
+      '*://animestuffs.com/tv-series/*',
+      '*://animestuffs.com/anime-movies/*',
     ],
   },
   fourAnime: {

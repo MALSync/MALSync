@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const kawaiifu: pageInterface = {
   name: "kawaiifu",
-  domain: ["https://kawaiifu.com","https://bestwea.stream"],
+  domain: ["https://kawaiifu.com","https://bestwea.stream","https://animestuffs.com"],
   type: "anime",
   isSyncPage: function(url) {
     if (
