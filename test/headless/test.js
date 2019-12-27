@@ -1708,6 +1708,7 @@ var testsArray = [
   {
     title: 'Mangarock',
     url: 'https://mangarock.com/',
+    skip: true,
     testCases: [
       {
         url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
