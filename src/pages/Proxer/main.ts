@@ -50,7 +50,7 @@ export const Proxer: pageInterface = {
     }
   },
   overview:{
-    getTitle: function(url){return j.$('#pageMetaAjax').text().split(' - ')[0];},
+    getTitle: function(url){return j.$('#pageMetaAjax').text().split(' - ')[0].replace(/\(Anime\)|\(Manga\)$/gmi,"").trim();},
     getIdentifier: function(url){return Proxer.sync.getIdentifier(url);},
     uiSelector: function(selector){selector.insertAfter(j.$(".hreview-aggregate > span").first());},
     list:{
