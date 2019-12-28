@@ -125,9 +125,7 @@ module.exports = {
   Branitube: {
     match: [
       '*://*.branitube.net/watch/*',
-      '*://*.branitube.net/animes/*',
-      '*://*.branitube.org/watch/*',
-      '*://*.branitube.org/animes/*'
+      '*://*.branitube.net/animes/*'
     ]
   },
   Turkanime: {

@@ -1,50 +1,79 @@
-import {pageInterface} from "./../pageInterface";
-
+import { pageInterface } from "./../pageInterface";
 export const Branitube: pageInterface = {
-    name: 'Branitube',
-    domain: 'https://branitube.net',
-    type: 'anime',
-    isSyncPage: function(url){
-      if(url.split('/')[3] !== 'watch'){
-        return false;
-      }else{
-        return true;
-      }
-    },
-    sync:{
-      getTitle: function(url){return j.$('.infosAtulEpisodio .nomeAnime').text();},
-      getIdentifier: function(url){return Branitube.overview!.getIdentifier(Branitube.sync.getOverviewUrl(url));},
-      getOverviewUrl: function(url){
-        return Branitube.domain+$('.optionsAssistir a[href^="/animes/"]').first().attr('href')!;
-      },
-      getEpisode: function(url){
-        return parseInt(toEp($('.epEpisodio').text().trim()));
-      },
-      nextEpUrl: function(url){return utils.absoluteLink(j.$('[title^="Próximo Episodio"]').first().attr('href'), Branitube.domain);},
-    },
-    overview:{
-      getTitle: function(url){return j.$('.nameAnime').text();},
-      getIdentifier: function(url){return utils.urlPart(url, 4);},
-      uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 10px; padding: 12px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$(".theUpdates .contentLastUpdatesEps").first()); },
-      list:{
-        offsetHandler: false,
-        elementsSelector: function(){return j.$('.imgefeito > .episodio');},
-        elementUrl: function(selector){return utils.absoluteLink(selector.find("a.episodioImages").first().attr('href'), Branitube.domain);},
-        elementEp: function(selector){return parseInt(toEp(selector.find('.numeroEpisodio').first().text().trim()))},
-      }
-    },
-    init(page){
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-      j.$(document).ready(function(){
-        page.handlePage();
-      });
+  name: "Branitube",
+  domain: "https://www.branitube.net",
+  type: "anime",
+  isSyncPage: function(url) {
+    if (url.split("/")[3] === "watch") {
+      return true;
+    } else {
+      return false;
     }
+  },
+  sync: {
+    getTitle: function(url){
+      if(getType() !== "anime") {
+        return j.$('.nomeAnime').text() + " "+ getType();
+      } else {
+        return j.$('.nomeAnime').text();
+      }
+    },
+    getIdentifier: function(url) {
+      return j.$('.nomeAnime').data('anid') +"?"+ getType().replace(/\s/gm,"");
+    },
+    getOverviewUrl: function(url){
+      return Branitube.domain+'/animes/'+ j.$('.nomeAnime').data('anid');
+    },
+    getEpisode: function(url){
+      if(getType().indexOf("movie") == -1) {
+        return j.$(".epInfo").text().replace(/\D+/g, "");
+      } else {
+        return 1;
+      }
+    }
+  },
+  overview:{
+    getTitle: function(url){
+      if(getType() !== "anime") {
+        return j.$('div.animeInfos > ul > li.largeSize').text() + " "+ getType();
+      } else {
+        return j.$('div.animeInfos > ul > li.largeSize').text();
+      }
+    },
+    getIdentifier: function(url){
+      return url.split("/")[4] +"?"+ getType();
+    },
+    uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 5px; padding: 5px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
+    },
+  },
+  init(page){
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    j.$(document).ready(function(){
+      if(page.url.split("/")[6] !== "filmes" && j.$("div.areaTypesList.no-padding > ul > li > a.active > span.totalEps").text().replace(/\D+/g, "") !== "0") {
+        page.handlePage();
+      }
+    });
+  }
 };
 
-function toEp(string){
-  var temp = string.match(/\d*$/);
-  if(temp !== null){
-      return temp[0];
+function getType() {
+  if(window.location.href.split("/")[3] === "watch") {
+    var epInfo = j.$(".epInfo").text().toLowerCase();
+  } else {
+    var epInfo = j.$("div.areaTypesList.no-padding > ul > li > a.active").text().toLowerCase();
   }
-  return 1;
+  if(epInfo.indexOf("ova") !== -1) {
+    return "ova";
+  } else if (epInfo.indexOf("especial") !== -1 || epInfo.indexOf("especiais") !== -1) {
+    return "special";
+  } else if (epInfo.indexOf("filme") !== -1) {
+    return "movie " + epInfo.replace(/\D+/g, "").replace(/^0+/gm, '');
+  } else {
+    return "anime";
+  }
 }
