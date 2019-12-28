@@ -369,7 +369,7 @@ var testsArray = [
         }
       },
       {//film watch
-        url: 'https://www.branitube.net/watch/533/high-school-dxd',
+        url: 'https://www.branitube.net/watch/10370/one-piece',
         expected: {
           sync: true,
           title: 'One Piece movie 8"',
