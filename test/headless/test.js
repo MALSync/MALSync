@@ -308,27 +308,74 @@ var testsArray = [
     title: 'Branitube',
     url: 'https://www.branitube.net/',
     testCases: [
-      {
-        url: 'https://www.branitube.net/animes/no-game-no-life',
+      {//anime overview
+        url: 'https://www.branitube.net/animes/197/no-game-no-life',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          uiSelector: true,
-          epList: {
-            5: 'https://branitube.net/watch/1818'
-          }
+          identifier: '197?anime',
+          uiSelector: true
         }
       },
-      {
-        url: 'https://www.branitube.net/watch/1818',
+      {//ova overview
+        url: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
+        expected: {
+          sync: false,
+          title: 'High School DxD ova',
+          identifier: '73?ova',
+          uiSelector: true
+        }
+      },
+      {//special overview
+        url: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
+        expected: {
+          sync: false,
+          title: 'High School DxD special',
+          identifier: '73?special',
+          uiSelector: true
+        }
+      },
+      {//anime watch
+        url: 'https://www.branitube.net/watch/1820/no-game-no-life',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://branitube.net/animes/no-game-no-life',
-          nextEpUrl: 'https://www.branitube.net/watch/1819',
+          identifier: '197?anime',
+          overviewUrl: 'https://www.branitube.net/animes/197',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {//ova watch
+        url: 'https://www.branitube.net/watch/536/high-school-dxd',
+        expected: {
+          sync: true,
+          title: 'High School DxD ova',
+          identifier: '73?ova',
+          overviewUrl: 'https://www.branitube.net/animes/73',
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+      {//special watch
+        url: 'https://www.branitube.net/watch/533/high-school-dxd',
+        expected: {
+          sync: true,
+          title: 'High School DxD special',
+          identifier: '73?special',
+          overviewUrl: 'https://www.branitube.net/animes/73',
           episode: 5,
+          uiSelector: false,
+        }
+      },
+      {//film watch
+        url: 'https://www.branitube.net/watch/533/high-school-dxd',
+        expected: {
+          sync: true,
+          title: 'One Piece movie 8"',
+          identifier: '21?movie8',
+          overviewUrl: 'https://www.branitube.net/animes/21',
+          episode: 1,
           uiSelector: false,
         }
       },
