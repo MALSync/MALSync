@@ -314,7 +314,10 @@ var testsArray = [
           sync: false,
           title: 'No Game No Life',
           identifier: '197?anime',
-          uiSelector: true
+          uiSelector: true,
+          epList: {
+            5: "https://www.branitube.net/watch/1818/no-game-no-life"
+          }
         }
       },
       {//ova overview
@@ -323,7 +326,10 @@ var testsArray = [
           sync: false,
           title: 'High School DxD ova',
           identifier: '73?ova',
-          uiSelector: true
+          uiSelector: true,
+          epList: {
+            2: "https://www.branitube.net/watch/536/high-school-dxd"
+          }
         }
       },
       {//special overview
@@ -332,7 +338,10 @@ var testsArray = [
           sync: false,
           title: 'High School DxD special',
           identifier: '73?special',
-          uiSelector: true
+          uiSelector: true,
+          epList: {
+            5: "https://www.branitube.net/watch/533/high-school-dxd"
+          }
         }
       },
       {//anime watch
@@ -341,7 +350,7 @@ var testsArray = [
           sync: true,
           title: 'No Game No Life',
           identifier: '197?anime',
-          overviewUrl: 'https://www.branitube.net/animes/197',
+          overviewUrl: 'https://www.branitube.net/animes/197/no-game-no-life',
           episode: 7,
           uiSelector: false,
         }
@@ -352,7 +361,7 @@ var testsArray = [
           sync: true,
           title: 'High School DxD ova',
           identifier: '73?ova',
-          overviewUrl: 'https://www.branitube.net/animes/73',
+          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
           episode: 2,
           uiSelector: false,
         }
@@ -363,7 +372,7 @@ var testsArray = [
           sync: true,
           title: 'High School DxD special',
           identifier: '73?special',
-          overviewUrl: 'https://www.branitube.net/animes/73',
+          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
           episode: 5,
           uiSelector: false,
         }
@@ -374,7 +383,7 @@ var testsArray = [
           sync: true,
           title: 'One Piece movie 8"',
           identifier: '21?movie8',
-          overviewUrl: 'https://www.branitube.net/animes/21',
+          overviewUrl: 'https://www.branitube.net/animes/21/one-piece/filmes',
           episode: 1,
           uiSelector: false,
         }
