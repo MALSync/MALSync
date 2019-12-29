@@ -39,7 +39,12 @@ export const Branitube: pageInterface = {
       } else {
         return 1;
       }
-    }
+    },
+    nextEpUrl: function(url){
+      if(getType().indexOf("movie") == -1 && j.$(".cplPl").attr("data-npl") && j.$(".cplPl").attr("data-cpl") && j.$(".cplPl").attr("data-npltype") && j.$(".cplPl").attr("data-cpl") == j.$(".cplPl").attr("data-npltype")) {
+        return Branitube.domain + "/watch/" + j.$(".cplPl").attr("data-npl") + "/" + url.split("/")[5]
+      }
+    },
   },
   overview:{
     getTitle: function(url){

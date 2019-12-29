@@ -351,6 +351,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '197?anime',
           overviewUrl: 'https://www.branitube.net/animes/197/no-game-no-life',
+          nextEpUrl: 'https://www.branitube.net/watch/1821/no-game-no-life',
           episode: 7,
           uiSelector: false,
         }
@@ -362,6 +363,7 @@ var testsArray = [
           title: 'High School DxD ova',
           identifier: '73?ova',
           overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
+          nextEpUrl: undefined,
           episode: 2,
           uiSelector: false,
         }
@@ -373,6 +375,7 @@ var testsArray = [
           title: 'High School DxD special',
           identifier: '73?special',
           overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
+          nextEpUrl: 'https://www.branitube.net/watch/534/high-school-dxd',
           episode: 5,
           uiSelector: false,
         }
@@ -384,6 +387,7 @@ var testsArray = [
           title: 'One Piece movie 8"',
           identifier: '21?movie8',
           overviewUrl: 'https://www.branitube.net/animes/21/one-piece/filmes',
+          nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
         }
