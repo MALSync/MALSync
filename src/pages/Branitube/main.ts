@@ -22,7 +22,16 @@ export const Branitube: pageInterface = {
       return j.$('.nomeAnime').data('anid') +"?"+ getType().replace(/\s/gm,"");
     },
     getOverviewUrl: function(url){
-      return Branitube.domain+'/animes/'+ j.$('.nomeAnime').data('anid');
+      var tempUrl = Branitube.domain + j.$("div.buttonEpisodes > a").attr("href")
+      if(getType() === "anime") {
+        return tempUrl
+      } else if(getType() === "ova") {
+        return tempUrl + "/ovas"
+      } else if(getType() === "special") {
+        return tempUrl + "/especiais"
+      } else {
+        return tempUrl + "/filmes"
+      }
     },
     getEpisode: function(url){
       if(getType().indexOf("movie") == -1) {
@@ -43,7 +52,20 @@ export const Branitube: pageInterface = {
     getIdentifier: function(url){
       return url.split("/")[4] +"?"+ getType();
     },
-    uiSelector: function(selector){ j.$('<div class="animeResult" style="margin-bottom: 5px; padding: 5px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
+    uiSelector: function(selector){
+      j.$('<div class="animeResult" style="margin-bottom: 5px; padding: 5px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
+    },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$('.areaEpsList > .getTotalShowingEp > .item-ep > div.area-ep');
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find("a").first().attr('href'), Branitube.domain);
+      },
+      elementEp: function(selector){
+        return utils.getBaseText(selector.find("div.infos-bottom > div.ep-info > div.anime-content").first()).replace(/\D+/g, "")
+      },
     },
   },
   init(page){
