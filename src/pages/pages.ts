@@ -303,7 +303,7 @@ export const pageSearch:pageSearchObj = {
     },
   AnimePlanetManga: {
      name: "Anime-Planet",
-     type: "anime",
+     type: "manga",
      domain: "anime-planet.com",
      searchUrl: titleEncoded => "https://www.anime-planet.com/search.php?search_type=manga&search=" + titleEncoded
     },
@@ -315,7 +315,7 @@ AniSeachAnime: {
     },
 AniSeachManga: {
      name: "AniSearch",
-     type: "anime",
+     type: "manga",
      domain: "anisearch.com",
      searchUrl: titleEncoded => "https://www.anisearch.com/manga/index?text=" + titleEncoded
     },
