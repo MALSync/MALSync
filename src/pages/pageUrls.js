@@ -92,6 +92,10 @@ module.exports = {
       '*://*.mangadex.org/manga/*',
       '*://*.mangadex.org/title/*',
       '*://*.mangadex.org/chapter/*',
+      //
+      '*://*.mangadex.cc/manga/*',
+      '*://*.mangadex.cc/title/*',
+      '*://*.mangadex.cc/chapter/*',
     ]
   },
   Mangarock: {
