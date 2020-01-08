@@ -223,7 +223,7 @@ export class entryClass{
       var data = response.responseText;
       var image = '';
       try{
-          image = data.split('js-scrollfix-bottom')[1].split('<img src="')[1].split('"')[0];
+          image = data.split('js-scrollfix-bottom')[1].split('data-src="')[1].split('"')[0];
       }catch(e) {console.log('[mal.ts] Error:',e);}
       return image;
     });
