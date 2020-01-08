@@ -107,6 +107,7 @@ module.exports = {
       '*://*.gogoanime.se/*',
       '*://*.gogoanime.sh/*',
       '*://*.gogoanime.video/*',
+      '*://*.gogoanime.movie/*',
       '*://*.gogoanimes.co/*',
       '*://*.animego.to/*',
     ],
@@ -129,9 +130,7 @@ module.exports = {
   Branitube: {
     match: [
       '*://*.branitube.net/watch/*',
-      '*://*.branitube.net/animes/*',
-      '*://*.branitube.org/watch/*',
-      '*://*.branitube.org/animes/*'
+      '*://*.branitube.net/animes/*'
     ]
   },
   Turkanime: {
@@ -215,6 +214,10 @@ module.exports = {
       '*://bestwea.stream/dub/*',
       '*://bestwea.stream/tv-series/*',
       '*://bestwea.stream/anime-movies/*',
+      '*://animestuffs.com/season/*',
+      '*://animestuffs.com/dub/*',
+      '*://animestuffs.com/tv-series/*',
+      '*://animestuffs.com/anime-movies/*',
     ],
   },
   fourAnime: {

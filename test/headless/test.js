@@ -110,32 +110,32 @@ var testsArray = [
 
   {
     title: 'Gogoanime',
-    url: 'https://www4.gogoanime.io',
+    url: 'https://gogoanime.movie/',
     testCases: [
       {
-        url: 'https://www4.gogoanime.io/category/no-game-no-life',
+        url: 'https://gogoanime.movie/category/no-game-no-life',
         expected: {
           sync: false,
           title: 'no-game-no-life',
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
+            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
           }
         }
       },
       {
-        url: 'https://www4.gogoanime.io/no-game-no-life-episode-5',
+        url: 'https://gogoanime.movie/no-game-no-life-episode-5',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://www4.gogoanime.io/category/no-game-no-life',
-          nextEpUrl: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
+          overviewUrl: 'https://gogoanime.movie/category/no-game-no-life',
+          nextEpUrl: 'https://gogoanime.movie/no-game-no-life-episode-6',
           episode: 5,
           uiSelector: false,
           epList: {
-            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
+            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
           }
         }
       },
@@ -308,27 +308,87 @@ var testsArray = [
     title: 'Branitube',
     url: 'https://www.branitube.net/',
     testCases: [
-      {
-        url: 'https://www.branitube.net/animes/no-game-no-life',
+      {//anime overview
+        url: 'https://www.branitube.net/animes/197/no-game-no-life',
         expected: {
           sync: false,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life',
+          identifier: '197?anime',
           uiSelector: true,
           epList: {
-            5: 'https://branitube.net/watch/1818'
+            5: "https://www.branitube.net/watch/1818/no-game-no-life"
           }
         }
       },
-      {
-        url: 'https://www.branitube.net/watch/1818',
+      {//ova overview
+        url: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
+        expected: {
+          sync: false,
+          title: 'High School DxD ova',
+          identifier: '73?ova',
+          uiSelector: true,
+          epList: {
+            2: "https://www.branitube.net/watch/536/high-school-dxd"
+          }
+        }
+      },
+      {//special overview
+        url: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
+        expected: {
+          sync: false,
+          title: 'High School DxD special',
+          identifier: '73?special',
+          uiSelector: true,
+          epList: {
+            5: "https://www.branitube.net/watch/533/high-school-dxd"
+          }
+        }
+      },
+      {//anime watch
+        url: 'https://www.branitube.net/watch/1820/no-game-no-life',
         expected: {
           sync: true,
           title: 'No Game No Life',
-          identifier: 'no-game-no-life',
-          overviewUrl: 'https://branitube.net/animes/no-game-no-life',
-          nextEpUrl: 'https://www.branitube.net/watch/1819',
+          identifier: '197?anime',
+          overviewUrl: 'https://www.branitube.net/animes/197/no-game-no-life',
+          nextEpUrl: 'https://www.branitube.net/watch/1821/no-game-no-life',
+          episode: 7,
+          uiSelector: false,
+        }
+      },
+      {//ova watch
+        url: 'https://www.branitube.net/watch/536/high-school-dxd',
+        expected: {
+          sync: true,
+          title: 'High School DxD ova',
+          identifier: '73?ova',
+          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
+          nextEpUrl: undefined,
+          episode: 2,
+          uiSelector: false,
+        }
+      },
+      {//special watch
+        url: 'https://www.branitube.net/watch/533/high-school-dxd',
+        expected: {
+          sync: true,
+          title: 'High School DxD special',
+          identifier: '73?special',
+          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
+          nextEpUrl: 'https://www.branitube.net/watch/534/high-school-dxd',
           episode: 5,
+          uiSelector: false,
+        }
+      },
+      {//film watch
+        url: 'https://www.branitube.net/watch/10370/one-piece',
+        expected: {
+          sync: true,
+          title: 'One Piece movie 8"',
+          identifier: '21?movie8',
+          overviewUrl: 'https://www.branitube.net/animes/21/one-piece/filmes',
+          nextEpUrl: undefined,
+          episode: 1,
           uiSelector: false,
         }
       },
@@ -503,17 +563,17 @@ var testsArray = [
     url: 'https://kawaiifu.com/',
     testCases: [
       {
-        url: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
+        url: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
         expected: {
           sync: true,
           title: 'Plastic Memories (Bluray Ver.)',
           identifier: 'plastic-memories-bluray-ver-hd-720p',
           overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html',
           episode: 4,
-          nextEpUrl: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
+          nextEpUrl: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
           epList: {
-            6: 'https://bestwea.stream/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
+            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
           }
         }
       },
@@ -613,33 +673,33 @@ var testsArray = [
     url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/1/episode/6',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
         expected: {
           sync: true,
-          title: 'Noragami',
-          identifier: 'noragami?s=1',
-          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
-          episode: 6,
+          title: 'Assassination Classroom',
+          identifier: 'assassination-classroom?s=1',
+          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          episode: 12,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www1.aniflix.tv/show/noragami/ger-sub/season/2/episode/7',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
         expected: {
           sync: true,
-          title: 'Noragami season 2',
-          identifier: 'noragami?s=2',
-          overviewUrl: 'https://www1.aniflix.tv/show/noragami',
-          episode: 7,
+          title: 'Assassination Classroom season 2',
+          identifier: 'assassination-classroom?s=2',
+          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          episode: 15,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www1.aniflix.tv/show/noragami',
+        url: 'https://www1.aniflix.tv/show/assassination-classroom',
         expected: {
           sync: false,
-          title: 'Noragami',
-          identifier: 'noragami?s=1',
+          title: 'Assassination Classroom',
+          identifier: 'assassination-classroom?s=1',
           uiSelector: true,
         }
       },
@@ -1708,6 +1768,7 @@ var testsArray = [
   {
     title: 'Mangarock',
     url: 'https://mangarock.com/',
+    skip: true,
     testCases: [
       {
         url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',

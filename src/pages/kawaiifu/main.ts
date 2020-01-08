@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const kawaiifu: pageInterface = {
   name: "kawaiifu",
-  domain: ["https://kawaiifu.com","https://bestwea.stream"],
+  domain: ["https://kawaiifu.com","https://bestwea.stream","https://animestuffs.com"],
   type: "anime",
   isSyncPage: function(url) {
     if (
@@ -67,7 +67,7 @@ export const kawaiifu: pageInterface = {
     list:{
       offsetHandler: false,
       elementsSelector: function(){
-        return j.$("ul.list-ep > li");
+        return j.$("div#server_ep a.active").closest("ul.list-ep").children();
       },
       elementUrl: function(selector){
         return selector.find('a').first().attr('href');
