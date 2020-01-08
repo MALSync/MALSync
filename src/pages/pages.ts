@@ -281,4 +281,46 @@ export const pageSearch:pageSearchObj = {
       domain: 'myanimelist.net',
       searchUrl: (titleEncoded) => {return 'https://myanimelist.net/anime.php?q='+titleEncoded}
     },
+   LiveChart: {
+     name: "LiveChart",
+     type: "anime",
+     domain: "livechart.me",
+     searchUrl: titleEncoded => "https://www.livechart.me/search?q=" + titleEncoded
+    },
+  AnimeNewsNetwork: {
+     name: "AnimeNewsNetwork",
+     type: "anime",
+     domain: "animenewsnetwork.com",
+     searchUrl: titleEncoded => "https://www.animenewsnetwork.com/encyclopedia/search/name?only=anime&q=" + titleEncoded
+    },
+ AnimeNewsNetworkManga: {
+     name: "AnimeNewsNetwork",
+     type: "manga",
+     domain: "animenewsnetwork.com",
+     searchUrl: titleEncoded => "https://www.animenewsnetwork.com/encyclopedia/search/name?only=manga&q=" + titleEncoded
+    },
+ AnimePlanetAnime: {
+     name: "Anime-Planet",
+     type: "anime",
+     domain: "anime-planet.com",
+     searchUrl: titleEncoded => "https://www.anime-planet.com/search.php?search_type=anime&search=" + titleEncoded
+    },
+  AnimePlanetManga: {
+     name: "Anime-Planet",
+     type: "manga",
+     domain: "anime-planet.com",
+     searchUrl: titleEncoded => "https://www.anime-planet.com/search.php?search_type=manga&search=" + titleEncoded
+    },
+AniSeachAnime: {
+     name: "AniSearch",
+     type: "anime",
+     domain: "anisearch.com",
+     searchUrl: titleEncoded => "https://www.anisearch.com/anime/index?text=" + titleEncoded
+    },
+AniSeachManga: {
+     name: "AniSearch",
+     type: "manga",
+     domain: "anisearch.com",
+     searchUrl: titleEncoded => "https://www.anisearch.com/manga/index?text=" + titleEncoded
+    },
 }
