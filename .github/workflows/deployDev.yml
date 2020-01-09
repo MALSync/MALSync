@@ -19,3 +19,11 @@ jobs:
         npm run package
       env:
         MODE: dev
+    - name: Deploy
+      uses: trmcnvn/chrome-addon@v2
+      with:
+        extension: neekhcfkcjbddejgenpcdnpnidnfdgoh
+        zip: dist/webextension.zip
+        client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
