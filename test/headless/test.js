@@ -1383,22 +1383,22 @@ var testsArray = [
     url: 'https://animeflix.io/',
     testCases: [
       {
-        url: 'https://animeflix.io/shows/quanzhi-gaoshou/episode-7-928035/sub',
+        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season/episode-8-436278/sub',
         expected: {
           sync: true,
-          title: 'Quanzhi Gaoshou',
-          identifier: 'quanzhi-gaoshou',
-          overviewUrl: 'https://animeflix.io/shows/quanzhi-gaoshou',
-          episode: 7,
+          title: 'Boku no Hero Academia 4th Season',
+          identifier: 'boku-no-hero-academia-4th-season',
+          overviewUrl: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
+          episode: 8,
           uiSelector: false,
         }
       },
       {
-        url: 'https://animeflix.io/shows/quanzhi-gaoshou',
+        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
         expected: {
           sync: false,
-          title: 'Quanzhi Gaoshou',
-          identifier: 'quanzhi-gaoshou',
+          title: 'Boku no Hero Academia 4th Season',
+          identifier: 'boku-no-hero-academia-4th-season',
           uiSelector: true,
         }
       },
@@ -1556,8 +1556,8 @@ var testsArray = [
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'https://unionleitor.top/leitor/Solo_Leveling/05',
-            87: 'https://unionleitor.top/leitor/Solo_Leveling/87',
+            5: 'http://unionleitor.top/leitor/Solo_Leveling/05',
+            87: 'http://unionleitor.top/leitor/Solo_Leveling/87',
           }
         }
       },
