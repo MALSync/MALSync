@@ -3,7 +3,6 @@ import {Kissmanga} from "./Kissmanga/main";
 import {nineAnime} from "./nineAnime/main";
 import {Crunchyroll} from "./Crunchyroll/main";
 import {Mangadex} from "./Mangadex/main";
-import {Mangarock} from "./Mangarock/main";
 import {Gogoanime} from "./Gogoanime/main";
 import {Anime4you} from "./Anime4you/main";
 import {Branitube} from "./Branitube/main";
@@ -68,7 +67,6 @@ export const pages = {
     Crunchyroll,
     Vrv,
     Mangadex,
-    Mangarock,
     Gogoanime,
     Twistmoe,
     Anime4you,
@@ -178,12 +176,6 @@ export const pageSearch:pageSearchObj = {
       type: 'manga',
       domain: 'mangadex.org',
       searchUrl: (titleEncoded) => {return 'https://mangadex.org/quick_search/'+titleEncoded}
-    },
-    Mangarock: {
-      name: 'Mangarock',
-      type: 'manga',
-      domain: 'mangarock.com',
-      searchUrl: (titleEncoded) => {return 'https://mangarock.com/search?q='+titleEncoded}
     },
     Kissmanga: {
       name: 'Kissmanga',
