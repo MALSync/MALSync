@@ -202,6 +202,10 @@ const generateManifest = () => {
 
   if(mode === 'travis'){
     delete mani.applications;
+  }else if(mode === 'dev'){
+    delete mani.applications;
+    mani.name = mani.name+' (DEV)';
+    mani.version = new Date().toISOString().replace(/T.*/, '').replace(/-/g, '.');
   }
 
   return JSON.stringify(mani, null, 2);
