@@ -315,4 +315,10 @@ module.exports = {
       '*://*.haloani.ru/*'
     ]
   },
+  //moeclip
+  moeclip: {
+    match: [
+      '*://*.moeclip.com/v/*'
+    ]
+  },
 };
