@@ -1,5 +1,8 @@
 name: Dev deploy
-on: [push]
+on:
+  push:
+    branches:
+      - beta
 jobs:
   build:
     runs-on: ubuntu-latest
