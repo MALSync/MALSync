@@ -54,6 +54,7 @@ module.exports = {
       '*://*.9anime.video/watch/*',
       '*://*.9anime.life/watch/*',
       '*://*.9anime.love/watch/*',
+      '*://*.9anime.tv/watch/*',
     ]
   },
   Crunchyroll:{
@@ -96,11 +97,6 @@ module.exports = {
       '*://*.mangadex.cc/manga/*',
       '*://*.mangadex.cc/title/*',
       '*://*.mangadex.cc/chapter/*',
-    ]
-  },
-  Mangarock: {
-    match: [
-      '*://mangarock.com/*',
     ]
   },
   Gogoanime: {

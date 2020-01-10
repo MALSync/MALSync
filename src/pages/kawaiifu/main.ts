@@ -51,7 +51,7 @@ export const kawaiifu: pageInterface = {
       }
     },
     nextEpUrl: function(url){
-      var href = $(".list-ep a.active").parent().next().find('a').attr('href');
+      var href = j.$("div#server_ep a.active").closest("li").next().find('a').attr('href');
       if(typeof href !== 'undefined'){
         return utils.absoluteLink(href, kawaiifu.domain);
       }

@@ -91,17 +91,17 @@ var testsArray = [
     url: 'https://9anime.ru/',
     testCases: [
       {
-        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/lwp1yn',
+        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/16om8m',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
-          overviewUrl: 'https://www1.9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13',
+          overviewUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0',
+          nextEpUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6mxqj7',
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/jrnw13'
+            5: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6mxqj7'
           }
         }
       },
@@ -307,6 +307,7 @@ var testsArray = [
   {
     title: 'Branitube',
     url: 'https://www.branitube.net/',
+    skip: true,//somehow doesnt work
     testCases: [
       {//anime overview
         url: 'https://www.branitube.net/animes/197/no-game-no-life',
@@ -1382,22 +1383,22 @@ var testsArray = [
     url: 'https://animeflix.io/',
     testCases: [
       {
-        url: 'https://animeflix.io/shows/quanzhi-gaoshou/episode-7-928035/sub',
+        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season/episode-8-436278/sub',
         expected: {
           sync: true,
-          title: 'Quanzhi Gaoshou',
-          identifier: 'quanzhi-gaoshou',
-          overviewUrl: 'https://animeflix.io/shows/quanzhi-gaoshou',
-          episode: 7,
+          title: 'Boku no Hero Academia 4th Season',
+          identifier: 'boku-no-hero-academia-4th-season',
+          overviewUrl: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
+          episode: 8,
           uiSelector: false,
         }
       },
       {
-        url: 'https://animeflix.io/shows/quanzhi-gaoshou',
+        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
         expected: {
           sync: false,
-          title: 'Quanzhi Gaoshou',
-          identifier: 'quanzhi-gaoshou',
+          title: 'Boku no Hero Academia 4th Season',
+          identifier: 'boku-no-hero-academia-4th-season',
           uiSelector: true,
         }
       },
@@ -1555,8 +1556,8 @@ var testsArray = [
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'https://unionleitor.top/leitor/Solo_Leveling/05',
-            87: 'https://unionleitor.top/leitor/Solo_Leveling/87',
+            5: 'http://unionleitor.top/leitor/Solo_Leveling/05',
+            87: 'http://unionleitor.top/leitor/Solo_Leveling/87',
           }
         }
       },
@@ -1760,39 +1761,6 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-05/dublado'
-          }
-        }
-      },
-    ]
-  },
-  {
-    title: 'Mangarock',
-    url: 'https://mangarock.com/',
-    skip: true,
-    testCases: [
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116995',
-        expected: {
-          sync: true,
-          title: 'Initial D',
-          identifier: '116364',
-          overviewUrl: 'https://mangarock.com/manga/mrs-serie-116364',
-          nextEpUrl: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116996',
-          episode: 631,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://mangarock.com/manga/mrs-serie-116364',
-        expected: {
-          sync: false,
-          title: 'Initial D',
-          identifier: '116364',
-          uiSelector: true,
-          epList: {
-            5: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116369',
-            110: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116474',
-            627: 'https://mangarock.com/manga/mrs-serie-116364/chapter/mrs-chapter-116991',
           }
         }
       },

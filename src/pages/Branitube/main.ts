@@ -58,7 +58,7 @@ export const Branitube: pageInterface = {
       return url.split("/")[4] +"?"+ getType();
     },
     uiSelector: function(selector){
-      j.$('<div class="animeResult" style="margin-bottom: 5px; padding: 5px"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
+      j.$('<div class="animeResult" style="margin:8px;"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
     },
     list:{
       offsetHandler: false,
