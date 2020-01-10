@@ -308,5 +308,11 @@ module.exports = {
     match: [
       '*://*.animefever.tv/embed/*'
     ]
-  }
+  },
+  //kickassanime
+  haloani: {
+    match: [
+      '*://*.haloani.ru/*'
+    ]
+  },
 };
