@@ -302,5 +302,11 @@ module.exports = {
   	match: [
   		'*://*.pstream.net/e/*'
   	]
+  },
+  //Animeultima
+  animefever: {
+    match: [
+      '*://*.animefever.tv/embed/*'
+    ]
   }
 };
