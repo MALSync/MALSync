@@ -32,7 +32,7 @@ api.settings.init()
   .then(()=>{
 
     shortcutListener((shortcut) => {
-      con.log('shortcut', shortcut);
+      con.log('[iframe] Shortcut', shortcut);
       switch (shortcut.shortcut) {
         case 'introSkipFwd':
           addVideoTime(true);
