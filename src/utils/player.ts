@@ -118,7 +118,10 @@ var init = false;
 
 var currCallback;
 
-const shortcutOptions = [];
+const shortcutOptions = [
+  'introSkipFwd',
+  'introSkipBwd',
+];
 
 export function shortcutListener(callback) {
   currCallback = callback;
