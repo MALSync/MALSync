@@ -199,11 +199,6 @@ module.exports = {
       '*://novelplanet.com/Novel/*',
     ],
   },
-  WonderfulSubs: {
-    match: [
-      '*://*.wonderfulsubs.com/*',
-    ],
-  },
   kawaiifu: {
     match: [
       '*://kawaiifu.com/season/*',
@@ -415,4 +410,4 @@ module.exports = {
       '*://aniwatch.me/*'
     ]
   },
-};    
+};
