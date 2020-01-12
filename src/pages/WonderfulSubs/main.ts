@@ -1,3 +1,5 @@
+// Owner does not want to be supported by mal-sync
+
 import { pageInterface } from "./../pageInterface";
 
 export const WonderfulSubs: pageInterface = {
