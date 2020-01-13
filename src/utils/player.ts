@@ -140,7 +140,11 @@ export function shortcutListener(callback) {
       for (var i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];
         if(checkShortcut(option)){
-          return shortcutDetected(option);
+          if(/textarea|input|select/i.test(e.target.nodeName)) {
+            con.info('Input field. Shortcut suppressed.');
+          }else{
+            return shortcutDetected(option);
+          }
         }
       }
 
