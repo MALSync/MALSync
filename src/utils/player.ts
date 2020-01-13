@@ -83,6 +83,16 @@ async function setFullscreen(player){
       }
     }
 
+    if(!found){
+      var vHeight = playerEl.offsetHeight;
+      var vWidth = playerEl.offsetWidth;
+
+      while(playerEl.parentElement && vHeight === playerEl.parentElement.offsetHeight && vWidth === playerEl.parentElement.offsetWidth) {
+        playerEl = playerEl.parentElement;
+        found = true;
+      }
+    }
+
     if(!found && !player.getAttribute('controls')){
       if (document.addEventListener) {
         document.addEventListener('fullscreenchange', exitHandler, false);
