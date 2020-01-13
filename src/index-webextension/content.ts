@@ -57,32 +57,34 @@ function messagePageListener(page){
       }
     }
 
-    shortcutListener((shortcut) => {
-      con.log('[content] Shortcut', shortcut);
-      switch (shortcut.shortcut) {
-        case 'introSkipFwd':
-          addVideoTime(true);
-          break;
-        case 'introSkipBwd':
-          addVideoTime(false);
-          break;
-      }
+  });
 
-      async function addVideoTime(forward:boolean){
-        if(typeof page.tempPlayer === 'undefined'){
-          if(!timeAddCb) {
-            con.error('[content] No iframe and onsite player found');
-            return;
-          }
-          timeAddCb(forward);
+  shortcutListener((shortcut) => {
+    con.log('[content] Shortcut', shortcut);
+    switch (shortcut.shortcut) {
+      case 'introSkipFwd':
+        addVideoTime(true);
+        break;
+      case 'introSkipBwd':
+        addVideoTime(false);
+        break;
+    }
+
+    async function addVideoTime(forward:boolean){
+      if(typeof page.tempPlayer === 'undefined'){
+        if(!timeAddCb) {
+          con.error('[content] No iframe and onsite player found');
           return;
         }
-        var time = parseInt(await api.settings.getAsync('introSkip'));
-        if(!forward) time = 0 - time;
-        page.tempPlayer.currentTime = page.tempPlayer.currentTime + time;
+        timeAddCb(forward);
         return;
       }
-    });
-
+      var time = parseInt(await api.settings.getAsync('introSkip'));
+      if(!forward) time = 0 - time;
+      page.tempPlayer.currentTime = page.tempPlayer.currentTime + time;
+      return;
+    }
   });
+
+
 }
