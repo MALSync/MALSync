@@ -17,8 +17,12 @@ export const nineAnime: pageInterface = {
       },
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){return parseInt(j.$(".servers .episodes a.active").attr('data-base')!);},
-      nextEpUrl: function(url){return nineAnime.domain+j.$(".servers .episodes a.active").parent('li').next().find('a').attr('href');},
-
+      nextEpUrl: function(url){
+        var href = j.$(".servers .episodes a.active").parent('li').next().find('a').attr('href');
+        if(typeof href !== 'undefined'){
+          return utils.absoluteLink(href, nineAnime.domain);
+        }
+      },
       uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> <p id="malp">'+selector.html()+'</p></div></div>').insertBefore(j.$(".widget.info").first());},
     },
     overview:{
