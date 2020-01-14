@@ -156,6 +156,11 @@ export function shortcutListener(callback) {
       }
     };
 
+    window.addEventListener("focus", function(event){
+        con.info('Focus');
+        keyMap = {};
+    }, false);
+
     function checkShortcut(option) {
       var keys = api.settings.get(option);
       if(!keys.length) return false;
