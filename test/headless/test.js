@@ -110,32 +110,32 @@ var testsArray = [
 
   {
     title: 'Gogoanime',
-    url: 'https://gogoanime.movie/',
+    url: 'https://www4.gogoanime.io',
     testCases: [
       {
-        url: 'https://gogoanime.movie/category/no-game-no-life',
+        url: 'https://www4.gogoanime.io/category/no-game-no-life',
         expected: {
           sync: false,
           title: 'no-game-no-life',
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
           }
         }
       },
       {
-        url: 'https://gogoanime.movie/no-game-no-life-episode-5',
+        url: 'https://www4.gogoanime.io/no-game-no-life-episode-5',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://gogoanime.movie/category/no-game-no-life',
-          nextEpUrl: 'https://gogoanime.movie/no-game-no-life-episode-6',
+          overviewUrl: 'https://www4.gogoanime.io/category/no-game-no-life',
+          nextEpUrl: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
           episode: 5,
           uiSelector: false,
           epList: {
-            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
           }
         }
       },
