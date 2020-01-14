@@ -11,12 +11,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Page Tests
-      run: |
-        npm ci
-        npm run test:headless
-      env:
-        CI: true
     - name: Page skip Tests
       continue-on-error: true
       run: |
@@ -24,3 +18,10 @@ jobs:
         npm run test:headless
       env:
         SKIPTEST: true
+    - name: Page Tests
+      run: |
+        npm ci
+        npm run test:headless
+      env:
+        CI: true
+
