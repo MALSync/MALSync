@@ -39,10 +39,15 @@
   }
   .mdl-textfield {
     width: auto;
+    padding: 0;
   }
   .close-icon {
     vertical-align: middle;
     margin-bottom: 3px;
+  }
+  .mdl-list__item-secondary-action {
+    display: flex;
+    align-items: center;
   }
 </style>
 
