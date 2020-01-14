@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const unionleitor: pageInterface = {
   name: "unionleitor (Bad)",
-  domain: "https://unionleitor.top",
+  domain: ["https://unionleitor.top", "http://unionmangas.top"],
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "leitor" && url.split("/")[5] !== undefined && url.split("/")[5].length > 0) {
