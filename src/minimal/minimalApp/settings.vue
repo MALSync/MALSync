@@ -203,8 +203,8 @@
         <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
 
-        <shortcut option="introSkipFwd">introSkipFwd</shortcut>
-        <shortcut option="introSkipBwd">introSkipBwd</shortcut>
+        <shortcut option="introSkipFwd">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>
+        <shortcut option="introSkipBwd">{{lang("settings_Shortcuts_Skip_Backward")}}</shortcut>
 
         <numberInput option="introSkip" :min="5">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
 

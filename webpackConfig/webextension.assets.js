@@ -75,23 +75,7 @@ const generateManifest = () => {
           'windows': 'Alt+M',
           'mac': 'Alt+M'
         }
-      },
-      'intro_skip_forward': {
-        //'suggested_key': {
-        //  'default': 'Ctrl+Right',
-        //  'windows': 'Ctrl+Right',
-        //  'mac': 'Ctrl+Right'
-        //},
-        'description': '__MSG_settings_Shortcuts_Skip_Forward__',
-      },
-      'intro_skip_backward': {
-        //'suggested_key': {
-        //  'default': 'Ctrl+Left',
-        //  'windows': 'Ctrl+Left',
-        //  'mac': 'Ctrl+Left'
-        //},
-        'description': '__MSG_settings_Shortcuts_Skip_Backward__',
-      },
+      }
     },
     'content_scripts': [
       {

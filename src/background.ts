@@ -21,32 +21,6 @@ chrome.runtime.onInstalled.addListener(function(details){
     chrome.alarms.clearAll();
 });
 
-if(typeof chrome.commands !== 'undefined'){
-  chrome.commands.onCommand.addListener(function(command) {
-    con.log('Command:', command);
-    switch (command) {
-      case "intro_skip_forward": {
-        addVideoTime(true);
-        return;
-      }
-      case "intro_skip_backward": {
-        addVideoTime(false);
-        return;
-      }
-      async function addVideoTime(forward:boolean){
-        var time = parseInt(await api.settings.getAsync('introSkip'));
-        if(!forward) time = 0 - time;
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-          // @ts-ignore
-          chrome.tabs.sendMessage(tabs[0].id, {action: "videoTimeSet", timeAdd: time});
-        });
-      }
-    }
-  });
-}else{
-  con.info('Shortcuts not supported');
-}
-
 chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse)  => {
   return messageHandler(message, sender, sendResponse)
 });
