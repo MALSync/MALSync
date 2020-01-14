@@ -574,7 +574,7 @@ var testsArray = [
           nextEpUrl: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
           epList: {
-            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
+            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=6'
           }
         }
       },
