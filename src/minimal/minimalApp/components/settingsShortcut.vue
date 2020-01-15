@@ -74,6 +74,7 @@
       display() {
         if(this.tempRec) return Object.keys(this.tempKeys).map(val => keyboardMap[val]).join(' + ');
         if(this.rec) return Object.keys(this.keys).map(val => keyboardMap[val]).join(' + ');
+        if(!this.value || !Object.keys(this.value).length) return this.lang('settings_Shortcuts_Click');
         return Object.keys(this.value).map(val => keyboardMap[val]).join(' + ');
       },
       rec() {
