@@ -203,10 +203,10 @@
         <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
 
-        <shortcut option="introSkipFwd">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>
-        <shortcut option="introSkipBwd">{{lang("settings_Shortcuts_Skip_Backward")}}</shortcut>
+        <shortcut option="introSkipFwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>
+        <shortcut option="introSkipBwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Backward")}}</shortcut>
 
-        <numberInput option="introSkip" :min="5">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
+        <numberInput option="introSkip" :min="5" v-if="isExtension()">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
 
       </div>
 
@@ -432,6 +432,9 @@
       lang: api.storage.lang,
       myOpen: function(){
         this.isOpen = !this.isOpen;
+      },
+      isExtension: function(){
+        return api.type === 'webextension';
       },
       importFallbackSync: function(filecontent){
         con.log('Import FallbackSync', filecontent);
