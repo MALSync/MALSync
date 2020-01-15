@@ -157,7 +157,6 @@ export function shortcutListener(callback) {
     };
 
     window.addEventListener("focus", function(event){
-        con.info('Focus');
         keyMap = {};
     }, false);
 

@@ -44,6 +44,7 @@
   .close-icon {
     vertical-align: middle;
     margin-bottom: 3px;
+    cursor: pointer;
   }
   .mdl-list__item-secondary-action {
     display: flex;
