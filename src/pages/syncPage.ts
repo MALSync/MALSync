@@ -69,6 +69,21 @@ export class syncPage{
     return null;
   }
 
+  public openNextEp(){
+    if(typeof this.page.sync.nextEpUrl !== 'undefined'){
+      if(this.page.isSyncPage(this.url)){
+        var nextEp = this.page.sync.nextEpUrl(this.url);
+        if(nextEp){
+          location.href = nextEp;
+          return;
+        }
+      }
+      utils.flashm('Could not find next episode', {error: true, type: 'EpError'})
+      return;
+    }
+    utils.flashm('This page does not support nextEP', {error: true, type: 'EpError'})
+  }
+
   public setVideoTime(item, timeCb){
     var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
