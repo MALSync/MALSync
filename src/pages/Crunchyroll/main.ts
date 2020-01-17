@@ -22,7 +22,11 @@ export const Crunchyroll: pageInterface = {
       getEpisode: function(url){
         return episodeHelper(url, j.$('h1.ellipsis').text().replace( j.$('h1.ellipsis > a').text(), '').trim());
       },
-      nextEpUrl: function(url){return Crunchyroll.domain+j.$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');}
+      nextEpUrl: function(url){
+        var nextEp = j.$('.collection-carousel-media-link-current').parent().next().find('.link').attr('href');
+        if(!nextEp) return nextEp;
+        return Crunchyroll.domain + nextEp;
+      }
     },
     overview:{
       getTitle: function(url){return Crunchyroll.overview!.getIdentifier(urlHandling(url))},

@@ -16,7 +16,11 @@ export const animeflv: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(animeflv.domain+j.$(".fa-th-list").attr('href'), 4)+'/'+utils.urlPart(animeflv.domain+j.$(".fa-th-list").attr('href'), 5);},
       getOverviewUrl: function(url){return animeflv.domain+j.$(".fa-th-list").attr('href');},
       getEpisode: function(url){return parseInt(j.$('h2.SubTitle').text().replace('Episodio ', '').trim());},
-      nextEpUrl: function(url){return animeflv.domain+j.$(".fa-chevron-right").attr('href');},
+      nextEpUrl: function(url){
+        var nextEp = j.$(".fa-chevron-right").attr('href');
+        if(!nextEp) return nextEp;
+        return animeflv.domain + nextEp;
+      },
       uiSelector: function(selector){selector.insertAfter(j.$(".CapOptns"));},
     },
     overview:{
