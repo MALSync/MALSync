@@ -78,10 +78,10 @@ export class syncPage{
           return;
         }
       }
-      utils.flashm('Could not find next episode', {error: true, type: 'EpError'})
+      utils.flashm(api.storage.lang('nextEpShort_no_nextEp'), {error: true, type: 'EpError'})
       return;
     }
-    utils.flashm('This page does not support nextEP', {error: true, type: 'EpError'})
+    utils.flashm(api.storage.lang('nextEpShort_no_support'), {error: true, type: 'EpError'})
   }
 
   public setVideoTime(item, timeCb){
