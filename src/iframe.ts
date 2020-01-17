@@ -40,6 +40,9 @@ api.settings.init()
         case 'introSkipBwd':
           addVideoTime(false);
           break;
+        case 'nextEpShort':
+          chrome.runtime.sendMessage({name: "content", item: {action: 'nextEpShort'}});
+          break;
       }
 
       async function addVideoTime(forward:boolean){

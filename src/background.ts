@@ -75,6 +75,11 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
       chrome.tabs.sendMessage(sender.tab.id, {action: "videoTime", item: message.item, sender: sender});
       return;
     }
+    case "content": {
+      //@ts-ignore
+      chrome.tabs.sendMessage(sender.tab.id, {action: "content", item: message.item, sender: sender});
+      return;
+    }
     case "videoTimeSet": {
       //@ts-ignore
       chrome.tabs.sendMessage(message.sender.tab.id, {action: "videoTimeSet", time: message.time, timeAdd: message.timeAdd}, {frameId: message.sender.frameId});

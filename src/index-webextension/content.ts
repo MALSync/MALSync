@@ -56,6 +56,13 @@ function messagePageListener(page){
         return;
       }
     }
+    if(msg.action == 'content'){
+      switch (msg.item.action) {
+        case 'nextEpShort':
+          page.openNextEp();
+          break;
+      }
+    }
 
   });
 
@@ -67,6 +74,9 @@ function messagePageListener(page){
         break;
       case 'introSkipBwd':
         addVideoTime(false);
+        break;
+      case 'nextEpShort':
+        page.openNextEp();
         break;
     }
 

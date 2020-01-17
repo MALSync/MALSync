@@ -121,6 +121,7 @@ var currCallback;
 const shortcutOptions = [
   'introSkipFwd',
   'introSkipBwd',
+  'nextEpShort',
 ];
 
 export function shortcutListener(callback) {

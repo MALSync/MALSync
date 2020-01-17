@@ -202,6 +202,7 @@
         <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
         <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
+        <shortcut option="nextEpShort" v-if="isExtension()">NEXT EP</shortcut>
 
         <shortcut option="introSkipFwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>
         <shortcut option="introSkipBwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Backward")}}</shortcut>

@@ -55,6 +55,7 @@ export var settingsObj = {
     introSkip: 85,
     introSkipFwd: [],
     introSkipBwd: [],
+    nextEpShort: [],
 
     updateCheckNotifications: true,
 
