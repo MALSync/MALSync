@@ -22,7 +22,6 @@ export const nineAnime: pageInterface = {
         if(!nextEp) return nextEp;
         return nineAnime.domain + nextEp;
       },
-
       uiSelector: function(selector){j.$('<div class="widget info"><div class="widget-body"> <p id="malp">'+selector.html()+'</p></div></div>').insertBefore(j.$(".widget.info").first());},
     },
     overview:{

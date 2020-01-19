@@ -367,7 +367,8 @@ module.exports = {
   },
   unionleitor: {
     match: [
-      '*://unionleitor.top/*'
+      '*://unionleitor.top/*',
+      '*://unionmangas.top/*'
     ]
   },
   myAnime: {

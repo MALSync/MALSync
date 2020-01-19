@@ -97,11 +97,11 @@ var testsArray = [
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6mxqj7',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/6mxqj7',
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6mxqj7'
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/6mxqj7'
           }
         }
       },
@@ -110,32 +110,32 @@ var testsArray = [
 
   {
     title: 'Gogoanime',
-    url: 'https://gogoanime.movie/',
+    url: 'https://www4.gogoanime.io',
     testCases: [
       {
-        url: 'https://gogoanime.movie/category/no-game-no-life',
+        url: 'https://www4.gogoanime.io/category/no-game-no-life',
         expected: {
           sync: false,
           title: 'no-game-no-life',
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
           }
         }
       },
       {
-        url: 'https://gogoanime.movie/no-game-no-life-episode-5',
+        url: 'https://www4.gogoanime.io/no-game-no-life-episode-5',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
-          overviewUrl: 'https://gogoanime.movie/category/no-game-no-life',
-          nextEpUrl: 'https://gogoanime.movie/no-game-no-life-episode-6',
+          overviewUrl: 'https://www4.gogoanime.io/category/no-game-no-life',
+          nextEpUrl: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
           episode: 5,
           uiSelector: false,
           epList: {
-            6: 'https://gogoanime.movie/no-game-no-life-episode-6'
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
           }
         }
       },
@@ -574,7 +574,7 @@ var testsArray = [
           nextEpUrl: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
           uiSelector: true,
           epList: {
-            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?sv=3&ep=6'
+            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=6'
           }
         }
       },
@@ -1548,6 +1548,18 @@ var testsArray = [
           uiSelector: false,
         }
       },
+      {//different domain
+        url: 'http://unionmangas.top/leitor/Solo_Leveling/100',
+        expected: {
+          sync: true,
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling',
+          overviewUrl: 'http://unionleitor.top/manga/solo-leveling',
+          episode: 100,
+          nextEpUrl: 'http://unionleitor.top/leitor/Solo_Leveling/101',
+          uiSelector: false,
+        }
+      },
       {
         url: 'https://unionleitor.top/manga/solo-leveling',
         expected: {
@@ -1556,8 +1568,9 @@ var testsArray = [
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'http://unionleitor.top/leitor/Solo_Leveling/05',
-            87: 'http://unionleitor.top/leitor/Solo_Leveling/87',
+            5: 'http://unionmangas.top/leitor/Solo_Leveling/05',
+            87: 'http://unionmangas.top/leitor/Solo_Leveling/87',
+            101: 'http://unionmangas.top/leitor/Solo_Leveling/101',
           }
         }
       },

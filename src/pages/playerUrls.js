@@ -98,7 +98,8 @@ module.exports = {
     match: [
       '*://*.fembed.net/*',
       '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*'
+      '*://*.animeproxy.info/*',
+      '*://*.feurl.com/*'
     ]
   },
   youpload: {
