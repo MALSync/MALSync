@@ -22,43 +22,46 @@ export const myAnime: pageInterface = {
     getEpisode: function(url){
       return parseInt(utils.urlPart(url, 5));
     },
-    nextEpUrl: function(url){return myAnime.domain + j.$('div#ep-next').first().parent().attr('href');
-  },
-},
-overview:{
-  getTitle: function(url){
-    return j.$("span.anime-title").first().text().trim();
-  },
-  getIdentifier: function(url){
-    return utils.urlPart(url,4);
-  },
-  uiSelector: function(selector){
-    selector.insertAfter(j.$("img.anime-bg").first());
-  },
-  list:{
-    offsetHandler: false,
-    elementsSelector: function(){
-      return j.$("ul.list > li.li-block");
+    nextEpUrl: function(url){
+      var nextEp = j.$('div#ep-next').first().parent().attr('href');
+      if(!nextEp) return nextEp;
+      return myAnime.domain + nextEp;
     },
-    elementUrl: function(selector){
-      return utils.absoluteLink(selector.find('a').first().attr('href'),myAnime.domain);
+  },
+  overview:{
+    getTitle: function(url){
+      return j.$("span.anime-title").first().text().trim();
     },
-    elementEp: function(selector){
-      return selector.find('a').first().attr('href').split("/")[3].replace(/\D+/,"");
+    getIdentifier: function(url){
+      return utils.urlPart(url,4);
+    },
+    uiSelector: function(selector){
+      selector.insertAfter(j.$("img.anime-bg").first());
+    },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("ul.list > li.li-block");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),myAnime.domain);
+      },
+      elementEp: function(selector){
+        return selector.find('a').first().attr('href').split("/")[3].replace(/\D+/,"");
+      }
     }
-  }
-},
-init(page){
-  if(document.title == "Just a moment..."){
-    con.log("loading");
-    page.cdn();
-    return;
-  }
-  api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-  j.$(document).ready(function(){
-    if(page.url.split("/")[3] === "anime") {
-      page.handlePage();
+  },
+  init(page){
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
     }
-  });
-}
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    j.$(document).ready(function(){
+      if(page.url.split("/")[3] === "anime") {
+        page.handlePage();
+      }
+    });
+  }
 };

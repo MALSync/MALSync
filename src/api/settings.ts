@@ -50,8 +50,12 @@ export var settingsObj = {
 
     autofull: false,
     autoresume: false,
-    introSkip: 85,
     highlightAllEp: false,
+
+    introSkip: 85,
+    introSkipFwd: [17,39],
+    introSkipBwd: [17,37],
+    nextEpShort: [],
 
     updateCheckNotifications: true,
 

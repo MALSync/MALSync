@@ -624,7 +624,7 @@
     "description": "Auto resume video where you left off toggle"
   },
   "settings_Shortcuts_Skip_Forward": {
-    "message": "Überspringt das Intros",
+    "message": "Überspringt das Intro",
     "description": "Description for the the opening skip shortcut"
   },
   "settings_Shortcuts_Skip_Backward": {

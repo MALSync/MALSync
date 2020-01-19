@@ -128,7 +128,11 @@ var init = false;
 
 var currCallback;
 
-const shortcutOptions = [];
+const shortcutOptions = [
+  'introSkipFwd',
+  'introSkipBwd',
+  'nextEpShort',
+];
 
 export function shortcutListener(callback) {
   currCallback = callback;
@@ -147,7 +151,12 @@ export function shortcutListener(callback) {
       for (var i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];
         if(checkShortcut(option)){
-          return shortcutDetected(option);
+          //@ts-ignore
+          if(/textarea|input|select/i.test(e.target.nodeName)) {
+            con.info('Input field. Shortcut suppressed.');
+          }else{
+            return shortcutDetected(option);
+          }
         }
       }
 
@@ -157,6 +166,10 @@ export function shortcutListener(callback) {
         return false;
       }
     };
+
+    window.addEventListener("focus", function(event){
+        keyMap = {};
+    }, false);
 
     function checkShortcut(option) {
       var keys = api.settings.get(option);

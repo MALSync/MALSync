@@ -21,7 +21,11 @@ export const animepahe: pageInterface = {
     getEpisode: function(url){
       return j.$('.theatre-info h1')[0].childNodes[2].textContent.replace(/[^0-9\.]+/g, '')
     },
-    nextEpUrl: function(url){return animepahe.domain+j.$('.sequel a').first().attr('href');},
+    nextEpUrl: function(url){
+      var nextEp = j.$('.sequel a').first().attr('href');
+      if(!nextEp) return nextEp;
+      return animepahe.domain + nextEp;
+    },
     uiSelector: function(selector){selector.insertAfter(j.$(".anime-season"));},
   },
   overview:{

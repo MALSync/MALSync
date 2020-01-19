@@ -625,6 +625,10 @@
       "description": "Auto resume video where you left off toggle"
     },
 
+    "settings_Shortcuts_Next_Episode": {
+      "message": "Open next episode shortcut",
+      "description": "Description for the next episode shortcut option"
+    },
     "settings_Shortcuts_Skip_Forward": {
       "message": "Skips the opening",
       "description": "Description for the the opening skip shortcut"
@@ -632,6 +636,10 @@
     "settings_Shortcuts_Skip_Backward": {
       "message": "Jump back to opening's beginning",
       "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Click": {
+      "message": "Click to enter shortcut",
+      "description": "Shown if no shortcut is set for an option"
     },
     "settings_introSkip": {
       "message": "Set opening skip length ($Seconds$ seconds)",
@@ -874,5 +882,13 @@
           "example": "Mangadex"
         }
       }
+    },
+    "nextEpShort_no_support": {
+      "message": "This page doesn't support opening the next episode",
+      "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+    },
+    "nextEpShort_no_nextEp": {
+      "message": "Couldn't find the next episode",
+      "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     }
 }

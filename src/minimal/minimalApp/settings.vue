@@ -202,27 +202,12 @@
         <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
         <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
 
-        <li v-if="commands" class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            {{commands.intro_skip_forward.description}}
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            {{commands.intro_skip_forward.shortcut}}
-            <span v-if="!commands.intro_skip_forward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
-          </span>
-        </li>
+        <shortcut option="nextEpShort" v-if="isExtension()">{{lang("settings_Shortcuts_Next_Episode")}}</shortcut>
 
-        <li v-if="commands" class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            {{commands.intro_skip_backward.description}}
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            {{commands.intro_skip_backward.shortcut}}
-            <span v-if="!commands.intro_skip_backward.shortcut"><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{lang("settings_miniMAL_NotSet")}}</a></span>
-          </span>
-        </li>
+        <shortcut option="introSkipFwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>
+        <shortcut option="introSkipBwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Backward")}}</shortcut>
 
-        <numberInput option="introSkip" :min="5">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
+        <numberInput option="introSkip" :min="5" v-if="isExtension()">{{lang("settings_introSkip", [options.introSkip])}}</numberInput>
 
       </div>
 
@@ -448,6 +433,9 @@
       lang: api.storage.lang,
       myOpen: function(){
         this.isOpen = !this.isOpen;
+      },
+      isExtension: function(){
+        return api.type === 'webextension';
       },
       importFallbackSync: function(filecontent){
         con.log('Import FallbackSync', filecontent);

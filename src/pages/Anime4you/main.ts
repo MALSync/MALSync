@@ -21,7 +21,11 @@ export const Anime4you: pageInterface = {
       getEpisode: function(url){
         return parseInt(utils.urlPart(url, 8))
       },
-      nextEpUrl: function(url){return Anime4you.domain+j.$('.vidplayer .forward a').first().attr('href');},
+      nextEpUrl: function(url){
+        var nextEp = j.$('.vidplayer .forward a').first().attr('href');
+        if(!nextEp) return nextEp;
+        return Anime4you.domain + nextEp;
+      },
       uiSelector: function(selector){selector.insertAfter(j.$("#beschreibung > p").first());},
     },
     overview:{
