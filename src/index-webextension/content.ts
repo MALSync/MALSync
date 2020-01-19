@@ -1,6 +1,7 @@
 import {syncPage} from "./../pages/syncPage";
 import {firebaseNotification} from "./../utils/firebaseNotification";
 import {pages} from "./../pages/pages";
+import {shortcutListener} from "./../utils/player";
 
 function main() {
   if(api.settings.get('userscriptMode')) throw 'Userscript mode';
@@ -18,6 +19,8 @@ api.settings.init()
     main();
   });
 
+
+var timeAddCb;
 function messagePageListener(page){
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
@@ -29,6 +32,11 @@ function messagePageListener(page){
       page.setVideoTime(msg.item, function(time){
         chrome.runtime.sendMessage({name: "videoTimeSet", time: time, sender: msg.sender});
       });
+      timeAddCb = async function(forward){
+        var time = parseInt(await api.settings.getAsync('introSkip'));
+        if(!forward) time = 0 - time;
+        chrome.runtime.sendMessage({name: "videoTimeSet", timeAdd: time, sender: msg.sender});
+      }
     }
 
     if(msg.action == 'videoTimeSet'){
@@ -48,6 +56,45 @@ function messagePageListener(page){
         return;
       }
     }
+    if(msg.action == 'content'){
+      switch (msg.item.action) {
+        case 'nextEpShort':
+          page.openNextEp();
+          break;
+      }
+    }
 
   });
+
+  shortcutListener((shortcut) => {
+    con.log('[content] Shortcut', shortcut);
+    switch (shortcut.shortcut) {
+      case 'introSkipFwd':
+        addVideoTime(true);
+        break;
+      case 'introSkipBwd':
+        addVideoTime(false);
+        break;
+      case 'nextEpShort':
+        page.openNextEp();
+        break;
+    }
+
+    async function addVideoTime(forward:boolean){
+      if(typeof page.tempPlayer === 'undefined'){
+        if(!timeAddCb) {
+          con.error('[content] No iframe and onsite player found');
+          return;
+        }
+        timeAddCb(forward);
+        return;
+      }
+      var time = parseInt(await api.settings.getAsync('introSkip'));
+      if(!forward) time = 0 - time;
+      page.tempPlayer.currentTime = page.tempPlayer.currentTime + time;
+      return;
+    }
+  });
+
+
 }

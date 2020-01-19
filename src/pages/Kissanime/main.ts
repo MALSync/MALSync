@@ -38,7 +38,11 @@ export const Kissanime: pageInterface = {
         }
         return episodePart;
       },
-      nextEpUrl: function(url){return url.replace(/\/[^\/]*$/, '')+'/'+j.$('#selectEpisode option:selected').next().val();}
+      nextEpUrl: function(url){
+        var nextEp = j.$('#selectEpisode option:selected').next().val();
+        if(!nextEp) return nextEp;
+        return url.replace(/\/[^\/]*$/, '') +'/'+ nextEp;
+      }
     },
     overview:{
       getTitle: function(){return j.$('.bigChar').first().text();},

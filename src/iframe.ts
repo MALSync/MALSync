@@ -1,4 +1,4 @@
-import {getPlayerTime} from "./utils/player";
+import {getPlayerTime, shortcutListener} from "./utils/player";
 
 var tempPlayer:any = undefined;
 
@@ -26,4 +26,35 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
       return;
     }
   }
+});
+
+api.settings.init()
+  .then(()=>{
+
+    shortcutListener((shortcut) => {
+      con.log('[iframe] Shortcut', shortcut);
+      switch (shortcut.shortcut) {
+        case 'introSkipFwd':
+          addVideoTime(true);
+          break;
+        case 'introSkipBwd':
+          addVideoTime(false);
+          break;
+        case 'nextEpShort':
+          chrome.runtime.sendMessage({name: "content", item: {action: 'nextEpShort'}});
+          break;
+      }
+
+      async function addVideoTime(forward:boolean){
+        if(typeof tempPlayer === 'undefined'){
+          con.error('[Iframe] No player Found');
+          return;
+        }
+        var time = parseInt(await api.settings.getAsync('introSkip'));
+        if(!forward) time = 0 - time;
+        tempPlayer.currentTime = tempPlayer.currentTime + time;
+        return;
+      }
+    });
+
 });

@@ -14,6 +14,11 @@ export interface videoTime {
     item: { current:number, duration:number, paused:boolean}
 }
 
+export interface content {
+    name: "content",
+    item: any
+}
+
 export interface videoTimeSet {
     name: "videoTimeSet",
     time?:number,
@@ -30,6 +35,6 @@ export interface minimalWindow {
     name: 'minimalWindow',
 }
 
-export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow;
+export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content;
 
 export type responseMessageI = xhrResponseI;

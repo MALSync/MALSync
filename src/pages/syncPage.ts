@@ -69,6 +69,21 @@ export class syncPage{
     return null;
   }
 
+  public openNextEp(){
+    if(typeof this.page.sync.nextEpUrl !== 'undefined'){
+      if(this.page.isSyncPage(this.url)){
+        var nextEp = this.page.sync.nextEpUrl(this.url);
+        if(nextEp){
+          location.href = nextEp;
+          return;
+        }
+      }
+      utils.flashm(api.storage.lang('nextEpShort_no_nextEp'), {error: true, type: 'EpError'})
+      return;
+    }
+    utils.flashm(api.storage.lang('nextEpShort_no_support'), {error: true, type: 'EpError'})
+  }
+
   public setVideoTime(item, timeCb){
     var syncDuration = api.settings.get('videoDuration');
     var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
