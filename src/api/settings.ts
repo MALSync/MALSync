@@ -53,8 +53,8 @@ export var settingsObj = {
     highlightAllEp: false,
 
     introSkip: 85,
-    introSkipFwd: [],
-    introSkipBwd: [],
+    introSkipFwd: [17,39],
+    introSkipBwd: [17,37],
     nextEpShort: [],
 
     updateCheckNotifications: true,
