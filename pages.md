@@ -120,7 +120,7 @@
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://branitube.net"> Branitube</a></td>
+              <td><a href="https://www.branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://www.branitube.net"> Branitube</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -275,12 +275,6 @@
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
-            </tr><tr>
-              <td><a href="https://wonderfulsubs.com"><img src="https://www.google.com/s2/favicons?domain=https://wonderfulsubs.com"> WonderfulSubs</a></td>
-              <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
-              <td>:x:</td>
             </tr>
     </tbody>
   </table>
@@ -351,12 +345,6 @@
               <td>:x:</td>
               <td>:x:</td>
               <td>:x:</td>
-            </tr><tr>
-              <td><a href="https://mangarock.com"><img src="https://www.google.com/s2/favicons?domain=https://mangarock.com"> Mangarock</a></td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://novelplanet.com"><img src="https://www.google.com/s2/favicons?domain=https://novelplanet.com"> Novelplanet</a></td>
               <td>:heavy_check_mark:</td>
