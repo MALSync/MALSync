@@ -411,4 +411,9 @@ module.exports = {
       '*://aniwatch.me/*'
     ]
   },
+   Hidive: {
+   match: [
+     '*://www.hidive.com/*'
+    ]
+  },
 };
