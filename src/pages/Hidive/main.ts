@@ -57,7 +57,32 @@ export const Hidive: pageInterface = {
 		uiSelector: function (selector) {
 			j.$('<div class="container"> <p id="malp">' + selector.html() + '</p></div>').insertAfter(j.$("div.details").first());
 		},
-
+		list: {
+			offsetHandler: false,
+			elementsSelector: function () {
+				return j.$("div.episode-slider > div > div > div.cell > div:nth-child(1) > div.hitbox").filter(function () {
+					if (j.$(this).find("div.na").length) {
+						return false;
+					} else if (j.$(this).find(".player > a").attr('data-playurl') && window.location.href.split("/")[4] === j.$(this).find(".player > a").attr('data-playurl').split("/")[4]) {
+						return true;
+					}
+				});
+			},
+			elementUrl: function (selector) {
+				return selector.find('div.player > a').attr('data-playurl');
+			},
+			elementEp: function (selector) {
+				var temp = selector.find('div.player > a').attr('data-key');
+				var regex = /^\d/;
+				if (temp && regex.test(temp)) {
+					return Number(temp.slice(8));
+				} else if (temp) {
+					return Number(temp.slice(4));
+				} else {
+					return 0;
+				}
+			}
+		}
 	},
 
 	init(page) {
