@@ -14,6 +14,7 @@ export const Hidive: pageInterface = {
 			return false;
 		}
 	},
+
 	sync: {
 		getTitle: function (url) {
 			return j.$("#TitleDetails").text();
@@ -33,7 +34,19 @@ export const Hidive: pageInterface = {
 					return Number(temp.slice(4));
 				}
 		},
+		nextEpUrl: function (url) {
+			var nextEp = j.$("#StreamNextEpisode .episode-play").attr('data-key');
+			if (!nextEp) {
+				return nextEp;
+			}
+			if (nextEp !== url.split("/")[5]) {
+				return Hidive.domain + "/stream/" + j.$("#StreamNextEpisode .episode-play").attr('data-videotitle') + "/" + nextEp;
+			} else {
+				return undefined;
+			}
+		},
 	},
+
 	overview: {
 		getTitle: function (url) {
 			return j.$("div.text-container a").text().replace(('Score It'), '').trim();
@@ -46,6 +59,7 @@ export const Hidive: pageInterface = {
 		},
 
 	},
+
 	init(page) {
 		if (document.title == "Just a moment...") {
 			con.log("loading");
@@ -54,15 +68,13 @@ export const Hidive: pageInterface = {
 		}
 		api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 		j.$(document).ready(function () {
-			if (page.url.split("/")[3] === "stream" || page.url.split("/")[3] === "tv" || page.url.split("/")[3] === "movies" && page.url.split("/")[4] !== undefined) {
+			if ((page.url.split("/")[3] === "stream" || page.url.split("/")[3] === "tv" || page.url.split("/")[3] === "movies") && page.url.split("/")[4] !== undefined) {
 				page.handlePage()
 				utils.urlChangeDetect(function () {
 					con.info('Check');
 					page.handlePage();
 				});
 			}
-
 		});
-
 	}
 };
