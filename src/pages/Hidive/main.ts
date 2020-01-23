@@ -22,6 +22,7 @@ export const Hidive: pageInterface = {
 			return url.split("/")[4];
 		},
 		getOverviewUrl: function (url) {
+			return Hidive.domain + j.$("#TitleDetails").attr("href");
 		},
 		getEpisode: function (url) {
 			var temp = url.split("/")[5];
