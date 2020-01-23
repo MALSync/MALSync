@@ -22,11 +22,15 @@ export const Hidive: pageInterface = {
 			return url.split("/")[4];
 		},
 		getOverviewUrl: function (url) {
-			return Hidive.domain + '/tv/' + url.split("/")[4];
 		},
 		getEpisode: function (url) {
 			var temp = url.split("/")[5];
-			return Number(temp.slice(4));
+			var regex = /^\d/
+				if (regex.test(temp)) {
+					return Number(temp.slice(8));
+				} else {
+					return Number(temp.slice(4));
+				}
 		},
 	},
 	overview: {
@@ -37,7 +41,7 @@ export const Hidive: pageInterface = {
 			return url.split("/")[4];
 		},
 		uiSelector: function (selector) {
-			j.$('<div class="container"> <p id="malp">' + selector.html() + '</p></div>').insertBefore(j.$("div.tour").first());
+			j.$('<div class="container"> <p id="malp">' + selector.html() + '</p></div>').insertAfter(j.$("div.details").first());
 		},
 
 	},
@@ -49,10 +53,15 @@ export const Hidive: pageInterface = {
 		}
 		api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 		j.$(document).ready(function () {
-			if (page.url.split("/")[3] === "stream" || "tv") {
+			if (page.url.split("/")[3] === "stream" || page.url.split("/")[3] === "tv" || page.url.split("/")[3] === "movies" && page.url.split("/")[4] !== undefined) {
 				page.handlePage()
+				utils.urlChangeDetect(function () {
+					con.info('Check');
+					page.handlePage();
+				});
 			}
 
 		});
+
 	}
 };
