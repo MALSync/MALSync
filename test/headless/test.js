@@ -1408,7 +1408,7 @@ var testsArray = [
     title: 'AnimeFever',
     url: 'https://www.animefever.tv/',
     testCases: [
-      {
+      /*{
         url: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
         expected: {
           sync: true,
@@ -1419,14 +1419,14 @@ var testsArray = [
           episode: 13,
           uiSelector: false,
         }
-      },
+      },*/
       {
         url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
         expected: {
           sync: false,
           title: 'A Certain Magical Index',
           identifier: '10344-a-certain-magical-index',
-          uiSelector: false,
+          uiSelector: true,
         }
       },
     ]
