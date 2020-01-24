@@ -56,6 +56,7 @@ import {Goyabu} from "./Goyabu/main";
 import {AnimesVision} from "./AnimesVision/main";
 import {Hulu} from "./Hulu/main";
 import {Aniwatch} from "./Aniwatch/main";
+import {Hidive} from "./Hidive/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -117,7 +118,8 @@ export const pages = {
     Goyabu,
     AnimesVision,
     Hulu,
-    Aniwatch
+    Aniwatch,
+	Hidive
 };
 
 export const pageSearch:pageSearchObj = {
@@ -313,4 +315,10 @@ AniSeachManga: {
      domain: "anisearch.com",
      searchUrl: titleEncoded => "https://www.anisearch.com/manga/index?text=" + titleEncoded
     },
+    Hidive: {
+      name: 'Hidive',
+      type: 'anime',
+      domain: 'www.hidive.com',
+      searchUrl: (titleEncoded) => {return 'http://www.hidive.com/search?q='+titleEncoded}
+	},
 }
