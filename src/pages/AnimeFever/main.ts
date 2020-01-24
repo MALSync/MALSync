@@ -28,6 +28,11 @@ export const AnimeFever: pageInterface = {
         }
       }
     },
+    nextEpUrl: function(url){
+      var nextEp = j.$('section.relative.player-bg > div > a.next-episode').first().attr('href');
+      if(!nextEp) return nextEp;
+      return utils.absoluteLink(nextEp,AnimeFever.domain);
+    },
   },
   overview:{
     getTitle: function(url){
