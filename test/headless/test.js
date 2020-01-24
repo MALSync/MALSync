@@ -1556,7 +1556,7 @@ var testsArray = [
           identifier: 'solo-leveling',
           overviewUrl: 'http://unionleitor.top/manga/solo-leveling',
           episode: 100,
-          nextEpUrl: 'http://unionleitor.top/leitor/Solo_Leveling/101',
+          nextEpUrl: 'http://unionmangas.top/leitor/Solo_Leveling/101',
           uiSelector: false,
         }
       },
