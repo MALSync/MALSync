@@ -25,6 +25,7 @@
     "puppeteer-extra-plugin-stealth": "^2.2.2",
     "serialize-javascript": ">=2.1.1",
     "sinon": "^7.5.0",
+    "string-similarity": "^4.0.1",
     "terser-webpack-plugin": "^2.3.0",
     "to-string-loader": "^1.1.5",
     "ts-loader": "^6.1.0",

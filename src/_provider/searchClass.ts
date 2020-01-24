@@ -1,3 +1,5 @@
+import {compareTwoStrings} from 'string-similarity';
+
 export class searchClass {
   private sanitizedTitel;
 
@@ -15,5 +17,18 @@ export class searchClass {
     title = title.replace(/ BD( |$)/i, '');
     title = title.trim();
     return title;
+  }
+
+  static similarity(externalTitle, title) {
+    var simi = compareTwoStrings(title.toLowerCase(), externalTitle.toLowerCase());
+    var found = false;
+    if(simi > 0.5) {
+      found = true;
+    }
+    console.log(simi);
+    return {
+      same: found,
+      value: simi
+    };
   }
 }
