@@ -40,7 +40,6 @@ export var settingsObj = {
     Anime4you: true,
     Kissmanga: true,
     Mangadex: true,
-    Mangarock: true,
     MangaNelo: true,
     Netflix: true,
     Proxeranime: true,
