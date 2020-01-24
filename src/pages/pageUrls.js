@@ -421,5 +421,10 @@ module.exports = {
      '*://jaiminisbox.com/reader/series/*',
      '*://jaiminisbox.com/reader/read/*'
     ]
-  }
+  },
+  FallenAngels: {
+    match: [
+     '*://manga.fascans.com/manga/*'
+    ]
+  },
 };
