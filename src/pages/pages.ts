@@ -57,6 +57,7 @@ import {AnimesVision} from "./AnimesVision/main";
 import {Hulu} from "./Hulu/main";
 import {Aniwatch} from "./Aniwatch/main";
 import {Hidive} from "./Hidive/main";
+import {JaiminisBox} from "./JaiminisBox/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -119,7 +120,8 @@ export const pages = {
     AnimesVision,
     Hulu,
     Aniwatch,
-	Hidive
+    Hidive,
+    JaiminisBox
 };
 
 export const pageSearch:pageSearchObj = {

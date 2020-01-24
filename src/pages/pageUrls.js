@@ -411,9 +411,15 @@ module.exports = {
       '*://aniwatch.me/*'
     ]
   },
-   Hidive: {
-   match: [
+  Hidive: {
+    match: [
      '*://www.hidive.com/*'
     ]
   },
+  JaiminisBox: {
+    match: [
+     '*://jaiminisbox.com/reader/series/*',
+     '*://jaiminisbox.com/reader/read/*'
+    ]
+  }
 };
