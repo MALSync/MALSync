@@ -1409,12 +1409,13 @@ var testsArray = [
     url: 'https://www.animefever.tv/',
     testCases: [
       /*{
-        url: 'https://www.animefever.tv/anime/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
+        url: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
         expected: {
           sync: true,
           title: 'A Certain Magical Index',
           identifier: '10344-a-certain-magical-index',
-          overviewUrl: 'https://www.animefever.tv/anime/10344-a-certain-magical-index',
+          overviewUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index',
+          nextEpUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37352-episode-14-weakest-vs-strongest-strongest-vs-weakest',
           episode: 13,
           uiSelector: false,
         }
@@ -1425,7 +1426,7 @@ var testsArray = [
           sync: false,
           title: 'A Certain Magical Index',
           identifier: '10344-a-certain-magical-index',
-          uiSelector: false,
+          uiSelector: true,
         }
       },
     ]
@@ -1556,7 +1557,7 @@ var testsArray = [
           identifier: 'solo-leveling',
           overviewUrl: 'http://unionleitor.top/manga/solo-leveling',
           episode: 100,
-          nextEpUrl: 'http://unionleitor.top/leitor/Solo_Leveling/101',
+          nextEpUrl: 'http://unionmangas.top/leitor/Solo_Leveling/101',
           uiSelector: false,
         }
       },
@@ -1774,6 +1775,37 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-05/dublado'
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'FallenAngels',
+    url: 'https://manga.fascans.com/',
+    testCases: [
+      {
+        url: 'https://manga.fascans.com/manga/plunderer/53/2',
+        expected: {
+          sync: true,
+          title: 'Plunderer',
+          identifier: 'plunderer',
+          overviewUrl: 'https://manga.fascans.com/manga/plunderer',
+          episode: 53,
+          nextEpUrl: "https://manga.fascans.com/manga/plunderer/54",
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://manga.fascans.com/manga/plunderer',
+        expected: {
+          sync: false,
+          title: 'Plunderer',
+          identifier: 'plunderer',
+          uiSelector: true,
+          epList: {
+            53: 'https://manga.fascans.com/manga/plunderer/53',
+            18: 'https://manga.fascans.com/manga/plunderer/18'
           }
         }
       },

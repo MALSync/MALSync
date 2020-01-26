@@ -42,6 +42,11 @@ export const animepahe: pageInterface = {
     }
   },
   init(page){
+    if(document.title == "Just a moment..."){
+      con.log("loading");
+      page.cdn();
+      return;
+    }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (!animepahe.isSyncPage(page.url)){
       utils.waitUntilTrue(function(){return animepahe.overview!.list!.elementsSelector!()}, function(){
