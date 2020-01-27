@@ -1,5 +1,6 @@
 import {searchClass} from './../../../src/_provider/searchClass';
 import { expect } from 'chai';
+import * as request from 'request';
 
 describe('Sanitized Titel', function () {
   var titles = {
@@ -45,4 +46,71 @@ describe('Titel Similarity', function () {
     });
   });
 
+});
+
+describe('Firebase', function () {
+  before(function () {
+    global.con = require('./../../../src/utils/console');
+    global.api = {
+      request: {
+        xhr: async function(post, conf, data) {
+          return new Promise(function(resolve, reject) {
+            request(conf, (error, response, body) => {
+              resolve({
+                responseText: body
+              })
+            });
+          });
+        }
+      },
+    }
+  });
+
+  it('Crunchyroll', async function () {
+    var searchObj = new searchClass('No Game No Life', 'anime', 'No Game No Life');
+    searchObj.setPage({
+      database: 'Crunchyroll',
+      type: 'anime'
+    });
+    expect(await searchObj.firebase()).to.eql({
+      url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+      offset: 0,
+      similarity: 1,
+    });
+  });
+
+  it('Kissanime', async function () {
+    var searchObj = new searchClass('No Game No Life', 'anime', 'No-Game-No-Life-Dub');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    expect(await searchObj.firebase()).to.eql({
+      url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+      offset: 0,
+      similarity: 1,
+    });
+  });
+
+  it('Not Found', async function () {
+    var searchObj = new searchClass('Avatar: The Last Airbender Season 1', 'anime', 'Avatar-The-Last-Airbender-Season-1');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    expect(await searchObj.firebase()).to.eql({
+      url: '',
+      offset: 0,
+      similarity: 1,
+    });
+  });
+
+  it('Not Existing', async function () {
+    var searchObj = new searchClass('Something', 'anime', 'Something-that-does-not-exist');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    expect(await searchObj.firebase()).to.eql(false);
+  });
 });
