@@ -75,7 +75,10 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
       offset: 0,
-      similarity: 1,
+      similarity: {
+        same: true,
+        value: 1
+      },
     });
   });
 
@@ -88,7 +91,10 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
       offset: 0,
-      similarity: 1,
+      similarity: {
+        same: true,
+        value: 1
+      },
     });
   });
 
@@ -101,7 +107,10 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
       offset: 0,
-      similarity: 1,
+      similarity: {
+        same: true,
+        value: 1
+      },
     });
   });
 
@@ -114,7 +123,10 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: '',
       offset: 0,
-      similarity: 1,
+      similarity: {
+        same: true,
+        value: 1
+      },
     });
   });
 

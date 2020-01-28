@@ -67,7 +67,10 @@ export class searchClass {
         return {
           url: returnUrl,
           offset: 0,
-          similarity: 1,
+          similarity: {
+            same: true,
+            value: 1
+          },
         };
       }else{
         return false;
