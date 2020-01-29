@@ -40,6 +40,7 @@ export type searchInterface = (
   malUrl: () => Promise<string|null>,
   image:string,
   media_type:string,
+  isNovel:boolean,
   score: string,
   year: string
 }]>;

@@ -149,7 +149,7 @@ export class searchClass {
 
   public async pageSearch(): Promise<searchResult | false>{
     const searchResult = await pageSearch(this.sanitizedTitel, this.getNormalizedType());
-    var best = null;
+    var best:any = null;
     for(var i=0; i < searchResult.length && i < 5;i++) {
       var el = searchResult[i];
       const sim = searchClass.similarity(el.name, this.sanitizedTitel);

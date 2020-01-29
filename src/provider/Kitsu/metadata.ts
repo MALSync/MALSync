@@ -309,6 +309,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         },
         image: (item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== "undefined")? item.attributes.posterImage.tiny : "",
         media_type: item.attributes.subtype,
+        isNovel: item.attributes.subtype === 'novel',
         score: item.attributes.averageRating,
         year: item.attributes.startDate
       })

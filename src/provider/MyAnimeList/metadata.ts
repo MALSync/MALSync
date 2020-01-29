@@ -196,6 +196,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         malUrl: () => {return item.url},
         image: item.image_url,
         media_type: item.payload.media_type,
+        isNovel: item.payload.media_type === 'Novel',
         score: item.payload.score,
         year: item.payload.start_year
       })

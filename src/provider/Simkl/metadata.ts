@@ -219,6 +219,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         },
         image: 'https://simkl.in/posters/'+item.poster+'_cm.jpg',
         media_type: item.type,
+        isNovel: false,
         score: null,
         year: item.year
       })
