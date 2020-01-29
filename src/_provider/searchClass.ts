@@ -1,5 +1,7 @@
 import {compareTwoStrings} from 'string-similarity';
 
+import {search as pageSearch} from '../provider/provider';
+
 interface searchResult {
   url: string;
   offset: number;
@@ -143,6 +145,34 @@ export class searchClass {
         return '';
       }
     }
+  }
+
+  public async pageSearch(): Promise<searchResult | false>{
+    const searchResult = await pageSearch(this.sanitizedTitel, this.getNormalizedType());
+    var best = null;
+    for(var i=0; i < searchResult.length && i < 5;i++) {
+      var el = searchResult[i];
+      const sim = searchClass.similarity(el.name, this.sanitizedTitel);
+      var tempBest = {
+        index: i,
+        similarity: sim
+      }
+      if(!best || sim.value > best.similarity.value) {
+        best = tempBest;
+      }
+    }
+
+    if(best) {
+      var retEl = searchResult[best.index];
+      var url = await retEl.malUrl();
+      return {
+        url: url? url: retEl.url,
+        offset: 0,
+        similarity: best.similarity
+      }
+    }
+
+    return false;
   }
 
   protected identifierToDbKey(title) {

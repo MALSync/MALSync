@@ -298,7 +298,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
     con.log('search',res);
 
     var resItems:any = [];
-    j.$.each(res.data, function( index, item ) {
+    res.data.forEach(function( item ) {
       resItems.push({
         id: item.id,
         name: helper.getTitle(item.attributes.titles),

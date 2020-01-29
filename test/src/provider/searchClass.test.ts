@@ -138,6 +138,14 @@ describe('Firebase', function () {
     });
     expect(await searchObj.firebase()).to.eql(false);
   });
+
+  it('No database', async function () {
+    var searchObj = new searchClass('Something', 'anime', 'Something-that-does-not-exist');
+    searchObj.setPage({
+      type: 'anime'
+    });
+    expect(await searchObj.firebase()).to.eql(false);
+  });
 });
 
 describe('Mal Search', function () {
@@ -192,4 +200,63 @@ describe('Mal Search', function () {
     });
   });
 
+});
+
+describe('Page Search', function () {
+  before(function () {
+    global.con = require('./../../../src/utils/console');
+    global.api = {
+      request: {
+        xhr: async function(post, conf, data) {
+          return new Promise(function(resolve, reject) {
+            request(conf, (error, response, body) => {
+              resolve({
+                responseText: body
+              })
+            });
+          });
+        }
+      },
+      settings: {
+        get: function(val) {
+          if(val === 'syncMode') return 'MAL';
+          throw 'setting not defined';
+        }
+      }
+    }
+  });
+
+  it('Novelplanet', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?', 'novel', 'Shuumatsu-Nani-Shitemasu-ka-Isogashii-desu-ka-Sukutte-Moratte-Ii-desu-ka');
+    searchObj.setPage({
+      database: 'Novelplanet',
+      type: 'manga'
+    });
+    expect(await searchObj.pageSearch()).to.eql({
+      url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
+      offset: 0,
+      similarity: {
+        same: true,
+        value: 1
+      }
+    });
+  });
+
+  it('Kissanime', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('Fate/kaleid liner PRISMA ILLYA', 'anime', 'Fate-kaleid-liner-Prisma-Illya');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    expect(await searchObj.pageSearch()).to.eql({
+      url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
+      offset: 0,
+      similarity: {
+        same: true,
+        value: 0.9433962264150944
+      }
+    });
+  });
 });

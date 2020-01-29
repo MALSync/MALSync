@@ -185,10 +185,10 @@ export class metadata implements metadataInterface{
 
 export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
   return api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1').then((response) => {
-    var searchResults = j.$.parseJSON(response.responseText);
+    var searchResults = JSON.parse(response.responseText);
     var items = searchResults.categories[0].items;
     var resItems:any = [];
-    j.$.each(items, function( index, item ) {
+    items.forEach(function( item ) {
       resItems.push({
         id: item.id,
         name: item.name,
