@@ -157,9 +157,16 @@ export class searchClass {
         index: i,
         similarity: sim
       }
-      if(!best || sim.value > best.similarity.value) {
-        best = tempBest;
+      if(
+        (this.type === 'manga' && !el.isNovel) ||
+        (this.type === 'novel' && el.isNovel) ||
+        this.type === 'anime'
+      ) {
+        if(!best || sim.value > best.similarity.value) {
+          best = tempBest;
+        }
       }
+
     }
 
     if(best) {

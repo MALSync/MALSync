@@ -228,13 +228,30 @@ describe('Page Search', function () {
 
   it('Novelplanet', async function () {
     this.timeout(10000);
-    var searchObj = new searchClass('Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?', 'novel', 'Shuumatsu-Nani-Shitemasu-ka-Isogashii-desu-ka-Sukutte-Moratte-Ii-desu-ka');
+    var searchObj = new searchClass('No Game No Life', 'novel', 'No Game No Life');
     searchObj.setPage({
       database: 'Novelplanet',
       type: 'manga'
     });
     expect(await searchObj.pageSearch()).to.eql({
-      url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
+      url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
+      offset: 0,
+      similarity: {
+        same: true,
+        value: 1
+      }
+    });
+  });
+
+  it('Kissmanga', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('No Game No Life', 'manga', 'No Game No Life');
+    searchObj.setPage({
+      database: 'Kissmanga',
+      type: 'manga'
+    });
+    expect(await searchObj.pageSearch()).to.eql({
+      url: 'https://myanimelist.net/manga/48397/No_Game_No_Life',
       offset: 0,
       similarity: {
         same: true,
