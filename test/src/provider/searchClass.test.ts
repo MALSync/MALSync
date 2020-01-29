@@ -75,6 +75,7 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
       offset: 0,
+      provider: 'firebase',
       similarity: {
         same: true,
         value: 1
@@ -91,6 +92,7 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
       offset: 0,
+      provider: 'firebase',
       similarity: {
         same: true,
         value: 1
@@ -107,6 +109,7 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
       offset: 0,
+      provider: 'firebase',
       similarity: {
         same: true,
         value: 1
@@ -123,6 +126,7 @@ describe('Firebase', function () {
     expect(await searchObj.firebase()).to.eql({
       url: '',
       offset: 0,
+      provider: 'firebase',
       similarity: {
         same: true,
         value: 1
@@ -176,6 +180,7 @@ describe('Mal Search', function () {
     expect(await searchObj.malSearch()).to.eql({
       url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
       offset: 0,
+      provider: 'mal',
       similarity: {
         same: true,
         value: 1
@@ -193,6 +198,7 @@ describe('Mal Search', function () {
     expect(await searchObj.malSearch()).to.eql({
       url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
       offset: 0,
+      provider: 'mal',
       similarity: {
         same: true,
         value: 0.9433962264150944
@@ -236,6 +242,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
       offset: 0,
+      provider: 'page',
       similarity: {
         same: true,
         value: 1
@@ -253,6 +260,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48397/No_Game_No_Life',
       offset: 0,
+      provider: 'page',
       similarity: {
         same: true,
         value: 1
@@ -270,6 +278,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
       offset: 0,
+      provider: 'page',
       similarity: {
         same: true,
         value: 0.9433962264150944

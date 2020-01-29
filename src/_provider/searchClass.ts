@@ -5,6 +5,7 @@ import {search as pageSearch} from '../provider/provider';
 interface searchResult {
   url: string;
   offset: number;
+  provider: 'firebase'|'mal'|'page';
   similarity: {
     same: boolean,
     value: number
@@ -69,6 +70,7 @@ export class searchClass {
         return {
           url: returnUrl,
           offset: 0,
+          provider: 'firebase',
           similarity: {
             same: true,
             value: 1
@@ -118,6 +120,7 @@ export class searchClass {
       return {
         url: link,
         offset: 0,
+        provider: 'mal',
         similarity: sim
       }
     }
@@ -175,6 +178,7 @@ export class searchClass {
       return {
         url: url? url: retEl.url,
         offset: 0,
+        provider: 'page',
         similarity: best.similarity
       }
     }
