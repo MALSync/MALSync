@@ -5,7 +5,7 @@ export const Goyabu: pageInterface = {
   domain: "https://goyabu.com",
   type: "anime",
   isSyncPage: function(url) {
-    if (url.split("/")[3] === "video") {
+    if (url.split("/")[3] === "videos") {
       return true;
     } else {
       return false;
@@ -50,7 +50,7 @@ init(page){
   }
   api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   j.$(document).ready(function(){
-    if(page.url.split("/")[3] === "anime" || page.url.split("/")[3] === "video") {
+    if(page.url.split("/")[3] === "assistir" || page.url.split("/")[3] === "videos") {
       page.handlePage();
     }
   });
