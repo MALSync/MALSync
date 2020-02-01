@@ -49,6 +49,7 @@ export var settingsObj = {
 
     autofull: false,
     autoresume: false,
+    autoNextEp: false,
     highlightAllEp: false,
 
     introSkip: 85,
