@@ -41,8 +41,14 @@ export class searchClass {
     return title;
   }
 
-  static similarity(externalTitle, title) {
+  static similarity(externalTitle, title, titleArray: string[] = []) {
     var simi = compareTwoStrings(title.toLowerCase(), externalTitle.toLowerCase());
+    titleArray.forEach((el) => {
+      if(el) {
+        var tempSimi = compareTwoStrings(title.toLowerCase(), el.toLowerCase());
+        if(tempSimi > simi) simi = tempSimi;
+      }
+    })
     var found = false;
     if(simi > 0.5) {
       found = true;
@@ -182,7 +188,7 @@ export class searchClass {
     var best:any = null;
     for(var i=0; i < searchResult.length && i < 5;i++) {
       var el = searchResult[i];
-      const sim = searchClass.similarity(el.name, this.sanitizedTitel);
+      const sim = searchClass.similarity(el.name, this.sanitizedTitel, el.altNames);
       var tempBest = {
         index: i,
         similarity: sim
