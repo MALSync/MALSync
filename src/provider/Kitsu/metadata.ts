@@ -302,6 +302,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
       resItems.push({
         id: item.id,
         name: helper.getTitle(item.attributes.titles),
+        altNames: Object.values(item.attributes.titles),
         url: 'https://kitsu.io/'+type+'/'+item.attributes.slug,
         malUrl: async () => {
           var malId = await helper.kitsuToMal(item.id, type);

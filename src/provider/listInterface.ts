@@ -36,6 +36,7 @@ export type searchInterface = (
 ) => Promise<[{
   id:number,
   name:string,
+  altNames:string[],
   url:string,
   malUrl: () => Promise<string|null>,
   image:string,

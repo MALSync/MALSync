@@ -212,6 +212,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
       resItems.push({
         id: item.ids.simkl_id,
         name: item.title,
+        altNames: [],
         url: 'https://simkl.com/'+type+'/'+item.ids.simkl_id+'/'+item.ids.slug,
         malUrl: async () => {
           var malId = await helper.simklIdToMal(item.ids.simkl_id);

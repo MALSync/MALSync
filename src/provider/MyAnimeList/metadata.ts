@@ -192,6 +192,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
       resItems.push({
         id: item.id,
         name: item.name,
+        altNames: [],
         url: item.url,
         malUrl: () => {return item.url},
         image: item.image_url,

@@ -399,6 +399,9 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
           idMal
           title {
             userPreferred
+            romaji
+            english
+            native
           }
           coverImage {
             medium
@@ -438,6 +441,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
       resItems.push({
         id: item.id,
         name: item.title.userPreferred,
+        altNames: Object.values(item.title),
         url: item.siteUrl,
         malUrl: () => {return (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null},
         image: item.coverImage.medium,
