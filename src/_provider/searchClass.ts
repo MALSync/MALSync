@@ -55,15 +55,15 @@ export class searchClass {
   }
 
   public async searchForIt(): Promise<searchResult | false> {
-    var result = false;
+    var result: searchResult | false = false;
 
     result = searchCompare(result, await this.firebase());
 
-    if(result.provider !== 'firebase') {
+    if( (result && result.provider !== 'firebase') || !result ) {
       result = searchCompare(result, await this.malSearch());
     }
 
-    if(result.provider !== 'firebase') {
+    if( (result && result.provider !== 'firebase') || !result ) {
       result = searchCompare(result, await this.pageSearch());
     }
 
