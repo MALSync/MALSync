@@ -2,6 +2,10 @@ import {compareTwoStrings} from 'string-similarity';
 
 import {search as pageSearch} from '../provider/provider';
 
+import correctionApp from './correctionApp.vue';
+
+import Vue from 'vue';
+
 interface searchResult {
   url: string;
   offset: number;
@@ -217,6 +221,24 @@ export class searchClass {
     }
 
     return false;
+  }
+
+  public openCorrection() {
+    var flasmessage = utils.flashm('<div class="shadow"></div>', {permanent: true, position: "top", type: 'correction'});
+
+    var shadow = flasmessage.find('.shadow').get(0)!.attachShadow({mode: 'open'});
+
+    shadow.innerHTML = (`
+      <style>
+        ${require('!to-string-loader!css-loader!less-loader!./correctionStyle.less').toString()}
+      </style>
+      <div id="correctionApp"></div>
+      `);
+    let element = flasmessage.find('.shadow').get(0)!.shadowRoot!.querySelector('#correctionApp')!;
+    var minimalVue = new Vue({
+      el: element ,
+      render: h => h(correctionApp)
+    })
   }
 
   protected identifierToDbKey(title) {
