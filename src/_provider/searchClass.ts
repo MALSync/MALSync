@@ -54,6 +54,33 @@ export class searchClass {
     };
   }
 
+  public async searchForIt(): Promise<searchResult | false> {
+    var result = false;
+
+    result = searchCompare(result, await this.firebase());
+
+    if(result.provider !== 'firebase') {
+      result = searchCompare(result, await this.malSearch());
+    }
+
+    if(result.provider !== 'firebase') {
+      result = searchCompare(result, await this.pageSearch());
+    }
+
+    return result;
+
+    function searchCompare(curVal, newVal){
+
+      if(curVal !== false && newVal !== false) {
+        if(curVal.similarity.value >= newVal.similarity.value) return curVal;
+        return newVal;
+      }
+      if(curVal !== false) return curVal;
+      return newVal;
+    }
+
+  }
+
   public async firebase(): Promise<searchResult | false>{
     if(!this.page || !this.page.database) return false;
     var url = 'https://kissanimelist.firebaseio.com/Data2/'+this.page.database+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase()+'/Mal.json';

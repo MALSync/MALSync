@@ -286,3 +286,84 @@ describe('Page Search', function () {
     });
   });
 });
+
+describe('Full Search', function () {
+  before(function () {
+    global.con = require('./../../../src/utils/console');
+    global.api = {
+      request: {
+        xhr: async function(post, conf, data) {
+          return new Promise(function(resolve, reject) {
+            request(conf, (error, response, body) => {
+              resolve({
+                responseText: body
+              })
+            });
+          });
+        }
+      },
+      settings: {
+        get: function(val) {
+          if(val === 'syncMode') return 'MAL';
+          throw 'setting not defined';
+        }
+      }
+    }
+  });
+
+  it('Firebase', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('No Game No Life', 'novel', 'No-Game-No-Life');
+    searchObj.setPage({
+      database: 'Novelplanet',
+      type: 'manga'
+    });
+    var result = await searchObj.searchForIt();
+    expect(result.provider).equal('firebase');
+  });
+
+  it('Not Existing', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('No Game No Life', 'anime', 'Something-that-does-not-exist');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    var result = await searchObj.searchForIt();
+    expect(result.provider).equal('mal');
+  });
+
+  it('Not Found', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('Avatar: The Last Airbender Season 1', 'anime', 'Avatar-The-Last-Airbender-Season-1');
+    searchObj.setPage({
+      database: 'Kissanime',
+      type: 'anime'
+    });
+    var result = await searchObj.searchForIt();
+    expect(result.provider).equal('firebase');
+  });
+
+  it('Page Search', async function () {
+    this.timeout(10000);
+    var searchObj = new searchClass('tales of demons and gods', 'manga', 'tales of demons and gods');
+    searchObj.setPage({
+      type: 'manga'
+    });
+    searchObj.pageSearch = () => {
+      return {
+        url: 'https://anilist.co/manga/86707/Yaoshenji/',
+        offset: 0,
+        provider: 'page',
+        similarity: {
+          same: true,
+          value: 0.9433962264150944
+        }
+      }
+    }
+    var result = await searchObj.searchForIt();
+    expect(result.provider).equal('page');
+  });
+
+
+});
