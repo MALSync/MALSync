@@ -70,14 +70,14 @@ export class searchClass {
     }
 
     if( (result && result.provider !== 'firebase') || !result ) {
-      result = searchCompare(result, await this.pageSearch());
+      result = searchCompare(result, await this.pageSearch(), 0.5);
     }
 
     return result;
 
-    function searchCompare(curVal, newVal){
+    function searchCompare(curVal, newVal, threshold = 0){
 
-      if(curVal !== false && newVal !== false) {
+      if(curVal !== false && newVal !== false && newVal.similarity.value > threshold) {
         if(curVal.similarity.value >= newVal.similarity.value) return curVal;
         return newVal;
       }
