@@ -1,4 +1,76 @@
 #material {
   all: initial;
   color: green;
+
+  //Typography
+
+  @accentColor: #F43B7A;
+  @cardColor: #484848;
+
+  & {
+    font-family: "Helvetica","Arial",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  p {
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0;
+    margin: 0 0 16px;
+  }
+
+  a {
+    color: @accentColor;
+    text-decoration: none !important;
+  }
+
+  //Search
+
+  .search {
+    .results {
+      .result {
+        cursor: pointer;
+        display: flex;
+        margin-bottom: 15px;
+        background-color: @cardColor;
+        .image {
+          height: 100px;
+          width: 64px;
+          min-width: 64px;
+          background-color: grey;
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        .right {
+          flex-grow: 100;
+          cursor: pointer;
+          margin-top: 0;
+          margin-bottom: 0;
+          padding: 5px 10px;
+
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .title {
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 3px;
+          }
+          p {
+            margin-bottom: 0;
+            line-height: 20px;
+            color: white;
+          }
+        }
+      }
+    }
+  }
 }
