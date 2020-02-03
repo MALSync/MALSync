@@ -57,7 +57,7 @@ export class searchClass {
     if(simi > 0.5) {
       found = true;
     }
-    console.log(simi);
+
     return {
       same: found,
       value: simi
