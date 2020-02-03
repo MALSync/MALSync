@@ -1,6 +1,6 @@
 import {compareTwoStrings} from 'string-similarity';
 
-import {search as pageSearch} from '../provider/provider';
+import {search as pageSearch} from '../../provider/provider';
 
 import correctionApp from './correctionApp.vue';
 

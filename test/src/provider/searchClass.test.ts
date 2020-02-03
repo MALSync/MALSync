@@ -1,4 +1,4 @@
-import {searchClass} from './../../../src/_provider/searchClass';
+import {searchClass} from './../../../src/_provider/Search/searchClass';
 import { expect } from 'chai';
 import * as request from 'request';
 
