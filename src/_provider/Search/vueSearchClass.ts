@@ -20,7 +20,10 @@ export class searchClass extends searchClassExtend {
     let element = flasmessage.find('.shadow').get(0)!.shadowRoot!.querySelector('#correctionApp')!;
     var minimalVue = new Vue({
       el: element ,
-      render: h => h(correctionApp)
+      render: h => h(correctionApp),
+      data: () => ({
+        searchClass: this
+      }),
     })
   }
 

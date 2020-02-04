@@ -1,7 +1,8 @@
 <template>
   <div id="material">
     <div>
-      <search></search>
+      {{searchClass.getSanitizedTitel()}}
+      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()"></search>
     </div>
   </div>
 </template>
@@ -15,6 +16,11 @@
     },
     data: () => ({
     }),
+    computed: {
+      searchClass: function() {
+        return this.$parent.searchClass;
+      }
+    },
     methods: {
       lang: api.storage.lang,
     }
