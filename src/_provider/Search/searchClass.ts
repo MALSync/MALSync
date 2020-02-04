@@ -28,6 +28,10 @@ export class searchClass {
     this.page = page;
   }
 
+  setUrl(url) {
+    alert(url);
+  }
+
   getSanitizedTitel() {
     return this.sanitizedTitel;
   }

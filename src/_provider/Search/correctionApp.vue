@@ -2,7 +2,7 @@
   <div id="material">
     <div>
       {{searchClass.getSanitizedTitel()}}
-      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()"></search>
+      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" v-on:clicked="setPage($event)"></search>
     </div>
   </div>
 </template>
@@ -23,6 +23,9 @@
     },
     methods: {
       lang: api.storage.lang,
+      setPage: function(url) {
+        this.searchClass.setUrl(url);
+      }
     }
   }
 </script>

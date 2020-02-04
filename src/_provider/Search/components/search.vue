@@ -3,6 +3,13 @@
     <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
     <input v-model="searchKeyword">
     <div class="results">
+      <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
+        <div class="image"></div>
+        <div class="right">
+          <span class="title">{{lang("correction_NoEntry")}}</span>
+          <p>{{lang("correction_NoMal")}}</p>
+        </div>
+      </a>
       <a v-for="item in items" :key="item.id" class="result" :href="item.url" @click="clickItem($event, item)">
         <div class="image"><img :src="item.image"></img></div>
         <div class="right">
@@ -72,9 +79,18 @@
           this.items = items;
         })
       },
-      clickItem: function(e, item){
+      clickItem: async function(e, item){
         e.preventDefault();
-        this.$emit('clicked', item);
+        if(!item) {
+          this.$emit('clicked', '');
+          return;
+        }
+        var url = await item.malUrl();
+        if(url) {
+          this.$emit('clicked', url);
+        }else{
+          this.$emit('clicked', item.url);
+        }
       }
     }
   }
