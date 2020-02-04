@@ -9,7 +9,7 @@ import {search as pageSearch} from '../../provider/provider';
 interface searchResult {
   url: string;
   offset: number;
-  provider: 'firebase'|'mal'|'page';
+  provider: 'firebase'|'mal'|'page'|'user';
   similarity: {
     same: boolean,
     value: number
@@ -20,6 +20,8 @@ export class searchClass {
   private sanitizedTitel;
   private page;
 
+  protected state: searchResult|false = false;
+
   constructor(protected title: string, protected type: 'anime'|'manga'|'novel', protected identifier: string) {
     this.sanitizedTitel = this.sanitizeTitel(this.title);
   }
@@ -29,7 +31,26 @@ export class searchClass {
   }
 
   setUrl(url) {
-    alert(url);
+    if(this.state) {
+      this.state.provider = 'user';
+      this.state.url = url;
+      this.state.similarity = {
+        same: true,
+        value: 1
+      }
+    }else{
+      this.state = {
+        url: url,
+        offset: 0,
+        provider: 'user',
+        similarity: {
+          same: true,
+          value: 1
+        }
+      }
+    }
+
+    this.setCache(this.state);
   }
 
   getSanitizedTitel() {
@@ -47,6 +68,27 @@ export class searchClass {
     title = title.replace(/ BD( |$)/i, '');
     title = title.trim();
     return title;
+  }
+
+  public async search() {
+    this.state = await this.getCache();
+
+    if(!this.state) {
+      this.state = await this.searchForIt();
+    }
+
+    if(this.state) {
+      await this.setCache(this.state);
+    }
+    return this.state;
+  }
+
+  protected async getCache() {
+    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null);
+  }
+
+  protected setCache(cache) {
+    return api.storage.set(this.page.name+'/'+this.identifier+'/Search', cache);
   }
 
   static similarity(externalTitle, title, titleArray: string[] = []) {
