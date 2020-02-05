@@ -1,8 +1,8 @@
 <template>
   <div id="material">
     <div>
-      {{searchClass.getUrl()}}
       <input-button :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
+      <input-button :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" v-on:clicked="setPage($event)"></search>
     </div>
   </div>
@@ -28,6 +28,9 @@
       lang: api.storage.lang,
       setPage: function(url) {
         this.searchClass.setUrl(url);
+      },
+      setOffset: function(offset) {
+        this.searchClass.setOffset(offset);
       }
     }
   }

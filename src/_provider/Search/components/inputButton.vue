@@ -1,6 +1,6 @@
 <template>
   <div class="inputButton">
-    <input v-model="inputString">
+    <input v-model="inputString" :type="type">
     <button v-if="inputString !== state" @click="click">Update</button>
   </div>
 </template>
@@ -14,6 +14,10 @@
     },
     props: {
       state: {
+        type: String,
+        default: ''
+      },
+      type: {
         type: String,
         default: ''
       },

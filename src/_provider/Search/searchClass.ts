@@ -60,6 +60,20 @@ export class searchClass {
     this.setCache(this.state);
   }
 
+  getOffset(): number {
+    if(this.state) {
+      return this.state.offset;
+    }
+    return 0;
+  }
+
+  setOffset(offset: number) {
+    if(this.state) {
+      this.state.offset = offset;
+    }
+    this.setCache(this.state);
+  }
+
   getSanitizedTitel() {
     return this.sanitizedTitel;
   }
