@@ -1,6 +1,6 @@
 <template>
   <div id="material">
-    <div>
+    <div class="scroll">
       <input-button :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
       <input-button :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" v-on:clicked="setPage($event)"></search>
