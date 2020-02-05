@@ -30,6 +30,13 @@ export class searchClass {
     this.page = page;
   }
 
+  getUrl(): string|null {
+    if(this.state) {
+      return this.state.url;
+    }
+    return null;
+  }
+
   setUrl(url) {
     if(this.state) {
       this.state.provider = 'user';
