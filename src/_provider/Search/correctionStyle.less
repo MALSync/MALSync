@@ -18,6 +18,7 @@
 
   //Typography
 
+  @primaryColor: rgb(63,81,181);
   @accentColor: #F43B7A;
   @cardColor: #484848;
 
@@ -94,6 +95,7 @@
   //Input Button
   .inputButton {
     display: flex;
+    align-items: center;
     .group {
       width: 100%;
     }
@@ -187,7 +189,7 @@
     }
 
     > .bar1 {
-      background-color: @accentColor;
+      background-color: @primaryColor;
       animation-name: indeterminate1;
       animation-duration: 2s;
       animation-iteration-count: infinite;
@@ -216,6 +218,29 @@
       position: absolute;
       top: -9px;
     }
+  }
+
+  //Button
+  button {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: @primaryColor;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    position: relative;
+    height: 42px;
+    padding: 0 16px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
   }
 
 }
