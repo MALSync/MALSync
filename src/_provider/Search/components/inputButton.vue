@@ -1,6 +1,12 @@
 <template>
   <div class="inputButton">
-    <input v-model="inputString" :type="type">
+
+    <div class="group">
+      <input v-model="inputString" :type="type" required>
+      <span class="bar"></span>
+      <label>{{label}}</label>
+    </div>
+
     <button v-if="inputString !== state" @click="click">Update</button>
   </div>
 </template>
@@ -18,6 +24,10 @@
         default: ''
       },
       type: {
+        type: String,
+        default: ''
+      },
+      label: {
         type: String,
         default: ''
       },

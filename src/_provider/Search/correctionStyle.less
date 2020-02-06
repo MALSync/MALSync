@@ -6,6 +6,10 @@
   all: initial;
   color: green;
 
+  * {
+    box-sizing:border-box;
+  }
+
   .scroll {
     overflow-y: auto;
     max-height: 80vh;
@@ -40,9 +44,7 @@
   //Search
 
   .search {
-    display: flex;
-    flex-wrap: wrap;
-    input {
+    .input {
       width: 100%;
     }
     .results {
@@ -92,8 +94,79 @@
   //Input Button
   .inputButton {
     display: flex;
-    input {
+    .group {
       width: 100%;
     }
   }
+
+  //input
+  .group        {
+    position:relative;
+    margin-bottom: 15px;
+    margin-top: 25px;
+
+    input {
+      font-size:18px;
+      padding:10px 10px 10px 5px;
+      display:block;
+      background-color: transparent;
+      color: white;
+      width: 100%;
+      border:none;
+      background-color: @cardColor;
+      border-bottom:1px solid white;
+      &:focus {
+        outline:none;
+      }
+    }
+
+    label {
+      color:#999;
+      font-size:18px;
+      font-weight:normal;
+      position:absolute;
+      pointer-events:none;
+      left:5px;
+      top:10px;
+      transition:0.2s ease all;
+      -moz-transition:0.2s ease all;
+      -webkit-transition:0.2s ease all;
+    }
+
+    input:focus ~ label, input:valid ~ label {
+      left: 0;
+      top:-20px;
+      font-size:14px;
+      color: @accentColor;
+    }
+
+    .bar {
+      position:relative;
+      display:block;
+
+      &:before, &:after {
+        content:'';
+        height:2px;
+        width:0;
+        bottom:0px;
+        position:absolute;
+        background: @accentColor;
+        transition:0.2s ease all;
+        -moz-transition:0.2s ease all;
+        -webkit-transition:0.2s ease all;
+      }
+
+      &:before {
+        left:50%;
+      }
+      &:after {
+        right:50%;
+      }
+    }
+
+    input:focus ~ .bar:before, input:focus ~ .bar:after {
+      width:50%;
+    }
+  }
+
 }

@@ -1,7 +1,15 @@
 <template>
   <div class="search">
     <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
-    <input v-model="searchKeyword">
+
+    <div class="input">
+      <div class="group">
+        <input type="text" v-model="searchKeyword" required>
+        <span class="bar"></span>
+        <label>Search</label>
+      </div>
+    </div>
+
     <div class="results">
       <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
         <div class="image"></div>
