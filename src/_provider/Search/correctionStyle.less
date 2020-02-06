@@ -100,7 +100,7 @@
   }
 
   //input
-  .group        {
+  .group {
     position:relative;
     margin-bottom: 15px;
     margin-top: 25px;
@@ -166,6 +166,55 @@
 
     input:focus ~ .bar:before, input:focus ~ .bar:after {
       width:50%;
+    }
+  }
+
+  // ProgressBar
+  .mdl-progress{
+    display: block;
+    position: relative;
+    height: 3px;
+    width: 500px;
+    max-width: 100%;
+
+    > .bar {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      transition: width 0.2s linear;
+    }
+
+    > .bar1 {
+      background-color: @accentColor;
+      animation-name: indeterminate1;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  @keyframes indeterminate1 {
+    0% {
+      left: 0%;
+      width: 0%;
+    }
+    50% {
+      left: 25%;
+      width: 75%;
+    }
+    75% {
+      left: 100%;
+      width: 0%;
+    }
+  }
+
+  .loadingBar {
+    position: relative;
+    .mdl-progress{
+      position: absolute;
+      top: -9px;
     }
   }
 

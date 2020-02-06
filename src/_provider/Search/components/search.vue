@@ -1,12 +1,19 @@
 <template>
   <div class="search">
-    <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%; position: absolute;"></div>
 
     <div class="input">
       <div class="group">
         <input type="text" v-model="searchKeyword" @focus="inputFocus()" required>
         <span class="bar"></span>
         <label>{{lang("correction_Search")}}</label>
+      </div>
+    </div>
+
+    <div class="loadingBar" >
+      <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%;">
+        <div class="progressbar bar bar1" style="width: 0%;"></div>
+        <div class="bufferbar bar bar2" style="width: 100%;"></div>
+        <div class="auxbar bar bar3" style="width: 0%;"></div>
       </div>
     </div>
 
@@ -41,7 +48,7 @@
     data: function(){
       return {
         items: [],
-        loading: true,
+        loading: false,
         searchKeyword: ''
       }
     },
@@ -74,7 +81,7 @@
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
           this.load();
-        }, 500)
+        }, 200)
 
       },
       type: function(type){
@@ -84,12 +91,15 @@
     methods: {
       lang: api.storage.lang,
       load: function(){
-        this.loading = true;
+        if(this.searchKeyword) {
+          this.loading = true;
 
-        search(this.searchKeyword, this.type).then((items) => {
-          this.loading = false;
-          this.items = items;
-        })
+          search(this.searchKeyword, this.type).then((items) => {
+            this.loading = false;
+            this.items = items;
+          })
+        }
+
       },
       inputFocus: function() {
         if(!this.searchKeyword) {
