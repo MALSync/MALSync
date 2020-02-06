@@ -6,7 +6,7 @@ import Vue from 'vue';
 
 export class searchClass extends searchClassExtend {
 
-  public openCorrection() {
+  public openCorrection(syncMode: boolean = false) {
     var flasmessage = utils.flashm('<div class="shadow"></div>', {permanent: true, position: "top", type: 'correction'});
 
     var shadow = flasmessage.find('.shadow').get(0)!.attachShadow({mode: 'open'});
@@ -22,7 +22,8 @@ export class searchClass extends searchClassExtend {
       el: element ,
       render: h => h(correctionApp),
       data: () => ({
-        searchClass: this
+        searchClass: this,
+        syncMode: syncMode
       }),
       destroyed: () => {
         flasmessage.remove();

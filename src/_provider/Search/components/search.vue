@@ -4,13 +4,13 @@
 
     <div class="input">
       <div class="group">
-        <input type="text" v-model="searchKeyword" required>
+        <input type="text" v-model="searchKeyword" @focus="inputFocus()" required>
         <span class="bar"></span>
         <label>{{lang("correction_Search")}}</label>
       </div>
     </div>
 
-    <div class="results">
+    <div class="results" v-if="searchKeyword">
       <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
         <div class="image"></div>
         <div class="right">
@@ -54,12 +54,16 @@
         type: String,
         default: ''
       },
+      syncMode: {
+        type: Boolean,
+        default: false
+      },
     },
     mounted: function(){
-      this.searchKeyword = this.keyword;
-      this.load();
-    },
-    activated: function(){
+      if(this.syncMode) {
+        this.searchKeyword = this.keyword;
+        this.load();
+      }
     },
     watch: {
       keyword: function(type){
@@ -86,6 +90,11 @@
           this.loading = false;
           this.items = items;
         })
+      },
+      inputFocus: function() {
+        if(!this.searchKeyword) {
+          this.searchKeyword = this.keyword;
+        }
       },
       clickItem: async function(e, item){
         e.preventDefault();

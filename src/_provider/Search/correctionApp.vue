@@ -3,7 +3,7 @@
     <div class="scroll">
       <input-button label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
       <input-button :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
-      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" v-on:clicked="setPage($event)"></search>
+      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" v-on:clicked="setPage($event)"></search>
     </div>
   </div>
 </template>
@@ -22,7 +22,10 @@
     computed: {
       searchClass: function() {
         return this.$parent.searchClass;
-      }
+      },
+      syncMode: function() {
+        return this.$parent.syncMode;
+      },
     },
     methods: {
       lang: api.storage.lang,
