@@ -97,6 +97,15 @@ export class syncPage{
       }
     }
     this.handleVideoResume(item, timeCb);
+    this.autoNextEp(item);
+  }
+
+  autoNextEpRun = false;
+  public autoNextEp(item) {
+    if(api.settings.get("autoNextEp") && !this.autoNextEpRun && item.current == item.duration) {
+      this.autoNextEpRun = true;
+      this.openNextEp();
+    }
   }
 
   private handleVideoResume(item, timeCb){

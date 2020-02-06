@@ -624,7 +624,10 @@
       "message": "Auto resume",
       "description": "Auto resume video where you left off toggle"
     },
-
+    "settings_autoNextEp": {
+      "message": "Autoplay next episode",
+      "description": "Autoplays the next episode after the video ends"
+    },
     "settings_Shortcuts_Next_Episode": {
       "message": "Open next episode shortcut",
       "description": "Description for the next episode shortcut option"
