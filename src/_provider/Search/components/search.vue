@@ -6,7 +6,7 @@
       <div class="group">
         <input type="text" v-model="searchKeyword" required>
         <span class="bar"></span>
-        <label>Search</label>
+        <label>{{lang("correction_Search")}}</label>
       </div>
     </div>
 

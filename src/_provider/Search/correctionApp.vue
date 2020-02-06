@@ -2,7 +2,7 @@
   <div id="material">
     <div class="scroll">
       <input-button label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
-      <input-button label="Offset" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
+      <input-button :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" v-on:clicked="setPage($event)"></search>
     </div>
   </div>
@@ -28,6 +28,8 @@
       lang: api.storage.lang,
       setPage: function(url) {
         this.searchClass.setUrl(url);
+        utils.flashm(api.storage.lang("correction_NewUrl",[url]) , false);
+        this.$root.$destroy();
       },
       setOffset: function(offset) {
         this.searchClass.setOffset(offset);

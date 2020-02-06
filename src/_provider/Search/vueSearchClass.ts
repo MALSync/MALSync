@@ -24,6 +24,9 @@ export class searchClass extends searchClassExtend {
       data: () => ({
         searchClass: this
       }),
+      destroyed: () => {
+        flasmessage.remove();
+      }
     })
   }
 
