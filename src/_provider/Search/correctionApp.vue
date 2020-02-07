@@ -1,8 +1,8 @@
 <template>
   <div id="material">
     <div class="scroll">
-      <input-button label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
-      <input-button :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
+      <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
+      <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" v-on:clicked="setPage($event)"></search>
     </div>
   </div>
