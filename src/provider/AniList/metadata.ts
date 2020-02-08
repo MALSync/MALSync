@@ -446,7 +446,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
         url: item.siteUrl,
         malUrl: () => {return (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null},
         image: item.coverImage.medium,
-        media_type: (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '),
+        media_type: item.format ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '): '',
         isNovel: item.format === 'NOVEL',
         score: item.averageScore,
         year: item.startDate.year
