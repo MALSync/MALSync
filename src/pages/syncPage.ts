@@ -3,6 +3,7 @@ import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
+import {searchClass} from "./../_provider/Search/vueSearchClass.ts";
 
 declare var browser: any;
 
@@ -15,6 +16,7 @@ export class syncPage{
   page: pageInterface;
   malObj;
   oldMalObj;
+  searchObj;
 
   public novel = false;
 
@@ -188,6 +190,7 @@ export class syncPage{
   async handlePage(curUrl = window.location.href){
     var state: pageState;
     this.curState = undefined;
+    this.searchObj = undefined;
     var This = this;
     this.url = curUrl;
 
@@ -241,7 +244,14 @@ export class syncPage{
 
     this.curState = state;
 
-    var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
+    this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
+
+    this.searchObj.setPage(this.page);
+    this.searchObj.setSyncPage(this);
+
+    await this.searchObj.search();
+
+    var malUrl = this.searchObj.getUrl();
 
     if((malUrl === null || !malUrl) && api.settings.get('localSync')){
       con.log('Local Fallback');
