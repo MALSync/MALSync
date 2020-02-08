@@ -307,7 +307,6 @@ export class syncPage{
         var rerun = await this.searchObj.openCorrectionCheck();
 
         if(rerun) {//If malUrl changed
-          alert();
           this.handlePage(curUrl);
           return;
         }
