@@ -361,6 +361,14 @@ export class syncPage{
     }
   }
 
+  public openCorrectionUi() {
+    if(this.searchObj) {
+      return this.searchObj.openCorrection().then(() => {
+        this.handlePage();
+      });
+    }
+  }
+
   private syncHandling(hoverInfo = false){
     var This = this;
     return this.malObj.sync()
