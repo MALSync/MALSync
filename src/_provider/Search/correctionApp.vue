@@ -7,7 +7,7 @@
       <div id="offsetUi" v-if="inputOffset && inputOffset !== '0'">
         <div class="offsetBox" v-for="index in 5" :key="index">
           <div class="mdl-color--primary top">{{index}}</div>
-          <div class="bottom">{{calcEpOffset(index)}}</div>
+          <div class="bottom" :class="{active: parseInt(currentStateEp) === calcEpOffset(index)}">{{calcEpOffset(index)}}</div>
         </div>
         <div class="offsetBox">
           <div class="mdl-color--primary top">...</div>
@@ -40,6 +40,14 @@
     computed: {
       searchClass: function() {
         return this.$parent.searchClass;
+      },
+      syncPage: function() {
+        return this.$parent.searchClass.getSyncPage();
+      },
+      currentStateEp: function() {
+        if(this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {
+          return this.syncPage.curState.episode;
+        }
       },
       syncMode: function() {
         return this.$parent.syncMode;

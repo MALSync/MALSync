@@ -19,6 +19,7 @@ interface searchResult {
 export class searchClass {
   private sanitizedTitel;
   private page;
+  private syncPage;
 
   protected state: searchResult|false = false;
 
@@ -28,6 +29,14 @@ export class searchClass {
 
   setPage(page) {
     this.page = page;
+  }
+
+  setSyncPage(syncPage) {
+    this.syncPage = syncPage;
+  }
+
+  getSyncPage() {
+    return this.syncPage;
   }
 
   getUrl(): string|null {
