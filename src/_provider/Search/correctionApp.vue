@@ -2,7 +2,23 @@
   <div id="material">
     <div class="scroll">
       <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
-      <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
+
+      <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="offset" type="number" v-on:clicked="setOffset" v-on:change="val => inputOffset = val"></input-button>
+      <div id="offsetUi" v-if="inputOffset && inputOffset !== '0'">
+        <div class="offsetBox" v-for="index in 5" :key="index">
+          <div class="mdl-color--primary top">{{index}}</div>
+          <div class="bottom">{{calcEpOffset(index)}}</div>
+        </div>
+        <div class="offsetBox">
+          <div class="mdl-color--primary top">...</div>
+          <div class="bottom">...</div>
+        </div>
+        <div class="offsetBox">
+          <div class="mdl-color--primary top">∞</div>
+          <div class="bottom">∞</div>
+        </div>
+      </div>
+
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" v-on:clicked="setPage($event)"></search>
     </div>
     <a class="close" @click="close()">CLOSE</a>
@@ -19,6 +35,7 @@
       search
     },
     data: () => ({
+      inputOffset: 0,
     }),
     computed: {
       searchClass: function() {
@@ -27,6 +44,9 @@
       syncMode: function() {
         return this.$parent.syncMode;
       },
+      offset: function() {
+        return this.searchClass.getOffset();
+      }
     },
     methods: {
       lang: api.storage.lang,
@@ -40,6 +60,9 @@
       },
       close: function() {
         this.$root.$destroy();
+      },
+      calcEpOffset: function (ep) {
+        return parseInt(ep) - parseInt(this.inputOffset);
       }
     }
   }

@@ -39,6 +39,9 @@
       state: function(type){
         this.inputString = this.state;
       },
+      inputString: function(val){
+        this.$emit('change', this.inputString);
+      }
     },
     methods: {
       lang: api.storage.lang,

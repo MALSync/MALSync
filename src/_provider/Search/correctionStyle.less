@@ -4,7 +4,7 @@
 
 #material {
   all: initial;
-  color: green;
+  color: white;
 
   * {
     box-sizing:border-box;
@@ -28,6 +28,10 @@
   @primaryColor: rgb(63,81,181);
   @accentColor: #F43B7A;
   @cardColor: #484848;
+
+  .mdl-color--primary {
+    background-color: @primaryColor;
+  }
 
   & {
     font-family: "Helvetica","Arial",sans-serif;
@@ -250,4 +254,23 @@
     vertical-align: middle;
   }
 
+  // Offset Ui
+  #offsetUi{
+    display: flex;
+    justify-content: space-around;
+    .offsetBox{
+      text-align: center;
+      min-width: 40px;
+      margin-left: 5px;
+      margin-right: 5px;
+
+      .top{
+        padding: 5px 10px;
+      }
+
+      .bottom{
+        padding: 5px 10px;
+      }
+    }
+  }
 }
