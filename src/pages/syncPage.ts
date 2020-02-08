@@ -306,6 +306,8 @@ export class syncPage{
         if(await this.handleAnimeUpdate(state)){
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
+          await this.searchObj.openCorrectionCheck();
+
           if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
             setTimeout(()=>{
               sync();
