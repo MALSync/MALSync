@@ -200,7 +200,12 @@ export class syncPage{
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url)
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+      this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      await this.searchObj.search();
+
       state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
       if(!state.episode && state.episode !== 0){
         if (this.page.type == 'anime'){
@@ -238,18 +243,16 @@ export class syncPage{
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url)
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+      this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      await this.searchObj.search();
+
       con.log('Overview', state);
     }
 
     this.curState = state;
-
-    this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
-
-    this.searchObj.setPage(this.page);
-    this.searchObj.setSyncPage(this);
-
-    await this.searchObj.search();
 
     var malUrl = this.searchObj.getUrl();
 
@@ -651,7 +654,7 @@ export class syncPage{
 
   offsetHandler(epList){
     if(!this.page.overview!.list!.offsetHandler) return;
-    if(typeof this.offset !== 'undefined' && this.offset !== "0") return;
+    if(typeof this.getOffset() !== 'undefined' && this.getOffset() !== "0") return;
     for (var i = 0; i < epList.length; ++i) {
       if (typeof epList[i] !== 'undefined') {
         con.log('Offset', i);
@@ -842,27 +845,21 @@ export class syncPage{
     api.storage.remove(this.page.name+'/'+getIdentifier(this.url)+'/Mal');
   }
 
-  private offset;
-
   getOffset(){
-    if(typeof this.offset == 'undefined') return 0;
-    return this.offset;
+    if(this.searchObj && this.searchObj.getOffset()) {
+      return this.searchObj.getOffset();
+    }
+    return 0;
   }
 
   async setOffset(value:number){
-    this.offset = value;
-    var getIdentifier;
-    if(this.page.isSyncPage(this.url)){
-      getIdentifier = this.page.sync.getIdentifier;
-    }else{
-      getIdentifier = this.page.overview!.getIdentifier;
-      this.handleList();
+    if(this.searchObj){
+      this.searchObj.setOffset(value);
     }
-    var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
     if(typeof this.malObj != 'undefined'){
       api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
     }
-    return returnValue;
+    return;
   }
 
   UILoaded:boolean = false;
