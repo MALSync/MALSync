@@ -6,12 +6,20 @@ import Vue from 'vue';
 
 export class searchClass extends searchClassExtend {
 
+  reloadSync = false;
+
   public openCorrectionCheck() {
+    var tempCurUrl = this.getUrl();
     if(this.state && this.state.similarity && this.state.similarity.same){
       con.log('similarity', this.state.similarity.value);
-      return true;
+      return false;
     }
-    return this.openCorrection(true);
+    return this.openCorrection(true).then(() => {
+      if(tempCurUrl !== this.getUrl()) {
+        return true;
+      }
+      return false;
+    });
   }
 
   public openCorrection(syncMode: boolean = false) {

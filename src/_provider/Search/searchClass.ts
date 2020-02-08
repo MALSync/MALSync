@@ -118,6 +118,9 @@ export class searchClass {
     if(this.state) {
       await this.setCache(this.state);
     }
+
+    con.log('[SEARCH] Result', this.state);
+
     return this.state;
   }
 

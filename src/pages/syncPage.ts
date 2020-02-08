@@ -303,10 +303,17 @@ export class syncPage{
 
       //sync
       if(this.page.isSyncPage(this.url)){
+
+        var rerun = await this.searchObj.openCorrectionCheck();
+
+        if(rerun) {//If malUrl changed
+          alert();
+          this.handlePage(curUrl);
+          return;
+        }
+
         if(await this.handleAnimeUpdate(state)){
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
-
-          await this.searchObj.openCorrectionCheck();
 
           if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
             setTimeout(()=>{
