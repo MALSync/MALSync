@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" v-on:clicked="setPage($event)"></search>
+      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" :currentId="searchClass.getId()" v-on:clicked="setPage($event.url, $event.id)"></search>
     </div>
     <a class="close" @click="close()">CLOSE</a>
   </div>
@@ -58,8 +58,8 @@
     },
     methods: {
       lang: api.storage.lang,
-      setPage: function(url) {
-        this.searchClass.setUrl(url);
+      setPage: function(url, id = 0) {
+        this.searchClass.setUrl(url, id);
         utils.flashm(api.storage.lang("correction_NewUrl",[url]) , false);
         this.close();
       },

@@ -7,6 +7,7 @@ import {compareTwoStrings} from 'string-similarity';
 import {search as pageSearch} from '../../provider/provider';
 
 interface searchResult {
+  id?: number;
   url: string;
   offset: number;
   provider: 'firebase'|'mal'|'page'|'user';
@@ -46,10 +47,11 @@ export class searchClass {
     return null;
   }
 
-  setUrl(url) {
+  setUrl(url, id = 0) {
     if(this.state) {
       this.state.provider = 'user';
       this.state.url = url;
+      this.state.id = id;
       this.state.similarity = {
         same: true,
         value: 1
@@ -81,6 +83,11 @@ export class searchClass {
       this.state.offset = offset;
     }
     this.setCache(this.state);
+  }
+
+  getId() {
+    if(this.state && this.state.id) return this.state.id;
+    return 0;
   }
 
   getSanitizedTitel() {
@@ -289,6 +296,7 @@ export class searchClass {
       var retEl = searchResult[best.index];
       var url = await retEl.malUrl();
       return {
+        id: retEl.id,
         url: url? url: retEl.url,
         offset: 0,
         provider: 'page',

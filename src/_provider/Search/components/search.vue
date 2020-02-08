@@ -25,7 +25,7 @@
           <p>{{lang("correction_NoMal")}}</p>
         </div>
       </a>
-      <a v-for="item in items" :key="item.id" class="result" :href="item.url" @click="clickItem($event, item)">
+      <a v-for="item in items" :key="item.id" class="result" :href="item.url" @click="clickItem($event, item)" :class="{active: currentId === item.id}">
         <div class="image"><img :src="item.image"></img></div>
         <div class="right">
           <span class="title">{{item.name}}</span>
@@ -64,6 +64,10 @@
       syncMode: {
         type: Boolean,
         default: false
+      },
+      currentId: {
+        type: Number,
+        default: 0
       },
     },
     mounted: function(){
@@ -109,14 +113,14 @@
       clickItem: async function(e, item){
         e.preventDefault();
         if(!item) {
-          this.$emit('clicked', '');
+          this.$emit('clicked', {url: '', id: 0});
           return;
         }
         var url = await item.malUrl();
         if(url) {
-          this.$emit('clicked', url);
+          this.$emit('clicked', {url: url, id: item.id});
         }else{
-          this.$emit('clicked', item.url);
+          this.$emit('clicked', {url: item.url, id: item.id});
         }
       }
     }

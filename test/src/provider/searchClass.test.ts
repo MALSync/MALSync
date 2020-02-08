@@ -245,6 +245,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
       offset: 0,
+      id: 48399,
       provider: 'page',
       similarity: {
         same: true,
@@ -263,6 +264,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48397/No_Game_No_Life',
       offset: 0,
+      id: 48397,
       provider: 'page',
       similarity: {
         same: true,
@@ -281,6 +283,7 @@ describe('Page Search', function () {
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
       offset: 0,
+      id: 14829,
       provider: 'page',
       similarity: {
         same: true,
