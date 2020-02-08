@@ -138,7 +138,7 @@ export class searchClass {
       }
     })
     var found = false;
-    if(simi > 0.5) {
+    if(simi > 0.6) {
       found = true;
     }
 

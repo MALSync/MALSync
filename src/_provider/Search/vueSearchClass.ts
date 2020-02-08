@@ -7,6 +7,10 @@ import Vue from 'vue';
 export class searchClass extends searchClassExtend {
 
   public openCorrectionCheck() {
+    if(this.state && this.state.similarity && this.state.similarity.same){
+      con.log('similarity', this.state.similarity.value);
+      return true;
+    }
     return this.openCorrection(true);
   }
 
