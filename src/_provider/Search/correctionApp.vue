@@ -5,6 +5,7 @@
       <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="searchClass.getOffset()" type="number" v-on:clicked="setOffset"></input-button>
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" v-on:clicked="setPage($event)"></search>
     </div>
+    <a class="close" @click="close()">CLOSE</a>
   </div>
 </template>
 
@@ -32,10 +33,13 @@
       setPage: function(url) {
         this.searchClass.setUrl(url);
         utils.flashm(api.storage.lang("correction_NewUrl",[url]) , false);
-        this.$root.$destroy();
+        this.close();
       },
       setOffset: function(offset) {
         this.searchClass.setOffset(offset);
+      },
+      close: function() {
+        this.$root.$destroy();
       }
     }
   }
