@@ -58,6 +58,7 @@ export class searchClass {
       }
     }else{
       this.state = {
+        id = id,
         url: url,
         offset: 0,
         provider: 'user',
