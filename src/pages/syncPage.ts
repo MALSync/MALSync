@@ -445,16 +445,11 @@ export class syncPage{
             This.syncHandling();
           });
           flashmItem.find('.wrongButton').on('click', function(this){
-            This.malObj.wrong = true;
-            if(!This.malObj.miniMAL){
-              var miniButton = j.$('button.open-info-popup');
-              if(miniButton.css('display') != 'none'){
-                miniButton.click();
-              }else{
-                miniButton.click();
-                miniButton.click();
-              }
-            }
+            This.openCorrectionUi();
+            this.closest('.flash').remove();
+            This.malObj = This.oldMalObj;
+            This.oldMalObj = undefined;
+            This.syncHandling();
           });
         }else{
           utils.flashm(message);
