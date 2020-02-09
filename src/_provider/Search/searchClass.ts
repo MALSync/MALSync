@@ -11,6 +11,7 @@ interface searchResult {
   url: string;
   offset: number;
   provider: 'firebase'|'mal'|'page'|'user';
+  cache?: boolean;
   similarity: {
     same: boolean,
     value: number
@@ -23,6 +24,8 @@ export class searchClass {
   private syncPage;
 
   protected state: searchResult|false = false;
+
+  changed: boolean = false;
 
   constructor(protected title: string, protected type: 'anime'|'manga'|'novel', protected identifier: string) {
     this.sanitizedTitel = this.sanitizeTitel(this.title);
@@ -49,6 +52,7 @@ export class searchClass {
 
   setUrl(url, id = 0) {
     if(this.state) {
+      if(this.state.url !== url) this.changed = true;
       this.state.provider = 'user';
       this.state.url = url;
       this.state.id = id;
@@ -57,6 +61,7 @@ export class searchClass {
         value: 1
       }
     }else{
+      this.changed = true;
       this.state = {
         id: id,
         url: url,
@@ -125,10 +130,16 @@ export class searchClass {
   }
 
   protected async getCache() {
-    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null);
+    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null).then((state) => {
+      if(state) state.cache = true;
+      return state;
+    });
   }
 
   protected setCache(cache) {
+    setTimeout(() => {
+      this.databaseRequest();
+    }, 200);
     return api.storage.set(this.page.name+'/'+this.identifier+'/Search', cache);
   }
 
@@ -309,6 +320,39 @@ export class searchClass {
     }
 
     return false;
+  }
+
+  public databaseRequest(){
+    if(this.page && this.page.database && this.syncPage && this.state){
+      if(this.state.cache) return;
+      if(this.state.provider === 'user' && !this.changed) return;
+      if(this.state.provider === 'firebase') return;
+
+      var kissurl;
+      if(!kissurl){
+        if(this.page.isSyncPage(this.syncPage.url)){
+          kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
+        }else{
+          kissurl = this.syncPage.url;
+        }
+      }
+      var param = { Kiss: kissurl, Mal: this.state.url};
+      if(this.state.provider === 'user'){
+        if(!confirm('Submit database correction request?')) return;
+        param['newCorrection'] = true;
+      }
+      param['similarity'] = this.state.similarity;
+      var url = 'https://kissanimelist.firebaseio.com/Data2/Request/'+this.page.database+'Request.json';
+      api.request.xhr('POST', {url: url, data: JSON.stringify(param)}).then((response) => {
+        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
+          con.log("[DB] Send to database:", param);
+        }else{
+          con.error("[DB] Send to database:", response.responseText);
+        }
+
+      });
+
+    }
   }
 
   public openCorrection() {
