@@ -15,10 +15,7 @@ export class searchClass extends searchClassExtend {
       return false;
     }
     return this.openCorrection(true).then(() => {
-      if(tempCurUrl !== this.getUrl()) {
-        return true;
-      }
-      return false;
+      return this.changed;
     });
   }
 
