@@ -56,6 +56,7 @@ export class searchClass {
       this.state.provider = 'user';
       this.state.url = url;
       this.state.id = id;
+      this.state.cache = false;
       this.state.similarity = {
         same: true,
         value: 1
@@ -338,7 +339,7 @@ export class searchClass {
       }
       var param = { Kiss: kissurl, Mal: this.state.url};
       if(this.state.provider === 'user'){
-        if(!confirm('Submit database correction request?')) return;
+        if(!confirm(api.storage.lang('correction_DBRequest'))) return;
         param['newCorrection'] = true;
       }
       param['similarity'] = this.state.similarity;

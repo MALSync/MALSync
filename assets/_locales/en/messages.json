@@ -391,6 +391,10 @@
       "message": "MyAnimeList URL reset",
       "description": "URL reset"
     },
+    "correction_DBRequest": {
+      "message": "Submit database correction request?",
+      "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
     "overview_Continue_anime": {
       "message": "Continue watching",
       "description": "Continue watching"
