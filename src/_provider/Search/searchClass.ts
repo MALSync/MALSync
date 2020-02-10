@@ -234,6 +234,7 @@ export class searchClass {
 
     function handleResult(response, i = 1, This){
       var link = getLink(response, i);
+      var id = 0;
       var sim = {same: false, value: 0};
       if(link !== false){
         try{
@@ -247,6 +248,7 @@ export class searchClass {
 
           var malTitel = getTitle(response, link);
           sim = searchClass.similarity(malTitel, This.sanitizedTitel);
+          id = parseInt(link.split('/')[4]);
         }catch(e){
           con.error(e);
         }
@@ -254,6 +256,7 @@ export class searchClass {
       }
 
       return {
+        id: id,
         url: link,
         offset: 0,
         provider: 'mal',
