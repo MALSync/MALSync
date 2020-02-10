@@ -1,6 +1,7 @@
 <template>
   <div id="material">
     <div class="scroll">
+      <entry v-if="!syncMode" :obj="syncPage.malObj"></entry>
       <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
 
       <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="offset" type="number" v-on:clicked="setOffset" v-on:change="val => inputOffset = val"></input-button>
@@ -28,9 +29,11 @@
 <script type="text/javascript">
   import search from './components/search.vue'
   import inputButton from './components/inputButton.vue'
+  import entry from './components/entry.vue'
 
   export default {
     components: {
+      entry,
       inputButton,
       search
     },
