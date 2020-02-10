@@ -1,6 +1,6 @@
 <template>
   <div class="entry" v-if="obj">
-    <a class="result" :href="obj.url" target="_blank" style="cursor: pointer;">
+    <a class="result" :href="obj.getDisplayUrl()" target="_blank" style="cursor: pointer;">
       <div class="image"><img v-if="image" :src="image"></div>
       <div class="right">
         <span class="title">{{obj.name}}</span>
