@@ -61,6 +61,8 @@
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
 
+        <shortcut option="correctionShort" v-if="isExtension()">{{lang("settings_Shortcuts_Correction")}}</shortcut>
+
         <checkbox option="localSync">{{lang("settings_LocalSync")}}
           <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
         </checkbox>
@@ -201,7 +203,7 @@
         <checkbox option="autofull">{{lang("settings_Video_Fullscreen")}}</checkbox>
         <checkbox option="autoresume">{{lang("settings_Video_Resume")}}</checkbox>
         <checkbox option="autoNextEp">{{lang("settings_autoNextEp")}}</checkbox>
-        
+
         <shortcut option="nextEpShort" v-if="isExtension()">{{lang("settings_Shortcuts_Next_Episode")}}</shortcut>
 
         <shortcut option="introSkipFwd" v-if="isExtension()">{{lang("settings_Shortcuts_Skip_Forward")}}</shortcut>

@@ -632,6 +632,10 @@
       "message": "Autoplay next episode",
       "description": "Autoplays the next episode after the video ends"
     },
+    "settings_Shortcuts_Correction": {
+      "message": "Open anime relation correction popup",
+      "description": "Text for the correction ui shortcut"
+    },
     "settings_Shortcuts_Next_Episode": {
       "message": "Open next episode shortcut",
       "description": "Description for the next episode shortcut option"
