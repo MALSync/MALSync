@@ -8,18 +8,25 @@ export class searchClass extends searchClassExtend {
 
   reloadSync = false;
 
+  protected vueInstance;
+
   public openCorrectionCheck() {
     var tempCurUrl = this.getUrl();
     if(this.state && this.state.similarity && this.state.similarity.same){
       con.log('similarity', this.state.similarity.value);
       return false;
     }
-    return this.openCorrection(true).then(() => {
+    return this.openCorrection(true)!.then(() => {
       return this.changed;
     });
   }
 
   public openCorrection(syncMode: boolean = false) {
+
+    if(this.vueInstance) {
+      this.vueInstance.$destroy();
+      if(!syncMode) return;
+    }
 
     return new Promise((resolve, reject) => {
       var flasmessage = utils.flashm('<div class="shadow"></div>', {permanent: true, position: "top", type: 'correction'});
@@ -33,7 +40,7 @@ export class searchClass extends searchClassExtend {
         <div id="correctionApp"></div>
         `);
       let element = flasmessage.find('.shadow').get(0)!.shadowRoot!.querySelector('#correctionApp')!;
-      var minimalVue = new Vue({
+      this.vueInstance = new Vue({
         el: element ,
         render: h => h(correctionApp),
         data: () => ({
@@ -43,6 +50,7 @@ export class searchClass extends searchClassExtend {
         destroyed: () => {
           resolve();
           flasmessage.remove();
+          this.vueInstance = undefined;
         }
       })
     });
