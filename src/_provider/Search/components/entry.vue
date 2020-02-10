@@ -4,7 +4,7 @@
       <div class="image"><img v-if="image" :src="image"></div>
       <div class="right">
         <span class="title">{{obj.name}}</span>
-        <p v-if="!obj.addAnime">{{lang("UI_Status")}} {{status}}</p>
+        <p v-if="!obj.addAnime">{{lang("UI_Status")}} {{statusText(status)}}</p>
         <p v-if="!obj.addAnime">{{lang("UI_Score")}} {{score}}</p>
         <p v-if="!obj.addAnime">
           {{utilsepisode(obj.type)}} {{episode}}<span id="curEps" v-if="obj.totalEp">/{{obj.totalEp}}</span><span v-else>/?</span>
@@ -107,6 +107,27 @@
     methods: {
       lang: api.storage.lang,
       utilsepisode: utils.episode,
+      statusText: function(state){
+        switch(state) {
+          case 1:
+            return api.storage.lang("UI_Status_watching_"+this.obj.type)
+            break;
+          case 2:
+            return api.storage.lang("UI_Status_Completed")
+            break;
+          case 3:
+            return api.storage.lang("UI_Status_OnHold")
+            break;
+          case 4:
+            return api.storage.lang("UI_Status_Dropped")
+            break;
+          case 6:
+            return api.storage.lang("UI_Status_planTo_"+this.obj.type)
+            break;
+          default:
+            return ''
+        }
+      }
     }
   }
 </script>
