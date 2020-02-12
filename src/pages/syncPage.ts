@@ -366,8 +366,10 @@ export class syncPage{
 
   public openCorrectionUi() {
     if(this.searchObj) {
-      return this.searchObj.openCorrection().then(() => {
-        this.handlePage();
+      return this.searchObj.openCorrection().then((rerun) => {
+        if(rerun){
+          this.handlePage();
+        }
       });
     }
   }

@@ -21,14 +21,17 @@ export class searchClass extends searchClassExtend {
     });
   }
 
-  public openCorrection(syncMode: boolean = false) {
-
-    if(this.vueInstance) {
-      this.vueInstance.$destroy();
-      if(!syncMode) return;
-    }
-
+  public openCorrection(syncMode: boolean = false): Promise<boolean> {
     return new Promise((resolve, reject) => {
+
+      if(this.vueInstance) {
+        this.vueInstance.$destroy();
+        if(!syncMode) {
+          resolve(false);
+          return;
+        }
+      }
+
       var flasmessage = utils.flashm('<div class="shadow"></div>', {permanent: true, position: "top", type: 'correction'});
 
       var shadow = flasmessage.find('.shadow').get(0)!.attachShadow({mode: 'open'});
@@ -48,7 +51,7 @@ export class searchClass extends searchClassExtend {
           syncMode: syncMode
         }),
         destroyed: () => {
-          resolve();
+          resolve(this.changed);
           flasmessage.remove();
           this.vueInstance = undefined;
         }

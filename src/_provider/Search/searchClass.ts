@@ -87,6 +87,7 @@ export class searchClass {
 
   setOffset(offset: number) {
     if(this.state) {
+      if(this.state.offset !== offset) this.changed = true;
       this.state.offset = offset;
     }
     this.setCache(this.state);
