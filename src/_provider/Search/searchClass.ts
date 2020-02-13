@@ -183,6 +183,14 @@ export class searchClass {
       result = searchCompare(result, await this.pageSearch(), 0.5);
     }
 
+    if(result && result.provider === 'firebase' && api.settings.get('syncMode') !== 'MAL' && !result.url) {
+      var temp = await this.pageSearch();
+      if(temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
+        con.log('[SEARCH] Ignore Firebase', result);
+        result = temp;
+      }
+    }
+
     return result;
 
     function searchCompare(curVal, newVal, threshold = 0){
