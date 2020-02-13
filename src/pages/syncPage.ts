@@ -550,11 +550,19 @@ export class syncPage{
       j.$('.MalLogin').css("display","none");
       j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
       var This = this;
-      j.$('#AddMal').click(function() {
+      j.$('#AddMal').click(async function() {
         This.malObj.setStatus(6);
         if(!This.page.isSyncPage(This.url)){
           This.malObj.setStreamingUrl(This.url);
         }
+
+        var rerun = await This.searchObj.openCorrectionCheck();
+
+        if(rerun) {//If malUrl changed
+          This.handlePage();
+          return;
+        }
+
         This.syncHandling()
           .then(() => {
             return This.malObj.update();
@@ -839,13 +847,20 @@ export class syncPage{
     });
   }
 
-  private buttonclick(){
+  private async buttonclick(){
     this.malObj.setEpisode(j.$("#malEpisodes").val());
     if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
     this.malObj.setScore(j.$("#malUserRating").val());
     this.malObj.setStatus(j.$("#malStatus").val());
     if(!this.page.isSyncPage(this.url)){
       this.malObj.setStreamingUrl(this.url);
+    }
+
+    var rerun = await this.searchObj.openCorrectionCheck();
+
+    if(rerun) {//If malUrl changed
+      this.handlePage();
+      return;
     }
 
     this.syncHandling()
