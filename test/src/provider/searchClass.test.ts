@@ -180,6 +180,7 @@ describe('Mal Search', function () {
       type: 'manga'
     });
     expect(await searchObj.malSearch()).to.eql({
+      id: 81211,
       url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
       offset: 0,
       provider: 'mal',
@@ -198,6 +199,7 @@ describe('Mal Search', function () {
       type: 'anime'
     });
     expect(await searchObj.malSearch()).to.eql({
+      id: 14829,
       url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
       offset: 0,
       provider: 'mal',
