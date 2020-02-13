@@ -167,7 +167,13 @@ export class searchClass {
   public async searchForIt(): Promise<searchResult | false> {
     var result: searchResult | false = false;
 
-    result = searchCompare(result, await this.firebase());
+    try {
+      result = searchCompare(result, await this.malSync());
+    }catch(e) {
+      con.error('MALSync api down', e);
+      result = searchCompare(result, await this.firebase());
+    }
+
 
     if( (result && result.provider !== 'firebase') || !result ) {
       result = searchCompare(result, await this.malSearch());
@@ -215,6 +221,37 @@ export class searchClass {
         };
       }else{
         return false;
+      }
+    });
+  }
+
+  public async malSync(): Promise<searchResult | false>{
+    if(!this.page || !this.page.database) return false;
+    var url = 'https://api.malsync.moe/page/'+this.page.database+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
+    con.log("malSync", url);
+    return api.request.xhr('GET', url).then((response) => {
+      con.log("malSync response",response);
+      if(response.status === 400 || response.status === 200) {
+        if(response.status === 200 && response.responseText && !(response.responseText.indexOf("error") > -1)){
+          var res = JSON.parse(response.responseText);
+          if(typeof res.malUrl !== 'undefined') {
+            return {
+              url: res.malUrl,
+              offset: 0,
+              provider: 'firebase',
+              similarity: {
+                same: true,
+                value: 1
+              },
+            };
+          }else{
+            return false;
+          }
+        }else{
+          return false;
+        }
+      }else{
+        throw 'malsync offline';
       }
     });
   }
