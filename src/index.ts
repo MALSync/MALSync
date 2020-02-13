@@ -7,6 +7,7 @@ import {scheduleUpdate} from "./utils/scheduler";
 import {firebaseNotification} from "./utils/firebaseNotification";
 import {getPlayerTime} from "./utils/player";
 import {pages} from "./pages/pages";
+import {shortcutListener} from "./utils/player";
 
 function main() {
   if( window.location.href.indexOf("myanimelist.net") > -1 ){
@@ -38,6 +39,15 @@ function main() {
     }, 2000);
   }
   firebaseNotification();
+
+  shortcutListener((shortcut) => {
+    con.log('[content] Shortcut', shortcut);
+    switch (shortcut.shortcut) {
+      case 'correctionShort':
+        page.openCorrectionUi();
+        break;
+    }
+  });
 }
 
 var css = "font-size: 40px; padding-bottom: 3px; color: white; text-shadow: -1px -1px #2e51a2, 1px -1px #2e51a2, -1px 1px #2e51a2, 1px 1px #2e51a2, 2px 2px #2e51a2, 3px 3px #2e51a2;";

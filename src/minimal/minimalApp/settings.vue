@@ -61,7 +61,7 @@
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
 
-        <shortcut option="correctionShort" v-if="isExtension()">{{lang("settings_Shortcuts_Correction")}}</shortcut>
+        <shortcut option="correctionShort">{{lang("settings_Shortcuts_Correction")}}</shortcut>
 
         <checkbox option="localSync">{{lang("settings_LocalSync")}}
           <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
