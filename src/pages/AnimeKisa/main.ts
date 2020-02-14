@@ -38,6 +38,19 @@ export const AnimeKisa: pageInterface = {
       return url.split("/")[3];
     },
     uiSelector: function(selector){selector.insertBefore(j.$(".infoepboxmain").first());},
+    getMalUrl: function(provider) {
+      var url = j.$('a[href^="https://myanimelist.net/anime/"]').not("#malRating").first().attr('href');
+      if(url) return url;
+      if(provider === 'ANILIST'){
+        url = j.$('a[href^="https://anilist.co/anime/"]').not("#malRating").first().attr('href');
+        if(url) return url;
+      }
+      if(provider === 'KITSU'){
+        url = j.$('a[href^="https://kitsu.io/anime/"]').not("#malRating").first().attr('href');
+        if(url) return url;
+      }
+      return false;
+    },
     list:{
       offsetHandler: false,
       elementsSelector: function(){
