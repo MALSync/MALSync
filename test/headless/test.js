@@ -1534,44 +1534,32 @@ var testsArray = [
     ]
   },
   {
-    title: 'unionleitor',
-    url: 'https://unionleitor.top/',
+    title: 'unionmangas',
+    url: 'https://unionmangas.top/',
     testCases: [
       {
-        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
+        url: 'https://unionmangas.top/leitor/Solo_Leveling/76',
         expected: {
           sync: true,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
-          overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
+          overviewUrl: 'https://unionmangas.top/manga/solo-leveling',
           episode: 76,
-          nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
-          uiSelector: false,
-        }
-      },
-      {//different domain
-        url: 'http://unionmangas.top/leitor/Solo_Leveling/100',
-        expected: {
-          sync: true,
-          title: 'Solo Leveling',
-          identifier: 'solo-leveling',
-          overviewUrl: 'http://unionleitor.top/manga/solo-leveling',
-          episode: 100,
-          nextEpUrl: 'http://unionmangas.top/leitor/Solo_Leveling/101',
+          nextEpUrl: 'https://unionmangas.top/leitor/Solo_Leveling/77',
           uiSelector: false,
         }
       },
       {
-        url: 'https://unionleitor.top/manga/solo-leveling',
+        url: 'https://unionmangas.top/perfil-manga/solo-leveling',
         expected: {
           sync: false,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'http://unionmangas.top/leitor/Solo_Leveling/05',
-            87: 'http://unionmangas.top/leitor/Solo_Leveling/87',
-            101: 'http://unionmangas.top/leitor/Solo_Leveling/101',
+            5: 'https://unionmangas.top/leitor/Solo_Leveling/05',
+            87: 'https://unionmangas.top/leitor/Solo_Leveling/87',
+            101: 'https://unionmangas.top/leitor/Solo_Leveling/101',
           }
         }
       },

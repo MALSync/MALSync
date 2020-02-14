@@ -365,7 +365,7 @@ module.exports = {
       '*://tmofans.com/*'
     ]
   },
-  unionleitor: {
+  unionmangas: {
     match: [
       '*://unionleitor.top/*',
       '*://unionmangas.top/*'
