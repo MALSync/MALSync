@@ -197,6 +197,7 @@ export class syncPage{
     this.loadUI();
     if(this.page.isSyncPage(this.url)){
       state = {
+        on: 'SYNC',
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url)
       };
@@ -204,6 +205,7 @@ export class syncPage{
       this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
+      this.curState = state;
       await this.searchObj.search();
 
       state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
@@ -240,6 +242,7 @@ export class syncPage{
         return;
       }
       state = {
+        on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url)
       };
@@ -247,6 +250,7 @@ export class syncPage{
       this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
+      this.curState = state;
       await this.searchObj.search();
 
       con.log('Overview', state);

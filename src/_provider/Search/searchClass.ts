@@ -10,7 +10,7 @@ interface searchResult {
   id?: number;
   url: string;
   offset: number;
-  provider: 'firebase'|'mal'|'page'|'user';
+  provider: 'firebase'|'mal'|'page'|'user'|'sync';
   cache?: boolean;
   similarity: {
     same: boolean,
@@ -120,6 +120,11 @@ export class searchClass {
 
     if(!this.state) {
       this.state = await this.searchForIt();
+    }
+
+    if(!this.state || (this.state && !['user', 'firebase', 'sync'].includes(this.state.provider))) {
+      var tempRes = await this.onsiteSearch();
+      if(tempRes) this.state = tempRes;
     }
 
     if(this.state) {
@@ -403,6 +408,35 @@ export class searchClass {
       });
 
     }
+  }
+
+  public async onsiteSearch(): Promise<false|searchResult> {
+    if(this.page && this.syncPage && this.syncPage.curState && this.syncPage.curState.on){
+      var result: false|string = false;
+      if(this.syncPage.curState.on === 'OVERVIEW') {
+        if(this.page.overview && this.page.overview.getMalUrl) {
+          result = await this.page.overview.getMalUrl(api.settings.get('syncMode'));
+        }
+      }else{
+        if(this.page.sync && this.page.sync.getMalUrl) {
+          result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
+        }
+      }
+      alert(result);
+      if(result) {
+        con.log('[SEARCH]', 'Overwrite by onsite url', result);
+        return {
+          url: result,
+          offset: 0,
+          provider: 'sync',
+          similarity: {
+            same: true,
+            value: 1
+          },
+        };
+      }
+    }
+    return false;
   }
 
   public openCorrection() {
