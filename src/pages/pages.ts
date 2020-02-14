@@ -59,6 +59,7 @@ import {Aniwatch} from "./Aniwatch/main";
 import {Hidive} from "./Hidive/main";
 import {JaiminisBox} from "./JaiminisBox/main";
 import {FallenAngels} from "./FallenAngels/main";
+import {MangaKatana} from "./MangaKatana/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -123,7 +124,8 @@ export const pages = {
     Aniwatch,
     Hidive,
     JaiminisBox,
-    FallenAngels
+    FallenAngels,
+    MangaKatana,
 };
 
 export const pageSearch:pageSearchObj = {

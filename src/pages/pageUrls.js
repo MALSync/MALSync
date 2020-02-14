@@ -427,4 +427,9 @@ module.exports = {
      '*://manga.fascans.com/manga/*'
     ]
   },
+  MangaKatana: {
+    match: [
+     '*://mangakatana.com/manga/*'
+    ]
+  },
 };
