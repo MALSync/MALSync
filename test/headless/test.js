@@ -1800,6 +1800,37 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'myanime',
+    url: 'https://myanime.moe/',
+    testCases: [
+      {
+        url: 'https://myanime.moe/anime/great-teacher-onizuka/42',
+        expected: {
+          sync: true,
+          title: 'Great Teacher Onizuka',
+          identifier: 'great-teacher-onizuka',
+          overviewUrl: 'https://myanime.moe/anime/great-teacher-onizuka',
+          nextEpUrl: 'https://myanime.moe/anime/great-teacher-onizuka/43',
+          episode: 42,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://myanime.moe/anime/great-teacher-onizuka',
+        expected: {
+          sync: false,
+          title: 'Great Teacher Onizuka',
+          identifier: 'great-teacher-onizuka',
+          uiSelector: true,
+          epList: {
+            5: 'https://myanime.moe/anime/great-teacher-onizuka/5',
+            42: 'https://myanime.moe/anime/great-teacher-onizuka/42'
+          }
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
