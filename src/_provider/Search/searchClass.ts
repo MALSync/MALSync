@@ -10,7 +10,8 @@ interface searchResult {
   id?: number;
   url: string;
   offset: number;
-  provider: 'firebase'|'mal'|'page'|'user';
+  provider: 'firebase'|'mal'|'page'|'user'|'sync';
+  cache?: boolean;
   similarity: {
     same: boolean,
     value: number
@@ -23,6 +24,8 @@ export class searchClass {
   private syncPage;
 
   protected state: searchResult|false = false;
+
+  changed: boolean = false;
 
   constructor(protected title: string, protected type: 'anime'|'manga'|'novel', protected identifier: string) {
     this.sanitizedTitel = this.sanitizeTitel(this.title);
@@ -49,14 +52,17 @@ export class searchClass {
 
   setUrl(url, id = 0) {
     if(this.state) {
+      if(this.state.url !== url) this.changed = true;
       this.state.provider = 'user';
       this.state.url = url;
       this.state.id = id;
+      this.state.cache = false;
       this.state.similarity = {
         same: true,
         value: 1
       }
     }else{
+      this.changed = true;
       this.state = {
         id: id,
         url: url,
@@ -81,6 +87,7 @@ export class searchClass {
 
   setOffset(offset: number) {
     if(this.state) {
+      if(this.state.offset !== offset) this.changed = true;
       this.state.offset = offset;
     }
     this.setCache(this.state);
@@ -115,17 +122,31 @@ export class searchClass {
       this.state = await this.searchForIt();
     }
 
+    if(!this.state || (this.state && !['user', 'firebase', 'sync'].includes(this.state.provider))) {
+      var tempRes = await this.onsiteSearch();
+      if(tempRes) this.state = tempRes;
+    }
+
     if(this.state) {
       await this.setCache(this.state);
     }
+
+    con.log('[SEARCH] Result', this.state);
+
     return this.state;
   }
 
   protected async getCache() {
-    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null);
+    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null).then((state) => {
+      if(state) state.cache = true;
+      return state;
+    });
   }
 
   protected setCache(cache) {
+    setTimeout(() => {
+      this.databaseRequest();
+    }, 200);
     return api.storage.set(this.page.name+'/'+this.identifier+'/Search', cache);
   }
 
@@ -138,7 +159,7 @@ export class searchClass {
       }
     })
     var found = false;
-    if(simi > 0.5) {
+    if(simi > 0.6) {
       found = true;
     }
 
@@ -151,7 +172,13 @@ export class searchClass {
   public async searchForIt(): Promise<searchResult | false> {
     var result: searchResult | false = false;
 
-    result = searchCompare(result, await this.firebase());
+    try {
+      result = searchCompare(result, await this.malSync());
+    }catch(e) {
+      con.error('MALSync api down', e);
+      result = searchCompare(result, await this.firebase());
+    }
+
 
     if( (result && result.provider !== 'firebase') || !result ) {
       result = searchCompare(result, await this.malSearch());
@@ -159,6 +186,14 @@ export class searchClass {
 
     if( (result && result.provider !== 'firebase') || !result ) {
       result = searchCompare(result, await this.pageSearch(), 0.5);
+    }
+
+    if(result && result.provider === 'firebase' && api.settings.get('syncMode') !== 'MAL' && !result.url) {
+      var temp = await this.pageSearch();
+      if(temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
+        con.log('[SEARCH] Ignore Firebase', result);
+        result = temp;
+      }
     }
 
     return result;
@@ -203,6 +238,37 @@ export class searchClass {
     });
   }
 
+  public async malSync(): Promise<searchResult | false>{
+    if(!this.page || !this.page.database) return false;
+    var url = 'https://api.malsync.moe/page/'+this.page.database+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
+    con.log("malSync", url);
+    return api.request.xhr('GET', url).then((response) => {
+      con.log("malSync response",response);
+      if(response.status === 400 || response.status === 200) {
+        if(response.status === 200 && response.responseText && !(response.responseText.indexOf("error") > -1)){
+          var res = JSON.parse(response.responseText);
+          if(typeof res.malUrl !== 'undefined') {
+            return {
+              url: res.malUrl,
+              offset: 0,
+              provider: 'firebase',
+              similarity: {
+                same: true,
+                value: 1
+              },
+            };
+          }else{
+            return false;
+          }
+        }else{
+          return false;
+        }
+      }else{
+        throw 'malsync offline';
+      }
+    });
+  }
+
   public malSearch(): Promise<searchResult | false>{
     var url = "https://myanimelist.net/"+this.getNormalizedType()+".php?q=" + encodeURI(this.sanitizedTitel);
     if(this.type === 'novel'){
@@ -219,6 +285,7 @@ export class searchClass {
 
     function handleResult(response, i = 1, This){
       var link = getLink(response, i);
+      var id = 0;
       var sim = {same: false, value: 0};
       if(link !== false){
         try{
@@ -232,6 +299,7 @@ export class searchClass {
 
           var malTitel = getTitle(response, link);
           sim = searchClass.similarity(malTitel, This.sanitizedTitel);
+          id = parseInt(link.split('/')[4]);
         }catch(e){
           con.error(e);
         }
@@ -239,6 +307,7 @@ export class searchClass {
       }
 
       return {
+        id: id,
         url: link,
         offset: 0,
         provider: 'mal',
@@ -305,6 +374,67 @@ export class searchClass {
       }
     }
 
+    return false;
+  }
+
+  public databaseRequest(){
+    if(this.page && this.page.database && this.syncPage && this.state){
+      if(this.state.cache) return;
+      if(this.state.provider === 'user' && !this.changed) return;
+      if(this.state.provider === 'firebase') return;
+
+      var kissurl;
+      if(!kissurl){
+        if(this.page.isSyncPage(this.syncPage.url)){
+          kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
+        }else{
+          kissurl = this.syncPage.url;
+        }
+      }
+      var param = { Kiss: kissurl, Mal: this.state.url};
+      if(this.state.provider === 'user'){
+        if(!confirm(api.storage.lang('correction_DBRequest'))) return;
+        param['newCorrection'] = true;
+      }
+      param['similarity'] = this.state.similarity;
+      var url = 'https://kissanimelist.firebaseio.com/Data2/Request/'+this.page.database+'Request.json';
+      api.request.xhr('POST', {url: url, data: JSON.stringify(param)}).then((response) => {
+        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
+          con.log("[DB] Send to database:", param);
+        }else{
+          con.error("[DB] Send to database:", response.responseText);
+        }
+
+      });
+
+    }
+  }
+
+  public async onsiteSearch(): Promise<false|searchResult> {
+    if(this.page && this.syncPage && this.syncPage.curState && this.syncPage.curState.on){
+      var result: false|string = false;
+      if(this.syncPage.curState.on === 'OVERVIEW') {
+        if(this.page.overview && this.page.overview.getMalUrl) {
+          result = await this.page.overview.getMalUrl(api.settings.get('syncMode'));
+        }
+      }else{
+        if(this.page.sync && this.page.sync.getMalUrl) {
+          result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
+        }
+      }
+      if(result) {
+        con.log('[SEARCH]', 'Overwrite by onsite url', result);
+        return {
+          url: result,
+          offset: 0,
+          provider: 'sync',
+          similarity: {
+            same: true,
+            value: 1
+          },
+        };
+      }
+    }
     return false;
   }
 

@@ -101,6 +101,9 @@
           search(this.searchKeyword, this.type).then((items) => {
             this.loading = false;
             this.items = items;
+            this.$nextTick(() => {
+              this.$el.scrollIntoView({behavior: 'smooth'});
+            })
           })
         }
 

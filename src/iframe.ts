@@ -43,6 +43,10 @@ api.settings.init()
         case 'nextEpShort':
           chrome.runtime.sendMessage({name: "content", item: {action: 'nextEpShort'}});
           break;
+        case 'correctionShort':
+          chrome.runtime.sendMessage({name: "content", item: {action: 'correctionShort'}});
+          break;
+
       }
 
       async function addVideoTime(forward:boolean){

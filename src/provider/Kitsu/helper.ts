@@ -124,11 +124,11 @@ export function getTitle(titles){
   if(typeof title == 'undefined' || !title) title = titles.en_jp;
   if(typeof title == 'undefined' || !title) title = titles.ja_jp;
   if(typeof title == 'undefined' || !title){
-    var keys = Object.keys(titles);
+    var keys = Object.values(titles).filter((obj) => obj);
     if(!keys.length){
       return 'No Title';
     }
-    title = titles[keys[0]];
+    title = keys[0];
   }
   return title;
 }
