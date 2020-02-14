@@ -45,6 +45,20 @@ export const Branitube: pageInterface = {
         return Branitube.domain + "/watch/" + j.$(".cplPl").attr("data-npl") + "/" + url.split("/")[5]
       }
     },
+    getMalUrl: function(provider) {
+      if(getType() === "anime") {
+        var malid = j.$(".nomeAnime").attr("data-anmalid");
+        if(!malid || malid == "0") {
+          var malid = j.$("epInfo").attr("data-epmalid");
+        }
+      } else {
+        var malid = j.$(".epInfo").attr("data-epmalid");
+      }
+      if(malid && malid !== "0") {
+        return "https://myanimelist.net/anime/" + malid;
+      }
+      return false;
+    }
   },
   overview:{
     getTitle: function(url){
@@ -59,6 +73,15 @@ export const Branitube: pageInterface = {
     },
     uiSelector: function(selector){
       j.$('<div class="animeResult" style="margin:8px;"> <p id="malp">'+selector.html()+'</p></div>').prependTo(j.$("div.areaEpsList").first());
+    },
+    getMalUrl: function(provider) {
+      if(getType() === "anime") {
+        var malid = j.$('div.animeInfos > ul > li.largeSize').attr("data-malid")
+      }
+      if(malid && malid !== "0") {
+        return "https://myanimelist.net/anime/" + malid;
+      }
+      return false;
     },
     list:{
       offsetHandler: false,
