@@ -1696,6 +1696,7 @@ var testsArray = [
   {
     title: 'AnimesVision',
     url: 'https://www.animesvision.com.br/',
+    skip: true, //geolock
     testCases: [
       {//anime
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
