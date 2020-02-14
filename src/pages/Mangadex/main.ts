@@ -60,6 +60,19 @@ export const Mangadex: pageInterface = {
         j.$(".container .card .edit.row > * > .row").first().after('<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>');
         selector.appendTo(j.$(".container .card .kal-ui").first());
       },
+      getMalUrl: function(provider) {
+        var url = j.$('a[href^="https://myanimelist.net/manga/"]').first().attr('href');
+        if(url) return url;
+        if(provider === 'ANILIST'){
+          url = j.$('a[href^="https://anilist.co/manga/"]').first().attr('href');
+          if(url) return url;
+        }
+        if(provider === 'KITSU'){
+          url = j.$('a[href^="https://kitsu.io/manga/"]').first().attr('href');
+          if(url) return url;
+        }
+        return false;
+      },
       list:{
         offsetHandler: false,
         elementsSelector: function(){return j.$(".chapter-container > .row:not(:first-of-type) .chapter-row");},

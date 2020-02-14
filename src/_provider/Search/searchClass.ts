@@ -422,7 +422,6 @@ export class searchClass {
           result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
         }
       }
-      alert(result);
       if(result) {
         con.log('[SEARCH]', 'Overwrite by onsite url', result);
         return {
