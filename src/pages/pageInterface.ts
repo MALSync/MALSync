@@ -9,10 +9,9 @@ export interface pageInterface {
       getOverviewUrl: (url) => string,
       getEpisode: (url) => number,
       getVolume?: (url) => number,
-
       nextEpUrl?: (url) => string | undefined,
-
       uiSelector?: (selector) => void,
+      getMalUrl?: (provider: 'MAL'|'ANILIST'|'KITSU'|'SIMKL') => Promise<string|false>,
     },
     overview?:{
       getTitle: (url) => string,
@@ -26,6 +25,7 @@ export interface pageInterface {
         paginationNext?: (updateCheck:boolean) => boolean,
         handleListHook?: (ep:number, epList) => void,
         getTotal?: () => number|undefined,
+        getMalUrl?: (provider: 'MAL'|'ANILIST'|'KITSU'|'SIMKL') => Promise<string|false>,
       }
     },
     database?: string, //ignore, only for first party implementations
