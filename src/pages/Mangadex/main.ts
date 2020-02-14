@@ -61,14 +61,14 @@ export const Mangadex: pageInterface = {
         selector.appendTo(j.$(".container .card .kal-ui").first());
       },
       getMalUrl: function(provider) {
-        var url = j.$('a[href^="https://myanimelist.net/manga/"]').first().attr('href');
+        var url = j.$('a[href^="https://myanimelist.net/manga/"]').not("#malRating").first().attr('href');
         if(url) return url;
         if(provider === 'ANILIST'){
-          url = j.$('a[href^="https://anilist.co/manga/"]').first().attr('href');
+          url = j.$('a[href^="https://anilist.co/manga/"]').not("#malRating").first().attr('href');
           if(url) return url;
         }
         if(provider === 'KITSU'){
-          url = j.$('a[href^="https://kitsu.io/manga/"]').first().attr('href');
+          url = j.$('a[href^="https://kitsu.io/manga/"]').not("#malRating").first().attr('href');
           if(url) return url;
         }
         return false;
