@@ -663,7 +663,8 @@ export class syncPage{
 
   offsetHandler(epList){
     if(!this.page.overview!.list!.offsetHandler) return;
-    if(typeof this.getOffset() !== 'undefined' && this.getOffset() !== "0") return;
+    if(this.getOffset()) return;
+    if(!this.searchObj || this.searchObj.provider === 'user') return;
     for (var i = 0; i < epList.length; ++i) {
       if (typeof epList[i] !== 'undefined') {
         con.log('Offset', i);
