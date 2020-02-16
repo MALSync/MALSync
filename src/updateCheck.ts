@@ -1,5 +1,6 @@
 import {syncPage} from "./pages/syncPage";
 import {pages} from "./pages/pages";
+import {searchClass} from "./_provider/Search/vueSearchClass.ts";
 
 con.log('updateCheck.ts');
 
@@ -22,14 +23,21 @@ api.settings.init()
           state = {
             identifier: this.page.sync.getIdentifier(this.url)
           };
-          //@ts-ignore
-          this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+          this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
+          this.searchObj.setPage(this.page);
+          this.searchObj.setSyncPage(this);
+          await this.searchObj.getCachedOffset();
         }else{
           state = {
             identifier: this.page.overview!.getIdentifier(this.url)
           };
-          //@ts-ignore
-          this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+          this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
+          this.searchObj.setPage(this.page);
+          this.searchObj.setSyncPage(this);
+          await this.searchObj.getCachedOffset();
+
           con.log('Overview', state);
         }
 

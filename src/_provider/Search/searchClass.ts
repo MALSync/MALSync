@@ -93,6 +93,14 @@ export class searchClass {
     this.setCache(this.state);
   }
 
+  async getCachedOffset(): Promise<number> {
+    this.state = await this.getCache();
+    if(this.state) {
+      return this.state.offset;
+    }
+    return 0;
+  }
+
   getId() {
     if(this.state && this.state.id) return this.state.id;
     return 0;
