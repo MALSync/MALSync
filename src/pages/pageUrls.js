@@ -427,4 +427,9 @@ module.exports = {
      '*://manga.fascans.com/manga/*'
     ]
   },
+  animestrue: {
+    match: [
+     '*://*.animestrue.net/anime/*/temporada*'
+    ]
+  },
 };
