@@ -193,6 +193,7 @@ export class syncPage{
     this.searchObj = undefined;
     var This = this;
     this.url = curUrl;
+    this.browsingtime = Date.now();
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){
