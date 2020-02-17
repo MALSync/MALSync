@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const mangadenizi: pageInterface = {
-  name: "mangadenizi (Bad)",
+  name: "mangadenizi",
   domain: "https://mangadenizi.com",
   type: "manga",
   isSyncPage: function(url) {

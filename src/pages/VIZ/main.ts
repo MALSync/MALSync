@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const VIZ: pageInterface = {
-  name: "VIZ (Bad)",
+  name: "VIZ",
   domain: "https://www.viz.com",
   type: "manga",
   isSyncPage: function(url) {
