@@ -203,7 +203,7 @@ export class syncPage{
         identifier: this.page.sync.getIdentifier(this.url)
       };
 
-      this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
+      this.searchObj = new searchClass(state.title, this.novel? 'novel': this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.curState = state;
@@ -248,7 +248,7 @@ export class syncPage{
         identifier: this.page.overview.getIdentifier(this.url)
       };
 
-      this.searchObj = new searchClass(state.title, this.page.type, state.identifier);
+      this.searchObj = new searchClass(state.title, this.novel? 'novel': this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.curState = state;
