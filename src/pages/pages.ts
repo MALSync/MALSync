@@ -17,7 +17,6 @@ import {Jkanime} from "./Jkanime/main";
 import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
 import {Novelplanet} from "./Novelplanet/main";
-import {kawaiifu} from "./kawaiifu/main";
 import {fourAnime} from "./fourAnime/main";
 import {Dreamanimes} from "./Dreamanimes/main";
 import {animeultima} from "./animeultima/main";
@@ -47,7 +46,7 @@ import {mangadenizi} from "./mangadenizi/main";
 import {moeclip} from "./moeclip/main";
 import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
-import {unionleitor} from "./unionleitor/main";
+import {unionmangas} from "./unionmangas/main";
 import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
 import {JapScan} from "./JapScan/main";
@@ -80,7 +79,6 @@ export const pages = {
     Jkanime,
     Proxer,
     Wakanim,
-    kawaiifu,
     Emby,
     Plex,
     Novelplanet,
@@ -112,7 +110,7 @@ export const pages = {
     moeclip,
     mangalivre,
     tmofans,
-    unionleitor,
+    unionmangas,
     myAnime,
     MangaPlus,
     JapScan,

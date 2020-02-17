@@ -1,8 +1,8 @@
 import { pageInterface } from "./../pageInterface";
 
-export const unionleitor: pageInterface = {
-  name: "unionleitor (Bad)",
-  domain: ["https://unionleitor.top", "http://unionmangas.top"],
+export const unionmangas: pageInterface = {
+  name: "unionmangas",
+  domain: ["https://unionleitor.top", "https://unionmangas.top"],
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "leitor" && url.split("/")[5] !== undefined && url.split("/")[5].length > 0) {
@@ -28,7 +28,7 @@ export const unionleitor: pageInterface = {
     var num = $("#capitulo_trocar").find("option:selected").next().attr('value');
     var href = url.replace(/\d+$/, num);
     if(typeof num !== 'undefined' && href !== url){
-      return utils.absoluteLink(href, unionleitor.domain);
+      return utils.absoluteLink(href, unionmangas.domain);
     }
   },
 },
@@ -48,10 +48,10 @@ overview:{
       return j.$("div.row.lancamento-linha");
     },
     elementUrl: function(selector){
-      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionleitor.domain);
+      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionmangas.domain);
     },
     elementEp: function(selector){
-      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionleitor.domain).split("/")[5];
+      return utils.absoluteLink(selector.find('div > a').first().attr('href'),unionmangas.domain).split("/")[5];
     }
   }
 },
@@ -63,7 +63,7 @@ init(page){
   }
   api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   j.$(document).ready(function(){
-    if (page.url.split("/")[3] === "leitor" || page.url.split("/")[3] === "manga") {
+    if (page.url.split("/")[3] === "leitor" || page.url.split("/")[3] === "perfil-manga") {
       page.handlePage();
     }
   });
