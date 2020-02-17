@@ -322,7 +322,7 @@ module.exports = {
   AnimeZone: {
     match: [
       '*://www.animezone.pl/odcinki/*',
-      '*://www.animezone.pl/odcinek/*'
+      '*://www.animezone.pl/anime/*'
     ]
   },
   AnimeOdcinki: {
