@@ -101,7 +101,7 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/6mxqj7'
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/vkp736'
           }
         }
       },
@@ -554,28 +554,6 @@ var testsArray = [
           episode: 3,
           nextEpUrl: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
           uiSelector: true,
-        }
-      },
-    ]
-  },
-
-  {
-    title: 'Kawaiifu',
-    url: 'https://kawaiifu.com/',
-    testCases: [
-      {
-        url: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
-        expected: {
-          sync: true,
-          title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-hd-720p',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html',
-          episode: 4,
-          nextEpUrl: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
-          uiSelector: true,
-          epList: {
-            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=6'
-          }
         }
       },
     ]
@@ -1534,44 +1512,32 @@ var testsArray = [
     ]
   },
   {
-    title: 'unionleitor',
-    url: 'https://unionleitor.top/',
+    title: 'unionmangas',
+    url: 'https://unionmangas.top/',
     testCases: [
       {
-        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
+        url: 'https://unionmangas.top/leitor/Solo_Leveling/76',
         expected: {
           sync: true,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
-          overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
+          overviewUrl: 'https://unionmangas.top/manga/solo-leveling',
           episode: 76,
-          nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
-          uiSelector: false,
-        }
-      },
-      {//different domain
-        url: 'http://unionmangas.top/leitor/Solo_Leveling/100',
-        expected: {
-          sync: true,
-          title: 'Solo Leveling',
-          identifier: 'solo-leveling',
-          overviewUrl: 'http://unionleitor.top/manga/solo-leveling',
-          episode: 100,
-          nextEpUrl: 'http://unionmangas.top/leitor/Solo_Leveling/101',
+          nextEpUrl: 'https://unionmangas.top/leitor/Solo_Leveling/77',
           uiSelector: false,
         }
       },
       {
-        url: 'https://unionleitor.top/manga/solo-leveling',
+        url: 'https://unionmangas.top/perfil-manga/solo-leveling',
         expected: {
           sync: false,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'http://unionmangas.top/leitor/Solo_Leveling/05',
-            87: 'http://unionmangas.top/leitor/Solo_Leveling/87',
-            101: 'http://unionmangas.top/leitor/Solo_Leveling/101',
+            5: 'https://unionmangas.top/leitor/Solo_Leveling/05',
+            87: 'https://unionmangas.top/leitor/Solo_Leveling/87',
+            101: 'https://unionmangas.top/leitor/Solo_Leveling/101',
           }
         }
       },
@@ -1708,6 +1674,7 @@ var testsArray = [
   {
     title: 'AnimesVision',
     url: 'https://www.animesvision.com.br/',
+    skip: true, //geolock
     testCases: [
       {//anime
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
@@ -1806,6 +1773,37 @@ var testsArray = [
           epList: {
             53: 'https://manga.fascans.com/manga/plunderer/53',
             18: 'https://manga.fascans.com/manga/plunderer/18'
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'myanime',
+    url: 'https://myanime.moe/',
+    testCases: [
+      {
+        url: 'https://myanime.moe/anime/great-teacher-onizuka/42',
+        expected: {
+          sync: true,
+          title: 'Great Teacher Onizuka',
+          identifier: 'great-teacher-onizuka',
+          overviewUrl: 'https://myanime.moe/anime/great-teacher-onizuka',
+          nextEpUrl: 'https://myanime.moe/anime/great-teacher-onizuka/43',
+          episode: 42,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://myanime.moe/anime/great-teacher-onizuka',
+        expected: {
+          sync: false,
+          title: 'Great Teacher Onizuka',
+          identifier: 'great-teacher-onizuka',
+          uiSelector: true,
+          epList: {
+            5: 'https://myanime.moe/anime/great-teacher-onizuka/5',
+            42: 'https://myanime.moe/anime/great-teacher-onizuka/42'
           }
         }
       },

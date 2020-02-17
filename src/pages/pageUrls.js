@@ -199,22 +199,6 @@ module.exports = {
       '*://novelplanet.com/Novel/*',
     ],
   },
-  kawaiifu: {
-    match: [
-      '*://kawaiifu.com/season/*',
-      '*://kawaiifu.com/dub/*',
-      '*://kawaiifu.com/tv-series/*',
-      '*://kawaiifu.com/anime-movies/*',
-      '*://bestwea.stream/season/*',
-      '*://bestwea.stream/dub/*',
-      '*://bestwea.stream/tv-series/*',
-      '*://bestwea.stream/anime-movies/*',
-      '*://animestuffs.com/season/*',
-      '*://animestuffs.com/dub/*',
-      '*://animestuffs.com/tv-series/*',
-      '*://animestuffs.com/anime-movies/*',
-    ],
-  },
   fourAnime: {
     match: [
       '*://4anime.to/*',
@@ -365,7 +349,7 @@ module.exports = {
       '*://tmofans.com/*'
     ]
   },
-  unionleitor: {
+  unionmangas: {
     match: [
       '*://unionleitor.top/*',
       '*://unionmangas.top/*'

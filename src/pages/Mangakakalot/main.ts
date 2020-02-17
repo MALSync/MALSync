@@ -14,13 +14,13 @@ export const Mangakakalot: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text()
+      return j.$("body > div.breadcrumb > p > span:nth-child(3) > a > span").first().text()
     },
     getIdentifier: function(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a").attr("href");
+      return j.$("body > div.breadcrumb > p > span:nth-child(3) > a").first().attr("href");
     },
     getEpisode: function(url){
       return url.split("/")[5].match(/\d+/gmi);
@@ -30,7 +30,7 @@ export const Mangakakalot: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return j.$("div.rdfa-breadcrumb > div > p > span:nth-child(4) > a > span").text();
+      return j.$("div.breadcrumb.breadcrumbs > p > span:nth-child(3) > a > span").first().text();
     },
     getIdentifier: function(url){
       return utils.urlPart(url, 4);
