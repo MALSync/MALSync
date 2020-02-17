@@ -49,7 +49,7 @@ export const Branitube: pageInterface = {
       if(getType() === "anime") {
         var malid = j.$(".nomeAnime").attr("data-anmalid");
         if(!malid || malid == "0") {
-          var malid = j.$("epInfo").attr("data-epmalid");
+          var malid = j.$(".epInfo").attr("data-epmalid");
         }
       } else {
         var malid = j.$(".epInfo").attr("data-epmalid");
