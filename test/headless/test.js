@@ -559,28 +559,6 @@ var testsArray = [
     ]
   },
 
-  {
-    title: 'Kawaiifu',
-    url: 'https://kawaiifu.com/',
-    testCases: [
-      {
-        url: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=4',
-        expected: {
-          sync: true,
-          title: 'Plastic Memories (Bluray Ver.)',
-          identifier: 'plastic-memories-bluray-ver-hd-720p',
-          overviewUrl: 'https://kawaiifu.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html',
-          episode: 4,
-          nextEpUrl: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=5',
-          uiSelector: true,
-          epList: {
-            6: 'https://animestuffs.com/season/spring-2015/plastic-memories-bluray-ver-hd-720p.html?ep=6'
-          }
-        }
-      },
-    ]
-  },
-
     {
     title: '4anime',
     url: 'https://4anime.to/',
