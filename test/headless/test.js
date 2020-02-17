@@ -1306,14 +1306,14 @@ var testsArray = [
           sync: true,
           title: 'Cop Craft',
           identifier: 'cop-craft',
-          overviewUrl: 'https://www.animezone.pl/odcinki/cop-craft',
+          overviewUrl: 'https://www.animezone.pl/anime/cop-craft',
           nextEpUrl: 'https://www.animezone.pl/odcinek/cop-craft/2',
           episode: 1,
           uiSelector: false,
         }
       },
       {
-        url: 'https://www.animezone.pl/odcinki/cop-craft',
+        url: 'https://www.animezone.pl/anime/cop-craft',
         expected: {
           sync: false,
           title: 'Cop Craft',
