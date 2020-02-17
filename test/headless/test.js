@@ -145,6 +145,7 @@ var testsArray = [
   {
     title: 'twist.moe',
     url: 'https://twist.moe/a/no-game-no-life/4',
+    skip: true,
     testCases: [
       {
         url: 'https://twist.moe/a/no-game-no-life/4',
@@ -273,7 +274,7 @@ var testsArray = [
           identifier: '8173',
           uiSelector: true,
           epList: {
-            5: 'https://www.mangadex.org/chapter/366833'
+            5: 'https://www.mangadex.org/chapter/808449'
           }
         }
       },
@@ -492,6 +493,7 @@ var testsArray = [
   {
     title: 'Proxer',
     url: 'https://proxer.me/',
+    skip: true,
     testCases: [
       {
         url: 'https://proxer.me/watch/6587/2/gerdub',
@@ -1139,6 +1141,7 @@ var testsArray = [
   {
     title: 'dubbedanime',
     url: 'https://ww5.dubbedanime.net/',
+    skip: true, //Ads breaking page
     testCases: [
       {//check for ova
         url: 'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
@@ -1299,6 +1302,7 @@ var testsArray = [
   {
     title: 'AnimeZone',
     url: 'https://www.animezone.pl/',
+    skip: true,
     testCases: [
       {
         url: 'https://www.animezone.pl/odcinek/cop-craft/1',
@@ -1878,7 +1882,7 @@ before(async function () {
 
 beforeEach(async function () {
   page = await browser.newPage()
-  await page.setViewport({ width: 800, height: 600 })
+  await page.setViewport({ width: 1920, height: 1080 })
 })
 
 afterEach(async function () {
