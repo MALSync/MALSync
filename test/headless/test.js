@@ -1,6 +1,7 @@
 const {expect} = require('chai');
 const puppeteer = require("puppeteer-extra");
 const pluginStealth = require("puppeteer-extra-plugin-stealth");
+const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 
 const fs = require('fs');
 const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
@@ -1878,6 +1879,7 @@ let debugging = false;
 before(async function () {
   puppeteer.use(pluginStealth());
   browser = await puppeteer.launch({ headless: true })
+  puppeteer.use(AdblockerPlugin());
 })
 
 beforeEach(async function () {
