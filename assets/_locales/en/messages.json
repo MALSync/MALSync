@@ -568,8 +568,8 @@
       "description": "Resume watching links"
     },
     "settings_miniMAL_floatButtonStealth": {
-      "message": "Stealth floating menu button",
-      "description": "Stealth floating menu button"
+      "message": "Stealth mode",
+      "description": "Stealth mode. Lowers the visibility of some malSync ui elements"
     },
     "settings_miniMAL_floatButtonHide": {
       "message": "Hide miniMAL floating menu button",

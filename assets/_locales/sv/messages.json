@@ -559,10 +559,6 @@
     "message": "Länkar för att återuppta episoden",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "Stealth flytande menyknapp",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Göm miniMAL flytande menyknapp",
     "description": "Hide miniMAL floating menu button"

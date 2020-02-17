@@ -627,11 +627,16 @@ export async function flashConfirm(message, type, yesCall = () => {}, cancelCall
 function initflashm(){
 
     api.storage.addStyle('.flashinfo{\
-                    transition: max-height 2s;\
+                    transition: max-height 2s, opacity 2s 2s;\
                  }\
-                 .flashinfo:hover{\
+                 .mini-stealth .flashinfo{\
+                    opacity: 0;\
+                 }\
+                 .flashinfo:hover, #flashinfo-div.hover .flashinfo{\
                     max-height:5000px !important;\
                     z-index: 2147483647;\
+                    opacity: 1;\
+                    transition: max-height 2s;\
                  }\
                  .flashinfo .synopsis{\
                     transition: max-height 2s, max-width 2s ease 2s;\
@@ -669,9 +674,12 @@ function initflashm(){
                     color: #DF6300;\
                  }');
 
+    var extraClass = "";
+    if(api.settings.get('floatButtonStealth')) extraClass = "mini-stealth";
+
     j.$('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
         <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
-        <div id="flashinfo-div" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
+        <div id="flashinfo-div" class="'+extraClass+'" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
 }
 
 var lazyloaded = false;
