@@ -563,10 +563,6 @@
     "message": "Tautan kembali melanjutkan menonton",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "Samarkan tombol menu mengambang",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Sembunyikan tombol menu mengambang miniMAL",
     "description": "Hide miniMAL floating menu button"

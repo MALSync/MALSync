@@ -34,6 +34,19 @@ export const animepahe: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$( ".anime-detail"));
     },
+    getMalUrl: function(provider) {
+      var url = j.$('a[href^="https://myanimelist.net/anime/"]').not("#malRating").first().attr('href');
+      if(url) return url;
+      if(provider === 'ANILIST'){
+        url = j.$('a[href^="https://anilist.co/anime/"]').not("#malRating").first().attr('href');
+        if(url) return url;
+      }
+      if(provider === 'KITSU'){
+        url = j.$('a[href^="https://kitsu.io/anime/"]').not("#malRating").first().attr('href');
+        if(url) return url;
+      }
+      return false;
+    },
     list:{
       offsetHandler: false,
       elementsSelector: function(){return j.$('.episode-list .episode');},

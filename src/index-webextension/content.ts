@@ -61,6 +61,9 @@ function messagePageListener(page){
         case 'nextEpShort':
           page.openNextEp();
           break;
+        case 'correctionShort':
+          page.openCorrectionUi();
+          break;
       }
     }
 
@@ -77,6 +80,9 @@ function messagePageListener(page){
         break;
       case 'nextEpShort':
         page.openNextEp();
+        break;
+      case 'correctionShort':
+        page.openCorrectionUi();
         break;
     }
 

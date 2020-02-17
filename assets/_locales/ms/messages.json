@@ -563,10 +563,6 @@
     "message": "Pautan menyambung semula episod",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "Menyamarkan butang menu terapung",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Sembunyikan butang menu terapung miniMAL",
     "description": "Hide miniMAL floating menu button"

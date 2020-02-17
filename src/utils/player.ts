@@ -132,6 +132,7 @@ const shortcutOptions = [
   'introSkipFwd',
   'introSkipBwd',
   'nextEpShort',
+  'correctionShort',
 ];
 
 export function shortcutListener(callback) {

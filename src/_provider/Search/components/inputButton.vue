@@ -20,7 +20,7 @@
     },
     props: {
       state: {
-        type: String,
+        type: String|Number,
         default: ''
       },
       type: {

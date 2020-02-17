@@ -391,6 +391,10 @@
       "message": "MyAnimeList URL reset",
       "description": "URL reset"
     },
+    "correction_DBRequest": {
+      "message": "Submit database correction request?",
+      "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+    },
     "overview_Continue_anime": {
       "message": "Continue watching",
       "description": "Continue watching"
@@ -564,8 +568,8 @@
       "description": "Resume watching links"
     },
     "settings_miniMAL_floatButtonStealth": {
-      "message": "Stealth floating menu button",
-      "description": "Stealth floating menu button"
+      "message": "Stealth UI mode",
+      "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
     },
     "settings_miniMAL_floatButtonHide": {
       "message": "Hide miniMAL floating menu button",
@@ -627,6 +631,10 @@
     "settings_autoNextEp": {
       "message": "Autoplay next episode",
       "description": "Autoplays the next episode after the video ends"
+    },
+    "settings_Shortcuts_Correction": {
+      "message": "Open anime relation correction popup",
+      "description": "Text for the correction ui shortcut"
     },
     "settings_Shortcuts_Next_Episode": {
       "message": "Open next episode shortcut",

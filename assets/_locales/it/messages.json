@@ -563,10 +563,6 @@
     "message": "Link riprendi la visione",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "Pulsante del menù invisibile",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Nascondi  il pulsante del menù di miniMAL",
     "description": "Hide miniMAL floating menu button"

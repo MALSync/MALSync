@@ -3,6 +3,7 @@ import {entryClass} from "./../provider/provider";
 import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
+import {searchClass} from "./../_provider/Search/vueSearchClass.ts";
 
 declare var browser: any;
 
@@ -15,6 +16,7 @@ export class syncPage{
   page: pageInterface;
   malObj;
   oldMalObj;
+  searchObj;
 
   public novel = false;
 
@@ -188,16 +190,25 @@ export class syncPage{
   async handlePage(curUrl = window.location.href){
     var state: pageState;
     this.curState = undefined;
+    this.searchObj = undefined;
     var This = this;
     this.url = curUrl;
+    this.browsingtime = Date.now();
 
     this.loadUI();
     if(this.page.isSyncPage(this.url)){
       state = {
+        on: 'SYNC',
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url)
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+      this.searchObj = new searchClass(state.title, this.novel? 'novel': this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.curState = state;
+      await this.searchObj.search();
+
       state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
       if(!state.episode && state.episode !== 0){
         if (this.page.type == 'anime'){
@@ -232,16 +243,23 @@ export class syncPage{
         return;
       }
       state = {
+        on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),
         identifier: this.page.overview.getIdentifier(this.url)
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+      this.searchObj = new searchClass(state.title, this.novel? 'novel': this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.curState = state;
+      await this.searchObj.search();
+
       con.log('Overview', state);
     }
 
     this.curState = state;
 
-    var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
+    var malUrl = this.searchObj.getUrl();
 
     if((malUrl === null || !malUrl) && api.settings.get('localSync')){
       con.log('Local Fallback');
@@ -293,6 +311,14 @@ export class syncPage{
 
       //sync
       if(this.page.isSyncPage(this.url)){
+
+        var rerun = await this.searchObj.openCorrectionCheck();
+
+        if(rerun) {//If malUrl changed
+          this.handlePage(curUrl);
+          return;
+        }
+
         if(await this.handleAnimeUpdate(state)){
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
@@ -340,6 +366,16 @@ export class syncPage{
         }
       }
 
+    }
+  }
+
+  public openCorrectionUi() {
+    if(this.searchObj) {
+      return this.searchObj.openCorrection().then((rerun) => {
+        if(rerun){
+          this.handlePage();
+        }
+      });
     }
   }
 
@@ -416,16 +452,11 @@ export class syncPage{
             This.syncHandling();
           });
           flashmItem.find('.wrongButton').on('click', function(this){
-            This.malObj.wrong = true;
-            if(!This.malObj.miniMAL){
-              var miniButton = j.$('button.open-info-popup');
-              if(miniButton.css('display') != 'none'){
-                miniButton.click();
-              }else{
-                miniButton.click();
-                miniButton.click();
-              }
-            }
+            This.openCorrectionUi();
+            this.closest('.flash').remove();
+            This.malObj = This.oldMalObj;
+            This.oldMalObj = undefined;
+            This.syncHandling();
           });
         }else{
           utils.flashm(message);
@@ -524,11 +555,19 @@ export class syncPage{
       j.$('.MalLogin').css("display","none");
       j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
       var This = this;
-      j.$('#AddMal').click(function() {
+      j.$('#AddMal').click(async function() {
         This.malObj.setStatus(6);
         if(!This.page.isSyncPage(This.url)){
           This.malObj.setStreamingUrl(This.url);
         }
+
+        var rerun = await This.searchObj.openCorrectionCheck();
+
+        if(rerun) {//If malUrl changed
+          This.handlePage();
+          return;
+        }
+
         This.syncHandling()
           .then(() => {
             return This.malObj.update();
@@ -625,7 +664,8 @@ export class syncPage{
 
   offsetHandler(epList){
     if(!this.page.overview!.list!.offsetHandler) return;
-    if(typeof this.offset !== 'undefined' && this.offset !== "0") return;
+    if(this.getOffset()) return;
+    if(!this.searchObj || this.searchObj.provider === 'user') return;
     for (var i = 0; i < epList.length; ++i) {
       if (typeof epList[i] !== 'undefined') {
         con.log('Offset', i);
@@ -662,181 +702,21 @@ export class syncPage{
     `);
   }
 
-  async getMalUrl(identifier: string, title: string, page){
-    var This = this;
-    var cache = await api.storage.get(this.page.name+'/'+identifier+'/Mal' , null);
-    if(typeof(cache) != "undefined"){
-      con.log('Cache', this.page.name+'/'+identifier, cache);
-      return cache;
-    }
-
-    if(typeof page.database != "undefined"){
-      var firebaseVal = await firebase();
-      if(firebaseVal !== false){
-        return firebaseVal;
-      }
-    }
-
-    var malSearchVal = await malSearch();
-    if(malSearchVal !== false){
-      return malSearchVal;
-    }
-
-    return false;
-
-    function firebase(){
-      var url = 'https://kissanimelist.firebaseio.com/Data2/'+page.database+'/'+encodeURIComponent(titleToDbKey(identifier)).toLowerCase()+'/Mal.json';
-      con.log("Firebase", url);
-      return api.request.xhr('GET', url).then((response) => {
-        con.log("Firebase response",response.responseText);
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
-          var returnUrl:any = '';
-          if(response.responseText.split('"')[1] == 'Not-Found'){
-            returnUrl = null;
-          }else{
-            returnUrl = 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
-          }
-          This.setCache(returnUrl, false, identifier);
-          return returnUrl;
-        }else{
-          return false;
-        }
-      });
-    }
-
-    function malSearch(){
-      var url = "https://myanimelist.net/"+page.type+".php?q=" + encodeURI(title);
-      if(This.novel){
-        url = "https://myanimelist.net/"+page.type+".php?type=2&q=" + encodeURI(title);
-      }
-      con.log("malSearch", url);
-      return api.request.xhr('GET', url).then((response) => {
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){
-          return handleResult(response);
-        }else{
-          return false;
-        }
-      });
-
-      function handleResult(response, i = 1){
-        var link = getLink(response, i);
-        if(link !== false){
-
-          if(page.type === 'manga' && !This.novel){
-            try{
-              var typeCheck = response.responseText.split('href="'+link+'" id="si')[1].split('</tr>')[0];
-              if(typeCheck.indexOf("Novel") !== -1){
-                con.log('Novel Found check next entry')
-                return handleResult(response, i+1);
-              }
-            }catch(e){
-              con.error(e);
-            }
-          }
-
-          This.setCache(link, true, identifier);
-        }
-        return link;
-      }
-
-      function getLink(response, i){
-        try{
-          return response.responseText.split('<a class="hoverinfo_trigger" href="')[i].split('"')[0];
-        }catch(e){
-          con.error(e);
-          try{
-            return response.responseText.split('class="picSurround')[i].split('<a')[1].split('href="')[1].split('"')[0];
-          }catch(e){
-            con.error(e);
-            return false;
-          }
-        }
-      }
-    }
-
-    //Helper
-    function titleToDbKey(title) {
-      if( window.location.href.indexOf("crunchyroll.com") > -1 ){
-          return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
-      }
-      return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
-    };
-
-  }
-
-  public setCache(url, toDatabase:boolean|'correction', identifier:any = null){
-    if(identifier == null){
-      if(this.page.isSyncPage(this.url)){
-        identifier = this.page.sync.getIdentifier(this.url);
-      }else{
-        identifier = this.page.overview!.getIdentifier(this.url);
-      }
-    }
-
-    api.storage.set(this.page.name+'/'+identifier+'/Mal' , url);
-
-    this.databaseRequest(url, toDatabase, identifier);
-  }
-
-  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl:any = null){
-    if(typeof this.page.database != 'undefined' && toDatabase){
-      if(kissurl == null){
-        if(this.page.isSyncPage(this.url)){
-          kissurl = this.page.sync.getOverviewUrl(this.url);
-        }else{
-          kissurl = this.url;
-        }
-      }
-      var param = { Kiss: kissurl, Mal: malurl};
-      if(toDatabase == 'correction'){
-        param['newCorrection'] = true;
-      }
-      var url = 'https://kissanimelist.firebaseio.com/Data2/Request/'+this.page.database+'Request.json';
-      api.request.xhr('POST', {url: url, data: JSON.stringify(param)}).then((response) => {
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
-          con.log("[DB] Send to database:", param);
-        }else{
-          con.error("[DB] Send to database:", response.responseText);
-        }
-
-      });
-
-    }
-  }
-
-
-  public deleteCache(){
-    var getIdentifier;
-    if(this.page.isSyncPage(this.url)){
-      getIdentifier = this.page.sync.getIdentifier;
-    }else{
-      getIdentifier = this.page.overview!.getIdentifier;
-    }
-
-    api.storage.remove(this.page.name+'/'+getIdentifier(this.url)+'/Mal');
-  }
-
-  private offset;
-
   getOffset(){
-    if(typeof this.offset == 'undefined') return 0;
-    return this.offset;
+    if(this.searchObj && this.searchObj.getOffset()) {
+      return this.searchObj.getOffset();
+    }
+    return 0;
   }
 
   async setOffset(value:number){
-    this.offset = value;
-    var getIdentifier;
-    if(this.page.isSyncPage(this.url)){
-      getIdentifier = this.page.sync.getIdentifier;
-    }else{
-      getIdentifier = this.page.overview!.getIdentifier;
-      this.handleList();
+    if(this.searchObj){
+      this.searchObj.setOffset(value);
     }
-    var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
     if(typeof this.malObj != 'undefined'){
       api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
     }
-    return returnValue;
+    return;
   }
 
   UILoaded:boolean = false;
@@ -973,13 +853,20 @@ export class syncPage{
     });
   }
 
-  private buttonclick(){
+  private async buttonclick(){
     this.malObj.setEpisode(j.$("#malEpisodes").val());
     if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
     this.malObj.setScore(j.$("#malUserRating").val());
     this.malObj.setStatus(j.$("#malStatus").val());
     if(!this.page.isSyncPage(this.url)){
       this.malObj.setStreamingUrl(this.url);
+    }
+
+    var rerun = await this.searchObj.openCorrectionCheck();
+
+    if(rerun) {//If malUrl changed
+      this.handlePage();
+      return;
     }
 
     this.syncHandling()

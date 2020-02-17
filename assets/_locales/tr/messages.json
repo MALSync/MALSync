@@ -563,10 +563,6 @@
     "message": "İzlemeyi sürdür linkleri",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "miniMAL butonunu sakla",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "miniMAL butonunu gizle",
     "description": "Hide miniMAL floating menu button"

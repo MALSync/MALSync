@@ -563,10 +563,6 @@
     "message": "Links für die Episoden Wiederaufnahme",
     "description": "Resume watching links"
   },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "Unauffälliger miniMAL Menü Button",
-    "description": "Stealth floating menu button"
-  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Verstecke den miniMAL Menü Button",
     "description": "Hide miniMAL floating menu button"
