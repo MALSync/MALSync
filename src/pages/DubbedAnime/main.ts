@@ -14,10 +14,10 @@ export const DubbedAnime: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("h1.dosis.ep-title").text().replace(/(episode|ova).*\d+/gmi,"").trim();},
     getIdentifier: function(url) {
-      return j.$("a.w-100.btn.btn-success").attr("href").split("/")[4];
+      return utils.absoluteLink(j.$("a.w-100.btn.btn-success").attr("href"), DubbedAnime.domain).split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("a.w-100.btn.btn-success").attr("href");
+      return utils.absoluteLink(j.$("a.w-100.btn.btn-success").attr("href"), DubbedAnime.domain);
     },
     getEpisode: function(url){
       var episodePart = url.split("/")[4];
@@ -30,7 +30,7 @@ export const DubbedAnime: pageInterface = {
         }
       }
     },
-    nextEpUrl: function(url){return j.$('body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a').first().attr('href');
+    nextEpUrl: function(url){return utils.absoluteLink(j.$('body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a').first().attr('href'), DubbedAnime.domain);;
     },
   },
   overview:{

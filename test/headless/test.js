@@ -1142,7 +1142,6 @@ var testsArray = [
   {
     title: 'dubbedanime',
     url: 'https://ww5.dubbedanime.net/',
-    skip: true, //Ads breaking page
     testCases: [
       {//check for ova
         url: 'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
