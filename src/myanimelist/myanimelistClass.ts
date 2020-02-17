@@ -226,7 +226,7 @@ export class myanimelistClass{
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
         $('.MALSync-search').remove();
-        var title = $('#contentWrapper > div:first-child span').text()
+        var title = $('.breadcrumb  *[itemprop="name"]').last().text().trim();
         var titleEncoded = encodeURI(title);
         var html = '';
         var imgStyle = 'position: relative; top: 4px;'
