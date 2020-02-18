@@ -195,6 +195,37 @@ export function handleMalImages(url){
 }
 
 export async function getMalToKissArray(type, id){
+  return getMalToKissApi(type, id)
+    .catch((e) => {
+      con.error(e);
+      return getMalToKissFirebase(type, id)
+    });
+}
+
+export async function getMalToKissApi(type, id){
+  var url = 'https://api.malsync.moe/mal/'+type+'/'+id;
+  return api.request.xhr('GET', url).then(async (response) => {
+    con.log("malSync response", response);
+    if(response.status === 400) {
+      return {};
+    }else if(response.status === 200) {
+      var data = JSON.parse(response.responseText);
+      for(var pageKey in data.Sites){
+        if(!api.settings.get(pageKey)){
+          con.log(pageKey+' is deactivated');
+          delete data.Sites[pageKey];
+          continue;
+        }
+      }
+      if(data && data.Sites) return data.Sites;
+      return {};
+    }else{
+      throw 'malsync offline';
+    }
+  });
+}
+
+export async function getMalToKissFirebase(type, id){
   return new Promise((resolve, reject) => {
     var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';
     api.request.xhr('GET', url).then(async (response) => {
