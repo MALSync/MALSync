@@ -57,7 +57,7 @@
     "build:descriptions": "node webpackConfig/descriptions.js",
     "package": "npm run package:webextension",
     "package:webextension": "node package/webextension.js",
-    "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $sign_key --api-secret $sign_secret --id $sign_id",
+    "package:firefox": "node node_modules/web-ext/bin/web-ext sign -a dist -s dist/webextension --api-key $sign_key --api-secret $sign_secret --id $sign_id --timeout 120000",
     "package:chrome": "CLIENT_ID=${CLIENT_ID} CLIENT_SECRET=${CLIENT_SECRET} EXTENSION_ID=${EXTENSION_ID} REFRESH_TOKEN=${REFRESH_TOKEN} node ./package/deployChrome",
     "dev:webextension:userscript": "npm run dev:webextension | npm run dev:userscript",
     "dev:userscript": "webpack --watch --progress --config webpackConfig/userscript.config.js",
