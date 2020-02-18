@@ -153,7 +153,7 @@ export function shortcutListener(callback) {
         const option = shortcutOptions[i];
         if(checkShortcut(option)){
           //@ts-ignore
-          if(/textarea|input|select/i.test(e.target.nodeName)) {
+          if(/textarea|input|select/i.test(e.target.nodeName) || e.target.shadowRoot) {
             con.info('Input field. Shortcut suppressed.');
           }else{
             return shortcutDetected(option);
