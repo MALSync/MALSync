@@ -1877,8 +1877,8 @@ let debugging = false;
 
 before(async function () {
   puppeteer.use(pluginStealth());
-  browser = await puppeteer.launch({ headless: true })
   puppeteer.use(AdblockerPlugin());
+  browser = await puppeteer.launch({ headless: true })
 })
 
 beforeEach(async function () {
