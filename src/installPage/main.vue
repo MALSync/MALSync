@@ -82,7 +82,7 @@
             {{lang("Show")}}
           </button>
           <p v-if="show" class="correctionGif">
-            <img id="hiddenimage" height="527" width="938" src="https://github.com/Franciscoseipel/Mal-for-Kissanime-Greasymonkey-/raw/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
+            <img id="hiddenimage" height="338" width="600" src="https://raw.githubusercontent.com/lolamtisch/KissAnimeList/master/Screenshots/Wrong%20recognition.gif" alt="Wrong recognition">
           </p>
 
           <h4>{{lang("minimalClass_versionMsg_Text_4")}}</h4>
@@ -127,11 +127,11 @@ p{
 .correctionGif{
   background-color: black;
   max-width: 100%;
-  min-height: 500px;
+  min-height: 338px;
   position: relative;
   #hiddenimage {
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     position: absolute;
     top: 0;
