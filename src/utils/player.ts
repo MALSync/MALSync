@@ -181,6 +181,7 @@ export function shortcutListener(callback) {
           shortcutTrue = false;
         }
       });
+      if(shortcutTrue && Object.values(keyMap).filter(c => c).length !== keys.length) shortcutTrue = false;
       return shortcutTrue;
     }
   }
