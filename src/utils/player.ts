@@ -156,7 +156,7 @@ export function shortcutListener(callback) {
           if(/textarea|input|select/i.test(e.target.nodeName) || e.target.shadowRoot) {
             con.info('Input field. Shortcut suppressed.');
           }else{
-            return shortcutDetected(option);
+            shortcutDetected(option);
           }
         }
       }
