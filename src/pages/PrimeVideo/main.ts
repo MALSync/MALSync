@@ -12,7 +12,7 @@ export const PrimeVideo: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      if(thisData && thisData!.title) return $('<div/>').html(thisData!.title).text();;
+      if(thisData && thisData!.title) return $('<div/>').html(thisData!.title).text();
       return '';
     },
     getIdentifier: function(url) {
