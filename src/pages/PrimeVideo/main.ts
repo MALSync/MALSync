@@ -1,30 +1,39 @@
 import {pageInterface} from "./../pageInterface";
+
+var thisData: any = null;
+
 export const PrimeVideo: pageInterface = {
   name: 'Amazon Prime Video',
   domain: 'https://www.primevideo.com',
   type: 'anime',
   isSyncPage: function(url){
+    if(thisData && thisData.ep) return true;
     return false;
   },
   sync: {
-    getTitle: function(url){return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").text()},
+    getTitle: function(url){
+      if(thisData && thisData!.title) return thisData!.title;
+      return '';
+    },
     getIdentifier: function(url) {
-      return utils.urlPart(url,4);
+      if(thisData && thisData!.id) return thisData!.id;
+      throw 'No Id Found';
     },
     getOverviewUrl: function(url){
-      return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href");
+      if(thisData && thisData!.id) return 'https://www.primevideo.com/detail/'+thisData!.id;
+      throw 'No Id Found';
     },
     getEpisode: function(url){
-      return url.split("/")[5];
+      if(thisData && thisData!.ep) return thisData!.ep;
+      return 1;
     },
   },
   overview:{
-    getTitle: function(url){return PrimeVideo.sync.getIdentifier(url).replace(/^\d*-/,'');},
+    getTitle: function(url){return PrimeVideo.sync.getTitle(url);},
     getIdentifier: function(url){return PrimeVideo.sync.getIdentifier(url)},
     uiSelector: function(selector){selector.prependTo(j.$("#stats").first());},
   },
   init(page){
-    alert();
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
       ready();
@@ -32,23 +41,37 @@ export const PrimeVideo: pageInterface = {
     utils.urlChangeDetect(function(){
       ready();
     });
-    $('html').on('click', 'a[data-video-type]', function(e){
+    $('html').on('click', 'a[data-video-type]', async function(e){
+      thisData = null;
+      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      $('html').addClass('miniMAL-hide');
       var vidUrl = j.$(this).attr('href');
       var internalId = j.$(this).attr('data-title-id');
-      getApi(utils.absoluteLink(j.$(this).attr('href'), PrimeVideo.domain), internalId);
+      var tempData = await getApi(utils.absoluteLink(j.$(this).attr('href'), PrimeVideo.domain), internalId);
+      if(!tempData.genres.includes('av_genre_anime')){
+        con.error('Not an Anime');
+        return;
+      }
+
+      thisData = tempData;
+      $('html').removeClass('miniMAL-hide');
+      page.handlePage();
     });
 
     async function ready(){
+      thisData = null;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       $('html').addClass('miniMAL-hide');
       if(utils.urlPart(window.location.href, 3) === 'detail'){
-        getApi(window.location.href);
-        return
-        utils.waitUntilTrue(function(){
-          return j.$('.ellipsize-text').length;
-        }, function(){
-          //getSeries(page);
-        });
+        var tempData = await getApi(window.location.href);
+        if(!tempData.genres.includes('av_genre_anime')){
+          con.error('Not an Anime');
+          return;
+        }
+
+        thisData = tempData;
+        $('html').removeClass('miniMAL-hide');
+        page.handlePage();
       }
     }
   }
