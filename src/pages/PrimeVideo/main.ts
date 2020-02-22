@@ -34,7 +34,8 @@ export const PrimeVideo: pageInterface = {
     });
     $('html').on('click', 'a[data-video-type]', function(e){
       var vidUrl = j.$(this).attr('href');
-      getApi(utils.absoluteLink(j.$(this).attr('href'), PrimeVideo.domain));
+      var internalId = j.$(this).attr('data-title-id');
+      getApi(utils.absoluteLink(j.$(this).attr('href'), PrimeVideo.domain), internalId);
     });
 
     async function ready(){
@@ -53,11 +54,13 @@ export const PrimeVideo: pageInterface = {
   }
 };
 
-function getApi(url) {
+function getApi(url, epId = 0) {
+  con.log('Request Info', url, epId);
   var data: any = {
     id: undefined,
     title: undefined,
     genres: [],
+    ep: null,
   }
   var fns: any[] = [
     //id
@@ -85,23 +88,31 @@ function getApi(url) {
         e.props.state.detail.detail &&
         Object.keys(e.props.state.detail.detail).length
       ) {
+        //Parent
         var detail: any = Object.values(e.props.state.detail.detail)[0];
-      console.log(detail);
+
         if(detail && detail.titleType === "season") {
           if(detail.title) data.title = detail.title;
-          if(detail.genres && detail.genres.length) data.genres = detail.genres.map(e => e.id);
+        }
+        if(detail) {
+          if(!data.genres.length && detail.genres && detail.genres.length) data.genres = detail.genres.map(e => e.id);
+        }
+        //Episode
+        if(epId && e.props.state.detail.detail.hasOwnProperty(epId)){
+          var epDetail = e.props.state.detail.detail[epId];
+          if(epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
+          if(!data.genres.length && epDetail.genres && epDetail.genres.length) data.genres = epDetail.genres.map(e => e.id);
         }
       }
     },
   ]
   return api.request.xhr('GET', url).then((response) => {
-    con.log(response);
     var templates = response.responseText.match(/<script type="text\/template">.*(?=<\/script>)/g);
     templates = templates.map(e => JSON.parse(e.replace('<script type="text/template">', '')));
-    con.log(templates);
     templates.forEach(e => {
       fns.forEach(fn => fn(e));
     });
-    console.log(data);
+    con.log('result', data);
+    return data;
   });
 }
