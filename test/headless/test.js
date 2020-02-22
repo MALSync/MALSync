@@ -1876,7 +1876,7 @@ var testsArray = [
         expected: {
           sync: true,
           title: 'Solo Leveling',
-          identifier: '72860"',
+          identifier: '72860',
           overviewUrl: 'https://bato.to/series/72860',
           episode: 104,
           uiSelector: false,
@@ -1887,7 +1887,7 @@ var testsArray = [
         expected: {
           sync: false,
           title: 'Solo Leveling',
-          identifier: '72860"',
+          identifier: '72860',
           uiSelector: true,
           epList: {
             5: 'https://bato.to/chapter/1284843',
