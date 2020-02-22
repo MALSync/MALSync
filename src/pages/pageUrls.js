@@ -417,4 +417,9 @@ module.exports = {
      '*://*.animestrue.net/anime/*/temporada*'
     ]
   },
+  PrimeVideo: {
+    match: [
+     '*://*.primevideo.com/*',
+    ]
+  },
 };
