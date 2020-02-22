@@ -56,6 +56,8 @@ export const PrimeVideo: pageInterface = {
 function getApi(url) {
   var data: any = {
     id: undefined,
+    title: undefined,
+    genres: [],
   }
   var fns: any[] = [
     //id
@@ -70,6 +72,24 @@ function getApi(url) {
         var self: any = Object.values(e.props.state.self)[0];
         if(self && self.titleType === "season" && self.compactGTI) {
           data.id = self.compactGTI;
+        }
+      }
+    },
+    //title, genres
+    function(e) {
+      if(
+        e &&
+        e.props &&
+        e.props.state &&
+        e.props.state.detail &&
+        e.props.state.detail.detail &&
+        Object.keys(e.props.state.detail.detail).length
+      ) {
+        var detail: any = Object.values(e.props.state.detail.detail)[0];
+      console.log(detail);
+        if(detail && detail.titleType === "season") {
+          if(detail.title) data.title = detail.title;
+          if(detail.genres && detail.genres.length) data.genres = detail.genres.map(e => e.id);
         }
       }
     },
