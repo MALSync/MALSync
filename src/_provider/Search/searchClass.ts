@@ -152,6 +152,7 @@ export class searchClass {
   }
 
   protected setCache(cache) {
+    cache = JSON.parse(JSON.stringify(cache));
     setTimeout(() => {
       this.databaseRequest();
     }, 200);
