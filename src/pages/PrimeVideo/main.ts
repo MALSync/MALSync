@@ -31,7 +31,7 @@ export const PrimeVideo: pageInterface = {
   overview:{
     getTitle: function(url){return PrimeVideo.sync.getTitle(url);},
     getIdentifier: function(url){return PrimeVideo.sync.getIdentifier(url)},
-    uiSelector: function(selector){selector.prependTo(j.$("#stats").first());},
+    uiSelector: function(selector){selector.insertBefore(j.$("div.av-detail-section > div > h1").first());},
   },
   init(page){
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
@@ -44,6 +44,7 @@ export const PrimeVideo: pageInterface = {
     $('html').on('click', 'a[data-video-type]', async function(e){
       thisData = null;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.UILoaded = false;
       $('html').addClass('miniMAL-hide');
       var vidUrl = j.$(this).attr('href');
       var internalId = j.$(this).attr('data-title-id');
@@ -61,6 +62,7 @@ export const PrimeVideo: pageInterface = {
     async function ready(){
       thisData = null;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.UILoaded = false;
       $('html').addClass('miniMAL-hide');
       if(utils.urlPart(window.location.href, 3) === 'detail'){
         var tempData = await getApi(window.location.href);
@@ -84,6 +86,7 @@ function getApi(url, epId = 0) {
     title: undefined,
     genres: [],
     ep: null,
+    gti: undefined
   }
   var fns: any[] = [
     //id
@@ -96,8 +99,9 @@ function getApi(url, epId = 0) {
         Object.keys(e.props.state.self).length
       ) {
         var self: any = Object.values(e.props.state.self)[0];
-        if(self && self.titleType === "season" && self.compactGTI) {
+        if(self && self.titleType === "season" && self.compactGTI && self.gti) {
           data.id = self.compactGTI;
+          data.gti = self.gti;
         }
       }
     },
@@ -112,7 +116,11 @@ function getApi(url, epId = 0) {
         Object.keys(e.props.state.detail.detail).length
       ) {
         //Parent
+        if(data.gti && e.props.state.detail.detail.hasOwnProperty(data.gti)) {
+        var detail: any = e.props.state.detail.detail[data.gti];
+        } else {
         var detail: any = Object.values(e.props.state.detail.detail)[0];
+        }
 
         if(detail && detail.titleType === "season") {
           if(detail.title) data.title = detail.title;
@@ -132,8 +140,8 @@ function getApi(url, epId = 0) {
   return api.request.xhr('GET', url).then((response) => {
     var templates = response.responseText.match(/<script type="text\/template">.*(?=<\/script>)/g);
     templates = templates.map(e => JSON.parse(e.replace('<script type="text/template">', '')));
-    templates.forEach(e => {
-      fns.forEach(fn => fn(e));
+    fns.forEach(fn => {
+      templates.forEach(e => fn(e));
     });
     con.log('result', data);
     return data;
