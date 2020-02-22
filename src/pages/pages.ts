@@ -59,6 +59,7 @@ import {Hidive} from "./Hidive/main";
 import {JaiminisBox} from "./JaiminisBox/main";
 import {FallenAngels} from "./FallenAngels/main";
 import {animestrue} from "./animestrue/main";
+import {manga4life} from "./manga4life/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -124,6 +125,7 @@ export const pages = {
     JaiminisBox,
     FallenAngels,
     animestrue,
+    manga4life,
 };
 
 export const pageSearch:pageSearchObj = {

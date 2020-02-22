@@ -417,4 +417,9 @@ module.exports = {
      '*://*.animestrue.net/anime/*/temporada*'
     ]
   },
+  manga4life: {
+    match: [
+     '*://manga4life.com/*'
+    ]
+  },
 };
