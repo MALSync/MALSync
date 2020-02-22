@@ -1878,6 +1878,7 @@ var testsArray = [
           title: 'Solo Leveling',
           identifier: '72860',
           overviewUrl: 'https://bato.to/series/72860',
+          nextEpUrl: 'https://bato.to/chapter/1405642',
           episode: 104,
           uiSelector: false,
         }
