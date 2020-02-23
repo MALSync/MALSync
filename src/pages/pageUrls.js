@@ -422,4 +422,9 @@ module.exports = {
      '*://*.primevideo.com/*',
     ]
   },
+  MangaKatana: {
+    match: [
+     '*://mangakatana.com/manga/*'
+    ]
+  },
 };

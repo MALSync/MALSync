@@ -60,6 +60,7 @@ import {JaiminisBox} from "./JaiminisBox/main";
 import {FallenAngels} from "./FallenAngels/main";
 import {animestrue} from "./animestrue/main";
 import {PrimeVideo} from "./PrimeVideo/main";
+import {MangaKatana} from "./MangaKatana/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -126,6 +127,7 @@ export const pages = {
     FallenAngels,
     animestrue,
     PrimeVideo,
+    MangaKatana,
 };
 
 export const pageSearch:pageSearchObj = {
