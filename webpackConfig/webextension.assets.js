@@ -177,6 +177,7 @@ const generateManifest = () => {
       "https://www.netflix.com/",
       "https://vrv.co/",
       "https://discover.hulu.com/",
+      "https://www.primevideo.com/",
       "https://api.malsync.moe/",
       "tabHide"
     ],
