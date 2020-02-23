@@ -62,6 +62,16 @@ export const PrimeVideo: pageInterface = {
         return;
       }
 
+      tempData.ep = null;
+
+      var episodeText = j.$('.dv-player-fullscreen .webPlayer .subtitle').text();
+      if(episodeText.length){
+        var temp = episodeText.match(/ep..\d*/gmi);
+        if(temp !== null){
+          tempData.ep = parseInt(temp[0].replace(/\D+/g, ""));
+        }
+      }
+
       thisData = tempData;
       $('html').removeClass('miniMAL-hide');
       page.handlePage();
