@@ -99,7 +99,7 @@ function getApi(url, epId = 0) {
         Object.keys(e.props.state.self).length
       ) {
         var self: any = Object.values(e.props.state.self)[0];
-        if(self && self.titleType === "season" && self.compactGTI && self.gti) {
+        if(self && (self.titleType === "season" || self.titleType === "movie") && self.compactGTI && self.gti) {
           data.id = self.compactGTI;
           data.gti = self.gti;
         }
@@ -117,12 +117,12 @@ function getApi(url, epId = 0) {
       ) {
         //Parent
         if(data.gti && e.props.state.detail.detail.hasOwnProperty(data.gti)) {
-        var detail: any = e.props.state.detail.detail[data.gti];
+          var detail: any = e.props.state.detail.detail[data.gti];
         } else {
-        var detail: any = Object.values(e.props.state.detail.detail)[0];
+          var detail: any = Object.values(e.props.state.detail.detail)[0];
         }
 
-        if(detail && detail.titleType === "season") {
+        if(detail && (detail.titleType === "season" || detail.titleType === "movie")) {
           if(detail.title) data.title = detail.title;
         }
         if(detail) {
@@ -132,6 +132,7 @@ function getApi(url, epId = 0) {
         if(epId && e.props.state.detail.detail.hasOwnProperty(epId)){
           var epDetail = e.props.state.detail.detail[epId];
           if(epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
+          if(epDetail.entityType === "Movie") data.ep = 1;
           if(!data.genres.length && epDetail.genres && epDetail.genres.length) data.genres = epDetail.genres.map(e => e.id);
         }
       }
