@@ -90,15 +90,15 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www10.animeultima.eu"><img src="https://www.google.com/s2/favicons?domain=https://www10.animeultima.eu"> animeultima</a></td>
-                <td></td>
+                <td><a href="http://mangakatana.com"><img src="https://www.google.com/s2/favicons?domain=http://mangakatana.com"> MangaKatana</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www1.aniflix.tv"><img src="https://www.google.com/s2/favicons?domain=https://www1.aniflix.tv"> Aniflix</a></td>
-                <td></td>
+                <td><a href="https://manga4life.com"><img src="https://www.google.com/s2/favicons?domain=https://manga4life.com"> manga4life</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animefreak.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefreak.tv"> Animefreak</a></td>
-                <td></td>
+                <td><a href="https://bato.to"><img src="https://www.google.com/s2/favicons?domain=https://bato.to"> bato</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animedaisuki.moe"><img src="https://www.google.com/s2/favicons?domain=https://animedaisuki.moe"> AnimeDaisuki</a></td>
@@ -190,6 +190,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animestrue.net"><img src="https://www.google.com/s2/favicons?domain=https://www.animestrue.net"> animestrue</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.primevideo.com"><img src="https://www.google.com/s2/favicons?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
                 <td></td>
                 <td></td>
               </tr>

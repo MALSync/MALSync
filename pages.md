@@ -24,6 +24,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
+              <td><a href="https://www.primevideo.com"><img src="https://www.google.com/s2/favicons?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://www1.aniflix.tv"><img src="https://www.google.com/s2/favicons?domain=https://www1.aniflix.tv"> Aniflix</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -298,6 +304,12 @@
     </thead>
     <tbody>
       <tr>
+              <td><a href="https://bato.to"><img src="https://www.google.com/s2/favicons?domain=https://bato.to"> bato</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
+            </tr><tr>
               <td><a href="https://manga.fascans.com/"><img src="https://www.google.com/s2/favicons?domain=https://manga.fascans.com/"> FallenAngels</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -322,6 +334,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
+              <td><a href="https://manga4life.com"><img src="https://www.google.com/s2/favicons?domain=https://manga4life.com"> manga4life</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://mangadenizi.com"><img src="https://www.google.com/s2/favicons?domain=https://mangadenizi.com"> mangadenizi</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -338,6 +356,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="http://mangakatana.com"><img src="https://www.google.com/s2/favicons?domain=http://mangakatana.com"> MangaKatana</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://mangakisa.com"><img src="https://www.google.com/s2/favicons?domain=https://mangakisa.com"> MangaKisa</a></td>
