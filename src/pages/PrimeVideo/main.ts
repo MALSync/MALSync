@@ -41,6 +41,11 @@ export const PrimeVideo: pageInterface = {
     utils.urlChangeDetect(function(){
       ready();
     });
+    utils.changeDetect(() => {
+      if(!j.$('.dv-player-fullscreen').length) ready();
+    }, () => {
+       return j.$('.dv-player-fullscreen').length;
+    })
     $('html').on('click', 'a[data-video-type]', async function(e){
       thisData = null;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
