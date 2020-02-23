@@ -427,4 +427,9 @@ module.exports = {
      '*://mangakatana.com/manga/*'
     ]
   },
+  manga4life: {
+    match: [
+     '*://manga4life.com/*'
+    ]
+  },
 };

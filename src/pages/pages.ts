@@ -61,6 +61,7 @@ import {FallenAngels} from "./FallenAngels/main";
 import {animestrue} from "./animestrue/main";
 import {PrimeVideo} from "./PrimeVideo/main";
 import {MangaKatana} from "./MangaKatana/main";
+import {manga4life} from "./manga4life/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -128,6 +129,7 @@ export const pages = {
     animestrue,
     PrimeVideo,
     MangaKatana,
+    manga4life,
 };
 
 export const pageSearch:pageSearchObj = {
