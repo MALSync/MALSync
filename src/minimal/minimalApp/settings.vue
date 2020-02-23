@@ -346,30 +346,7 @@
                 {{lang("Loading")}}
               </span>
             </clazy-load>
-            <br/>
 
-            <clazy-load tag="a" rel="noreferrer" href="https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en" src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white">
-              <img src="https://img.shields.io/badge/Chrome-Download-brightgreen.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white"/>
-              <span slot="placeholder">
-                {{lang("Loading")}}
-              </span>
-            </clazy-load>
-            <br/>
-
-            <clazy-load tag="a" rel="noreferrer" href="https://addons.mozilla.org/en-US/firefox/addon/mal-sync" src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white">
-              <img src="https://img.shields.io/badge/Firefox-Download-brightgreen.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white"/>
-              <span slot="placeholder">
-                {{lang("Loading")}}
-              </span>
-            </clazy-load>
-            <br/>
-
-            <clazy-load tag="a" rel="noreferrer" href="https://greasyfork.org/de/scripts/372847-mal-sync" src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white">
-              <img src="https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white"/>
-              <span slot="placeholder">
-                {{lang("Loading")}}
-              </span>
-            </clazy-load>
 
           </div>
         </li>
