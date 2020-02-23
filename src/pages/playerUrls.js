@@ -283,6 +283,7 @@ module.exports = {
   hydrax: {
     match: [
       '*://*.replay.watch/*',
+      '*://*.playhydrax.com/*',
       '*://hydrax.net/*'
     ]
   },
