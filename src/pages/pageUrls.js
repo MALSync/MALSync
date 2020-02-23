@@ -432,4 +432,9 @@ module.exports = {
      '*://manga4life.com/*'
     ]
   },
+  bato: {
+    match: [
+     '*://bato.to/*',
+    ]
+  },
 };
