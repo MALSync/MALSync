@@ -34,6 +34,7 @@ export const PrimeVideo: pageInterface = {
     uiSelector: function(selector){selector.insertBefore(j.$("div.av-detail-section > div > h1").first());},
   },
   init(page){
+    var epId: any = undefined;
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
       ready();
@@ -46,14 +47,16 @@ export const PrimeVideo: pageInterface = {
     }, () => {
        return j.$('.dv-player-fullscreen').length;
     })
-    $('html').on('click', 'a[data-video-type]', async function(e){
+    utils.changeDetect(async () => {
+      if(!epId) {
+        con.error('No Episode Id found');
+        return;
+      }
       thisData = null;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       page.UILoaded = false;
       $('html').addClass('miniMAL-hide');
-      var vidUrl = j.$(this).attr('href');
-      var internalId = j.$(this).attr('data-title-id');
-      var tempData = await getApi(utils.absoluteLink(j.$(this).attr('href'), PrimeVideo.domain), internalId);
+      var tempData = await getApi(utils.absoluteLink(epId.vidUrl, PrimeVideo.domain), epId.internalId);
       if(!tempData.genres.includes('av_genre_anime')){
         con.error('Not an Anime');
         return;
@@ -62,10 +65,24 @@ export const PrimeVideo: pageInterface = {
       thisData = tempData;
       $('html').removeClass('miniMAL-hide');
       page.handlePage();
+    }, () => {
+      var tempT = j.$('.dv-player-fullscreen .webPlayer .subtitle').text();
+      if(!tempT) return undefined;
+      return tempT;
+    })
+    $('html').on('click', 'a[data-video-type]', async function(e){
+      var vidUrl = j.$(this).attr('href');
+      var internalId = j.$(this).attr('data-title-id');
+      epId = {
+        vidUrl,
+        internalId
+      };
+
     });
 
     async function ready(){
       thisData = null;
+      epId = undefined;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       page.UILoaded = false;
       $('html').addClass('miniMAL-hide');
