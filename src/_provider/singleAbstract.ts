@@ -11,6 +11,13 @@ export abstract class SingleAbstract {
 
   readonly type: defintions.type;
 
+  protected ids = {
+    mal: NaN,
+    ani: NaN,
+    kitsu: NaN,
+    simkl: NaN,
+  };
+
   abstract protected handleUrl(url: string);
 
   abstract _setStatus(status: defintions.status): void;
@@ -51,6 +58,12 @@ export abstract class SingleAbstract {
   abstract _getVolume(): number;
   public getVolume(): number {
     return this._getVolume();
+  };
+
+  abstract _update(): Promise;
+  public update(): Promise {
+    con.log('[SINGLE]','Update info', this.ids);
+    return this._update();
   };
 
 }

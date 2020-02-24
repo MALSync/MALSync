@@ -12,10 +12,12 @@ export class Single extends SingleAbstract {
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
+      this.ids.ani = utils.urlPart(url, 4);
       return;
     }
     if(url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
+      this.ids.mal = utils.urlPart(url, 4);
       return;
     }
     throw 'Url not supported';
@@ -51,5 +53,48 @@ export class Single extends SingleAbstract {
 
   _setVolume(volume) {
     this.data.volume = volume;
+  }
+
+  _update() {
+    var selectId = this.ids.mal;
+    var selectQuery = 'idMal';
+    if(isNaN(this.ids.mal)){
+      selectId = this.ids.ani;
+      selectQuery = 'id';
+    }
+
+    var query = `
+    query ($id: Int, $type: MediaType) {
+      Media (${selectQuery}: $id, type: $type) {
+        id
+        idMal
+        siteUrl
+        episodes
+        chapters
+        volumes
+        averageScore
+        coverImage{
+          large
+        }
+        title {
+          userPreferred
+        }
+        mediaListEntry {
+          status
+          progress
+          progressVolumes
+          score(format: POINT_100)
+          repeat
+          notes
+        }
+      }
+    }
+    `;
+    ​
+    var variables = {
+      id: selectId,
+      type: this.type.toUpperCase()
+    };
+
   }
 }
