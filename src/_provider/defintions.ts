@@ -14,7 +14,7 @@ export enum status {
   Rewatching = 23,
 }
 
-export const enum score {
+export enum score {
   NoScore = 0,
   R1 = 1,
   R2 = 2,
