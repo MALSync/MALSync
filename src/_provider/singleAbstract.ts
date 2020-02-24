@@ -1,4 +1,4 @@
-import defintions from './defintions';
+import * as defintions from './defintions';
 
 export abstract class SingleAbstract {
 
@@ -9,7 +9,7 @@ export abstract class SingleAbstract {
     return this;
   }
 
-  readonly type: defintions.type;
+  protected type: defintions.type|null = null;
 
   protected ids = {
     mal: NaN,
@@ -18,7 +18,11 @@ export abstract class SingleAbstract {
     simkl: NaN,
   };
 
-  abstract protected handleUrl(url: string);
+  protected abstract handleUrl(url: string);
+
+  public getType() {
+    return this.type
+  }
 
   abstract _setStatus(status: defintions.status): void;
   public setStatus(status: defintions.status): void {
@@ -30,8 +34,8 @@ export abstract class SingleAbstract {
     return this._getStatus();
   };
 
-  abstract _setScore(score: defintions.Score): void;
-  public setScore(score: defintions.Score): void {
+  abstract _setScore(score: defintions.score): void;
+  public setScore(score: defintions.score): void {
     return this._setScore(score);
   };
 
@@ -60,8 +64,8 @@ export abstract class SingleAbstract {
     return this._getVolume();
   };
 
-  abstract _update(): Promise;
-  public update(): Promise {
+  abstract _update(): Promise<void>;
+  public update(): Promise<void> {
     con.log('[SINGLE]','Update info', this.ids);
     return this._update();
   };

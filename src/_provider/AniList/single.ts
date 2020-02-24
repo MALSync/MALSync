@@ -93,8 +93,9 @@ export class Single extends SingleAbstract {
     ​
     var variables = {
       id: selectId,
-      type: this.type.toUpperCase()
+      type: this.type!.toUpperCase()
     };
 
+    return Promise.resolve();
   }
 }

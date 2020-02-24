@@ -56,7 +56,8 @@ describe('AniList single', function () {
           if(!el.error) {
             var single;
             expect(() => single = new Single(el.url)).not.to.throw();
-            expect(single.type).equal(el.type);
+            expect(single.getType()).equal(el.type);
+            single.update();
           }else{
             expect(() => new Single(el.url)).to.throw();
           }
