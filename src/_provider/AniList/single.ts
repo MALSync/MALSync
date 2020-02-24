@@ -9,6 +9,18 @@ export class Single extends SingleAbstract {
     volume: 4,
   }
 
+  protected handleUrl(url) {
+    if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3);
+      return;
+    }
+    if(url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3);
+      return;
+    }
+    throw 'Url not supported';
+  }
+
   _getStatus() {
     return this.data.status;
   }

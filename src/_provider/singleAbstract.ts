@@ -5,8 +5,13 @@ export abstract class SingleAbstract {
   constructor(
     protected url: string
   ) {
+    this.handleUrl(url);
     return this;
   }
+
+  readonly type: defintions.type;
+
+  abstract protected handleUrl(url: string);
 
   abstract _setStatus(status: defintions.status): void;
   public setStatus(status: defintions.status): void {
