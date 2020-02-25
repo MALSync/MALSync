@@ -70,4 +70,11 @@ export abstract class SingleAbstract {
     return this._update();
   };
 
+  protected errorObj(code: defintions.errorCode, message): defintions.error {
+    return {
+      code,
+      message,
+    }
+  }
+
 }

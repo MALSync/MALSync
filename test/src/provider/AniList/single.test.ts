@@ -59,7 +59,7 @@ describe('AniList single', function () {
             expect(single.getType()).equal(el.type);
             single.update();
           }else{
-            expect(() => new Single(el.url)).to.throw();
+            expect(() => new Single(el.url)).to.throw().to.include({code: def.errorCode.UrlNotSuported});
           }
         });
       })

@@ -1,5 +1,6 @@
 import {SingleAbstract} from './../singleAbstract';
 import * as helper from "./helper";
+import {errorCode} from "./../defintions";
 
 export class Single extends SingleAbstract {
   protected data = {
@@ -20,7 +21,7 @@ export class Single extends SingleAbstract {
       this.ids.mal = utils.urlPart(url, 4);
       return;
     }
-    throw 'Url not supported';
+    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
   }
 
   _getStatus() {

@@ -27,3 +27,12 @@ export enum score {
   R9 = 9,
   R10 = 10
 }
+
+export enum errorCode {
+  UrlNotSuported = 901,
+}
+
+export interface error {
+  code: errorCode,
+  message: string,
+}
