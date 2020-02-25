@@ -69,8 +69,25 @@ function setGlobals() {
       }
     ],
     apiTest: {
-      defaultUrl: 'https://anilist.co/anime/21/One-Piece/',
-      noMalEntry: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
+      defaultUrl: {
+        url: 'https://anilist.co/anime/21/One-Piece/',
+        displayUrl: 'https://anilist.co/anime/21',
+      },
+      notOnListUrl: {
+        url: 'https://anilist.co/anime/105190/Darwins-Game/',
+        displayUrl: 'https://anilist.co/anime/105190',
+      },
+      noMalEntry: {
+        url: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
+        displayUrl: 'https://anilist.co/manga/115067',
+      },
+      malUrl: {
+        url: 'https://myanimelist.net/anime/21/One_Piece',
+        displayUrl: 'https://anilist.co/anime/21',
+      },
+      nonExistingMAL: {
+        url: 'https://myanimelist.net/anime/13371337',
+      },
     }
   }
 }
@@ -172,30 +189,42 @@ describe('AniList single', function () {
   describe('API', function () {
     describe('Update', function () {
       it('Main Url', async function () {
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
         await singleEntry.update();
+        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.defaultUrl.displayUrl);
+        expect(singleEntry.isOnList()).equal(true);
+      })
+      it('Not on list', async function () {
+        var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
+        await singleEntry.update();
+        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.notOnListUrl.displayUrl);
+        expect(singleEntry.isOnList()).equal(false);
       })
       it('No Mal Entry', async function () {
-        var singleEntry = new Single(global.testData.apiTest.noMalEntry);
+        var singleEntry = new Single(global.testData.apiTest.noMalEntry.url);
         await singleEntry.update();
+        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.noMalEntry.displayUrl);
+        expect(singleEntry.isOnList()).equal(true);
       })
       it('MAL Url', async function () {
-        var singleEntry = new Single('https://myanimelist.net/anime/21/One_Piece');
+        var singleEntry = new Single(global.testData.apiTest.malUrl.url);
         await singleEntry.update();
+        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.malUrl.displayUrl);
+        expect(singleEntry.isOnList()).equal(true);
       })
       it('Non existing MAL url', async function () {
-        var singleEntry = new Single('https://myanimelist.net/anime/13371337');
+        var singleEntry = new Single(global.testData.apiTest.nonExistingMAL.url);
         await singleEntry.update();
       })
       it('No Authorization', async function () {
         global.api.token = '';
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
         await singleEntry.update();
         setGlobals();
       })
       it('Server Offline', async function () {
         global.api.status = 504;
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
         return singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.ServerOffline}))

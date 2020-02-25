@@ -70,6 +70,16 @@ export abstract class SingleAbstract {
     return this._update();
   };
 
+  protected _onList: boolean = false;
+  public isOnList() {
+    return this._onList;
+  }
+
+  abstract _getDisplayUrl(): string;
+  getDisplayUrl(): string{
+    return this._getDisplayUrl();
+  }
+
   protected errorObj(code: defintions.errorCode, message): defintions.error {
     return {
       code,

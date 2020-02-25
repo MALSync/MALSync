@@ -10,6 +10,10 @@ export class Single extends SingleAbstract {
     volume: 4,
   }
 
+  private animeInfo: any;
+
+  private displayUrl: string = '';
+
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
@@ -56,6 +60,10 @@ export class Single extends SingleAbstract {
     this.data.volume = volume;
   }
 
+  _getDisplayUrl() {
+    return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
+  }
+
   _update() {
     var selectId = this.ids.mal;
     var selectQuery = 'idMal';
@@ -99,6 +107,28 @@ export class Single extends SingleAbstract {
 
     return this.apiCall(query, variables).then(json => {
       con.log('[SINGLE]','Data',json);
+
+      this.animeInfo = json.data.Media;
+
+      this.ids.ani = this.animeInfo.id;
+      if(isNaN(this.ids.mal) && this.animeInfo.idMal){
+        this.ids.mal = this.animeInfo.idMal;
+      }
+
+      this.displayUrl = this.animeInfo.siteUrl;
+      this._onList = true;
+      if(this.animeInfo.mediaListEntry === null){
+        this._onList = false;
+        this.animeInfo.mediaListEntry = {
+          notes: "",
+          progress: 0,
+          progressVolumes: 0,
+          repeat: 0,
+          score: 0,
+          status: 'PLANNING'
+        }
+      }
+
     });
   }
 
