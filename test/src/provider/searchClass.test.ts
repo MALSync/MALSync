@@ -52,6 +52,8 @@ describe('Firebase', function () {
   before(function () {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -157,6 +159,8 @@ describe('Mal Search', function () {
   before(function () {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -216,6 +220,8 @@ describe('Page Search', function () {
   before(function () {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -299,6 +305,8 @@ describe('Full Search', function () {
   before(function () {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
         xhr: async function(post, conf, data) {

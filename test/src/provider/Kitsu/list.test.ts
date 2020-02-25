@@ -4,6 +4,8 @@ import {generalListTests} from './../generalTests.exclude';
 
 global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
+global.con.error = function() {};
+global.con.info = function() {};
 
 var responses = {
   user: {

@@ -14,7 +14,6 @@ install:
 script:
   - npm run build
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh ./package/localization/deploy.sh; fi
-  - if ! [[ $TRAVIS_TAG ]]; then npm run test:ts; fi
 before_deploy:
   - npm run package
   - npm run package:chrome

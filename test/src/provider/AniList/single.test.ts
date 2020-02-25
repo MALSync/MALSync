@@ -5,11 +5,13 @@ import * as def from './../../../../src/_provider/defintions';
 
 import * as request from 'request';
 
-global.con = require('./../../../../src/utils/console');
-global.con.log = function() {};
-
 setGlobals()
 function setGlobals() {
+  global.con = require('./../../../../src/utils/console');
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
+
   global.api = {
     token: process.env.ANILIST_API_KEY,
     settings: {
