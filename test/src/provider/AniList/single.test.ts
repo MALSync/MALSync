@@ -11,12 +11,14 @@ global.con.log = function() {};
 setGlobals()
 function setGlobals() {
   global.api = {
+    token: process.env.ANILIST_API_KEY,
     settings: {
       get: function(key) {
-        if('anilistToken') return process.env.ANILIST_API_KEY;
+        if('anilistToken') return global.api.token;
         throw 'key not defined';
       }
     },
+    status: 200,
     request: {
       xhr: async function(post, conf, data) {
         return new Promise(function(resolve, reject) {
@@ -27,7 +29,8 @@ function setGlobals() {
           }
           request.post(options, (error, response, body) => {
             resolve({
-              responseText: body
+              responseText: body,
+              status: global.api.status
             })
           });
         });
@@ -65,6 +68,10 @@ function setGlobals() {
         type: 'anime',
       }
     ],
+    apiTest: {
+      defaultUrl: 'https://anilist.co/anime/21/One-Piece/',
+      noMalEntry: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
+    }
   }
 }
 
@@ -160,5 +167,38 @@ describe('AniList single', function () {
     });
 
 
+  });
+
+  describe('API', function () {
+    describe('Update', function () {
+      it('Main Url', async function () {
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        await singleEntry.update();
+      })
+      it('No Mal Entry', async function () {
+        var singleEntry = new Single(global.testData.apiTest.noMalEntry);
+        await singleEntry.update();
+      })
+      it('MAL Url', async function () {
+        var singleEntry = new Single('https://myanimelist.net/anime/21/One_Piece');
+        await singleEntry.update();
+      })
+      it('Non existing MAL url', async function () {
+        var singleEntry = new Single('https://myanimelist.net/anime/13371337');
+        await singleEntry.update();
+      })
+      it('No Authorization', async function () {
+        global.api.token = '';
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        await singleEntry.update();
+        setGlobals();
+      })
+      it('Server Offline', async function () {
+        global.api.status = 504;
+        var singleEntry = new Single(global.testData.apiTest.defaultUrl);
+        await singleEntry.update();
+        setGlobals();
+      })
+    });
   });
 });
