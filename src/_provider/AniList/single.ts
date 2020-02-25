@@ -105,41 +105,52 @@ export class Single extends SingleAbstract {
       type: this.type!.toUpperCase()
     };
 
-    return this.apiCall(query, variables).then(json => {
-      con.log('[SINGLE]','Data',json);
+    this._authenticated = true;
 
-      this.animeInfo = json.data.Media;
-
-      this.ids.ani = this.animeInfo.id;
-      if(isNaN(this.ids.mal) && this.animeInfo.idMal){
-        this.ids.mal = this.animeInfo.idMal;
-      }
-
-      this.displayUrl = this.animeInfo.siteUrl;
-      this._onList = true;
-      if(this.animeInfo.mediaListEntry === null){
-        this._onList = false;
-        this.animeInfo.mediaListEntry = {
-          notes: "",
-          progress: 0,
-          progressVolumes: 0,
-          repeat: 0,
-          score: 0,
-          status: 'PLANNING'
+    return this.apiCall(query, variables)
+      .catch(e => {
+        if(e.code === errorCode.NotAutenticated){
+          this._authenticated = false;
+          return this.apiCall(query, variables, false);
         }
-      }
+        throw e;
+      }).then(json => {
+        con.log('[SINGLE]','Data',json);
 
-    });
+        this.animeInfo = json.data.Media;
+
+        this.ids.ani = this.animeInfo.id;
+        if(isNaN(this.ids.mal) && this.animeInfo.idMal){
+          this.ids.mal = this.animeInfo.idMal;
+        }
+
+        this.displayUrl = this.animeInfo.siteUrl;
+        this._onList = true;
+        if(this.animeInfo.mediaListEntry === null){
+          this._onList = false;
+          this.animeInfo.mediaListEntry = {
+            notes: "",
+            progress: 0,
+            progressVolumes: 0,
+            repeat: 0,
+            score: 0,
+            status: 'PLANNING'
+          }
+        }
+
+        if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+      });
   }
 
-  protected apiCall(query, variables) {
+  protected apiCall(query, variables, authentication = true) {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    }
+    if(authentication) headers['Authorization'] = 'Bearer ' + api.settings.get('anilistToken')
     return api.request.xhr('POST', {
       url: 'https://graphql.anilist.co',
-      headers: {
-        'Authorization': 'Bearer ' + api.settings.get('anilistToken'),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+      headers,
       data: JSON.stringify({
         query,
         variables

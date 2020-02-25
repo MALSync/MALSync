@@ -75,6 +75,11 @@ export abstract class SingleAbstract {
     return this._onList;
   }
 
+  protected _authenticated: boolean = false;
+  public isAuthenticated() {
+    return this._authenticated;
+  }
+
   abstract _getDisplayUrl(): string;
   getDisplayUrl(): string{
     return this._getDisplayUrl();

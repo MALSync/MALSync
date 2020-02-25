@@ -193,35 +193,44 @@ describe('AniList single', function () {
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.defaultUrl.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
+        expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('Not on list', async function () {
         var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.notOnListUrl.displayUrl);
         expect(singleEntry.isOnList()).equal(false);
+        expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('No Mal Entry', async function () {
         var singleEntry = new Single(global.testData.apiTest.noMalEntry.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.noMalEntry.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
+        expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('MAL Url', async function () {
         var singleEntry = new Single(global.testData.apiTest.malUrl.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.malUrl.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
+        expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('Non existing MAL url', async function () {
         var singleEntry = new Single(global.testData.apiTest.nonExistingMAL.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.EntryNotFound}));
+        expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('No Authorization', async function () {
         global.api.token = '';
         var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
-        await singleEntry.update();
+        await singleEntry.update()
+          .then(() => {throw 'was not supposed to succeed';})
+          .catch((e) => expect(e).to.include({code: def.errorCode.NotAutenticated}))
+        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.defaultUrl.displayUrl);
+        expect(singleEntry.isAuthenticated()).equal(false);
         setGlobals();
       })
       it('Server Offline', async function () {
