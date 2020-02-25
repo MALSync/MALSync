@@ -3,12 +3,36 @@ import { Single } from './../../../../src/_provider/AniList/single';
 import * as utils from './../../../../src/utils/general';
 import * as def from './../../../../src/_provider/defintions';
 
+import * as request from 'request';
+
 global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
 
 setGlobals()
 function setGlobals() {
   global.api = {
+    settings: {
+      get: function(key) {
+        if('anilistToken') return process.env.ANILIST_API_KEY;
+        throw 'key not defined';
+      }
+    },
+    request: {
+      xhr: async function(post, conf, data) {
+        return new Promise(function(resolve, reject) {
+          var options = {
+            url: conf.url,
+            headers: conf.headers,
+            body: conf.data
+          }
+          request.post(options, (error, response, body) => {
+            resolve({
+              responseText: body
+            })
+          });
+        });
+      }
+    },
   }
 
   global.utils = utils;
@@ -57,7 +81,6 @@ describe('AniList single', function () {
             var single;
             expect(() => single = new Single(el.url)).not.to.throw();
             expect(single.getType()).equal(el.type);
-            single.update();
           }else{
             expect(() => new Single(el.url)).to.throw().to.include({code: def.errorCode.UrlNotSuported});
           }

@@ -97,6 +97,27 @@ export class Single extends SingleAbstract {
       type: this.type!.toUpperCase()
     };
 
-    return Promise.resolve();
+    return this.apiCall(query, variables).then(json => {
+      con.log('[SINGLE]','Data',json);
+    });
+  }
+
+  protected apiCall(query, variables) {
+    return api.request.xhr('POST', {
+      url: 'https://graphql.anilist.co',
+      headers: {
+        'Authorization': 'Bearer ' + api.settings.get('anilistToken'),
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      data: JSON.stringify({
+        query,
+        variables
+      })
+    }).then((response) => {
+      //TODO: error handling
+      var res = JSON.parse(response.responseText);
+      return res;
+    })
   }
 }
