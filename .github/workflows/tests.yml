@@ -1,0 +1,16 @@
+name: Tests
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Tests
+      run: |
+        npm ci
+        npm run test:ts
+      env:
+        ANILIST_API_KEY: ${{ secrets.ANILIST_API_KEY }}
