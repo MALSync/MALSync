@@ -30,6 +30,8 @@ export enum score {
 
 export enum errorCode {
   UrlNotSuported = 901,
+  NotAutenticated = 902,
+  ServerOffline = 903,
 }
 
 export interface error {

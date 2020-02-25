@@ -115,6 +115,10 @@ export class Single extends SingleAbstract {
         variables
       })
     }).then((response) => {
+      if(response.status > 499 && response.status < 600) {
+        throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
+      }
+
       //TODO: error handling
       var res = JSON.parse(response.responseText);
       return res;

@@ -196,7 +196,9 @@ describe('AniList single', function () {
       it('Server Offline', async function () {
         global.api.status = 504;
         var singleEntry = new Single(global.testData.apiTest.defaultUrl);
-        await singleEntry.update();
+        return singleEntry.update()
+          .then(() => {throw 'was not supposed to succeed';})
+          .catch((e) => expect(e).to.include({code: def.errorCode.ServerOffline}))
         setGlobals();
       })
     });
