@@ -32,6 +32,7 @@ export enum errorCode {
   UrlNotSuported = 901,
   NotAutenticated = 902,
   ServerOffline = 903,
+  EntryNotFound = 904,
 }
 
 export interface error {

@@ -214,7 +214,9 @@ describe('AniList single', function () {
       })
       it('Non existing MAL url', async function () {
         var singleEntry = new Single(global.testData.apiTest.nonExistingMAL.url);
-        await singleEntry.update();
+        await singleEntry.update()
+          .then(() => {throw 'was not supposed to succeed';})
+          .catch((e) => expect(e).to.include({code: def.errorCode.EntryNotFound}));
       })
       it('No Authorization', async function () {
         global.api.token = '';

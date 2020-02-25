@@ -149,8 +149,23 @@ export class Single extends SingleAbstract {
         throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
       }
 
-      //TODO: error handling
       var res = JSON.parse(response.responseText);
+
+      if(typeof res.errors != 'undefined' && res.errors.length){
+        con.error('[SINGLE]','Error',res.errors);
+        var error = res.errors[0];
+        switch(error.status) {
+          case 400:
+            throw this.errorObj(errorCode.NotAutenticated, error.message);
+            break;
+          case 404:
+            throw this.errorObj(errorCode.EntryNotFound, error.message);
+            break;
+          default:
+            throw this.errorObj(error.status, error.message);
+        }
+      }
+
       return res;
     })
   }
