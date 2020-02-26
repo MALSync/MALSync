@@ -353,7 +353,7 @@ AniSeachManga: {
   },
   Annict: {
     name: 'Annict',
-    type: 'manga',
+    type: 'anime',
     domain: 'annict.com',
     searchUrl: (titleEncoded) => {return 'https://annict.com/search?q='+titleEncoded}
   },
