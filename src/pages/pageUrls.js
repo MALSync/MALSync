@@ -342,7 +342,7 @@ module.exports = {
   },
   mangalivre: {
     match: [
-      '*://mangalivre.com/*'
+      '*://mangalivre.net/*'
     ]
   },
   tmofans: {

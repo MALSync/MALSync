@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const mangalivre: pageInterface = {
   name: "mangalivre",
-  domain: "https://mangalivre.com",
+  domain: "https://mangalivre.net",
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[6] !== undefined && url.split("/")[6].length > 0) {
@@ -23,6 +23,14 @@ export const mangalivre: pageInterface = {
   },
   getEpisode: function(url){
     return url.split("/")[6].replace(/\D+/g, "");
+  },
+  nextEpUrl: function(url){
+    let href = utils.absoluteLink(j.$("ul.chapter-list > li.selected").prev("li").find("a").attr("href"),mangalivre.domain);
+    if(href) {
+      return href;
+    } else {
+      return undefined;
+    }
   }
 },
 overview:{
