@@ -64,6 +64,12 @@ export class Single extends SingleAbstract {
     return this.animeInfo.title.userPreferred;
   }
 
+  _getTotalEpisodes() {
+    var eps = this.animeInfo.episodes? this.animeInfo.episodes: this.animeInfo.chapters;
+    if(eps == null) return 0;
+    return eps;
+  }
+
   _getDisplayUrl() {
     return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
   }

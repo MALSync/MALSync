@@ -75,6 +75,11 @@ export abstract class SingleAbstract {
     return this._getTitle();
   }
 
+  abstract _getTotalEpisodes(): number;
+  public getTotalEpisodes() {
+    return this._getTotalEpisodes();
+  }
+
   protected _onList: boolean = false;
   public isOnList() {
     return this._onList;
