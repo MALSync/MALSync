@@ -70,6 +70,12 @@ export class Single extends SingleAbstract {
     return eps;
   }
 
+  _getTotalVolumes() {
+    var vol = this.animeInfo.volumes;
+    if(!vol) return 0;
+    return vol;
+  }
+
   _getDisplayUrl() {
     return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
   }
