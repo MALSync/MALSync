@@ -357,4 +357,10 @@ AniSeachManga: {
     domain: 'annict.com',
     searchUrl: (titleEncoded) => {return 'https://annict.com/search?q='+titleEncoded}
   },
+  Trakt: {
+    name: 'Trakt',
+    type: 'anime',
+    domain: 'trakt.tv',
+    searchUrl: (titleEncoded) => {return 'https://trakt.tv/search?query='+titleEncoded}
+  },
 }
