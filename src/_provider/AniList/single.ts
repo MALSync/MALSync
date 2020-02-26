@@ -60,6 +60,10 @@ export class Single extends SingleAbstract {
     this.data.volume = volume;
   }
 
+  _getTitle() {
+    return this.animeInfo.title.userPreferred;
+  }
+
   _getDisplayUrl() {
     return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
   }
@@ -137,8 +141,6 @@ export class Single extends SingleAbstract {
             status: 'PLANNING'
           }
         }
-
-        this._title = this.animeInfo.title.userPreferred;
 
         if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });

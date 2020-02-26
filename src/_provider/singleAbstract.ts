@@ -70,9 +70,9 @@ export abstract class SingleAbstract {
     return this._update();
   };
 
-  protected _title: string = '';
+  abstract _getTitle(): string;
   public getTitle() {
-    return this._title;
+    return this._getTitle();
   }
 
   protected _onList: boolean = false;
