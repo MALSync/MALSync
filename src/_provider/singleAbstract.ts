@@ -70,6 +70,11 @@ export abstract class SingleAbstract {
     return this._update();
   };
 
+  protected _title: string = '';
+  public getTitle() {
+    return this._title;
+  }
+
   protected _onList: boolean = false;
   public isOnList() {
     return this._onList;

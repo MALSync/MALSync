@@ -138,6 +138,8 @@ export class Single extends SingleAbstract {
           }
         }
 
+        this._title = this.animeInfo.title.userPreferred;
+
         if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });
   }
