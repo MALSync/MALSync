@@ -228,55 +228,60 @@ describe('AniList single', function () {
   describe('API', function () {
     describe('Update', function () {
       it('Main Url', async function () {
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update();
-        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.defaultUrl.displayUrl);
+        expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(global.testData.apiTest.defaultUrl.title);
-        expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.defaultUrl.eps);
-        expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.defaultUrl.vol);
-        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.defaultUrl.malUrl);
-        expect(singleEntry.getImage()).equal(global.testData.apiTest.defaultUrl.image);
-        expect(singleEntry.getRating()).equal(global.testData.apiTest.defaultUrl.rating);
-        expect(singleEntry.getCacheKey()).equal(global.testData.apiTest.defaultUrl.cacheKey);
+        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
+        expect(singleEntry.getTotalVolumes()).equal(tData.vol);
+        expect(singleEntry.getMalUrl()).equal(tData.malUrl);
+        expect(singleEntry.getImage()).equal(tData.image);
+        expect(singleEntry.getRating()).equal(tData.rating);
+        expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('Not on list', async function () {
-        var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
+        var tData = global.testData.apiTest.notOnListUrl;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update();
-        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.notOnListUrl.displayUrl);
+        expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(false);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(global.testData.apiTest.notOnListUrl.title);
-        expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.notOnListUrl.eps);
-        expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.notOnListUrl.vol);
-        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.notOnListUrl.malUrl);
+        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
+        expect(singleEntry.getTotalVolumes()).equal(tData.vol);
+        expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       })
       it('No Mal Entry', async function () {
-        var singleEntry = new Single(global.testData.apiTest.noMalEntry.url);
+        var tData = global.testData.apiTest.noMalEntry;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update();
-        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.noMalEntry.displayUrl);
+        expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(global.testData.apiTest.noMalEntry.title);
-        expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.noMalEntry.eps);
-        expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.noMalEntry.vol);
+        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
+        expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(null);
-        expect(singleEntry.getCacheKey()).equal(global.testData.apiTest.noMalEntry.cacheKey);
+        expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('MAL Url', async function () {
-        var singleEntry = new Single(global.testData.apiTest.malUrl.url);
+        var tData = global.testData.apiTest.malUrl;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update();
-        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.malUrl.displayUrl);
+        expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(global.testData.apiTest.malUrl.title);
-        expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.malUrl.eps);
-        expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.malUrl.vol);
-        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.malUrl.malUrl);
+        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
+        expect(singleEntry.getTotalVolumes()).equal(tData.vol);
+        expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       })
       it('Non existing MAL url', async function () {
-        var singleEntry = new Single(global.testData.apiTest.nonExistingMAL.url);
+        var tData = global.testData.apiTest.nonExistingMAL;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.EntryNotFound}));
@@ -284,17 +289,19 @@ describe('AniList single', function () {
       })
       it('No Authorization', async function () {
         global.api.token = '';
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.NotAutenticated}))
-        expect(singleEntry.getDisplayUrl()).equal(global.testData.apiTest.defaultUrl.displayUrl);
+        expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isAuthenticated()).equal(false);
         setGlobals();
       })
       it('Server Offline', async function () {
         global.api.status = 504;
-        var singleEntry = new Single(global.testData.apiTest.defaultUrl.url);
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
         return singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.ServerOffline}))
