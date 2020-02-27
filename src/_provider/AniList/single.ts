@@ -184,6 +184,42 @@ export class Single extends SingleAbstract {
       });
   }
 
+  _sync() {
+    var query = `
+      mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
+        SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
+          id
+          status
+          progress
+        }
+      }
+    `;
+    ​
+    var variables = {
+      "mediaId": this.ids.ani,
+      "status": this.animeInfo.mediaListEntry.status,
+      "progress": this.animeInfo.mediaListEntry.progress,
+      "scoreRaw": this.animeInfo.mediaListEntry.score,
+      "notes": this.animeInfo.mediaListEntry.notes
+    };
+
+    if(this.type == 'manga'){
+      query = `
+        mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
+          SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {
+            id
+            status
+            progress
+            progressVolumes
+          }
+        }
+      `;
+      variables['volumes'] = this.animeInfo.mediaListEntry.progressVolumes;
+    }
+
+    return apiCall(query, variables);
+  }
+
   protected apiCall(query, variables, authentication = true) {
     var headers = {
       'Content-Type': 'application/json',

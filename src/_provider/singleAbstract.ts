@@ -82,6 +82,12 @@ export abstract class SingleAbstract {
     return this._update();
   };
 
+  abstract _sync(): Promise<void>;
+  public sync(): Promise<void> {
+    con.log('[SINGLE]','Sync', this.ids);
+    return this._sync();
+  };
+
   abstract _getTitle(): string;
   public getTitle() {
     return this._getTitle();
