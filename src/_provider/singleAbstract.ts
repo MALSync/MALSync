@@ -100,6 +100,13 @@ export abstract class SingleAbstract {
     return this._getDisplayUrl();
   }
 
+  public getMalUrl(): string|null{
+    if(!isNaN(this.ids.mal)){
+      return 'https://myanimelist.net/'+this.getType()+'/'+this.ids.mal+'/'+encodeURIComponent(this.getTitle().replace(/\//,'_'));
+    }
+    return null;
+  }
+
   protected errorObj(code: defintions.errorCode, message): defintions.error {
     return {
       code,

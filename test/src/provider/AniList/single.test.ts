@@ -74,6 +74,7 @@ function setGlobals() {
       defaultUrl: {
         url: 'https://anilist.co/anime/21/One-Piece/',
         displayUrl: 'https://anilist.co/anime/21',
+        malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         title: 'One Piece',
         eps: 0,
         vol: 0,
@@ -81,6 +82,7 @@ function setGlobals() {
       notOnListUrl: {
         url: 'https://anilist.co/anime/10083/Shiki-Specials/',
         displayUrl: 'https://anilist.co/anime/10083',
+        malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
         title: "Shiki Specials",
         eps: 2,
         vol: 0,
@@ -94,6 +96,7 @@ function setGlobals() {
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
+        malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         displayUrl: 'https://anilist.co/anime/21',
         title: 'One Piece',
         eps: 0,
@@ -211,6 +214,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTitle()).equal(global.testData.apiTest.defaultUrl.title);
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.defaultUrl.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.defaultUrl.vol);
+        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.defaultUrl.malUrl);
       })
       it('Not on list', async function () {
         var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
@@ -221,6 +225,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTitle()).equal(global.testData.apiTest.notOnListUrl.title);
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.notOnListUrl.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.notOnListUrl.vol);
+        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.notOnListUrl.malUrl);
       })
       it('No Mal Entry', async function () {
         var singleEntry = new Single(global.testData.apiTest.noMalEntry.url);
@@ -231,6 +236,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTitle()).equal(global.testData.apiTest.noMalEntry.title);
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.noMalEntry.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.noMalEntry.vol);
+        expect(singleEntry.getMalUrl()).equal(null);
       })
       it('MAL Url', async function () {
         var singleEntry = new Single(global.testData.apiTest.malUrl.url);
@@ -241,6 +247,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTitle()).equal(global.testData.apiTest.malUrl.title);
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.malUrl.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.malUrl.vol);
+        expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.malUrl.malUrl);
       })
       it('Non existing MAL url', async function () {
         var singleEntry = new Single(global.testData.apiTest.nonExistingMAL.url);
