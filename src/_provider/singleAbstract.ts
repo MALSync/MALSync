@@ -106,7 +106,7 @@ export abstract class SingleAbstract {
   }
 
   abstract _getDisplayUrl(): string;
-  getDisplayUrl(): string{
+  public getDisplayUrl(): string{
     return this._getDisplayUrl();
   }
 
@@ -115,6 +115,18 @@ export abstract class SingleAbstract {
       return 'https://myanimelist.net/'+this.getType()+'/'+this.ids.mal+'/'+encodeURIComponent(this.getTitle().replace(/\//,'_'));
     }
     return null;
+  }
+
+  abstract _getImage(): Promise<string>;
+  public getImage(): Promise<string>{
+    return this._getImage();
+  }
+
+  abstract _getRating(): Promise<string>;
+  public getRating(): Promise<string>{
+    var rating = this._getRating();
+    if(!rating) return 'N/A';
+    return rating;
   }
 
   protected errorObj(code: defintions.errorCode, message): defintions.error {

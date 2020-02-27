@@ -94,6 +94,14 @@ export class Single extends SingleAbstract {
     return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
   }
 
+  _getImage() {
+    return this.animeInfo.coverImage.large;
+  }
+
+  _getRating() {
+    return this.animeInfo.averageScore;
+  }
+
   _update() {
     var selectId = this.ids.mal;
     var selectQuery = 'idMal';

@@ -80,6 +80,8 @@ function setGlobals() {
         title: 'One Piece',
         eps: 0,
         vol: 0,
+        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
+        rating: 83,
       },
       notOnListUrl: {
         url: 'https://anilist.co/anime/10083/Shiki-Specials/',
@@ -233,6 +235,8 @@ describe('AniList single', function () {
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.defaultUrl.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.defaultUrl.vol);
         expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.defaultUrl.malUrl);
+        expect(singleEntry.getImage()).equal(global.testData.apiTest.defaultUrl.image);
+        expect(singleEntry.getRating()).equal(global.testData.apiTest.defaultUrl.rating);
       })
       it('Not on list', async function () {
         var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
