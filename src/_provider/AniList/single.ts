@@ -3,12 +3,6 @@ import * as helper from "./helper";
 import {errorCode} from "./../defintions";
 
 export class Single extends SingleAbstract {
-  protected data = {
-    status: 4,
-    score: 4,
-    episode: 4,
-    volume: 4,
-  }
 
   private animeInfo: any;
 

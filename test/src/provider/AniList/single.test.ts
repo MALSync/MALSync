@@ -302,11 +302,39 @@ describe('AniList single', function () {
         global.api.status = 504;
         var tData = global.testData.apiTest.defaultUrl;
         var singleEntry = new Single(tData.url);
-        return singleEntry.update()
+        await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
           .catch((e) => expect(e).to.include({code: def.errorCode.ServerOffline}))
         setGlobals();
       })
+    });
+
+    describe('sync', function () {
+      it('Persistence', async function () {
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
+        await singleEntry.update();
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(2)
+        await singleEntry.sync();
+
+        singleEntry
+          .setScore(def.score.R6)
+          .setStatus(def.status.Completed)
+          .setEpisode(3)
+
+        expect(singleEntry.getScore()).equal(def.score.R6);
+        expect(singleEntry.getStatus()).equal(def.status.Completed);
+        expect(singleEntry.getEpisode()).equal(3);
+
+        await singleEntry.update();
+        expect(singleEntry.getScore()).equal(def.score.R5);
+        expect(singleEntry.getStatus()).equal(def.status.Watching);
+        expect(singleEntry.getEpisode()).equal(2);
+      });
+
     });
   });
 });
