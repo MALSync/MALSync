@@ -27,8 +27,9 @@ export abstract class SingleAbstract {
   public abstract getCacheKey();
 
   abstract _setStatus(status: defintions.status): void;
-  public setStatus(status: defintions.status): void {
-    return this._setStatus(status);
+  public setStatus(status: defintions.status): SingleAbstract {
+    this._setStatus(status);
+    return this;
   };
 
   abstract _getStatus(): defintions.status;
@@ -37,8 +38,9 @@ export abstract class SingleAbstract {
   };
 
   abstract _setScore(score: defintions.score): void;
-  public setScore(score: defintions.score): void {
-    return this._setScore(score);
+  public setScore(score: defintions.score): SingleAbstract {
+    this._setScore(score);
+    return this;
   };
 
   abstract _getScore(): defintions.score;
@@ -47,8 +49,9 @@ export abstract class SingleAbstract {
   };
 
   abstract _setEpisode(episode: number): void;
-  public setEpisode(episode: number): void {
-    return this._setEpisode(episode);
+  public setEpisode(episode: number): SingleAbstract {
+    this._setEpisode(episode);
+    return this;
   };
 
   abstract _getEpisode(): number;
@@ -57,8 +60,9 @@ export abstract class SingleAbstract {
   };
 
   abstract _setVolume(volume: number): void;
-  public setVolume(volume: number): void {
-    return this._setVolume(volume);
+  public setVolume(volume: number): SingleAbstract {
+    this._setVolume(volume);
+    return this;
   };
 
   abstract _getVolume(): number;
@@ -67,8 +71,9 @@ export abstract class SingleAbstract {
   };
 
   abstract _setStreamingUrl(streamingUrl: string): void;
-  public setStreamingUrl(streamingUrl: string): void {
-    return this._setStreamingUrl(streamingUrl);
+  public setStreamingUrl(streamingUrl: string): SingleAbstract {
+    this._setStreamingUrl(streamingUrl);
+    return this;
   };
 
   abstract _getStreamingUrl(): string;

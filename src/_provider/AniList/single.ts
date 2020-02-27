@@ -217,7 +217,7 @@ export class Single extends SingleAbstract {
       variables['volumes'] = this.animeInfo.mediaListEntry.progressVolumes;
     }
 
-    return apiCall(query, variables);
+    return this.apiCall(query, variables);
   }
 
   protected apiCall(query, variables, authentication = true) {
