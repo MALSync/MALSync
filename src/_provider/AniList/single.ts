@@ -28,6 +28,10 @@ export class Single extends SingleAbstract {
     throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
   }
 
+  getCacheKey(){
+    return helper.getCacheKey(this.ids.mal, this.ids.ani);
+  }
+
   _getStatus() {
     return this.data.status;
   }

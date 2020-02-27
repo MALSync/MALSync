@@ -82,6 +82,7 @@ function setGlobals() {
         vol: 0,
         image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
         rating: 83,
+        cacheKey: 21,
       },
       notOnListUrl: {
         url: 'https://anilist.co/anime/10083/Shiki-Specials/',
@@ -97,6 +98,7 @@ function setGlobals() {
         title: 'Kagami no Kuni no Iris: SCP Foundation',
         eps: 0,
         vol: 0,
+        cacheKey: 'anilist:115067',
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
@@ -237,6 +239,7 @@ describe('AniList single', function () {
         expect(singleEntry.getMalUrl()).equal(global.testData.apiTest.defaultUrl.malUrl);
         expect(singleEntry.getImage()).equal(global.testData.apiTest.defaultUrl.image);
         expect(singleEntry.getRating()).equal(global.testData.apiTest.defaultUrl.rating);
+        expect(singleEntry.getCacheKey()).equal(global.testData.apiTest.defaultUrl.cacheKey);
       })
       it('Not on list', async function () {
         var singleEntry = new Single(global.testData.apiTest.notOnListUrl.url);
@@ -259,6 +262,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTotalEpisodes()).equal(global.testData.apiTest.noMalEntry.eps);
         expect(singleEntry.getTotalVolumes()).equal(global.testData.apiTest.noMalEntry.vol);
         expect(singleEntry.getMalUrl()).equal(null);
+        expect(singleEntry.getCacheKey()).equal(global.testData.apiTest.noMalEntry.cacheKey);
       })
       it('MAL Url', async function () {
         var singleEntry = new Single(global.testData.apiTest.malUrl.url);

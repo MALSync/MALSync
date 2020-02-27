@@ -24,6 +24,8 @@ export abstract class SingleAbstract {
     return this.type
   }
 
+  public abstract getCacheKey();
+
   abstract _setStatus(status: defintions.status): void;
   public setStatus(status: defintions.status): void {
     return this._setStatus(status);
@@ -117,13 +119,13 @@ export abstract class SingleAbstract {
     return null;
   }
 
-  abstract _getImage(): Promise<string>;
-  public getImage(): Promise<string>{
+  abstract _getImage(): Promise<string>|string;
+  public getImage(): Promise<string>|string{
     return this._getImage();
   }
 
-  abstract _getRating(): Promise<string>;
-  public getRating(): Promise<string>{
+  abstract _getRating(): Promise<string>|string;
+  public getRating(): Promise<string>|string{
     var rating = this._getRating();
     if(!rating) return 'N/A';
     return rating;
