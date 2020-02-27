@@ -32,8 +32,9 @@ export abstract class SingleAbstract {
     return this;
   };
 
-  abstract _getStatus(): defintions.status;
+  abstract _getStatus(): defintions.status|number;
   public getStatus(): defintions.status {
+    if(!this.isOnList()) return defintions.status.NoState;
     return this._getStatus();
   };
 

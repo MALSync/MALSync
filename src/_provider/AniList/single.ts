@@ -27,35 +27,38 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    return this.data.status;
+    return parseInt(helper.statusTranslate[this.animeInfo.mediaListEntry.status]);
   }
 
   _setStatus(status) {
-    this.data.status = status;
+    this.animeInfo.mediaListEntry.status = helper.statusTranslate[status];
   }
 
   _getScore() {
-    return this.data.score;
+    if(this.animeInfo.mediaListEntry.score === 0) return 0;
+    var score = Math.round(this.animeInfo.mediaListEntry.score / 10);
+    if(score === 0) return 1;
+    return score;
   }
 
   _setScore(score) {
-    this.data.score = score;
+    this.animeInfo.mediaListEntry.score = score * 10;
   }
 
   _getEpisode() {
-    return this.data.episode;
+    return this.animeInfo.mediaListEntry.progress;
   }
 
   _setEpisode(episode) {
-    this.data.episode = episode;
+    this.animeInfo.mediaListEntry.progress = parseInt(episode+'');
   }
 
   _getVolume() {
-    return this.data.volume;
+    return this.animeInfo.mediaListEntry.progressVolumes;
   }
 
   _setVolume(volume) {
-    this.data.volume = volume;
+    this.animeInfo.mediaListEntry.progressVolumes = volume;
   }
 
   _getStreamingUrl() {

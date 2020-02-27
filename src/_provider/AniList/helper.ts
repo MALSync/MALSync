@@ -1,3 +1,5 @@
+import {status} from "./../defintions";
+
 export function translateList(aniStatus, malStatus:null|number = null){
   var list = {
     'CURRENT': 1,
@@ -13,6 +15,15 @@ export function translateList(aniStatus, malStatus:null|number = null){
   return list[aniStatus];
 }
 
+export enum statusTranslate {
+  'CURRENT'= status.Watching,
+  'PLANNING'= status.PlanToWatch,
+  'COMPLETED'= status.Completed,
+  'DROPPED'= status.Dropped,
+  'PAUSED'= status.Onhold,
+  'REPEATING'= status.Rewatching,
+}
+
 export function aniListToMal(anilistId: number, type: "anime"|"manga"){
   var query = `
   query ($id: Int, $type: MediaType) {
@@ -22,7 +33,7 @@ export function aniListToMal(anilistId: number, type: "anime"|"manga"){
     }
   }
   `;
-  
+
   var variables = {
     id: anilistId,
     type: type.toUpperCase()

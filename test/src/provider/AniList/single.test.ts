@@ -47,14 +47,14 @@ function setGlobals() {
   global.testData = {
     urlTest: [
       {
-        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
-        error: false,
-        type: 'anime',
-      },
-      {
         url: 'https://anilist.co/manga/78397/No-Game-No-Life/',
         error: false,
         type: 'manga',
+      },
+      {
+        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
+        error: false,
+        type: 'anime',
       },
       {
         url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
@@ -144,13 +144,11 @@ describe('AniList single', function () {
 
     describe('Status', function () {
       [
-        def.status.NoState,
         def.status.Watching,
         def.status.Completed,
         def.status.Onhold,
         def.status.Dropped,
         def.status.PlanToWatch,
-        def.status.All,
         def.status.Rewatching
       ].forEach((el) => {
         it(def.status[el], function () {
