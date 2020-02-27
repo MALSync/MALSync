@@ -131,6 +131,22 @@ export abstract class SingleAbstract {
     return rating;
   }
 
+  public setResumeWaching(url:string, ep:number){
+    return utils.setResumeWaching(url, ep, this.type, this.getCacheKey());
+  }
+
+  public getResumeWaching():Promise<{url:string, ep:number}>{
+    return utils.getResumeWaching(this.type, this.getCacheKey())
+  }
+
+  public setContinueWaching(url:string, ep:number){
+    return utils.setContinueWaching(url, ep,this.type, this.getCacheKey())
+  }
+
+  public getContinueWaching():Promise<{url:string, ep:number}>{
+    return utils.getContinueWaching(this.type, this.getCacheKey())
+  }
+
   protected errorObj(code: defintions.errorCode, message): defintions.error {
     return {
       code,
