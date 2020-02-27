@@ -60,6 +60,20 @@ export class Single extends SingleAbstract {
     this.data.volume = volume;
   }
 
+  _getStreamingUrl() {
+    var tags = this.animeInfo.mediaListEntry.notes;
+    return utils.getUrlFromTags(tags);
+  }
+
+  _setStreamingUrl(url) {
+    var tags = this.animeInfo.mediaListEntry.notes;
+    if(tags == null || tags == 'null') tags = '';
+
+    tags = utils.setUrlInTags(url, tags);
+
+    this.animeInfo.mediaListEntry.notes = tags;
+  }
+
   _getTitle() {
     return this.animeInfo.title.userPreferred;
   }

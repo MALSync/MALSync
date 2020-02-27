@@ -64,6 +64,16 @@ export abstract class SingleAbstract {
     return this._getVolume();
   };
 
+  abstract _setStreamingUrl(streamingUrl: string): void;
+  public setStreamingUrl(streamingUrl: string): void {
+    return this._setStreamingUrl(streamingUrl);
+  };
+
+  abstract _getStreamingUrl(): string;
+  public getStreamingUrl(): string {
+    return this._getStreamingUrl();
+  };
+
   abstract _update(): Promise<void>;
   public update(): Promise<void> {
     con.log('[SINGLE]','Update info', this.ids);

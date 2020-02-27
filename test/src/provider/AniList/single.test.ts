@@ -40,6 +40,8 @@ function setGlobals() {
     },
   }
 
+  global.btoa = (input) => input;
+
   global.utils = utils;
 
   global.testData = {
@@ -132,6 +134,9 @@ describe('AniList single', function () {
 
   describe('Dry', function () {
     var singleEntry = new Single(global.testData.urlTest[0].url);
+    before(async function () {
+      await singleEntry.update();
+    })
 
     describe('Status', function () {
       [
@@ -196,6 +201,19 @@ describe('AniList single', function () {
         it(el+'', function () {
           singleEntry.setVolume(el);
           expect(singleEntry.getVolume()).equal(el);
+        })
+      })
+    });
+
+    describe('Streaming Url', function () {
+      [
+        'https://myanimelist.net/anime/13371337',
+        'https://myanimelist.net/anime/13',
+        'https://myanimelist.net/manga/1',
+      ].forEach((el) => {
+        it(el+'', function () {
+          singleEntry.setStreamingUrl(el);
+          expect(singleEntry.getStreamingUrl()).equal(el);
         })
       })
     });
