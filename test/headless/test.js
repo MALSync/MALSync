@@ -2012,6 +2012,41 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'DreamSub',
+    url: 'https://dreamsub.stream/',
+    testCases: [
+      {
+        url: 'https://dreamsub.stream/anime/one-piece/59',
+        expected: {
+          sync: true,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          overviewUrl: 'https://dreamsub.stream/anime/one-piece',
+          nextEpUrl: 'https://dreamsub.stream/anime/one-piece/60',
+          episode: 59,
+          uiSelector: false,
+          epList: {
+            5: 'https://dreamsub.stream/anime/one-piece/5',
+            914: 'https://dreamsub.stream/anime/one-piece/914'
+          }
+        }
+      },
+      {
+        url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+          epList: {
+            5: 'https://dreamsub.stream/anime/one-piece/5',
+            914: 'https://dreamsub.stream/anime/one-piece/914'
+          }
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
