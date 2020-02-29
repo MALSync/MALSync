@@ -2033,7 +2033,7 @@ var testsArray = [
         }
       },
       {
-        url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
+        url: 'https://dreamsub.stream/anime/one-piece',
         expected: {
           sync: false,
           title: 'One Piece',
