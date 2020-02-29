@@ -20,9 +20,7 @@ export const DreamSub: pageInterface = {
       return jsonData.overview_url;
     },
     getEpisode: function(url){
-      if(jsonData.nEpisode) {
-        return jsonData.nEpisode;
-      }
+      return jsonData.nEpisode;
     },
     nextEpUrl: function(url){
       if(jsonData.nextEpisode) {
