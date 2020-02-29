@@ -1870,6 +1870,7 @@ var testsArray = [
   {
     title: 'PrimeVideo',
     url: 'https://www.primevideo.com/',
+    skip: true,
     testCases: [
       {//season 1 overview
        url: 'https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C',
