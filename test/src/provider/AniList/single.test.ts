@@ -220,6 +220,97 @@ describe('AniList single', function () {
       })
     });
 
+    describe('Check Sync', function () {
+      [
+        {
+          name: 'Default',
+          ep: 3,
+          vol: 2,
+          curEp: 2,
+          curVol: 4,
+          novel: false,
+          curStatus: def.status.Watching,
+          result: true,
+        },
+        {
+          name: 'Fail',
+          ep: 1,
+          vol: 2,
+          curEp: 2,
+          curVol: 4,
+          novel: false,
+          curStatus: def.status.Watching,
+          result: false,
+        },
+        {
+          name: 'Novel next Volume',
+          ep: 2,
+          vol: 2,
+          curEp: 4,
+          curVol: 1,
+          novel: true,
+          curStatus: def.status.Watching,
+          result: true,
+        },
+        {
+          name: 'Novel current Volume',
+          ep: 2,
+          vol: 2,
+          curEp: 4,
+          curVol: 2,
+          novel: true,
+          curStatus: def.status.Watching,
+          result: false,
+        },
+        {
+          name: 'Novel undefined volume fail',
+          ep: 2,
+          vol: undefined,
+          curEp: 4,
+          curVol: 2,
+          novel: true,
+          curStatus: def.status.Watching,
+          result: false,
+        },
+        {
+          name: 'Novel undefined volume',
+          ep: 5,
+          vol: undefined,
+          curEp: 4,
+          curVol: 2,
+          novel: true,
+          curStatus: def.status.Watching,
+          result: true,
+        },
+        {
+          name: 'Completed',
+          ep: 4,
+          vol: 2,
+          curEp: 2,
+          curVol: 4,
+          novel: false,
+          curStatus: def.status.Completed,
+          result: false,
+        },
+        {
+          name: 'Rewatching',
+          ep: 1,
+          vol: 2,
+          curEp: 2,
+          curVol: 4,
+          novel: false,
+          curStatus: def.status.Completed,
+          result: true,
+        },
+      ].forEach((el) => {
+        it(el.name, function () {
+          singleEntry.setEpisode(el.curEp);
+          singleEntry.setStatus(el.curStatus);
+          singleEntry.setVolume(el.curVol);
+          expect(singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(el.result);
+        })
+      })
+    });
 
   });
 

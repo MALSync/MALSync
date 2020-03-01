@@ -159,6 +159,34 @@ export abstract class SingleAbstract {
     return utils.getContinueWaching(this.type, this.getCacheKey())
   }
 
+  public checkSync(episode: number, volume?: number, isNovel: boolean = false): boolean{
+    var curEpisode = this.getEpisode();
+    var curStatus = this.getStatus();
+    var curVolume = this.getVolume();
+
+    if(curStatus === defintions.status.Completed) {
+      if(episode === 1) {
+        //TODO: Ask rewatching
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+    if(
+      curEpisode >= episode &&
+      // Novel Volume
+      !(
+        isNovel &&
+        typeof(volume) != "undefined" &&
+        volume > curVolume
+      )
+    ){
+      return false;
+    }
+    return true;
+  }
+
   protected errorObj(code: defintions.errorCode, message): defintions.error {
     return {
       code,
