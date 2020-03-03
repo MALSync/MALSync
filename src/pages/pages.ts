@@ -332,5 +332,35 @@ AniSeachManga: {
       type: 'anime',
       domain: 'www.hidive.com',
       searchUrl: (titleEncoded) => {return 'http://www.hidive.com/search?q='+titleEncoded}
-	},
+  },
+  ShikimoriAnime: {
+    name: "Shikimori",
+    type: "anime",
+    domain: "shikimori.org",
+    searchUrl: (titleEncoded) => {return "https://shikimori.org/animes?search="+titleEncoded}
+  },
+  ShikimoriManga: {
+    name: "Shikimori",
+    type: "manga",
+    domain: "shikimori.org",
+    searchUrl: (titleEncoded) => {return "https://shikimori.org/mangas?search="+titleEncoded}
+  },
+  Notify: {
+    name: 'Notify',
+    type: 'anime',
+    domain: 'notify.moe',
+    searchUrl: (titleEncoded) => {return 'https://notify.moe/search/'+titleEncoded}
+  },
+  Annict: {
+    name: 'Annict',
+    type: 'anime',
+    domain: 'annict.com',
+    searchUrl: (titleEncoded) => {return 'https://annict.com/search?q='+titleEncoded}
+  },
+  Trakt: {
+    name: 'Trakt',
+    type: 'anime',
+    domain: 'trakt.tv',
+    searchUrl: (titleEncoded) => {return 'https://trakt.tv/search?query='+titleEncoded}
+  },
 }
