@@ -323,4 +323,10 @@ module.exports = {
       '*://*.moeclip.com/v/*'
     ]
   },
+  //gogoanime
+  mixdrop: {
+    match: [
+      '*://*.mixdrop.co/e/*'
+    ]
+  },
 };
