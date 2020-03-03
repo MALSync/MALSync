@@ -1870,6 +1870,7 @@ var testsArray = [
   {
     title: 'PrimeVideo',
     url: 'https://www.primevideo.com/',
+    skip: true,
     testCases: [
       {//season 1 overview
        url: 'https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C',
@@ -2007,6 +2008,41 @@ var testsArray = [
           epList: {
             5: 'https://bato.to/chapter/1284843',
             105: 'https://bato.to/chapter/1405642'
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'DreamSub',
+    url: 'https://dreamsub.stream/',
+    testCases: [
+      {
+        url: 'https://dreamsub.stream/anime/one-piece/59',
+        expected: {
+          sync: true,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          overviewUrl: 'https://dreamsub.stream/anime/one-piece',
+          nextEpUrl: 'https://dreamsub.stream/anime/one-piece/60',
+          episode: 59,
+          uiSelector: false,
+          epList: {
+            5: 'https://dreamsub.stream/anime/one-piece/5',
+            914: 'https://dreamsub.stream/anime/one-piece/914'
+          }
+        }
+      },
+      {
+        url: 'https://dreamsub.stream/anime/one-piece',
+        expected: {
+          sync: false,
+          title: 'One Piece',
+          identifier: 'one-piece',
+          uiSelector: true,
+          epList: {
+            5: 'https://dreamsub.stream/anime/one-piece/5',
+            914: 'https://dreamsub.stream/anime/one-piece/914'
           }
         }
       },

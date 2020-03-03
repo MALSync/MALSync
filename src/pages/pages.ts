@@ -63,6 +63,7 @@ import {PrimeVideo} from "./PrimeVideo/main";
 import {MangaKatana} from "./MangaKatana/main";
 import {manga4life} from "./manga4life/main";
 import {bato} from "./bato/main";
+import {DreamSub} from "./DreamSub/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -132,6 +133,7 @@ export const pages = {
     MangaKatana,
     manga4life,
     bato,
+    DreamSub,
 };
 
 export const pageSearch:pageSearchObj = {

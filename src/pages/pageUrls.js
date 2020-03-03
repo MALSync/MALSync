@@ -437,4 +437,9 @@ module.exports = {
      '*://bato.to/*',
     ]
   },
+  DreamSub: {
+    match: [
+     '*://dreamsub.stream/*',
+    ]
+  },
 };
