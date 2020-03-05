@@ -428,6 +428,36 @@ describe('AniList single', function () {
         expect(singleEntry.getEpisode()).equal(2);
       });
 
+      it('Undo', async function () {
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
+        await singleEntry.update();
+
+        var tempState = {
+          episode: singleEntry.getEpisode(),
+          volume: singleEntry.getVolume(),
+          status: singleEntry.getStatus(),
+          score: singleEntry.getScore(),
+        }
+
+        singleEntry
+          .setScore(def.score.R6)
+          .setStatus(def.status.Completed)
+          .setEpisode(2)
+
+        await singleEntry.sync();
+
+        await singleEntry.undo();
+
+        await singleEntry.update();
+
+        expect(singleEntry.getScore()).equal(tempState.score);
+        expect(singleEntry.getStatus()).equal(tempState.status);
+        expect(singleEntry.getEpisode()).equal(tempState.episode);
+        expect(singleEntry.getVolume()).equal(tempState.volume);
+
+      });
+
     });
   });
 });

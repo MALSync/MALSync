@@ -11,6 +11,9 @@ export abstract class SingleAbstract {
 
   protected type: definitions.type|null = null;
 
+  protected persistanceState;
+  protected undoState;
+
   protected ids = {
     mal: NaN,
     ani: NaN,
@@ -85,14 +88,29 @@ export abstract class SingleAbstract {
   abstract _update(): Promise<void>;
   public update(): Promise<void> {
     con.log('[SINGLE]','Update info', this.ids);
-    return this._update();
+    return this._update()
+      .then(() => {
+        this.persistanceState = this.getStateEl();
+      });
   };
 
   abstract _sync(): Promise<void>;
   public sync(): Promise<void> {
     con.log('[SINGLE]','Sync', this.ids);
-    return this._sync();
+    return this._sync()
+      .then(() => {
+        this.undoState = this.persistanceState;
+      });
   };
+
+  public undo(): Promise<void> {
+    if(!this.undoState) throw 'No undo state found';
+    this.setStateEl(this.undoState);
+    return this.sync()
+      .then(() => {
+        this.undoState = null;
+      });
+  }
 
   abstract _getTitle(): string;
   public getTitle() {
@@ -157,6 +175,22 @@ export abstract class SingleAbstract {
 
   public getContinueWaching():Promise<{url:string, ep:number}>{
     return utils.getContinueWaching(this.type, this.getCacheKey())
+  }
+
+  getStateEl() {
+    return {
+      episode: this.getEpisode(),
+      volume: this.getVolume(),
+      status: this.getStatus(),
+      score: this.getScore(),
+    }
+  }
+
+  setStateEl(state) {
+    this.setEpisode(state.episode);
+    this.setVolume(state.volume);
+    this.setStatus(state.status);
+    this.setScore(state.score);
   }
 
   public async checkSync(episode: number, volume?: number, isNovel: boolean = false): Promise<boolean>{
