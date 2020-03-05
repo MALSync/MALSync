@@ -303,11 +303,15 @@ describe('AniList single', function () {
           result: true,
         },
       ].forEach((el) => {
-        it(el.name, function () {
+        it(el.name, async function () {
+          singleEntry.finishRewatchingMessage = () => true;
+          singleEntry.finishWatchingMessage = () => true;
+          singleEntry.startWatchingMessage = () => true;
+          singleEntry.startRewatchingMessage = () => true;
           singleEntry.setEpisode(el.curEp);
           singleEntry.setStatus(el.curStatus);
           singleEntry.setVolume(el.curVol);
-          expect(singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(el.result);
+          expect(await singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(el.result);
         })
       })
     });

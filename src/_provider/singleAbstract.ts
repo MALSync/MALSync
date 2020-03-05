@@ -159,15 +159,14 @@ export abstract class SingleAbstract {
     return utils.getContinueWaching(this.type, this.getCacheKey())
   }
 
-  public checkSync(episode: number, volume?: number, isNovel: boolean = false): boolean{
+  public async checkSync(episode: number, volume?: number, isNovel: boolean = false): Promise<boolean>{
     var curEpisode = this.getEpisode();
     var curStatus = this.getStatus();
     var curVolume = this.getVolume();
 
     if(curStatus === definitions.status.Completed) {
       if(episode === 1) {
-        //TODO: Ask rewatching
-        return true;
+        return await this.startRewatchingMessage();
       }else{
         return false;
       }
@@ -184,6 +183,20 @@ export abstract class SingleAbstract {
     ){
       return false;
     }
+
+    if(curEpisode && curEpisode === this.getTotalEpisodes()){
+      if(curStatus === definitions.status.Rewatching) {
+        await this.finishRewatchingMessage();
+      }else{
+        await this.finishWatchingMessage();
+      }
+      return true;
+    }
+
+    if(curStatus !== definitions.status.Watching && curStatus !== definitions.status.Rewatching) {
+      return await this.startWatchingMessage();
+    }
+
     return true;
   }
 
