@@ -217,9 +217,25 @@
       "message": "Start watching?",
       "description": "Start watching anime message"
     },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+      "message": "Finish rewatching?",
+      "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+      "message": "Finish rereading?",
+      "description": "Finish rereading manga message"
+    },
     "syncPage_flashConfirm_start_manga": {
       "message": "Start reading?",
       "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+      "message": "Rewatch Anime?",
+      "description": "Start rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+      "message": "Reread Manga?",
+      "description": "Start rereading manga message"
     },
     "syncPage_flashConfirm_Anime_Correct": {
       "message": "Is \"$anime$\" correct?",

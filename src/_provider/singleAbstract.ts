@@ -187,6 +187,22 @@ export abstract class SingleAbstract {
     return true;
   }
 
+  public async startRewatchingMessage(): Promise<boolean> {
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'add')
+      .then((res) => {
+        if(res) this.setStatus(defintions.status.Rewatching);
+        return res;
+      })
+  }
+
+  public async finishRewatchingMessage(): Promise<boolean> {
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'complete')
+      .then((res) => {
+        if(res) this.setStatus(defintions.status.Completed);
+        return res;
+      })
+  }
+
   protected errorObj(code: defintions.errorCode, message): defintions.error {
     return {
       code,
