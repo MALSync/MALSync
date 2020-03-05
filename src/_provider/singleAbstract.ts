@@ -104,7 +104,7 @@ export abstract class SingleAbstract {
   };
 
   public undo(): Promise<void> {
-    if(!this.undoState) throw 'No undo state found';
+    if(!this.undoState) throw new Error('No undo state found');
     this.setStateEl(this.undoState);
     return this.sync()
       .then(() => {
@@ -200,7 +200,7 @@ export abstract class SingleAbstract {
 
     if(curStatus === definitions.status.Completed) {
       if(episode === 1) {
-        return await this.startRewatchingMessage();
+        return this.startRewatchingMessage();
       }else{
         return false;
       }
@@ -228,7 +228,7 @@ export abstract class SingleAbstract {
     }
 
     if(curStatus !== definitions.status.Watching && curStatus !== definitions.status.Rewatching) {
-      return await this.startWatchingMessage();
+      return this.startWatchingMessage();
     }
 
     return true;
