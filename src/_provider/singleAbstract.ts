@@ -1,4 +1,4 @@
-import * as defintions from './defintions';
+import * as definitions from './definitions';
 
 export abstract class SingleAbstract {
 
@@ -9,7 +9,7 @@ export abstract class SingleAbstract {
     return this;
   }
 
-  protected type: defintions.type|null = null;
+  protected type: definitions.type|null = null;
 
   protected ids = {
     mal: NaN,
@@ -26,26 +26,26 @@ export abstract class SingleAbstract {
 
   public abstract getCacheKey();
 
-  abstract _setStatus(status: defintions.status): void;
-  public setStatus(status: defintions.status): SingleAbstract {
+  abstract _setStatus(status: definitions.status): void;
+  public setStatus(status: definitions.status): SingleAbstract {
     this._setStatus(status);
     return this;
   };
 
-  abstract _getStatus(): defintions.status|number;
-  public getStatus(): defintions.status {
-    if(!this.isOnList()) return defintions.status.NoState;
+  abstract _getStatus(): definitions.status|number;
+  public getStatus(): definitions.status {
+    if(!this.isOnList()) return definitions.status.NoState;
     return this._getStatus();
   };
 
-  abstract _setScore(score: defintions.score): void;
-  public setScore(score: defintions.score): SingleAbstract {
+  abstract _setScore(score: definitions.score): void;
+  public setScore(score: definitions.score): SingleAbstract {
     this._setScore(score);
     return this;
   };
 
-  abstract _getScore(): defintions.score;
-  public getScore(): defintions.score {
+  abstract _getScore(): definitions.score;
+  public getScore(): definitions.score {
     return this._getScore();
   };
 
@@ -164,7 +164,7 @@ export abstract class SingleAbstract {
     var curStatus = this.getStatus();
     var curVolume = this.getVolume();
 
-    if(curStatus === defintions.status.Completed) {
+    if(curStatus === definitions.status.Completed) {
       if(episode === 1) {
         //TODO: Ask rewatching
         return true;
@@ -190,7 +190,7 @@ export abstract class SingleAbstract {
   public async startWatchingMessage(): Promise<boolean> {
     return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.getType()), 'add')
       .then((res) => {
-        if(res) this.setStatus(defintions.status.Watching);
+        if(res) this.setStatus(definitions.status.Watching);
         return res;
       })
   }
@@ -214,7 +214,7 @@ export abstract class SingleAbstract {
         </div>`, 'complete')
       .then((res) => {
         if(res) {
-          this.setStatus(defintions.status.Completed);
+          this.setStatus(definitions.status.Completed);
           if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
             con.log("finish_score: " + j.$('#finish_score :selected').val());
             this.setScore(j.$("#finish_score :selected").val());
@@ -228,7 +228,7 @@ export abstract class SingleAbstract {
   public async startRewatchingMessage(): Promise<boolean> {
     return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'add')
       .then((res) => {
-        if(res) this.setStatus(defintions.status.Rewatching);
+        if(res) this.setStatus(definitions.status.Rewatching);
         return res;
       })
   }
@@ -236,12 +236,12 @@ export abstract class SingleAbstract {
   public async finishRewatchingMessage(): Promise<boolean> {
     return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'complete')
       .then((res) => {
-        if(res) this.setStatus(defintions.status.Completed);
+        if(res) this.setStatus(definitions.status.Completed);
         return res;
       })
   }
 
-  protected errorObj(code: defintions.errorCode, message): defintions.error {
+  protected errorObj(code: definitions.errorCode, message): definitions.error {
     return {
       code,
       message,

@@ -1,6 +1,6 @@
 import {SingleAbstract} from './../singleAbstract';
 import * as helper from "./helper";
-import {errorCode} from "./../defintions";
+import {errorCode} from "./../definitions";
 
 export class Single extends SingleAbstract {
 

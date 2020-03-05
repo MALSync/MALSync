@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Single } from './../../../../src/_provider/AniList/single';
 import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/defintions';
+import * as def from './../../../../src/_provider/definitions';
 
 import * as request from 'request';
 

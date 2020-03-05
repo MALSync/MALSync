@@ -1,4 +1,4 @@
-import {status} from "./../defintions";
+import {status} from "./../definitions";
 
 export function translateList(aniStatus, malStatus:null|number = null){
   var list = {
