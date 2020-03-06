@@ -208,6 +208,20 @@ export abstract class SingleAbstract {
     this.setScore(state.score);
   }
 
+  getStateDiff() {
+    var persistance = this.getStateEl();
+    if(persistance && this.undoState) {
+      var diff:any = {};
+      for(var key in persistance) {
+        if(persistance[key] !== this.undoState[key]) {
+          diff[key] = persistance[key];
+        }
+      }
+      return diff;
+    }
+    return undefined;
+  }
+
   public async checkSync(episode: number, volume?: number, isNovel: boolean = false): Promise<boolean>{
     var curEpisode = this.getEpisode();
     var curStatus = this.getStatus();

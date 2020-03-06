@@ -316,6 +316,10 @@ export class syncPage{
         }
 
         if(await this.singleObj.checkSync(state.episode, state.volume, this.novel)){
+
+          this.singleObj.setEpisode(state.episode);
+          if( typeof(state.volume) != "undefined" && state.volume > this.singleObj.getVolume()) this.singleObj.setVolume(state.volume);
+
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
           if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
@@ -347,11 +351,11 @@ export class syncPage{
           }
 
           function sync(){
-            This.malObj.setResumeWaching(This.url, state.episode);
+            This.singleObj.setResumeWaching(This.url, state.episode);
             if(typeof This.page.sync.nextEpUrl !== 'undefined'){
               var continueWatching = This.page.sync.nextEpUrl(This.url);
               if(continueWatching && !(continueWatching.indexOf('undefined') != -1)){
-                This.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+                This.singleObj.setContinueWaching(continueWatching, state.episode! + 1);
               }
             }
             This.syncHandling(true);
@@ -375,21 +379,24 @@ export class syncPage{
     }
   }
 
-  private syncHandling(hoverInfo = false){
-    var This = this;
-    return this.malObj.sync()
-      .then(function(){
-        var message = This.malObj.name;
+  private syncHandling(hoverInfo = false, undo = false){
+    return this.singleObj.sync()
+      .then(() => {
+        var message = this.singleObj.getTitle();
         var split = '<br>';
-        var totalVol = This.malObj.totalVol;
+        var totalVol = this.singleObj.getTotalVolumes();
         if (totalVol == 0) totalVol = '?';
-        var totalEp = This.malObj.totalEp;
+        var totalEp = this.singleObj.getTotalEpisodes();
         if (totalEp == 0) totalEp = '?';
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getStatus() != This.oldMalObj.getStatus()){
+        var diffState = this.singleObj.getStateDiff();
+
+        con.log(diffState);
+
+        if(!diffState || diffState.status){
           var statusString = "";
-          switch (parseInt(This.malObj.getStatus())) {
+          switch (parseInt(diffState.status)) {
             case 1:
-              statusString = api.storage.lang("UI_Status_watching_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_watching_"+this.page.type);
               break;
             case 2:
               statusString = api.storage.lang("UI_Status_Completed");
@@ -401,22 +408,22 @@ export class syncPage{
               statusString = api.storage.lang("UI_Status_Dropped");
               break;
             case 6:
-              statusString = api.storage.lang("UI_Status_planTo_"+This.page.type);
+              statusString = api.storage.lang("UI_Status_planTo_"+this.page.type);
               break;
           }
           message += split + statusString;
           split = ' | '
         }
-        if(This.page.type == 'manga' && ( typeof This.oldMalObj == "undefined" || This.malObj.getVolume() != This.oldMalObj.getVolume() )){
-          message += split + api.storage.lang("UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
+        if(this.page.type == 'manga' && ( !diffState || diffState.volume )){
+          message += split + api.storage.lang("UI_Volume") + ' ' + diffState.volume+"/"+totalVol;
           split = ' | '
         }
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + utils.episode(This.page.type)+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
+        if(!diffState || diffState.episode){
+          message += split + utils.episode(this.page.type)+ ' ' + diffState.episode+"/"+totalEp;
           split = ' | '
         }
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
-          message += split + api.storage.lang("UI_Score") + ' ' + This.malObj.getScore();
+        if(!diffState || diffState.score){
+          message += split + api.storage.lang("UI_Score") + ' ' + diffState.score;
           split = ' | '
         }
         if(hoverInfo){
@@ -430,35 +437,31 @@ export class syncPage{
                     }
                 });
             }*/
-          if(typeof This.oldMalObj != "undefined"){
-            message += `
-              <br>
-              <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_undo")+`
-              </button>
-              <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_wrong")+`
-              </button>`;
-          }
+
+          message += `
+            <br>
+            <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              `+api.storage.lang("syncPage_flashm_sync_undefined_undo")+`
+            </button>
+            <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              `+api.storage.lang("syncPage_flashm_sync_undefined_wrong")+`
+            </button>`;
+
           var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
-          flashmItem.find('.undoButton').on('click', function(this){
-            this.closest('.flash').remove();
-            This.malObj = This.oldMalObj;
-            This.oldMalObj = undefined;
-            This.syncHandling();
+          flashmItem.find('.undoButton').on('click', (e) => {
+            e.target.closest('.flash').remove();
+            this.syncHandling();
           });
-          flashmItem.find('.wrongButton').on('click', function(this){
-            This.openCorrectionUi();
-            this.closest('.flash').remove();
-            This.malObj = This.oldMalObj;
-            This.oldMalObj = undefined;
-            This.syncHandling();
+          flashmItem.find('.wrongButton').on('click', (e) => {
+            this.openCorrectionUi();
+            e.target.closest('.flash').remove();
+            this.syncHandling();
           });
         }else{
           utils.flashm(message);
         }
 
-        This.fillUI();
+        this.fillUI();
 
         return;
       }).catch(function(e){
