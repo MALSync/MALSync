@@ -86,6 +86,23 @@ export var settingsObj = {
             }
           }
         }
+        if(namespace === 'local' && changes['rateLimit']) {
+          try {
+            if(changes['rateLimit'].newValue){
+              con.log("Rate limited");
+              utils.flashm("Rate limited. Retrying in a moment", {
+                error: true,
+                type: 'rate',
+                permanent: true,
+              })
+            }else{
+              con.log("No Rate limited");
+              $('.type-rate').remove();
+            }
+          } catch(e) {
+            con.error(e);
+          }
+        }
       });
 
     });
