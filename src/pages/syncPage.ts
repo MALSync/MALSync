@@ -380,7 +380,13 @@ export class syncPage{
   }
 
   private syncHandling(hoverInfo = false, undo = false){
-    return this.singleObj.sync()
+    if(undo) {
+      var p = this.singleObj.undo()
+    }else{
+      var p = this.singleObj.sync()
+    }
+
+    return p
       .then(() => {
         var message = this.singleObj.getTitle();
         var split = '<br>';
@@ -390,9 +396,14 @@ export class syncPage{
         if (totalEp == 0) totalEp = '?';
         var diffState = this.singleObj.getStateDiff();
 
-        con.log(diffState);
+        if(!diffState) diffState = {
+          episode: this.singleObj.getEpisode(),
+          volume: this.singleObj.getVolume(),
+          status: this.singleObj.getStatus(),
+          score: this.singleObj.getScore(),
+        }
 
-        if(!diffState || diffState.status){
+        if(diffState.status){
           var statusString = "";
           switch (parseInt(diffState.status)) {
             case 1:
@@ -414,15 +425,15 @@ export class syncPage{
           message += split + statusString;
           split = ' | '
         }
-        if(this.page.type == 'manga' && ( !diffState || diffState.volume )){
+        if(this.page.type == 'manga' && diffState.volume ){
           message += split + api.storage.lang("UI_Volume") + ' ' + diffState.volume+"/"+totalVol;
           split = ' | '
         }
-        if(!diffState || diffState.episode){
+        if(diffState.episode){
           message += split + utils.episode(this.page.type)+ ' ' + diffState.episode+"/"+totalEp;
           split = ' | '
         }
-        if(!diffState || diffState.score){
+        if(diffState.score){
           message += split + api.storage.lang("UI_Score") + ' ' + diffState.score;
           split = ' | '
         }
@@ -450,12 +461,12 @@ export class syncPage{
           var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
           flashmItem.find('.undoButton').on('click', (e) => {
             e.target.closest('.flash').remove();
-            this.syncHandling();
+            this.syncHandling(false, true);
           });
           flashmItem.find('.wrongButton').on('click', (e) => {
             this.openCorrectionUi();
             e.target.closest('.flash').remove();
-            this.syncHandling();
+            this.syncHandling(false, true);
           });
         }else{
           utils.flashm(message);

@@ -118,6 +118,7 @@ export abstract class SingleAbstract {
   };
 
   public undo(): Promise<void> {
+    con.log('[SINGLE]','Undo',this.undoState);
     if(!this.undoState) throw new Error('No undo state found');
     this.setStateEl(this.undoState);
     return this.sync()
