@@ -566,9 +566,8 @@ export class syncPage{
       j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[this.singleObj.shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(async function() {
-        This.malObj.setStatus(6);
         if(!This.page.isSyncPage(This.url)){
-          This.malObj.setStreamingUrl(This.url);
+          This.singleObj.setStreamingUrl(This.url);
         }
 
         var rerun = await This.searchObj.openCorrectionCheck();
@@ -580,7 +579,7 @@ export class syncPage{
 
         This.syncHandling()
           .then(() => {
-            return This.malObj.update();
+            return This.singleObj.update();
           }).then(() => {
             This.fillUI();
           });
@@ -652,8 +651,8 @@ export class syncPage{
       var elementEp = this.page.overview.list.elementEp;
       var elementArray = [] as JQuery<HTMLElement>[];
       var currentEpisode = 0;
-      if(this.malObj) {
-        currentEpisode = parseInt(this.malObj.getEpisode());
+      if(this.singleObj) {
+        currentEpisode = parseInt(this.singleObj.getEpisode());
       }
 
       this.page.overview.list.elementsSelector().each( function(index, el) {
@@ -864,12 +863,12 @@ export class syncPage{
   }
 
   private async buttonclick(){
-    this.malObj.setEpisode(j.$("#malEpisodes").val());
-    if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
-    this.malObj.setScore(j.$("#malUserRating").val());
-    this.malObj.setStatus(j.$("#malStatus").val());
+    this.singleObj.setEpisode(j.$("#malEpisodes").val());
+    if( j.$("#malVolumes").length ) this.singleObj.setVolume(j.$("#malVolumes").val());
+    this.singleObj.setScore(j.$("#malUserRating").val());
+    this.singleObj.setStatus(j.$("#malStatus").val());
     if(!this.page.isSyncPage(this.url)){
-      this.malObj.setStreamingUrl(this.url);
+      this.singleObj.setStreamingUrl(this.url);
     }
 
     var rerun = await this.searchObj.openCorrectionCheck();
@@ -881,7 +880,7 @@ export class syncPage{
 
     this.syncHandling()
       .then(() => {
-        return this.malObj.update();
+        return this.singleObj.update();
       }).then(() => {
         this.fillUI();
       });
