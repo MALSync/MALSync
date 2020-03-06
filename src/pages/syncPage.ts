@@ -14,8 +14,6 @@ if(typeof browser !== 'undefined' && typeof chrome !== "undefined"){
 
 export class syncPage{
   page: pageInterface;
-  malObj;
-  oldMalObj;
   searchObj;
   singleObj;
 
@@ -286,8 +284,8 @@ export class syncPage{
         if(e.code = 415 && api.settings.get('localSync')){
           con.log('Local Fallback');
           malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
-          this.malObj = getSingle(malUrl);
-          await this.malObj.update();
+          this.singleObj = getSingle(malUrl);
+          await this.singleObj.update();
         }
       }
 
@@ -482,70 +480,6 @@ export class syncPage{
       });
   }
 
-  private async handleAnimeUpdate(state){
-    var status = utils.status;
-
-    if(
-      this.malObj.getEpisode() >= state.episode &&
-      // Novel Volume
-      !(
-        this.novel &&
-        typeof(state.volume) != "undefined" &&
-        state.volume > this.malObj.getVolume()
-      ) &&
-      //Rewatching
-      !(
-        this.malObj.getStatus() == status.completed &&
-        state.episode === 1 &&
-        this.malObj.totalEp !== 1 &&
-        this.malObj.getRewatching() !== 1
-      )
-    ){
-      return false;
-    }
-    this.malObj.setEpisode(state.episode);
-    if( typeof(state.volume) != "undefined" && state.volume > this.malObj.getVolume()) this.malObj.setVolume(state.volume);
-    this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
-    this.malObj.setStartingDateToNow();
-
-    if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      var currentScore = parseInt(this.malObj.getScore());
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+
-        `<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">
-        <option value="0" ${(!currentScore) ? 'selected' : ''}>${api.storage.lang("UI_Score_Not_Rated")}</option>
-        <option value="10" ${(currentScore == 10) ? 'selected' : ''}>${api.storage.lang("UI_Score_Masterpiece")}</option>
-        <option value="9" ${(currentScore == 9) ? 'selected' : ''}>${api.storage.lang("UI_Score_Great")}</option>
-        <option value="8" ${(currentScore == 8) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryGood")}</option>
-        <option value="7" ${(currentScore == 7) ? 'selected' : ''}>${api.storage.lang("UI_Score_Good")}</option>
-        <option value="6" ${(currentScore == 6) ? 'selected' : ''}>${api.storage.lang("UI_Score_Fine")}</option>
-        <option value="5" ${(currentScore == 5) ? 'selected' : ''}>${api.storage.lang("UI_Score_Average")}</option>
-        <option value="4" ${(currentScore == 4) ? 'selected' : ''}>${api.storage.lang("UI_Score_Bad")}</option>
-        <option value="3" ${(currentScore == 3) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryBad")}</option>
-        <option value="2" ${(currentScore == 2) ? 'selected' : ''}>${api.storage.lang("UI_Score_Horrible")}</option>
-        <option value="1" ${(currentScore == 1) ? 'selected' : ''}>${api.storage.lang("UI_Score_Appalling")}</option>
-        </select>
-        </div>`, 'complete')) {
-        this.malObj.setStatus(status.completed);
-        this.malObj.setCompletionDateToNow();
-        if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
-          console.log("finish_score: " + j.$('#finish_score :selected').val());
-          this.malObj.setScore(j.$("#finish_score :selected").val());
-        }
-        return true;
-      }
-    }
-
-    if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.page.type), 'start')) {
-        this.malObj.setStatus(status.watching);
-      }else{
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   fillUI(){
     j.$('.MalLogin').css("display","initial");
     j.$('#AddMalDiv, #LoginMalDiv').remove();
@@ -722,8 +656,8 @@ export class syncPage{
     if(this.searchObj){
       this.searchObj.setOffset(value);
     }
-    if(typeof this.malObj != 'undefined'){
-      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.getCacheKey())
+    if(typeof this.singleObj != 'undefined'){
+      api.storage.remove('updateCheck/'+this.singleObj.getType()+'/'+this.singleObj.getCacheKey())
     }
     return;
   }
@@ -914,7 +848,7 @@ export class syncPage{
         if(this.curState){
           if(typeof this.curState.episode !== 'undefined'){
             var ep = this.curState.episode;
-            var totalEp = this.malObj.totalEp;
+            var totalEp = this.singleObj.getTotalEpisodes();
             if(!totalEp) totalEp = '?';
 
             pres.presence.state = utils.episode(this.page.type) + ' '+ep+' of '+totalEp;
