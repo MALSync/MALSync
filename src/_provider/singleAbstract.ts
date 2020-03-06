@@ -14,6 +14,10 @@ export abstract class SingleAbstract {
   protected persistanceState;
   protected undoState;
 
+  protected lastError;
+
+  public abstract shortName: string;
+
   protected ids = {
     mal: NaN,
     ani: NaN,
@@ -88,7 +92,12 @@ export abstract class SingleAbstract {
   abstract _update(): Promise<void>;
   public update(): Promise<void> {
     con.log('[SINGLE]','Update info', this.ids);
+    this.lastError = null;
     return this._update()
+      .catch(e => {
+        this.lastError = e;
+        throw e;
+      })
       .then(() => {
         this.persistanceState = this.getStateEl();
       });
@@ -97,7 +106,12 @@ export abstract class SingleAbstract {
   abstract _sync(): Promise<void>;
   public sync(): Promise<void> {
     con.log('[SINGLE]','Sync', this.ids);
+    this.lastError = null;
     return this._sync()
+      .catch(e => {
+        this.lastError = e;
+        throw e;
+      })
       .then(() => {
         this.undoState = this.persistanceState;
       });
@@ -154,11 +168,12 @@ export abstract class SingleAbstract {
     return this._getImage();
   }
 
-  abstract _getRating(): Promise<string>|string;
-  public getRating(): Promise<string>|string{
-    var rating = this._getRating();
-    if(!rating) return 'N/A';
-    return rating;
+  abstract _getRating(): Promise<string>;
+  public getRating(): Promise<string>{
+    return this._getRating().then((rating) => {
+      if(!rating) return 'N/A';
+      return rating;
+    })
   }
 
   public setResumeWaching(url:string, ep:number){
@@ -286,6 +301,17 @@ export abstract class SingleAbstract {
         if(res) this.setStatus(definitions.status.Completed);
         return res;
       })
+  }
+
+  public getLastError() {
+    return this.lastError;
+  }
+
+  public getLastErrorMessage() {
+    if(this.lastError.message) {
+      return this.lastError.message;
+    }
+    return this.getLastError;
   }
 
   protected errorObj(code: definitions.errorCode, message): definitions.error {

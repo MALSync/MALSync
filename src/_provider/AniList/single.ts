@@ -8,6 +8,8 @@ export class Single extends SingleAbstract {
 
   private displayUrl: string = '';
 
+  shortName = 'AniList';
+
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
@@ -100,7 +102,7 @@ export class Single extends SingleAbstract {
   }
 
   _getRating() {
-    return this.animeInfo.averageScore;
+    return Promise.resolve(this.animeInfo.averageScore);
   }
 
   _update() {

@@ -1,5 +1,5 @@
 import {pageInterface, pageState} from "./pageInterface";
-import {entryClass} from "./../provider/provider";
+import {getSingle} from "./../_provider/singleFactory";
 import {initIframeModal} from "./../minimal/iframe";
 import {providerTemplates} from "./../provider/templates";
 import {getPlayerTime} from "./../utils/player";
@@ -17,6 +17,7 @@ export class syncPage{
   malObj;
   oldMalObj;
   searchObj;
+  singleObj;
 
   public novel = false;
 
@@ -276,19 +277,19 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.malObj = entryClass(malUrl, false, false, state);
+      this.singleObj = getSingle(malUrl);
       try {
-        await this.malObj.init();
+        await this.singleObj.update();
       }catch(e) {
+        //TODO:
+        throw e;
         if(e.code = 415 && api.settings.get('localSync')){
           con.log('Local Fallback');
           malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
-          this.malObj = entryClass(malUrl, false, false, state);
-          await this.malObj.init();
+          this.malObj = getSingle(malUrl);
+          await this.malObj.update();
         }
       }
-
-      this.oldMalObj = this.malObj.clone();
 
       //Discord Presence
       if(api.type === 'webextension'){
@@ -304,11 +305,6 @@ export class syncPage{
       //fillUI
       this.fillUI();
 
-      if(!this.malObj.login){
-        utils.flashm( providerTemplates().noLogin, {error: true, type: 'error'});
-        return;
-      }
-
       //sync
       if(this.page.isSyncPage(this.url)){
 
@@ -319,7 +315,7 @@ export class syncPage{
           return;
         }
 
-        if(await this.handleAnimeUpdate(state)){
+        if(await this.singleObj.checkSync(state.episode, state.volume, this.novel)){
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
 
           if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
@@ -540,20 +536,20 @@ export class syncPage{
     j.$('.MalLogin').css("display","initial");
     j.$('#AddMalDiv, #LoginMalDiv').remove();
 
-    j.$("#malRating").attr("href", this.malObj.getDisplayUrl());
-    this.malObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
+    j.$("#malRating").attr("href", this.singleObj.getDisplayUrl());
+    this.singleObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
-    if(!this.malObj.login){
+    if(this.singleObj.getLastError()){
       j.$('.MalLogin').css("display","none");
       j.$("#MalData").css("display","flex");
       j.$("#MalInfo").text("");
-      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>"+providerTemplates().noLogin+"</span>");
+      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>"+this.singleObj.getLastErrorMessage()+"</span>");
       return;
     }
 
-    if(this.malObj.addAnime){
+    if(!this.singleObj.isOnList()){
       j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates(this.malObj.url).shortName])+"</a></span>")
+      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[this.singleObj.shortName])+"</a></span>")
       var This = this;
       j.$('#AddMal').click(async function() {
         This.malObj.setStatus(6);
@@ -576,21 +572,21 @@ export class syncPage{
           });
       });
     }else{
-      j.$("#malTotal, #malTotalCha").text(this.malObj.totalEp);
-      if(this.malObj.totalEp == 0){
+      j.$("#malTotal, #malTotalCha").text(this.singleObj.getTotalEpisodes());
+      if(this.singleObj.getTotalEpisodes() == 0){
          j.$("#malTotal, #malTotalCha").text('?');
       }
 
-      j.$("#malTotalVol").text(this.malObj.totalVol);
-      if(this.malObj.totalVol == 0){
+      j.$("#malTotalVol").text(this.singleObj.getTotalVolumes());
+      if(this.singleObj.getTotalVolumes() == 0){
          j.$("#malTotalVol").text('?');
       }
 
-      j.$("#malEpisodes").val(this.malObj.getEpisode());
-      j.$("#malVolumes").val(this.malObj.getVolume());
+      j.$("#malEpisodes").val(this.singleObj.getEpisode());
+      j.$("#malVolumes").val(this.singleObj.getVolume());
 
-      j.$("#malStatus").val(this.malObj.getStatus());
-      j.$("#malUserRating").val(this.malObj.getScore());
+      j.$("#malStatus").val(this.singleObj.getStatus());
+      j.$("#malUserRating").val(this.singleObj.getScore());
     }
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");
@@ -613,9 +609,9 @@ export class syncPage{
         this.offsetHandler(epList);
         var elementUrl = this.page.overview.list.elementUrl;
         con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
-        if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.malObj.getEpisode(), epList);
-        var curEp = epList[parseInt(this.malObj.getEpisode())];
-        if(typeof(curEp) == "undefined" && !curEp && this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
+        if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
+        var curEp = epList[parseInt(this.singleObj.getEpisode())];
+        if(typeof(curEp) == "undefined" && !curEp && this.singleObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
           con.log('Pagination next');
           var This = this;
           if(this.page.overview.list.paginationNext(false)){
@@ -626,9 +622,9 @@ export class syncPage{
           }
         }
 
-        var nextEp = epList[this.malObj.getEpisode() + 1];
+        var nextEp = epList[this.singleObj.getEpisode() + 1];
         if (typeof(nextEp) != "undefined" && nextEp && !this.page.isSyncPage(this.url)){
-          var message = '<a href="'+elementUrl(nextEp)+'">'+api.storage.lang("syncPage_malObj_nextEp_"+this.page.type, [this.malObj.getEpisode()+1])+'</a>';
+          var message = '<a href="'+elementUrl(nextEp)+'">'+api.storage.lang("syncPage_malObj_nextEp_"+this.page.type, [this.singleObj.getEpisode()+1])+'</a>';
           utils.flashm( message , {hoverInfo: true, type: 'nextEp'});
         }
 
@@ -787,7 +783,7 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("UI_Score_Not_Rated")+'</option>';
+    ui += '<select id="malUserRating"><option value="0">'+api.storage.lang("UI_Score_Not_Rated")+'</option>';
     ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
     ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
     ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
