@@ -99,7 +99,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.animeInfo.coverImage.large;
+    return Promise.resolve(this.animeInfo.coverImage.large);
   }
 
   _getRating() {

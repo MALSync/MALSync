@@ -32,6 +32,10 @@ export abstract class SingleAbstract {
     return this.type
   }
 
+  public getUrl() {
+    return this.url;
+  }
+
   public abstract getCacheKey();
 
   abstract _setStatus(status: definitions.status): void;
@@ -165,8 +169,8 @@ export abstract class SingleAbstract {
     return null;
   }
 
-  abstract _getImage(): Promise<string>|string;
-  public getImage(): Promise<string>|string{
+  abstract _getImage(): Promise<string>;
+  public getImage(): Promise<string>{
     return this._getImage();
   }
 
