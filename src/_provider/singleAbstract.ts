@@ -17,6 +17,7 @@ export abstract class SingleAbstract {
   protected lastError;
 
   public abstract shortName: string;
+  protected abstract authenticationUrl: string;
 
   protected ids = {
     mal: NaN,
@@ -323,16 +324,41 @@ export abstract class SingleAbstract {
   }
 
   public getLastErrorMessage() {
-    if(this.lastError.message) {
-      return this.lastError.message;
-    }
-    return this.getLastError;
+    return this.errorMessage(this.getLastError());
   }
 
   protected errorObj(code: definitions.errorCode, message): definitions.error {
     return {
       code,
       message,
+    }
+  }
+
+  flashmError(error) {
+    utils.flashm(this.errorMessage(error), {error: true, type: 'error'});
+  }
+
+  errorMessage(error) {
+    if(typeof error.code === 'undefined') {
+      return error;
+    }
+
+    switch (error.code) {
+      case definitions.errorCode.NotAutenticated:
+        return api.storage.lang("Error_Authenticate", [this.authenticationUrl]);
+        break;
+      case definitions.errorCode.ServerOffline:
+        return `[${this.shortName}] Server Offline`;
+        break;
+      case definitions.errorCode.UrlNotSuported:
+        return 'Incorrect url provided';
+        break;
+      case definitions.errorCode.EntryNotFound:
+        return 'Entry for this '+this.getType()+' could not be found on '+this.shortName;
+        break;
+      default:
+        return error.message;
+        break;
     }
   }
 

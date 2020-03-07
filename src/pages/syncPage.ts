@@ -275,10 +275,16 @@ export class syncPage{
       con.log('Nothing found');
     }else{
       con.log('MyAnimeList', malUrl);
-      this.singleObj = getSingle(malUrl);
       try {
+        this.singleObj = getSingle(malUrl);
         await this.singleObj.update();
       }catch(e) {
+        if(e.code === 901) {
+          utils.flashm('Incorrect url provided', {error: true, type: 'error'});
+        }else{
+          this.singleObj.flashmError(e);
+          this.fillUI();
+        }
         //TODO:
         throw e;
         if(e.code = 415 && api.settings.get('localSync')){
@@ -485,7 +491,6 @@ export class syncPage{
     j.$('#AddMalDiv, #LoginMalDiv').remove();
 
     j.$("#malRating").attr("href", this.singleObj.getDisplayUrl());
-    this.singleObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
     if(this.singleObj.getLastError()){
       j.$('.MalLogin').css("display","none");
@@ -494,6 +499,8 @@ export class syncPage{
       j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>"+this.singleObj.getLastErrorMessage()+"</span>");
       return;
     }
+
+    this.singleObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
     if(!this.singleObj.isOnList()){
       j.$('.MalLogin').css("display","none");

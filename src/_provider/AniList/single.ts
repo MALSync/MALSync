@@ -9,6 +9,7 @@ export class Single extends SingleAbstract {
   private displayUrl: string = '';
 
   shortName = 'AniList';
+  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
@@ -233,7 +234,7 @@ export class Single extends SingleAbstract {
         variables
       })
     }).then((response) => {
-      if(response.status > 499 && response.status < 600) {
+      if((response.status > 499 && response.status < 600) || response.status === 0) {
         throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
       }
 
