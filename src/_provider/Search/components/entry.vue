@@ -34,7 +34,6 @@
       status: {
         get: function () {
           if(this.obj && this.obj.isAuthenticated()){
-            if(this.obj.getScore() === 0) return 1;
             return this.obj.getStatus()
           }
           return null;
