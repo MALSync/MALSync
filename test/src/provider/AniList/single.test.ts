@@ -332,7 +332,7 @@ describe('AniList single', function () {
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
         expect(singleEntry.getImage()).equal(tData.image);
-        expect(singleEntry.getRating()).equal(tData.rating);
+        expect(await singleEntry.getRating()).equal(tData.rating);
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('Not on list', async function () {

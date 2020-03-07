@@ -249,7 +249,7 @@ export abstract class SingleAbstract {
       return false;
     }
 
-    if(curEpisode && curEpisode === this.getTotalEpisodes()){
+    if(episode && episode === this.getTotalEpisodes()){
       if(curStatus === definitions.status.Rewatching) {
         await this.finishRewatchingMessage();
       }else{
@@ -304,7 +304,7 @@ export abstract class SingleAbstract {
   }
 
   public async startRewatchingMessage(): Promise<boolean> {
-    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'add')
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_start_"+this.getType()), 'add')
       .then((res) => {
         if(res) this.setStatus(definitions.status.Rewatching);
         return res;

@@ -425,6 +425,9 @@ export class syncPage{
             case 6:
               statusString = api.storage.lang("UI_Status_planTo_"+this.page.type);
               break;
+            case 23:
+              statusString = api.storage.lang("UI_Status_Rewatching_"+this.page.type);
+              break;
           }
           message += split + statusString;
           split = ' | '
@@ -699,6 +702,7 @@ export class syncPage{
     ui += '<option value="3" >'+api.storage.lang("UI_Status_OnHold")+'</option>';
     ui += '<option value="4" >'+api.storage.lang("UI_Status_Dropped")+'</option>';
     ui += '<option value="6" >'+api.storage.lang("UI_Status_planTo_"+this.page.type)+'</option>';
+    ui += '<option value="23" >'+api.storage.lang("UI_Status_Rewatching_"+this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 
