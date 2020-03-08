@@ -18,7 +18,7 @@ export class Single extends SingleAbstract {
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 
   protected handleUrl(url) {
-    if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
+    if(url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
       this.type = utils.urlPart(url, 3);
       this.ids.kitsu.slug = utils.urlPart(url, 4);
       return;
@@ -32,7 +32,7 @@ export class Single extends SingleAbstract {
   }
 
   getCacheKey(){
-    return helper.getCacheKey(this.ids.mal, this.ids.kitsu);
+    return helper.getCacheKey(this.ids.mal, this.ids.kitsu.id);
   }
 
   _getStatus() {
@@ -127,11 +127,8 @@ export class Single extends SingleAbstract {
       try{
         this.ids.kitsu.id = kitsuRes.data[0].relationships.item.data.id;
       }catch(e){
-        //TODO
-        con.error('Not found', e);
-        //if(!this.silent){
-        //  utils.flashm('Kitsu: Not found', {error: true, type: 'not found'});
-        //}
+        this._authenticated = true;
+        throw this.errorObj(errorCode.EntryNotFound, 'Not found');
       }
 
     }
@@ -176,9 +173,8 @@ export class Single extends SingleAbstract {
         try{
           this.animeI()
         }catch(e){
-          //TODO:
           con.error(e);
-          throw 'Not Found';
+          throw this.errorObj(errorCode.EntryNotFound, 'Not found');
         }
 
         if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
@@ -248,19 +244,19 @@ export class Single extends SingleAbstract {
 
       var res = JSON.parse(response.responseText);
 
-      //TODO
       if(typeof res.errors != 'undefined' && res.errors.length){
         con.error('[SINGLE]','Error',res.errors);
         var error = res.errors[0];
-        switch(error.status) {
-          case 400:
-            throw this.errorObj(errorCode.NotAutenticated, error.message);
+        switch(parseInt(error.status)) {
+          case 401:
+          case 403:
+            throw this.errorObj(errorCode.NotAutenticated, error.detail);
             break;
           case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.message);
+            throw this.errorObj(errorCode.EntryNotFound, error.detail);
             break;
           default:
-            throw this.errorObj(error.status, error.message);
+            throw this.errorObj(error.status, error.detail);
         }
       }
 
@@ -303,9 +299,7 @@ export class Single extends SingleAbstract {
       return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true')
         .then((res) => {
           if(typeof res.data == 'undefined' || !res.data.length || typeof res.data[0] == 'undefined'){
-            //TODO:
-            //utils.flashm(kitsu.noLogin, {error: true, type: 'error'});
-            throw('Not authentificated');
+            throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
           }
           api.storage.set('kitsuUserId', res.data[0].id);
           return res.data[0].id;

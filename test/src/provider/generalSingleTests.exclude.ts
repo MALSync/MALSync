@@ -22,6 +22,7 @@ export function generalSingleTests(Single, setGlobals) {
   describe('Dry', function () {
     var singleEntry = new Single(global.testData.urlTest[0].url);
     before(async function () {
+      this.timeout(50000);
       await singleEntry.update();
     })
 
@@ -204,6 +205,7 @@ export function generalSingleTests(Single, setGlobals) {
   describe('API', function () {
     describe('Update', function () {
       it('Main Url', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.defaultUrl;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
@@ -219,6 +221,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('Not on list', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.notOnListUrl;
         if(!tData) return;
         var singleEntry = new Single(tData.url);
@@ -232,6 +235,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       })
       it('No Mal Entry', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.noMalEntry;
         if(!tData) return;
         var singleEntry = new Single(tData.url);
@@ -246,6 +250,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('MAL Url', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.malUrl;
         if(!tData) return;
         var singleEntry = new Single(tData.url);
@@ -259,6 +264,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
       })
       it('Non existing MAL url', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.nonExistingMAL;
         if(!tData) return;
         var singleEntry = new Single(tData.url);
@@ -268,6 +274,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.isAuthenticated()).equal(true);
       })
       it('No Authorization', async function () {
+        this.timeout(50000);
         global.api.token = '';
         var tData = global.testData.apiTest.defaultUrl;
         if(!global.testData.apiTest.nonExistingMAL) return;
@@ -280,6 +287,7 @@ export function generalSingleTests(Single, setGlobals) {
         setGlobals();
       })
       it('Server Offline', async function () {
+        this.timeout(50000);
         global.api.status = 504;
         var tData = global.testData.apiTest.defaultUrl;
         if(!global.testData.apiTest.nonExistingMAL) return;
@@ -293,6 +301,7 @@ export function generalSingleTests(Single, setGlobals) {
 
     describe('sync', function () {
       it('Persistence', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.defaultUrl;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
@@ -318,6 +327,7 @@ export function generalSingleTests(Single, setGlobals) {
       });
 
       it('Undo', async function () {
+        this.timeout(50000);
         var tData = global.testData.apiTest.defaultUrl;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
