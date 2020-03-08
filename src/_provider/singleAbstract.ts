@@ -22,7 +22,10 @@ export abstract class SingleAbstract {
   protected ids = {
     mal: NaN,
     ani: NaN,
-    kitsu: NaN,
+    kitsu: {
+      id: NaN,
+      slug: ''
+    },
     simkl: NaN,
   };
 
@@ -169,7 +172,7 @@ export abstract class SingleAbstract {
     return null;
   }
 
-  public getMalId(): string|null{
+  public getMalId(): number|null{
     if(!isNaN(this.ids.mal)){
       return this.ids.mal;
     }
