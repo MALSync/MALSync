@@ -260,7 +260,7 @@ export class syncPage{
 
     var malUrl = this.searchObj.getUrl();
 
-    var localUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+    var localUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier+'/'+encodeURIComponent(state.title);
 
     if((malUrl === null || !malUrl) && api.settings.get('localSync')){
       con.log('Local Fallback');

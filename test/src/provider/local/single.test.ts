@@ -108,4 +108,21 @@ describe('Local single', function () {
     setGlobals();
   })
   generalSingleTests(Single, setGlobals);
+
+
+  describe('title', function () {
+    [
+      'test/213',
+      '',
+      'Fate/kaleid liner PRISMA☆ILLYA',
+      'This is a title',
+    ].forEach((el) => {
+      it(el+'', async function () {
+        var singleEntry = new Single('local://crunchyroll/anime/notonlist/'+encodeURIComponent(el));
+        await singleEntry.update();
+        if(!el) el = 'Unknown';
+        expect(singleEntry.getTitle()).equal(el);
+      })
+    })
+  });
 });

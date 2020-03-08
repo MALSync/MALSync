@@ -10,16 +10,23 @@ export class Single extends SingleAbstract {
   protected key!: string;
   protected id!: string;
   protected page!: string;
+  protected title!: string;
 
   shortName = 'Local';
   authenticationUrl = '';
 
   protected handleUrl(url) {
     if(url.match(/local:\/\/.*/i)) {
-      this.key = url;
       this.id = utils.urlPart(url, 4);
       this.type = utils.urlPart(url, 3);
       this.page = utils.urlPart(url, 2);
+      this.key = 'local://'+this.page+'/'+this.type+'/'+this.id;
+
+      if(utils.urlPart(url, 5)) {
+        this.title = decodeURIComponent(utils.urlPart(url, 5));
+      }else{
+        this.title = 'Unknown';
+      }
       return;
     }
     throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
@@ -107,7 +114,7 @@ export class Single extends SingleAbstract {
     if(!this.animeInfo){
       this._onList = false;
       this.animeInfo = {
-        name: 'Unknown',
+        name: this.title,
         tags: "",
         progress: 0,
         volumeprogress: 0,
