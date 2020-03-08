@@ -220,6 +220,7 @@ export function generalSingleTests(Single, setGlobals) {
       })
       it('Not on list', async function () {
         var tData = global.testData.apiTest.notOnListUrl;
+        if(!tData) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
@@ -232,6 +233,7 @@ export function generalSingleTests(Single, setGlobals) {
       })
       it('No Mal Entry', async function () {
         var tData = global.testData.apiTest.noMalEntry;
+        if(!tData) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
@@ -245,6 +247,7 @@ export function generalSingleTests(Single, setGlobals) {
       })
       it('MAL Url', async function () {
         var tData = global.testData.apiTest.malUrl;
+        if(!tData) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
@@ -257,6 +260,7 @@ export function generalSingleTests(Single, setGlobals) {
       })
       it('Non existing MAL url', async function () {
         var tData = global.testData.apiTest.nonExistingMAL;
+        if(!tData) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
@@ -266,6 +270,7 @@ export function generalSingleTests(Single, setGlobals) {
       it('No Authorization', async function () {
         global.api.token = '';
         var tData = global.testData.apiTest.defaultUrl;
+        if(!global.testData.apiTest.nonExistingMAL) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})
@@ -277,6 +282,7 @@ export function generalSingleTests(Single, setGlobals) {
       it('Server Offline', async function () {
         global.api.status = 504;
         var tData = global.testData.apiTest.defaultUrl;
+        if(!global.testData.apiTest.nonExistingMAL) return;
         var singleEntry = new Single(tData.url);
         await singleEntry.update()
           .then(() => {throw 'was not supposed to succeed';})

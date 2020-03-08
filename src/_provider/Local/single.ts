@@ -1,0 +1,129 @@
+import {SingleAbstract} from './../singleAbstract';
+import * as helper from "./helper";
+import {errorCode} from "./../definitions";
+
+//local://crunchyroll/anime/nogamenolife
+
+export class Single extends SingleAbstract {
+
+  private animeInfo: any;
+  protected key!: string;
+  protected id!: string;
+  protected page!: string;
+
+  shortName = 'Local';
+  authenticationUrl = '';
+
+  protected handleUrl(url) {
+    if(url.match(/local:\/\/.*/i)) {
+      this.key = url;
+      this.id = utils.urlPart(url, 4);
+      this.type = utils.urlPart(url, 3);
+      this.page = utils.urlPart(url, 2);
+      return;
+    }
+    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
+  }
+
+  getCacheKey(){
+    return 'local:'+this.id+':'+this.page
+  }
+
+  _getStatus() {
+    return this.animeInfo.status;
+  }
+
+  _setStatus(status) {
+    this.animeInfo.status = status;
+  }
+
+  _getScore() {
+    return this.animeInfo.score;
+  }
+
+  _setScore(score) {
+    this.animeInfo.score = score;
+  }
+
+  _getEpisode() {
+    return this.animeInfo.progress;
+  }
+
+  _setEpisode(episode) {
+    this.animeInfo.progress = parseInt(episode+'');
+  }
+
+  _getVolume() {
+    return this.animeInfo.volumeprogress;
+  }
+
+  _setVolume(volume) {
+    this.animeInfo.volumeprogress = volume;
+  }
+
+  _getStreamingUrl() {
+    var tags = this.animeInfo.tags;
+    return utils.getUrlFromTags(tags);
+  }
+
+  _setStreamingUrl(url) {
+    var tags = this.animeInfo.tags;
+    if(!tags) tags = '';
+    tags = utils.setUrlInTags(url, tags);
+    this.animeInfo.tags = tags;
+  }
+
+  _getTitle() {
+    return this.animeInfo.name;
+  }
+
+  _getTotalEpisodes() {
+    return 0;
+  }
+
+  _getTotalVolumes() {
+    return 0;
+  }
+
+  _getDisplayUrl() {
+    return 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync';
+  }
+
+  _getImage() {
+    return Promise.resolve(api.storage.assetUrl('questionmark.gif'));
+  }
+
+  _getRating() {
+    return Promise.resolve('Local');
+  }
+
+  async _update() {
+    this._authenticated = true;
+
+    this.animeInfo = await api.storage.get(this.key);
+
+    this._onList = true;
+
+    if(!this.animeInfo){
+      this._onList = false;
+      this.animeInfo = {
+        name: 'Unknown',
+        tags: "",
+        progress: 0,
+        volumeprogress: 0,
+        rewatching: false,
+        rewatchingCount: 0,
+        score: '',
+        status: 6
+      }
+    }
+  }
+
+  _sync() {
+    return api.storage.set(this.key, this.animeInfo);
+  }
+
+  delete(){
+    return api.storage.remove(this.key);
+  }
+}

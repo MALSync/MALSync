@@ -1,10 +1,11 @@
 import * as helper from "./helper";
 
 import {Single as anilistSingle} from "./AniList/single";
+import {Single as localSingle} from "./Local/single";
 
 export function getSingle(url: string) {
   if(/^local:\/\//i.test(url)){
-    //return new local.entryClass(url, miniMAL, silent, state);
+    return new localSingle(url);
   }
   var syncMode = helper.getSyncMode(url);
   if(syncMode == 'MAL'){
