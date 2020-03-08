@@ -19,8 +19,8 @@ function createIframe(page){
       setTimeout(function(){
         minimalObj = new minimal(j.$("#info-iframe").contents().find('html'));
         if(typeof(page) != 'undefined'){
-          if(typeof(page.malObj) != 'undefined'){
-            minimalObj.fillBase(page.malObj.url);
+          if(typeof(page.singleObj) != 'undefined'){
+            minimalObj.fillBase(page.singleObj.getUrl());
           }else{
             minimalObj.fillBase(null);
           }

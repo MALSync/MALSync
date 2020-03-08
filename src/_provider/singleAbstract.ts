@@ -169,6 +169,13 @@ export abstract class SingleAbstract {
     return null;
   }
 
+  public getMalId(): string|null{
+    if(!isNaN(this.ids.mal)){
+      return this.ids.mal;
+    }
+    return null;
+  }
+
   abstract _getImage(): Promise<string>;
   public getImage(): Promise<string>{
     return this._getImage();

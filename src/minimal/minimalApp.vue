@@ -96,7 +96,7 @@
   import listSyncVue from './minimalApp/listSync/listSync.vue'
   import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue'
   import reviewsVue from './minimalApp/reviews.vue'
-  import {entryClass} from './../provider/provider';
+  import {getSingle} from "./../_provider/singleFactory";
 
   var timer;
   var ignoreCurrentTab = true;
@@ -182,7 +182,7 @@
     computed: {
       base: function(){
         if(this.page){
-          if(this.page.malObj) return this.page.malObj.url;
+          if(this.page.singleObj) return this.page.singleObj.getUrl();
           this.renderUrl = '';
           return '';
         }
@@ -285,8 +285,8 @@
     watch: {
       renderUrl: function(url, oldUrl){
         this.renderObj = null;
-        var tempRenderObj = new entryClass(url);
-        tempRenderObj.init().then(() => {
+        var tempRenderObj = new getSingle(url);
+        tempRenderObj.update().then(() => {
           this.renderObj = tempRenderObj;
         });
       },
@@ -409,8 +409,8 @@
       },
       setPage(page){
         this.page = page;
-        if(typeof this.page.malObj == 'undefined'){
-          this.$set(this.page, 'malObj', undefined);
+        if(typeof this.page.singleObj == 'undefined'){
+          this.$set(this.page, 'singleObj', undefined);
         }
       },
       backbuttonClick(){

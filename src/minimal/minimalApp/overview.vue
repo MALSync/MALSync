@@ -53,21 +53,21 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.login" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
-                    <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.type)}}</option>
+                  <select v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
+                    <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.getType())}}</option>
                     <option value="2">{{lang("UI_Status_Completed")}}</option>
                     <option value="3">{{lang("UI_Status_OnHold")}}</option>
                     <option value="4">{{lang("UI_Status_Dropped")}}</option>
-                    <option value="6">{{lang("UI_Status_planTo_"+renderObj.type)}}</option>
+                    <option value="6">{{lang("UI_Status_planTo_"+renderObj.getType())}}</option>
                   </select>
                 </span>
               </span>
             </li>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
-                <span>{{utils.episode(renderObj.type)}}</span>
+                <span>{{utils.episode(renderObj.getType())}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malEpisode" :disabled="!this.renderObj || !this.renderObj.login" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.totalEp">{{renderObj.totalEp}}</span><span v-else>?</span></span>
+                  <input v-model="malEpisode" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.getTotalEpisodes()">{{renderObj.getTotalEpisodes()}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -75,11 +75,11 @@
                 </span>
               </span>
             </li>
-            <li v-show="renderObj.type == 'manga'" class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+            <li v-show="renderObj.getType() == 'manga'" class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Volume")}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malVolume" :disabled="!this.renderObj || !this.renderObj.login" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.totalVol">{{renderObj.totalVol}}</span><span v-else>?</span></span>
+                  <input v-model="malVolume" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.getTotalVolumes()">{{renderObj.getTotalVolumes()}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -91,7 +91,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malScore" :disabled="!this.renderObj || !this.renderObj.login" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+                  <select v-model="malScore" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option value="" selected="selected">{{lang("UI_Score_Not_Rated")}}</option>
                     <option value="10">{{lang("UI_Score_Masterpiece")}}</option>
                     <option value="9">{{lang("UI_Score_Great")}}</option>
@@ -109,12 +109,12 @@
             </li>
             <li class="mdl-list__item" style="width: 100%;">
 
-              <input @click="malSync()" v-if="renderObj && renderObj.addAnime" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.login">
-              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.login">
+              <input @click="malSync()" v-if="renderObj && !renderObj.isOnList()" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()">
+              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()">
               <small v-if="editUrl && renderObj">
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
-              <input v-if="!(renderObj && renderObj.addAnime) && (typeof renderObj.delete !== 'undefined')" @click="remove()" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')">
+              <input v-if="!(renderObj && !renderObj.isOnList()) && (typeof renderObj.delete !== 'undefined')" @click="remove()" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')">
 
               <i class="material-icons" @click="reload()" style="margin-right: 0; margin-left: auto; cursor: pointer;">autorenew</i>
             </li>
@@ -255,56 +255,55 @@
       },
       malStatus: {
         get: function () {
-          if(this.renderObj && this.renderObj.login){
-            if(this.renderObj.getScore() === 0) return 1;
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             return this.renderObj.getStatus()
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             this.renderObj.setStatus(value);
           }
         }
       },
       malEpisode: {
         get: function () {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             if(this.renderObj.addAnime) return null;
             return this.renderObj.getEpisode();
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             this.renderObj.setEpisode(value);
           }
         }
       },
       malVolume: {
         get: function () {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             if(this.renderObj.addAnime) return null;
             return this.renderObj.getVolume();
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             this.renderObj.setVolume(value);
           }
         }
       },
       malScore: {
         get: function () {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             if(this.renderObj.getScore() === 0) return '';
             return this.renderObj.getScore()
           }
           return null;
         },
         set: function (value) {
-          if(this.renderObj && this.renderObj.login){
+          if(this.renderObj && this.renderObj.isAuthenticated()){
             this.renderObj.setScore(value);
           }
         }
@@ -340,7 +339,7 @@
             title = this.metaObj.getTitle();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         try{
-            title = this.renderObj.name;
+            title = this.renderObj.getTitle();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return title;
       },
@@ -361,7 +360,7 @@
       streaming: function(){
         var streamhtml = null;
         var malObj = this.renderObj;
-        if(malObj == null || !malObj.login) return null;
+        if(malObj == null || !malObj.isAuthenticated()) return null;
         var streamUrl = malObj.getStreamingUrl();
         if(typeof streamUrl !== 'undefined'){
 
@@ -369,19 +368,19 @@
           `
             <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
               <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Continue_'+malObj.type)}
+                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Continue_'+malObj.getType())}
               </a>`;
 
           con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
           if(typeof this.mal.continueUrl !== 'undefined' && this.mal.continueUrl && this.mal.continueUrl.ep === (malObj.getEpisode()+1)){
             streamhtml +=
-              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Next_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Next_Episode_'+malObj.type)}
+              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Next_Episode_'+malObj.getType())}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Next_Episode_'+malObj.getType())}
               </a>`;
           }else if(typeof this.mal.resumeUrl !== 'undefined' && this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()){
             streamhtml +=
-              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Resume_Episode_'+malObj.type)}
+              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}
               </a>`;
           }
 
@@ -470,13 +469,13 @@
 
         if(renderObj.getMalUrl() !== null){
 
-          if(renderObj.login){
+          if(renderObj.isAuthenticated()){
             this.updateStatusTags();
           }
 
 
           if(renderObj.getMalUrl().split('').length > 3){
-            utils.getMalToKissArray(renderObj.type, renderObj.id).then((links) => {
+            utils.getMalToKissArray(renderObj.getType(), renderObj.getMalId()).then((links) => {
               this.kiss2mal = links;
             });
           }
@@ -541,15 +540,16 @@
             var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
             if(typeof url != 'undefined'){
 
-              var tag = await utils.timeCache('MALTAG/'+url, async function(){
-                var malObj = entryClass(url, true, true);
-                await malObj.init();
-                return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
-              }, 1 * 60 * 60 * 1000);
+              //TODO:
+              //var tag = await utils.timeCache('MALTAG/'+url, async function(){
+              //  var malObj = entryClass(url, true, true);
+              //  await malObj.init();
+              //  return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+              //}, 1 * 60 * 60 * 1000);
 
-              if(tag){
-                this.related[relatedKey].links[linkKey].statusTag = tag;
-              }
+              //if(tag){
+              //  this.related[relatedKey].links[linkKey].statusTag = tag;
+              //}
             }
           }
         }

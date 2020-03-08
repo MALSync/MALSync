@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp" :style="wrong? 'border: 1px solid red;': ''">
+  <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
     <div class="mdl-cell" style="width: 100%;">
       The correction functionality was moved into a seperate popup for faster and better integeration. You can access it <template v-if="keys">with the shortcut '{{keys}}' or</template> by clicking <a @click.stop="openPopup">here</a>.
     </div>
