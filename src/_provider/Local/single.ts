@@ -111,9 +111,7 @@ export class Single extends SingleAbstract {
         tags: "",
         progress: 0,
         volumeprogress: 0,
-        rewatching: false,
-        rewatchingCount: 0,
-        score: '',
+        score: 0,
         status: 6
       }
     }

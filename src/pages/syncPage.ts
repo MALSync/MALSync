@@ -260,9 +260,11 @@ export class syncPage{
 
     var malUrl = this.searchObj.getUrl();
 
+    var localUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+
     if((malUrl === null || !malUrl) && api.settings.get('localSync')){
       con.log('Local Fallback');
-      malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
+      malUrl = localUrl;
     }
 
     if(malUrl === null){
@@ -281,17 +283,15 @@ export class syncPage{
       }catch(e) {
         if(e.code === 901) {
           utils.flashm('Incorrect url provided', {error: true, type: 'error'});
+          throw e;
+        }else if(e.code === 904 && api.settings.get('localSync')){
+          con.log('Local Fallback');
+          this.singleObj = getSingle(localUrl);
+          await this.singleObj.update();
         }else{
           this.singleObj.flashmError(e);
           this.fillUI();
-        }
-        //TODO:
-        throw e;
-        if(e.code = 415 && api.settings.get('localSync')){
-          con.log('Local Fallback');
-          malUrl = 'local://'+this.page.name+'/'+this.page.type+'/'+state.identifier;
-          this.singleObj = getSingle(malUrl);
-          await this.singleObj.update();
+          throw e;
         }
       }
 
