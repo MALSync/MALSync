@@ -36,10 +36,17 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
+    if(this.listI().attributes.reconsuming && this.listI().attributes.status === 'current') return 23;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
   _setStatus(status) {
+    if(status == 23) {
+      status = 1;
+      this.listI().attributes.reconsuming = true;
+    }else{
+      this.listI().attributes.reconsuming = false;
+    }
     this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 
