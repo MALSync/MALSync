@@ -108,7 +108,7 @@ export async function syncList(lazy = false){
 }
 
 export async function getSingle(ids:{simkl?:string|number, mal?:string|number}, lazy = false){
-  var list = await syncList(lazy);
+  var list = await this.syncList(lazy);
   if(ids.simkl){
     if(list[ids.simkl] != undefined){
       return list[ids.simkl];

@@ -2,6 +2,7 @@ import * as helper from "./helper";
 
 import {Single as anilistSingle} from "./AniList/single";
 import {Single as kitsuSingle} from "./Kitsu/single";
+import {Single as simklSingle} from "./Simkl/single";
 import {Single as localSingle} from "./Local/single";
 
 export function getSingle(url: string) {
@@ -16,7 +17,7 @@ export function getSingle(url: string) {
   }else if(syncMode == 'KITSU'){
     return new kitsuSingle(url);
   }else if(syncMode == 'SIMKL'){
-    //return new simkl.entryClass(url);
+    return new simklSingle(url);
   }
   throw 'Unknown sync mode';
 }
