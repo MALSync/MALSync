@@ -132,9 +132,12 @@ export class Single extends SingleAbstract {
     this._authenticated = true;
 
     return this.getSingle(de)
-      .catch((error) => {
-        //TODO
-        this._authenticated = false;
+      .catch((e) => {
+        if(e.code === errorCode.NotAutenticated){
+          this._authenticated = false;
+          return {};
+        }
+        throw e;
       })
       .then(async (res) => {
         con.log(res);
@@ -184,6 +187,8 @@ export class Single extends SingleAbstract {
 
         this.animeInfo.last_watched = helper.getEpisode(this.animeInfo.last_watched);
         this.minWatchedEp = this.animeInfo.last_watched+1;
+
+        if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
 
       });
 
