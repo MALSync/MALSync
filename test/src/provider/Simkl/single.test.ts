@@ -30,9 +30,9 @@ function setGlobals() {
           var options = {
             url: conf.url,
             headers: conf.headers,
-            body: conf.data
           }
           if(post.toLowerCase() === 'post'){
+            options.body = conf.data;
             request.post(options, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -40,6 +40,7 @@ function setGlobals() {
               })
             });
           }else{
+            options.body = JSON.stringify(conf.data);
             request.get(options, (error, response, body) => {
               resolve({
                 responseText: body,
@@ -122,7 +123,7 @@ function setGlobals() {
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         displayUrl: 'https://simkl.com/anime/38636',
         title: 'One Piece',
-        eps: 0,
+        eps: 928,
         vol: 0,
       },
       nonExistingMAL: {

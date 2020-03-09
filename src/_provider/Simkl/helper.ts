@@ -149,7 +149,7 @@ export async function call(url, sData = {}, asParameter = false, methode = 'GET'
   return api.request.xhr(methode, {
     url: url,
     headers: headers,
-    data: JSON.stringify(sData),
+    data: sData,
   }).then(async (response) => {
     var res = this.jsonParse(response);
     this.errorHandling(res, response.status);

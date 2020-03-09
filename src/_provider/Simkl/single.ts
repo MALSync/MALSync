@@ -135,7 +135,7 @@ export class Single extends SingleAbstract {
       .catch((e) => {
         if(e.code === errorCode.NotAutenticated){
           this._authenticated = false;
-          return {};
+          return '';
         }
         throw e;
       })
@@ -154,10 +154,10 @@ export class Single extends SingleAbstract {
           this._onList = false;
           if(de.simkl){
             var el = await this.call('https://api.simkl.com/anime/'+de.simkl, {'extended': 'full'}, true);
-            if(!el) throw { code: 415, message: 'Anime not found' };
+            if(!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
           }else{
             var el = await this.call('https://api.simkl.com/search/id', de, true);
-            if(!el) throw { code: 415, message: 'Anime not found' };
+            if(!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
             if(el[0].mal && el[0].mal.type && el[0].mal.type === 'Special') throw { code: 415, message: 'Is a special' };
             el = el[0];
           }
@@ -303,25 +303,29 @@ export class Single extends SingleAbstract {
   protected call = helper.call;
 
   errorHandling(res, code) {
-    //TODO
-    if(res && typeof res.error != 'undefined'){
-      con.error(res.error);
-      throw {
-        code: code,
-        message: res.error,
-      }
+
+    if((code > 499 && code < 600) || code === 0) {
+      throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+code)
     }
-    switch(code) {
-      case 200:
-      case 201:
-      case 204:
-      case 302:
-        break;
-      default:
-        throw {
-          'code': code,
-          message: 'Code: '+code,
+
+    if(res && typeof res.error != 'undefined'){
+      con.error('[SINGLE]','Error',res.error);
+      var error = res.error;
+      if(error.code) {
+        switch(error.code) {
+          default:
+            throw this.errorObj(error.code, error.error);
         }
+      }else{
+        switch(error) {
+          case 'user_token_failed':
+            throw this.errorObj(errorCode.NotAutenticated, 'user_token_failed');
+            break;
+          default:
+            throw error;
+        }
+      }
+
     }
 
   }
