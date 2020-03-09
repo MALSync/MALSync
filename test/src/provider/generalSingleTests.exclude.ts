@@ -69,7 +69,7 @@ export function generalSingleTests(Single, setGlobals) {
       [
         0,
         2,
-        21,
+        11,
       ].forEach((el) => {
         it(el+'', function () {
           singleEntry.setEpisode(el);
@@ -78,18 +78,21 @@ export function generalSingleTests(Single, setGlobals) {
       })
     });
 
-    describe('Volume', function () {
-      [
-        0,
-        2,
-        21,
-      ].forEach((el) => {
-        it(el+'', function () {
-          singleEntry.setVolume(el);
-          expect(singleEntry.getVolume()).equal(el);
+    if(!api.noManga) {
+      describe('Volume', function () {
+        [
+          0,
+          2,
+          21,
+        ].forEach((el) => {
+          it(el+'', function () {
+            singleEntry.setVolume(el);
+            expect(singleEntry.getVolume()).equal(el);
+          })
         })
-      })
-    });
+      });
+    }
+
 
     describe('Streaming Url', function () {
       [
@@ -105,6 +108,7 @@ export function generalSingleTests(Single, setGlobals) {
     });
 
     describe('Check Sync', function () {
+      if(api.noManga) return;
       [
         {
           name: 'Default',

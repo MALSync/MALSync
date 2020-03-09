@@ -16,6 +16,7 @@ function setGlobals() {
 
   global.api = {
     token: process.env.SIMKL_API_KEY,
+    noManga: true,
     settings: {
       get: function(key) {
         if('simklToken') return global.api.token;
@@ -31,13 +32,32 @@ function setGlobals() {
             headers: conf.headers,
             body: conf.data
           }
-          request.post(options, (error, response, body) => {
-            resolve({
-              responseText: body,
-              status: global.api.status
-            })
-          });
+          if(post.toLowerCase() === 'post'){
+            request.post(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }else{
+            request.get(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }
+
         });
+      }
+    },
+    storage: {
+      get: function(key) {
+        return Promise.resolve(undefined);
+      },
+      set: function(key, value) {
+        //state[key] = JSON.parse(JSON.stringify(value));
+        return Promise.resolve();
       }
     },
   }
@@ -72,35 +92,35 @@ function setGlobals() {
     apiTest: {
       defaultUrl: {
         url: 'https://simkl.com/anime/38636/one-piece',
-        displayUrl: 'https://anilist.co/anime/21',
+        displayUrl: 'https://simkl.com/anime/38636',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         title: 'One Piece',
-        eps: 0,
+        eps: 928,
         vol: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
-        rating: 83,
-        cacheKey: 21,
+        image: 'https://simkl.in/posters/72/7248108487b1ea37_ca.jpg',
+        rating: 8.6,
+        cacheKey: '21',
       },
       notOnListUrl: {
         url: 'https://simkl.com/anime/39821/shiki',
-        displayUrl: 'https://anilist.co/anime/10083',
-        malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
-        title: "Shiki Specials",
-        eps: 2,
+        displayUrl: 'https://simkl.com/anime/39821',
+        malUrl: 'https://myanimelist.net/anime/7724/Shiki',
+        title: "Shiki",
+        eps: 0,
         vol: 0,
       },
       noMalEntry: {
         url: 'https://simkl.com/anime/901533/jiyi-u-pan',
-        displayUrl: 'https://anilist.co/manga/115067',
-        title: 'Kagami no Kuni no Iris: SCP Foundation',
-        eps: 0,
+        displayUrl: 'https://simkl.com/anime/901533',
+        title: 'Jiyi U Pan',
+        eps: 1,
         vol: 0,
-        cacheKey: 'anilist:115067',
+        cacheKey: 'anilist:901533',
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
-        displayUrl: 'https://anilist.co/anime/21',
+        displayUrl: 'https://simkl.com/anime/38636',
         title: 'One Piece',
         eps: 0,
         vol: 0,
