@@ -130,7 +130,7 @@ export async function getSingle(ids:{simkl?:string|number, mal?:string|number}, 
 
 export async function call(url, sData = {}, asParameter = false, methode = 'GET', login = true){
   if(asParameter){
-    url += '?'+j.$.param(sData);
+    url += '?'+new URLSearchParams(Object.entries(sData));
   }
   con.log('call', methode, url, sData);
 
