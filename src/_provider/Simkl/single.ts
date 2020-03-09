@@ -11,6 +11,7 @@ export class Single extends SingleAbstract {
   private ratingUpdate = false;
 
   private minWatchedEp = 1;
+  private curWatchedEp = 0;
 
   shortName = 'Simkl';
   authenticationUrl = 'https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/';
@@ -58,12 +59,12 @@ export class Single extends SingleAbstract {
   }
 
   _getEpisode() {
-    return this.animeInfo.last_watched;
+    return this.curWatchedEp;
   }
 
   _setEpisode(episode) {
-    if(episode != this.animeInfo.last_watched) this.episodeUpdate = true;
-    this.animeInfo.last_watched = episode;
+    if(episode != this.curWatchedEp) this.episodeUpdate = true;
+    this.curWatchedEp = episode;
   }
 
   _getVolume() {
@@ -185,8 +186,8 @@ export class Single extends SingleAbstract {
           this.ids.mal = this.animeInfo.show.ids.mal;
         }
 
-        this.animeInfo.last_watched = helper.getEpisode(this.animeInfo.last_watched);
-        this.minWatchedEp = this.animeInfo.last_watched+1;
+        this.curWatchedEp = helper.getEpisode(this.animeInfo.last_watched);
+        this.minWatchedEp = this.curWatchedEp+1;
 
         if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
 
@@ -195,7 +196,7 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    con.log('[SET] Object:', this.animeInfo, 'status', this.statusUpdate, 'episode', this.episodeUpdate, 'rating', this.ratingUpdate);
+    con.log('[SET] Object:', this.animeInfo, 'status', this.statusUpdate, 'episode', this.episodeUpdate, 'rating', this.ratingUpdate, 'minWatchedEp', this.minWatchedEp);
     //Status
     if(this.statusUpdate || !this.isOnList()){
       var response = await this.call('https://api.simkl.com/sync/add-to-list', JSON.stringify({
@@ -213,7 +214,7 @@ export class Single extends SingleAbstract {
 
     //Episode and memo
     if(this.episodeUpdate || !this.isOnList()){
-      var curEp = this.animeInfo.last_watched;
+      var curEp = this.curWatchedEp;
       var episodes:{'number': number}[] = [];
 
       if(this.minWatchedEp <= curEp){
@@ -266,6 +267,8 @@ export class Single extends SingleAbstract {
         }), false, 'POST');
         con.log('Episode remove response', response);
       }
+
+      this.minWatchedEp = curEp+1;
     }
 
     //Rating
@@ -295,6 +298,7 @@ export class Single extends SingleAbstract {
         con.log('Rating remove response', response);
       }
     }
+
 
   }
 
