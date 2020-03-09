@@ -187,6 +187,10 @@ export class Single extends SingleAbstract {
         }
 
         this.curWatchedEp = helper.getEpisode(this.animeInfo.last_watched);
+        if(!this.curWatchedEp && this.animeInfo.next_to_watch){
+          var next = helper.getEpisode(this.animeInfo.next_to_watch);
+          if(next) this.curWatchedEp = next - 1;
+        }
         this.minWatchedEp = this.curWatchedEp+1;
 
         if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
@@ -196,7 +200,7 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    con.log('[SET] Object:', this.animeInfo, 'status', this.statusUpdate, 'episode', this.episodeUpdate, 'rating', this.ratingUpdate, 'minWatchedEp', this.minWatchedEp);
+    con.log('[SET] Object:', this.animeInfo, 'status', this.statusUpdate, 'episode', this.episodeUpdate, 'rating', this.ratingUpdate, 'minWatchedEp', this.minWatchedEp, 'curWatchedEp', this.curWatchedEp);
     //Status
     if(this.statusUpdate || !this.isOnList()){
       var response = await this.call('https://api.simkl.com/sync/add-to-list', JSON.stringify({
@@ -299,7 +303,9 @@ export class Single extends SingleAbstract {
       }
     }
 
-
+    this.episodeUpdate = false;
+    this.statusUpdate = false;
+    this.ratingUpdate = false;
   }
 
   protected syncList = helper.syncList;

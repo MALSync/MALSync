@@ -345,7 +345,7 @@ export function generalSingleTests(Single, setGlobals) {
 
         singleEntry
           .setScore(def.score.R6)
-          .setStatus(def.status.Completed)
+          .setStatus(def.status.PlanToWatch)
           .setEpisode(2)
 
         await singleEntry.sync();
