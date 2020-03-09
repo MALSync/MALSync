@@ -141,6 +141,9 @@ function setGlobals() {
       nonExistingMAL: {
         url: 'https://myanimelist.net/anime/13371337',
       },
+      hasTotalEp: {
+        url: 'https://kitsu.io/anime/koe-no-katachi',
+      },
     }
   }
 }

@@ -357,6 +357,44 @@ export function generalSingleTests(Single, setGlobals) {
 
       });
 
+      it('Over totalEp no limit', async function () {
+        this.timeout(50000);
+        var tData = global.testData.apiTest.defaultUrl;
+        var singleEntry = new Single(tData.url);
+        await singleEntry.update();
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(1000)
+        await singleEntry.sync();
+
+        await singleEntry.update();
+        expect(singleEntry.getEpisode()).equal(1000);
+      });
+
+      it('Over totalEp', async function () {
+        this.timeout(50000);
+        if(!global.testData.apiTest.hasTotalEp) return;
+        var tData = global.testData.apiTest.hasTotalEp;
+        var singleEntry = new Single(tData.url);
+        await singleEntry.update();
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(1)
+        var singleEntry = new Single(tData.url);
+        await singleEntry.update();
+        await singleEntry.sync();
+        singleEntry
+          .setScore(def.score.R5)
+          .setStatus(def.status.Watching)
+          .setEpisode(1000)
+        await singleEntry.sync();
+
+        await singleEntry.update();
+        expect(singleEntry.getEpisode()).equal(singleEntry.getTotalEpisodes());
+      });
+
     });
 
   });

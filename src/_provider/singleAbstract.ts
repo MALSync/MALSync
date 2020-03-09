@@ -66,6 +66,8 @@ export abstract class SingleAbstract {
 
   abstract _setEpisode(episode: number): void;
   public setEpisode(episode: number): SingleAbstract {
+    episode = parseInt(episode+'');
+    if(this.getTotalEpisodes() && episode > this.getTotalEpisodes()) episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
   };
@@ -142,7 +144,9 @@ export abstract class SingleAbstract {
 
   abstract _getTotalEpisodes(): number;
   public getTotalEpisodes() {
-    return this._getTotalEpisodes();
+    var eps = this._getTotalEpisodes();
+    if(!eps) eps = 0;
+    return eps;
   }
 
   abstract _getTotalVolumes(): number;

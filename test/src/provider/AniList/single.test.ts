@@ -113,6 +113,9 @@ function setGlobals() {
       nonExistingMAL: {
         url: 'https://myanimelist.net/anime/13371337',
       },
+      hasTotalEp: {
+        url: 'https://anilist.co/anime/20954/Koe-no-Katachi/',
+      },
     }
   }
 }
