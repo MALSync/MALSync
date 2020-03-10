@@ -503,6 +503,18 @@ export class syncPage{
       return;
     }
 
+    var scoreCheckbox = '';
+    this.singleObj.getScoreCheckbox().forEach((el) => {
+      scoreCheckbox += '<option value="'+el.value+'" >'+el.label+'</option>';
+    })
+    j.$("#malUserRating").html(scoreCheckbox);
+
+    var statusCheckbox = '';
+    this.singleObj.getStatusCheckbox().forEach((el) => {
+      statusCheckbox += '<option value="'+el.value+'" >'+el.label+'</option>';
+    })
+    j.$("#malStatus").html(statusCheckbox);
+
     this.singleObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
 
     if(!this.singleObj.isOnList()){
@@ -696,13 +708,6 @@ export class syncPage{
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Status")+' </span>';
     ui += '<select id="malStatus">';
-    //ui += '<option value="0" ></option>';
-    ui += '<option value="1" >'+api.storage.lang("UI_Status_watching_"+this.page.type)+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("UI_Status_Completed")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("UI_Status_OnHold")+'</option>';
-    ui += '<option value="4" >'+api.storage.lang("UI_Status_Dropped")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("UI_Status_planTo_"+this.page.type)+'</option>';
-    ui += '<option value="23" >'+api.storage.lang("UI_Status_Rewatching_"+this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 
@@ -741,17 +746,7 @@ export class syncPage{
 
     ui += wrapStart;
     ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="0">'+api.storage.lang("UI_Score_Not_Rated")+'</option>';
-    ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
-    ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
-    ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
-    ui += '<option value="7" >'+api.storage.lang("UI_Score_Good")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("UI_Score_Fine")+'</option>';
-    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'</option>';
-    ui += '<option value="4" >'+api.storage.lang("UI_Score_Bad")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("UI_Score_VeryBad")+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("UI_Score_Horrible")+'</option>';
-    ui += '<option value="1" >'+api.storage.lang("UI_Score_Appalling")+'</option>';
+    ui += '<select id="malUserRating">';
     ui += '</select>';
     ui += wrapEnd;
 
@@ -810,8 +805,8 @@ export class syncPage{
   private async buttonclick(){
     this.singleObj.setEpisode(j.$("#malEpisodes").val());
     if( j.$("#malVolumes").length ) this.singleObj.setVolume(j.$("#malVolumes").val());
-    this.singleObj.setScore(j.$("#malUserRating").val());
-    this.singleObj.setStatus(j.$("#malStatus").val());
+    this.singleObj.handleScoreCheckbox(j.$("#malUserRating").val());
+    this.singleObj.handleStatusCheckbox(j.$("#malStatus").val());
     if(!this.page.isSyncPage(this.url)){
       this.singleObj.setStreamingUrl(this.url);
     }

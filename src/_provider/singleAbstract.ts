@@ -346,6 +346,46 @@ export abstract class SingleAbstract {
       })
   }
 
+  public getScoreCheckbox() {
+    return [
+      {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+      {value: '10', label: api.storage.lang("UI_Score_Masterpiece")},
+      {value: '9', label: api.storage.lang("UI_Score_Great")},
+      {value: '8', label: api.storage.lang("UI_Score_VeryGood")},
+      {value: '7', label: api.storage.lang("UI_Score_Good")},
+      {value: '6', label: api.storage.lang("UI_Score_Fine")},
+      {value: '5', label: api.storage.lang("UI_Score_Average")},
+      {value: '4', label: api.storage.lang("UI_Score_Bad")},
+      {value: '3', label: api.storage.lang("UI_Score_VeryBad")},
+      {value: '2', label: api.storage.lang("UI_Score_Horrible")},
+      {value: '1', label: api.storage.lang("UI_Score_Appalling")},
+    ];
+  }
+
+  public handleScoreCheckbox(value) {
+    this.setScore(value);
+  }
+
+  public getStatusCheckbox() {
+    var statusEs = [
+      {value: '1', label: api.storage.lang("UI_Status_watching_"+this.getType())},
+      {value: '2', label: api.storage.lang("UI_Status_Completed")},
+      {value: '3', label: api.storage.lang("UI_Status_OnHold")},
+      {value: '4', label: api.storage.lang("UI_Status_Dropped")},
+      {value: '6', label: api.storage.lang("UI_Status_planTo_"+this.getType())},
+    ];
+
+    if(this.rewatchingSupport) {
+      statusEs.push({value: '23', label: api.storage.lang("UI_Status_Rewatching_"+this.getType())});
+    }
+
+    return statusEs;
+  }
+
+  public handleStatusCheckbox(value) {
+    this.setStatus(value);
+  }
+
   public getLastError() {
     return this.lastError;
   }
