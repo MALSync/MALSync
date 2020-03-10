@@ -157,8 +157,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return api.request.xhr('GET', this.url).then((response) => {
-      var data = response.responseText;
+    return this.apiCall('GET', this.url).then((data) => {
       var image = '';
       try{
           image = data.split('property="og:image"')[1].split('content="')[1].split('"')[0];
@@ -175,23 +174,17 @@ export class Single extends SingleAbstract {
       url = 'https://myanimelist.net/includes/ajax.inc.php?t=65&id='+this.ids.mal;
     }
 
-    return api.request.xhr('GET', url).then((response) => {
-      return response.responseText.split('Score:</span>')[1].split('<')[0];
+    return this.apiCall('GET', url).then((data) => {
+      return data.split('Score:</span>')[1].split('<')[0];
     });
   }
 
   _update() {
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.ids.mal+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);
-    return api.request.xhr('GET', editUrl).then((response) => {
-      if(response.finalUrl.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
-        //TODO
-        this._authenticated = false;
-        con.error("User not logged in");
-        return;
-      }
+    return this.apiCall('GET', editUrl).then((data) => {
       this._authenticated = true;
-      this.animeInfo = this.getObject(response.responseText);
+      this.animeInfo = this.getObject(data);
     });
   }
 
@@ -230,8 +223,8 @@ export class Single extends SingleAbstract {
     });
     con.log('[SET] URL:', url);
     con.log('[SET] Object:', this.animeInfo);
-    return api.request.xhr('POST', {url: url, data: parameter, headers: {"Content-Type": "application/x-www-form-urlencoded"} }).then((response) => {
-      if(response.responseText.indexOf('Successfully') >= 0){
+    return this.apiCall('POST', {url: url, data: parameter, headers: {"Content-Type": "application/x-www-form-urlencoded"} }).then((data) => {
+      if(data.indexOf('Successfully') >= 0){
         con.log('Update Succeeded');
       }else{
         //TODO
@@ -241,44 +234,19 @@ export class Single extends SingleAbstract {
     });
   }
 
-  //TODO
-  protected apiCall(query, variables, authentication = true) {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    }
-    if(authentication) headers['Authorization'] = 'Bearer ' + api.settings.get('anilistToken')
-    return api.request.xhr('POST', {
-      url: 'https://graphql.anilist.co',
-      headers,
-      data: JSON.stringify({
-        query,
-        variables
-      })
-    }).then((response) => {
-      if((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
-      }
-
-      var res = JSON.parse(response.responseText);
-
-      if(typeof res.errors != 'undefined' && res.errors.length){
-        con.error('[SINGLE]','Error',res.errors);
-        var error = res.errors[0];
-        switch(error.status) {
-          case 400:
-            throw this.errorObj(errorCode.NotAutenticated, error.message);
-            break;
-          case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.message);
-            break;
-          default:
-            throw this.errorObj(error.status, error.message);
+  protected apiCall(post, options) {
+    return api.request.xhr(post, options)
+      .then((response) => {
+        if((response.status > 499 && response.status < 600) || response.status === 0) {
+          throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
         }
-      }
+        if(response.finalUrl.indexOf("myanimelist.net/login.php") > -1 || response.responseText.indexOf("Unauthorized") > -1) {
+          this._authenticated = false;
+          throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        }
 
-      return res;
-    })
+        return response.responseText;
+      });
   }
 
   private getObject(data){
