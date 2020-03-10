@@ -302,27 +302,20 @@ export abstract class SingleAbstract {
 
   public async finishWatchingMessage(): Promise<boolean> {
     var currentScore = this.getScore();
-    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+
-        `<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">
-        <option value="0" ${(!currentScore) ? 'selected' : ''}>${api.storage.lang("UI_Score_Not_Rated")}</option>
-        <option value="10" ${(currentScore == 10) ? 'selected' : ''}>${api.storage.lang("UI_Score_Masterpiece")}</option>
-        <option value="9" ${(currentScore == 9) ? 'selected' : ''}>${api.storage.lang("UI_Score_Great")}</option>
-        <option value="8" ${(currentScore == 8) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryGood")}</option>
-        <option value="7" ${(currentScore == 7) ? 'selected' : ''}>${api.storage.lang("UI_Score_Good")}</option>
-        <option value="6" ${(currentScore == 6) ? 'selected' : ''}>${api.storage.lang("UI_Score_Fine")}</option>
-        <option value="5" ${(currentScore == 5) ? 'selected' : ''}>${api.storage.lang("UI_Score_Average")}</option>
-        <option value="4" ${(currentScore == 4) ? 'selected' : ''}>${api.storage.lang("UI_Score_Bad")}</option>
-        <option value="3" ${(currentScore == 3) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryBad")}</option>
-        <option value="2" ${(currentScore == 2) ? 'selected' : ''}>${api.storage.lang("UI_Score_Horrible")}</option>
-        <option value="1" ${(currentScore == 1) ? 'selected' : ''}>${api.storage.lang("UI_Score_Appalling")}</option>
-        </select>
-        </div>`, 'complete')
+
+    var checkHtml = '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
+    this.getScoreCheckbox().forEach((el) => {
+      checkHtml += `<option value="${el.value}" ${(currentScore == el.value) ? 'selected' : ''}>${el.label}</option>`;
+    })
+    checkHtml += '</select></div>':
+
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+checkHtml, 'complete')
       .then((res) => {
         if(res) {
           this.setStatus(definitions.status.Completed);
           if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
             con.log("finish_score: " + j.$('#finish_score :selected').val());
-            this.setScore(j.$("#finish_score :selected").val());
+            this.handleScoreCheckbox(j.$("#finish_score :selected").val());
           }
         }
 
