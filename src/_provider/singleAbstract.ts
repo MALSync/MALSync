@@ -60,13 +60,17 @@ export abstract class SingleAbstract {
 
   abstract _setScore(score: definitions.score): void;
   public setScore(score: definitions.score): SingleAbstract {
+    score = parseInt(score+'');
+    if(!score) score = 0;
     this._setScore(score);
     return this;
   };
 
   abstract _getScore(): definitions.score;
   public getScore(): definitions.score {
-    return this._getScore();
+    var score = this._getScore();
+    if(!score) return 0;
+    return score;
   };
 
   abstract _setEpisode(episode: number): void;

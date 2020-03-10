@@ -1,5 +1,6 @@
 import * as helper from "./helper";
 
+import {Single as malSingle} from "./MyAnimeList/single";
 import {Single as anilistSingle} from "./AniList/single";
 import {Single as kitsuSingle} from "./Kitsu/single";
 import {Single as simklSingle} from "./Simkl/single";
@@ -11,7 +12,7 @@ export function getSingle(url: string) {
   }
   var syncMode = helper.getSyncMode(url);
   if(syncMode == 'MAL'){
-    //return new mal.entryClass(url);
+    return new malSingle(url);
   }else if(syncMode == 'ANILIST'){
     return new anilistSingle(url);
   }else if(syncMode == 'KITSU'){
