@@ -361,20 +361,23 @@ export function generalSingleTests(Single, setGlobals) {
 
       });
 
-      it('Over totalEp no limit', async function () {
-        this.timeout(50000);
-        var tData = global.testData.apiTest.defaultUrl;
-        var singleEntry = new Single(tData.url);
-        await singleEntry.update();
-        singleEntry
-          .setScore(def.score.R5)
-          .setStatus(def.status.Watching)
-          .setEpisode(1000)
-        await singleEntry.sync();
+      if(!api.noLimitless){
+        it('Over totalEp no limit', async function () {
+          this.timeout(50000);
+          var tData = global.testData.apiTest.defaultUrl;
+          var singleEntry = new Single(tData.url);
+          await singleEntry.update();
+          singleEntry
+            .setScore(def.score.R5)
+            .setStatus(def.status.Watching)
+            .setEpisode(1000)
+          await singleEntry.sync();
 
-        await singleEntry.update();
-        expect(singleEntry.getEpisode()).equal(1000);
-      });
+          await singleEntry.update();
+          expect(singleEntry.getEpisode()).equal(1000);
+        });
+      }
+
 
       it('Over totalEp', async function () {
         this.timeout(50000);

@@ -17,6 +17,7 @@ function setGlobals() {
   global.api = {
     token: process.env.SIMKL_API_KEY,
     noManga: true,
+    noLimitless: true,
     settings: {
       get: function(key) {
         if('simklToken') return global.api.token;
