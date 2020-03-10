@@ -18,6 +18,7 @@ export abstract class SingleAbstract {
 
   public abstract shortName: string;
   protected abstract authenticationUrl: string;
+  protected rewatchingSupport: boolean = true;
 
   protected ids = {
     mal: NaN,
@@ -37,6 +38,10 @@ export abstract class SingleAbstract {
 
   public getUrl() {
     return this.url;
+  }
+
+  public supportsRewatching() {
+    return this.rewatchingSupport;
   }
 
   public abstract getCacheKey();

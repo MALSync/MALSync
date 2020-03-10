@@ -37,7 +37,12 @@ export function generalSingleTests(Single, setGlobals) {
       ].forEach((el) => {
         it(def.status[el], function () {
           singleEntry.setStatus(el);
-          expect(singleEntry.getStatus()).equal(el);
+          if(el == def.status.Rewatching && !singleEntry.supportsRewatching()) {
+            expect(singleEntry.getStatus()).equal(def.status.Watching);
+          }else{
+            expect(singleEntry.getStatus()).equal(el);
+          }
+
         })
       })
 

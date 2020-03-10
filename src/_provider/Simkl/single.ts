@@ -15,6 +15,7 @@ export class Single extends SingleAbstract {
 
   shortName = 'Simkl';
   authenticationUrl = 'https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/';
+  protected rewatchingSupport = false;
 
   protected handleUrl(url) {
     if(url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
@@ -41,6 +42,7 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
+    if(status == 23) status = 1;
     status = helper.translateList(status, parseInt(status.toString()));
     if(status !== this.animeInfo.status) this.statusUpdate = true;
     this.animeInfo.status = status;
