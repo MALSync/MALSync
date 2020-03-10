@@ -226,7 +226,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
         expect(await singleEntry.getImage()).equal(tData.image);
-        expect(await singleEntry.getRating()).equal(tData.rating);
+        expect((await singleEntry.getRating()).length).equal(tData.rating.length);
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
       })
       it('Not on list', async function () {
