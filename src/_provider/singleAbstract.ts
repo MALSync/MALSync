@@ -305,9 +305,10 @@ export abstract class SingleAbstract {
 
     var checkHtml = '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
     this.getScoreCheckbox().forEach((el) => {
+      //@ts-ignore
       checkHtml += `<option value="${el.value}" ${(currentScore == el.value) ? 'selected' : ''}>${el.label}</option>`;
     })
-    checkHtml += '</select></div>':
+    checkHtml += '</select></div>';
 
     return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+checkHtml, 'complete')
       .then((res) => {

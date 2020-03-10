@@ -54,11 +54,7 @@
                 <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
-                    <option selected="selected" value="1">{{lang("UI_Status_watching_"+renderObj.getType())}}</option>
-                    <option value="2">{{lang("UI_Status_Completed")}}</option>
-                    <option value="3">{{lang("UI_Status_OnHold")}}</option>
-                    <option value="4">{{lang("UI_Status_Dropped")}}</option>
-                    <option value="6">{{lang("UI_Status_planTo_"+renderObj.getType())}}</option>
+                    <option v-for="el in renderObj.getStatusCheckbox()" :value="el.value">{{el.label}}</option>
                   </select>
                 </span>
               </span>
@@ -92,17 +88,7 @@
                 <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
                   <select v-model="malScore" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
-                    <option value="" selected="selected">{{lang("UI_Score_Not_Rated")}}</option>
-                    <option value="10">{{lang("UI_Score_Masterpiece")}}</option>
-                    <option value="9">{{lang("UI_Score_Great")}}</option>
-                    <option value="8">{{lang("UI_Score_VeryGood")}}</option>
-                    <option value="7">{{lang("UI_Score_Good")}}</option>
-                    <option value="6">{{lang("UI_Score_Fine")}}</option>
-                    <option value="5">{{lang("UI_Score_Average")}}</option>
-                    <option value="4">{{lang("UI_Score_Bad")}}</option>
-                    <option value="3">{{lang("UI_Score_VeryBad")}}</option>
-                    <option value="2">{{lang("UI_Score_Horrible")}}</option>
-                    <option value="1">{{lang("UI_Score_Appalling")}}</option>
+                    <option v-for="el in renderObj.getScoreCheckbox()" :value="el.value">{{el.label}}</option>
                   </select>
                 </span>
               </span>
@@ -262,7 +248,7 @@
         },
         set: function (value) {
           if(this.renderObj && this.renderObj.isAuthenticated()){
-            this.renderObj.setStatus(value);
+            this.renderObj.handleStatusCheckbox(value);
           }
         }
       },
@@ -297,14 +283,13 @@
       malScore: {
         get: function () {
           if(this.renderObj && this.renderObj.isAuthenticated()){
-            if(this.renderObj.getScore() === 0) return '';
             return this.renderObj.getScore()
           }
           return null;
         },
         set: function (value) {
           if(this.renderObj && this.renderObj.isAuthenticated()){
-            this.renderObj.setScore(value);
+            this.renderObj.handleScoreCheckbox(value);
           }
         }
       },
