@@ -20,7 +20,7 @@ export class Single extends SingleAbstract {
   protected handleUrl(url) {
     if(url.match(/simkl\.com\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
-      this.ids.simkl = utils.urlPart(url, 4);
+      this.ids.simkl = parseInt(utils.urlPart(url, 4));
       if(this.type === 'manga') throw 'Simkl has no manga support';
       return;
     }
@@ -181,7 +181,7 @@ export class Single extends SingleAbstract {
         }
 
         if(isNaN(this.ids.simkl)){
-          this.ids.simkl = this.animeInfo.show.ids.simkl
+          this.ids.simkl = parseInt(this.animeInfo.show.ids.simkl);
         }
 
         if(isNaN(this.ids.mal) && typeof this.animeInfo.show.ids.mal !== 'undefined'){

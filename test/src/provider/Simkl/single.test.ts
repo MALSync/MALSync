@@ -112,12 +112,12 @@ function setGlobals() {
         vol: 0,
       },
       noMalEntry: {
-        url: 'https://simkl.com/anime/901533/jiyi-u-pan',
-        displayUrl: 'https://simkl.com/anime/901533',
-        title: 'Jiyi U Pan',
+        url: 'https://simkl.com/anime/591301/anzu-chan',
+        displayUrl: 'https://simkl.com/anime/591301',
+        title: 'Anzu-chan',
         eps: 1,
         vol: 0,
-        cacheKey: 'anilist:901533',
+        cacheKey: 'simkl:591301',
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
