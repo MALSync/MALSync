@@ -191,8 +191,7 @@ export class Single extends SingleAbstract {
   _sync() {
     var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.ids.mal+"/edit";
     if(this.pending){
-      //TODO
-      utils.flashm('This '+this.type+' is currently pending approval. It can´t be saved to mal for now')
+      throw this.errorObj(errorCode.GenericError, 'This '+this.type+' is currently pending approval. It can´t be saved to mal for now');
       return;
     }
 
@@ -227,8 +226,7 @@ export class Single extends SingleAbstract {
       if(data.indexOf('Successfully') >= 0){
         con.log('Update Succeeded');
       }else{
-        //TODO
-        throw 'Update failed';
+        throw this.errorObj(errorCode.ServerOffline, 'Update failed');
       }
 
     });
@@ -252,8 +250,7 @@ export class Single extends SingleAbstract {
   private getObject(data){
     var getselect = utils.getselect;
     if (typeof data.split('<form name="')[1] === "undefined" && (this.url.indexOf('/manga/') !== -1 || this.url.indexOf('/anime/') !== -1)) {
-      //TODO
-      throw new Error("MAL is down or otherwise giving bad data");
+      throw this.errorObj(errorCode.ServerOffline, 'MAL is down or otherwise giving bad data');
     }
 
     this._onList = true;
