@@ -202,7 +202,7 @@
 </template>
 
 <script type="text/javascript">
-  import {entryClass} from "./../../provider/provider";
+  import {getSingle} from "./../../_provider/singleFactory";
   import {metadata as malMeta}  from "./../../provider/MyAnimeList/metadata";
   import {metadata as aniMeta} from "./../../provider/AniList/metadata";
   import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
@@ -525,16 +525,19 @@
             var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
             if(typeof url != 'undefined'){
 
-              //TODO:
-              //var tag = await utils.timeCache('MALTAG/'+url, async function(){
-              //  var malObj = entryClass(url, true, true);
-              //  await malObj.init();
-              //  return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
-              //}, 1 * 60 * 60 * 1000);
 
-              //if(tag){
-              //  this.related[relatedKey].links[linkKey].statusTag = tag;
-              //}
+              var tag = await utils.timeCache('MALTAG/'+url, async function(){
+                var malObj = getSingle(url);
+                await malObj.update();
+                await new Promise((resolve, reject) => {
+                  setTimeout(resolve, 2000);
+                })
+                return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
+              }, 2 * 24 * 60 * 60 * 1000);
+
+              if(tag){
+                this.related[relatedKey].links[linkKey].statusTag = tag;
+              }
             }
           }
         }
