@@ -10,6 +10,13 @@
       </button>
     </span>
 
+    <span v-if="objError" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
+      <span class="mdl-chip__text" v-html="objError"></span>
+      <button type="button" class="mdl-chip__action" @click="reload()">
+        <i class="material-icons">refresh</i>
+      </button>
+    </span>
+
     <div class="mdl-grid" v-if="metaObj">
       <div v-show="statistics.length" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
         <ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">
@@ -235,6 +242,10 @@
       }
     },
     computed: {
+      objError: function() {
+        if(this.renderObj && this.renderObj.getLastError()) return this.renderObj.getLastErrorMessage();
+        return null;
+      },
       editUrl: function(){
         if(typeof this.renderObj.getDetailUrl !== 'undefined') return this.renderObj.getDetailUrl();
         return null;

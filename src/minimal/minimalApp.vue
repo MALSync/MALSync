@@ -288,6 +288,9 @@
         var tempRenderObj = new getSingle(url);
         tempRenderObj.update().then(() => {
           this.renderObj = tempRenderObj;
+        }).catch(e => {
+          this.renderObj = tempRenderObj;
+          throw e;
         });
       },
       currentTab: function(tab, oldtab){
