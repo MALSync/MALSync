@@ -124,7 +124,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  _sync() {
+  async _sync() {
     return api.storage.set(this.key, this.animeInfo);
   }
 

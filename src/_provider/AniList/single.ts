@@ -106,7 +106,7 @@ export class Single extends SingleAbstract {
     return Promise.resolve(this.animeInfo.averageScore);
   }
 
-  _update() {
+  async _update() {
     var selectId = this.ids.mal;
     var selectQuery = 'idMal';
     if(isNaN(this.ids.mal)){
@@ -184,7 +184,7 @@ export class Single extends SingleAbstract {
       });
   }
 
-  _sync() {
+  async _sync() {
     var query = `
       mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
         SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {

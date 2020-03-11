@@ -484,11 +484,10 @@ export class syncPage{
         this.fillUI();
 
         return;
-      }).catch(function(e){
-        con.error(e);
-        utils.flashm( api.storage.lang("syncPage_flashm_failded") , {error: true});
-        return;
-      });
+      }).catch((e) => {
+        this.singleObj.flashmError(e);
+        throw e;
+      })
   }
 
   fillUI(){

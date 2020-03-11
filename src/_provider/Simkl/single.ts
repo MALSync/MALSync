@@ -123,7 +123,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  _update() {
+  async _update() {
 
     if(isNaN(this.ids.mal)){
       var de = {simkl: this.ids.simkl};

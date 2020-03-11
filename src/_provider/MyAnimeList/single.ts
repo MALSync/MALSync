@@ -179,7 +179,7 @@ export class Single extends SingleAbstract {
     });
   }
 
-  _update() {
+  async _update() {
     var editUrl = 'https://myanimelist.net/ownlist/'+this.type+'/'+this.ids.mal+'/edit?hideLayout';
     con.log('Update MAL info', editUrl);
     return this.apiCall('GET', editUrl).then((data) => {
@@ -188,7 +188,7 @@ export class Single extends SingleAbstract {
     });
   }
 
-  _sync() {
+  async _sync() {
     var url = "https://myanimelist.net/ownlist/"+this.type+"/"+this.ids.mal+"/edit";
     if(this.pending){
       throw this.errorObj(errorCode.GenericError, 'This '+this.type+' is currently pending approval. It can´t be saved to mal for now');
