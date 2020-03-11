@@ -554,8 +554,8 @@ export class syncPage{
       j.$("#malEpisodes").val(this.singleObj.getEpisode());
       j.$("#malVolumes").val(this.singleObj.getVolume());
 
-      j.$("#malStatus").val(this.singleObj.getStatus());
-      j.$("#malUserRating").val(this.singleObj.getScore());
+      j.$("#malStatus").val(this.singleObj.getStatusCheckboxValue());
+      j.$("#malUserRating").val(this.singleObj.getScoreCheckboxValue());
     }
     j.$("#MalData").css("display","flex");
     j.$("#MalInfo").text("");

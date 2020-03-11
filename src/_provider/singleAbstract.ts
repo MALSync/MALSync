@@ -301,7 +301,7 @@ export abstract class SingleAbstract {
   }
 
   public async finishWatchingMessage(): Promise<boolean> {
-    var currentScore = this.getScore();
+    var currentScore = this.getScoreCheckboxValue();
 
     var checkHtml = '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
     this.getScoreCheckbox().forEach((el) => {
@@ -356,6 +356,10 @@ export abstract class SingleAbstract {
     ];
   }
 
+  public getScoreCheckboxValue() {
+    return this.getScore();
+  }
+
   public handleScoreCheckbox(value) {
     this.setScore(value);
   }
@@ -378,6 +382,10 @@ export abstract class SingleAbstract {
 
   public handleStatusCheckbox(value) {
     this.setStatus(value);
+  }
+
+  public getStatusCheckboxValue() {
+    return this.getStatus();
   }
 
   public getLastError() {

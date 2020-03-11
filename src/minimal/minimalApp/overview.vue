@@ -242,7 +242,7 @@
       malStatus: {
         get: function () {
           if(this.renderObj && this.renderObj.isAuthenticated()){
-            return this.renderObj.getStatus()
+            return this.renderObj.getStatusCheckboxValue()
           }
           return null;
         },
@@ -283,7 +283,7 @@
       malScore: {
         get: function () {
           if(this.renderObj && this.renderObj.isAuthenticated()){
-            return this.renderObj.getScore()
+            return this.renderObj.getScoreCheckboxValue()
           }
           return null;
         },
