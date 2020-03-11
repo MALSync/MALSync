@@ -1,7 +1,8 @@
-import * as mal from "./../../../provider/MyAnimeList/entryClass.ts";
-import * as anilist from "./../../../provider/AniList/entryClass.ts";
-import * as kitsu from "./../../../provider/Kitsu/entryClass.ts";
-import * as simkl from "./../../../provider/Simkl/entryClass.ts";
+import {Single as malSingle} from "./../../../_provider/MyAnimeList/single";
+import {Single as anilistSingle} from "./../../../_provider/AniList/single";
+import {Single as kitsuSingle} from "./../../../_provider/Kitsu/single";
+import {Single as simklSingle} from "./../../../_provider/Simkl/single";
+import {Single as localSingle} from "./../../../_provider/Local/single";
 
 import {userlist as malList} from "./../../../_provider/MyAnimeList/list";
 import {userlist as anilistList} from "./../../../_provider/AniList/list";
@@ -161,22 +162,22 @@ export async function syncMissing(item){
 export function syncItem(slave, pageType){
   if(Object.keys(slave.diff).length !== 0){
     if(pageType == 'MAL'){
-      var entryClass:any = new mal.entryClass(slave.url, true, true);
+      var singleClass:any = new malSingle(slave.url);
     }else if(pageType == 'ANILIST'){
-      var entryClass:any = new anilist.entryClass(slave.url, true, true);
+      var singleClass:any = new anilistSingle(slave.url);
     }else if(pageType == 'KITSU'){
-      var entryClass:any = new kitsu.entryClass(slave.url, true, true);
+      var singleClass:any = new kitsuSingle(slave.url);
     }else if(pageType == 'SIMKL'){
-      var entryClass:any = new simkl.entryClass(slave.url, true, true);
+      var singleClass:any = new simklSingle(slave.url);
     }else{
       throw('No sync type');
     }
 
-    return entryClass.init().then(() => {
-      if(typeof slave.diff.watchedEp !== "undefined") entryClass.setEpisode(slave.diff.watchedEp);
-      if(typeof slave.diff.status !== "undefined") entryClass.setStatus(slave.diff.status);
-      if(typeof slave.diff.score !== "undefined") entryClass.setScore(slave.diff.score);
-      return entryClass.sync();
+    return singleClass.update().then(() => {
+      if(typeof slave.diff.watchedEp !== "undefined") singleClass.setEpisode(slave.diff.watchedEp);
+      if(typeof slave.diff.status !== "undefined") singleClass.setStatus(slave.diff.status);
+      if(typeof slave.diff.score !== "undefined") singleClass.setScore(slave.diff.score);
+      return singleClass.sync();
     });
   }
 }
