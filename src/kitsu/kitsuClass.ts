@@ -1,6 +1,6 @@
 import * as helper from "./../provider/Kitsu/helper";
 import {pageSearch} from './../pages/pages';
-import {entryClass} from "./../provider/Kitsu/entryClass";
+import {Single as kitsuSingle} from "./../_provider/Kitsu/single";
 import {userlist} from "./../_provider/Kitsu/list";
 
 interface detail{
@@ -64,13 +64,13 @@ export class kitsuClass{
         this.malToKiss();
         return;
       }
-      var malObj = new entryClass(this.url);
-      await malObj.init();
+      var malObj = new kitsuSingle(this.url);
+      await malObj.update();
 
       this.page = {
         page: "detail",
-        id: malObj.kitsuId,
-        malid: malObj.id,
+        id: malObj.getIds().kitsu.id,
+        malid: malObj.getIds().mal,
         type: urlpart,
         malObj: malObj,
       }
@@ -187,13 +187,13 @@ export class kitsuClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
         }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );

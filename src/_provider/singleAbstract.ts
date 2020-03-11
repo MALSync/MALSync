@@ -192,6 +192,10 @@ export abstract class SingleAbstract {
     return null;
   }
 
+  public getIds(){
+    return this.ids
+  }
+
   abstract _getImage(): Promise<string>;
   public getImage(): Promise<string>{
     return this._getImage();
