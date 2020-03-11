@@ -12,8 +12,20 @@ export function translateList(aniStatus, malStatus:null|number = null){
   return list[aniStatus];
 }
 
-export function getTitle(titles){
-  var title = titles.en;
+export function getTitle(titles, canonicalTitle){
+  switch(api.settings.get('kitsuOptions').titleLanguagePreference) {
+    case 'english':
+      var title = titles.en;
+      break;
+    case 'romanized':
+      var title = titles.en_jp;
+      break;
+    case 'canonical':
+    default:
+      var title = canonicalTitle;
+  }
+
+  if(typeof title == 'undefined' || !title) title = titles.en;
   if(typeof title == 'undefined' || !title) title = titles.en_jp;
   if(typeof title == 'undefined' || !title) title = titles.ja_jp;
   if(typeof title == 'undefined' || !title){
@@ -23,6 +35,7 @@ export function getTitle(titles){
     }
     title = titles[keys[0]];
   }
+
   return title;
 }
 

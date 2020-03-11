@@ -95,7 +95,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return helper.getTitle(this.animeI().attributes.titles);
+    return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
   }
 
   _getTotalEpisodes() {
@@ -148,7 +148,7 @@ export class Single extends SingleAbstract {
     this._authenticated = true;
     return this.userId()
       .then((userId) => {
-        return this.apiCall('GET', 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+userId+'&filter[kind]='+this.getType()+'&filter['+this.getType()+'_id]='+this.ids.kitsu.id+'&page[limit]=1&page[limit]=1&include='+this.getType()+'&fields['+this.getType()+']=slug,titles,averageRating,posterImage,'+(this.getType() == 'anime'? 'episodeCount': 'chapterCount,volumeCount'))
+        return this.apiCall('GET', 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+userId+'&filter[kind]='+this.getType()+'&filter['+this.getType()+'_id]='+this.ids.kitsu.id+'&page[limit]=1&page[limit]=1&include='+this.getType()+'&fields['+this.getType()+']=slug,titles,canonicalTitle,averageRating,posterImage,'+(this.getType() == 'anime'? 'episodeCount': 'chapterCount,volumeCount'))
       })
       .catch(e => {
         if(e.code === errorCode.NotAutenticated){
