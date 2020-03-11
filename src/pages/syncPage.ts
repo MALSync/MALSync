@@ -322,6 +322,8 @@ export class syncPage{
         if(await this.singleObj.checkSync(state.episode, state.volume, this.novel)){
 
           this.singleObj.setEpisode(state.episode);
+          this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
+
           if( typeof(state.volume) != "undefined" && state.volume > this.singleObj.getVolume()) this.singleObj.setVolume(state.volume);
 
           con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
