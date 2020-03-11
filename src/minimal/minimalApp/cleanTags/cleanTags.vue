@@ -15,7 +15,7 @@
 </template>
 
 <script type="text/javascript">
-  import * as provider from "./../../../provider/provider.ts";
+  import {getSingle} from "./../../../_provider/singleFactory";
   import {getOnlyList} from "./../../../_provider/listFactory";
 
   export default {
@@ -78,10 +78,13 @@
   }
 
   async function cleanTags(url){
-    var entryClass = new provider.entryClass(url, true, true);
-    return entryClass.init().then( () => {
+    var entryClass = getSingle(url);
+    return entryClass.update().then( () => {
       entryClass.setStreamingUrl('');
       return entryClass.sync();
+    }).catch((e) => {
+      con.error(e);
+      return;
     });
   }
 

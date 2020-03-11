@@ -197,6 +197,7 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
+    if(this.listI().attributes.ratingTwenty < 2) this.listI().attributes.ratingTwenty = null;
     var variables:any = {
       data:{
         attributes: {
