@@ -335,4 +335,79 @@ export class Single extends SingleAbstract {
     }
   }
 
+  private getScoreMode() {
+    return api.settings.get('kitsuOptions').ratingSystem;
+  }
+
+  public getScoreCheckbox() {
+    switch(this.getScoreMode()) {
+      case 'simple':
+        return [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+          {value: '20', label: '😀'},
+          {value: '14', label: '🙂'},
+          {value: '8', label: '😐'},
+          {value: '2', label: '🙁'},
+        ];
+        break;
+      case 'regular':
+        var resArr =  [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+        ];
+        for(var i = 1; i < 11; i++){
+          resArr.push({value: (i*2).toString(), label: (i/2).toFixed(1).toString()});
+        }
+        return resArr;
+        break;
+      case 'advanced':
+        var resArr =  [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+        ];
+        for(var i = 1; i < 21; i++){
+          resArr.push({value: (i).toString(), label: (i/2).toFixed(1).toString()});
+        }
+        return resArr;
+        break;
+      default:
+        return super.getScoreCheckbox();
+    }
+  }
+
+  public getScoreCheckboxValue() {
+    var curScore = this.listI().attributes.ratingTwenty;
+    if(!curScore) curScore = 0;
+    switch(this.getScoreMode()) {
+      case 'simple':
+        if(!curScore) return 0;
+        if(curScore < 6) return 2;
+        if(curScore < 12) return 8;
+        if(curScore < 18) return 14;
+        return 20;
+        break;
+      case 'regular':
+        return Math.round(curScore/2)*2;
+      case 'advanced':
+        return curScore;
+        break;
+      default:
+        return super.getScoreCheckboxValue();
+    }
+  }
+
+  public handleScoreCheckbox(value) {
+    switch(this.getScoreMode()) {
+      case 'simple':
+      case 'regular':
+      case 'advanced':
+        if(value === 0){
+          this.listI().attributes.ratingTwenty = null;
+          return;
+        }
+        this.listI().attributes.ratingTwenty = value;
+        break;
+      default:
+        super.handleScoreCheckbox(value);
+    }
+  }
+
 }
