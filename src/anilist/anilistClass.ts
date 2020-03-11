@@ -1,6 +1,6 @@
 import * as helper from "./../provider/AniList/helper";
 import {pageSearch} from './../pages/pages';
-import {entryClass} from "./../provider/AniList/entryClass";
+import {Single as anilistSingle} from "./../_provider/AniList/single";
 import {userlist} from "./../_provider/AniList/list";
 
 interface detail{
@@ -229,8 +229,8 @@ export class anilistClass{
   async streamingUI(){
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
-    var malObj = new entryClass(this.url);
-    await malObj.init();
+    var malObj = new anilistSingle(this.url);
+    await malObj.update();
 
     var streamUrl = malObj.getStreamingUrl();
     if(typeof streamUrl !== 'undefined'){
@@ -249,13 +249,13 @@ export class anilistClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
         }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );
