@@ -478,7 +478,7 @@
 
         }
 
-        if(typeof this.renderObj.renderNoImage === 'undefined' || !this.renderObj.renderNoImage){
+        if(this.renderObj.shortName !== 'MAL'){
           this.imageTemp = await this.renderObj.getImage();
         }
 

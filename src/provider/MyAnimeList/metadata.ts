@@ -33,7 +33,7 @@ export class metadata implements metadataInterface{
   getImage(){
     var image = '';
     try{
-        image = this.xhr.split('js-scrollfix-bottom')[1].split('data-src="')[1].split('"')[0];
+        image = this.xhr.split('property="og:image"')[1].split('content="')[1].split('"')[0];
     }catch(e) {console.log('[iframeOverview] Error:',e);}
     return image;
   }
