@@ -1,4 +1,3 @@
-import * as provider from "./../provider/provider.ts";
 import Vue from 'vue';
 import minimalApp from './minimalApp.vue';
 import * as VueClazyLoad from 'vue-clazy-load';
