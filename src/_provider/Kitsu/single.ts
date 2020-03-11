@@ -126,8 +126,13 @@ export class Single extends SingleAbstract {
   async _update() {
     if(isNaN(this.ids.mal)){
       var kitsuSlugRes = await this.kitsuSlugtoKitsu(this.ids.kitsu.slug, this.getType());
-      this.ids.kitsu.id = kitsuSlugRes.res.data[0].id;
-      this.ids.mal = kitsuSlugRes.malId;
+      try{
+        this.ids.kitsu.id = kitsuSlugRes.res.data[0].id;
+        this.ids.mal = kitsuSlugRes.malId;
+      }catch(e){
+        this._authenticated = true;
+        throw this.errorObj(errorCode.EntryNotFound, 'Not found');
+      }
     }
     if(isNaN(this.ids.kitsu.id)){
       var kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
@@ -274,7 +279,14 @@ export class Single extends SingleAbstract {
   }
 
   protected kitsuSlugtoKitsu(kitsuSlug: string, type: any){
-    return this.apiCall('Get', 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings', {}, false)
+    return this.apiCall('Get', 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings', {})
+      .catch(e => {
+        if(e.code === errorCode.NotAutenticated){
+          this._authenticated = false;
+          return this.apiCall('Get', 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings', {}, false)
+        }
+        throw e;
+      })
       .then((res) => {
         var malId = NaN;
         if(typeof res !== 'undefined' && typeof res.included !== 'undefined'){
@@ -294,7 +306,14 @@ export class Single extends SingleAbstract {
   }
 
   protected malToKitsu(malid: number, type: any){
-    return this.apiCall('Get', 'https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/'+type+'&filter[externalId]='+malid+'&include=item&fields[item]=id', {}, false)
+    return this.apiCall('Get', 'https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/'+type+'&filter[externalId]='+malid+'&include=item&fields[item]=id', {})
+      .catch(e => {
+        if(e.code === errorCode.NotAutenticated){
+          this._authenticated = false;
+          return this.apiCall('Get', 'https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/'+type+'&filter[externalId]='+malid+'&include=item&fields[item]=id', {}, false)
+        }
+        throw e;
+      })
       .then((res) => {
         return res;
       });
