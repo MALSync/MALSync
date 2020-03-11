@@ -8,6 +8,13 @@ export class userlist extends ListAbstract {
 
   async getUsername() {
     var user = await this.userRequest();
+
+    var opt = api.settings.get('kitsuOptions');
+    opt['titleLanguagePreference'] = user.attributes.titleLanguagePreference
+    opt['sfwFilter'] = user.attributes.sfwFilter
+    opt['ratingSystem'] = user.attributes.ratingSystem
+    api.settings.set('kitsuOptions', opt);
+
     return user.attributes.name;
   }
 

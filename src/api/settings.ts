@@ -66,6 +66,11 @@ export var settingsObj = {
       scoreFormat: 'POINT_10',
     },
     'kitsuToken': '',
+    'kitsuOptions': {
+      titleLanguagePreference: 'canonical',
+      sfwFilter: false,
+      ratingSystem: "regular"
+    },
     'simklToken': ''
   },
 
