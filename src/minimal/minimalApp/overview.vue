@@ -485,8 +485,9 @@
         this.renderObj.sync()
           .then(function(){
             utils.flashm('Updated');
-          }, function(){
-            utils.flashm( "Update failed" , {error: true});
+          }, (e) => {
+            this.renderObj.flashmError(e);
+            throw e;
           });
       },
       remove: function(){
@@ -494,8 +495,9 @@
             utils.flashm('Removed');
             this.renderObj.update();
           }, () => {
-            utils.flashm( "Removing failed" , {error: true});
+            this.renderObj.flashmError(e);
             this.renderObj.update();
+            throw e;
           });
       },
       reload: function(){
