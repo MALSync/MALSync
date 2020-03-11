@@ -61,6 +61,10 @@ export var settingsObj = {
     updateCheckNotifications: true,
 
     'anilistToken': '',
+    'anilistOptions': {
+      displayAdultContent: true,
+      scoreFormat: 'POINT_10',
+    },
     'kitsuToken': '',
     'simklToken': ''
   },

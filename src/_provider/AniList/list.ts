@@ -14,6 +14,12 @@ export class userlist extends ListAbstract {
       Viewer {
         name
         id
+        options {
+          displayAdultContent
+        }
+        mediaListOptions {
+          scoreFormat
+        }
       }
     }
     `;
@@ -33,6 +39,12 @@ export class userlist extends ListAbstract {
       var res = this.jsonParse(response);
       con.log(res);
       this.errorHandling(res);
+      if(res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
+        var opt = api.settings.get('anilistOptions');
+        opt['displayAdultContent'] = res.data.Viewer.options.displayAdultContent;
+        opt['scoreFormat'] = res.data.Viewer.mediaListOptions.scoreFormat;
+        api.settings.set('anilistOptions', opt);
+      }
       return res.data.Viewer.name;
     });
   }
