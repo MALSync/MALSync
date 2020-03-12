@@ -75,8 +75,7 @@
       score: {
         get: function () {
           if(this.obj && this.obj.isAuthenticated()){
-            if(this.obj.getScore() === 0) return '';
-            return this.obj.getScore()
+            return this.obj.getDisplayScoreCheckbox()
           }
           return null;
         },

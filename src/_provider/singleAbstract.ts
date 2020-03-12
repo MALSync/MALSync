@@ -368,6 +368,14 @@ export abstract class SingleAbstract {
     this.setScore(value);
   }
 
+  public getDisplayScoreCheckbox() {
+    var curScore = this.getScoreCheckboxValue();
+    //@ts-ignore
+    var labelEl = this.getScoreCheckbox().filter(el => el.value == curScore);
+    if(labelEl.length) return labelEl[0].label;
+    return '';
+  }
+
   public getStatusCheckbox() {
     var statusEs = [
       {value: '1', label: api.storage.lang("UI_Status_watching_"+this.getType())},
