@@ -12,7 +12,11 @@ module.exports = {
       '*://myanimelist.net/search/*'
     ],
     exclude: [
-      '*myanimelist.net/anime/season*'
+      '*myanimelist.net/anime/season*',
+      '*myanimelist.net/anime/producer*',
+      '*myanimelist.net/manga/magazine*',
+      '*myanimelist.net/anime/genre*',
+      '*myanimelist.net/manga/genre*'
     ]
   },
   anilist: {
