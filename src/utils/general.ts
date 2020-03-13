@@ -195,6 +195,7 @@ export function handleMalImages(url){
 }
 
 export async function getMalToKissArray(type, id){
+  if(!id) return {};
   return getMalToKissApi(type, id)
     .catch((e) => {
       con.error(e);
