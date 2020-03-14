@@ -1366,22 +1366,22 @@ var testsArray = [
     url: 'https://animeflix.io/',
     testCases: [
       {
-        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season/episode-8-436278/sub',
+        url: 'https://animeflix.io/shows/bleach/episode-358-927911/sub',
         expected: {
           sync: true,
-          title: 'Boku no Hero Academia 4th Season',
-          identifier: 'boku-no-hero-academia-4th-season',
-          overviewUrl: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
-          episode: 8,
+          title: 'Bleach',
+          identifier: 'bleach',
+          overviewUrl: 'https://animeflix.io/shows/bleach',
+          episode: 358,
           uiSelector: false,
         }
       },
       {
-        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
+        url: 'https://animeflix.io/shows/bleach',
         expected: {
           sync: false,
-          title: 'Boku no Hero Academia 4th Season',
-          identifier: 'boku-no-hero-academia-4th-season',
+          title: 'Bleach',
+          identifier: 'bleach',
           uiSelector: true,
         }
       },
