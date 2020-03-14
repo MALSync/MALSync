@@ -447,4 +447,9 @@ module.exports = {
      '*://dreamsub.stream/*',
     ]
   },
+  MangaPark: {
+    match: [
+     '*://mangapark.net/*',
+    ]
+  },
 };
