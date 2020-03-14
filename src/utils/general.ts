@@ -664,7 +664,10 @@ function initflashm(){
                  .mini-stealth .flashinfo{\
                     opacity: 0;\
                  }\
-                 .flashinfo:hover, #flashinfo-div.hover .flashinfo{\
+                 #flashinfo-div.hover .flashinfo{\
+                    opacity: 1;\
+                 }\
+                 .flashinfo:hover{\
                     max-height:5000px !important;\
                     z-index: 2147483647;\
                     opacity: 1;\
