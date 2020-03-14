@@ -351,7 +351,8 @@ module.exports = {
   },
   tmofans: {
     match: [
-      '*://tmofans.com/*'
+      '*://tmofans.com/*',
+      '*://lectortmo.com/*',
     ]
   },
   unionmangas: {

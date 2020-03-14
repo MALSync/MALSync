@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const tmofans: pageInterface = {
   name: "tmofans",
-  domain: "https://tmofans.com",
+  domain: ["https://lectortmo.com","https://tmofans.com"],
   type: "manga",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "viewer" && url.split("/")[4] !== undefined && url.split("/")[4].length > 0) {
