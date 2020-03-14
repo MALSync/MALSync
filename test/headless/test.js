@@ -1521,7 +1521,7 @@ var testsArray = [
     url: 'https://unionmangas.top/',
     testCases: [
       {
-        url: 'https://unionmangas.top/leitor/Solo_Leveling/76',
+        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
         expected: {
           sync: true,
           title: 'Solo Leveling',
