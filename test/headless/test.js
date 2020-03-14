@@ -182,7 +182,8 @@ var testsArray = [
           }
         }
       },
-      {
+      //captcha
+      /*{
         url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
         expected: {
           sync: true,
@@ -196,7 +197,7 @@ var testsArray = [
             5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
           }
         }
-      },
+      },*/
     ]
   },
 
