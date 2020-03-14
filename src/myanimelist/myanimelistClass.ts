@@ -1,5 +1,5 @@
 import {pageSearch} from './../pages/pages';
-import {entryClass} from "./../provider/MyAnimeList/entryClass";
+import {Single as malSingle} from "./../_provider/MyAnimeList/single";
 import {userlist} from "./../_provider/MyAnimeList/list";
 
 export class myanimelistClass{
@@ -266,8 +266,8 @@ export class myanimelistClass{
 
   async streamingUI(){
     con.log('Streaming UI');
-    var malObj = new entryClass(this.url);
-    await malObj.init();
+    var malObj = new malSingle(this.url);
+    await malObj.update();
 
     var streamUrl = malObj.getStreamingUrl();
     if(typeof streamUrl !== 'undefined'){
@@ -285,13 +285,13 @@ export class myanimelistClass{
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (malObj.getEpisode()+1)){
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            `<a class="nextStream" title="${api.storage.lang('overview_Continue_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`
             );
         }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === malObj.getEpisode()){
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.type)}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            `<a class="resumeStream" title="${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`
             );
@@ -433,10 +433,10 @@ export class myanimelistClass{
         var url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if(typeof url != 'undefined'){
           utils.timeCache('MALTAG/'+url, async function(){
-            var malObj = new entryClass(url);
-            await malObj.init();
-            return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
-          }, 1 * 60 * 60 * 1000)
+            var malObj = new malSingle(url);
+            await malObj.update();
+            return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());
+          }, 2 * 24 * 60 * 60 * 1000)
           .then(function(tag){
             if(tag){
               el.after(tag)

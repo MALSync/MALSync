@@ -99,6 +99,14 @@
       "message": "Plan to Read",
       "description": "Plan to Read"
     },
+    "UI_Status_Rewatching_anime": {
+      "message": "Rewatching",
+      "description": "Status to rewatch anime"
+    },
+    "UI_Status_Rewatching_manga": {
+      "message": "Rereading",
+      "description": "Status to reread manga"
+    },
     "UI_Episode": {
       "message": "Episode:",
       "description": "Episode"

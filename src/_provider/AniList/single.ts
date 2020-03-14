@@ -8,6 +8,9 @@ export class Single extends SingleAbstract {
 
   private displayUrl: string = '';
 
+  shortName = 'AniList';
+  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
+
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
       this.type = utils.urlPart(url, 3);
@@ -96,14 +99,14 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.animeInfo.coverImage.large;
+    return Promise.resolve(this.animeInfo.coverImage.large);
   }
 
   _getRating() {
-    return this.animeInfo.averageScore;
+    return Promise.resolve(this.animeInfo.averageScore);
   }
 
-  _update() {
+  async _update() {
     var selectId = this.ids.mal;
     var selectQuery = 'idMal';
     if(isNaN(this.ids.mal)){
@@ -181,7 +184,7 @@ export class Single extends SingleAbstract {
       });
   }
 
-  _sync() {
+  async _sync() {
     var query = `
       mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
         SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
@@ -231,7 +234,7 @@ export class Single extends SingleAbstract {
         variables
       })
     }).then((response) => {
-      if(response.status > 499 && response.status < 600) {
+      if((response.status > 499 && response.status < 600) || response.status === 0) {
         throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
       }
 
@@ -255,4 +258,91 @@ export class Single extends SingleAbstract {
       return res;
     })
   }
+
+  private getScoreMode() {
+    return api.settings.get('anilistOptions').scoreFormat;
+  }
+
+  public getScoreCheckbox() {
+    switch(this.getScoreMode()) {
+      case 'POINT_3':
+        return [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+          {value: '85', label: '🙂'},
+          {value: '60', label: '😐'},
+          {value: '35', label: '🙁'},
+        ];
+        break;
+      case 'POINT_5':
+        return [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+          {value: '90', label: '★★★★★'},
+          {value: '70', label: '★★★★'},
+          {value: '50', label: '★★★'},
+          {value: '30', label: '★★'},
+          {value: '10', label: '★'},
+        ];
+        break;
+      case 'POINT_10_DECIMAL':
+        var resArr =  [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+        ];
+        for(var i = 1; i < 101; i++){
+          resArr.push({value: i.toString(), label: (i / 10).toFixed(1)});
+        }
+        return resArr;
+        break;
+      case 'POINT_100':
+        var resArr =  [
+          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+        ];
+        for(var i = 1; i < 101; i++){
+          resArr.push({value: i.toString(), label: i});
+        }
+        return resArr;
+        break;
+      default:
+        return super.getScoreCheckbox();
+    }
+  }
+
+  public getScoreCheckboxValue() {
+    var curScore = this.animeInfo.mediaListEntry.score;
+    switch(this.getScoreMode()) {
+      case 'POINT_3':
+        if(!curScore) return 0;
+        if(curScore >= 73) return 85;
+        if(curScore <= 47) return 35;
+        return 60
+        break;
+      case 'POINT_5':
+        if(!curScore) return 0;
+        if(curScore < 20) return 10;
+        if(curScore < 40) return 30;
+        if(curScore < 60) return 50;
+        if(curScore < 80) return 70;
+        return 90;
+        break;
+      case 'POINT_10_DECIMAL':
+      case 'POINT_100':
+        return curScore;
+        break;
+      default:
+        return super.getScoreCheckboxValue();
+    }
+  }
+
+  public handleScoreCheckbox(value) {
+    switch(this.getScoreMode()) {
+      case 'POINT_3':
+      case 'POINT_5':
+      case 'POINT_10_DECIMAL':
+      case 'POINT_100':
+        this.animeInfo.mediaListEntry.score = value;
+        break;
+      default:
+        super.handleScoreCheckbox(value);
+    }
+  }
+
 }

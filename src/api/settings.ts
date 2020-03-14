@@ -61,7 +61,16 @@ export var settingsObj = {
     updateCheckNotifications: true,
 
     'anilistToken': '',
+    'anilistOptions': {
+      displayAdultContent: true,
+      scoreFormat: 'POINT_10',
+    },
     'kitsuToken': '',
+    'kitsuOptions': {
+      titleLanguagePreference: 'canonical',
+      sfwFilter: false,
+      ratingSystem: "regular"
+    },
     'simklToken': ''
   },
 
@@ -84,6 +93,23 @@ export var settingsObj = {
               this.options[key.replace('settings/','')] = storageChange.newValue;
               con.info('Update '+key+' option to '+storageChange.newValue);
             }
+          }
+        }
+        if(namespace === 'local' && changes['rateLimit']) {
+          try {
+            if(changes['rateLimit'].newValue){
+              con.log("Rate limited");
+              utils.flashm("Rate limited. Retrying in a moment", {
+                error: true,
+                type: 'rate',
+                permanent: true,
+              })
+            }else{
+              con.log("No Rate limited");
+              $('.type-rate').remove();
+            }
+          } catch(e) {
+            con.error(e);
           }
         }
       });

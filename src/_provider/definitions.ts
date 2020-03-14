@@ -33,6 +33,7 @@ export enum errorCode {
   NotAutenticated = 902,
   ServerOffline = 903,
   EntryNotFound = 904,
+  GenericError = 905,
 }
 
 export interface error {

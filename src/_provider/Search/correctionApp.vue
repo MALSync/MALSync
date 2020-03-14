@@ -1,7 +1,7 @@
 <template>
   <div id="material">
     <div class="scroll">
-      <entry v-if="!syncMode" :obj="syncPage.malObj"></entry>
+      <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
       <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
 
       <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="offset" type="number" v-on:clicked="setOffset" v-on:change="val => inputOffset = val"></input-button>

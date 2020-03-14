@@ -8,6 +8,13 @@ export class userlist extends ListAbstract {
 
   async getUsername() {
     var user = await this.userRequest();
+
+    var opt = api.settings.get('kitsuOptions');
+    opt['titleLanguagePreference'] = user.attributes.titleLanguagePreference
+    opt['sfwFilter'] = user.attributes.sfwFilter
+    opt['ratingSystem'] = user.attributes.ratingSystem
+    api.settings.set('kitsuOptions', opt);
+
     return user.attributes.name;
   }
 
@@ -72,7 +79,7 @@ export class userlist extends ListAbstract {
     con.log('[UserList][Kitsu]', 'user: '+userid, 'status: '+this.status, 'offset: '+this.offset);
 
     return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+userid+statusPart+'&filter[kind]='+this.listType+'&page[offset]='+this.offset+'&page[limit]=50'+sorting+'&include='+this.listType+','+this.listType+'.mappings,'+this.listType+'.mappings.item&fields['+this.listType+']=slug,titles,averageRating,posterImage,'+(this.listType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
+      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+userid+statusPart+'&filter[kind]='+this.listType+'&page[offset]='+this.offset+'&page[limit]=50'+sorting+'&include='+this.listType+','+this.listType+'.mappings,'+this.listType+'.mappings.item&fields['+this.listType+']=slug,titles,canonicalTitle,averageRating,posterImage,'+(this.listType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
       headers: {
         'Authorization': 'Bearer ' + this.accessToken(),
         'Content-Type': 'application/vnd.api+json',
@@ -101,7 +108,7 @@ export class userlist extends ListAbstract {
       var list = data.data[i];
       var el = data.included[i];
 
-      var name =  helper.getTitle(el.attributes.titles);
+      var name =  helper.getTitle(el.attributes.titles, el.attributes.canonicalTitle);
 
       var malId = NaN;
       for (var k = 0; k < data.included.length; k++) {

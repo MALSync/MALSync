@@ -1,4 +1,4 @@
-import {entryClass} from "./../provider/Simkl/entryClass";
+import {Single as simklSingle} from "./../_provider/Simkl/single";
 import {userlist} from "./../_provider/Simkl/list";
 import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
@@ -55,13 +55,13 @@ export class simklClass{
     var urlpart = utils.urlPart(this.url, 3);
     var url2part = utils.urlPart(this.url, 4);
     if( (urlpart == 'anime' || urlpart == 'manga') && !isNaN(url2part)){
-      var malObj = new entryClass(this.url);
-      await malObj.init();
+      var malObj = new simklSingle(this.url);
+      await malObj.update();
 
       this.page = {
         page: "detail",
-        id: malObj.simklId,
-        malid: malObj.id,
+        id: malObj.getIds().simkl,
+        malid: malObj.getIds().mal,
         type: urlpart,
         malObj: malObj,
       }

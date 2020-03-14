@@ -1,11 +1,13 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/AniList/single';
+import { Single } from './../../../../src/_provider/Kitsu/single';
 import * as utils from './../../../../src/utils/general';
 import * as def from './../../../../src/_provider/definitions';
 
 import {generalSingleTests} from './../generalSingleTests.exclude';
 
 import * as request from 'request';
+
+var state = {};
 
 setGlobals()
 function setGlobals() {
@@ -15,12 +17,21 @@ function setGlobals() {
   global.con.info = function() {};
 
   global.api = {
-    token: process.env.ANILIST_API_KEY,
+    token: process.env.KITSU_API_KEY,
     settings: {
       get: function(key) {
-        if('anilistToken') return global.api.token;
+        if('kitsuToken') return global.api.token;
         throw 'key not defined';
       }
+    },
+    storage: {
+      get: function(key) {
+        return Promise.resolve(undefined);
+      },
+      set: function(key, value) {
+        state[key] = JSON.parse(JSON.stringify(value));
+        return Promise.resolve();
+      },
     },
     status: 200,
     request: {
@@ -31,12 +42,29 @@ function setGlobals() {
             headers: conf.headers,
             body: conf.data
           }
-          request.post(options, (error, response, body) => {
-            resolve({
-              responseText: body,
-              status: global.api.status
-            })
-          });
+          if(post.toLowerCase() === 'get') {
+            request.get(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }else if(post.toLowerCase() === 'post'){
+            request.post(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }else if(post.toLowerCase() === 'patch') {
+            request.patch(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }
+
         });
       }
     },
@@ -49,12 +77,12 @@ function setGlobals() {
   global.testData = {
     urlTest: [
       {
-        url: 'https://anilist.co/manga/78397/No-Game-No-Life/',
+        url: 'https://kitsu.io/manga/no-game-no-life',
         error: false,
         type: 'manga',
       },
       {
-        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
+        url: 'https://kitsu.io/anime/no-game-no-life',
         error: false,
         type: 'anime',
       },
@@ -64,7 +92,7 @@ function setGlobals() {
         type: 'anime',
       },
       {
-        url: 'https://kitsu.io/anime/no-game-no-life',
+        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
         error: true,
         type: 'anime',
       },
@@ -76,36 +104,36 @@ function setGlobals() {
     ],
     apiTest: {
       defaultUrl: {
-        url: 'https://anilist.co/anime/21/One-Piece/',
-        displayUrl: 'https://anilist.co/anime/21',
+        url: 'https://kitsu.io/anime/one-piece',
+        displayUrl: 'https://kitsu.io/anime/one-piece',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         title: 'One Piece',
         eps: 0,
         vol: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
-        rating: 83,
-        cacheKey: 21,
+        image: 'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
+        rating: '82.88%',
+        cacheKey: '21',
       },
       notOnListUrl: {
-        url: 'https://anilist.co/anime/10083/Shiki-Specials/',
-        displayUrl: 'https://anilist.co/anime/10083',
+        url: 'https://kitsu.io/anime/shiki-specials',
+        displayUrl: 'https://kitsu.io/anime/shiki-specials',
         malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
         title: "Shiki Specials",
         eps: 2,
         vol: 0,
       },
       noMalEntry: {
-        url: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
-        displayUrl: 'https://anilist.co/manga/115067',
-        title: 'Kagami no Kuni no Iris: SCP Foundation',
+        url: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
+        displayUrl: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
+        title: 'Ultimate Legend: Kang Hae Hyo Manhwa',
         eps: 0,
         vol: 0,
-        cacheKey: 'anilist:115067',
+        cacheKey: 'kitsu:17240',
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
-        displayUrl: 'https://anilist.co/anime/21',
+        displayUrl: 'https://kitsu.io/anime/one-piece',
         title: 'One Piece',
         eps: 0,
         vol: 0,
@@ -114,13 +142,13 @@ function setGlobals() {
         url: 'https://myanimelist.net/anime/13371337',
       },
       hasTotalEp: {
-        url: 'https://anilist.co/anime/20954/Koe-no-Katachi/',
+        url: 'https://kitsu.io/anime/koe-no-katachi',
       },
     }
   }
 }
 
-describe('AniList single', function () {
+describe('Kitsu single', function () {
   before(function () {
     setGlobals();
   })

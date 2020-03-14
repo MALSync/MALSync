@@ -98,7 +98,18 @@ export const Crunchyroll: pageInterface = {
           }
           return;
         }else{
-          page.handlePage();
+          if(
+            (
+              j.$('.header-navigation ul .state-selected').length
+              && !j.$('.header-navigation ul .state-selected').first().index()
+            )
+            || j.$('#showmedia_video').length
+          ) {
+            page.handlePage();
+          }else{
+            con.info('No anime page');
+          }
+
         }
       });
     }

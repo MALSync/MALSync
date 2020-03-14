@@ -14,10 +14,19 @@ export abstract class SingleAbstract {
   protected persistanceState;
   protected undoState;
 
+  protected lastError;
+
+  public abstract shortName: string;
+  protected abstract authenticationUrl: string;
+  protected rewatchingSupport: boolean = true;
+
   protected ids = {
     mal: NaN,
     ani: NaN,
-    kitsu: NaN,
+    kitsu: {
+      id: NaN,
+      slug: ''
+    },
     simkl: NaN,
   };
 
@@ -25,6 +34,14 @@ export abstract class SingleAbstract {
 
   public getType() {
     return this.type
+  }
+
+  public getUrl() {
+    return this.url;
+  }
+
+  public supportsRewatching() {
+    return this.rewatchingSupport;
   }
 
   public abstract getCacheKey();
@@ -43,17 +60,23 @@ export abstract class SingleAbstract {
 
   abstract _setScore(score: definitions.score): void;
   public setScore(score: definitions.score): SingleAbstract {
+    score = parseInt(score+'');
+    if(!score) score = 0;
     this._setScore(score);
     return this;
   };
 
   abstract _getScore(): definitions.score;
   public getScore(): definitions.score {
-    return this._getScore();
+    var score = this._getScore();
+    if(!score) return 0;
+    return score;
   };
 
   abstract _setEpisode(episode: number): void;
   public setEpisode(episode: number): SingleAbstract {
+    episode = parseInt(episode+'');
+    if(this.getTotalEpisodes() && episode > this.getTotalEpisodes()) episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
   };
@@ -88,7 +111,12 @@ export abstract class SingleAbstract {
   abstract _update(): Promise<void>;
   public update(): Promise<void> {
     con.log('[SINGLE]','Update info', this.ids);
+    this.lastError = null;
     return this._update()
+      .catch(e => {
+        this.lastError = e;
+        throw e;
+      })
       .then(() => {
         this.persistanceState = this.getStateEl();
       });
@@ -97,13 +125,19 @@ export abstract class SingleAbstract {
   abstract _sync(): Promise<void>;
   public sync(): Promise<void> {
     con.log('[SINGLE]','Sync', this.ids);
+    this.lastError = null;
     return this._sync()
+      .catch(e => {
+        this.lastError = e;
+        throw e;
+      })
       .then(() => {
         this.undoState = this.persistanceState;
       });
   };
 
   public undo(): Promise<void> {
+    con.log('[SINGLE]','Undo',this.undoState);
     if(!this.undoState) throw new Error('No undo state found');
     this.setStateEl(this.undoState);
     return this.sync()
@@ -119,7 +153,9 @@ export abstract class SingleAbstract {
 
   abstract _getTotalEpisodes(): number;
   public getTotalEpisodes() {
-    return this._getTotalEpisodes();
+    var eps = this._getTotalEpisodes();
+    if(!eps) eps = 0;
+    return eps;
   }
 
   abstract _getTotalVolumes(): number;
@@ -149,16 +185,28 @@ export abstract class SingleAbstract {
     return null;
   }
 
-  abstract _getImage(): Promise<string>|string;
-  public getImage(): Promise<string>|string{
+  public getMalId(): number|null{
+    if(!isNaN(this.ids.mal)){
+      return this.ids.mal;
+    }
+    return null;
+  }
+
+  public getIds(){
+    return this.ids
+  }
+
+  abstract _getImage(): Promise<string>;
+  public getImage(): Promise<string>{
     return this._getImage();
   }
 
-  abstract _getRating(): Promise<string>|string;
-  public getRating(): Promise<string>|string{
-    var rating = this._getRating();
-    if(!rating) return 'N/A';
-    return rating;
+  abstract _getRating(): Promise<string>;
+  public getRating(): Promise<string>{
+    return this._getRating().then((rating) => {
+      if(!rating) return 'N/A';
+      return rating;
+    })
   }
 
   public setResumeWaching(url:string, ep:number){
@@ -193,6 +241,20 @@ export abstract class SingleAbstract {
     this.setScore(state.score);
   }
 
+  getStateDiff() {
+    var persistance = this.getStateEl();
+    if(persistance && this.undoState) {
+      var diff:any = {};
+      for(var key in persistance) {
+        if(persistance[key] !== this.undoState[key]) {
+          diff[key] = persistance[key];
+        }
+      }
+      return diff;
+    }
+    return undefined;
+  }
+
   public async checkSync(episode: number, volume?: number, isNovel: boolean = false): Promise<boolean>{
     var curEpisode = this.getEpisode();
     var curStatus = this.getStatus();
@@ -218,7 +280,7 @@ export abstract class SingleAbstract {
       return false;
     }
 
-    if(curEpisode && curEpisode === this.getTotalEpisodes()){
+    if(episode && episode === this.getTotalEpisodes()){
       if(curStatus === definitions.status.Rewatching) {
         await this.finishRewatchingMessage();
       }else{
@@ -243,28 +305,22 @@ export abstract class SingleAbstract {
   }
 
   public async finishWatchingMessage(): Promise<boolean> {
-    var currentScore = this.getScore();
-    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+
-        `<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">
-        <option value="0" ${(!currentScore) ? 'selected' : ''}>${api.storage.lang("UI_Score_Not_Rated")}</option>
-        <option value="10" ${(currentScore == 10) ? 'selected' : ''}>${api.storage.lang("UI_Score_Masterpiece")}</option>
-        <option value="9" ${(currentScore == 9) ? 'selected' : ''}>${api.storage.lang("UI_Score_Great")}</option>
-        <option value="8" ${(currentScore == 8) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryGood")}</option>
-        <option value="7" ${(currentScore == 7) ? 'selected' : ''}>${api.storage.lang("UI_Score_Good")}</option>
-        <option value="6" ${(currentScore == 6) ? 'selected' : ''}>${api.storage.lang("UI_Score_Fine")}</option>
-        <option value="5" ${(currentScore == 5) ? 'selected' : ''}>${api.storage.lang("UI_Score_Average")}</option>
-        <option value="4" ${(currentScore == 4) ? 'selected' : ''}>${api.storage.lang("UI_Score_Bad")}</option>
-        <option value="3" ${(currentScore == 3) ? 'selected' : ''}>${api.storage.lang("UI_Score_VeryBad")}</option>
-        <option value="2" ${(currentScore == 2) ? 'selected' : ''}>${api.storage.lang("UI_Score_Horrible")}</option>
-        <option value="1" ${(currentScore == 1) ? 'selected' : ''}>${api.storage.lang("UI_Score_Appalling")}</option>
-        </select>
-        </div>`, 'complete')
+    var currentScore = this.getScoreCheckboxValue();
+
+    var checkHtml = '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
+    this.getScoreCheckbox().forEach((el) => {
+      //@ts-ignore
+      checkHtml += `<option value="${el.value}" ${(currentScore == el.value) ? 'selected' : ''}>${el.label}</option>`;
+    })
+    checkHtml += '</select></div>';
+
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete")+checkHtml, 'complete')
       .then((res) => {
         if(res) {
           this.setStatus(definitions.status.Completed);
           if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
             con.log("finish_score: " + j.$('#finish_score :selected').val());
-            this.setScore(j.$("#finish_score :selected").val());
+            this.handleScoreCheckbox(j.$("#finish_score :selected").val());
           }
         }
 
@@ -273,7 +329,7 @@ export abstract class SingleAbstract {
   }
 
   public async startRewatchingMessage(): Promise<boolean> {
-    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_finish_"+this.getType()), 'add')
+    return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_rewatch_start_"+this.getType()), 'add')
       .then((res) => {
         if(res) this.setStatus(definitions.status.Rewatching);
         return res;
@@ -288,10 +344,102 @@ export abstract class SingleAbstract {
       })
   }
 
+  public getScoreCheckbox() {
+    return [
+      {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
+      {value: '10', label: api.storage.lang("UI_Score_Masterpiece")},
+      {value: '9', label: api.storage.lang("UI_Score_Great")},
+      {value: '8', label: api.storage.lang("UI_Score_VeryGood")},
+      {value: '7', label: api.storage.lang("UI_Score_Good")},
+      {value: '6', label: api.storage.lang("UI_Score_Fine")},
+      {value: '5', label: api.storage.lang("UI_Score_Average")},
+      {value: '4', label: api.storage.lang("UI_Score_Bad")},
+      {value: '3', label: api.storage.lang("UI_Score_VeryBad")},
+      {value: '2', label: api.storage.lang("UI_Score_Horrible")},
+      {value: '1', label: api.storage.lang("UI_Score_Appalling")},
+    ];
+  }
+
+  public getScoreCheckboxValue() {
+    return this.getScore();
+  }
+
+  public handleScoreCheckbox(value) {
+    this.setScore(value);
+  }
+
+  public getDisplayScoreCheckbox() {
+    var curScore = this.getScoreCheckboxValue();
+    //@ts-ignore
+    var labelEl = this.getScoreCheckbox().filter(el => el.value == curScore);
+    if(labelEl.length) return labelEl[0].label;
+    return '';
+  }
+
+  public getStatusCheckbox() {
+    var statusEs = [
+      {value: '1', label: api.storage.lang("UI_Status_watching_"+this.getType())},
+      {value: '2', label: api.storage.lang("UI_Status_Completed")},
+      {value: '3', label: api.storage.lang("UI_Status_OnHold")},
+      {value: '4', label: api.storage.lang("UI_Status_Dropped")},
+      {value: '6', label: api.storage.lang("UI_Status_planTo_"+this.getType())},
+    ];
+
+    if(this.rewatchingSupport) {
+      statusEs.push({value: '23', label: api.storage.lang("UI_Status_Rewatching_"+this.getType())});
+    }
+
+    return statusEs;
+  }
+
+  public handleStatusCheckbox(value) {
+    this.setStatus(value);
+  }
+
+  public getStatusCheckboxValue() {
+    return this.getStatus();
+  }
+
+  public getLastError() {
+    return this.lastError;
+  }
+
+  public getLastErrorMessage() {
+    return this.errorMessage(this.getLastError());
+  }
+
   protected errorObj(code: definitions.errorCode, message): definitions.error {
     return {
       code,
       message,
+    }
+  }
+
+  flashmError(error) {
+    utils.flashm(this.errorMessage(error), {error: true, type: 'error'});
+  }
+
+  errorMessage(error) {
+    if(typeof error.code === 'undefined') {
+      return error;
+    }
+
+    switch (error.code) {
+      case definitions.errorCode.NotAutenticated:
+        return api.storage.lang("Error_Authenticate", [this.authenticationUrl]);
+        break;
+      case definitions.errorCode.ServerOffline:
+        return `[${this.shortName}] Server Offline`;
+        break;
+      case definitions.errorCode.UrlNotSuported:
+        return 'Incorrect url provided';
+        break;
+      case definitions.errorCode.EntryNotFound:
+        return 'Entry for this '+this.getType()+' could not be found on '+this.shortName;
+        break;
+      default:
+        return error.message;
+        break;
     }
   }
 

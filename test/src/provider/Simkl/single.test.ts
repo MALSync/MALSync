@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/AniList/single';
+import { Single } from './../../../../src/_provider/Simkl/single';
 import * as utils from './../../../../src/utils/general';
 import * as def from './../../../../src/_provider/definitions';
 
@@ -15,10 +15,12 @@ function setGlobals() {
   global.con.info = function() {};
 
   global.api = {
-    token: process.env.ANILIST_API_KEY,
+    token: process.env.SIMKL_API_KEY,
+    noManga: true,
+    noLimitless: true,
     settings: {
       get: function(key) {
-        if('anilistToken') return global.api.token;
+        if('simklToken') return global.api.token;
         throw 'key not defined';
       }
     },
@@ -29,15 +31,35 @@ function setGlobals() {
           var options = {
             url: conf.url,
             headers: conf.headers,
-            body: conf.data
           }
-          request.post(options, (error, response, body) => {
-            resolve({
-              responseText: body,
-              status: global.api.status
-            })
-          });
+          if(post.toLowerCase() === 'post'){
+            options.body = conf.data;
+            request.post(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }else{
+            options.body = JSON.stringify(conf.data);
+            request.get(options, (error, response, body) => {
+              resolve({
+                responseText: body,
+                status: global.api.status
+              })
+            });
+          }
+
         });
+      }
+    },
+    storage: {
+      get: function(key) {
+        return Promise.resolve(undefined);
+      },
+      set: function(key, value) {
+        //state[key] = JSON.parse(JSON.stringify(value));
+        return Promise.resolve();
       }
     },
   }
@@ -49,12 +71,7 @@ function setGlobals() {
   global.testData = {
     urlTest: [
       {
-        url: 'https://anilist.co/manga/78397/No-Game-No-Life/',
-        error: false,
-        type: 'manga',
-      },
-      {
-        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
+        url: 'https://simkl.com/anime/46128/no-game-no-life',
         error: false,
         type: 'anime',
       },
@@ -69,58 +86,58 @@ function setGlobals() {
         type: 'anime',
       },
       {
-        url: 'https://simkl.com/anime/46128/no-game-no-life',
+        url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
         error: true,
         type: 'anime',
       }
     ],
     apiTest: {
       defaultUrl: {
-        url: 'https://anilist.co/anime/21/One-Piece/',
-        displayUrl: 'https://anilist.co/anime/21',
+        url: 'https://simkl.com/anime/38636/one-piece',
+        displayUrl: 'https://simkl.com/anime/38636',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         title: 'One Piece',
-        eps: 0,
+        eps: 928,
         vol: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
-        rating: 83,
-        cacheKey: 21,
+        image: 'https://simkl.in/posters/72/7248108487b1ea37_ca.jpg',
+        rating: 8.6,
+        cacheKey: '21',
       },
       notOnListUrl: {
-        url: 'https://anilist.co/anime/10083/Shiki-Specials/',
-        displayUrl: 'https://anilist.co/anime/10083',
-        malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
-        title: "Shiki Specials",
-        eps: 2,
+        url: 'https://simkl.com/anime/39821/shiki',
+        displayUrl: 'https://simkl.com/anime/39821',
+        malUrl: 'https://myanimelist.net/anime/7724/Shiki',
+        title: "Shiki",
+        eps: 0,
         vol: 0,
       },
       noMalEntry: {
-        url: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
-        displayUrl: 'https://anilist.co/manga/115067',
-        title: 'Kagami no Kuni no Iris: SCP Foundation',
-        eps: 0,
+        url: 'https://simkl.com/anime/591301/anzu-chan',
+        displayUrl: 'https://simkl.com/anime/591301',
+        title: 'Anzu-chan',
+        eps: 1,
         vol: 0,
-        cacheKey: 'anilist:115067',
+        cacheKey: 'simkl:591301',
       },
       malUrl: {
         url: 'https://myanimelist.net/anime/21/One_Piece',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
-        displayUrl: 'https://anilist.co/anime/21',
+        displayUrl: 'https://simkl.com/anime/38636',
         title: 'One Piece',
-        eps: 0,
+        eps: 928,
         vol: 0,
       },
       nonExistingMAL: {
         url: 'https://myanimelist.net/anime/13371337',
       },
       hasTotalEp: {
-        url: 'https://anilist.co/anime/20954/Koe-no-Katachi/',
+        url: 'https://simkl.com/anime/901533/jiyi-u-pan',
       },
     }
   }
 }
 
-describe('AniList single', function () {
+describe('Simkl single', function () {
   before(function () {
     setGlobals();
   })

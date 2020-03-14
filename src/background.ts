@@ -36,7 +36,9 @@ function messageHandler(message: sendMessageI, sender, sendResponse){
             con.error('RATE LIMIT');
             setTimeout(() => {
               messageHandler(message, sender, sendResponse);
+              api.storage.set('rateLimit', false);
             }, 10000)
+            api.storage.set('rateLimit', true);
             return;
           }
           var responseObj: xhrResponseI = {

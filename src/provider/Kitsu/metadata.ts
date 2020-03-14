@@ -1,5 +1,6 @@
 import {metadataInterface, searchInterface} from "./../listInterface";
 import * as helper from "./helper";
+import {errorCode} from './../../../src/_provider/definitions';
 
 export class metadata implements metadataInterface{
   private xhr;
@@ -46,16 +47,8 @@ export class metadata implements metadataInterface{
     }
 
 
-    return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'?include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&',
-      headers: {
-        'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json',
-      },
-      data: {},
-    }).then((response) => {
-      var res = JSON.parse(response.responseText);
-      con.log(res);
+    return apiCall('GET', 'https://kitsu.io/api/edge/'+this.type+'/'+this.kitsuId+'?include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&', {})
+    .then((res) => {
       this.animeInfo = res;
 
       try{
@@ -286,15 +279,8 @@ export class metadata implements metadataInterface{
 }
 
 export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
-  return api.request.xhr('GET', {
-    url: 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype',
-    headers: {
-      'Content-Type': 'application/vnd.api+json',
-      'Accept': 'application/vnd.api+json',
-    },
-    data: {},
-  }).then((response) => {
-    var res = JSON.parse(response.responseText);
+  return apiCall('GET', 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype', {})
+  .then((res) => {
     con.log('search',res);
 
     var resItems:any = [];
@@ -318,3 +304,40 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
     return resItems;
   });
 };
+
+function apiCall(mode, url, variables = {}, authentication = true) {
+  var headers = {
+    'Content-Type': 'application/vnd.api+json',
+    'Accept': 'application/vnd.api+json',
+  }
+  if(authentication) headers['Authorization'] = 'Bearer ' + api.settings.get('kitsuToken')
+  return api.request.xhr(mode, {
+    url: url,
+    headers,
+    data: JSON.stringify(variables)
+  }).then((response) => {
+    if((response.status > 499 && response.status < 600) || response.status === 0) {
+      throw {code: errorCode.ServerOffline, message: 'Server Offline status: '+response.status}
+    }
+
+    var res = JSON.parse(response.responseText);
+
+    if(typeof res.errors != 'undefined' && res.errors.length){
+      con.error('[META]','Error',res.errors);
+      var error = res.errors[0];
+      switch(parseInt(error.status)) {
+        case 401:
+        case 403:
+          throw {code: errorCode.NotAutenticated, message: error.detail};
+          break;
+        case 404:
+          throw {code: errorCode.EntryNotFound, message: error.detail};
+          break;
+        default:
+          throw {code: error.status, message: error.detail};
+      }
+    }
+
+    return res;
+  })
+}
