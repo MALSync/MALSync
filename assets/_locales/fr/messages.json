@@ -99,6 +99,14 @@
     "message": "À lire",
     "description": "Plan to Read"
   },
+  "UI_Status_Rewatching_anime": {
+    "message": "Revisionnage",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Relecture",
+    "description": "Status to reread manga"
+  },
   "UI_Episode": {
     "message": "Épisode :",
     "description": "Episode"
@@ -217,9 +225,25 @@
     "message": "Commencer le visionnage ?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Revisionnage terminé ?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Relecture terminé ?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "Commencer la lecture ?",
     "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Revoir cet anime ?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Relire ce manga ?",
+    "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "\"$anime$\" est-il correct ?",
@@ -390,6 +414,10 @@
   "correction_NewUrlReset": {
     "message": "Réinitialiser l'URL MyAnimeList",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Soumettre une demande de correction de la base de données ?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "Continuer de regarder",
@@ -563,6 +591,10 @@
     "message": "Reprendre regarder liens",
     "description": "Resume watching links"
   },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Mode discret pour l'UI",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Cacher le menu flottant de miniMAL",
     "description": "Hide miniMAL floating menu button"
@@ -619,6 +651,18 @@
     "message": "Auto reprise",
     "description": "Auto resume video where you left off toggle"
   },
+  "settings_autoNextEp": {
+    "message": "Lecture automatique du prochain épisode",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Ouvrir le popup de correction de détection de l'anime",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Raccourci pour ouvrir l'épisode suivant",
+    "description": "Description for the next episode shortcut option"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Passer l'opening",
     "description": "Description for the the opening skip shortcut"
@@ -626,6 +670,10 @@
   "settings_Shortcuts_Skip_Backward": {
     "message": "Retourner au début de l'opening",
     "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Cliquez pour saisir le raccourci",
+    "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
     "message": "Définir le temps de l'opening qui va être passé ($Seconds$ seconds)",
@@ -681,6 +729,14 @@
     "message": "Cette option ajoute le support du 'Firefox Multi-Account Containers'. Pensez à redémarrer votre navigateur après avoir activé cette option",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Mettre en évidence tous les épisodes/chapitres",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Cette option permet de mettre en évidence tous les chapitres/épisodes regardés dans la liste, que vous pouvez trouver sur certains sites Anime/Manga",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Nettoyer le cache",
     "description": "Clear Cache"
@@ -688,6 +744,10 @@
   "settings_presenceHidePage": {
     "message": "Afficher l'icon de MAL-Sync au lieu de l'icon de la page",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Il n'est pas recommander de définir un raccourcis sur une seule touche du clavier",
+    "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "updateCheck_Refresh": {
     "message": "Actualiser",
@@ -856,5 +916,13 @@
         "example": "Mangadex"
       }
     }
+  },
+  "nextEpShort_no_support": {
+    "message": "Cette page ne support pas l'ouverture automatique du prochain épisode",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Impossible de trouver le prochain épisode",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
