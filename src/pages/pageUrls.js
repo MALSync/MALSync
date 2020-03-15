@@ -351,7 +351,8 @@ module.exports = {
   },
   tmofans: {
     match: [
-      '*://tmofans.com/*'
+      '*://tmofans.com/*',
+      '*://lectortmo.com/*',
     ]
   },
   unionmangas: {
@@ -444,6 +445,11 @@ module.exports = {
   DreamSub: {
     match: [
      '*://dreamsub.stream/*',
+    ]
+  },
+  MangaPark: {
+    match: [
+     '*://mangapark.net/*',
     ]
   },
 };

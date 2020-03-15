@@ -182,7 +182,8 @@ var testsArray = [
           }
         }
       },
-      {
+      //captcha
+      /*{
         url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
         expected: {
           sync: true,
@@ -196,7 +197,7 @@ var testsArray = [
             5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
           }
         }
-      },
+      },*/
     ]
   },
 
@@ -795,11 +796,11 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www.kickassanime.rs/anime/overlord-iii-954770',
+        url: 'https://www.kickassanime.rs/anime/overlord-iii-117790',
         expected: {
           sync: false,
           title: 'Overlord III',
-          identifier: 'overlord-iii-954770',
+          identifier: 'overlord-iii-117790',
           uiSelector: true,
         }
       },
@@ -1365,22 +1366,22 @@ var testsArray = [
     url: 'https://animeflix.io/',
     testCases: [
       {
-        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season/episode-8-436278/sub',
+        url: 'https://animeflix.io/shows/bleach/episode-358-927911/sub',
         expected: {
           sync: true,
-          title: 'Boku no Hero Academia 4th Season',
-          identifier: 'boku-no-hero-academia-4th-season',
-          overviewUrl: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
-          episode: 8,
+          title: 'Bleach',
+          identifier: 'bleach',
+          overviewUrl: 'https://animeflix.io/shows/bleach',
+          episode: 358,
           uiSelector: false,
         }
       },
       {
-        url: 'https://animeflix.io/shows/boku-no-hero-academia-4th-season',
+        url: 'https://animeflix.io/shows/bleach',
         expected: {
           sync: false,
-          title: 'Boku no Hero Academia 4th Season',
-          identifier: 'boku-no-hero-academia-4th-season',
+          title: 'Bleach',
+          identifier: 'bleach',
           uiSelector: true,
         }
       },
@@ -1502,10 +1503,10 @@ var testsArray = [
   },
   {
     title: 'tmofans',
-    url: 'https://tmofans.com/',
+    url: 'https://lectortmo.com/',
     testCases: [
       {
-        url: 'https://tmofans.com/library/manga/45/one-piece',
+        url: 'https://lectortmo.com/library/manga/50/one-piece',
         expected: {
           sync: false,
           title: 'One Piece',
@@ -1520,28 +1521,28 @@ var testsArray = [
     url: 'https://unionmangas.top/',
     testCases: [
       {
-        url: 'https://unionmangas.top/leitor/Solo_Leveling/76',
+        url: 'https://unionleitor.top/leitor/Solo_Leveling/76',
         expected: {
           sync: true,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
-          overviewUrl: 'https://unionmangas.top/manga/solo-leveling',
+          overviewUrl: 'https://unionleitor.top/manga/solo-leveling',
           episode: 76,
-          nextEpUrl: 'https://unionmangas.top/leitor/Solo_Leveling/77',
+          nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
           uiSelector: false,
         }
       },
       {
-        url: 'https://unionmangas.top/perfil-manga/solo-leveling',
+        url: 'https://unionleitor.top/perfil-manga/solo-leveling',
         expected: {
           sync: false,
           title: 'Solo Leveling',
           identifier: 'solo-leveling',
           uiSelector: true,
           epList: {
-            5: 'https://unionmangas.top/leitor/Solo_Leveling/05',
-            87: 'https://unionmangas.top/leitor/Solo_Leveling/87',
-            101: 'https://unionmangas.top/leitor/Solo_Leveling/101',
+            5: 'https://unionleitor.top/leitor/Solo_Leveling/05',
+            87: 'https://unionleitor.top/leitor/Solo_Leveling/87',
+            101: 'https://unionleitor.top/leitor/Solo_Leveling/101',
           }
         }
       },
@@ -2044,6 +2045,33 @@ var testsArray = [
             5: 'https://dreamsub.stream/anime/one-piece/5',
             914: 'https://dreamsub.stream/anime/one-piece/914'
           }
+        }
+      },
+    ]
+  },
+  {
+    title: 'MangaPark',
+    url: 'https://mangapark.net/',
+    testCases: [
+      {
+        url: 'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086171/v5/c20/1',
+        expected: {
+          sync: true,
+          title: 'Grand Blue',
+          identifier: 'grand-blue-inoue-kenji',
+          overviewUrl: 'https://mangapark.net/manga/grand-blue-inoue-kenji',
+          nextEpUrl: 'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086169/v5/c21/1',
+          episode: 20,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://mangapark.net/manga/grand-blue-inoue-kenji',
+        expected: {
+          sync: false,
+          title: 'Grand Blue',
+          identifier: 'grand-blue-inoue-kenji',
+          uiSelector: true,
         }
       },
     ]
