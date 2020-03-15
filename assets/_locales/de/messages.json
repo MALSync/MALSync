@@ -99,6 +99,14 @@
     "message": "Geplant",
     "description": "Plan to Read"
   },
+  "UI_Status_Rewatching_anime": {
+    "message": "Erneutes ansehen",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Erneutes lesen",
+    "description": "Status to reread manga"
+  },
   "UI_Episode": {
     "message": "Episode:",
     "description": "Episode"
@@ -217,9 +225,25 @@
     "message": "Anfangen zu schauen?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Als Abgeschlossen setzen?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Als Abgeschlossen setzen?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "Anfangen zu lesen?",
     "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Anime erneut ansehen?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Manga erneut lesen?",
+    "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "Ist \"$anime$\" korrekt?",
@@ -390,6 +414,10 @@
   "correction_NewUrlReset": {
     "message": "URL zurückgesetzt",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Dies als Korrektur an die Datenbank senden?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "Weiterschauen",
@@ -619,6 +647,18 @@
     "message": "Auto fortsetzen",
     "description": "Auto resume video where you left off toggle"
   },
+  "settings_autoNextEp": {
+    "message": "Automatisches Abspielen der nächsten Folge",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Verbesserungsoberfläche Tastenkombination",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Tastenkombination zum Öffnen der nächsten Episode",
+    "description": "Description for the next episode shortcut option"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Überspringt das Intro",
     "description": "Description for the the opening skip shortcut"
@@ -626,6 +666,10 @@
   "settings_Shortcuts_Skip_Backward": {
     "message": "Springt zum Anfang des Intros",
     "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Tastenkombination setzen",
+    "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
     "message": "Springe $Seconds$ Sekunden vor oder zurück",
@@ -681,9 +725,25 @@
     "message": "Diese Option aktiviert die Firefox Multi-Account Containers Unterstützung. Starte dem Browser nach dem aktivieren.",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Alle Episoden/Kapitel hervorheben",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Diese Option hebt alle angesehenen Kapitel / Episoden in der Liste hervor, die du auf einigen Anime / Manga-Websites finden kannst",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Cache leeren",
     "description": "Clear Cache"
+  },
+  "settings_presenceHidePage": {
+    "message": "Das MAL-Sync-Symbol anstelle des Seitensymbols anzeigen",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Es wird nicht empfohlen, die Verknüpfung auf eine einzelne Taste festzulegen",
+    "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "updateCheck_Refresh": {
     "message": "Refresh",
@@ -842,5 +902,23 @@
         "example": "</a>"
       }
     }
+  },
+  "Discord_rpc_browsing": {
+    "message": "Auf $Page$ surfend",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
+      }
+    }
+  },
+  "nextEpShort_no_support": {
+    "message": "Diese Seite unterstützt das Öffnen der nächsten Episode nicht",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Die nächste Folge konnte nicht gefunden werden",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
