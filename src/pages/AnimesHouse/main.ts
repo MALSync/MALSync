@@ -54,7 +54,7 @@ export const AnimesHouse: pageInterface = {
             page.handlePage();
           }
         }
-        if (page.url.split("/")[3] === "filme" && page.url.split("/")[4].length > 0) {
+        if (page.url.split("/")[3] === "filme") {
           film = true;
           page.handlePage();
         }
