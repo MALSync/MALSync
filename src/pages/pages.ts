@@ -65,6 +65,7 @@ import {manga4life} from "./manga4life/main";
 import {bato} from "./bato/main";
 import {DreamSub} from "./DreamSub/main";
 import {MangaPark} from "./MangaPark/main";
+import {AnimesHouse} from "./AnimesHouse/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -135,7 +136,8 @@ export const pages = {
     manga4life,
     bato,
     DreamSub,
-    MangaPark
+    MangaPark,
+    AnimesHouse
 };
 
 export const pageSearch:pageSearchObj = {
