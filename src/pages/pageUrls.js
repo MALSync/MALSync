@@ -453,4 +453,10 @@ module.exports = {
      '*://mangapark.net/*',
     ]
   },
+  AnimesHouse: {
+    match: [
+     '*://animeshouse.net/episodio/*',
+     '*://animeshouse.net/filme/*',
+    ]
+  },
 };
