@@ -99,6 +99,14 @@
     "message": "Direncanakan",
     "description": "Plan to Read"
   },
+  "UI_Status_Rewatching_anime": {
+    "message": "Menonton Ulang",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Membaca Ulang",
+    "description": "Status to reread manga"
+  },
   "UI_Episode": {
     "message": "Episode:",
     "description": "Episode"
@@ -217,9 +225,25 @@
     "message": "Mulai menonton?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Selesai menonton ulang?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Selesai membaca ulang?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "Mulai membaca?",
     "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Tonton ulang anime?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Baca ulang manga?",
+    "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "Apakah ini adalah \"$anime$\"?",
@@ -390,6 +414,10 @@
   "correction_NewUrlReset": {
     "message": "URL MyAnimeList tereset",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Ajukan permintaan koreksi database?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "Lanjutkan menonton",
@@ -563,6 +591,10 @@
     "message": "Tautan kembali melanjutkan menonton",
     "description": "Resume watching links"
   },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Mode UI sembunyi",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Sembunyikan tombol menu mengambang miniMAL",
     "description": "Hide miniMAL floating menu button"
@@ -619,6 +651,18 @@
     "message": "Lanjutkan video secara otomatis",
     "description": "Auto resume video where you left off toggle"
   },
+  "settings_autoNextEp": {
+    "message": "Mainkan otomatis episode selanjutnya",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Buka popup koreksi relasi anime",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Buka pintasan episode selanjutnya",
+    "description": "Description for the next episode shortcut option"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Lewati lagu pembuka",
     "description": "Description for the the opening skip shortcut"
@@ -626,6 +670,10 @@
   "settings_Shortcuts_Skip_Backward": {
     "message": "Mundur ke permulaan lagu pembuka",
     "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Ketuk untuk membuka pintasan",
+    "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
     "message": "Atur durasi lewati lagu opening  selama ($seconds$ detik)",
@@ -681,6 +729,14 @@
     "message": "Opsi ini untuk menambah dukungan terhadap Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Soroti semua episode/bab",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Opsi ini akan menyoroti semua anime/manga yang telah ditonton/dibaca dalam daftar yang kamu bisa temukan di beberapa situs anime/manga",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Hapus Cache",
     "description": "Clear Cache"
@@ -688,6 +744,10 @@
   "settings_presenceHidePage": {
     "message": "Tampilkan ikon MAL-Sync ketimbang menggunakan ikon laman pada status Discord",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Tidak direkomendasikan mengatur pintasan hanya dengan satu tombol saja ",
+    "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "updateCheck_Refresh": {
     "message": "Segarkan",
@@ -856,5 +916,13 @@
         "example": "Mangadex"
       }
     }
+  },
+  "nextEpShort_no_support": {
+    "message": "Laman ini tidak mendukung pembukaan episode selanjutnya",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Tidak dapat menemukan episode selanjutnya",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
