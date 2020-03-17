@@ -248,8 +248,9 @@ export class searchClass {
   }
 
   public async malSync(): Promise<searchResult | false>{
-    if(!this.page || !this.page.database) return false;
-    var url = 'https://api.malsync.moe/page/'+this.page.database+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
+    if(!this.page) return false;
+    var dbPl = this.page.database ? this.page.database : this.page.name;
+    var url = 'https://api.malsync.moe/page/'+dbPl+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
     con.log("malSync", url);
     return api.request.xhr('GET', url).then((response) => {
       con.log("malSync response",response);

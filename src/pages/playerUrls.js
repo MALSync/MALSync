@@ -166,6 +166,8 @@ module.exports = {
     match: [
       '*://*.animeultima.eu/e/*',
       '*://*.animeultima.eu/faststream/*',
+      '*://*.animeultima.to/e/*',
+      '*://*.animeultima.to/faststream/*',
     ]
   },
   vidoza: {

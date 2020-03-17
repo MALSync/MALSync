@@ -215,7 +215,8 @@ module.exports = {
   },
   animeultima: {
     match: [
-      '*://*.animeultima.eu/a/*'
+      '*://*.animeultima.eu/a/*',
+      '*://*.animeultima.to/a/*',
     ],
   },
   Aniflix: {

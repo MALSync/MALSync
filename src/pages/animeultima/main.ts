@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const animeultima: pageInterface = {
   name: "animeultima",
-  domain: "https://www10.animeultima.eu",
+  domain: "https://animeultima.to",
   type: "anime",
   isSyncPage: function(url) {
     if (url.split("/")[3] === "a" && j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile")[0]) {
