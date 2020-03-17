@@ -250,6 +250,7 @@ export class searchClass {
   public async malSync(): Promise<searchResult | false>{
     if(!this.page) return false;
     var dbPl = this.page.database ? this.page.database : this.page.name;
+    if(!dbPl) return false;
     var url = 'https://api.malsync.moe/page/'+dbPl+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
     con.log("malSync", url);
     return api.request.xhr('GET', url).then((response) => {
