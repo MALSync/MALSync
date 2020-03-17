@@ -40,11 +40,11 @@
     "description": "No"
   },
   "NothingFound": {
-    "message": "Nada Encontrado",
+    "message": "Nada encontrado",
     "description": "Nothing Found"
   },
   "Not_Found": {
-    "message": "No encontrado!",
+    "message": "¡No encontrado!",
     "description": "Anime/Manga Not Found"
   },
   "NoEntries": {
@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl en varios sitios, con seguimiento automático de episodios.",
+    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl con varios sitios, incluye seguimiento automático de episodios.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -92,12 +92,20 @@
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "Planear para ver",
+    "message": "Pendiente de ver",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Planeado para leer",
+    "message": "Pendiente de leer",
     "description": "Plan to Read"
+  },
+  "UI_Status_Rewatching_anime": {
+    "message": "Volviendo a ver",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Volviendo a leer",
+    "description": "Status to reread manga"
   },
   "UI_Episode": {
     "message": "Episodio:",
@@ -116,7 +124,7 @@
     "description": "Score"
   },
   "UI_Score_Not_Rated": {
-    "message": "No calificado",
+    "message": "No evaluado",
     "description": "Text if nothing is selected in the rating dropdown"
   },
   "UI_Score_Masterpiece": {
@@ -140,7 +148,7 @@
     "description": "Fine - Score"
   },
   "UI_Score_Average": {
-    "message": "(5) Medio",
+    "message": "(5) Promedio",
     "description": "Average - Score"
   },
   "UI_Score_Bad": {
@@ -217,9 +225,25 @@
     "message": "¿Empezar a ver?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "¿Terminado de ver?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "¿Terminado de leer?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "¿Empezar a leer?",
     "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "¿Volver a ver anime?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "¿Volver a leer manga?",
+    "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "¿Es correcto \"$anime$\"?",
@@ -272,11 +296,11 @@
     }
   },
   "anilistClass_authentication": {
-    "message": "Token guardado puedes cerrar esta página ahora",
+    "message": "Token guardado, puedes cerrar esta página ahora",
     "description": "The token has been obtained and saved"
   },
   "kitsuClass_authentication_text": {
-    "message": "Para iniciar sesión con Kitsu, debe ingresar el correo electrónico y la contraseña de su cuenta. </br> Sus credenciales no se almacenan en su ordenador ni en ningún otro lugar. </br> Se envían directamente a kitsu. Solo se guarda el token de acceso que devueltve. </br>",
+    "message": "Para iniciar sesión con Kitsu, debes ingresar el correo electrónico y la contraseña de tu cuenta.</br> Tus credenciales no se almacenan en el computador ni en ningún otro lugar.</br>Se envían directamente a Kitsu. Solo se guarda el token de acceso devuelto.</br>",
     "description": "Authentication text in Kitsu"
   },
   "kitsuClass_authentication_Password": {
@@ -288,7 +312,7 @@
     "description": "Login"
   },
   "kitsuClass_authentication_Success": {
-    "message": "Token guardado puedes cerrar esta página ahora",
+    "message": "Token guardado, puedes cerrar esta página ahora",
     "description": "Authentication success"
   },
   "kitsuClass_authentication_Wrong": {
@@ -312,11 +336,11 @@
     "description": "Hour"
   },
   "bookmarksItem_mins": {
-    "message": "mins",
+    "message": "min",
     "description": "mins"
   },
   "prediction_Episode": {
-    "message": "Siguiente episodio estimado en $time$",
+    "message": "Siguiente episodio esperado para dentro de $time$",
     "description": "Text for next episode estimation",
     "placeholders": {
       "time": {
@@ -326,7 +350,7 @@
     }
   },
   "prediction_Airing": {
-    "message": "Emisión en $time$",
+    "message": "Se emitirá en $time$",
     "description": "Text for airing estimation",
     "placeholders": {
       "time": {
@@ -344,7 +368,7 @@
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "Solo cambia esta URL si apunta a la página de anime incorrecta en MAL.",
+    "message": "Cambia esta URL solo si apunta a la página de anime incorrecta en MAL.",
     "description": "URL is Wrong"
   },
   "correction_Search": {
@@ -388,8 +412,12 @@
     }
   },
   "correction_NewUrlReset": {
-    "message": "MyAnimeList URL reiniciada",
+    "message": "URL de MyAnimeList restablecida",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "¿Enviar solicitud de corrección de la base de datos?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "Continuar viendo",
@@ -408,11 +436,11 @@
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
-    "message": "Reanudar el episodio",
+    "message": "Reanudar episodio",
     "description": "Resume Episode"
   },
   "overview_Resume_Episode_manga": {
-    "message": "Reanudar capitulo",
+    "message": "Reanudar capítulo",
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
@@ -452,11 +480,11 @@
     "description": "Mode"
   },
   "settings_Authenticate": {
-    "message": "Autentificar",
+    "message": "Autenticar",
     "description": "Authenticate"
   },
   "settings_LocalSync": {
-    "message": "Almacenamiento local de reserva ",
+    "message": "Almacenamiento local de reserva",
     "description": "Option to activate the local storage fallback sync"
   },
   "settings_LocalSync_Import": {
@@ -476,7 +504,7 @@
     "description": "Video"
   },
   "settings_Animesync_Instant": {
-    "message": "Instantaneo",
+    "message": "Instantáneo",
     "description": "Instant"
   },
   "settings_Animesync_Manual": {
@@ -484,11 +512,11 @@
     "description": "Manual"
   },
   "settings_Mangasync": {
-    "message": "Sincronización del manga",
+    "message": "Sincronización de manga",
     "description": "Manga sync"
   },
   "settings_AutoTracking_Video": {
-    "message": "Actualización en $videoDuration$% del progreso del vídeo",
+    "message": "Actualización cuando el progreso del video sea de $videoDuration$% ",
     "description": "Update Episode of video progress",
     "placeholders": {
       "videoDuration": {
@@ -498,7 +526,7 @@
     }
   },
   "settings_AutoTracking_Instant": {
-    "message": "Retrasar el seguimiento automático instantáneo por $delay$ Segundos",
+    "message": "Retrasar el seguimiento automático instantáneo en $delay$ segundos",
     "description": "Delay instant autotracking",
     "placeholders": {
       "delay": {
@@ -512,7 +540,7 @@
     "description": "Streaming Site Links"
   },
   "settings_StreamingSite_text": {
-    "message": "Si deshabilita esto, en los sitios de streaming ya no aparecerá una barra lateral de animes en MAL.",
+    "message": "Si deshabilitas esto, el sitio de streaming ya no aparecerá en una barra lateral de anime en MyAnimeList/AniList/Kitsu.",
     "description": "Streaming Site Links - Text"
   },
   "settings_Thumbnails": {
@@ -520,11 +548,11 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "La opción es para cambiar el tamaño de las miniaturas en MAL. <br> Me gusta las miniaturas de los personajes, personas, recomendaciones, etc.",
+    "message": "La opción es para cambiar el tamaño de las miniaturas en MyAnimeList.<br>Como las miniaturas de los personajes, personas, recomendaciones, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {
-    "message": "Largo",
+    "message": "Grande",
     "description": "Thumbnails Large"
   },
   "settings_Thumbnails_Medium": {
@@ -536,7 +564,7 @@
     "description": "Thumbnails Small"
   },
   "settings_Thumbnails_Default": {
-    "message": "Defecto Mal",
+    "message": "Predeterminado de MAL",
     "description": "Thumbnails MAL Default"
   },
   "settings_FriendScore": {
@@ -548,20 +576,24 @@
     "description": "Estimate episode number"
   },
   "settings_malTags": {
-    "message": "Utilizar Tags/notas",
+    "message": "Utilizar etiquetas/notas",
     "description": "Use Tags/Notes"
   },
   "settings_malTags_Text": {
-    "message": "Si está habilitado: en su Lista de anime MAL y la lista de marcadores en miniMAL, se agregará un icono al último sitio de transmisión usado que estaba usando para ver un anime. <br> Simplemente haga clic en el icono para continuar viendo el anime.",
+    "message": "Si está habilitado: en tu Lista de anime MAL y la lista de marcadores en miniMAL se agregará un icono al último sitio de transmisión usado que estabas usando para ver un anime. <br> Simplemente haz clic en el icono para continuar viendo el anime.",
     "description": "Use Tags/Notes - Text"
   },
   "settings_malContinue": {
-    "message": "Continuar viendo enlaces",
+    "message": "Enlaces para continuar viendo",
     "description": "Continue watching links"
   },
   "settings_malResume": {
-    "message": "Reanudar viendo enlaces",
+    "message": "Enlaces para reanudar reproducciones",
     "description": "Resume watching links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Modo de IU sigilosa",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
   },
   "settings_miniMAL_floatButtonHide": {
     "message": "Ocultar el botón de menú flotante de miniMAL",
@@ -612,12 +644,24 @@
     "description": "Video settings header"
   },
   "settings_Video_Fullscreen": {
-    "message": "Auto pantalla completa",
+    "message": "Pantalla completa automática",
     "description": "Auto fullscreen toggle"
   },
   "settings_Video_Resume": {
-    "message": "Auto reanudar",
+    "message": "Reanudar automáticamente",
     "description": "Auto resume video where you left off toggle"
+  },
+  "settings_autoNextEp": {
+    "message": "Reproducir siguiente episodio automáticamente",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Abrir ventana emergente de corrección de relación de anime",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Abrir atajo de siguiente episodio",
+    "description": "Description for the next episode shortcut option"
   },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Saltar el opening",
@@ -627,8 +671,12 @@
     "message": "Volver al comienzo del opening",
     "description": "Description for the the opening skip shortcut"
   },
+  "settings_Shortcuts_Click": {
+    "message": "Clic para ingresar el atajo",
+    "description": "Shown if no shortcut is set for an option"
+  },
   "settings_introSkip": {
-    "message": "Salta $Seconds$ Segundos",
+    "message": "Ajustar longitud de opening a saltar a $Seconds$ segundos",
     "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
@@ -638,11 +686,11 @@
     }
   },
   "settings_UpdateCheck": {
-    "message": "Comprobación de actualización",
+    "message": "Comprobar actualizaciones",
     "description": "Update Check"
   },
   "settings_UpdateCheck_Text": {
-    "message": "Comprueba si hay nuevos episodios  de fondo.",
+    "message": "Comprueba si hay nuevos episodios  en segundo plano.",
     "description": "Update Check - Text"
   },
   "settings_Interval": {
@@ -697,12 +745,16 @@
     "message": "Mostrar icono de MAL-Sync en lugar del icono de la página",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
+  "settings_shortcut_tooltip": {
+    "message": "No se recomienda ajustar este atajo a una sola tecla",
+    "description": "Shows this message if the users has only a single key set as shortcut"
+  },
   "updateCheck_Refresh": {
     "message": "Refrescar",
     "description": "Refresh"
   },
   "updateCheck_StartCheck": {
-    "message": "Iniciar chequeo",
+    "message": "Iniciar verificación",
     "description": "Start Check"
   },
   "updateCheck_NotificationCheck": {
@@ -768,7 +820,7 @@
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
-    "message": "Código Fuente Abierto:",
+    "message": "Código de fuente abierto:",
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
@@ -776,7 +828,7 @@
     "description": "Update version - Text 4"
   },
   "installPage_Mode": {
-    "message": "Por favor, seleccione la base de datos de Anime que desea utilizar:",
+    "message": "Por favor, selecciona la base de datos de Anime que deseas utilizar:",
     "description": "Header for the MAL-sync provider dropdown"
   },
   "installPage_Howto": {
@@ -784,7 +836,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "Simplemente abra un episodio o capítulo en cualquiera de las $Link1$páginas compatibles$LinkEnd1$. La sincronización espera hasta que se vea el 85% del vídeo. Para mangas se sincroniza cuando carga la página. Esto se puede cambiar en la $Link2$configuración $LinkEnd2$.",
+    "message": "Simplemente abre un episodio o capítulo en cualquiera de las $Link1$páginas compatibles$LinkEnd1$. La sincronización espera hasta que se vea el 85% del vídeo. Para manga se sincroniza cuando se carga la página. Esto se puede cambiar en la $Link2$configuración $LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -806,15 +858,15 @@
     }
   },
   "installPage_Wrong": {
-    "message": "¿Se sincroniza mal con MAL?",
+    "message": "¿Se sincroniza con la entrada incorrecta de MAL?",
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "Puede cambiar fácilmente la relación como se muestra en el siguiente gif. También se puede establecer un offset de episodio en esa página.",
+    "message": "Puedes cambiar fácilmente la relación como se muestra en el siguiente gif. También se puede establecer un offset de episodio en esa página.",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
-    "message": "Por favor, identifíquese $Link1$Aqui$Link2$",
+    "message": "Por favor, identifícate $Link1$aqui$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
@@ -828,7 +880,7 @@
     }
   },
   "Emby_Authenticate": {
-    "message": "MAL-Sync necesita una clave de la API de Emby para funcionar. Más info $Link1$Aquí$Link2$",
+    "message": "MAL-Sync necesita una clave de la API de Emby para funcionar. Más info $Link1$aquí$Link2$",
     "description": "Emby Authentication",
     "placeholders": {
       "Link1": {
@@ -842,7 +894,7 @@
     }
   },
   "Error_Authenticate": {
-    "message": "Por favor, identifíquese $Link1$Aqui$Link2$",
+    "message": "Por favor, identifícate $Link1$aqui$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
@@ -864,5 +916,13 @@
         "example": "Mangadex"
       }
     }
+  },
+  "nextEpShort_no_support": {
+    "message": "Esta página no soporta la apertura del siguiente episodio",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "No se pudo encontrar el próximo episodio",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
