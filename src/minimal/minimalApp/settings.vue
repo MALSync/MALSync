@@ -385,9 +385,9 @@
       },
     },
     mounted: function(){
-      api.request.xhr('GET', 'https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json').then((response) => {
+      api.request.xhr('GET', 'https://api.malsync.moe/static/contributor').then((response) => {
         try{
-          this.contributer = JSON.parse(response.responseText.replace(/(^"|"$)/gi,'').replace(/\\"/g, '"'));
+          this.contributer = JSON.parse(response.responseText);
         }catch(e){
           con.error('Contributer Could not be retieved', e);
           return;

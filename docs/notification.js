@@ -144,7 +144,7 @@ function FormatNumberLength(num, length) {
 
 
 //Contributer
-$.get( "https://kissanimelist.firebaseio.com/Data2/Notification/Contributer.json", function( data ) {
+$.get( "https://api.malsync.moe/static/contributor", function( data ) {
   try{
     contributer(JSON.parse(data));
   }catch(e){
