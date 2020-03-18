@@ -58,11 +58,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
-                <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre</a></td>
+                <td><a href="https://mangalivre.net"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.net"> mangalivre</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.netflix.com"><img src="https://www.google.com/s2/favicons?domain=https://www.netflix.com"> Netflix</a></td>
-                <td><a href="https://tmofans.com"><img src="https://www.google.com/s2/favicons?domain=https://tmofans.com"> tmofans</a></td>
+                <td><a href="https://lectortmo.com"><img src="https://www.google.com/s2/favicons?domain=https://lectortmo.com"> tmofans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeflv.net"><img src="https://www.google.com/s2/favicons?domain=https://animeflv.net"> animeflv</a></td>
@@ -89,7 +89,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://manga.fascans.com/"><img src="https://www.google.com/s2/favicons?domain=https://manga.fascans.com/"> FallenAngels</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www10.animeultima.eu"><img src="https://www.google.com/s2/favicons?domain=https://www10.animeultima.eu"> animeultima</a></td>
+                <td><a href="https://animeultima.to"><img src="https://www.google.com/s2/favicons?domain=https://animeultima.to"> animeultima</a></td>
                 <td><a href="http://mangakatana.com"><img src="https://www.google.com/s2/favicons?domain=http://mangakatana.com"> MangaKatana</a></td>
                 <td></td>
               </tr><tr>
@@ -102,7 +102,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animedaisuki.moe"><img src="https://www.google.com/s2/favicons?domain=https://animedaisuki.moe"> AnimeDaisuki</a></td>
-                <td></td>
+                <td><a href="https://mangapark.net"><img src="https://www.google.com/s2/favicons?domain=https://mangapark.net"> MangaPark</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime-planet.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-planet.com"> AnimePlanet</a></td>
@@ -194,6 +194,14 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.primevideo.com"><img src="https://www.google.com/s2/favicons?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://dreamsub.stream"><img src="https://www.google.com/s2/favicons?domain=https://dreamsub.stream"> DreamSub</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
                 <td></td>
                 <td></td>
               </tr>

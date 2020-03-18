@@ -102,6 +102,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+              <td>:x:</td>
+            </tr><tr>
               <td><a href="https://www.animestrue.net"><img src="https://www.google.com/s2/favicons?domain=https://www.animestrue.net"> animestrue</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -114,7 +120,7 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www10.animeultima.eu"><img src="https://www.google.com/s2/favicons?domain=https://www10.animeultima.eu"> animeultima</a></td>
+              <td><a href="https://animeultima.to"><img src="https://www.google.com/s2/favicons?domain=https://animeultima.to"> animeultima</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -149,6 +155,12 @@
               <td>:x:</td>
               <td>:x:</td>
               <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://dreamsub.stream"><img src="https://www.google.com/s2/favicons?domain=https://dreamsub.stream"> DreamSub</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://ww5.dubbedanime.net"><img src="https://www.google.com/s2/favicons?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
               <td>:heavy_check_mark:</td>
@@ -370,9 +382,9 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://mangalivre.com"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.com"> mangalivre</a></td>
+              <td><a href="https://mangalivre.net"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.net"> mangalivre</a></td>
               <td>:heavy_check_mark:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
@@ -381,6 +393,12 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
+            </tr><tr>
+              <td><a href="https://mangapark.net"><img src="https://www.google.com/s2/favicons?domain=https://mangapark.net"> MangaPark</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:x:</td>
             </tr><tr>
               <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://www.google.com/s2/favicons?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
               <td>:heavy_check_mark:</td>
@@ -400,7 +418,7 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://tmofans.com"><img src="https://www.google.com/s2/favicons?domain=https://tmofans.com"> tmofans</a></td>
+              <td><a href="https://lectortmo.com"><img src="https://www.google.com/s2/favicons?domain=https://lectortmo.com"> tmofans</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
