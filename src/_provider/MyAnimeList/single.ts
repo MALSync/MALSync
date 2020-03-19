@@ -320,6 +320,7 @@ export class Single extends SingleAbstract {
       anime['volumes'] = parseInt(data.split('id="volumes"')[1].split('value="')[1].split('"')[0]);
       anime['mstatus'] = parseInt(data.split('id="mstatus"')[1].split('value="')[1].split('"')[0]);
       anime['.add_manga[status]'] = parseInt(getselect(data,'add_manga[status]'));
+      if(!anime['.add_manga[status]']) anime['.add_manga[status]'] = 6;
       //Rewatching
       if(data.split('name="add_manga[is_rereading]"')[1].split('>')[0].indexOf('checked="checked"') >= 0){
           anime['.add_manga[is_rereading]'] = 1;
