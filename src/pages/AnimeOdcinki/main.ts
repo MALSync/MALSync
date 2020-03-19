@@ -18,7 +18,7 @@ export const AnimeOdcinki: pageInterface = {
       return utils.absoluteLink(j.$('.field-name-field-tytul-anime a').attr("href"), AnimeOdcinki.domain)
     },
     getEpisode: function (url) {
-      return parseInt(j.$(".page-header").text().substr(j.$('.field-name-field-tytul-anime a').text().length).match(/\d+/i)[0]);
+      return parseInt(url.split("/")[5]);
     },
     nextEpUrl: function (url) {
       return j.$("#video-next").attr("href");
