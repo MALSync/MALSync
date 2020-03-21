@@ -15,7 +15,7 @@ export const animeultima: pageInterface = {
     getTitle: function(url){return j.$("h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile").text().replace(/\n.*/g, "").trim();
     },
     getIdentifier: function(url) {
-      return url.split("/")[4];
+      return utils.urlPart(url,4);
     },
     getOverviewUrl: function(url){
       return animeultima.domain+'/a/'+animeultima.sync.getIdentifier(url);
@@ -35,7 +35,7 @@ export const animeultima: pageInterface = {
       return utils.getBaseText($('h1.title.is-marginless.is-paddingless').first()).replace(/[^ \w]+/g, "").trim();
     },
     getIdentifier: function(url){
-      return url.split("/")[4];
+      return utils.urlPart(url,4);
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("div.tags.is-marginless").first());
