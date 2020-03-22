@@ -13,7 +13,10 @@ export class minimal{
     this.minimal.find("body").append('<div id="minimalApp"></div>');
     this.minimalVue = new Vue({
       el: this.minimal.find("#minimalApp").get(0),
-      render: h => h(minimalApp)
+      render: h => h(minimalApp),
+      methods: {
+        updateDom: () => {this.updateDom()},
+      }
     })
     this.minimal.find("head").append('<base href="https://myanimelist.net/">');
 
@@ -280,6 +283,10 @@ export class minimal{
 
     this.minimal.find('#cleanTagsUi').click(() => {
       this.minimalVue.$children[0].selectTab('cleanTags')
+    })
+
+    this.minimal.find('#allSitesUi').click(() => {
+      this.minimalVue.$children[0].selectTab('allSites')
     })
 
     try{

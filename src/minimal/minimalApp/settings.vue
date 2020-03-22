@@ -61,6 +61,8 @@
 
         <numberInput v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'" option="delay">{{lang("settings_AutoTracking_Instant",[options.delay])}}</numberInput>
 
+        <button type="button" id="allSitesUi" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-left: 20px;">Websites</button>
+
         <shortcut option="correctionShort">{{lang("settings_Shortcuts_Correction")}}</shortcut>
 
         <checkbox option="localSync">{{lang("settings_LocalSync")}}
