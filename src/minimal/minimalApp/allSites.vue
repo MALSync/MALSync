@@ -3,7 +3,7 @@
     <div class="mdl-cell bg-cell mdl-cell--12-col">
     <div v-for="page in pages" v-bind:key="page.name">
 
-      <li class="mdl-list__item">
+      <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
         <span class="mdl-list__item-primary-content">
           <a :href="getDomain(page)">
             <img :src="'https://www.google.com/s2/favicons?domain='+getDomain(page)" height="16" width="16" style="margin-right: 5px;">
@@ -12,7 +12,7 @@
         </span>
         <span class="mdl-list__item-secondary-action">
           <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="page.name">
-            <input :id="page.name" type="checkbox" class="mdl-switch__input" />
+            <input :id="page.name" type="checkbox" class="mdl-switch__input" :checked="getPageState(page)" @change="setPageState(page, $event.target.checked)"/>
           </label>
         </span>
       </li>
@@ -41,6 +41,9 @@
     watch: {
     },
     computed: {
+      enablePages: function() {
+        return api.settings.get('enablePages');
+      }
     },
     methods: {
       lang: api.storage.lang,
@@ -51,6 +54,15 @@
           var domain = page.domain;
         }
         return domain
+      },
+      getPageState(page) {
+        if(typeof this.enablePages[page.name] === 'undefined' || this.enablePages[page.name]) return true;
+        return false;
+      },
+      setPageState(page, state) {
+        var curState = JSON.parse(JSON.stringify(this.enablePages))
+        curState[page.name] = state;
+        api.settings.set('enablePages', curState);
       }
     }
   }

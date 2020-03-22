@@ -2,6 +2,7 @@ export var settingsObj = {
   options: {
     autoTrackingModeanime: 'video',
     autoTrackingModemanga: 'instant',
+    enablePages: {},
     forceEn: false,
     presenceHidePage: false,
     userscriptMode: false,
