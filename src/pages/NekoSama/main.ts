@@ -16,7 +16,7 @@ export const NekoSama: pageInterface = {
     getIdentifier: function(url){return utils.urlPart(url, 5).match(/^\d*/)[0];},
     getOverviewUrl: function(url){return NekoSama.domain+j.$(".details > div > h1 > a").attr('href')},
     getEpisode:function(url){return j.$("#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2").text().split(" Episode ").pop()},
-    nextEpUrl: function(url){return  utils.absoluteLink(j.$("#watch > div > div:nth-child(2) > div > div.item.right > a.ui.button.small.with-svg-right").attr('href'), NekoSama.domain)},
+    nextEpUrl: function(url){return utils.absoluteLink(j.$("#watch > div > div:nth-child(5) > div.anime-video-options > div.item.right > a.ui.button.small.with-svg-right").attr('href'), NekoSama.domain)},
   },
 
   overview:{

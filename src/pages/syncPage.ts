@@ -883,7 +883,7 @@ export class syncPage{
             if (!api.settings.get("presenceHidePage")) {
              var browsingTemp = this.page.name;
             }else{
-             var browsingTemp = '';
+             var browsingTemp = this.page.type.toString();
             }
             pres.presence.startTimestamp = this.browsingtime;
             pres.presence.state = api.storage.lang("Discord_rpc_browsing", [browsingTemp]);

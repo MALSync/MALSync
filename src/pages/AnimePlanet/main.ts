@@ -51,7 +51,7 @@ export const AnimePlanet: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] === "anime") {
+      if (page.url.split("/")[3] === "anime" && utils.urlPart(page.url,4) !== "all") {
         page.handlePage();
       }
     });
