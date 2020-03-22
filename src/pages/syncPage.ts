@@ -312,6 +312,11 @@ export class syncPage{
       //sync
       if(this.page.isSyncPage(this.url)){
 
+        if(!(typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||  api.settings.get('enablePages')[this.page.name])) {
+          con.info('Sync is disabled for this page' this.page.name);
+          return;
+        }
+
         var rerun = await this.searchObj.openCorrectionCheck();
 
         if(rerun) {//If malUrl changed
