@@ -44,4 +44,9 @@ module.exports = {
       '*://hentaikisa.com/*'
     ]
   },
+  Nhentai: {
+    match: [
+      '*://nhentai.com/*'
+    ]
+  },
 };
