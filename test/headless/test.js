@@ -2076,6 +2076,32 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'Nhentai',
+    url: 'https://nhentai.com/',
+    testCases: [
+      {
+        url: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal/reader/1',
+        expected: {
+          sync: true,
+          title: 'HALCION',
+          identifier: 'sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+          overviewUrl: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+          episode: 1,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+        expected: {
+          sync: false,
+          title: 'HALCION',
+          identifier: 'sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
