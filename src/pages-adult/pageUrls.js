@@ -46,7 +46,7 @@ module.exports = {
   },
   Nhentai: {
     match: [
-      '*://nhentai.com/*'
+      '*://nhentai.net/g/*'
     ]
   },
 };

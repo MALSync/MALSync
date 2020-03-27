@@ -2078,25 +2078,25 @@ var testsArray = [
   },
   {
     title: 'Nhentai',
-    url: 'https://nhentai.com/',
+    url: 'https://nhentai.net/',
     testCases: [
       {
-        url: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal/reader/1',
+        url: 'https://nhentai.net/g/306629/1',
         expected: {
           sync: true,
-          title: 'HALCION',
-          identifier: 'sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
-          overviewUrl: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+          title: 'Tamamo no Ushiro',
+          identifier: '306629',
+          overviewUrl: 'https://nhentai.net/g/306629',
           episode: 1,
           uiSelector: false,
         }
       },
       {
-        url: 'https://nhentai.com/en/comic/sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+        url: 'https://nhentai.net/g/306629/',
         expected: {
           sync: false,
-          title: 'HALCION',
-          identifier: 'sennen-battle-in-osaka-tyou-to-hanatemari-otousu-halcion-yu-gi-oh-zexal',
+          title: 'Tamamo no Ushiro',
+          identifier: '306629',
           uiSelector: true,
         }
       },
