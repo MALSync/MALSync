@@ -423,7 +423,8 @@ module.exports = {
   },
   animestrue: {
     match: [
-     '*://*.animestrue.net/anime/*/temporada*'
+     '*://*.animestrue.net/anime/*/temporada*',
+     '*://*.animestrue.site/anime/*/temporada*'
     ]
   },
   PrimeVideo: {
