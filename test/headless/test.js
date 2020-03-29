@@ -1816,53 +1816,53 @@ var testsArray = [
   },
   {
     title: 'animestrue',
-    url: 'https://www.animestrue.net/',
+    url: 'https://www.animestrue.site/',
     testCases: [
       {//season 1 syncpage
-        url: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio2',
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
-          overviewUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada1',
+          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio3',
+          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio3',
           uiSelector: false,
         }
       },
       {//season 1 overview
-       url: 'https://www.animestrue.net/anime/highschool-dxd/temporada1',
+       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
         expected: {
           sync: false,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio5'
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio5'
           }
         }
       },
       {//season 4 syncpage
-        url: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio2',
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
-          overviewUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada4',
+          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio3',
+          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio3',
           uiSelector: false,
         }
       },
       {//season 4 overview
-       url: 'https://www.animestrue.net/anime/highschool-dxd/temporada4',
+       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
         expected: {
           sync: false,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio5'
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio5'
           }
         }
       }
