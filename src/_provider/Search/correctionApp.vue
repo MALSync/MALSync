@@ -1,6 +1,11 @@
 <template>
   <div id="material">
-    <div class="scroll">
+    <div v-if="syncMode && minimized">
+      <a @click="minimized = false" style="cursor: pointer;">
+        Action required
+      </a>
+    </div>
+    <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
       <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
 
@@ -22,7 +27,7 @@
 
       <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" :currentId="searchClass.getId()" v-on:clicked="setPage($event.url, $event.id)"></search>
     </div>
-    <a class="close" @click="close()">CLOSE</a>
+    <a v-if="!(syncMode && minimized)" class="close" @click="close()">CLOSE</a>
   </div>
 </template>
 
@@ -39,7 +44,11 @@
     },
     data: () => ({
       inputOffset: 0,
+      minimized: false,
     }),
+    created: function() {
+      this.minimized = api.settings.get('minimizeBigPopup');
+    },
     computed: {
       searchClass: function() {
         return this.$parent.searchClass;

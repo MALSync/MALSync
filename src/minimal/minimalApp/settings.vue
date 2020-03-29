@@ -154,6 +154,7 @@
         </li>
         <span class="option-extension" style="display: none;"><checkbox option="minimalWindow">{{lang("settings_miniMAL_window")}}</checkbox></span>
         <checkbox option="floatButtonStealth">{{lang("settings_miniMAL_floatButtonStealth")}}</checkbox>
+        <checkbox option="minimizeBigPopup">{{lang("settings_miniMAL_minimizeBigPopup")}}</checkbox>
         <checkbox option="floatButtonHide">{{lang("settings_miniMAL_floatButtonHide")}}</checkbox>
         <checkbox option="autoCloseMinimal">{{lang("settings_miniMAL_autoCloseMinimal")}}</checkbox>
 

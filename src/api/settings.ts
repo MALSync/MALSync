@@ -22,6 +22,7 @@ export var settingsObj = {
     posLeft: 'left',
     miniMALonMal: false,
     floatButtonStealth: false,
+    minimizeBigPopup: false,
     floatButtonHide: false,
     autoCloseMinimal: false,
     outWay: true,
