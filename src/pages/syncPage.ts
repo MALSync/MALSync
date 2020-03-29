@@ -118,7 +118,7 @@ export class syncPage{
 
     //@ts-ignore
     if(typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked){
-      if(this.curState.videoChecked > 1){
+      if(this.curState.videoChecked > 1 && item.current > 10){
         con.info('Set Resume',item.current);
         localStorage.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
