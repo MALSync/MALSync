@@ -391,7 +391,8 @@ module.exports = {
   },
   AnimesVision: {
     match: [
-      '*://*.animesvision.com.br/*'
+      '*://*.animesvision.com.br/*',
+      '*://*.animesvision.biz/*'
     ]
   },
   Hulu: {
