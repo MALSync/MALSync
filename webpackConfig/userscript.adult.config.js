@@ -62,6 +62,7 @@ const metadata = {
     'graphql.anilist.co',
     'media.kitsu.io',
     'api.simkl.com',
+    'api.malsync.moe',
     '*'
   ]
 };

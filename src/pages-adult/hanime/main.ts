@@ -16,10 +16,10 @@ export const hanime: pageInterface = {
       return j.$("h1.tv-title").text().replace(/ ([^a-z]*)$/gmi,"").trim();
     },
     getIdentifier: function(url) {
-      return url.split("/")[5].replace(/-([^a-z]*)$/gmi,"").trim();
+      return utils.urlPart(url, 5).replace(/-([^a-z]*)$/gmi,"").trim();
     },
     getOverviewUrl: function(url){
-      var overviewPart = url.split("/")[5];
+      var overviewPart = utils.urlPart(url, 5);
         var temp = overviewPart.match(/-([^a-z]*)$/gmi);
         if(temp !== null){
           return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url) + "-1";
@@ -28,7 +28,7 @@ export const hanime: pageInterface = {
         }
     },
     getEpisode: function(url){
-      var episodePart = url.split("/")[5];
+      var episodePart = utils.urlPart(url, 5);
       if(episodePart.length){
         var temp = episodePart.match(/-([^a-z]*)$/gmi);
         if(temp !== null){
