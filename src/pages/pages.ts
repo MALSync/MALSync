@@ -66,6 +66,7 @@ import {bato} from "./bato/main";
 import {DreamSub} from "./DreamSub/main";
 import {MangaPark} from "./MangaPark/main";
 import {AnimesHouse} from "./AnimesHouse/main";
+import {AnimeXin} from "./AnimeXin/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -137,7 +138,8 @@ export const pages = {
     bato,
     DreamSub,
     MangaPark,
-    AnimesHouse
+    AnimesHouse,
+    AnimeXin
 };
 
 export const pageSearch:pageSearchObj = {

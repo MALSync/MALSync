@@ -463,4 +463,9 @@ module.exports = {
      '*://animeshouse.net/filme/*',
     ]
   },
+  AnimeXin: {
+    match: [
+     '*://animexin.xyz/*',
+    ]
+  },
 };
