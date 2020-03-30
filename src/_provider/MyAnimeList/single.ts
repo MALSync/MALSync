@@ -203,12 +203,13 @@ export class Single extends SingleAbstract {
       }
     }
 
-    if(this.getStatus() == 1 && this.getEpisode() > 0) {
+    if(this._getStatus() == 1 && this.getEpisode() > 0) {
       this.setStartingDateToNow();
     }
 
-    if(this.getStatus() == 2) {
+    if(this._getStatus() == 2) {
       this.setCompletionDateToNow();
+      this.setStartingDateToNow();
       if(this.getTotalEpisodes()) this.setEpisode(this.getTotalEpisodes());
     }
 
