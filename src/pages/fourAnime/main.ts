@@ -19,7 +19,7 @@ export const fourAnime: pageInterface = {
       .trim();
     },
     getIdentifier: function(url) {
-      return url.split("/")[3].replace(/\-episode[^]*$/g, "");
+      return utils.urlPart(url,3).replace(/\-episode[^]*$/g, "");
     },
     getOverviewUrl: function(url) {
       return fourAnime.domain + "/anime/" + fourAnime.sync.getIdentifier(url);
@@ -42,7 +42,7 @@ export const fourAnime: pageInterface = {
       return j .$("p.single-anime-desktop").text().trim();
     },
     getIdentifier: function(url){
-      return url.split("/")[4].replace(/\-episode[^]*$/g, "");
+      return utils.urlPart(url,4).replace(/\-episode[^]*$/g, "");
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("p.description-mobile").first());
