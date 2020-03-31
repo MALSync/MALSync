@@ -391,7 +391,8 @@ module.exports = {
   },
   AnimesVision: {
     match: [
-      '*://*.animesvision.com.br/*'
+      '*://*.animesvision.com.br/*',
+      '*://*.animesvision.biz/*'
     ]
   },
   Hulu: {
@@ -422,7 +423,8 @@ module.exports = {
   },
   animestrue: {
     match: [
-     '*://*.animestrue.net/anime/*/temporada*'
+     '*://*.animestrue.net/anime/*/temporada*',
+     '*://*.animestrue.site/anime/*/temporada*'
     ]
   },
   PrimeVideo: {
@@ -459,6 +461,11 @@ module.exports = {
     match: [
      '*://animeshouse.net/episodio/*',
      '*://animeshouse.net/filme/*',
+    ]
+  },
+  AnimeXin: {
+    match: [
+     '*://animexin.xyz/*',
     ]
   },
 };

@@ -1816,53 +1816,53 @@ var testsArray = [
   },
   {
     title: 'animestrue',
-    url: 'https://www.animestrue.net/',
+    url: 'https://www.animestrue.site/',
     testCases: [
       {//season 1 syncpage
-        url: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio2',
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
-          overviewUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada1',
+          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio3',
+          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio3',
           uiSelector: false,
         }
       },
       {//season 1 overview
-       url: 'https://www.animestrue.net/anime/highschool-dxd/temporada1',
+       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
         expected: {
           sync: false,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.net/anime/highschool-dxd/temporada1/episodio5'
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio5'
           }
         }
       },
       {//season 4 syncpage
-        url: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio2',
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
-          overviewUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada4',
+          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio3',
+          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio3',
           uiSelector: false,
         }
       },
       {//season 4 overview
-       url: 'https://www.animestrue.net/anime/highschool-dxd/temporada4',
+       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
         expected: {
           sync: false,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.net/anime/highschool-dxd/temporada4/episodio5'
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio5'
           }
         }
       }
@@ -2098,6 +2098,36 @@ var testsArray = [
           title: 'Tamamo no Ushiro',
           identifier: '306629',
           uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'AnimeXin',
+    url: 'https://animexin.xyz/',
+    testCases: [
+      {
+        url: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
+        expected: {
+          sync: true,
+          title: "The Daily Life of the Immortal King",
+          identifier: "the-daily-life-of-the-immortal-king",
+          overviewUrl: 'https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/',
+          nextEpUrl: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-9-subbed/',
+          episode: 8,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/',
+        expected: {
+          sync: false,
+          title: "The Daily Life of the Immortal King",
+          identifier: "the-daily-life-of-the-immortal-king",
+          uiSelector: true,
+          epList: {
+            8: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
+          }
         }
       },
     ]

@@ -331,4 +331,10 @@ module.exports = {
       '*://*.mixdrop.co/e/*'
     ]
   },
+  //animexin
+  gdriveplayer: {
+    match: [
+      '*://gdriveplayer.me/embed*'
+    ]
+  },
 };

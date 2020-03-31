@@ -2,7 +2,7 @@ import { pageInterface } from "./../pageInterface";
 
 export const animestrue: pageInterface = {
   name: "animestrue",
-  domain: "https://www.animestrue.net",
+  domain: "https://animestrue.site",
   type: "anime",
   isSyncPage: function(url) {
     if (typeof url.split("/")[6] !== "undefined" && url.split("/")[6].indexOf("episodio") !== -1) {
