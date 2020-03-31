@@ -108,13 +108,13 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://www.animestrue.net"><img src="https://www.google.com/s2/favicons?domain=https://www.animestrue.net"> animestrue</a></td>
+              <td><a href="https://animestrue.site"><img src="https://www.google.com/s2/favicons?domain=https://animestrue.site"> animestrue</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www.animesvision.com.br"><img src="https://www.google.com/s2/favicons?domain=https://www.animesvision.com.br"> AnimesVision</a></td>
+              <td><a href="https://animesvision.biz"><img src="https://www.google.com/s2/favicons?domain=https://animesvision.biz"> AnimesVision</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -125,6 +125,12 @@
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
               <td>:heavy_check_mark:</td>

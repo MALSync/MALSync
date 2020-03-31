@@ -173,7 +173,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animesvision.com.br"><img src="https://www.google.com/s2/favicons?domain=https://www.animesvision.com.br"> AnimesVision</a></td>
+                <td><a href="https://animesvision.biz"><img src="https://www.google.com/s2/favicons?domain=https://animesvision.biz"> AnimesVision</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
@@ -189,7 +189,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animestrue.net"><img src="https://www.google.com/s2/favicons?domain=https://www.animestrue.net"> animestrue</a></td>
+                <td><a href="https://animestrue.site"><img src="https://www.google.com/s2/favicons?domain=https://animestrue.site"> animestrue</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
@@ -202,6 +202,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
                 <td></td>
                 <td></td>
               </tr>
