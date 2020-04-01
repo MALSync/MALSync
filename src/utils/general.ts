@@ -221,7 +221,7 @@ export async function getPageSearch() {
       return request;
     } else {
       con.log("PageSearch Cached")
-      return await cacheObj.getValue();
+      return cacheObj.getValue();
     }
 }
 
@@ -243,7 +243,7 @@ export async function getMalToKissApi(type, id){
       if(data && data.Sites) return data.Sites;
       return {};
     }else{
-      throw 'malsync offline';
+      throw new Error('malsync offline');
     }
   });
 }
@@ -314,7 +314,7 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
     if(!pre) callback(false);
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
-    var elCache:any = undefined;
+    var elCache:any;
     if(typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0'){
       elCache = await api.storage.get('updateCheck/'+type+'/'+cacheKey);
     }
