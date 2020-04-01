@@ -595,6 +595,10 @@
     "message": "Modo de IU sigilosa",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
   },
+  "settings_miniMAL_minimizeBigPopup": {
+    "message": "Minimizar las ventanas emergentes grandes",
+    "description": "Shows an 'action required' popup hidding big popups"
+  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Ocultar el botón del menú flotante de miniMAL",
     "description": "Hide miniMAL floating menu button"
