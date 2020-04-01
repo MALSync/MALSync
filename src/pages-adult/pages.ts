@@ -6,8 +6,6 @@ import {UnderHentai} from "./UnderHentai/main";
 import {HentaiKisa} from "./HentaiKisa/main";
 import {Nhentai} from "./Nhentai/main";
 
-import {pageSearchObj} from "./../pages/pageInterface";
-
 export const pages = {
     hanime,
     HentaiHaven,
@@ -17,6 +15,3 @@ export const pages = {
     HentaiKisa,
     Nhentai,
 };
-
-export const pageSearch:pageSearchObj = {
-}
