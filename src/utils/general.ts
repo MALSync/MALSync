@@ -1,3 +1,5 @@
+import {Cache} from "./Cache.ts";
+
 declare var browser: any;
 
 export function urlPart(url:string, part:number){
@@ -201,6 +203,26 @@ export async function getMalToKissArray(type, id){
       con.error(e);
       return getMalToKissFirebase(type, id)
     });
+}
+
+export async function getPageSearch() {
+  let cacheObj = new Cache('pageSearch', (12 * 60 * 60 * 1000));
+  if(!await cacheObj.hasValueAndIsNotEmpty()){
+    con.log("Getting new PageSearch Cache")
+      var url = 'http://localhost:3337/general/pagesearch';
+      let request = await api.request.xhr('GET', url).then(async (response) => {
+        if(response.status === 200 && response.responseText) {
+          return JSON.parse(response.responseText);
+        }else {
+          return {};
+        }
+      });
+      await cacheObj.setValue(request);
+      return request;
+    } else {
+      con.log("PageSearch Cached")
+      return await cacheObj.getValue();
+    }
 }
 
 export async function getMalToKissApi(type, id){

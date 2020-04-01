@@ -1,6 +1,5 @@
 import {Single as simklSingle} from "./../_provider/Simkl/single";
 import {userlist} from "./../_provider/Simkl/list";
-import {pageSearch} from './../pages/pages';
 import * as helper from "./../provider/Simkl/helper";
 import Vue from 'vue';
 import malkiss from './malkiss.vue';
@@ -185,6 +184,8 @@ export class simklClass{
   siteSearch(){
     if(!api.settings.get('SiteSearch')) return;
     con.log('PageSearch');
+    let pageSearch = {};
+    utils.getPageSearch().then((pages) => {pageSearch = pages});
     var newSearch:any = [];
 
     var title = $('h1').first().text().trim();
@@ -205,7 +206,7 @@ export class simklClass{
 
 
       if( typeof page.completeSearchTag === 'undefined'){
-        tempAdd.search = page.searchUrl(titleEncoded);
+        tempAdd.search = page.searchUrl.replace("##searchkey##",titleEncoded);
       }
 
       var googleSeach = '';

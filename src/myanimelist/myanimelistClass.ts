@@ -1,4 +1,3 @@
-import {pageSearch} from './../pages/pages';
 import {Single as malSingle} from "./../_provider/MyAnimeList/single";
 import {userlist} from "./../_provider/MyAnimeList/list";
 
@@ -222,6 +221,8 @@ export class myanimelistClass{
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');
+      let pageSearch = {};
+      utils.getPageSearch().then((pages) => {pageSearch = pages});
       $('h2:contains("Information")').before('<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />');
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
@@ -238,7 +239,7 @@ export class myanimelistClass{
           var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
-            `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+            `<a target="_blank" href="${page.searchUrl.replace("##searchkey##",titleEncoded)}">
               ${linkContent}
             </a>`
           }else{

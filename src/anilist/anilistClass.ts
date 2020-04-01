@@ -1,5 +1,4 @@
 import * as helper from "./../provider/AniList/helper";
-import {pageSearch} from './../pages/pages';
 import {Single as anilistSingle} from "./../_provider/AniList/single";
 import {userlist} from "./../_provider/AniList/list";
 
@@ -171,6 +170,8 @@ export class anilistClass{
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');
+      var pageSearch = {};
+      utils.getPageSearch().then((pages) => {pageSearch = pages});
       $('#mal-sync-search-links').remove();
       $('.sidebar .data').before(`
         <div id="mal-sync-search-links" style="
@@ -200,7 +201,7 @@ export class anilistClass{
           var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
-            `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+            `<a target="_blank" href="${page.searchUrl.replace("##searchkey##",titleEncoded)}">
               ${linkContent}
             </a>`
           }else{
