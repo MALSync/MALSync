@@ -2076,7 +2076,7 @@ var testsArray = [
       },
     ]
   },
-  {
+  {//nsfw
     title: 'Nhentai',
     url: 'https://nhentai.net/',
     testCases: [
@@ -2127,6 +2127,36 @@ var testsArray = [
           uiSelector: true,
           epList: {
             8: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'MonosChinos',
+    url: 'https://monoschinos.com/',
+    testCases: [
+      {
+        url: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-8',
+        expected: {
+          sync: true,
+          title: "Toaru Kagaku no Railgun T",
+          identifier: "toaru-kagaku-no-railgun-t-sub-espanol",
+          overviewUrl: 'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
+          nextEpUrl: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-9',
+          episode: 8,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
+        expected: {
+          sync: false,
+          title: "Toaru Kagaku no Railgun T",
+          identifier: "toaru-kagaku-no-railgun-t-sub-espanol",
+          uiSelector: true,
+          epList: {
+            8: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-8',
           }
         }
       },

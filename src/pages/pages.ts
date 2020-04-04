@@ -67,6 +67,8 @@ import {DreamSub} from "./DreamSub/main";
 import {MangaPark} from "./MangaPark/main";
 import {AnimesHouse} from "./AnimesHouse/main";
 import {AnimeXin} from "./AnimeXin/main";
+import {MonosChinos} from "./MonosChinos/main";
+
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -139,7 +141,8 @@ export const pages = {
     DreamSub,
     MangaPark,
     AnimesHouse,
-    AnimeXin
+    AnimeXin,
+    MonosChinos
 };
 
 export const pageSearch:pageSearchObj = {

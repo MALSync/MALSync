@@ -468,4 +468,9 @@ module.exports = {
      '*://animexin.xyz/*',
     ]
   },
+  MonosChinos: {
+    match: [
+     '*://monoschinos.com/*',
+    ]
+  },
 };
