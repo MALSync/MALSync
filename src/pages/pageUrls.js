@@ -473,4 +473,9 @@ module.exports = {
      '*://monoschinos.com/*',
     ]
   },
+  AnimeFire: {
+    match: [
+     '*://animefire.net/*',
+    ]
+  },
 };

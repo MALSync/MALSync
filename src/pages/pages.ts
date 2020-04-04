@@ -68,7 +68,7 @@ import {MangaPark} from "./MangaPark/main";
 import {AnimesHouse} from "./AnimesHouse/main";
 import {AnimeXin} from "./AnimeXin/main";
 import {MonosChinos} from "./MonosChinos/main";
-
+import {AnimeFire} from "./AnimeFire/main";
 
 import {pageSearchObj} from "./pageInterface";
 
@@ -142,7 +142,8 @@ export const pages = {
     MangaPark,
     AnimesHouse,
     AnimeXin,
-    MonosChinos
+    MonosChinos,
+    AnimeFire,
 };
 
 export const pageSearch:pageSearchObj = {
