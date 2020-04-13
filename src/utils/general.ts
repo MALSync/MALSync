@@ -209,7 +209,7 @@ export async function getPageSearch() {
   let cacheObj = new Cache('pageSearch', (12 * 60 * 60 * 1000));
   if(!await cacheObj.hasValueAndIsNotEmpty()){
     con.log("Getting new PageSearch Cache")
-      var url = 'http://localhost:3337/general/pagesearch';
+      var url = 'https://api.malsync.moe/general/pagesearch';
       let request = await api.request.xhr('GET', url).then(async (response) => {
         if(response.status === 200 && response.responseText) {
           return JSON.parse(response.responseText);
