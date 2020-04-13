@@ -32,23 +32,10 @@ export interface pageInterface {
     init: (page:any) => void, //This is the most important function. It controlls when to start the check. Every time page.handlPage() is called it will check the overview/sync page.
 }
 
-interface pageSearch {
-    name: string,
-    type: 'anime'|'manga',
-    domain: string,
-    googleSearchDomain?: string,
-    searchUrl: (titleEncoded) => string,
-    completeSearchTag?: (title, linkContent) => string
-}
-
 export interface pageState {
     on: 'SYNC'|'OVERVIEW',
     title: string,
     identifier: string,
     episode?: number,
     volume?: number
-}
-
-export interface pageSearchObj {
-    [key: string]: pageSearch
 }

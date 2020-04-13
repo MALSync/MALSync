@@ -1,3 +1,5 @@
+import {Cache} from "./Cache.ts";
+
 declare var browser: any;
 
 export function urlPart(url:string, part:number){
@@ -203,6 +205,26 @@ export async function getMalToKissArray(type, id){
     });
 }
 
+export async function getPageSearch() {
+  let cacheObj = new Cache('pageSearch', (12 * 60 * 60 * 1000));
+  if(!await cacheObj.hasValueAndIsNotEmpty()){
+    con.log("Getting new PageSearch Cache")
+      var url = 'http://localhost:3337/general/pagesearch';
+      let request = await api.request.xhr('GET', url).then(async (response) => {
+        if(response.status === 200 && response.responseText) {
+          return JSON.parse(response.responseText);
+        }else {
+          return {};
+        }
+      });
+      await cacheObj.setValue(request);
+      return request;
+    } else {
+      con.log("PageSearch Cached")
+      return cacheObj.getValue();
+    }
+}
+
 export async function getMalToKissApi(type, id){
   var url = 'https://api.malsync.moe/mal/'+type+'/'+id;
   return api.request.xhr('GET', url).then(async (response) => {
@@ -221,7 +243,7 @@ export async function getMalToKissApi(type, id){
       if(data && data.Sites) return data.Sites;
       return {};
     }else{
-      throw 'malsync offline';
+      throw new Error('malsync offline');
     }
   });
 }
@@ -292,7 +314,7 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
     if(!pre) callback(false);
     var updateCheckTime = await api.storage.get("updateCheckTime");
     var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
-    var elCache:any = undefined;
+    var elCache:any;
     if(typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0'){
       elCache = await api.storage.get('updateCheck/'+type+'/'+cacheKey);
     }

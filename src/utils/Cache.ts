@@ -16,6 +16,15 @@ export class Cache {
     return false;
   }
 
+  async hasValueAndIsNotEmpty() {
+    var value = await this.getStorage();
+    if(typeof value !== 'undefined' && value !== null && typeof value.data !== 'undefined' &&  value.data !== null && Object.keys(value.data).length && new Date().getTime() < value.timestamp){
+      return true;
+    }
+    return false;
+  }
+
+
   async getValue() {
     var value = await this.getStorage();
     return value.data;

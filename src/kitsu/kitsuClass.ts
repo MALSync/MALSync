@@ -1,5 +1,4 @@
 import * as helper from "./../provider/Kitsu/helper";
-import {pageSearch} from './../pages/pages';
 import {Single as kitsuSingle} from "./../_provider/Kitsu/single";
 import {userlist} from "./../_provider/Kitsu/list";
 
@@ -262,6 +261,8 @@ export class kitsuClass{
     var This = this;
     $(document).ready(function(){
       con.log('Site Search');
+      var pageSearch = {};
+      utils.getPageSearch().then((pages) => {pageSearch = pages});
       $('#mal-sync-search-links').remove();
       $('.media-summary').first().after(`
         <div id="mal-sync-search-links" style="
@@ -291,7 +292,7 @@ export class kitsuClass{
           var linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
           if( typeof page.completeSearchTag === 'undefined'){
             var link =
-            `<a target="_blank" href="${page.searchUrl(titleEncoded)}">
+            `<a target="_blank" href="${page.searchUrl.replace("##searchkey##",titleEncoded)}">
               ${linkContent}
             </a>`
           }else{
