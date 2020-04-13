@@ -468,4 +468,14 @@ module.exports = {
      '*://animexin.xyz/*',
     ]
   },
+  MonosChinos: {
+    match: [
+     '*://monoschinos.com/*',
+    ]
+  },
+  AnimeFire: {
+    match: [
+     '*://animefire.net/*',
+    ]
+  },
 };
