@@ -303,9 +303,9 @@ module.exports = {
   },
   //Neko-sama
   pstream: {
-  	match: [
-  		'*://*.pstream.net/e/*'
-  	]
+    match: [
+      '*://*.pstream.net/e/*'
+    ]
   },
   //Animeultima
   animefever: {
@@ -335,6 +335,37 @@ module.exports = {
   gdriveplayer: {
     match: [
       '*://gdriveplayer.me/embed*'
+    ]
+  },
+  //OtakuFR
+  sendvid: {
+    match:[
+      '*://sendvid.net/v/*',
+      '*://sendvid.com/embed/*'
+    ]
+  },
+  //OtakuFR
+  streamz: {
+    match: [
+      '*://streamz.cc/*'
+    ]
+  },
+  //OtakuFR
+  vidbm: {
+    match: [
+      '*://*.vidbm.com/embed-*'
+    ]
+  },
+  //OtakuFR
+  cloudhost: {
+    match: [
+      '*://*.cloudhost.to/*/mediaplayer/*/_embed.php?*'
+    ]
+  },
+  //OtakuFR
+  letsupload: {
+    match: [
+      '*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'
     ]
   },
 };
