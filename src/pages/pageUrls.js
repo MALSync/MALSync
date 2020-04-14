@@ -478,4 +478,9 @@ module.exports = {
      '*://animefire.net/*',
     ]
   },
+  OtakuFR: {
+    match: [
+     '*://*.otakufr.com/*',
+    ]
+  },
 };
