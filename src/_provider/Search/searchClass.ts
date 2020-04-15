@@ -398,7 +398,14 @@ export class searchClass {
       if(!kissurl){
         if(this.page.isSyncPage(this.syncPage.url)){
           kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
+          if(this.page.database === 'Crunchyroll') {
+            kissurl = this.syncPage.url+'?..'+encodeURIComponent(this.identifier.toLowerCase().split('#')[0]).replace(/\./g, '%2E')
+          }
         }else{
+          if(this.page.database === 'Crunchyroll') {
+            con.log('CR block')
+            return;
+          }
           kissurl = this.syncPage.url;
         }
       }
