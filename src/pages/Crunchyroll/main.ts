@@ -1,5 +1,4 @@
 import {pageInterface} from "./../pageInterface";
-//TODO: Add mal2kiss season argument
 export const Crunchyroll: pageInterface = {
     name: 'Crunchyroll',
     domain: 'https://www.crunchyroll.com',
@@ -16,7 +15,8 @@ export const Crunchyroll: pageInterface = {
     sync:{
       getTitle: function(url){return Crunchyroll.sync.getIdentifier(urlHandling(url))},
       getIdentifier: function(url){
-        return j.$('link[rel="index"]').attr('title');
+        var jsOn = JSON.parse(j.$('script[type="application/ld+json"]').first().html());
+        return jsOn.partOfSeason.name;
       },
       getOverviewUrl: function(url){return urlHandling(url).split('/').slice(0,4).join('/') + '?season=' + Crunchyroll.sync.getIdentifier(urlHandling(url));},
       getEpisode: function(url){
