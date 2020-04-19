@@ -11,11 +11,16 @@ export const Wakanim: pageInterface = {
       return false;
     }
   },
+
   sync: {
-    getTitle: function(url){return j.$("body > section.episode > div > div > div.episode_info > h1 > span.episode_title").text()},
-    getIdentifier: function(url) {
-      return Wakanim.overview!.getIdentifier(Wakanim.sync.getOverviewUrl(url));
+    getTitle: function(url){
+    	return j.$('body > section.episode > div > div > div.episode_info > h1').attr('title').split('ÉPISODE')[0];
     },
+
+    getIdentifier: function(url) {
+      return j.$('body > section.episode > div > div > div.episode_info > h1').attr('title').split('ÉPISODE')[0].replace(' Saison 1 - Cour 1','').replace(' - Cour 1','');;
+    },
+
     getOverviewUrl: function(url){return Wakanim.domain+j.$("body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)").attr('href')},
 
     getEpisode:function(url){return j.$("body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span").text()
@@ -23,16 +28,25 @@ export const Wakanim: pageInterface = {
 
     nextEpUrl: function(url){return j.$("body > section.episode > div > div > div.episode_main > div.episode_video > div > div.episode-bottom > div.episodeNPEp-wrapperBlock > a.episodeNPEp.episodeNextEp.active").attr('href')},
   },
+  
   overview:{
-    getTitle: function(url){return j.$('.SerieV2-body .SerieHeader-thumb').attr('alt')},
-    getIdentifier: function(url){
-      return url.split("/")[7].trim();
+    getTitle: function(url){
+    	var firstPart = j.$('.SerieV2-body .SerieHeader-thumb').attr('alt');
+    	return firstPart + ' ' + j.$('#list-season-container > div > select > option:selected').text();
     },
+
+    getIdentifier: function(url){
+    	var firstPart = j.$('.SerieV2-body .SerieHeader-thumb').attr('alt');
+    	//Remove "Saison 1" and "Cour 1" for better dectection.
+    	return (firstPart + ' ' + j.$('#list-season-container > div > select > option:selected').text()).replace(' Saison 1 - Cour 1','').replace(' - Cour 1','');
+    },
+
     uiSelector: function(selector){
       selector.insertBefore(j.$("#nav-show").first());
     },
+
       list:{
-        offsetHandler: false,
+        offsetHandler: true,
         elementsSelector: function(){return j.$("li.-big");},
         elementUrl: function(selector){return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);},
         elementEp: function(selector){
@@ -48,6 +62,7 @@ init(page){
     page.cdn();
     return;
   }
+
   api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   if (page.url.split("/")[6] === "show" || page.url.split("/")[6] === "episode") {
     utils.waitUntilTrue(
@@ -63,11 +78,23 @@ init(page){
       }
       );
   }
+
   utils.urlChangeDetect(function() {
     page.url = window.location.href;
-    page.UILoaded = false;
-    if (j.$('body > div.SerieV2 > section > div.container > div > div.SerieV2-content').length){
-    	page.handleList();
+    if (page.url.split("/")[6] === "show") {
+      utils.waitUntilTrue(
+        function() {
+          if (j.$('#list-season-container').length){
+            page.UILoaded = true;
+            return true;
+          } else {
+            return false;
+          }
+        },
+        function() {
+          page.handlePage();
+        }
+        );
     }
   });
 }
