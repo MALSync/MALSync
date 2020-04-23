@@ -13,12 +13,11 @@ export const Wakanim: pageInterface = {
   },
 
   sync: {
-    getTitle: function(url){
-    	return j.$('body > section.episode > div > div > div.episode_info > h1').attr('title').split('ÉPISODE')[0];
-    },
+    getTitle: function(url){return Wakanim.sync.getIdentifier(url)},
 
     getIdentifier: function(url) {
-      return j.$('body > section.episode > div > div > div.episode_info > h1').attr('title').split('ÉPISODE')[0].replace(' Saison 1 - Cour 1','').replace(' - Cour 1','');;
+        var ses = seasonHelper(j.$('span.episode_subtitle > span:nth-child(2)').text());
+        return j.$('.episode_title').text() + ' ' + ses;
     },
 
     getOverviewUrl: function(url){return Wakanim.domain+j.$("body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)").attr('href')},
@@ -30,31 +29,27 @@ export const Wakanim: pageInterface = {
   },
   
   overview:{
-    getTitle: function(url){
-    	var firstPart = j.$('.SerieV2-body .SerieHeader-thumb').attr('alt');
-    	return firstPart + ' ' + j.$('#list-season-container > div > select > option:selected').text();
-    },
-
+    getTitle: function(url){return Wakanim.overview!.getIdentifier(url)},
     getIdentifier: function(url){
-    	var firstPart = j.$('.SerieV2-body .SerieHeader-thumb').attr('alt');
-    	//Remove "Saison 1" and "Cour 1" for better dectection.
-    	return (firstPart + ' ' + j.$('#list-season-container > div > select > option:selected').text()).replace(' Saison 1 - Cour 1','').replace(' - Cour 1','');
+        var secondPart = seasonHelper(j.$('#list-season-container > div > select > option:selected').text());
+        return j.$('.SerieV2-body .SerieHeader-thumb').attr('alt')  + ' ' + secondPart;
+
     },
 
     uiSelector: function(selector){
       selector.insertBefore(j.$("#nav-show").first());
     },
 
-      list:{
-        offsetHandler: true,
-        elementsSelector: function(){return j.$("li.-big");},
-        elementUrl: function(selector){return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);},
-        elementEp: function(selector){
-          var url = Wakanim.overview!.list!.elementUrl(selector);
-          return episodeHelper(url, selector.find('a').attr('title').trim());
-        },
-      }
+  list:{
+    offsetHandler: true,
+    elementsSelector: function(){return j.$("li.-big");},
+    elementUrl: function(selector){return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);},
+    elementEp: function(selector){
+      var url = Wakanim.overview!.list!.elementUrl(selector);
+      return episodeHelper(url, selector.find('a').attr('title').trim());
     },
+  }
+},
 
 init(page){
   if(document.title == "Just a moment..."){
@@ -100,8 +95,31 @@ init(page){
 }
 };
 
+function seasonHelper(text){
+    //Check if season is split in 2 cour.
+    //If yes, so rename "Cour 2" as "Part 2 " for better detection.
+    //If no, simply remove "Cour".
+
+    if (text.includes("Cour")){
+        var temp = text.match(/Cour (\d+)/);
+        if (temp[1] == 2)
+        {
+            return text.replace(temp[0], 'Part 2 ').trim().replace('-','');
+        }
+        else
+        {
+            return text.replace(/Cour \d+/, '').trim().replace('-','');
+        }
+    }
+    else
+    {
+        return text;
+    }
+}
+
 function episodeHelper(url, episodeText){
   var episodePart = utils.urlPart(url, 8);
+
   try{
     if(/\d+\.\d+/.test(episodeText)){
       episodePart = 'episode'+episodeText.match(/\d+\.\d+/)[0];
@@ -109,18 +127,23 @@ function episodeHelper(url, episodeText){
   }catch(e){
     con.error(e);
   }
+
   var temp = [];
-  temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
+  temp = episodePart.match(/([e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?|[f,F][o,O][l,L][g,G]?[e,E])\D?\d+/);
+
   if(temp !== null){
     episodePart = temp[0];
   }else{
     episodePart = '';
   }
+ 
   temp = episodePart.match(/\d+/);
+
   if(temp === null){
     episodePart = 1;
   }else{
     episodePart = temp[0];
   }
+
   return episodePart;
 }
