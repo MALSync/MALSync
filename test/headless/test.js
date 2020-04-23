@@ -281,13 +281,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://mangadex.org/chapter/57332',
+        url: 'https://mangadex.org/chapter/808444',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: '8173',
           overviewUrl: 'https://www.mangadex.org/title/8173/no-game-no-life',
-          nextEpUrl: 'https://www.mangadex.org/chapter/57339',
+          nextEpUrl: 'https://www.mangadex.org/chapter/808449',
           episode: 4,
           uiSelector: false,
         }
