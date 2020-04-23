@@ -1437,7 +1437,7 @@ var testsArray = [
         url: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/',
         expected: {
           sync: true,
-          title: 'High School DxD Hero',
+          title: 'High School DxD S4',
           identifier: 'high-school-dxd-hero',
           overviewUrl: 'https://moeclip.com/anime/high-school-dxd-hero',
           nextEpUrl: 'https://moeclip.com/high-school-dxd-hero-06-sub-indo/',
@@ -1449,7 +1449,7 @@ var testsArray = [
         url: 'https://moeclip.com/anime/high-school-dxd-hero-sub-indo/',
         expected: {
           sync: false,
-          title: 'High School DxD Hero',
+          title: 'High School DxD S4',
           identifier: 'high-school-dxd-hero',
           uiSelector: true,
           epList: {

@@ -12,7 +12,7 @@ export const moeclip: pageInterface = {
     }
   },
   sync: {
-    getTitle: function(url){return j.$("header h1.entry-title.title-font").text().replace(/\d.*sub.*indo.*/gmi,"").trim()},
+    getTitle: function(url){return j.$("header h1.entry-title.title-font").text().replace(/\d+\ssub\s*indo/gmi,"").trim()},
     getIdentifier: function(url) {
       return url.split("/")[3].replace(/-\d*-sub-indo.*/gmi,"").trim();
     },
