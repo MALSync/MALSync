@@ -49,6 +49,10 @@ export class userlist extends ListAbstract {
     });
   }
 
+  deauth() {
+    return api.settings.set('anilistToken', '');
+  }
+
   errorHandling(res) {
     if(typeof res.errors != 'undefined'){
       con.error(res.errors);

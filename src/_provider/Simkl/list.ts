@@ -22,6 +22,10 @@ export class userlist extends ListAbstract {
     });
   }
 
+  deauth() {
+    return api.settings.set('simklToken', '');
+  }
+
   errorHandling(res, code) {
     if(typeof res.error != 'undefined'){
       con.error(res.error);

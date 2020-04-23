@@ -51,6 +51,10 @@ export class userlist extends ListAbstract {
     });
   }
 
+  deauth() {
+    return api.settings.set('kitsuToken', '').then(() => api.storage.set('kitsuUserId', ''));
+  }
+
   errorHandling(res) {
     if(typeof res.errors != 'undefined'){
       con.error(res.errors);

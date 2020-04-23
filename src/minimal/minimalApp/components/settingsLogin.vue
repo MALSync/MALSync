@@ -7,6 +7,11 @@
 
     </span>
     <span class="mdl-list__item-secondary-action">
+      <template v-if="username && listObj.deauth">
+        <i class="material-icons" style="color: black; cursor: pointer; vertical-align: middle; margin-top: -4px;" @click="deauth()">
+          eject
+        </i>
+      </template>
       <a target="_blank" :href="pageAuth">
         <template v-if="username">
           {{username}}
@@ -73,6 +78,13 @@
         return this.listObj.getUsername().then((username) => {
           this.username = username;
         });
+      },
+      deauth() {
+        this.listObj.deauth().then(() => {
+          this.init();
+        }).catch(() => {
+          alert('Failed');
+        })
       }
     },
     watch: {
