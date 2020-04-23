@@ -2180,6 +2180,33 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'OtakuFR',
+    url: 'https://www.otakufr.com/',
+    testCases: [
+      {
+        url: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/21/',
+        expected: {
+          sync: true,
+          title: 'Ahiru no Sora',
+          identifier: 'Ahiru-no-Sora-Vostfr',
+          overviewUrl: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/',
+          nextEpUrl: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/22/',
+          episode: 21,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/',
+        expected: {
+          sync: false,
+          title: 'Ahiru no Sora',
+          identifier: 'Ahiru-no-Sora-Vostfr',
+          uiSelector: true,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
