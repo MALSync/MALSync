@@ -111,6 +111,7 @@ export class myanimelistClass{
     api.storage.addStyle('.picSurround img:not(.noKal){height: '+height+'px !important; width: '+width+'px !important;}');
     api.storage.addStyle('.picSurround img.lazyloaded.kal{width: auto !important;}');
     api.storage.addStyle('.picSurround:not(.noKal) a{height: '+surHeight+'px; width: '+surWidth+'px; overflow: hidden; display: flex; justify-content: center;}');
+    api.storage.addStyle('.picSurround img[src*="userimages"]{max-width: '+width+'px !important}')
 
     var loaded = 0;
     try{
