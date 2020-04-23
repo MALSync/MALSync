@@ -25,7 +25,6 @@ import {AnimeDaisuki} from "./AnimeDaisuki/main";
 import {Animefreak} from "./Animefreak/main";
 import {AnimePlanet} from "./AnimePlanet/main";
 import {KickAssAnime} from "./KickAssAnime/main";
-import {RiiE} from "./RiiE/main";
 import {AnimeKisa} from "./AnimeKisa/main";
 import {Wakanim} from "./Wakanim/main";
 import {AnimeIndo} from "./AnimeIndo/main";
@@ -100,7 +99,6 @@ export const pages = {
     AnimeDaisuki,
     AnimePlanet,
     KickAssAnime,
-    RiiE,
     AnimeKisa,
     AnimeIndo,
     Shinden,
