@@ -92,7 +92,7 @@ var testsArray = [
     url: 'https://9anime.ru/',
     testCases: [
       {
-        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/8o615y',
+        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6m2170',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
