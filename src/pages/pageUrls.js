@@ -478,4 +478,9 @@ module.exports = {
      '*://*.otakufr.com/*',
     ]
   },
+  Samehadaku: {
+    match: [
+     '*://samehadaku.vip/*',
+    ]
+  },
 };

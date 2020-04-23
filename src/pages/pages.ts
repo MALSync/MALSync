@@ -69,6 +69,7 @@ import {AnimeXin} from "./AnimeXin/main";
 import {MonosChinos} from "./MonosChinos/main";
 import {AnimeFire} from "./AnimeFire/main";
 import {OtakuFR} from "./OtakuFR/main";
+import {Samehadaku} from "./Samehadaku/main"
 
 export const pages = {
     Kissanime,
@@ -142,4 +143,5 @@ export const pages = {
     MonosChinos,
     AnimeFire,
     OtakuFR,
+    Samehadaku
 };

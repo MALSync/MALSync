@@ -368,4 +368,10 @@ module.exports = {
       '*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'
     ]
   },
+  //Samehadaku
+  mangakyo: {
+    match: [
+      '*://player.mangakyo.me/stream/embed.php*'
+    ]
+  },
 };
