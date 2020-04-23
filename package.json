@@ -41,7 +41,10 @@
     "web-ext": "^4.1.0",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "wrapper-webpack-plugin": "^2.0.0"
+    "wrapper-webpack-plugin": "^2.0.0",
+    "minimist": ">=0.2.1",
+    "acorn": ">=6.4.1",
+    "kind-of": ">=6.0.3"
   },
   "scripts": {
     "clean": "rm -rf dist",
