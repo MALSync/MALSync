@@ -796,11 +796,11 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www.kickassanime.rs/anime/overlord-iii-117790',
+        url: 'https://www.kickassanime.rs/anime/overlord-iii-591772',
         expected: {
           sync: false,
           title: 'Overlord III',
-          identifier: 'overlord-iii-117790',
+          identifier: 'overlord-iii-591772',
           uiSelector: true,
         }
       },
