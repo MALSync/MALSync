@@ -204,6 +204,8 @@
           </ul>
         </div>
       </div>
+
+      <progressP :mal-id="renderObj.getMalId()" :type="renderObj.type" :total-eps="renderObj.getTotalEpisodes()"/>
     </div>
   </div>
 </template>
@@ -214,7 +216,13 @@
   import {metadata as aniMeta} from "./../../provider/AniList/metadata";
   import {metadata as kitsuMeta} from "./../../provider/Kitsu/metadata";
   import {metadata as simklMeta} from "./../../provider/Simkl/metadata";
+
+  import progressP from './components/overviewProgress.vue'
+
   export default {
+    components: {
+      progressP,
+    },
     data: function(){
       return {
         metaObj: null,
