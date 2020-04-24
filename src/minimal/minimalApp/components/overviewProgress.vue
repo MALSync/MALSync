@@ -15,21 +15,25 @@
 
       <div class="mdl-grid mdl-grid--no-spacing">
         <div v-for="(item, index) in ongoing" :key="index" v-if="item.item.top" class="list-content mdl-cell--6-col mdl-cell--8-col-tablet" style="display: flex; align-items: center;">
-          <template v-if="item.item.top.state && item.item.top.state !== 'complete'">
-            <country-flag :country='correctFlag(item.language)' :title="item.language.toUpperCase()+' '+item.index.toUpperCase()" :text="item.index.toUpperCase()"/>
 
-            <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
-              {{utils.episode(type)}} {{item.item.top.lastEp.total}}
-              <template v-if="totalEps">/ {{totalEps}}</template>
-              <template v-if="item.item.top.lastEp.timestamp">
-                ({{releaseTime(item.item.top.lastEp.timestamp)}} ago)
-              </template>
-              <template v-if="item.item.top.predicition">
-                [next in {{releaseTime(item.item.top.predicition.timestamp).trim()}}]
-              </template>
-            </template>
+          <country-flag :country='correctFlag(item.language)' :title="item.language.toUpperCase()+' '+item.index.toUpperCase()" :text="item.index.toUpperCase()"/>
 
+          <template v-if="item.item.top.state && item.item.top.state !== 'ongoing'">
+            <span style="color: red; padding-right: 5px;">Discontinued</span>
           </template>
+
+
+          <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
+            {{utils.episode(type)}} {{item.item.top.lastEp.total}}
+            <template v-if="totalEps">/ {{totalEps}}</template>
+            <template v-if="item.item.top.lastEp.timestamp">
+              ({{releaseTime(item.item.top.lastEp.timestamp)}} ago)
+            </template>
+            <template v-if="item.item.top.predicition">
+              [next in {{releaseTime(item.item.top.predicition.timestamp).trim()}}]
+            </template>
+          </template>
+
         </div>
 
       </div>
