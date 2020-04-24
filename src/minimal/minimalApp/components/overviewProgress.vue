@@ -120,7 +120,7 @@
           case 'cs':
             return 'cz';
           case 'el':
-            return 'cy';
+            return 'gr';
           default:
             return flag
         }
