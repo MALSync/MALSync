@@ -19,7 +19,7 @@
           <country-flag :country='correctFlag(item.language)' :title="item.language.toUpperCase()+' '+item.index.toUpperCase()" :text="item.index.toUpperCase()"/>
 
           <template v-if="item.item.top.state && item.item.top.state !== 'ongoing'">
-            <span style="color: red; padding-right: 5px;">Discontinued</span>
+            <span style="color: red; padding-right: 5px;">Incomplete</span>
           </template>
 
 
