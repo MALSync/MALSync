@@ -117,6 +117,10 @@
           case 'zh-hant':
           case 'zh':
             return 'cn';
+          case 'cs':
+            return 'cz';
+          case 'el':
+            return 'cy';
           default:
             return flag
         }
