@@ -45,7 +45,6 @@ import {moeclip} from "./moeclip/main";
 import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
 import {unionmangas} from "./unionmangas/main";
-import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
 import {JapScan} from "./JapScan/main";
 import {MangaKisa} from "./MangaKisa/main";
@@ -118,7 +117,6 @@ export const pages = {
     mangalivre,
     tmofans,
     unionmangas,
-    myAnime,
     MangaPlus,
     JapScan,
     MangaKisa,

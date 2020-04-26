@@ -354,11 +354,6 @@ module.exports = {
       '*://unionmangas.top/*'
     ]
   },
-  myAnime: {
-    match: [
-      '*://myanime.moe/*'
-    ]
-  },
   MangaPlus: {
     match: [
       '*://mangaplus.shueisha.co.jp/*'
