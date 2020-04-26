@@ -391,6 +391,12 @@ export function timeDiffToText(delta){
 
   delta = delta / 1000;
 
+  var diffYears = Math.floor(delta / 31536000);
+  delta -= diffYears * 31536000;
+  if(diffYears){
+    text += diffYears+'y ';
+  }
+
   var diffDays = Math.floor(delta / 86400);
   delta -= diffDays * 86400;
   if(diffDays){
