@@ -1346,33 +1346,6 @@ var testsArray = [
     ]
   },
   {
-    title: 'AnimeFever',
-    url: 'https://www.animefever.tv/',
-    testCases: [
-      /*{
-        url: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
-        expected: {
-          sync: true,
-          title: 'A Certain Magical Index',
-          identifier: '10344-a-certain-magical-index',
-          overviewUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index',
-          nextEpUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37352-episode-14-weakest-vs-strongest-strongest-vs-weakest',
-          episode: 13,
-          uiSelector: false,
-        }
-      },*/
-      {
-        url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
-        expected: {
-          sync: false,
-          title: 'A Certain Magical Index',
-          identifier: '10344-a-certain-magical-index',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
     title: 'serimanga',
     url: 'https://serimanga.com/',
     testCases: [
