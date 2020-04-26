@@ -44,6 +44,12 @@ export const DreamSub: pageInterface = {
     uiSelector: function(selector){
       selector.insertAfter(j.$('div.detail-content').first());
     },
+    getMalUrl: function(provider) {
+      if(jsonData.mal_id) {
+        return "https://myanimelist.net/anime/" + jsonData.mal_id;
+      }
+      return false;
+    },
     list:{
       offsetHandler: false,
       elementsSelector: function(){
