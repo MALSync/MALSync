@@ -22,10 +22,15 @@
             <span style="color: red; padding-right: 5px;">Incomplete</span>
           </template>
 
-
           <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
-            {{utils.episode(type)}} {{item.item.top.lastEp.total}}
-            <template v-if="totalEps">/ {{totalEps}}</template>
+            <template v-if="item.item.top.state && item.item.top.state !== 'ongoing' && item.item.top.stateInfo">
+              {{item.item.top.stateInfo}}
+            </template>
+            <template v-else>
+              {{utils.episode(type)}} {{item.item.top.lastEp.total}}
+              <template v-if="totalEps">/ {{totalEps}}</template>
+            </template>
+
             <template v-if="item.item.top.lastEp.timestamp">
               ({{releaseTime(item.item.top.lastEp.timestamp)}} ago)
             </template>
