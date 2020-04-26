@@ -152,6 +152,7 @@
           case "zh":
           case 'zh-hans':
           case 'zh-hant':
+          case 'zh-x-yue':
               return "cn";
           case "hr":
               return "hr";
@@ -318,6 +319,7 @@
           case "st":
               return "ls";
           case "es":
+          case "es-la":
               return "es";
           case "ss":
               return "sz";
