@@ -51,7 +51,7 @@
         </clazy-load>
       </div>
     </td>
-    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal;">
+    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal; position: relative; padding-left: 10px;">
       {{item.title}}
       <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
         <img :src="favicon(streamUrl.split('/')[2])">
@@ -62,6 +62,14 @@
       <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="resumeUrl">
         <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
       </a>
+
+      <div id="p1" class="mdl-progress" style="position: absolute; bottom: 0px; left: 0px; right: 0px; width: auto; opacity: 0.5;">
+        <div class="progressbar bar bar1" :style="progress"></div>
+        <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
+        <div v-if="prediction && prediction.tagEpisode" class="predictionbar bar kal-ep-pre" :style="predictionBar"></div>
+        <div class="auxbar bar bar3" style="width: 0%;"></div>
+      </div>
+
     </td>
     <td style="width: 70px;">{{item.watchedEp}}/<template v-if="item.totalEp">{{item.totalEp}}</template>
       <template v-else>?</template></td>
