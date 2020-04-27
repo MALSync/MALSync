@@ -322,7 +322,8 @@ module.exports = {
   //moeclip
   moeclip: {
     match: [
-      '*://*.moeclip.com/v/*'
+      '*://*.moeclip.com/v/*',
+      '*://*.moeclip.com/embed/*'
     ]
   },
   //gogoanime
