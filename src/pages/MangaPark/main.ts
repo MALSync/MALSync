@@ -5,7 +5,7 @@ export const MangaPark: pageInterface = {
   domain: "https://mangapark.net",
   type: "manga",
   isSyncPage: function(url) {
-    if (url.split("/")[6] !== undefined && url.split("/")[6].length > 0) {
+    if (url.split("/")[5] !== undefined && url.split("/")[5].length > 0) {
       return true;
     } else {
       return false;
