@@ -1,5 +1,5 @@
 <template>
-  <div :title="prediction && prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
+  <div v-if="!listView" :title="prediction && prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
     <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
         <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
@@ -43,6 +43,29 @@
       </span>
     </div>
   </div>
+  <tr v-else>
+    <td>
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
+        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
+          <img :src="imageHi" width="100%">
+        </clazy-load>
+      </div>
+    </td>
+    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal;">
+      {{item.title}}
+      <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
+        <img :src="favicon(streamUrl.split('/')[2])">
+      </a>
+      <a v-if="continueUrl" class="nextStream" :title="lang('overview_Continue_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="continueUrl">
+        <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16">
+      </a>
+      <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="resumeUrl">
+        <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
+      </a>
+    </td>
+    <td>{{item.watchedEp}}/{{item.totalEp}}</td>
+    <td>{{item.score}}</td>
+  </tr>
 </template>
 
 <script type="text/javascript">
@@ -59,6 +82,10 @@
       item: {
         type: Object,
       },
+      listView: {
+        type: Boolean,
+        default: false
+      }
     },
     mounted: async function(){
       if(typeof this.item.resume === 'undefined'){
