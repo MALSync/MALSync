@@ -28,10 +28,10 @@ export const TsukiMangas: pageInterface = {
       }
     },
     getMalUrl: function(provider) {
-      if(jsonData.myanimelistID) {
+      if(jsonData.myanimelistID && jsonData.myanimelistID !== "0") {
         return "https://myanimelist.net/manga/" + jsonData.myanimelistID;
       }
-      if(provider === 'ANILIST' && jsonData.anilistID){
+      if(provider === 'ANILIST' && jsonData.anilistID && jsonData.anilistID !== "0"){
         return "https://anilist.co/manga/" + jsonData.anilistID;
       }
       return false;
@@ -48,13 +48,7 @@ export const TsukiMangas: pageInterface = {
       selector.insertAfter(j.$('div.nowaythisexists'));
     },
     getMalUrl: function(provider) {
-      if(jsonData.myanimelistID) {
-        return "https://myanimelist.net/manga/" + jsonData.myanimelistID;
-      }
-      if(provider === 'ANILIST' && jsonData.anilistID){
-        return "https://anilist.co/manga/" + jsonData.anilistID;
-      }
-      return false;
+      return TsukiMangas.sync.getMalUrl!(provider);
     },
   },
   init(page){
