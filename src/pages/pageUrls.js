@@ -473,4 +473,9 @@ module.exports = {
      '*://samehadaku.vip/*',
     ]
   },
+  TsukiMangas: {
+    match: [
+     '*://*.tsukimangas.com/*',
+    ]
+  },
 };

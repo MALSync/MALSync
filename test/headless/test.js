@@ -2137,6 +2137,33 @@ var testsArray = [
       },
     ]
   },
+  {
+    title: 'TsukiMangas',
+    url: 'https://www.tsukimangas.com/',
+    testCases: [
+      {
+        url: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/257#1',
+        expected: {
+          sync: true,
+          title: "Boku no Hero Academia",
+          identifier: "boku-no-hero-academia",
+          overviewUrl: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
+          nextEpUrl: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/258',
+          episode: 257,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
+        expected: {
+          sync: false,
+          title: "Boku no Hero Academia",
+          identifier: "boku-no-hero-academia",
+          uiSelector: false,
+        }
+      },
+    ]
+  },
 ];
 
 // Define global variables
