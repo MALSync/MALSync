@@ -104,7 +104,7 @@ export const Branitube: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if(page.url.split("/")[6] !== "filmes" && j.$("div.areaTypesList.no-padding > ul > li > a.active > span.totalEps").text().replace(/\D+/g, "") !== "0") {
+      if(page.url.split("/")[4] !== undefined && page.url.split("/")[4].length > 0 && page.url.split("/")[6] !== "filmes" && j.$("div.areaTypesList.no-padding > ul > li > a.active > span.totalEps").text().replace(/\D+/g, "") !== "0") {
         page.handlePage();
       }
     });
