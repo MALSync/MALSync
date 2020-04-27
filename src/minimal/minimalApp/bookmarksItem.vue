@@ -44,7 +44,7 @@
     </div>
   </div>
   <tr v-else>
-    <td>
+    <td style="width: 64px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
         <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
           <img :src="imageHi" width="100%">
@@ -63,8 +63,12 @@
         <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
       </a>
     </td>
-    <td>{{item.watchedEp}}/{{item.totalEp}}</td>
-    <td>{{item.score}}</td>
+    <td>{{item.watchedEp}}/<template v-if="item.totalEp">{{item.totalEp}}</template>
+      <template v-else>?</template></td>
+    <td>
+      <template v-if="item.score">{{item.score}}</template>
+      <template v-else>-</template>
+    </td>
   </tr>
 </template>
 
