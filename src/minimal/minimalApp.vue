@@ -59,7 +59,7 @@
                   <option :value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
                 </select>
                 <div @click="listView = !listView" style="padding: 0px 5px; background-color: white; margin-left: 10px; display: flex; cursor: pointer;">
-                  <i class="material-icons" style="position: relative; top: 2px;" v-if="!listView">list</i>
+                  <i class="material-icons" style="position: relative; top: 2px;" v-if="!listView">view_list</i>
                   <i class="material-icons" style="position: relative; top: 2px;" v-else>view_module</i>
                 </div>
               </div>

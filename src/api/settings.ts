@@ -62,6 +62,8 @@ export var settingsObj = {
 
     updateCheckNotifications: true,
 
+    bookMarksList: false,
+
     'anilistToken': '',
     'anilistOptions': {
       displayAdultContent: true,
