@@ -15,7 +15,7 @@
       </div>
     </template>
     <div v-else style="padding: 0 20px 20px 20px">
-      <table id="malList" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" v-if="!(cache && errorText)" style="width: 100%;">
+      <table id="malList" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp bg-cell" v-if="!(cache && errorText)" style="width: 100%;">
         <tbody>
           <template v-for="item in items">
           <bookmarksItem :item="item" :ref="item.uid" :key="item.uid" :list-view="listView"/>
