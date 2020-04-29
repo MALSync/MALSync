@@ -51,7 +51,7 @@
         </clazy-load>
       </div>
     </td>
-    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal; position: relative; padding-left: 10px;">
+    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal; position: relative; padding-left: 10px; padding-right: 28px;">
       <div v-if="prediction && prediction.text" style="position: absolute; top: 0; left: 0; padding: 0px 11px; margin: 0px 0; text-align: center;     font-size: 10px;">
         {{preTexter}}
       </div>
@@ -104,23 +104,7 @@
       }
     },
     mounted: async function(){
-      if(typeof this.item.resume === 'undefined'){
-        var resumeUrl = null;
-        var continueUrl = null;
-        var id = this.item.malId;
-        var type = this.item.type;
-        var resumeUrlObj = await utils.getResumeWaching(type, this.item.cacheKey);
-        var continueUrlObj = await utils.getContinueWaching(type, this.item.cacheKey);
-        var curEp = parseInt(this.item.watchedEp.toString());
 
-        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-          continueUrl = continueUrlObj.url;
-        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-          resumeUrl = resumeUrlObj.url;
-        }
-        this.resumeUrl = resumeUrl;
-        this.continueUrl = continueUrl;
-      }
 
       if(typeof this.prediction === 'undefined'){
         this.setPrediction();
@@ -130,8 +114,34 @@
       }
     },
     watch: {
+      curEP: {
+        immediate: true,
+        handler: async function(ep) {
+          if(typeof this.item.resume === 'undefined'){
+            this.resumeUrl = '';
+            this.continueUrl = '';
+            var resumeUrl = null;
+            var continueUrl = null;
+            var id = this.item.malId;
+            var type = this.item.type;
+            var resumeUrlObj = await utils.getResumeWaching(type, this.item.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(type, this.item.cacheKey);
+
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (ep+1)){
+              continueUrl = continueUrlObj.url;
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === ep){
+              resumeUrl = resumeUrlObj.url;
+            }
+            this.resumeUrl = resumeUrl;
+            this.continueUrl = continueUrl;
+          }
+        }
+      }
     },
     computed: {
+      curEP: function(){
+        return parseInt(this.item.watchedEp.toString());
+      },
       imageHi: function(){
         var imageHi = this.item.image;
         var regexDimensions = /\/r\/\d*x\d*/g;
