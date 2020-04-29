@@ -347,5 +347,18 @@ a{
   }
 }
 
+table#malList {
+  tr {
+    &:hover {
+      .imageTd{
+        overflow: visible !important;
+        z-index: 2;
+        left: -8px !important;
+        right: -8px !important;
+      }
+
+    }
+  }
+}
 
 @import "./themes/dark.less";
