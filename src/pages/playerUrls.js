@@ -18,6 +18,7 @@ module.exports = {
   mcloud: {
     match: [
       '*://*.mcloud.to/*',
+      '*://*.mcloud2.to/*',
     ]
   },
   prettyfast: {
