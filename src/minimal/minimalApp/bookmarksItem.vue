@@ -52,7 +52,10 @@
       </div>
     </td>
     <td class="mdl-data-table__cell--non-numeric" style="white-space: normal; position: relative; padding-left: 10px;">
-      {{item.title}}
+      <div v-if="prediction && prediction.text" style="position: absolute; top: 0; left: 0; padding: 0px 11px; margin: 0px 0; text-align: center;     font-size: 10px;">
+        {{preTexter}}
+      </div>
+      <span style="font-weight: bold;">{{item.title}}</span>
       <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
         <img :src="favicon(streamUrl.split('/')[2])">
       </a>
