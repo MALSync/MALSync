@@ -56,13 +56,14 @@
         {{preTexter}}
       </div>
       <span style="font-weight: bold;">{{item.title}}</span>
-      <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px;" :href="streamUrl">
+
+      <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px; position: absolute; right: 0; top: 0;" :href="streamUrl">
         <img :src="favicon(streamUrl.split('/')[2])">
       </a>
-      <a v-if="continueUrl" class="nextStream" :title="lang('overview_Continue_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="continueUrl">
+      <a v-if="continueUrl" class="nextStream" :title="lang('overview_Continue_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;position: absolute; right: 0; top: 20px;" :href="continueUrl">
         <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16">
       </a>
-      <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" :href="resumeUrl">
+      <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA; position: absolute; right: 0; top: 20px;" :href="resumeUrl">
         <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
       </a>
 
