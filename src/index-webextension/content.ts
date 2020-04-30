@@ -25,8 +25,8 @@ function messagePageListener(page){
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action == 'TabMalUrl') {
-      con.log('TabMalUrl Message', page.malObj.url);
-      sendResponse(page.malObj.url);
+      con.log('TabMalUrl Message', page.singleObj.url);
+      sendResponse(page.singleObj.url);
     }
     if(msg.action == 'videoTime'){
       page.setVideoTime(msg.item, function(time){
