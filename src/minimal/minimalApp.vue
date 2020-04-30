@@ -313,6 +313,9 @@
         var tempRenderObj = new getSingle(url);
         tempRenderObj.update().then(() => {
           this.renderObj = tempRenderObj;
+          this.tabs.bookmarks.type = this.renderObj.getType();
+          this.tabs.search.type = this.renderObj.getType();
+
         }).catch(e => {
           this.renderObj = tempRenderObj;
           throw e;
