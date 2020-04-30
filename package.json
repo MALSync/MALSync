@@ -79,6 +79,6 @@
     "@types/chrome": "0.0.72",
     "download-file": "^0.1.5",
     "set-value": ">=2.0.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   }
 }
