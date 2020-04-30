@@ -2159,7 +2159,10 @@ var testsArray = [
           sync: false,
           title: "Boku no Hero Academia",
           identifier: "boku-no-hero-academia",
-          uiSelector: false,
+          uiSelector: true,
+          epList: {
+            269: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/269'
+          }
         }
       },
     ]
