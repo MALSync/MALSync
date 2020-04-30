@@ -92,17 +92,17 @@ var testsArray = [
     url: 'https://9anime.ru/',
     testCases: [
       {
-        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/16om8m',
+        url: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0/6m2170',
         expected: {
           sync: true,
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/6mxqj7',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/5l0130',
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/vkp736'
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/q457ww'
           }
         }
       },
@@ -281,13 +281,13 @@ var testsArray = [
         }
       },
       {
-        url: 'https://mangadex.org/chapter/57332',
+        url: 'https://mangadex.org/chapter/808444',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: '8173',
           overviewUrl: 'https://www.mangadex.org/title/8173/no-game-no-life',
-          nextEpUrl: 'https://www.mangadex.org/chapter/57339',
+          nextEpUrl: 'https://www.mangadex.org/chapter/808449',
           episode: 4,
           uiSelector: false,
         }
@@ -796,54 +796,12 @@ var testsArray = [
         }
       },*/
       {
-        url: 'https://www.kickassanime.rs/anime/overlord-iii-117790',
+        url: 'https://www.kickassanime.rs/anime/overlord-iii-591772',
         expected: {
           sync: false,
           title: 'Overlord III',
-          identifier: 'overlord-iii-117790',
+          identifier: 'overlord-iii-591772',
           uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
-    title: 'RiiE',
-    url: 'https://www.riie.net/',
-    testCases: [
-      {
-        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-1-subtitle-indonesia/',
-        expected: {
-          sync: true,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tate-no-yuusha-no-nariagari',
-          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
-          episode: 1,
-          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-2-subtitle-indonesia/',
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-23-subtitle-indonesia/',
-        expected: {
-          sync: true,
-          title: 'Tate no Yuusha no Nariagari',
-          identifier: 'tate-no-yuusha-no-nariagari',
-          overviewUrl: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
-          episode: 23,
-          nextEpUrl: 'https://riie.net/tate-no-yuusha-no-nariagari-episode-24-subtitle-indonesia/',
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://www.riie.net/anime/tate-no-yuusha-no-nariagari/',
-        expected: {
-          sync: false,
-          title: 'tate no yuusha no nariagari',
-          identifier: 'tate-no-yuusha-no-nariagari',
-          uiSelector: true,
-          epList: {
-            5: 'https://www.riie.net/tate-no-yuusha-no-nariagari-episode-5-subtitle-indonesia/'
-          }
         }
       },
     ]
@@ -1388,33 +1346,6 @@ var testsArray = [
     ]
   },
   {
-    title: 'AnimeFever',
-    url: 'https://www.animefever.tv/',
-    testCases: [
-      /*{
-        url: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37351-episode-13-accelerator-one-way',
-        expected: {
-          sync: true,
-          title: 'A Certain Magical Index',
-          identifier: '10344-a-certain-magical-index',
-          overviewUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index',
-          nextEpUrl: 'https://www.animefever.tv/series/10344-a-certain-magical-index/episode/37352-episode-14-weakest-vs-strongest-strongest-vs-weakest',
-          episode: 13,
-          uiSelector: false,
-        }
-      },*/
-      {
-        url: 'https://www.animefever.tv/shows/10344-a-certain-magical-index',
-        expected: {
-          sync: false,
-          title: 'A Certain Magical Index',
-          identifier: '10344-a-certain-magical-index',
-          uiSelector: true,
-        }
-      },
-    ]
-  },
-  {
     title: 'serimanga',
     url: 'https://serimanga.com/',
     testCases: [
@@ -1479,7 +1410,7 @@ var testsArray = [
         url: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/',
         expected: {
           sync: true,
-          title: 'High School DxD Hero',
+          title: 'High School DxD S4',
           identifier: 'high-school-dxd-hero',
           overviewUrl: 'https://moeclip.com/anime/high-school-dxd-hero',
           nextEpUrl: 'https://moeclip.com/high-school-dxd-hero-06-sub-indo/',
@@ -1491,7 +1422,7 @@ var testsArray = [
         url: 'https://moeclip.com/anime/high-school-dxd-hero-sub-indo/',
         expected: {
           sync: false,
-          title: 'High School DxD Hero',
+          title: 'High School DxD S4',
           identifier: 'high-school-dxd-hero',
           uiSelector: true,
           epList: {
@@ -1778,37 +1709,6 @@ var testsArray = [
           epList: {
             53: 'https://manga.fascans.com/manga/plunderer/53',
             18: 'https://manga.fascans.com/manga/plunderer/18'
-          }
-        }
-      },
-    ]
-  },
-  {
-    title: 'myanime',
-    url: 'https://myanime.moe/',
-    testCases: [
-      {
-        url: 'https://myanime.moe/anime/great-teacher-onizuka/42',
-        expected: {
-          sync: true,
-          title: 'Great Teacher Onizuka',
-          identifier: 'great-teacher-onizuka',
-          overviewUrl: 'https://myanime.moe/anime/great-teacher-onizuka',
-          nextEpUrl: 'https://myanime.moe/anime/great-teacher-onizuka/43',
-          episode: 42,
-          uiSelector: false,
-        }
-      },
-      {
-        url: 'https://myanime.moe/anime/great-teacher-onizuka',
-        expected: {
-          sync: false,
-          title: 'Great Teacher Onizuka',
-          identifier: 'great-teacher-onizuka',
-          uiSelector: true,
-          epList: {
-            5: 'https://myanime.moe/anime/great-teacher-onizuka/5',
-            42: 'https://myanime.moe/anime/great-teacher-onizuka/42'
           }
         }
       },
@@ -2203,6 +2103,63 @@ var testsArray = [
           title: 'Ahiru no Sora',
           identifier: 'Ahiru-no-Sora-Vostfr',
           uiSelector: true,
+        }
+      },
+    ]
+  },
+  {
+    title: 'Samehadaku',
+    url: 'https://samehadaku.vip/',
+    testCases: [
+      {
+        url: 'https://samehadaku.vip/tower-of-god-episode-3/',
+        expected: {
+          sync: true,
+          title: "Tower of God",
+          identifier: "tower-of-god",
+          overviewUrl: 'https://samehadaku.vip/anime/tower-of-god/',
+          nextEpUrl: 'https://samehadaku.vip/tower-of-god-episode-4/',
+          episode: 3,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://samehadaku.vip/anime/tower-of-god/',
+        expected: {
+          sync: false,
+          title: "Tower of God",
+          identifier: "tower-of-god",
+          uiSelector: true,
+          epList: {
+            3: 'https://samehadaku.vip/tower-of-god-episode-3/',
+          }
+        }
+      },
+    ]
+  },
+  {
+    title: 'TsukiMangas',
+    url: 'https://www.tsukimangas.com/',
+    testCases: [
+      {
+        url: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/257#1',
+        expected: {
+          sync: true,
+          title: "Boku no Hero Academia",
+          identifier: "boku-no-hero-academia",
+          overviewUrl: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
+          nextEpUrl: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/258',
+          episode: 257,
+          uiSelector: false,
+        }
+      },
+      {
+        url: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
+        expected: {
+          sync: false,
+          title: "Boku no Hero Academia",
+          identifier: "boku-no-hero-academia",
+          uiSelector: false,
         }
       },
     ]

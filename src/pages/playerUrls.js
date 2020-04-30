@@ -323,7 +323,8 @@ module.exports = {
   //moeclip
   moeclip: {
     match: [
-      '*://*.moeclip.com/v/*'
+      '*://*.moeclip.com/v/*',
+      '*://*.moeclip.com/embed/*'
     ]
   },
   //gogoanime
@@ -367,6 +368,12 @@ module.exports = {
   letsupload: {
     match: [
       '*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'
+    ]
+  },
+  //Samehadaku
+  mangakyo: {
+    match: [
+      '*://player.mangakyo.me/stream/embed.php*'
     ]
   },
 };

@@ -249,11 +249,6 @@ module.exports = {
       '*://*.kickassanime.rs/anime/*'
     ],
   },
-  RiiE: {
-    match: [
-      '*://www.riie.net/*'
-    ],
-  },
   AnimeKisa: {
     match: [
       '*://animekisa.tv/*'
@@ -327,11 +322,6 @@ module.exports = {
       '*://animeflix.io/*'
     ]
   },
-  AnimeFever: {
-    match: [
-      '*://*.animefever.tv/*'
-    ]
-  },
   serimanga: {
     match: [
       '*://serimanga.com/*'
@@ -362,11 +352,6 @@ module.exports = {
     match: [
       '*://unionleitor.top/*',
       '*://unionmangas.top/*'
-    ]
-  },
-  myAnime: {
-    match: [
-      '*://myanime.moe/*'
     ]
   },
   MangaPlus: {
@@ -481,6 +466,16 @@ module.exports = {
   OtakuFR: {
     match: [
      '*://*.otakufr.com/*',
+    ]
+  },
+  Samehadaku: {
+    match: [
+     '*://samehadaku.vip/*',
+    ]
+  },
+  TsukiMangas: {
+    match: [
+     '*://*.tsukimangas.com/*',
     ]
   },
 };

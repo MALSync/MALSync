@@ -103,6 +103,16 @@ export function urlChangeDetect(callback){
   }, 100);
 }
 
+export function fullUrlChangeDetect(callback){
+  var currentPage = "";
+  return setInterval(function(){
+      if (currentPage != window.location.href){
+          currentPage = window.location.href;
+          callback();
+      }
+  }, 100);
+}
+
 export function changeDetect(callback, func){
   var currentPage = func();
   return setInterval(function(){

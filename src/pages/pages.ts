@@ -25,7 +25,6 @@ import {AnimeDaisuki} from "./AnimeDaisuki/main";
 import {Animefreak} from "./Animefreak/main";
 import {AnimePlanet} from "./AnimePlanet/main";
 import {KickAssAnime} from "./KickAssAnime/main";
-import {RiiE} from "./RiiE/main";
 import {AnimeKisa} from "./AnimeKisa/main";
 import {Wakanim} from "./Wakanim/main";
 import {AnimeIndo} from "./AnimeIndo/main";
@@ -40,14 +39,12 @@ import {NekoSama} from "./NekoSama/main";
 import {AnimeZone} from "./AnimeZone/main";
 import {AnimeOdcinki} from "./AnimeOdcinki/main";
 import {Animeflix} from "./Animeflix/main";
-import {AnimeFever} from "./AnimeFever/main";
 import {serimanga} from "./serimanga/main";
 import {mangadenizi} from "./mangadenizi/main";
 import {moeclip} from "./moeclip/main";
 import {mangalivre} from "./mangalivre/main";
 import {tmofans} from "./tmofans/main";
 import {unionmangas} from "./unionmangas/main";
-import {myAnime} from "./myAnime/main";
 import {MangaPlus} from "./MangaPlus/main";
 import {JapScan} from "./JapScan/main";
 import {MangaKisa} from "./MangaKisa/main";
@@ -70,6 +67,8 @@ import {AnimeXin} from "./AnimeXin/main";
 import {MonosChinos} from "./MonosChinos/main";
 import {AnimeFire} from "./AnimeFire/main";
 import {OtakuFR} from "./OtakuFR/main";
+import {Samehadaku} from "./Samehadaku/main";
+import {TsukiMangas} from "./TsukiMangas/main";
 
 export const pages = {
     Kissanime,
@@ -100,7 +99,6 @@ export const pages = {
     AnimeDaisuki,
     AnimePlanet,
     KickAssAnime,
-    RiiE,
     AnimeKisa,
     AnimeIndo,
     Shinden,
@@ -114,14 +112,12 @@ export const pages = {
     AnimeOdcinki,
     AnimeZone,
     Animeflix,
-    AnimeFever,
     serimanga,
     mangadenizi,
     moeclip,
     mangalivre,
     tmofans,
     unionmangas,
-    myAnime,
     MangaPlus,
     JapScan,
     MangaKisa,
@@ -144,4 +140,6 @@ export const pages = {
     MonosChinos,
     AnimeFire,
     OtakuFR,
+    Samehadaku,
+    TsukiMangas
 };

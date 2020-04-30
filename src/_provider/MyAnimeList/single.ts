@@ -141,6 +141,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
+    if(this.additionalInfo.name === 'manga database') return 'Pending Title';
     return this.additionalInfo.name;
   }
 
