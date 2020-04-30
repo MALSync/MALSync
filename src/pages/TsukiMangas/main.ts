@@ -45,7 +45,7 @@ export const TsukiMangas: pageInterface = {
       return TsukiMangas.sync.getIdentifier(url);
     },
     uiSelector: function(selector){
-      selector.insertAfter(j.$('div.nowaythisexists'));
+      selector.insertAfter(j.$('h2'));
     },
     getMalUrl: function(provider) {
       return TsukiMangas.sync.getMalUrl!(provider);
@@ -65,7 +65,7 @@ export const TsukiMangas: pageInterface = {
     utils.fullUrlChangeDetect(function() {
       page.url = window.location.href;
       page.UILoaded = false;
-      $("#flashinfo-div, #flash-div-bottom, #flash-div-top").remove();
+      $("#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp").remove();
       check();
     });
 
