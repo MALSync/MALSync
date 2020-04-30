@@ -722,7 +722,7 @@
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
-    "message": "Diese Option aktiviert die Firefox Multi-Account Containers Unterstützung. Starte dem Browser nach dem aktivieren.",
+    "message": "Diese Option aktiviert die Firefox Multi-Account Containers Unterstützung. Starte den Browser nach dem aktivieren bitte neu.",
     "description": "Strict Cookies - Text"
   },
   "settings_highlightAllEp": {

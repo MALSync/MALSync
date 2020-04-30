@@ -49,14 +49,21 @@
                 <option value="anime">Anime</option>
                 <option value="manga">Manga</option>
               </select>
-              <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
-                <option :value="7">{{lang("All")}}</option>
-                <option :value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
-                <option :value="2">{{lang("UI_Status_Completed")}}</option>
-                <option :value="3">{{lang("UI_Status_OnHold")}}</option>
-                <option :value="4">{{lang("UI_Status_Dropped")}}</option>
-                <option :value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
-              </select>
+              <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+                <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none; background-color: white; border: none; flex: 1; width: auto;">
+                  <option :value="7">{{lang("All")}}</option>
+                  <option :value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
+                  <option :value="2">{{lang("UI_Status_Completed")}}</option>
+                  <option :value="3">{{lang("UI_Status_OnHold")}}</option>
+                  <option :value="4">{{lang("UI_Status_Dropped")}}</option>
+                  <option :value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
+                </select>
+                <div @click="listView = !listView" style="padding: 0px 5px; margin-left: 10px; display: flex; cursor: pointer;" class="bg-cell">
+                  <i class="material-icons" style="position: relative; top: 2px;" v-if="!listView">view_list</i>
+                  <i class="material-icons" style="position: relative; top: 2px;" v-else>view_module</i>
+                </div>
+              </div>
+
             </div>
           </bookmarksVue>
           <searchVue v-if="currentTab == tabs.search.title" :keyword="tabs.search.keyword" :type="tabs.search.type" @clicked="searchClick">
@@ -254,6 +261,14 @@
           return false;
         }
         return true;
+      },
+      listView: {
+        get: function () {
+          return api.settings.get('bookMarksList');
+        },
+        set: function (value) {
+          api.settings.set('bookMarksList', value);
+        }
       },
       bookIcon: function(){
         var minimal = j.$(this.$el);

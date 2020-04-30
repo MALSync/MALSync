@@ -1,5 +1,5 @@
 <template>
-  <div :title="prediction && prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
+  <div v-if="!listView" :title="prediction && prediction.text" class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry" style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;">
     <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
         <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
@@ -43,6 +43,45 @@
       </span>
     </div>
   </div>
+  <tr v-else @click="openLink(item.url)" style="cursor: pointer;">
+    <td style="width: 64px;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden;" class="imageTd">
+        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" >
+          <img :src="imageHi" width="100%">
+        </clazy-load>
+      </div>
+    </td>
+    <td class="mdl-data-table__cell--non-numeric" style="white-space: normal; position: relative; padding-left: 10px; padding-right: 28px;">
+      <div v-if="prediction && prediction.text" style="position: absolute; top: 0; left: 0; padding: 0px 11px; margin: 0px 0; text-align: center;     font-size: 10px;">
+        {{preTexter}}
+      </div>
+      <span style="font-weight: bold;">{{item.title}}</span>
+
+      <a class="mal-sync-stream" v-if="streamUrl" :title="streamUrl.split('/')[2]" target="_blank" style="margin: 0 5px; position: absolute; right: 0; top: 0;" :href="streamUrl">
+        <img :src="favicon(streamUrl.split('/')[2])">
+      </a>
+      <a v-if="continueUrl" class="nextStream" :title="lang('overview_Continue_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;position: absolute; right: 0; top: 20px;" :href="continueUrl">
+        <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16">
+      </a>
+      <a v-if="resumeUrl" class="resumeStream" :title="lang('overview_Resume_Episode_'+item.type)" target="_blank" style="margin: 0 5px 0 0; color: #BABABA; position: absolute; right: 0; top: 20px;" :href="resumeUrl">
+        <img :src="assetUrl('arrow-16px.png')" width="16" height="16">
+      </a>
+
+      <div id="p1" class="mdl-progress" style="position: absolute; bottom: 0px; left: 0px; right: 0px; width: auto; opacity: 0.5;">
+        <div class="progressbar bar bar1" :style="progress"></div>
+        <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
+        <div v-if="prediction && prediction.tagEpisode" class="predictionbar bar kal-ep-pre" :style="predictionBar"></div>
+        <div class="auxbar bar bar3" style="width: 0%;"></div>
+      </div>
+
+    </td>
+    <td style="width: 70px;">{{item.watchedEp}}/<template v-if="item.totalEp">{{item.totalEp}}</template>
+      <template v-else>?</template></td>
+    <td style="width: 57px;">
+      <template v-if="item.score">{{item.score}}</template>
+      <template v-else>-</template>
+    </td>
+  </tr>
 </template>
 
 <script type="text/javascript">
@@ -59,25 +98,13 @@
       item: {
         type: Object,
       },
+      listView: {
+        type: Boolean,
+        default: false
+      }
     },
     mounted: async function(){
-      if(typeof this.item.resume === 'undefined'){
-        var resumeUrl = null;
-        var continueUrl = null;
-        var id = this.item.malId;
-        var type = this.item.type;
-        var resumeUrlObj = await utils.getResumeWaching(type, this.item.cacheKey);
-        var continueUrlObj = await utils.getContinueWaching(type, this.item.cacheKey);
-        var curEp = parseInt(this.item.watchedEp.toString());
 
-        if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (curEp+1)){
-          continueUrl = continueUrlObj.url;
-        }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === curEp){
-          resumeUrl = resumeUrlObj.url;
-        }
-        this.resumeUrl = resumeUrl;
-        this.continueUrl = continueUrl;
-      }
 
       if(typeof this.prediction === 'undefined'){
         this.setPrediction();
@@ -87,8 +114,34 @@
       }
     },
     watch: {
+      curEP: {
+        immediate: true,
+        handler: async function(ep) {
+          if(typeof this.item.resume === 'undefined'){
+            this.resumeUrl = '';
+            this.continueUrl = '';
+            var resumeUrl = null;
+            var continueUrl = null;
+            var id = this.item.malId;
+            var type = this.item.type;
+            var resumeUrlObj = await utils.getResumeWaching(type, this.item.cacheKey);
+            var continueUrlObj = await utils.getContinueWaching(type, this.item.cacheKey);
+
+            if(typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === (ep+1)){
+              continueUrl = continueUrlObj.url;
+            }else if(typeof resumeUrlObj !== 'undefined' && resumeUrlObj.ep === ep){
+              resumeUrl = resumeUrlObj.url;
+            }
+            this.resumeUrl = resumeUrl;
+            this.continueUrl = continueUrl;
+          }
+        }
+      }
     },
     computed: {
+      curEP: function(){
+        return parseInt(this.item.watchedEp.toString());
+      },
       imageHi: function(){
         var imageHi = this.item.image;
         var regexDimensions = /\/r\/\d*x\d*/g;
@@ -167,6 +220,12 @@
         utils.epPredictionUI(this.item.malId, this.item.cacheKey, this.item.type, (prediction) => {
           this.prediction = prediction;
         });
+      },
+      openLink: function(url){
+        var link = document.createElement('a');
+        link.href = url;
+        document.getElementById("malList").appendChild(link);
+        link.click();
       }
     }
   }

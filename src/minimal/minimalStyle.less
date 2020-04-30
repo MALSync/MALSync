@@ -347,5 +347,33 @@ a{
   }
 }
 
+table#malList {
+  tr {
+    .imageTd .loaded::after {
+      content: '';
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.67) 100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    &:hover {
+      .imageTd{
+        overflow: visible !important;
+        z-index: 2;
+        left: -8px !important;
+        right: -8px !important;
+        .loaded::after {
+          display: none;
+        }
+      }
+
+    }
+
+
+  }
+  margin-bottom: 50px;
+}
 
 @import "./themes/dark.less";
