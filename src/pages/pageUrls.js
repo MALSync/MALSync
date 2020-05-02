@@ -121,11 +121,13 @@ module.exports = {
       '*gogoanime*.*/anime-List*',
       '*gogoanime*.*/user*',
       '*gogoanime*.*/genre/*',
+      '*gogoanime*.*/sub-category/*',
       '*animego*.*/',
       '*animego*.*/*.html',
       '*animego*.*/anime-List*',
       '*animego*.*/user*',
       '*animego*.*/genre/*',
+      '*animego*.*/sub-category/*',
     ]
   },
   Anime4you: {
