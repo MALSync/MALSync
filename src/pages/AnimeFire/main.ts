@@ -24,7 +24,7 @@ export const AnimeFire: pageInterface = {
         return oUrl;
       } else {
         return j.$("li.page-item:nth-child(4) > a.page-link").attr("href");
-      } 
+      }
     },
     getEpisode: function(url){
       return utils.urlPart(url,5);
