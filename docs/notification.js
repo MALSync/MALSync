@@ -102,6 +102,7 @@ window.addEventListener('popstate', function(event) {
   console.log('popstate fired!', event.state);
   scrollPos = event.state.scroll;
   redirect();
+  window.dispatchEvent(new Event('urlChange'));
 });
 
 //Helper
@@ -123,6 +124,7 @@ function pushHistory(path, title){
   //push
   try{
     history.pushState(data, title, path);
+    window.dispatchEvent(new Event('urlChange'));
   }catch(e){
     console.error(e);
   }
