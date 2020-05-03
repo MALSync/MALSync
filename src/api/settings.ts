@@ -59,6 +59,7 @@ export var settingsObj = {
     introSkipBwd: [17,37],
     nextEpShort: [],
     correctionShort: [67],
+    syncShort: [],
 
     updateCheckNotifications: true,
 

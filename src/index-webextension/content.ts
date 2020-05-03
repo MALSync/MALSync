@@ -64,6 +64,10 @@ function messagePageListener(page){
         case 'correctionShort':
           page.openCorrectionUi();
           break;
+        case 'syncShort':
+          j.$('#malSyncProgress').addClass('ms-done');
+          j.$('.flash.type-update .sync').click();
+          break;
       }
     }
 
@@ -83,6 +87,10 @@ function messagePageListener(page){
         break;
       case 'correctionShort':
         page.openCorrectionUi();
+        break;
+      case 'syncShort':
+        j.$('#malSyncProgress').addClass('ms-done');
+        j.$('.flash.type-update .sync').click();
         break;
     }
 

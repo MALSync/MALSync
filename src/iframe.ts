@@ -46,6 +46,9 @@ api.settings.init()
         case 'correctionShort':
           chrome.runtime.sendMessage({name: "content", item: {action: 'correctionShort'}});
           break;
+        case 'syncShort':
+          chrome.runtime.sendMessage({name: "content", item: {action: 'syncShort'}});
+          break;
 
       }
 

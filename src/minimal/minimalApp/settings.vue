@@ -67,6 +67,8 @@
 
         <shortcut option="correctionShort">{{lang("settings_Shortcuts_Correction")}}</shortcut>
 
+        <shortcut option="syncShort">{{lang("settings_Shortcuts_Sync")}}</shortcut>
+
         <checkbox option="localSync">{{lang("settings_LocalSync")}}
           <a href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync" target="_blank" style="margin-left: auto; margin-right: 10px;">[INFO]</a>
         </checkbox>

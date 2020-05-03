@@ -133,6 +133,7 @@ const shortcutOptions = [
   'introSkipBwd',
   'nextEpShort',
   'correctionShort',
+  'syncShort',
 ];
 
 export function shortcutListener(callback) {

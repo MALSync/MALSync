@@ -664,6 +664,10 @@
       "message": "Open anime relation correction popup",
       "description": "Text for the correction ui shortcut"
     },
+    "settings_Shortcuts_Sync": {
+      "message": "Set episode/chapter as read",
+      "description": "Text for the sync ui shortcut"
+    },
     "settings_Shortcuts_Next_Episode": {
       "message": "Open next episode shortcut",
       "description": "Description for the next episode shortcut option"
