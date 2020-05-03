@@ -50,6 +50,18 @@ export const TsukiMangas: pageInterface = {
     getMalUrl: function(provider) {
       return TsukiMangas.sync.getMalUrl!(provider);
     },
+    list:{
+      offsetHandler: false,
+      elementsSelector: function(){
+        return j.$("div.over23 > div.allbox > div.allcap");
+      },
+      elementUrl: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),TsukiMangas.domain);
+      },
+      elementEp: function(selector){
+        return utils.absoluteLink(selector.find('a').first().attr('href'),TsukiMangas.domain).split("/")[5];
+      }
+    }
   },
   init(page){
     if(document.title == "Just a moment..."){

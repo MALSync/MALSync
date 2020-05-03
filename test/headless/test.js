@@ -98,7 +98,7 @@ var testsArray = [
           title: 'No Game, No Life (Dub)',
           identifier: 'y2p0',
           overviewUrl: 'https://9anime.ru/watch/no-game-no-life-dub.y2p0',
-          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/5l0130',
+          nextEpUrl: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/q457ww',
           episode: 4,
           uiSelector: true,
           epList: {
@@ -2159,7 +2159,10 @@ var testsArray = [
           sync: false,
           title: "Boku no Hero Academia",
           identifier: "boku-no-hero-academia",
-          uiSelector: false,
+          uiSelector: true,
+          epList: {
+            269: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/269'
+          }
         }
       },
     ]

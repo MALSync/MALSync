@@ -13,20 +13,27 @@ export const AnimeFire: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      return AnimeFire.sync.getIdentifier(url).replace(/-/g, " ")
+      return AnimeFire.sync.getIdentifier(url).replace(/-/g, " ");
     },
     getIdentifier: function(url) {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("li.page-item:nth-child(4) > a.page-link").attr("href");
+      let oUrl = j.$("li.page-item:nth-child(3) > a.page-link").attr("href");
+      if(oUrl.indexOf("animes") !== -1) {
+        return oUrl;
+      } else {
+        return j.$("li.page-item:nth-child(4) > a.page-link").attr("href");
+      }
     },
     getEpisode: function(url){
       return utils.urlPart(url,5);
     },
     nextEpUrl: function(url){
       if(j.$('li.page-item:nth-child(5) > a.page-link > span.prox').length){
-        return AnimeFire.domain + "/animes/"+ url.split("/")[4] + "/" + j.$('li.page-item:nth-child(5) > a.page-link').attr("href");
+        return buildNext(url,j.$('li.page-item:nth-child(5) > a.page-link').attr("href"));
+      } else if(j.$('li.page-item:nth-child(4) > a.page-link > span.prox').length) {
+        return buildNext(url,j.$('li.page-item:nth-child(4) > a.page-link').attr("href"));
       }
     },
   },
@@ -44,3 +51,7 @@ export const AnimeFire: pageInterface = {
     });
   }
 };
+
+function buildNext(url,episode) {
+  return AnimeFire.domain + "/animes/" + url.split("/")[4] + "/" + episode;
+}

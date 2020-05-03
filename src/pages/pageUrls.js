@@ -121,11 +121,13 @@ module.exports = {
       '*gogoanime*.*/anime-List*',
       '*gogoanime*.*/user*',
       '*gogoanime*.*/genre/*',
+      '*gogoanime*.*/sub-category/*',
       '*animego*.*/',
       '*animego*.*/*.html',
       '*animego*.*/anime-List*',
       '*animego*.*/user*',
       '*animego*.*/genre/*',
+      '*animego*.*/sub-category/*',
     ]
   },
   Anime4you: {
@@ -137,6 +139,10 @@ module.exports = {
     match: [
       '*://*.branitube.net/watch/*',
       '*://*.branitube.net/animes/*'
+    ],
+    exclude: [
+      '*://*.branitube.net/animes/filter/*',
+      '*://*.branitube.net/animes/pagina/*'
     ]
   },
   Turkanime: {
