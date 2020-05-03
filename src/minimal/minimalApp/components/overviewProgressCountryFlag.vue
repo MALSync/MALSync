@@ -50,38 +50,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .flagIcon {
-    height: 30px;
-    width: 40px;
-    margin: 5px;
-    background-color: #cdcdcd;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    .flagCountry {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-    }
-    .flagText {
-      position: absolute;
-      top: auto;
-      left: 0;
-      padding: 3px;
-      background-color: #3f51b5;
-      font-size: 10px;
-      bottom: 0;
-      line-height: 1;
-      color: white;
-    }
-    .flagflag {
-      position: absolute;
-      top: 0;
-      right: 0;
-      left: 0;
-      right: 0;
-    }
-  }
+
 </style>
