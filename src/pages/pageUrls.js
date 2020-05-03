@@ -484,4 +484,9 @@ module.exports = {
      '*://*.tsukimangas.com/*',
     ]
   },
+  mangatx: {
+    match: [
+     '*://mangatx.com/*',
+    ]
+  },
 };
