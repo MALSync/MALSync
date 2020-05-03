@@ -17,7 +17,7 @@ export const Wakanim: pageInterface = {
 
     getIdentifier: function(url) {
         var ses = seasonHelper(j.$('span.episode_subtitle > span:nth-child(2)').text());
-        return j.$('.episode_title').text() + ' ' + ses;
+        return j.$('[itemprop="partOfSeries"] meta[itemprop="name"]').attr('content') + ' ' + ses;
     },
 
     getOverviewUrl: function(url){return Wakanim.domain+j.$("body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)").attr('href')},
@@ -27,12 +27,12 @@ export const Wakanim: pageInterface = {
 
     nextEpUrl: function(url){return j.$("body > section.episode > div > div > div.episode_main > div.episode_video > div > div.episode-bottom > div.episodeNPEp-wrapperBlock > a.episodeNPEp.episodeNextEp.active").attr('href')},
   },
-  
+
   overview:{
     getTitle: function(url){return Wakanim.overview!.getIdentifier(url)},
     getIdentifier: function(url){
         var secondPart = seasonHelper(j.$('#list-season-container > div > select > option:selected').text());
-        return j.$('.SerieV2-body .SerieHeader-thumb').attr('alt')  + ' ' + secondPart;
+        return j.$('[itemtype="http://schema.org/TVSeries"] > meta[itemprop="name"]').attr('content')  + ' ' + secondPart;
 
     },
 
@@ -136,7 +136,7 @@ function episodeHelper(url, episodeText){
   }else{
     episodePart = '';
   }
- 
+
   temp = episodePart.match(/\d+/);
 
   if(temp === null){
