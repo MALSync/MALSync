@@ -46,6 +46,10 @@ function main() {
       case 'correctionShort':
         page.openCorrectionUi();
         break;
+      case 'syncShort':
+        j.$('#malSyncProgress').addClass('ms-done');
+        j.$('.flash.type-update .sync').click();
+        break;
     }
   });
 }
