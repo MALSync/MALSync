@@ -59,7 +59,7 @@ init(page){
   }
 
   api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-  if (page.url.split("/")[6] === "show" || page.url.split("/")[6] === "episode") {
+  if ( (page.url.split("/")[6] === "show" && page.url.split("/")[9] === "season") || page.url.split("/")[6] === "episode") {
     utils.waitUntilTrue(
       function() {
         if (j.$('body > div.SerieV2 > section > div.container > div > div.SerieV2-content').length || j.$('#jwplayer-container').length){
@@ -69,6 +69,9 @@ init(page){
         }
       },
       function() {
+        page.url = window.location.href;
+        page.UILoaded = false;
+        $("#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp").remove();
         page.handlePage();
       }
       );
@@ -76,11 +79,12 @@ init(page){
 
   utils.urlChangeDetect(function() {
     page.url = window.location.href;
-    if (page.url.split("/")[6] === "show") {
+    page.UILoaded = false;
+    $("#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp").remove();
+    if (page.url.split("/")[6] === "show" && page.url.split("/")[9] === "season") {
       utils.waitUntilTrue(
         function() {
           if (j.$('#list-season-container').length){
-            page.UILoaded = true;
             return true;
           } else {
             return false;
