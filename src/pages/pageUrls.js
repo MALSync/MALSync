@@ -216,7 +216,7 @@ module.exports = {
       '*://4anime.to/*',
     ],
   },
-  Dreamanimes: {
+  DreamAnimes: {
     match: [
       '*://www.dreamanimes.com.br/*'
     ],
