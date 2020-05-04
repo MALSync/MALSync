@@ -156,7 +156,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://dreamanimes.com.br"><img src="https://www.google.com/s2/favicons?domain=https://dreamanimes.com.br"> Dreamanimes</a></td>
+              <td><a href="https://dreamanimes.com.br"><img src="https://www.google.com/s2/favicons?domain=https://dreamanimes.com.br"> Dream Animes</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
@@ -442,7 +442,7 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
-              <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com"> TsukiMangas</a></td>
+              <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com"> Tsuki Mangás</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>

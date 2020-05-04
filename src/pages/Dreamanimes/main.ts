@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
 export const Dreamanimes: pageInterface = {
-  name: "Dreamanimes",
+  name: "Dream Animes",
   domain: "https://dreamanimes.com.br",
   type: "anime",
   isSyncPage: function(url) {

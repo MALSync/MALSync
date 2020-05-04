@@ -85,7 +85,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://jaiminisbox.com"><img src="https://www.google.com/s2/favicons?domain=https://jaiminisbox.com"> JaiminisBox</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://dreamanimes.com.br"><img src="https://www.google.com/s2/favicons?domain=https://dreamanimes.com.br"> Dreamanimes</a></td>
+                <td><a href="https://dreamanimes.com.br"><img src="https://www.google.com/s2/favicons?domain=https://dreamanimes.com.br"> Dream Animes</a></td>
                 <td><a href="https://manga.fascans.com/"><img src="https://www.google.com/s2/favicons?domain=https://manga.fascans.com/"> FallenAngels</a></td>
                 <td></td>
               </tr><tr>
@@ -106,7 +106,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime-planet.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-planet.com"> AnimePlanet</a></td>
-                <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com"> TsukiMangas</a></td>
+                <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com">  Tsuki Mangás</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>

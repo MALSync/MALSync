@@ -3,7 +3,7 @@ import { pageInterface } from "./../pageInterface";
 let jsonData;
 
 export const TsukiMangas: pageInterface = {
-  name: "TsukiMangas",
+  name: "Tsuki Mangás",
   domain: "https://www.tsukimangas.com",
   type: "manga",
   isSyncPage: function(url) {
