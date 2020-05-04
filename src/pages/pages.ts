@@ -69,6 +69,7 @@ import {AnimeFire} from "./AnimeFire/main";
 import {OtakuFR} from "./OtakuFR/main";
 import {Samehadaku} from "./Samehadaku/main";
 import {TsukiMangas} from "./TsukiMangas/main";
+import {mangatx} from "./mangatx/main";
 
 export const pages = {
     Kissanime,
@@ -141,5 +142,6 @@ export const pages = {
     AnimeFire,
     OtakuFR,
     Samehadaku,
-    TsukiMangas
+    TsukiMangas,
+    mangatx,
 };
