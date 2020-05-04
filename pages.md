@@ -48,8 +48,8 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
-              <td>:heavy_check_mark:</td>
+              <td><a href="https://animefire.net"><img src="https://www.google.com/s2/favicons?domain=https://animefire.net"> AnimeFire</a></td>
+              <td>:x:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
               <td>:x:</td>
@@ -234,7 +234,7 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
+              <td><a href="https://monoschinos.com"><img src="https://www.google.com/s2/favicons?domain=https://monoschinos.com"> MonosChinos</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -244,13 +244,19 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://www.netflix.com"><img src="https://www.google.com/s2/favicons?domain=https://www.netflix.com"> Netflix</a></td>
               <td>:x:</td>
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.otakufr.com"><img src="https://www.google.com/s2/favicons?domain=https://www.otakufr.com"> OtakuFR</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"> Plex</a></td>
               <td>:heavy_check_mark:</td>
@@ -264,7 +270,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www.riie.net"><img src="https://www.google.com/s2/favicons?domain=https://www.riie.net"> RiiE</a></td>
+              <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
@@ -304,7 +310,7 @@
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
-              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr>
     </tbody>
   </table>
@@ -412,6 +418,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://mangatx.com"><img src="https://www.google.com/s2/favicons?domain=https://mangatx.com"> mangatx</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
+            </tr><tr>
               <td><a href="https://novelplanet.com"><img src="https://www.google.com/s2/favicons?domain=https://novelplanet.com"> Novelplanet</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>
@@ -429,6 +441,12 @@
               <td>:x:</td>
               <td>:x:</td>
               <td>:x:</td>
+            </tr><tr>
+              <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com"> TsukiMangas</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
             </tr><tr>
               <td><a href="https://unionleitor.top"><img src="https://www.google.com/s2/favicons?domain=https://unionleitor.top"> unionmangas</a></td>
               <td>:heavy_check_mark:</td>

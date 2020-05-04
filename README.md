@@ -106,15 +106,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime-planet.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-planet.com"> AnimePlanet</a></td>
-                <td></td>
+                <td><a href="https://www.tsukimangas.com"><img src="https://www.google.com/s2/favicons?domain=https://www.tsukimangas.com"> TsukiMangas</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
-                <td></td>
-                <td></td>
-              </tr><tr>
-                <td><a href="https://www.riie.net"><img src="https://www.google.com/s2/favicons?domain=https://www.riie.net"> RiiE</a></td>
-                <td></td>
+                <td><a href="https://mangatx.com"><img src="https://www.google.com/s2/favicons?domain=https://mangatx.com"> mangatx</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animekisa.tv"><img src="https://www.google.com/s2/favicons?domain=https://animekisa.tv"> AnimeKisa</a></td>
@@ -157,15 +153,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animefever.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animefever.tv"> AnimeFever</a></td>
-                <td></td>
-                <td></td>
-              </tr><tr>
                 <td><a href="https://moeclip.com"><img src="https://www.google.com/s2/favicons?domain=https://moeclip.com"> moeclip</a></td>
-                <td></td>
-                <td></td>
-              </tr><tr>
-                <td><a href="https://myanime.moe"><img src="https://www.google.com/s2/favicons?domain=https://myanime.moe"> myAnime</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
@@ -206,6 +194,22 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://monoschinos.com"><img src="https://www.google.com/s2/favicons?domain=https://monoschinos.com"> MonosChinos</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animefire.net"><img src="https://www.google.com/s2/favicons?domain=https://animefire.net"> AnimeFire</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.otakufr.com"><img src="https://www.google.com/s2/favicons?domain=https://www.otakufr.com"> OtakuFR</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
                 <td></td>
                 <td></td>
               </tr>
