@@ -598,7 +598,7 @@ var testsArray = [
   },
 
   {
-    title: 'Dreamanimes',
+    title: 'Dream Animes',
     url: 'https://dreamanimes.com.br/',
     testCases: [
       {
@@ -2138,7 +2138,7 @@ var testsArray = [
     ]
   },
   {
-    title: 'TsukiMangas',
+    title: 'Tsuki Mangás',
     url: 'https://www.tsukimangas.com/',
     testCases: [
       {

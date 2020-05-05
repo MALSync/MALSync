@@ -1,7 +1,7 @@
 import { pageInterface } from "./../pageInterface";
 
-export const Dreamanimes: pageInterface = {
-  name: "Dreamanimes",
+export const DreamAnimes: pageInterface = {
+  name: "Dream Animes",
   domain: "https://dreamanimes.com.br",
   type: "anime",
   isSyncPage: function(url) {
@@ -15,7 +15,7 @@ export const Dreamanimes: pageInterface = {
     getTitle: function(url){return j.$("#anime_name").text()},
     getIdentifier: function(url){return utils.urlPart(url, 5);},
     getOverviewUrl: function(url){
-      return Dreamanimes.domain+'/anime-info/'+Dreamanimes.sync.getIdentifier(url);
+      return DreamAnimes.domain+'/anime-info/'+DreamAnimes.sync.getIdentifier(url);
     },
     getEpisode: function(url){return parseInt(utils.urlPart(url, 7));},
   },
@@ -42,11 +42,11 @@ export const Dreamanimes: pageInterface = {
 
     function start(){
       if(utils.urlPart(page.url, 3) == 'online' || utils.urlPart(page.url, 3) == 'anime-info'){
-        if(Dreamanimes.isSyncPage(page.url)){
+        if(DreamAnimes.isSyncPage(page.url)){
           page.handlePage();
         }else{
           clearInterval(Interval);
-          Interval = utils.waitUntilTrue(function(){return Dreamanimes.overview!.getTitle(page.url)}, function(){
+          Interval = utils.waitUntilTrue(function(){return DreamAnimes.overview!.getTitle(page.url)}, function(){
             page.handlePage();
           });
         }

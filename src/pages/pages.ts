@@ -18,7 +18,7 @@ import {Vrv} from "./Vrv/main";
 import {Proxer} from "./Proxer/main";
 import {Novelplanet} from "./Novelplanet/main";
 import {fourAnime} from "./fourAnime/main";
-import {Dreamanimes} from "./Dreamanimes/main";
+import {DreamAnimes} from "./DreamAnimes/main";
 import {animeultima} from "./animeultima/main";
 import {Aniflix} from "./Aniflix/main";
 import {AnimeDaisuki} from "./AnimeDaisuki/main";
@@ -93,7 +93,7 @@ export const pages = {
     Plex,
     Novelplanet,
     fourAnime,
-    Dreamanimes,
+    DreamAnimes,
     animeultima,
     Aniflix,
     Animefreak,
