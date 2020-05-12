@@ -201,6 +201,72 @@ export async function getContinueWaching(type, id):Promise<{url:string, ep:numbe
   return api.storage.get('continue/'+type+'/'+id);
 }
 
+export async function setEntrySettings(type, id, options, tags="") {
+  var tempOptions = {};
+  if(options) {
+    for(var key in options){
+      switch(key) {
+        case 'u':
+          tempOptions[key] = options[key];
+          break;
+      }
+    }
+
+    if(api.settings.get('malTags')) {
+      //TAG mode
+      tags = setUrlInTags(JSON.stringify(tempOptions), tags);
+    }else{
+      //No TAG mode
+      await api.storage.set('tagSettings/'+type+'/'+id, JSON.stringify(tempOptions));
+    }
+
+  }
+  return tags;
+}
+
+export async function getEntrySettings(type, id, tags="") {
+  var tempOptions: any = {
+    u: null, //url
+    c: null, //Continue Url
+    r: null, //Resume Url
+  };
+
+  if(api.settings.get('malTags')) {
+    //TAG mode
+    var tagString = getUrlFromTags(tags);
+    if(tagString){
+      if(tagString[0] === '{'){
+        try{
+          var temp = JSON.parse(tagString);
+          for(var key in tempOptions){
+            if(temp[key]) tempOptions[key] = temp[key];
+          }
+        }catch(e){
+          con.error(e);
+        }
+      }else{
+        tempOptions['u'] = tagString;
+      }
+    }
+  }else{
+    //No TAG mode
+    var temp = await api.storage.get('tagSettings/'+type+'/'+id);
+    if(temp) {
+      var temp = JSON.parse(tagString);
+      for(var key in tempOptions){
+        if(temp[key]) tempOptions[key] = temp[key];
+      }
+    }
+  }
+
+  var continueUrlObj = await getContinueWaching(type, id);
+  if(continueUrlObj) tempOptions.c = continueUrlObj;
+  var resumeUrlObj = await getResumeWaching(type, id);
+  if(resumeUrlObj) tempOptions.r = resumeUrlObj;
+
+  return tempOptions;
+}
+
 export function handleMalImages(url){
   if(url.indexOf('questionmark') !== -1) return api.storage.assetUrl('questionmark.gif');
   return url;
