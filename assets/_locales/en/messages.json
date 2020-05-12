@@ -540,7 +540,7 @@
       "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-      "message": "If disabled, the streaming site will no longer appear in an animes sidebar on MyAnimeList/AniList/Kitsu.",
+      "message": "If disabled, the streaming site will no longer appear in an anime’s sidebar on MyAnimeList/AniList/Kitsu/Simkl.",
       "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -548,7 +548,7 @@
       "description": "Thumbnails"
     },
     "settings_Thumbnails_text": {
-      "message": "The option is for resizing the thumbnails on MyAnimeList.<br>Like thumbnails for characters, people, recommendations, etc.",
+      "message": "The option is for resizing the thumbnails on MyAnimeList eg. thumbnails for characters, people, recommendations, etc.",
       "description": "Thumbnails - Text"
     },
     "settings_Thumbnails_Large": {
