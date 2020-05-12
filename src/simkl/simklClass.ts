@@ -184,39 +184,40 @@ export class simklClass{
   siteSearch(){
     if(!api.settings.get('SiteSearch')) return;
     con.log('PageSearch');
-    let pageSearch = {};
-    utils.getPageSearch().then((pages) => {pageSearch = pages});
-    var newSearch:any = [];
+    utils.getPageSearch().then((pageSearch) => {
+      var newSearch:any = [];
 
-    var title = $('h1').first().text().trim();
-    var titleEncoded = encodeURI(title!);
+      var title = $('h1').first().text().trim();
+      var titleEncoded = encodeURI(title!);
 
 
-    for (var key in pageSearch) {
-      var page = pageSearch[key];
+      for (var key in pageSearch) {
+        var page = pageSearch[key];
 
-      if(page.type !== this.page!.type) continue;
+        if(page.type !== this.page!.type) continue;
 
-      var tempAdd = {
-        favicon: utils.favicon(page.domain),
-        name: page.name,
-        search: '',
-        googleSeach: ''
+        var tempAdd = {
+          favicon: utils.favicon(page.domain),
+          name: page.name,
+          search: '',
+          googleSeach: ''
+        }
+
+
+        if( typeof page.completeSearchTag === 'undefined'){
+          tempAdd.search = page.searchUrl.replace("##searchkey##",titleEncoded);
+        }
+
+        var googleSeach = '';
+        if( typeof page.googleSearchDomain !== 'undefined'){
+          tempAdd.googleSeach = `https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}`;
+        }
+        newSearch.push(tempAdd);
       }
 
+      this.malkiss.pageSearch = newSearch;
+    });
 
-      if( typeof page.completeSearchTag === 'undefined'){
-        tempAdd.search = page.searchUrl.replace("##searchkey##",titleEncoded);
-      }
-
-      var googleSeach = '';
-      if( typeof page.googleSearchDomain !== 'undefined'){
-        tempAdd.googleSeach = `https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}`;
-      }
-      newSearch.push(tempAdd);
-    }
-
-    this.malkiss.pageSearch = newSearch;
   }
 
   bookmarksProfile(){
