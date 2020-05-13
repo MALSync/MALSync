@@ -379,7 +379,7 @@ module.exports = {
   //9anime
   streamtape: {
     match: [
-      '*://streamtape.com/v/*'
+      '*://streamtape.com/*'
     ]
   },
 };
