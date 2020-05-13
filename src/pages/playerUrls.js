@@ -376,4 +376,10 @@ module.exports = {
       '*://player.mangakyo.me/stream/embed.php*'
     ]
   },
+  //9anime
+  streamtape: {
+    match: [
+      '*://streamtape.com/v/*'
+    ]
+  },
 };
