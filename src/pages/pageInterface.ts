@@ -26,7 +26,7 @@ export interface pageInterface {
         elementUrl: (selector: JQuery<HTMLElement>) => string,
         elementEp: (selector) => number,
         paginationNext?: (updateCheck:boolean) => boolean,
-        handleListHook?: (ep:number, epList: JQuery<HTMLElement>) => void,
+        handleListHook?: (ep:number, epList: JQuery<HTMLElement>[]) => void,
         getTotal?: () => number|undefined,
       }
     },
