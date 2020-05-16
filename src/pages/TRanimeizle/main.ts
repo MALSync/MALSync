@@ -5,6 +5,7 @@ function GetOverviewAnchor(): HTMLAnchorElement | null {
 }
 
 function RemoveUnrelatedTurkishWordIzle(title: string) {
+  // "izle" is the translation of the word "watch"
   return title.replace(/(?: |-)izle.*/i, "");
 }
 
@@ -20,9 +21,14 @@ export const TRanimeizle: pageInterface = {
   name: "TRanimeizle",
   domain: "https://www.tranimeizle.com/",
   type: "anime",
-  isSyncPage: function(url: string) {
+  isSyncPage: function(_url: string) {
+    let url = new URL(_url);
+    let pathnameParts = url.pathname.split("/");
+
+    if(!pathnameParts || pathnameParts.length <= 1) return false;
+
     // "bolum" is the translation of the word "episode"
-    return url.includes("-bolum-");
+    return pathnameParts[1].includes("-bolum-");
   },
   sync: {
     getTitle: () => {
@@ -49,7 +55,7 @@ export const TRanimeizle: pageInterface = {
     },
     getEpisode: (url: string) => {
       // plunderer-18-bolum-izle -> 18 is episode number
-      // gost-22-1-bolum-izle -> 1 is episode number
+      // ghost-22-1-bolum-izle -> 1 is episode number
       // regexp returns episode number in group 1
       return Number(url.replace(/.*-(\d{1,})-.*/, "$1"));
     },
