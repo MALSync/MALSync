@@ -282,6 +282,12 @@
               <td>:x:</td>
               <td>:x:</td>
             </tr><tr>
+              <td><a href="https://www.tranimeizle.com/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.com"> TRanimeizle</a></td>
+              <td>:heavy_check_mark:</td>
+              <td>:heavy_check_mark:</td>
+              <td>:x:</td>
+              <td>:heavy_check_mark:</td>
+            </tr><tr>
               <td><a href="http://www.turkanime.tv"><img src="https://www.google.com/s2/favicons?domain=http://www.turkanime.tv"> Turkanime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:heavy_check_mark:</td>

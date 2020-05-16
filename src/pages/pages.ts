@@ -70,6 +70,7 @@ import {OtakuFR} from "./OtakuFR/main";
 import {Samehadaku} from "./Samehadaku/main";
 import {TsukiMangas} from "./TsukiMangas/main";
 import {mangatx} from "./mangatx/main";
+import {TRanimeizle} from "./TRanimeizle/main";
 
 export const pages = {
     Kissanime,
@@ -144,4 +145,5 @@ export const pages = {
     Samehadaku,
     TsukiMangas,
     mangatx,
+    TRanimeizle,
 };
