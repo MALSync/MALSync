@@ -18,15 +18,20 @@ export const Novelplanet: pageInterface = {
       getEpisode: function(url){
         return getEp($('.selectChapter option').first().text());
       },
-      getVolume: function(url){
-        url = $('.selectChapter option').first().text();
-        try{
-          url = url.match(/vol(ume)\D?\d+/i)[0];
-          url = url.match(/\d+/)[0];
-        }catch(e){
-         return;
-        }
-        return url;
+      getVolume: function(_url){
+        let url = $('.selectChapter option').first().text();
+
+        if(!url) return NaN;
+
+        let volumeText = url.match(/vol(ume)\D?\d+/i);
+
+        if(!volumeText || volumeText.length === 0) return NaN;
+
+        let volumeNumber = url.match(/\d+/);
+
+        if(!volumeNumber || volumeNumber.length === 0) return NaN;
+
+        return Number(volumeNumber[0]);
       },
       nextEpUrl: function(url){
         return utils.absoluteLink(j.$('div.row > div:nth-child(5)  > a').first().attr('href'), Novelplanet.domain);

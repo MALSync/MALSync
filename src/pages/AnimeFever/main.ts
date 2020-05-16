@@ -19,14 +19,20 @@ export const AnimeFever: pageInterface = {
     getOverviewUrl: function(url){
       return AnimeFever.domain + j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[6];
-      if(episodePart.length){
-        var temp = episodePart.match(/episode-\d*/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+
+      if(!urlParts || urlParts.length === 0) return NaN;
+
+      let episodePart = urlParts[6];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/episode-\d*/gim);
+  
+      if (!temp) return NaN;
+      
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var nextEp = j.$('section.relative.player-bg > div > a.next-episode').first().attr('href');

@@ -24,7 +24,11 @@ export const AnimeKisa: pageInterface = {
     },
     nextEpUrl: function(url){
       var num = $("#playerselector").find("option:selected").next().attr('value');
+
+      if(!num) return;
+
       var href = url.replace(/\d+$/, num);
+
       if(typeof num !== 'undefined' && href !== url){
         return utils.absoluteLink(href, AnimeKisa.domain);
       }

@@ -50,7 +50,15 @@ overview:{
       return utils.absoluteLink(selector.find('a').first().attr('href'),bato.domain);
     },
     elementEp: function(selector){
-      return selector.find('a > b').text().match(/(ch\.|chapter)\D?\d+/i)[0].match(/\d+/);
+      let episodeText = selector.find('a > b').text();
+
+      if(!episodeText) return NaN;
+
+      let matches = episodeText.match(/(ch\.|chapter)\D?\d+/i);
+
+      if(!matches || matches.length === 0) return NaN;
+      
+      return Number(matches[0].match(/\d+/));
     }
   }
 },

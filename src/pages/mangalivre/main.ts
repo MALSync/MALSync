@@ -22,7 +22,7 @@ export const mangalivre: pageInterface = {
     return mangalivre.domain + j.$("div.series-info-popup-container > div > div > div.series-cover > a").attr("href");
   },
   getEpisode: function(url){
-    return url.split("/")[6].replace(/\D+/g, "");
+    return Number(url.split("/")[6].replace(/\D+/g, ""));
   },
   nextEpUrl: function(url){
     let href = utils.absoluteLink(j.$("ul.chapter-list > li.selected").prev("li").find("a").attr("href"),mangalivre.domain);

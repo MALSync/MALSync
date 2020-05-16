@@ -69,7 +69,7 @@ export const Hidive: pageInterface = {
 				});
 			},
 			elementUrl: function (selector) {
-				return selector.find('div.player > a').attr('data-playurl');
+				return selector.find('div.player > a').attr('data-playurl') || "";
 			},
 			elementEp: function (selector) {
 				var temp = selector.find('div.player > a').attr('data-key');

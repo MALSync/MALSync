@@ -23,7 +23,7 @@ export const Mangakakalot: pageInterface = {
       return j.$("body > div.breadcrumb > p > span:nth-child(3) > a").first().attr("href");
     },
     getEpisode: function(url){
-      return url.split("/")[5].match(/\d+/gmi);
+      return Number(url.split("/")[5].match(/\d+/gmi));
     },
     nextEpUrl: function(url){return j.$('div.btn-navigation-chap > a.back').first().attr('href');
     },
@@ -45,7 +45,7 @@ export const Mangakakalot: pageInterface = {
         return j.$("div.row:not('div.title-list-chapter')");
       },
       elementUrl: function(selector){
-        return selector.find('span:nth-child(1) > a').first().attr('href');
+        return selector.find('span:nth-child(1) > a').first().attr('href') || "";
       },
       elementEp: function(selector){
         return selector.find('span:nth-child(1) > a').first().attr('href').split("/")[5].match(/\d+/gmi);

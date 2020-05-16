@@ -19,14 +19,20 @@ export const RiiE: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])").first().attr('href');
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[3];
-      if(episodePart.length){
-        var temp = episodePart.match(/-episode-\d*-/g);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[3];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-episode-\d*-/gi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = $("a[rel='next']").first().attr('href');

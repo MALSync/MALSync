@@ -19,16 +19,20 @@ export const Hentaigasm: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("#extras > h4:nth-child(2) > a").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[6];
-      if(episodePart.length){
-        var temp = episodePart.match(/-\d+-(subbed|raw)/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        } else {
-          return 1;
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[6];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-\d+-(subbed|raw)/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
   },
   overview:{

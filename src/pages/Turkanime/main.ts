@@ -33,7 +33,13 @@ export const Turkanime: pageInterface = {
       list:{
         offsetHandler: false,
         elementsSelector: function(){return j.$('.list.menum > li');},
-        elementUrl: function(selector){return utils.absoluteLink(selector.find("a").last().attr('href').replace(/^\/\//, 'http://'), Turkanime.domain);},
+        elementUrl: function(selector){
+          let anchorHref = selector.find("a").last().attr('href');
+
+          if(!anchorHref) return "";
+
+          return utils.absoluteLink(anchorHref.replace(/^\/\//, 'http://'), Turkanime.domain);
+        },
         elementEp: function(selector){
           var url = Turkanime.overview!.list!.elementUrl(selector);
           return getEpisode(Turkanime.overview!.getIdentifier(window.location.href), Turkanime.overview!.getIdentifier(url));

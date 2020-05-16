@@ -18,7 +18,7 @@ export const AnimeZone: pageInterface = {
       return utils.absoluteLink(j.$(".all-episodes > a").attr("href"), AnimeZone.domain)
     },
     getEpisode: function (url) {
-      return url.split("/")[5];
+      return Number(url.split("/")[5]);
     },
     nextEpUrl: function (url) {
       let href = j.$(".next a").attr("href");
@@ -42,7 +42,11 @@ export const AnimeZone: pageInterface = {
         return j.$("table.episodes > tbody > tr");
       },
       elementUrl: function(selector){
-        return utils.absoluteLink(selector.find('td:nth-child(6) > a').first().attr('href').replace(/^../gm,""),AnimeZone.domain);
+        const anchorHref = selector.find('td:nth-child(6) > a').first().attr('href');
+
+        if(!anchorHref) return;
+
+        return utils.absoluteLink(anchorHref.replace(/^../gm,""),AnimeZone.domain);
       },
       elementEp: function(selector){
         return selector.find('td:nth-child(6) > a').first().attr('href').split("/")[3].replace(/\D+/,"");

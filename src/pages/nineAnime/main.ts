@@ -32,7 +32,7 @@ export const nineAnime: pageInterface = {
         offsetHandler: false,
         elementsSelector: function(){return j.$(".episodes.range a");},
         elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), nineAnime.domain);},
-        elementEp: function(selector){return selector.attr('data-base')},
+        elementEp: function(selector){return Number(selector.attr('data-base'))},
       }
     },
     init(page){

@@ -21,14 +21,20 @@ export const mangatx: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[5];
-      if(episodePart.length){
-        var temp = episodePart.match(/chapter-\d+/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[6];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/chapter-\d+/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url) {
       return j.$("div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page").attr("href")

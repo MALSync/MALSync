@@ -60,7 +60,11 @@ export const myAnime: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'),myAnime.domain);
       },
       elementEp: function(selector){
-        return selector.find('a').first().attr('href').split("/")[3].replace(/\D+/,"");
+        let url = selector.find('a').first().attr('href');
+
+        if(!url) return NaN;
+
+        return Number(url.split("/")[3].replace(/\D+/,""));
       }
     }
   },

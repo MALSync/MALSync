@@ -19,14 +19,20 @@ export const moeclip: pageInterface = {
     getOverviewUrl: function(url){
       return moeclip.domain +  "/anime/" + moeclip.sync.getIdentifier(url);
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[3];
-      if(episodePart.length){
-        var temp = episodePart.match(/-\d*-sub-indo.*/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[3];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-\d*-sub-indo.*/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){return j.$('div.episode-nav > div.select-episode > div:nth-child(3) > a').first().attr('href');
   },
@@ -50,7 +56,7 @@ overview:{
       return utils.absoluteLink(selector.find('div > a').first().attr('href'),moeclip.domain);
     },
     elementEp: function(selector){
-      return selector.find('div > a').first().text().replace(/\D+/,"");
+      return Number(selector.find('div > a').first().text().replace(/\D+/,""));
     }
   }
 },

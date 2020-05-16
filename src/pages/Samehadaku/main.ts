@@ -19,15 +19,20 @@ export const Samehadaku: pageInterface = {
     getOverviewUrl: function(url){
       return utils.absoluteLink(j.$("div.naveps > div.nvs.nvsc > a").attr("href"),Samehadaku.domain);
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[3];
-      if(episodePart.length){
-        var temp = episodePart.match(/episode-\d+/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
-      return 1;
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[3];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/episode-\d+/gi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       let href = j.$("div.naveps > div.nvs.rght > a:not('.nonex')").attr("href");
@@ -50,7 +55,7 @@ export const Samehadaku: pageInterface = {
         return j.$("div.lstepsiode.listeps > ul > div > div > li");
       },
       elementUrl: function(selector){
-        return selector.find("div.epsright > span.eps > a").attr("href");
+        return selector.find("div.epsright > span.eps > a").attr("href") || "";
       },
       elementEp: function(selector){
         return Samehadaku.sync.getEpisode(Samehadaku.overview!.list!.elementUrl(selector));

@@ -22,7 +22,7 @@ export const JaiminisBox: pageInterface = {
       return j.$("div.tbtitle > div.text > a").first().attr("href");
     },
     getEpisode: function(url){
-     return url.split("/")[8];
+     return Number(url.split("/")[8]);
    },
    nextEpUrl: function(url){
     var nextUrl = j.$("div.tbtitle > ul.dropdown > li> a[href='"+j.$("div.tbtitle > div.text > a").eq(1).attr("href")+"']").parent().prev().find("a").attr("href");

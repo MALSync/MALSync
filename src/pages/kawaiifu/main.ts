@@ -70,10 +70,10 @@ export const kawaiifu: pageInterface = {
         return j.$("div#server_ep a.active").closest("ul.list-ep").children();
       },
       elementUrl: function(selector){
-        return selector.find('a').first().attr('href');
+        return selector.find('a').first().attr('href') || "";
       },
       elementEp: function(selector){
-        return selector.find('a').first().text().replace(/\D+/g, "");
+        return Number(selector.find('a').first().text().replace(/\D+/g, ""));
       }
     }
   },

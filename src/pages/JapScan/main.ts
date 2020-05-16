@@ -22,7 +22,7 @@ export const JapScan: pageInterface = {
     return JapScan.domain + j.$("ol.breadcrumb > li:nth-child(3) > a").first().attr("href");
   },
   getEpisode: function(url){
-    return url.split("/")[5];
+    return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
     if (j.$("div.clearfix > p > span").last().text() == "Chapitre Suivant" && j.$("div.clearfix > p > a").last().attr("href").length) {

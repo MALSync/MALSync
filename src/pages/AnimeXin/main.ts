@@ -21,15 +21,20 @@ export const AnimeXin: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("div.item.meta > div > span.epx > a").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[3];
-      if(episodePart.length){
-        var temp = episodePart.match(/-episode-\d*/g);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
-      return 1;
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[3];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-episode-\d*/gi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = j.$('div.item.video-nav > div.naveps > div:nth-child(3) > a').first().attr('href');
@@ -56,7 +61,7 @@ export const AnimeXin: pageInterface = {
         return j.$("div.bixbox.bxcl.epcheck > ul > li");
       },
       elementUrl: function(selector){
-        return selector.find('div.epl-title > a').first().attr('href');
+        return selector.find('div.epl-title > a').first().attr('href') || "";
       },
       elementEp: function(selector){
         return AnimeXin.sync.getEpisode(selector.find('div.epl-title > a').first().attr('href'));
