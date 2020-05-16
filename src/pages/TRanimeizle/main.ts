@@ -46,7 +46,6 @@ export const TRanimeizle: pageInterface = {
       if (!identifier) return "";
 
       return identifier;
-      // return RemoveUnrelatedTurkishWordIzle(identifier);
     },
     getEpisode: (url: string) => {
       // plunderer-18-bolum-izle -> 18 is episode number
