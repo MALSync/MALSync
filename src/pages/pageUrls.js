@@ -489,4 +489,10 @@ module.exports = {
      '*://mangatx.com/*',
     ]
   },
+  TRanimeizle: {
+    match: [
+      '*://tranimeizle.com/*',
+      '*://www.tranimeizle.com/*',
+    ]
+  },
 };
