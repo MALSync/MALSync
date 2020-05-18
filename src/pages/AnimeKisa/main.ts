@@ -12,7 +12,7 @@ export const AnimeKisa: pageInterface = {
     }
   },
   isOverviewPage: function(url) {
-    return url.split("/")[3] !== null && j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("div.notmain > div > div.infobox > div.infoepboxmain")[0]);
+    return url.split("/")[3] !== null && j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("div.notmain > div > div.infobox > div.infoepboxmain")[0];
   },
   sync: {
     getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},
