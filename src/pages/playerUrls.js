@@ -382,4 +382,10 @@ module.exports = {
       '*://streamtape.com/*'
     ]
   },
+  //monoschinos
+  streamtape: {
+    match: [
+      '*://reproductor.monoschinos.com/*'
+    ]
+  },
 };
