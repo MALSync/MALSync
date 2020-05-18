@@ -43,13 +43,15 @@ export const Kissmanga: pageInterface = {
         return episodePart;
       },
       getVolume: function(url){
-        try{
-          url = url.match(/[V,v][o,O][l,L]\D?\d{3}/)[0];
-          url = url.match(/\d+/)[0].slice(-3);
-        }catch(e){
-         return;
-        }
-        return url;
+        let volumeText = url.match(/[V,v][o,O][l,L]\D?\d{3}/);
+
+        if(!volumeText || volumeText.length === 0) return NaN;
+        
+        let volumeNumber = url.match(/\d+/);
+        
+        if(!volumeNumber || volumeNumber.length === 0) return NaN;
+        
+        return Number(volumeNumber[0].slice(-3))
       },
       nextEpUrl: function(url){return j.$('img.btnNext').first().parent().attr('href');
       },

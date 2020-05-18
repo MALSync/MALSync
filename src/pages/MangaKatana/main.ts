@@ -23,14 +23,20 @@ export const MangaKatana: pageInterface = {
    getOverviewUrl: function(url){
     return j.$("#breadcrumb_wrap > ol > li:nth-child(2) > a").attr("href");
   },
-  getEpisode: function(url){
-    let episodePart = url.split("/")[5];
-    if(episodePart.length){
-      var temp = episodePart.match(/c\d*/gi);
-      if(temp !== null){
-        return temp[0].replace(/\D+/g, "");
-      }
-    }
+  getEpisode: function (url) {
+    let urlParts = url.split("/");
+
+    if (!urlParts || urlParts.length === 0) return NaN;
+
+    let episodePart = urlParts[5];
+
+    if (episodePart.length === 0) return NaN;
+
+    let temp = episodePart.match(/c\d*/gi);
+
+    if (!temp || temp.length === 0) return NaN;
+
+    return Number(temp[0].replace(/\D+/g, ""));
   },
   nextEpUrl: function(url){
     if(j.$('a.nav_button.next').first().attr('href') !== "javascript:;") {

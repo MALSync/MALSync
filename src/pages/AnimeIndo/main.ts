@@ -19,14 +19,20 @@ export const AnimeIndo: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[3];
-      if(episodePart.length){
-        var temp = episodePart.match(/-episode-\d*/g);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+
+      if(!urlParts || urlParts.length === 0) return NaN;
+
+      let episodePart = urlParts[3];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-episode-\d*/g);
+  
+      if (!temp) return NaN;
+      
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = j.$(".nav.next a").first().attr('href');
@@ -54,7 +60,7 @@ export const AnimeIndo: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'),AnimeIndo.domain);
       },
       elementEp: function(selector){
-        return selector.find('a').first().text().replace(/\D+/g, "");
+        return Number(selector.find('a').first().text().replace(/\D+/g, ""));
       }
     }
   },

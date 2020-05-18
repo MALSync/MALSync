@@ -13,11 +13,13 @@ export const Aniflix: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      if (url.split("/")[7] == 1 || url.split("/")[7] == 0) {
+      let urlParts = url.split("/");
+
+      if (urlParts[7] === "1" || urlParts[7] === "0") {
         return j.$("a.episode-showname").text();
-      }else {
-        return j.$("a.episode-showname").text() + " season " + url.split("/")[7];
       }
+
+      return j.$("a.episode-showname").text() + " season " + url.split("/")[7];
     },
     getIdentifier: function(url) {
       return url.split("/")[4] + "?s=" + url.split("/")[7];
@@ -26,7 +28,7 @@ export const Aniflix: pageInterface = {
       return Aniflix.domain+ j.$("a.episode-showname").attr("href");
     },
     getEpisode: function(url){
-      return url.split("/")[9];
+      return Number(url.split("/")[9]);
     },
   },
   overview:{

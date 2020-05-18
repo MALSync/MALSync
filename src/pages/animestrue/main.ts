@@ -13,11 +13,11 @@ export const animestrue: pageInterface = {
   },
   sync: {
     getTitle: function(url){
-      if(url.split("/")[5].match(/\d+/gmi) > 1) {
+      if(Number(url.split("/")[5].match(/\d+/gmi)) > 1) {
         return utils.getBaseText($("div.anime-nome > a, #pageTitle").first()) + " season " + url.split("/")[5].match(/\d+/gmi);
-      } else {
-        return utils.getBaseText($("div.anime-nome > a, #pageTitle").first());
       }
+
+      return utils.getBaseText($("div.anime-nome > a, #pageTitle").first());
     },
     getIdentifier: function(url) {
       return url.split("/")[4] + "?s=" + url.split("/")[5].match(/\d+/gmi);
@@ -26,7 +26,7 @@ export const animestrue: pageInterface = {
       return animestrue.domain + "/anime/" + url.split("/")[4] + "/" + url.split("/")[5];
     },
     getEpisode: function(url){
-      return url.split("/")[6].match(/\d+/gmi);
+      return  Number(url.split("/")[6].match(/\d+/gmi));
     },
     nextEpUrl: function(url){
       var nextEp = j.$('ul.episodios > li.active').next().find("div > a").attr('href');

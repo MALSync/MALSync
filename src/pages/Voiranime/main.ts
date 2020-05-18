@@ -32,7 +32,7 @@ export const Voiranime: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'),Voiranime.domain);
       },
       elementEp: function(selector){
-        return selector.find('a').first().text().replace(/\D+/,"");
+        return Number(selector.find('a').first().text().replace(/\D+/,""));
       }
     }
     },

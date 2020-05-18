@@ -21,11 +21,10 @@ export const AnimesVision: pageInterface = {
     },
     getEpisode: function(url){
       var episodetemp = url.split("/")[5].replace(/\D+/,"");
-      if(episodetemp) {
-        return episodetemp;
-      } else {
-        return 1;
-      }
+      
+      if(!episodetemp) return NaN;
+
+      return Number(episodetemp)
     },
     nextEpUrl: function(url) {
       return utils.absoluteLink(j.$("#nextEp").attr("href"),AnimesVision.domain);
@@ -41,7 +40,7 @@ export const AnimesVision: pageInterface = {
         return j.$("#episodes-sv-1 > li.ep-item");
       },
       elementUrl: function(selector){
-        return selector.find('a').first().attr('href');
+        return selector.find('a').first().attr('href') || "";
       },
       elementEp: function(selector){
         return selector.find('a').first().attr('href').split("/")[5].replace(/\D+/,"");

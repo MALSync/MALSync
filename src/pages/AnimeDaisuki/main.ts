@@ -50,7 +50,7 @@ export const AnimeDaisuki: pageInterface = {
         return utils.absoluteLink(selector.find('a').first().attr('href'),AnimeDaisuki.domain);
       },
       elementEp: function(selector){
-        return selector.find('a > p').first().text().replace(/\D+/g, "");
+        return Number(selector.find('a > p').first().text().replace(/\D+/g, ""));
       }
     }
   },

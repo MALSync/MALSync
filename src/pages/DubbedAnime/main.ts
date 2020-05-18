@@ -19,16 +19,20 @@ export const DubbedAnime: pageInterface = {
     getOverviewUrl: function(url){
       return utils.absoluteLink(j.$("a.w-100.btn.btn-success").attr("href"), DubbedAnime.domain);
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[4];
-      if(episodePart.length){
-        var temp = episodePart.match(/-(episode|ova)-\d+-/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        } else {
-          return 1;
-        }
-      }
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[4];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-(episode|ova)-\d+-/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){return utils.absoluteLink(j.$('body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a').first().attr('href'), DubbedAnime.domain);;
     },

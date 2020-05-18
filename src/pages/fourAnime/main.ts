@@ -51,7 +51,7 @@ export const fourAnime: pageInterface = {
       offsetHandler: false,
       elementsSelector: function(){return j.$(".episodes.range a");},
       elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), fourAnime.domain);},
-      elementEp: function(selector){return selector.text()},
+      elementEp: function(selector){return Number(selector.text())},
     }
   },
   init(page) {

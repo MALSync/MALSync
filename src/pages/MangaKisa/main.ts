@@ -32,7 +32,11 @@ export const MangaKisa: pageInterface = {
   },
   nextEpUrl: function(url){
     var num = $("#chaptertext").find("option:selected").next().attr('value');
+
+    if(!num) return;
+
     var href = url.replace(/\d+$/, num);
+
     if(typeof num !== 'undefined' && href !== url){
       return utils.absoluteLink(href, MangaKisa.domain);
     }

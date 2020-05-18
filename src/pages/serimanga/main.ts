@@ -22,7 +22,7 @@ export const serimanga: pageInterface = {
     return j.$("#reader > div.read-top-menu > div.rtm-logo > a.back.text-white").attr("href");
   },
   getEpisode: function(url){
-    return url.split("/")[5];
+    return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){return j.$('#chapterButtons2 > div > div:nth-child(2) > a').first().attr('href');
   },

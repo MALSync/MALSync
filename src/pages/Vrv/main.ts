@@ -62,10 +62,10 @@ export const Vrv: pageInterface = {
         elementEp: function(selector){
           var epInfo = selector.find('.episode-title').text().trim();
           var temp = epInfo.match(/^E\d+/i);
-          if(temp !== null){
-              return temp[0].replace('E','');
-          }
-          return '';
+
+          if(!temp) return NaN;
+
+          return Number(temp[0].replace('E',''));
         },
         getTotal: function(){
           throw 'Not supported';

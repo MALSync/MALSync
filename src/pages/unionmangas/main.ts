@@ -22,11 +22,15 @@ export const unionmangas: pageInterface = {
     return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href");
   },
   getEpisode: function(url){
-    return url.split("/")[5];
+    return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
     var num = $("#capitulo_trocar").find("option:selected").next().attr('value');
+
+    if(!num) return;
+
     var href = url.replace(/\d+$/, num);
+
     if(typeof num !== 'undefined' && href !== url){
       return utils.absoluteLink(href, unionmangas.domain);
     }

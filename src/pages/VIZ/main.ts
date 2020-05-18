@@ -43,24 +43,31 @@ export const VIZ: pageInterface = {
         return j.$(".o_sortable-b,.o_sortable");
       },
       elementUrl: function(selector){
-        return VIZ.domain + selector.find('a').first().attr('href').replace(/javascript:tryReadChapter\(\d+,'/gi,"").replace(/'\);/g,"");
+        let anchorHref = selector.find('a').first().attr('href');
+
+        if(!anchorHref) return "";
+
+        return VIZ.domain + anchorHref.replace(/javascript:tryReadChapter\(\d+,'/gi,"").replace(/'\);/g,"");
       },
       elementEp: function(selector){
-        if (selector.find('a').first().attr('href') !== "javascript:void('join to read');") {
-          var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
-          if (episodePart.length == 0) {
-            episodePart = selector.find('a').first().text().trim();
-          }
-          if(episodePart.length){
-            var temp = episodePart.match(/\d+/gmi);
-            if(temp !== null){
-              return temp[0];
-            }
-          }
+        let anchorHref = selector.find('a').first().attr('href');
+
+        if(!anchorHref || anchorHref !== "javascript:void('join to read');")
+          return NaN;
+          
+        var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
+
+        if (episodePart.length == 0) {
+          episodePart = selector.find('a').first().text().trim();
         }
-        else {
-          throw 'Join to read';
-        }
+
+        if(!episodePart || episodePart.length === 0) throw 'Join to read';
+
+        var temp = episodePart.match(/\d+/gmi);
+
+        if(!temp) return NaN;
+
+        return Number(temp[0]);
       }
     }
   },

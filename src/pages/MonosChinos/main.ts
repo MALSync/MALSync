@@ -19,15 +19,20 @@ export const MonosChinos: pageInterface = {
     getOverviewUrl: function(url){
       return j.$("a.btnWeb.green.Current").attr("href");
     },
-    getEpisode: function(url){
-      var episodePart = url.split("/")[4];
-      if(episodePart.length){
-        var temp = episodePart.match(/episodio-\d+/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
-      return 1;
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[4];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/episodio-\d+/gi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = j.$('a.btnWeb:nth-child(3)').first().attr('href');
@@ -54,7 +59,7 @@ export const MonosChinos: pageInterface = {
         return j.$("div.SerieCaps > a.item");
       },
       elementUrl: function(selector){
-        return selector.attr('href');
+        return selector.attr('href') || "";
       },
       elementEp: function(selector){
         return MonosChinos.sync.getEpisode(selector.attr('href'));

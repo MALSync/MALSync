@@ -50,8 +50,18 @@ export const animepahe: pageInterface = {
     list:{
       offsetHandler: false,
       elementsSelector: function(){return j.$('.episode-list .episode');},
-      elementUrl: function(selector){return animepahe.domain + selector.find("a").first().attr('href');},
-      elementEp: function(selector){return selector.find('.episode-number').first().text().replace(selector.find('.episode-number > *').text() ,'');},
+      elementUrl: function(selector){
+        let anchor = selector.find("a").first();
+
+        if(!anchor) return "";
+
+        let path = anchor.attr('href');
+
+        if(!path) return "";
+
+        return animepahe.domain + path;
+      },
+      elementEp: function(selector){return Number(selector.find('.episode-number').first().text().replace(selector.find('.episode-number > *').text() ,''));},
     }
   },
   init(page){

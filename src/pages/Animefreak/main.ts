@@ -20,7 +20,7 @@ export const Animefreak: pageInterface = {
       return Animefreak.domain+'/watch/'+Animefreak.sync.getIdentifier(url);
     },
     getEpisode: function(url){
-      return url.split("/")[6].replace(/\D+/g, "");;
+      return Number(url.split("/")[6].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = j.$(".fa-step-forward").first().parent().attr('href');

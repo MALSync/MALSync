@@ -46,7 +46,11 @@ export const Wakanim: pageInterface = {
     elementUrl: function(selector){return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);},
     elementEp: function(selector){
       var url = Wakanim.overview!.list!.elementUrl(selector);
-      return episodeHelper(url, selector.find('a').attr('title').trim());
+      let anchorTitle = selector.find('a').attr('title');
+
+      if(!anchorTitle) return NaN;
+      
+      return Number(episodeHelper(url, anchorTitle.trim()));
     },
   }
 },

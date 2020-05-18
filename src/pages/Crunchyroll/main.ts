@@ -1,4 +1,7 @@
 import {pageInterface} from "./../pageInterface";
+
+// TODO needs refactoring
+
 export const Crunchyroll: pageInterface = {
     name: 'Crunchyroll',
     domain: 'https://www.crunchyroll.com',
@@ -59,17 +62,6 @@ export const Crunchyroll: pageInterface = {
           return;
       }
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-
-      page.setCacheTemp = page.setCache;
-      page.setCache = function(url, toDatabase:boolean|'correction', identifier:any = null){
-        if(this.page.isSyncPage(this.url)){
-          this.setCacheTemp(url, toDatabase, identifier);
-        }
-      }
-      page.databaseRequestTemp = page.databaseRequest;
-      page.databaseRequest = function(malurl, toDatabase:boolean|'correction', identifier, kissurl = null){
-        this.databaseRequestTemp(malurl, toDatabase, identifier, this.url+'?..'+encodeURIComponent(identifier.toLowerCase().split('#')[0]).replace(/\./g, '%2E'))
-      }
 
       j.$(document).ready(function(){
         if( j.$('.season-dropdown').length > 1){

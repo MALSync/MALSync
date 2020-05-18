@@ -23,7 +23,7 @@ export const MangaNelo: pageInterface = {
       return j.$("div.body-site > div > div.panel-breadcrumb > a:nth-child(3)").attr("href");
     },
     getEpisode: function(url){
-      return url.split("/")[5].match(/\d+/gmi);
+      return Number(url.split("/")[5].match(/\d+/gmi));
     },
     nextEpUrl: function(url){return j.$('div.panel-navigation > div > a.navi-change-chapter-btn-next.a-h').first().attr('href');
     },
@@ -45,7 +45,7 @@ export const MangaNelo: pageInterface = {
         return j.$("div.panel-story-chapter-list > ul.row-content-chapter > li.a-h");
       },
       elementUrl: function(selector){
-        return selector.find('a').first().attr('href');
+        return selector.find('a').first().attr('href') || "";
       },
       elementEp: function(selector){
         return selector.find('a').first().attr('href').split("/")[5].match(/\d+/gmi);

@@ -46,7 +46,7 @@ export const TRanimeizle: pageInterface = {
       return overviewLinkElement.href;
     },
     getIdentifier: () => {
-      let overviewUrl = TRanimeizle.sync.getOverviewUrl(undefined);
+      let overviewUrl = TRanimeizle.sync.getOverviewUrl("");
       let identifier = TRanimeizle.overview?.getIdentifier(overviewUrl);
 
       if (!identifier) return "";

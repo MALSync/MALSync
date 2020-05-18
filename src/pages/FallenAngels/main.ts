@@ -20,7 +20,7 @@ export const FallenAngels: pageInterface = {
     return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href");
   },
   getEpisode: function(url){
-    return url.split("/")[5];
+    return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
     var script = j.$("body > div.container-fluid > script")[0].innerHTML;
