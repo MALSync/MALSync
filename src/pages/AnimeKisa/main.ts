@@ -12,7 +12,16 @@ export const AnimeKisa: pageInterface = {
     }
   },
   isOverviewPage: function(url) {
-    return url.split("/")[3] !== null && j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("div.notmain > div > div.infobox > div.infoepboxmain")[0];
+    const infoElement = j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1");
+    const episodeList = j.$("div.notmain > div > div.infobox > div.infoepboxmain");
+
+    if(
+      !url.split("/")[3] ||
+      infoElement.length === 0 ||
+      episodeList.length === 0
+    ) return false;
+
+    return true;
   },
   sync: {
     getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},

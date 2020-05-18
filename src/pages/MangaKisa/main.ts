@@ -12,7 +12,12 @@ export const MangaKisa: pageInterface = {
     }
   },
   isOverviewPage: function(url) {
-    return url.split("/")[3] !== undefined && j.$("div.infoboxc > div.infodesbox > h1.infodes").length;
+    if(
+      !url.split("/")[3] ||
+      j.$("div.infoboxc > div.infodesbox > h1.infodes").length === 0
+    ) return false;
+
+    return true;
   },
   sync: {
     getTitle: function(url){
