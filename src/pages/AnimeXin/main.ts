@@ -19,7 +19,7 @@ export const AnimeXin: pageInterface = {
       return AnimeXin.sync.getOverviewUrl(url).split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("div.item.meta > div > span.epx > a").attr("href");
+      return j.$("div.item.meta > div > span.epx > a").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

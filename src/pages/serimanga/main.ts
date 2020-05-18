@@ -16,10 +16,10 @@ export const serimanga: pageInterface = {
       return utils.getBaseText($("#reader > div.read-top-menu > div.rtm-logo > a.back.text-white")).trim();
     },
     getIdentifier: function(url) {
-     return utils.urlPart(url,4);
+     return utils.urlPart(url,4) || "";
    },
    getOverviewUrl: function(url){
-    return j.$("#reader > div.read-top-menu > div.rtm-logo > a.back.text-white").attr("href");
+    return j.$("#reader > div.read-top-menu > div.rtm-logo > a.back.text-white").attr("href") || "";
   },
   getEpisode: function(url){
     return Number(url.split("/")[5]);
@@ -32,7 +32,7 @@ overview:{
     return j.$("div.seri-img > div > div > div.name").first().text().trim();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4);
+    return utils.urlPart(url,4) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("div.sub-top-text").first());

@@ -17,7 +17,7 @@ export const AnimeFever: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return AnimeFever.domain + j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").attr("href");
+      return AnimeFever.domain + (j.$("div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a").attr("href") || "");
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

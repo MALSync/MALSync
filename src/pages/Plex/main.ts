@@ -20,7 +20,7 @@ async function setBase(key){
 
 async function urlChange(page, curUrl = window.location.href, player = false){
   $('html').addClass('miniMAL-hide');
-  var path = utils.urlParam(curUrl, 'key')
+  var path = String(utils.urlParam(curUrl, 'key'))
   if(!path) return;
   if(!(path.indexOf('metadata') !== -1)) return;
 

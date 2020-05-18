@@ -16,7 +16,7 @@ export const Gogoanime: pageInterface = {
       getTitle: function(url){return j.$('.anime-info a').first().text().trim()},
       getIdentifier: function(url){return utils.urlPart(url, 3).split('-episode')[0];},
       getOverviewUrl: function(url){return url.split('/').slice(0,3).join('/') + '/category/'+Gogoanime.sync.getIdentifier(url);},
-      getEpisode: function(url){return utils.urlPart(url, 3).split('episode-')[1];},
+      getEpisode: function(url){return Number(utils.urlPart(url, 3).split('episode-')[1]);},
       nextEpUrl: function(url){
         var href = j.$('.anime_video_body_episodes_r a').last().attr('href')
         if(typeof href !== "undefined"){

@@ -16,10 +16,10 @@ export const mangalivre: pageInterface = {
       return j.$("div.series-title > span.title").text();
     },
     getIdentifier: function(url) {
-     return utils.urlPart(url,4);
+     return utils.urlPart(url,4) || "";
    },
    getOverviewUrl: function(url){
-    return mangalivre.domain + j.$("div.series-info-popup-container > div > div > div.series-cover > a").attr("href");
+    return mangalivre.domain + (j.$("div.series-info-popup-container > div > div > div.series-cover > a").attr("href") || "");
   },
   getEpisode: function(url){
     return Number(url.split("/")[6].replace(/\D+/g, ""));
@@ -38,7 +38,7 @@ overview:{
     return j.$("#series-data > div.series-info.touchcarousel > span.series-title > h1").first().text().trim();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4);
+    return utils.urlPart(url,4) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("#series-data > div.series-info.touchcarousel > span.series-desc").first());

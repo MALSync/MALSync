@@ -58,7 +58,7 @@
     },
     props: {
       malId: {
-        type: String
+        type: Number
       },
       type: {
         type: String

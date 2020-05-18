@@ -17,6 +17,7 @@ export const Kissmanga: pageInterface = {
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         var episodePart = utils.urlPart(url, 5);
+        let episodeNumber = NaN;
         //var temp = [];
         /*try{
           episodePart = episodePart.replace(j.$('.bigChar').attr('href').split('/')[2],'');
@@ -30,17 +31,21 @@ export const Kissmanga: pageInterface = {
           if(temp === null){
             temp = episodePart.match(/\d+/);
             if(temp === null){
-              episodePart = 0;
+              episodeNumber = 0;
             }else{
-              episodePart = temp[0];
+              episodeNumber = Number(temp[0]);
             }
           }else{
             episodePart = temp[0];
           }
         }else{
-          episodePart = temp[0].match(/\d+/)[0];
+          const matches = temp[0].match(/\d+/);
+
+          if(matches && matches.length > 0)
+            episodeNumber = Number(matches[0]);
         }
-        return episodePart;
+
+        return episodeNumber;
       },
       getVolume: function(url){
         let volumeText = url.match(/[V,v][o,O][l,L]\D?\d{3}/);

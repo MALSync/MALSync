@@ -28,7 +28,7 @@ export const Turkanime: pageInterface = {
     },
     overview:{
       getTitle: function(url){return j.$('#detayPaylas .panel-title').first().text().trim();},
-      getIdentifier: function(url){return utils.urlPart(url, 4)},
+      getIdentifier: function(url){return utils.urlPart(url, 4) || ""},
       uiSelector: function(selector){selector.prependTo(j.$("#detayPaylas .panel-body").first());},
       list:{
         offsetHandler: false,

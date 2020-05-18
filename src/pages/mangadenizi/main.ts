@@ -14,22 +14,25 @@ export const mangadenizi: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").text()},
     getIdentifier: function(url) {
-     return utils.urlPart(url,4);
+     return utils.urlPart(url,4) || "";
    },
    getOverviewUrl: function(url){
-    return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href");
+    return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href") || "";
   },
   getEpisode: function(url){
     return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
     var script = j.$("body > div.container-fluid > script")[0].innerHTML;
-    script = script.match(/next_chapter\s*=\s*".*"/gmi)
-    script = script[0].match(/"(.*?)"/gm);
-    script = script[0].replace(/(^"|"$)/gm, '');
-    if(script) {
-      return script;
-    }
+    let matches = script.match(/next_chapter\s*=\s*".*"/gmi);
+
+    if(!matches || matches.length === 0) return;
+
+    matches = matches[0].match(/"(.*?)"/gm);
+
+    if(!matches || matches.length === 0) return;
+
+    return matches[0].replace(/(^"|"$)/gm, '');
   }
 },
 overview:{
@@ -37,7 +40,7 @@ overview:{
     return j.$("h2.widget-title").first().text();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4);
+    return utils.urlPart(url,4) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("h2.widget-title").first());

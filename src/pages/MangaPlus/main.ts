@@ -16,13 +16,21 @@ export const MangaPlus: pageInterface = {
       return j.$("h1.Navigation-module_title_180OT").first().text();
     },
     getIdentifier: function(url) {
-      return j.$("h1.Navigation-module_title_180OT").first().parent().attr("href").split("/")[2];
+      const identifierHref = j.$("h1.Navigation-module_title_180OT").first().parent().attr("href");
+
+      if(!identifierHref || identifierHref.length < 3) return "";
+
+      return identifierHref.split("/")[2];
     },
     getOverviewUrl: function(url){
-      return MangaPlus.domain + j.$("h1.Navigation-module_title_180OT").first().parent().attr("href");
+      return MangaPlus.domain + (j.$("h1.Navigation-module_title_180OT").first().parent().attr("href") || "");
     },
     getEpisode: function(url){
-      return j.$("p.Navigation-module_chapterTitle_20juD").first().text().replace(/\D+/g, "");
+      const episodeText = j.$("p.Navigation-module_chapterTitle_20juD").first().text();
+
+      if(!episodeText) return NaN;
+
+      return Number(episodeText.replace(/\D+/g, ""));
     },
 },
 overview:{

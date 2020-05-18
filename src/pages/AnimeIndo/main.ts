@@ -14,10 +14,14 @@ export const AnimeIndo: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("#sct_content > div > div.infobox > h3").text()},
     getIdentifier: function(url) {
-      return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href").split("/")[4];
+      const anchorHref = j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href");
+
+      if(!anchorHref) return "";
+
+      return anchorHref.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href");
+      return j.$("#sct_content > div > div.ep_nav.fr > span.nav.all > a").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

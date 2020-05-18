@@ -1,6 +1,6 @@
 import {syncPage} from "./pages/syncPage";
 import {pages} from "./pages/pages";
-import {searchClass} from "./_provider/Search/vueSearchClass.ts";
+import {searchClass} from "./_provider/Search/vueSearchClass";
 
 con.log('updateCheck.ts');
 
@@ -9,11 +9,11 @@ api.settings.init()
     var url = new URL(window.location.href);
     var id = url.searchParams.get("mal-sync-background");
     con.log(id);
-    var episodeList = [];
+    var episodeList: any[] = [];
 
     var page = new syncPage(window.location.href, pages);
     page.cdn = function(){
-      api.request.sendMessage({name: "iframeDone", id: 'retry', epList: []});
+      api.request.sendMessage?.({name: "iframeDone", id: 'retry', epList: []});
     }
     page.handlePage = async function(){
       con.log('handlePage');
@@ -81,12 +81,12 @@ api.settings.init()
             if(typeof this.page.overview.list.getTotal != "undefined"){
               len = this.page.overview.list.getTotal();
             }
-            api.request.sendMessage({name: "iframeDone", id: id, epList: episodeList, len: len});
+            api.request.sendMessage?.({name: "iframeDone", id: String(id), epList: episodeList, len: len});
           }
         }
       }catch(e){
         con.error(e);
-        api.request.sendMessage({name: "iframeDone", id: id, epList: episodeList, len: len, error: e});
+        api.request.sendMessage?.({name: "iframeDone", id: String(id), epList: episodeList, len: len, error: e});
         return;
       }
     }

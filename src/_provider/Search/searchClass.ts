@@ -145,7 +145,7 @@ export class searchClass {
   }
 
   protected async getCache() {
-    return api.storage.get(this.page.name+'/'+this.identifier+'/Search', null).then((state) => {
+    return api.storage.get(this.page.name+'/'+this.identifier+'/Search').then((state) => {
       if(state) state.cache = true;
       return state;
     });
@@ -221,30 +221,39 @@ export class searchClass {
 
   public async firebase(): Promise<searchResult | false>{
     if(!this.page || !this.page.database) return false;
+
     var url = 'https://kissanimelist.firebaseio.com/Data2/'+this.page.database+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase()+'/Mal.json';
     con.log("Firebase", url);
-    return api.request.xhr('GET', url).then((response) => {
-      con.log("Firebase response",response.responseText);
-      if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
-        var returnUrl:any = '';
-        if(response.responseText.split('"')[1] == 'Not-Found'){
-          returnUrl = '';
-        }else{
-          returnUrl = 'https://myanimelist.net/'+this.page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
-        }
-        return {
-          url: returnUrl,
-          offset: 0,
-          provider: 'firebase',
-          similarity: {
-            same: true,
-            value: 1
-          },
-        };
-      }else{
-        return false;
-      }
-    });
+    const response = await api.request.xhr('GET', url);
+
+    con.log("Firebase response",response.responseText);
+    if(
+      !response.responseText ||
+      response.responseText === "null" ||
+      response.responseText.includes("error")
+    )
+      return false;
+
+    const matches = response.responseText.match(/(?<=")(?!:)(?:.*?)(?=")/g);
+
+    if(!matches || matches.length === 0) return false;
+
+    const [id, name] = matches;
+
+    let returnUrl = "";
+    
+    if(id !== "Not-Found")
+      returnUrl = `https://myanimelist.net/${this.page.type}/${id}/${name}`;
+
+    return {
+      url: returnUrl,
+      offset: 0,
+      provider: 'firebase',
+      similarity: {
+        same: true,
+        value: 1
+      },
+    };
   }
 
   public async malSync(): Promise<searchResult | false>{
@@ -253,46 +262,38 @@ export class searchClass {
     if(!dbPl) return false;
     var url = 'https://api.malsync.moe/page/'+dbPl+'/'+encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase();
     con.log("malSync", url);
-    return api.request.xhr('GET', url).then((response) => {
-      con.log("malSync response",response);
-      if(response.status === 400 || response.status === 200) {
-        if(response.status === 200 && response.responseText && !(response.responseText.indexOf("error") > -1)){
-          var res = JSON.parse(response.responseText);
-          if(typeof res.malUrl !== 'undefined') {
-            return {
-              url: res.malUrl,
-              offset: 0,
-              provider: 'firebase',
-              similarity: {
-                same: true,
-                value: 1
-              },
-            };
-          }else{
-            return false;
-          }
-        }else{
-          return false;
-        }
-      }else{
-        throw 'malsync offline';
-      }
-    });
+    
+    let response = await api.request.xhr('GET', url)
+    con.log("malSync response",response);
+
+    if(response.status !== 400 && response.status !== 200)
+      throw 'malsync offline';
+
+    if(response.status === 400 && response.responseText?.includes("error"))
+      return false;
+
+    var res = JSON.parse(response.responseText);
+
+    if(!res.malUrl) 
+      return false;
+
+    return {
+      url: res.malUrl,
+      offset: 0,
+      provider: 'firebase',
+      similarity: {
+        same: true,
+        value: 1
+      },
+    };
   }
 
-  public malSearch(): Promise<searchResult | false>{
+  public async malSearch(): Promise<searchResult | false>{
     var url = "https://myanimelist.net/"+this.getNormalizedType()+".php?q=" + encodeURI(this.sanitizedTitel);
     if(this.type === 'novel'){
       url = "https://myanimelist.net/"+this.getNormalizedType()+".php?type=2&q=" + encodeURI(this.sanitizedTitel);
     }
     con.log("malSearch", url);
-    return api.request.xhr('GET', url).then((response) => {
-      if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){
-        return handleResult(response, 1, this);
-      }else{
-        return false;
-      }
-    });
 
     function handleResult(response, i = 1, This){
       var link = getLink(response, i);
@@ -349,6 +350,13 @@ export class searchClass {
         return '';
       }
     }
+    
+    let response = await api.request.xhr('GET', url);
+
+    if(!response || response.responseText?.includes("  error "))
+      return false;
+
+    return handleResult(response, 1, this);
   }
 
   public async pageSearch(): Promise<searchResult | false>{

@@ -30,7 +30,7 @@ export class userlist extends ListAbstract {
   }
 
   private userRequest() {
-    return api.request.xhr('Get', {
+    return api.request.xhr('GET', {
       url: 'https://kitsu.io/api/edge/users?filter[self]=true',
       headers: {
         'Authorization': 'Bearer ' + this.accessToken(),

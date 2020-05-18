@@ -3,7 +3,7 @@ import {pageInterface} from "./../pageInterface";
 var json:any = undefined;
 var ident:any = undefined;
 
-var seasonInterval = undefined;
+var seasonInterval:number;
 
 function getSeries(page, overview = ''){
   json = undefined;
@@ -74,15 +74,6 @@ export const Vrv: pageInterface = {
       }
     },
     init(page){
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-      j.$(document).ready(function(){
-        ready();
-      });
-      utils.urlChangeDetect(function(){
-        page.url = window.location.href;
-        ready();
-      });
-
       function ready(){
         clearInterval(seasonInterval);
         $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
@@ -107,5 +98,14 @@ export const Vrv: pageInterface = {
           });
         }
       }
+
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+      j.$(document).ready(function(){
+        ready();
+      });
+      utils.urlChangeDetect(function(){
+        page.url = window.location.href;
+        ready();
+      });
     }
 };

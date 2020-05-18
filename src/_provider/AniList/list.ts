@@ -67,7 +67,7 @@ export class userlist extends ListAbstract {
     return this.api.settings.get('anilistToken');
   }
 
-  async getPart() {
+  async getPart(): Promise<any> {
     if(this.offset < 1) this.offset = 1;
     con.log('[UserList][AniList]', 'username: '+this.username, 'status: '+this.status, 'offset: '+this.offset);
 

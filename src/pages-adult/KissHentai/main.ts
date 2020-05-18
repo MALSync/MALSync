@@ -17,7 +17,11 @@ export const KissHentai: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return KissHentai.domain+ j.$('#navsubbar a').first().attr("href");
+      const anchorHref = j.$('#navsubbar a').first().attr("href");
+
+      if(!anchorHref) return "";
+
+      return KissHentai.domain + anchorHref ;
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

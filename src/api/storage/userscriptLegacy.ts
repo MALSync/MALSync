@@ -23,7 +23,7 @@ export const userscriptLegacy: storageInterface = {
       GM_deleteValue(key);
     },
 
-    async list(): Promise<void> {
+    async list(): Promise<any[]> {
       var reverseArray:any = {};
       j.$.each( GM_listValues(), function( index, cache){
         reverseArray[cache] = index;

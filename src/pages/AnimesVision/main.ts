@@ -17,7 +17,7 @@ export const AnimesVision: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("#episodes-sv-1 > li > div.sli-name > a").attr("href");
+      return j.$("#episodes-sv-1 > li > div.sli-name > a").attr("href") || "";
     },
     getEpisode: function(url){
       var episodetemp = url.split("/")[5].replace(/\D+/,"");

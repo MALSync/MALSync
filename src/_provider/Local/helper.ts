@@ -3,14 +3,16 @@ export function getCacheKey(id, page){
 }
 
 export async function getSyncList(){
+  let data;
+
   if(api.type == 'userscript') {
     var list = await api.storage.list('sync');
     for (var key in list) {
       list[key] = await api.storage.get(key);
     }
-    var data = list;
+    data = list;
   }else{
-    var data = api.storage.list('sync');
+    data = api.storage.list('sync');
   }
   return data;
 }

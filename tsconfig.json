@@ -10,7 +10,7 @@
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
   },
   "exclude": [
     "**/*.test.ts",

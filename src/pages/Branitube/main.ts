@@ -22,7 +22,7 @@ export const Branitube: pageInterface = {
       return j.$('.nomeAnime').data('anid') +"?"+ getType().replace(/\s/gm,"");
     },
     getOverviewUrl: function(url){
-      var tempUrl = Branitube.domain + j.$("div.buttonEpisodes > a").attr("href")
+      var tempUrl = Branitube.domain + (j.$("div.buttonEpisodes > a").attr("href") || "")
       if(getType() === "anime") {
         return tempUrl
       } else if(getType() === "ova") {
@@ -35,7 +35,7 @@ export const Branitube: pageInterface = {
     },
     getEpisode: function(url){
       if(getType().indexOf("movie") == -1) {
-        return j.$(".epInfo").text().replace(/\D+/g, "");
+        return Number(j.$(".epInfo").text().replace(/\D+/g, ""));
       } else {
         return 1;
       }

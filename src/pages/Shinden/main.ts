@@ -17,10 +17,14 @@ export const Shinden: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("h1.page-title > a").attr("href");
+      return j.$("h1.page-title > a").attr("href") || "";
     },
     getEpisode: function(url){
-      return j.$("dl.info-aside-list:nth-child(1) > dd:nth-child(2)").text().replace(/\D+/g, "");
+      const episodeText = j.$("dl.info-aside-list:nth-child(1) > dd:nth-child(2)").text();
+
+      if(!episodeText) return NaN;
+
+      return Number(episodeText.replace(/\D+/g, ""));
     }
   },
   overview:{

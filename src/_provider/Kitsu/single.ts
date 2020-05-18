@@ -19,13 +19,13 @@ export class Single extends SingleAbstract {
 
   protected handleUrl(url) {
     if(url.match(/kitsu\.io\/(anime|manga)\/.*/i)) {
-      this.type = utils.urlPart(url, 3);
+      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
       this.ids.kitsu.slug = utils.urlPart(url, 4);
       return;
     }
     if(url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3);
-      this.ids.mal = utils.urlPart(url, 4);
+      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
+      this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
     throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')

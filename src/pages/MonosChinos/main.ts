@@ -17,7 +17,7 @@ export const MonosChinos: pageInterface = {
       return MonosChinos.sync.getOverviewUrl(url).split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("a.btnWeb.green.Current").attr("href");
+      return j.$("a.btnWeb.green.Current").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");
@@ -48,7 +48,7 @@ export const MonosChinos: pageInterface = {
       return j.$("h1.Title").text().replace(/(Sub|Dub)(\s+Español)$/gi,"").trim();
     },
     getIdentifier: function(url){
-      return utils.urlPart(url,4);
+      return utils.urlPart(url,4) || "";
     },
     uiSelector: function(selector){
       selector.insertBefore(j.$("h1.Title").first());

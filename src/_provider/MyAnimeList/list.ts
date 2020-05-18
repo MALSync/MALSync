@@ -8,20 +8,17 @@ export class userlist extends ListAbstract {
 
   async getUsername() {
     var url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
-    return api.request.xhr('GET', url).then((response) => {
-      var username = false;
-      try{
-        username = response.responseText.split('USER_NAME = "')[1].split('"')[0];
-      }catch(e){}
-      con.log('[Username]', username);
-      if(!username){
-        throw {
-          code: 400,
-          message: 'Not Authenticated',
-        }
-      }
-      return username;
-    });
+    let response = await api.request.xhr('GET', url);
+    var username: string;
+    const usernameMatches = response.responseText.match(/USER_NAME = "(.*?)"/);
+
+    if(!usernameMatches || usernameMatches.length < 2)
+      throw {
+        code: 400,
+        message: 'Not Authenticated',
+      };
+
+    return usernameMatches[1];
   }
 
   errorHandling(res) {

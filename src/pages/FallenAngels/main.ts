@@ -17,19 +17,23 @@ export const FallenAngels: pageInterface = {
      return utils.urlPart(url,4);
    },
    getOverviewUrl: function(url){
-    return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href");
+    return j.$("#navbar-collapse-1 > ul > li:nth-child(1) > a").attr("href") || "";
   },
   getEpisode: function(url){
     return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
-    var script = j.$("body > div.container-fluid > script")[0].innerHTML;
-    script = script.match(/next_chapter\s*=\s*".*"/gmi)
-    script = script[0].match(/"(.*?)"/gm);
-    script = script[0].replace(/(^"|"$)/gm, '');
-    if(script) {
-      return script;
-    }
+    var scriptContent = j.$("body > div.container-fluid > script").html();
+    const nextChapterMatches = scriptContent.match(/next_chapter\s*=\s*".*"/gmi);
+
+    if(!nextChapterMatches || nextChapterMatches.length === 0) return;
+
+    const matchesOfRestOfNextChapter = nextChapterMatches[0].match(/"(.*?)"/gm);
+
+    if(!matchesOfRestOfNextChapter || matchesOfRestOfNextChapter.length === 0)
+      return;
+
+    return matchesOfRestOfNextChapter[0].replace(/(^"|"$)/gm, '');
   }
 },
 overview:{

@@ -9,7 +9,8 @@ import {userlist as localList} from "./Local/list";
 export async function getList(...args) {
   var tempList: listElement[] = [];
   if(api.settings.get('localSync')){
-    tempList = await new localList(...args).get();
+    const [status, callbacks, username, offset, templist] = args;
+    tempList = await new localList(status, callbacks, username, offset, templist).get();
   }
 
   var list = getListObj(args);
@@ -30,14 +31,16 @@ function getListObj(args, syncMode:string = '') {
     syncMode = helper.getSyncMode(args[1] ? args[1]: 'anime');
   }
 
+  const [status, callbacks, username, offset, templist] = args
+
   if(syncMode == 'MAL'){
-    return new malList(...args);
+    return new malList(status, callbacks, username, offset, templist);
   }else if(syncMode == 'ANILIST'){
-    return new anilistList(...args);
+    return new anilistList(status, callbacks, username, offset, templist);
   }else if(syncMode == 'KITSU'){
-    return new kitsuList(...args);
+    return new kitsuList(status, callbacks, username, offset, templist);
   }else if(syncMode == 'SIMKL'){
-    return new simklList(...args);
+    return new simklList(status, callbacks, username, offset, templist);
   }else{
     throw 'Unknown sync mode';
   }

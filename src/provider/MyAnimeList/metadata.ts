@@ -39,13 +39,15 @@ export class metadata implements metadataInterface{
   }
 
   getAltTitle(){
-    var altTitle = [];
+    var altTitle: any[] = [];
+
     try{
       var tempHtml = j.$.parseHTML( '<div>'+this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]+'</div>' );
       altTitle = j.$(tempHtml).find('.spaceit_pad').toArray().map(function(i){
         return utils.getBaseText(j.$(i)).trim();
       });
     }catch(e) {console.log('[iframeOverview] Error:',e);}
+
     return altTitle;
   }
 
@@ -60,7 +62,7 @@ export class metadata implements metadataInterface{
         if(!index) charFound = 1;
         var regexDimensions = /\/r\/\d*x\d*/g;
         var charImg = j.$(value).find('img').first().attr("data-src");
-        if ( regexDimensions.test(charImg)){
+        if (charImg && regexDimensions.test(charImg)){
           charImg = charImg.replace(regexDimensions, '');
         }else{
           charImg = api.storage.assetUrl('questionmark.gif');
@@ -134,24 +136,30 @@ export class metadata implements metadataInterface{
   }
 
   getOpeningSongs(){
-    var openingSongs = [];
+    var openingSongs: string[] = [];
 
     try{
       var openingBlock = '<div>'+this.xhr.split('opnening">')[1].split('</div>')[0]+'</div>';
       var openingData = j.$.parseHTML( openingBlock );
-      openingSongs = j.$.map(j.$(openingData).find('.theme-song'), j.$.text);
+
+      j.$(openingData).find('.theme-song').each((_, el)=>{
+        openingSongs.push($(el).text());
+      });
     }catch(e) {console.log('[iframeOverview] Error:',e);}
 
     return openingSongs;
   }
 
   getEndingSongs(){
-    var endingSongs = [];
+    var endingSongs: string[] = [];
 
     try{
       var endingBlock = '<div>'+this.xhr.split(' ending">')[1].split('</div>')[0]+'</div>';
       var endingData = j.$.parseHTML( endingBlock );
-      endingSongs = j.$.map(j.$(endingData).find('.theme-song'), j.$.text);
+
+      j.$(endingData).find('.theme-song').each((_, el)=>{
+        endingSongs.push($(el).text());
+      });
     }catch(e) {console.log('[iframeOverview] Error:',e);}
 
     return endingSongs;
@@ -167,7 +175,7 @@ export class metadata implements metadataInterface{
         var links:{url: string, title: string, statusTag: string}[] = [];
         j.$(value).find('.borderClass').last().find('a').each(function( index, value ) {
           links.push({
-            url: j.$(value).attr('href'),
+            url: j.$(value).attr('href') || "",
             title: j.$(value).text(),
             statusTag: ''
           });
@@ -183,25 +191,22 @@ export class metadata implements metadataInterface{
 
 }
 
-export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
-  return api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1').then((response) => {
-    var searchResults = JSON.parse(response.responseText);
-    var items = searchResults.categories[0].items;
-    var resItems:any = [];
-    items.forEach(function( item ) {
-      resItems.push({
-        id: item.id,
-        name: item.name,
-        altNames: [],
-        url: item.url,
-        malUrl: () => {return item.url},
-        image: item.image_url,
-        media_type: item.payload.media_type,
-        isNovel: item.payload.media_type === 'Novel',
-        score: item.payload.score,
-        year: item.payload.start_year
-      })
-    });
-    return resItems;
-  });
+export const search: searchInterface = async function (keyword, type: "anime"|"manga", options = {}, sync = false){
+  const response = await api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1');
+
+  var searchResults = JSON.parse(response.responseText);
+  var items = searchResults.categories[0].items;
+
+  return items.map(item => ({
+    id: item.id,
+    name: item.name,
+    altNames: [],
+    url: item.url,
+    malUrl: () => {return item.url},
+    image: item.image_url,
+    media_type: item.payload.media_type,
+    isNovel: item.payload.media_type === 'Novel',
+    score: item.payload.score,
+    year: item.payload.start_year
+  }));
 }

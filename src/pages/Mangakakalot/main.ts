@@ -20,7 +20,7 @@ export const Mangakakalot: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url){
-      return j.$("body > div.breadcrumb > p > span:nth-child(3) > a").first().attr("href");
+      return j.$("body > div.breadcrumb > p > span:nth-child(3) > a").first().attr("href") || "";
     },
     getEpisode: function(url){
       return Number(url.split("/")[5].match(/\d+/gmi));

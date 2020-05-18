@@ -17,7 +17,7 @@ export const AnimePlanet: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return AnimePlanet.domain + j.$("h2.sub a").attr('href');
+      return AnimePlanet.domain + (j.$("h2.sub a").attr('href') || "");
     },
     getEpisode: function(url){
       var episodePart = utils.getBaseText($('h2.sub')).replace(/\r?\n|\r/g,"");

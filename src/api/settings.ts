@@ -127,12 +127,14 @@ export var settingsObj = {
   },
 
   set: function(name: string, value: any){
-    if(this.options.hasOwnProperty(name)){
-      this.options[name] = value;
-      return api.storage.set('settings/'+name, value);
-    }else{
-      con.error(name+' is not a defined option');
+    if(!this.options.hasOwnProperty(name)){
+      let err = Error(name+' is not a defined option');
+      con.error(err);
+      throw err;
     }
+
+    this.options[name] = value;
+    return api.storage.set('settings/'+name, value);
   },
 
   getAsync: async function(name: string){

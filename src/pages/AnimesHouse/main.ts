@@ -26,14 +26,14 @@ export const AnimesHouse: pageInterface = {
     },
     getOverviewUrl: function(url){
       if(!film) {
-        return j.$("div.pag_episodes > div:nth-child(2) > a").attr("href");
+        return j.$("div.pag_episodes > div:nth-child(2) > a").attr("href") || "";
       } else {
         return url;
       }
     },
     getEpisode: function(url){
       if(!film) {
-        return j.$("#info > div > h3.epih3").text().replace(/\D+/g, "");
+        return Number(j.$("#info > div > h3.epih3").text().replace(/\D+/g, ""));
       } else {
         return 1;
       }

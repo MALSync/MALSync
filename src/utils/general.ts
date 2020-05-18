@@ -1,14 +1,15 @@
-import {Cache} from "./Cache.ts";
+import {Cache} from "./Cache";
 
 declare var browser: any;
 
 export function urlPart(url:string, part:number){
-  try{
-      return url.split("/")[part].split("?")[0].split("#")[0];
-    }catch(e){
-      return undefined;
-    }
+  if(!url) return "";
 
+  let urlParts = url.split("/");
+
+  if(!urlParts[part]) return "";
+
+  return urlParts[part].replace(/[#?].*/, "");
 }
 
 export function urlParam(url, name){
@@ -105,34 +106,38 @@ export function urlChangeDetect(callback){
 
 export function fullUrlChangeDetect(callback){
   var currentPage = "";
-  return setInterval(function(){
+  const intervalId = setInterval(function(){
       if (currentPage != window.location.href){
           currentPage = window.location.href;
           callback();
       }
   }, 100);
+
+  return Number(intervalId);
 }
 
 export function changeDetect(callback, func){
   var currentPage = func();
-  return setInterval(function(){
+  const intervalId = setInterval(function(){
     var temp = func();
     if (typeof temp !== 'undefined' && currentPage != temp){
       currentPage = func();
       callback();
     }
   }, 500);
+
+  return Number(intervalId);
 }
 
-export function waitUntilTrue(condition, callback){
-  var Interval:any = null;
-  Interval = setInterval(function(){
+export function waitUntilTrue(condition: Function, callback: Function, interval: number = 100){
+  let intervalId = setInterval(function(){
       if (condition()){
-          clearInterval(Interval);
+          clearInterval(intervalId);
           callback();
       }
-  }, 100);
-  return Interval;
+  }, interval);
+
+  return intervalId;
 }
 
 var doubleId = Math.random();
@@ -185,9 +190,9 @@ export async function setResumeWaching(url:string, ep:number, type, id){
   return api.storage.set('resume/'+type+'/'+id, {url: url, ep: ep});
 }
 
-export async function getResumeWaching(type, id):Promise<{url:string, ep:number}>{
-  //@ts-ignore
-  if(!api.settings.get('malResume')) return undefined;
+export async function getResumeWaching(type, id):Promise<{url?:string, ep?:number} | void>{
+  if(!api.settings.get('malResume')) return;
+
   return api.storage.get('resume/'+type+'/'+id);
 }
 
@@ -195,9 +200,9 @@ export async function setContinueWaching(url:string, ep:number, type, id){
   return api.storage.set('continue/'+type+'/'+id, {url: url, ep: ep});
 }
 
-export async function getContinueWaching(type, id):Promise<{url:string, ep:number}>{
-  //@ts-ignore
-  if(!api.settings.get('malContinue')) return undefined;
+export async function getContinueWaching(type, id):Promise<{url?:string, ep?:number} | void>{
+  if(!api.settings.get('malContinue')) return;
+
   return api.storage.get('continue/'+type+'/'+id);
 }
 
@@ -250,9 +255,11 @@ export async function getEntrySettings(type, id, tags="") {
     }
   }else{
     //No TAG mode
-    var temp = await api.storage.get('tagSettings/'+type+'/'+id);
+    var temp: any = await api.storage.get('tagSettings/'+type+'/'+id);
+
     if(temp) {
-      var temp = JSON.parse(tagString);
+      temp = JSON.parse(tagString);
+
       for(var key in tempOptions){
         if(temp[key]) tempOptions[key] = temp[key];
       }
@@ -344,12 +351,17 @@ export async function getMalToKissFirebase(type, id){
 
           var streamUrl = 'https://kissanimelist.firebaseio.com/Data2/'+stream+'/'+encodeURIComponent(streamKey)+'.json';
 
-          var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), null);
+          var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey));
+          var streamJson;
+
           if(typeof(cache) !== "undefined" && cache !== null && cache.constructor === Object && Object.keys(cache).length !== 0){
-            var streamJson = cache;
+            streamJson = cache;
           }else{
             var streamRespose = await api.request.xhr('GET', streamUrl);
-            var streamJson = j.$.parseJSON(streamRespose.responseText);
+
+            if(streamRespose)
+              streamJson = j.$.parseJSON(streamRespose.responseText);
+
             api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
           }
           if(!streamJson){
@@ -373,7 +385,6 @@ export async function getMalToKissFirebase(type, id){
 
       con.log('Mal2Kiss', json);
       resolve(json);
-
     });
   });
 }
@@ -409,7 +420,7 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
     var airing = pre.airing;
     var episode = pre.episode;
 
-    if(typeof aniCache != 'undefined'){
+    if(typeof aniCache === "object"){
       var timestamp = aniCache.nextEpTime * 1000;
       if(Date.now() < timestamp){
         episode = aniCache.currentEp;
@@ -503,59 +514,64 @@ export function canHideTabs(){
 
 export async function epPrediction(malId , callback){
   if(!api.settings.get('epPredictions')) return;
+
   var timestamp = await api.storage.get('mal/'+malId+'/release');
-  if(typeof(timestamp) != "undefined"){
-    var airing = 1;
-    var episode = 0;
-    if(Date.now() < timestamp) airing = 0;
 
-    if(airing){
-      var delta = Math.abs(Date.now() - timestamp) / 1000;
-    }else{
-      var delta = Math.abs(timestamp - Date.now()) / 1000;
-    }
+  if(typeof timestamp !== "number")
+    timestamp = Number(timestamp);
+
+  if(isNaN(timestamp)) return callback(false);
+
+  var airing = 1;
+  var episode = 0;
+
+  if(Date.now() < timestamp) airing = 0;
+
+  if(airing){
+    var delta = Math.abs(Date.now() - timestamp) / 1000;
+  }else{
+    var delta = Math.abs(timestamp - Date.now()) / 1000;
+  }
 
 
-    var diffWeeks = Math.floor(delta / (86400 * 7));
-    delta -= diffWeeks * (86400 * 7);
+  var diffWeeks = Math.floor(delta / (86400 * 7));
+  delta -= diffWeeks * (86400 * 7);
 
-    if(airing){
-      //We need the time until the week is complete
-      delta = (86400 * 7) - delta;
-    }
+  if(airing){
+    //We need the time until the week is complete
+    delta = (86400 * 7) - delta;
+  }
 
-    var diffDays = Math.floor(delta / 86400);
-    delta -= diffDays * 86400;
+  var diffDays = Math.floor(delta / 86400);
+  delta -= diffDays * 86400;
 
-    var diffHours = Math.floor(delta / 3600) % 24;
-    delta -= diffHours * 3600;
+  var diffHours = Math.floor(delta / 3600) % 24;
+  delta -= diffHours * 3600;
 
-    var diffMinutes = Math.floor(delta / 60) % 60;
-    delta -= diffMinutes * 60;
+  var diffMinutes = Math.floor(delta / 60) % 60;
+  delta -= diffMinutes * 60;
 
-    if(airing){
-      episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
-      episode++;
-      if( episode > 50 ){
-        episode = 0;
-      }
-    }
-
-    var maxEp = await api.storage.get('mal/'+malId+'/release');
-    if(typeof(maxEp) === "undefined" || episode < maxEp){
-      callback({
-        timestamp: timestamp,
-        airing: airing,
-        diffWeeks: diffWeeks,
-        diffDays: diffDays,
-        diffHours: diffHours,
-        diffMinutes: diffMinutes,
-        episode: episode
-      });
-      return;
+  if(airing){
+    episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+    episode++;
+    if( episode > 50 ){
+      episode = 0;
     }
   }
-  callback(false);
+
+  var maxEp = await api.storage.get('mal/'+malId+'/release');
+  if(typeof(maxEp) === "undefined" || episode < maxEp){
+    callback({
+      timestamp: timestamp,
+      airing: airing,
+      diffWeeks: diffWeeks,
+      diffDays: diffDays,
+      diffHours: diffHours,
+      diffMinutes: diffMinutes,
+      episode: episode
+    });
+    return;
+  }
 }
 
 export function statusTag(status, type, id){
@@ -639,9 +655,12 @@ export function notifications(url:string, title:string, message:string, iconUrl 
   con.log('Notification', url, messageObj );
 
   api.storage.get('notificationHistory').then((history) => {
-    if(typeof history === 'undefined'){
+    if(history === undefined){
       history = [];
     }
+
+    if(typeof history !== "object") return;
+
     if (history.length >= 10){
       history.shift();
     }
@@ -666,7 +685,8 @@ export function notifications(url:string, title:string, message:string, iconUrl 
 export async function timeCache(key, dataFunction, ttl){
   return new Promise(async (resolve, reject) => {
     var value = await api.storage.get(key);
-    if(typeof value !== 'undefined' && new Date().getTime() < value.timestamp){
+    if(typeof value === "object" && new Date().getTime() < value.timestamp
+      ){
       resolve(value.data);
       return;
     }
@@ -737,7 +757,7 @@ export function flashm(text, options?:{error?: boolean, type?: string, permanent
     return flashm;
 }
 
-export async function flashConfirm(message, type, yesCall = () => {}, cancelCall = () => {}){
+export async function flashConfirm(message, type, yesCall = () => {}, cancelCall = () => {}): Promise<boolean>{
   return new Promise(function(resolve, reject) {
     message = '<div style="text-align: center;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
     var flasmessage = flashm(message, {permanent: true, position: "top", type: type});

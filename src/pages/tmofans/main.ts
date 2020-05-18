@@ -16,10 +16,14 @@ export const tmofans: pageInterface = {
       return j.$("#app > section:nth-child(2) > div > div > h1").text().trim();
     },
     getIdentifier: function(url) {
-     return j.$("nav.navbar > div > div:nth-child(2) > a").last().attr("href").split("/")[6];
+      const identifierAnchorHref = j.$("nav.navbar > div > div:nth-child(2) > a").last().attr("href");
+
+      if(!identifierAnchorHref) return "";
+
+     return identifierAnchorHref.split("/")[6];
    },
    getOverviewUrl: function(url){
-    return j.$("nav.navbar > div > div:nth-child(2) > a").last().attr("href");
+    return j.$("nav.navbar > div > div:nth-child(2) > a").last().attr("href") || "";
   },
   getEpisode: function(url){
     var episodePart = utils.getBaseText($("#app > section:nth-child(2) > div > div > h2").first()).trim()
@@ -36,7 +40,7 @@ overview:{
     return utils.getBaseText($("h1.element-title.my-2").first()).trim();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,6);
+    return utils.urlPart(url,6) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("header.container-fluid").first());

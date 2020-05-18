@@ -54,7 +54,7 @@ export class minimal{
       }
       e.preventDefault();
       // @ts-ignore
-      var url = j.$(this).attr('href');
+      var url = j.$(this).attr('href') || "";
       if(!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       if(!This.fill(url)){
@@ -195,8 +195,8 @@ export class minimal{
       var deleted = 0;
 
       j.$.each( cacheArray, function( index, cache){
-        if(!utils.syncRegex.test(index)){
-          api.storage.remove(index);
+        if(!utils.syncRegex.test(String(index))){
+          api.storage.remove(String(index));
           deleted++;
         }
       });

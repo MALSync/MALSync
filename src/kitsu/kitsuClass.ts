@@ -128,12 +128,16 @@ export class kitsuClass{
           url: 'https://kitsu.io/api/oauth/token',
           //@ts-ignore
           data: 'grant_type=password&username='+encodeURIComponent($('#mal-sync-login #email').val())+'&password='+encodeURIComponent($('#mal-sync-login #pass').val()),
-          success: function(result){
+          success: async function(result){
             var token = result.access_token;
+
+            if(!token) return;
+
             con.info('token', token);
-            api.settings.set('kitsuToken', token).then(() => {
-              $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>'+api.storage.lang("kitsuClass_authentication_Success"))
-            });
+
+            await api.settings.set('kitsuToken', token)
+           
+            $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>'+api.storage.lang("kitsuClass_authentication_Success"))
           },
           error: function(result){
             try{
@@ -249,7 +253,7 @@ export class kitsuClass{
 
         $('.remove-mal-sync').click(function(){
           var key = $(this).attr('title');
-          api.settings.set(key, false);
+          api.settings.set(String(key), false);
           location.reload();
         });
       });
@@ -337,7 +341,8 @@ export class kitsuClass{
         }
       }
 
-      var listProvider = new userlist(1, this.page!.type);
+      let _userlist: any = userlist;
+      var listProvider:userlist = new _userlist(1, this.page.type);
 
       listProvider.get().then( (list) => {
         if(this.page!.type == 'anime'){

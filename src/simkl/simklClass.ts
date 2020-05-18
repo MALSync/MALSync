@@ -53,7 +53,8 @@ export class simklClass{
 
     var urlpart = utils.urlPart(this.url, 3);
     var url2part = utils.urlPart(this.url, 4);
-    if( (urlpart == 'anime' || urlpart == 'manga') && !isNaN(url2part)){
+
+    if( (urlpart == 'anime' || urlpart == 'manga') && !isNaN(Number(url2part))){
       var malObj = new simklSingle(this.url);
       await malObj.update();
 
@@ -221,7 +222,9 @@ export class simklClass{
   }
 
   bookmarksProfile(){
-    var listProvider = new userlist(1, this.page!.type);
+    // TODO needs review. userList complains about missing parameters
+    const _userlist: any = userlist;
+    var listProvider:userlist = new _userlist(1, this.page!.type);
 
     listProvider.get().then( (list) => {
       $.each(list, async (index, en) => {
@@ -270,7 +273,8 @@ export class simklClass{
   bookmarksAnime(){
     var This = this;
 
-    var listProvider = new userlist(1, this.page!.type);
+    const _userlist: any = userlist;
+    var listProvider:userlist = new _userlist(1, this.page!.type);
 
     listProvider.get().then( (list) => {
       exec();

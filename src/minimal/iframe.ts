@@ -92,6 +92,8 @@ export function initIframeModal(page){
     j.$(".open-info-popup").show();
     if(api.settings.get('autoCloseMinimal')) j.$(".modal-kal").css('pointer-events', 'initial')
     document.addEventListener("click", function (e) {
+      if(!e || !e.target) return;
+
       if (j.$(e.target).hasClass('open-info-popup')) {
         con.log("Open miniMAL");
         if(j.$('#info-popup').css('display') == 'none'){

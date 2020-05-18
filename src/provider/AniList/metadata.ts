@@ -8,12 +8,20 @@ export class metadata implements metadataInterface{
   readonly type: "anime"|"manga";
 
   constructor(public malUrl:string){
-    this.type = utils.urlPart(malUrl, 3);
+    this.id = NaN;
+    this.type =  "anime";
+
+    let urlPart3 = utils.urlPart(malUrl, 3);
+    
+    if(urlPart3 !== "anime" && urlPart3 !== "manga") return;
+
+    this.type = urlPart3;
+    
     if(typeof malUrl !== 'undefined' && malUrl.indexOf("myanimelist.net") > -1){
-      this.id = utils.urlPart(malUrl, 4);
+      this.id = Number(utils.urlPart(malUrl, 4));
     }else if(typeof malUrl !== 'undefined' && malUrl.indexOf("anilist.co") > -1){
       this.id = NaN;
-      this.aniId = utils.urlPart(malUrl, 4);
+      this.aniId = Number(utils.urlPart(malUrl, 4));
     }else{
       this.id = NaN;
     }
@@ -386,7 +394,7 @@ export class metadata implements metadataInterface{
 
 }
 
-export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
+export async function search(keyword, type: "anime"|"manga", options = {}, sync = false): Promise<searchInterface>{
   var query = `
     query ($search: String) {
       ${type}: Page (perPage: 10) {
@@ -423,7 +431,7 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
     search: keyword,
   };
 
-  return api.request.xhr('POST', {
+  const response = await api.request.xhr('POST', {
     url: 'https://graphql.anilist.co',
     headers: {
       'Content-Type': 'application/json',
@@ -433,25 +441,27 @@ export function search(keyword, type: "anime"|"manga", options = {}, sync = fals
       query: query,
       variables: variables
     })
-  }).then((response) => {
-    var res = JSON.parse(response.responseText);
-    con.log(res);
-
-    var resItems:any = [];
-    j.$.each(res.data[type].results, function( index, item ) {
-      resItems.push({
-        id: item.id,
-        name: item.title.userPreferred,
-        altNames: Object.values(item.title).concat(item.synonyms),
-        url: item.siteUrl,
-        malUrl: () => {return (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null},
-        image: item.coverImage.medium,
-        media_type: item.format ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '): '',
-        isNovel: item.format === 'NOVEL',
-        score: item.averageScore,
-        year: item.startDate.year
-      })
-    });
-    return resItems;
   });
+
+  var res = JSON.parse(response.responseText);
+  con.log(res);
+
+  var resItems:any = [];
+
+  j.$.each(res.data[type].results, function( index, item ) {
+    resItems.push({
+      id: item.id,
+      name: item.title.userPreferred,
+      altNames: Object.values(item.title).concat(item.synonyms),
+      url: item.siteUrl,
+      malUrl: () => {return (item.idMal) ? 'https://myanimelist.net/'+type+'/'+item.idMal : null},
+      image: item.coverImage.medium,
+      media_type: item.format ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' '): '',
+      isNovel: item.format === 'NOVEL',
+      score: item.averageScore,
+      year: item.startDate.year
+    })
+  });
+
+  return resItems;
 };

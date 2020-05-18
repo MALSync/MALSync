@@ -57,7 +57,7 @@ export async function malSchedule(){
     $.each( cacheArray, function( index, cache){
       //@ts-ignore
       if(/^mal\/[^/]+\/(release|eps|aniSch)$/.test(index)){
-        api.storage.remove(index);
+        api.storage.remove(String(index));
         deleted++;
       }
     });

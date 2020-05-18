@@ -129,14 +129,14 @@ export async function getSingle(ids:{simkl?:string|number, mal?:string|number}, 
   return null;
 }
 
-export async function call(url, sData = {}, asParameter = false, methode = 'GET', login = true){
+export async function call(url, sData = {}, asParameter = false, methode: "GET" | "POST" = 'GET', login = true){
   if(asParameter){
     url += '?'+j.$.param(sData);
   }
   con.log('call', methode, url, sData);
 
   var headers = {
-    'Authorization': 'Bearer ' + api.settings.get('simklToken'),
+    Authorization: login ? 'Bearer ' + api.settings.get('simklToken'): undefined,
     'simkl-api-key': client_id,
     'Accept': 'application/vnd.api+json',
     'Content-Type': 'application/json'
@@ -144,7 +144,6 @@ export async function call(url, sData = {}, asParameter = false, methode = 'GET'
 
   if(!login){
     con.log('No login')
-    delete headers.Authorization;
   }
 
   return api.request.xhr(methode, {

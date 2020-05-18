@@ -20,7 +20,7 @@ export const MangaNelo: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl: function(url){
-      return j.$("div.body-site > div > div.panel-breadcrumb > a:nth-child(3)").attr("href");
+      return j.$("div.body-site > div > div.panel-breadcrumb > a:nth-child(3)").attr("href") || "";
     },
     getEpisode: function(url){
       return Number(url.split("/")[5].match(/\d+/gmi));

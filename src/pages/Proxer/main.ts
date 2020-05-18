@@ -24,9 +24,11 @@ export const Proxer: pageInterface = {
           return j.$("div#breadcrumb a:first").text();
         }
       }
+
+      return "";
     },
     getIdentifier: function(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4) || "";
     },
     getOverviewUrl: function(url) {
       return (

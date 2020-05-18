@@ -16,7 +16,7 @@ export const manga4life: pageInterface = {
       return utils.getBaseText($("div.MainContainer > div.container > div.row > div.Column > a").first()).trim();
     },
     getIdentifier: function(url) {
-     return utils.urlPart(manga4life.sync.getOverviewUrl(url),4);
+     return utils.urlPart(manga4life.sync.getOverviewUrl(url),4) || "";
    },
    getOverviewUrl: function(url){
     return utils.absoluteLink(j.$("div.MainContainer > div.container > div.row > div.Column > a").first().attr("href"),manga4life.domain);
@@ -30,7 +30,7 @@ overview:{
     return j.$("div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1").first().text();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4);
+    return utils.urlPart(url,4) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1").first());

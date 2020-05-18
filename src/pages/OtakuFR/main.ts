@@ -13,9 +13,15 @@ export const OtakuFR: pageInterface = {
   },
   sync: {
     getTitle: function(url){return j.$("#sct_content > div > ul > li:nth-child(2) > a").text()},
-    getIdentifier: function(url){return utils.urlPart(url, 3)},
-    getOverviewUrl: function(url){return j.$(".breadcrumb > li:nth-child(2) > a").attr('href')},
-    getEpisode:function(url){return j.$("#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected").text().split(" ")[1]},
+    getIdentifier: function(url){return utils.urlPart(url, 3) || ""},
+    getOverviewUrl: function(url){return j.$(".breadcrumb > li:nth-child(2) > a").attr('href') || ""},
+    getEpisode:function(url){
+      const selectedOptionText = j.$("#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected").text();
+
+      if(!selectedOptionText && selectedOptionText.length < 2) return NaN;
+
+      return Number(selectedOptionText.split(" ")[1])
+    },
     nextEpUrl: function(url){return  utils.absoluteLink(j.$("div.wpa_nav > ul:nth-child(2) > li > a").attr('href'), OtakuFR.domain)},
   },
 
@@ -64,14 +70,14 @@ function urlHandling(url){
 
 }
 
-function episodeHelper(url, episodeText){
+function episodeHelper(url: string, episodeText: string){
   var episodePart = utils.urlPart(urlHandling(url), 1);
-  try{
-    if(/\d+\.\d+/.test(episodeText)){
-      episodePart = 'episode'+episodeText.match(/\d+\.\d+/)[0];
-    }
-  }catch(e){
-    con.error(e);
-  }
-  return episodePart;
+
+  if(!episodePart) return NaN;
+
+  const episodeNumberMatches = episodeText.match(/\d+\.\d+/);
+
+  if(!episodeNumberMatches || episodeNumberMatches.length === 0) return NaN;
+
+  return Number(episodeNumberMatches[0]);
 }

@@ -171,12 +171,18 @@ function getApi(url, epId = 0) {
     },
   ]
   return api.request.xhr('GET', url).then((response) => {
-    var templates = response.responseText.match(/<script type="text\/template">.*(?=<\/script>)/g);
-    templates = templates.map(e => JSON.parse(e.replace('<script type="text/template">', '')));
-    fns.forEach(fn => {
-      templates.forEach(e => fn(e));
-    });
+    const templateMatches = response.responseText.match(/<script type="text\/template">.*(?=<\/script>)/g);
+
+    if(templateMatches && templateMatches.length > 0){
+      const templates = templateMatches.map(e => JSON.parse(e.replace('<script type="text/template">', '')));
+
+      fns.forEach(fn => {
+        templates.forEach(fn);
+      });
+    }
+
     con.log('result', data);
+
     return data;
   });
 }

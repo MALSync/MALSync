@@ -16,10 +16,14 @@ export const unionmangas: pageInterface = {
       return utils.getBaseText($("body > div.breadcrumbs > div > div > a:nth-child(3)")).trim();
     },
     getIdentifier: function(url) {
-     return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href").split("/")[4].toLowerCase();
+      const identifierAnchorHref = j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href");
+
+      if(!identifierAnchorHref) return "";
+
+     return identifierAnchorHref.split("/")[4].toLowerCase();
    },
    getOverviewUrl: function(url){
-    return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href");
+    return j.$("body > div.breadcrumbs > div > div > a:nth-child(3)").attr("href") || "";
   },
   getEpisode: function(url){
     return Number(url.split("/")[5]);
@@ -41,7 +45,11 @@ overview:{
     return j.$("div.row > div.col-md-12 > h2").first().text().trim();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4).toLowerCase();
+    const urlPart4 = utils.urlPart(url,4);
+
+    if(!urlPart4) return "";
+
+    return urlPart4.toLowerCase();
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("div.row > div.col-md-12 > h2").first());

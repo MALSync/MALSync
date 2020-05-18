@@ -16,19 +16,25 @@ export const MangaKisa: pageInterface = {
       return j.$("div.now2 > a.infoan2").text().trim();
     },
     getIdentifier: function(url) {
-     return j.$("div.now2 > a.infoan2").attr("href").split("/")[1];
+      const anchorHref = j.$("div.now2 > a.infoan2").attr("href");
+
+      if(!anchorHref) return "";
+
+     return anchorHref.split("/")[1];
    },
    getOverviewUrl: function(url){
-    return MangaKisa.domain + j.$("div.now2 > a.infoan2").attr("href");
+    return MangaKisa.domain + (j.$("div.now2 > a.infoan2").attr("href") || "");
   },
   getEpisode: function(url){
-    var episodePart = j.$("#chaptertext option:selected").text()
-    if(episodePart.length){
-      var temp = episodePart.match(/chapter +\d+/gmi);
-      if(temp !== null){
-        return temp[0].replace(/\D+/g, "");
-      }
-    }
+    var episodePart = j.$("#chaptertext option:selected").text();
+
+    if(!episodePart) return NaN;
+
+    var matches = episodePart.match(/chapter +\d+/gmi);
+
+    if(!matches || matches.length === 0) return NaN;
+
+    return Number(matches[0].replace(/\D+/g, ""));
   },
   nextEpUrl: function(url){
     var num = $("#chaptertext").find("option:selected").next().attr('value');

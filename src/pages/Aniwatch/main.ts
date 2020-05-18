@@ -25,9 +25,13 @@ export const Aniwatch: pageInterface = {
     getIdentifier: function(url) {
       if(tabPage === "stream") {
         return url.split("/")[4];
-      } else {
-        return j.$("h2.md-title > span.border-right > a").attr("href").split("/")[2];
       }
+
+      const anchorHref = j.$("h2.md-title > span.border-right > a").attr("href");
+
+      if(!anchorHref) return "";
+      
+      return anchorHref.split("/")[2];
     },
     getOverviewUrl: function(url){
       return Aniwatch.domain +"/anime/" + Aniwatch.sync.getIdentifier(url);
@@ -36,7 +40,7 @@ export const Aniwatch: pageInterface = {
       if(tabPage === "stream") {
         return parseInt(utils.urlPart(url, 5));
       } else {
-        return j.$("h2.md-title > span.desc-color").text().replace(/\D+/g, "");
+        return Number(j.$("h2.md-title > span.desc-color").text().replace(/\D+/g, ""));
       }
     },
     nextEpUrl: function (url) {
@@ -49,13 +53,11 @@ export const Aniwatch: pageInterface = {
 
       if(!urlPart5) return;
 
-      urlPart5 = parseInt(urlPart5);
-
-      return url.replace(/\d+$/, String(urlPart5 + 1));
+      return url.replace(/\d+$/, String(parseInt(urlPart5) + 1));
     },
   },
-  overview:{
-    getTitle: function(url){
+  overview: {
+    getTitle: function(url) {
       return j.$("md-content > div > div.responsive-anime.anime-boxes-margin > h1").text();
     },
     getIdentifier: function(url){

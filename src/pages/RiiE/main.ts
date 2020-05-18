@@ -17,7 +17,7 @@ export const RiiE: pageInterface = {
       return RiiE.sync.getOverviewUrl(url).split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])").first().attr('href');
+      return j.$("#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])").first().attr('href') || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

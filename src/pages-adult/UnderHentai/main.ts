@@ -19,16 +19,16 @@ export const UnderHentai: pageInterface = {
     getOverviewUrl: function(url){
       return UnderHentai.domain+ "/" +UnderHentai.sync.getIdentifier(url);
     },
-    getEpisode: function(url){
+    getEpisode: function (url) {
       var episodePart = j.$("div.content-box.content-head.sidebar-light").first().text().trim()
-      if(episodePart.length){
-        var temp = episodePart.match(/- episode.*\d+/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        } else {
-          return 1;
-        }
-      }
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/- episode.*\d+/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
   },
   overview:{

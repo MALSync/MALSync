@@ -39,7 +39,7 @@ export function errorHandling(res, silent:boolean = false){
 }
 
 export function malToKitsu(malid: number, type: "anime"|"manga"){
-  return api.request.xhr('Get', {
+  return api.request.xhr('GET', {
     url: 'https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/'+type+'&filter[externalId]='+malid+'&include=item&fields[item]=id',
     headers: {
       'Content-Type': 'application/vnd.api+json',
@@ -52,7 +52,7 @@ export function malToKitsu(malid: number, type: "anime"|"manga"){
 }
 
 export function kitsuToMal(kitsuId: number, type: "anime"|"manga"){
-  return api.request.xhr('Get', {
+  return api.request.xhr('GET', {
     url: 'https://kitsu.io/api/edge/'+type+'/'+kitsuId+'/mappings?filter[externalSite]=myanimelist/'+type,
     headers: {
       'Content-Type': 'application/vnd.api+json',
@@ -72,7 +72,7 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: "anime"|"manga"){
     'Accept': 'application/vnd.api+json',
   }
   if(accessToken()) headers['Authorization'] = 'Bearer ' + accessToken();
-  return api.request.xhr('Get', {
+  return api.request.xhr('GET', {
     url: 'https://kitsu.io/api/edge/'+type+'?filter[slug]='+kitsuSlug+'&page[limit]=1&include=mappings',
     headers
   }).then((response) => {
@@ -99,7 +99,7 @@ export async function userId(){
   if(typeof userId !== 'undefined'){
     return userId;
   }else{
-    return api.request.xhr('Get', {
+    return api.request.xhr('GET', {
       url: 'https://kitsu.io/api/edge/users?filter[self]=true',
       headers: {
         'Authorization': 'Bearer ' + accessToken(),

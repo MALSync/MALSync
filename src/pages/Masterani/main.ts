@@ -14,13 +14,13 @@ export const Masterani: pageInterface = {
     },
     sync:{
       getTitle: function(url){return j.$('.info h1').text().trim()},
-      getIdentifier: function(url){return utils.urlPart(url, 5);},
+      getIdentifier: function(url){return utils.urlPart(url, 5) || "";},
       getOverviewUrl: function(url){return utils.absoluteLink(j.$('.info a').first().attr('href'), Masterani.domain);},
       getEpisode: function(url){
-        return parseInt(utils.urlPart(url, 6))
+        return parseInt(utils.urlPart(url, 6) || "")
       },
       nextEpUrl: function(url){
-        var nexUrl = Masterani.domain+j.$('#watch .anime-info .actions a').last().attr('href');
+        var nexUrl = Masterani.domain+(j.$('#watch .anime-info .actions a').last().attr('href') || "");
         if(!Masterani.isSyncPage(nexUrl)){
           return undefined;
         }

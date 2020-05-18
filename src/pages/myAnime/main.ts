@@ -17,10 +17,10 @@ export const myAnime: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return myAnime.domain + j.$("#episode-details > div > span.current-series > a").attr("href")
+      return myAnime.domain + (j.$("#episode-details > div > span.current-series > a").attr("href") || "")
     },
     getEpisode: function(url){
-      return parseInt(utils.urlPart(url, 5));
+      return parseInt(utils.urlPart(url, 5) || "");
     },
     nextEpUrl: function(url){
       var nextEp = j.$('div#ep-next').first().parent().attr('href');
@@ -33,7 +33,7 @@ export const myAnime: pageInterface = {
       return j.$("span.anime-title").first().text().trim();
     },
     getIdentifier: function(url){
-      return utils.urlPart(url,4);
+      return utils.urlPart(url,4) || "";
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("img.anime-bg").first());

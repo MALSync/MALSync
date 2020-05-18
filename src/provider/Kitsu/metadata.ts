@@ -13,12 +13,20 @@ export class metadata implements metadataInterface{
   private animeInfo;
 
   constructor(public malUrl:string){
-    this.type = utils.urlPart(malUrl, 3);
+    this.id = NaN;
+    this.type =  "anime";
+
+    let urlPart3 = utils.urlPart(malUrl, 3);
+    
+    if(urlPart3 !== "anime" && urlPart3 !== "manga") return;
+
+    this.type = urlPart3;
+    
     if(typeof malUrl !== 'undefined' && malUrl.indexOf("myanimelist.net") > -1){
-      this.id = utils.urlPart(malUrl, 4);
+      this.id = Number(utils.urlPart(malUrl, 4));
     }else if(typeof malUrl !== 'undefined' && malUrl.indexOf("kitsu.io") > -1){
       this.id = NaN;
-      this.kitsuSlug = utils.urlPart(malUrl, 4);
+      this.kitsuSlug = utils.urlPart(malUrl, 4) || "";
     }else{
       this.id = NaN;
     }
@@ -278,7 +286,7 @@ export class metadata implements metadataInterface{
 
 }
 
-export function search(keyword, type: "anime"|"manga", options = {}, sync = false): searchInterface{
+export const search: searchInterface = async function (keyword, type: "anime"|"manga", options = {}, sync = false){
   return apiCall('GET', 'https://kitsu.io/api/edge/'+type+'?filter[text]='+keyword+'&page[limit]=10&page[offset]=0&fields['+type+']=id,slug,titles,averageRating,startDate,posterImage,subtype', {})
   .then((res) => {
     con.log('search',res);

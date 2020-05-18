@@ -17,7 +17,7 @@ export const Hentaigasm: pageInterface = {
       return url.split("/")[6].replace(/-\d*-(subbed|raw)/gmi,"").trim();
     },
     getOverviewUrl: function(url){
-      return j.$("#extras > h4:nth-child(2) > a").attr("href");
+      return j.$("#extras > h4:nth-child(2) > a").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

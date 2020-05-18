@@ -13,7 +13,7 @@ export const Novelplanet: pageInterface = {
     },
     sync:{
       getTitle: function(url){return j.$('#main .title').first().text().trim();},
-      getIdentifier: function(url){return utils.urlPart(url, 4);},
+      getIdentifier: function(url){return utils.urlPart(url, 4) || "";},
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         return getEp($('.selectChapter option').first().text());

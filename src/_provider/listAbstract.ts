@@ -42,7 +42,7 @@ export abstract class ListAbstract {
       singleCallback?: (el: listElement) => void,
       continueCall?
     } = {},
-    protected username = null,
+    protected username : string,
     protected offset = 0,
     protected templist: listElement[] = []
   ) {
@@ -158,12 +158,12 @@ export abstract class ListAbstract {
       continueUrl: () => {
         if(continueUrlTemp !== null) return continueUrlTemp;
         return utils.getContinueWaching(item.type, item.cacheKey).then((obj) => {
-          var res = undefined;
           var curEp = parseInt(item.watchedEp.toString());
-          if(typeof obj !== 'undefined' && obj.ep === (curEp+1)){
-            res = obj.url;
-          }
-          continueUrlTemp = res;
+
+          if(obj === undefined || obj.ep !== curEp + 1) return;
+
+          continueUrlTemp = obj.url;
+
           return continueUrlTemp;
         });
       },

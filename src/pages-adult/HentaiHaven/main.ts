@@ -14,10 +14,14 @@ export const HentaiHaven: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("div > header > div > a").text()},
     getIdentifier: function(url) {
-      return j.$("div > header > div > a").attr("href").split("/")[4];
+      const anchorHref = j.$("div > header > div > a").attr("href");
+
+      if(!anchorHref) return "";
+
+      return anchorHref.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("div > header > div > a").attr("href");
+      return j.$("div > header > div > a").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");

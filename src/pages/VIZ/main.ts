@@ -14,19 +14,25 @@ export const VIZ: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").text()},
     getIdentifier: function(url) {
-      return j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").attr("href").split("/")[3];
+      const anchorHref = j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").attr("href");
+
+      if(!anchorHref) return "";
+
+      return anchorHref.split("/")[3];
     },
     getOverviewUrl: function(url){
-      return VIZ.domain+ j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").attr("href");
+      return VIZ.domain+ (j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a").attr("href") || "");
     },
     getEpisode: function(url){
       var episodePart = j.$("#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span").text();
-      if(episodePart.length){
-        var temp = episodePart.match(/\d+/gmi);
-        if(temp !== null){
-          return temp[0];
-        }
-      }
+
+      if(!episodePart) return NaN;
+      
+      var episodeNumberMatches = episodePart.match(/\d+/gmi);
+      
+      if(!episodeNumberMatches || episodeNumberMatches.length === 0) return NaN;
+
+      return Number(episodeNumberMatches[0]);
     },
   },
   overview:{

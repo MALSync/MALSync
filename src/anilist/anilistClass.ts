@@ -79,7 +79,7 @@ export class anilistClass{
 
   }
 
-  authentication(){
+  async authentication(){
     try{
       utils.checkDoubleExecution();
     }catch(e){
@@ -89,16 +89,17 @@ export class anilistClass{
     if(tokens != null && typeof tokens[0] != 'undefined' && tokens[0]){
       var token = tokens[0].toString().replace(/access_token=/gi, '');
       con.log('Token Found', token);
-      api.settings.set('anilistToken', token).then(() => {
-        $(document).ready(function(){
-          $('.page-content .container').html(`
-            <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
-              <h1>MAL-Sync</h1>
-              <br>
-              ` + api.storage.lang("anilistClass_authentication") + `
-            </div>
-          `);
-        });
+
+      await api.settings.set('anilistToken', token);
+
+      $(document).ready(function(){
+        $('.page-content .container').html(`
+          <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
+            <h1>MAL-Sync</h1>
+            <br>
+            ` + api.storage.lang("anilistClass_authentication") + `
+          </div>
+        `);
       });
     }
   }
@@ -107,7 +108,7 @@ export class anilistClass{
     var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
       var aniListId = utils.urlPart(this.url, 4);
-      return helper.aniListToMal(aniListId, urlpart).then((malId)=>{
+      return helper.aniListToMal(Number(aniListId), urlpart).then((malId)=>{
         if(!malId) return '';
         return 'https://myanimelist.net/'+urlpart+'/'+malId+'/'+utils.urlPart(this.url, 5);
       });
@@ -158,7 +159,7 @@ export class anilistClass{
         $('.sidebar .data').before(html);
         $('.remove-mal-sync').click(function(){
           var key = $(this).attr('title');
-          api.settings.set(key, false);
+          api.settings.set(String(key), false);
           location.reload();
         });
       });
@@ -274,7 +275,7 @@ export class anilistClass{
     $(document).ready(() => {
       $('.list-entries .entry, .list-entries .entry-card').not('.malSyncDone').each((index, el) => {
         $(el).addClass('malSyncDone')
-        var streamUrl = utils.getUrlFromTags($(el).find('.notes').first().attr('label'));
+        var streamUrl = utils.getUrlFromTags($(el).find('.notes').first().attr('label') || "");
         if(typeof streamUrl !== 'undefined'){
           con.log(streamUrl);
           $(el).find('.title a').first().after(`
@@ -308,7 +309,9 @@ export class anilistClass{
         }
       }
 
-      var listProvider = new userlist(1, this.page!.type);
+      // TODO needs review. userList complains about missing parameters
+      const _userlist: any = userlist;
+      var listProvider:userlist = new _userlist(1, this.page!.type);
 
       listProvider.compact = true;
 

@@ -23,7 +23,7 @@ export const Hidive: pageInterface = {
 			return url.split("/")[4];
 		},
 		getOverviewUrl: function (url) {
-			return Hidive.domain + j.$("#TitleDetails").attr("href");
+			return Hidive.domain + (j.$("#TitleDetails").attr("href") || "");
 		},
 		getEpisode: function (url) {
 			var temp = url.split("/")[5];
@@ -61,11 +61,15 @@ export const Hidive: pageInterface = {
 			offsetHandler: false,
 			elementsSelector: function () {
 				return j.$("div.episode-slider > div > div > div.cell > div:nth-child(1) > div.hitbox").filter(function () {
-					if (j.$(this).find("div.na").length) {
-						return false;
-					} else if (j.$(this).find(".player > a").attr('data-playurl') && window.location.href.split("/")[4] === j.$(this).find(".player > a").attr('data-playurl').split("/")[4]) {
+					if (j.$(this).find("div.na").length)
+            return false;
+            
+          const playerUrl = j.$(this).find(".player > a").attr('data-playurl') || "";
+
+					if (j.$(this).find(".player > a").attr('data-playurl') && window.location.href.split("/")[4] === playerUrl.split("/")[4])
 						return true;
-					}
+
+          return false;
 				});
 			},
 			elementUrl: function (selector) {

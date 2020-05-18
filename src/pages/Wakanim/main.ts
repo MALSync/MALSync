@@ -20,9 +20,9 @@ export const Wakanim: pageInterface = {
         return j.$('[itemprop="partOfSeries"] meta[itemprop="name"]').attr('content') + ' ' + ses;
     },
 
-    getOverviewUrl: function(url){return Wakanim.domain+j.$("body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)").attr('href')},
+    getOverviewUrl: function(url){return Wakanim.domain+(j.$("body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)").attr('href') || "")},
 
-    getEpisode:function(url){return j.$("body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span").text()
+    getEpisode:function(url){return Number(j.$("body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span").text())
     },
 
     nextEpUrl: function(url){return j.$("body > section.episode > div > div > div.episode_main > div.episode_video > div > div.episode-bottom > div.episodeNPEp-wrapperBlock > a.episodeNPEp.episodeNextEp.active").attr('href')},
@@ -50,7 +50,7 @@ export const Wakanim: pageInterface = {
 
       if(!anchorTitle) return NaN;
       
-      return Number(episodeHelper(url, anchorTitle.trim()));
+      return episodeHelper(url, anchorTitle.trim());
     },
   }
 },
@@ -125,33 +125,28 @@ function seasonHelper(text){
     }
 }
 
-function episodeHelper(url, episodeText){
-  var episodePart = utils.urlPart(url, 8);
+function episodeHelper(url: string, _episodeText: string){
+  let episodePart = "";
 
-  try{
-    if(/\d+\.\d+/.test(episodeText)){
-      episodePart = 'episode'+episodeText.match(/\d+\.\d+/)[0];
-    }
-  }catch(e){
-    con.error(e);
-  }
+  if(/\d+\.\d+/.test(_episodeText)){
+    const matches = _episodeText.match(/\d+\.\d+/);
 
-  var temp = [];
-  temp = episodePart.match(/([e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?|[f,F][o,O][l,L][g,G]?[e,E])\D?\d+/);
+    if(matches && matches.length !== 0)
+      episodePart = "episode" + matches[0];
+  } else
+    episodePart = utils.urlPart(url, 8) || "";
 
-  if(temp !== null){
-    episodePart = temp[0];
-  }else{
-    episodePart = '';
-  }
+  if(!episodePart) return NaN;
+  
+  const episodeTextMatches = episodePart.match(/([e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?|[f,F][o,O][l,L][g,G]?[e,E])\D?\d+/);
 
-  temp = episodePart.match(/\d+/);
+  if(!episodeTextMatches || episodeTextMatches.length === 0)
+    return NaN;
+    
+  const episodeNumberMatches = episodeTextMatches[0].match(/\d+/);
 
-  if(temp === null){
-    episodePart = 1;
-  }else{
-    episodePart = temp[0];
-  }
+  if(!episodeNumberMatches || episodeNumberMatches.length === 0)
+    return NaN;
 
-  return episodePart;
+  return Number(episodeNumberMatches[0]);
 }

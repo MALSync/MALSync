@@ -44,7 +44,7 @@ export const Samehadaku: pageInterface = {
       return j.$("#infoarea > div > div.infoanime > div.infox > h1.entry-title").text();
     },
     getIdentifier: function(url){
-      return utils.urlPart(url,4);
+      return utils.urlPart(url,4) || "";
     },
     uiSelector: function(selector){
       selector.insertBefore(j.$("#infoarea > div > div.infoanime > div.infox > h1.entry-title"));

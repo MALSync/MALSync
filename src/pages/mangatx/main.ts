@@ -19,7 +19,7 @@ export const mangatx: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a").attr("href");
+      return j.$("div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a").attr("href") || "";
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");
@@ -45,7 +45,7 @@ export const mangatx: pageInterface = {
       return utils.getBaseText(j.$("div.profile-manga > div > div > div > div.post-title > h1")).trim();
     },
     getIdentifier: function(url){
-      return utils.urlPart(url,4);
+      return utils.urlPart(url,4) || "";
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("div.profile-manga > div > div > div > div.post-title > h1").first());

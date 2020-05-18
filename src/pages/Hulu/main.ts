@@ -41,12 +41,12 @@ export const Hulu: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      var curseason = j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
-      if(typeof curseason !== undefined && curseason > 1) {
-        return name + " season "+ curseason;
-      }else {
-        return name;
-      }
+      var currentSeason = j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
+
+      if(typeof currentSeason !== undefined && Number(currentSeason) > 1) 
+        return name + " season "+ currentSeason;
+
+      return name;
     },
     getIdentifier: function(url){
       if(movie) {
@@ -106,58 +106,57 @@ export const Hulu: pageInterface = {
   });
 }
 };
-function checkPage(): boolean {
-
+async function checkPage(): Promise<boolean> {
   var tempId = utils.urlPart(window.location.href,4)
   var id36 = tempId.substring((tempId.length - 36),tempId.length)
 
   var reqUrl = "https://discover.hulu.com/content/v3/entity?language=en&eab_ids=" + id36;
 
+  const response = await api.request.xhr('GET', reqUrl);
 
-  return api.request.xhr('GET', reqUrl).then((response) => {
-    var json =JSON.parse(response.responseText)
-    if (json.items[0].genre_names.includes("Anime") || json.items[0].genre_names.includes("Animation")) {
+  var json =JSON.parse(response.responseText);
 
-      episode = parseInt(json.items[0].number);
+  if (!(json.items[0].genre_names.includes("Anime") || json.items[0].genre_names.includes("Animation")))
+    return false;
 
-      if(json.items[0].season) {
-        //if its a series
-        huluId = json.items[0].series_id;
-        season = parseInt(json.items[0].season);
-        name = json.items[0].series_name;
-        movie = false;
-      } else {
-        //if its a movie
-        huluId = json.items[0].id;
-        season = 1;
-        name = json.items[0].name;
-        if (window.location.href.split("/")[3] !== "series") {
-          movie = true;
-        }
-      }
-      if(season >= 1 && movie == false && window.location.href.split("/")[3] === "watch") {
-        var reqUrl2 = "https://discover.hulu.com/content/v4/hubs/series/" + huluId + "/season/"+ season + "?offset=0&limit=999&schema=9&referralHost=production";
-        return api.request.xhr('GET', reqUrl2).then((r) => {
-         var json2 =JSON.parse(r.responseText)
-         if(season > 1) {
-           episode = episode - json2.items[0].number + 1;
-           name = name + " season " + season;
-         }
-         if(typeof json2.items[episode + 1] !== undefined) {
-          nextEp = Hulu.domain +"/watch/" + json2.items[episode + 1].id;
-        } else {
-          nextEp = undefined
-        }
-        con.log(huluId);
-        con.log(name);
-        con.log("episode: " + episode + " season: " + season);
-        return typeof huluId !== 'undefined';
-      });
-      }
-      con.log(huluId);
-      con.log(name);
-      con.log("episode: " + episode + " season: " + season);
-      return typeof huluId !== 'undefined';
+  episode = parseInt(json.items[0].number);
+
+  if(json.items[0].season) {
+    //if its a series
+    huluId = json.items[0].series_id;
+    season = parseInt(json.items[0].season);
+    name = json.items[0].series_name;
+    movie = false;
+  } else {
+    //if its a movie
+    huluId = json.items[0].id;
+    season = 1;
+    name = json.items[0].name;
+    if (window.location.href.split("/")[3] !== "series") {
+      movie = true;
     }
+  }
+  if(season >= 1 && movie == false && window.location.href.split("/")[3] === "watch") {
+    var reqUrl2 = "https://discover.hulu.com/content/v4/hubs/series/" + huluId + "/season/"+ season + "?offset=0&limit=999&schema=9&referralHost=production";
+    return api.request.xhr('GET', reqUrl2).then((r) => {
+      var json2 =JSON.parse(r.responseText)
+      if(season > 1) {
+        episode = episode - json2.items[0].number + 1;
+        name = name + " season " + season;
+      }
+      if(typeof json2.items[episode + 1] !== undefined) {
+      nextEp = Hulu.domain +"/watch/" + json2.items[episode + 1].id;
+    } else {
+      nextEp = undefined
+    }
+    con.log(huluId);
+    con.log(name);
+    con.log("episode: " + episode + " season: " + season);
+    return typeof huluId !== 'undefined';
   });
+  }
+  con.log(huluId);
+  con.log(name);
+  con.log("episode: " + episode + " season: " + season);
+  return typeof huluId !== 'undefined';
 }

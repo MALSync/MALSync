@@ -32,10 +32,10 @@ export const WonderfulSubs: pageInterface = {
       );
     },
     getEpisode: function(url) {
-      return j
+      return Number(j
         .$("span.card-title span.new.badge")
         .text()
-        .replace(/\D+/g, "");
+        .replace(/\D+/g, ""));
     }
   },
   init(page) {
@@ -105,10 +105,10 @@ var betaWonderfulSubs: pageInterface = {
       );
     },
     getEpisode: function(url) {
-      return j
+      return Number(j
         .$("div.episode-number")
         .text()
-        .replace(/\D+/g, "");
+        .replace(/\D+/g, ""));
     }
   },
   init(page) {

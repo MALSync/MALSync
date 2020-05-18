@@ -13,8 +13,8 @@ export const animeflv: pageInterface = {
     },
     sync:{
       getTitle: function(url){return j.$('h1.Title').text().split(' Episodio')[0].trim();},
-      getIdentifier: function(url){return utils.urlPart(animeflv.domain+j.$(".fa-th-list").attr('href'), 4)+'/'+utils.urlPart(animeflv.domain+j.$(".fa-th-list").attr('href'), 5);},
-      getOverviewUrl: function(url){return animeflv.domain+j.$(".fa-th-list").attr('href');},
+      getIdentifier: function(url){return utils.urlPart(animeflv.domain+(j.$(".fa-th-list").attr('href') || ""), 4)+'/'+utils.urlPart(animeflv.domain+(j.$(".fa-th-list").attr('href') || ""), 5);},
+      getOverviewUrl: function(url){return animeflv.domain+(j.$(".fa-th-list").attr('href') || "");},
       getEpisode: function(url){return parseInt(j.$('h2.SubTitle').text().replace('Episodio ', '').trim());},
       nextEpUrl: function(url){
         var nextEp = j.$(".fa-chevron-right").attr('href');

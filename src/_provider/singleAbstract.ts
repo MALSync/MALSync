@@ -9,7 +9,7 @@ export abstract class SingleAbstract {
     return this;
   }
 
-  protected type: definitions.type|null = null;
+  protected type: definitions.contentType | null = null;
 
   protected persistanceState;
   protected undoState;
@@ -213,7 +213,7 @@ export abstract class SingleAbstract {
     return utils.setResumeWaching(url, ep, this.type, this.getCacheKey());
   }
 
-  public getResumeWaching():Promise<{url:string, ep:number}>{
+  public getResumeWaching(){
     return utils.getResumeWaching(this.type, this.getCacheKey())
   }
 
@@ -221,7 +221,7 @@ export abstract class SingleAbstract {
     return utils.setContinueWaching(url, ep,this.type, this.getCacheKey())
   }
 
-  public getContinueWaching():Promise<{url:string, ep:number}>{
+  public getContinueWaching(){
     return utils.getContinueWaching(this.type, this.getCacheKey())
   }
 
@@ -296,12 +296,12 @@ export abstract class SingleAbstract {
     return true;
   }
 
-  public async startWatchingMessage(): Promise<boolean> {
+  public async startWatchingMessage() {
     return utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.getType()), 'add')
       .then((res) => {
         if(res) this.setStatus(definitions.status.Watching);
         return res;
-      })
+      });
   }
 
   public async finishWatchingMessage(): Promise<boolean> {
@@ -318,7 +318,8 @@ export abstract class SingleAbstract {
       .then((res) => {
         if(res) {
           this.setStatus(definitions.status.Completed);
-          if(j.$("#finish_score").val() !== undefined && j.$("#finish_score").val() > 0) {
+          const finishScore = Number(j.$("#finish_score").val());
+          if(finishScore > 0) {
             con.log("finish_score: " + j.$('#finish_score :selected').val());
             this.handleScoreCheckbox(j.$("#finish_score :selected").val());
           }

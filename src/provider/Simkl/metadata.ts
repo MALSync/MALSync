@@ -11,12 +11,20 @@ export class metadata implements metadataInterface{
   private animeInfo;
 
   constructor(public malUrl:string){
-    this.type = utils.urlPart(malUrl, 3);
+    this.id = NaN;
+    this.type =  "anime";
+
+    let urlPart3 = utils.urlPart(malUrl, 3);
+    
+    if(urlPart3 !== "anime" && urlPart3 !== "manga") return;
+
+    this.type = urlPart3;
+    
     if(typeof malUrl !== 'undefined' && malUrl.indexOf("myanimelist.net") > -1){
-      this.id = utils.urlPart(malUrl, 4);
+      this.id = Number(utils.urlPart(malUrl, 4));
     }else if(typeof malUrl !== 'undefined' && malUrl.indexOf("simkl.com") > -1){
       this.id = NaN;
-      this.simklId = utils.urlPart(malUrl, 4);
+      this.simklId = Number(utils.urlPart(malUrl, 4));
     }else{
       this.id = NaN;
     }

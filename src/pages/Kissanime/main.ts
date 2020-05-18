@@ -18,29 +18,28 @@ export const Kissanime: pageInterface = {
       getIdentifier: function(url){return utils.urlPart(url, 4);},
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
-        var episodePart = utils.urlPart(url, 5);
-        episodePart = episodePart.replace(/1080p/i, ' ').replace(/720p/i, ' ');
-        var temp = [];
-        temp = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
-        if(temp !== null){
-            episodePart = temp[0];
-        }
-        temp = episodePart.match(/\d+$/);
-        if(temp === null){
-            temp = episodePart.match(/\d{2,}\-/);
-            if(temp === null){
-                episodePart = 1;
-            }else{
-                episodePart = temp[0];
-            }
-        }else{
-            episodePart = temp[0];
-        }
-        return episodePart;
+        let episodePart = utils.urlPart(url, 5).replace(/1080p|720p/i, ' ');
+
+        const episodeTextMatches = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
+
+        if(!episodeTextMatches || episodeTextMatches.length === 0) return NaN;
+
+        const [episodeText] = episodeTextMatches;
+        
+        let episodeNumberMatches = episodeText.match(/\d+($|\-)/m);
+
+        if(!episodeNumberMatches || episodeNumberMatches.length === 0)
+          return NaN;
+
+        const [episodeNumber] = episodeNumberMatches;
+          
+        return Number(episodeNumber.replace(/[^\d]/g, ""));
       },
       nextEpUrl: function(url){
         var nextEp = j.$('#selectEpisode option:selected').next().val();
-        if(!nextEp) return nextEp;
+
+        if(!nextEp) return "";
+
         return url.replace(/\/[^\/]*$/, '') +'/'+ nextEp;
       }
     },

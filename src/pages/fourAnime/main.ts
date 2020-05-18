@@ -19,16 +19,20 @@ export const fourAnime: pageInterface = {
       .trim();
     },
     getIdentifier: function(url) {
-      return utils.urlPart(url,3).replace(/\-episode[^]*$/g, "");
+      const urlPart3 = utils.urlPart(url,3);
+
+      if(!urlPart3) return "";
+
+      return urlPart3.replace(/\-episode[^]*$/g, "");
     },
     getOverviewUrl: function(url) {
       return fourAnime.domain + "/anime/" + fourAnime.sync.getIdentifier(url);
     },
     getEpisode: function(url) {
-      return j
+      return Number(j
       .$("ul.episodes a.active")
       .text()
-      .replace(/\D+/g, "")
+      .replace(/\D+/g, ""))
     },
     nextEpUrl: function(url){
       var href = j.$(".anipager-next a").first().attr('href');
@@ -42,7 +46,11 @@ export const fourAnime: pageInterface = {
       return j .$("p.single-anime-desktop").text().trim();
     },
     getIdentifier: function(url){
-      return utils.urlPart(url,4).replace(/\-episode[^]*$/g, "");
+      const urlPart4 = utils.urlPart(url,4);
+
+      if(!urlPart4) return "";
+
+      return urlPart4.replace(/\-episode[^]*$/g, "");
     },
     uiSelector: function(selector){
       selector.insertAfter(j.$("p.description-mobile").first());

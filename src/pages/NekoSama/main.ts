@@ -13,9 +13,25 @@ export const NekoSama: pageInterface = {
   },
   sync: {
     getTitle: function(url){return j.$(".details > div > h1 > a").text()},
-    getIdentifier: function(url){return utils.urlPart(url, 5).match(/^\d*/)[0];},
-    getOverviewUrl: function(url){return NekoSama.domain+j.$(".details > div > h1 > a").attr('href')},
-    getEpisode:function(url){return j.$("#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2").text().split(" Episode ").pop()},
+    getIdentifier: function(url){
+      const urlPart5 = utils.urlPart(url, 5);
+
+      if(!urlPart5) return "";
+
+      const identifierMatches = urlPart5.match(/^\d*/);
+
+      if(!identifierMatches || identifierMatches.length === 0) return "";
+
+      return identifierMatches[0];
+    },
+    getOverviewUrl: function(url){return NekoSama.domain+(j.$(".details > div > h1 > a").attr('href') || "")},
+    getEpisode:function(url){
+      const headerElementText = j.$("#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2").text();
+
+      if(!headerElementText) return NaN;
+
+      return Number(headerElementText.split(" Episode ").pop())
+    },
     nextEpUrl: function(url){return  utils.absoluteLink(j.$("#watch > div > div:nth-child(2) > div > div.item.right > a.ui.button.small.with-svg-right").attr('href'), NekoSama.domain)},
   },
 

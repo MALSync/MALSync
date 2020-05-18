@@ -9,7 +9,7 @@ export const AnimeZone: pageInterface = {
   },
   sync: {
     getTitle: function (url) {
-      return j.$(".category-description .panel-title").attr("title");
+      return j.$(".category-description .panel-title").attr("title") || "";
     },
     getIdentifier: function (url) {
       return url.split("/")[4];
@@ -28,7 +28,7 @@ export const AnimeZone: pageInterface = {
   },
   overview: {
     getTitle: function (url) {
-      return j.$(".category-description .panel-title").attr("title");
+      return j.$(".category-description .panel-title").attr("title") || "";
     },
     getIdentifier: function (url) {
       return url.split("/")[4];
@@ -67,25 +67,31 @@ export const AnimeZone: pageInterface = {
       var target = j.$("#episode")[0];
       var config = { attributes: false, childList: true, subtree: true };
 
-      var callback = function (mutationsList, observer) {
+      var callback = function (mutationsList: MutationRecord[], observer: MutationObserver) {
         for (let mutation of mutationsList) {
-          if (mutation.type === 'childList') {
+          if (mutation.type !== 'childList') return;
 
-            let srcElement = (j.$("#episode a") || j.$(" #episode iframe"))[0];
-            let src = (srcElement.href || srcElement.src).replace(/^http:\/\//i, 'https://');
-            j.$("#episode .embed-container")[0].innerHTML = null;
+          let srcElement: HTMLAnchorElement | HTMLFrameElement | null = document.querySelector("#episode a,  #episode iframe");
 
+          if(!srcElement) return;
 
-            let iframe = document.createElement("iframe");
-            j.$("#episode .embed-container")[0].appendChild(iframe);
-            iframe.setAttribute("allowfullscreen", "true");
-            iframe.src = src;
+          let url = srcElement instanceof HTMLAnchorElement? srcElement.href : srcElement.src;
+          let src = url.replace(/^http:\/\//i, 'https://');
 
-            iframe.width = "100%";
-            iframe.height = "100%";
-            observer.disconnect();
+          const embedContainer = document.querySelector("#episode .embed-container");
 
-          };
+          if(!embedContainer) return;
+          
+          embedContainer.innerHTML = "";
+
+          let iframe = document.createElement("iframe");
+          iframe.src = src;
+          iframe.width = "100%";
+          iframe.height = "100%";
+
+          iframe.setAttribute("allowfullscreen", "true");
+          embedContainer.append(iframe);
+          observer.disconnect();
         }
       };
 

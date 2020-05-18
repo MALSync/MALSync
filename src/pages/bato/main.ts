@@ -16,13 +16,21 @@ export const bato: pageInterface = {
       return j.$("h3.nav-title > a").text();
     },
     getIdentifier: function(url) {
-     return utils.urlPart(bato.sync.getOverviewUrl(url),4);
+     return utils.urlPart(bato.sync.getOverviewUrl(url),4) || "";
    },
    getOverviewUrl: function(url){
     return utils.absoluteLink(j.$("h3.nav-title > a").attr("href"),bato.domain);
   },
   getEpisode: function(url){
-    return j.$("div.nav-chap > select > optgroup > option:selected").text().match(/(ch\.|chapter)\D?\d+/i)[0].match(/\d+/);
+    const selectedOptionText = j.$("div.nav-chap > select > optgroup > option:selected").text();
+
+    if(!selectedOptionText) return NaN;
+
+    const chapterTextMatches = selectedOptionText.match(/(ch\.|chapter)\D?\d+/i);
+
+    if(!chapterTextMatches || chapterTextMatches.length === 0) return NaN;
+
+    return Number(chapterTextMatches[0].match(/\d+/));
   },
   nextEpUrl: function(url){
     let href = utils.absoluteLink(j.$('div.nav-next > a').first().attr('href'),bato.domain)
@@ -36,7 +44,7 @@ overview:{
     return j.$("h3.item-title > a").first().text();
   },
   getIdentifier: function(url){
-    return utils.urlPart(url,4);
+    return utils.urlPart(url,4) || "";
   },
   uiSelector: function(selector){
     selector.insertAfter(j.$("h3.item-title").first());

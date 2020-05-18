@@ -16,8 +16,8 @@ export const Jkanime: pageInterface = {
     sync:{
       getTitle: function(url){return j.$('.video-header h1').text().split(" - ")[0];},
       getIdentifier: function(url){return utils.urlPart(url, 3);},
-      getOverviewUrl: function(url){return j.$('.vnav-list').attr('href');},
-      getEpisode: function(url){return j.$('.video-header h1').text().split(" - ")[1];},
+      getOverviewUrl: function(url){return j.$('.vnav-list').attr('href') || "";},
+      getEpisode: function(url){return Number(j.$('.video-header h1').text().split(" - ")[1]);},
       nextEpUrl: function(url){
         var nextUrl = j.$('.vnav-right').attr('href');
         if(nextUrl == '#') return undefined;
@@ -36,7 +36,7 @@ export const Jkanime: pageInterface = {
           document.body.insertAdjacentHTML( 'afterbegin', '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>' );
           var idMALSync = document.getElementById('MALSyncUl');
           var lastEps = j.$('.navigation a').last().text().split('-')[1].trim();
-          for(var i=1;i<=lastEps;i++){
+          for(var i=1;i<=Number(lastEps);i++){
             if(idMALSync != null){
               idMALSync.innerHTML += '<li><a href="'+document.URL+i+'" epi="'+i+'"></a> </li>';
             }
@@ -53,16 +53,21 @@ export const Jkanime: pageInterface = {
             if(epilist.length>=epi){
               if(check==0){
                 var buttons = j.$('.navigation a');
-                for(var i=0; i<buttons.length;i++){
-                  if(buttons[i].text.split('-')[0].split()<=epi && buttons[i].text.split('-')[1].split()>=epi){
-                    buttons[i].click();
-                  }
-                }
+
+                buttons.each((i, button)=>{
+                  const episodeNumbers = button.innerText.split('-');
+                  const episodeStart = Number(episodeNumbers[0]);
+                  const episodeEnd = Number(episodeNumbers[1]);
+
+                  if(episodeStart <= epi || episodeEnd >= epi)
+                    button.click();
+                });
+
                 check=1;
               }
               setTimeout(function(){
                 j.$('#episodes-content .cap-post').each(function(i, obj) {
-                  if(obj.innerText.split(' ')[1] == epi){
+                  if(Number(obj.innerText.split(' ')[1]) == epi){
                     j.$('#episodes-content .cap-post').eq(i).addClass('mal-sync-active');
                     if(check==0){j.$('#episodes-content .cap-post:eq('+ i +')').find('i').first().remove();}
                   }

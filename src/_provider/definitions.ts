@@ -1,7 +1,9 @@
-export const enum type {
+/* export enum type {
   Anime = "anime",
   Manga = "manga"
-}
+} */
+
+export type contentType = "anime" | "manga";
 
 export enum status {
   NoState = 0,

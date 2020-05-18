@@ -33,7 +33,7 @@ export type searchInterface = (
   type: "anime"|"manga",
   options?: {},
   sync?: boolean
-) => Promise<[{
+) => Promise<{
   id:number,
   name:string,
   altNames:string[],
@@ -44,4 +44,4 @@ export type searchInterface = (
   isNovel:boolean,
   score: string,
   year: string
-}]>;
+}[]>;

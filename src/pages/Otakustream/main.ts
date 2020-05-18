@@ -17,11 +17,21 @@ export const Otakustream: pageInterface = {
         if(url.split('/')[3] === 'movie') return Otakustream.overview!.getTitle(url);
         return j.$('#breadcrumbs a').last().text().trim();
       },
-      getIdentifier: function(url){return utils.urlPart(url, 4).toLowerCase();},
+      getIdentifier: function(url){
+        const urlPart4 = utils.urlPart(url, 4);
+
+        if(!urlPart4) return "";
+
+        return urlPart4.toLowerCase();
+      },
       getOverviewUrl: function(url){return url.split('/').slice(0,5).join('/');},
       getEpisode: function(url){
         var EpText = utils.urlPart(url, 5);
+
+        if(!EpText) return NaN;
+
         var temp = EpText.match(/-\d+/);
+
         if(temp !== null){
             EpText = temp[0];
         }

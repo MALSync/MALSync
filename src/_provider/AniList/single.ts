@@ -13,13 +13,13 @@ export class Single extends SingleAbstract {
 
   protected handleUrl(url) {
     if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3);
-      this.ids.ani = utils.urlPart(url, 4);
+      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
+      this.ids.ani = Number(utils.urlPart(url, 4));
       return;
     }
     if(url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3);
-      this.ids.mal = utils.urlPart(url, 4);
+      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
+      this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
     throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
@@ -297,7 +297,7 @@ export class Single extends SingleAbstract {
           {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
         ];
         for(var i = 1; i < 101; i++){
-          resArr.push({value: i.toString(), label: i});
+          resArr.push({value: i.toString(), label: String(i)});
         }
         return resArr;
         break;

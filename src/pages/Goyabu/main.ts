@@ -14,19 +14,24 @@ export const Goyabu: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("div.user-box-txt > a > h3").text()},
     getIdentifier: function(url) {
-      return j.$("div.user-box-txt > a").attr("href").split("/")[4];
+      const anchorHref = j.$("div.user-box-txt > a").attr("href");
+
+      if(!anchorHref) return "";
+
+      return anchorHref.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return j.$("div.user-box-txt > a").attr("href");
+      return j.$("div.user-box-txt > a").attr("href") || "";
     },
     getEpisode: function(url){
       var episodePart = j.$("div.row.vibe-interactions > h1").text();
-      if(episodePart.length){
-        var temp = episodePart.match(/Episódio\s*\d+/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        }
-      }
+      if(episodePart.length === 0) return NaN;
+
+      var matches = episodePart.match(/Episódio\s*\d+/gmi);
+
+      if(!matches || matches.length === 0) return NaN;
+      
+      return Number(matches[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){return j.$('ul > li > div.inner > div.data > span.title > a').first().attr('href');
   },

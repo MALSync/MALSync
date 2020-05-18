@@ -14,13 +14,17 @@ export const HentaiKisa: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},
     getIdentifier: function(url) {
-      return j.$("div.c a.infoan2").attr("href");
+      return j.$("div.c a.infoan2").attr("href") || "";
     },
     getOverviewUrl: function(url){
       return HentaiKisa.domain + "/" + j.$("div.c a.infoan2").attr("href");
     },
     getEpisode: function(url){
-      return j.$("#playerselector option:selected").text().replace(/\D+/g, "");
+      const episodeText = j.$("#playerselector option:selected").text();
+
+      if(!episodeText) return NaN;
+
+      return Number(episodeText.replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var num = $("#playerselector").find("option:selected").next().attr('value');

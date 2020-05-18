@@ -47,7 +47,7 @@ export const kawaiifu: pageInterface = {
       if (j.$("ul.list-ep a.active").text().toLowerCase().indexOf("trailer") !== -1 || j.$("ul.list-ep a.active").text().toLowerCase().indexOf("teaser") !== -1) {
         return 0;
       } else {
-        return j.$("ul.list-ep a.active").text().replace(/\D+/g, "");
+        return Number(j.$("ul.list-ep a.active").text().replace(/\D+/g, ""));
       }
     },
     nextEpUrl: function(url){

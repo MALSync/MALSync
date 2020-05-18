@@ -21,7 +21,7 @@ export const MangaKatana: pageInterface = {
      return utils.urlPart(url,4);
    },
    getOverviewUrl: function(url){
-    return j.$("#breadcrumb_wrap > ol > li:nth-child(2) > a").attr("href");
+    return j.$("#breadcrumb_wrap > ol > li:nth-child(2) > a").attr("href") || "";
   },
   getEpisode: function (url) {
     let urlParts = url.split("/");

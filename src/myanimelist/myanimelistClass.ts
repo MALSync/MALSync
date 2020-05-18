@@ -29,13 +29,13 @@ export class myanimelistClass{
     var urlpart = utils.urlPart(this.url, 3);
     if(urlpart == 'anime' || urlpart == 'manga'){
       this.page = 'detail';
-      this.id = utils.urlPart(this.url, 4);
+      this.id = Number(utils.urlPart(this.url, 4));
       this.type = urlpart;
     }
     if(urlpart == 'animelist' || urlpart == 'mangalist'){
       this.page = 'bookmarks';
-      this.type = urlpart.substring(0, 5);
       this.username = utils.urlPart(this.url, 4);
+      this.type = urlpart === "animelist" ? "anime" : "manga";
     }
     if(urlpart == 'character'){
       this.page = 'character';
@@ -178,7 +178,7 @@ export class myanimelistClass{
 
   setEpPrediction(){
     con.log('setEpPrediction');
-    utils.epPredictionUI(this.id, this.id, this.type, function(prediction){
+    utils.epPredictionUI(this.id, this.id, String(this.type), function(prediction){
       if(!prediction) return;
       con.log(prediction);
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
@@ -210,7 +210,7 @@ export class myanimelistClass{
         $('h2:contains("Information")').before(html);
         $('.remove-mal-sync').click(function(){
           var key = $(this).attr('title');
-          api.settings.set(key, false);
+          api.settings.set(String(key), false);
           location.reload();
         });
       });
@@ -439,7 +439,7 @@ export class myanimelistClass{
             await malObj.update();
             return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());
           }, 2 * 24 * 60 * 60 * 1000)
-          .then(function(tag){
+          .then(function(tag: any){
             if(tag){
               el.after(tag)
             }
@@ -454,12 +454,12 @@ export class myanimelistClass{
     $(document).ready(function(){
       $('a.button_edit').each(function(){
         var el = $(this);
-        var href = $(this).attr('href');
+        var href = $(this).attr('href') || "";
         var type =  utils.urlPart(href, 4);
         var id = utils.urlPart(href, 5);
         var state = el.attr('title');
         if(typeof state != 'undefined' && state){
-          var tag = utils.statusTag(state, type, id);
+          var tag = String(utils.statusTag(state, type, id));
           if(This.page == 'detail'){
             el.parent().find('> a').first().after(tag);
           }else{

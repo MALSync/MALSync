@@ -24,17 +24,23 @@ async function checkApi(page){
     $('html').addClass('miniMAL-hide');
     var url = videoEl.attr('src');
     con.log(url);
-    //@ts-ignore
-    if(/blob\:/i.test(url)){
-      var apiBase:any = await getBase();
-      var itemId = await returnPlayingItemId();
-      var apiKey = await getApiKey();
-    }else{
-      var apiBase:any = url!.split('/').splice(0,4).join('/');
-      var itemId = utils.urlPart(url, 5);
-      var apiKey = await getApiKey();
-      setBase(apiBase);
+    let itemId: string = "";
+    let apiKey: string = "";
+    let apiBase: string = "";
+
+    if(url){
+      if(/blob\:/i.test(url)){
+        apiBase = await getBase();
+        itemId = await returnPlayingItemId();
+        apiKey = await getApiKey();
+      }else{
+        apiBase = url.split('/').splice(0,4).join('/');
+        itemId = utils.urlPart(url, 5);
+        apiKey = await getApiKey();
+        setBase(apiBase);
+      }
     }
+
     var reqUrl = apiBase+'/Items?ids='+itemId+'&api_key='+apiKey;
     con.log('reqUrl', reqUrl, 'base', apiBase, 'apiKey', apiKey);
 
@@ -122,7 +128,9 @@ async function waitForBase(){
     utils.waitUntilTrue(function(){
       return j.$('*[data-url]').length;
     }, function(){
-      var base = j.$('*[data-url]').first().attr('data-url').split('/').splice(0,4).join('/');
+      const elementUrl = j.$('*[data-url]').first().attr('data-url') || "";
+
+      var base = elementUrl.split('/').splice(0,4).join('/');
       con.log('Base Found', base);
       resolve(base);
     });

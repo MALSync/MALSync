@@ -1,5 +1,6 @@
 const webpack = require("webpack");
 const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
@@ -19,6 +20,14 @@ module.exports = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [{ loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
+      },
+      {
+        test: /\.vue$/,
+        exclude: /node_modules/,
+        loader: 'vue-loader',
+        options: {
+          shadowMode: true,
+        }
       }
     ]
   },
@@ -35,6 +44,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'test', 'dist')
   },
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),

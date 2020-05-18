@@ -16,13 +16,17 @@ export const AnimeDaisuki: pageInterface = {
       return j.$("nav.Brdcrmb.fa-home a:nth-child(3)").text().trim();
     },
     getIdentifier: function(url) {
-      return j.$("nav.Brdcrmb.fa-home a:nth-child(3)").attr('href').split("/")[3];
+      const anchorHref = j.$("nav.Brdcrmb.fa-home a:nth-child(3)").attr('href');
+
+      if(!anchorHref) return "";
+
+      return anchorHref.split("/")[3];
     },
     getOverviewUrl: function(url){
-      return AnimeDaisuki.domain + j.$("nav.Brdcrmb.fa-home a:nth-child(3)").attr('href');
+      return AnimeDaisuki.domain + (j.$("nav.Brdcrmb.fa-home a:nth-child(3)").attr('href') || "");
     },
     getEpisode: function(url){
-      return j.$("h2.SubTitle").text().replace(/\D+/g, "");
+      return Number(j.$("h2.SubTitle").text().replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var href = j.$(".CapNv .CapNvNx").first().attr('href')

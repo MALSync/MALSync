@@ -18,7 +18,7 @@ export class Single extends SingleAbstract {
   protected handleUrl(url) {
     if(url.match(/local:\/\/.*/i)) {
       this.id = utils.urlPart(url, 4);
-      this.type = utils.urlPart(url, 3);
+      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
       this.page = utils.urlPart(url, 2);
       this.key = 'local://'+this.page+'/'+this.type+'/'+this.id;
 

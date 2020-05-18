@@ -19,7 +19,7 @@ export const Funimation: pageInterface = {
       return url.split("/")[4];
     },
     getOverviewUrl: function(url){
-      return Funimation.domain + j.$("h1.show-headline.video-title a").attr("href");
+      return Funimation.domain + (j.$("h1.show-headline.video-title a").attr("href") || "");
     },
     getEpisode: function(url){
       return utils.getBaseText($("h1.show-headline.video-title")).replace(/\D+/g, "");

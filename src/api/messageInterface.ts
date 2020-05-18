@@ -28,7 +28,9 @@ export interface videoTimeSet {
 export interface iframeDone {
     name: 'iframeDone',
     id: string,
-    epList: any
+    epList: any,
+    len?: number,
+    error?: any,
 }
 
 export interface minimalWindow {

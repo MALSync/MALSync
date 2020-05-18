@@ -183,21 +183,21 @@ var testsArray = [
         }
       },
       //captcha
-      /*{
-        url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
-        expected: {
-          sync: true,
-          title: 'No Game No Life',
-          identifier: '779',
-          overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
-          nextEpUrl: 'https://www.anime4you.one/show/1/aid/779/epi/5/?host=#vidplayer',
-          episode: 4,
-          uiSelector: true,
-          epList: {
-            5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
-          }
-        }
-      },*/
+      // {
+      //   url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
+      //   expected: {
+      //     sync: true,
+      //     title: 'No Game No Life',
+      //     identifier: '779',
+      //     overviewUrl: 'https://www.anime4you.one/show/1/aid/779',
+      //     nextEpUrl: 'https://www.anime4you.one/show/1/aid/779/epi/5/?host=#vidplayer',
+      //     episode: 4,
+      //     uiSelector: true,
+      //     epList: {
+      //       5: 'https://www.anime4you.one/show/1/aid/779/epi/5/#vidplayer'
+      //     }
+      //   }
+      // },
     ]
   },
 
@@ -784,17 +784,17 @@ var testsArray = [
     title: 'kickassanime',
     url: 'https://www.kickassanime.rs/',
     testCases: [
-      /*{
-        url: 'https://www17.kickassanime.io/anime/overlord-iii-954770/episode-10-439507',
-        expected: {
-          sync: true,
-          title: 'Overlord III',
-          identifier: 'overlord-iii-954770',
-          overviewUrl: 'https://www17.kickassanime.io/anime/overlord-iii-954770',
-          episode: 10,
-          uiSelector: false,
-        }
-      },*/
+      // {
+      //   url: 'https://www17.kickassanime.io/anime/overlord-iii-954770/episode-10-439507',
+      //   expected: {
+      //     sync: true,
+      //     title: 'Overlord III',
+      //     identifier: 'overlord-iii-954770',
+      //     overviewUrl: 'https://www17.kickassanime.io/anime/overlord-iii-954770',
+      //     episode: 10,
+      //     uiSelector: false,
+      //   }
+      // },
       {
         url: 'https://www.kickassanime.rs/anime/overlord-iii-591772',
         expected: {
@@ -840,18 +840,18 @@ var testsArray = [
     title: 'Wakanim',
     url: 'https://www.wakanim.tv',
     testCases: [
-      /*{
-        url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
-        expected: {
-          sync: true,
-          title: 'AFTERLOST (OmU.)',
-          identifier: '493',
-          overviewUrl: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
-          nextEpUrl: 'https://www.wakanim.tv/de/v2/catalogue/episode/8788/afterlost-omu-staffel-1-folge-5-omu',
-          episode: 4,
-          uiSelector: false,
-        }
-      },*/
+      // {
+      //   url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
+      //   expected: {
+      //     sync: true,
+      //     title: 'AFTERLOST (OmU.)',
+      //     identifier: '493',
+      //     overviewUrl: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+      //     nextEpUrl: 'https://www.wakanim.tv/de/v2/catalogue/episode/8788/afterlost-omu-staffel-1-folge-5-omu',
+      //     episode: 4,
+      //     uiSelector: false,
+      //   }
+      // },
       {
        url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
         expected: {
@@ -1076,17 +1076,17 @@ var testsArray = [
     url: 'https://www.underhentai.net/',
     testCases: [
     //this part seems broken
-     /* {
-        url: 'https://www.underhentai.net/watch/?id=647&ep=2',
-        expected: {
-          sync: true,
-          title: 'Resort Boin',
-          identifier: 'resort-boin',
-          overviewUrl: 'https://www.underhentai.net/resort-boin',
-          episode: 2,
-          uiSelector: false,
-        }
-      },*/
+      // {
+      //   url: 'https://www.underhentai.net/watch/?id=647&ep=2',
+      //   expected: {
+      //     sync: true,
+      //     title: 'Resort Boin',
+      //     identifier: 'resort-boin',
+      //     overviewUrl: 'https://www.underhentai.net/resort-boin',
+      //     episode: 2,
+      //     uiSelector: false,
+      //   }
+      // },
       {
         url: 'https://www.underhentai.net/resort-boin/',
         expected: {

@@ -19,7 +19,7 @@ export const JaiminisBox: pageInterface = {
       return JaiminisBox.sync.getOverviewUrl(url).split("/")[5];
     },
     getOverviewUrl: function(url){
-      return j.$("div.tbtitle > div.text > a").first().attr("href");
+      return j.$("div.tbtitle > div.text > a").first().attr("href") || "";
     },
     getEpisode: function(url){
      return Number(url.split("/")[8]);

@@ -14,9 +14,9 @@ export const Animeheaven: pageInterface = {
     },
     sync:{
       getTitle: function(url){return Animeheaven.sync.getIdentifier(url)},
-      getIdentifier: function(url){return utils.urlParam(url, 'a');},
+      getIdentifier: function(url){return utils.urlParam(url, 'a') || "";},
       getOverviewUrl: function(url){return utils.absoluteLink(j.$('a.infoan2').first().attr('href'), Animeheaven.domain);},
-      getEpisode: function(url){return utils.urlParam(url, 'e');},
+      getEpisode: function(url){return Number(utils.urlParam(url, 'e'));},
       nextEpUrl: function(url){return utils.absoluteLink(j.$('.next2').first().parent().attr('href'), Animeheaven.domain);}
     },
     overview:{

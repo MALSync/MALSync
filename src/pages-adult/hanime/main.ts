@@ -16,27 +16,38 @@ export const hanime: pageInterface = {
       return j.$("h1.tv-title").text().replace(/ ([^a-z]*)$/gmi,"").trim();
     },
     getIdentifier: function(url) {
-      return utils.urlPart(url, 5).replace(/-([^a-z]*)$/gmi,"").trim();
+      const urlPart5 = utils.urlPart(url, 5);
+
+      if(!urlPart5) return "";
+
+      return urlPart5.replace(/-([^a-z]*)$/gmi,"").trim();
     },
     getOverviewUrl: function(url){
       var overviewPart = utils.urlPart(url, 5);
-        var temp = overviewPart.match(/-([^a-z]*)$/gmi);
-        if(temp !== null){
-          return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url) + "-1";
-        } else {
-          return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url);
-        }
-    },
-    getEpisode: function(url){
-      var episodePart = utils.urlPart(url, 5);
-      if(episodePart.length){
-        var temp = episodePart.match(/-([^a-z]*)$/gmi);
-        if(temp !== null){
-          return temp[0].replace(/\D+/g, "");
-        } else {
-          return 1;
-        }
+
+      if(!overviewPart) return "";
+
+      var temp = overviewPart.match(/-([^a-z]*)$/gmi);
+      if(temp !== null){
+        return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url) + "-1";
+      } else {
+        return hanime.domain + "/videos/hentai/" + hanime.sync.getIdentifier(url);
       }
+    },
+    getEpisode: function (url) {
+      let urlParts = url.split("/");
+  
+      if (!urlParts || urlParts.length === 0) return NaN;
+  
+      let episodePart = urlParts[5];
+  
+      if (episodePart.length === 0) return NaN;
+  
+      let temp = episodePart.match(/-([^a-z]*)$/gmi);
+  
+      if (!temp || temp.length === 0) return NaN;
+  
+      return Number(temp[0].replace(/\D+/g, ""));
     },
   },
   init(page){

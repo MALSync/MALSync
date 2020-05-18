@@ -19,14 +19,16 @@ export const JapScan: pageInterface = {
      return url.split("/")[4];
    },
    getOverviewUrl: function(url){
-    return JapScan.domain + j.$("ol.breadcrumb > li:nth-child(3) > a").first().attr("href");
+    return JapScan.domain + (j.$("ol.breadcrumb > li:nth-child(3) > a").first().attr("href") || "");
   },
   getEpisode: function(url){
     return Number(url.split("/")[5]);
   },
   nextEpUrl: function(url){
-    if (j.$("div.clearfix > p > span").last().text() == "Chapitre Suivant" && j.$("div.clearfix > p > a").last().attr("href").length) {
-      return JapScan.domain + j.$("div.clearfix > p > a").last().attr("href")
+    const anchorHref = j.$("div.clearfix > p > a").last().attr("href") || "";
+
+    if (j.$("div.clearfix > p > span").last().text() == "Chapitre Suivant" && anchorHref.length) {
+      return JapScan.domain + (j.$("div.clearfix > p > a").last().attr("href") || "")
     }
   },
 },

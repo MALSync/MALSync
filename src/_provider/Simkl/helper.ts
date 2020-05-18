@@ -128,25 +128,23 @@ export async function getSingle(ids:{simkl?:string|number, mal?:string|number}, 
   return null;
 }
 
-export async function call(url, sData = {}, asParameter = false, methode = 'GET', login = true){
+export async function call(url, sData = {}, asParameter = false, method: "GET" | "POST" = 'GET', login = true){
   if(asParameter){
     url += '?'+new URLSearchParams(Object.entries(sData));
   }
-  con.log('call', methode, url, sData);
+  con.log('call', method, url, sData);
 
   var headers = {
-    'Authorization': 'Bearer ' + api.settings.get('simklToken'),
     'simkl-api-key': client_id,
     'Accept': 'application/vnd.api+json',
     'Content-Type': 'application/json'
   };
 
-  if(!login){
-    con.log('No login')
-    delete headers.Authorization;
-  }
+  if(login)
+    headers["Authorization"] = 'Bearer ' + api.settings.get('simklToken');
+  else con.log('No login')
 
-  return api.request.xhr(methode, {
+  return api.request.xhr(method, {
     url: url,
     headers: headers,
     data: sData,

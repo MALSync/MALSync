@@ -338,7 +338,7 @@ export class syncPage{
               sync();
             }, api.settings.get('delay') * 1000);
           }else{
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates(malUrl).shortName, state.episode])+'</button>';
+            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates(malUrl).shortName, String(state.episode)])+'</button>';
             var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
 
             if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
@@ -474,12 +474,12 @@ export class syncPage{
 
           var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
           flashmItem.find('.undoButton').on('click', (e) => {
-            e.target.closest('.flash').remove();
+            e.target.closest('.flash')?.remove();
             this.syncHandling(false, true);
           });
           flashmItem.find('.wrongButton').on('click', (e) => {
             this.openCorrectionUi();
-            e.target.closest('.flash').remove();
+            e.target.closest('.flash')?.remove();
             this.syncHandling(false, true);
           });
         }else{
@@ -642,7 +642,7 @@ export class syncPage{
         con.log('Offset', i);
         if(i > 1){
           var calcOffset = 1 - i;
-          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [calcOffset]), 'offset', () => {
+          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [String(calcOffset)]), 'offset', () => {
             this.setOffset(calcOffset);
           }, () => {
             this.setOffset(0);
@@ -802,8 +802,9 @@ export class syncPage{
     selectors.each(function(index, selector) {
       var text = j.$(selector).find('option:selected').text();
       var aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
+      const width = aux.width() || 0;
       j.$('#malp').append(aux);
-      j.$(selector).width(aux.width()+5);
+      j.$(selector).width(width + 5);
       aux.remove();
     });
   }

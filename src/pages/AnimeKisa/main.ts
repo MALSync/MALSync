@@ -14,13 +14,13 @@ export const AnimeKisa: pageInterface = {
   sync: {
     getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},
     getIdentifier: function(url) {
-      return j.$("div.c a.infoan2").attr("href");
+      return j.$("div.c a.infoan2").attr("href") || "";
     },
     getOverviewUrl: function(url){
       return AnimeKisa.domain + "/" + j.$("div.c a.infoan2").attr("href");
     },
     getEpisode: function(url){
-      return j.$("#playerselector option:selected").text().replace(/\D+/g, "");
+      return Number(j.$("#playerselector option:selected").text().replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){
       var num = $("#playerselector").find("option:selected").next().attr('value');

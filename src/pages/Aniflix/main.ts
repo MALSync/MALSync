@@ -25,7 +25,7 @@ export const Aniflix: pageInterface = {
       return url.split("/")[4] + "?s=" + url.split("/")[7];
     },
     getOverviewUrl: function(url){
-      return Aniflix.domain+ j.$("a.episode-showname").attr("href");
+      return Aniflix.domain+ (j.$("a.episode-showname").attr("href") || "");
     },
     getEpisode: function(url){
       return Number(url.split("/")[9]);
@@ -33,7 +33,7 @@ export const Aniflix: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      if (j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "") == 1 || j.$("div.seasons-wrapper > div.season.season-active > div").first().text() === "Specials") {
+      if (Number(j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "")) == 1 || j.$("div.seasons-wrapper > div.season.season-active > div").first().text() === "Specials") {
         return j.$("h1.show-name").text();
       }else {
         return j.$("h1.show-name").text() + " season " + j.$("div.seasons-wrapper > div.season.season-active > div").first().text().replace(/\D+/g, "");

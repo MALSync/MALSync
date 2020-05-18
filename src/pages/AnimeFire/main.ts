@@ -20,14 +20,14 @@ export const AnimeFire: pageInterface = {
     },
     getOverviewUrl: function(url){
       let oUrl = j.$("li.page-item:nth-child(3) > a.page-link").attr("href");
-      if(oUrl.indexOf("animes") !== -1) {
+      if(oUrl && oUrl.indexOf("animes") !== -1) {
         return oUrl;
       } else {
-        return j.$("li.page-item:nth-child(4) > a.page-link").attr("href");
+        return j.$("li.page-item:nth-child(4) > a.page-link").attr("href") || "";
       }
     },
     getEpisode: function(url){
-      return utils.urlPart(url,5);
+      return Number(utils.urlPart(url,5));
     },
     nextEpUrl: function(url){
       if(j.$('li.page-item:nth-child(5) > a.page-link > span.prox').length){

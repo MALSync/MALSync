@@ -44,7 +44,7 @@ export const Nhentai: pageInterface = {
         if(episodePart.length){
           var temp = episodePart.match(/(ch|ch.|chapter).?\d+/gmi);
           if(temp !== null){
-            return temp[0].replace(/\D+/g, "");
+            return Number(temp[0].replace(/\D+/g, ""));
           }
         }
       }catch(e) {
