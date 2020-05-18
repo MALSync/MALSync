@@ -383,7 +383,7 @@ module.exports = {
     ]
   },
   //monoschinos
-  streamtape: {
+  monoschinos: {
     match: [
       '*://reproductor.monoschinos.com/*'
     ]
