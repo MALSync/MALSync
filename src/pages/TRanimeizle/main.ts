@@ -92,7 +92,7 @@ export const TRanimeizle: pageInterface = {
       let identifier = utils.urlPart(url, 4);
 
       if (!identifier) return "";
-      
+
       return identifier;
     },
     list: {

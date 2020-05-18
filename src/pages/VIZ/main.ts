@@ -54,7 +54,7 @@ export const VIZ: pageInterface = {
 
         if(!anchorHref || anchorHref !== "javascript:void('join to read');")
           return NaN;
-          
+
         var episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
 
         if (episodePart.length == 0) {

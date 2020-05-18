@@ -57,7 +57,7 @@ overview:{
       let matches = episodeText.match(/(ch\.|chapter)\D?\d+/i);
 
       if(!matches || matches.length === 0) return NaN;
-      
+
       return Number(matches[0].match(/\d+/));
     }
   }

@@ -21,7 +21,7 @@ export const AnimesVision: pageInterface = {
     },
     getEpisode: function(url){
       var episodetemp = url.split("/")[5].replace(/\D+/,"");
-      
+
       if(!episodetemp) return NaN;
 
       return Number(episodetemp)
