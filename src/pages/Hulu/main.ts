@@ -2,10 +2,10 @@ import { pageInterface } from "./../pageInterface";
 
 var episode:number = 0;
 var season:number = 0;
-var huluId:any = undefined;
-var name:any = undefined;
+var huluId:any;
+var name:any;
 var movie:boolean = false;
-var nextEp:any = undefined;
+var nextEp:any;
 
 export const Hulu: pageInterface = {
   name: "Hulu",
@@ -43,7 +43,7 @@ export const Hulu: pageInterface = {
     getTitle: function(url){
       var currentSeason = j.$("div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value").text().replace(/\D+/g, "");
 
-      if(typeof currentSeason !== undefined && Number(currentSeason) > 1) 
+      if(typeof currentSeason !== undefined && Number(currentSeason) > 1)
         return name + " season "+ currentSeason;
 
       return name;

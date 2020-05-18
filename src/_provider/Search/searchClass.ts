@@ -267,14 +267,14 @@ export class searchClass {
     con.log("malSync response",response);
 
     if(response.status !== 400 && response.status !== 200)
-      throw 'malsync offline';
+      throw new Error('malsync offline');
 
     if(response.status === 400 && response.responseText?.includes("error"))
       return false;
 
     var res = JSON.parse(response.responseText);
 
-    if(!res.malUrl) 
+    if(!res.malUrl)
       return false;
 
     return {
