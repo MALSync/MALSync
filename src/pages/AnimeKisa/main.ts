@@ -11,6 +11,9 @@ export const AnimeKisa: pageInterface = {
       return false;
     }
   },
+  isOverviewPage: function(url) {
+    return url.split("/")[3] !== null && j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("div.notmain > div > div.infobox > div.infoepboxmain")[0];
+  },
   sync: {
     getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},
     getIdentifier: function(url) {
@@ -36,7 +39,7 @@ export const AnimeKisa: pageInterface = {
   },
   overview:{
     getTitle: function(url){
-      return j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
+      return j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
     },
     getIdentifier: function(url){
       return url.split("/")[3];
@@ -76,10 +79,7 @@ export const AnimeKisa: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      if (page.url.split("/")[3] !== null && j.$("div.c a.infoan2")[0] && j.$("#playerselector option:selected")[0] || page.url.split("/")[3] !== null && j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("#body > div.notmain > div > div.infobox > div.infoepboxmain")[0])
-      {
-       page.handlePage();
-     }
+      page.handlePage();
    });
   }
 };

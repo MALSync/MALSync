@@ -25,13 +25,13 @@ export const AnimeFever: pageInterface = {
       if(!urlParts || urlParts.length === 0) return NaN;
 
       let episodePart = urlParts[6];
-  
+
       if (episodePart.length === 0) return NaN;
-  
+
       let temp = episodePart.match(/episode-\d*/gim);
-  
+
       if (!temp) return NaN;
-      
+
       return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){

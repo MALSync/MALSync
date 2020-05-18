@@ -49,7 +49,7 @@ export const Wakanim: pageInterface = {
       let anchorTitle = selector.find('a').attr('title');
 
       if(!anchorTitle) return NaN;
-      
+
       return episodeHelper(url, anchorTitle.trim());
     },
   }

@@ -15,7 +15,7 @@ api.settings.init()
     page.cdn = function(){
       api.request.sendMessage?.({name: "iframeDone", id: 'retry', epList: []});
     }
-    page.handlePage = async function(){
+    page.handlePage = async function(curUrl = window.location.href){
       con.log('handlePage');
       try{
         var state: any;

@@ -194,8 +194,8 @@ export class syncPage{
     this.url = curUrl;
     this.browsingtime = Date.now();
 
-    this.loadUI();
     if(this.page.isSyncPage(this.url)){
+      this.loadUI();
       state = {
         on: 'SYNC',
         title: this.page.sync.getTitle(this.url),
@@ -241,6 +241,11 @@ export class syncPage{
         con.log('No overview definition');
         return;
       }
+      if(typeof this.page.isOverviewPage !== "undefined" && !this.page.isOverviewPage(this.url)){
+        con.info('Not an overview/sync page');
+        return;
+      }
+      this.loadUI();
       state = {
         on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),

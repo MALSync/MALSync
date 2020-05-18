@@ -23,17 +23,17 @@ export const AnimeXin: pageInterface = {
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");
-  
+
       if (!urlParts || urlParts.length === 0) return NaN;
-  
+
       let episodePart = urlParts[3];
-  
+
       if (episodePart.length === 0) return NaN;
-  
+
       let temp = episodePart.match(/-episode-\d*/gi);
-  
+
       if (!temp || temp.length === 0) return NaN;
-  
+
       return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){

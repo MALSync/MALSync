@@ -65,7 +65,18 @@ export const animestrue: pageInterface = {
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function(){
-      page.handlePage();
+      utils.waitUntilTrue(
+        function() {
+          if (j.$("div.anime-nome > a, #pageTitle").length && j.$("div.anime-nome > a, #pageTitle").text()) {
+            return true;
+          } else {
+            return false;
+          }
+        },
+        function() {
+          page.handlePage();
+        }
+      );
     });
   }
 };

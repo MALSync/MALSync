@@ -5,11 +5,14 @@ export const MangaKisa: pageInterface = {
   domain: "https://mangakisa.com",
   type: "manga",
   isSyncPage: function(url) {
-    if (j.$("div.now2 > a.infoan2").length) {
+    if (url.split("/")[3] !== undefined && j.$("div.now2 > a.infoan2").length) {
       return true;
     } else {
       return false;
     }
+  },
+  isOverviewPage: function(url) {
+    return url.split("/")[3] !== undefined && j.$("div.infoboxc > div.infodesbox > h1.infodes").length;
   },
   sync: {
     getTitle: function(url){
@@ -50,7 +53,7 @@ export const MangaKisa: pageInterface = {
 },
 overview:{
   getTitle: function(url){
-    return j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
+    return j.$("div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
   },
   getIdentifier: function(url){
     return url.split("/")[3];
@@ -77,9 +80,7 @@ init(page){
   }
   api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   j.$(document).ready(function(){
-    if (page.url.split("/")[3] !== undefined && page.url.split("/")[3].length > 0 && (j.$("div.now2 > a.infoan2").length || j.$("div.infoboxc > div.infodesbox > h1.infodes").length)) {
-      page.handlePage();
-    }
+    page.handlePage();
   });
 }
 };

@@ -4,7 +4,8 @@ export interface pageInterface {
     domain: string | string[],
     name: string,
     type: "anime"|"manga",
-    isSyncPage: (url: string) => boolean, //Return if the current page is the sync page (Chapter/episode page)
+    isSyncPage: (url: string) => boolean, //Return true if the current page is the sync page (Chapter/episode page)
+    isOverviewPage?: (url: string) => boolean, //Return true if the current page is the Overview page
     sync:{ // Definitions for the sync page
       getTitle: (url: string) => string, //Returns the title of the anime, used for the search on mal
       getIdentifier: (url: string) => string, //An unique identifier of the anime. Has to be the same on the sync and overview page

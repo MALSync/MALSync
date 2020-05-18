@@ -21,17 +21,17 @@ export const moeclip: pageInterface = {
     },
     getEpisode: function (url) {
       let urlParts = url.split("/");
-  
+
       if (!urlParts || urlParts.length === 0) return NaN;
-  
+
       let episodePart = urlParts[3];
-  
+
       if (episodePart.length === 0) return NaN;
-  
+
       let temp = episodePart.match(/-\d*-sub-indo.*/gmi);
-  
+
       if (!temp || temp.length === 0) return NaN;
-  
+
       return Number(temp[0].replace(/\D+/g, ""));
     },
     nextEpUrl: function(url){return j.$('div.episode-nav > div.select-episode > div:nth-child(3) > a').first().attr('href');
