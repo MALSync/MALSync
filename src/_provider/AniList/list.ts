@@ -71,8 +71,8 @@ export class userlist extends ListAbstract {
     if(this.offset < 1) this.offset = 1;
     con.log('[UserList][AniList]', 'username: '+this.username, 'status: '+this.status, 'offset: '+this.offset);
 
-    if(this.username == null){
-        this.username = await this.getUsername();
+    if(!this.username){
+      this.username = await this.getUsername();
     }
 
     var query = `

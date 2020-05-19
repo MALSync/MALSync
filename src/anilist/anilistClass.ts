@@ -309,9 +309,7 @@ export class anilistClass{
         }
       }
 
-      // TODO needs review. userList complains about missing parameters
-      const _userlist: any = userlist;
-      var listProvider:userlist = new _userlist(1, this.page!.type);
+      var listProvider:userlist = new userlist(1, this.page!.type);
 
       listProvider.compact = true;
 

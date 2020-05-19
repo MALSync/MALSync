@@ -42,7 +42,7 @@ export abstract class ListAbstract {
       singleCallback?: (el: listElement) => void,
       continueCall?
     } = {},
-    protected username : string,
+    protected username : string = '',
     protected offset = 0,
     protected templist: listElement[] = []
   ) {

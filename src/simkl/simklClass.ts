@@ -222,9 +222,7 @@ export class simklClass{
   }
 
   bookmarksProfile(){
-    // TODO needs review. userList complains about missing parameters
-    const _userlist: any = userlist;
-    var listProvider:userlist = new _userlist(1, this.page!.type);
+    var listProvider:userlist = new userlist(1, this.page!.type);
 
     listProvider.get().then( (list) => {
       $.each(list, async (index, en) => {
@@ -273,8 +271,7 @@ export class simklClass{
   bookmarksAnime(){
     var This = this;
 
-    const _userlist: any = userlist;
-    var listProvider:userlist = new _userlist(1, this.page!.type);
+    var listProvider:userlist = new userlist(1, this.page!.type);
 
     listProvider.get().then( (list) => {
       exec();

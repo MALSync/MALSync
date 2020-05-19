@@ -136,7 +136,7 @@ export class kitsuClass{
             con.info('token', token);
 
             await api.settings.set('kitsuToken', token)
-           
+
             $('#mal-sync-login').html('<h1>MAL-Sync</h1><br>'+api.storage.lang("kitsuClass_authentication_Success"))
           },
           error: function(result){
@@ -341,8 +341,7 @@ export class kitsuClass{
         }
       }
 
-      let _userlist: any = userlist;
-      var listProvider:userlist = new _userlist(1, this.page.type);
+      var listProvider:userlist = new userlist(1, this.page.type);
 
       listProvider.get().then( (list) => {
         if(this.page!.type == 'anime'){
