@@ -1,10 +1,9 @@
 <template>
   <div class="inputButton">
-
     <div class="group">
-      <input v-model="inputString" :type="type" required>
+      <input v-model="inputString" :type="type" required />
       <span class="bar"></span>
-      <label>{{label}}</label>
+      <label>{{ label }}</label>
     </div>
 
     <button v-if="inputString !== state" @click="click">Update</button>
@@ -12,42 +11,42 @@
 </template>
 
 <script type="text/javascript">
-  export default {
-    data: function(){
-      return {
-        inputString: ''
-      }
+export default {
+  props: {
+    state: {
+      type: String | Number,
+      default: '',
     },
-    props: {
-      state: {
-        type: String|Number,
-        default: ''
-      },
-      type: {
-        type: String,
-        default: ''
-      },
-      label: {
-        type: String,
-        default: ''
-      },
+    type: {
+      type: String,
+      default: '',
     },
-    mounted: function(){
+    label: {
+      type: String,
+      default: '',
+    },
+  },
+  data: function() {
+    return {
+      inputString: '',
+    };
+  },
+  watch: {
+    state: function(type) {
       this.inputString = this.state;
     },
-    watch: {
-      state: function(type){
-        this.inputString = this.state;
-      },
-      inputString: function(val){
-        this.$emit('change', this.inputString);
-      }
+    inputString: function(val) {
+      this.$emit('change', this.inputString);
     },
-    methods: {
-      lang: api.storage.lang,
-      click: function() {
-        this.$emit('clicked', this.inputString);
-      }
-    }
-  }
+  },
+  mounted: function() {
+    this.inputString = this.state;
+  },
+  methods: {
+    lang: api.storage.lang,
+    click: function() {
+      this.$emit('clicked', this.inputString);
+    },
+  },
+};
 </script>

@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80],
+  // https://eslint.vuejs.org/user-guide/#editor-integrations
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  "vetur.validation.template": false,
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#ffffff18"
+  }
+}

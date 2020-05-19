@@ -1,40 +1,42 @@
 import { expect } from 'chai';
-import {userlist} from './../../../../src/_provider/MyAnimeList/list';
-import {generalListTests} from './../generalTests.exclude';
+import { userlist } from './../../../../src/_provider/MyAnimeList/list';
+import { generalListTests } from './../generalTests.exclude';
 
 global.con = require('./../../../../src/utils/console');
 global.con.log = function() {};
 global.con.error = function() {};
 global.con.info = function() {};
 
-var responses = {
+const responses = {
   user: {
-    data: require("./api/user.json").data,
-    errorCode: 400
+    data: require('./api/user.json').data,
+    errorCode: 400,
   },
-  "Page1": {
-    data: JSON.stringify(require("./api/list-Page1.json"))
+  Page1: {
+    data: JSON.stringify(require('./api/list-Page1.json')),
   },
-  "Page2": {
-    data: JSON.stringify(require("./api/list-Page2.json"))
+  Page2: {
+    data: JSON.stringify(require('./api/list-Page2.json')),
   },
 };
 
-var elements = [
+const elements = [
   {
     uid: 39482,
     malId: 39482,
     cacheKey: 39482,
     type: 'anime',
     title: 'Ore, Twintail ni Narimasu. Tokubetsu-hen',
-    url: 'https://myanimelist.net/anime/39482/Ore_Twintail_ni_Narimasu_Tokubetsu-hen',
+    url:
+      'https://myanimelist.net/anime/39482/Ore_Twintail_ni_Narimasu_Tokubetsu-hen',
     watchedEp: 0,
     totalEp: 1,
     status: 1,
     score: 0,
-    image: 'https://cdn.myanimelist.net/r/96x136/images/anime/1845/99646.webp?s=d385c800feb4eac0eabe800b434d9e7e',
+    image:
+      'https://cdn.myanimelist.net/r/96x136/images/anime/1845/99646.webp?s=d385c800feb4eac0eabe800b434d9e7e',
     tags: '',
-    airingState: 2
+    airingState: 2,
   },
   {
     uid: 27,
@@ -47,64 +49,62 @@ var elements = [
     totalEp: 24,
     status: 6,
     score: 0,
-    image: 'https://cdn.myanimelist.net/r/96x136/images/anime/10/24649.webp?s=a6f926d3a8fbd12aec483b2656de7cad',
+    image:
+      'https://cdn.myanimelist.net/r/96x136/images/anime/10/24649.webp?s=a6f926d3a8fbd12aec483b2656de7cad',
     tags: '',
-    airingState: 2
+    airingState: 2,
   },
 ];
 
-global.api = {}
+global.api = {};
 
 function getResponse(key) {
   return responses[key].data;
 }
 
-describe('MyAnimeList userlist', function () {
-  before(function () {
+describe('MyAnimeList userlist', function() {
+  before(function() {
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
-          if(conf.indexOf('panel.php') !== -1) {
+          if (conf.indexOf('panel.php') !== -1) {
             return {
               responseText: getResponse('user'),
             };
           }
 
-          if(conf.indexOf('offset=0') !== -1) {
+          if (conf.indexOf('offset=0') !== -1) {
             return {
               responseText: getResponse('Page1'),
             };
           }
 
-          if(conf.indexOf('offset=300') !== -1) {
+          if (conf.indexOf('offset=300') !== -1) {
             return {
               responseText: getResponse('Page2'),
             };
           }
 
           throw conf.url;
-        }
+        },
       },
       settings: {
         get: function() {
           return '';
-        }
+        },
       },
       storage: {
         lang: function() {
           return 'lang';
         },
         get: function(key) {
-          if(key == 'kitsuUserId') return undefined;
+          if (key == 'kitsuUserId') return undefined;
           return '';
         },
-        set: function(key, val) {
-        }
-      }
-
-    }
+        set: function(key, val) {},
+      },
+    };
   });
 
   generalListTests(userlist, elements, responses);
-
 });

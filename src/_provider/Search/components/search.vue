@@ -3,7 +3,7 @@
 
     <div class="input">
       <div class="group">
-        <input type="text" v-model="searchKeyword" @focus="inputFocus()" required>
+        <input v-model="searchKeyword" type="text" required @focus="inputFocus()">
         <span class="bar"></span>
         <label>{{lang("correction_Search")}}</label>
       </div>
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="results" v-if="searchKeyword">
+    <div v-if="searchKeyword" class="results">
       <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
         <div class="image"></div>
         <div class="right">
@@ -25,7 +25,7 @@
           <p>{{lang("correction_NoMal")}}</p>
         </div>
       </a>
-      <a v-for="item in items" :key="item.id" class="result" :href="item.url" @click="clickItem($event, item)" :class="{active: currentId === item.id}">
+      <a v-for="item in items" :key="item.id" class="result" :href="item.url" :class="{active: currentId === item.id}" @click="clickItem($event, item)">
         <div class="image"><img :src="item.image"></img></div>
         <div class="right">
           <span class="title">{{item.name}}</span>
@@ -41,16 +41,9 @@
 
 <script type="text/javascript">
   import {search}  from "./../../../provider/provider";
-  var searchTimeout;
+  let searchTimeout;
   export default {
     components: {
-    },
-    data: function(){
-      return {
-        items: [],
-        loading: false,
-        searchKeyword: ''
-      }
     },
     props: {
       type: {
@@ -70,10 +63,11 @@
         default: 0
       },
     },
-    mounted: function(){
-      if(this.syncMode) {
-        this.searchKeyword = this.keyword;
-        this.load();
+    data: function(){
+      return {
+        items: [],
+        loading: false,
+        searchKeyword: ''
       }
     },
     watch: {
@@ -89,6 +83,12 @@
 
       },
       type: function(type){
+        this.load();
+      }
+    },
+    mounted: function(){
+      if(this.syncMode) {
+        this.searchKeyword = this.keyword;
         this.load();
       }
     },
@@ -119,7 +119,7 @@
           this.$emit('clicked', {url: '', id: 0});
           return;
         }
-        var url = await item.malUrl();
+        const url = await item.malUrl();
         if(url) {
           this.$emit('clicked', {url: url, id: item.id});
         }else{

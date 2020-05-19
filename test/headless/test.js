@@ -1,17 +1,17 @@
-const {expect} = require('chai');
-const puppeteer = require("puppeteer-extra");
-const pluginStealth = require("puppeteer-extra-plugin-stealth");
+const { expect } = require('chai');
+const puppeteer = require('puppeteer-extra');
+const pluginStealth = require('puppeteer-extra-plugin-stealth');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 
 const fs = require('fs');
-const script = fs.readFileSync(__dirname + '/../dist/testCode.js', 'utf8');
+const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 const skipTest = process.env.SKIPTEST;
 
-if(skipTest) {
+if (skipTest) {
   console.log('Skiptest');
 }
 
-var testsArray = [
+const testsArray = [
   {
     title: 'Crunchyroll',
     url: 'https://www.crunchyroll.com/',
@@ -24,35 +24,41 @@ var testsArray = [
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
           uiSelector: true,
           epList: {
-            5: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-5-untitled-658393'
-          }
-        }
+            5: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-5-untitled-658393',
+          },
+        },
       },
 
       {
-        url: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-3-untitled-658389',
+        url:
+          'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-3-untitled-658389',
         expected: {
           sync: true,
           title: 'Ai-Mai-Mi Mousou Catastrophe',
           identifier: 'Ai-Mai-Mi Mousou Catastrophe',
-          overviewUrl: 'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
-          nextEpUrl: 'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
+          overviewUrl:
+            'https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?season=Ai-Mai-Mi Mousou Catastrophe',
+          nextEpUrl:
+            'https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
       {
-        url: 'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-125-short-version-digest-758955',
+        url:
+          'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-125-short-version-digest-758955',
         expected: {
           sync: true,
           title: '(OmU) Katana Maidens ~ Toji No Miko',
           identifier: '(OmU) Katana Maidens ~ Toji No Miko',
           episode: 12,
-          overviewUrl: 'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=(OmU) Katana Maidens ~ Toji No Miko',
-          nextEpUrl: 'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501'
-        }
+          overviewUrl:
+            'https://www.crunchyroll.com/katana-maidens-toji-no-miko?season=(OmU) Katana Maidens ~ Toji No Miko',
+          nextEpUrl:
+            'https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501',
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -68,23 +74,25 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           uiSelector: true,
           epList: {
-            5: 'https://kissanime.ru/Anime/No-Game-No-Life/Episode-005?id=67493'
-          }
-        }
+            5: 'https://kissanime.ru/Anime/No-Game-No-Life/Episode-005?id=67493',
+          },
+        },
       },
       {
-        url: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-004?id=112019&s=hydrax',
+        url:
+          'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-004?id=112019&s=hydrax',
         expected: {
           sync: true,
           title: 'No Game No Life (Dub)',
           identifier: 'No-Game-No-Life-Dub',
           overviewUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub',
-          nextEpUrl: 'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-005?id=112020',
+          nextEpUrl:
+            'https://kissanime.ru/Anime/No-Game-No-Life-Dub/Episode-005?id=112020',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -102,11 +110,11 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/q457ww'
-          }
-        }
+            5: 'https://9anime.to/watch/no-game-no-life-dub.y2p0/q457ww',
+          },
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -121,9 +129,9 @@ var testsArray = [
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
-          }
-        }
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
+          },
+        },
       },
       {
         url: 'https://www4.gogoanime.io/no-game-no-life-episode-5',
@@ -136,11 +144,11 @@ var testsArray = [
           episode: 5,
           uiSelector: false,
           epList: {
-            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6'
-          }
-        }
+            6: 'https://www4.gogoanime.io/no-game-no-life-episode-6',
+          },
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -159,11 +167,11 @@ var testsArray = [
           episode: 4,
           uiSelector: true,
           epList: {
-            5: 'https://twist.moe/a/no-game-no-life/5'
-          }
-        }
+            5: 'https://twist.moe/a/no-game-no-life/5',
+          },
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -178,9 +186,9 @@ var testsArray = [
           identifier: '781',
           uiSelector: true,
           epList: {
-            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer'
-          }
-        }
+            5: 'https://www.anime4you.one/show/1/aid/781/epi/5/#vidplayer',
+          },
+        },
       },
       //captcha
       // {
@@ -198,7 +206,7 @@ var testsArray = [
       //     }
       //   }
       // },
-    ]
+    ],
   },
 
   {
@@ -213,9 +221,9 @@ var testsArray = [
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            5: 'http://www.turkanime.net/video/no-game-no-life-special-5-bolum'
-          }
-        }
+            5: 'http://www.turkanime.net/video/no-game-no-life-special-5-bolum',
+          },
+        },
       },
       {
         url: 'http://www.turkanime.tv/video/no-game-no-life-6-bolum',
@@ -227,9 +235,9 @@ var testsArray = [
           nextEpUrl: 'http://www.turkanime.tv/video/no-game-no-life-7-bolum',
           episode: 6,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -245,23 +253,25 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           uiSelector: true,
           epList: {
-            5: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265'
-          }
-        }
+            5: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-005--Game-005?id=178265',
+          },
+        },
       },
       {
-        url: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-003--Game-003?id=167047',
+        url:
+          'https://kissmanga.com/Manga/No-Game-No-Life/Ch-003--Game-003?id=167047',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://kissmanga.com/Manga/No-Game-No-Life',
-          nextEpUrl: 'https://kissmanga.com/Manga/No-Game-No-Life/Ch-004--Game-004?id=169936',
+          nextEpUrl:
+            'https://kissmanga.com/Manga/No-Game-No-Life/Ch-004--Game-004?id=169936',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -276,9 +286,9 @@ var testsArray = [
           identifier: '8173',
           uiSelector: true,
           epList: {
-            5: 'https://www.mangadex.org/chapter/808449'
-          }
-        }
+            5: 'https://www.mangadex.org/chapter/808449',
+          },
+        },
       },
       {
         url: 'https://mangadex.org/chapter/808444',
@@ -290,9 +300,10 @@ var testsArray = [
           nextEpUrl: 'https://www.mangadex.org/chapter/808449',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
-      {//oneshot
+      {
+        //oneshot
         url: 'https://mangadex.org/chapter/38989/3',
         expected: {
           sync: true,
@@ -302,17 +313,18 @@ var testsArray = [
           nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
     title: 'Branitube',
     url: 'https://www.branitube.net/',
-    skip: true,//somehow doesnt work
+    skip: true, //somehow doesnt work
     testCases: [
-      {//anime overview
+      {
+        //anime overview
         url: 'https://www.branitube.net/animes/197/no-game-no-life',
         expected: {
           sync: false,
@@ -320,11 +332,12 @@ var testsArray = [
           identifier: '197?anime',
           uiSelector: true,
           epList: {
-            5: "https://www.branitube.net/watch/1818/no-game-no-life"
-          }
-        }
+            5: 'https://www.branitube.net/watch/1818/no-game-no-life',
+          },
+        },
       },
-      {//ova overview
+      {
+        //ova overview
         url: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
         expected: {
           sync: false,
@@ -332,11 +345,12 @@ var testsArray = [
           identifier: '73?ova',
           uiSelector: true,
           epList: {
-            2: "https://www.branitube.net/watch/536/high-school-dxd"
-          }
-        }
+            2: 'https://www.branitube.net/watch/536/high-school-dxd',
+          },
+        },
       },
-      {//special overview
+      {
+        //special overview
         url: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
         expected: {
           sync: false,
@@ -344,11 +358,12 @@ var testsArray = [
           identifier: '73?special',
           uiSelector: true,
           epList: {
-            5: "https://www.branitube.net/watch/533/high-school-dxd"
-          }
-        }
+            5: 'https://www.branitube.net/watch/533/high-school-dxd',
+          },
+        },
       },
-      {//anime watch
+      {
+        //anime watch
         url: 'https://www.branitube.net/watch/1820/no-game-no-life',
         expected: {
           sync: true,
@@ -358,33 +373,38 @@ var testsArray = [
           nextEpUrl: 'https://www.branitube.net/watch/1821/no-game-no-life',
           episode: 7,
           uiSelector: false,
-        }
+        },
       },
-      {//ova watch
+      {
+        //ova watch
         url: 'https://www.branitube.net/watch/536/high-school-dxd',
         expected: {
           sync: true,
           title: 'High School DxD ova',
           identifier: '73?ova',
-          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
+          overviewUrl:
+            'https://www.branitube.net/animes/73/high-school-dxd/ovas',
           nextEpUrl: undefined,
           episode: 2,
           uiSelector: false,
-        }
+        },
       },
-      {//special watch
+      {
+        //special watch
         url: 'https://www.branitube.net/watch/533/high-school-dxd',
         expected: {
           sync: true,
           title: 'High School DxD special',
           identifier: '73?special',
-          overviewUrl: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
+          overviewUrl:
+            'https://www.branitube.net/animes/73/high-school-dxd/especiais',
           nextEpUrl: 'https://www.branitube.net/watch/534/high-school-dxd',
           episode: 5,
           uiSelector: false,
-        }
+        },
       },
-      {//film watch
+      {
+        //film watch
         url: 'https://www.branitube.net/watch/10370/one-piece',
         expected: {
           sync: true,
@@ -394,9 +414,9 @@ var testsArray = [
           nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -411,9 +431,9 @@ var testsArray = [
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            5: 'https://animepahe.com/anime/no-game-no-life/52827'
-          }
-        }
+            5: 'https://animepahe.com/anime/no-game-no-life/52827',
+          },
+        },
       },
       {
         url: 'https://animepahe.com/anime/no-game-no-life/52832',
@@ -425,9 +445,9 @@ var testsArray = [
           nextEpUrl: 'https://animepahe.com/anime/no-game-no-life/52834',
           episode: 8,
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -442,9 +462,9 @@ var testsArray = [
           identifier: '3825/no-game-no-life',
           uiSelector: true,
           epList: {
-            5: 'https://animeflv.net/ver/24662/no-game-no-life-5'
-          }
-        }
+            5: 'https://animeflv.net/ver/24662/no-game-no-life-5',
+          },
+        },
       },
       {
         url: 'https://animeflv.net/ver/25681/no-game-no-life-11',
@@ -456,9 +476,9 @@ var testsArray = [
           nextEpUrl: 'https://animeflv.net/ver/25904/no-game-no-life-12',
           episode: 11,
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -473,9 +493,9 @@ var testsArray = [
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            5: 'https://jkanime.net/no-game-no-life/5'
-          }
-        }
+            5: 'https://jkanime.net/no-game-no-life/5',
+          },
+        },
       },
       {
         url: 'https://jkanime.net/no-game-no-life/11/',
@@ -487,9 +507,9 @@ var testsArray = [
           nextEpUrl: 'https://jkanime.net/no-game-no-life/12/',
           episode: 11,
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -505,8 +525,8 @@ var testsArray = [
           episode: 2,
           title: 'No Game No Life',
           overviewUrl: 'https://proxer.me/info/6587/list',
-          nextEpUrl: 'https://proxer.me/watch/6587/3/gerdub'
-        }
+          nextEpUrl: 'https://proxer.me/watch/6587/3/gerdub',
+        },
       },
       {
         url: 'https://proxer.me/info/6587',
@@ -515,7 +535,7 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: '6587',
           uiSelector: true,
-        }
+        },
       },
       {
         url: 'https://proxer.me/info/6587/list',
@@ -525,11 +545,11 @@ var testsArray = [
           identifier: '6587',
           uiSelector: false,
           epList: {
-            5: 'https://proxer.me/watch/6587/5/gerdub'
-          }
-        }
+            5: 'https://proxer.me/watch/6587/5/gerdub',
+          },
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -544,26 +564,28 @@ var testsArray = [
           identifier: 'No-Game-No-Life',
           uiSelector: true,
           epList: {
-            5: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-5-Prologue?id=125835'
-          }
-        }
+            5: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-5-Prologue?id=125835',
+          },
+        },
       },
       {
-        url: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-3?id=125572',
+        url:
+          'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-3?id=125572',
         expected: {
           sync: true,
           title: 'No Game No Life',
           identifier: 'No-Game-No-Life',
           overviewUrl: 'https://novelplanet.com/Novel/No-Game-No-Life',
           episode: 3,
-          nextEpUrl: 'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
+          nextEpUrl:
+            'https://novelplanet.com/Novel/No-Game-No-Life/Volume-1-Chapter-4?id=125591',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
 
-    {
+  {
     title: '4anime',
     url: 'https://4anime.to/',
     testCases: [
@@ -578,9 +600,9 @@ var testsArray = [
           nextEpUrl: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
           uiSelector: false,
           epList: {
-            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621'
-          }
-        }
+            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
+          },
+        },
       },
       {
         url: 'https://4anime.to/anime/no-game-no-life',
@@ -590,11 +612,11 @@ var testsArray = [
           identifier: 'no-game-no-life',
           uiSelector: true,
           epList: {
-            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621'
-          }
-        }
+            5: 'https://4anime.to/no-game-no-life-episode-05/?id=10621',
+          },
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -602,7 +624,8 @@ var testsArray = [
     url: 'https://dreamanimes.com.br/',
     testCases: [
       {
-        url: 'https://dreamanimes.com.br/online/legendado/no-game-no-life/episodio/4',
+        url:
+          'https://dreamanimes.com.br/online/legendado/no-game-no-life/episodio/4',
         expected: {
           sync: true,
           title: 'No Game No Life',
@@ -610,7 +633,7 @@ var testsArray = [
           overviewUrl: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://dreamanimes.com.br/anime-info/no-game-no-life',
@@ -619,9 +642,9 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
 
   {
@@ -630,7 +653,8 @@ var testsArray = [
     skip: true, //Changing identifier
     testCases: [
       {
-        url: 'https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub',
+        url:
+          'https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub',
         expected: {
           sync: true,
           title: 'No Game No Life',
@@ -638,7 +662,7 @@ var testsArray = [
           overviewUrl: 'https://www10.animeultima.eu/a/no-game-no-life_797937',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www10.animeultima.eu/a/no-game-no-life_797937',
@@ -647,16 +671,17 @@ var testsArray = [
           title: 'No Game No Life',
           identifier: 'no-game-no-life_797937',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'aniflix',
     url: 'https://www1.aniflix.tv/',
     testCases: [
       {
-        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
+        url:
+          'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
         expected: {
           sync: true,
           title: 'Assassination Classroom',
@@ -664,10 +689,11 @@ var testsArray = [
           overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
           episode: 12,
           uiSelector: false,
-        }
+        },
       },
       {
-        url: 'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
+        url:
+          'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
         expected: {
           sync: true,
           title: 'Assassination Classroom season 2',
@@ -675,7 +701,7 @@ var testsArray = [
           overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
           episode: 15,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www1.aniflix.tv/show/assassination-classroom',
@@ -684,9 +710,9 @@ var testsArray = [
           title: 'Assassination Classroom',
           identifier: 'assassination-classroom?s=1',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'animedaisuki',
@@ -698,11 +724,13 @@ var testsArray = [
           sync: true,
           title: 'Initial D: First Stage',
           identifier: 'initial-d-first-stage',
-          overviewUrl: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
+          overviewUrl:
+            'https://animedaisuki.moe/anime/524/initial-d-first-stage',
           episode: 5,
-          nextEpUrl: 'https://animedaisuki.moe/watch/6381/initial-d-first-stage-6',
+          nextEpUrl:
+            'https://animedaisuki.moe/watch/6381/initial-d-first-stage-6',
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://animedaisuki.moe/anime/524/initial-d-first-stage',
@@ -712,27 +740,30 @@ var testsArray = [
           identifier: 'initial-d-first-stage',
           uiSelector: true,
           epList: {
-            5: 'https://animedaisuki.moe/watch/6380/initial-d-first-stage-5'
-          }
-        }
+            5: 'https://animedaisuki.moe/watch/6380/initial-d-first-stage-5',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'animefreak',
     url: 'https://www.animefreak.tv/',
     testCases: [
       {
-        url: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-23',
+        url:
+          'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-23',
         expected: {
           sync: true,
           title: 'Mahouka Koukou no Rettousei',
           identifier: 'mahouka-koukou-no-rettousei',
-          overviewUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei',
+          overviewUrl:
+            'https://animefreak.tv/watch/mahouka-koukou-no-rettousei',
           episode: 23,
-          nextEpUrl: 'https://animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-24',
+          nextEpUrl:
+            'https://animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-24',
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei',
@@ -741,24 +772,26 @@ var testsArray = [
           title: 'Mahouka Koukou no Rettousei',
           identifier: 'mahouka-koukou-no-rettousei',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'animeplanet',
     url: 'https://www.anime-planet.com/',
     testCases: [
       {
-        url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos/229861',
+        url:
+          'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos/229861',
         expected: {
           sync: true,
           title: 'The Rising of the Shield Hero',
           identifier: 'the-rising-of-the-shield-hero',
-          overviewUrl: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
+          overviewUrl:
+            'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
           episode: 3,
           uiSelector: true,
-        }
+        },
       },
       {
         url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero',
@@ -767,18 +800,19 @@ var testsArray = [
           title: 'The Rising of the Shield Hero',
           identifier: 'the-rising-of-the-shield-hero',
           uiSelector: true,
-        }
+        },
       },
       {
-        url: 'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
+        url:
+          'https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos',
         expected: {
           sync: false,
           title: 'The Rising of the Shield Hero',
           identifier: 'the-rising-of-the-shield-hero',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'kickassanime',
@@ -802,9 +836,9 @@ var testsArray = [
           title: 'Overlord III',
           identifier: 'overlord-iii-591772',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'AnimeKisa',
@@ -818,23 +852,24 @@ var testsArray = [
           identifier: 'phantom-requiem-for-the-phantom',
           overviewUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
           episode: 9,
-          nextEpUrl: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-10',
+          nextEpUrl:
+            'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-10',
           uiSelector: false,
-        }
+        },
       },
       {
-       url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
+        url: 'https://animekisa.tv/phantom-requiem-for-the-phantom',
         expected: {
           sync: false,
           title: 'Phantom: Requiem for the Phantom',
           identifier: 'phantom-requiem-for-the-phantom',
           uiSelector: true,
           epList: {
-            5: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-5'
-          }
-        }
-      }
-    ]
+            5: 'https://animekisa.tv/phantom-requiem-for-the-phantom-episode-5',
+          },
+        },
+      },
+    ],
   },
   {
     title: 'Wakanim',
@@ -853,15 +888,15 @@ var testsArray = [
       //   }
       // },
       {
-       url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+        url: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
         expected: {
           sync: false,
           title: 'AFTERLOST',
           identifier: '493',
           uiSelector: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     title: 'AnimeIndo',
@@ -877,21 +912,21 @@ var testsArray = [
           episode: 6,
           nextEpUrl: 'http://animeindo.moe/zankyou-no-terror-episode-07.html',
           uiSelector: false,
-        }
+        },
       },
       {
-       url: 'http://animeindo.moe/anime/zankyou-no-terror',
+        url: 'http://animeindo.moe/anime/zankyou-no-terror',
         expected: {
           sync: false,
           title: 'Zankyou no Terror',
           identifier: 'zankyou-no-terror',
           uiSelector: true,
           epList: {
-            5: 'http://animeindo.moe/zankyou-no-terror-episode-05.html'
-          }
-        }
-      }
-    ]
+            5: 'http://animeindo.moe/zankyou-no-terror-episode-05.html',
+          },
+        },
+      },
+    ],
   },
   {
     title: 'Shinden',
@@ -899,26 +934,28 @@ var testsArray = [
     skip: true, // does not work because of geoblocking
     testCases: [
       {
-        url: 'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
+        url:
+          'https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117041',
         expected: {
           sync: true,
           title: 'Mahouka Koukou no Rettousei',
           identifier: '16238-mahouka-koukou-no-rettousei',
-          overviewUrl: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+          overviewUrl:
+            'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
           episode: 14,
           uiSelector: false,
-        }
+        },
       },
       {
-       url: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
+        url: 'https://shinden.pl/series/16238-mahouka-koukou-no-rettousei',
         expected: {
           sync: false,
           title: 'Mahouka Koukou no Rettousei',
           identifier: '16238-mahouka-koukou-no-rettousei',
           uiSelector: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     title: 'Voiranime',
@@ -935,35 +972,38 @@ var testsArray = [
           episode: 6,
           uiSelector: false,
           epList: {
-            5: 'http://voiranime.com/no-game-no-life-05-vostfr/'
-          }
-        }
+            5: 'http://voiranime.com/no-game-no-life-05-vostfr/',
+          },
+        },
       },
       {
-        url: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-04-vf/',
+        url:
+          'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-04-vf/',
         expected: {
           sync: true,
           title: 'Boku no Hero Academia (My Hero Academia) (Saison 2)',
           identifier: 'boku-no-hero-academia-my-hero-academia',
-          overviewUrl: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia',
-          nextEpUrl: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/',
+          overviewUrl:
+            'http://voiranime.com/boku-no-hero-academia-my-hero-academia',
+          nextEpUrl:
+            'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/',
           episode: 4,
           uiSelector: false,
           epList: {
-            5: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/'
-          }
-        }
+            5: 'http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/',
+          },
+        },
       },
       {
-       url: 'http://voiranime.com/no-game-no-life/',
+        url: 'http://voiranime.com/no-game-no-life/',
         expected: {
           sync: false,
           title: 'No Game No Life',
           identifier: 'no-game-no-life',
           uiSelector: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     title: 'hanime', //nsfw
@@ -978,20 +1018,22 @@ var testsArray = [
           overviewUrl: 'https://hanime.tv/videos/hentai/itadaki-seieki',
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
       {
-        url: 'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-4',
+        url:
+          'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-4',
         expected: {
           sync: true,
           title: 'Mesu Kyoushi 4: Kegasareta Kyoudan',
           identifier: 'mesu-kyoushi-4-kegasareta-kyoudan',
-          overviewUrl: 'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-1',
+          overviewUrl:
+            'https://hanime.tv/videos/hentai/mesu-kyoushi-4-kegasareta-kyoudan-1',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'hentaihaven', //nsfw
@@ -1006,7 +1048,7 @@ var testsArray = [
           overviewUrl: 'https://hentaihaven.org/series/rape-gouhouka/',
           episode: 2,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://hentaihaven.org/series/rape-gouhouka/',
@@ -1015,9 +1057,9 @@ var testsArray = [
           title: 'Rape Gouhouka!!!',
           identifier: 'rape-gouhouka',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'hentaigasm', //nsfw
@@ -1032,7 +1074,7 @@ var testsArray = [
           overviewUrl: 'http://hentaigasm.com/hentai/pinkerton/',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'http://hentaigasm.com/hentai/pinkerton/',
@@ -1041,24 +1083,26 @@ var testsArray = [
           title: 'Pinkerton',
           identifier: 'pinkerton',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'KissHentai', //nsfw
     url: 'http://kisshentai.net/',
     testCases: [
       {
-        url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2/Episode-001?id=51',
+        url:
+          'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2/Episode-001?id=51',
         expected: {
           sync: true,
           title: 'Bloods: Inraku no Ketsuzoku 2',
           identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
-          overviewUrl: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
+          overviewUrl:
+            'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2',
@@ -1067,15 +1111,15 @@ var testsArray = [
           title: 'Bloods: Inraku no Ketsuzoku 2',
           identifier: 'Bloods-Inraku-no-Ketsuzoku-2',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'UnderHentai', //nsfw
     url: 'https://www.underhentai.net/',
     testCases: [
-    //this part seems broken
+      //this part seems broken
       // {
       //   url: 'https://www.underhentai.net/watch/?id=647&ep=2',
       //   expected: {
@@ -1094,51 +1138,63 @@ var testsArray = [
           title: 'Resort Boin',
           identifier: 'resort-boin',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'dubbedanime',
     url: 'https://ww5.dubbedanime.net/',
     testCases: [
-      {//check for ova
-        url: 'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
+      {
+        //check for ova
+        url:
+          'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
         expected: {
           sync: true,
           title: 'Golden Boy',
           identifier: '796-golden-boy',
-          overviewUrl: 'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
-          nextEpUrl: 'https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dubbed',
+          overviewUrl:
+            'https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes',
+          nextEpUrl:
+            'https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dubbed',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
-      {//check for movie
-        url: 'https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed',
+      {
+        //check for movie
+        url:
+          'https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed',
         expected: {
           sync: true,
           title: 'A Silent Voice MOVIE',
           identifier: '2678-a-silent-voice',
-          overviewUrl: 'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
+          overviewUrl:
+            'https://ww5.dubbedanime.net/anime/2678-a-silent-voice/#episodes',
           nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
-      {//check for anime/episode
-        url: 'https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed',
+      {
+        //check for anime/episode
+        url:
+          'https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed',
         expected: {
           sync: true,
           title: 'Golgo 13',
           identifier: '3072-golgo-13',
-          overviewUrl: 'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
-          nextEpUrl: 'https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dubbed',
+          overviewUrl:
+            'https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes',
+          nextEpUrl:
+            'https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dubbed',
           episode: 36,
           uiSelector: false,
-        }
+        },
       },
-      {//overview
+      {
+        //overview
         url: 'https://ww5.dubbedanime.net/anime/3072-golgo-13',
         expected: {
           sync: false,
@@ -1147,27 +1203,28 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://ww5.dubbedanime.net/episode/177287-golgo-13-episode-5-english-dubbed',
-            43: 'https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dubbed'
-          }
-        }
+            43: 'https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dubbed',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'viz',
     url: 'https://www.viz.com/',
     skip: true,
     testCases: [
-      {//overview
+      {
+        //overview
         url: 'https://www.viz.com/shonenjump/chapters/one-piece',
         expected: {
           sync: false,
           title: 'One Piece',
           identifier: 'one-piece',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'manganelo',
@@ -1183,7 +1240,7 @@ var testsArray = [
           nextEpUrl: 'https://manganelo.com/chapter/dr_stone/chapter_115',
           episode: 114,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://manganelo.com/manga/dr_stone',
@@ -1194,11 +1251,11 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://manganelo.com/chapter/dr_stone/chapter_5',
-            121: 'https://manganelo.com/chapter/dr_stone/chapter_121'
-          }
-        }
+            121: 'https://manganelo.com/chapter/dr_stone/chapter_121',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'mangakakalot',
@@ -1211,10 +1268,11 @@ var testsArray = [
           title: 'Domestic na Kanojo',
           identifier: 'domestic_na_kanojo',
           overviewUrl: 'https://mangakakalot.com/manga/domestic_na_kanojo',
-          nextEpUrl: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_204',
+          nextEpUrl:
+            'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_204',
           episode: 203,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangakakalot.com/manga/domestic_na_kanojo',
@@ -1225,38 +1283,42 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_5',
-            121: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_121'
-          }
-        }
+            121: 'https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_121',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'NekoSama',
     url: 'https://www.neko-sama.fr/',
     testCases: [
       {
-        url: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr',
+        url:
+          'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-03-vostfr',
         expected: {
           sync: true,
           title: 'Fullmetal Alchemist: Brotherhood',
           identifier: '3458',
-          overviewUrl: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
-          nextEpUrl: 'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr',
+          overviewUrl:
+            'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+          nextEpUrl:
+            'https://www.neko-sama.fr/anime/episode/3458-hagane-no-renkinjutsushi-fullmetal-alchemist-04-vostfr',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
       {
-        url: 'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
+        url:
+          'https://www.neko-sama.fr/anime/info/3458-hagane-no-renkinjutsushi-fullmetal-alchemist',
         expected: {
           sync: false,
           title: 'Fullmetal Alchemist: Brotherhood ',
           identifier: '3458',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'AnimeZone',
@@ -1273,7 +1335,7 @@ var testsArray = [
           nextEpUrl: 'https://www.animezone.pl/odcinek/cop-craft/2',
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www.animezone.pl/anime/cop-craft',
@@ -1283,11 +1345,11 @@ var testsArray = [
           identifier: 'cop-craft',
           uiSelector: true,
           epList: {
-            5: 'https://www.animezone.pl/odcinek/cop-craft/5'
-          }
-        }
+            5: 'https://www.animezone.pl/odcinek/cop-craft/5',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'AnimeOdcinki',
@@ -1303,7 +1365,7 @@ var testsArray = [
           nextEpUrl: 'https://anime-odcinki.pl/anime/cop-craft/2',
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://anime-odcinki.pl/anime/cop-craft',
@@ -1313,11 +1375,11 @@ var testsArray = [
           identifier: 'cop-craft',
           uiSelector: true,
           epList: {
-            5: 'https://anime-odcinki.pl/anime/cop-craft/5'
-          }
-        }
+            5: 'https://anime-odcinki.pl/anime/cop-craft/5',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'Animeflix',
@@ -1332,7 +1394,7 @@ var testsArray = [
           overviewUrl: 'https://animeflix.io/shows/bleach',
           episode: 358,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://animeflix.io/shows/bleach',
@@ -1341,9 +1403,9 @@ var testsArray = [
           title: 'Bleach',
           identifier: 'bleach',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'serimanga',
@@ -1359,7 +1421,7 @@ var testsArray = [
           nextEpUrl: 'https://serimanga.com/manga/boku-no-hero-academia/225',
           episode: 224,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://serimanga.com/manga/boku-no-hero-academia',
@@ -1368,9 +1430,9 @@ var testsArray = [
           title: 'Boku no Hero Academia',
           identifier: 'boku-no-hero-academia',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'mangadenizi',
@@ -1384,9 +1446,9 @@ var testsArray = [
           identifier: 'one-piece',
           overviewUrl: 'https://mangadenizi.com/manga/one-piece',
           episode: 769,
-          nextEpUrl: "https://mangadenizi.com/manga/one-piece/0770",
+          nextEpUrl: 'https://mangadenizi.com/manga/one-piece/0770',
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangadenizi.com/manga/one-piece',
@@ -1396,11 +1458,11 @@ var testsArray = [
           identifier: 'one-piece',
           uiSelector: true,
           epList: {
-            826: 'https://mangadenizi.com/manga/one-piece/0826'
-          }
-        }
+            826: 'https://mangadenizi.com/manga/one-piece/0826',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'moeclip',
@@ -1416,7 +1478,7 @@ var testsArray = [
           nextEpUrl: 'https://moeclip.com/high-school-dxd-hero-06-sub-indo/',
           episode: 5,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://moeclip.com/anime/high-school-dxd-hero-sub-indo/',
@@ -1426,11 +1488,11 @@ var testsArray = [
           identifier: 'high-school-dxd-hero',
           uiSelector: true,
           epList: {
-            5: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/'
-          }
-        }
+            5: 'https://moeclip.com/high-school-dxd-hero-05-sub-indo/',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'tmofans',
@@ -1443,9 +1505,9 @@ var testsArray = [
           title: 'One Piece',
           identifier: 'one-piece',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'unionmangas',
@@ -1461,7 +1523,7 @@ var testsArray = [
           episode: 76,
           nextEpUrl: 'https://unionleitor.top/leitor/Solo_Leveling/77',
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://unionleitor.top/perfil-manga/solo-leveling',
@@ -1474,10 +1536,10 @@ var testsArray = [
             5: 'https://unionleitor.top/leitor/Solo_Leveling/05',
             87: 'https://unionleitor.top/leitor/Solo_Leveling/87',
             101: 'https://unionleitor.top/leitor/Solo_Leveling/101',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'MangaPlus',
@@ -1492,7 +1554,7 @@ var testsArray = [
           overviewUrl: 'https://mangaplus.shueisha.co.jp/titles/100017',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangaplus.shueisha.co.jp/titles/100017',
@@ -1501,9 +1563,9 @@ var testsArray = [
           title: 'My Hero Academia',
           identifier: '100017',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'JapScan',
@@ -1516,12 +1578,14 @@ var testsArray = [
           title: 'One Punch Man',
           identifier: 'one-punch-man',
           overviewUrl: 'https://www.japscan.co/manga/one-punch-man/',
-          nextEpUrl: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/120/',
+          nextEpUrl:
+            'https://www.japscan.co/lecture-en-ligne/one-punch-man/120/',
           episode: 119,
           uiSelector: false,
-        }
+        },
       },
-      {//manga overview
+      {
+        //manga overview
         url: 'https://www.japscan.co/manga/one-punch-man/',
         expected: {
           sync: false,
@@ -1531,10 +1595,11 @@ var testsArray = [
           epList: {
             5: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/5/',
             166: 'https://www.japscan.co/lecture-en-ligne/one-punch-man/166/',
-          }
-        }
+          },
+        },
       },
-      {//manhwa overview
+      {
+        //manhwa overview
         url: 'https://www.japscan.co/manga/solo-leveling/',
         expected: {
           sync: false,
@@ -1544,10 +1609,10 @@ var testsArray = [
           epList: {
             5: 'https://www.japscan.co/lecture-en-ligne/solo-leveling/5/',
             92: 'https://www.japscan.co/lecture-en-ligne/solo-leveling/92/',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'MangaKisa',
@@ -1563,7 +1628,7 @@ var testsArray = [
           nextEpUrl: 'https://mangakisa.com/solo-leveling-chapterid-4228',
           episode: 59,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangakisa.com/solo-leveling',
@@ -1575,10 +1640,10 @@ var testsArray = [
           epList: {
             5: 'https://mangakisa.com/solo-leveling-chapterid-9457',
             92: 'https://mangakisa.com/solo-leveling-chapterid-500210',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'HentaiKisa',
@@ -1594,37 +1659,42 @@ var testsArray = [
           episode: 1,
           nextEpUrl: 'https://hentaikisa.com/joshi-luck!-episode-2',
           uiSelector: false,
-        }
+        },
       },
       {
-       url: 'https://hentaikisa.com/joshi-luck!',
+        url: 'https://hentaikisa.com/joshi-luck!',
         expected: {
           sync: false,
           title: 'Joshi Luck!',
           identifier: 'joshi-luck!',
           uiSelector: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     title: 'AnimesVision',
     url: 'https://www.animesvision.com.br/',
     skip: true, //geolock
     testCases: [
-      {//anime
-        url: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
+      {
+        //anime
+        url:
+          'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
         expected: {
           sync: true,
           title: 'Strike the Blood 3',
           identifier: 'strike-the-blood-3',
-          overviewUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
-          nextEpUrl: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado',
+          overviewUrl:
+            'https://www.animesvision.com.br/animes/strike-the-blood-3',
+          nextEpUrl:
+            'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado',
           episode: 4,
           uiSelector: false,
-        }
+        },
       },
-      {//anime overview
+      {
+        //anime overview
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
         expected: {
           sync: false,
@@ -1632,44 +1702,54 @@ var testsArray = [
           identifier: 'strike-the-blood-3',
           uiSelector: true,
           epList: {
-            5: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado'
-          }
-        }
+            5: 'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-05/legendado',
+          },
+        },
       },
-      {//movie
-        url: 'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo/filme-legendado/legendado',
+      {
+        //movie
+        url:
+          'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo/filme-legendado/legendado',
         expected: {
           sync: true,
           title: 'Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo',
           identifier: 'mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
-          overviewUrl: 'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+          overviewUrl:
+            'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
           nextEpUrl: undefined,
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
-      {//movie overview
-        url: 'https://www.animesvision.com.br/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
+      {
+        //movie overview
+        url:
+          'https://www.animesvision.com.br/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
         expected: {
           sync: false,
           title: 'Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo',
           identifier: 'mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
           uiSelector: true,
-        }
+        },
       },
-      {//dub
-        url: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-06/dublado',
+      {
+        //dub
+        url:
+          'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-06/dublado',
         expected: {
           sync: true,
           title: 'Nanatsu no Taizai',
           identifier: 'nanatsu-no-taizai-dublado',
-          overviewUrl: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
-          nextEpUrl: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-07/dublado',
+          overviewUrl:
+            'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
+          nextEpUrl:
+            'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-07/dublado',
           episode: 6,
           uiSelector: false,
-        }
+        },
       },
-      {//dub overview
+      {
+        //dub overview
         url: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
         expected: {
           sync: false,
@@ -1677,11 +1757,11 @@ var testsArray = [
           identifier: 'nanatsu-no-taizai-dublado',
           uiSelector: true,
           epList: {
-            5: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-05/dublado'
-          }
-        }
+            5: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-05/dublado',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'FallenAngels',
@@ -1695,9 +1775,9 @@ var testsArray = [
           identifier: 'plunderer',
           overviewUrl: 'https://manga.fascans.com/manga/plunderer',
           episode: 53,
-          nextEpUrl: "https://manga.fascans.com/manga/plunderer/54",
+          nextEpUrl: 'https://manga.fascans.com/manga/plunderer/54',
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://manga.fascans.com/manga/plunderer',
@@ -1708,105 +1788,119 @@ var testsArray = [
           uiSelector: true,
           epList: {
             53: 'https://manga.fascans.com/manga/plunderer/53',
-            18: 'https://manga.fascans.com/manga/plunderer/18'
-          }
-        }
+            18: 'https://manga.fascans.com/manga/plunderer/18',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'animestrue',
     url: 'https://www.animestrue.site/',
     testCases: [
-      {//season 1 syncpage
-        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio2',
+      {
+        //season 1 syncpage
+        url:
+          'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
-          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
+          overviewUrl:
+            'https://www.animestrue.site/anime/highschool-dxd/temporada1',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio3',
+          nextEpUrl:
+            'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio3',
           uiSelector: false,
-        }
+        },
       },
-      {//season 1 overview
-       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
+      {
+        //season 1 overview
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
         expected: {
           sync: false,
           title: 'Highschool DxD',
           identifier: 'highschool-dxd?s=1',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio5'
-          }
-        }
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio5',
+          },
+        },
       },
-      {//season 4 syncpage
-        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio2',
+      {
+        //season 4 syncpage
+        url:
+          'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio2',
         expected: {
           sync: true,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
-          overviewUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
+          overviewUrl:
+            'https://www.animestrue.site/anime/highschool-dxd/temporada4',
           episode: 2,
-          nextEpUrl: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio3',
+          nextEpUrl:
+            'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio3',
           uiSelector: false,
-        }
+        },
       },
-      {//season 4 overview
-       url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
+      {
+        //season 4 overview
+        url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
         expected: {
           sync: false,
           title: 'Highschool DxD season 4',
           identifier: 'highschool-dxd?s=4',
           uiSelector: true,
           epList: {
-            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio5'
-          }
-        }
-      }
-    ]
+            5: 'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio5',
+          },
+        },
+      },
+    ],
   },
   {
     title: 'PrimeVideo',
     url: 'https://www.primevideo.com/',
     skip: true,
     testCases: [
-      {//season 1 overview
-       url: 'https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C',
+      {
+        //season 1 overview
+        url: 'https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C',
         expected: {
           sync: false,
           title: 'BEATLESS',
           identifier: '0HSUS652VW673MGGPPLZXZ6O8C',
-          uiSelector: true
-        }
+          uiSelector: true,
+        },
       },
-      {//season 2 overview
-       url: 'https://www.primevideo.com/detail/0K1UMWRFQ63FY6Z8PC9BK376J8',
+      {
+        //season 2 overview
+        url: 'https://www.primevideo.com/detail/0K1UMWRFQ63FY6Z8PC9BK376J8',
         expected: {
           sync: false,
           title: "Chi's Sweet Adventure Season 2",
           identifier: '0K1UMWRFQ63FY6Z8PC9BK376J8',
           uiSelector: true,
-        }
+        },
       },
-      {//season 3 overview
-       url: 'https://www.primevideo.com/detail/0GMA6H790B7EMLNVN83K54XMRA',
+      {
+        //season 3 overview
+        url: 'https://www.primevideo.com/detail/0GMA6H790B7EMLNVN83K54XMRA',
         expected: {
           sync: false,
           title: 'PSYCHO-PASS 3',
           identifier: '0GMA6H790B7EMLNVN83K54XMRA',
           uiSelector: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     title: 'MangaKatana',
     url: 'http://mangakatana.com/',
     testCases: [
-      {//obfuscated manga
+      {
+        //obfuscated manga
         url: 'http://mangakatana.com/manga/solo-leveling.21708/c103',
         expected: {
           sync: true,
@@ -1814,11 +1908,12 @@ var testsArray = [
           identifier: 'solo-leveling.21708',
           overviewUrl: 'http://mangakatana.com/manga/solo-leveling.21708',
           episode: 103,
-          nextEpUrl: "http://mangakatana.com/manga/solo-leveling.21708/c104",
+          nextEpUrl: 'http://mangakatana.com/manga/solo-leveling.21708/c104',
           uiSelector: false,
-        }
+        },
       },
-      {//obfuscated overview
+      {
+        //obfuscated overview
         url: 'http://mangakatana.com/manga/solo-leveling.21708',
         expected: {
           sync: false,
@@ -1827,42 +1922,49 @@ var testsArray = [
           uiSelector: true,
           epList: {
             102: 'http://mangakatana.com/manga/solo-leveling.21708/c102',
-            2: 'http://mangakatana.com/manga/solo-leveling.21708/c2'
-          }
-        }
+            2: 'http://mangakatana.com/manga/solo-leveling.21708/c2',
+          },
+        },
       },
-      {//manga
-        url: 'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4',
+      {
+        //manga
+        url:
+          'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4',
         expected: {
           sync: true,
           title: 'Mahouka Koukou no Rettousei - Yokohama Souran Hen',
           identifier: 'mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
-          overviewUrl: 'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
+          overviewUrl:
+            'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
           episode: 4,
-          nextEpUrl: "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c5",
+          nextEpUrl:
+            'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c5',
           uiSelector: false,
-        }
+        },
       },
-      {//overview
-        url: 'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
+      {
+        //overview
+        url:
+          'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
         expected: {
           sync: false,
           title: 'Mahouka Koukou no Rettousei - Yokohama Souran Hen',
           identifier: 'mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
           uiSelector: true,
           epList: {
-            4: 'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4'
-          }
-        }
+            4: 'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'manga4life',
     url: 'https://manga4life.com/',
     testCases: [
       {
-        url: 'https://manga4life.com/read-online/Solo-Leveling-chapter-105-page-1.html',
+        url:
+          'https://manga4life.com/read-online/Solo-Leveling-chapter-105-page-1.html',
         expected: {
           sync: true,
           title: 'Solo Leveling',
@@ -1870,7 +1972,7 @@ var testsArray = [
           overviewUrl: 'https://manga4life.com/manga/Solo-Leveling',
           episode: 105,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://manga4life.com/manga/Solo-Leveling',
@@ -1879,9 +1981,9 @@ var testsArray = [
           title: 'Solo Leveling',
           identifier: 'Solo-Leveling',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'bato',
@@ -1897,7 +1999,7 @@ var testsArray = [
           nextEpUrl: 'https://bato.to/chapter/1405642',
           episode: 104,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://bato.to/series/72860',
@@ -1908,11 +2010,11 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://bato.to/chapter/1284843',
-            105: 'https://bato.to/chapter/1405642'
-          }
-        }
+            105: 'https://bato.to/chapter/1405642',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'DreamSub',
@@ -1930,9 +2032,9 @@ var testsArray = [
           uiSelector: false,
           epList: {
             5: 'https://dreamsub.stream/anime/one-piece/5',
-            914: 'https://dreamsub.stream/anime/one-piece/914'
-          }
-        }
+            914: 'https://dreamsub.stream/anime/one-piece/914',
+          },
+        },
       },
       {
         url: 'https://dreamsub.stream/anime/one-piece',
@@ -1943,27 +2045,29 @@ var testsArray = [
           uiSelector: true,
           epList: {
             5: 'https://dreamsub.stream/anime/one-piece/5',
-            914: 'https://dreamsub.stream/anime/one-piece/914'
-          }
-        }
+            914: 'https://dreamsub.stream/anime/one-piece/914',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'MangaPark',
     url: 'https://mangapark.net/',
     testCases: [
       {
-        url: 'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086171/v5/c20/1',
+        url:
+          'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086171/v5/c20/1',
         expected: {
           sync: true,
           title: 'Grand Blue',
           identifier: 'grand-blue-inoue-kenji',
           overviewUrl: 'https://mangapark.net/manga/grand-blue-inoue-kenji',
-          nextEpUrl: 'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086169/v5/c21/1',
+          nextEpUrl:
+            'https://mangapark.net/manga/grand-blue-inoue-kenji/i2086169/v5/c21/1',
           episode: 20,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangapark.net/manga/grand-blue-inoue-kenji',
@@ -1972,11 +2076,12 @@ var testsArray = [
           title: 'Grand Blue',
           identifier: 'grand-blue-inoue-kenji',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
-  {//nsfw
+  {
+    //nsfw
     title: 'Nhentai',
     url: 'https://nhentai.net/',
     testCases: [
@@ -1989,7 +2094,7 @@ var testsArray = [
           overviewUrl: 'https://nhentai.net/g/306629',
           episode: 1,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://nhentai.net/g/306629/',
@@ -1998,39 +2103,42 @@ var testsArray = [
           title: 'Tamamo no Ushiro',
           identifier: '306629',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'AnimeXin',
     url: 'https://animexin.xyz/',
     testCases: [
       {
-        url: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
+        url:
+          'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
         expected: {
           sync: true,
-          title: "The Daily Life of the Immortal King",
-          identifier: "the-daily-life-of-the-immortal-king",
-          overviewUrl: 'https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/',
-          nextEpUrl: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-9-subbed/',
+          title: 'The Daily Life of the Immortal King',
+          identifier: 'the-daily-life-of-the-immortal-king',
+          overviewUrl:
+            'https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/',
+          nextEpUrl:
+            'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-9-subbed/',
           episode: 8,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/',
         expected: {
           sync: false,
-          title: "The Daily Life of the Immortal King",
-          identifier: "the-daily-life-of-the-immortal-king",
+          title: 'The Daily Life of the Immortal King',
+          identifier: 'the-daily-life-of-the-immortal-king',
           uiSelector: true,
           epList: {
             8: 'https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'MonosChinos',
@@ -2040,27 +2148,30 @@ var testsArray = [
         url: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-8',
         expected: {
           sync: true,
-          title: "Toaru Kagaku no Railgun T",
-          identifier: "toaru-kagaku-no-railgun-t-sub-espanol",
-          overviewUrl: 'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
-          nextEpUrl: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-9',
+          title: 'Toaru Kagaku no Railgun T',
+          identifier: 'toaru-kagaku-no-railgun-t-sub-espanol',
+          overviewUrl:
+            'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
+          nextEpUrl:
+            'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-9',
           episode: 8,
           uiSelector: false,
-        }
+        },
       },
       {
-        url: 'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
+        url:
+          'https://monoschinos.com/anime/toaru-kagaku-no-railgun-t-sub-espanol',
         expected: {
           sync: false,
-          title: "Toaru Kagaku no Railgun T",
-          identifier: "toaru-kagaku-no-railgun-t-sub-espanol",
+          title: 'Toaru Kagaku no Railgun T',
+          identifier: 'toaru-kagaku-no-railgun-t-sub-espanol',
           uiSelector: true,
           epList: {
             8: 'https://monoschinos.com/ver/toaru-kagaku-no-railgun-t-episodio-8',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'AnimeFire',
@@ -2070,15 +2181,16 @@ var testsArray = [
         url: 'https://animefire.net/animes/high-school-dxd-born/6',
         expected: {
           sync: true,
-          title: "high school dxd born",
-          identifier: "high-school-dxd-born",
-          overviewUrl: 'https://animefire.net/animes/high-school-dxd-born-todos-os-episodios',
+          title: 'high school dxd born',
+          identifier: 'high-school-dxd-born',
+          overviewUrl:
+            'https://animefire.net/animes/high-school-dxd-born-todos-os-episodios',
           nextEpUrl: 'https://animefire.net/animes/high-school-dxd-born/7',
           episode: 6,
           uiSelector: false,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'OtakuFR',
@@ -2094,7 +2206,7 @@ var testsArray = [
           nextEpUrl: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/22/',
           episode: 21,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www.otakufr.com/Ahiru-no-Sora-Vostfr/',
@@ -2103,9 +2215,9 @@ var testsArray = [
           title: 'Ahiru no Sora',
           identifier: 'Ahiru-no-Sora-Vostfr',
           uiSelector: true,
-        }
+        },
       },
-    ]
+    ],
   },
   {
     title: 'Samehadaku',
@@ -2115,27 +2227,27 @@ var testsArray = [
         url: 'https://samehadaku.vip/tower-of-god-episode-3/',
         expected: {
           sync: true,
-          title: "Tower of God",
-          identifier: "tower-of-god",
+          title: 'Tower of God',
+          identifier: 'tower-of-god',
           overviewUrl: 'https://samehadaku.vip/anime/tower-of-god/',
           nextEpUrl: 'https://samehadaku.vip/tower-of-god-episode-4/',
           episode: 3,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://samehadaku.vip/anime/tower-of-god/',
         expected: {
           sync: false,
-          title: "Tower of God",
-          identifier: "tower-of-god",
+          title: 'Tower of God',
+          identifier: 'tower-of-god',
           uiSelector: true,
           epList: {
             3: 'https://samehadaku.vip/tower-of-god-episode-3/',
-          }
-        }
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'Tsuki Mangás',
@@ -2145,27 +2257,29 @@ var testsArray = [
         url: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/257#1',
         expected: {
           sync: true,
-          title: "Boku no Hero Academia",
-          identifier: "boku-no-hero-academia",
-          overviewUrl: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
-          nextEpUrl: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/258',
+          title: 'Boku no Hero Academia',
+          identifier: 'boku-no-hero-academia',
+          overviewUrl:
+            'https://www.tsukimangas.com/manga/boku-no-hero-academia',
+          nextEpUrl:
+            'https://www.tsukimangas.com/leitor/boku-no-hero-academia/258',
           episode: 257,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://www.tsukimangas.com/manga/boku-no-hero-academia',
         expected: {
           sync: false,
-          title: "Boku no Hero Academia",
-          identifier: "boku-no-hero-academia",
+          title: 'Boku no Hero Academia',
+          identifier: 'boku-no-hero-academia',
           uiSelector: true,
           epList: {
-            269: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/269'
-          }
-        }
+            269: 'https://www.tsukimangas.com/leitor/boku-no-hero-academia/269',
+          },
+        },
       },
-    ]
+    ],
   },
   {
     title: 'mangatx',
@@ -2175,28 +2289,29 @@ var testsArray = [
         url: 'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-108/',
         expected: {
           sync: true,
-          title: "Solo Leveling",
-          identifier: "solo-leveling-manhwa-free",
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling-manhwa-free',
           overviewUrl: 'https://mangatx.com/manga/solo-leveling-manhwa-free/',
-          nextEpUrl: 'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-109/',
+          nextEpUrl:
+            'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-109/',
           episode: 108,
           uiSelector: false,
-        }
+        },
       },
       {
         url: 'https://mangatx.com/manga/solo-leveling-manhwa-free/',
         expected: {
           sync: false,
-          title: "Solo Leveling",
-          identifier: "solo-leveling-manhwa-free",
+          title: 'Solo Leveling',
+          identifier: 'solo-leveling-manhwa-free',
           uiSelector: true,
           epList: {
             1: 'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-1/',
-            108: 'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-108/'
-          }
-        }
+            108: 'https://mangatx.com/manga/solo-leveling-manhwa-free/chapter-108/',
+          },
+        },
       },
-    ]
+    ],
   },
 
   // IconCaptcha in use
@@ -2235,104 +2350,142 @@ var testsArray = [
 ];
 
 // Define global variables
-let browser
-let page
-let debugging = false;
+let browser;
+let page;
+const debugging = false;
 //var caseTitle = 'Proxer';
 
-before(async function () {
+before(async function() {
   puppeteer.use(pluginStealth());
   puppeteer.use(AdblockerPlugin());
-  browser = await puppeteer.launch({ headless: true })
-})
+  browser = await puppeteer.launch({ headless: true });
+});
 
-beforeEach(async function () {
-  page = await browser.newPage()
-  await page.setViewport({ width: 1920, height: 1080 })
-})
+beforeEach(async function() {
+  page = await browser.newPage();
+  await page.setViewport({ width: 1920, height: 1080 });
+});
 
-afterEach(async function () {
-  await page.close()
-})
+afterEach(async function() {
+  await page.close();
+});
 
-after(async function () {
-  await browser.close()
-})
+after(async function() {
+  await browser.close();
+});
 
 testsArray.forEach(function(testPage) {
-  if(typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
-  describe(testPage.title, function () {
-    var doSkip = false;
-    if(typeof testPage.skip !== 'undefined' && testPage.skip ) doSkip = true;
-    if(skipTest) doSkip = !doSkip;
+  if (typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
+  describe(testPage.title, function() {
+    let doSkip = false;
+    if (typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
+    if (skipTest) doSkip = !doSkip;
 
-    it('Online', async function () {
-      if(doSkip) this.skip();
+    it('Online', async function() {
+      if (doSkip) this.skip();
       const [response] = await Promise.all([
-        page.goto(testPage.url, {timeout:0}),
-        page.waitForNavigation({timeout:0}),
+        page.goto(testPage.url, { timeout: 0 }),
+        page.waitForNavigation({ timeout: 0 }),
       ]);
 
-      if(parseInt(response.headers().status) != 200){
-        console.log('    X Online '+response.headers().status);
+      if (parseInt(response.headers().status) != 200) {
+        console.log(`    X Online ${response.headers().status}`);
 
-        var content = await page.evaluate(() => document.body.innerHTML);
-        if(content.indexOf('Why do I have to complete a CAPTCHA?') !== -1){
+        const content = await page.evaluate(() => document.body.innerHTML);
+        if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
           console.log('    X CAPTCHA');
           doSkip = true;
           this.skip();
         }
       }
-    })
+    });
 
     testPage.testCases.forEach(function(testCase) {
-      it(testCase.url, async function () {
-        if(doSkip) this.skip();
+      it(testCase.url, async function() {
+        if (doSkip) this.skip();
         const [response] = await Promise.all([
-          page.goto(testCase.url, {timeout:0}),
-          page.waitForNavigation({timeout:0}),
+          page.goto(testCase.url, { timeout: 0 }),
+          page.waitForNavigation({ timeout: 0 }),
         ]);
-        await page.addScriptTag({url: 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}).catch(() => page.addScriptTag({url: 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js'}));
-        await page.addScriptTag({content: script});
-        const text = await page.evaluate(() => MalSyncTest())
+        await page
+          .addScriptTag({
+            url:
+              'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+          })
+          .catch(() =>
+            page.addScriptTag({
+              url:
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+            }),
+          );
+        await page.addScriptTag({ content: script });
+        const text = await page.evaluate(() => MalSyncTest());
 
-        if(debugging) console.log(text);
+        if (debugging) console.log(text);
 
-        if(text == 'retry'){
+        if (text == 'retry') {
           this.retries(3);
           await new Promise(function(resolve, reject) {
-            setTimeout(async ()=>{
-              var content = await page.evaluate(() => document.body.innerHTML);
-              if(content.indexOf('Why do I have to complete a CAPTCHA?') !== -1){
+            setTimeout(async () => {
+              const content = await page.evaluate(
+                () => document.body.innerHTML,
+              );
+              if (
+                content.indexOf('Why do I have to complete a CAPTCHA?') !== -1
+              ) {
                 console.log('    X CAPTCHA');
                 doSkip = true;
               }
-              resolve()
-            }, 7000)
+              resolve();
+            }, 7000);
           });
         }
 
         expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
         expect(text.title, 'Title').to.equal(testCase.expected.title);
-        expect(text.identifier, 'Identifier').to.equal(testCase.expected.identifier);
-        if(text.sync){
+        expect(text.identifier, 'Identifier').to.equal(
+          testCase.expected.identifier,
+        );
+        if (text.sync) {
           expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
-          var textOverview = typeof text.overviewUrl !== 'undefined'? text.overviewUrl.replace(/www[^.]*\./,'') : text.overviewUrl;
-          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'? testCase.expected.overviewUrl.replace(/www[^.]*\./,'') : testCase.expected.overviewUrl;
-          expect(textOverview, 'Overview Url').to.equal(testCase.expected.overviewUrl.replace(/www[^.]*\./,''));
-          var textOverview = typeof text.nextEpUrl !== 'undefined'? text.nextEpUrl.replace(/www[^.]*\./,'') : text.nextEpUrl;
-          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'? testCase.expected.nextEpUrl.replace(/www[^.]*\./,'') : testCase.expected.nextEpUrl;
+          var textOverview =
+            typeof text.overviewUrl !== 'undefined'
+              ? text.overviewUrl.replace(/www[^.]*\./, '')
+              : text.overviewUrl;
+          var testCaseOverview =
+            typeof testCase.expected.overviewUrl !== 'undefined'
+              ? testCase.expected.overviewUrl.replace(/www[^.]*\./, '')
+              : testCase.expected.overviewUrl;
+          expect(textOverview, 'Overview Url').to.equal(
+            testCase.expected.overviewUrl.replace(/www[^.]*\./, ''),
+          );
+          var textOverview =
+            typeof text.nextEpUrl !== 'undefined'
+              ? text.nextEpUrl.replace(/www[^.]*\./, '')
+              : text.nextEpUrl;
+          var testCaseOverview =
+            typeof testCase.expected.nextEpUrl !== 'undefined'
+              ? testCase.expected.nextEpUrl.replace(/www[^.]*\./, '')
+              : testCase.expected.nextEpUrl;
           expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
         }
-        if(typeof text.uiSelector != 'undefined'){
-          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(testCase.expected.uiSelector);
+        if (typeof text.uiSelector !== 'undefined') {
+          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(
+            testCase.expected.uiSelector,
+          );
         }
-        if(typeof text.epList !== "undefined" && typeof testCase.expected.epList !== "undefined"){
-          for(var key in testCase.expected.epList) {
-            expect(testCase.expected.epList[key].replace(/www[^.]*\./,''), 'EP'+key).to.equal(text.epList[key].replace(/www[^.]*\./,''));
+        if (
+          typeof text.epList !== 'undefined' &&
+          typeof testCase.expected.epList !== 'undefined'
+        ) {
+          for (const key in testCase.expected.epList) {
+            expect(
+              testCase.expected.epList[key].replace(/www[^.]*\./, ''),
+              `EP${key}`,
+            ).to.equal(text.epList[key].replace(/www[^.]*\./, ''));
           }
         }
-      })
+      });
     });
   });
-})
+});

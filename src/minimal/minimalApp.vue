@@ -1,56 +1,56 @@
 <template>
-  <div id="material" style="height: 100%;" v-bind:class="{ 'pop-over': !navigation, [options.theme]: true }">
+  <div id="material" style="height: 100%;" :class="{ 'pop-over': !navigation, [options.theme]: true }">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp">
       <header class="mdl-layout__header" style="min-height: 0;">
-        <button @click="backbuttonClick()" v-show="backbutton" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="backbutton" style="display: none;"><i class="material-icons">arrow_back</i></button>
+        <button v-show="backbutton" id="backbutton" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" style="display: none;" @click="backbuttonClick()"><i class="material-icons">arrow_back</i></button>
         <div class="mdl-layout__header-row">
-          <button :style="backbuttonBookStyle" @click="bookClick()" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="book" style="">
+          <button id="book" :style="backbuttonBookStyle" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" style="" @click="bookClick()">
             <i class="material-icons md-48 bookIcon">{{bookIcon}}</i>
           </button>
-          <div :style="backbuttonSearchStyle" v-bind:class="{ 'is-dirty': currentTab == tabs.search.title }" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" id="SearchButton" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
+          <div id="SearchButton" :style="backbuttonSearchStyle" :class="{ 'is-dirty': currentTab == tabs.search.title }" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable" style="margin-left: -57px; margin-top: 3px; padding-left: 40px;">
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
-              <input v-on:keyup="keywordSet()" v-model="keyword" class="mdl-textfield__input" type="text" id="headMalSearch">
+              <input id="headMalSearch" v-model="keyword" class="mdl-textfield__input" type="text" @keyup="keywordSet()">
               <label class="mdl-textfield__label" for="headMalSearch"></label>
             </div>
           </div>
-          <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="material-fullscreen" style="left: initial; right: 40px;">
+          <button id="material-fullscreen" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" style="left: initial; right: 40px;">
             <i class="material-icons md-48">fullscreen</i>
           </button>
-          <button class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" id="close-info-popup" style="left: initial; right: 0;">
+          <button id="close-info-popup" class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button" style="left: initial; right: 0;">
             <i class="material-icons close">close</i>
           </button>
         </div>
         <!-- Tabs -->
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
 
-          <a v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" @click="selectTab(tabs.overview.title)" class="mdl-layout__tab">{{lang("minimalApp_Overview")}}</a>
-          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" @click="selectTab(tabs.reviews.title)" class="mdl-layout__tab reviewsTab">{{lang("minimalApp_Reviews")}}</a>
-          <a v-show="showReviewAndRecom" v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" @click="selectTab(tabs.recommendations.title)" class="mdl-layout__tab recommendationTab">{{lang("minimalApp_Recommendations")}}</a>
-          <a v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" @click="selectTab(tabs.settings.title)" class="mdl-layout__tab settingsTab">{{lang("minimalApp_Settings")}}</a>
+          <a :class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab" @click="selectTab(tabs.overview.title)">{{lang("minimalApp_Overview")}}</a>
+          <a v-show="showReviewAndRecom" :class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab reviewsTab" @click="selectTab(tabs.reviews.title)">{{lang("minimalApp_Reviews")}}</a>
+          <a v-show="showReviewAndRecom" :class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab recommendationTab" @click="selectTab(tabs.recommendations.title)">{{lang("minimalApp_Recommendations")}}</a>
+          <a :class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab settingsTab" @click="selectTab(tabs.settings.title)">{{lang("minimalApp_Settings")}}</a>
         </div>
       </header>
       <main class="mdl-layout__content" style="height: 100%;">
-        <section v-bind:class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel" id="fixed-tab-1">
-          <overviewVue :renderObj="renderObj"/>
+        <section id="fixed-tab-1" :class="{ 'is-active': currentTab == tabs.overview.title }" class="mdl-layout__tab-panel">
+          <overviewVue :render-obj="renderObj"/>
         </section>
-        <section v-bind:class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel" id="fixed-tab-2">
+        <section id="fixed-tab-2" :class="{ 'is-active': currentTab == tabs.reviews.title }" class="mdl-layout__tab-panel">
           <reviewsVue :url="renderMalUrl" :state="currentTab == tabs.reviews.title"/>
         </section>
-        <section v-bind:class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <section id="fixed-tab-3" :class="{ 'is-active': currentTab == tabs.recommendations.title }" class="mdl-layout__tab-panel">
           <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title"/>
         </section>
-        <section v-bind:class="{ 'is-active': popOver }" class="mdl-layout__tab-panel" id="fixed-tab-4">
-          <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :listType="tabs.bookmarks.type">
-            <div class="mdl-grid" id="malList" style="justify-content: space-around;">
-              <select v-model="tabs.bookmarks.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+        <section id="fixed-tab-4" :class="{ 'is-active': popOver }" class="mdl-layout__tab-panel">
+          <bookmarksVue v-if="currentTab == tabs.bookmarks.title" :state="tabs.bookmarks.state" :list-type="tabs.bookmarks.type">
+            <div id="malList" class="mdl-grid" style="justify-content: space-around;">
+              <select id="userListType" v-model="tabs.bookmarks.type" name="myinfo_score" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="anime">Anime</option>
                 <option value="manga">Manga</option>
               </select>
               <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
-                <select v-model="tabs.bookmarks.state" name="myinfo_score" id="userListState" class="inputtext mdl-textfield__input" style="outline: none; background-color: white; border: none; flex: 1; width: auto;">
+                <select id="userListState" v-model="tabs.bookmarks.state" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none; background-color: white; border: none; flex: 1; width: auto;">
                   <option :value="7">{{lang("All")}}</option>
                   <option :value="1" selected >{{lang("UI_Status_watching_"+tabs.bookmarks.type)}}</option>
                   <option :value="2">{{lang("UI_Status_Completed")}}</option>
@@ -58,9 +58,9 @@
                   <option :value="4">{{lang("UI_Status_Dropped")}}</option>
                   <option :value="6">{{lang("UI_Status_planTo_"+tabs.bookmarks.type)}}</option>
                 </select>
-                <div @click="listView = !listView" style="padding: 0px 5px; margin-left: 10px; display: flex; cursor: pointer;" class="bg-cell">
-                  <i class="material-icons" style="position: relative; top: 2px;" v-if="!listView">view_list</i>
-                  <i class="material-icons" style="position: relative; top: 2px;" v-else>view_module</i>
+                <div style="padding: 0px 5px; margin-left: 10px; display: flex; cursor: pointer;" class="bg-cell" @click="listView = !listView">
+                  <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
+                  <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
                 </div>
               </div>
 
@@ -68,15 +68,15 @@
           </bookmarksVue>
           <searchVue v-if="currentTab == tabs.search.title" :keyword="tabs.search.keyword" :type="tabs.search.type" @clicked="searchClick">
             <div class="mdl-grid" style="justify-content: space-around;">
-              <select v-model="tabs.search.type" name="myinfo_score" id="userListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+              <select id="userListType" v-model="tabs.search.type" name="myinfo_score" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
                 <option value="anime">Anime</option>
                 <option value="manga">Manga</option>
               </select>
             </div>
           </searchVue>
         <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
-        <listSyncVue :listType="tabs.listSync.type" v-if="currentTab == tabs.listSync.title" >
-          <select v-model="tabs.listSync.type" @change="rebuildListSync()" style="margin-bottom: 20px;" class="typeSelect-updateCheck">
+        <listSyncVue v-if="currentTab == tabs.listSync.title" :list-type="tabs.listSync.type" >
+          <select v-model="tabs.listSync.type" style="margin-bottom: 20px;" class="typeSelect-updateCheck" @change="rebuildListSync()">
             <option value="anime">Anime</option>
             <option value="manga">Manga</option>
           </select>
@@ -84,8 +84,8 @@
         <cleanTagsVue v-if="currentTab == tabs.cleanTags.title" />
         <allSitesVue v-if="currentTab == tabs.allSites.title" />
         </section>
-        <section v-bind:class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel" id="fixed-tab-5">
-          <div class="page-content malClear" id="malConfig">
+        <section id="fixed-tab-5" :class="{ 'is-active': currentTab == tabs.settings.title }" class="mdl-layout__tab-panel">
+          <div id="malConfig" class="page-content malClear">
             <settingsVue :page="page"/>
           </div>
         </section></main>
@@ -107,15 +107,15 @@
   import reviewsVue from './minimalApp/reviews.vue'
   import {getSingle} from "./../_provider/singleFactory";
 
-  var timer;
-  var ignoreCurrentTab = true;
-  var ignoreNullBase = false;
-  var STORAGE_KEY = 'VUE-MAL-SYNC';
-  var scrollHandler = {};
-  var scrollHandlerArray = [];
-  var popupStorage = {
+  let timer;
+  let ignoreCurrentTab = true;
+  let ignoreNullBase = false;
+  const STORAGE_KEY = 'VUE-MAL-SYNC';
+  const scrollHandler = {};
+  let scrollHandlerArray = [];
+  const popupStorage = {
     fetch: function () {
-      var state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
       return state;
     },
     save: function (state) {
@@ -271,7 +271,7 @@
         }
       },
       bookIcon: function(){
-        var minimal = j.$(this.$el);
+        const minimal = j.$(this.$el);
         if(this.currentTab === 'bookmarks'){
           if(this.onlySettings){
             return 'settings';
@@ -281,36 +281,10 @@
         return 'book';
       }
     },
-    mounted: function(){
-      if(this.isPopup()){
-        var state = popupStorage.fetch();
-        if(typeof state !== 'undefined' && typeof state.currentTab !== 'undefined' ){
-          ignoreNullBase = true;
-          this.setCurrent(state);
-        }
-      }
-      j.$(this.$el).find('.mdl-layout__content').first().scroll(() => {
-        if(scrollHandlerArray.length){
-          var pos = {
-            pos: this.getScroll(),
-            elHeight: j.$(this.$el).find('.mdl-layout__content').first().height(),
-            height: j.$(this.$el).find('.mdl-layout__content > .is-active').first().height()
-          }
-          for(var i in scrollHandlerArray){
-            scrollHandlerArray[i](pos);
-          }
-        }
-      });
-    },
-    updated: function(){
-      if(this.isPopup()){
-        popupStorage.save(this.getCurrent(this.currentTab));
-      }
-    },
     watch: {
       renderUrl: function(url, oldUrl){
         this.renderObj = null;
-        var tempRenderObj = new getSingle(url);
+        const tempRenderObj = new getSingle(url);
         tempRenderObj.update().then(() => {
           this.renderObj = tempRenderObj;
           this.tabs.bookmarks.type = this.renderObj.getType();
@@ -367,6 +341,32 @@
         }
       }
     },
+    mounted: function(){
+      if(this.isPopup()){
+        const state = popupStorage.fetch();
+        if(typeof state !== 'undefined' && typeof state.currentTab !== 'undefined' ){
+          ignoreNullBase = true;
+          this.setCurrent(state);
+        }
+      }
+      j.$(this.$el).find('.mdl-layout__content').first().scroll(() => {
+        if(scrollHandlerArray.length){
+          const pos = {
+            pos: this.getScroll(),
+            elHeight: j.$(this.$el).find('.mdl-layout__content').first().height(),
+            height: j.$(this.$el).find('.mdl-layout__content > .is-active').first().height()
+          }
+          for(const i in scrollHandlerArray){
+            scrollHandlerArray[i](pos);
+          }
+        }
+      });
+    },
+    updated: function(){
+      if(this.isPopup()){
+        popupStorage.save(this.getCurrent(this.currentTab));
+      }
+    },
     methods: {
       lang: api.storage.lang,
       selectTab(selectedTab) {
@@ -394,7 +394,7 @@
       },
       fill(url, isBase = false){
         con.log('fill', url);
-        var minimal = j.$(this.$el);
+        const minimal = j.$(this.$el);
         if(url == null){
           if(this.isPopup()){
             this.selectTab('bookmarks');
@@ -423,7 +423,7 @@
         if(!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
         if(!this.fill(url)){
-          var win = window.open(url, '_blank');
+          const win = window.open(url, '_blank');
           if (win) {
               win.focus();
           } else {
@@ -443,7 +443,7 @@
       },
       setPage(page){
         this.page = page;
-        if(typeof this.page.singleObj == 'undefined'){
+        if(typeof this.page.singleObj === 'undefined'){
           this.$set(this.page, 'singleObj', undefined);
         }
       },
@@ -454,7 +454,7 @@
         }
       },
       bookClick(){
-        var minimal = j.$(this.$el);
+        const minimal = j.$(this.$el);
         if(this.bookIcon !== 'book'){
           this.selectTab('overview');
         }else{

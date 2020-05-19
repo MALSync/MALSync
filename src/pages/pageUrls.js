@@ -9,41 +9,30 @@ module.exports = {
       '*://myanimelist.net/manga.php?id=*',
       '*://myanimelist.net/character/*',
       '*://myanimelist.net/people/*',
-      '*://myanimelist.net/search/*'
+      '*://myanimelist.net/search/*',
     ],
     exclude: [
       '*myanimelist.net/anime/season*',
       '*myanimelist.net/anime/producer*',
       '*myanimelist.net/manga/magazine*',
       '*myanimelist.net/anime/genre*',
-      '*myanimelist.net/manga/genre*'
-    ]
+      '*myanimelist.net/manga/genre*',
+    ],
   },
   anilist: {
-    match: [
-      '*://anilist.co/*'
-    ]
+    match: ['*://anilist.co/*'],
   },
   kitsu: {
-    match: [
-      '*://kitsu.io/*'
-    ]
+    match: ['*://kitsu.io/*'],
   },
   simkl: {
-    match: [
-      '*://simkl.com/*'
-    ]
+    match: ['*://simkl.com/*'],
   },
   Kissanime: {
-    match: [
-      '*://kissanime.ru/Anime/*',
-      '*://kissanime.to/Anime/*'
-    ]
+    match: ['*://kissanime.ru/Anime/*', '*://kissanime.to/Anime/*'],
   },
   kissmanga: {
-    match: [
-      '*://kissmanga.com/Manga/*'
-    ]
+    match: ['*://kissmanga.com/Manga/*'],
   },
   nineAnime: {
     match: [
@@ -59,12 +48,10 @@ module.exports = {
       '*://*.9anime.life/watch/*',
       '*://*.9anime.love/watch/*',
       '*://*.9anime.tv/watch/*',
-    ]
-  },
-  Crunchyroll:{
-    match: [
-      '*://*.crunchyroll.com/*'
     ],
+  },
+  Crunchyroll: {
+    match: ['*://*.crunchyroll.com/*'],
     exclude: [
       '*crunchyroll.com/',
       '*crunchyroll.com',
@@ -89,8 +76,8 @@ module.exports = {
       '*crunchyroll.com/store*',
       '*crunchyroll.com/user*',
       '*crunchyroll.com/videos*',
-      '*crunchyroll.com/affiliate_iframeplayer*'
-    ]
+      '*crunchyroll.com/affiliate_iframeplayer*',
+    ],
   },
   Mangadex: {
     match: [
@@ -101,7 +88,7 @@ module.exports = {
       '*://*.mangadex.cc/manga/*',
       '*://*.mangadex.cc/title/*',
       '*://*.mangadex.cc/chapter/*',
-    ]
+    ],
   },
   Gogoanime: {
     match: [
@@ -128,371 +115,236 @@ module.exports = {
       '*animego*.*/user*',
       '*animego*.*/genre/*',
       '*animego*.*/sub-category/*',
-    ]
+    ],
   },
   Anime4you: {
-    match: [
-      '*://*.anime4you.one/show/1/aid/*',
-    ]
+    match: ['*://*.anime4you.one/show/1/aid/*'],
   },
   Branitube: {
-    match: [
-      '*://*.branitube.net/watch/*',
-      '*://*.branitube.net/animes/*'
-    ],
+    match: ['*://*.branitube.net/watch/*', '*://*.branitube.net/animes/*'],
     exclude: [
       '*://*.branitube.net/animes/filter/*',
-      '*://*.branitube.net/animes/pagina/*'
-    ]
+      '*://*.branitube.net/animes/pagina/*',
+    ],
   },
   Turkanime: {
     match: [
       '*://*.www.turkanime.tv/video/*',
       '*://*.www.turkanime.tv/anime/*',
       '*://*.www.turkanime.net/video/*',
-      '*://*.www.turkanime.net/anime/*'
-    ]
+      '*://*.www.turkanime.net/anime/*',
+    ],
   },
   Twistmoe: {
-    match: [
-      '*://twist.moe/*'
-    ]
+    match: ['*://twist.moe/*'],
   },
   Emby: {
-    match: [
-      '*://app.emby.media/*'
-    ]
+    match: ['*://app.emby.media/*'],
   },
   Plex: {
-    match: [
-      '*://app.plex.tv/*',
-    ]
+    match: ['*://app.plex.tv/*'],
   },
   Netflix: {
-    match: [
-      '*://www.netflix.com/*'
-    ]
+    match: ['*://www.netflix.com/*'],
   },
   animepahe: {
-    match: [
-      '*://animepahe.com/play/*',
-      '*://animepahe.com/anime/*'
-    ]
+    match: ['*://animepahe.com/play/*', '*://animepahe.com/anime/*'],
   },
   animeflv: {
-    match: [
-      '*://animeflv.net/anime/*',
-      '*://animeflv.net/ver/*',
-    ]
+    match: ['*://animeflv.net/anime/*', '*://animeflv.net/ver/*'],
   },
   jkanime: {
-    match: [
-      '*://jkanime.net/*',
-    ],
+    match: ['*://jkanime.net/*'],
     exclude: [
       '*://jkanime.net/',
       '*://jkanime.net/letra/*',
       '*://jkanime.net/buscar/*',
       '*://jkanime.net/terminos-condiciones/',
-    ]
+    ],
   },
   Vrv: {
-    match: [
-      '*://vrv.co/*',
-    ]
+    match: ['*://vrv.co/*'],
   },
   Proxer: {
-    match: [
-      '*://proxer.me/*',
-    ],
+    match: ['*://proxer.me/*'],
   },
   Novelplanet: {
-    match: [
-      '*://novelplanet.com/Novel/*',
-    ],
+    match: ['*://novelplanet.com/Novel/*'],
   },
   fourAnime: {
-    match: [
-      '*://4anime.to/*',
-    ],
+    match: ['*://4anime.to/*'],
   },
   DreamAnimes: {
-    match: [
-      '*://www.dreamanimes.com.br/*'
-    ],
+    match: ['*://www.dreamanimes.com.br/*'],
   },
   animeultima: {
-    match: [
-      '*://*.animeultima.eu/a/*',
-      '*://*.animeultima.to/a/*',
-    ],
+    match: ['*://*.animeultima.eu/a/*', '*://*.animeultima.to/a/*'],
   },
   Aniflix: {
-    match: [
-      '*://*.aniflix.tv/*',
-    ],
+    match: ['*://*.aniflix.tv/*'],
   },
   AnimeDaisuki: {
-    match: [
-      '*://animedaisuki.moe/watch/*',
-      '*://animedaisuki.moe/anime/*'
-    ],
+    match: ['*://animedaisuki.moe/watch/*', '*://animedaisuki.moe/anime/*'],
   },
   Animefreak: {
-    match: [
-      '*://www.animefreak.tv/watch/*'
-    ],
+    match: ['*://www.animefreak.tv/watch/*'],
   },
   AnimePlanet: {
-    match: [
-      '*://www.anime-planet.com/anime/*'
-    ],
+    match: ['*://www.anime-planet.com/anime/*'],
   },
   KickAssAnime: {
     match: [
       '*://*.kickassanime.io/anime/*',
       '*://*.kickassanime.ru/anime/*',
-      '*://*.kickassanime.rs/anime/*'
+      '*://*.kickassanime.rs/anime/*',
     ],
   },
   AnimeKisa: {
-    match: [
-      '*://animekisa.tv/*'
-    ],
+    match: ['*://animekisa.tv/*'],
   },
   Wakanim: {
-    match: [
-      '*://*.wakanim.tv/*'
-    ],
+    match: ['*://*.wakanim.tv/*'],
   },
   AnimeIndo: {
-    match: [
-      '*://animeindo.moe/*'
-    ],
+    match: ['*://animeindo.moe/*'],
   },
   Shinden: {
-    match: [
-      '*://shinden.pl/episode/*',
-      '*://shinden.pl/series/*'
-    ],
+    match: ['*://shinden.pl/episode/*', '*://shinden.pl/series/*'],
   },
   Funimation: {
-    match: [
-      '*://www.funimation.com/shows/*'
-    ],
+    match: ['*://www.funimation.com/shows/*'],
   },
   voiranime: {
-    match: [
-      '*://voiranime.com/*'
-    ]
+    match: ['*://voiranime.com/*'],
   },
   DubbedAnime: {
-    match: [
-      '*://*.dubbedanime.net/*'
-    ]
+    match: ['*://*.dubbedanime.net/*'],
   },
   VIZ: {
-    match: [
-      '*://www.viz.com/*'
-    ]
+    match: ['*://www.viz.com/*'],
   },
   MangaNelo: {
-    match: [
-      '*://manganelo.com/*'
-    ]
+    match: ['*://manganelo.com/*'],
   },
   Mangakakalot: {
-    match: [
-      '*://mangakakalot.com/*'
-    ]
+    match: ['*://mangakakalot.com/*'],
   },
   NekoSama: {
-    match: [
-      '*://*.neko-sama.fr/*'
-    ]
+    match: ['*://*.neko-sama.fr/*'],
   },
   AnimeZone: {
     match: [
       '*://www.animezone.pl/odcinki/*',
       '*://www.animezone.pl/odcinek/*',
-      '*://www.animezone.pl/anime/*'
-    ]
+      '*://www.animezone.pl/anime/*',
+    ],
   },
   AnimeOdcinki: {
-    match: [
-      '*://anime-odcinki.pl/anime/*'
-    ]
+    match: ['*://anime-odcinki.pl/anime/*'],
   },
   Animeflix: {
-    match: [
-      '*://animeflix.io/*'
-    ]
+    match: ['*://animeflix.io/*'],
   },
   serimanga: {
-    match: [
-      '*://serimanga.com/*'
-    ]
+    match: ['*://serimanga.com/*'],
   },
   mangadenizi: {
-    match: [
-      '*://mangadenizi.com/*'
-    ]
+    match: ['*://mangadenizi.com/*'],
   },
   moeclip: {
-    match: [
-      '*://moeclip.com/*'
-    ]
+    match: ['*://moeclip.com/*'],
   },
   mangalivre: {
-    match: [
-      '*://mangalivre.net/*'
-    ]
+    match: ['*://mangalivre.net/*'],
   },
   tmofans: {
-    match: [
-      '*://tmofans.com/*',
-      '*://lectortmo.com/*',
-    ]
+    match: ['*://tmofans.com/*', '*://lectortmo.com/*'],
   },
   unionmangas: {
-    match: [
-      '*://unionleitor.top/*',
-      '*://unionmangas.top/*'
-    ]
+    match: ['*://unionleitor.top/*', '*://unionmangas.top/*'],
   },
   MangaPlus: {
-    match: [
-      '*://mangaplus.shueisha.co.jp/*'
-    ]
+    match: ['*://mangaplus.shueisha.co.jp/*'],
   },
   JapScan: {
-    match: [
-      '*://*.japscan.co/*'
-    ]
+    match: ['*://*.japscan.co/*'],
   },
   MangaKisa: {
-    match: [
-      '*://mangakisa.com/*'
-    ]
+    match: ['*://mangakisa.com/*'],
   },
   Goyabu: {
-    match: [
-      '*://goyabu.com/*'
-    ]
+    match: ['*://goyabu.com/*'],
   },
   AnimesVision: {
-    match: [
-      '*://*.animesvision.com.br/*',
-      '*://*.animesvision.biz/*'
-    ]
+    match: ['*://*.animesvision.com.br/*', '*://*.animesvision.biz/*'],
   },
   Hulu: {
-    match: [
-      '*://www.hulu.com/*'
-    ]
+    match: ['*://www.hulu.com/*'],
   },
   Aniwatch: {
-    match: [
-      '*://aniwatch.me/*'
-    ]
+    match: ['*://aniwatch.me/*'],
   },
   Hidive: {
-    match: [
-     '*://www.hidive.com/*'
-    ]
+    match: ['*://www.hidive.com/*'],
   },
   JaiminisBox: {
     match: [
-     '*://jaiminisbox.com/reader/series/*',
-     '*://jaiminisbox.com/reader/read/*'
-    ]
+      '*://jaiminisbox.com/reader/series/*',
+      '*://jaiminisbox.com/reader/read/*',
+    ],
   },
   FallenAngels: {
-    match: [
-     '*://manga.fascans.com/manga/*'
-    ]
+    match: ['*://manga.fascans.com/manga/*'],
   },
   animestrue: {
     match: [
-     '*://*.animestrue.net/anime/*/temporada*',
-     '*://*.animestrue.site/anime/*/temporada*'
-    ]
+      '*://*.animestrue.net/anime/*/temporada*',
+      '*://*.animestrue.site/anime/*/temporada*',
+    ],
   },
   PrimeVideo: {
-    match: [
-     '*://*.primevideo.com/*',
-    ]
+    match: ['*://*.primevideo.com/*'],
   },
   MangaKatana: {
-    match: [
-     '*://mangakatana.com/manga/*'
-    ]
+    match: ['*://mangakatana.com/manga/*'],
   },
   manga4life: {
-    match: [
-     '*://manga4life.com/*'
-    ]
+    match: ['*://manga4life.com/*'],
   },
   bato: {
-    match: [
-     '*://bato.to/*',
-    ]
+    match: ['*://bato.to/*'],
   },
   DreamSub: {
-    match: [
-     '*://dreamsub.stream/*',
-    ]
+    match: ['*://dreamsub.stream/*'],
   },
   MangaPark: {
-    match: [
-     '*://mangapark.net/*',
-    ]
+    match: ['*://mangapark.net/*'],
   },
   AnimesHouse: {
-    match: [
-     '*://animeshouse.net/episodio/*',
-     '*://animeshouse.net/filme/*',
-    ]
+    match: ['*://animeshouse.net/episodio/*', '*://animeshouse.net/filme/*'],
   },
   AnimeXin: {
-    match: [
-     '*://animexin.xyz/*',
-    ]
+    match: ['*://animexin.xyz/*'],
   },
   MonosChinos: {
-    match: [
-     '*://monoschinos.com/*',
-    ]
+    match: ['*://monoschinos.com/*'],
   },
   AnimeFire: {
-    match: [
-     '*://animefire.net/*',
-    ]
+    match: ['*://animefire.net/*'],
   },
   OtakuFR: {
-    match: [
-     '*://*.otakufr.com/*',
-    ]
+    match: ['*://*.otakufr.com/*'],
   },
   Samehadaku: {
-    match: [
-     '*://samehadaku.vip/*',
-    ]
+    match: ['*://samehadaku.vip/*'],
   },
   TsukiMangas: {
-    match: [
-     '*://*.tsukimangas.com/*',
-    ]
+    match: ['*://*.tsukimangas.com/*'],
   },
   mangatx: {
-    match: [
-     '*://mangatx.com/*',
-    ]
+    match: ['*://mangatx.com/*'],
   },
   TRanimeizle: {
-    match: [
-      '*://tranimeizle.com/*',
-      '*://www.tranimeizle.com/*',
-    ]
+    match: ['*://tranimeizle.com/*', '*://www.tranimeizle.com/*'],
   },
 };

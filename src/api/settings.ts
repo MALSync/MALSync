@@ -55,8 +55,8 @@ export var settingsObj = {
     highlightAllEp: false,
 
     introSkip: 85,
-    introSkipFwd: [17,39],
-    introSkipBwd: [17,37],
+    introSkipFwd: [17, 39],
+    introSkipBwd: [17, 37],
     nextEpShort: [],
     correctionShort: [67],
     syncShort: [],
@@ -65,25 +65,25 @@ export var settingsObj = {
 
     bookMarksList: false,
 
-    'anilistToken': '',
-    'anilistOptions': {
+    anilistToken: '',
+    anilistOptions: {
       displayAdultContent: true,
       scoreFormat: 'POINT_10',
     },
-    'kitsuToken': '',
-    'kitsuOptions': {
+    kitsuToken: '',
+    kitsuOptions: {
       titleLanguagePreference: 'canonical',
       sfwFilter: false,
-      ratingSystem: "regular"
+      ratingSystem: 'regular',
     },
-    'simklToken': ''
+    simklToken: '',
   },
 
-  init: async function (){
+  init: async function() {
     return new Promise(async (resolve, reject) => {
-      for (var key in this.options) {
-        var store = await api.storage.get('settings/'+key);
-        if(typeof store != 'undefined'){
+      for (const key in this.options) {
+        const store = await api.storage.get(`settings/${key}`);
+        if (typeof store !== 'undefined') {
           this.options[key] = store;
         }
       }
@@ -91,56 +91,56 @@ export var settingsObj = {
       resolve(this);
 
       api.storage.storageOnChanged((changes, namespace) => {
-        if(namespace === 'sync'){
-          for (var key in changes) {
-            var storageChange = changes[key];
-            if(/^settings\//i.test(key)){
-              this.options[key.replace('settings/','')] = storageChange.newValue;
-              con.info('Update '+key+' option to '+storageChange.newValue);
+        if (namespace === 'sync') {
+          for (const key in changes) {
+            const storageChange = changes[key];
+            if (/^settings\//i.test(key)) {
+              this.options[key.replace('settings/', '')] =
+                storageChange.newValue;
+              con.info(`Update ${key} option to ${storageChange.newValue}`);
             }
           }
         }
-        if(namespace === 'local' && changes['rateLimit']) {
+        if (namespace === 'local' && changes['rateLimit']) {
           try {
-            if(changes['rateLimit'].newValue){
-              con.log("Rate limited");
-              utils.flashm("Rate limited. Retrying in a moment", {
+            if (changes['rateLimit'].newValue) {
+              con.log('Rate limited');
+              utils.flashm('Rate limited. Retrying in a moment', {
                 error: true,
                 type: 'rate',
                 permanent: true,
-              })
-            }else{
-              con.log("No Rate limited");
+              });
+            } else {
+              con.log('No Rate limited');
               $('.type-rate').remove();
             }
-          } catch(e) {
+          } catch (e) {
             con.error(e);
           }
         }
       });
-
     });
   },
 
-  get: function(name: string){
+  get: function(name: string) {
     return this.options[name];
   },
 
-  set: function(name: string, value: any){
-    if(!this.options.hasOwnProperty(name)){
-      let err = Error(name+' is not a defined option');
+  set: function(name: string, value: any) {
+    if (!this.options.hasOwnProperty(name)) {
+      const err = Error(`${name} is not a defined option`);
       con.error(err);
       throw err;
     }
 
     this.options[name] = value;
-    return api.storage.set('settings/'+name, value);
+    return api.storage.set(`settings/${name}`, value);
   },
 
-  getAsync: async function(name: string){
-    var value = await api.storage.get('settings/'+name);
-    if(typeof value === 'undefined' && typeof this.options[name] !== undefined) return this.options[name];
+  getAsync: async function(name: string) {
+    const value = await api.storage.get(`settings/${name}`);
+    if (typeof value === 'undefined' && typeof this.options[name] !== undefined)
+      return this.options[name];
     return value;
-  }
-
-}
+  },
+};

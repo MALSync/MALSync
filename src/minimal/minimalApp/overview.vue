@@ -17,7 +17,7 @@
       </button>
     </span>
 
-    <div class="mdl-grid" v-if="metaObj">
+    <div v-if="metaObj" class="mdl-grid">
       <div v-show="statistics.length" class="mdl-cell bg-cell mdl-cell--1-col mdl-cell--8-col-tablet mdl-cell--6-col-phone mdl-shadow--4dp stats-block malClear" style="min-width: 120px;">
         <ul class="mdl-list mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col" style="display: flex; justify-content: space-around;">
           <li v-for="stat in statistics" class="mdl-list__item mdl-list__item--two-line" style="padding: 0; padding-left: 10px; padding-right: 3px; min-width: 18%;">
@@ -25,7 +25,7 @@
               <span>
                   {{stat.title}}
               </span>
-              <span v-html="stat.body" class="mdl-list__item-sub-title">
+              <span class="mdl-list__item-sub-title" v-html="stat.body">
               </span>
             </span>
           </li>
@@ -39,7 +39,7 @@
         </div>
         <div class="mdl-cell mdl-cell--12-col">
           <a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect malClear malLink" :href="displayUrl" style="float: right;" target="_blank"><i class="material-icons">open_in_new</i></a>
-          <h1 v-html="title" class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;"></h1>
+          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0px; overflow:visible;" v-html="title"></h1>
           <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0px; overflow:visible;">
             <div v-for="altTitl in altTitle" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{altTitl}}</span>
@@ -47,9 +47,9 @@
           </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p v-html="description" style="color: black;">
+          <p style="color: black;" v-html="description">
           </p>
-          <div v-show="streaming" v-html="streaming" class="mdl-card__actions mdl-card--border" style="padding-left: 0;"></div>
+          <div v-show="streaming" class="mdl-card__actions mdl-card--border" style="padding-left: 0;" v-html="streaming"></div>
         </div>
       </div>
       <div class="mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear">
@@ -60,7 +60,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Status")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_status" id="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
+                  <select id="myinfo_status" v-model="malStatus" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_status" class="inputtext js-anime-status-dropdown mdl-textfield__input" style="outline: none;">
                     <option v-for="el in renderObj.getStatusCheckbox()" :value="el.value">{{el.label}}</option>
                   </select>
                 </span>
@@ -70,7 +70,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{utils.episode(renderObj.getType())}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malEpisode" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" id="myinfo_watchedeps" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-html="prediction.tag" v-if="prediction"/> <span id="curEps" v-if="renderObj && renderObj.getTotalEpisodes()">{{renderObj.getTotalEpisodes()}}</span><span v-else>?</span></span>
+                  <input id="myinfo_watchedeps" v-model="malEpisode" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" name="myinfo_watchedeps" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-if="prediction" v-html="prediction.tag"/> <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{renderObj.getTotalEpisodes()}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -82,7 +82,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Volume")}}</span>
                 <span class="mdl-list__item-text-body">
-                  <input v-model="malVolume" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" id="myinfo_volumes" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span id="curVolumes" v-if="renderObj && renderObj.getTotalVolumes()">{{renderObj.getTotalVolumes()}}</span><span v-else>?</span></span>
+                  <input id="myinfo_volumes" v-model="malVolume" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" type="text" name="myinfo_volumes" size="3" class="inputtext mdl-textfield__input" value="6" style="width: 35px; display: inline-block;"> / <span v-if="renderObj && renderObj.getTotalVolumes()" id="curVolumes">{{renderObj.getTotalVolumes()}}</span><span v-else>?</span></span>
                   <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4">
                     </i>
@@ -94,7 +94,7 @@
               <span class="mdl-list__item-primary-content">
                 <span>{{lang("UI_Score")}} </span>
                 <span class="mdl-list__item-text-body">
-                  <select v-model="malScore" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_score" id="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+                  <select id="myinfo_score" v-model="malScore" :disabled="!this.renderObj || !this.renderObj.isAuthenticated()" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
                     <option v-for="el in renderObj.getScoreCheckbox()" :value="el.value">{{el.label}}</option>
                   </select>
                 </span>
@@ -102,21 +102,21 @@
             </li>
             <li class="mdl-list__item" style="width: 100%;">
 
-              <input @click="malSync()" v-if="renderObj && !renderObj.isOnList()" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()">
-              <input @click="malSync()" v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()">
+              <input v-if="renderObj && !renderObj.isOnList()" type="button" name="myinfo_submit" value="Add" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()" @click="malSync()">
+              <input v-else type="button" name="myinfo_submit" :value="lang('Update')" class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="margin-right: 5px;" data-upgraded=",MaterialButton" :disabled="!renderObj || !renderObj.isAuthenticated()" @click="malSync()">
               <small v-if="editUrl && renderObj">
                 <a :href="editUrl" target="_blank">{{lang("overview_EditDetails")}}</a>
               </small>
-              <input v-if="!(renderObj && !renderObj.isOnList()) && (typeof renderObj.delete !== 'undefined')" @click="remove()" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')">
+              <input v-if="!(renderObj && !renderObj.isOnList()) && (typeof renderObj.delete !== 'undefined')" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" style="margin-left: 5px; margin-left: auto;" :value="lang('Remove')" @click="remove()">
 
-              <i class="material-icons" @click="reload()" style="margin-right: 0; margin-left: auto; cursor: pointer;">autorenew</i>
+              <i class="material-icons" style="margin-right: 0; margin-left: auto; cursor: pointer;" @click="reload()">autorenew</i>
             </li>
           </tbody>
         </table>
       </div>
       <div v-show="related.length" class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear">
         <ul class="mdl-list">
-          <li class="mdl-list__item mdl-list__item--two-line" v-for="relatedType in related">
+          <li v-for="relatedType in related" class="mdl-list__item mdl-list__item--two-line">
             <span class="mdl-list__item-primary-content">
               <span>
                 {{relatedType.type}}
@@ -133,14 +133,14 @@
       </div>
       <div v-show="kiss2mal && Object.keys(kiss2mal).length" class="mdl-grid mdl-grid--no-spacing bg-cell mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear">
         <ul class="mdl-list stream-block-inner">
-          <li class="mdl-list__item mdl-list__item--three-line" v-for="(streams, page) in kiss2mal">
+          <li v-for="(streams, page) in kiss2mal" class="mdl-list__item mdl-list__item--three-line">
             <span class="mdl-list__item-primary-content">
               <span>
                 <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(streams)">
                 {{ page }}
               </span>
               <span id="KissAnimeLinks" class="mdl-list__item-text-body">
-                <div class="mal_links" v-for="stream in streams">
+                <div v-for="stream in streams" class="mal_links">
                   <a target="_blank" :href="stream.url">{{stream.title}}</a>
                 </div>
               </span>
@@ -152,7 +152,7 @@
         <div class="mdl-card__actions clicker" >
           <h1 class="mdl-card__title-text" style="float: left;">{{lang("overview_Characters")}}</h1>
         </div>
-        <div class="mdl-grid mdl-card__actions mdl-card--border" id="characterList" style="justify-content: space-between; ">
+        <div id="characterList" class="mdl-grid mdl-card__actions mdl-card--border" style="justify-content: space-between; ">
           <div v-for="character in characters">
             <div class="mdl-grid" style="width: 126px;">
               <clazy-load :src="character.img" margin="200px 0px" :threshold="0.1" :ratio="0.1" style="width: 100%; height: auto;">
@@ -223,6 +223,12 @@
     components: {
       progressP,
     },
+    props: {
+      renderObj: {
+        type: Object,
+        default: null
+      },
+    },
     data: function(){
       return {
         metaObj: null,
@@ -236,17 +242,6 @@
         related: [],
         prediction: null,
         utils,
-      }
-    },
-    props: {
-      renderObj: {
-        type: Object,
-        default: null
-      },
-    },
-    watch: {
-      renderObj: async function(renderObj){
-        this.render(renderObj);
       }
     },
     computed: {
@@ -313,7 +308,7 @@
         }
       },
       statistics: function(){
-        var stats = {};
+        let stats = {};
         try{
             stats = this.metaObj.getStatistics();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
@@ -326,7 +321,7 @@
         return this.renderObj.url;
       },
       image: function(){
-        var image = '';
+        let image = '';
         try{
             image = this.metaObj.getImage();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
@@ -338,7 +333,7 @@
         return image;
       },
       title: function(){
-        var title = '';
+        let title = '';
         try{
             title = this.metaObj.getTitle();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
@@ -348,43 +343,43 @@
         return title;
       },
       description: function(){
-        var description = '';
+        let description = '';
         try{
           description = this.metaObj.getDescription();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return description;
       },
       altTitle: function(){
-        var altTitle = {};
+        let altTitle = {};
         try{
             altTitle = this.metaObj.getAltTitle();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return altTitle;
       },
       streaming: function(){
-        var streamhtml = null;
-        var malObj = this.renderObj;
+        let streamhtml = null;
+        const malObj = this.renderObj;
         if(malObj == null || !malObj.isAuthenticated()) return null;
-        var streamUrl = malObj.getStreamingUrl();
+        const streamUrl = malObj.getStreamingUrl();
         if(typeof streamUrl !== 'undefined'){
 
           streamhtml =
           `
             <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
               <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${streamUrl.split('/')[2]}" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Continue_'+malObj.getType())}
+                <img src="${utils.favicon(streamUrl.split('/')[2])}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(`overview_Continue_${malObj.getType()}`)}
               </a>`;
 
           con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
           if(typeof this.mal.continueUrl !== 'undefined' && this.mal.continueUrl && this.mal.continueUrl.ep === (malObj.getEpisode()+1)){
             streamhtml +=
-              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Next_Episode_'+malObj.getType())}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Next_Episode_'+malObj.getType())}
+              `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(`overview_Next_Episode_${malObj.getType()}`)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(`overview_Next_Episode_${malObj.getType()}`)}
               </a>`;
           }else if(typeof this.mal.resumeUrl !== 'undefined' && this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()){
             streamhtml +=
-              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang('overview_Resume_Episode_'+malObj.getType())}
+              `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(`overview_Resume_Episode_${malObj.getType()}`)}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(`overview_Resume_Episode_${malObj.getType()}`)}
               </a>`;
           }
 
@@ -396,32 +391,37 @@
         return streamhtml;
       },
       characters: function(){
-        var char = {};
+        let char = {};
         try{
           char = this.metaObj.getCharacters();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return char;
       },
       info: function(){
-        var info = {};
+        let info = {};
         try{
           info = this.metaObj.getInfo();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return info;
       },
       openingSongs: function(){
-        var opening = {};
+        let opening = {};
         try{
           opening = this.metaObj.getOpeningSongs();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return opening;
       },
       endingSongs: function(){
-        var ending = {};
+        let ending = {};
         try{
           ending = this.metaObj.getEndingSongs();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return ending;
+      }
+    },
+    watch: {
+      renderObj: async function(renderObj){
+        this.render(renderObj);
       }
     },
     methods: {
@@ -440,7 +440,7 @@
 
         if(renderObj == null) return;
 
-        var syncMode = api.settings.get('syncMode');
+        let syncMode = api.settings.get('syncMode');
         //
         if(syncMode === 'SIMKL' && renderObj.type === 'manga'){
           syncMode = api.settings.get('syncModeSimkl');
@@ -532,23 +532,23 @@
         }
       },
       getRelated: function(){
-        var related = {};
+        let related = {};
         try{
           related = this.metaObj.getRelated();
         }catch(e) {console.log('[iframeOverview] Error:',e);}
         return related;
       },
       updateStatusTags: async function(){
-        for(var relatedKey in this.related){
-          var relate = this.related[relatedKey];
-          for(var linkKey in relate.links){
-            var link = relate.links[linkKey];
+        for(const relatedKey in this.related){
+          const relate = this.related[relatedKey];
+          for(const linkKey in relate.links){
+            const link = relate.links[linkKey];
             var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
-            if(typeof url != 'undefined'){
+            if(typeof url !== 'undefined'){
 
 
-              var tag = await utils.timeCache('MALTAG/'+url, async function(){
-                var malObj = getSingle(url);
+              const tag = await utils.timeCache(`MALTAG/${url}`, async function(){
+                const malObj = getSingle(url);
                 await malObj.update();
                 await new Promise((resolve, reject) => {
                   setTimeout(resolve, 2000);

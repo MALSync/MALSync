@@ -32,7 +32,7 @@
           <h3 class="noMarginTop mainHeader">{{lang("minimalClass_versionMsg_Text_1")}}</h3>
           <h4>{{lang("installPage_Mode")}}</h4>
           <span class="mdl-list__item-secondary-action">
-            <select name="myinfo_score" id="syncMode" class="inputtext mdl-textfield__input" style="outline: none;" v-model="syncMode">
+            <select id="syncMode" v-model="syncMode" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="" disabled selected hidden>-- {{lang("Select")}} --</option>
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
@@ -40,8 +40,8 @@
               <option value="SIMKL">Simkl</option>
             </select>
           </span>
-          <div class="syncExtended" v-if="options.syncMode !== 'MAL'">
-            <li class="mdl-list__item" v-if="options.syncMode == 'SIMKL'">
+          <div v-if="options.syncMode !== 'MAL'" class="syncExtended">
+            <li v-if="options.syncMode == 'SIMKL'" class="mdl-list__item">
               <span class="mdl-list__item-primary-content">
                 Simkl
               </span>
@@ -49,13 +49,13 @@
                 <a target="_blank" href="https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/">{{lang("settings_Authenticate")}}</a>
               </span>
             </li>
-            <dropdown option="syncModeSimkl" text="Manga Sync Mode" v-if="options.syncMode == 'SIMKL'">
+            <dropdown v-if="options.syncMode == 'SIMKL'" option="syncModeSimkl" text="Manga Sync Mode">
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
             </dropdown>
 
-            <li class="mdl-list__item" v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')">
+            <li v-if="options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')" class="mdl-list__item">
               <span class="mdl-list__item-primary-content">
                 AniList
               </span>
@@ -63,7 +63,7 @@
                 <a target="_blank" href="https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token">{{lang("settings_Authenticate")}}</a>
               </span>
             </li>
-            <li class="mdl-list__item" v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')">
+            <li v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')" class="mdl-list__item">
               <span class="mdl-list__item-primary-content">
                 Kitsu
               </span>
@@ -78,7 +78,7 @@
 
           <h4>{{lang("installPage_Wrong")}}</h4>
           <p>{{lang("installPage_Wrong_Description")}}</p>
-          <button v-on:click='show = !show' class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" @click='show = !show'>
             {{lang("Show")}}
           </button>
           <p v-if="show" class="correctionGif">
@@ -199,20 +199,6 @@ p{
       show: false,
       mode: '',
     }),
-    watch: {
-    },
-    methods: {
-      lang: api.storage.lang,
-    },
-    mounted() {
-      componentHandler.upgradeDom();
-
-      var settingsEl = document.getElementsByClassName("open-settings")[0];
-      settingsEl.addEventListener("click", function(e){
-        con.log('Open Settings');
-        chrome.runtime.openOptionsPage();
-      });
-    },
     computed: {
       syncMode: {
         get: function () {
@@ -224,6 +210,20 @@ p{
           api.settings.set('syncMode', value);
         }
       },
+    },
+    watch: {
+    },
+    mounted() {
+      componentHandler.upgradeDom();
+
+      const settingsEl = document.getElementsByClassName("open-settings")[0];
+      settingsEl.addEventListener("click", function(e){
+        con.log('Open Settings');
+        chrome.runtime.openOptionsPage();
+      });
+    },
+    methods: {
+      lang: api.storage.lang,
     },
   }
 </script>

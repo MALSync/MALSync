@@ -1,0 +1,16 @@
+{
+    // This the configuration file of Code Spell Checker extension, which will
+    // help you to correct and maybe suggest correction of spelling errors
+    "version": "0.1",
+    "language": "en",
+    "words": [
+        "adblocker",
+        "Captcha",
+        "greasemonkey",
+        "jquery",
+        "parens",
+        "readonly",
+        "webextension",
+        "webextensions"
+    ]
+}

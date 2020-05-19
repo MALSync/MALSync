@@ -1,5 +1,5 @@
-var tokenSave = null;
-var scrollPos = null;
+const tokenSave = null;
+let scrollPos = null;
 
 $(document).ready(function() {
   init();
@@ -7,91 +7,101 @@ $(document).ready(function() {
 });
 
 function redirect() {
-  var path = window.location.pathname.split('/');
-  if(path[1] == 'changelog'){
+  const path = window.location.pathname.split('/');
+  if (path[1] == 'changelog') {
     changelog();
     return;
   }
   home();
-
 }
 
-function init(){
-  $('#open-changelog').on('click', function(){
+function init() {
+  $('#open-changelog').on('click', function() {
     changelog();
   });
-  $('#open-home').on('click', function(){
+  $('#open-home').on('click', function() {
     home();
   });
-  $('.mobile-nav').addClass('allow')
+  $('.mobile-nav').addClass('allow');
   $('.navbar-toggler').click(function() {
-    $('#sidebar-inner').toggleClass("open");
+    $('#sidebar-inner').toggleClass('open');
   });
   $('#sidebar-inner').click(function() {
-    if ( $(this).hasClass("open") ) {
-      $(this).removeClass("open");
+    if ($(this).hasClass('open')) {
+      $(this).removeClass('open');
     }
   });
   $('#header-inner').show(500);
 }
 
-function home(){
+function home() {
   pushHistory('/');
   switchPage('home');
 }
 
-function changelog(){
+function changelog() {
   pushHistory('/changelog');
-  var html = '';
-  changelogData.forEach(function(version){
-    html += `<div class="card change" id="${version.title.replace(/\./g,'-')}">
+  let html = '';
+  changelogData.forEach(function(version) {
+    html += `<div class="card change" id="${version.title.replace(/\./g, '-')}">
         <div class="card-header">
-          <a href="https://github.com/lolamtisch/MALSync/releases/tag/${version.title}">
+          <a href="https://github.com/lolamtisch/MALSync/releases/tag/${
+            version.title
+          }">
             Version ${version.title}
           </a>
         </div>
           <div class="list-group list-group-flush">`;
 
-        version.data.forEach(function(message){
-          message = messageHandling(message);
-          html += `<div class="list-group-item">
+    version.data.forEach(function(message) {
+      message = messageHandling(message);
+      html += `<div class="list-group-item">
             ${message}
-          </div>`
-        })
+          </div>`;
+    });
     html += '</div></div>';
-  })
+  });
   $('#changelog-content').html(html);
 
   switchPage('changelog');
 
-  if(window.location.hash) {
-    var hash = window.location.hash.replace(/\./g,'-');
+  if (window.location.hash) {
+    const hash = window.location.hash.replace(/\./g, '-');
     $(hash).addClass('border-light');
-    $("html, body").animate({ scrollTop: $(hash).offset().top }, 1000);
+    $('html, body').animate({ scrollTop: $(hash).offset().top }, 1000);
   }
 
-  function messageHandling(message){
-    var issues = /#\d*/g.exec(message);
-    if(issues){
-      issues.forEach(function(issue){
-        message = message.replace(issue,'<a href="https://github.com/lolamtisch/MALSync/issues/'+issue.replace('#','')+'">'+issue+'</a>');
-      })
+  function messageHandling(message) {
+    const issues = /#\d*/g.exec(message);
+    if (issues) {
+      issues.forEach(function(issue) {
+        message = message.replace(
+          issue,
+          `<a href="https://github.com/lolamtisch/MALSync/issues/${issue.replace(
+            '#',
+            '',
+          )}">${issue}</a>`,
+        );
+      });
     }
 
-    var badges = /\[(.*?)\]/g.exec(message);
-    if(badges){
-      badges.forEach(function(badge){
-        if(badge[0] != '[') return
-        var content = badge.replace(/(^\[|\]$)/g,'');
-        var type = 'secondary';
-        if(content === 'FEATURE'){
+    const badges = /\[(.*?)\]/g.exec(message);
+    if (badges) {
+      badges.forEach(function(badge) {
+        if (badge[0] != '[') return;
+        const content = badge.replace(/(^\[|\]$)/g, '');
+        let type = 'secondary';
+        if (content === 'FEATURE') {
           type = 'info';
         }
-        if(content === 'BUGFIX'){
+        if (content === 'BUGFIX') {
           type = 'warning';
         }
-        message = message.replace(badge,'<span class="badge badge-'+type+'" style="float: right; margin-top: 3px;">'+content+'</span>');
-      })
+        message = message.replace(
+          badge,
+          `<span class="badge badge-${type}" style="float: right; margin-top: 3px;">${content}</span>`,
+        );
+      });
     }
 
     return message;
@@ -106,73 +116,88 @@ window.addEventListener('popstate', function(event) {
 });
 
 //Helper
-function switchPage(id){
-  $('.page-visibility').css('visibility', 'hidden').css('position', 'absolute')
+function switchPage(id) {
+  $('.page-visibility')
+    .css('visibility', 'hidden')
+    .css('position', 'absolute');
   $('.page').hide(0);
-  $('#'+id).show(0).css('visibility', 'visible').css('position', 'relative');console.log($('#'+id));
+  $(`#${id}`)
+    .show(0)
+    .css('visibility', 'visible')
+    .css('position', 'relative');
+  console.log($(`#${id}`));
   $(window).scrollTop(scrollPos);
 }
 
-function pushHistory(path, title){
-  if(path.toLowerCase().replace(/\//g, '') === window.location.pathname.toLowerCase().replace(/\//g, '')) return;
-  if(!title) title = path;
+function pushHistory(path, title) {
+  if (
+    path.toLowerCase().replace(/\//g, '') ===
+    window.location.pathname.toLowerCase().replace(/\//g, '')
+  )
+    return;
+  if (!title) title = path;
   //replace
-  var data = {};
+  const data = {};
   data.scroll = $(window).scrollTop();
   console.log(data);
-  window.history.replaceState(data, window.location.pathname, window.location.pathname);
+  window.history.replaceState(
+    data,
+    window.location.pathname,
+    window.location.pathname,
+  );
   //push
-  try{
+  try {
     history.pushState(data, title, path);
     window.dispatchEvent(new Event('urlChange'));
-  }catch(e){
+  } catch (e) {
     console.error(e);
   }
 
   scrollPos = null;
 }
 
-function randomPostion(){
-  return 'background-position: '+Math.floor(Math.random()* 1000)+'px '+Math.floor(Math.random()* 1000)+'px;';
+function randomPostion() {
+  return `background-position: ${Math.floor(
+    Math.random() * 1000,
+  )}px ${Math.floor(Math.random() * 1000)}px;`;
 }
 
 function FormatNumberLength(num, length) {
-  var r = "" + num;
+  let r = `${num}`;
   while (r.length < length) {
-    r = "0" + r;
+    r = `0${r}`;
   }
   return r;
 }
 
-
 //Contributer
-$.get( "https://api.malsync.moe/static/contributor", function( data ) {
-  try{
+$.get('https://api.malsync.moe/static/contributor', function(data) {
+  try {
     contributer(JSON.parse(data));
-  }catch(e){
+  } catch (e) {
     console.error('Contributer Could not be retieved', e);
   }
 });
 
-function contributer(contr){
+function contributer(contr) {
   console.log('Contributer', contr);
-  var html = '';
+  let html = '';
 
-  for (var group in contr){
+  for (const group in contr) {
     console.log(group);
     html += `<div class="group">${group}</div>`;
-    for(var user in contr[group]){
-      var userVal = contr[group][user];
+    for (const user in contr[group]) {
+      const userVal = contr[group][user];
 
-      if(typeof userVal.subText != 'undefined' && userVal.subText){
+      if (typeof userVal.subText !== 'undefined' && userVal.subText) {
         userVal.subText = `<div class="subtext">${userVal.subText}</div>`;
-      }else{
+      } else {
         userVal.subText = '';
       }
 
-      if(typeof userVal.gif != 'undefined' && userVal.gif){
+      if (typeof userVal.gif !== 'undefined' && userVal.gif) {
         userVal.gif = `<img class="gif" src="${userVal.gif}">`;
-      }else{
+      } else {
         userVal.gif = '';
       }
 

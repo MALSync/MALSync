@@ -3,11 +3,11 @@ import { Single } from './../../../../src/_provider/Simkl/single';
 import * as utils from './../../../../src/utils/general';
 import * as def from './../../../../src/_provider/definitions';
 
-import {generalSingleTests} from './../generalSingleTests.exclude';
+import { generalSingleTests } from './../generalSingleTests.exclude';
 
 import * as request from 'request';
 
-setGlobals()
+setGlobals();
 function setGlobals() {
   global.con = require('./../../../../src/utils/console');
   global.con.log = function() {};
@@ -20,38 +20,37 @@ function setGlobals() {
     noLimitless: true,
     settings: {
       get: function(key) {
-        if('simklToken') return global.api.token;
+        if ('simklToken') return global.api.token;
         throw 'key not defined';
-      }
+      },
     },
     status: 200,
     request: {
       xhr: async function(post, conf, data) {
         return new Promise(function(resolve, reject) {
-          var options = {
+          const options = {
             url: conf.url,
             headers: conf.headers,
-          }
-          if(post.toLowerCase() === 'post'){
+          };
+          if (post.toLowerCase() === 'post') {
             options.body = conf.data;
             request.post(options, (error, response, body) => {
               resolve({
                 responseText: body,
-                status: global.api.status
-              })
+                status: global.api.status,
+              });
             });
-          }else{
+          } else {
             options.body = JSON.stringify(conf.data);
             request.get(options, (error, response, body) => {
               resolve({
                 responseText: body,
-                status: global.api.status
-              })
+                status: global.api.status,
+              });
             });
           }
-
         });
-      }
+      },
     },
     storage: {
       get: function(key) {
@@ -60,11 +59,11 @@ function setGlobals() {
       set: function(key, value) {
         //state[key] = JSON.parse(JSON.stringify(value));
         return Promise.resolve();
-      }
+      },
     },
-  }
+  };
 
-  global.btoa = (input) => input;
+  global.btoa = input => input;
 
   global.utils = utils;
 
@@ -89,7 +88,7 @@ function setGlobals() {
         url: 'https://anilist.co/anime/19815/No-Game-No-Life/',
         error: true,
         type: 'anime',
-      }
+      },
     ],
     apiTest: {
       defaultUrl: {
@@ -107,7 +106,7 @@ function setGlobals() {
         url: 'https://simkl.com/anime/39821/shiki',
         displayUrl: 'https://simkl.com/anime/39821',
         malUrl: 'https://myanimelist.net/anime/7724/Shiki',
-        title: "Shiki",
+        title: 'Shiki',
         eps: 0,
         vol: 0,
       },
@@ -133,13 +132,13 @@ function setGlobals() {
       hasTotalEp: {
         url: 'https://simkl.com/anime/901533/jiyi-u-pan',
       },
-    }
-  }
+    },
+  };
 }
 
-describe('Simkl single', function () {
-  before(function () {
+describe('Simkl single', function() {
+  before(function() {
     setGlobals();
-  })
+  });
   generalSingleTests(Single, setGlobals);
 });

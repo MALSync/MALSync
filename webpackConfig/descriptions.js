@@ -3,30 +3,30 @@ const extra = require('fs-extra');
 const fs = require('fs');
 
 require('ts-node').register({
-  "project": "./tsconfig.node.json",
-  "files": "./globals.d.ts"
-})
-
-var pages = Object.values(require("./../src/pages/pages.ts").pages);
-pages.sort(function(a, b) {
-  var textA = a.name.toUpperCase();
-  var textB = b.name.toUpperCase();
-  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  project: './tsconfig.node.json',
+  files: './globals.d.ts',
 });
 
-var hpages = Object.values(require("./../src/pages-adult/pages.ts").pages);
+const pages = Object.values(require('./../src/pages/pages.ts').pages);
+pages.sort(function(a, b) {
+  const textA = a.name.toUpperCase();
+  const textB = b.name.toUpperCase();
+  return textA < textB ? -1 : textA > textB ? 1 : 0;
+});
+
+const hpages = Object.values(require('./../src/pages-adult/pages.ts').pages);
 hpages.sort(function(a, b) {
-  var textA = a.name.toUpperCase();
-  var textB = b.name.toUpperCase();
-  return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  const textA = a.name.toUpperCase();
+  const textB = b.name.toUpperCase();
+  return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
 createTable();
-function createTable(){
-  var animehtml = "";
-  var mangahtml = "";
+function createTable() {
+  let animehtml = '';
+  let mangahtml = '';
 
-  var html = `
+  let html = `
   <h1>Anime</h1>
   <table>
     <thead>
@@ -40,28 +40,42 @@ function createTable(){
     </thead>
     <tbody>
       `;
-  for (var page in pages){
+  for (let page in pages) {
     page = pages[page];
-    if(typeof page.domain === 'object') page.domain = page.domain[0];
-    if(typeof page.type !== undefined && page.type === "anime") {
-    animehtml += `<tr>
-              <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
+    if (typeof page.type !== undefined && page.type === 'anime') {
+      animehtml += `<tr>
+              <td><a href="${
+                page.domain
+              }"><img src="https://www.google.com/s2/favicons?domain=${
+        page.domain
+      }"> ${page.name}</a></td>
               ${rowCondition(typeof page.overview !== 'undefined')}
               ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
               ${rowCondition(typeof page.database !== 'undefined')}
-              ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
+              ${rowCondition(
+                typeof page.overview !== 'undefined' &&
+                  typeof page.overview.list !== 'undefined',
+              )}
             </tr>`;
     } else {
-    mangahtml += `<tr>
-              <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
+      mangahtml += `<tr>
+              <td><a href="${
+                page.domain
+              }"><img src="https://www.google.com/s2/favicons?domain=${
+        page.domain
+      }"> ${page.name}</a></td>
               ${rowCondition(typeof page.overview !== 'undefined')}
               ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
               ${rowCondition(typeof page.database !== 'undefined')}
-              ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
+              ${rowCondition(
+                typeof page.overview !== 'undefined' &&
+                  typeof page.overview.list !== 'undefined',
+              )}
             </tr>`;
     }
   }
-  html += animehtml
+  html += animehtml;
   html += `
     </tbody>
   </table>
@@ -80,36 +94,35 @@ function createTable(){
     </thead>
     <tbody>
       `;
-  html += mangahtml
+  html += mangahtml;
   html += `
     </tbody>
   </table>
   `;
 
-  fs.writeFile(path.join(__dirname, '../pages.md'), html, (err) => {
+  fs.writeFile(path.join(__dirname, '../pages.md'), html, err => {
     if (err) {
       console.error(err);
       process.exit(1);
     }
   });
 
-  function rowCondition(con){
-    if(con) return '<td>:heavy_check_mark:</td>';
+  function rowCondition(con) {
+    if (con) return '<td>:heavy_check_mark:</td>';
     return '<td>:x:</td>';
   }
 }
 
 adultDep();
-function adultDep(){
-
-  var html = `
+function adultDep() {
+  let html = `
   <table>
     <tbody>
       `;
-  for (var page in hpages){
+  for (let page in hpages) {
     page = hpages[page];
 
-    if(typeof page.domain === 'object') page.domain = page.domain[0];
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
 
     html += `<tr>
               <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
@@ -120,55 +133,58 @@ function adultDep(){
   </table>
   `;
 
-  var descFile = path.join(__dirname, '../src/pages-adult/README.md');
-  fs.readFile(descFile, 'utf8', function (err,data) {
+  const descFile = path.join(__dirname, '../src/pages-adult/README.md');
+  fs.readFile(descFile, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
-    var result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, '<!--pages-->'+html+'<!--/pages-->');
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
 
-    fs.writeFile(descFile, result, 'utf8', function (err) {
-       if (err) return console.log(err);
+    fs.writeFile(descFile, result, 'utf8', function(err) {
+      if (err) return console.log(err);
     });
   });
 }
 
 readMe();
-function readMe(){
+function readMe() {
+  const pageList = Object.values(require('./../src/pages/pages.ts').pages);
 
-  var pageList = Object.values(require("./../src/pages/pages.ts").pages);
-
-  var animes = [];
-  var mangas = [];
-  var medias = [
+  const animes = [];
+  const mangas = [];
+  const medias = [
     '<a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a>'
-  ]
+    '<a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+  ];
 
-  for (var page in pageList){
+  for (var page in pageList) {
     page = pageList[page];
 
-    if(typeof page.domain === 'object') page.domain = page.domain[0];
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
 
-    var str = `<a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a>`;
+    const str = `<a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a>`;
 
-    if(page.name === 'Emby' ||
-      page.name === 'Plex'){
+    if (page.name === 'Emby' || page.name === 'Plex') {
       continue;
     }
 
-    if(page.name === 'MangaNelo'){
-      mangas.push('<a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a>');
+    if (page.name === 'MangaNelo') {
+      mangas.push(
+        '<a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a>',
+      );
     }
 
-    if(page.type === 'anime'){
+    if (page.type === 'anime') {
       animes.push(str);
-    }else{
+    } else {
       mangas.push(str);
     }
   }
 
-  var html = `
+  let html = `
   <table>
     <thead>
       <tr>
@@ -179,33 +195,36 @@ function readMe(){
     </thead>
     <tbody>
       `;
-    for (var page in animes){
-      anime = animes[page];
-      manga = mangas[page];
-      media = medias[page];
-      if(typeof manga === "undefined") manga = '';
-      if(typeof media === "undefined") media = '';
+  for (var page in animes) {
+    anime = animes[page];
+    manga = mangas[page];
+    media = medias[page];
+    if (typeof manga === 'undefined') manga = '';
+    if (typeof media === 'undefined') media = '';
 
-      html += `<tr>
+    html += `<tr>
                 <td>${anime}</td>
                 <td>${manga}</td>
                 <td>${media}</td>
               </tr>`;
-    }
+  }
   html += `
     </tbody>
   </table>
   `;
 
-  var descFile = path.join(__dirname, '../README.md');
-  fs.readFile(descFile, 'utf8', function (err,data) {
+  const descFile = path.join(__dirname, '../README.md');
+  fs.readFile(descFile, 'utf8', function(err, data) {
     if (err) {
       return console.log(err);
     }
-    var result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, '<!--pages-->'+html+'<!--/pages-->');
+    const result = data.replace(
+      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
+      `<!--pages-->${html}<!--/pages-->`,
+    );
 
-    fs.writeFile(descFile, result, 'utf8', function (err) {
-       if (err) return console.log(err);
+    fs.writeFile(descFile, result, 'utf8', function(err) {
+      if (err) return console.log(err);
     });
   });
 }
