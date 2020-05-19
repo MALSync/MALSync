@@ -65,7 +65,8 @@ api.settings.init().then(() => {
           const tempEpisode = tempEpisodeList[key];
           if (
             tempEpisode !== '-' &&
-            (episodeList[key] === '-' || typeof episodeList[key] === 'undefined')
+            (episodeList[key] === '-' ||
+              typeof episodeList[key] === 'undefined')
           ) {
             episodeList[key] = tempEpisode.replace(
               /\?mal-sync-background=[^\/]+/,

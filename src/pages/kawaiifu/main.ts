@@ -100,7 +100,9 @@ export const kawaiifu: pageInterface = {
     getIdentifier: function(url) {
       return '';
     },
-    uiSelector: function(selector) {},
+    uiSelector: function(selector) {
+      return;
+    },
     list: {
       offsetHandler: false,
       elementsSelector: function() {

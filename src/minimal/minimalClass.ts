@@ -485,7 +485,7 @@ export class minimal {
       });
   }
 
-  flashm(text, closefn = function() {}) {
+  flashm(text, closefn) {
     const mess = `
       <div style="
         background-color: #3f51b5;

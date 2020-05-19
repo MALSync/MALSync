@@ -171,11 +171,7 @@ async function checkPage(): Promise<boolean> {
       movie = true;
     }
   }
-  if (
-    season >= 1 &&
-    !movie &&
-    window.location.href.split('/')[3] === 'watch'
-  ) {
+  if (season >= 1 && !movie && window.location.href.split('/')[3] === 'watch') {
     const reqUrl2 = `https://discover.hulu.com/content/v4/hubs/series/${huluId}/season/${season}?offset=0&limit=999&schema=9&referralHost=production`;
     return api.request.xhr('GET', reqUrl2).then(r => {
       const json2 = JSON.parse(r.responseText);

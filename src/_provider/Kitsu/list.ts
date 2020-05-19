@@ -100,7 +100,9 @@ export class userlist extends ListAbstract {
         },${this.listType}.mappings,${this.listType}.mappings.item&fields[${
           this.listType
         }]=slug,titles,canonicalTitle,averageRating,posterImage,${
-          this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
+          this.listType === 'anime'
+            ? 'episodeCount'
+            : 'chapterCount,volumeCount'
         }`,
         headers: {
           Authorization: `Bearer ${this.accessToken()}`,

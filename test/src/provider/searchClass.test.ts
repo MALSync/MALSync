@@ -77,9 +77,15 @@ describe('Titel Similarity', function() {
 describe('Firebase', function() {
   before(function() {
     global.con = require('./../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function() {
+      return;
+    };
+    global.con.error = function() {
+      return;
+    };
+    global.con.info = function() {
+      return;
+    };
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -208,9 +214,15 @@ describe('Firebase', function() {
 describe('Mal Search', function() {
   before(function() {
     global.con = require('./../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function() {
+      return;
+    };
+    global.con.error = function() {
+      return;
+    };
+    global.con.info = function() {
+      return;
+    };
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -277,9 +289,15 @@ describe('Mal Search', function() {
 describe('Page Search', function() {
   before(function() {
     global.con = require('./../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function() {
+      return;
+    };
+    global.con.error = function() {
+      return;
+    };
+    global.con.info = function() {
+      return;
+    };
     global.api = {
       request: {
         xhr: async function(post, conf, data) {
@@ -374,9 +392,15 @@ describe('Page Search', function() {
 describe('Full Search', function() {
   before(function() {
     global.con = require('./../../../src/utils/console');
-    global.con.log = function() {};
-    global.con.error = function() {};
-    global.con.info = function() {};
+    global.con.log = function() {
+      return;
+    };
+    global.con.error = function() {
+      return;
+    };
+    global.con.info = function() {
+      return;
+    };
     global.api = {
       request: {
         xhr: async function(post, conf, data) {

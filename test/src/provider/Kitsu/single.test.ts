@@ -12,9 +12,15 @@ const state = {};
 setGlobals();
 function setGlobals() {
   global.con = require('./../../../../src/utils/console');
-  global.con.log = function() {};
-  global.con.error = function() {};
-  global.con.info = function() {};
+  global.con.log = function() {
+    return;
+  };
+  global.con.error = function() {
+    return;
+  };
+  global.con.info = function() {
+    return;
+  };
 
   global.api = {
     token: process.env.KITSU_API_KEY,

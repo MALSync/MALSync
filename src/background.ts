@@ -140,7 +140,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
   return undefined;
 }
 
-function getCookies(url, sender, xhr, callback = function() {}) {
+function getCookies(url, sender, xhr, callback) {
   chrome.permissions.contains(
     {
       permissions: ['cookies'],

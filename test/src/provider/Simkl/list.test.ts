@@ -3,9 +3,15 @@ import { userlist } from './../../../../src/_provider/Simkl/list';
 import { generalListTests } from './../generalTests.exclude';
 
 global.con = require('./../../../../src/utils/console');
-global.con.log = function() {};
-global.con.error = function() {};
-global.con.info = function() {};
+global.con.log = function() {
+  return;
+};
+global.con.error = function() {
+  return;
+};
+global.con.info = function() {
+  return;
+};
 
 const responses = {
   activities: {
@@ -88,7 +94,9 @@ describe('Simkl userlist', function() {
         get: function(key) {
           return '';
         },
-        set: function(key, val) {},
+        set: function(key, val) {
+          return;
+        },
       },
     };
   });

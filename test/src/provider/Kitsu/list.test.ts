@@ -3,9 +3,15 @@ import { userlist } from './../../../../src/_provider/Kitsu/list';
 import { generalListTests } from './../generalTests.exclude';
 
 global.con = require('./../../../../src/utils/console');
-global.con.log = function() {};
-global.con.error = function() {};
-global.con.info = function() {};
+global.con.log = function() {
+  return;
+};
+global.con.error = function() {
+  return;
+};
+global.con.info = function() {
+  return;
+};
 
 const responses = {
   user: {
@@ -101,7 +107,9 @@ describe('Kitsu userlist', function() {
           if (key === 'kitsuUserId') return undefined;
           return '';
         },
-        set: function(key, val) {},
+        set: function(key, val) {
+          return;
+        },
       },
     };
   });
