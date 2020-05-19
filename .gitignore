@@ -39,7 +39,6 @@ jspm_packages/
 .env
 
 .vs/
-.vscode/
 config.json
 bwd/
 

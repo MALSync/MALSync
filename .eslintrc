@@ -1,0 +1,44 @@
+{
+  "env": {
+    "es6": true,
+    "greasemonkey": true,
+    "jquery": true,
+    "shared-node-browser": true,
+    "webextensions": true
+  },
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "@vue/prettier"
+  ],
+  "globals": {
+    "api": "readonly",
+    "con": "readonly",
+    "j": "readonly",
+    "utils": "readonly"
+  },
+  "ignorePatterns": ["dist/", "node_modules/", "test/dist"],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "plugins": ["vue", "prettier"],
+  "root": true,
+  "rules": {
+    "no-extend-native": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts"]
+      }
+    }
+  }
+}
