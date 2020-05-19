@@ -39,7 +39,7 @@ export function generalSingleTests(Single, setGlobals) {
         it(def.status[el], function() {
           singleEntry.setStatus(el);
           if (
-            el == def.status.Rewatching &&
+            el === def.status.Rewatching &&
             !singleEntry.supportsRewatching()
           ) {
             expect(singleEntry.getStatus()).equal(def.status.Watching);

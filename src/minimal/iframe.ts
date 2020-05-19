@@ -45,7 +45,7 @@ function createIframe(page) {
 
   if (
     !j.$('#info-iframe').length ||
-    j.$('#info-iframe').css('display') != 'block'
+    j.$('#info-iframe').css('display') !== 'block'
   ) {
     j.$('#info-popup').remove();
     alert(
@@ -115,7 +115,7 @@ export function initIframeModal(page) {
 
       if (j.$(e.target).hasClass('open-info-popup')) {
         con.log('Open miniMAL');
-        if (j.$('#info-popup').css('display') == 'none') {
+        if (j.$('#info-popup').css('display') === 'none') {
           document.getElementById('info-popup')!.style.display = 'block';
           //fillIframe(url, currentMalData);
           j.$('.floatbutton').fadeOut();

@@ -14,7 +14,7 @@ export function urlPart(url: string, part: number) {
 
 export function urlParam(url, name) {
   const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(url);
-  if (results == null) {
+  if (results === null) {
     return null;
   } else {
     return decodeURI(results[1]) || 0;
@@ -98,7 +98,7 @@ export function parseHtml(text) {
 export function urlChangeDetect(callback) {
   let currentPage = window.location.href;
   return setInterval(function() {
-    if (currentPage != window.location.href) {
+    if (currentPage !== window.location.href) {
       currentPage = window.location.href;
       callback();
     }
@@ -108,7 +108,7 @@ export function urlChangeDetect(callback) {
 export function fullUrlChangeDetect(callback) {
   let currentPage = '';
   const intervalId = setInterval(function() {
-    if (currentPage != window.location.href) {
+    if (currentPage !== window.location.href) {
       currentPage = window.location.href;
       callback();
     }
@@ -121,7 +121,7 @@ export function changeDetect(callback, func) {
   let currentPage = func();
   const intervalId = setInterval(function() {
     const temp = func();
-    if (typeof temp !== 'undefined' && currentPage != temp) {
+    if (typeof temp !== 'undefined' && currentPage !== temp) {
       currentPage = func();
       callback();
     }

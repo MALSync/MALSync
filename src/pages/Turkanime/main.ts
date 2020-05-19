@@ -44,7 +44,7 @@ export const Turkanime: pageInterface = {
         j
           .$('.panel-footer a[href^="video"]')
           .last()
-          .attr('href') !=
+          .attr('href') !==
         j
           .$('.panel-footer a[href^="video"]')
           .first()
@@ -105,7 +105,7 @@ export const Turkanime: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

@@ -9,7 +9,7 @@ getPlayerTime(function(item, player) {
 
 // @ts-ignore
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-  if (msg.action == 'videoTimeSet') {
+  if (msg.action === 'videoTimeSet') {
     con.log('[Iframe] Set Time', msg);
     if (typeof tempPlayer === 'undefined') {
       con.error('[Iframe] No player Found');

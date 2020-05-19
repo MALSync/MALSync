@@ -68,7 +68,7 @@ export function changeCheck(item, mode) {
     for (let i = 0; i < item.slaves.length; i++) {
       const slave = item.slaves[i];
       if (slave.watchedEp !== item.master.watchedEp) {
-        if (item.master.status == 2) {
+        if (item.master.status === 2) {
           if (slave.watchedEp !== slave.totalEp) {
             item.diff = true;
             slave.diff.watchedEp = slave.totalEp;
@@ -165,13 +165,13 @@ export async function syncMissing(item) {
 
 export function syncItem(slave, pageType) {
   if (Object.keys(slave.diff).length !== 0) {
-    if (pageType == 'MAL') {
+    if (pageType === 'MAL') {
       var singleClass: any = new malSingle(slave.url);
-    } else if (pageType == 'ANILIST') {
+    } else if (pageType === 'ANILIST') {
       var singleClass: any = new anilistSingle(slave.url);
-    } else if (pageType == 'KITSU') {
+    } else if (pageType === 'KITSU') {
       var singleClass: any = new kitsuSingle(slave.url);
-    } else if (pageType == 'SIMKL') {
+    } else if (pageType === 'SIMKL') {
       var singleClass: any = new simklSingle(slave.url);
     } else {
       throw 'No sync type';
@@ -214,7 +214,7 @@ export async function retriveLists(
         .then((list: any) => {
           pi.providerSettings.list = list;
           pi.providerSettings.text = 'Done';
-          if (masterMode == pi.providerType) pi.providerSettings.master = true;
+          if (masterMode === pi.providerType) pi.providerSettings.master = true;
           typeArray.push(pi.providerType);
         })
         .catch(e => {

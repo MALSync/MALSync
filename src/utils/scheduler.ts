@@ -162,7 +162,7 @@ export async function anilistScheduler(page = 0) {
           typeof malId !== 'undefined'
         ) {
           if (
-            el.nextAiringEpisode != null &&
+            el.nextAiringEpisode !== null &&
             el.nextAiringEpisode.episode > 1
           ) {
             const elObj = {

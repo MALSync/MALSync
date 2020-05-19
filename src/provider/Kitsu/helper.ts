@@ -8,7 +8,7 @@ export function translateList(aniStatus, malStatus: null | number = null) {
     dropped: 4,
     on_hold: 3,
   };
-  if (malStatus != null) {
+  if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
   }
   return list[aniStatus];
@@ -96,7 +96,7 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: 'anime' | 'manga') {
       if (typeof res !== 'undefined' && typeof res.included !== 'undefined') {
         for (let k = 0; k < res.included.length; k++) {
           const mapping = res.included[k];
-          if (mapping.type == 'mappings') {
+          if (mapping.type === 'mappings') {
             if (mapping.attributes.externalSite === `myanimelist/${type}`) {
               malId = mapping.attributes.externalId;
               res.included.splice(k, 1);

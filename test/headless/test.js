@@ -2388,7 +2388,7 @@ testsArray.forEach(function(testPage) {
         page.waitForNavigation({ timeout: 0 }),
       ]);
 
-      if (parseInt(response.headers().status) != 200) {
+      if (parseInt(response.headers().status) !== 200) {
         console.log(`    X Online ${response.headers().status}`);
 
         const content = await page.evaluate(() => document.body.innerHTML);
@@ -2423,7 +2423,7 @@ testsArray.forEach(function(testPage) {
 
         if (debugging) console.log(text);
 
-        if (text == 'retry') {
+        if (text === 'retry') {
           this.retries(3);
           await new Promise(function(resolve, reject) {
             setTimeout(async () => {

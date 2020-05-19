@@ -1,5 +1,5 @@
 /*By kaiserdj*/
-let check = 0;
+let check = false;
 import { pageInterface } from './../pageInterface';
 
 export const Jkanime: pageInterface = {
@@ -7,7 +7,7 @@ export const Jkanime: pageInterface = {
   domain: 'https://jkanime.net/',
   type: 'anime',
   isSyncPage: function(url) {
-    if (isNaN(parseInt(utils.urlPart(url, 4))) == true) {
+    if (isNaN(parseInt(utils.urlPart(url, 4)))) {
       return false;
     } else {
       return true;
@@ -36,7 +36,7 @@ export const Jkanime: pageInterface = {
     },
     nextEpUrl: function(url) {
       const nextUrl = j.$('.vnav-right').attr('href');
-      if (nextUrl == '#') return undefined;
+      if (nextUrl === '#') return undefined;
       return nextUrl;
     },
     uiSelector: function(selector) {
@@ -69,7 +69,7 @@ export const Jkanime: pageInterface = {
             .split('-')[1]
             .trim();
           for (let i = 1; i <= Number(lastEps); i++) {
-            if (idMALSync != null) {
+            if (idMALSync !== null) {
               idMALSync.innerHTML += `<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`;
             }
           }
@@ -87,7 +87,7 @@ export const Jkanime: pageInterface = {
       handleListHook: function(epi, epilist) {
         epi++;
         if (epilist.length >= epi) {
-          if (check == 0) {
+          if (!check) {
             const buttons = j.$('.navigation a');
 
             buttons.each((i, button) => {
@@ -98,15 +98,15 @@ export const Jkanime: pageInterface = {
               if (episodeStart <= epi || episodeEnd >= epi) button.click();
             });
 
-            check = 1;
+            check = true;
           }
           setTimeout(function() {
             j.$('#episodes-content .cap-post').each(function(i, obj) {
-              if (Number(obj.innerText.split(' ')[1]) == epi) {
+              if (Number(obj.innerText.split(' ')[1]) === epi) {
                 j.$('#episodes-content .cap-post')
                   .eq(i)
                   .addClass('mal-sync-active');
-                if (check == 0) {
+                if (!check) {
                   j.$(`#episodes-content .cap-post:eq(${i})`)
                     .find('i')
                     .first()
@@ -127,7 +127,7 @@ export const Jkanime: pageInterface = {
       page.handlePage();
     });
     j.$('.navigation a').click(function() {
-      if (check == 1) {
+      if (check) {
         page.handleList();
       }
     });

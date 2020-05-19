@@ -315,7 +315,7 @@
         return stats;
       },
       displayUrl: function(){
-        if(this.renderObj != null){
+        if(this.renderObj !== null){
           return this.renderObj.getDisplayUrl()
         }
         return this.renderObj.url;
@@ -359,7 +359,7 @@
       streaming: function(){
         let streamhtml = null;
         const malObj = this.renderObj;
-        if(malObj == null || !malObj.isAuthenticated()) return null;
+        if(malObj === null || !malObj.isAuthenticated()) return null;
         const streamUrl = malObj.getStreamingUrl();
         if(typeof streamUrl !== 'undefined'){
 
@@ -438,7 +438,7 @@
         this.prediction = null;
         this.imageTemp = null;
 
-        if(renderObj == null) return;
+        if(renderObj === null) return;
 
         let syncMode = api.settings.get('syncMode');
         //

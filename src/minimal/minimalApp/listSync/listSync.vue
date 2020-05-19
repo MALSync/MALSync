@@ -248,9 +248,9 @@ export default {
       return api.type;
     },
     getTypeColor: function(type) {
-      if (type == 'ANILIST') return 'border-left: 5px solid #02a9ff';
-      if (type == 'KITSU') return 'border-left: 5px solid #f75239';
-      if (type == 'SIMKL') return 'border-left: 5px solid #ffbf00';
+      if (type === 'ANILIST') return 'border-left: 5px solid #02a9ff';
+      if (type === 'KITSU') return 'border-left: 5px solid #f75239';
+      if (type === 'SIMKL') return 'border-left: 5px solid #ffbf00';
       return 'border-left: 5px solid #2e51a2';
     },
 

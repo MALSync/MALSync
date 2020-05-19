@@ -50,7 +50,7 @@ export const AnimesHouse: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -72,11 +72,11 @@ export const AnimesHouse: pageInterface = {
             episodeText.length &&
             (episodeText.indexOf('episódio') !== -1 ||
               episodeText.indexOf('episodio') !== -1) &&
-            episodeText.indexOf('ona') == -1 &&
-            episodeText.indexOf('ova') == -1 &&
-            episodeText.indexOf('special') == -1 &&
-            episodeText.indexOf('oad') == -1 &&
-            episodeText.indexOf('oav') == -1
+            episodeText.indexOf('ona') === -1 &&
+            episodeText.indexOf('ova') === -1 &&
+            episodeText.indexOf('special') === -1 &&
+            episodeText.indexOf('oad') === -1 &&
+            episodeText.indexOf('oav') === -1
           ) {
             page.handlePage();
           }

@@ -92,7 +92,7 @@ export const moeclip: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -102,7 +102,7 @@ export const moeclip: pageInterface = {
     );
     j.$(document).ready(function() {
       if (
-        page.url.split('/')[3] == 'anime' ||
+        page.url.split('/')[3] === 'anime' ||
         (j.$('div.video-content')[0] &&
           j.$('h1.entry-title.title-font')[0] &&
           j.$(

@@ -116,7 +116,7 @@ export const Hulu: pageInterface = {
         );
       }
     }
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -173,7 +173,7 @@ async function checkPage(): Promise<boolean> {
   }
   if (
     season >= 1 &&
-    movie == false &&
+    !movie &&
     window.location.href.split('/')[3] === 'watch'
   ) {
     const reqUrl2 = `https://discover.hulu.com/content/v4/hubs/series/${huluId}/season/${season}?offset=0&limit=999&schema=9&referralHost=production`;

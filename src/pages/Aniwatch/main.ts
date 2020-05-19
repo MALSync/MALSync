@@ -84,7 +84,7 @@ export const Aniwatch: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -109,7 +109,7 @@ export const Aniwatch: pageInterface = {
     });
     loaded();
     $(document).on('keydown', function(e) {
-      if ((e.which || e.keyCode) == 116) {
+      if ((e.which || e.keyCode) === 116) {
         loaded();
       }
     });

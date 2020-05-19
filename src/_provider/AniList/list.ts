@@ -220,7 +220,7 @@ export class userlist extends ListAbstract {
         });
       }
 
-      if (tempData.totalEp == null) {
+      if (tempData.totalEp === null) {
         tempData.totalEp = 0;
       }
 

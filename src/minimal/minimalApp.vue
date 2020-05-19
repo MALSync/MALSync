@@ -395,7 +395,7 @@
       fill(url, isBase = false){
         con.log('fill', url);
         const minimal = j.$(this.$el);
-        if(url == null){
+        if(url === null){
           if(this.isPopup()){
             this.selectTab('bookmarks');
           }

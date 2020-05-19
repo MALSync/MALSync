@@ -42,7 +42,7 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    if (status == 23) status = 1;
+    if (status === 23) status = 1;
     status = helper.translateList(status, parseInt(status.toString()));
     if (status !== this.animeInfo.status) this.statusUpdate = true;
     this.animeInfo.status = status;
@@ -56,7 +56,7 @@ export class Single extends SingleAbstract {
 
   _setScore(score) {
     if (score === 0) score = null;
-    if (score != this.animeInfo.user_rating) this.ratingUpdate = true;
+    if (score !== this.animeInfo.user_rating) this.ratingUpdate = true;
     this.animeInfo.user_rating = score;
   }
 
@@ -65,7 +65,7 @@ export class Single extends SingleAbstract {
   }
 
   _setEpisode(episode) {
-    if (episode != this.curWatchedEp) this.episodeUpdate = true;
+    if (episode !== this.curWatchedEp) this.episodeUpdate = true;
     this.curWatchedEp = episode;
   }
 
@@ -84,7 +84,7 @@ export class Single extends SingleAbstract {
 
   _setStreamingUrl(url) {
     let tags = this.animeInfo.private_memo;
-    if (tags == null || tags == 'null') tags = '';
+    if (tags === null || tags === 'null') tags = '';
 
     tags = utils.setUrlInTags(url, tags);
 
@@ -97,7 +97,7 @@ export class Single extends SingleAbstract {
 
   _getTotalEpisodes() {
     const eps = this.animeInfo.total_episodes_count;
-    if (eps == null) return 0;
+    if (eps === null) return 0;
     return eps;
   }
 

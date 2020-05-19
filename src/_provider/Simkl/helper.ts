@@ -9,7 +9,7 @@ export function translateList(simklStatus, malStatus: null | number = null) {
     notinteresting: 4,
     hold: 3,
   };
-  if (malStatus != null) {
+  if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
   }
   return list[simklStatus];
@@ -71,7 +71,7 @@ export async function syncList(lazy = false) {
     if (checkRemoveList) {
       for (var i = 0; i < checkRemoveList.anime.length; i++) {
         const el = checkRemoveList.anime[i];
-        if (cacheList[el.show.ids.simkl] != undefined) {
+        if (cacheList[el.show.ids.simkl] !== undefined) {
           newCacheList[el.show.ids.simkl] = cacheList[el.show.ids.simkl];
         }
       }
@@ -127,7 +127,7 @@ export async function getSingle(
 ) {
   const list = await this.syncList(lazy);
   if (ids.simkl) {
-    if (list[ids.simkl] != undefined) {
+    if (list[ids.simkl] !== undefined) {
       return list[ids.simkl];
     }
   } else if (ids.mal) {
@@ -137,7 +137,7 @@ export async function getSingle(
       const el: any = listVal[i];
       if (
         typeof el.show.ids.mal !== 'undefined' &&
-        el.show.ids.mal == ids.mal
+        el.show.ids.mal === ids.mal
       ) {
         return el;
       }

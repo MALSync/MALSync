@@ -33,7 +33,7 @@ export function checkContinue(message) {
   con.log('Iframe update check done', message);
   removeIframes();
 
-  if (id == null) {
+  if (id === null) {
     const contObj = Object.keys(continueCheck);
     con.info('Missing Id', contObj.length);
     if (contObj.length === 1) {
@@ -160,7 +160,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           let finished = false;
           if (
             newestEpisode >= parseInt(anime_num_episodes) &&
-            parseInt(anime_num_episodes) != 0
+            parseInt(anime_num_episodes) !== 0
           ) {
             con.log('Finished');
             finished = true;
@@ -174,13 +174,13 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           if (
             typeof elCache !== 'undefined' &&
             newestEpisode > elCache.newestEp &&
-            elCache.newestEp != ''
+            elCache.newestEp !== ''
           ) {
             con.log('new Episode');
             api.settings.init().then(() => {
               if (api.settings.get('updateCheckNotifications')) {
                 let EpisodeText = 'Episode ';
-                if (type == 'manga') {
+                if (type === 'manga') {
                   EpisodeText = 'Chapter ';
                 }
 

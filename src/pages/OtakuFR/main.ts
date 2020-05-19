@@ -80,7 +80,7 @@ export const OtakuFR: pageInterface = {
   },
 
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -104,7 +104,7 @@ function urlHandling(url) {
     .$('#sct_banner_head > div > a')
     .first()
     .attr('href');
-  if (langslug == '/') {
+  if (langslug === '/') {
     return url;
   } else {
     return url.replace(langslug, '');

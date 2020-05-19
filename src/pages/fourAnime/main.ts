@@ -77,7 +77,7 @@ export const fourAnime: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -88,7 +88,7 @@ export const fourAnime: pageInterface = {
     j.$(document).ready(function() {
       if (
         (j.$('.singletitletop')[0] && j.$('.episodes')[0]) ||
-        page.url.split('/')[3] == 'anime'
+        page.url.split('/')[3] === 'anime'
       ) {
         page.handlePage();
       }

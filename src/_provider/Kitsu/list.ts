@@ -100,7 +100,7 @@ export class userlist extends ListAbstract {
         },${this.listType}.mappings,${this.listType}.mappings.item&fields[${
           this.listType
         }]=slug,titles,canonicalTitle,averageRating,posterImage,${
-          this.listType == 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
+          this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
         headers: {
           Authorization: `Bearer ${this.accessToken()}`,
@@ -138,9 +138,9 @@ export class userlist extends ListAbstract {
       let malId = NaN;
       for (let k = 0; k < data.included.length; k++) {
         const mapping = data.included[k];
-        if (mapping.type == 'mappings') {
+        if (mapping.type === 'mappings') {
           if (mapping.attributes.externalSite === `myanimelist/${listType}`) {
-            if (mapping.relationships.item.data.id == el.id) {
+            if (mapping.relationships.item.data.id === el.id) {
               malId = mapping.attributes.externalId;
               data.included.splice(k, 1);
               break;
@@ -191,7 +191,7 @@ export class userlist extends ListAbstract {
         });
       }
 
-      if (tempData.totalEp == null) {
+      if (tempData.totalEp === null) {
         tempData.totalEp = 0;
       }
 

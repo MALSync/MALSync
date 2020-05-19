@@ -32,7 +32,7 @@ function main() {
     api.storage.set('iframePlayer', 'null');
     setInterval(async function() {
       const item = await api.storage.get('iframePlayer');
-      if (typeof item !== 'undefined' && item != 'null') {
+      if (typeof item !== 'undefined' && item !== 'null') {
         page.setVideoTime(item, function(time) {});
         api.storage.set('iframePlayer', 'null');
       }

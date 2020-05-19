@@ -101,7 +101,7 @@ export const VIZ: pageInterface = {
 
         let episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
 
-        if (episodePart.length == 0) {
+        if (episodePart.length === 0) {
           episodePart = selector
             .find('a')
             .first()
@@ -120,7 +120,7 @@ export const VIZ: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

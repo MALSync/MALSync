@@ -14,13 +14,13 @@ export const Proxer: pageInterface = {
   },
   sync: {
     getTitle: function(url) {
-      if (url.indexOf('watch') != -1) {
+      if (url.indexOf('watch') !== -1) {
         return j
           .$('.wName')
           .text()
           .trim();
       } else {
-        if (url.indexOf('read') != -1) {
+        if (url.indexOf('read') !== -1) {
           return j.$('div#breadcrumb a:first').text();
         }
       }
@@ -34,7 +34,7 @@ export const Proxer: pageInterface = {
       return `https://proxer.me/info/${Proxer.sync.getIdentifier(url)}/list`;
     },
     getEpisode: function(url) {
-      if (url.indexOf('watch') != -1) {
+      if (url.indexOf('watch') !== -1) {
         return getEpisodeFallback(
           `episode ${$('.wEp')
             .last()
@@ -178,7 +178,7 @@ function ajaxHandle(page) {
   if (utils.urlPart(page.url, 3) !== 'info') return;
   const detailPart = utils.urlPart(page.url, 5);
   con.info('page', detailPart);
-  if (detailPart == 'list') {
+  if (detailPart === 'list') {
     utils.waitUntilTrue(
       function() {
         return j.$('#contentList').length;
@@ -209,7 +209,7 @@ function ajaxHandle(page) {
       },
     );
   }
-  if (detailPart == 'details' || typeof detailPart === 'undefined') {
+  if (detailPart === 'details' || typeof detailPart === 'undefined') {
     utils.waitUntilTrue(
       function() {
         return j.$('.hreview-aggregate').length;

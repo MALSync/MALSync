@@ -17,14 +17,14 @@ api.request.sendMessage = function(message: sendMessageI) {
 };
 
 chrome.runtime.onInstalled.addListener(function(details) {
-  if (details.reason == 'install') {
+  if (details.reason === 'install') {
     chrome.tabs.create(
       { url: chrome.extension.getURL('install.html') },
       function(tab) {
         con.info('Open installPage');
       },
     );
-  } else if (details.reason == 'update') {
+  } else if (details.reason === 'update') {
   }
   chrome.alarms.clearAll();
 });
@@ -40,7 +40,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     case 'xhr': {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4) {
           console.log(xhr);
           if (xhr.status === 429) {
             con.error('RATE LIMIT');
@@ -228,7 +228,7 @@ chrome.alarms.get('updateCheck', async function(a) {
     if (
       typeof updateCheckTime !== 'undefined' &&
       updateCheckTime &&
-      updateCheckTime != '0'
+      updateCheckTime !== '0'
     ) {
       let updateCheck = await api.storage.get('updateCheck');
       if (
@@ -265,7 +265,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   function(info) {
     const headers = info.requestHeaders;
     headers!.forEach(function(header, i) {
-      if (header.name.toLowerCase() == 'user-agent') {
+      if (header.name.toLowerCase() === 'user-agent') {
         header.value =
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
       }
@@ -293,7 +293,7 @@ function webRequestListener() {
               con.log('Remove x-frame-options');
               for (let i = 0; i < details.responseHeaders!.length; ++i) {
                 if (
-                  details.responseHeaders![i].name.toLowerCase() ==
+                  details.responseHeaders![i].name.toLowerCase() ===
                   'x-frame-options'
                 ) {
                   details.responseHeaders!.splice(i, 1);

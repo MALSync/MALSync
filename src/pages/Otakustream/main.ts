@@ -6,7 +6,7 @@ export const Otakustream: pageInterface = {
   type: 'anime',
   isSyncPage: function(url) {
     if (url.split('/')[3] === 'movie') return true;
-    if (typeof url.split('/')[5] === 'undefined' || url.split('/')[5] == '') {
+    if (typeof url.split('/')[5] === 'undefined' || url.split('/')[5] === '') {
       return false;
     } else {
       return true;

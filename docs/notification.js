@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 function redirect() {
   const path = window.location.pathname.split('/');
-  if (path[1] == 'changelog') {
+  if (path[1] === 'changelog') {
     changelog();
     return;
   }
@@ -88,7 +88,7 @@ function changelog() {
     const badges = /\[(.*?)\]/g.exec(message);
     if (badges) {
       badges.forEach(function(badge) {
-        if (badge[0] != '[') return;
+        if (badge[0] !== '[') return;
         const content = badge.replace(/(^\[|\]$)/g, '');
         let type = 'secondary';
         if (content === 'FEATURE') {

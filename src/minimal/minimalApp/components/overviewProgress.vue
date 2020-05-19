@@ -119,7 +119,7 @@ export default {
           el.item &&
           el.item.top &&
           el.item.top.state &&
-          el.item.top.state == 'complete',
+          el.item.top.state === 'complete',
       );
     },
     ongoing: function() {
@@ -128,7 +128,7 @@ export default {
           el.item &&
           el.item.top &&
           el.item.top.state &&
-          el.item.top.state != 'complete',
+          el.item.top.state !== 'complete',
       );
     },
   },

@@ -98,7 +98,7 @@ describe('Kitsu userlist', function() {
           return 'lang';
         },
         get: function(key) {
-          if (key == 'kitsuUserId') return undefined;
+          if (key === 'kitsuUserId') return undefined;
           return '';
         },
         set: function(key, val) {},

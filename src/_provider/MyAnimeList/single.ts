@@ -31,7 +31,7 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       var curSt = this.animeInfo['.add_manga[status]'];
     } else {
       var curSt = this.animeInfo['.add_anime[status]'];
@@ -41,20 +41,20 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    if (status == 23) {
+    if (status === 23) {
       status = 2;
       this.setRewatching(true);
     } else {
       this.setRewatching(false);
     }
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[status]'] = status;
     }
     this.animeInfo['.add_anime[status]'] = status;
   }
 
   _getScore() {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       return this.animeInfo['.add_manga[score]'];
     }
     return this.animeInfo['.add_anime[score]'];
@@ -63,14 +63,14 @@ export class Single extends SingleAbstract {
   _setScore(score) {
     //@ts-ignore
     if (!score) score = '';
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[score]'] = score;
     }
     this.animeInfo['.add_anime[score]'] = score;
   }
 
   _getEpisode() {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       return this.animeInfo['.add_manga[num_read_chapters]'];
     }
     return this.animeInfo['.add_anime[num_watched_episodes]'];
@@ -78,21 +78,21 @@ export class Single extends SingleAbstract {
 
   _setEpisode(episode) {
     if (!episode) episode = 0;
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[num_read_chapters]'] = parseInt(`${episode}`);
     }
     this.animeInfo['.add_anime[num_watched_episodes]'] = parseInt(`${episode}`);
   }
 
   _getVolume() {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       return this.animeInfo['.add_manga[num_read_volumes]'];
     }
     return 0;
   }
 
   _setVolume(volume) {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[num_read_volumes]'] = volume;
       return;
     }
@@ -100,7 +100,7 @@ export class Single extends SingleAbstract {
 
   _getStreamingUrl() {
     let tags = this.animeInfo['.add_anime[tags]'];
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       tags = this.animeInfo['.add_manga[tags]'];
     }
     return utils.getUrlFromTags(tags);
@@ -108,14 +108,14 @@ export class Single extends SingleAbstract {
 
   _setStreamingUrl(url) {
     let tags = this.animeInfo['.add_anime[tags]'];
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       tags = this.animeInfo['.add_manga[tags]'];
     }
     if (!tags) tags = '';
 
     tags = utils.setUrlInTags(url, tags);
 
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[tags]'] = tags;
       return;
     }
@@ -123,7 +123,7 @@ export class Single extends SingleAbstract {
   }
 
   private getRewatching(): boolean {
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       return this.animeInfo['.add_manga[is_rereading]'];
     }
     return this.animeInfo['.add_anime[is_rewatching]'];
@@ -132,7 +132,7 @@ export class Single extends SingleAbstract {
   private setRewatching(state: boolean) {
     let sState = 0;
     if (state) sState = 1;
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       this.animeInfo['.add_manga[is_rereading]'] = sState;
       return;
     }
@@ -173,7 +173,7 @@ export class Single extends SingleAbstract {
 
   _getRating() {
     let url = '';
-    if (this.type == 'anime') {
+    if (this.type === 'anime') {
       url = `https://myanimelist.net/includes/ajax.inc.php?t=64&id=${this.ids.mal}`;
     } else {
       url = `https://myanimelist.net/includes/ajax.inc.php?t=65&id=${this.ids.mal}`;
@@ -204,18 +204,18 @@ export class Single extends SingleAbstract {
     }
 
     if (!this._onList) {
-      if (this.type == 'anime') {
+      if (this.type === 'anime') {
         url = `https://myanimelist.net/ownlist/anime/add?selected_series_id=${this.ids.mal}`;
       } else {
         url = `https://myanimelist.net/ownlist/manga/add?selected_manga_id=${this.ids.mal}`;
       }
     }
 
-    if (this._getStatus() == 1 && this.getEpisode() > 0) {
+    if (this._getStatus() === 1 && this.getEpisode() > 0) {
       this.setStartingDateToNow();
     }
 
-    if (this._getStatus() == 2) {
+    if (this._getStatus() === 2) {
       this.setCompletionDateToNow();
       this.setStartingDateToNow();
       if (this.getTotalEpisodes()) this.setEpisode(this.getTotalEpisodes());
@@ -560,7 +560,7 @@ export class Single extends SingleAbstract {
         data,
         'add_manga[is_asked_to_discuss]',
       );
-      if (anime['.add_manga[is_asked_to_discuss]'] == '')
+      if (anime['.add_manga[is_asked_to_discuss]'] === '')
         anime['.add_manga[is_asked_to_discuss]'] = 0; //#15
       anime['.add_manga[sns_post_type]'] = getselect(
         data,
@@ -581,7 +581,7 @@ export class Single extends SingleAbstract {
       this.animeInfo['.add_anime[finish_date][day]'] === '' ||
       this.animeInfo['.add_manga[finish_date][day]'] === ''
     ) {
-      if (this.type == 'manga') {
+      if (this.type === 'manga') {
         this.animeInfo['.add_manga[finish_date][year]'] = Datec.getFullYear();
         this.animeInfo['.add_manga[finish_date][month]'] = Datec.getMonth() + 1;
         this.animeInfo['.add_manga[finish_date][day]'] = Datec.getDate();
@@ -600,7 +600,7 @@ export class Single extends SingleAbstract {
       this.animeInfo['.add_anime[start_date][day]'] === '' ||
       this.animeInfo['.add_manga[start_date][day]'] === ''
     ) {
-      if (this.type == 'manga') {
+      if (this.type === 'manga') {
         this.animeInfo['.add_manga[start_date][year]'] = Datec.getFullYear();
         this.animeInfo['.add_manga[start_date][month]'] = Datec.getMonth() + 1;
         this.animeInfo['.add_manga[start_date][day]'] = Datec.getDate();

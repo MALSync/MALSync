@@ -65,7 +65,7 @@ export class simklClass {
     const url2part = utils.urlPart(this.url, 4);
 
     if (
-      (urlpart == 'anime' || urlpart == 'manga') &&
+      (urlpart === 'anime' || urlpart === 'manga') &&
       !isNaN(Number(url2part))
     ) {
       const malObj = new simklSingle(this.url);
@@ -96,7 +96,7 @@ export class simklClass {
       return;
     }
 
-    if ((urlpart == 'anime' || urlpart == 'manga') && url2part === 'all') {
+    if ((urlpart === 'anime' || urlpart === 'manga') && url2part === 'all') {
       this.page = {
         page: 'bookmarks',
         type: urlpart,
@@ -104,7 +104,7 @@ export class simklClass {
       this.bookmarksAnime();
     }
 
-    if (url2part == 'anime' || url2part == 'manga') {
+    if (url2part === 'anime' || url2part === 'manga') {
       const status = utils.urlPart(this.url, 5);
       if (status === 'watching') {
         this.page = {
@@ -118,7 +118,7 @@ export class simklClass {
 
   async getMalUrl() {
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart == 'anime' || urlpart == 'manga') {
+    if (urlpart === 'anime' || urlpart === 'manga') {
       const simklId = utils.urlPart(this.url, 4);
       return helper.simklIdToMal(simklId).then(malId => {
         if (!malId) return '';

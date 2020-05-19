@@ -58,8 +58,8 @@ export const DreamAnimes: pageInterface = {
 
     function start() {
       if (
-        utils.urlPart(page.url, 3) == 'online' ||
-        utils.urlPart(page.url, 3) == 'anime-info'
+        utils.urlPart(page.url, 3) === 'online' ||
+        utils.urlPart(page.url, 3) === 'anime-info'
       ) {
         if (DreamAnimes.isSyncPage(page.url)) {
           page.handlePage();

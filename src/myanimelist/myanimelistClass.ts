@@ -34,23 +34,23 @@ export class myanimelistClass {
     }
 
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart == 'anime' || urlpart == 'manga') {
+    if (urlpart === 'anime' || urlpart === 'manga') {
       this.page = 'detail';
       this.id = Number(utils.urlPart(this.url, 4));
       this.type = urlpart;
     }
-    if (urlpart == 'animelist' || urlpart == 'mangalist') {
+    if (urlpart === 'animelist' || urlpart === 'mangalist') {
       this.page = 'bookmarks';
       this.username = utils.urlPart(this.url, 4);
       this.type = urlpart === 'animelist' ? 'anime' : 'manga';
     }
-    if (urlpart == 'character') {
+    if (urlpart === 'character') {
       this.page = 'character';
     }
-    if (urlpart == 'people') {
+    if (urlpart === 'people') {
       this.page = 'people';
     }
-    if (urlpart == 'search') {
+    if (urlpart === 'search') {
       this.page = 'search';
     }
   }
@@ -107,7 +107,7 @@ export class myanimelistClass {
     if (this.url.indexOf('/pictures') > -1) {
       return;
     }
-    if (api.settings.get('malThumbnail') == '0') {
+    if (api.settings.get('malThumbnail') === '0') {
       return;
     }
     const height = parseInt(api.settings.get('malThumbnail'));
@@ -381,12 +381,12 @@ export class myanimelistClass {
 
     const listProvider = new userlist(7, this.type!, {}, this.username);
 
-    if (this.page == 'modern') {
+    if (this.page === 'modern') {
       var book = {
         bookReady: function(callback) {
           utils.waitUntilTrue(
             function() {
-              return $('#loading-spinner').css('display') == 'none';
+              return $('#loading-spinner').css('display') === 'none';
             },
             function() {
               callback(
@@ -461,7 +461,7 @@ export class myanimelistClass {
             .after(tag);
         },
       };
-    } else if (this.page == 'classic') {
+    } else if (this.page === 'classic') {
       var book = {
         bookReady: function(callback) {
           listProvider
@@ -614,7 +614,7 @@ export class myanimelistClass {
         const state = el.attr('title');
         if (typeof state !== 'undefined' && state) {
           const tag = String(utils.statusTag(state, type, id));
-          if (This.page == 'detail') {
+          if (This.page === 'detail') {
             el.parent()
               .find('> a')
               .first()

@@ -39,13 +39,13 @@ function getListObj(args, syncMode = '') {
 
   const [status, callbacks, username, offset, templist] = args;
 
-  if (syncMode == 'MAL') {
+  if (syncMode === 'MAL') {
     return new malList(status, callbacks, username, offset, templist);
-  } else if (syncMode == 'ANILIST') {
+  } else if (syncMode === 'ANILIST') {
     return new anilistList(status, callbacks, username, offset, templist);
-  } else if (syncMode == 'KITSU') {
+  } else if (syncMode === 'KITSU') {
     return new kitsuList(status, callbacks, username, offset, templist);
-  } else if (syncMode == 'SIMKL') {
+  } else if (syncMode === 'SIMKL') {
     return new simklList(status, callbacks, username, offset, templist);
   } else {
     throw 'Unknown sync mode';

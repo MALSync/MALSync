@@ -42,7 +42,7 @@ async function setFullscreen(player) {
   //@ts-ignore
   if (
     window['fullScreen'] ||
-    (window.innerWidth == screen.width && window.innerHeight == screen.height)
+    (window.innerWidth === screen.width && window.innerHeight === screen.height)
   ) {
     con.info('Browser already in fullscreen');
   } else {
@@ -152,7 +152,7 @@ export function shortcutListener(callback) {
       e = e || event;
       const key = e.which || e.keyCode;
       //@ts-ignore
-      keyMap[key] = e.type == 'keydown';
+      keyMap[key] = e.type === 'keydown';
 
       for (let i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];

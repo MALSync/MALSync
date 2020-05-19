@@ -43,7 +43,7 @@ export const JapScan: pageInterface = {
         j
           .$('div.clearfix > p > span')
           .last()
-          .text() == 'Chapitre Suivant' &&
+          .text() === 'Chapitre Suivant' &&
         anchorHref.length
       ) {
         return (
@@ -98,7 +98,7 @@ export const JapScan: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

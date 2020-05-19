@@ -5,7 +5,7 @@ export const AnimePlanet: pageInterface = {
   domain: 'https://www.anime-planet.com',
   type: 'anime',
   isSyncPage: function(url) {
-    if (url.split('/')[6] == null) {
+    if (url.split('/')[6] === null) {
       return false;
     } else {
       return true;
@@ -48,7 +48,7 @@ export const AnimePlanet: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

@@ -40,7 +40,7 @@ export const Vrv: pageInterface = {
   domain: 'https://vrv.co',
   type: 'anime',
   isSyncPage: function(url) {
-    if (utils.urlPart(window.location.href, 3) == 'series') return false;
+    if (utils.urlPart(window.location.href, 3) === 'series') return false;
     return true;
   },
   sync: {
@@ -118,10 +118,10 @@ export const Vrv: pageInterface = {
       clearInterval(seasonInterval);
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       page.UILoaded = false;
-      if (utils.urlPart(window.location.href, 3) == 'watch') {
+      if (utils.urlPart(window.location.href, 3) === 'watch') {
         getSeries(page);
       }
-      if (utils.urlPart(window.location.href, 3) == 'series') {
+      if (utils.urlPart(window.location.href, 3) === 'series') {
         utils.waitUntilTrue(
           function() {
             return j.$('.erc-series-info .series-title').first().length;

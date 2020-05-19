@@ -31,7 +31,7 @@ export class anilistClass {
         }
         if (
           this.page !== null &&
-          this.page.page == 'bookmarks' &&
+          this.page.page === 'bookmarks' &&
           $('.lists').length
         ) {
           return $('.lists')
@@ -66,7 +66,7 @@ export class anilistClass {
     }
 
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart == 'anime' || urlpart == 'manga') {
+    if (urlpart === 'anime' || urlpart === 'manga') {
       this.page = {
         page: 'detail',
         id: utils.urlPart(this.url, 4),
@@ -83,7 +83,7 @@ export class anilistClass {
     }
 
     const urlpart4 = utils.urlPart(this.url, 5);
-    if (urlpart4 == 'animelist' || urlpart4 == 'mangalist') {
+    if (urlpart4 === 'animelist' || urlpart4 === 'mangalist') {
       this.page = {
         page: 'bookmarks',
         type: urlpart4.substring(0, 5),
@@ -99,7 +99,7 @@ export class anilistClass {
       con.error(e);
     }
     const tokens = /access_token=[^&]+/gi.exec(this.url);
-    if (tokens != null && typeof tokens[0] !== 'undefined' && tokens[0]) {
+    if (tokens !== null && typeof tokens[0] !== 'undefined' && tokens[0]) {
       const token = tokens[0].toString().replace(/access_token=/gi, '');
       con.log('Token Found', token);
 
@@ -121,7 +121,7 @@ export class anilistClass {
 
   async getMalUrl() {
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart == 'anime' || urlpart == 'manga') {
+    if (urlpart === 'anime' || urlpart === 'manga') {
       const aniListId = utils.urlPart(this.url, 4);
       return helper.aniListToMal(Number(aniListId), urlpart).then(malId => {
         if (!malId) return '';
@@ -367,13 +367,13 @@ export class anilistClass {
           }
         });
 
-      if (this.page!.type == 'anime') {
-        if (this.tempAnimelist != null) {
+      if (this.page!.type === 'anime') {
+        if (this.tempAnimelist !== null) {
           fullListCallback(this.tempAnimelist);
           return;
         }
       } else {
-        if (this.tempMangalist != null) {
+        if (this.tempMangalist !== null) {
           fullListCallback(this.tempMangalist);
           return;
         }
@@ -386,7 +386,7 @@ export class anilistClass {
       listProvider
         .get()
         .then(list => {
-          if (this.page!.type == 'anime') {
+          if (this.page!.type === 'anime') {
             this.tempAnimelist = list;
           } else {
             this.tempMangalist = list;

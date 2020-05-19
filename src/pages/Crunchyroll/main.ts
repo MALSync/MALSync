@@ -100,7 +100,7 @@ export const Crunchyroll: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -143,10 +143,10 @@ export const Crunchyroll: pageInterface = {
           page.handlePage();
         });
         let season = new RegExp('[?&]' + 'season' + '=([^&#]*)').exec(page.url);
-        if (season != null) {
+        if (season !== null) {
           // @ts-ignore
           season = season[1] || null;
-          if (season != null) {
+          if (season !== null) {
             // @ts-ignore
             season = decodeURIComponent(decodeURI(season));
             j.$(`.season-dropdown[title="${season}" i] .exclusivMal`)
@@ -178,7 +178,7 @@ function urlHandling(url) {
     .$('#home_link, #logo_beta a')
     .first()
     .attr('href');
-  if (langslug == '/') {
+  if (langslug === '/') {
     return url;
   } else {
     return url.replace(langslug, '');

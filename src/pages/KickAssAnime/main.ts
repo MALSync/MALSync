@@ -5,7 +5,7 @@ export const KickAssAnime: pageInterface = {
   domain: 'https://www.kickassanime.rs',
   type: 'anime',
   isSyncPage: function(url) {
-    if (url.split('/')[5] == null) {
+    if (url.split('/')[5] === null) {
       return false;
     } else {
       return true;
@@ -51,7 +51,7 @@ export const KickAssAnime: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -60,7 +60,7 @@ export const KickAssAnime: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] == 'anime') {
+      if (page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });

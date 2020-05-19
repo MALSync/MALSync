@@ -71,18 +71,18 @@ export const animeflv: pageInterface = {
         const patron = /<script>\s\s   var([^]*?)<\/script>/g;
         const html = document.body.innerHTML;
         let scriptEps = patron.exec(html);
-        if (scriptEps != null) {
+        if (scriptEps !== null) {
           // @ts-ignore
           scriptEps = scriptEps[1] || null;
-          if (scriptEps != null) {
+          if (scriptEps !== null) {
             // @ts-ignore
             const patron2 = /\[([^\[\]]{0,10},{0,10})\]/g;
             // @ts-ignore
             const eps = scriptEps.toString().match(patron2);
-            if (eps != null) {
+            if (eps !== null) {
               // @ts-ignore
               eps.forEach(element => {
-                if (idMALSync != null) {
+                if (idMALSync !== null) {
                   const Url = `${animeflv.domain}/ver/${element
                     .split(',')[1]
                     .replace(']', '')}/${utils.urlPart(url, 5)}-${element
@@ -121,8 +121,8 @@ export const animeflv: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     if (
-      document.title == 'Just a moment...' ||
-      document.title == 'Verifica que no eres un bot | AnimeFLV'
+      document.title === 'Just a moment...' ||
+      document.title === 'Verifica que no eres un bot | AnimeFLV'
     ) {
       con.log('loading');
       page.cdn();

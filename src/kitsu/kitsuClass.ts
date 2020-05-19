@@ -27,7 +27,7 @@ export class kitsuClass {
     utils.changeDetect(
       () => {
         this.same = false;
-        if (this.page !== null && this.page.page == 'detail') {
+        if (this.page !== null && this.page.page === 'detail') {
           const tempUrl = window.location.href
             .split('/')
             .slice(0, 5)
@@ -44,7 +44,7 @@ export class kitsuClass {
       () => {
         if (
           this.page !== null &&
-          this.page.page == 'bookmarks' &&
+          this.page.page === 'bookmarks' &&
           $('.library-content').length
         ) {
           return $('.library-content')
@@ -78,7 +78,7 @@ export class kitsuClass {
     }
 
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart == 'anime' || urlpart == 'manga') {
+    if (urlpart === 'anime' || urlpart === 'manga') {
       if (
         this.same &&
         typeof this.page !== 'undefined' &&
@@ -106,9 +106,9 @@ export class kitsuClass {
     }
 
     const urlpart4 = utils.urlPart(this.url, 5);
-    if (urlpart4 == 'library') {
+    if (urlpart4 === 'library') {
       let type = 'anime';
-      if (utils.urlParam(this.url, 'media') == 'manga') type = 'manga';
+      if (utils.urlParam(this.url, 'media') === 'manga') type = 'manga';
       this.page = {
         page: 'bookmarks',
         type: type,
@@ -176,7 +176,7 @@ export class kitsuClass {
             try {
               con.error(result);
               $('#mal-sync-login #mal-sync-button').prop('disabled', false);
-              if (result.responseJSON.error == 'invalid_grant') {
+              if (result.responseJSON.error === 'invalid_grant') {
                 utils.flashm(
                   api.storage.lang('kitsuClass_authentication_Wrong'),
                 );
@@ -203,7 +203,7 @@ export class kitsuClass {
   }
 
   async getMalUrl() {
-    if (this.page !== null && this.page.page == 'detail' && this.page.malid) {
+    if (this.page !== null && this.page.page === 'detail' && this.page.malid) {
       return `https://myanimelist.net/${this.page.type}/${
         this.page.malid
       }/${utils.urlPart(this.url, 5)}`;
@@ -406,13 +406,13 @@ export class kitsuClass {
   bookmarks() {
     const This = this;
     $(document).ready(() => {
-      if (this.page!.type == 'anime') {
-        if (this.tempAnimelist != null) {
+      if (this.page!.type === 'anime') {
+        if (this.tempAnimelist !== null) {
           fullListCallback(this.tempAnimelist);
           return;
         }
       } else {
-        if (this.tempMangalist != null) {
+        if (this.tempMangalist !== null) {
           fullListCallback(this.tempMangalist);
           return;
         }
@@ -423,7 +423,7 @@ export class kitsuClass {
       listProvider
         .get()
         .then(list => {
-          if (this.page!.type == 'anime') {
+          if (this.page!.type === 'anime') {
             this.tempAnimelist = list;
           } else {
             this.tempMangalist = list;

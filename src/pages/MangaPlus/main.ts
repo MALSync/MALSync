@@ -5,7 +5,7 @@ export const MangaPlus: pageInterface = {
   domain: 'https://mangaplus.shueisha.co.jp',
   type: 'manga',
   isSyncPage: function(url) {
-    if (url.split('/')[3] == 'viewer') {
+    if (url.split('/')[3] === 'viewer') {
       return true;
     } else {
       return false;
@@ -68,7 +68,7 @@ export const MangaPlus: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

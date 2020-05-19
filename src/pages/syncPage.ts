@@ -21,7 +21,7 @@ export class syncPage {
 
   constructor(public url, public pages) {
     this.page = this.getPage(url);
-    if (this.page == null) {
+    if (this.page === null) {
       throw new Error('Page could not be recognized');
     }
   }
@@ -127,7 +127,7 @@ export class syncPage {
     if (
       api.settings.get('autoNextEp') &&
       !this.autoNextEpRun &&
-      item.current == item.duration
+      item.current === item.duration
     ) {
       this.autoNextEpRun = true;
       this.openNextEp();
@@ -264,7 +264,7 @@ export class syncPage {
         +parseInt(`${this.page.sync.getEpisode(this.url)}`) +
         parseInt(this.getOffset());
       if (!state.episode && state.episode !== 0) {
-        if (this.page.type == 'anime') {
+        if (this.page.type === 'anime') {
           state.episode = 1;
         } else {
           state.episode = 0;
@@ -273,7 +273,7 @@ export class syncPage {
       if (typeof this.page.sync.getVolume !== 'undefined') {
         state.volume = this.page.sync.getVolume(this.url);
       }
-      if (this.page.type == 'anime') {
+      if (this.page.type === 'anime') {
         getPlayerTime((item, player) => {
           this.tempPlayer = player;
           this.setVideoTime(item, time => {
@@ -443,7 +443,7 @@ export class syncPage {
             if (
               api.settings.get(`autoTrackingMode${this.page.type}`) ===
                 'video' &&
-              this.page.type == 'anime'
+              this.page.type === 'anime'
             ) {
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
@@ -478,7 +478,7 @@ export class syncPage {
               const continueWatching = This.page.sync.nextEpUrl(This.url);
               if (
                 continueWatching &&
-                !(continueWatching.indexOf('undefined') != -1)
+                !(continueWatching.indexOf('undefined') !== -1)
               ) {
                 This.singleObj.setContinueWaching(
                   continueWatching,
@@ -517,9 +517,9 @@ export class syncPage {
         let message = this.singleObj.getTitle();
         let split = '<br>';
         let totalVol = this.singleObj.getTotalVolumes();
-        if (totalVol == 0) totalVol = '?';
+        if (totalVol === 0) totalVol = '?';
         let totalEp = this.singleObj.getTotalEpisodes();
-        if (totalEp == 0) totalEp = '?';
+        if (totalEp === 0) totalEp = '?';
         let diffState = this.singleObj.getStateDiff();
 
         if (!diffState)
@@ -561,7 +561,7 @@ export class syncPage {
           message += split + statusString;
           split = ' | ';
         }
-        if (this.page.type == 'manga' && diffState.volume) {
+        if (this.page.type === 'manga' && diffState.volume) {
           message += `${split + api.storage.lang('UI_Volume')} ${
             diffState.volume
           }/${totalVol}`;
@@ -691,12 +691,12 @@ export class syncPage {
       });
     } else {
       j.$('#malTotal, #malTotalCha').text(this.singleObj.getTotalEpisodes());
-      if (this.singleObj.getTotalEpisodes() == 0) {
+      if (this.singleObj.getTotalEpisodes() === 0) {
         j.$('#malTotal, #malTotalCha').text('?');
       }
 
       j.$('#malTotalVol').text(this.singleObj.getTotalVolumes());
-      if (this.singleObj.getTotalVolumes() == 0) {
+      if (this.singleObj.getTotalVolumes() === 0) {
         j.$('#malTotalVol').text('?');
       }
 
@@ -805,7 +805,7 @@ export class syncPage {
           elementArray[elEp] = j.$(el);
           if (
             (api.settings.get('highlightAllEp') && elEp <= currentEpisode) ||
-            elEp == currentEpisode
+            elEp === currentEpisode
           ) {
             j.$(el).addClass('mal-sync-active');
           }
@@ -913,7 +913,7 @@ export class syncPage {
     ui += '</select>';
     ui += wrapEnd;
 
-    if (this.page.type == 'anime') {
+    if (this.page.type === 'anime') {
       var middle = '';
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;

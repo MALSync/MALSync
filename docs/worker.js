@@ -170,14 +170,14 @@ function Star() {
     this.paralaxLevel = Math.ceil(Math.random() * 5) + 3;
   };
   this.animate = function() {
-    if (state.frame % 5 == 0) {
+    if (state.frame % 5 === 0) {
       this.last.push({ x: this.x, y: this.y });
       if (this.last.length > 10) {
         this.last.shift();
       }
     }
     const maxSpeed = 0.08 / this.size;
-    if (state.frame % 100 == 99) {
+    if (state.frame % 100 === 99) {
       this.xSpeed += Math.random() * 0.0004 - 0.0002;
       this.ySpeed += Math.random() * 0.0004 - 0.0002;
     }

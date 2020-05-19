@@ -19,7 +19,7 @@ api.settings.init().then(() => {
 function messageKitsuListener(kitsu) {
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action == 'TabMalUrl') {
+    if (msg.action === 'TabMalUrl') {
       con.info('miniMAL');
       kitsu.getMalUrl().then(malUrl => {
         if (malUrl !== '') {

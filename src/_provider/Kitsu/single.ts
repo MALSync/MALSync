@@ -44,7 +44,7 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    if (status == 23) {
+    if (status === 23) {
       status = 1;
       this.listI().attributes.reconsuming = true;
     } else {
@@ -93,7 +93,7 @@ export class Single extends SingleAbstract {
 
   _setStreamingUrl(url) {
     let tags = this.listI().attributes.notes;
-    if (tags == null || tags == 'null') tags = '';
+    if (tags === null || tags === 'null') tags = '';
 
     tags = utils.setUrlInTags(url, tags);
 
@@ -111,7 +111,7 @@ export class Single extends SingleAbstract {
     const eps = this.animeI().attributes.episodeCount
       ? this.animeI().attributes.episodeCount
       : this.animeI().attributes.chapterCount;
-    if (eps == null) return 0;
+    if (eps === null) return 0;
     return eps;
   }
 
@@ -132,7 +132,7 @@ export class Single extends SingleAbstract {
   }
 
   _getRating() {
-    if (this.animeI().attributes.averageRating == null)
+    if (this.animeI().attributes.averageRating === null)
       return Promise.resolve('');
     return Promise.resolve(`${this.animeI().attributes.averageRating}%`);
   }
@@ -169,7 +169,7 @@ export class Single extends SingleAbstract {
           `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userId}&filter[kind]=${this.getType()}&filter[${this.getType()}_id]=${
             this.ids.kitsu.id
           }&page[limit]=1&page[limit]=1&include=${this.getType()}&fields[${this.getType()}]=slug,titles,canonicalTitle,averageRating,posterImage,${
-            this.getType() == 'anime'
+            this.getType() === 'anime'
               ? 'episodeCount'
               : 'chapterCount,volumeCount'
           }`,
@@ -339,7 +339,7 @@ export class Single extends SingleAbstract {
         if (typeof res !== 'undefined' && typeof res.included !== 'undefined') {
           for (let k = 0; k < res.included.length; k++) {
             const mapping = res.included[k];
-            if (mapping.type == 'mappings') {
+            if (mapping.type === 'mappings') {
               if (mapping.attributes.externalSite === `myanimelist/${type}`) {
                 malId = mapping.attributes.externalId;
                 res.included.splice(k, 1);

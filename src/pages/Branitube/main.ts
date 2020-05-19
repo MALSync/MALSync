@@ -38,7 +38,7 @@ export const Branitube: pageInterface = {
       }
     },
     getEpisode: function(url) {
-      if (getType().indexOf('movie') == -1) {
+      if (getType().indexOf('movie') === -1) {
         return Number(
           j
             .$('.epInfo')
@@ -51,11 +51,11 @@ export const Branitube: pageInterface = {
     },
     nextEpUrl: function(url) {
       if (
-        getType().indexOf('movie') == -1 &&
+        getType().indexOf('movie') === -1 &&
         j.$('.cplPl').attr('data-npl') &&
         j.$('.cplPl').attr('data-cpl') &&
         j.$('.cplPl').attr('data-npltype') &&
-        j.$('.cplPl').attr('data-cpl') == j.$('.cplPl').attr('data-npltype')
+        j.$('.cplPl').attr('data-cpl') === j.$('.cplPl').attr('data-npltype')
       ) {
         return `${Branitube.domain}/watch/${j.$('.cplPl').attr('data-npl')}/${
           url.split('/')[5]
@@ -65,7 +65,7 @@ export const Branitube: pageInterface = {
     getMalUrl: function(provider) {
       if (getType() === 'anime') {
         var malid = j.$('.nomeAnime').attr('data-anmalid');
-        if (!malid || malid == '0') {
+        if (!malid || malid === '0') {
           var malid = j.$('.epInfo').attr('data-epmalid');
         }
       } else {
@@ -134,7 +134,7 @@ export const Branitube: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

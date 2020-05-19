@@ -23,11 +23,11 @@ let timeAddCb;
 function messagePageListener(page) {
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action == 'TabMalUrl') {
+    if (msg.action === 'TabMalUrl') {
       con.log('TabMalUrl Message', page.singleObj.url);
       sendResponse(page.singleObj.url);
     }
-    if (msg.action == 'videoTime') {
+    if (msg.action === 'videoTime') {
       page.setVideoTime(msg.item, function(time) {
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
@@ -46,7 +46,7 @@ function messagePageListener(page) {
       };
     }
 
-    if (msg.action == 'videoTimeSet') {
+    if (msg.action === 'videoTimeSet') {
       con.log('[Iframe] Set Time', msg);
       if (typeof page.tempPlayer === 'undefined') {
         con.error('[Iframe] No player Found');
@@ -63,7 +63,7 @@ function messagePageListener(page) {
         return;
       }
     }
-    if (msg.action == 'content') {
+    if (msg.action === 'content') {
       switch (msg.item.action) {
         case 'nextEpShort':
           page.openNextEp();

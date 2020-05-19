@@ -68,11 +68,11 @@ export function search(
   sync = false,
 ) {
   const syncMode = getSyncMode(type);
-  if (syncMode == 'KITSU') {
+  if (syncMode === 'KITSU') {
     return kitsuSearch(keyword, type, options, sync);
-  } else if (syncMode == 'ANILIST') {
+  } else if (syncMode === 'ANILIST') {
     return aniSearch(keyword, type, options, sync);
-  } else if (syncMode == 'SIMKL') {
+  } else if (syncMode === 'SIMKL') {
     return simklSearch(keyword, type, options, sync);
   } else {
     return malSearch(keyword, type, options, sync);

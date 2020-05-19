@@ -40,7 +40,7 @@ export const Aniflix: pageInterface = {
             .first()
             .text()
             .replace(/\D+/g, ''),
-        ) == 1 ||
+        ) === 1 ||
         j
           .$('div.seasons-wrapper > div.season.season-active > div')
           .first()
@@ -76,7 +76,7 @@ export const Aniflix: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;

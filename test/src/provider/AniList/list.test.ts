@@ -72,7 +72,7 @@ describe('AniList userlist', function() {
             };
           }
 
-          if (conf.data.variables.page == 1) {
+          if (conf.data.variables.page === 1) {
             return {
               responseText: getResponse('Page1'),
             };

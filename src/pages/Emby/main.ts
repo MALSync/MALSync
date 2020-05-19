@@ -325,8 +325,8 @@ export const Emby: pageInterface = {
           //@ts-ignore
           if (
             window['fullScreen'] ||
-            (window.innerWidth == screen.width &&
-              window.innerHeight == screen.height)
+            (window.innerWidth === screen.width &&
+              window.innerHeight === screen.height)
           ) {
             $('html').addClass('miniMAL-Fullscreen');
           } else {

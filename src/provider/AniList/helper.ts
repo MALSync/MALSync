@@ -7,7 +7,7 @@ export function translateList(aniStatus, malStatus: null | number = null) {
     PAUSED: 3,
     REPEATING: 1,
   };
-  if (malStatus != null) {
+  if (malStatus !== null) {
     return Object.keys(list).find(key => list[key] === malStatus);
   }
   return list[aniStatus];

@@ -20,7 +20,7 @@ api.settings.init().then(() => {
 function messageMalListener(mal) {
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action == 'TabMalUrl') {
+    if (msg.action === 'TabMalUrl') {
       con.log('TabMalUrl Message', mal.url);
       sendResponse(mal.url);
     }

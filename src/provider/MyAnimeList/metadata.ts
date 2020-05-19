@@ -138,7 +138,7 @@ export class metadata implements metadataInterface {
             j
               .$(value)
               .find('span[itemprop=ratingValue]')
-              .height() != null
+              .height() !== null
               ? j
                   .$(value)
                   .find('span[itemprop=ratingValue]')

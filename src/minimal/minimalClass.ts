@@ -28,7 +28,7 @@ export class minimal {
     this.updateDom();
 
     function handleConnectionChange(event) {
-      if (event.type == 'offline') {
+      if (event.type === 'offline') {
         con.log('Offline');
         utils.flashm("You're offline check your connection", {
           error: true,
@@ -36,7 +36,7 @@ export class minimal {
           permanent: true,
         });
       }
-      if (event.type == 'online') {
+      if (event.type === 'online') {
         con.log('You are now back online.');
         $('.type-offline').remove();
       }
@@ -224,15 +224,15 @@ export class minimal {
       utils.flashm(`Cache Cleared [${deleted}]`);
     });
 
-    if (api.type == 'webextension') {
+    if (api.type === 'webextension') {
       this.minimal.find('.option-extension').show();
     }
 
-    if (api.type == 'webextension' && this.isPopup()) {
+    if (api.type === 'webextension' && this.isPopup()) {
       this.minimal.find('.option-extension-popup').show();
     }
 
-    if (api.type == 'webextension' && this.isPopup()) {
+    if (api.type === 'webextension' && this.isPopup()) {
       chrome.alarms.get('updateCheck', (a: any) => {
         con.log(a);
         interval = 0;
@@ -255,7 +255,7 @@ export class minimal {
 
               let text = utils.timeDiffToText(delta);
 
-              if (text != '') {
+              if (text !== '') {
                 text += 'ago';
                 $('#updateCheckAgo').text(text);
               }
@@ -267,7 +267,7 @@ export class minimal {
       this.minimal.find('#updateCheckTime').change(() => {
         const updateCheckTime = this.minimal.find('#updateCheckTime').val();
         api.storage.set('updateCheckTime', updateCheckTime);
-        if (updateCheckTime != 0 && updateCheckTime != '0') {
+        if (updateCheckTime !== 0 && updateCheckTime !== '0') {
           this.minimal.find('.updateCheckEnable').show();
           chrome.alarms.create('updateCheck', {
             periodInMinutes: parseInt(updateCheckTime),
@@ -280,9 +280,9 @@ export class minimal {
                   .getManifest()
                   .optional_permissions!.filter(permission => {
                     return (
-                      permission != 'webRequest' &&
-                      permission != 'webRequestBlocking' &&
-                      permission != 'cookies'
+                      permission !== 'webRequest' &&
+                      permission !== 'webRequestBlocking' &&
+                      permission !== 'cookies'
                     );
                   }),
               },
@@ -318,7 +318,7 @@ export class minimal {
     });
 
     try {
-      if (api.type == 'webextension') {
+      if (api.type === 'webextension') {
         chrome.permissions.contains(
           {
             permissions: ['cookies'],
@@ -364,7 +364,7 @@ export class minimal {
     api.storage.get('tempVersion').then(version => {
       let versionMsg = '';
 
-      if (version != api.storage.version()) {
+      if (version !== api.storage.version()) {
         versionMsg = api.storage.lang('minimalClass_versionMsg', [
           api.storage.version(),
           `[<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#${api.storage.version()}">`,
@@ -408,7 +408,7 @@ export class minimal {
             </div>
           `;
       }
-      if (versionMsg != '') {
+      if (versionMsg !== '') {
         this.flashm(versionMsg, function() {
           api.storage.set('tempVersion', api.storage.version());
         });

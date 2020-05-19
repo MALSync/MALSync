@@ -90,7 +90,7 @@ export const RiiE: pageInterface = {
     },
   },
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -100,7 +100,7 @@ export const RiiE: pageInterface = {
     );
     j.$(document).ready(function() {
       if (
-        page.url.split('/')[3] == 'anime' ||
+        page.url.split('/')[3] === 'anime' ||
         (j.$('#lightsVideo')[0] &&
           j.$(
             '#content > div.postarea > div > div.post > div.newzone > div.right',

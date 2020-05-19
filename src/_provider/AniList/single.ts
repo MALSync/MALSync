@@ -73,7 +73,7 @@ export class Single extends SingleAbstract {
 
   _setStreamingUrl(url) {
     let tags = this.animeInfo.mediaListEntry.notes;
-    if (tags == null || tags == 'null') tags = '';
+    if (tags === null || tags === 'null') tags = '';
 
     tags = utils.setUrlInTags(url, tags);
 
@@ -88,7 +88,7 @@ export class Single extends SingleAbstract {
     const eps = this.animeInfo.episodes
       ? this.animeInfo.episodes
       : this.animeInfo.chapters;
-    if (eps == null) return 0;
+    if (eps === null) return 0;
     return eps;
   }
 
@@ -99,7 +99,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return this.displayUrl !== '' && this.displayUrl != null
+    return this.displayUrl !== '' && this.displayUrl !== null
       ? this.displayUrl
       : this.url;
   }
@@ -209,7 +209,7 @@ export class Single extends SingleAbstract {
       notes: this.animeInfo.mediaListEntry.notes,
     };
 
-    if (this.type == 'manga') {
+    if (this.type === 'manga') {
       query = `
         mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
           SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {

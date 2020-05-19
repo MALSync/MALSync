@@ -100,7 +100,7 @@ export const Wakanim: pageInterface = {
   },
 
   init(page) {
-    if (document.title == 'Just a moment...') {
+    if (document.title === 'Just a moment...') {
       con.log('loading');
       page.cdn();
       return;
@@ -170,7 +170,7 @@ function seasonHelper(text) {
 
   if (text.includes('Cour')) {
     const temp = text.match(/Cour (\d+)/);
-    if (temp[1] == 2) {
+    if (temp[1] === 2) {
       return text
         .replace(temp[0], 'Part 2 ')
         .trim()

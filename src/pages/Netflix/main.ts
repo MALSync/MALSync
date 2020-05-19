@@ -116,7 +116,7 @@ export const Netflix: pageInterface = {
     function ready() {
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
       $('html').addClass('miniMAL-hide');
-      if (utils.urlPart(window.location.href, 3) == 'watch') {
+      if (utils.urlPart(window.location.href, 3) === 'watch') {
         utils.waitUntilTrue(
           function() {
             return j.$('.ellipsize-text').length;
