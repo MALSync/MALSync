@@ -24,12 +24,6 @@
   export default {
     components: {
     },
-    data: function(){
-      return {
-        items: [],
-        loading: true,
-      }
-    },
     props: {
       type: {
         type: String,
@@ -40,13 +34,11 @@
         default: ''
       },
     },
-    mounted: function(){
-      this.load();
-    },
-    activated: function(){
-      this.$nextTick(() => {
-        j.$(this.$el).closest('html').find("head").click();
-      })
+    data: function(){
+      return {
+        items: [],
+        loading: true,
+      }
     },
     watch: {
       keyword: function(type){
@@ -55,6 +47,14 @@
       type: function(type){
         this.load();
       }
+    },
+    mounted: function(){
+      this.load();
+    },
+    activated: function(){
+      this.$nextTick(() => {
+        j.$(this.$el).closest('html').find("head").click();
+      })
     },
     methods: {
       lang: api.storage.lang,

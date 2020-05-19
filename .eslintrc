@@ -17,7 +17,7 @@
     "j": "readonly",
     "utils": "readonly"
   },
-  "ignorePatterns": ["dist/", "node_modules/", "test/dist"],
+  "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
@@ -32,7 +32,9 @@
       {
         "singleQuote": true
       }
-    ]
+    ],
+    "prefer-template": "error",
+    "eqeqeq": ["error", "always"]
   },
   "settings": {
     "import/resolver": {

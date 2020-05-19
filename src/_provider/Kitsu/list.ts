@@ -1,5 +1,5 @@
-import {ListAbstract, listElement} from './../listAbstract';
-import * as helper from "./helper";
+import { ListAbstract, listElement } from './../listAbstract';
+import * as helper from './helper';
 
 export class userlist extends ListAbstract {
   name = 'Kitsu';
@@ -7,61 +7,65 @@ export class userlist extends ListAbstract {
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 
   async getUsername() {
-    var user = await this.userRequest();
+    const user = await this.userRequest();
 
-    var opt = api.settings.get('kitsuOptions');
-    opt['titleLanguagePreference'] = user.attributes.titleLanguagePreference
-    opt['sfwFilter'] = user.attributes.sfwFilter
-    opt['ratingSystem'] = user.attributes.ratingSystem
+    const opt = api.settings.get('kitsuOptions');
+    opt['titleLanguagePreference'] = user.attributes.titleLanguagePreference;
+    opt['sfwFilter'] = user.attributes.sfwFilter;
+    opt['ratingSystem'] = user.attributes.ratingSystem;
     api.settings.set('kitsuOptions', opt);
 
     return user.attributes.name;
   }
 
   async getUserId() {
-    var userId = await api.storage.get('kitsuUserId');
-    if(typeof userId !== 'undefined'){
+    const userId = await api.storage.get('kitsuUserId');
+    if (typeof userId !== 'undefined') {
       return userId;
-    }else{
-      var user = await this.userRequest();
+    } else {
+      const user = await this.userRequest();
       api.storage.set('kitsuUserId', user.id);
       return user.id;
     }
   }
 
   private userRequest() {
-    return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/users?filter[self]=true',
-      headers: {
-        'Authorization': 'Bearer ' + this.accessToken(),
-        'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json',
-      }
-    }).then((response) => {
-      var res = this.jsonParse(response);
-      con.log(res);
-      this.errorHandling(res);
-      if(typeof res.data[0] === 'undefined') {
-        throw {
-          code: 400,
-          message: 'Not Authenticated',
+    return api.request
+      .xhr('GET', {
+        url: 'https://kitsu.io/api/edge/users?filter[self]=true',
+        headers: {
+          Authorization: `Bearer ${this.accessToken()}`,
+          'Content-Type': 'application/vnd.api+json',
+          Accept: 'application/vnd.api+json',
+        },
+      })
+      .then(response => {
+        const res = this.jsonParse(response);
+        con.log(res);
+        this.errorHandling(res);
+        if (typeof res.data[0] === 'undefined') {
+          throw {
+            code: 400,
+            message: 'Not Authenticated',
+          };
         }
-      }
-      return res.data[0];
-    });
+        return res.data[0];
+      });
   }
 
   deauth() {
-    return api.settings.set('kitsuToken', '').then(() => api.storage.set('kitsuUserId', ''));
+    return api.settings
+      .set('kitsuToken', '')
+      .then(() => api.storage.set('kitsuUserId', ''));
   }
 
   errorHandling(res) {
-    if(typeof res.errors != 'undefined'){
+    if (typeof res.errors !== 'undefined') {
       con.error(res.errors);
       throw {
         code: parseInt(res.errors[0].status),
         message: res.errors[0].title,
-      }
+      };
     }
   }
 
@@ -70,56 +74,73 @@ export class userlist extends ListAbstract {
   }
 
   async getPart() {
-    var userid = await this.getUserId();
+    const userid = await this.getUserId();
 
-    var statusPart = '';
-    var sorting = '';
-    if(this.status !== 7){
-      if(this.status === 1) sorting = '&sort=-progressed_at';
-      var statusTemp = helper.translateList(this.status, this.status);
-      statusPart = '&filter[status]='+statusTemp;
+    let statusPart = '';
+    let sorting = '';
+    if (this.status !== 7) {
+      if (this.status === 1) sorting = '&sort=-progressed_at';
+      const statusTemp = helper.translateList(this.status, this.status);
+      statusPart = `&filter[status]=${statusTemp}`;
     }
 
-    con.log('[UserList][Kitsu]', 'user: '+userid, 'status: '+this.status, 'offset: '+this.offset);
+    con.log(
+      '[UserList][Kitsu]',
+      `user: ${userid}`,
+      `status: ${this.status}`,
+      `offset: ${this.offset}`,
+    );
 
-    return api.request.xhr('GET', {
-      url: 'https://kitsu.io/api/edge/library-entries?filter[user_id]='+userid+statusPart+'&filter[kind]='+this.listType+'&page[offset]='+this.offset+'&page[limit]=50'+sorting+'&include='+this.listType+','+this.listType+'.mappings,'+this.listType+'.mappings.item&fields['+this.listType+']=slug,titles,canonicalTitle,averageRating,posterImage,'+(this.listType == 'anime'? 'episodeCount': 'chapterCount,volumeCount'),
-      headers: {
-        'Authorization': 'Bearer ' + this.accessToken(),
-        'Content-Type': 'application/vnd.api+json',
-        'Accept': 'application/vnd.api+json',
-      },
-      data: {},
-    }).then((response) => {
-      var res = this.jsonParse(response);
-      con.log(res);
-      this.errorHandling(res);
+    return api.request
+      .xhr('GET', {
+        url: `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
+          this.listType
+        }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${
+          this.listType
+        },${this.listType}.mappings,${this.listType}.mappings.item&fields[${
+          this.listType
+        }]=slug,titles,canonicalTitle,averageRating,posterImage,${
+          this.listType == 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
+        }`,
+        headers: {
+          Authorization: `Bearer ${this.accessToken()}`,
+          'Content-Type': 'application/vnd.api+json',
+          Accept: 'application/vnd.api+json',
+        },
+        data: {},
+      })
+      .then(response => {
+        const res = this.jsonParse(response);
+        con.log(res);
+        this.errorHandling(res);
 
-      this.offset += 50;
+        this.offset += 50;
 
-      if(!(res.meta.count > (this.offset))){
-        this.done = true;
-      }
+        if (!(res.meta.count > this.offset)) {
+          this.done = true;
+        }
 
-      return this.prepareData(res, this.listType);
-    });
-
+        return this.prepareData(res, this.listType);
+      });
   }
 
-  private prepareData(data, listType): listElement[]{
-    var newData = [] as listElement[];
-    for (var i = 0; i < data.data.length; i++) {
-      var list = data.data[i];
-      var el = data.included[i];
+  private prepareData(data, listType): listElement[] {
+    const newData = [] as listElement[];
+    for (let i = 0; i < data.data.length; i++) {
+      const list = data.data[i];
+      const el = data.included[i];
 
-      var name =  helper.getTitle(el.attributes.titles, el.attributes.canonicalTitle);
+      const name = helper.getTitle(
+        el.attributes.titles,
+        el.attributes.canonicalTitle,
+      );
 
-      var malId = NaN;
-      for (var k = 0; k < data.included.length; k++) {
-        var mapping = data.included[k];
-        if(mapping.type == 'mappings'){
-          if(mapping.attributes.externalSite === 'myanimelist/'+listType){
-            if(mapping.relationships.item.data.id == el.id){
+      let malId = NaN;
+      for (let k = 0; k < data.included.length; k++) {
+        const mapping = data.included[k];
+        if (mapping.type == 'mappings') {
+          if (mapping.attributes.externalSite === `myanimelist/${listType}`) {
+            if (mapping.relationships.item.data.id == el.id) {
               malId = mapping.attributes.externalId;
               data.included.splice(k, 1);
               break;
@@ -128,7 +149,7 @@ export class userlist extends ListAbstract {
         }
       }
 
-      if(listType === "anime"){
+      if (listType === 'anime') {
         var tempData = this.fn({
           malId: malId,
           uid: el.id,
@@ -136,16 +157,19 @@ export class userlist extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: 'https://kitsu.io/'+listType+'/'+el.attributes.slug,
+          url: `https://kitsu.io/${listType}/${el.attributes.slug}`,
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
-          score: list.attributes.ratingTwenty/2,
-          image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
+          score: list.attributes.ratingTwenty / 2,
+          image:
+            el.attributes.posterImage && el.attributes.posterImage.large
+              ? el.attributes.posterImage.large
+              : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
-        })
-      }else{
+        });
+      } else {
         var tempData = this.fn({
           malId: malId,
           uid: el.id,
@@ -153,18 +177,21 @@ export class userlist extends ListAbstract {
           kitsuSlug: el.attributes.slug,
           type: listType,
           title: name,
-          url: 'https://kitsu.io/'+listType+'/'+el.attributes.slug,
+          url: `https://kitsu.io/${listType}/${el.attributes.slug}`,
           watchedEp: list.attributes.progress,
           totalEp: el.attributes.chapterCount,
           status: helper.translateList(list.attributes.status),
-          score: list.attributes.ratingTwenty/2,
-          image: (el.attributes.posterImage && el.attributes.posterImage.large) ? el.attributes.posterImage.large : '',
+          score: list.attributes.ratingTwenty / 2,
+          image:
+            el.attributes.posterImage && el.attributes.posterImage.large
+              ? el.attributes.posterImage.large
+              : '',
           tags: list.attributes.notes,
           airingState: el['anime_airing_status'],
-        })
+        });
       }
 
-      if(tempData.totalEp == null){
+      if (tempData.totalEp == null) {
         tempData.totalEp = 0;
       }
 
@@ -172,5 +199,4 @@ export class userlist extends ListAbstract {
     }
     return newData;
   }
-
 }

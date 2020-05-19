@@ -2,53 +2,55 @@ import { expect } from 'chai';
 import * as def from './../../../src/_provider/definitions';
 
 export function generalSingleTests(Single, setGlobals) {
-
-  describe('Url', function () {
-    describe('Constructor', function () {
+  describe('Url', function() {
+    describe('Constructor', function() {
       global.testData.urlTest.forEach(el => {
-        it(el.url, function () {
-          if(!el.error) {
-            var single;
-            expect(() => single = new Single(el.url)).not.to.throw();
+        it(el.url, function() {
+          if (!el.error) {
+            let single;
+            expect(() => (single = new Single(el.url))).not.to.throw();
             expect(single.getType()).equal(el.type);
-          }else{
-            expect(() => new Single(el.url)).to.throw().to.include({code: def.errorCode.UrlNotSuported});
+          } else {
+            expect(() => new Single(el.url))
+              .to.throw()
+              .to.include({ code: def.errorCode.UrlNotSuported });
           }
         });
-      })
+      });
     });
   });
 
-  describe('Dry', function () {
-    var singleEntry = new Single(global.testData.urlTest[0].url);
-    before(async function () {
+  describe('Dry', function() {
+    const singleEntry = new Single(global.testData.urlTest[0].url);
+    before(async function() {
       this.timeout(50000);
       await singleEntry.update();
-    })
+    });
 
-    describe('Status', function () {
+    describe('Status', function() {
       [
         def.status.Watching,
         def.status.Completed,
         def.status.Onhold,
         def.status.Dropped,
         def.status.PlanToWatch,
-        def.status.Rewatching
-      ].forEach((el) => {
-        it(def.status[el], function () {
+        def.status.Rewatching,
+      ].forEach(el => {
+        it(def.status[el], function() {
           singleEntry.setStatus(el);
-          if(el == def.status.Rewatching && !singleEntry.supportsRewatching()) {
+          if (
+            el == def.status.Rewatching &&
+            !singleEntry.supportsRewatching()
+          ) {
             expect(singleEntry.getStatus()).equal(def.status.Watching);
-          }else{
+          } else {
             expect(singleEntry.getStatus()).equal(el);
           }
-
-        })
-      })
-
+        });
+      });
     });
 
-    describe('Score', function () {
+    describe('Score', function() {
       [
         def.score.NoScore,
         def.score.R1,
@@ -60,60 +62,50 @@ export function generalSingleTests(Single, setGlobals) {
         def.score.R7,
         def.score.R8,
         def.score.R9,
-        def.score.R10
-      ].forEach((el) => {
-        it(def.score[el], function () {
+        def.score.R10,
+      ].forEach(el => {
+        it(def.score[el], function() {
           singleEntry.setScore(el);
           expect(singleEntry.getScore()).equal(el);
-        })
-      })
-
+        });
+      });
     });
 
-    describe('Episode', function () {
-      [
-        0,
-        2,
-        11,
-      ].forEach((el) => {
-        it(el+'', function () {
+    describe('Episode', function() {
+      [0, 2, 11].forEach(el => {
+        it(`${el}`, function() {
           singleEntry.setEpisode(el);
           expect(singleEntry.getEpisode()).equal(el);
-        })
-      })
+        });
+      });
     });
 
-    if(!api.noManga) {
-      describe('Volume', function () {
-        [
-          0,
-          2,
-          21,
-        ].forEach((el) => {
-          it(el+'', function () {
+    if (!api.noManga) {
+      describe('Volume', function() {
+        [0, 2, 21].forEach(el => {
+          it(`${el}`, function() {
             singleEntry.setVolume(el);
             expect(singleEntry.getVolume()).equal(el);
-          })
-        })
+          });
+        });
       });
     }
 
-
-    describe('Streaming Url', function () {
+    describe('Streaming Url', function() {
       [
         'https://myanimelist.net/anime/13371337',
         'https://myanimelist.net/anime/13',
         'https://myanimelist.net/manga/1',
-      ].forEach((el) => {
-        it(el+'', function () {
+      ].forEach(el => {
+        it(`${el}`, function() {
           singleEntry.setStreamingUrl(el);
           expect(singleEntry.getStreamingUrl()).equal(el);
-        })
-      })
+        });
+      });
     });
 
-    describe('Check Sync', function () {
-      if(api.noManga) return;
+    describe('Check Sync', function() {
+      if (api.noManga) return;
       [
         {
           name: 'Default',
@@ -195,8 +187,8 @@ export function generalSingleTests(Single, setGlobals) {
           curStatus: def.status.Completed,
           result: true,
         },
-      ].forEach((el) => {
-        it(el.name, async function () {
+      ].forEach(el => {
+        it(el.name, async function() {
           singleEntry.finishRewatchingMessage = () => true;
           singleEntry.finishWatchingMessage = () => true;
           singleEntry.startWatchingMessage = () => true;
@@ -204,19 +196,20 @@ export function generalSingleTests(Single, setGlobals) {
           singleEntry.setEpisode(el.curEp);
           singleEntry.setStatus(el.curStatus);
           singleEntry.setVolume(el.curVol);
-          expect(await singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(el.result);
-        })
-      })
+          expect(await singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(
+            el.result,
+          );
+        });
+      });
     });
-
   });
 
-  describe('API', function () {
-    describe('Update', function () {
-      it('Main Url', async function () {
+  describe('API', function() {
+    describe('Update', function() {
+      it('Main Url', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.defaultUrl;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.defaultUrl;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
@@ -226,14 +219,16 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
         expect(await singleEntry.getImage()).equal(tData.image);
-        expect((await singleEntry.getRating()).length).equal(tData.rating.length);
+        expect((await singleEntry.getRating()).length).equal(
+          tData.rating.length,
+        );
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
-      })
-      it('Not on list', async function () {
+      });
+      it('Not on list', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.notOnListUrl;
-        if(!tData) return;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.notOnListUrl;
+        if (!tData) return;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(false);
@@ -242,12 +237,12 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
-      })
-      it('No Mal Entry', async function () {
+      });
+      it('No Mal Entry', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.noMalEntry;
-        if(!tData) return;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.noMalEntry;
+        if (!tData) return;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
@@ -257,12 +252,12 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(null);
         expect(singleEntry.getCacheKey()).equal(tData.cacheKey);
-      })
-      it('MAL Url', async function () {
+      });
+      it('MAL Url', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.malUrl;
-        if(!tData) return;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.malUrl;
+        if (!tData) return;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
@@ -271,59 +266,74 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
-      })
-      it('Non existing MAL url', async function () {
+      });
+      it('Non existing MAL url', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.nonExistingMAL;
-        if(!tData) return;
-        var singleEntry = new Single(tData.url);
-        await singleEntry.update()
-          .then(() => {throw 'was not supposed to succeed';})
-          .catch((e) => expect(e).to.include({code: def.errorCode.EntryNotFound}));
+        const tData = global.testData.apiTest.nonExistingMAL;
+        if (!tData) return;
+        const singleEntry = new Single(tData.url);
+        await singleEntry
+          .update()
+          .then(() => {
+            throw 'was not supposed to succeed';
+          })
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.EntryNotFound }),
+          );
         expect(singleEntry.isAuthenticated()).equal(true);
-      })
-      it('No Authorization', async function () {
+      });
+      it('No Authorization', async function() {
         this.timeout(50000);
         global.api.token = '';
-        var tData = global.testData.apiTest.defaultUrl;
-        if(!global.testData.apiTest.nonExistingMAL) return;
-        var singleEntry = new Single(tData.url);
-        await singleEntry.update()
-          .then(() => {throw 'was not supposed to succeed';})
-          .catch((e) => expect(e).to.include({code: def.errorCode.NotAutenticated}))
+        const tData = global.testData.apiTest.defaultUrl;
+        if (!global.testData.apiTest.nonExistingMAL) return;
+        const singleEntry = new Single(tData.url);
+        await singleEntry
+          .update()
+          .then(() => {
+            throw 'was not supposed to succeed';
+          })
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.NotAutenticated }),
+          );
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isAuthenticated()).equal(false);
         setGlobals();
-      })
-      it('Server Offline', async function () {
+      });
+      it('Server Offline', async function() {
         this.timeout(50000);
         global.api.status = 504;
-        var tData = global.testData.apiTest.defaultUrl;
-        if(!global.testData.apiTest.nonExistingMAL) return;
-        var singleEntry = new Single(tData.url);
-        await singleEntry.update()
-          .then(() => {throw 'was not supposed to succeed';})
-          .catch((e) => expect(e).to.include({code: def.errorCode.ServerOffline}))
+        const tData = global.testData.apiTest.defaultUrl;
+        if (!global.testData.apiTest.nonExistingMAL) return;
+        const singleEntry = new Single(tData.url);
+        await singleEntry
+          .update()
+          .then(() => {
+            throw 'was not supposed to succeed';
+          })
+          .catch(e =>
+            expect(e).to.include({ code: def.errorCode.ServerOffline }),
+          );
         setGlobals();
-      })
+      });
     });
 
-    describe('sync', function () {
-      it('Persistence', async function () {
+    describe('sync', function() {
+      it('Persistence', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.defaultUrl;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.defaultUrl;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
         singleEntry
           .setScore(def.score.R5)
           .setStatus(def.status.Watching)
-          .setEpisode(2)
+          .setEpisode(2);
         await singleEntry.sync();
 
         singleEntry
           .setScore(def.score.R6)
           .setStatus(def.status.Completed)
-          .setEpisode(3)
+          .setEpisode(3);
 
         expect(singleEntry.getScore()).equal(def.score.R6);
         expect(singleEntry.getStatus()).equal(def.status.Completed);
@@ -335,23 +345,23 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getEpisode()).equal(2);
       });
 
-      it('Undo', async function () {
+      it('Undo', async function() {
         this.timeout(50000);
-        var tData = global.testData.apiTest.defaultUrl;
-        var singleEntry = new Single(tData.url);
+        const tData = global.testData.apiTest.defaultUrl;
+        const singleEntry = new Single(tData.url);
         await singleEntry.update();
 
-        var tempState = {
+        const tempState = {
           episode: singleEntry.getEpisode(),
           volume: singleEntry.getVolume(),
           status: singleEntry.getStatus(),
           score: singleEntry.getScore(),
-        }
+        };
 
         singleEntry
           .setScore(def.score.R6)
           .setStatus(def.status.PlanToWatch)
-          .setEpisode(2)
+          .setEpisode(2);
 
         await singleEntry.sync();
 
@@ -363,19 +373,18 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getStatus()).equal(tempState.status);
         expect(singleEntry.getEpisode()).equal(tempState.episode);
         expect(singleEntry.getVolume()).equal(tempState.volume);
-
       });
 
-      if(!api.noLimitless){
-        it('Over totalEp no limit', async function () {
+      if (!api.noLimitless) {
+        it('Over totalEp no limit', async function() {
           this.timeout(50000);
-          var tData = global.testData.apiTest.defaultUrl;
-          var singleEntry = new Single(tData.url);
+          const tData = global.testData.apiTest.defaultUrl;
+          const singleEntry = new Single(tData.url);
           await singleEntry.update();
           singleEntry
             .setScore(def.score.R5)
             .setStatus(def.status.Watching)
-            .setEpisode(1000)
+            .setEpisode(1000);
           await singleEntry.sync();
 
           await singleEntry.update();
@@ -383,32 +392,28 @@ export function generalSingleTests(Single, setGlobals) {
         });
       }
 
-
-      it('Over totalEp', async function () {
+      it('Over totalEp', async function() {
         this.timeout(50000);
-        if(!global.testData.apiTest.hasTotalEp) return;
-        var tData = global.testData.apiTest.hasTotalEp;
+        if (!global.testData.apiTest.hasTotalEp) return;
+        const tData = global.testData.apiTest.hasTotalEp;
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         singleEntry
           .setScore(def.score.R5)
           .setStatus(def.status.Watching)
-          .setEpisode(1)
+          .setEpisode(1);
         var singleEntry = new Single(tData.url);
         await singleEntry.update();
         await singleEntry.sync();
         singleEntry
           .setScore(def.score.R5)
           .setStatus(def.status.Watching)
-          .setEpisode(1000)
+          .setEpisode(1000);
         await singleEntry.sync();
 
         await singleEntry.update();
         expect(singleEntry.getEpisode()).equal(singleEntry.getTotalEpisodes());
       });
-
     });
-
   });
 }
-

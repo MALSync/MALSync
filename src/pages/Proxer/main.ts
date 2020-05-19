@@ -1,12 +1,12 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from './../pageInterface';
 
 export const Proxer: pageInterface = {
-  name: "Proxer",
-  domain: "https://proxer.me",
-  database: "Proxer",
-  type: "anime",
+  name: 'Proxer',
+  domain: 'https://proxer.me',
+  database: 'Proxer',
+  type: 'anime',
   isSyncPage: function(url) {
-    if (url.split("/")[3] === "watch" || url.split("/")[3] === "read") {
+    if (url.split('/')[3] === 'watch' || url.split('/')[3] === 'read') {
       return true;
     } else {
       return false;
@@ -14,167 +14,229 @@ export const Proxer: pageInterface = {
   },
   sync: {
     getTitle: function(url) {
-      if (url.indexOf("watch") != -1) {
+      if (url.indexOf('watch') != -1) {
         return j
-          .$(".wName")
+          .$('.wName')
           .text()
           .trim();
       } else {
-        if (url.indexOf("read") != -1) {
-          return j.$("div#breadcrumb a:first").text();
+        if (url.indexOf('read') != -1) {
+          return j.$('div#breadcrumb a:first').text();
         }
       }
 
-      return "";
+      return '';
     },
     getIdentifier: function(url) {
-      return utils.urlPart(url, 4) || "";
+      return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl: function(url) {
-      return (
-        "https://proxer.me/info/" + Proxer.sync.getIdentifier(url) + "/list"
-      );
+      return `https://proxer.me/info/${Proxer.sync.getIdentifier(url)}/list`;
     },
     getEpisode: function(url) {
-      if (url.indexOf("watch") != -1) {
-        return getEpisodeFallback('episode '+$('.wEp').last().text().trim(), url.split("/")[5]);
-      }else{
-        return getEpisodeFallback($('#breadcrumb > a').last().text().trim(), url.split("/")[5]);
+      if (url.indexOf('watch') != -1) {
+        return getEpisodeFallback(
+          `episode ${$('.wEp')
+            .last()
+            .text()
+            .trim()}`,
+          url.split('/')[5],
+        );
+      } else {
+        return getEpisodeFallback(
+          $('#breadcrumb > a')
+            .last()
+            .text()
+            .trim(),
+          url.split('/')[5],
+        );
       }
     },
     nextEpUrl: function(url) {
       return (
         Proxer.domain +
-        $(".no_details a")!
+        $('.no_details a')!
           .last()!
-          .attr("href")!
+          .attr('href')!
       );
-    }
+    },
   },
-  overview:{
-    getTitle: function(url){return j.$('#pageMetaAjax').text().split(' - ')[0].replace(/\(Anime\)|\(Manga\)$/gmi,"").trim();},
-    getIdentifier: function(url){return Proxer.sync.getIdentifier(url);},
-    uiSelector: function(selector){selector.insertAfter(j.$(".hreview-aggregate > span").first());},
-    list:{
+  overview: {
+    getTitle: function(url) {
+      return j
+        .$('#pageMetaAjax')
+        .text()
+        .split(' - ')[0]
+        .replace(/\(Anime\)|\(Manga\)$/gim, '')
+        .trim();
+    },
+    getIdentifier: function(url) {
+      return Proxer.sync.getIdentifier(url);
+    },
+    uiSelector: function(selector) {
+      selector.insertAfter(j.$('.hreview-aggregate > span').first());
+    },
+    list: {
       offsetHandler: false,
-      elementsSelector: function(){return j.$('span[id^="listTitle"]').parent().parent();},
-      elementUrl: function(selector){return utils.absoluteLink(selector.find('a[href^="/watch"],a[href^="/read"],a[href^="/chapter"]').first().attr('href'), Proxer.domain);},
-      elementEp: function(selector){
-        return getEpisodeFallback(selector.find('span[id^="listTitle"]').first().text().trim(), Proxer.overview!.list!.elementUrl(selector).split("/")[5] );
+      elementsSelector: function() {
+        return j
+          .$('span[id^="listTitle"]')
+          .parent()
+          .parent();
       },
-      paginationNext: function(updateCheck){
-        con.error('sadsad', updateCheck)
-        if(updateCheck){
+      elementUrl: function(selector) {
+        return utils.absoluteLink(
+          selector
+            .find('a[href^="/watch"],a[href^="/read"],a[href^="/chapter"]')
+            .first()
+            .attr('href'),
+          Proxer.domain,
+        );
+      },
+      elementEp: function(selector) {
+        return getEpisodeFallback(
+          selector
+            .find('span[id^="listTitle"]')
+            .first()
+            .text()
+            .trim(),
+          Proxer.overview!.list!.elementUrl(selector).split('/')[5],
+        );
+      },
+      paginationNext: function(updateCheck) {
+        con.error('sadsad', updateCheck);
+        if (updateCheck) {
           var el = j.$('.menu').last();
-          if(typeof el[0] == 'undefined' || el.hasClass('active')){
+          if (typeof el[0] === 'undefined' || el.hasClass('active')) {
             return false;
-          }else{
+          } else {
             el[0].click();
             return true;
           }
-        }else{
-          var el = j.$('.menu.active').first().next();
-          if(typeof el[0] == 'undefined'){
+        } else {
+          var el = j
+            .$('.menu.active')
+            .first()
+            .next();
+          if (typeof el[0] === 'undefined') {
             return false;
-          }else{
+          } else {
             el[0].click();
             return true;
           }
         }
       },
-      getTotal: function(){
-        var el = $('img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]').last().parent().parent().parent().parent();
-        if(el.length){
+      getTotal: function() {
+        const el = $(
+          'img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]',
+        )
+          .last()
+          .parent()
+          .parent()
+          .parent()
+          .parent();
+        if (el.length) {
           return Proxer.overview!.list!.elementEp(el);
         }
         return undefined;
-      }
-    }
+      },
+    },
   },
   init(page) {
-    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
-    if (page.url.split("/")[3] === "watch" || page.url.split("/")[3] === "read") {
-      if (page.url.split("/")[3] === "watch") {
-        Proxer.type = "anime";
-        Proxer.database = "Proxeranime";
-      } else if (page.url.split("/")[3] === "read") {
-        Proxer.type = "manga";
-        Proxer.database = "Proxermanga";
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    if (
+      page.url.split('/')[3] === 'watch' ||
+      page.url.split('/')[3] === 'read'
+    ) {
+      if (page.url.split('/')[3] === 'watch') {
+        Proxer.type = 'anime';
+        Proxer.database = 'Proxeranime';
+      } else if (page.url.split('/')[3] === 'read') {
+        Proxer.type = 'manga';
+        Proxer.database = 'Proxermanga';
       }
       j.$(document).ready(function() {
         page.handlePage();
       });
     }
 
-
     ajaxHandle(page);
-    utils.urlChangeDetect(function(){
+    utils.urlChangeDetect(function() {
       page.url = window.location.href;
       page.UILoaded = false;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
       ajaxHandle(page);
     });
-  }
+  },
 };
 
-var current = 0;
+let current = 0;
 
-function ajaxHandle(page){
-  if(utils.urlPart(page.url, 3) !== 'info') return;
-  var detailPart = utils.urlPart(page.url, 5);
+function ajaxHandle(page) {
+  if (utils.urlPart(page.url, 3) !== 'info') return;
+  const detailPart = utils.urlPart(page.url, 5);
   con.info('page', detailPart);
-  if(detailPart == 'list'){
-    utils.waitUntilTrue(function(){
-      return j.$("#contentList").length;
-    }, function(){
-      if(j.$('#simple-navi a[href*="manga"]').length){
-        Proxer.type = "manga";
-        Proxer.database = "Proxermanga";
-      }else{
-        Proxer.type = "anime";
-        Proxer.database = "Proxeranime";
-      }
-
-      var tempCurrent:number = parseInt(Proxer.overview!.getIdentifier(page.url));
-      if(tempCurrent !== current){
-        current = tempCurrent;
-        page.handlePage();
-      }else{
-        try{
-          page.handleList();
-        }catch(e){
-          con.error(e);
-          page.handlePage();
+  if (detailPart == 'list') {
+    utils.waitUntilTrue(
+      function() {
+        return j.$('#contentList').length;
+      },
+      function() {
+        if (j.$('#simple-navi a[href*="manga"]').length) {
+          Proxer.type = 'manga';
+          Proxer.database = 'Proxermanga';
+        } else {
+          Proxer.type = 'anime';
+          Proxer.database = 'Proxeranime';
         }
-      }
 
-    });
+        const tempCurrent: number = parseInt(
+          Proxer.overview!.getIdentifier(page.url),
+        );
+        if (tempCurrent !== current) {
+          current = tempCurrent;
+          page.handlePage();
+        } else {
+          try {
+            page.handleList();
+          } catch (e) {
+            con.error(e);
+            page.handlePage();
+          }
+        }
+      },
+    );
   }
-  if(detailPart == 'details' || typeof detailPart == 'undefined'){
-    utils.waitUntilTrue(function(){
-      return j.$(".hreview-aggregate").length;
-    }, function(){
-      current = parseInt(Proxer.overview!.getIdentifier(page.url));
-      if(j.$('#simple-navi a[href*="manga"]').length){
-        Proxer.type = "manga";
-        Proxer.database = "Proxermanga";
-      }else{
-        Proxer.type = "anime";
-        Proxer.database = "Proxeranime";
-      }
-      page.handlePage();
-    });
+  if (detailPart == 'details' || typeof detailPart === 'undefined') {
+    utils.waitUntilTrue(
+      function() {
+        return j.$('.hreview-aggregate').length;
+      },
+      function() {
+        current = parseInt(Proxer.overview!.getIdentifier(page.url));
+        if (j.$('#simple-navi a[href*="manga"]').length) {
+          Proxer.type = 'manga';
+          Proxer.database = 'Proxermanga';
+        } else {
+          Proxer.type = 'anime';
+          Proxer.database = 'Proxeranime';
+        }
+        page.handlePage();
+      },
+    );
   }
 }
 
-function getEpisodeFallback(string, fallback){
-  var exclude = string.match(/(special|extra)/gi);
-  if(exclude !== null){
+function getEpisodeFallback(string, fallback) {
+  const exclude = string.match(/(special|extra)/gi);
+  if (exclude !== null) {
     return '';
   }
 
-  var temp = string.match(/(kapitel |ep. |chapter |episode )\d+/gi);
-  if(temp !== null){
+  const temp = string.match(/(kapitel |ep. |chapter |episode )\d+/gi);
+  if (temp !== null) {
     return temp[0].match(/\d+/)[0];
   }
 

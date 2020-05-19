@@ -1,55 +1,81 @@
-import {searchClass} from './../../../src/_provider/Search/searchClass';
+import { searchClass } from './../../../src/_provider/Search/searchClass';
 import { expect } from 'chai';
 import * as request from 'request';
 
-describe('Sanitized Titel', function () {
-  var titles = {
+describe('Sanitized Titel', function() {
+  const titles = {
     'Full Metal Panic! (Dub)': 'Full Metal Panic!',
     'Full Metal Panic! (Sub)': 'Full Metal Panic!',
     'Full Metal Panic! (Sub) ': 'Full Metal Panic!',
     '.hack//G.U. Returner': '.hack//G.U. Returner',
     'No Game No Life BD': 'No Game No Life',
     'VIVIDRED OPERATION (UNCENSORED)': 'VIVIDRED OPERATION',
-    'Suber lakoma sekaro' : 'Suber lakoma sekaro',
+    'Suber lakoma sekaro': 'Suber lakoma sekaro',
     'NOUCOME (UNCUT) + OVA': 'NOUCOME + OVA',
     'Fox Spirit Matchmaker (Chinese Audio)': 'Fox Spirit Matchmaker',
-    'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )': 'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )',
-  }
+    'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )':
+      'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )',
+  };
 
   Object.keys(titles).forEach(function(key) {
-    var title = key;
-    var resTitle = titles[key];
-    it( title, function () {
-      var searchObj = new searchClass(title, 'anime');
+    const title = key;
+    const resTitle = titles[key];
+    it(title, function() {
+      const searchObj = new searchClass(title, 'anime');
       expect(searchObj.getSanitizedTitel()).to.equal(resTitle);
     });
   });
-
 });
 
-describe('Titel Similarity', function () {
-  var titles = [
-    {title: 'Durarara!!x2 Shou', extTitle: 'Durarara!!x2 Shou', result: true},
-    {title: 'TO HEART 2: DUNGEON TRAVELERS', extTitle: 'To Heart 2: Dungeon Travelers', result: true},
-    {title: 'Jibaku Shounen Hanako-kun', extTitle: 'Jibaku Shounen Hanako-kun', result: true},
-    {title: '3-gatsu no Lion 2nd Season', extTitle: '3-gatsu no Lion 2', result: true},
-    {title: 'Boogiepop wa Warawanai (2019)', extTitle: 'Boogiepop wa Warawanai', result: true},
-    {title: 'Heroman Specials', extTitle: 'Heroman Specials', result: true},
-    {title: 'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasuka', extTitle: 'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasu ka?', result: true},
-    {title: 'Endo and Kobayashi’s Live Commentary on the Villainess', extTitle: 'Manga Grimm Douwa: Chuugoku Akujo Den', result: false},
-    {title: 'Liar Liar', extTitle: 'Bonnouji', result: false},
-  ]
+describe('Titel Similarity', function() {
+  const titles = [
+    { title: 'Durarara!!x2 Shou', extTitle: 'Durarara!!x2 Shou', result: true },
+    {
+      title: 'TO HEART 2: DUNGEON TRAVELERS',
+      extTitle: 'To Heart 2: Dungeon Travelers',
+      result: true,
+    },
+    {
+      title: 'Jibaku Shounen Hanako-kun',
+      extTitle: 'Jibaku Shounen Hanako-kun',
+      result: true,
+    },
+    {
+      title: '3-gatsu no Lion 2nd Season',
+      extTitle: '3-gatsu no Lion 2',
+      result: true,
+    },
+    {
+      title: 'Boogiepop wa Warawanai (2019)',
+      extTitle: 'Boogiepop wa Warawanai',
+      result: true,
+    },
+    { title: 'Heroman Specials', extTitle: 'Heroman Specials', result: true },
+    {
+      title: 'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasuka',
+      extTitle:
+        'Risou no Musume Nara Sekai Saikyou Demo Kawaigatte Kuremasu ka?',
+      result: true,
+    },
+    {
+      title: 'Endo and Kobayashi’s Live Commentary on the Villainess',
+      extTitle: 'Manga Grimm Douwa: Chuugoku Akujo Den',
+      result: false,
+    },
+    { title: 'Liar Liar', extTitle: 'Bonnouji', result: false },
+  ];
 
   titles.forEach(function(res) {
-    it( res.title, function () {
-      expect(searchClass.similarity(res.extTitle, res.title).same).to.equal(res.result);
+    it(res.title, function() {
+      expect(searchClass.similarity(res.extTitle, res.title).same).to.equal(
+        res.result,
+      );
     });
   });
-
 });
 
-describe('Firebase', function () {
-  before(function () {
+describe('Firebase', function() {
+  before(function() {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
     global.con.error = function() {};
@@ -60,20 +86,24 @@ describe('Firebase', function () {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
-                responseText: body
-              })
+                responseText: body,
+              });
             });
           });
-        }
+        },
       },
-    }
+    };
   });
 
-  it('Crunchyroll', async function () {
-    var searchObj = new searchClass('No Game No Life', 'anime', 'No Game No Life');
+  it('Crunchyroll', async function() {
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'anime',
+      'No Game No Life',
+    );
     searchObj.setPage({
       database: 'Crunchyroll',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
@@ -81,16 +111,20 @@ describe('Firebase', function () {
       provider: 'firebase',
       similarity: {
         same: true,
-        value: 1
+        value: 1,
       },
     });
   });
 
-  it('Kissanime', async function () {
-    var searchObj = new searchClass('No Game No Life', 'anime', 'No-Game-No-Life-Dub');
+  it('Kissanime', async function() {
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'anime',
+      'No-Game-No-Life-Dub',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
@@ -98,16 +132,20 @@ describe('Firebase', function () {
       provider: 'firebase',
       similarity: {
         same: true,
-        value: 1
+        value: 1,
       },
     });
   });
 
-  it('Novelplanet', async function () {
-    var searchObj = new searchClass('No Game No Life', 'novel', 'No-Game-No-Life');
+  it('Novelplanet', async function() {
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'novel',
+      'No-Game-No-Life',
+    );
     searchObj.setPage({
       database: 'Novelplanet',
-      type: 'manga'
+      type: 'manga',
     });
     expect(await searchObj.firebase()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
@@ -115,16 +153,20 @@ describe('Firebase', function () {
       provider: 'firebase',
       similarity: {
         same: true,
-        value: 1
+        value: 1,
       },
     });
   });
 
-  it('Not Found', async function () {
-    var searchObj = new searchClass('Avatar: The Last Airbender Season 1', 'anime', 'Avatar-The-Last-Airbender-Season-1');
+  it('Not Found', async function() {
+    const searchObj = new searchClass(
+      'Avatar: The Last Airbender Season 1',
+      'anime',
+      'Avatar-The-Last-Airbender-Season-1',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.firebase()).to.eql({
       url: '',
@@ -132,31 +174,39 @@ describe('Firebase', function () {
       provider: 'firebase',
       similarity: {
         same: true,
-        value: 1
+        value: 1,
       },
     });
   });
 
-  it('Not Existing', async function () {
-    var searchObj = new searchClass('Something', 'anime', 'Something-that-does-not-exist');
+  it('Not Existing', async function() {
+    const searchObj = new searchClass(
+      'Something',
+      'anime',
+      'Something-that-does-not-exist',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.firebase()).to.eql(false);
   });
 
-  it('No database', async function () {
-    var searchObj = new searchClass('Something', 'anime', 'Something-that-does-not-exist');
+  it('No database', async function() {
+    const searchObj = new searchClass(
+      'Something',
+      'anime',
+      'Something-that-does-not-exist',
+    );
     searchObj.setPage({
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.firebase()).to.eql(false);
   });
 });
 
-describe('Mal Search', function () {
-  before(function () {
+describe('Mal Search', function() {
+  before(function() {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
     global.con.error = function() {};
@@ -167,40 +217,49 @@ describe('Mal Search', function () {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
-                responseText: body
-              })
+                responseText: body,
+              });
             });
           });
-        }
+        },
       },
-    }
+    };
   });
 
-  it('Novelplanet', async function () {
+  it('Novelplanet', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?', 'novel', 'Shuumatsu-Nani-Shitemasu-ka-Isogashii-desu-ka-Sukutte-Moratte-Ii-desu-ka');
+    const searchObj = new searchClass(
+      'Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?',
+      'novel',
+      'Shuumatsu-Nani-Shitemasu-ka-Isogashii-desu-ka-Sukutte-Moratte-Ii-desu-ka',
+    );
     searchObj.setPage({
       database: 'Novelplanet',
-      type: 'manga'
+      type: 'manga',
     });
     expect(await searchObj.malSearch()).to.eql({
       id: 81211,
-      url: 'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
+      url:
+        'https://myanimelist.net/manga/81211/Shuumatsu_Nani_Shitemasu_ka_Isogashii_desu_ka_Sukutte_Moratte_Ii_desu_ka',
       offset: 0,
       provider: 'mal',
       similarity: {
         same: true,
-        value: 1
-      }
+        value: 1,
+      },
     });
   });
 
-  it('Kissanime', async function () {
+  it('Kissanime', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('Fate/kaleid liner PRISMA ILLYA', 'anime', 'Fate-kaleid-liner-Prisma-Illya');
+    const searchObj = new searchClass(
+      'Fate/kaleid liner PRISMA ILLYA',
+      'anime',
+      'Fate-kaleid-liner-Prisma-Illya',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.malSearch()).to.eql({
       id: 14829,
@@ -209,15 +268,14 @@ describe('Mal Search', function () {
       provider: 'mal',
       similarity: {
         same: true,
-        value: 0.9433962264150944
-      }
+        value: 0.9433962264150944,
+      },
     });
   });
-
 });
 
-describe('Page Search', function () {
-  before(function () {
+describe('Page Search', function() {
+  before(function() {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
     global.con.error = function() {};
@@ -228,27 +286,31 @@ describe('Page Search', function () {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
-                responseText: body
-              })
+                responseText: body,
+              });
             });
           });
-        }
+        },
       },
       settings: {
         get: function(val) {
-          if(val === 'syncMode') return 'MAL';
+          if (val === 'syncMode') return 'MAL';
           throw 'setting not defined';
-        }
-      }
-    }
+        },
+      },
+    };
   });
 
-  it('Novelplanet', async function () {
+  it('Novelplanet', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('No Game No Life', 'novel', 'No Game No Life');
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'novel',
+      'No Game No Life',
+    );
     searchObj.setPage({
       database: 'Novelplanet',
-      type: 'manga'
+      type: 'manga',
     });
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48399/No_Game_No_Life',
@@ -257,17 +319,21 @@ describe('Page Search', function () {
       provider: 'page',
       similarity: {
         same: true,
-        value: 1
-      }
+        value: 1,
+      },
     });
   });
 
-  it('Kissmanga', async function () {
+  it('Kissmanga', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('No Game No Life', 'manga', 'No Game No Life');
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'manga',
+      'No Game No Life',
+    );
     searchObj.setPage({
       database: 'Kissmanga',
-      type: 'manga'
+      type: 'manga',
     });
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/manga/48397/No_Game_No_Life',
@@ -276,17 +342,21 @@ describe('Page Search', function () {
       provider: 'page',
       similarity: {
         same: true,
-        value: 1
-      }
+        value: 1,
+      },
     });
   });
 
-  it('Kissanime', async function () {
+  it('Kissanime', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('Fate/kaleid liner PRISMA ILLYA', 'anime', 'Fate-kaleid-liner-Prisma-Illya');
+    const searchObj = new searchClass(
+      'Fate/kaleid liner PRISMA ILLYA',
+      'anime',
+      'Fate-kaleid-liner-Prisma-Illya',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
     expect(await searchObj.pageSearch()).to.eql({
       url: 'https://myanimelist.net/anime/14829/Fate_kaleid_liner_Prisma☆Illya',
@@ -295,14 +365,14 @@ describe('Page Search', function () {
       provider: 'page',
       similarity: {
         same: true,
-        value: 0.9433962264150944
-      }
+        value: 0.9433962264150944,
+      },
     });
   });
 });
 
-describe('Full Search', function () {
-  before(function () {
+describe('Full Search', function() {
+  before(function() {
     global.con = require('./../../../src/utils/console');
     global.con.log = function() {};
     global.con.error = function() {};
@@ -313,59 +383,75 @@ describe('Full Search', function () {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
-                responseText: body
-              })
+                responseText: body,
+              });
             });
           });
-        }
+        },
       },
       settings: {
         get: function(val) {
-          if(val === 'syncMode') return 'MAL';
+          if (val === 'syncMode') return 'MAL';
           throw 'setting not defined';
-        }
-      }
-    }
+        },
+      },
+    };
   });
 
-  it('Firebase', async function () {
+  it('Firebase', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('No Game No Life', 'novel', 'No-Game-No-Life');
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'novel',
+      'No-Game-No-Life',
+    );
     searchObj.setPage({
       database: 'Novelplanet',
-      type: 'manga'
+      type: 'manga',
     });
-    var result = await searchObj.searchForIt();
+    const result = await searchObj.searchForIt();
     expect(result.provider).equal('firebase');
   });
 
-  it('Not Existing', async function () {
+  it('Not Existing', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('No Game No Life', 'anime', 'Something-that-does-not-exist');
+    const searchObj = new searchClass(
+      'No Game No Life',
+      'anime',
+      'Something-that-does-not-exist',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
-    var result = await searchObj.searchForIt();
+    const result = await searchObj.searchForIt();
     expect(result.provider).equal('mal');
   });
 
-  it('Not Found', async function () {
+  it('Not Found', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('Avatar: The Last Airbender Season 1', 'anime', 'Avatar-The-Last-Airbender-Season-1');
+    const searchObj = new searchClass(
+      'Avatar: The Last Airbender Season 1',
+      'anime',
+      'Avatar-The-Last-Airbender-Season-1',
+    );
     searchObj.setPage({
       database: 'Kissanime',
-      type: 'anime'
+      type: 'anime',
     });
-    var result = await searchObj.searchForIt();
+    const result = await searchObj.searchForIt();
     expect(result.provider).equal('firebase');
   });
 
-  it('Page Search', async function () {
+  it('Page Search', async function() {
     this.timeout(10000);
-    var searchObj = new searchClass('tales of demons and gods', 'manga', 'tales of demons and gods');
+    const searchObj = new searchClass(
+      'tales of demons and gods',
+      'manga',
+      'tales of demons and gods',
+    );
     searchObj.setPage({
-      type: 'manga'
+      type: 'manga',
     });
     searchObj.pageSearch = () => {
       return {
@@ -374,13 +460,11 @@ describe('Full Search', function () {
         provider: 'page',
         similarity: {
           same: true,
-          value: 0.9433962264150944
-        }
-      }
-    }
-    var result = await searchObj.searchForIt();
+          value: 0.9433962264150944,
+        },
+      };
+    };
+    const result = await searchObj.searchForIt();
     expect(result.provider).equal('page');
   });
-
-
 });

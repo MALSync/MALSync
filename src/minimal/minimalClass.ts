@@ -5,37 +5,39 @@ import * as VueClazyLoad from 'vue-clazy-load';
 //@ts-ignore
 Vue.use(VueClazyLoad);
 
-export class minimal{
-  private history:(string)[] = [];
+export class minimal {
+  private history: string[] = [];
   private minimalVue;
 
-  constructor(public minimal){
-    this.minimal.find("body").append('<div id="minimalApp"></div>');
+  constructor(public minimal) {
+    this.minimal.find('body').append('<div id="minimalApp"></div>');
     this.minimalVue = new Vue({
-      el: this.minimal.find("#minimalApp").get(0),
-      render: h => h(minimalApp),
+      el: this.minimal.find('#minimalApp').get(0),
       methods: {
-        updateDom: () => {this.updateDom()},
-      }
-    })
-    this.minimal.find("head").append('<base href="https://myanimelist.net/">');
+        updateDom: () => {
+          this.updateDom();
+        },
+      },
+      render: h => h(minimalApp),
+    });
+    this.minimal.find('head').append('<base href="https://myanimelist.net/">');
 
     this.uiListener();
     this.injectCss();
     this.loadSettings();
     this.updateDom();
 
-    function handleConnectionChange(event){
-      if(event.type == "offline"){
-        con.log("Offline");
+    function handleConnectionChange(event) {
+      if (event.type == 'offline') {
+        con.log('Offline');
         utils.flashm("You're offline check your connection", {
           error: true,
           type: 'offline',
           permanent: true,
-        })
+        });
       }
-      if(event.type == "online"){
-        con.log("You are now back online.");
+      if (event.type == 'online') {
+        con.log('You are now back online.');
         $('.type-offline').remove();
       }
     }
@@ -43,297 +45,334 @@ export class minimal{
     window.addEventListener('offline', handleConnectionChange);
   }
 
-  uiListener(){
-    var modal = document.getElementById('info-popup');
-    var This = this;
+  uiListener() {
+    const modal = document.getElementById('info-popup');
+    const This = this;
 
-    this.minimal.on('click', '.mdl-layout__content a', function(e){
+    this.minimal.on('click', '.mdl-layout__content a', function(e) {
       // @ts-ignore
-      if(j.$(this).attr('target') === '_blank' || j.$(this).hasClass('nojs')){
+      if (j.$(this).attr('target') === '_blank' || j.$(this).hasClass('nojs')) {
         return;
       }
       e.preventDefault();
       // @ts-ignore
-      var url = j.$(this).attr('href') || "";
-      if(!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
+      let url = j.$(this).attr('href') || '';
+      if (!/^local:\/\//i.test(url))
+        url = utils.absoluteLink(url, 'https://myanimelist.net');
 
-      if(!This.fill(url)){
-        var win = window.open(url, '_blank');
+      if (!This.fill(url)) {
+        const win = window.open(url, '_blank');
         if (win) {
-            win.focus();
+          win.focus();
         } else {
-            alert(api.storage.lang("minimalClass_Popup"));
+          alert(api.storage.lang('minimalClass_Popup'));
         }
       }
     });
 
-    this.minimal.find("#close-info-popup").click( function(){
-        if(This.isPopup()){
-          window.close();
-        }else{
-          modal!.style.display = "none";
-          j.$('.floatbutton').fadeIn();
-        }
+    this.minimal.find('#close-info-popup').click(function() {
+      if (This.isPopup()) {
+        window.close();
+      } else {
+        modal!.style.display = 'none';
+        j.$('.floatbutton').fadeIn();
+      }
     });
 
-    this.minimal.find("#material-fullscreen").click( function(){
-        if(j.$('.modal-content-kal.fullscreen').length){
-            j.$(".modal-content-kal").removeClass('fullscreen');
-            // @ts-ignore
-            j.$(this).find('i').text('fullscreen');
-        }else{
-            j.$(".modal-content-kal").addClass('fullscreen');
-            // @ts-ignore
-            j.$(this).find('i').text('fullscreen_exit');
-        }
+    this.minimal.find('#material-fullscreen').click(function() {
+      if (j.$('.modal-content-kal.fullscreen').length) {
+        j.$('.modal-content-kal').removeClass('fullscreen');
+        // @ts-ignore
+        j.$(this)
+          .find('i')
+          .text('fullscreen');
+      } else {
+        j.$('.modal-content-kal').addClass('fullscreen');
+        // @ts-ignore
+        j.$(this)
+          .find('i')
+          .text('fullscreen_exit');
+      }
     });
-
-
-
   }
 
-  isPopup(){
-    if(j.$('#Mal-Sync-Popup').length) return true;
+  isPopup() {
+    if (j.$('#Mal-Sync-Popup').length) return true;
     return false;
   }
 
-  updateDom(){
-    this.minimal.find("head").click();
+  updateDom() {
+    this.minimal.find('head').click();
   }
 
-  injectCss(){
-    this.minimal.find("head").append(j.$('<style>')
-        .html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
+  injectCss() {
+    this.minimal
+      .find('head')
+      .append(
+        j
+          .$('<style>')
+          .html(
+            require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString(),
+          ),
+      );
   }
 
-  fill(url: string|null){
+  fill(url: string | null) {
     return this.minimalVue.$children[0].fill(url);
   }
 
-  fillBase(url: string|null){
+  fillBase(url: string | null) {
     return this.minimalVue.$children[0].fillBase(url);
   }
 
   private pageSync;
 
-  setPageSync(page){
+  setPageSync(page) {
     this.minimalVue.$children[0].setPage(page);
   }
 
-  loadSettings(){
-    var This = this;
-    var listener: (() => void)[] = [];
-
+  loadSettings() {
+    const This = this;
+    const listener: (() => void)[] = [];
 
     // Listener
-    this.minimal.find("#posLeft").val(api.settings.get('posLeft'));
-    this.minimal.find("#posLeft").change(function(){
+    this.minimal.find('#posLeft').val(api.settings.get('posLeft'));
+    this.minimal.find('#posLeft').change(function() {
       // @ts-ignore
       api.settings.set('posLeft', j.$(this).val());
       // @ts-ignore
-      j.$('#modal-content').css('right', 'auto').css('left', 'auto').css(j.$(this).val(), '0');
+      j.$('#modal-content')
+        .css('right', 'auto')
+        .css('left', 'auto')
+        .css(String(j.$(this).val()), '0');
     });
 
-    this.minimal.find("#autoTrackingModeanime").val(api.settings.get('autoTrackingModeanime'));
-    this.minimal.find("#autoTrackingModeanime").change(function(){
+    this.minimal
+      .find('#autoTrackingModeanime')
+      .val(api.settings.get('autoTrackingModeanime'));
+    this.minimal.find('#autoTrackingModeanime').change(function() {
       // @ts-ignore
       api.settings.set('autoTrackingModeanime', j.$(this).val());
     });
 
-    this.minimal.find("#theme").val(api.settings.get('theme'));
-    this.minimal.find("#theme").change(function(){
+    this.minimal.find('#theme').val(api.settings.get('theme'));
+    this.minimal.find('#theme').change(function() {
       // @ts-ignore
       api.settings.set('theme', j.$(this).val());
-      This.minimal.attr('id','cr');
+      This.minimal.attr('id', 'cr');
     });
 
-    this.minimal.find("#autoTrackingModemanga").val(api.settings.get('autoTrackingModemanga'));
-    this.minimal.find("#autoTrackingModemanga").change(function(){
+    this.minimal
+      .find('#autoTrackingModemanga')
+      .val(api.settings.get('autoTrackingModemanga'));
+    this.minimal.find('#autoTrackingModemanga').change(function() {
       // @ts-ignore
       api.settings.set('autoTrackingModemanga', j.$(this).val());
     });
 
-    this.minimal.find("#miniMalWidth").on("input", function(){
-        var miniMalWidth = This.minimal.find("#miniMalWidth").val();
-        if(miniMalWidth !== null){
-            if(miniMalWidth === ''){
-                miniMalWidth = '30%';
-                utils.flashm( "Width reset" );
-            }
-            api.settings.set( 'miniMalWidth', miniMalWidth );
+    this.minimal.find('#miniMalWidth').on('input', function() {
+      let miniMalWidth = This.minimal.find('#miniMalWidth').val();
+      if (miniMalWidth !== null) {
+        if (miniMalWidth === '') {
+          miniMalWidth = '30%';
+          utils.flashm('Width reset');
         }
-        j.$("#modal-content").css('width', miniMalWidth);
+        api.settings.set('miniMalWidth', miniMalWidth);
+      }
+      j.$('#modal-content').css('width', miniMalWidth);
     });
 
-    this.minimal.find("#syncMode").change(function(){
+    this.minimal.find('#syncMode').change(function() {
       // @ts-ignore
-      var value = j.$(this).val();
+      const value = j.$(this).val();
       api.settings.set('syncMode', value);
       This.minimal.find('#clearCache').click();
     });
-    this.minimal.find("#syncMode").val(api.settings.get('syncMode'));
+    this.minimal.find('#syncMode').val(api.settings.get('syncMode'));
 
-    this.minimal.find("#miniMalHeight").on("input", function(){
-        var miniMalHeight = This.minimal.find("#miniMalHeight").val();
-        if(miniMalHeight !== null){
-            if(miniMalHeight === ''){
-                miniMalHeight = '90%';
-                utils.flashm( "Height reset" );
-            }
-            api.settings.set( 'miniMalHeight', miniMalHeight );
+    this.minimal.find('#miniMalHeight').on('input', function() {
+      let miniMalHeight = This.minimal.find('#miniMalHeight').val();
+      if (miniMalHeight !== null) {
+        if (miniMalHeight === '') {
+          miniMalHeight = '90%';
+          utils.flashm('Height reset');
         }
-        j.$("#modal-content").css('height', miniMalHeight);
+        api.settings.set('miniMalHeight', miniMalHeight);
+      }
+      j.$('#modal-content').css('height', miniMalHeight);
     });
 
-    this.minimal.find("#malThumbnail").val(api.settings.get('malThumbnail'));
-    this.minimal.find("#malThumbnail").change(function(){
-      api.settings.set( 'malThumbnail', This.minimal.find("#malThumbnail").val() );
+    this.minimal.find('#malThumbnail').val(api.settings.get('malThumbnail'));
+    this.minimal.find('#malThumbnail').change(function() {
+      api.settings.set(
+        'malThumbnail',
+        This.minimal.find('#malThumbnail').val(),
+      );
     });
 
-    this.minimal.find('#clearCache').click(async function(){
-      var cacheArray = await api.storage.list();
-      var deleted = 0;
+    this.minimal.find('#clearCache').click(async function() {
+      const cacheArray = await api.storage.list();
+      let deleted = 0;
 
-      j.$.each( cacheArray, function( index, cache){
-        if(!utils.syncRegex.test(String(index))){
+      j.$.each(cacheArray, function(index, cache) {
+        if (!utils.syncRegex.test(String(index))) {
           api.storage.remove(String(index));
           deleted++;
         }
       });
 
-      utils.flashm("Cache Cleared ["+deleted+"]");
+      utils.flashm(`Cache Cleared [${deleted}]`);
     });
 
-    if(api.type == 'webextension'){
+    if (api.type == 'webextension') {
       this.minimal.find('.option-extension').show();
     }
 
-    if(api.type == 'webextension' && this.isPopup()){
+    if (api.type == 'webextension' && this.isPopup()) {
       this.minimal.find('.option-extension-popup').show();
     }
 
-    if(api.type == 'webextension' && this.isPopup()){
-      chrome.alarms.get("updateCheck", (a:any) => {
+    if (api.type == 'webextension' && this.isPopup()) {
+      chrome.alarms.get('updateCheck', (a: any) => {
         con.log(a);
         interval = 0;
-        if(typeof a !== 'undefined'){
+        if (typeof a !== 'undefined') {
           var interval = a!.periodInMinutes;
           this.minimal.find('.updateCheckEnable').show();
         }
         this.minimal.find('#updateCheckTime').val(interval);
 
-        if(interval){
-
+        if (interval) {
           setUpdateCheckLast();
-          setInterval(function(){
+          setInterval(function() {
             setUpdateCheckLast();
           }, 60 * 1000);
 
-          function setUpdateCheckLast(){
-            api.storage.get("updateCheckLast").then((updateCheckTime) => {
-              if(isNaN(updateCheckTime)) return;
-              var delta = Math.abs(updateCheckTime - Date.now());
+          function setUpdateCheckLast() {
+            api.storage.get('updateCheckLast').then(updateCheckTime => {
+              if (isNaN(updateCheckTime)) return;
+              const delta = Math.abs(updateCheckTime - Date.now());
 
-              var text = utils.timeDiffToText(delta);
+              let text = utils.timeDiffToText(delta);
 
-              if(text != ''){
+              if (text != '') {
                 text += 'ago';
                 $('#updateCheckAgo').text(text);
               }
-
             });
           }
-
         }
       });
 
-      this.minimal.find("#updateCheckTime").change(() => {
-        var updateCheckTime = this.minimal.find('#updateCheckTime').val();
-        api.storage.set( 'updateCheckTime', updateCheckTime );
-        if(updateCheckTime != 0 && updateCheckTime != '0' ){
+      this.minimal.find('#updateCheckTime').change(() => {
+        const updateCheckTime = this.minimal.find('#updateCheckTime').val();
+        api.storage.set('updateCheckTime', updateCheckTime);
+        if (updateCheckTime != 0 && updateCheckTime != '0') {
           this.minimal.find('.updateCheckEnable').show();
-          chrome.alarms.create("updateCheck", {
-            periodInMinutes: parseInt(updateCheckTime)
+          chrome.alarms.create('updateCheck', {
+            periodInMinutes: parseInt(updateCheckTime),
           });
-          if(!utils.canHideTabs()){
-            chrome.permissions.request({
-              permissions: ["webRequest", "webRequestBlocking"],
-              origins: chrome.runtime.getManifest().optional_permissions!.filter((permission) => {return (permission != 'webRequest' && permission != 'webRequestBlocking' && permission != 'cookies')})
-            }, function(granted) {
-              con.log('optional_permissions', granted);
-            });
-          };
-          chrome.alarms.create("updateCheckNow", {
-            when: Date.now() + 1000
+          if (!utils.canHideTabs()) {
+            chrome.permissions.request(
+              {
+                permissions: ['webRequest', 'webRequestBlocking'],
+                origins: chrome.runtime
+                  .getManifest()
+                  .optional_permissions!.filter(permission => {
+                    return (
+                      permission != 'webRequest' &&
+                      permission != 'webRequestBlocking' &&
+                      permission != 'cookies'
+                    );
+                  }),
+              },
+              function(granted) {
+                con.log('optional_permissions', granted);
+              },
+            );
+          }
+          chrome.alarms.create('updateCheckNow', {
+            when: Date.now() + 1000,
           });
-        }else{
+        } else {
           this.minimal.find('.updateCheckEnable').hide();
-          chrome.alarms.clear("updateCheck");
+          chrome.alarms.clear('updateCheck');
         }
       });
       this.minimal.find('#updateCheck').show();
     }
     this.minimal.find('#updateCheckUi').click(() => {
-      this.minimalVue.$children[0].selectTab('updateCheck')
-    })
+      this.minimalVue.$children[0].selectTab('updateCheck');
+    });
 
     this.minimal.find('#listSyncUi').click(() => {
-      this.minimalVue.$children[0].selectTab('listSync')
-    })
+      this.minimalVue.$children[0].selectTab('listSync');
+    });
 
     this.minimal.find('#cleanTagsUi').click(() => {
-      this.minimalVue.$children[0].selectTab('cleanTags')
-    })
+      this.minimalVue.$children[0].selectTab('cleanTags');
+    });
 
     this.minimal.find('#allSitesUi').click(() => {
-      this.minimalVue.$children[0].selectTab('allSites')
-    })
+      this.minimalVue.$children[0].selectTab('allSites');
+    });
 
-    try{
-      if(api.type == 'webextension'){
-        chrome.permissions.contains({
-          permissions: ['cookies']
-        }, (result) => {
-          if(result){
-            if (!this.minimal.find('#strictCookies')[0].checked) {
-              this.minimal.find('#strictCookies').trigger('click');
+    try {
+      if (api.type == 'webextension') {
+        chrome.permissions.contains(
+          {
+            permissions: ['cookies'],
+          },
+          result => {
+            if (result) {
+              if (!this.minimal.find('#strictCookies')[0].checked) {
+                this.minimal.find('#strictCookies').trigger('click');
+              }
             }
-          }
-          this.minimal.find('#strictCookies').change(() => {
-            if (this.minimal.find('#strictCookies')[0].checked) {
-              con.log('strictCookies checked');
-              chrome.permissions.request({
-                permissions: ["cookies"],
-                origins: [],
-              }, function(granted) {
-                con.log('optional_permissions', granted);
-              });
-            }else{
-              con.log('strictCookies not checked');
-              chrome.permissions.remove({
-                permissions: ["cookies"],
-                origins: [],
-              }, function(remove) {
-                con.log('optional_permissions_remove', remove);
-              });
-            }
-          })
-        });
+            this.minimal.find('#strictCookies').change(() => {
+              if (this.minimal.find('#strictCookies')[0].checked) {
+                con.log('strictCookies checked');
+                chrome.permissions.request(
+                  {
+                    permissions: ['cookies'],
+                    origins: [],
+                  },
+                  function(granted) {
+                    con.log('optional_permissions', granted);
+                  },
+                );
+              } else {
+                con.log('strictCookies not checked');
+                chrome.permissions.remove(
+                  {
+                    permissions: ['cookies'],
+                    origins: [],
+                  },
+                  function(remove) {
+                    con.log('optional_permissions_remove', remove);
+                  },
+                );
+              }
+            });
+          },
+        );
       }
-    }catch(e){
+    } catch (e) {
       con.error(e);
     }
 
-    api.storage.get('tempVersion')
-      .then((version) => {
-        var versionMsg = '';
+    api.storage.get('tempVersion').then(version => {
+      let versionMsg = '';
 
-        if(version != api.storage.version()){
-          versionMsg = api.storage.lang("minimalClass_versionMsg",[api.storage.version(), '[<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#'+api.storage.version()+'">']);
-        }
-        con.log(version);
-        if(typeof version == 'undefined' && api.type !== 'webextension'){
-          versionMsg = `
+      if (version != api.storage.version()) {
+        versionMsg = api.storage.lang('minimalClass_versionMsg', [
+          api.storage.version(),
+          `[<a class="close" target="_blank" href="https://malsync.lolamtisch.de/changelog#${api.storage.version()}">`,
+        ]);
+      }
+      con.log(version);
+      if (typeof version === 'undefined' && api.type !== 'webextension') {
+        versionMsg = `
             <div style="
               text-align: left;
               margin-left: auto;
@@ -343,16 +382,18 @@ export class minimal{
               background-color: #3d4e9a;
               margin-top: -5px;
             ">
-              <span style="text-decoration: underline; font-size: 15px;">`+api.storage.lang("minimalClass_versionMsg_Text_1")+`</span><br>
+              <span style="text-decoration: underline; font-size: 15px;">${api.storage.lang(
+                'minimalClass_versionMsg_Text_1',
+              )}</span><br>
               <br>
-              ${api.storage.lang("minimalClass_versionMsg_Text_4")}<br>
+              ${api.storage.lang('minimalClass_versionMsg_Text_4')}<br>
               <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
                 <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square">
               </a><br>
               <br>
 
 
-              `+api.storage.lang("minimalClass_versionMsg_Text_2")+`<br>
+              ${api.storage.lang('minimalClass_versionMsg_Text_2')}<br>
               <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
                 <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
               </a><br>
@@ -360,66 +401,92 @@ export class minimal{
                 <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
               </a><br>
               <br>
-              `+api.storage.lang("minimalClass_versionMsg_Text_3")+`<br>
+              ${api.storage.lang('minimalClass_versionMsg_Text_3')}<br>
               <a target="_blank" href="https://github.com/lolamtisch/MALSync">
                 <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
               </a>
             </div>
           `;
-        }
-        if(versionMsg != ''){
-          this.flashm(versionMsg, function(){
-            api.storage.set('tempVersion', api.storage.version());
-          });
-        }
-      });
-
-
+      }
+      if (versionMsg != '') {
+        this.flashm(versionMsg, function() {
+          api.storage.set('tempVersion', api.storage.version());
+        });
+      }
+    });
   }
 
-  searchMal(keyword, type = 'all', selector, callback){
-    var This = this;
+  searchMal(keyword, type = 'all', selector, callback) {
+    const This = this;
 
     this.minimal.find(selector).html('');
-    api.request.xhr('GET', 'https://myanimelist.net/search/prefix.json?type='+type+'&keyword='+keyword+'&v=1').then((response) => {
-      var searchResults = j.$.parseJSON(response.responseText);
-      this.minimal.find(selector).append('<div class="mdl-grid">\
+    api.request
+      .xhr(
+        'GET',
+        `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`,
+      )
+      .then(response => {
+        const searchResults = j.$.parseJSON(response.responseText);
+        this.minimal
+          .find(selector)
+          .append(
+            '<div class="mdl-grid">\
           <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
             <option value="anime">Anime</option>\
             <option value="manga">Manga</option>\
           </select>\
-        </div>');
-      this.minimal.find('#searchListType').val(type);
-      this.minimal.find('#searchListType').change(function(event) {
-        This.searchMal(keyword, This.minimal.find('#searchListType').val(), selector, callback);
-      });
+        </div>',
+          );
+        this.minimal.find('#searchListType').val(type);
+        this.minimal.find('#searchListType').change(function(event) {
+          This.searchMal(
+            keyword,
+            This.minimal.find('#searchListType').val(),
+            selector,
+            callback,
+          );
+        });
 
-      j.$.each(searchResults, (i, value) => {
-        j.$.each(value, (i, value) => {
+        j.$.each(searchResults, (i, value) => {
           j.$.each(value, (i, value) => {
-            if(typeof value !== 'object') return;
             j.$.each(value, (i, value) => {
-              if(typeof value['name'] != 'undefined'){
-                This.minimal.find(selector+' > div').append('<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="'+value['url']+'" style="cursor: pointer;">\
-                  <img src="'+value['image_url']+'" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
+              if (typeof value !== 'object') return;
+              j.$.each(value, (i, value) => {
+                if (typeof value['name'] !== 'undefined') {
+                  This.minimal.find(`${selector} > div`).append(
+                    `<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="${
+                      value['url']
+                    }" style="cursor: pointer;">\
+                  <img src="${
+                    value['image_url']
+                  }" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
-                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">'+value['name']+'</span>\
-                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">'+api.storage.lang("search_Type")+' '+value['payload']['media_type']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Score")+' '+value['payload']['score']+'</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">'+api.storage.lang("search_Year")+' '+value['payload']['start_year']+'</p>\
+                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">${
+                      value['name']
+                    }</span>\
+                    <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">${api.storage.lang(
+                      'search_Type',
+                    )} ${value['payload']['media_type']}</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
+                      'search_Score',
+                    )} ${value['payload']['score']}</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
+                      'search_Year',
+                    )} ${value['payload']['start_year']}</p>\
                   </div>\
-                  </a>');
-              }
+                  </a>`,
+                  );
+                }
+              });
             });
           });
         });
+        callback();
       });
-      callback();
-    });
   }
 
-  flashm(text, closefn = function(){}){
-    var mess =`
+  flashm(text, closefn = function() {}) {
+    const mess = `
       <div style="
         background-color: #3f51b5;
         text-align: center;
@@ -438,14 +505,13 @@ export class minimal{
       </div>
     `;
 
-    var flashmDiv = j.$(mess).appendTo(this.minimal.find('.mdl-layout'));
-    flashmDiv.find('.close').click(function(){
-      flashmDiv.slideUp(100, function(){
+    const flashmDiv = j.$(mess).appendTo(this.minimal.find('.mdl-layout'));
+    flashmDiv.find('.close').click(function() {
+      flashmDiv.slideUp(100, function() {
         flashmDiv.remove();
         closefn();
       });
     });
     return flashmDiv;
   }
-
 }

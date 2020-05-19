@@ -3,13 +3,13 @@ import { Single } from './../../../../src/_provider/Kitsu/single';
 import * as utils from './../../../../src/utils/general';
 import * as def from './../../../../src/_provider/definitions';
 
-import {generalSingleTests} from './../generalSingleTests.exclude';
+import { generalSingleTests } from './../generalSingleTests.exclude';
 
 import * as request from 'request';
 
-var state = {};
+const state = {};
 
-setGlobals()
+setGlobals();
 function setGlobals() {
   global.con = require('./../../../../src/utils/console');
   global.con.log = function() {};
@@ -20,9 +20,9 @@ function setGlobals() {
     token: process.env.KITSU_API_KEY,
     settings: {
       get: function(key) {
-        if('kitsuToken') return global.api.token;
+        if ('kitsuToken') return global.api.token;
         throw 'key not defined';
-      }
+      },
     },
     storage: {
       get: function(key) {
@@ -37,40 +37,39 @@ function setGlobals() {
     request: {
       xhr: async function(post, conf, data) {
         return new Promise(function(resolve, reject) {
-          var options = {
+          const options = {
             url: conf.url,
             headers: conf.headers,
-            body: conf.data
-          }
-          if(post.toLowerCase() === 'get') {
+            body: conf.data,
+          };
+          if (post.toLowerCase() === 'get') {
             request.get(options, (error, response, body) => {
               resolve({
                 responseText: body,
-                status: global.api.status
-              })
+                status: global.api.status,
+              });
             });
-          }else if(post.toLowerCase() === 'post'){
+          } else if (post.toLowerCase() === 'post') {
             request.post(options, (error, response, body) => {
               resolve({
                 responseText: body,
-                status: global.api.status
-              })
+                status: global.api.status,
+              });
             });
-          }else if(post.toLowerCase() === 'patch') {
+          } else if (post.toLowerCase() === 'patch') {
             request.patch(options, (error, response, body) => {
               resolve({
                 responseText: body,
-                status: global.api.status
-              })
+                status: global.api.status,
+              });
             });
           }
-
         });
-      }
+      },
     },
-  }
+  };
 
-  global.btoa = (input) => input;
+  global.btoa = input => input;
 
   global.utils = utils;
 
@@ -100,7 +99,7 @@ function setGlobals() {
         url: 'https://simkl.com/anime/46128/no-game-no-life',
         error: true,
         type: 'anime',
-      }
+      },
     ],
     apiTest: {
       defaultUrl: {
@@ -110,7 +109,8 @@ function setGlobals() {
         title: 'One Piece',
         eps: 0,
         vol: 0,
-        image: 'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
+        image:
+          'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
         rating: '82.88%',
         cacheKey: '21',
       },
@@ -118,13 +118,14 @@ function setGlobals() {
         url: 'https://kitsu.io/anime/shiki-specials',
         displayUrl: 'https://kitsu.io/anime/shiki-specials',
         malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
-        title: "Shiki Specials",
+        title: 'Shiki Specials',
         eps: 2,
         vol: 0,
       },
       noMalEntry: {
         url: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
-        displayUrl: 'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
+        displayUrl:
+          'https://kitsu.io/manga/ultimate-legend-kang-hae-hyo-manhwa',
         title: 'Ultimate Legend: Kang Hae Hyo Manhwa',
         eps: 0,
         vol: 0,
@@ -144,13 +145,13 @@ function setGlobals() {
       hasTotalEp: {
         url: 'https://kitsu.io/anime/koe-no-katachi',
       },
-    }
-  }
+    },
+  };
 }
 
-describe('Kitsu single', function () {
-  before(function () {
+describe('Kitsu single', function() {
+  before(function() {
     setGlobals();
-  })
+  });
   generalSingleTests(Single, setGlobals);
 });

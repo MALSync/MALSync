@@ -1,126 +1,127 @@
-import {Cache} from "./Cache";
+import { Cache } from './Cache';
 
-declare var browser: any;
+declare let browser: any;
 
-export function urlPart(url:string, part:number){
-  if(!url) return "";
+export function urlPart(url: string, part: number) {
+  if (!url) return '';
 
-  let urlParts = url.split("/");
+  const urlParts = url.split('/');
 
-  if(!urlParts[part]) return "";
+  if (!urlParts[part]) return '';
 
-  return urlParts[part].replace(/[#?].*/, "");
+  return urlParts[part].replace(/[#?].*/, '');
 }
 
-export function urlParam(url, name){
-  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(url);
-  if (results==null){
-   return null;
-  }
-  else{
+export function urlParam(url, name) {
+  const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(url);
+  if (results == null) {
+    return null;
+  } else {
     return decodeURI(results[1]) || 0;
   }
 }
 
-export function getBaseText(element){
-  var text = element.text();
-  element.children().each(function(){
+export function getBaseText(element) {
+  let text = element.text();
+  element.children().each(function() {
     //@ts-ignore
-    text = text.replace(j.$(this).text(),'');
-  })
+    text = text.replace(j.$(this).text(), '');
+  });
   return text;
 }
 
-export function favicon(domain){
-  if(domain.indexOf('animeheaven') !== -1) return 'http://animeheaven.eu/favicon.ico';
-  return 'https://www.google.com/s2/favicons?domain='+domain;
+export function favicon(domain) {
+  if (domain.indexOf('animeheaven') !== -1)
+    return 'http://animeheaven.eu/favicon.ico';
+  return `https://www.google.com/s2/favicons?domain=${domain}`;
 }
 
-export function watching(type: "anime"|"manga"){
-  if(type === "manga") return 'Reading';
+export function watching(type: 'anime' | 'manga') {
+  if (type === 'manga') return 'Reading';
   return 'Watching';
 }
 
-export function planTo(type: "anime"|"manga"){
-  if(type === "manga") return 'Plan to Read';
+export function planTo(type: 'anime' | 'manga') {
+  if (type === 'manga') return 'Plan to Read';
   return 'Plan to Watch';
 }
 
-export function episode(type: "anime"|"manga"){
-  if(type === "manga") return api.storage.lang("UI_Chapter");
-  return api.storage.lang("UI_Episode");
+export function episode(type: 'anime' | 'manga') {
+  if (type === 'manga') return api.storage.lang('UI_Chapter');
+  return api.storage.lang('UI_Episode');
 }
 
-export var syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/
+export var syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/;
 
 export enum status {
   watching = 1,
   completed = 2,
   onhold = 3,
   dropped = 4,
-  planToWatch = 6
+  planToWatch = 6,
 }
 
-export function getselect(data, name){
-    var temp = data.split('name="'+name+'"')[1].split('</select>')[0];
-    if(temp.indexOf('selected="selected"') > -1){
-        temp = temp.split('<option');
-        for (var i = 0; i < temp.length; ++i) {
-            if(temp[i].indexOf('selected="selected"') > -1){
-                return temp[i].split('value="')[1].split('"')[0];
-            }
-        }
-    }else{
-        return '';
+export function getselect(data, name) {
+  let temp = data.split(`name="${name}"`)[1].split('</select>')[0];
+  if (temp.indexOf('selected="selected"') > -1) {
+    temp = temp.split('<option');
+    for (let i = 0; i < temp.length; ++i) {
+      if (temp[i].indexOf('selected="selected"') > -1) {
+        return temp[i].split('value="')[1].split('"')[0];
+      }
     }
+  } else {
+    return '';
+  }
 }
 
 export function absoluteLink(url, domain) {
-  if (typeof url === "undefined") {
+  if (typeof url === 'undefined') {
     return url;
   }
-  if(!url.startsWith("http")) {
-    if(url.charAt(0) !== '/') url = '/' + url;
+  if (!url.startsWith('http')) {
+    if (url.charAt(0) !== '/') url = `/${url}`;
     url = domain + url;
   }
   return url;
-};
+}
 
 export function parseHtml(text) {
-  var parser = new DOMParser();
-  var dom = parser.parseFromString(
-      '<!doctype html><body>' + text,
-      'text/html');
+  const parser = new DOMParser();
+  const dom = parser.parseFromString(
+    `<!doctype html><body>${text}`,
+    'text/html',
+  );
   return dom.body.textContent;
 }
 
-export function urlChangeDetect(callback){
-  var currentPage = window.location.href;
-  return setInterval(function(){
-      if (currentPage != window.location.href){
-          currentPage = window.location.href;
-          callback();
-      }
+export function urlChangeDetect(callback) {
+  let currentPage = window.location.href;
+  return setInterval(function() {
+    if (currentPage != window.location.href) {
+      currentPage = window.location.href;
+      callback();
+    }
   }, 100);
 }
 
-export function fullUrlChangeDetect(callback){
-  var currentPage = "";
-  const intervalId = setInterval(function(){
-      if (currentPage != window.location.href){
-          currentPage = window.location.href;
-          callback();
-      }
+export function fullUrlChangeDetect(callback) {
+  let currentPage = '';
+  const intervalId = setInterval(function() {
+    if (currentPage != window.location.href) {
+      currentPage = window.location.href;
+      callback();
+    }
   }, 100);
 
   return Number(intervalId);
 }
 
-export function changeDetect(callback, func){
-  var currentPage = func();
-  const intervalId = setInterval(function(){
-    var temp = func();
-    if (typeof temp !== 'undefined' && currentPage != temp){
+export function changeDetect(callback, func) {
+  let currentPage = func();
+  const intervalId = setInterval(function() {
+    const temp = func();
+    if (typeof temp !== 'undefined' && currentPage != temp) {
       currentPage = func();
       callback();
     }
@@ -129,257 +130,282 @@ export function changeDetect(callback, func){
   return Number(intervalId);
 }
 
-export function waitUntilTrue(condition: Function, callback: Function, interval: number = 100){
-  let intervalId = setInterval(function(){
-      if (condition()){
-          clearInterval(intervalId);
-          callback();
-      }
+export function waitUntilTrue(
+  condition: Function,
+  callback: Function,
+  interval = 100,
+) {
+  const intervalId = setInterval(function() {
+    if (condition()) {
+      clearInterval(intervalId);
+      callback();
+    }
   }, interval);
 
   return intervalId;
 }
 
-var doubleId = Math.random();
-export function checkDoubleExecution(){
-  if($('.mal-sync-double-detect').length){
-    $('.mal-sync-double-detect').each(function( index ) {
-      if($(this).text() !== doubleId.toString()){
+const doubleId = Math.random();
+export function checkDoubleExecution() {
+  if ($('.mal-sync-double-detect').length) {
+    $('.mal-sync-double-detect').each(function(index) {
+      if ($(this).text() !== doubleId.toString()) {
         alert('Double execution detected! Please run MAL-Sync once only.');
       }
     });
   }
-  $('body').after('<div class="mal-sync-double-detect" style="display: none;">'+doubleId.toString()+'</div>')
+  $('body').after(
+    `<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`,
+  );
 }
 
-export function getUrlFromTags(tags:string){
-  if(!api.settings.get('malTags')) return undefined;
-  if(/malSync::[\d\D]+::/.test(tags)){
-    return atobURL( tags.split("malSync::")[1].split("::")[0] );
+export function getUrlFromTags(tags: string) {
+  if (!api.settings.get('malTags')) return undefined;
+  if (/malSync::[\d\D]+::/.test(tags)) {
+    return atobURL(tags.split('malSync::')[1].split('::')[0]);
   }
-  if(/last::[\d\D]+::/.test(tags)){
-    return atobURL( tags.split("last::")[1].split("::")[0] );
+  if (/last::[\d\D]+::/.test(tags)) {
+    return atobURL(tags.split('last::')[1].split('::')[0]);
   }
   return undefined;
 
-  function atobURL( encoded ){
-    try{
-      return atob( encoded );
-    }catch(e){
+  function atobURL(encoded) {
+    try {
+      return atob(encoded);
+    } catch (e) {
       return encoded;
     }
   }
 }
 
-export function setUrlInTags(url: string, tags: string){
-  if(url === ''){
+export function setUrlInTags(url: string, tags: string) {
+  if (url === '') {
     tags = tags.replace(/,?(malSync|last)::[^ \n]+?::/, '');
     return tags;
   }
-  if(!api.settings.get('malTags')) return tags;
-  var addition = "malSync::"+ btoa(url) +"::";
-  if(/(last|malSync)::[\d\D]+::/.test(tags)){
-      tags = tags.replace(/(last|malSync)::[^\^]*?::/, addition);
-  }else{
-      tags = tags+','+addition;
+  if (!api.settings.get('malTags')) return tags;
+  const addition = `malSync::${btoa(url)}::`;
+  if (/(last|malSync)::[\d\D]+::/.test(tags)) {
+    tags = tags.replace(/(last|malSync)::[^\^]*?::/, addition);
+  } else {
+    tags = `${tags},${addition}`;
   }
   return tags;
 }
 
-export async function setResumeWaching(url:string, ep:number, type, id){
-  return api.storage.set('resume/'+type+'/'+id, {url: url, ep: ep});
+export async function setResumeWaching(url: string, ep: number, type, id) {
+  return api.storage.set(`resume/${type}/${id}`, { url: url, ep: ep });
 }
 
-export async function getResumeWaching(type, id):Promise<{url?:string, ep?:number} | void>{
-  if(!api.settings.get('malResume')) return;
+export async function getResumeWaching(
+  type,
+  id,
+): Promise<{ url?: string; ep?: number } | void> {
+  if (!api.settings.get('malResume')) return;
 
-  return api.storage.get('resume/'+type+'/'+id);
+  return api.storage.get(`resume/${type}/${id}`);
 }
 
-export async function setContinueWaching(url:string, ep:number, type, id){
-  return api.storage.set('continue/'+type+'/'+id, {url: url, ep: ep});
+export async function setContinueWaching(url: string, ep: number, type, id) {
+  return api.storage.set(`continue/${type}/${id}`, { url: url, ep: ep });
 }
 
-export async function getContinueWaching(type, id):Promise<{url?:string, ep?:number} | void>{
-  if(!api.settings.get('malContinue')) return;
+export async function getContinueWaching(
+  type,
+  id,
+): Promise<{ url?: string; ep?: number } | void> {
+  if (!api.settings.get('malContinue')) return;
 
-  return api.storage.get('continue/'+type+'/'+id);
+  return api.storage.get(`continue/${type}/${id}`);
 }
 
-export async function setEntrySettings(type, id, options, tags="") {
-  var tempOptions = {};
-  if(options) {
-    for(var key in options){
-      switch(key) {
+export async function setEntrySettings(type, id, options, tags = '') {
+  const tempOptions = {};
+  if (options) {
+    for (const key in options) {
+      switch (key) {
         case 'u':
           tempOptions[key] = options[key];
           break;
       }
     }
 
-    if(api.settings.get('malTags')) {
+    if (api.settings.get('malTags')) {
       //TAG mode
       tags = setUrlInTags(JSON.stringify(tempOptions), tags);
-    }else{
+    } else {
       //No TAG mode
-      await api.storage.set('tagSettings/'+type+'/'+id, JSON.stringify(tempOptions));
+      await api.storage.set(
+        `tagSettings/${type}/${id}`,
+        JSON.stringify(tempOptions),
+      );
     }
-
   }
   return tags;
 }
 
-export async function getEntrySettings(type, id, tags="") {
-  var tempOptions: any = {
+export async function getEntrySettings(type, id, tags = '') {
+  const tempOptions: any = {
     u: null, //url
     c: null, //Continue Url
     r: null, //Resume Url
   };
 
-  if(api.settings.get('malTags')) {
+  if (api.settings.get('malTags')) {
     //TAG mode
     var tagString = getUrlFromTags(tags);
-    if(tagString){
-      if(tagString[0] === '{'){
-        try{
+    if (tagString) {
+      if (tagString[0] === '{') {
+        try {
           var temp = JSON.parse(tagString);
-          for(var key in tempOptions){
-            if(temp[key]) tempOptions[key] = temp[key];
+          for (var key in tempOptions) {
+            if (temp[key]) tempOptions[key] = temp[key];
           }
-        }catch(e){
+        } catch (e) {
           con.error(e);
         }
-      }else{
+      } else {
         tempOptions['u'] = tagString;
       }
     }
-  }else{
+  } else {
     //No TAG mode
-    var temp: any = await api.storage.get('tagSettings/'+type+'/'+id);
+    var temp: any = await api.storage.get(`tagSettings/${type}/${id}`);
 
-    if(temp) {
+    if (temp) {
       temp = JSON.parse(tagString);
 
-      for(var key in tempOptions){
-        if(temp[key]) tempOptions[key] = temp[key];
+      for (var key in tempOptions) {
+        if (temp[key]) tempOptions[key] = temp[key];
       }
     }
   }
 
-  var continueUrlObj = await getContinueWaching(type, id);
-  if(continueUrlObj) tempOptions.c = continueUrlObj;
-  var resumeUrlObj = await getResumeWaching(type, id);
-  if(resumeUrlObj) tempOptions.r = resumeUrlObj;
+  const continueUrlObj = await getContinueWaching(type, id);
+  if (continueUrlObj) tempOptions.c = continueUrlObj;
+  const resumeUrlObj = await getResumeWaching(type, id);
+  if (resumeUrlObj) tempOptions.r = resumeUrlObj;
 
   return tempOptions;
 }
 
-export function handleMalImages(url){
-  if(url.indexOf('questionmark') !== -1) return api.storage.assetUrl('questionmark.gif');
+export function handleMalImages(url) {
+  if (url.indexOf('questionmark') !== -1)
+    return api.storage.assetUrl('questionmark.gif');
   return url;
 }
 
-export async function getMalToKissArray(type, id){
-  if(!id) return {};
-  return getMalToKissApi(type, id)
-    .catch((e) => {
-      con.error(e);
-      return getMalToKissFirebase(type, id)
-    });
+export async function getMalToKissArray(type, id) {
+  if (!id) return {};
+  return getMalToKissApi(type, id).catch(e => {
+    con.error(e);
+    return getMalToKissFirebase(type, id);
+  });
 }
 
 export async function getPageSearch() {
-  let cacheObj = new Cache('pageSearch', (12 * 60 * 60 * 1000));
-  if(!await cacheObj.hasValueAndIsNotEmpty()){
-    con.log("Getting new PageSearch Cache")
-      var url = 'https://api.malsync.moe/general/pagesearch';
-      let request = await api.request.xhr('GET', url).then(async (response) => {
-        if(response.status === 200 && response.responseText) {
-          return JSON.parse(response.responseText);
-        }else {
-          return {};
-        }
-      });
-      await cacheObj.setValue(request);
-      return request;
-    } else {
-      con.log("PageSearch Cached")
-      return cacheObj.getValue();
-    }
+  const cacheObj = new Cache('pageSearch', 12 * 60 * 60 * 1000);
+  if (!(await cacheObj.hasValueAndIsNotEmpty())) {
+    con.log('Getting new PageSearch Cache');
+    const url = 'https://api.malsync.moe/general/pagesearch';
+    const request = await api.request.xhr('GET', url).then(async response => {
+      if (response.status === 200 && response.responseText) {
+        return JSON.parse(response.responseText);
+      } else {
+        return {};
+      }
+    });
+    await cacheObj.setValue(request);
+    return request;
+  } else {
+    con.log('PageSearch Cached');
+    return cacheObj.getValue();
+  }
 }
 
-export async function getMalToKissApi(type, id){
-  var url = 'https://api.malsync.moe/mal/'+type+'/'+id;
-  return api.request.xhr('GET', url).then(async (response) => {
-    con.log("malSync response", response);
-    if(response.status === 400) {
+export async function getMalToKissApi(type, id) {
+  const url = `https://api.malsync.moe/mal/${type}/${id}`;
+  return api.request.xhr('GET', url).then(async response => {
+    con.log('malSync response', response);
+    if (response.status === 400) {
       return {};
-    }else if(response.status === 200) {
-      var data = JSON.parse(response.responseText);
-      for(var pageKey in data.Sites){
-        if(!api.settings.get(pageKey)){
-          con.log(pageKey+' is deactivated');
+    } else if (response.status === 200) {
+      const data = JSON.parse(response.responseText);
+      for (const pageKey in data.Sites) {
+        if (!api.settings.get(pageKey)) {
+          con.log(`${pageKey} is deactivated`);
           delete data.Sites[pageKey];
           continue;
         }
       }
-      if(data && data.Sites) return data.Sites;
+      if (data && data.Sites) return data.Sites;
       return {};
-    }else{
+    } else {
       throw new Error('malsync offline');
     }
   });
 }
 
-export async function getMalToKissFirebase(type, id){
+export async function getMalToKissFirebase(type, id) {
   return new Promise((resolve, reject) => {
-    var url = 'https://kissanimelist.firebaseio.com/Data2/Mal'+type+'/'+id+'/Sites.json';
-    api.request.xhr('GET', url).then(async (response) => {
-      var json = j.$.parseJSON(response.responseText);
+    const url = `https://kissanimelist.firebaseio.com/Data2/Mal${type}/${id}/Sites.json`;
+    api.request.xhr('GET', url).then(async response => {
+      const json = j.$.parseJSON(response.responseText);
 
-      for(var pageKey in json){
-        var page = json[pageKey];
+      for (const pageKey in json) {
+        const page = json[pageKey];
 
-        if(!api.settings.get(pageKey)){
-          con.log(pageKey+' is deactivated');
+        if (!api.settings.get(pageKey)) {
+          con.log(`${pageKey} is deactivated`);
           delete json[pageKey];
           continue;
         }
 
-        for(var streamKey in page){
-          var stream = page[streamKey];
+        for (const streamKey in page) {
+          const stream = page[streamKey];
 
-          var streamUrl = 'https://kissanimelist.firebaseio.com/Data2/'+stream+'/'+encodeURIComponent(streamKey)+'.json';
+          const streamUrl = `https://kissanimelist.firebaseio.com/Data2/${stream}/${encodeURIComponent(
+            streamKey,
+          )}.json`;
 
-          var cache = await api.storage.get('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey));
+          const cache = await api.storage.get(
+            `MalToKiss/${stream}/${encodeURIComponent(streamKey)}`,
+          );
           var streamJson;
 
-          if(typeof(cache) !== "undefined" && cache !== null && cache.constructor === Object && Object.keys(cache).length !== 0){
+          if (
+            typeof cache !== 'undefined' &&
+            cache !== null &&
+            cache.constructor === Object &&
+            Object.keys(cache).length !== 0
+          ) {
             streamJson = cache;
-          }else{
-            var streamRespose = await api.request.xhr('GET', streamUrl);
+          } else {
+            const streamRespose = await api.request.xhr('GET', streamUrl);
 
-            if(streamRespose)
+            if (streamRespose)
               streamJson = j.$.parseJSON(streamRespose.responseText);
 
-            api.storage.set('MalToKiss/'+stream+'/'+encodeURIComponent(streamKey), streamJson);
+            api.storage.set(
+              `MalToKiss/${stream}/${encodeURIComponent(streamKey)}`,
+              streamJson,
+            );
           }
-          if(!streamJson){
-            con.error('[K2M] '+pageKey+'/'+streamKey+' not found');
+          if (!streamJson) {
+            con.error(`[K2M] ${pageKey}/${streamKey} not found`);
             delete json[pageKey][streamKey];
             continue;
           }
-          if(!(id in streamJson['Mal'])){
+          if (!(id in streamJson['Mal'])) {
             con.error('[K2M] Wrong mal id', streamJson);
             delete json[pageKey][streamKey];
             continue;
           }
-          if(pageKey === 'Crunchyroll'){
-            streamJson['url'] = streamJson['url'] + '?season=' + streamKey;
+          if (pageKey === 'Crunchyroll') {
+            streamJson['url'] = `${streamJson['url']}?season=${streamKey}`;
           }
 
           json[pageKey][streamKey] = streamJson;
-
         }
       }
 
@@ -389,24 +415,32 @@ export async function getMalToKissFirebase(type, id){
   });
 }
 
-export function getTooltip(text, style = '', direction = 'top'){
-  var rNumber = Math.floor((Math.random() * 1000) + 1);
-  return '<div id="tt'+rNumber+'" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; '+style+'">contact_support</div>\
-  <div class="mdl-tooltip mdl-tooltip--'+direction+' mdl-tooltip--large" for="tt'+rNumber+'">'+text+'</div>';
+export function getTooltip(text, style = '', direction = 'top') {
+  const rNumber = Math.floor(Math.random() * 1000 + 1);
+  return `<div id="tt${rNumber}" class="icon material-icons" style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px; ${style}">contact_support</div>\
+  <div class="mdl-tooltip mdl-tooltip--${direction} mdl-tooltip--large" for="tt${rNumber}">${text}</div>`;
 }
 
-export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
-
-  utils.epPrediction(malid, async function(pre){
-    if(!pre) callback(false);
-    var updateCheckTime = await api.storage.get("updateCheckTime");
-    var aniCache = await api.storage.get('mal/'+malid+'/aniSch');
-    var elCache:any;
-    if(typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0'){
-      elCache = await api.storage.get('updateCheck/'+type+'/'+cacheKey);
+export async function epPredictionUI(
+  malid,
+  cacheKey,
+  type = 'anime',
+  callback,
+) {
+  utils.epPrediction(malid, async function(pre) {
+    if (!pre) callback(false);
+    const updateCheckTime = await api.storage.get('updateCheckTime');
+    const aniCache = await api.storage.get(`mal/${malid}/aniSch`);
+    let elCache: any;
+    if (
+      typeof updateCheckTime !== 'undefined' &&
+      updateCheckTime &&
+      updateCheckTime !== '0'
+    ) {
+      elCache = await api.storage.get(`updateCheck/${type}/${cacheKey}`);
     }
-    if(pre === false && typeof elCache == 'undefined') return;
-    var UI = {
+    if (pre === false && typeof elCache === 'undefined') return;
+    const UI = {
       tag: '',
       text: '',
       color: '',
@@ -414,17 +448,17 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
       tagEpisode: false,
       prediction: pre,
       aniCache: aniCache,
-      elCache: elCache
+      elCache: elCache,
     };
     //
-    var airing = pre.airing;
-    var episode = pre.episode;
+    let airing = pre.airing;
+    let episode = pre.episode;
 
-    if(typeof aniCache === "object"){
-      var timestamp = aniCache.nextEpTime * 1000;
-      if(Date.now() < timestamp){
+    if (typeof aniCache === 'object') {
+      const timestamp = aniCache.nextEpTime * 1000;
+      if (Date.now() < timestamp) {
         episode = aniCache.currentEp;
-        var delta = (timestamp - Date.now()) / 1000;
+        let delta = (timestamp - Date.now()) / 1000;
         pre.diffDays = Math.floor(delta / 86400);
         delta -= pre.diffDays * 86400;
 
@@ -433,39 +467,52 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
 
         pre.diffMinutes = Math.floor(delta / 60) % 60;
         delta -= pre.diffMinutes * 60;
-      }else{
-        if(Date.now() - timestamp < 1000 * 60 * 60 * 24){
+      } else {
+        if (Date.now() - timestamp < 1000 * 60 * 60 * 24) {
           episode = aniCache.currentEp + 1;
         }
       }
     }
 
-    if(typeof elCache != 'undefined' && typeof elCache.error == 'undefined'){
-      if(!elCache.finished){
+    if (
+      typeof elCache !== 'undefined' &&
+      typeof elCache.error === 'undefined'
+    ) {
+      if (!elCache.finished) {
         airing = true;
       }
-      if(elCache.newestEp && elCache.newestEp !== '' && typeof elCache.newestEp !== 'undefined'){
+      if (
+        elCache.newestEp &&
+        elCache.newestEp !== '' &&
+        typeof elCache.newestEp !== 'undefined'
+      ) {
         episode = elCache.newestEp;
         UI.color = 'red';
       }
     }
-    if(UI.color !== ''){
+    if (UI.color !== '') {
       //UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
-      UI.colorStyle = 'background-color: #00ff0057;'
+      UI.colorStyle = 'background-color: #00ff0057;';
     }
     //
-    if(airing){
-      if(pre.airing){
-        UI.text = api.storage.lang("prediction_Episode", [pre.diffDays+'d '+pre.diffHours+'h '+pre.diffMinutes+'m']);
+    if (airing) {
+      if (pre.airing) {
+        UI.text = api.storage.lang('prediction_Episode', [
+          `${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`,
+        ]);
       }
-      if(episode){
-        UI.tag = '<span class="mal-sync-ep-pre" title="'+UI.text+'">[<span style="'+UI.colorStyle+';">'+episode+'</span>]</span>';
+      if (episode) {
+        UI.tag = `<span class="mal-sync-ep-pre" title="${UI.text}">[<span style="${UI.colorStyle};">${episode}</span>]</span>`;
         UI.tagEpisode = episode;
       }
-    }else{
-      if(pre){
+    } else {
+      if (pre) {
         UI.text = '<span class="mal-sync-ep-pre">';
-        UI.text += api.storage.lang("prediction_Airing", [((pre.diffWeeks*7)+pre.diffDays)+'d '+pre.diffHours+'h '+pre.diffMinutes+'m ']);
+        UI.text += api.storage.lang('prediction_Airing', [
+          `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${
+            pre.diffMinutes
+          }m `,
+        ]);
         UI.text += '</span>';
       }
     }
@@ -473,94 +520,97 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback){
   });
 }
 
-export function timeDiffToText(delta){
-  var text = '';
+export function timeDiffToText(delta) {
+  let text = '';
 
   delta = delta / 1000;
 
-  var diffYears = Math.floor(delta / 31536000);
+  const diffYears = Math.floor(delta / 31536000);
   delta -= diffYears * 31536000;
-  if(diffYears){
-    text += diffYears+'y ';
+  if (diffYears) {
+    text += `${diffYears}y `;
   }
 
-  var diffDays = Math.floor(delta / 86400);
+  const diffDays = Math.floor(delta / 86400);
   delta -= diffDays * 86400;
-  if(diffDays){
-    text += diffDays+'d ';
+  if (diffDays) {
+    text += `${diffDays}d `;
   }
 
-  var diffHours = Math.floor(delta / 3600) % 24;
+  const diffHours = Math.floor(delta / 3600) % 24;
   delta -= diffHours * 3600;
-  if(diffHours && diffDays < 2){
-    text += diffHours+'h ';
+  if (diffHours && diffDays < 2) {
+    text += `${diffHours}h `;
   }
 
-  var diffMinutes = Math.floor(delta / 60) % 60;
+  const diffMinutes = Math.floor(delta / 60) % 60;
   delta -= diffMinutes * 60;
-  if(diffMinutes && !diffDays && diffHours < 3){
-    text += diffMinutes+'min ';
+  if (diffMinutes && !diffDays && diffHours < 3) {
+    text += `${diffMinutes}min `;
   }
 
   return text;
 }
 
-export function canHideTabs(){
-  if(typeof browser != 'undefined' && typeof browser.tabs.hide != 'undefined'){
+export function canHideTabs() {
+  if (
+    typeof browser !== 'undefined' &&
+    typeof browser.tabs.hide !== 'undefined'
+  ) {
     return true;
   }
   return false;
 }
 
-export async function epPrediction(malId , callback){
-  if(!api.settings.get('epPredictions')) return;
+export async function epPrediction(malId, callback) {
+  if (!api.settings.get('epPredictions')) return;
 
-  var timestamp = await api.storage.get('mal/'+malId+'/release');
+  let timestamp = await api.storage.get(`mal/${malId}/release`);
 
-  if(typeof timestamp !== "number")
-    timestamp = Number(timestamp);
+  if (typeof timestamp !== 'number') timestamp = Number(timestamp);
 
-  if(isNaN(timestamp)) return callback(false);
+  if (isNaN(timestamp)) return callback(false);
 
-  var airing = 1;
-  var episode = 0;
+  let airing = 1;
+  let episode = 0;
 
-  if(Date.now() < timestamp) airing = 0;
+  if (Date.now() < timestamp) airing = 0;
 
-  if(airing){
+  if (airing) {
     var delta = Math.abs(Date.now() - timestamp) / 1000;
-  }else{
+  } else {
     var delta = Math.abs(timestamp - Date.now()) / 1000;
   }
 
-
-  var diffWeeks = Math.floor(delta / (86400 * 7));
+  const diffWeeks = Math.floor(delta / (86400 * 7));
   delta -= diffWeeks * (86400 * 7);
 
-  if(airing){
+  if (airing) {
     //We need the time until the week is complete
-    delta = (86400 * 7) - delta;
+    delta = 86400 * 7 - delta;
   }
 
-  var diffDays = Math.floor(delta / 86400);
+  const diffDays = Math.floor(delta / 86400);
   delta -= diffDays * 86400;
 
-  var diffHours = Math.floor(delta / 3600) % 24;
+  const diffHours = Math.floor(delta / 3600) % 24;
   delta -= diffHours * 3600;
 
-  var diffMinutes = Math.floor(delta / 60) % 60;
+  const diffMinutes = Math.floor(delta / 60) % 60;
   delta -= diffMinutes * 60;
 
-  if(airing){
-    episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+  if (airing) {
+    episode =
+      diffWeeks -
+      (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
     episode++;
-    if( episode > 50 ){
+    if (episode > 50) {
       episode = 0;
     }
   }
 
-  var maxEp = await api.storage.get('mal/'+malId+'/release');
-  if(typeof(maxEp) === "undefined" || episode < maxEp){
+  const maxEp = await api.storage.get(`mal/${malId}/release`);
+  if (typeof maxEp === 'undefined' || episode < maxEp) {
     callback({
       timestamp: timestamp,
       airing: airing,
@@ -568,100 +618,105 @@ export async function epPrediction(malId , callback){
       diffDays: diffDays,
       diffHours: diffHours,
       diffMinutes: diffMinutes,
-      episode: episode
+      episode: episode,
     });
     return;
   }
 }
 
-export function statusTag(status, type, id){
-  var info = {
+export function statusTag(status, type, id) {
+  const info = {
     anime: {
-      1:{
+      1: {
         class: 'watching',
         text: 'CW',
-        title: 'Watching'
+        title: 'Watching',
       },
-      2:{
+      2: {
         class: 'completed',
         text: 'CMPL',
-        title: 'Completed'
+        title: 'Completed',
       },
-      3:{
+      3: {
         class: 'on-hold',
         text: ' HOLD',
-        title: 'On-Hold'
+        title: 'On-Hold',
       },
-      4:{
+      4: {
         class: 'dropped',
         text: 'DROP',
-        title: 'Dropped'
+        title: 'Dropped',
       },
-      6:{
+      6: {
         class: 'plantowatch',
         text: 'PTW',
-        title: 'Plan to Watch'
-      }
+        title: 'Plan to Watch',
+      },
     },
     manga: {
-      1:{
+      1: {
         class: 'reading',
         text: 'CR',
-        title: 'Reading'
+        title: 'Reading',
       },
-      2:{
+      2: {
         class: 'completed',
         text: 'CMPL',
-        title: 'Completed'
+        title: 'Completed',
       },
-      3:{
+      3: {
         class: 'on-hold',
         text: ' HOLD',
-        title: 'On-Hold'
+        title: 'On-Hold',
       },
-      4:{
+      4: {
         class: 'dropped',
         text: 'DROP',
-        title: 'Dropped'
+        title: 'Dropped',
       },
-      6:{
+      6: {
         class: 'plantoread',
         text: 'PTR',
-        title: 'Plan to Read'
-      }
-    }
-  }
+        title: 'Plan to Read',
+      },
+    },
+  };
 
-  $.each([1,2,3,4,6], function(i,el){
+  $.each([1, 2, 3, 4, 6], function(i, el) {
     info.anime[info.anime[el].title] = info.anime[el];
     info.manga[info.manga[el].title] = info.manga[el];
   });
 
-  if(status){
-    var tempInfo = info[type][status];
-    return` <a href="https://myanimelist.net/ownlist/${type}/${id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
+  if (status) {
+    const tempInfo = info[type][status];
+    return ` <a href="https://myanimelist.net/ownlist/${type}/${id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
   }
   return false;
 }
 
-export function notifications(url:string, title:string, message:string, iconUrl = ''){
-  var messageObj = {
-      type: 'basic',
-      title: title,
-      message: message,
-      iconUrl: iconUrl,
-   };
+export function notifications(
+  url: string,
+  title: string,
+  message: string,
+  iconUrl = '',
+) {
+  const messageObj = {
+    type: 'basic',
+    title: title,
+    message: message,
+    iconUrl: iconUrl,
+  };
 
-  con.log('Notification', url, messageObj );
+  con.log('Notification', url, messageObj);
 
-  api.storage.get('notificationHistory').then((history) => {
-    if(history === undefined){
+  api.storage.get('notificationHistory').then(history => {
+    if (history === undefined) {
       history = [];
     }
 
-    if(typeof history !== "object") return;
+    if (typeof history !== 'object') return;
 
-    if (history.length >= 10){
+    if (history.length >= 10) {
       history.shift();
     }
     history.push({
@@ -669,120 +724,183 @@ export function notifications(url:string, title:string, message:string, iconUrl 
       title: messageObj.title,
       message: messageObj.message,
       iconUrl: messageObj.iconUrl,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     });
     api.storage.set('notificationHistory', history);
-  })
+  });
 
-  try{
-    return chrome.notifications.create(url, messageObj );
-  }catch(e){
+  try {
+    return chrome.notifications.create(url, messageObj);
+  } catch (e) {
     con.error(e);
   }
-
 }
 
-export async function timeCache(key, dataFunction, ttl){
+export async function timeCache(key, dataFunction, ttl) {
   return new Promise(async (resolve, reject) => {
-    var value = await api.storage.get(key);
-    if(typeof value === "object" && new Date().getTime() < value.timestamp
-      ){
+    const value = await api.storage.get(key);
+    if (typeof value === 'object' && new Date().getTime() < value.timestamp) {
       resolve(value.data);
       return;
     }
-    var result = await dataFunction();
-    api.storage.set(key, {data: result, timestamp: new Date().getTime() + ttl}).then(()=>{
-      resolve(result);
-    });
+    const result = await dataFunction();
+    api.storage
+      .set(key, { data: result, timestamp: new Date().getTime() + ttl })
+      .then(() => {
+        resolve(result);
+      });
   });
 }
 
 //flashm
-export function flashm(text, options?:{error?: boolean, type?: string, permanent?: boolean, hoverInfo?: boolean, position?: "top"|"bottom", minimized?:boolean}){
-    if(!j.$('#flash-div-top').length){
-        initflashm();
-    }
-    con.log("[Flash] Message:",text);
+export function flashm(
+  text,
+  options?: {
+    error?: boolean;
+    type?: string;
+    permanent?: boolean;
+    hoverInfo?: boolean;
+    position?: 'top' | 'bottom';
+    minimized?: boolean;
+  },
+) {
+  if (!j.$('#flash-div-top').length) {
+    initflashm();
+  }
+  con.log('[Flash] Message:', text);
 
-    var colorF = "#323232";
-    if(typeof options !== 'undefined' && typeof options.error !== 'undefined' && options.error){
-      var colorF = "#3e0808";
-    }
+  var colorF = '#323232';
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.error !== 'undefined' &&
+    options.error
+  ) {
+    var colorF = '#3e0808';
+  }
 
-    var flashdiv = '#flash-div-bottom';
-    if(typeof options !== 'undefined' && typeof options.position !== 'undefined' && options.position){
-      flashdiv = '#flash-div-'+options.position;
-    }
+  let flashdiv = '#flash-div-bottom';
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.position !== 'undefined' &&
+    options.position
+  ) {
+    flashdiv = `#flash-div-${options.position}`;
+  }
 
-    var messClass = "flash";
-    if(typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type){
-      var tempClass = "type-"+options.type;
-      j.$(flashdiv+' .'+tempClass+', #flashinfo-div .'+tempClass)
-        .removeClass(tempClass)
-        .fadeOut({
-          duration: 1000,
-          queue: false,
-          complete: function() { j.$(this).remove(); }
-        });
+  let messClass = 'flash';
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.type !== 'undefined' &&
+    options.type
+  ) {
+    const tempClass = `type-${options.type}`;
+    j.$(`${flashdiv} .${tempClass}, #flashinfo-div .${tempClass}`)
+      .removeClass(tempClass)
+      .fadeOut({
+        duration: 1000,
+        queue: false,
+        complete: function() {
+          j.$(this).remove();
+        },
+      });
 
-      messClass += " "+tempClass;
-    }
+    messClass += ` ${tempClass}`;
+  }
 
-    var mess = '<div class="'+messClass+'" style="display:none;">\
-        <div style="display:table; pointer-events: all; padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 5px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; ">\
-          '+text+'\
+  let mess = `<div class="${messClass}" style="display:none;">\
+        <div style="display:table; pointer-events: all; padding: 14px 24px 14px 24px; margin: 0 auto; margin-top: 5px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; ">\
+          ${text}\
         </div>\
-      </div>';
+      </div>`;
 
-    if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
-      messClass += " flashinfo";
-      mess = '<div class="'+messClass+'" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:'+colorF+'; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">'+text+'</div></div></div>';
-      j.$('#flashinfo-div').addClass('hover');
-      var flashm = j.$(mess).appendTo('#flashinfo-div')
-      if(typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized) flashm.css('max-height', '8px');
-    }else{
-      var flashm = j.$(mess).appendTo(flashdiv);
-    }
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.hoverInfo !== 'undefined' &&
+    options.hoverInfo
+  ) {
+    messClass += ' flashinfo';
+    mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
+    j.$('#flashinfo-div').addClass('hover');
+    var flashm = j.$(mess).appendTo('#flashinfo-div');
+    if (
+      typeof options !== 'undefined' &&
+      typeof options.minimized !== 'undefined' &&
+      options.minimized
+    )
+      flashm.css('max-height', '8px');
+  } else {
+    var flashm = j.$(mess).appendTo(flashdiv);
+  }
 
-    if(typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent){
-      flashm.slideDown(800);
-    }else if(typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo){
-      flashm.slideDown(800).delay(4000).queue(function() { j.$('#flashinfo-div').removeClass('hover'); flashm.css('max-height', '8px');});
-    }else{
-      flashm.slideDown(800).delay(4000).slideUp(800, () => {
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.permanent !== 'undefined' &&
+    options.permanent
+  ) {
+    flashm.slideDown(800);
+  } else if (
+    typeof options !== 'undefined' &&
+    typeof options.hoverInfo !== 'undefined' &&
+    options.hoverInfo
+  ) {
+    flashm
+      .slideDown(800)
+      .delay(4000)
+      .queue(function() {
+        j.$('#flashinfo-div').removeClass('hover');
+        flashm.css('max-height', '8px');
+      });
+  } else {
+    flashm
+      .slideDown(800)
+      .delay(4000)
+      .slideUp(800, () => {
         // @ts-ignore
         j.$(this).remove();
       });
-    }
-    return flashm;
+  }
+  return flashm;
 }
 
-export async function flashConfirm(message, type, yesCall = () => {}, cancelCall = () => {}): Promise<boolean>{
+export async function flashConfirm(
+  message,
+  type,
+  yesCall = () => {},
+  cancelCall = () => {},
+): Promise<boolean> {
   return new Promise(function(resolve, reject) {
-    message = '<div style="text-align: center;">' + message + '</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>';
-    var flasmessage = flashm(message, {permanent: true, position: "top", type: type});
-    flasmessage.find( '.Yes' ).click(function(evt){
-        resolve(true);
-        j.$(evt.target).parentsUntil('.flash').fadeOut(300, function() {
-          //@ts-ignore
-          j.$(this).remove();
-        });
-        yesCall();
+    message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>`;
+    const flasmessage = flashm(message, {
+      permanent: true,
+      position: 'top',
+      type: type,
     });
-    flasmessage.find( '.Cancel' ).click(function(evt){
-        resolve(false);
-        j.$(evt.target).parentsUntil('.flash').fadeOut(300, function() {
+    flasmessage.find('.Yes').click(function(evt) {
+      resolve(true);
+      j.$(evt.target)
+        .parentsUntil('.flash')
+        .fadeOut(300, function() {
           //@ts-ignore
           j.$(this).remove();
         });
-        cancelCall();
+      yesCall();
+    });
+    flasmessage.find('.Cancel').click(function(evt) {
+      resolve(false);
+      j.$(evt.target)
+        .parentsUntil('.flash')
+        .fadeOut(300, function() {
+          //@ts-ignore
+          j.$(this).remove();
+        });
+      cancelCall();
     });
   });
 }
 
-function initflashm(){
-
-    api.storage.addStyle('.flashinfo{\
+function initflashm() {
+  api.storage.addStyle(
+    '.flashinfo{\
                     transition: max-height 2s, opacity 2s 2s;\
                  }\
                  .mini-stealth .flashinfo{\
@@ -831,20 +949,23 @@ function initflashm(){
                  }\
                  #flash-div-top a, #flash-div-bottom a, #flashinfo-div a{\
                     color: #DF6300;\
-                 }');
+                 }',
+  );
 
-    var extraClass = "";
-    if(api.settings.get('floatButtonStealth')) extraClass = "mini-stealth";
+  let extraClass = '';
+  if (api.settings.get('floatButtonStealth')) extraClass = 'mini-stealth';
 
-    j.$('body').after('<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
+  j.$('body').after(
+    `<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
         <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
-        <div id="flashinfo-div" class="'+extraClass+'" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">');
+        <div id="flashinfo-div" class="${extraClass}" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">`,
+  );
 }
 
-var lazyloaded = false;
-var lazyimages = new Array();
+let lazyloaded = false;
+let lazyimages: any[] = [];
 
-export function lazyload(doc, scrollElement = '.mdl-layout__content'){
+export function lazyload(doc, scrollElement = '.mdl-layout__content') {
   /* lazyload.js (c) Lorenzo Giuliani
    * MIT License (http://www.opensource.org/licenses/mit-license.html)
    *
@@ -852,44 +973,43 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content'){
    * `<img src="blank.gif" data-src="my_image.png" width="600" height="400" class="lazy">`
    */
 
-  function loadImage (el, fn) {
-    if(!j.$(el).is(':visible')) return false;
-    if(j.$(el).hasClass('lazyBack')){
-      j.$(el).css('background-image','url('+el.getAttribute('data-src')+')').removeClass('lazyBack');
-    }else{
-      var img = new Image()
-        , src = el.getAttribute('data-src');
+  function loadImage(el, fn) {
+    if (!j.$(el).is(':visible')) return false;
+    if (j.$(el).hasClass('lazyBack')) {
+      j.$(el)
+        .css('background-image', `url(${el.getAttribute('data-src')})`)
+        .removeClass('lazyBack');
+    } else {
+      const img = new Image(),
+        src = el.getAttribute('data-src');
       img.onload = function() {
-        if (!! el.parent)
-          el.parent.replaceChild(img, el)
-        else
-          el.src = src;
+        if (!!el.parent) el.parent.replaceChild(img, el);
+        else el.src = src;
 
-        fn? fn() : null;
-      }
+        fn ? fn() : null;
+      };
       img.src = src;
     }
   }
 
   for (var i = 0; i < lazyimages.length; i++) {
-    $(lazyimages[i]).addClass('init')
-  };
+    $(lazyimages[i]).addClass('init');
+  }
 
-  lazyimages = new Array();
-  var query = doc.find('img.lazy.init, .lazyBack.init')
-    , processScroll = function(){
-        for (var i = 0; i < lazyimages.length; i++) {
-          if (utils.elementInViewport(lazyimages[i], 600)) {
-            loadImage(lazyimages[i], function () {
-              lazyimages.splice(i, i);
-            });
-          }
-          if(!$(lazyimages[i]).length){
+  lazyimages = [];
+  const query = doc.find('img.lazy.init, .lazyBack.init'),
+    processScroll = function() {
+      for (var i = 0; i < lazyimages.length; i++) {
+        if (utils.elementInViewport(lazyimages[i], 600)) {
+          loadImage(lazyimages[i], function() {
             lazyimages.splice(i, i);
-          }
-        };
+          });
+        }
+        if (!$(lazyimages[i]).length) {
+          lazyimages.splice(i, i);
+        }
       }
-    ;
+    };
   // Array.prototype.slice.call is not callable under our lovely IE8
   for (var i = 0; i < query.length; i++) {
     lazyimages.push(query[i]);
@@ -898,7 +1018,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content'){
 
   processScroll();
 
-  if(!lazyloaded){
+  if (!lazyloaded) {
     lazyloaded = true;
     doc.find(scrollElement).scroll(function() {
       processScroll();
@@ -907,12 +1027,13 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content'){
 }
 
 export function elementInViewport(el, horizontalOffset = 0) {
-  var rect = el.getBoundingClientRect()
+  const rect = el.getBoundingClientRect();
 
   return (
-     rect.top    >= 0
-  && rect.left   >= 0
-  // @ts-ignore
-  && (rect.top - horizontalOffset) <= (window.innerHeight || document.documentElement.clientHeight)
-  )
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    // @ts-ignore
+    rect.top - horizontalOffset <=
+      (window.innerHeight || document.documentElement.clientHeight)
+  );
 }
