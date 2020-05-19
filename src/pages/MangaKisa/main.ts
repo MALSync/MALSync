@@ -38,7 +38,7 @@ export const MangaKisa: pageInterface = {
 
     if(!episodePart) return NaN;
 
-    var matches = episodePart.match(/chapter +\d+/gmi);
+    var matches = episodePart.match(/(?:chapter |Ch.)+\d+/gi);
 
     if(!matches || matches.length === 0) return NaN;
 
