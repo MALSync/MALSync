@@ -78,6 +78,7 @@
     "test:ts:ci": "ts-mocha -p tsconfig.node.json 'test/src/**/*.test.ts'",
     "lint": "eslint . --ext .js,.ts,.vue",
     "lint:vue": "eslint . --ext .vue",
+    "lint:ci": "eslint . --ext .js,.ts,.vue --quiet",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix"
   },
   "dependencies": {
