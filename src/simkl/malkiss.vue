@@ -83,7 +83,11 @@
       </div>
     </div>
     <div class="simkltvdetailonlineitems Search">
-      <div v-for="page in pageSearch" class="simkltvdetailonlineitemsearch">
+      <div
+        v-for="page in pageSearch"
+        :key="page.search"
+        class="simkltvdetailonlineitemsearch"
+      >
         <a
           :href="page.search"
           target="_blank"
@@ -108,7 +112,11 @@
     <div class="simkltvdetailonlineitems Links">
       <div v-if="links === null">Loading</div>
 
-      <div v-for="(streams, page) in links" class="simkltvdetailonlineitem">
+      <div
+        v-for="(streams, page) in links"
+        :key="page"
+        class="simkltvdetailonlineitem"
+      >
         <div class="simkltvdetailonlineitemtop">
           <div class="simkltvdetailonlineitemico">
             <img :src="getMal2KissFavicon(streams)" alt="" />
@@ -122,6 +130,7 @@
         <div class="simkltvdetailonlineitemlinks">
           <a
             v-for="stream in streams"
+            :key="stream.url"
             target="_blank"
             :href="stream.url"
             class="simkltvdetailonlineitemhref"

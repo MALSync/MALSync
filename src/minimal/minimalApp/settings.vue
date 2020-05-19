@@ -549,7 +549,11 @@
             class="inline-block"
           >
             <div class="group">{{ group }}</div>
-            <div v-for="contr in contributerGroup" class="inline-block">
+            <div
+              v-for="contr in contributerGroup"
+              :key="contr.name"
+              class="inline-block"
+            >
               <div class="user">
                 <div class="image align-middle">
                   <clazy-load v-if="contr.gif" :src="contr.gif">
@@ -733,7 +737,7 @@ export default {
         }
         con.log('Contributer', this.contributer);
       });
-    if (api.type == 'webextension' && j.$('#Mal-Sync-Popup').length) {
+    if (api.type === 'webextension' && j.$('#Mal-Sync-Popup').length) {
       chrome.commands.getAll(commands => {
         con.info('Commands', commands);
 

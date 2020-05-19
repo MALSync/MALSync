@@ -110,7 +110,6 @@ export default {
       },
     },
   },
-  mounted: function() {},
   methods: {
     lang: api.storage.lang,
     utilsepisode: utils.episode,

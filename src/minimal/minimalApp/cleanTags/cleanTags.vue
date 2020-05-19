@@ -43,8 +43,6 @@ export default {
   },
   computed: {},
   watch: {},
-  mounted: async function() {},
-  destroyed: function() {},
   methods: {
     lang: api.storage.lang,
     cleanTags: function() {

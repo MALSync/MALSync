@@ -31,6 +31,7 @@
 
         <div
           v-for="n in 10"
+          :key="n"
           class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "
           style="cursor: pointer; height: 250px; padding: 0; width: 210px; height: 0px; margin-top:0; margin-bottom:0; visibility: hidden;"
         ></div>
@@ -73,8 +74,6 @@
 <script type="text/javascript">
 import { getList } from './../../_provider/listFactory';
 import bookmarksItem from './bookmarksItem.vue';
-
-let timer;
 
 let cb;
 

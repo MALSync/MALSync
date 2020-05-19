@@ -14,7 +14,7 @@
 export default {
   props: {
     state: {
-      type: String | Number,
+      type: [String, Number],
       default: '',
     },
     type: {

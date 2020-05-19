@@ -55,7 +55,6 @@ export default {
   mounted: async function() {
     this.$root.updateDom();
   },
-  destroyed: function() {},
   methods: {
     lang: api.storage.lang,
     getDomain: function(page) {

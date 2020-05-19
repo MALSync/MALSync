@@ -138,6 +138,7 @@
       <h2>Missing</h2>
       <div
         v-for="item in missing"
+        :key="item.url"
         style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
       >
         <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
@@ -240,7 +241,6 @@ export default {
 
     this.listReady = true;
   },
-  destroyed: function() {},
   methods: {
     lang: api.storage.lang,
     getType: sync.getType,

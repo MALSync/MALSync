@@ -86,6 +86,7 @@ export default {
       ) {
         return this.syncPage.curState.episode;
       }
+      return undefined;
     },
     syncMode: function() {
       return this.$parent.syncMode;

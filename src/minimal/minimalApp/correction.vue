@@ -31,7 +31,6 @@ export default {
     },
   },
   watch: {},
-  mounted: function() {},
   methods: {
     lang: api.storage.lang,
     openPopup: function() {
