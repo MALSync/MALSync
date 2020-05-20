@@ -120,7 +120,10 @@ export class searchClass {
   }
 
   public sanitizeTitel(title) {
-    title = title.replace(/ *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\))/i, '');
+    title = title.replace(
+      / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
+      '',
+    );
     title = title.replace(/ *\([^\)]+audio\)/i, '');
     title = title.replace(/ BD( |$)/i, '');
     title = title.trim();
