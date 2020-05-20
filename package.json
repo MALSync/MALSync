@@ -33,6 +33,10 @@
     "puppeteer-extra-plugin-stealth": "^2.4.9",
     "sinon": "^7.5.0",
     "string-similarity": "^4.0.1",
+    "stylelint": "^13.5.0",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-prettier": "^1.1.2",
     "terser-webpack-plugin": "^2.3.5",
     "to-string-loader": "^1.1.6",
     "ts-loader": "^6.2.2",
@@ -76,9 +80,14 @@
     "test:headless": "webpack --config webpackConfig/test.config.js && mocha --recursive --timeout 45000 --retries 3 test/headless",
     "test:ts": "ts-mocha -p tsconfig.node.json test/src/**/*.test.ts",
     "test:ts:ci": "ts-mocha -p tsconfig.node.json 'test/src/**/*.test.ts'",
-    "lint": "eslint . --ext .js,.ts,.vue",
-    "lint:ci": "eslint . --ext .js,.ts,.vue --quiet",
-    "lint:fix": "eslint . --ext .js,.ts,.vue --fix"
+    "lint:script": "eslint . --ext .js,.ts,.vue",
+    "lint:script:ci": "eslint . --ext .js,.ts,.vue --quiet",
+    "lint:script:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "lint:less": "stylelint 'src/**/*.{css,less,vue}'",
+    "lint:less:fix": "stylelint 'src/**/*.{css,less,vue}' --fix",
+    "lint:less:ci": "stylelint 'src/**/*.{css,less,vue}' -q",
+    "lint:fix": "npm run lint:script:fix && npm run lint:less:fix",
+    "lint:ci": "npm run lint:less:ci && npm run lint:script:ci"
   },
   "dependencies": {
     "@types/chrome": "0.0.112",

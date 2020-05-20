@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
     "esbenp.prettier-vscode",
-    "octref.vetur"
+    "octref.vetur",
+    "stylelint.vscode-stylelint"
   ]
 }

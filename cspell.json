@@ -10,7 +10,9 @@
         "jquery",
         "parens",
         "readonly",
+        "stylelint",
         "webextension",
-        "webextensions"
+        "webextensions",
+        "webstore"
     ]
 }
