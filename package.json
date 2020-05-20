@@ -83,9 +83,9 @@
     "lint:script": "eslint . --ext .js,.ts,.vue",
     "lint:script:ci": "eslint . --ext .js,.ts,.vue --quiet",
     "lint:script:fix": "eslint . --ext .js,.ts,.vue --fix",
-    "lint:less": "stylelint 'src/**/*.{css,less,vue}'",
-    "lint:less:fix": "stylelint 'src/**/*.{css,less,vue}' --fix",
-    "lint:less:ci": "stylelint 'src/**/*.{css,less,vue}' -q",
+    "lint:less": "stylelint src/**/*.{css,less,vue}",
+    "lint:less:fix": "stylelint src/**/*.{css,less,vue} --fix",
+    "lint:less:ci": "stylelint src/**/*.{css,less,vue} -q",
     "lint:fix": "npm run lint:script:fix && npm run lint:less:fix",
     "lint:ci": "npm run lint:less:ci && npm run lint:script:ci"
   },
