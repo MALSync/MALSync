@@ -12,17 +12,13 @@
     "j": "readonly",
     "utils": "readonly"
   },
-  "parserOptions": {
-    "ecmaVersion": 2017,
-    "sourceType": "module"
-  },
   "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
   "overrides": [
     {
-      "extends": ["plugin:@typescript-eslint/recommended"],
+      "extends": ["airbnb-base", "plugin:prettier/recommended"],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
-      "plugins": ["prettier"],
+      "plugins": ["@typescript-eslint"],
       "rules": {
         "@typescript-eslint/ban-ts-ignore": "warn",
         "@typescript-eslint/camelcase": "warn",
@@ -42,8 +38,24 @@
       "rules": {
         "vue/component-tags-order": "off"
       }
+    },
+    {
+      "extends": ["airbnb-base", "plugin:prettier/recommended"],
+      "files": ["*.js"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true
+          }
+        ]
+      }
     }
   ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "root": true,
   "rules": {
     "eqeqeq": ["error", "always"],
@@ -60,7 +72,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".ts"]
+        "extensions": [".js", ".ts", ".vue"]
       }
     }
   }
