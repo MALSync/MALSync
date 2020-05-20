@@ -12,6 +12,10 @@
     "j": "readonly",
     "utils": "readonly"
   },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
   "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
   "overrides": [
     {
