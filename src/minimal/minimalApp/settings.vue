@@ -1,5 +1,5 @@
 <template>
-  <ul class="demo-list-control mdl-list" style="margin: 0px; padding: 0px;">
+  <ul class="demo-list-control mdl-list" style="margin: 0; padding: 0;">
     <div class="mdl-grid">
       <div
         id="page-config"
@@ -602,7 +602,7 @@
             class="discord"
           >
             <div
-              style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #ffffff 0%,#738bd7 74%);"
+              style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #fff 0%,#738bd7 74%);"
             ></div>
             <clazy-load
               src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3"

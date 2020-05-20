@@ -80,12 +80,12 @@
           >
           <h1
             class="malTitle mdl-card__title-text malClear"
-            style="padding-left: 0px; overflow:visible;"
+            style="padding-left: 0; overflow:visible;"
             v-html="title"
           ></h1>
           <div
             class="malAltTitle mdl-card__supporting-text malClear"
-            style="padding: 10px 0 0 0px; overflow:visible;"
+            style="padding: 10px 0 0 0; overflow:visible;"
           >
             <div
               v-for="altTitl in altTitle"

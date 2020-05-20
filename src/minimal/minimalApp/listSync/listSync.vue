@@ -91,7 +91,7 @@
       style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
     >
       <div
-        style="width: 100%; border-bottom: 1px solid black; padding: 0px 5px;"
+        style="width: 100%; border-bottom: 1px solid black; padding: 0 5px;"
       >
         {{ item.master.title }}
       </div>

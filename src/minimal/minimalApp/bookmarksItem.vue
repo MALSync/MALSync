@@ -25,23 +25,23 @@
       <div
         v-if="prediction && prediction.text"
         class="mdl-shadow--2dp"
-        style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0px 5px; margin: 5px 0; text-align: center;"
+        style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0 5px; margin: 5px 0; text-align: center;"
       >
         {{ preTexter }}
       </div>
 
       <div
         v-if="item.score"
-        style=" position: absolute; top: 0; left: 0; padding: 0px 5px; margin: 5px 0; text-align: center;"
+        style=" position: absolute; top: 0; left: 0; padding: 0 5px; margin: 5px 0; text-align: center;"
       >
         <div style="width: 38px; height: 38px; position: relative;">
           <i
             class="material-icons"
-            style="color: #3f51b5; position: absolute; left: 0; top: 0px; font-size: 38px;"
+            style="color: #3f51b5; position: absolute; left: 0; top: 0; font-size: 38px;"
             >star</i
           >
           <div
-            style="color: white; position: absolute; left: 0; top: 0px; right: 0; bottom: 0px; text-align: center; line-height: 38px;padding-top: 1px;"
+            style="color: white; position: absolute; left: 0; top: 0; right: 0; bottom: 0; text-align: center; line-height: 38px;padding-top: 1px;"
           >
             {{ item.score }}
           </div>
@@ -148,7 +148,7 @@
     >
       <div
         v-if="prediction && prediction.text"
-        style="position: absolute; top: 0; left: 0; padding: 0px 11px; margin: 0px 0; text-align: center;     font-size: 10px;"
+        style="position: absolute; top: 0; left: 0; padding: 0 11px; margin: 0 0; text-align: center;     font-size: 10px;"
       >
         {{ preTexter }}
       </div>
@@ -188,7 +188,7 @@
       <div
         id="p1"
         class="mdl-progress"
-        style="position: absolute; bottom: 0px; left: 0px; right: 0px; width: auto; opacity: 0.5;"
+        style="position: absolute; bottom: 0; left: 0; right: 0; width: auto; opacity: 0.5;"
       >
         <div class="progressbar bar bar1" :style="progress"></div>
         <div

@@ -25,7 +25,7 @@
       >
         <img
           :src="item.image"
-          style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"
+          style="margin: -8px 0 -8px -8px; height: 100px; width: 64px; background-color: grey;"
         />
         <div
           style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;"

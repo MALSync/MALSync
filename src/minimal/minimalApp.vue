@@ -169,7 +169,7 @@
                   }}</option>
                 </select>
                 <div
-                  style="padding: 0px 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                  style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
                   class="bg-cell"
                   @click="listView = !listView"
                 >
