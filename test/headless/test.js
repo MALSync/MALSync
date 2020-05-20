@@ -4,6 +4,7 @@ const pluginStealth = require('puppeteer-extra-plugin-stealth');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 
 const fs = require('fs');
+
 const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 const skipTest = process.env.SKIPTEST;
 
@@ -190,7 +191,7 @@ const testsArray = [
           },
         },
       },
-      //captcha
+      // captcha
       // {
       //   url: 'https://www.anime4you.one/show/1/aid/779/epi/4/#vidplayer',
       //   expected: {
@@ -303,7 +304,7 @@ const testsArray = [
         },
       },
       {
-        //oneshot
+        // oneshot
         url: 'https://mangadex.org/chapter/38989/3',
         expected: {
           sync: true,
@@ -321,10 +322,10 @@ const testsArray = [
   {
     title: 'Branitube',
     url: 'https://www.branitube.net/',
-    skip: true, //somehow doesnt work
+    skip: true, // somehow doesnt work
     testCases: [
       {
-        //anime overview
+        // anime overview
         url: 'https://www.branitube.net/animes/197/no-game-no-life',
         expected: {
           sync: false,
@@ -337,7 +338,7 @@ const testsArray = [
         },
       },
       {
-        //ova overview
+        // ova overview
         url: 'https://www.branitube.net/animes/73/high-school-dxd/ovas',
         expected: {
           sync: false,
@@ -350,7 +351,7 @@ const testsArray = [
         },
       },
       {
-        //special overview
+        // special overview
         url: 'https://www.branitube.net/animes/73/high-school-dxd/especiais',
         expected: {
           sync: false,
@@ -363,7 +364,7 @@ const testsArray = [
         },
       },
       {
-        //anime watch
+        // anime watch
         url: 'https://www.branitube.net/watch/1820/no-game-no-life',
         expected: {
           sync: true,
@@ -376,7 +377,7 @@ const testsArray = [
         },
       },
       {
-        //ova watch
+        // ova watch
         url: 'https://www.branitube.net/watch/536/high-school-dxd',
         expected: {
           sync: true,
@@ -390,7 +391,7 @@ const testsArray = [
         },
       },
       {
-        //special watch
+        // special watch
         url: 'https://www.branitube.net/watch/533/high-school-dxd',
         expected: {
           sync: true,
@@ -404,7 +405,7 @@ const testsArray = [
         },
       },
       {
-        //film watch
+        // film watch
         url: 'https://www.branitube.net/watch/10370/one-piece',
         expected: {
           sync: true,
@@ -650,7 +651,7 @@ const testsArray = [
   {
     title: 'animeultima',
     url: 'https://www10.animeultima.eu/',
-    skip: true, //Changing identifier
+    skip: true, // Changing identifier
     testCases: [
       {
         url:
@@ -1006,7 +1007,7 @@ const testsArray = [
     ],
   },
   {
-    title: 'hanime', //nsfw
+    title: 'hanime', // nsfw
     url: 'https://hanime.tv/',
     testCases: [
       {
@@ -1036,7 +1037,7 @@ const testsArray = [
     ],
   },
   {
-    title: 'hentaihaven', //nsfw
+    title: 'hentaihaven', // nsfw
     url: 'https://hentaihaven.org/',
     testCases: [
       {
@@ -1062,7 +1063,7 @@ const testsArray = [
     ],
   },
   {
-    title: 'hentaigasm', //nsfw
+    title: 'hentaigasm', // nsfw
     url: 'http://hentaigasm.com/',
     testCases: [
       {
@@ -1088,7 +1089,7 @@ const testsArray = [
     ],
   },
   {
-    title: 'KissHentai', //nsfw
+    title: 'KissHentai', // nsfw
     url: 'http://kisshentai.net/',
     testCases: [
       {
@@ -1116,10 +1117,10 @@ const testsArray = [
     ],
   },
   {
-    title: 'UnderHentai', //nsfw
+    title: 'UnderHentai', // nsfw
     url: 'https://www.underhentai.net/',
     testCases: [
-      //this part seems broken
+      // this part seems broken
       // {
       //   url: 'https://www.underhentai.net/watch/?id=647&ep=2',
       //   expected: {
@@ -1147,7 +1148,7 @@ const testsArray = [
     url: 'https://ww5.dubbedanime.net/',
     testCases: [
       {
-        //check for ova
+        // check for ova
         url:
           'https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#',
         expected: {
@@ -1163,7 +1164,7 @@ const testsArray = [
         },
       },
       {
-        //check for movie
+        // check for movie
         url:
           'https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed',
         expected: {
@@ -1178,7 +1179,7 @@ const testsArray = [
         },
       },
       {
-        //check for anime/episode
+        // check for anime/episode
         url:
           'https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed',
         expected: {
@@ -1194,7 +1195,7 @@ const testsArray = [
         },
       },
       {
-        //overview
+        // overview
         url: 'https://ww5.dubbedanime.net/anime/3072-golgo-13',
         expected: {
           sync: false,
@@ -1215,7 +1216,7 @@ const testsArray = [
     skip: true,
     testCases: [
       {
-        //overview
+        // overview
         url: 'https://www.viz.com/shonenjump/chapters/one-piece',
         expected: {
           sync: false,
@@ -1585,7 +1586,7 @@ const testsArray = [
         },
       },
       {
-        //manga overview
+        // manga overview
         url: 'https://www.japscan.co/manga/one-punch-man/',
         expected: {
           sync: false,
@@ -1599,7 +1600,7 @@ const testsArray = [
         },
       },
       {
-        //manhwa overview
+        // manhwa overview
         url: 'https://www.japscan.co/manga/solo-leveling/',
         expected: {
           sync: false,
@@ -1675,10 +1676,10 @@ const testsArray = [
   {
     title: 'AnimesVision',
     url: 'https://www.animesvision.com.br/',
-    skip: true, //geolock
+    skip: true, // geolock
     testCases: [
       {
-        //anime
+        // anime
         url:
           'https://www.animesvision.com.br/animes/strike-the-blood-3/episodio-04/legendado',
         expected: {
@@ -1694,7 +1695,7 @@ const testsArray = [
         },
       },
       {
-        //anime overview
+        // anime overview
         url: 'https://www.animesvision.com.br/animes/strike-the-blood-3',
         expected: {
           sync: false,
@@ -1707,7 +1708,7 @@ const testsArray = [
         },
       },
       {
-        //movie
+        // movie
         url:
           'https://www.animesvision.com.br/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo/filme-legendado/legendado',
         expected: {
@@ -1722,7 +1723,7 @@ const testsArray = [
         },
       },
       {
-        //movie overview
+        // movie overview
         url:
           'https://www.animesvision.com.br/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo',
         expected: {
@@ -1733,7 +1734,7 @@ const testsArray = [
         },
       },
       {
-        //dub
+        // dub
         url:
           'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado/episodio-06/dublado',
         expected: {
@@ -1749,7 +1750,7 @@ const testsArray = [
         },
       },
       {
-        //dub overview
+        // dub overview
         url: 'https://www.animesvision.com.br/animes/nanatsu-no-taizai-dublado',
         expected: {
           sync: false,
@@ -1799,7 +1800,7 @@ const testsArray = [
     url: 'https://www.animestrue.site/',
     testCases: [
       {
-        //season 1 syncpage
+        // season 1 syncpage
         url:
           'https://www.animestrue.site/anime/highschool-dxd/temporada1/episodio2',
         expected: {
@@ -1815,7 +1816,7 @@ const testsArray = [
         },
       },
       {
-        //season 1 overview
+        // season 1 overview
         url: 'https://www.animestrue.site/anime/highschool-dxd/temporada1',
         expected: {
           sync: false,
@@ -1828,7 +1829,7 @@ const testsArray = [
         },
       },
       {
-        //season 4 syncpage
+        // season 4 syncpage
         url:
           'https://www.animestrue.site/anime/highschool-dxd/temporada4/episodio2',
         expected: {
@@ -1844,7 +1845,7 @@ const testsArray = [
         },
       },
       {
-        //season 4 overview
+        // season 4 overview
         url: 'https://www.animestrue.site/anime/highschool-dxd/temporada4',
         expected: {
           sync: false,
@@ -1864,7 +1865,7 @@ const testsArray = [
     skip: true,
     testCases: [
       {
-        //season 1 overview
+        // season 1 overview
         url: 'https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C',
         expected: {
           sync: false,
@@ -1874,7 +1875,7 @@ const testsArray = [
         },
       },
       {
-        //season 2 overview
+        // season 2 overview
         url: 'https://www.primevideo.com/detail/0K1UMWRFQ63FY6Z8PC9BK376J8',
         expected: {
           sync: false,
@@ -1884,7 +1885,7 @@ const testsArray = [
         },
       },
       {
-        //season 3 overview
+        // season 3 overview
         url: 'https://www.primevideo.com/detail/0GMA6H790B7EMLNVN83K54XMRA',
         expected: {
           sync: false,
@@ -1900,7 +1901,7 @@ const testsArray = [
     url: 'http://mangakatana.com/',
     testCases: [
       {
-        //obfuscated manga
+        // obfuscated manga
         url: 'http://mangakatana.com/manga/solo-leveling.21708/c103',
         expected: {
           sync: true,
@@ -1913,7 +1914,7 @@ const testsArray = [
         },
       },
       {
-        //obfuscated overview
+        // obfuscated overview
         url: 'http://mangakatana.com/manga/solo-leveling.21708',
         expected: {
           sync: false,
@@ -1927,7 +1928,7 @@ const testsArray = [
         },
       },
       {
-        //manga
+        // manga
         url:
           'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4',
         expected: {
@@ -1943,7 +1944,7 @@ const testsArray = [
         },
       },
       {
-        //overview
+        // overview
         url:
           'http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014',
         expected: {
@@ -2081,7 +2082,7 @@ const testsArray = [
     ],
   },
   {
-    //nsfw
+    // nsfw
     title: 'Nhentai',
     url: 'https://nhentai.net/',
     testCases: [
@@ -2353,35 +2354,35 @@ const testsArray = [
 let browser;
 let page;
 const debugging = false;
-//var caseTitle = 'Proxer';
+// var caseTitle = 'Proxer';
 
-before(async function() {
+before(async () => {
   puppeteer.use(pluginStealth());
   puppeteer.use(AdblockerPlugin());
   browser = await puppeteer.launch({ headless: true });
 });
 
-beforeEach(async function() {
+beforeEach(async () => {
   page = await browser.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
 });
 
-afterEach(async function() {
+afterEach(async () => {
   await page.close();
 });
 
-after(async function() {
+after(async () => {
   await browser.close();
 });
 
-testsArray.forEach(function(testPage) {
+testsArray.forEach((testPage) => {
   if (typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
-  describe(testPage.title, function() {
+  describe(testPage.title, () => {
     let doSkip = false;
     if (typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
     if (skipTest) doSkip = !doSkip;
 
-    it('Online', async function() {
+    it('Online', async function () {
       if (doSkip) this.skip();
       const [response] = await Promise.all([
         page.goto(testPage.url, { timeout: 0 }),
@@ -2400,8 +2401,8 @@ testsArray.forEach(function(testPage) {
       }
     });
 
-    testPage.testCases.forEach(function(testCase) {
-      it(testCase.url, async function() {
+    testPage.testCases.forEach((testCase) => {
+      it(testCase.url, async function () {
         if (doSkip) this.skip();
         const [response] = await Promise.all([
           page.goto(testCase.url, { timeout: 0 }),
@@ -2412,12 +2413,10 @@ testsArray.forEach(function(testPage) {
             url:
               'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
           })
-          .catch(() =>
-            page.addScriptTag({
+          .catch(() => page.addScriptTag({
               url:
                 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-            }),
-          );
+            }));
         await page.addScriptTag({ content: script });
         const text = await page.evaluate(() => MalSyncTest());
 
@@ -2425,7 +2424,7 @@ testsArray.forEach(function(testPage) {
 
         if (text === 'retry') {
           this.retries(3);
-          await new Promise(function(resolve, reject) {
+          await new Promise(((resolve, reject) => {
             setTimeout(async () => {
               const content = await page.evaluate(
                 () => document.body.innerHTML,
@@ -2438,7 +2437,7 @@ testsArray.forEach(function(testPage) {
               }
               resolve();
             }, 7000);
-          });
+          }));
         }
 
         expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
@@ -2448,23 +2447,19 @@ testsArray.forEach(function(testPage) {
         );
         if (text.sync) {
           expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
-          var textOverview =
-            typeof text.overviewUrl !== 'undefined'
+          var textOverview = typeof text.overviewUrl !== 'undefined'
               ? text.overviewUrl.replace(/www[^.]*\./, '')
               : text.overviewUrl;
-          var testCaseOverview =
-            typeof testCase.expected.overviewUrl !== 'undefined'
+          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'
               ? testCase.expected.overviewUrl.replace(/www[^.]*\./, '')
               : testCase.expected.overviewUrl;
           expect(textOverview, 'Overview Url').to.equal(
             testCase.expected.overviewUrl.replace(/www[^.]*\./, ''),
           );
-          var textOverview =
-            typeof text.nextEpUrl !== 'undefined'
+          var textOverview = typeof text.nextEpUrl !== 'undefined'
               ? text.nextEpUrl.replace(/www[^.]*\./, '')
               : text.nextEpUrl;
-          var testCaseOverview =
-            typeof testCase.expected.nextEpUrl !== 'undefined'
+          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'
               ? testCase.expected.nextEpUrl.replace(/www[^.]*\./, '')
               : testCase.expected.nextEpUrl;
           expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
@@ -2475,8 +2470,8 @@ testsArray.forEach(function(testPage) {
           );
         }
         if (
-          typeof text.epList !== 'undefined' &&
-          typeof testCase.expected.epList !== 'undefined'
+          typeof text.epList !== 'undefined'
+          && typeof testCase.expected.epList !== 'undefined'
         ) {
           for (const key in testCase.expected.epList) {
             expect(
