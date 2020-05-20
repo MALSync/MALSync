@@ -5,12 +5,16 @@
     "language": "en",
     "words": [
         "adblocker",
+        "camelcase",
         "Captcha",
+        "eqeqeq",
         "greasemonkey",
         "jquery",
         "parens",
         "readonly",
+        "stylelint",
         "webextension",
-        "webextensions"
+        "webextensions",
+        "webstore"
     ]
 }

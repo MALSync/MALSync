@@ -6,11 +6,6 @@
     "shared-node-browser": true,
     "webextensions": true
   },
-  "extends": [
-    "plugin:vue/vue3-recommended",
-    "plugin:@typescript-eslint/recommended",
-    "@vue/prettier"
-  ],
   "globals": {
     "api": "readonly",
     "con": "readonly",
@@ -18,33 +13,45 @@
     "utils": "readonly"
   },
   "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
-  "parser": "vue-eslint-parser",
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser",
-    "sourceType": "module"
-  },
-  "plugins": ["vue", "prettier"],
+  "overrides": [
+    {
+      "extends": ["plugin:@typescript-eslint/recommended"],
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["prettier"],
+      "rules": {
+        "@typescript-eslint/ban-ts-ignore": "warn",
+        "@typescript-eslint/camelcase": "warn",
+        "@typescript-eslint/class-name-casing": "warn",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-this-alias": "warn",
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "extends": ["plugin:vue/vue3-recommended", "@vue/prettier"],
+      "files": ["*.vue"],
+      "parser": "vue-eslint-parser",
+      "plugins": ["vue", "prettier"],
+      "rules": {
+        "vue/component-tags-order": "off"
+      }
+    }
+  ],
   "root": true,
   "rules": {
+    "eqeqeq": ["error", "always"],
     "no-extend-native": "off",
+    "no-var": "warn",
+    "prefer-template": "error",
     "prettier/prettier": [
       "error",
       {
         "singleQuote": true
       }
-    ],
-    "vue/component-tags-order": "off",
-    "@typescript-eslint/no-this-alias": "warn",
-    "@typescript-eslint/class-name-casing": "warn",
-    "@typescript-eslint/ban-ts-ignore": "warn",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/camelcase": "warn", //TEMP
-    "@typescript-eslint/explicit-function-return-type": "off", //TEMP
-    "no-var": "warn", //TEMP
-    "prefer-template": "error",
-    "eqeqeq": ["error", "always"]
+    ]
   },
   "settings": {
     "import/resolver": {
