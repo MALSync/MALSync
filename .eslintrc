@@ -6,6 +6,7 @@
     "shared-node-browser": true,
     "webextensions": true
   },
+  "extends": ["airbnb-base"],
   "globals": {
     "api": "readonly",
     "con": "readonly",
@@ -15,7 +16,7 @@
   "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
   "overrides": [
     {
-      "extends": ["airbnb-base", "plugin:prettier/recommended"],
+      "extends": ["plugin:prettier/recommended"],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint"],
@@ -40,7 +41,7 @@
       }
     },
     {
-      "extends": ["airbnb-base", "plugin:prettier/recommended"],
+      "extends": ["plugin:prettier/recommended"],
       "files": ["*.js"],
       "rules": {
         "import/no-extraneous-dependencies": [
