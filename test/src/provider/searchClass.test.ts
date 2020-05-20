@@ -15,6 +15,7 @@ describe('Sanitized Titel', function() {
     'Fox Spirit Matchmaker (Chinese Audio)': 'Fox Spirit Matchmaker',
     'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )':
       'CODE GEASS Lelouch of the Resurrection ( Code Geass: Fukkatsu no Lelouch )',
+    'Great Teacher Onizuka (Dubbed)': 'Great Teacher Onizuka',
   };
 
   Object.keys(titles).forEach(function(key) {
