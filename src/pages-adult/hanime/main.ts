@@ -47,13 +47,13 @@ export const hanime: pageInterface = {
 
       if (!urlParts || urlParts.length === 0) return NaN;
 
-      const episodePart = urlParts[5];
+      const episodePart = utils.urlPart(url, 5);
 
       if (episodePart.length === 0) return NaN;
 
       const temp = episodePart.match(/-([^a-z]*)$/gim);
 
-      if (!temp || temp.length === 0) return NaN;
+      if (!temp || temp.length === 0) return 1;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
