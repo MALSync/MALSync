@@ -677,34 +677,34 @@ const testsArray = [
   },
   {
     title: 'aniflix',
-    url: 'https://www1.aniflix.tv/',
+    url: 'https://www2.aniflix.tv/',
     testCases: [
       {
         url:
-          'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
+          'https://www2.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12',
         expected: {
           sync: true,
           title: 'Assassination Classroom',
           identifier: 'assassination-classroom?s=1',
-          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          overviewUrl: 'https://www2.aniflix.tv/show/assassination-classroom',
           episode: 12,
           uiSelector: false,
         },
       },
       {
         url:
-          'https://www1.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
+          'https://www2.aniflix.tv/show/assassination-classroom/ger-sub/season/2/episode/15',
         expected: {
           sync: true,
           title: 'Assassination Classroom season 2',
           identifier: 'assassination-classroom?s=2',
-          overviewUrl: 'https://www1.aniflix.tv/show/assassination-classroom',
+          overviewUrl: 'https://www2.aniflix.tv/show/assassination-classroom',
           episode: 15,
           uiSelector: false,
         },
       },
       {
-        url: 'https://www1.aniflix.tv/show/assassination-classroom',
+        url: 'https://www2.aniflix.tv/show/assassination-classroom',
         expected: {
           sync: false,
           title: 'Assassination Classroom',
