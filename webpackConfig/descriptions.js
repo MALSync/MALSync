@@ -26,6 +26,31 @@ function createTable() {
   let animehtml = '';
   let mangahtml = '';
 
+  for (let page in pages) {
+    page = pages[page];
+
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
+
+    const htmlContent = `<tr>
+    <td><a href="${
+      page.domain
+    }"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${
+      page.name
+    }</a></td>
+    ${rowCondition(typeof page.overview !== 'undefined')}
+    ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
+    ${rowCondition(typeof page.database !== 'undefined')}
+    ${rowCondition(
+      typeof page.overview !== 'undefined' &&
+        typeof page.overview.list !== 'undefined',
+    )}
+  </tr>`;
+
+    if (typeof page.type !== undefined && page.type === 'anime')
+      animehtml += htmlContent;
+    else mangahtml += htmlContent;
+  }
+
   let html = `
   <h1>Anime</h1>
   <table>
@@ -39,48 +64,9 @@ function createTable() {
       </tr>
     </thead>
     <tbody>
-      `;
-  for (let page in pages) {
-    page = pages[page];
-    if (typeof page.domain === 'object') page.domain = page.domain[0];
-    if (typeof page.type !== undefined && page.type === 'anime') {
-      animehtml += `<tr>
-              <td><a href="${
-                page.domain
-              }"><img src="https://www.google.com/s2/favicons?domain=${
-        page.domain
-      }"> ${page.name}</a></td>
-              ${rowCondition(typeof page.overview !== 'undefined')}
-              ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
-              ${rowCondition(typeof page.database !== 'undefined')}
-              ${rowCondition(
-                typeof page.overview !== 'undefined' &&
-                  typeof page.overview.list !== 'undefined',
-              )}
-            </tr>`;
-    } else {
-      mangahtml += `<tr>
-              <td><a href="${
-                page.domain
-              }"><img src="https://www.google.com/s2/favicons?domain=${
-        page.domain
-      }"> ${page.name}</a></td>
-              ${rowCondition(typeof page.overview !== 'undefined')}
-              ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
-              ${rowCondition(typeof page.database !== 'undefined')}
-              ${rowCondition(
-                typeof page.overview !== 'undefined' &&
-                  typeof page.overview.list !== 'undefined',
-              )}
-            </tr>`;
-    }
-  }
-  html += animehtml;
-  html += `
+      ${animehtml}
     </tbody>
   </table>
-  `;
-  html += `
   <h1>Manga</h1>
   <table>
     <thead>
@@ -93,9 +79,7 @@ function createTable() {
       </tr>
     </thead>
     <tbody>
-      `;
-  html += mangahtml;
-  html += `
+      ${mangahtml}
     </tbody>
   </table>
   `;

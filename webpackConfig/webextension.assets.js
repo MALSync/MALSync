@@ -1,4 +1,4 @@
-const package = require('../package.json');
+const packageJson = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
 const playerUrls = require('../src/pages/playerUrls');
 
@@ -44,10 +44,10 @@ const backgroundMatch = matches => {
 const generateManifest = () => {
   const mani = {
     manifest_version: 2,
-    name: package.productName,
-    version: package.version,
+    name: packageJson.productName,
+    version: packageJson.version,
     description: '__MSG_Package_Description__',
-    author: package['author'],
+    author: packageJson.author,
     default_locale: 'en',
     applications: {
       gecko: {
