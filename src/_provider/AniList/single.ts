@@ -300,24 +300,26 @@ export class Single extends SingleAbstract {
           { value: '10', label: '★' },
         ];
         break;
-      case 'POINT_10_DECIMAL':
-        var resArr = [
+      case 'POINT_10_DECIMAL': {
+        const decArr = [
           { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
         ];
-        for (var i = 1; i < 101; i++) {
-          resArr.push({ value: i.toString(), label: (i / 10).toFixed(1) });
+        for (let i = 1; i < 101; i++) {
+          decArr.push({ value: i.toString(), label: (i / 10).toFixed(1) });
         }
-        return resArr;
+        return decArr;
         break;
-      case 'POINT_100':
-        var resArr = [
+      }
+      case 'POINT_100': {
+        const resArr = [
           { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
         ];
-        for (var i = 1; i < 101; i++) {
+        for (let i = 1; i < 101; i++) {
           resArr.push({ value: i.toString(), label: String(i) });
         }
         return resArr;
         break;
+      }
       default:
         return super.getScoreCheckbox();
     }

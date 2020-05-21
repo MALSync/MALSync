@@ -149,9 +149,9 @@ export class userlist extends ListAbstract {
           }
         }
       }
-
+      let tempData;
       if (listType === 'anime') {
-        var tempData = this.fn({
+        tempData = this.fn({
           malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
@@ -171,7 +171,7 @@ export class userlist extends ListAbstract {
           airingState: el.anime_airing_status,
         });
       } else {
-        var tempData = this.fn({
+        tempData = this.fn({
           malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),

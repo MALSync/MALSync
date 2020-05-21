@@ -159,7 +159,7 @@ export abstract class ListAbstract {
         return utils.getContinueWaching(item.type, item.cacheKey).then(obj => {
           const curEp = parseInt(item.watchedEp.toString());
 
-          if (obj === undefined || obj.ep !== curEp + 1) return;
+          if (obj === undefined || obj.ep !== curEp + 1) return '';
 
           continueUrlTemp = obj.url;
 

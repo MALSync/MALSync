@@ -32,10 +32,11 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
+    let curSt;
     if (this.type === 'manga') {
-      var curSt = this.animeInfo['.add_manga[status]'];
+      curSt = this.animeInfo['.add_manga[status]'];
     } else {
-      var curSt = this.animeInfo['.add_anime[status]'];
+      curSt = this.animeInfo['.add_anime[status]'];
     }
     if (this.getRewatching() && curSt === 2) return 23;
     return curSt;
@@ -200,7 +201,6 @@ export class Single extends SingleAbstract {
         errorCode.GenericError,
         `This ${this.type} is currently pending approval. It can´t be saved to mal for now`,
       );
-      return;
     }
 
     if (!this._onList) {
@@ -290,8 +290,9 @@ export class Single extends SingleAbstract {
     this._onList = true;
     this.pending = false;
 
+    const anime: any = {};
+
     if (this.type === 'anime') {
-      var anime: any = {};
       anime['.csrf_token'] = data
         .split("'csrf_token'")[1]
         .split("'")[1]
@@ -416,156 +417,151 @@ export class Single extends SingleAbstract {
         data,
         'add_anime[sns_post_type]',
       );
-      anime['.submitIt'] = data
-        .split('name="submitIt"')[1]
+    } else {
+      anime['.csrf_token'] = data
+        .split("'csrf_token'")[1]
+        .split("'")[1]
+        .split("'")[0];
+      if (data.indexOf('Add Manga') > -1) {
+        this._onList = false;
+      }
+      if (data.indexOf('pending approval') > -1) {
+        this.pending = true;
+      }
+      data = data.split('<form name="')[1].split('</form>')[0];
+
+      this.additionalInfo.totalEp = parseInt(
+        data.split('id="totalChap">')[1].split('<')[0],
+      );
+      this.additionalInfo.totalVol = parseInt(
+        data.split('id="totalVol">')[1].split('<')[0],
+      );
+      this.additionalInfo.name = data
+        .split('<a href="')[1]
+        .split('">')[1]
+        .split('<')[0];
+      anime['.entry_id'] = parseInt(
+        data
+          .split('name="entry_id"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      );
+      anime['.manga_id'] = parseInt(
+        data
+          .split('name="manga_id"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      ); // input
+      anime.volumes = parseInt(
+        data
+          .split('id="volumes"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      );
+      anime.mstatus = parseInt(
+        data
+          .split('id="mstatus"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      );
+      anime['.add_manga[status]'] = parseInt(
+        getselect(data, 'add_manga[status]'),
+      );
+      if (!anime['.add_manga[status]']) anime['.add_manga[status]'] = 6;
+      // Rewatching
+      if (
+        data
+          .split('name="add_manga[is_rereading]"')[1]
+          .split('>')[0]
+          .indexOf('checked="checked"') >= 0
+      ) {
+        anime['.add_manga[is_rereading]'] = 1;
+      }
+      //
+      anime['.add_manga[num_read_volumes]'] = parseInt(
+        data
+          .split('name="add_manga[num_read_volumes]"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      );
+      if (Number.isNaN(anime['.add_manga[num_read_volumes]'])) {
+        anime['.add_manga[num_read_volumes]'] = '';
+      }
+      anime['.add_manga[num_read_chapters]'] = parseInt(
+        data
+          .split('name="add_manga[num_read_chapters]"')[1]
+          .split('value="')[1]
+          .split('"')[0],
+      );
+      if (Number.isNaN(anime['.add_manga[num_read_chapters]'])) {
+        anime['.add_manga[num_read_chapters]'] = '';
+      }
+      anime['.add_manga[score]'] = getselect(data, 'add_manga[score]');
+      anime['.add_manga[start_date][month]'] = getselect(
+        data,
+        'add_manga[start_date][month]',
+      );
+      anime['.add_manga[start_date][day]'] = getselect(
+        data,
+        'add_manga[start_date][day]',
+      );
+      anime['.add_manga[start_date][year]'] = getselect(
+        data,
+        'add_manga[start_date][year]',
+      );
+      anime['.add_manga[finish_date][month]'] = getselect(
+        data,
+        'add_manga[finish_date][month]',
+      );
+      anime['.add_manga[finish_date][day]'] = getselect(
+        data,
+        'add_manga[finish_date][day]',
+      );
+      anime['.add_manga[finish_date][year]'] = getselect(
+        data,
+        'add_manga[finish_date][year]',
+      );
+      anime['.add_manga[tags]'] = utils.parseHtml(
+        data
+          .split('name="add_manga[tags]"')[1]
+          .split('>')[1]
+          .split('<')[0],
+      ); // textarea
+      anime['.add_manga[priority]'] = getselect(data, 'add_manga[priority]');
+      anime['.add_manga[storage_type]'] = getselect(
+        data,
+        'add_manga[storage_type]',
+      );
+      anime['.add_manga[num_retail_volumes]'] = data
+        .split('name="add_manga[num_retail_volumes]"')[1]
         .split('value="')[1]
         .split('"')[0];
-      con.log('[GET] Object:', anime);
-      return anime;
+      anime['.add_manga[num_read_times]'] = data
+        .split('name="add_manga[num_read_times]"')[1]
+        .split('value="')[1]
+        .split('"')[0];
+      anime['.add_manga[reread_value]'] = getselect(
+        data,
+        'add_manga[reread_value]',
+      );
+      anime['.add_manga[comments]'] = utils.parseHtml(
+        data
+          .split('name="add_manga[comments]"')[1]
+          .split('>')[1]
+          .split('<')[0],
+      );
+      anime['.add_manga[is_asked_to_discuss]'] = getselect(
+        data,
+        'add_manga[is_asked_to_discuss]',
+      );
+      if (anime['.add_manga[is_asked_to_discuss]'] === '')
+        anime['.add_manga[is_asked_to_discuss]'] = 0; // #15
+      anime['.add_manga[sns_post_type]'] = getselect(
+        data,
+        'add_manga[sns_post_type]',
+      );
     }
-    var anime: any = {};
-    anime['.csrf_token'] = data
-      .split("'csrf_token'")[1]
-      .split("'")[1]
-      .split("'")[0];
-    if (data.indexOf('Add Manga') > -1) {
-      this._onList = false;
-    }
-    if (data.indexOf('pending approval') > -1) {
-      this.pending = true;
-    }
-    data = data.split('<form name="')[1].split('</form>')[0];
 
-    this.additionalInfo.totalEp = parseInt(
-      data.split('id="totalChap">')[1].split('<')[0],
-    );
-    this.additionalInfo.totalVol = parseInt(
-      data.split('id="totalVol">')[1].split('<')[0],
-    );
-    this.additionalInfo.name = data
-      .split('<a href="')[1]
-      .split('">')[1]
-      .split('<')[0];
-    anime['.entry_id'] = parseInt(
-      data
-        .split('name="entry_id"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    );
-    anime['.manga_id'] = parseInt(
-      data
-        .split('name="manga_id"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    ); // input
-    anime.volumes = parseInt(
-      data
-        .split('id="volumes"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    );
-    anime.mstatus = parseInt(
-      data
-        .split('id="mstatus"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    );
-    anime['.add_manga[status]'] = parseInt(
-      getselect(data, 'add_manga[status]'),
-    );
-    if (!anime['.add_manga[status]']) anime['.add_manga[status]'] = 6;
-    // Rewatching
-    if (
-      data
-        .split('name="add_manga[is_rereading]"')[1]
-        .split('>')[0]
-        .indexOf('checked="checked"') >= 0
-    ) {
-      anime['.add_manga[is_rereading]'] = 1;
-    }
-    //
-    anime['.add_manga[num_read_volumes]'] = parseInt(
-      data
-        .split('name="add_manga[num_read_volumes]"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    );
-    if (Number.isNaN(anime['.add_manga[num_read_volumes]'])) {
-      anime['.add_manga[num_read_volumes]'] = '';
-    }
-    anime['.add_manga[num_read_chapters]'] = parseInt(
-      data
-        .split('name="add_manga[num_read_chapters]"')[1]
-        .split('value="')[1]
-        .split('"')[0],
-    );
-    if (Number.isNaN(anime['.add_manga[num_read_chapters]'])) {
-      anime['.add_manga[num_read_chapters]'] = '';
-    }
-    anime['.add_manga[score]'] = getselect(data, 'add_manga[score]');
-    anime['.add_manga[start_date][month]'] = getselect(
-      data,
-      'add_manga[start_date][month]',
-    );
-    anime['.add_manga[start_date][day]'] = getselect(
-      data,
-      'add_manga[start_date][day]',
-    );
-    anime['.add_manga[start_date][year]'] = getselect(
-      data,
-      'add_manga[start_date][year]',
-    );
-    anime['.add_manga[finish_date][month]'] = getselect(
-      data,
-      'add_manga[finish_date][month]',
-    );
-    anime['.add_manga[finish_date][day]'] = getselect(
-      data,
-      'add_manga[finish_date][day]',
-    );
-    anime['.add_manga[finish_date][year]'] = getselect(
-      data,
-      'add_manga[finish_date][year]',
-    );
-    anime['.add_manga[tags]'] = utils.parseHtml(
-      data
-        .split('name="add_manga[tags]"')[1]
-        .split('>')[1]
-        .split('<')[0],
-    ); // textarea
-    anime['.add_manga[priority]'] = getselect(data, 'add_manga[priority]');
-    anime['.add_manga[storage_type]'] = getselect(
-      data,
-      'add_manga[storage_type]',
-    );
-    anime['.add_manga[num_retail_volumes]'] = data
-      .split('name="add_manga[num_retail_volumes]"')[1]
-      .split('value="')[1]
-      .split('"')[0];
-    anime['.add_manga[num_read_times]'] = data
-      .split('name="add_manga[num_read_times]"')[1]
-      .split('value="')[1]
-      .split('"')[0];
-    anime['.add_manga[reread_value]'] = getselect(
-      data,
-      'add_manga[reread_value]',
-    );
-    anime['.add_manga[comments]'] = utils.parseHtml(
-      data
-        .split('name="add_manga[comments]"')[1]
-        .split('>')[1]
-        .split('<')[0],
-    );
-    anime['.add_manga[is_asked_to_discuss]'] = getselect(
-      data,
-      'add_manga[is_asked_to_discuss]',
-    );
-    if (anime['.add_manga[is_asked_to_discuss]'] === '')
-      anime['.add_manga[is_asked_to_discuss]'] = 0; // #15
-    anime['.add_manga[sns_post_type]'] = getselect(
-      data,
-      'add_manga[sns_post_type]',
-    );
     anime['.submitIt'] = data
       .split('name="submitIt"')[1]
       .split('value="')[1]

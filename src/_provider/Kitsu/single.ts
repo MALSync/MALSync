@@ -241,14 +241,16 @@ export class Single extends SingleAbstract {
     };
     const tType = this.getType();
     if (!tType) return;
+    let updateUrl;
+    let post;
     if (this.isOnList()) {
-      var updateUrl = `https://kitsu.io/api/edge/library-entries/${
+      updateUrl = `https://kitsu.io/api/edge/library-entries/${
         this.listI().id
       }`;
       variables.data.id = this.listI().id;
-      var post = 'PATCH';
+      post = 'PATCH';
     } else {
-      var updateUrl = 'https://kitsu.io/api/edge/library-entries/';
+      updateUrl = 'https://kitsu.io/api/edge/library-entries/';
       variables.data.relationships = {
         [tType]: {
           data: {
@@ -263,7 +265,7 @@ export class Single extends SingleAbstract {
           },
         },
       };
-      var post = 'POST';
+      post = 'POST';
     }
 
     con.log(post, variables);
@@ -412,23 +414,24 @@ export class Single extends SingleAbstract {
           { value: '2', label: '🙁' },
         ];
         break;
-      case 'regular':
-        var resArr = [
+      case 'regular': {
+        const regArr = [
           { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
         ];
-        for (var i = 1; i < 11; i++) {
-          resArr.push({
+        for (let i = 1; i < 11; i++) {
+          regArr.push({
             value: (i * 2).toString(),
             label: (i / 2).toFixed(1).toString(),
           });
         }
-        return resArr;
+        return regArr;
         break;
-      case 'advanced':
-        var resArr = [
+      }
+      case 'advanced': {
+        const resArr = [
           { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
         ];
-        for (var i = 1; i < 21; i++) {
+        for (let i = 1; i < 21; i++) {
           resArr.push({
             value: i.toString(),
             label: (i / 2).toFixed(1).toString(),
@@ -436,6 +439,7 @@ export class Single extends SingleAbstract {
         }
         return resArr;
         break;
+      }
       default:
         return super.getScoreCheckbox();
     }

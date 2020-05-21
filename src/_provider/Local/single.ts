@@ -1,5 +1,4 @@
 import { SingleAbstract } from '../singleAbstract';
-import * as helper from './helper';
 import { errorCode } from '../definitions';
 
 // local://crunchyroll/anime/nogamenolife

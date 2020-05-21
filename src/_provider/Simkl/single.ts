@@ -135,11 +135,11 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
+    let de;
     if (Number.isNaN(this.ids.mal)) {
-      var de = { simkl: this.ids.simkl };
+      de = { simkl: this.ids.simkl };
     } else {
-      // @ts-ignore
-      var de = { mal: this.ids.mal };
+      de = { mal: this.ids.mal };
     }
 
     this._authenticated = true;
@@ -165,8 +165,9 @@ export class Single extends SingleAbstract {
 
         if (!this.animeInfo) {
           this._onList = false;
+          let el;
           if (de.simkl) {
-            var el = await this.call(
+            el = await this.call(
               `https://api.simkl.com/anime/${de.simkl}`,
               { extended: 'full' },
               true,
@@ -174,11 +175,7 @@ export class Single extends SingleAbstract {
             if (!el)
               throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
           } else {
-            var el = await this.call(
-              'https://api.simkl.com/search/id',
-              de,
-              true,
-            );
+            el = await this.call('https://api.simkl.com/search/id', de, true);
             if (!el)
               throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
             if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
@@ -241,7 +238,7 @@ export class Single extends SingleAbstract {
     );
     // Status
     if (this.statusUpdate || !this.isOnList()) {
-      var response = await this.call(
+      const response = await this.call(
         'https://api.simkl.com/sync/add-to-list',
         JSON.stringify({
           shows: [
@@ -266,13 +263,13 @@ export class Single extends SingleAbstract {
 
       if (this.minWatchedEp <= curEp) {
         if (curEp) {
-          for (var i = this.minWatchedEp; i <= curEp; i++) {
+          for (let i = this.minWatchedEp; i <= curEp; i++) {
             episodes.push({
               number: i,
             });
           }
 
-          var response = await this.call(
+          const response = await this.call(
             'https://api.simkl.com/sync/history',
             JSON.stringify({
               shows: [
@@ -296,13 +293,13 @@ export class Single extends SingleAbstract {
           con.log('Episode response', response);
         }
       } else {
-        for (var i = this.minWatchedEp - 1; i > curEp; i -= 1) {
+        for (let i = this.minWatchedEp - 1; i > curEp; i -= 1) {
           episodes.push({
             number: i,
           });
         }
 
-        var response = await this.call(
+        const response = await this.call(
           'https://api.simkl.com/sync/history/remove',
           JSON.stringify({
             shows: [
@@ -331,7 +328,7 @@ export class Single extends SingleAbstract {
     // Rating
     if (this.ratingUpdate) {
       if (this.animeInfo.user_rating) {
-        var response = await this.call(
+        const response = await this.call(
           'https://api.simkl.com/sync/ratings',
           JSON.stringify({
             shows: [
@@ -348,7 +345,7 @@ export class Single extends SingleAbstract {
         );
         con.log('Rating response', response);
       } else {
-        var response = await this.call(
+        const response = await this.call(
           'https://api.simkl.com/sync/ratings/remove',
           JSON.stringify({
             shows: [

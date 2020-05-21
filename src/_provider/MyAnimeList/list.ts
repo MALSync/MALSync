@@ -8,7 +8,6 @@ export class userlist extends ListAbstract {
   async getUsername() {
     const url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
     const response = await api.request.xhr('GET', url);
-    let username: string;
     const usernameMatches = response.responseText.match(/USER_NAME = "(.*?)"/);
 
     if (!usernameMatches || usernameMatches.length < 2)

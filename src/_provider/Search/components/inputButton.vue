@@ -32,10 +32,10 @@ export default {
     };
   },
   watch: {
-    state(type) {
+    state() {
       this.inputString = this.state;
     },
-    inputString(val) {
+    inputString() {
       this.$emit('change', this.inputString);
     },
   },

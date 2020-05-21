@@ -9,7 +9,6 @@ export class searchClass extends searchClassExtend {
   protected vueInstance;
 
   public openCorrectionCheck() {
-    const tempCurUrl = this.getUrl();
     if (this.state && this.state.similarity && this.state.similarity.same) {
       con.log('similarity', this.state.similarity.value);
       return false;

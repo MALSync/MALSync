@@ -13,16 +13,17 @@ export function translateList(aniStatus, malStatus: null | number = null) {
 }
 
 export function getTitle(titles, canonicalTitle) {
+  let title: string;
   switch (api.settings.get('kitsuOptions').titleLanguagePreference) {
     case 'english':
-      var title = titles.en;
+      title = titles.en;
       break;
     case 'romanized':
-      var title = titles.en_jp;
+      title = titles.en_jp;
       break;
     case 'canonical':
     default:
-      var title = canonicalTitle;
+      title = canonicalTitle;
   }
 
   if (typeof title === 'undefined' || !title) title = titles.en;

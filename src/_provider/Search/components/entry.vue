@@ -117,22 +117,16 @@ export default {
       switch (state) {
         case 1:
           return api.storage.lang(`UI_Status_watching_${this.obj.getType()}`);
-          break;
         case 2:
           return api.storage.lang('UI_Status_Completed');
-          break;
         case 3:
           return api.storage.lang('UI_Status_OnHold');
-          break;
         case 4:
           return api.storage.lang('UI_Status_Dropped');
-          break;
         case 6:
           return api.storage.lang(`UI_Status_planTo_${this.obj.getType()}`);
-          break;
         case 23:
           return api.storage.lang(`UI_Status_Rewatching_${this.obj.getType()}`);
-          break;
         default:
           return '';
       }

@@ -17,7 +17,8 @@ async function checkNotifications() {
     'https://kissanimelist.firebaseio.com/Data2/Notification/Current.json';
   const response = await api.request.xhr('GET', url);
   const current = parseInt(JSON.parse(response.responseText));
-  if (Number.isNaN(current)) con.error('Could not read current Notification number');
+  if (Number.isNaN(current))
+    con.error('Could not read current Notification number');
 
   con.log('Current Notification', current);
   const last = parseInt(await api.storage.get('firebaseNotification'));

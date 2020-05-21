@@ -90,17 +90,17 @@ export default {
     };
   },
   watch: {
-    keyword(type) {
+    keyword() {
       this.searchKeyword = this.keyword;
       this.load();
     },
-    searchKeyword(type) {
+    searchKeyword() {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
         this.load();
       }, 200);
     },
-    type(type) {
+    type() {
       this.load();
     },
   },

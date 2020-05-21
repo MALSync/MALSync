@@ -122,14 +122,14 @@ export class searchClass {
   }
 
   public sanitizeTitel(title) {
-    title = title.replace(
+    let resTitle = title.replace(
       / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
       '',
     );
-    title = title.replace(/ *\([^\)]+audio\)/i, '');
-    title = title.replace(/ BD( |$)/i, '');
-    title = title.trim();
-    return title;
+    resTitle = resTitle.replace(/ *\([^\)]+audio\)/i, '');
+    resTitle = resTitle.replace(/ BD( |$)/i, '');
+    resTitle = resTitle.trim();
+    return resTitle;
   }
 
   public async search() {
@@ -384,8 +384,8 @@ export class searchClass {
             [i].split('<a')[1]
             .split('href="')[1]
             .split('"')[0];
-        } catch (e) {
-          con.error(e);
+        } catch (e2) {
+          con.error(e2);
           return false;
         }
       }

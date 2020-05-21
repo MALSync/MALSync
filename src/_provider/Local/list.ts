@@ -42,7 +42,7 @@ export class userlist extends ListAbstract {
               status: el.status,
               score: el.score,
               type: 'anime',
-              // @ts-ignore
+
               uid: key,
               url: key,
               cacheKey: this.getCacheKey(
@@ -64,7 +64,6 @@ export class userlist extends ListAbstract {
               status: el.status,
               score: el.score,
               type: 'manga',
-              // @ts-ignore
               uid: key,
               url: key,
               cacheKey: this.getCacheKey(

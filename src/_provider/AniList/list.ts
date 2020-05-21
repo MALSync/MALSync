@@ -184,8 +184,9 @@ export class userlist extends ListAbstract {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
+      let tempData;
       if (listType === 'anime') {
-        var tempData = this.fn({
+        tempData = this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
@@ -201,7 +202,7 @@ export class userlist extends ListAbstract {
           airingState: el.anime_airing_status,
         });
       } else {
-        var tempData = this.fn({
+        tempData = this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
