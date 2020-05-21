@@ -3,7 +3,7 @@
     v-if="!listView"
     :title="prediction && prediction.text"
     class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry"
-    style="position: relative; height: 250px; padding: 0; width: 210px; height: 293px;"
+    style="position: relative; padding: 0; width: 210px; height: 293px;"
   >
     <div
       class="data title"
@@ -54,7 +54,7 @@
       ></a>
       <span
         class="mdl-shadow--2dp"
-        style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; display: inline-flex; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
+        style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
       >
         <a :href="item.url" style="color: black; text-decoration: none;">
           {{ item.title }}
