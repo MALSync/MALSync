@@ -157,7 +157,7 @@ export default {
     },
   }),
   watch: {
-    streamUrl(url, oldUrl) {
+    streamUrl(url) {
       if (url) {
         this.classes.minimized = true;
         this.classes.search = false;

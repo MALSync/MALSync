@@ -62,7 +62,7 @@ async function setFullscreen(player) {
 
     let found = false;
 
-    for (var i in ids) {
+    for (const i in ids) {
       const playerTemp = document.getElementById(ids[i]);
       if (playerTemp !== null) {
         found = true;
@@ -71,7 +71,7 @@ async function setFullscreen(player) {
       }
     }
 
-    for (var i in classes) {
+    for (const i in classes) {
       const classTemp = document.getElementsByClassName(classes[i]).item(0);
       if (classTemp !== null) {
         found = true;

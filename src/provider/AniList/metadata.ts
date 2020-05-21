@@ -389,28 +389,15 @@ export class metadata implements metadataInterface {
 
   getOpeningSongs() {
     const openingSongs = [];
-
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return openingSongs;
   }
 
   getEndingSongs() {
     const endingSongs = [];
-
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return endingSongs;
   }
 
   getRelated() {
-    const html = '';
     let el: {
       type: string;
       links: { url: string; title: string; statusTag: string }[];

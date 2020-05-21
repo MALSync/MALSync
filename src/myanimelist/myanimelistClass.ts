@@ -21,14 +21,15 @@ export class myanimelistClass {
   readonly username: any = null;
 
   constructor(public url: string) {
+    let urlTemp;
     if (url.indexOf('myanimelist.net/anime.php') > -1) {
-      var urlTemp = `/anime/${utils.urlParam(this.url, 'id')}`;
+      urlTemp = `/anime/${utils.urlParam(this.url, 'id')}`;
       // @ts-ignore
       window.history.replaceState(null, null, urlTemp);
       this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
     }
     if (url.indexOf('myanimelist.net/manga.php') > -1) {
-      var urlTemp = `/manga/${utils.urlParam(this.url, 'id')}`;
+      urlTemp = `/manga/${utils.urlParam(this.url, 'id')}`;
       // @ts-ignore
       window.history.replaceState(null, null, urlTemp);
       this.url = utils.absoluteLink(urlTemp, 'https://myanimelist.net');
@@ -73,14 +74,13 @@ export class myanimelistClass {
         }, 1000 * 60);
         break;
       case 'bookmarks':
-        var This = this;
-        $(document).ready(function() {
+        $(document).ready(() => {
           if ($('#mal_cs_powered').length) {
-            This.page = 'classic';
+            this.page = 'classic';
           } else {
-            This.page = 'modern';
+            this.page = 'modern';
           }
-          This.init();
+          this.init();
         });
         break;
       case 'modern':
@@ -375,15 +375,11 @@ export class myanimelistClass {
     con.log(`Bookmarks [${this.username}][${this.page}]`);
     const This = this;
 
-    let tType = 'anime';
-    if (this.type !== null) {
-      tType = this.type;
-    }
-
     const listProvider = new userlist(7, this.type!, {}, this.username);
 
+    let book;
     if (this.page === 'modern') {
-      var book = {
+      book = {
         bookReady(callback) {
           utils.waitUntilTrue(
             function() {
@@ -463,7 +459,7 @@ export class myanimelistClass {
         },
       };
     } else if (this.page === 'classic') {
-      var book = {
+      book = {
         bookReady(callback) {
           listProvider
             .get()

@@ -132,14 +132,14 @@ try {
   setInterval(() => {
     const player = document.querySelectorAll('video, audio');
     if (player) {
-      for (var i = 0; i < player.length; i++) {
+      for (let i = 0; i < player.length; i++) {
         player[i].parentNode!.removeChild(player[i]);
       }
     }
 
     const iframes = document.querySelectorAll('iframe');
     if (iframes) {
-      for (var i = 0; i < iframes.length; i++) {
+      for (let i = 0; i < iframes.length; i++) {
         iframes[i].parentNode!.removeChild(iframes[i]);
       }
     }

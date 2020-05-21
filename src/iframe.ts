@@ -55,6 +55,7 @@ api.settings.init().then(() => {
           item: { action: 'syncShort' },
         });
         break;
+      default:
     }
 
     async function addVideoTime(forward: boolean) {

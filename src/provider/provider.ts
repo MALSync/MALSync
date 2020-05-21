@@ -2,7 +2,6 @@ import { search as malSearch } from './MyAnimeList/metadata';
 import { search as aniSearch } from './AniList/metadata';
 import { search as kitsuSearch } from './Kitsu/metadata';
 import { search as simklSearch } from './Simkl/metadata';
-import { listElement } from './listInterface';
 
 interface entryClass {
   readonly id: number;

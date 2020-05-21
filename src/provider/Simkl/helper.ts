@@ -1,6 +1,6 @@
 import { simkl } from './templates';
 
-export var client_id =
+export const client_id =
   '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
 
 export function translateList(simklStatus, malStatus: null | number = null) {
@@ -71,7 +71,7 @@ export async function syncList(lazy = false) {
     );
     const newCacheList = {};
     if (checkRemoveList) {
-      for (var i = 0; i < checkRemoveList.anime.length; i++) {
+      for (let i = 0; i < checkRemoveList.anime.length; i++) {
         const el = checkRemoveList.anime[i];
         if (cacheList[el.show.ids.simkl] !== undefined) {
           newCacheList[el.show.ids.simkl] = cacheList[el.show.ids.simkl];
@@ -100,7 +100,7 @@ export async function syncList(lazy = false) {
     );
     con.log('ratedUpdate', rated);
     if (rated) {
-      for (var i = 0; i < rated.anime.length; i++) {
+      for (let i = 0; i < rated.anime.length; i++) {
         const el = rated.anime[i];
         cacheList[el.show.ids.simkl] = el;
       }
@@ -112,7 +112,7 @@ export async function syncList(lazy = false) {
   );
   con.log('listUpdate', list);
   if (list) {
-    for (var i = 0; i < list.anime.length; i++) {
+    for (let i = 0; i < list.anime.length; i++) {
       const el = list.anime[i];
       cacheList[el.show.ids.simkl] = el;
     }

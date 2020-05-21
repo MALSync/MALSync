@@ -50,7 +50,7 @@ export function episode(type: 'anime' | 'manga') {
   return api.storage.lang('UI_Episode');
 }
 
-export var syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/;
+export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/;
 
 export enum status {
   watching = 1,
@@ -226,6 +226,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
         case 'u':
           tempOptions[key] = options[key];
           break;
+        default:
       }
     }
 
@@ -569,10 +570,11 @@ export async function epPrediction(malId, callback) {
 
   if (Date.now() < timestamp) airing = 0;
 
+  let delta;
   if (airing) {
-    var delta = Math.abs(Date.now() - timestamp) / 1000;
+    delta = Math.abs(Date.now() - timestamp) / 1000;
   } else {
-    var delta = Math.abs(timestamp - Date.now()) / 1000;
+    delta = Math.abs(timestamp - Date.now()) / 1000;
   }
 
   const diffWeeks = Math.floor(delta / (86400 * 7));
@@ -729,19 +731,16 @@ export function notifications(
 }
 
 export async function timeCache(key, dataFunction, ttl) {
-  return new Promise(async (resolve, reject) => {
-    const value = await api.storage.get(key);
-    if (typeof value === 'object' && new Date().getTime() < value.timestamp) {
-      resolve(value.data);
-      return;
-    }
-    const result = await dataFunction();
-    api.storage
-      .set(key, { data: result, timestamp: new Date().getTime() + ttl })
-      .then(() => {
-        resolve(result);
-      });
-  });
+  const value = await api.storage.get(key);
+  if (typeof value === 'object' && new Date().getTime() < value.timestamp) {
+    return value.data;
+  }
+  const result = await dataFunction();
+  return api.storage
+    .set(key, { data: result, timestamp: new Date().getTime() + ttl })
+    .then(() => {
+      return result;
+    });
 }
 
 // flashm
@@ -857,8 +856,8 @@ export function flashm(
 export async function flashConfirm(
   message,
   type,
-  yesCall = () => {},
-  cancelCall = () => {},
+  yesCall = () => {/*Placeholder*/},
+  cancelCall = () => {/*Placeholder*/},
 ): Promise<boolean> {
   return new Promise(function(resolve, reject) {
     message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>`;
@@ -892,56 +891,56 @@ export async function flashConfirm(
 
 function initflashm() {
   api.storage.addStyle(
-    '.flashinfo{\
-                    transition: max-height 2s, opacity 2s 2s;\
-                 }\
-                 .mini-stealth .flashinfo{\
-                    opacity: 0;\
-                 }\
-                 #flashinfo-div.hover .flashinfo{\
-                    opacity: 1;\
-                 }\
-                 .flashinfo:hover{\
-                    max-height:5000px !important;\
-                    z-index: 2147483647;\
-                    opacity: 1;\
-                    transition: max-height 2s;\
-                 }\
-                 .flashinfo .synopsis{\
-                    transition: max-height 2s, max-width 2s ease 2s;\
-                 }\
-                 .flashinfo:hover .synopsis{\
-                    max-height:9999px !important;\
-                    max-width: 500px !important;\
-                    transition: max-height 2s;\
-                 }\
-                 #flashinfo-div{\
-                  z-index: 2;\
-                  transition: 2s;\
-                 }\
-                 #flashinfo-div:hover, #flashinfo-div.hover{\
-                  z-index: 2147483647;\
-                 }\
-                 \
-                 #flash-div-top, #flash-div-bottom, #flashinfo-div{\
-                    font-family: "Helvetica","Arial",sans-serif;\
-                    color: white;\
-                    font-size: 14px;\
-                    font-weight: 400;\
-                    line-height: 17px;\
-                 }\
-                 #flash-div-top h2, #flash-div-bottom h2, #flashinfo-div h2{\
-                    font-family: "Helvetica","Arial",sans-serif;\
-                    color: white;\
-                    font-size: 14px;\
-                    font-weight: 700;\
-                    line-height: 17px;\
-                    padding: 0;\
-                    margin: 0;\
-                 }\
-                 #flash-div-top a, #flash-div-bottom a, #flashinfo-div a{\
-                    color: #DF6300;\
-                 }',
+    `.flashinfo{
+                    transition: max-height 2s, opacity 2s 2s;
+                 }
+                 .mini-stealth .flashinfo{
+                    opacity: 0;
+                 }
+                 #flashinfo-div.hover .flashinfo{
+                    opacity: 1;
+                 }
+                 .flashinfo:hover{
+                    max-height:5000px !important;
+                    z-index: 2147483647;
+                    opacity: 1;
+                    transition: max-height 2s;
+                 }
+                 .flashinfo .synopsis{
+                    transition: max-height 2s, max-width 2s ease 2s;
+                 }
+                 .flashinfo:hover .synopsis{
+                    max-height:9999px !important;
+                    max-width: 500px !important;
+                    transition: max-height 2s;
+                 }
+                 #flashinfo-div{
+                  z-index: 2;
+                  transition: 2s;
+                 }
+                 #flashinfo-div:hover, #flashinfo-div.hover{
+                  z-index: 2147483647;
+                 }
+
+                 #flash-div-top, #flash-div-bottom, #flashinfo-div{
+                    font-family: "Helvetica","Arial",sans-serif;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 17px;
+                 }
+                 #flash-div-top h2, #flash-div-bottom h2, #flashinfo-div h2{
+                    font-family: "Helvetica","Arial",sans-serif;
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 700;
+                    line-height: 17px;
+                    padding: 0;
+                    margin: 0;
+                 }
+                 #flash-div-top a, #flash-div-bottom a, #flashinfo-div a{
+                    color: #DF6300;
+                 }`,
   );
 
   let extraClass = '';
@@ -984,14 +983,14 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
     }
   }
 
-  for (var i = 0; i < lazyimages.length; i++) {
+  for (let i = 0; i < lazyimages.length; i++) {
     $(lazyimages[i]).addClass('init');
   }
 
   lazyimages = [];
   const query = doc.find('img.lazy.init, .lazyBack.init');
   const processScroll = function() {
-    for (var i = 0; i < lazyimages.length; i++) {
+    for (let i = 0; i < lazyimages.length; i++) {
       if (utils.elementInViewport(lazyimages[i], 600)) {
         loadImage(lazyimages[i], function() {
           lazyimages.splice(i, i);
@@ -1003,7 +1002,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
     }
   };
   // Array.prototype.slice.call is not callable under our lovely IE8
-  for (var i = 0; i < query.length; i++) {
+  for (let i = 0; i < query.length; i++) {
     lazyimages.push(query[i]);
     $(query[i]).removeClass('init');
   }

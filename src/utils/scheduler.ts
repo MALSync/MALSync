@@ -94,17 +94,6 @@ export async function malSchedule() {
 }
 
 export async function anilistScheduler(page = 0) {
-  `
-  media (type: "ANIME", status: "RELEASING", isAdult: false) {
-    id
-    idMal
-    nextAiringEpisode{
-      episode
-      airingAt
-    }
-  }
-
-  `;
   const query = `
     query($page: Int){
       Page(page: $page, perPage: 50){

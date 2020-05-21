@@ -54,10 +54,11 @@ export class epPredictions {
       let episode = 0;
       if (Date.now() < timestamp) airing = 0;
 
+      let delta;
       if (airing) {
-        var delta = Math.abs(Date.now() - timestamp) / 1000;
+        delta = Math.abs(Date.now() - timestamp) / 1000;
       } else {
-        var delta = Math.abs(timestamp - Date.now()) / 1000;
+        delta = Math.abs(timestamp - Date.now()) / 1000;
       }
 
       const diffWeeks = Math.floor(delta / (86400 * 7));

@@ -81,10 +81,8 @@ export class metadata implements metadataInterface {
       const charHtml = j.$.parseHTML(
         `<div class="detail-characters-list ${characterBlock}`,
       );
-      let charFound = 0;
 
       j.$.each(j.$(charHtml).find(':not(td) > table'), (index, value) => {
-        if (!index) charFound = 1;
         const regexDimensions = /\/r\/\d*x\d*/g;
         let charImg = j
           .$(value)
@@ -258,7 +256,6 @@ export class metadata implements metadataInterface {
   }
 
   getRelated() {
-    const html = '';
     const el: { type: string; links: any[] }[] = [];
     try {
       const relatedBlock = this.xhr
@@ -277,10 +274,10 @@ export class metadata implements metadataInterface {
             .find('.borderClass')
             .last()
             .find('a')
-            .each(function(index, value) {
+            .each(function(indexB, valueB) {
               links.push({
-                url: j.$(value).attr('href') || '',
-                title: j.$(value).text(),
+                url: j.$(valueB).attr('href') || '',
+                title: j.$(valueB).text(),
                 statusTag: '',
               });
             });

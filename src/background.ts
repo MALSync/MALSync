@@ -1,5 +1,4 @@
 import {
-  xhrI,
   xhrResponseI,
   sendMessageI,
   responseMessageI,

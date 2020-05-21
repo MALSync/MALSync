@@ -110,9 +110,9 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: 'anime' | 'manga') {
 }
 
 export async function userId() {
-  const userId = await api.storage.get('kitsuUserId');
-  if (typeof userId !== 'undefined') {
-    return userId;
+  const userIdT = await api.storage.get('kitsuUserId');
+  if (typeof userIdT !== 'undefined') {
+    return userIdT;
   }
   return api.request
     .xhr('GET', {

@@ -45,11 +45,11 @@ export class metadata implements metadataInterface {
       this.id ? `MAL: ${this.id}` : `Simkl: ${this.simklId}`,
     );
 
+    let de;
     if (Number.isNaN(this.id)) {
-      var de = { simkl: this.simklId };
+      de = { simkl: this.simklId };
     } else {
-      // @ts-ignore
-      var de = { mal: this.id };
+      de = { mal: this.id };
     }
 
     if (Number.isNaN(this.simklId)) {
@@ -118,10 +118,6 @@ export class metadata implements metadataInterface {
 
   getCharacters() {
     const charArray: any[] = [];
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
     return charArray;
   }
 
@@ -260,36 +256,21 @@ export class metadata implements metadataInterface {
   getOpeningSongs() {
     const openingSongs = [];
 
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return openingSongs;
   }
 
   getEndingSongs() {
     const endingSongs = [];
 
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return endingSongs;
   }
 
   getRelated() {
-    const html = '';
     const el: {
       type: string;
       links: { url: string; title: string; statusTag: string }[];
     }[] = [];
-    const links: any = {};
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
+
     return el;
   }
 }
