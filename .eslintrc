@@ -16,7 +16,12 @@
   "ignorePatterns": ["dist/", "node_modules/", "test/dist", "*.min.js"],
   "overrides": [
     {
-      "extends": ["plugin:prettier/recommended"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended"
+      ],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint"],
@@ -67,6 +72,14 @@
       "error",
       {
         "singleQuote": true
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never"
       }
     ]
   },
