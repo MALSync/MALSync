@@ -1,7 +1,4 @@
-import {
-  sendMessageI,
-  responseMessageI,
-} from '../messageInterface';
+import { sendMessageI, responseMessageI } from '../messageInterface';
 import { requestInterface } from './requestInterface';
 
 export const requestApi: requestInterface = {

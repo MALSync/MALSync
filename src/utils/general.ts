@@ -856,8 +856,12 @@ export function flashm(
 export async function flashConfirm(
   message,
   type,
-  yesCall = () => {/*Placeholder*/},
-  cancelCall = () => {/*Placeholder*/},
+  yesCall = () => {
+    /* Placeholder */
+  },
+  cancelCall = () => {
+    /* Placeholder */
+  },
 ): Promise<boolean> {
   return new Promise(function(resolve, reject) {
     message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>`;

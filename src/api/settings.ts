@@ -93,8 +93,7 @@ export const settingsObj = {
         for (const key in changes) {
           const storageChange = changes[key];
           if (/^settings\//i.test(key)) {
-            this.options[key.replace('settings/', '')] =
-              storageChange.newValue;
+            this.options[key.replace('settings/', '')] = storageChange.newValue;
             con.info(`Update ${key} option to ${storageChange.newValue}`);
           }
         }

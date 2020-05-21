@@ -78,8 +78,11 @@
     "class-methods-use-this": "off",
     "no-throw-literal": "off",
     "no-await-in-loop": "off",
-    "prefer-destructuring": ["error", {"array": true,"object": true}],
+    "prefer-destructuring": ["error", {"array": false,"object": true}],
     "import/no-webpack-loader-syntax": "off",
+    "no-continue": "off",
+    "no-fallthrough": "off",
+    "import/no-extraneous-dependencies": "off",
     "new-cap": "warn", //TODO
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO

@@ -1,4 +1,4 @@
-export let log = (function() {
+export const log = (function() {
   return Function.prototype.bind.call(
     console.log,
     console,
@@ -7,7 +7,7 @@ export let log = (function() {
   );
 })();
 
-export let error = (function() {
+export const error = (function() {
   return Function.prototype.bind.call(
     console.error,
     console,
@@ -16,7 +16,7 @@ export let error = (function() {
   );
 })();
 
-export let info = (function() {
+export const info = (function() {
   return Function.prototype.bind.call(
     console.info,
     console,
