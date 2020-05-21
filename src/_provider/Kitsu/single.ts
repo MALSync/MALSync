@@ -272,7 +272,7 @@ export class Single extends SingleAbstract {
   }
 
   protected apiCall(mode, url, variables = {}, authentication = true) {
-    const headers = {
+    const headers: any = {
       'Content-Type': 'application/vnd.api+json',
       Accept: 'application/vnd.api+json',
     };

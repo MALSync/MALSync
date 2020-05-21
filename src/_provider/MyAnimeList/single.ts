@@ -291,7 +291,7 @@ export class Single extends SingleAbstract {
     this.pending = false;
 
     if (this.type === 'anime') {
-      var anime = {};
+      var anime: any = {};
       anime['.csrf_token'] = data
         .split("'csrf_token'")[1]
         .split("'")[1]
@@ -423,7 +423,7 @@ export class Single extends SingleAbstract {
       con.log('[GET] Object:', anime);
       return anime;
     }
-    var anime = {};
+    var anime: any = {};
     anime['.csrf_token'] = data
       .split("'csrf_token'")[1]
       .split("'")[1]

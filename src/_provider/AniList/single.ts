@@ -208,6 +208,7 @@ export class Single extends SingleAbstract {
       progress: this.animeInfo.mediaListEntry.progress,
       scoreRaw: this.animeInfo.mediaListEntry.score,
       notes: this.animeInfo.mediaListEntry.notes,
+      volumes: null,
     };
 
     if (this.type === 'manga') {
@@ -228,7 +229,7 @@ export class Single extends SingleAbstract {
   }
 
   protected apiCall(query, variables, authentication = true) {
-    const headers = {
+    const headers: any = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     };

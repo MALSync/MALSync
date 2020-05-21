@@ -160,7 +160,7 @@ export async function call(
   }
   con.log('call', method, url, sData);
 
-  const headers = {
+  const headers: any = {
     'simkl-api-key': client_id,
     Accept: 'application/vnd.api+json',
     'Content-Type': 'application/json',

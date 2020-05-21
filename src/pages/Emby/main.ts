@@ -322,7 +322,6 @@ export const Emby: pageInterface = {
           );
         });
         document.addEventListener('fullscreenchange', function() {
-          // @ts-ignore
           if (
             window.fullScreen ||
             (window.innerWidth === screen.width &&

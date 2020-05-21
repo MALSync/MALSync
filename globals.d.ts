@@ -7,4 +7,19 @@ declare global {
   let utils: typeof _utils;
   let j: { $: JQueryStatic };
   let api: typeof webextension;
+
+  interface Window {
+    fullScreen: any;
+  }
+
+  interface Document {
+    webkitIsFullScreen: any;
+    mozFullScreen: any;
+    msFullscreenElement: any;
+  }
+
+  interface EventTarget {
+    nodeName: any;
+    shadowRoot: any;
+  }
 }

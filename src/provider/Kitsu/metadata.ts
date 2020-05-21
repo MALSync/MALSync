@@ -410,7 +410,7 @@ export const search: searchInterface = async function(
 };
 
 function apiCall(mode, url, variables = {}, authentication = true) {
-  const headers = {
+  const headers: any = {
     'Content-Type': 'application/vnd.api+json',
     Accept: 'application/vnd.api+json',
   };

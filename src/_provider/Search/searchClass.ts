@@ -476,7 +476,12 @@ export class searchClass {
           kissurl = this.syncPage.url;
         }
       }
-      const param = { Kiss: kissurl, Mal: this.state.url };
+      const param: {
+        Kiss: string;
+        Mal: string;
+        newCorrection?: boolean;
+        similarity?: any;
+      } = { Kiss: kissurl, Mal: this.state.url };
       if (this.state.provider === 'user') {
         if (!confirm(api.storage.lang('correction_DBRequest'))) return;
         param.newCorrection = true;
