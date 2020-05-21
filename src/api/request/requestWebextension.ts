@@ -1,6 +1,4 @@
 import {
-  xhrI,
-  xhrResponseI,
   sendMessageI,
   responseMessageI,
 } from '../messageInterface';
@@ -11,6 +9,7 @@ export const requestApi: requestInterface = {
     if (typeof requestApi.sendMessage !== 'undefined') {
       return requestApi.sendMessage({ name: 'xhr', method, url });
     }
+    throw 'Could not send xhr';
   },
 
   async sendMessage(message: sendMessageI): Promise<any> {

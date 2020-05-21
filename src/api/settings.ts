@@ -1,4 +1,4 @@
-export var settingsObj = {
+export const settingsObj = {
   options: {
     autoTrackingModeanime: 'video',
     autoTrackingModemanga: 'instant',
@@ -80,46 +80,45 @@ export var settingsObj = {
   },
 
   async init() {
-    return new Promise(async (resolve, reject) => {
-      for (const key in this.options) {
-        const store = await api.storage.get(`settings/${key}`);
-        if (typeof store !== 'undefined') {
-          this.options[key] = store;
+    for (const key in this.options) {
+      const store = await api.storage.get(`settings/${key}`);
+      if (typeof store !== 'undefined') {
+        this.options[key] = store;
+      }
+    }
+    con.log('Settings', this.options);
+
+    api.storage.storageOnChanged((changes, namespace) => {
+      if (namespace === 'sync') {
+        for (const key in changes) {
+          const storageChange = changes[key];
+          if (/^settings\//i.test(key)) {
+            this.options[key.replace('settings/', '')] =
+              storageChange.newValue;
+            con.info(`Update ${key} option to ${storageChange.newValue}`);
+          }
         }
       }
-      con.log('Settings', this.options);
-      resolve(this);
-
-      api.storage.storageOnChanged((changes, namespace) => {
-        if (namespace === 'sync') {
-          for (const key in changes) {
-            const storageChange = changes[key];
-            if (/^settings\//i.test(key)) {
-              this.options[key.replace('settings/', '')] =
-                storageChange.newValue;
-              con.info(`Update ${key} option to ${storageChange.newValue}`);
-            }
+      if (namespace === 'local' && changes.rateLimit) {
+        try {
+          if (changes.rateLimit.newValue) {
+            con.log('Rate limited');
+            utils.flashm('Rate limited. Retrying in a moment', {
+              error: true,
+              type: 'rate',
+              permanent: true,
+            });
+          } else {
+            con.log('No Rate limited');
+            $('.type-rate').remove();
           }
+        } catch (e) {
+          con.error(e);
         }
-        if (namespace === 'local' && changes.rateLimit) {
-          try {
-            if (changes.rateLimit.newValue) {
-              con.log('Rate limited');
-              utils.flashm('Rate limited. Retrying in a moment', {
-                error: true,
-                type: 'rate',
-                permanent: true,
-              });
-            } else {
-              con.log('No Rate limited');
-              $('.type-rate').remove();
-            }
-          } catch (e) {
-            con.error(e);
-          }
-        }
-      });
+      }
     });
+
+    return this;
   },
 
   get(name: string) {
@@ -127,7 +126,7 @@ export var settingsObj = {
   },
 
   set(name: string, value: any) {
-    if (!this.options.hasOwnProperty(name)) {
+    if (!Object.prototype.hasOwnProperty.call(this.options, name)) {
       const err = Error(`${name} is not a defined option`);
       con.error(err);
       throw err;

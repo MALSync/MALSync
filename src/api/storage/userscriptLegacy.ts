@@ -93,5 +93,7 @@ export const userscriptLegacy: storageInterface = {
     head.get(0).appendChild(s);
   },
 
-  storageOnChanged(cb) {},
+  storageOnChanged(cb) {
+    // not supported
+  },
 };
