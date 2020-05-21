@@ -78,7 +78,6 @@
     "class-methods-use-this": "off",
     "no-throw-literal": "off",
     "no-await-in-loop": "off",
-    "consistent-return": "off",
     "prefer-destructuring": ["error", {"array": true,"object": true}],
     "import/no-webpack-loader-syntax": "off",
     "new-cap": "warn", //TODO
