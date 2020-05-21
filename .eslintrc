@@ -33,7 +33,8 @@
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-this-alias": "warn",
         "@typescript-eslint/no-use-before-define": "off",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }]
       }
     },
     {
@@ -66,8 +67,24 @@
   "rules": {
     "eqeqeq": ["error", "always"],
     "no-extend-native": "off",
-    "no-var": "warn",
     "prefer-template": "error",
+    "no-plusplus": "off",
+    "no-param-reassign": "warn",
+    "no-console": "off",
+    "guard-for-in": "off",
+    "no-underscore-dangle": "off",
+    "radix": ["error", "as-needed"],
+    "vars-on-top": "off",
+    "class-methods-use-this": "off",
+    "no-throw-literal": "off",
+    "no-await-in-loop": "off",
+    "consistent-return": "off",
+    "prefer-destructuring": ["error", {"array": true,"object": true}],
+    "import/no-webpack-loader-syntax": "off",
+    "new-cap": "warn", //TODO
+    "block-scoped-var": "warn", //TODO
+    "import/prefer-default-export": "off", //TODO
+    "no-var": "off", //TODO
     "prettier/prettier": [
       "error",
       {
