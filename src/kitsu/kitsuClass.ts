@@ -1,4 +1,3 @@
-import * as helper from '../provider/Kitsu/helper';
 import { Single as kitsuSingle } from '../_provider/Kitsu/single';
 import { userlist } from '../_provider/Kitsu/list';
 

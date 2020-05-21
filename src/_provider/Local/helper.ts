@@ -5,6 +5,7 @@ export function getCacheKey(id, page) {
 export async function getSyncList() {
   let data;
 
+  // @ts-ignore
   if (api.type === 'userscript') {
     const list = await api.storage.list('sync');
     for (const key in list) {

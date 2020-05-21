@@ -4,8 +4,7 @@ import { getList } from '../_provider/listFactory';
 declare let browser: any;
 export function checkInit() {
   chrome.alarms.get('updateCheck', function(a) {
-    if (typeof a === 'undefined') {
-    } else {
+    if (typeof a !== 'undefined') {
       con.log(a);
     }
   });
@@ -37,7 +36,7 @@ export function checkContinue(message) {
     const contObj = Object.keys(continueCheck);
     con.info('Missing Id', contObj.length);
     if (contObj.length === 1) {
-      id = contObj[0];
+      [id] = contObj;
       con.log('Auto set Id', contObj[0]);
     }
   }
@@ -48,7 +47,7 @@ export function checkContinue(message) {
   }
 }
 
-var continueCheck = {};
+let continueCheck = {};
 let hiddenTabs: any = [];
 const mutex = new Mutex();
 
@@ -90,7 +89,6 @@ async function startCheck(type = 'anime') {
 
 async function updateElement(el, type = 'anime', retryNum = 0) {
   return new Promise(async (resolve, reject) => {
-    const anime_id = el.malId;
     const anime_num_episodes = el.totalEp;
     const anime_image_path = el.image;
     const anime_title = el.title;
@@ -249,7 +247,7 @@ function checkError(elCache, error) {
 }
 
 function openInvisiblePage(url: string, id) {
-  var url = `${url + (url.split('?')[1] ? '&' : '?')}mal-sync-background=${id}`;
+  url = `${url + (url.split('?')[1] ? '&' : '?')}mal-sync-background=${id}`;
   if (utils.canHideTabs()) {
     // Firefox
     browser.tabs
@@ -274,7 +272,7 @@ function removeIframes() {
   if (utils.canHideTabs()) {
     // Firefox
     if (hiddenTabs.length) {
-      for (var i = 0; i < hiddenTabs.length; i++) {
+      for (let i = 0; i < hiddenTabs.length; i++) {
         chrome.tabs.remove(hiddenTabs[i]);
       }
     }
@@ -282,7 +280,7 @@ function removeIframes() {
   } else {
     // Chrome
     const iframes = document.querySelectorAll('iframe');
-    for (var i = 0; i < iframes.length; i++) {
+    for (let i = 0; i < iframes.length; i++) {
       iframes[i].parentNode!.removeChild(iframes[i]);
     }
   }

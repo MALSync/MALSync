@@ -59,7 +59,7 @@ function messagePageListener(page) {
       }
       if (typeof msg.timeAdd !== 'undefined') {
         page.tempPlayer.play();
-        page.tempPlayer.currentTime = page.tempPlayer.currentTime + msg.timeAdd;
+        page.tempPlayer.currentTime += msg.timeAdd;
         return;
       }
     }
@@ -75,6 +75,7 @@ function messagePageListener(page) {
           j.$('#malSyncProgress').addClass('ms-done');
           j.$('.flash.type-update .sync').click();
           break;
+        default:
       }
     }
   });
@@ -98,6 +99,7 @@ function messagePageListener(page) {
         j.$('#malSyncProgress').addClass('ms-done');
         j.$('.flash.type-update .sync').click();
         break;
+      default:
     }
 
     async function addVideoTime(forward: boolean) {
@@ -111,7 +113,7 @@ function messagePageListener(page) {
       }
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
-      page.tempPlayer.currentTime = page.tempPlayer.currentTime + time;
+      page.tempPlayer.currentTime += time;
     }
   });
 }

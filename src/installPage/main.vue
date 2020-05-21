@@ -292,8 +292,8 @@ export default {
   mounted() {
     componentHandler.upgradeDom();
 
-    const settingsEl = document.getElementsByClassName('open-settings')[0];
-    settingsEl.addEventListener('click', function(e) {
+    const [settingsEl] = document.getElementsByClassName('open-settings');
+    settingsEl.addEventListener('click', function() {
       con.log('Open Settings');
       chrome.runtime.openOptionsPage();
     });

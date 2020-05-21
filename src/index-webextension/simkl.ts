@@ -32,5 +32,6 @@ function messageSimklListener(simkl) {
       });
       return true;
     }
+    return false;
   });
 }

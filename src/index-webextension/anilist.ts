@@ -32,5 +32,6 @@ function messageAniListListener(anilist) {
       });
       return true;
     }
+    return false;
   });
 }

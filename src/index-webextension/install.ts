@@ -6,8 +6,8 @@ declare let componentHandler: any;
 document.getElementsByTagName('head')[0].onclick = function(e) {
   try {
     componentHandler.upgradeDom();
-  } catch (e) {
-    console.log(e);
+  } catch (e2) {
+    console.log(e2);
     setTimeout(function() {
       componentHandler.upgradeDom();
     }, 500);

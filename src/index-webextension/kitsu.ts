@@ -32,5 +32,6 @@ function messageKitsuListener(kitsu) {
       });
       return true;
     }
+    return false;
   });
 }
