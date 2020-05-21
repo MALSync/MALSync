@@ -1,32 +1,32 @@
-/*By kaiserdj*/
+/* By kaiserdj */
+import { pageInterface } from '../pageInterface';
+
 let check = false;
-import { pageInterface } from './../pageInterface';
 
 export const Jkanime: pageInterface = {
   name: 'Jkanime',
   domain: 'https://jkanime.net/',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (isNaN(parseInt(utils.urlPart(url, 4)))) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.video-header h1')
         .text()
         .split(' - ')[0];
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('.vnav-list').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('.video-header h1')
@@ -34,28 +34,28 @@ export const Jkanime: pageInterface = {
           .split(' - ')[1],
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextUrl = j.$('.vnav-right').attr('href');
       if (nextUrl === '#') return undefined;
       return nextUrl;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.server-box'));
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.sinopsis-box h2').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.sinopsis-links'));
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         if (!utils.urlPart(window.location.href, 4).length) {
           document.body.insertAdjacentHTML(
             'afterbegin',
@@ -74,17 +74,16 @@ export const Jkanime: pageInterface = {
             }
           }
           return j.$('.MALSync a');
-        } else {
-          return j.$('.nowaythisexists123');
         }
+        return j.$('.nowaythisexists123');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Jkanime.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector.attr('epi');
       },
-      handleListHook: function(epi, epilist) {
+      handleListHook(epi, epilist) {
         epi++;
         if (epilist.length >= epi) {
           if (!check) {

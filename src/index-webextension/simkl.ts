@@ -1,5 +1,5 @@
-import { simklClass } from './../simkl/simklClass';
-import { firebaseNotification } from './../utils/firebaseNotification';
+import { simklClass } from '../simkl/simklClass';
+import { firebaseNotification } from '../utils/firebaseNotification';
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
@@ -25,11 +25,9 @@ function messageSimklListener(simkl) {
         if (malUrl !== '') {
           con.log('TabMalUrl Message', malUrl);
           sendResponse(malUrl);
-        } else {
-          if (api.settings.get('syncMode') === 'SIMKL') {
-            con.log('TabUrl Message', simkl.url);
-            sendResponse(simkl.url);
-          }
+        } else if (api.settings.get('syncMode') === 'SIMKL') {
+          con.log('TabUrl Message', simkl.url);
+          sendResponse(simkl.url);
         }
       });
       return true;

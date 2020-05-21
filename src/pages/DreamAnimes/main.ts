@@ -1,40 +1,39 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const DreamAnimes: pageInterface = {
   name: 'Dream Animes',
   domain: 'https://dreamanimes.com.br',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'online') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#anime_name').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 5);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${DreamAnimes.domain}/anime-info/${DreamAnimes.sync.getIdentifier(
         url,
       )}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(utils.urlPart(url, 7));
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.truncate').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#pcontent h3'));
     },
   },

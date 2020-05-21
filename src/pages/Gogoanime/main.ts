@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Gogoanime: pageInterface = {
   name: 'Gogoanime',
@@ -9,34 +9,33 @@ export const Gogoanime: pageInterface = {
   ],
   database: 'Gogoanime',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (utils.urlPart(url, 3) === 'category') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.anime-info a')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 3).split('-episode')[0];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${url
         .split('/')
         .slice(0, 3)
         .join('/')}/category/${Gogoanime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(utils.urlPart(url, 3).split('episode-')[1]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.anime_video_body_episodes_r a')
         .last()
@@ -47,21 +46,21 @@ export const Gogoanime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Gogoanime.overview!.getIdentifier(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.prependTo(j.$('.anime_info_body').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('#episode_related a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         const anchorHref = selector.attr('href');
 
         if (!anchorHref) return;
@@ -71,11 +70,11 @@ export const Gogoanime: pageInterface = {
           Gogoanime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Gogoanime.overview!.list!.elementUrl(selector);
         return Gogoanime.sync.getEpisode(url);
       },
-      paginationNext: function() {
+      paginationNext() {
         let next = false;
         let nextReturn = false;
         j.$(

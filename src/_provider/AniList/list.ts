@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from './../listAbstract';
+import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class userlist extends ListAbstract {
@@ -34,7 +34,7 @@ export class userlist extends ListAbstract {
           Accept: 'application/json',
         },
         data: JSON.stringify({
-          query: query,
+          query,
           variables: [],
         }),
       })
@@ -44,9 +44,8 @@ export class userlist extends ListAbstract {
         this.errorHandling(res);
         if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
           const opt = api.settings.get('anilistOptions');
-          opt['displayAdultContent'] =
-            res.data.Viewer.options.displayAdultContent;
-          opt['scoreFormat'] = res.data.Viewer.mediaListOptions.scoreFormat;
+          opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
+          opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
           api.settings.set('anilistOptions', opt);
         }
         return res.data.Viewer.name;
@@ -147,7 +146,7 @@ export class userlist extends ListAbstract {
     };
 
     if (this.status !== 1) {
-      //@ts-ignore
+      // @ts-ignore
       variables.sort = null;
     }
 
@@ -160,8 +159,8 @@ export class userlist extends ListAbstract {
           Accept: 'application/json',
         },
         data: JSON.stringify({
-          query: query,
-          variables: variables,
+          query,
+          variables,
         }),
       })
       .then(response => {
@@ -169,16 +168,15 @@ export class userlist extends ListAbstract {
         con.log('res', res);
         this.errorHandling(res);
         const data = res.data.Page.mediaList;
-        this.offset = this.offset + 1;
+        this.offset += 1;
         if (!res.data.Page.pageInfo.hasNextPage) {
           this.done = true;
         }
 
         if (this.compact) {
           return this.prepareCompact(data, this.listType);
-        } else {
-          return this.prepareData(data, this.listType);
         }
+        return this.prepareData(data, this.listType);
       });
   }
 
@@ -200,7 +198,7 @@ export class userlist extends ListAbstract {
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
           tags: el.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
       } else {
         var tempData = this.fn({
@@ -216,7 +214,7 @@ export class userlist extends ListAbstract {
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
           tags: el.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
       }
 

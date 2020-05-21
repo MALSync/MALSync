@@ -67,14 +67,14 @@ import { keyboardMap } from './keyboardMap';
 let tempKeysTimeout;
 export default {
   components: {
-    tooltip: tooltip,
+    tooltip,
   },
   props: {
     option: {
       type: String,
     },
   },
-  data: function() {
+  data() {
     return {
       keys: {},
       tempKeys: {},
@@ -103,7 +103,7 @@ export default {
       return Object.keys(this.tempKeys).length;
     },
     value: {
-      get: function() {
+      get() {
         const temp = api.settings.get(this.option);
         if (!temp || !temp.length) return {};
 
@@ -113,7 +113,7 @@ export default {
         }
         return rv;
       },
-      set: function(value) {
+      set(value) {
         api.settings.set(this.option, Object.keys(value));
       },
     },
@@ -135,7 +135,7 @@ export default {
     },
     setTempState(state) {
       if (!Object.keys(this.tempKeys).length) {
-        const tempState = Object.assign({}, state);
+        const tempState = { ...state };
         this.tempKeys = tempState;
         clearTimeout(tempKeysTimeout);
         tempKeysTimeout = setTimeout(() => {

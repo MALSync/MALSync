@@ -59,7 +59,8 @@
 </template>
 
 <script type="text/javascript">
-import { search } from './../../../provider/provider';
+import { search } from '../../../provider/provider';
+
 let searchTimeout;
 export default {
   components: {},
@@ -81,7 +82,7 @@ export default {
       default: 0,
     },
   },
-  data: function() {
+  data() {
     return {
       items: [],
       loading: false,
@@ -89,21 +90,21 @@ export default {
     };
   },
   watch: {
-    keyword: function(type) {
+    keyword(type) {
       this.searchKeyword = this.keyword;
       this.load();
     },
-    searchKeyword: function(type) {
+    searchKeyword(type) {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
         this.load();
       }, 200);
     },
-    type: function(type) {
+    type(type) {
       this.load();
     },
   },
-  mounted: function() {
+  mounted() {
     if (this.syncMode) {
       this.searchKeyword = this.keyword;
       this.load();
@@ -111,7 +112,7 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
-    load: function() {
+    load() {
       if (this.searchKeyword) {
         this.loading = true;
 
@@ -124,12 +125,12 @@ export default {
         });
       }
     },
-    inputFocus: function() {
+    inputFocus() {
       if (!this.searchKeyword) {
         this.searchKeyword = this.keyword;
       }
     },
-    clickItem: async function(e, item) {
+    async clickItem(e, item) {
       e.preventDefault();
       if (!item) {
         this.$emit('clicked', { url: '', id: 0 });
@@ -137,7 +138,7 @@ export default {
       }
       const url = await item.malUrl();
       if (url) {
-        this.$emit('clicked', { url: url, id: item.id });
+        this.$emit('clicked', { url, id: item.id });
       } else {
         this.$emit('clicked', { url: item.url, id: item.id });
       }

@@ -4,7 +4,7 @@ import {
   xhrResponseI,
   sendMessageI,
   responseMessageI,
-} from './../messageInterface';
+} from '../messageInterface';
 
 declare let GM_xmlhttpRequest: any;
 
@@ -12,12 +12,12 @@ export const requestUserscriptLegacy: requestInterface = {
   async xhr(method, url): Promise<any> {
     return new Promise((resolve, reject) => {
       const request = {
-        method: method,
-        url: url,
+        method,
+        url,
         synchronous: false,
         headers: [],
         data: null,
-        onload: function(response) {
+        onload(response) {
           console.log(response);
           const responseObj: xhrResponseI = {
             finalUrl: response.finalUrl,

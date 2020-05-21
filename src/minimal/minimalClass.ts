@@ -1,12 +1,13 @@
 import Vue from 'vue';
-import minimalApp from './minimalApp.vue';
 import * as VueClazyLoad from 'vue-clazy-load';
+import minimalApp from './minimalApp.vue';
 
-//@ts-ignore
+// @ts-ignore
 Vue.use(VueClazyLoad);
 
 export class minimal {
   private history: string[] = [];
+
   private minimalVue;
 
   constructor(public minimal) {
@@ -452,27 +453,27 @@ export class minimal {
             j.$.each(value, (i, value) => {
               if (typeof value !== 'object') return;
               j.$.each(value, (i, value) => {
-                if (typeof value['name'] !== 'undefined') {
+                if (typeof value.name !== 'undefined') {
                   This.minimal.find(`${selector} > div`).append(
                     `<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="${
-                      value['url']
+                      value.url
                     }" style="cursor: pointer;">\
                   <img src="${
-                    value['image_url']
+                    value.image_url
                   }" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
                     <span style="font-size: 20px; font-weight: 400; line-height: 1;">${
-                      value['name']
+                      value.name
                     }</span>\
                     <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">${api.storage.lang(
                       'search_Type',
-                    )} ${value['payload']['media_type']}</p>\
+                    )} ${value.payload.media_type}</p>\
                     <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
                       'search_Score',
-                    )} ${value['payload']['score']}</p>\
+                    )} ${value.payload.score}</p>\
                     <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
                       'search_Year',
-                    )} ${value['payload']['start_year']}</p>\
+                    )} ${value.payload.start_year}</p>\
                   </div>\
                   </a>`,
                   );

@@ -5,9 +5,8 @@ import { kitsuClass } from './kitsu/kitsuClass';
 import { simklClass } from './simkl/simklClass';
 import { scheduleUpdate } from './utils/scheduler';
 import { firebaseNotification } from './utils/firebaseNotification';
-import { getPlayerTime } from './utils/player';
+import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
-import { shortcutListener } from './utils/player';
 
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
@@ -33,9 +32,7 @@ function main() {
     setInterval(async function() {
       const item = await api.storage.get('iframePlayer');
       if (typeof item !== 'undefined' && item !== 'null') {
-        page.setVideoTime(item, function(time) {
-          return;
-        });
+        page.setVideoTime(item, function(time) {});
         api.storage.set('iframePlayer', 'null');
       }
     }, 2000);

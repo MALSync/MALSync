@@ -1,5 +1,5 @@
 import { Mutex } from 'async-mutex';
-import { getList } from './../_provider/listFactory';
+import { getList } from '../_provider/listFactory';
 
 declare let browser: any;
 export function checkInit() {
@@ -29,7 +29,7 @@ export function checkContinue(message) {
     return;
   }
 
-  let id = message.id;
+  let { id } = message;
   con.log('Iframe update check done', message);
   removeIframes();
 
@@ -114,9 +114,9 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
         return;
       }
 
-      //Remove other iframes
+      // Remove other iframes
       removeIframes();
-      //Create iframe
+      // Create iframe
       openInvisiblePage(streamUrl, id);
 
       const timeout = setTimeout(async function() {
@@ -154,7 +154,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
 
         if (newestEpisode) {
           con.log('Episode list found', {
-            newestEpisode: newestEpisode,
+            newestEpisode,
           });
 
           let finished = false;
@@ -168,7 +168,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
 
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, {
             newestEp: newestEpisode,
-            finished: finished,
+            finished,
           });
 
           if (
@@ -197,7 +197,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           }
 
           if (typeof list !== 'undefined' && list.length > 0) {
-            //Update next Episode link
+            // Update next Episode link
             const continueUrlObj = await utils.getContinueWaching(
               type,
               el.cacheKey,
@@ -244,17 +244,17 @@ function checkError(elCache, error) {
   if (typeof elCache === 'undefined') {
     elCache = { newestEp: '', finished: false };
   }
-  elCache['error'] = error;
+  elCache.error = error;
   return elCache;
 }
 
 function openInvisiblePage(url: string, id) {
   var url = `${url + (url.split('?')[1] ? '&' : '?')}mal-sync-background=${id}`;
   if (utils.canHideTabs()) {
-    //Firefox
+    // Firefox
     browser.tabs
       .create({
-        url: url,
+        url,
         active: false,
       })
       .then(tab => {
@@ -262,7 +262,7 @@ function openInvisiblePage(url: string, id) {
         browser.tabs.hide(tab.id);
       });
   } else {
-    //Chrome
+    // Chrome
     const ifrm = document.createElement('iframe');
     ifrm.setAttribute('src', url);
     ifrm.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
@@ -272,7 +272,7 @@ function openInvisiblePage(url: string, id) {
 
 function removeIframes() {
   if (utils.canHideTabs()) {
-    //Firefox
+    // Firefox
     if (hiddenTabs.length) {
       for (var i = 0; i < hiddenTabs.length; i++) {
         chrome.tabs.remove(hiddenTabs[i]);
@@ -280,7 +280,7 @@ function removeIframes() {
     }
     hiddenTabs = [];
   } else {
-    //Chrome
+    // Chrome
     const iframes = document.querySelectorAll('iframe');
     for (var i = 0; i < iframes.length; i++) {
       iframes[i].parentNode!.removeChild(iframes[i]);
@@ -290,7 +290,7 @@ function removeIframes() {
 
 function setBadgeText(text: string) {
   try {
-    chrome.browserAction.setBadgeText({ text: text });
+    chrome.browserAction.setBadgeText({ text });
   } catch (e) {
     con.error(e);
   }

@@ -13,11 +13,14 @@ export function getSingle(url: string) {
   const syncMode = helper.getSyncMode(url);
   if (syncMode === 'MAL') {
     return new malSingle(url);
-  } else if (syncMode === 'ANILIST') {
+  }
+  if (syncMode === 'ANILIST') {
     return new anilistSingle(url);
-  } else if (syncMode === 'KITSU') {
+  }
+  if (syncMode === 'KITSU') {
     return new kitsuSingle(url);
-  } else if (syncMode === 'SIMKL') {
+  }
+  if (syncMode === 'SIMKL') {
     return new simklSingle(url);
   }
   throw 'Unknown sync mode';

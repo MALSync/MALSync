@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const RiiE: pageInterface = {
   name: 'RiiE',
   domain: 'https://www.riie.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('#lightsVideo')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#content > div.postarea > div > div.post > div:nth-child(1) > b')
         .text()
         .replace(/episode.*/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return RiiE.sync.getOverviewUrl(url).split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$(
@@ -32,7 +31,7 @@ export const RiiE: pageInterface = {
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -47,7 +46,7 @@ export const RiiE: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = $("a[rel='next']")
         .first()
         .attr('href');
@@ -57,21 +56,21 @@ export const RiiE: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return url.split('/')[4].replace(/-/g, ' ');
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#content > div.naru > div.areaxb').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.episodelist > ul > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('span.leftoff > a')
@@ -80,7 +79,7 @@ export const RiiE: pageInterface = {
           RiiE.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('span.leftoff > a')
           .first()

@@ -1,45 +1,40 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeFire: pageInterface = {
   name: 'AnimeFire',
   domain: 'https://animefire.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'animes') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return AnimeFire.sync.getIdentifier(url).replace(/-/g, ' ');
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       const oUrl = j.$('li.page-item:nth-child(3) > a.page-link').attr('href');
       if (oUrl && oUrl.indexOf('animes') !== -1) {
         return oUrl;
-      } else {
-        return (
-          j.$('li.page-item:nth-child(4) > a.page-link').attr('href') || ''
-        );
       }
+      return j.$('li.page-item:nth-child(4) > a.page-link').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(utils.urlPart(url, 5));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (j.$('li.page-item:nth-child(5) > a.page-link > span.prox').length) {
         return buildNext(
           url,
           j.$('li.page-item:nth-child(5) > a.page-link').attr('href'),
         );
-      } else if (
-        j.$('li.page-item:nth-child(4) > a.page-link > span.prox').length
-      ) {
+      }
+      if (j.$('li.page-item:nth-child(4) > a.page-link > span.prox').length) {
         return buildNext(
           url,
           j.$('li.page-item:nth-child(4) > a.page-link').attr('href'),

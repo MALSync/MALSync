@@ -1,14 +1,14 @@
-const packageJson = require('../package.json');
-const pageUrls = require('../src/pages/pageUrls');
-const playerUrls = require('../src/pages/playerUrls');
-
 const path = require('path');
 const extra = require('fs-extra');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const download = require('download-file');
+const playerUrls = require('../src/pages/playerUrls');
+const pageUrls = require('../src/pages/pageUrls');
+const packageJson = require('../package.json');
 const resourcesJson = require('./resources');
 const i18n = require('./utils/i18n');
+
 const mode = process.env.MODE || 'default';
 console.log('Mode', mode);
 
@@ -31,7 +31,7 @@ const generateMatchExcludes = urls => {
     if (typeof el.match !== 'undefined') match = match.concat(el.match);
     if (typeof el.exclude !== 'undefined') exclude = exclude.concat(el.exclude);
   }
-  return { match: match, exclude: exclude };
+  return { match, exclude };
 };
 
 const backgroundMatch = matches => {

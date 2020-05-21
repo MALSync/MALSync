@@ -81,8 +81,8 @@ export function initIframeModal(page) {
       }`,
     );
 
-    //var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
-    let position = `max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: ${miniMalWidth}; height: ${miniMalHeight}; position: absolute; bottom: 0%; ${posLeft}: 0%`; //phone
+    // var position = 'width: 80%; height: 70%; position: absolute; top: 15%; left: 10%';
+    let position = `max-width: 100%; max-height: 100%; min-width: 500px; min-height: 300px; width: ${miniMalWidth}; height: ${miniMalHeight}; position: absolute; bottom: 0%; ${posLeft}: 0%`; // phone
     // @ts-ignore
     if (j.$(window).width() < 500) {
       position = `width: 100vw; height: 100%; position: absolute; top: 0%; ${posLeft}: 0%`;
@@ -117,7 +117,7 @@ export function initIframeModal(page) {
         con.log('Open miniMAL');
         if (j.$('#info-popup').css('display') === 'none') {
           document.getElementById('info-popup')!.style.display = 'block';
-          //fillIframe(url, currentMalData);
+          // fillIframe(url, currentMalData);
           j.$('.floatbutton').fadeOut();
           if (!j.$('#info-iframe').length) {
             createIframe(page);

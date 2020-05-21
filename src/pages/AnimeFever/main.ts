@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeFever: pageInterface = {
   name: 'AnimeFever',
   domain: 'https://www.animefever.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] === 'episode') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a',
         )
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         AnimeFever.domain +
         (j
@@ -32,7 +31,7 @@ export const AnimeFever: pageInterface = {
           .attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -47,7 +46,7 @@ export const AnimeFever: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('section.relative.player-bg > div > a.next-episode')
         .first()
@@ -57,7 +56,7 @@ export const AnimeFever: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $(
@@ -66,10 +65,10 @@ export const AnimeFever: pageInterface = {
         )
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j
           .$(
@@ -104,9 +103,8 @@ export const AnimeFever: pageInterface = {
                 .text()
             ) {
               return true;
-            } else {
-              return false;
             }
+            return false;
           },
           function() {
             page.handlePage();

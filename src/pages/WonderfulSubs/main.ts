@@ -1,35 +1,34 @@
 // Owner does not want to be supported by mal-sync
 
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const WonderfulSubs: pageInterface = {
   name: 'WonderfulSubs',
   domain: 'https://wonderfulsubs.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('span.card-title p.hide-truncate.activator').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return j
         .$('span.card-title p.hide-truncate.activator')
         .text()
         .toLowerCase()
         .replace(/ /g, '-');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${WonderfulSubs.domain}/watch/${url
         .split('/')[4]
         .replace(/\?[^?]*$/g, '')}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('span.card-title span.new.badge')
@@ -81,30 +80,29 @@ var betaWonderfulSubs: pageInterface = {
   name: 'betaWonderfulSubs',
   domain: 'https://beta.wonderfulsubs.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h6.subtitle').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return j
         .$('h6.subtitle')
         .text()
         .toLowerCase()
         .replace(/ /g, '-');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${'https://beta.wonderfulsubs.com' + '/watch/'}${url
         .split('/')[4]
         .replace(/\?[^?]*$/g, '')}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('div.episode-number')

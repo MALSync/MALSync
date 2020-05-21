@@ -1,24 +1,24 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Animeheaven: pageInterface = {
   name: 'Animeheaven',
   domain: 'http://animeheaven.eu',
   database: 'Animeheaven',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (utils.urlPart(url, 3) === 'watch.php') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Animeheaven.sync.getIdentifier(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlParam(url, 'a') || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$('a.infoan2')
@@ -27,10 +27,10 @@ export const Animeheaven: pageInterface = {
         Animeheaven.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(utils.urlParam(url, 'e'));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$('.next2')
@@ -42,24 +42,24 @@ export const Animeheaven: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Animeheaven.sync.getIdentifier(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Animeheaven.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('.infoepboxmain').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.infoepbox > a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Animeheaven.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Animeheaven.overview!.list!.elementUrl(selector);
         return Animeheaven.sync.getEpisode(url);
       },

@@ -1,34 +1,33 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const myAnime: pageInterface = {
   name: 'myAnime',
   domain: 'https://myanime.moe',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#episode-details > div > span.current-series > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         myAnime.domain +
         (j.$('#episode-details > div > span.current-series > a').attr('href') ||
           '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(utils.urlPart(url, 5) || '');
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('div#ep-next')
         .first()
@@ -39,20 +38,20 @@ export const myAnime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('span.anime-title')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('img.anime-bg').first());
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       let url = j
         .$('a[href^="https://myanimelist.net/anime/"]')
         .not('#malRating')
@@ -79,10 +78,10 @@ export const myAnime: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('ul.list > li.li-block');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -91,7 +90,7 @@ export const myAnime: pageInterface = {
           myAnime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = selector
           .find('a')
           .first()

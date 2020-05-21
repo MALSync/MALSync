@@ -1,5 +1,5 @@
-import { anilistClass } from './../anilist/anilistClass';
-import { firebaseNotification } from './../utils/firebaseNotification';
+import { anilistClass } from '../anilist/anilistClass';
+import { firebaseNotification } from '../utils/firebaseNotification';
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
@@ -25,11 +25,9 @@ function messageAniListListener(anilist) {
         if (malUrl !== '') {
           con.log('TabMalUrl Message', malUrl);
           sendResponse(malUrl);
-        } else {
-          if (api.settings.get('syncMode') === 'ANILIST') {
-            con.log('TabUrl Message', anilist.url);
-            sendResponse(anilist.url);
-          }
+        } else if (api.settings.get('syncMode') === 'ANILIST') {
+          con.log('TabUrl Message', anilist.url);
+          sendResponse(anilist.url);
         }
       });
       return true;

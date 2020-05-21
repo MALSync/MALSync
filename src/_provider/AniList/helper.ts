@@ -1,4 +1,4 @@
-import { status } from './../definitions';
+import { status } from '../definitions';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -47,8 +47,8 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
         Accept: 'application/json',
       },
       data: JSON.stringify({
-        query: query,
-        variables: variables,
+        query,
+        variables,
       }),
     })
     .then(response => {

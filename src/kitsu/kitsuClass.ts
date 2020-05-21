@@ -1,6 +1,6 @@
-import * as helper from './../provider/Kitsu/helper';
-import { Single as kitsuSingle } from './../_provider/Kitsu/single';
-import { userlist } from './../_provider/Kitsu/list';
+import * as helper from '../provider/Kitsu/helper';
+import { Single as kitsuSingle } from '../_provider/Kitsu/single';
+import { userlist } from '../_provider/Kitsu/list';
 
 interface detail {
   page: 'detail';
@@ -17,6 +17,7 @@ interface bookmarks {
 
 export class kitsuClass {
   page: any = null;
+
   same = false;
 
   constructor(public url: string) {
@@ -97,7 +98,7 @@ export class kitsuClass {
         id: malObj.getIds().kitsu.id,
         malid: malObj.getIds().mal,
         type: urlpart,
-        malObj: malObj,
+        malObj,
       };
       con.log('page', this.page);
       this.streamingUI();
@@ -111,7 +112,7 @@ export class kitsuClass {
       if (utils.urlParam(this.url, 'media') === 'manga') type = 'manga';
       this.page = {
         page: 'bookmarks',
-        type: type,
+        type,
       };
       con.log('page', this.page);
       this.bookmarks();
@@ -157,7 +158,7 @@ export class kitsuClass {
           )}&password=${encodeURIComponent(
             String($('#mal-sync-login #pass').val()),
           )}`,
-          success: async function(result) {
+          async success(result) {
             const token = result.access_token;
 
             if (!token) return;
@@ -172,7 +173,7 @@ export class kitsuClass {
               )}`,
             );
           },
-          error: function(result) {
+          error(result) {
             try {
               con.error(result);
               $('#mal-sync-login #mal-sync-button').prop('disabled', false);
@@ -214,7 +215,7 @@ export class kitsuClass {
   async streamingUI() {
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
-    const malObj = this.page.malObj;
+    const { malObj } = this.page;
 
     const streamUrl = malObj.getStreamingUrl();
     if (typeof streamUrl !== 'undefined') {
@@ -280,11 +281,11 @@ export class kitsuClass {
           const stream = page[streamKey];
           tempHtml += `
           <div class="mal_links" style="margin-top: 5px;">
-            <a target="_blank" href="${stream['url']}">
-              ${stream['title']}
+            <a target="_blank" href="${stream.url}">
+              ${stream.title}
             </a>
           </div>`;
-          tempUrl = stream['url'];
+          tempUrl = stream.url;
         }
         html += `
           <div id="${pageKey}Links" class="mal_links library-state with-header" style="
@@ -401,6 +402,7 @@ export class kitsuClass {
   }
 
   private tempAnimelist: any = null;
+
   private tempMangalist: any = null;
 
   bookmarks() {
@@ -411,11 +413,9 @@ export class kitsuClass {
           fullListCallback(this.tempAnimelist);
           return;
         }
-      } else {
-        if (this.tempMangalist !== null) {
-          fullListCallback(this.tempMangalist);
-          return;
-        }
+      } else if (this.tempMangalist !== null) {
+        fullListCallback(this.tempMangalist);
+        return;
       }
 
       const listProvider: userlist = new userlist(1, this.page.type);

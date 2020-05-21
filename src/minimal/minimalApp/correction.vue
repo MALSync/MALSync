@@ -21,11 +21,11 @@ export default {
       default: null,
     },
   },
-  data: function() {
+  data() {
     return {};
   },
   computed: {
-    keys: function() {
+    keys() {
       const short = api.settings.get('correctionShort');
       return short.map(val => keyboardMap[val]).join(' + ');
     },
@@ -33,7 +33,7 @@ export default {
   watch: {},
   methods: {
     lang: api.storage.lang,
-    openPopup: function() {
+    openPopup() {
       this.page.openCorrectionUi();
       return false;
     },

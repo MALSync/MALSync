@@ -1,25 +1,25 @@
-/*By kaiserdj*/
-import { pageInterface } from './../pageInterface';
+/* By kaiserdj */
+import { pageInterface } from '../pageInterface';
 
 export const animeflv: pageInterface = {
   name: 'animeflv',
   domain: 'https://animeflv.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('h2.SubTitle').length) {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.Title')
         .text()
         .split(' Episodio')[0]
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${utils.urlPart(
         animeflv.domain + (j.$('.fa-th-list').attr('href') || ''),
         4,
@@ -28,10 +28,10 @@ export const animeflv: pageInterface = {
         5,
       )}`;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(
         j
           .$('h2.SubTitle')
@@ -40,35 +40,35 @@ export const animeflv: pageInterface = {
           .trim(),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j.$('.fa-chevron-right').attr('href');
       if (!nextEp) return nextEp;
       return animeflv.domain + nextEp;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.CapOptns'));
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h2.Title').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}`;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.Description'));
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         const url = window.location.href;
         document.body.insertAdjacentHTML(
           'afterbegin',
           '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>',
         );
         const idMALSync = document.getElementById('MALSyncUl');
-        const patron = /<script>\s\s   var([^]*?)<\/script>/g;
+        const patron = /<script>\s\s {3}var([^]*?)<\/script>/g;
         const html = document.body.innerHTML;
         let scriptEps = patron.exec(html);
         if (scriptEps !== null) {
@@ -97,13 +97,13 @@ export const animeflv: pageInterface = {
         }
         return j.$('.MALSync a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), animeflv.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector.attr('epi');
       },
-      handleListHook: function(epi, epilist) {
+      handleListHook(epi, epilist) {
         epi++;
         if (epilist.length - 1 >= epi) {
           const cover = j.$('.AnimeCover img').attr('src');

@@ -52,10 +52,10 @@ export function generalListTests(userlist, elements, responses, options = {}) {
   });
 
   it('continueCall', async function() {
-    if (options['noContinueCall']) return;
+    if (options.noContinueCall) return;
     const testArray = [];
     const list = new userlist(7, 'anime', {
-      continueCall: function(list) {
+      continueCall(list) {
         list = removeFn(list, false);
         return new Promise(function(resolve, reject) {
           testArray.push(1);
@@ -104,7 +104,7 @@ export function generalListTests(userlist, elements, responses, options = {}) {
 export function removeFn(list, test = true) {
   for (const key in list) {
     if (test) expect(list[key]).to.have.property('fn');
-    delete list[key]['fn'];
+    delete list[key].fn;
   }
   return list;
 }

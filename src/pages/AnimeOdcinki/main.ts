@@ -1,48 +1,48 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeOdcinki: pageInterface = {
   name: 'AnimeOdcinki',
   domain: 'https://anime-odcinki.pl',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return url.split('/')[5] !== undefined;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.field-name-field-tytul-anime a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j.$('.field-name-field-tytul-anime a').attr('href'),
         AnimeOdcinki.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j.$('#video-next').attr('href');
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.page-header').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#user-anime-top').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.view-content > ul > li.lista_odc_tytul_pozycja');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('a')
@@ -50,7 +50,7 @@ export const AnimeOdcinki: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('a')
           .first()

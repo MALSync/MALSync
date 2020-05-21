@@ -1,38 +1,37 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const serimanga: pageInterface = {
   name: 'serimanga',
   domain: 'https://serimanga.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white'),
         )
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white')
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('#chapterButtons2 > div > div:nth-child(2) > a')
         .first()
@@ -40,17 +39,17 @@ export const serimanga: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.seri-img > div > div > div.name')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.sub-top-text').first());
     },
   },

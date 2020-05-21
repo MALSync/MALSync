@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const kawaiifu: pageInterface = {
   name: 'kawaiifu',
@@ -8,7 +8,7 @@ export const kawaiifu: pageInterface = {
     'https://animestuffs.com',
   ],
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] === 'season' ||
       url.split('/')[3] === 'dub' ||
@@ -16,12 +16,11 @@ export const kawaiifu: pageInterface = {
       url.split('/')[3] === 'anime-movies'
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h2.title')
         .text()
@@ -29,18 +28,17 @@ export const kawaiifu: pageInterface = {
         .replace(/(\( ?)?dub( ?\))?/gim, ' ')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (
         url.split('/')[3] === 'dub' ||
         url.split('/')[3] === 'tv-series' ||
         url.split('/')[3] === 'anime-movies'
       ) {
         return url.split('/')[4].replace(/\.[^.]*$/g, '');
-      } else {
-        return url.split('/')[5].replace(/\.[^.]*$/g, '');
       }
+      return url.split('/')[5].replace(/\.[^.]*$/g, '');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       if (
         url.split('/')[3] === 'dub' ||
         url.split('/')[3] === 'tv-series' ||
@@ -49,13 +47,12 @@ export const kawaiifu: pageInterface = {
         return `https://kawaiifu.com/${url.split('/')[3]}/${url
           .split('/')[4]
           .replace(/\?[^?]*$/g, '')}`;
-      } else {
-        return `https://kawaiifu.com/${url.split('/')[3]}/${
-          url.split('/')[4]
-        }/${url.split('/')[5].replace(/\?[^?]*$/g, '')}`;
       }
+      return `https://kawaiifu.com/${url.split('/')[3]}/${
+        url.split('/')[4]
+      }/${url.split('/')[5].replace(/\?[^?]*$/g, '')}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (
         j
           .$('ul.list-ep a.active')
@@ -69,16 +66,15 @@ export const kawaiifu: pageInterface = {
           .indexOf('teaser') !== -1
       ) {
         return 0;
-      } else {
-        return Number(
-          j
-            .$('ul.list-ep a.active')
-            .text()
-            .replace(/\D+/g, ''),
-        );
       }
+      return Number(
+        j
+          .$('ul.list-ep a.active')
+          .text()
+          .replace(/\D+/g, ''),
+      );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('div#server_ep a.active')
         .closest('li')
@@ -89,29 +85,27 @@ export const kawaiifu: pageInterface = {
         return utils.absoluteLink(href, kawaiifu.domain);
       }
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.desc-top').first());
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return '';
     },
-    uiSelector: function(selector) {
-      return;
-    },
+    uiSelector(selector) {},
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j
           .$('div#server_ep a.active')
           .closest('ul.list-ep')
           .children();
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('a')
@@ -119,7 +113,7 @@ export const kawaiifu: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('a')

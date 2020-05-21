@@ -15,11 +15,12 @@ export function providerTemplates(malUrl?) {
   const syncMode = getSyncMode();
   if (syncMode === 'MAL') {
     return mal;
-  } else if (syncMode === 'ANILIST') {
-    return anilist;
-  } else if (syncMode === 'KITSU') {
-    return kitsu;
-  } else {
-    return simkl;
   }
+  if (syncMode === 'ANILIST') {
+    return anilist;
+  }
+  if (syncMode === 'KITSU') {
+    return kitsu;
+  }
+  return simkl;
 }

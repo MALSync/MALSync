@@ -28,13 +28,13 @@ export default {
       default: false,
     },
   },
-  data: function() {
+  data() {
     return {
       xhr: '',
     };
   },
   computed: {
-    reviews: function() {
+    reviews() {
       let html = '';
       try {
         const reviews = this.xhr.split('Reviews</h2>')[1].split('<h2>')[0];
@@ -85,7 +85,7 @@ export default {
     },
   },
   watch: {
-    url: async function(url) {
+    async url(url) {
       this.xhr = '';
       if (this.state) {
         api.request.xhr('GET', `${this.url}/reviews`).then(response => {
@@ -93,7 +93,7 @@ export default {
         });
       }
     },
-    state: async function(state) {
+    async state(state) {
       if (state && this.xhr === '') {
         api.request.xhr('GET', `${this.url}/reviews`).then(response => {
           this.xhr = response.responseText;
@@ -101,7 +101,7 @@ export default {
       }
     },
   },
-  updated: function() {
+  updated() {
     const minimal = j.$(this.$el);
     minimal
       .find('.js-toggle-review-button')

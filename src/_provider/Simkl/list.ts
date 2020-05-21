@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from './../listAbstract';
+import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class userlist extends ListAbstract {
@@ -30,7 +30,7 @@ export class userlist extends ListAbstract {
     if (typeof res.error !== 'undefined') {
       con.error(res.error);
       throw {
-        code: code,
+        code,
         message: res.error,
       };
     }
@@ -42,7 +42,7 @@ export class userlist extends ListAbstract {
         break;
       default:
         throw {
-          code: code,
+          code,
           message: `Code: ${code}`,
         };
     }
@@ -87,7 +87,7 @@ export class userlist extends ListAbstract {
           score: el.user_rating ? el.user_rating : 0,
           image: `https://simkl.in/posters/${el.show.poster}_ca.jpg`,
           tags: el.private_memo,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
         newData.push(tempData);
       } else {
@@ -97,8 +97,12 @@ export class userlist extends ListAbstract {
   }
 
   protected syncList = helper.syncList;
+
   protected translateList = helper.translateList;
+
   protected getCacheKey = helper.getCacheKey;
+
   protected getEpisode = helper.getEpisode;
+
   protected call = helper.call;
 }

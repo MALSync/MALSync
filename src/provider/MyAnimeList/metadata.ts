@@ -1,4 +1,4 @@
-import { metadataInterface, searchInterface } from './../listInterface';
+import { metadataInterface, searchInterface } from '../listInterface';
 
 export class metadata implements metadataInterface {
   private xhr = '';
@@ -207,7 +207,7 @@ export class metadata implements metadataInterface {
       if (body !== '') {
         html.push({
           title: 'External Links',
-          body: body,
+          body,
         });
       }
     } catch (e) {
@@ -290,7 +290,7 @@ export class metadata implements metadataInterface {
               .find('.borderClass')
               .first()
               .text(),
-            links: links,
+            links,
           });
         },
       );
@@ -313,7 +313,7 @@ export const search: searchInterface = async function(
   );
 
   const searchResults = JSON.parse(response.responseText);
-  const items = searchResults.categories[0].items;
+  const { items } = searchResults.categories[0];
 
   return items.map(item => ({
     id: item.id,

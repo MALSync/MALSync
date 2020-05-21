@@ -91,20 +91,20 @@ export default {
       type: Number,
     },
   },
-  data: function() {
+  data() {
     return {
       xhr: '',
       utils,
     };
   },
   computed: {
-    elements: function() {
+    elements() {
       const elements = [];
       if (this.xhr) {
         for (const language in this.xhr) {
           for (const i in this.xhr[language]) {
             elements.push({
-              language: language,
+              language,
               index: i,
               item: this.xhr[language][i],
             });
@@ -113,7 +113,7 @@ export default {
       }
       return elements;
     },
-    completed: function() {
+    completed() {
       return this.elements.filter(
         el =>
           el.item &&
@@ -122,7 +122,7 @@ export default {
           el.item.top.state === 'complete',
       );
     },
-    ongoing: function() {
+    ongoing() {
       return this.elements.filter(
         el =>
           el.item &&

@@ -1,27 +1,26 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeXin: pageInterface = {
   name: 'AnimeXin',
   domain: 'https://animexin.xyz',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] !== 'anime') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.item.meta > div > span.epx > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return AnimeXin.sync.getOverviewUrl(url).split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('div.item.meta > div > span.epx > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -36,7 +35,7 @@ export const AnimeXin: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('div.item.video-nav > div.naveps > div:nth-child(3) > a')
         .first()
@@ -49,21 +48,21 @@ export const AnimeXin: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.infox > h1.entry-title').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.infox > h1.entry-title').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.bixbox.bxcl.epcheck > ul > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('div.epl-title > a')
@@ -71,7 +70,7 @@ export const AnimeXin: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return AnimeXin.sync.getEpisode(
           selector
             .find('div.epl-title > a')

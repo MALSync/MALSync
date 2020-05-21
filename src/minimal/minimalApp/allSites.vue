@@ -37,31 +37,31 @@
 </template>
 
 <script type="text/javascript">
-import { pages } from './../../pages/pages';
+import { pages } from '../../pages/pages';
 
 export default {
   props: {},
-  data: function() {
+  data() {
     return {
       pages,
     };
   },
   computed: {
-    enablePages: function() {
+    enablePages() {
       return api.settings.get('enablePages');
     },
   },
   watch: {},
-  mounted: async function() {
+  async mounted() {
     this.$root.updateDom();
   },
   methods: {
     lang: api.storage.lang,
-    getDomain: function(page) {
+    getDomain(page) {
       if (typeof page.domain === 'object') {
         var domain = page.domain[0];
       } else {
-        var domain = page.domain;
+        var { domain } = page;
       }
       return domain;
     },

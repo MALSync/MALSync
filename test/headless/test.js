@@ -2375,14 +2375,14 @@ after(async () => {
   await browser.close();
 });
 
-testsArray.forEach((testPage) => {
+testsArray.forEach(testPage => {
   if (typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
   describe(testPage.title, () => {
     let doSkip = false;
     if (typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
     if (skipTest) doSkip = !doSkip;
 
-    it('Online', async function () {
+    it('Online', async function() {
       if (doSkip) this.skip();
       const [response] = await Promise.all([
         page.goto(testPage.url, { timeout: 0 }),
@@ -2401,8 +2401,8 @@ testsArray.forEach((testPage) => {
       }
     });
 
-    testPage.testCases.forEach((testCase) => {
-      it(testCase.url, async function () {
+    testPage.testCases.forEach(testCase => {
+      it(testCase.url, async function() {
         if (doSkip) this.skip();
         const [response] = await Promise.all([
           page.goto(testCase.url, { timeout: 0 }),
@@ -2413,10 +2413,12 @@ testsArray.forEach((testPage) => {
             url:
               'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
           })
-          .catch(() => page.addScriptTag({
+          .catch(() =>
+            page.addScriptTag({
               url:
                 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-            }));
+            }),
+          );
         await page.addScriptTag({ content: script });
         const text = await page.evaluate(() => MalSyncTest());
 
@@ -2424,7 +2426,7 @@ testsArray.forEach((testPage) => {
 
         if (text === 'retry') {
           this.retries(3);
-          await new Promise(((resolve, reject) => {
+          await new Promise((resolve, reject) => {
             setTimeout(async () => {
               const content = await page.evaluate(
                 () => document.body.innerHTML,
@@ -2437,7 +2439,7 @@ testsArray.forEach((testPage) => {
               }
               resolve();
             }, 7000);
-          }));
+          });
         }
 
         expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
@@ -2447,19 +2449,23 @@ testsArray.forEach((testPage) => {
         );
         if (text.sync) {
           expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
-          var textOverview = typeof text.overviewUrl !== 'undefined'
+          var textOverview =
+            typeof text.overviewUrl !== 'undefined'
               ? text.overviewUrl.replace(/www[^.]*\./, '')
               : text.overviewUrl;
-          var testCaseOverview = typeof testCase.expected.overviewUrl !== 'undefined'
+          var testCaseOverview =
+            typeof testCase.expected.overviewUrl !== 'undefined'
               ? testCase.expected.overviewUrl.replace(/www[^.]*\./, '')
               : testCase.expected.overviewUrl;
           expect(textOverview, 'Overview Url').to.equal(
             testCase.expected.overviewUrl.replace(/www[^.]*\./, ''),
           );
-          var textOverview = typeof text.nextEpUrl !== 'undefined'
+          var textOverview =
+            typeof text.nextEpUrl !== 'undefined'
               ? text.nextEpUrl.replace(/www[^.]*\./, '')
               : text.nextEpUrl;
-          var testCaseOverview = typeof testCase.expected.nextEpUrl !== 'undefined'
+          var testCaseOverview =
+            typeof testCase.expected.nextEpUrl !== 'undefined'
               ? testCase.expected.nextEpUrl.replace(/www[^.]*\./, '')
               : testCase.expected.nextEpUrl;
           expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
@@ -2470,8 +2476,8 @@ testsArray.forEach((testPage) => {
           );
         }
         if (
-          typeof text.epList !== 'undefined'
-          && typeof testCase.expected.epList !== 'undefined'
+          typeof text.epList !== 'undefined' &&
+          typeof testCase.expected.epList !== 'undefined'
         ) {
           for (const key in testCase.expected.epList) {
             expect(

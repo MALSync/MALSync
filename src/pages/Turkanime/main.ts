@@ -1,30 +1,29 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Turkanime: pageInterface = {
   name: 'Turkanime',
   domain: 'http://www.turkanime.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] !== 'video') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.breadcrumb a')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Turkanime.overview!.getIdentifier(
         Turkanime.sync.getOverviewUrl(url),
       );
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$('.breadcrumb a')
@@ -33,13 +32,13 @@ export const Turkanime: pageInterface = {
         Turkanime.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return getEpisode(
         Turkanime.sync.getIdentifier(url),
         Turkanime.overview!.getIdentifier(url),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (
         j
           .$('.panel-footer a[href^="video"]')
@@ -61,25 +60,25 @@ export const Turkanime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#detayPaylas .panel-title')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.prependTo(j.$('#detayPaylas .panel-body').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.list.menum > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         const anchorHref = selector
           .find('a')
           .last()
@@ -92,7 +91,7 @@ export const Turkanime: pageInterface = {
           Turkanime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Turkanime.overview!.list!.elementUrl(selector);
         return getEpisode(
           Turkanime.overview!.getIdentifier(window.location.href),
@@ -136,7 +135,6 @@ function getEpisode(selector, episodeSelector) {
   const temp = diff.match(/\d+/);
   if (temp === null) {
     return 0;
-  } else {
-    return parseInt(temp[0]);
   }
+  return parseInt(temp[0]);
 }

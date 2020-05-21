@@ -1,4 +1,5 @@
 import { simkl } from './templates';
+
 export var client_id =
   '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
 
@@ -60,7 +61,7 @@ export async function syncList(lazy = false) {
   const activity = await call('https://api.simkl.com/sync/activities');
   con.log('Activity', lastCheck, activity.anime);
 
-  //removed_from_list
+  // removed_from_list
   if (
     lastCheck &&
     lastCheck.removed_from_list !== activity.anime.removed_from_list
@@ -81,7 +82,7 @@ export async function syncList(lazy = false) {
     con.log('remove', cacheList);
   }
 
-  //Check if update Needed
+  // Check if update Needed
   let dateFrom = '';
   if (lastCheck && cacheList) {
     dateFrom = `date_from=${lastCheck.all}`;
@@ -132,7 +133,7 @@ export async function getSingle(
       return list[ids.simkl];
     }
   } else if (ids.mal) {
-    //TODO: Use map for better performance
+    // TODO: Use map for better performance
     const listVal = Object.values(list);
     for (let i = 0; i < listVal.length; i++) {
       const el: any = listVal[i];
@@ -176,8 +177,8 @@ export async function call(
 
   return api.request
     .xhr(methode, {
-      url: url,
-      headers: headers,
+      url,
+      headers,
       data: sData,
     })
     .then(async response => {

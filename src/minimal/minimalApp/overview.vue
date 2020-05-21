@@ -476,11 +476,11 @@
 </template>
 
 <script type="text/javascript">
-import { getSingle } from './../../_provider/singleFactory';
-import { metadata as malMeta } from './../../provider/MyAnimeList/metadata';
-import { metadata as aniMeta } from './../../provider/AniList/metadata';
-import { metadata as kitsuMeta } from './../../provider/Kitsu/metadata';
-import { metadata as simklMeta } from './../../provider/Simkl/metadata';
+import { getSingle } from '../../_provider/singleFactory';
+import { metadata as malMeta } from '../../provider/MyAnimeList/metadata';
+import { metadata as aniMeta } from '../../provider/AniList/metadata';
+import { metadata as kitsuMeta } from '../../provider/Kitsu/metadata';
+import { metadata as simklMeta } from '../../provider/Simkl/metadata';
 
 import progressP from './components/overviewProgress.vue';
 
@@ -494,7 +494,7 @@ export default {
       default: null,
     },
   },
-  data: function() {
+  data() {
     return {
       metaObj: null,
       error: null,
@@ -510,71 +510,71 @@ export default {
     };
   },
   computed: {
-    objError: function() {
+    objError() {
       if (this.renderObj && this.renderObj.getLastError())
         return this.renderObj.getLastErrorMessage();
       return null;
     },
-    editUrl: function() {
+    editUrl() {
       if (typeof this.renderObj.getDetailUrl !== 'undefined')
         return this.renderObj.getDetailUrl();
       return null;
     },
     malStatus: {
-      get: function() {
+      get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           return this.renderObj.getStatusCheckboxValue();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.handleStatusCheckbox(value);
         }
       },
     },
     malEpisode: {
-      get: function() {
+      get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           if (this.renderObj.addAnime) return null;
           return this.renderObj.getEpisode();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.setEpisode(value);
         }
       },
     },
     malVolume: {
-      get: function() {
+      get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           if (this.renderObj.addAnime) return null;
           return this.renderObj.getVolume();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.setVolume(value);
         }
       },
     },
     malScore: {
-      get: function() {
+      get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           return this.renderObj.getScoreCheckboxValue();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.handleScoreCheckbox(value);
         }
       },
     },
-    statistics: function() {
+    statistics() {
       let stats = {};
       try {
         stats = this.metaObj.getStatistics();
@@ -583,13 +583,13 @@ export default {
       }
       return stats;
     },
-    displayUrl: function() {
+    displayUrl() {
       if (this.renderObj !== null) {
         return this.renderObj.getDisplayUrl();
       }
       return this.renderObj.url;
     },
-    image: function() {
+    image() {
       let image = '';
       try {
         image = this.metaObj.getImage();
@@ -605,7 +605,7 @@ export default {
       }
       return image;
     },
-    title: function() {
+    title() {
       let title = '';
       try {
         title = this.metaObj.getTitle();
@@ -619,7 +619,7 @@ export default {
       }
       return title;
     },
-    description: function() {
+    description() {
       let description = '';
       try {
         description = this.metaObj.getDescription();
@@ -628,7 +628,7 @@ export default {
       }
       return description;
     },
-    altTitle: function() {
+    altTitle() {
       let altTitle = {};
       try {
         altTitle = this.metaObj.getAltTitle();
@@ -637,7 +637,7 @@ export default {
       }
       return altTitle;
     },
-    streaming: function() {
+    streaming() {
       let streamhtml = null;
       const malObj = this.renderObj;
       if (malObj === null || !malObj.isAuthenticated()) return null;
@@ -695,7 +695,7 @@ export default {
       }
       return streamhtml;
     },
-    characters: function() {
+    characters() {
       let char = {};
       try {
         char = this.metaObj.getCharacters();
@@ -704,7 +704,7 @@ export default {
       }
       return char;
     },
-    info: function() {
+    info() {
       let info = {};
       try {
         info = this.metaObj.getInfo();
@@ -713,7 +713,7 @@ export default {
       }
       return info;
     },
-    openingSongs: function() {
+    openingSongs() {
       let opening = {};
       try {
         opening = this.metaObj.getOpeningSongs();
@@ -722,7 +722,7 @@ export default {
       }
       return opening;
     },
-    endingSongs: function() {
+    endingSongs() {
       let ending = {};
       try {
         ending = this.metaObj.getEndingSongs();
@@ -733,13 +733,13 @@ export default {
     },
   },
   watch: {
-    renderObj: async function(renderObj) {
+    async renderObj(renderObj) {
       this.render(renderObj);
     },
   },
   methods: {
     lang: api.storage.lang,
-    render: async function(renderObj) {
+    async render(renderObj) {
       this.metaObj = null;
       this.error = null;
 
@@ -812,10 +812,10 @@ export default {
         },
       );
     },
-    clickRender: function() {
+    clickRender() {
       this.render(this.renderObj);
     },
-    malSync: function() {
+    malSync() {
       this.renderObj.sync().then(
         function() {
           utils.flashm('Updated');
@@ -826,7 +826,7 @@ export default {
         },
       );
     },
-    remove: function() {
+    remove() {
       this.renderObj.delete().then(
         () => {
           utils.flashm('Removed');
@@ -839,11 +839,11 @@ export default {
         },
       );
     },
-    reload: function() {
+    reload() {
       utils.flashm('Loading');
       this.renderObj.update();
     },
-    getMal2KissFavicon: function(streams) {
+    getMal2KissFavicon(streams) {
       try {
         return utils.favicon(
           streams[Object.keys(streams)[0]].url.split('/')[2],
@@ -853,7 +853,7 @@ export default {
         return '';
       }
     },
-    getRelated: function() {
+    getRelated() {
       let related = {};
       try {
         related = this.metaObj.getRelated();
@@ -862,7 +862,7 @@ export default {
       }
       return related;
     },
-    updateStatusTags: async function() {
+    async updateStatusTags() {
       for (const relatedKey in this.related) {
         const relate = this.related[relatedKey];
         for (const linkKey in relate.links) {

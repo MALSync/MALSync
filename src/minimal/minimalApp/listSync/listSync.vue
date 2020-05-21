@@ -90,9 +90,7 @@
       :key="index"
       style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
     >
-      <div
-        style="width: 100%; border-bottom: 1px solid black; padding: 0 5px;"
-      >
+      <div style="width: 100%; border-bottom: 1px solid black; padding: 0 5px;">
         {{ item.master.title }}
       </div>
       <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
@@ -171,7 +169,7 @@ export default {
       default: 'anime',
     },
   },
-  data: function() {
+  data() {
     return {
       listProvider: {
         mal: {
@@ -203,12 +201,12 @@ export default {
     };
   },
   computed: {
-    listSyncLength: function() {
+    listSyncLength() {
       return Object.values(this.list).filter(el => el.diff).length;
     },
   },
   watch: {},
-  mounted: async function() {
+  async mounted() {
     sync.background.isEnabled().then(state => {
       this.isBackgroundEnabled = state;
     });
@@ -237,31 +235,31 @@ export default {
       this.list,
       this.missing,
     );
-    this.list = Object.assign({}, this.list);
+    this.list = { ...this.list };
 
     this.listReady = true;
   },
   methods: {
     lang: api.storage.lang,
     getType: sync.getType,
-    apiType: function() {
+    apiType() {
       return api.type;
     },
-    getTypeColor: function(type) {
+    getTypeColor(type) {
       if (type === 'ANILIST') return 'border-left: 5px solid #02a9ff';
       if (type === 'KITSU') return 'border-left: 5px solid #f75239';
       if (type === 'SIMKL') return 'border-left: 5px solid #ffbf00';
       return 'border-left: 5px solid #2e51a2';
     },
 
-    syncList: async function() {
+    async syncList() {
       this.listReady = false;
       this.listLength = this.listSyncLength;
 
       sync.syncList(this.list, this.missing);
     },
 
-    backgroundClick: async function() {
+    async backgroundClick() {
       if (await sync.background.isEnabled()) {
         sync.background.disable();
         this.isBackgroundEnabled = false;

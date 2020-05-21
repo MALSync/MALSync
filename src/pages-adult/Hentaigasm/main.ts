@@ -1,38 +1,37 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const Hentaigasm: pageInterface = {
   name: 'Hentaigasm',
   domain: 'http://hentaigasm.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[6] !== null &&
       j.$('#extras > h4:nth-child(2) > a')[0] &&
       j.$('div.entry-content.rich-content')[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1#title')
         .text()
         .replace(/\d+ (subbed|raw)/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url
         .split('/')[6]
         .replace(/-\d*-(subbed|raw)/gim, '')
         .trim();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('#extras > h4:nth-child(2) > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -49,13 +48,13 @@ export const Hentaigasm: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#content > div.loop-header > h1 > em').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.loop-actions').first());
     },
   },

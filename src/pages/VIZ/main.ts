@@ -1,25 +1,24 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const VIZ: pageInterface = {
   name: 'VIZ',
   domain: 'https://www.viz.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'shonenjump' && url.split('/')[5] === 'chapter') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a',
         )
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j
         .$(
           '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a',
@@ -30,7 +29,7 @@ export const VIZ: pageInterface = {
 
       return anchorHref.split('/')[3];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         VIZ.domain +
         (j
@@ -40,7 +39,7 @@ export const VIZ: pageInterface = {
           .attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = j
         .$(
           '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span',
@@ -58,24 +57,24 @@ export const VIZ: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#series-intro > div.clearfix.mar-t-md.mar-b-lg > h2')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[5];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#series-intro').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.o_sortable-b,.o_sortable');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         const anchorHref = selector
           .find('a')
           .first()
@@ -90,7 +89,7 @@ export const VIZ: pageInterface = {
             .replace(/'\);/g, '')
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const anchorHref = selector
           .find('a')
           .first()

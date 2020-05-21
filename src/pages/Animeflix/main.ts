@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Animeflix: pageInterface = {
   name: 'Animeflix',
   domain: 'https://animeflix.io',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $('h4.title.text-truncate, h4.headline.text-truncate').first(),
@@ -20,13 +19,13 @@ export const Animeflix: pageInterface = {
         .replace('()', '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Animeflix.domain}/shows/${Animeflix.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -43,16 +42,16 @@ export const Animeflix: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.flex.xs12.lg8 > h1')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div class="container"> <p id="malp">${selector.html()}</p></div>`,
       ).insertAfter(j.$('div.my-3').first());
@@ -78,9 +77,8 @@ export const Animeflix: pageInterface = {
               j.$('div.flex.xs12.lg8 > h1').text()
             ) {
               return true;
-            } else {
-              return false;
             }
+            return false;
           },
           function() {
             page.handlePage();

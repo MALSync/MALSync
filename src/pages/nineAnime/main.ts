@@ -1,34 +1,34 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const nineAnime: pageInterface = {
   name: '9anime',
   domain: 'https://9anime.to',
   database: '9anime',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h1.title').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       url = url.split('/')[4].split('?')[0];
       if (url.indexOf('.') > -1) {
         url = url.split('.')[1];
       }
       return url;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(j.$('.servers .episodes a.active').attr('data-base')!);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('.servers .episodes a.active')
         .parent('li')
@@ -38,31 +38,29 @@ export const nineAnime: pageInterface = {
       if (!nextEp) return nextEp;
       return nineAnime.domain + nextEp;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div class="widget info"><div class="widget-body"> <p id="malp">${selector.html()}</p></div></div>`,
       ).insertBefore(j.$('.widget.info').first());
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return '';
     },
-    uiSelector: function(selector) {
-      return;
-    },
+    uiSelector(selector) {},
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episodes.range a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), nineAnime.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(selector.attr('data-base'));
       },
     },

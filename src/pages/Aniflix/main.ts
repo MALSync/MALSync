@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Aniflix: pageInterface = {
   name: 'Aniflix',
   domain: 'https://www1.aniflix.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[6] === 'season') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       const urlParts = url.split('/');
 
       if (urlParts[7] === '1' || urlParts[7] === '0') {
@@ -21,18 +20,18 @@ export const Aniflix: pageInterface = {
 
       return `${j.$('a.episode-showname').text()} season ${url.split('/')[7]}`;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${url.split('/')[4]}?s=${url.split('/')[7]}`;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return Aniflix.domain + (j.$('a.episode-showname').attr('href') || '');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[9]);
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (
         Number(
           j
@@ -47,15 +46,14 @@ export const Aniflix: pageInterface = {
           .text() === 'Specials'
       ) {
         return j.$('h1.show-name').text();
-      } else {
-        return `${j.$('h1.show-name').text()} season ${j
-          .$('div.seasons-wrapper > div.season.season-active > div')
-          .first()
-          .text()
-          .replace(/\D+/g, '')}`;
       }
+      return `${j.$('h1.show-name').text()} season ${j
+        .$('div.seasons-wrapper > div.season.season-active > div')
+        .first()
+        .text()
+        .replace(/\D+/g, '')}`;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (
         j
           .$('div.seasons-wrapper > div.season.season-active > div')
@@ -63,15 +61,14 @@ export const Aniflix: pageInterface = {
           .text() === 'Specials'
       ) {
         return `${url.split('/')[4]}?s=0`;
-      } else {
-        return `${url.split('/')[4]}?s=${j
-          .$('div.seasons-wrapper > div.season.season-active > div')
-          .first()
-          .text()
-          .replace(/\D+/g, '')}`;
       }
+      return `${url.split('/')[4]}?s=${j
+        .$('div.seasons-wrapper > div.season.season-active > div')
+        .first()
+        .text()
+        .replace(/\D+/g, '')}`;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.episodes').first());
     },
   },
@@ -99,9 +96,8 @@ export const Aniflix: pageInterface = {
             function() {
               if (j.$('a.episode-showname').length) {
                 return true;
-              } else {
-                return false;
               }
+              return false;
             },
             function() {
               page.handlePage();
@@ -120,9 +116,8 @@ export const Aniflix: pageInterface = {
                   .text()
               ) {
                 return true;
-              } else {
-                return false;
               }
+              return false;
             },
             function() {
               page.handlePage();

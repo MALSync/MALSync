@@ -52,7 +52,7 @@ api.settings.init().then(() => {
         typeof this.page.overview !== 'undefined' &&
         typeof this.page.overview.list !== 'undefined'
       ) {
-        const elementUrl = this.page.overview.list.elementUrl;
+        const { elementUrl } = this.page.overview.list;
         const tempEpisodeList = j.$.map(this.getEpList(), function(val, i) {
           if (typeof val !== 'undefined') {
             return elementUrl(val);
@@ -75,7 +75,7 @@ api.settings.init().then(() => {
             changed = true;
           }
         }
-        //episodeList = episodeList.map(x => Object.assign(x, tempEpisodeList.find(y => y.id == x.id && x == '-')));
+        // episodeList = episodeList.map(x => Object.assign(x, tempEpisodeList.find(y => y.id == x.id && x == '-')));
 
         con.log('Episode List', episodeList);
         if (
@@ -110,7 +110,7 @@ api.settings.init().then(() => {
             name: 'iframeDone',
             id: String(id),
             epList: episodeList,
-            len: len,
+            len,
           });
         }
       }
@@ -120,10 +120,9 @@ api.settings.init().then(() => {
         name: 'iframeDone',
         id: String(id),
         epList: episodeList,
-        len: len,
+        len,
         error: e,
       });
-      return;
     }
   };
   page.init();

@@ -93,7 +93,5 @@ export const userscriptLegacy: storageInterface = {
     head.get(0).appendChild(s);
   },
 
-  storageOnChanged(cb) {
-    return;
-  },
+  storageOnChanged(cb) {},
 };

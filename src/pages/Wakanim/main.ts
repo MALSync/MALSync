@@ -1,27 +1,26 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Wakanim: pageInterface = {
   name: 'Wakanim',
   domain: 'https://www.wakanim.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       j.$(
         'body > section.episode > div > div > div.episode_main > div.episode_video > div',
       ).length
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
 
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Wakanim.sync.getIdentifier(url);
     },
 
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const ses = seasonHelper(
         j.$('span.episode_subtitle > span:nth-child(2)').text(),
       );
@@ -30,7 +29,7 @@ export const Wakanim: pageInterface = {
         .attr('content')} ${ses}`;
     },
 
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         Wakanim.domain +
         (j
@@ -41,7 +40,7 @@ export const Wakanim: pageInterface = {
       );
     },
 
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$(
@@ -51,7 +50,7 @@ export const Wakanim: pageInterface = {
       );
     },
 
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$(
           'body > section.episode > div > div > div.episode_main > div.episode_video > div > div.episode-bottom > div.episodeNPEp-wrapperBlock > a.episodeNPEp.episodeNextEp.active',
@@ -61,10 +60,10 @@ export const Wakanim: pageInterface = {
   },
 
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Wakanim.overview!.getIdentifier(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const secondPart = seasonHelper(
         j.$('#list-season-container > div > select > option:selected').text(),
       );
@@ -73,22 +72,22 @@ export const Wakanim: pageInterface = {
         .attr('content')} ${secondPart}`;
     },
 
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#nav-show').first());
     },
 
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('li.-big');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector.find('a').attr('href'),
           Wakanim.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Wakanim.overview!.list!.elementUrl(selector);
         const anchorTitle = selector.find('a').attr('title');
 
@@ -123,9 +122,8 @@ export const Wakanim: pageInterface = {
             j.$('#jwplayer-container').length
           ) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         },
         function() {
           page.url = window.location.href;
@@ -150,9 +148,8 @@ export const Wakanim: pageInterface = {
           function() {
             if (j.$('#list-season-container').length) {
               return true;
-            } else {
-              return false;
             }
+            return false;
           },
           function() {
             page.handlePage();
@@ -164,9 +161,9 @@ export const Wakanim: pageInterface = {
 };
 
 function seasonHelper(text) {
-  //Check if season is split in 2 cour.
-  //If yes, so rename "Cour 2" as "Part 2 " for better detection.
-  //If no, simply remove "Cour".
+  // Check if season is split in 2 cour.
+  // If yes, so rename "Cour 2" as "Part 2 " for better detection.
+  // If no, simply remove "Cour".
 
   if (text.includes('Cour')) {
     const temp = text.match(/Cour (\d+)/);
@@ -175,15 +172,13 @@ function seasonHelper(text) {
         .replace(temp[0], 'Part 2 ')
         .trim()
         .replace('-', '');
-    } else {
-      return text
-        .replace(/Cour \d+/, '')
-        .trim()
-        .replace('-', '');
     }
-  } else {
-    return text;
+    return text
+      .replace(/Cour \d+/, '')
+      .trim()
+      .replace('-', '');
   }
+  return text;
 }
 
 function episodeHelper(url: string, _episodeText: string) {

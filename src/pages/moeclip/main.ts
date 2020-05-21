@@ -1,34 +1,33 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const moeclip: pageInterface = {
   name: 'moeclip',
   domain: 'https://moeclip.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('div.video-content')[0] && j.$('h1.entry-title.title-font')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('header h1.entry-title.title-font')
         .text()
         .replace(/\d+\ssub\s*indo/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url
         .split('/')[3]
         .replace(/-\d*-sub-indo.*/gim, '')
         .trim();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${moeclip.domain}/anime/${moeclip.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -43,7 +42,7 @@ export const moeclip: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('div.episode-nav > div.select-episode > div:nth-child(3) > a')
         .first()
@@ -51,27 +50,27 @@ export const moeclip: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText($('#data2 > div:nth-child(2)'))
         .trim()
         .replace(/:[ ]*/g, '');
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url
         .split('/')[4]
         .replace(/-sub-indo.*/gim, '')
         .trim();
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.entry-meta').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('li.episode-list');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('div > a')
@@ -80,7 +79,7 @@ export const moeclip: pageInterface = {
           moeclip.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('div > a')

@@ -1,18 +1,18 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Kissmanga: pageInterface = {
   name: 'kissmanga',
   domain: 'https://kissmanga.com',
   database: 'Kissmanga',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (typeof utils.urlPart(url, 5) !== 'undefined') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#navsubbar a')
         .first()
@@ -21,24 +21,24 @@ export const Kissmanga: pageInterface = {
         .replace('information', '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       let episodePart = utils.urlPart(url, 5);
       let episodeNumber = NaN;
-      //var temp = [];
-      /*try{
+      // var temp = [];
+      /* try{
           episodePart = episodePart.replace(j.$('.bigChar').attr('href').split('/')[2],'');
         }catch(e){
           episodePart = episodePart.replace(kalUrl.split("/")[4],'');
-        }*/
+        } */
       let temp = episodePart.match(
         /[c,C][h,H][a,A]?[p,P]?[t,T]?[e,E]?[r,R]?\D?\d+/,
       );
@@ -63,7 +63,7 @@ export const Kissmanga: pageInterface = {
 
       return episodeNumber;
     },
-    getVolume: function(url) {
+    getVolume(url) {
       const volumeText = url.match(/[V,v][o,O][l,L]\D?\d{3}/);
 
       if (!volumeText || volumeText.length === 0) return NaN;
@@ -74,7 +74,7 @@ export const Kissmanga: pageInterface = {
 
       return Number(volumeNumber[0].slice(-3));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('img.btnNext')
         .first()
@@ -83,24 +83,24 @@ export const Kissmanga: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('.bigChar')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Kissmanga.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.bigChar').first());
     },
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.listing tr');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -109,7 +109,7 @@ export const Kissmanga: pageInterface = {
           Kissmanga.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Kissmanga.overview!.list!.elementUrl(selector);
         if (/_ED/.test(url)) return NaN;
         return Kissmanga.sync.getEpisode(url);

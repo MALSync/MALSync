@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let jsonData;
 
@@ -6,28 +6,28 @@ export const TsukiMangas: pageInterface = {
   name: 'Tsuki Mangás',
   domain: 'https://www.tsukimangas.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return jsonData.isReaderPage;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return jsonData.mangaName;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return jsonData.identifier;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return jsonData.overview_url;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return jsonData.currentChapter;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (jsonData.nextChapter) {
         return jsonData.nextChapter;
       }
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       if (jsonData.myanimelistID && jsonData.myanimelistID !== '0') {
         return `https://myanimelist.net/manga/${jsonData.myanimelistID}`;
       }
@@ -42,24 +42,24 @@ export const TsukiMangas: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return TsukiMangas.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return TsukiMangas.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('h2'));
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       return TsukiMangas.sync.getMalUrl!(provider);
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.over23 > div.allbox > div.allcap');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -68,7 +68,7 @@ export const TsukiMangas: pageInterface = {
           TsukiMangas.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return utils
           .absoluteLink(
             selector

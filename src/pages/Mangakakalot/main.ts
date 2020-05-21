@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Mangakakalot: pageInterface = {
   name: 'Mangakakalot',
   domain: 'https://mangakakalot.com',
   database: 'MangaNelo',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('body > div.breadcrumb > p > span:nth-child(3) > a > span')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('body > div.breadcrumb > p > span:nth-child(3) > a')
@@ -30,10 +29,10 @@ export const Mangakakalot: pageInterface = {
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5].match(/\d+/gim));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('div.btn-navigation-chap > a.back')
         .first()
@@ -41,16 +40,16 @@ export const Mangakakalot: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.breadcrumb.breadcrumbs > p > span:nth-child(3) > a > span')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div id="malthing"> <p id="malp">${selector.html()}</p></div>`,
       ).insertBefore(j.$('#chapter').first());
@@ -58,10 +57,10 @@ export const Mangakakalot: pageInterface = {
 
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$("div.row:not('div.title-list-chapter')");
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('span:nth-child(1) > a')
@@ -69,7 +68,7 @@ export const Mangakakalot: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('span:nth-child(1) > a')
           .first()

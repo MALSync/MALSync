@@ -157,14 +157,14 @@ export default {
     },
   }),
   watch: {
-    streamUrl: function(url, oldUrl) {
+    streamUrl(url, oldUrl) {
       if (url) {
         this.classes.minimized = true;
         this.classes.search = false;
       }
     },
   },
-  created: function() {
+  created() {
     const classes = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (classes) {
       this.classes = classes;
@@ -174,7 +174,7 @@ export default {
     lang: api.storage.lang,
     favicon: utils.favicon,
     assetUrl: api.storage.assetUrl,
-    getMal2KissFavicon: function(streams) {
+    getMal2KissFavicon(streams) {
       try {
         return utils.favicon(
           streams[Object.keys(streams)[0]].url.split('/')[2],
@@ -184,11 +184,11 @@ export default {
         return '';
       }
     },
-    toggleSearch: function() {
+    toggleSearch() {
       this.classes.search = !this.classes.search;
       this.saveClasses();
     },
-    pressMinimized: function() {
+    pressMinimized() {
       if (this.links === null || Object.keys(this.links).length) {
         this.toggleMinimized();
       } else {
@@ -196,16 +196,16 @@ export default {
       }
       this.saveClasses();
     },
-    toggleMinimized: function() {
+    toggleMinimized() {
       this.classes.minimized = !this.classes.minimized;
       if (this.classes.search && this.classes.minimized) this.toggleSearch();
       this.saveClasses();
     },
-    removeSource: function(key) {
+    removeSource(key) {
       api.settings.set(key, false);
       this.$delete(this.links, key);
     },
-    saveClasses: function() {
+    saveClasses() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.classes));
     },
   },

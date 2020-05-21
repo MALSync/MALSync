@@ -1,7 +1,7 @@
-import { Single as simklSingle } from './../_provider/Simkl/single';
-import { userlist } from './../_provider/Simkl/list';
-import * as helper from './../provider/Simkl/helper';
 import Vue from 'vue';
+import { Single as simklSingle } from '../_provider/Simkl/single';
+import { userlist } from '../_provider/Simkl/list';
+import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 
 interface detail {
@@ -21,7 +21,9 @@ export class simklClass {
   page: any = null;
 
   private interval;
+
   private interval2;
+
   private malkiss;
 
   constructor(public url: string) {
@@ -76,7 +78,7 @@ export class simklClass {
         id: malObj.getIds().simkl,
         malid: malObj.getIds().mal,
         type: urlpart,
-        malObj: malObj,
+        malObj,
       };
       con.log('page', this.page);
 
@@ -144,7 +146,7 @@ export class simklClass {
         .call(
           'https://api.simkl.com/oauth/token',
           JSON.stringify({
-            code: code,
+            code,
             client_id: helper.client_id,
             client_secret:
               '3f883e8e6cdd60d2d5e765aaf0612953f743dc77f44c422af98b38e083cf038b',
@@ -185,7 +187,7 @@ export class simklClass {
   async streamingUI() {
     con.log('Streaming UI');
 
-    const malObj = this.page.malObj;
+    const { malObj } = this.page;
 
     const streamUrl = malObj.getStreamingUrl();
     if (typeof streamUrl !== 'undefined') {

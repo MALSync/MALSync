@@ -38,11 +38,11 @@ export class epPredictions {
   getNextEpTimestamp() {
     if (this.aniPrediction && this.aniPrediction.nextEpTime)
       return this.aniPrediction.nextEpTime * 1000;
-    //TODO: malPrediction
+    // TODO: malPrediction
     return false;
   }
 
-  //Mal Prediciton
+  // Mal Prediciton
   protected malPrediction;
 
   protected async initMalPrediction() {
@@ -64,7 +64,7 @@ export class epPredictions {
       delta -= diffWeeks * (86400 * 7);
 
       if (airing) {
-        //We need the time until the week is complete
+        // We need the time until the week is complete
         delta = 86400 * 7 - delta;
       }
 
@@ -80,7 +80,7 @@ export class epPredictions {
       if (airing) {
         episode =
           diffWeeks -
-          (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+          (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
         episode++;
         if (episode > 50) {
           episode = 0;
@@ -90,13 +90,13 @@ export class epPredictions {
       const maxEp = await api.storage.get(`mal/${this.malId}/release`);
       if (typeof maxEp === 'undefined' || episode < maxEp) {
         this.malPrediction = {
-          timestamp: timestamp,
-          airing: airing,
-          diffWeeks: diffWeeks,
-          diffDays: diffDays,
-          diffHours: diffHours,
-          diffMinutes: diffMinutes,
-          episode: episode,
+          timestamp,
+          airing,
+          diffWeeks,
+          diffDays,
+          diffHours,
+          diffMinutes,
+          episode,
         };
       }
     }

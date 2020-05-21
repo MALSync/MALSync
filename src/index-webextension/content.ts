@@ -1,7 +1,7 @@
-import { syncPage } from './../pages/syncPage';
-import { firebaseNotification } from './../utils/firebaseNotification';
-import { pages } from './../pages/pages';
-import { shortcutListener } from './../utils/player';
+import { syncPage } from '../pages/syncPage';
+import { firebaseNotification } from '../utils/firebaseNotification';
+import { pages } from '../pages/pages';
+import { shortcutListener } from '../utils/player';
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
@@ -31,7 +31,7 @@ function messagePageListener(page) {
       page.setVideoTime(msg.item, function(time) {
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
-          time: time,
+          time,
           sender: msg.sender,
         });
       });
@@ -112,7 +112,6 @@ function messagePageListener(page) {
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
       page.tempPlayer.currentTime = page.tempPlayer.currentTime + time;
-      return;
     }
   });
 }

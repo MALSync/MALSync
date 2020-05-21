@@ -1,27 +1,26 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const OtakuFR: pageInterface = {
   name: 'OtakuFR',
   domain: 'https://www.otakufr.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('.vdo_wrp > iframe').length) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#sct_content > div > ul > li:nth-child(2) > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 3) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('.breadcrumb > li:nth-child(2) > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const selectedOptionText = j
         .$(
           '#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected',
@@ -32,7 +31,7 @@ export const OtakuFR: pageInterface = {
 
       return Number(selectedOptionText.split(' ')[1]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j.$('div.wpa_nav > ul:nth-child(2) > li > a').attr('href'),
         OtakuFR.domain,
@@ -41,23 +40,23 @@ export const OtakuFR: pageInterface = {
   },
 
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils.getBaseText($('h1.ttl'));
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return OtakuFR.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j.$('#sct_content > div.wpa_pag.anm_det > h1').first(),
       );
     },
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('#sct_content > div.wpa_pag.anm_det > ul > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -66,7 +65,7 @@ export const OtakuFR: pageInterface = {
           OtakuFR.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = OtakuFR.overview!.list!.elementUrl(selector);
         return episodeHelper(
           urlHandling(url),
@@ -106,9 +105,8 @@ function urlHandling(url) {
     .attr('href');
   if (langslug === '/') {
     return url;
-  } else {
-    return url.replace(langslug, '');
   }
+  return url.replace(langslug, '');
 }
 
 function episodeHelper(url: string, episodeText: string) {

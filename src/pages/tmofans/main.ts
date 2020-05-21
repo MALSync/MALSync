@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const tmofans: pageInterface = {
   name: 'tmofans',
   domain: ['https://lectortmo.com', 'https://tmofans.com'],
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] === 'viewer' &&
       url.split('/')[4] !== undefined &&
       url.split('/')[4].length > 0
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#app > section:nth-child(2) > div > div > h1')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const identifierAnchorHref = j
         .$('nav.navbar > div > div:nth-child(2) > a')
         .last()
@@ -32,7 +31,7 @@ export const tmofans: pageInterface = {
 
       return identifierAnchorHref.split('/')[6];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('nav.navbar > div > div:nth-child(2) > a')
@@ -40,7 +39,7 @@ export const tmofans: pageInterface = {
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = utils
         .getBaseText($('#app > section:nth-child(2) > div > div > h2').first())
         .trim();
@@ -53,13 +52,13 @@ export const tmofans: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils.getBaseText($('h1.element-title.my-2').first()).trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 6) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('header.container-fluid').first());
     },
   },

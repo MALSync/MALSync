@@ -28,13 +28,13 @@ export default {
       default: false,
     },
   },
-  data: function() {
+  data() {
     return {
       xhr: '',
     };
   },
   computed: {
-    recommendations: function() {
+    recommendations() {
       let html = '';
       try {
         const recommendationsBlock = this.xhr
@@ -105,7 +105,7 @@ export default {
     },
   },
   watch: {
-    url: async function(url) {
+    async url(url) {
       this.xhr = '';
       if (this.state) {
         api.request.xhr('GET', `${this.url}/userrecs`).then(response => {
@@ -113,7 +113,7 @@ export default {
         });
       }
     },
-    state: async function(state) {
+    async state(state) {
       if (state && this.xhr === '') {
         api.request.xhr('GET', `${this.url}/userrecs`).then(response => {
           this.xhr = response.responseText;
@@ -121,7 +121,7 @@ export default {
       }
     },
   },
-  updated: function() {
+  updated() {
     const minimal = j.$(this.$el);
     minimal
       .find('.js-similar-recommendations-button')
@@ -148,7 +148,7 @@ export default {
 
     minimal.find('.lazyload').each(function() {
       j.$(this).attr('src', j.$(this).attr('data-src'));
-    }); //TODO: use lazyloading
+    }); // TODO: use lazyloading
   },
   methods: {
     lang: api.storage.lang,

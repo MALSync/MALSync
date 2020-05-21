@@ -36,8 +36,8 @@ onmessage = function(evt) {
   }
 };
 
-//document.onmousemove = handleMouseMove;
-//function handleMouseMove(event) {
+// document.onmousemove = handleMouseMove;
+// function handleMouseMove(event) {
 //  var dot, eventDoc, doc, body, pageX, pageY;
 
 //  event = event || window.event; // IE-ism
@@ -61,7 +61,7 @@ onmessage = function(evt) {
 //  // Use event.pageX / event.pageY here
 //  mouse.x = event.pageX;
 //  mouse.y = event.pageY -$(window).scrollTop() ;
-//}
+// }
 
 function initStars() {
   state.canvas.width = state.canvasState.width;
@@ -81,22 +81,22 @@ function initStars() {
   }
   drawStars();
   if (!state.running) {
-    //setInterval(animate, 1000 / fps);
+    // setInterval(animate, 1000 / fps);
     state.lastCalledTime = performance.now();
     requestAnimationFrame(animate);
     state.running++;
   }
   let speed = 0;
   function animate() {
-    //console.log(speed);
+    // console.log(speed);
     if (state.remainingScroll < 10 && state.remainingScroll > -10) {
-      speed = speed - 0.05;
+      speed -= 0.05;
       if (speed < 0) speed = 0;
     } else {
-      speed = speed + 0.1;
+      speed += 0.1;
       if (speed > 4) speed = 4;
       var scrollDistance = state.remainingScroll / (state.fps * 0.1);
-      state.remainingScroll = state.remainingScroll - scrollDistance;
+      state.remainingScroll -= scrollDistance;
     }
 
     if (state.remainingScroll < 0) {
@@ -143,7 +143,7 @@ function initStars() {
         ctx.globalAlpha = 0.8 / (i * 4);
         ctx.fillStyle = star.color;
         ctx.fillRect(last.x, last.y, star.size, star.size);
-        i = i - 1;
+        i -= 1;
       }
       ctx.globalAlpha = 1;
     }
@@ -211,14 +211,14 @@ function Star() {
     this.x += xOff;
   };
   this.mouseReaction = function(mouse) {
-    //this.color = 'white';
+    // this.color = 'white';
     let distx = this.x - mouse.x;
     let disty = this.y - mouse.y;
     const reactionDistance = 200;
     if (distx < reactionDistance && distx > -reactionDistance) {
       if (disty < reactionDistance && disty > -reactionDistance) {
         if (!(distx < 15 && distx > -15 && disty < 15 && disty > -15)) {
-          //this.color = 'red';
+          // this.color = 'red';
 
           const speed = 5;
           const movex = speed / distx;
@@ -243,8 +243,7 @@ function Star() {
             this.ySpeed += (disty / 1000000) * -1;
           }
 
-          //this.move(movex, movey);
-          return;
+          // this.move(movex, movey);
         }
       }
     }

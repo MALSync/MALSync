@@ -1,35 +1,34 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const HentaiHaven: pageInterface = {
   name: 'HentaiHaven',
   domain: 'https://hentaihaven.org',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] !== null &&
       j.$('h1.entry-title')[0] &&
       j.$('div.hentaiha-post-tabs')[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div > header > div > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j.$('div > header > div > a').attr('href');
 
       if (!anchorHref) return '';
 
       return anchorHref.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('div > header > div > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -46,13 +45,13 @@ export const HentaiHaven: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h1.archive-title').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.archive-meta.category-meta').first());
     },
   },

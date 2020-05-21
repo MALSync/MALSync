@@ -1,6 +1,6 @@
-import { SingleAbstract } from './../singleAbstract';
+import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from './../definitions';
+import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
   private animeInfo: any;
@@ -8,6 +8,7 @@ export class Single extends SingleAbstract {
   private displayUrl = '';
 
   shortName = 'AniList';
+
   authenticationUrl =
     'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
@@ -220,7 +221,7 @@ export class Single extends SingleAbstract {
           }
         }
       `;
-      variables['volumes'] = this.animeInfo.mediaListEntry.progressVolumes;
+      variables.volumes = this.animeInfo.mediaListEntry.progressVolumes;
     }
 
     return this.apiCall(query, variables);
@@ -232,7 +233,7 @@ export class Single extends SingleAbstract {
       Accept: 'application/json',
     };
     if (authentication)
-      headers['Authorization'] = `Bearer ${api.settings.get('anilistToken')}`;
+      headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
     return api.request
       .xhr('POST', {
         url: 'https://graphql.anilist.co',

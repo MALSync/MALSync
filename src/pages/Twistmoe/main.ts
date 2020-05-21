@@ -1,34 +1,34 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Twistmoe: pageInterface = {
   name: 'Twistmoe',
   domain: 'https://twist.moe',
   database: 'Twistmoe',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.series-title')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Twistmoe.domain}/a/${Twistmoe.sync.getIdentifier(url)}/1`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlPart5 = utils.urlPart(url, 5);
 
       if (!urlPart5) return NaN;
 
       return parseInt(urlPart5);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$('.episode-list .current')
@@ -40,26 +40,26 @@ export const Twistmoe: pageInterface = {
         Twistmoe.domain,
       );
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.information').first());
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       return '';
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episode-list li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -68,7 +68,7 @@ export const Twistmoe: pageInterface = {
           Twistmoe.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Twistmoe.sync!.getEpisode(
           Twistmoe.overview!.list!.elementUrl(selector),
         );

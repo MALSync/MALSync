@@ -70,11 +70,12 @@ export function search(
   const syncMode = getSyncMode(type);
   if (syncMode === 'KITSU') {
     return kitsuSearch(keyword, type, options, sync);
-  } else if (syncMode === 'ANILIST') {
-    return aniSearch(keyword, type, options, sync);
-  } else if (syncMode === 'SIMKL') {
-    return simklSearch(keyword, type, options, sync);
-  } else {
-    return malSearch(keyword, type, options, sync);
   }
+  if (syncMode === 'ANILIST') {
+    return aniSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'SIMKL') {
+    return simklSearch(keyword, type, options, sync);
+  }
+  return malSearch(keyword, type, options, sync);
 }

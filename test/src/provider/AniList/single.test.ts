@@ -1,36 +1,29 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/AniList/single';
-import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/definitions';
-
-import { generalSingleTests } from './../generalSingleTests.exclude';
-
 import * as request from 'request';
+import { Single } from '../../../../src/_provider/AniList/single';
+import * as utils from '../../../../src/utils/general';
+import * as def from '../../../../src/_provider/definitions';
+
+import { generalSingleTests } from '../generalSingleTests.exclude';
 
 setGlobals();
 function setGlobals() {
-  global.con = require('./../../../../src/utils/console');
-  global.con.log = function() {
-    return;
-  };
-  global.con.error = function() {
-    return;
-  };
-  global.con.info = function() {
-    return;
-  };
+  global.con = require('../../../../src/utils/console');
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
 
   global.api = {
     token: process.env.ANILIST_API_KEY,
     settings: {
-      get: function(key) {
+      get(key) {
         if ('anilistToken') return global.api.token;
         throw 'key not defined';
       },
     },
     status: 200,
     request: {
-      xhr: async function(post, conf, data) {
+      async xhr(post, conf, data) {
         return new Promise(function(resolve, reject) {
           const options = {
             url: conf.url,

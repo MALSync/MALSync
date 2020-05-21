@@ -1,34 +1,33 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const fourAnime: pageInterface = {
   name: '4Anime',
   domain: 'https://4anime.to',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('.singletitletop')[0] && j.$('.episodes')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('span.singletitletop a')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart3 = utils.urlPart(url, 3);
 
       if (!urlPart3) return '';
 
       return urlPart3.replace(/\-episode[^]*$/g, '');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${fourAnime.domain}/anime/${fourAnime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('ul.episodes a.active')
@@ -36,7 +35,7 @@ export const fourAnime: pageInterface = {
           .replace(/\D+/g, ''),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.anipager-next a')
         .first()
@@ -47,31 +46,31 @@ export const fourAnime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('p.single-anime-desktop')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
 
       if (!urlPart4) return '';
 
       return urlPart4.replace(/\-episode[^]*$/g, '');
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('p.description-mobile').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episodes.range a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), fourAnime.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(selector.text());
       },
     },

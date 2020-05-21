@@ -50,7 +50,8 @@
 </template>
 
 <script type="text/javascript">
-import { search } from './../../provider/provider';
+import { search } from '../../provider/provider';
+
 export default {
   components: {},
   props: {
@@ -63,24 +64,24 @@ export default {
       default: '',
     },
   },
-  data: function() {
+  data() {
     return {
       items: [],
       loading: true,
     };
   },
   watch: {
-    keyword: function(type) {
+    keyword(type) {
       this.load();
     },
-    type: function(type) {
+    type(type) {
       this.load();
     },
   },
-  mounted: function() {
+  mounted() {
     this.load();
   },
-  activated: function() {
+  activated() {
     this.$nextTick(() => {
       j.$(this.$el)
         .closest('html')
@@ -90,7 +91,7 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
-    load: function() {
+    load() {
       this.loading = true;
 
       search(this.keyword, this.type).then(items => {
@@ -98,7 +99,7 @@ export default {
         this.items = items;
       });
     },
-    clickItem: function(e, item) {
+    clickItem(e, item) {
       e.preventDefault();
       this.$emit('clicked', item);
     },

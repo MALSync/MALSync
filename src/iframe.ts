@@ -1,9 +1,9 @@
 import { getPlayerTime, shortcutListener } from './utils/player';
 
-let tempPlayer: any = undefined;
+let tempPlayer: any;
 
 getPlayerTime(function(item, player) {
-  chrome.runtime.sendMessage({ name: 'videoTime', item: item });
+  chrome.runtime.sendMessage({ name: 'videoTime', item });
   tempPlayer = player;
 });
 
@@ -22,8 +22,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }
     if (typeof msg.timeAdd !== 'undefined') {
       tempPlayer.play();
-      tempPlayer.currentTime = tempPlayer.currentTime + msg.timeAdd;
-      return;
+      tempPlayer.currentTime += msg.timeAdd;
     }
   }
 });
@@ -65,8 +64,7 @@ api.settings.init().then(() => {
       }
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
-      tempPlayer.currentTime = tempPlayer.currentTime + time;
-      return;
+      tempPlayer.currentTime += time;
     }
   });
 });

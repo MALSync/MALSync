@@ -1,9 +1,9 @@
-import { pages as part1 } from './../src/pages/pages';
-import { pages as part2 } from './../src/pages-adult/pages';
+import { pages as part1 } from '../src/pages/pages';
+import { pages as part2 } from '../src/pages-adult/pages';
 
 const pages = { ...part1, ...part2 };
 
-//@ts-ignore
+// @ts-ignore
 window.MalSyncTest = async function() {
   const value: any = {};
 
@@ -48,8 +48,8 @@ window.MalSyncTest = async function() {
           typeof page.overview !== 'undefined' &&
           typeof page.overview.list !== 'undefined'
         ) {
-          const elementEp = page.overview.list.elementEp;
-          const elementUrl = page.overview.list.elementUrl;
+          const { elementEp } = page.overview.list;
+          const { elementUrl } = page.overview.list;
           const elementArray = [] as JQuery<HTMLElement>[];
 
           page.overview.list.elementsSelector().each(function(index, el) {
@@ -67,7 +67,7 @@ window.MalSyncTest = async function() {
         }
         resolve(value);
       },
-      cdn: function() {
+      cdn() {
         resolve('retry');
       },
     });
@@ -90,10 +90,8 @@ function getPage(url) {
           return page;
         }
       }
-    } else {
-      if (checkDomain(page.domain)) {
-        return page;
-      }
+    } else if (checkDomain(page.domain)) {
+      return page;
     }
 
     function checkDomain(domain) {

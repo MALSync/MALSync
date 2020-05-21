@@ -1,18 +1,17 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const UnderHentai: pageInterface = {
   name: 'UnderHentai',
   domain: 'https://www.underhentai.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.content-box.content-head.sidebar-light')
         .first()
@@ -21,7 +20,7 @@ export const UnderHentai: pageInterface = {
         .replace(/- episode.*\d+/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return UnderHentai.sync
         .getTitle(url)
         .toLowerCase()
@@ -30,10 +29,10 @@ export const UnderHentai: pageInterface = {
         .trim()
         .replace(' ', '-');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${UnderHentai.domain}/${UnderHentai.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = j
         .$('div.content-box.content-head.sidebar-light')
         .first()
@@ -50,17 +49,17 @@ export const UnderHentai: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.content-box.content-head.sidebar-light')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[3];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.content-table').first());
     },
   },

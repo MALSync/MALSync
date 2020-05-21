@@ -74,8 +74,8 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
         Accept: 'application/json',
       },
       data: JSON.stringify({
-        query: query,
-        variables: variables,
+        query,
+        variables,
       }),
     })
     .then(response => {

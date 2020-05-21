@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import main from './../installPage/main.vue';
+import main from '../installPage/main.vue';
 
 declare let componentHandler: any;
 

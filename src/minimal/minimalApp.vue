@@ -251,7 +251,7 @@ import listSyncVue from './minimalApp/listSync/listSync.vue';
 import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
-import { getSingle } from './../_provider/singleFactory';
+import { getSingle } from '../_provider/singleFactory';
 
 let timer;
 let ignoreCurrentTab = true;
@@ -260,11 +260,11 @@ const STORAGE_KEY = 'VUE-MAL-SYNC';
 const scrollHandler = {};
 let scrollHandlerArray = [];
 const popupStorage = {
-  fetch: function() {
+  fetch() {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     return state;
   },
-  save: function(state) {
+  save(state) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   },
 };
@@ -340,7 +340,7 @@ export default {
     options: api.settings.options,
   }),
   computed: {
-    base: function() {
+    base() {
       if (this.page) {
         if (this.page.singleObj) return this.page.singleObj.getUrl();
         this.renderUrl = '';
@@ -348,75 +348,75 @@ export default {
       }
       return this.baseFallback;
     },
-    renderMalUrl: function() {
+    renderMalUrl() {
       if (this.renderObj !== null) {
         return this.renderObj.getMalUrl();
       }
       return null;
     },
-    showReviewAndRecom: function() {
+    showReviewAndRecom() {
       if (this.renderMalUrl === null && this.renderObj !== null) return false;
       return true;
     },
-    utils: function() {
+    utils() {
       return utils;
     },
-    backbutton: function() {
+    backbutton() {
       if (this.history.length > 0) return true;
       return false;
     },
-    backbuttonSearchStyle: function() {
+    backbuttonSearchStyle() {
       if (this.backbutton) {
         return { 'margin-left': '-17px' };
       }
       return { 'margin-left': '-57px' };
     },
-    backbuttonBookStyle: function() {
+    backbuttonBookStyle() {
       if (this.backbutton) {
         return { left: '40px' };
       }
       return { left: '0px' };
     },
-    popOver: function() {
-      if (this.currentTab === this.tabs['bookmarks'].title) {
+    popOver() {
+      if (this.currentTab === this.tabs.bookmarks.title) {
         return true;
       }
-      if (this.currentTab === this.tabs['search'].title) {
+      if (this.currentTab === this.tabs.search.title) {
         return true;
       }
-      if (this.currentTab === this.tabs['updateCheck'].title) {
+      if (this.currentTab === this.tabs.updateCheck.title) {
         return true;
       }
-      if (this.currentTab === this.tabs['listSync'].title) {
+      if (this.currentTab === this.tabs.listSync.title) {
         return true;
       }
-      if (this.currentTab === this.tabs['cleanTags'].title) {
+      if (this.currentTab === this.tabs.cleanTags.title) {
         return true;
       }
-      if (this.currentTab === this.tabs['allSites'].title) {
+      if (this.currentTab === this.tabs.allSites.title) {
         return true;
       }
       return false;
     },
-    navigation: function() {
+    navigation() {
       if (this.popOver || this.onlySettings) return false;
       return true;
     },
-    onlySettings: function() {
+    onlySettings() {
       if (this.renderUrl !== '') {
         return false;
       }
       return true;
     },
     listView: {
-      get: function() {
+      get() {
         return api.settings.get('bookMarksList');
       },
-      set: function(value) {
+      set(value) {
         api.settings.set('bookMarksList', value);
       },
     },
-    bookIcon: function() {
+    bookIcon() {
       const minimal = j.$(this.$el);
       if (this.currentTab === 'bookmarks') {
         if (this.onlySettings) {
@@ -428,7 +428,7 @@ export default {
     },
   },
   watch: {
-    renderUrl: function(url, oldUrl) {
+    renderUrl(url, oldUrl) {
       this.renderObj = null;
       const tempRenderObj = new getSingle(url);
       tempRenderObj
@@ -443,7 +443,7 @@ export default {
           throw e;
         });
     },
-    currentTab: function(tab, oldtab) {
+    currentTab(tab, oldtab) {
       this.tabs[oldtab].scroll = this.getScroll();
       this.$nextTick(() => {
         this.setScroll(this.tabs[tab].scroll);
@@ -452,34 +452,34 @@ export default {
       if (ignoreCurrentTab) {
         ignoreCurrentTab = false;
       } else {
-        if (this.currentTab === this.tabs['bookmarks'].title) {
+        if (this.currentTab === this.tabs.bookmarks.title) {
           this.history.push(this.getCurrent(oldtab));
         }
-        if (this.currentTab === this.tabs['search'].title) {
+        if (this.currentTab === this.tabs.search.title) {
           this.history.push(this.getCurrent(oldtab));
         }
-        if (this.currentTab === this.tabs['updateCheck'].title) {
+        if (this.currentTab === this.tabs.updateCheck.title) {
           this.history.push(this.getCurrent(oldtab));
         }
-        if (this.currentTab === this.tabs['listSync'].title) {
+        if (this.currentTab === this.tabs.listSync.title) {
           this.history.push(this.getCurrent(oldtab));
         }
-        if (this.currentTab === this.tabs['cleanTags'].title) {
+        if (this.currentTab === this.tabs.cleanTags.title) {
           this.history.push(this.getCurrent(oldtab));
         }
-        if (this.currentTab === this.tabs['allSites'].title) {
+        if (this.currentTab === this.tabs.allSites.title) {
           this.history.push(this.getCurrent(oldtab));
         }
       }
     },
-    keyword: function(keyword) {
+    keyword(keyword) {
       if (keyword !== '') {
         this.selectTab('search');
       } else {
         this.selectTab('overview');
       }
     },
-    base: function(base, oldBase) {
+    base(base, oldBase) {
       if (base !== oldBase) {
         while (this.history.length > 0) {
           this.history.pop();
@@ -488,7 +488,7 @@ export default {
       }
     },
   },
-  mounted: function() {
+  mounted() {
     if (this.isPopup()) {
       const state = popupStorage.fetch();
       if (
@@ -523,7 +523,7 @@ export default {
         }
       });
   },
-  updated: function() {
+  updated() {
     if (this.isPopup()) {
       popupStorage.save(this.getCurrent(this.currentTab));
     }

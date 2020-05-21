@@ -1,20 +1,25 @@
-import { SingleAbstract } from './../singleAbstract';
+import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from './../definitions';
+import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
   private animeInfo: any;
 
   private episodeUpdate = false;
+
   private statusUpdate = false;
+
   private ratingUpdate = false;
 
   private minWatchedEp = 1;
+
   private curWatchedEp = 0;
 
   shortName = 'Simkl';
+
   authenticationUrl =
     'https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/';
+
   protected rewatchingSupport = false;
 
   protected handleUrl(url) {
@@ -133,7 +138,7 @@ export class Single extends SingleAbstract {
     if (isNaN(this.ids.mal)) {
       var de = { simkl: this.ids.simkl };
     } else {
-      //@ts-ignore
+      // @ts-ignore
       var de = { mal: this.ids.mal };
     }
 
@@ -234,7 +239,7 @@ export class Single extends SingleAbstract {
       'curWatchedEp',
       this.curWatchedEp,
     );
-    //Status
+    // Status
     if (this.statusUpdate || !this.isOnList()) {
       var response = await this.call(
         'https://api.simkl.com/sync/add-to-list',
@@ -254,7 +259,7 @@ export class Single extends SingleAbstract {
       con.log('Status response', response);
     }
 
-    //Episode and memo
+    // Episode and memo
     if (this.episodeUpdate || !this.isOnList()) {
       const curEp = this.curWatchedEp;
       const episodes: { number: number }[] = [];
@@ -291,7 +296,7 @@ export class Single extends SingleAbstract {
           con.log('Episode response', response);
         }
       } else {
-        for (var i = this.minWatchedEp - 1; i > curEp; i = i - 1) {
+        for (var i = this.minWatchedEp - 1; i > curEp; i -= 1) {
           episodes.push({
             number: i,
           });
@@ -323,7 +328,7 @@ export class Single extends SingleAbstract {
       this.minWatchedEp = curEp + 1;
     }
 
-    //Rating
+    // Rating
     if (this.ratingUpdate) {
       if (this.animeInfo.user_rating) {
         var response = await this.call(
@@ -367,7 +372,9 @@ export class Single extends SingleAbstract {
   }
 
   protected syncList = helper.syncList;
+
   protected getSingle = helper.getSingle;
+
   protected call = helper.call;
 
   errorHandling(res, code) {
@@ -380,7 +387,7 @@ export class Single extends SingleAbstract {
 
     if (res && typeof res.error !== 'undefined') {
       con.error('[SINGLE]', 'Error', res.error);
-      const error = res.error;
+      const { error } = res;
       if (error.code) {
         switch (error.code) {
           default:

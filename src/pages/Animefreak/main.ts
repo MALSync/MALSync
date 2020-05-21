@@ -1,30 +1,29 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Animefreak: pageInterface = {
   name: 'Animefreak',
   domain: 'https://www.animefreak.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] === 'episode') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.top-breadcrumb li:nth-child(2) a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Animefreak.domain}/watch/${Animefreak.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[6].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.fa-step-forward')
         .first()
@@ -36,13 +35,13 @@ export const Animefreak: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.top-breadcrumb li:nth-child(2) a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.anime-title').first());
     },
   },

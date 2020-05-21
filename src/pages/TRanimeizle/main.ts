@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 function GetOverviewAnchor(): HTMLAnchorElement | null {
   return document.querySelector(`a[href^="anime"]`);
@@ -21,7 +21,7 @@ export const TRanimeizle: pageInterface = {
   name: 'TRanimeizle',
   domain: 'https://www.tranimeizle.com/',
   type: 'anime',
-  isSyncPage: function(_url: string) {
+  isSyncPage(_url: string) {
     const url = new URL(_url);
     const pathnameParts = url.pathname.split('/');
 

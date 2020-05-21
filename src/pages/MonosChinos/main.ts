@@ -1,31 +1,30 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const MonosChinos: pageInterface = {
   name: 'MonosChinos',
   domain: 'https://monoschinos.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'ver') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.Title-epi')
         .text()
         .replace(/(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('a.btnWeb.green.Current').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -40,7 +39,7 @@ export const MonosChinos: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('a.btnWeb:nth-child(3)')
         .first()
@@ -55,28 +54,28 @@ export const MonosChinos: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.Title')
         .text()
         .replace(/(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('h1.Title').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.SerieCaps > a.item');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return selector.attr('href') || '';
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return MonosChinos.sync.getEpisode(selector.attr('href'));
       },
     },

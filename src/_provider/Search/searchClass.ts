@@ -20,7 +20,9 @@ interface searchResult {
 
 export class searchClass {
   private sanitizedTitel;
+
   private page;
+
   private syncPage;
 
   protected state: searchResult | false = false;
@@ -68,8 +70,8 @@ export class searchClass {
     } else {
       this.changed = true;
       this.state = {
-        id: id,
-        url: url,
+        id,
+        url,
         offset: 0,
         provider: 'user',
         similarity: {
@@ -361,7 +363,7 @@ export class searchClass {
       }
 
       return {
-        id: id,
+        id,
         url: link,
         offset: 0,
         provider: 'mal',
@@ -441,7 +443,7 @@ export class searchClass {
       const url = await retEl.malUrl();
       return {
         id: retEl.id,
-        url: url ? url : retEl.url,
+        url: url || retEl.url,
         offset: 0,
         provider: 'page',
         similarity: best.similarity,
@@ -477,12 +479,12 @@ export class searchClass {
       const param = { Kiss: kissurl, Mal: this.state.url };
       if (this.state.provider === 'user') {
         if (!confirm(api.storage.lang('correction_DBRequest'))) return;
-        param['newCorrection'] = true;
+        param.newCorrection = true;
       }
-      param['similarity'] = this.state.similarity;
+      param.similarity = this.state.similarity;
       const url = `https://kissanimelist.firebaseio.com/Data2/Request/${this.page.database}Request.json`;
       api.request
-        .xhr('POST', { url: url, data: JSON.stringify(param) })
+        .xhr('POST', { url, data: JSON.stringify(param) })
         .then(response => {
           if (
             response.responseText !== 'null' &&
@@ -510,10 +512,8 @@ export class searchClass {
             api.settings.get('syncMode'),
           );
         }
-      } else {
-        if (this.page.sync && this.page.sync.getMalUrl) {
-          result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
-        }
+      } else if (this.page.sync && this.page.sync.getMalUrl) {
+        result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
       }
       if (result) {
         con.log('[SEARCH]', 'Overwrite by onsite url', result);
@@ -532,7 +532,7 @@ export class searchClass {
   }
 
   public openCorrection() {
-    /*Implemented in vueSearchClass*/
+    /* Implemented in vueSearchClass */
   }
 
   protected identifierToDbKey(title) {

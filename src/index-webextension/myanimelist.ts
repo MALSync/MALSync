@@ -1,5 +1,5 @@
-import { myanimelistClass } from './../myanimelist/myanimelistClass';
-import { firebaseNotification } from './../utils/firebaseNotification';
+import { myanimelistClass } from '../myanimelist/myanimelistClass';
+import { firebaseNotification } from '../utils/firebaseNotification';
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';

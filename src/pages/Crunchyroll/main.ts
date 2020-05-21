@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 // TODO needs refactoring
 
@@ -7,7 +7,7 @@ export const Crunchyroll: pageInterface = {
   domain: 'https://www.crunchyroll.com',
   database: 'Crunchyroll',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (typeof url.split('/')[4] !== 'undefined') {
       if (j.$('#showmedia_video').length) {
         return true;
@@ -16,10 +16,10 @@ export const Crunchyroll: pageInterface = {
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Crunchyroll.sync.getIdentifier(urlHandling(url));
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const jsOn = JSON.parse(
         j
           .$('script[type="application/ld+json"]')
@@ -28,13 +28,13 @@ export const Crunchyroll: pageInterface = {
       );
       return jsOn.partOfSeason.name;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${urlHandling(url)
         .split('/')
         .slice(0, 4)
         .join('/')}?season=${Crunchyroll.sync.getIdentifier(urlHandling(url))}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return episodeHelper(
         url,
         j
@@ -44,7 +44,7 @@ export const Crunchyroll: pageInterface = {
           .trim(),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('.collection-carousel-media-link-current')
         .parent()
@@ -56,10 +56,10 @@ export const Crunchyroll: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Crunchyroll.overview!.getIdentifier(urlHandling(url));
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (j.$('.season-dropdown').length > 1) {
         throw new Error('MAL-Sync does not support multiple seasons');
       } else {
@@ -68,26 +68,25 @@ export const Crunchyroll: pageInterface = {
             .$('.season-dropdown')
             .first()
             .text();
-        } else {
-          return j
-            .$('#showview-content-header h1 span')
-            .first()
-            .text();
         }
+        return j
+          .$('#showview-content-header h1 span')
+          .first()
+          .text();
       }
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#tabs').first());
     },
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('#showview_content_videos .list-of-seasons .group-item a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Crunchyroll.domain);
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Crunchyroll.overview!.list!.elementUrl(selector);
         return episodeHelper(
           urlHandling(url),
@@ -154,20 +153,17 @@ export const Crunchyroll: pageInterface = {
               .click();
           }
         }
-        return;
+      } else if (
+        (j.$('.header-navigation ul .state-selected').length &&
+          !j
+            .$('.header-navigation ul .state-selected')
+            .first()
+            .index()) ||
+        j.$('#showmedia_video').length
+      ) {
+        page.handlePage();
       } else {
-        if (
-          (j.$('.header-navigation ul .state-selected').length &&
-            !j
-              .$('.header-navigation ul .state-selected')
-              .first()
-              .index()) ||
-          j.$('#showmedia_video').length
-        ) {
-          page.handlePage();
-        } else {
-          con.info('No anime page');
-        }
+        con.info('No anime page');
       }
     });
   },
@@ -180,9 +176,8 @@ function urlHandling(url) {
     .attr('href');
   if (langslug === '/') {
     return url;
-  } else {
-    return url.replace(langslug, '');
   }
+  return url.replace(langslug, '');
 }
 
 function episodeHelper(url: string, _episodeText: string) {

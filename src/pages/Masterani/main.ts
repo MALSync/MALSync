@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Masterani: pageInterface = {
   name: 'Masterani',
   domain: 'https://www.masterani.me',
   database: 'Masterani',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[4] !== 'watch') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.info h1')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 5) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$('.info a')
@@ -31,10 +30,10 @@ export const Masterani: pageInterface = {
         Masterani.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(utils.urlPart(url, 6) || '');
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nexUrl =
         Masterani.domain +
         (j
@@ -48,21 +47,21 @@ export const Masterani: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Masterani.sync.getIdentifier(url).replace(/^\d*-/, '');
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Masterani.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.prependTo(j.$('#stats').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episodes .thumbnail');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -71,19 +70,18 @@ export const Masterani: pageInterface = {
           Masterani.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Masterani.sync.getEpisode(
           Masterani.overview!.list!.elementUrl(selector),
         );
       },
-      paginationNext: function() {
+      paginationNext() {
         const el = j.$('.pagination .item').last();
         if (el.hasClass('disabled')) {
           return false;
-        } else {
-          el[0].click();
-          return true;
         }
+        el[0].click();
+        return true;
       },
     },
   },

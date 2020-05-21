@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from './../listAbstract';
+import { ListAbstract, listElement } from '../listAbstract';
 
 export class userlist extends ListAbstract {
   name = 'MyAnimeList';
@@ -65,37 +65,37 @@ export class userlist extends ListAbstract {
       if (this.listType === 'anime') {
         newData.push(
           this.fn({
-            uid: el['anime_id'],
-            malId: el['anime_id'],
-            cacheKey: el['anime_id'],
+            uid: el.anime_id,
+            malId: el.anime_id,
+            cacheKey: el.anime_id,
             type: this.listType,
-            title: el['anime_title'],
-            url: `https://myanimelist.net${el['anime_url']}`,
-            watchedEp: el['num_watched_episodes'],
-            totalEp: el['anime_num_episodes'],
-            status: el['status'],
-            score: el['score'],
-            image: el['anime_image_path'],
-            tags: el['tags'],
-            airingState: el['anime_airing_status'],
+            title: el.anime_title,
+            url: `https://myanimelist.net${el.anime_url}`,
+            watchedEp: el.num_watched_episodes,
+            totalEp: el.anime_num_episodes,
+            status: el.status,
+            score: el.score,
+            image: el.anime_image_path,
+            tags: el.tags,
+            airingState: el.anime_airing_status,
           }),
         );
       } else {
         newData.push(
           this.fn({
-            uid: el['manga_id'],
-            malId: el['manga_id'],
-            cacheKey: el['manga_id'],
+            uid: el.manga_id,
+            malId: el.manga_id,
+            cacheKey: el.manga_id,
             type: this.listType,
-            title: el['manga_title'],
-            url: `https://myanimelist.net${el['manga_url']}`,
-            watchedEp: el['num_read_chapters'],
-            totalEp: el['manga_num_chapters'],
-            status: el['status'],
-            score: el['score'],
-            image: el['manga_image_path'],
-            tags: el['tags'],
-            airingState: el['anime_airing_status'],
+            title: el.manga_title,
+            url: `https://myanimelist.net${el.manga_url}`,
+            watchedEp: el.num_read_chapters,
+            totalEp: el.manga_num_chapters,
+            status: el.status,
+            score: el.score,
+            image: el.manga_image_path,
+            tags: el.tags,
+            airingState: el.anime_airing_status,
           }),
         );
       }

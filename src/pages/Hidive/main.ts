@@ -1,37 +1,35 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Hidive: pageInterface = {
   name: 'Hidive',
   domain: 'https://www.hidive.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'stream') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
 
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#TitleDetails').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return Hidive.domain + (j.$('#TitleDetails').attr('href') || '');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const temp = url.split('/')[5];
       const regex = /^\d/;
       if (regex.test(temp)) {
         return Number(temp.slice(8));
-      } else {
-        return Number(temp.slice(4));
       }
+      return Number(temp.slice(4));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j.$('#StreamNextEpisode .episode-play').attr('data-key');
       if (!nextEp) {
         return nextEp;
@@ -40,31 +38,30 @@ export const Hidive: pageInterface = {
         return `${Hidive.domain}/stream/${j
           .$('#StreamNextEpisode .episode-play')
           .attr('data-videotitle')}/${nextEp}`;
-      } else {
-        return undefined;
       }
+      return undefined;
     },
   },
 
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.text-container a')
         .text()
         .replace('Score It', '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div class="container"> <p id="malp">${selector.html()}</p></div>`,
       ).insertAfter(j.$('div.details').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j
           .$(
             'div.episode-slider > div > div > div.cell > div:nth-child(1) > div.hitbox',
@@ -90,19 +87,19 @@ export const Hidive: pageInterface = {
             return false;
           });
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return selector.find('div.player > a').attr('data-playurl') || '';
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const temp = selector.find('div.player > a').attr('data-key');
         const regex = /^\d/;
         if (temp && regex.test(temp)) {
           return Number(temp.slice(8));
-        } else if (temp) {
-          return Number(temp.slice(4));
-        } else {
-          return 0;
         }
+        if (temp) {
+          return Number(temp.slice(4));
+        }
+        return 0;
       },
     },
   },

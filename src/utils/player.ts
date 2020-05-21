@@ -6,9 +6,9 @@ export function getPlayerTime(callback) {
     const players = document.getElementsByTagName('video');
     for (let i = 0; i < players.length; i++) {
       const player: any = players[i];
-      const duration = player.duration;
+      const { duration } = player;
       const current = player.currentTime;
-      const paused = player.paused;
+      const { paused } = player;
 
       if (duration && duration > 60) {
         const item = {
@@ -39,9 +39,9 @@ function playerExtras(item, player) {
 
 async function setFullscreen(player) {
   if (!(await api.settings.getAsync('autofull'))) return;
-  //@ts-ignore
+  // @ts-ignore
   if (
-    window['fullScreen'] ||
+    window.fullScreen ||
     (window.innerWidth === screen.width && window.innerHeight === screen.height)
   ) {
     con.info('Browser already in fullscreen');
@@ -104,9 +104,9 @@ async function setFullscreen(player) {
 
       function exitHandler() {
         if (
-          document['webkitIsFullScreen'] ||
-          document['mozFullScreen'] ||
-          document['msFullscreenElement'] !== null
+          document.webkitIsFullScreen ||
+          document.mozFullScreen ||
+          document.msFullscreenElement !== null
         ) {
           player.removeAttribute('controls', 'controls');
         }
@@ -127,7 +127,7 @@ async function setFullscreen(player) {
   }
 }
 
-//https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
+// https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
 let init = false;
 
 let currCallback;
@@ -151,17 +151,17 @@ export function shortcutListener(callback) {
     onkeydown = onkeyup = function(e) {
       e = e || event;
       const key = e.which || e.keyCode;
-      //@ts-ignore
+      // @ts-ignore
       keyMap[key] = e.type === 'keydown';
 
       for (let i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];
         if (checkShortcut(option)) {
-          //@ts-ignore
+          // @ts-ignore
           if (
             e.target &&
-            (/textarea|input|select/i.test(e.target['nodeName']) ||
-              e.target['shadowRoot'])
+            (/textarea|input|select/i.test(e.target.nodeName) ||
+              e.target.shadowRoot)
           ) {
             con.info('Input field. Shortcut suppressed.');
           } else {

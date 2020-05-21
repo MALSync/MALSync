@@ -7,7 +7,8 @@
 </template>
 
 <script>
-import { Cache } from './../../../utils/Cache';
+import { Cache } from '../../../utils/Cache';
+
 export default {
   props: {
     country: {
@@ -19,7 +20,7 @@ export default {
       default: '',
     },
   },
-  data: function() {
+  data() {
     return {
       flagHtml: '',
     };

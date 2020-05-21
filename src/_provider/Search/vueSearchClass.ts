@@ -1,8 +1,7 @@
+import Vue from 'vue';
 import { searchClass as searchClassExtend } from './searchClass';
 
 import correctionApp from './correctionApp.vue';
-
-import Vue from 'vue';
 
 export class searchClass extends searchClassExtend {
   reloadSync = false;
@@ -55,7 +54,7 @@ export class searchClass extends searchClassExtend {
         el: element,
         data: () => ({
           searchClass: this,
-          syncMode: syncMode,
+          syncMode,
         }),
         destroyed: () => {
           resolve(this.changed);

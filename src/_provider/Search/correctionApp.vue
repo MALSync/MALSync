@@ -72,13 +72,13 @@ export default {
     minimized: false,
   }),
   computed: {
-    searchClass: function() {
+    searchClass() {
       return this.$parent.searchClass;
     },
-    syncPage: function() {
+    syncPage() {
       return this.$parent.searchClass.getSyncPage();
     },
-    currentStateEp: function() {
+    currentStateEp() {
       if (
         this.syncPage &&
         this.syncPage.curState &&
@@ -88,30 +88,30 @@ export default {
       }
       return undefined;
     },
-    syncMode: function() {
+    syncMode() {
       return this.$parent.syncMode;
     },
-    offset: function() {
+    offset() {
       return this.searchClass.getOffset();
     },
   },
-  created: function() {
+  created() {
     this.minimized = api.settings.get('minimizeBigPopup');
   },
   methods: {
     lang: api.storage.lang,
-    setPage: function(url, id = 0) {
+    setPage(url, id = 0) {
       this.searchClass.setUrl(url, id);
       utils.flashm(api.storage.lang('correction_NewUrl', [url]), false);
       this.close();
     },
-    setOffset: function(offset) {
+    setOffset(offset) {
       this.searchClass.setOffset(offset);
     },
-    close: function() {
+    close() {
       this.$root.$destroy();
     },
-    calcEpOffset: function(ep) {
+    calcEpOffset(ep) {
       return parseInt(ep) - parseInt(this.inputOffset);
     },
   },

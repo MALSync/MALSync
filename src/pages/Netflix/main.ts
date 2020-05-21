@@ -1,7 +1,7 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
-let ident: any = undefined;
-let ses: any = undefined;
+let ident: any;
+let ses: any;
 
 const genres = [
   '2797624',
@@ -73,23 +73,23 @@ export const Netflix: pageInterface = {
   domain: 'https://www.netflix.com',
   database: 'Netflix',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return `${j
         .$('.ellipsize-text h4')
         .text()
         .trim()} Season ${ses.replace('?s=', '')}`;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return ident;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Netflix.domain}/title/${Netflix.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const epText = j
         .$('.ellipsize-text span')
         .first()

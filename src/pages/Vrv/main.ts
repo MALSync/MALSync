@@ -1,7 +1,7 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
-let json: any = undefined;
-let ident: any = undefined;
+let json: any;
+let ident: any;
 
 let seasonInterval: number;
 
@@ -24,11 +24,9 @@ function getSeries(page, overview = '') {
           ident = element;
         }
       });
-    } else {
-      if (json.seriesPage.seasons.length) {
-        con.log('Season', json.seriesPage.seasons[0]);
-        ident = json.seriesPage.seasons[0];
-      }
+    } else if (json.seriesPage.seasons.length) {
+      con.log('Season', json.seriesPage.seasons[0]);
+      ident = json.seriesPage.seasons[0];
     }
 
     page.handlePage();
@@ -39,12 +37,12 @@ export const Vrv: pageInterface = {
   name: 'Vrv',
   domain: 'https://vrv.co',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (utils.urlPart(window.location.href, 3) === 'series') return false;
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return `${
         json.watch.mediaResource.json.series_title
       } - ${json.watch.mediaResource.json.season_title.replace(
@@ -52,42 +50,42 @@ export const Vrv: pageInterface = {
         '',
       )}`;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return json.watch.mediaResource.json.season_id;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Vrv.domain}/series/${
         json.watch.mediaResource.json.series_id
       }?season=${Vrv.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return json.watch.mediaResource.json.episode_number;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (typeof json.watch.mediaResource.json.next_episode_id === 'undefined')
         return '';
       return `${Vrv.domain}/watch/${json.watch.mediaResource.json.next_episode_id}`;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return `${json.seriesPage.series.json.title} - ${ident.json.title.replace(
         json.seriesPage.series.json.title,
         '',
       )}`;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return ident.json.id;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter($('.erc-series-info .series-title').first());
     },
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.erc-series-media-list-element');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -96,7 +94,7 @@ export const Vrv: pageInterface = {
           Vrv.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const epInfo = selector
           .find('.episode-title')
           .text()
@@ -107,7 +105,7 @@ export const Vrv: pageInterface = {
 
         return Number(temp[0].replace('E', ''));
       },
-      getTotal: function() {
+      getTotal() {
         throw 'Not supported';
         return 0;
       },

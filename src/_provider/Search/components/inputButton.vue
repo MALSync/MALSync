@@ -26,25 +26,25 @@ export default {
       default: '',
     },
   },
-  data: function() {
+  data() {
     return {
       inputString: '',
     };
   },
   watch: {
-    state: function(type) {
+    state(type) {
       this.inputString = this.state;
     },
-    inputString: function(val) {
+    inputString(val) {
       this.$emit('change', this.inputString);
     },
   },
-  mounted: function() {
+  mounted() {
     this.inputString = this.state;
   },
   methods: {
     lang: api.storage.lang,
-    click: function() {
+    click() {
       this.$emit('clicked', this.inputString);
     },
   },

@@ -1,10 +1,10 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const animeultima: pageInterface = {
   name: 'animeultima',
   domain: 'https://animeultima.to',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] === 'a' &&
       j.$(
@@ -12,12 +12,11 @@ export const animeultima: pageInterface = {
       )[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile',
@@ -26,13 +25,13 @@ export const animeultima: pageInterface = {
         .replace(/\n.*/g, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${animeultima.domain}/a/${animeultima.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$(
@@ -43,7 +42,7 @@ export const animeultima: pageInterface = {
           .replace(/\D+/g, ''),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.level-right a')
         .first()
@@ -54,16 +53,16 @@ export const animeultima: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText($('h1.title.is-marginless.is-paddingless').first())
         .replace(/[^ \w]+/g, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.tags.is-marginless').first());
     },
   },

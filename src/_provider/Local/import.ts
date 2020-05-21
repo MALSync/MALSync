@@ -14,7 +14,7 @@ export async function exportData() {
 export async function importData(newData: {}) {
   const data = await helper.getSyncList();
 
-  //Delete old data
+  // Delete old data
   for (const key in data) {
     if (helper.getRegex('(anime|manga)').test(key)) {
       con.log('Remove', key);
@@ -22,7 +22,7 @@ export async function importData(newData: {}) {
     }
   }
 
-  //import Data
+  // import Data
   for (const k in newData) {
     con.log('Set', k, newData[k]);
     api.storage.set(k, newData[k]);

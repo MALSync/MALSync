@@ -1,4 +1,4 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 function cleanTitle(title) {
   return title.replace(/(\([^\)]*\)|\[[^\]]*\])/g, '').trim();
@@ -10,15 +10,14 @@ export const Nhentai: pageInterface = {
   name: 'Nhentai',
   domain: 'https://nhentai.net',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] && url.split('/')[5].length) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       const scripts = j.$('script').text();
       con.info(scripts);
       try {
@@ -27,13 +26,13 @@ export const Nhentai: pageInterface = {
         return '';
       }
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Nhentai.domain}/g/${Nhentai.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       try {
         const scripts = j.$('script').text();
         if (scripts.indexOf('"english":"') !== -1) {
@@ -54,7 +53,7 @@ export const Nhentai: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return cleanTitle(
         j
           .$('meta[itemprop="name"]')
@@ -62,10 +61,10 @@ export const Nhentai: pageInterface = {
           .attr('content'),
       );
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Nhentai.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#info h1').first());
     },
   },

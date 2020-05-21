@@ -32,61 +32,61 @@ export default {
       default: undefined,
     },
   },
-  data: function() {
+  data() {
     return {
       image: '',
     };
   },
   computed: {
     status: {
-      get: function() {
+      get() {
         if (this.obj && this.obj.isAuthenticated()) {
           return this.obj.getStatus();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.obj && this.obj.isAuthenticated()) {
           this.obj.setStatus(value);
         }
       },
     },
     episode: {
-      get: function() {
+      get() {
         if (this.obj && this.obj.isAuthenticated()) {
           if (!this.obj.isOnList()) return null;
           return this.obj.getEpisode();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.obj && this.obj.isAuthenticated()) {
           this.obj.setEpisode(value);
         }
       },
     },
     volume: {
-      get: function() {
+      get() {
         if (this.obj && this.obj.isAuthenticated()) {
           if (!this.obj.isOnList()) return null;
           return this.obj.getVolume();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.obj && this.obj.isAuthenticated()) {
           this.obj.setVolume(value);
         }
       },
     },
     score: {
-      get: function() {
+      get() {
         if (this.obj && this.obj.isAuthenticated()) {
           return this.obj.getDisplayScoreCheckbox();
         }
         return null;
       },
-      set: function(value) {
+      set(value) {
         if (this.obj && this.obj.isAuthenticated()) {
           this.obj.setScore(value);
         }
@@ -113,7 +113,7 @@ export default {
   methods: {
     lang: api.storage.lang,
     utilsepisode: utils.episode,
-    statusText: function(state) {
+    statusText(state) {
       switch (state) {
         case 1:
           return api.storage.lang(`UI_Status_watching_${this.obj.getType()}`);

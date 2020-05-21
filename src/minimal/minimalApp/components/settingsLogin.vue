@@ -38,7 +38,7 @@
 </style>
 
 <script type="text/javascript">
-import { getListbyType } from './../../../_provider/listFactory';
+import { getListbyType } from '../../../_provider/listFactory';
 
 export default {
   props: {
@@ -46,7 +46,7 @@ export default {
       type: String,
     },
   },
-  data: function() {
+  data() {
     return {
       username: '',
       listObj: null,
@@ -54,12 +54,10 @@ export default {
   },
   computed: {
     mode: {
-      get: function() {
+      get() {
         return api.settings.get(this.option);
       },
-      set: function(value) {
-        return;
-      },
+      set(value) {},
     },
     pageName() {
       if (this.listObj) return this.listObj.name;
@@ -75,7 +73,7 @@ export default {
       this.init();
     },
   },
-  mounted: function() {
+  mounted() {
     this.init();
   },
   methods: {

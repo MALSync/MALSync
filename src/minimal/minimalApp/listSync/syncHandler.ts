@@ -1,13 +1,13 @@
-import { Single as malSingle } from './../../../_provider/MyAnimeList/single';
-import { Single as anilistSingle } from './../../../_provider/AniList/single';
-import { Single as kitsuSingle } from './../../../_provider/Kitsu/single';
-import { Single as simklSingle } from './../../../_provider/Simkl/single';
-import { Single as localSingle } from './../../../_provider/Local/single';
+import { Single as malSingle } from '../../../_provider/MyAnimeList/single';
+import { Single as anilistSingle } from '../../../_provider/AniList/single';
+import { Single as kitsuSingle } from '../../../_provider/Kitsu/single';
+import { Single as simklSingle } from '../../../_provider/Simkl/single';
+import { Single as localSingle } from '../../../_provider/Local/single';
 
-import { userlist as malList } from './../../../_provider/MyAnimeList/list';
-import { userlist as anilistList } from './../../../_provider/AniList/list';
-import { userlist as kitsuList } from './../../../_provider/Kitsu/list';
-import { userlist as simklList } from './../../../_provider/Simkl/list';
+import { userlist as malList } from '../../../_provider/MyAnimeList/list';
+import { userlist as anilistList } from '../../../_provider/AniList/list';
+import { userlist as kitsuList } from '../../../_provider/Kitsu/list';
+import { userlist as simklList } from '../../../_provider/Simkl/list';
 
 export function generateSync(
   masterList: object,
@@ -58,7 +58,7 @@ export function mapToArray(provierList, resultList, masterM = false) {
     if (!isNaN(el.malId) && el.malId) {
       resultList[el.malId] = temp;
     } else {
-      //TODO: List them
+      // TODO: List them
     }
   }
 }
@@ -116,7 +116,7 @@ export function missingCheck(item, missing, types, mode) {
   }
 }
 
-//Sync
+// Sync
 
 export async function syncList(list, thisMissing) {
   for (var i in list) {
@@ -202,13 +202,13 @@ export async function retriveLists(
 ) {
   const typeArray: any = [];
 
-  //@ts-ignore
+  // @ts-ignore
   const masterMode = apiTemp.settings.get('syncMode');
   const listP: any = [];
 
   providerList.forEach(pi => {
     pi.providerSettings.text = 'Loading';
-    //@ts-ignore
+    // @ts-ignore
     listP.push(
       getListF(pi.listProvider, type)
         .then((list: any) => {
@@ -231,16 +231,13 @@ export async function retriveLists(
   providerList.forEach(function(pi) {
     if (pi.providerSettings.master) {
       master = pi.providerSettings.list;
-    } else {
-      if (pi.providerSettings.list !== null)
-        slaves.push(pi.providerSettings.list);
-    }
+    } else if (pi.providerSettings.list !== null) slaves.push(pi.providerSettings.list);
   });
 
   return {
-    master: master,
-    slaves: slaves,
-    typeArray: typeArray,
+    master,
+    slaves,
+    typeArray,
   };
 }
 
@@ -284,7 +281,7 @@ export function getList(prov, type) {
 }
 
 export var background = {
-  isEnabled: async function() {
+  async isEnabled() {
     return api.storage.get('backgroundListSync').then(async function(state) {
       con.info('background list sync state', state);
       if (state && state.mode === (await api.settings.getAsync('syncMode')))
@@ -293,24 +290,23 @@ export var background = {
       return false;
     });
   },
-  enable: async function() {
+  async enable() {
     return api.storage.set('backgroundListSync', {
       mode: await api.settings.getAsync('syncMode'),
     });
   },
-  disable: function() {
+  disable() {
     return api.storage.remove('backgroundListSync');
   },
-  sync: async function() {
+  async sync() {
     if (await background.isEnabled()) {
       con.log('Start Background list Sync');
 
       return syncLists('anime').then(() => {
         return syncLists('manga');
       });
-    } else {
-      con.error('Background list Sync not allowed');
     }
+    con.error('Background list Sync not allowed');
 
     async function syncLists(type) {
       const mode = 'mirror';

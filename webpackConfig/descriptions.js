@@ -7,14 +7,16 @@ require('ts-node').register({
   files: './globals.d.ts',
 });
 
-const pages = Object.values(require('./../src/pages/pages.ts').pages);
+const pages = Object.values(require('../src/pages/pages.ts').pages);
+
 pages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
   const textB = b.name.toUpperCase();
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-const hpages = Object.values(require('./../src/pages-adult/pages.ts').pages);
+const hpages = Object.values(require('../src/pages-adult/pages.ts').pages);
+
 hpages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
   const textB = b.name.toUpperCase();
@@ -51,7 +53,7 @@ function createTable() {
     else mangahtml += htmlContent;
   }
 
-  let html = `
+  const html = `
   <h1>Anime</h1>
   <table>
     <thead>
@@ -135,7 +137,7 @@ function adultDep() {
 
 readMe();
 function readMe() {
-  const pageList = Object.values(require('./../src/pages/pages.ts').pages);
+  const pageList = Object.values(require('../src/pages/pages.ts').pages);
 
   const animes = [];
   const mangas = [];

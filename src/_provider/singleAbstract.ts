@@ -9,12 +9,15 @@ export abstract class SingleAbstract {
   protected type: definitions.contentType | null = null;
 
   protected persistanceState;
+
   protected undoState;
 
   protected lastError;
 
   public abstract shortName: string;
+
   protected abstract authenticationUrl: string;
+
   protected rewatchingSupport = true;
 
   protected ids = {
@@ -44,18 +47,21 @@ export abstract class SingleAbstract {
   public abstract getCacheKey();
 
   abstract _setStatus(status: definitions.status): void;
+
   public setStatus(status: definitions.status): SingleAbstract {
     this._setStatus(status);
     return this;
   }
 
   abstract _getStatus(): definitions.status | number;
+
   public getStatus(): definitions.status {
     if (!this.isOnList()) return definitions.status.NoState;
     return this._getStatus();
   }
 
   abstract _setScore(score: definitions.score): void;
+
   public setScore(score: definitions.score): SingleAbstract {
     score = parseInt(`${score}`);
     if (!score) score = 0;
@@ -64,6 +70,7 @@ export abstract class SingleAbstract {
   }
 
   abstract _getScore(): definitions.score;
+
   public getScore(): definitions.score {
     const score = this._getScore();
     if (!score) return 0;
@@ -71,6 +78,7 @@ export abstract class SingleAbstract {
   }
 
   abstract _setEpisode(episode: number): void;
+
   public setEpisode(episode: number): SingleAbstract {
     episode = parseInt(`${episode}`);
     if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
@@ -80,33 +88,39 @@ export abstract class SingleAbstract {
   }
 
   abstract _getEpisode(): number;
+
   public getEpisode(): number {
     return this._getEpisode();
   }
 
   abstract _setVolume(volume: number): void;
+
   public setVolume(volume: number): SingleAbstract {
     this._setVolume(volume);
     return this;
   }
 
   abstract _getVolume(): number;
+
   public getVolume(): number {
     return this._getVolume();
   }
 
   abstract _setStreamingUrl(streamingUrl: string): void;
+
   public setStreamingUrl(streamingUrl: string): SingleAbstract {
     this._setStreamingUrl(streamingUrl);
     return this;
   }
 
   abstract _getStreamingUrl(): string;
+
   public getStreamingUrl(): string {
     return this._getStreamingUrl();
   }
 
   abstract _update(): Promise<void>;
+
   public update(): Promise<void> {
     con.log('[SINGLE]', 'Update info', this.ids);
     this.lastError = null;
@@ -121,6 +135,7 @@ export abstract class SingleAbstract {
   }
 
   abstract _sync(): Promise<void>;
+
   public sync(): Promise<void> {
     con.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
@@ -144,11 +159,13 @@ export abstract class SingleAbstract {
   }
 
   abstract _getTitle(): string;
+
   public getTitle() {
     return this._getTitle();
   }
 
   abstract _getTotalEpisodes(): number;
+
   public getTotalEpisodes() {
     let eps = this._getTotalEpisodes();
     if (!eps) eps = 0;
@@ -156,21 +173,25 @@ export abstract class SingleAbstract {
   }
 
   abstract _getTotalVolumes(): number;
+
   public getTotalVolumes() {
     return this._getTotalVolumes();
   }
 
   protected _onList = false;
+
   public isOnList() {
     return this._onList;
   }
 
   protected _authenticated = false;
+
   public isAuthenticated() {
     return this._authenticated;
   }
 
   abstract _getDisplayUrl(): string;
+
   public getDisplayUrl(): string {
     return this._getDisplayUrl();
   }
@@ -196,11 +217,13 @@ export abstract class SingleAbstract {
   }
 
   abstract _getImage(): Promise<string>;
+
   public getImage(): Promise<string> {
     return this._getImage();
   }
 
   abstract _getRating(): Promise<string>;
+
   public getRating(): Promise<string> {
     return this._getRating().then(rating => {
       if (!rating) return 'N/A';
@@ -266,9 +289,8 @@ export abstract class SingleAbstract {
     if (curStatus === definitions.status.Completed) {
       if (episode === 1) {
         return this.startRewatchingMessage();
-      } else {
-        return false;
       }
+      return false;
     }
 
     if (

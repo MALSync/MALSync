@@ -1,5 +1,5 @@
-import { epPredictions } from './../utils/epPrediction';
-import { Cache } from './../utils/Cache';
+import { epPredictions } from '../utils/epPrediction';
+import { Cache } from '../utils/Cache';
 
 export interface listElement {
   uid: number;
@@ -28,7 +28,7 @@ export abstract class ListAbstract {
 
   abstract readonly name;
 
-  //Modes
+  // Modes
   modes = {
     sortAiring: false,
     cached: false,
@@ -107,6 +107,7 @@ export abstract class ListAbstract {
   }
 
   abstract getUsername(): Promise<string> | string;
+
   abstract getPart(): Promise<listElement[]>;
 
   jsonParse(response) {
@@ -152,7 +153,7 @@ export abstract class ListAbstract {
   fn(item) {
     let continueUrlTemp: any = null;
     let predictionsObj: any = null;
-    item['fn'] = {
+    item.fn = {
       continueUrl: () => {
         if (continueUrlTemp !== null) return continueUrlTemp;
         return utils.getContinueWaching(item.type, item.cacheKey).then(obj => {
@@ -175,7 +176,7 @@ export abstract class ListAbstract {
     return item;
   }
 
-  //Modes
+  // Modes
   async sortAiringList() {
     const listP: any = [];
     this.templist.forEach(item => {

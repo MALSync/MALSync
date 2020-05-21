@@ -1,49 +1,49 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeZone: pageInterface = {
   name: 'AnimeZone',
   domain: 'https://www.animezone.pl',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return url.split('/')[5] !== undefined;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.category-description .panel-title').attr('title') || '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j.$('.all-episodes > a').attr('href'),
         AnimeZone.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j.$('.next a').attr('href');
       if (href) return utils.absoluteLink(href, AnimeZone.domain);
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.category-description .panel-title').attr('title') || '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.ratings .panel-body .description').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('table.episodes > tbody > tr');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         const anchorHref = selector
           .find('td:nth-child(6) > a')
           .first()
@@ -56,7 +56,7 @@ export const AnimeZone: pageInterface = {
           AnimeZone.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('td:nth-child(6) > a')
           .first()

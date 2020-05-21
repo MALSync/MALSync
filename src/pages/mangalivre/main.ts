@@ -1,24 +1,23 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const mangalivre: pageInterface = {
   name: 'mangalivre',
   domain: 'https://mangalivre.net',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[6] !== undefined && url.split('/')[6].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.series-title > span.title').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         mangalivre.domain +
         (j
@@ -28,10 +27,10 @@ export const mangalivre: pageInterface = {
           .attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[6].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = utils.absoluteLink(
         j
           .$('ul.chapter-list > li.selected')
@@ -42,13 +41,12 @@ export const mangalivre: pageInterface = {
       );
       if (href) {
         return href;
-      } else {
-        return undefined;
       }
+      return undefined;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           '#series-data > div.series-info.touchcarousel > span.series-title > h1',
@@ -57,10 +55,10 @@ export const mangalivre: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j
           .$('#series-data > div.series-info.touchcarousel > span.series-desc')

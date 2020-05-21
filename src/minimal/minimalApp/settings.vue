@@ -694,7 +694,7 @@ import login from './components/settingsLogin.vue';
 import tooltip from './components/tooltip.vue';
 import correction from './correction.vue';
 
-import { exportData, importData } from './../../_provider/Local/import';
+import { exportData, importData } from '../../_provider/Local/import';
 
 export default {
   components: {
@@ -713,7 +713,7 @@ export default {
       default: null,
     },
   },
-  data: function() {
+  data() {
     return {
       contributer: [],
       isOpen: false,
@@ -725,7 +725,7 @@ export default {
       },
     };
   },
-  mounted: function() {
+  mounted() {
     api.request
       .xhr('GET', 'https://api.malsync.moe/static/contributor')
       .then(response => {
@@ -752,13 +752,13 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
-    myOpen: function() {
+    myOpen() {
       this.isOpen = !this.isOpen;
     },
-    isExtension: function() {
+    isExtension() {
       return api.type === 'webextension';
     },
-    importFallbackSync: function(filecontent) {
+    importFallbackSync(filecontent) {
       con.log('Import FallbackSync', filecontent);
       try {
         const iData = JSON.parse(filecontent);
@@ -778,7 +778,7 @@ export default {
         con.error('File has wrong formating:', e);
       }
     },
-    exportFallbackSync: async function() {
+    async exportFallbackSync() {
       const exportObj = await exportData();
       con.log('Export', exportObj);
 

@@ -16,15 +16,14 @@ export function urlParam(url, name) {
   const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(url);
   if (results === null) {
     return null;
-  } else {
-    return decodeURI(results[1]) || 0;
   }
+  return decodeURI(results[1]) || 0;
 }
 
 export function getBaseText(element) {
   let text = element.text();
   element.children().each(function() {
-    //@ts-ignore
+    // @ts-ignore
     text = text.replace(j.$(this).text(), '');
   });
   return text;
@@ -194,7 +193,7 @@ export function setUrlInTags(url: string, tags: string) {
 }
 
 export async function setResumeWaching(url: string, ep: number, type, id) {
-  return api.storage.set(`resume/${type}/${id}`, { url: url, ep: ep });
+  return api.storage.set(`resume/${type}/${id}`, { url, ep });
 }
 
 export async function getResumeWaching(
@@ -207,7 +206,7 @@ export async function getResumeWaching(
 }
 
 export async function setContinueWaching(url: string, ep: number, type, id) {
-  return api.storage.set(`continue/${type}/${id}`, { url: url, ep: ep });
+  return api.storage.set(`continue/${type}/${id}`, { url, ep });
 }
 
 export async function getContinueWaching(
@@ -231,10 +230,10 @@ export async function setEntrySettings(type, id, options, tags = '') {
     }
 
     if (api.settings.get('malTags')) {
-      //TAG mode
+      // TAG mode
       tags = setUrlInTags(JSON.stringify(tempOptions), tags);
     } else {
-      //No TAG mode
+      // No TAG mode
       await api.storage.set(
         `tagSettings/${type}/${id}`,
         JSON.stringify(tempOptions),
@@ -246,13 +245,13 @@ export async function setEntrySettings(type, id, options, tags = '') {
 
 export async function getEntrySettings(type, id, tags = '') {
   const tempOptions: any = {
-    u: null, //url
-    c: null, //Continue Url
-    r: null, //Resume Url
+    u: null, // url
+    c: null, // Continue Url
+    r: null, // Resume Url
   };
 
   if (api.settings.get('malTags')) {
-    //TAG mode
+    // TAG mode
     var tagString = getUrlFromTags(tags);
     if (tagString) {
       if (tagString[0] === '{') {
@@ -265,11 +264,11 @@ export async function getEntrySettings(type, id, tags = '') {
           con.error(e);
         }
       } else {
-        tempOptions['u'] = tagString;
+        tempOptions.u = tagString;
       }
     }
   } else {
-    //No TAG mode
+    // No TAG mode
     var temp: any = await api.storage.get(`tagSettings/${type}/${id}`);
 
     if (temp) {
@@ -311,16 +310,14 @@ export async function getPageSearch() {
     const request = await api.request.xhr('GET', url).then(async response => {
       if (response.status === 200 && response.responseText) {
         return JSON.parse(response.responseText);
-      } else {
-        return {};
       }
+      return {};
     });
     await cacheObj.setValue(request);
     return request;
-  } else {
-    con.log('PageSearch Cached');
-    return cacheObj.getValue();
   }
+  con.log('PageSearch Cached');
+  return cacheObj.getValue();
 }
 
 export async function getMalToKissApi(type, id) {
@@ -329,7 +326,8 @@ export async function getMalToKissApi(type, id) {
     con.log('malSync response', response);
     if (response.status === 400) {
       return {};
-    } else if (response.status === 200) {
+    }
+    if (response.status === 200) {
       const data = JSON.parse(response.responseText);
       for (const pageKey in data.Sites) {
         if (!api.settings.get(pageKey)) {
@@ -340,9 +338,8 @@ export async function getMalToKissApi(type, id) {
       }
       if (data && data.Sites) return data.Sites;
       return {};
-    } else {
-      throw new Error('malsync offline');
     }
+    throw new Error('malsync offline');
   });
 }
 
@@ -396,13 +393,13 @@ export async function getMalToKissFirebase(type, id) {
             delete json[pageKey][streamKey];
             continue;
           }
-          if (!(id in streamJson['Mal'])) {
+          if (!(id in streamJson.Mal)) {
             con.error('[K2M] Wrong mal id', streamJson);
             delete json[pageKey][streamKey];
             continue;
           }
           if (pageKey === 'Crunchyroll') {
-            streamJson['url'] = `${streamJson['url']}?season=${streamKey}`;
+            streamJson.url = `${streamJson.url}?season=${streamKey}`;
           }
 
           json[pageKey][streamKey] = streamJson;
@@ -447,12 +444,12 @@ export async function epPredictionUI(
       colorStyle: '',
       tagEpisode: false,
       prediction: pre,
-      aniCache: aniCache,
-      elCache: elCache,
+      aniCache,
+      elCache,
     };
     //
-    let airing = pre.airing;
-    let episode = pre.episode;
+    let { airing } = pre;
+    let { episode } = pre;
 
     if (typeof aniCache === 'object') {
       const timestamp = aniCache.nextEpTime * 1000;
@@ -467,10 +464,8 @@ export async function epPredictionUI(
 
         pre.diffMinutes = Math.floor(delta / 60) % 60;
         delta -= pre.diffMinutes * 60;
-      } else {
-        if (Date.now() - timestamp < 1000 * 60 * 60 * 24) {
-          episode = aniCache.currentEp + 1;
-        }
+      } else if (Date.now() - timestamp < 1000 * 60 * 60 * 24) {
+        episode = aniCache.currentEp + 1;
       }
     }
 
@@ -491,7 +486,7 @@ export async function epPredictionUI(
       }
     }
     if (UI.color !== '') {
-      //UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
+      // UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
       UI.colorStyle = 'background-color: #00ff0057;';
     }
     //
@@ -505,16 +500,14 @@ export async function epPredictionUI(
         UI.tag = `<span class="mal-sync-ep-pre" title="${UI.text}">[<span style="${UI.colorStyle};">${episode}</span>]</span>`;
         UI.tagEpisode = episode;
       }
-    } else {
-      if (pre) {
-        UI.text = '<span class="mal-sync-ep-pre">';
-        UI.text += api.storage.lang('prediction_Airing', [
-          `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${
-            pre.diffMinutes
-          }m `,
-        ]);
-        UI.text += '</span>';
-      }
+    } else if (pre) {
+      UI.text = '<span class="mal-sync-ep-pre">';
+      UI.text += api.storage.lang('prediction_Airing', [
+        `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${
+          pre.diffMinutes
+        }m `,
+      ]);
+      UI.text += '</span>';
     }
     callback(UI);
   });
@@ -523,7 +516,7 @@ export async function epPredictionUI(
 export function timeDiffToText(delta) {
   let text = '';
 
-  delta = delta / 1000;
+  delta /= 1000;
 
   const diffYears = Math.floor(delta / 31536000);
   delta -= diffYears * 31536000;
@@ -586,7 +579,7 @@ export async function epPrediction(malId, callback) {
   delta -= diffWeeks * (86400 * 7);
 
   if (airing) {
-    //We need the time until the week is complete
+    // We need the time until the week is complete
     delta = 86400 * 7 - delta;
   }
 
@@ -602,7 +595,7 @@ export async function epPrediction(malId, callback) {
   if (airing) {
     episode =
       diffWeeks -
-      (new Date().getFullYear() - new Date(timestamp).getFullYear()); //Remove 1 week between years
+      (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
     episode++;
     if (episode > 50) {
       episode = 0;
@@ -612,15 +605,14 @@ export async function epPrediction(malId, callback) {
   const maxEp = await api.storage.get(`mal/${malId}/release`);
   if (typeof maxEp === 'undefined' || episode < maxEp) {
     callback({
-      timestamp: timestamp,
-      airing: airing,
-      diffWeeks: diffWeeks,
-      diffDays: diffDays,
-      diffHours: diffHours,
-      diffMinutes: diffMinutes,
-      episode: episode,
+      timestamp,
+      airing,
+      diffWeeks,
+      diffDays,
+      diffHours,
+      diffMinutes,
+      episode,
     });
-    return;
   }
 }
 
@@ -702,9 +694,9 @@ export function notifications(
 ) {
   const messageObj = {
     type: 'basic',
-    title: title,
-    message: message,
-    iconUrl: iconUrl,
+    title,
+    message,
+    iconUrl,
   };
 
   con.log('Notification', url, messageObj);
@@ -720,7 +712,7 @@ export function notifications(
       history.shift();
     }
     history.push({
-      url: url,
+      url,
       title: messageObj.title,
       message: messageObj.message,
       iconUrl: messageObj.iconUrl,
@@ -752,7 +744,7 @@ export async function timeCache(key, dataFunction, ttl) {
   });
 }
 
-//flashm
+// flashm
 export function flashm(
   text,
   options?: {
@@ -799,7 +791,7 @@ export function flashm(
       .fadeOut({
         duration: 1000,
         queue: false,
-        complete: function() {
+        complete() {
           j.$(this).remove();
         },
       });
@@ -865,26 +857,22 @@ export function flashm(
 export async function flashConfirm(
   message,
   type,
-  yesCall = () => {
-    return;
-  },
-  cancelCall = () => {
-    return;
-  },
+  yesCall = () => {},
+  cancelCall = () => {},
 ): Promise<boolean> {
   return new Promise(function(resolve, reject) {
     message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>`;
     const flasmessage = flashm(message, {
       permanent: true,
       position: 'top',
-      type: type,
+      type,
     });
     flasmessage.find('.Yes').click(function(evt) {
       resolve(true);
       j.$(evt.target)
         .parentsUntil('.flash')
         .fadeOut(300, function() {
-          //@ts-ignore
+          // @ts-ignore
           j.$(this).remove();
         });
       yesCall();
@@ -894,7 +882,7 @@ export async function flashConfirm(
       j.$(evt.target)
         .parentsUntil('.flash')
         .fadeOut(300, function() {
-          //@ts-ignore
+          // @ts-ignore
           j.$(this).remove();
         });
       cancelCall();
@@ -984,10 +972,10 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
         .css('background-image', `url(${el.getAttribute('data-src')})`)
         .removeClass('lazyBack');
     } else {
-      const img = new Image(),
-        src = el.getAttribute('data-src');
+      const img = new Image();
+      const src = el.getAttribute('data-src');
       img.onload = function() {
-        if (!!el.parent) el.parent.replaceChild(img, el);
+        if (el.parent) el.parent.replaceChild(img, el);
         else el.src = src;
 
         fn ? fn() : null;
@@ -1001,19 +989,19 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
   }
 
   lazyimages = [];
-  const query = doc.find('img.lazy.init, .lazyBack.init'),
-    processScroll = function() {
-      for (var i = 0; i < lazyimages.length; i++) {
-        if (utils.elementInViewport(lazyimages[i], 600)) {
-          loadImage(lazyimages[i], function() {
-            lazyimages.splice(i, i);
-          });
-        }
-        if (!$(lazyimages[i]).length) {
+  const query = doc.find('img.lazy.init, .lazyBack.init');
+  const processScroll = function() {
+    for (var i = 0; i < lazyimages.length; i++) {
+      if (utils.elementInViewport(lazyimages[i], 600)) {
+        loadImage(lazyimages[i], function() {
           lazyimages.splice(i, i);
-        }
+        });
       }
-    };
+      if (!$(lazyimages[i]).length) {
+        lazyimages.splice(i, i);
+      }
+    }
+  };
   // Array.prototype.slice.call is not callable under our lovely IE8
   for (var i = 0; i < query.length; i++) {
     lazyimages.push(query[i]);

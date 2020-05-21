@@ -1,41 +1,41 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Novelplanet: pageInterface = {
   name: 'Novelplanet',
   domain: 'https://novelplanet.com',
   database: 'Novelplanet',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (typeof utils.urlPart(url, 5) !== 'undefined') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#main .title')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return getEp(
         $('.selectChapter option')
           .first()
           .text(),
       );
     },
-    getVolume: function(_url) {
+    getVolume(_url) {
       const url = $('.selectChapter option')
         .first()
         .text();
@@ -52,7 +52,7 @@ export const Novelplanet: pageInterface = {
 
       return Number(volumeNumber[0]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$('div.row > div:nth-child(5)  > a')
@@ -63,24 +63,24 @@ export const Novelplanet: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('.post-contentDetails .title')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Novelplanet.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.post-contentDetails p').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.rowChapter');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -89,7 +89,7 @@ export const Novelplanet: pageInterface = {
           Novelplanet.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return getEp(
           selector
             .find('a')

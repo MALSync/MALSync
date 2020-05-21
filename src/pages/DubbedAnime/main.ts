@@ -1,25 +1,24 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const DubbedAnime: pageInterface = {
   name: 'DubbedAnime',
   domain: 'https://ww5.dubbedanime.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'episode') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.dosis.ep-title')
         .text()
         .replace(/(episode|ova).*\d+/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils
         .absoluteLink(
           j.$('a.w-100.btn.btn-success').attr('href'),
@@ -27,13 +26,13 @@ export const DubbedAnime: pageInterface = {
         )
         .split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j.$('a.w-100.btn.btn-success').attr('href'),
         DubbedAnime.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -48,7 +47,7 @@ export const DubbedAnime: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$(
@@ -61,26 +60,26 @@ export const DubbedAnime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.h3.dosis.mt-0.text-white.pt-2.d-none.d-sm-block')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#episodes > div > div.row.mb-3.pr-2').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           'div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('div.da-video-tbl > a')
@@ -89,7 +88,7 @@ export const DubbedAnime: pageInterface = {
           DubbedAnime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('div.da-video-tbl > span.ep-num')
           .first()

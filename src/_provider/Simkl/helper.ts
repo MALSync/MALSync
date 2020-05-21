@@ -59,7 +59,7 @@ export async function syncList(lazy = false) {
   const activity = await this.call('https://api.simkl.com/sync/activities');
   con.log('Activity', lastCheck, activity.anime);
 
-  //removed_from_list
+  // removed_from_list
   if (
     lastCheck &&
     lastCheck.removed_from_list !== activity.anime.removed_from_list
@@ -80,7 +80,7 @@ export async function syncList(lazy = false) {
     con.log('remove', cacheList);
   }
 
-  //Check if update Needed
+  // Check if update Needed
   let dateFrom = '';
   if (lastCheck && cacheList) {
     dateFrom = `date_from=${lastCheck.all}`;
@@ -131,7 +131,7 @@ export async function getSingle(
       return list[ids.simkl];
     }
   } else if (ids.mal) {
-    //TODO: Use map for better performance
+    // TODO: Use map for better performance
     const listVal = Object.values(list);
     for (let i = 0; i < listVal.length; i++) {
       const el: any = listVal[i];
@@ -166,14 +166,13 @@ export async function call(
     'Content-Type': 'application/json',
   };
 
-  if (login)
-    headers['Authorization'] = `Bearer ${api.settings.get('simklToken')}`;
+  if (login) headers.Authorization = `Bearer ${api.settings.get('simklToken')}`;
   else con.log('No login');
 
   return api.request
     .xhr(method, {
-      url: url,
-      headers: headers,
+      url,
+      headers,
       data: sData,
     })
     .then(async response => {

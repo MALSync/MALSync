@@ -1,36 +1,35 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const FallenAngels: pageInterface = {
   name: 'FallenAngels',
   domain: 'https://manga.fascans.com/',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#navbar-collapse-1 > ul > li:nth-child(1) > a')
         .text()
         .replace(/manga$/gi, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j.$('#navbar-collapse-1 > ul > li:nth-child(1) > a').attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const scriptContent = j.$('body > div.container-fluid > script').html();
       const nextChapterMatches = scriptContent.match(
         /next_chapter\s*=\s*".*"/gim,
@@ -52,24 +51,24 @@ export const FallenAngels: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h2.widget-title')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('h2.widget-title').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('ul.chapters > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('h5 > a')
@@ -78,7 +77,7 @@ export const FallenAngels: pageInterface = {
           FallenAngels.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return utils
           .absoluteLink(
             selector

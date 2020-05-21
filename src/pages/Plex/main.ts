@@ -1,6 +1,6 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
-let item: any = undefined;
+let item: any;
 
 async function getApiKey() {
   return api.storage.get('Plex_Api_Key');
@@ -71,7 +71,7 @@ async function urlChange(page, curUrl = window.location.href, player = false) {
   });
 }
 
-//Helper
+// Helper
 async function apiCall(url, apiKey = null, base = null) {
   if (apiKey === null) apiKey = await getApiKey();
   if (base === null) base = await getBase();
@@ -83,7 +83,7 @@ async function apiCall(url, apiKey = null, base = null) {
   url = `${base + url + pre}X-Plex-Token=${apiKey}`;
   con.log('Api Call', url);
   return api.request.xhr('GET', {
-    url: url,
+    url,
     headers: {
       Accept: 'application/json',
     },
@@ -94,27 +94,27 @@ export const Plex: pageInterface = {
   name: 'Plex',
   domain: 'http://app.plex.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (item.type === 'episode') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return (
         item.grandparentTitle +
         (item.parentIndex > 1 ? ` Season ${item.parentIndex}` : '')
       );
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (typeof item.parentKey !== 'undefined')
         return item.parentKey.split('/')[3];
       if (typeof item.grandparentKey !== 'undefined')
         return item.grandparentKey.split('/')[3];
       return item.key.split('/')[3];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         Plex.domain +
         $(
@@ -124,18 +124,18 @@ export const Plex: pageInterface = {
           .attr('href')!
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return item.index;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return item.title;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return item.key.split('/')[3];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('[data-qa-id="preplayMainTitle"]').first());
     },
   },
@@ -207,9 +207,9 @@ export const Plex: pageInterface = {
     );
 
     document.addEventListener('fullscreenchange', function() {
-      //@ts-ignore
+      // @ts-ignore
       if (
-        window['fullScreen'] ||
+        window.fullScreen ||
         (window.innerWidth === screen.width &&
           window.innerHeight === screen.height)
       ) {

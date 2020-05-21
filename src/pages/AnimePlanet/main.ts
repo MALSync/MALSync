@@ -1,27 +1,26 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimePlanet: pageInterface = {
   name: 'AnimePlanet',
   domain: 'https://www.anime-planet.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[6] === null) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h2.sub a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return AnimePlanet.domain + (j.$('h2.sub a').attr('href') || '');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = utils
         .getBaseText($('h2.sub'))
         .replace(/\r?\n|\r/g, '');
@@ -32,18 +31,18 @@ export const AnimePlanet: pageInterface = {
         }
       }
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#siteContainer > nav').first());
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#siteContainer > h1').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#siteContainer > nav').first());
     },
   },

@@ -1,6 +1,6 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
-let item: any = undefined;
+let item: any;
 
 async function getApiKey() {
   return api.storage.get('emby_Api_Key');
@@ -215,7 +215,7 @@ async function askForApiKey() {
   });
 }
 
-//Helper
+// Helper
 async function apiCall(url, apiKey = null, base = null) {
   if (apiKey === null) apiKey = await getApiKey();
   if (base === null) base = await getBase();
@@ -233,44 +233,44 @@ export const Emby: pageInterface = {
   name: 'Emby',
   domain: 'http://app.emby.media',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (item.Type === 'Episode') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return (
         item.SeriesName +
         (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '')
       );
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (typeof item.SeasonId !== 'undefined') return item.SeasonId;
       if (typeof item.SeriesId !== 'undefined') return item.SeriesId;
       return item.Id;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Emby.domain}/#!/itemdetails.html?id=${Emby.sync.getIdentifier(
         url,
       )}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return item.IndexNumber;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return (
         item.SeriesName +
         (item.IndexNumber > 1 ? ` Season ${item.IndexNumber}` : '')
       );
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return item.Id;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.appendTo(j.$('.page:not(.hide) .detailSection').first());
     },
   },
@@ -322,9 +322,9 @@ export const Emby: pageInterface = {
           );
         });
         document.addEventListener('fullscreenchange', function() {
-          //@ts-ignore
+          // @ts-ignore
           if (
-            window['fullScreen'] ||
+            window.fullScreen ||
             (window.innerWidth === screen.width &&
               window.innerHeight === screen.height)
           ) {

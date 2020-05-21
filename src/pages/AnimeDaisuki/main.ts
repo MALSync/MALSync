@@ -1,37 +1,36 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeDaisuki: pageInterface = {
   name: 'AnimeDaisuki',
   domain: 'https://animedaisuki.moe',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('nav.Brdcrmb.fa-home a:nth-child(3)')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j.$('nav.Brdcrmb.fa-home a:nth-child(3)').attr('href');
 
       if (!anchorHref) return '';
 
       return anchorHref.split('/')[3];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         AnimeDaisuki.domain +
         (j.$('nav.Brdcrmb.fa-home a:nth-child(3)').attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('h2.SubTitle')
@@ -39,7 +38,7 @@ export const AnimeDaisuki: pageInterface = {
           .replace(/\D+/g, ''),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.CapNv .CapNvNx')
         .first()
@@ -50,24 +49,24 @@ export const AnimeDaisuki: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h2.Title')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[5];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('section.WdgtCn').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('ul.ListCaps > li.fa-play-circle:not(.Next,.Issues)');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -76,7 +75,7 @@ export const AnimeDaisuki: pageInterface = {
           AnimeDaisuki.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('a > p')

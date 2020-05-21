@@ -72,7 +72,7 @@
 </template>
 
 <script type="text/javascript">
-import { getList } from './../../_provider/listFactory';
+import { getList } from '../../_provider/listFactory';
 import bookmarksItem from './bookmarksItem.vue';
 
 let cb;
@@ -91,7 +91,7 @@ export default {
       default: 1,
     },
   },
-  data: function() {
+  data() {
     return {
       items: [],
       loading: true,
@@ -101,27 +101,27 @@ export default {
   },
   computed: {
     listView: {
-      get: function() {
+      get() {
         return api.settings.get('bookMarksList');
       },
-      set: function(value) {
+      set(value) {
         api.settings.set('bookMarksList', value);
       },
     },
   },
   watch: {
-    listType: function(type) {
+    listType(type) {
       this.load();
     },
-    state: function(state) {
+    state(state) {
       this.load();
     },
   },
-  mounted: function() {
+  mounted() {
     this.load();
     this.$parent.registerScroll('books', this.handleScroll);
   },
-  activated: function() {
+  activated() {
     this.$nextTick(() => {
       j.$(this.$el)
         .closest('html')
@@ -129,12 +129,12 @@ export default {
         .click();
     });
   },
-  deactivated: function() {
+  deactivated() {
     this.$parent.unregisterScroll('books');
   },
   methods: {
     lang: api.storage.lang,
-    load: async function() {
+    async load() {
       this.loading = true;
       this.cache = true;
       this.errorText = null;
@@ -181,7 +181,7 @@ export default {
           .catch(listError);
       }
     },
-    handleScroll: function(pos) {
+    handleScroll(pos) {
       if (pos.pos + pos.elHeight + 1000 > pos.height) {
         if (typeof cb !== 'undefined') {
           this.loading = true;

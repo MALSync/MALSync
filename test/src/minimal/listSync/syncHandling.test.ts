@@ -1,8 +1,8 @@
 import { expect } from 'chai';
-import * as sync from './../../../../src/minimal/minimalApp/listSync/syncHandler';
+import * as sync from '../../../../src/minimal/minimalApp/listSync/syncHandler';
 
 const helper = {
-  getItem: function() {
+  getItem() {
     return {
       title: 'test',
       type: 'anime',

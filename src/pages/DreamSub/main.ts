@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let jsonData;
 
@@ -6,28 +6,28 @@ export const DreamSub: pageInterface = {
   name: 'DreamSub',
   domain: 'https://dreamsub.stream',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return jsonData.isStreaming;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return jsonData.animeName;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return jsonData.clean;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return jsonData.overview_url;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return jsonData.nEpisode;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (jsonData.nextEpisode) {
         return jsonData.nextEpisode;
       }
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       if (jsonData.mal_id) {
         return `https://myanimelist.net/anime/${jsonData.mal_id}`;
       }
@@ -35,16 +35,16 @@ export const DreamSub: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return DreamSub.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return DreamSub.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.detail-content').first());
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       if (jsonData.mal_id) {
         return `https://myanimelist.net/anime/${jsonData.mal_id}`;
       }
@@ -52,18 +52,17 @@ export const DreamSub: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j
           .$('ul#episodes-sv ul.innerSeas > li.ep-item')
           .filter(function(index) {
             if ($(this).find('div.sli-name > a.disabled').length) {
               return false;
-            } else {
-              return true;
             }
+            return true;
           });
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('div.sli-name > a')
@@ -72,7 +71,7 @@ export const DreamSub: pageInterface = {
           DreamSub.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return parseInt(
           DreamSub!.overview!.list!.elementUrl(selector).split('/')[5],
         );

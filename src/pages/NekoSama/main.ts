@@ -1,21 +1,20 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const NekoSama: pageInterface = {
   name: 'NekoSama',
   domain: 'https://www.neko-sama.fr',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (j.$('#watch').length) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('.details > div > h1 > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart5 = utils.urlPart(url, 5);
 
       if (!urlPart5) return '';
@@ -26,12 +25,12 @@ export const NekoSama: pageInterface = {
 
       return identifierMatches[0];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         NekoSama.domain + (j.$('.details > div > h1 > a').attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const headerElementText = j
         .$(
           '#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2',
@@ -42,7 +41,7 @@ export const NekoSama: pageInterface = {
 
       return Number(headerElementText.split(' Episode ').pop());
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$(
@@ -55,25 +54,25 @@ export const NekoSama: pageInterface = {
   },
 
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils.getBaseText($('#head > div.content > div > div > div > h1'));
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return NekoSama.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j.$('#head > div.content > div > div > div > div').first(),
       );
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           '#stats > div > div.episodes > div.row.no-gutters.js-list-episode-container > div > div > div.text',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -82,7 +81,7 @@ export const NekoSama: pageInterface = {
           NekoSama.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('a')
           .first()

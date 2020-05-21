@@ -1,10 +1,12 @@
-import { metadataInterface, searchInterface } from './../listInterface';
+import { metadataInterface, searchInterface } from '../listInterface';
 
 export class metadata implements metadataInterface {
   private xhr;
 
   id: number;
+
   private aniId = NaN;
+
   readonly type: 'anime' | 'manga';
 
   constructor(public malUrl: string) {
@@ -151,13 +153,13 @@ export class metadata implements metadataInterface {
       .xhr('POST', {
         url: 'https://graphql.anilist.co',
         headers: {
-          //'Authorization': 'Bearer ' + helper.accessToken(),
+          // 'Authorization': 'Bearer ' + helper.accessToken(),
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         data: JSON.stringify({
-          query: query,
-          variables: variables,
+          query,
+          variables,
         }),
       })
       .then(response => {
@@ -425,7 +427,7 @@ export class metadata implements metadataInterface {
             links: [],
           };
         }
-        links[i.relationType]['links'].push({
+        links[i.relationType].links.push({
           url: i.node.siteUrl,
           title: i.node.title.userPreferred,
           statusTag: '',
@@ -487,8 +489,8 @@ export async function search(
       Accept: 'application/json',
     },
     data: JSON.stringify({
-      query: query,
-      variables: variables,
+      query,
+      variables,
     }),
   });
 

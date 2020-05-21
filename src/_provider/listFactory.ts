@@ -41,13 +41,15 @@ function getListObj(args, syncMode = '') {
 
   if (syncMode === 'MAL') {
     return new malList(status, callbacks, username, offset, templist);
-  } else if (syncMode === 'ANILIST') {
-    return new anilistList(status, callbacks, username, offset, templist);
-  } else if (syncMode === 'KITSU') {
-    return new kitsuList(status, callbacks, username, offset, templist);
-  } else if (syncMode === 'SIMKL') {
-    return new simklList(status, callbacks, username, offset, templist);
-  } else {
-    throw 'Unknown sync mode';
   }
+  if (syncMode === 'ANILIST') {
+    return new anilistList(status, callbacks, username, offset, templist);
+  }
+  if (syncMode === 'KITSU') {
+    return new kitsuList(status, callbacks, username, offset, templist);
+  }
+  if (syncMode === 'SIMKL') {
+    return new simklList(status, callbacks, username, offset, templist);
+  }
+  throw 'Unknown sync mode';
 }

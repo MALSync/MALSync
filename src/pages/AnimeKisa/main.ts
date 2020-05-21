@@ -1,21 +1,20 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeKisa: pageInterface = {
   name: 'AnimeKisa',
   domain: 'https://animekisa.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] !== null &&
       j.$('div.c a.infoan2')[0] &&
       j.$('#playerselector option:selected')[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
-  isOverviewPage: function(url) {
+  isOverviewPage(url) {
     const infoElement = j.$(
       'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
     );
@@ -33,19 +32,19 @@ export const AnimeKisa: pageInterface = {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.c a.infoan2')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return j.$('div.c a.infoan2').attr('href') || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${AnimeKisa.domain}/${j.$('div.c a.infoan2').attr('href')}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         j
           .$('#playerselector option:selected')
@@ -53,7 +52,7 @@ export const AnimeKisa: pageInterface = {
           .replace(/\D+/g, ''),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const num = $('#playerselector')
         .find('option:selected')
         .next()
@@ -69,7 +68,7 @@ export const AnimeKisa: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
@@ -77,13 +76,13 @@ export const AnimeKisa: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[3];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('.infoepboxmain').first());
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       let url = j
         .$('a[href^="https://myanimelist.net/anime/"]')
         .not('#malRating')
@@ -110,17 +109,17 @@ export const AnimeKisa: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.infoepbox > a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return `${AnimeKisa.domain}/${selector
           .find('.infoepmain')
           .first()
           .parent()
           .attr('href')}`;
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('div.infoept2r > div, div.infoept2 > div')
           .first()

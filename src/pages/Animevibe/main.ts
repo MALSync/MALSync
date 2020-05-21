@@ -1,32 +1,30 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Animevibe: pageInterface = {
   name: 'Animevibe',
   domain: 'https://animevibe.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'a') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('span.td-bred-no-url-last').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Animevibe.domain}/a/${Animevibe.sync.getIdentifier(url)}/1`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (utils.urlPart(url, 5) === '') {
         return 1;
-      } else {
-        return parseInt(utils.urlPart(url, 5));
       }
+      return parseInt(utils.urlPart(url, 5));
     },
   },
   init(page) {

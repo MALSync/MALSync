@@ -1,6 +1,6 @@
-import { SingleAbstract } from './../singleAbstract';
+import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from './../definitions';
+import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
   private animeInfo: any;
@@ -14,6 +14,7 @@ export class Single extends SingleAbstract {
   }
 
   shortName = 'Kitsu';
+
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 
   protected handleUrl(url) {
@@ -276,10 +277,10 @@ export class Single extends SingleAbstract {
       Accept: 'application/vnd.api+json',
     };
     if (authentication)
-      headers['Authorization'] = `Bearer ${api.settings.get('kitsuToken')}`;
+      headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
     return api.request
       .xhr(mode, {
-        url: url,
+        url,
         headers,
         data: JSON.stringify(variables),
       })
@@ -348,7 +349,7 @@ export class Single extends SingleAbstract {
             }
           }
         }
-        return { res: res, malId: malId };
+        return { res, malId };
       });
   }
 
@@ -379,22 +380,21 @@ export class Single extends SingleAbstract {
     const userId = await api.storage.get('kitsuUserId');
     if (typeof userId !== 'undefined') {
       return userId;
-    } else {
-      return this.apiCall(
-        'Get',
-        'https://kitsu.io/api/edge/users?filter[self]=true',
-      ).then(res => {
-        if (
-          typeof res.data === 'undefined' ||
-          !res.data.length ||
-          typeof res.data[0] === 'undefined'
-        ) {
-          throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
-        }
-        api.storage.set('kitsuUserId', res.data[0].id);
-        return res.data[0].id;
-      });
     }
+    return this.apiCall(
+      'Get',
+      'https://kitsu.io/api/edge/users?filter[self]=true',
+    ).then(res => {
+      if (
+        typeof res.data === 'undefined' ||
+        !res.data.length ||
+        typeof res.data[0] === 'undefined'
+      ) {
+        throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+      }
+      api.storage.set('kitsuUserId', res.data[0].id);
+      return res.data[0].id;
+    });
   }
 
   private getScoreMode() {

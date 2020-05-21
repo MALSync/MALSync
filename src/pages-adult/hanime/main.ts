@@ -1,32 +1,31 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const hanime: pageInterface = {
   name: 'hanime',
   domain: 'https://hanime.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'videos' && url.split('/')[4] === 'hentai') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.tv-title')
         .text()
         .replace(/ ([^a-z]*)$/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart5 = utils.urlPart(url, 5);
 
       if (!urlPart5) return '';
 
       return urlPart5.replace(/-([^a-z]*)$/gim, '').trim();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       const overviewPart = utils.urlPart(url, 5);
 
       if (!overviewPart) return '';
@@ -36,13 +35,10 @@ export const hanime: pageInterface = {
         return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(
           url,
         )}-1`;
-      } else {
-        return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(
-          url,
-        )}`;
       }
+      return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;

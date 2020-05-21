@@ -1,33 +1,33 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Mangarock: pageInterface = {
   name: 'Mangarock',
   domain: 'https://mangarock.com',
   database: 'Mangarock',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (typeof utils.urlPart(url, 5) !== 'undefined') {
       return true;
     }
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(`a[href*="${Mangarock.overview!.getIdentifier(url)}"]`)
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Mangarock.overview!.getIdentifier(url);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       con.log(
         j
           .$("option:contains('Chapter')")
@@ -45,11 +45,11 @@ export const Mangarock: pageInterface = {
           .text(),
       );
     },
-    getVolume: function(url) {
-      //TODO
+    getVolume(url) {
+      // TODO
       return 0;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const num = j
         .$("option:contains('Chapter')")
         .first()
@@ -66,25 +66,25 @@ export const Mangarock: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('h1')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4).replace(/mrs-serie-/i, '');
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore($('#chapters-list').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('[data-test="chapter-table"] tr');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -93,7 +93,7 @@ export const Mangarock: pageInterface = {
           Mangarock.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return EpisodePartToEpisode(selector.find('a').text());
       },
     },
@@ -159,7 +159,7 @@ function EpisodePartToEpisode(string) {
   if (!isNaN(parseInt(string))) {
     return string;
   }
-  //https://mangarock.com/manga/mrs-serie-124208
+  // https://mangarock.com/manga/mrs-serie-124208
   string = string.replace(/(campaign|battle)/i, 'Chapter');
   let temp = [];
   temp = string.match(/Chapter\ \d+/i);

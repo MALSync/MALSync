@@ -1,18 +1,17 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const KissHentai: pageInterface = {
   name: 'KissHentai',
   domain: 'http://kisshentai.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'Hentai' && j.$('div#videoKissHentai')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#navsubbar a')
         .first()
@@ -21,10 +20,10 @@ export const KissHentai: pageInterface = {
         .replace('information', '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       const anchorHref = j
         .$('#navsubbar a')
         .first()
@@ -34,7 +33,7 @@ export const KissHentai: pageInterface = {
 
       return KissHentai.domain + anchorHref;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -51,16 +50,16 @@ export const KissHentai: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('.bigChar')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.bigChar').first());
     },
   },

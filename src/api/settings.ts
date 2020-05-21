@@ -79,7 +79,7 @@ export var settingsObj = {
     simklToken: '',
   },
 
-  init: async function() {
+  async init() {
     return new Promise(async (resolve, reject) => {
       for (const key in this.options) {
         const store = await api.storage.get(`settings/${key}`);
@@ -101,9 +101,9 @@ export var settingsObj = {
             }
           }
         }
-        if (namespace === 'local' && changes['rateLimit']) {
+        if (namespace === 'local' && changes.rateLimit) {
           try {
-            if (changes['rateLimit'].newValue) {
+            if (changes.rateLimit.newValue) {
               con.log('Rate limited');
               utils.flashm('Rate limited. Retrying in a moment', {
                 error: true,
@@ -122,11 +122,11 @@ export var settingsObj = {
     });
   },
 
-  get: function(name: string) {
+  get(name: string) {
     return this.options[name];
   },
 
-  set: function(name: string, value: any) {
+  set(name: string, value: any) {
     if (!this.options.hasOwnProperty(name)) {
       const err = Error(`${name} is not a defined option`);
       con.error(err);
@@ -137,7 +137,7 @@ export var settingsObj = {
     return api.storage.set(`settings/${name}`, value);
   },
 
-  getAsync: async function(name: string) {
+  async getAsync(name: string) {
     const value = await api.storage.get(`settings/${name}`);
     if (typeof value === 'undefined' && typeof this.options[name] !== undefined)
       return this.options[name];

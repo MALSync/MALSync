@@ -218,7 +218,8 @@
 </template>
 
 <script type="text/javascript">
-import * as provider from './../../provider/provider.ts';
+import * as provider from '../../provider/provider.ts';
+
 export default {
   props: {
     item: {
@@ -229,7 +230,7 @@ export default {
       default: false,
     },
   },
-  data: function() {
+  data() {
     return {
       prediction: undefined,
       resumeUrl: null,
@@ -237,10 +238,10 @@ export default {
     };
   },
   computed: {
-    curEP: function() {
+    curEP() {
       return parseInt(this.item.watchedEp.toString());
     },
-    imageHi: function() {
+    imageHi() {
       let imageHi = this.item.image;
       const regexDimensions = /\/r\/\d*x\d*/g;
       if (regexDimensions.test(imageHi)) {
@@ -250,25 +251,24 @@ export default {
       }
       return imageHi;
     },
-    barTotal: function() {
+    barTotal() {
       if (this.prediction && this.prediction.tagEpisode && !this.hasTotalEp) {
         if (this.prediction.tagEpisode > this.item.watchedEp) {
           return Math.ceil(this.prediction.tagEpisode * 1.2);
-        } else {
-          return Math.ceil(this.item.watchedEp * 1.2);
         }
+        return Math.ceil(this.item.watchedEp * 1.2);
       }
 
       return this.item.totalEp;
     },
-    hasTotalEp: function() {
+    hasTotalEp() {
       return parseInt(this.item.totalEp) !== 0;
     },
-    progress: function() {
+    progress() {
       const width = (this.item.watchedEp / this.barTotal) * 100;
       return `width: ${width}%; max-width: 100%;`;
     },
-    predictionBar: function() {
+    predictionBar() {
       const predictionProgress =
         (this.prediction.tagEpisode / this.barTotal) * 100;
       let color = 'orange';
@@ -277,15 +277,15 @@ export default {
       }
       return `width: ${predictionProgress}%; background-color: ${color}`;
     },
-    streamUrl: function() {
+    streamUrl() {
       return utils.getUrlFromTags(this.item.tags);
     },
-    preTexter: function() {
+    preTexter() {
       const pre = this.prediction.prediction;
-      let diffDays = pre.diffDays;
-      const diffHours = pre.diffHours;
-      const diffMinutes = pre.diffMinutes;
-      //Round hours
+      let { diffDays } = pre;
+      const { diffHours } = pre;
+      const { diffMinutes } = pre;
+      // Round hours
       if (diffDays > 1 && diffHours > 12) {
         diffDays++;
       }
@@ -311,14 +311,14 @@ export default {
   watch: {
     curEP: {
       immediate: true,
-      handler: async function(ep) {
+      async handler(ep) {
         if (typeof this.item.resume === 'undefined') {
           this.resumeUrl = '';
           this.continueUrl = '';
           let resumeUrl = null;
           let continueUrl = null;
           const id = this.item.malId;
-          const type = this.item.type;
+          const { type } = this.item;
           const resumeUrlObj = await utils.getResumeWaching(
             type,
             this.item.cacheKey,
@@ -345,7 +345,7 @@ export default {
       },
     },
   },
-  mounted: async function() {
+  async mounted() {
     if (typeof this.prediction === 'undefined') {
       this.setPrediction();
       setInterval(() => {
@@ -355,13 +355,13 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
-    favicon: function(domain) {
+    favicon(domain) {
       return utils.favicon(domain);
     },
-    assetUrl: function(asset) {
+    assetUrl(asset) {
       return api.storage.assetUrl(asset);
     },
-    setPrediction: function() {
+    setPrediction() {
       utils.epPredictionUI(
         this.item.malId,
         this.item.cacheKey,
@@ -371,7 +371,7 @@ export default {
         },
       );
     },
-    openLink: function(url) {
+    openLink(url) {
       const link = document.createElement('a');
       link.href = url;
       document.getElementById('malList').appendChild(link);

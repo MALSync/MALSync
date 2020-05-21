@@ -1,28 +1,27 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Mangadex: pageInterface = {
   name: 'Mangadex',
   domain: 'https://www.mangadex.org',
   database: 'Mangadex',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] !== 'chapter') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.manga-link, a.manga_title')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(Mangadex.sync.getOverviewUrl(url), 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$('a.manga-link, a.manga_title')
@@ -31,7 +30,7 @@ export const Mangadex: pageInterface = {
         Mangadex.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const chapterId = url.split('/')[4];
       const curOption = j.$(
         `#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`,
@@ -43,18 +42,17 @@ export const Mangadex: pageInterface = {
           .match(/(ch\.|chapter)\D?\d+/i);
         if (temp !== null) {
           return EpisodePartToEpisode(temp[0]);
-        } else {
-          if (
-            curOption.text().indexOf('oneshot') !== -1 ||
-            curOption.text().indexOf('Oneshot') !== -1
-          ) {
-            return 1;
-          }
+        }
+        if (
+          curOption.text().indexOf('oneshot') !== -1 ||
+          curOption.text().indexOf('Oneshot') !== -1
+        ) {
+          return 1;
         }
       }
       return NaN;
     },
-    getVolume: function(url) {
+    getVolume(url) {
       const chapterId = url.split('/')[4];
       const curOption = j.$(
         `#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`,
@@ -73,7 +71,7 @@ export const Mangadex: pageInterface = {
       }
       return 0;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       let linkDirection = 'left';
 
       if (j.$('#content').attr('data-direction') === 'ltr')
@@ -101,17 +99,17 @@ export const Mangadex: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('.card-header')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$('.container .card .edit.row > * > .row')
         .first()
         .after(
@@ -119,7 +117,7 @@ export const Mangadex: pageInterface = {
         );
       selector.appendTo(j.$('.container .card .kal-ui').first());
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       let url = j
         .$('a[href^="https://myanimelist.net/manga/"]')
         .not('#malRating')
@@ -146,12 +144,12 @@ export const Mangadex: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           '.chapter-container > .row:not(:first-of-type) .chapter-row',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -160,7 +158,7 @@ export const Mangadex: pageInterface = {
           Mangadex.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector.attr('data-chapter');
       },
     },

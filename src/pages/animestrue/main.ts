@@ -1,21 +1,20 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const animestrue: pageInterface = {
   name: 'animestrue',
   domain: 'https://animestrue.site',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       typeof url.split('/')[6] !== 'undefined' &&
       url.split('/')[6].indexOf('episodio') !== -1
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (Number(url.split('/')[5].match(/\d+/gim)) > 1) {
         return `${utils.getBaseText(
           $('div.anime-nome > a, #pageTitle').first(),
@@ -24,18 +23,18 @@ export const animestrue: pageInterface = {
 
       return utils.getBaseText($('div.anime-nome > a, #pageTitle').first());
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${url.split('/')[4]}?s=${url.split('/')[5].match(/\d+/gim)}`;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${animestrue.domain}/anime/${url.split('/')[4]}/${
         url.split('/')[5]
       }`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[6].match(/\d+/gim));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('ul.episodios > li.active')
         .next()
@@ -46,21 +45,21 @@ export const animestrue: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return animestrue.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return animestrue.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#pageTitle').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('#listar_animes > li > div > div > table > tbody > tr');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('td > a')
@@ -69,7 +68,7 @@ export const animestrue: pageInterface = {
           animestrue.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return animestrue.sync.getEpisode(
           utils.absoluteLink(
             selector
@@ -99,9 +98,8 @@ export const animestrue: pageInterface = {
             j.$('div.anime-nome > a, #pageTitle').text()
           ) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         },
         function() {
           page.handlePage();

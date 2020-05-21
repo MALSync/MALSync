@@ -1,34 +1,33 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Samehadaku: pageInterface = {
   name: 'Samehadaku',
   domain: 'https://samehadaku.vip',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'anime') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'div.infoeps > div.episodeinf > div.infoanime > div > div.infox > h2',
         )
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Samehadaku.sync.getOverviewUrl(url).split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j.$('div.naveps > div.nvs.nvsc > a').attr('href'),
         Samehadaku.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -43,7 +42,7 @@ export const Samehadaku: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$("div.naveps > div.nvs.rght > a:not('.nonex')")
         .attr('href');
@@ -51,28 +50,28 @@ export const Samehadaku: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#infoarea > div > div.infoanime > div.infox > h1.entry-title')
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title'),
       );
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.lstepsiode.listeps > ul > div > div > li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return selector.find('div.epsright > span.eps > a').attr('href') || '';
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Samehadaku.sync.getEpisode(
           Samehadaku.overview!.list!.elementUrl(selector),
         );

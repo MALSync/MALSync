@@ -34,16 +34,16 @@ export default {
       default: 'contact_support',
     },
   },
-  data: function() {
+  data() {
     return {
       number: Math.floor(Math.random() * 1000 + 1),
     };
   },
   computed: {
-    id: function() {
+    id() {
       return `tt-${this.number}`;
     },
-    directionClass: function() {
+    directionClass() {
       return `mdl-tooltip--${this.direction}`;
     },
   },

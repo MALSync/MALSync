@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let episode = 0;
 let season = 0;
@@ -11,36 +11,34 @@ export const Hulu: pageInterface = {
   name: 'Hulu',
   domain: 'https://www.hulu.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return name;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${huluId}?s=${season}`;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       if (movie) {
         return `${Hulu.domain}/movie/${huluId}`;
-      } else {
-        return `${Hulu.domain}/series/${huluId}`;
       }
+      return `${Hulu.domain}/series/${huluId}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return episode;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return nextEp;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       const currentSeason = j
         .$(
           'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value',
@@ -53,22 +51,21 @@ export const Hulu: pageInterface = {
 
       return name;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (movie) {
         con.log('movie');
         return `${huluId}?s=1`;
-      } else {
-        con.log('not a movie');
-        return `${huluId}?s=${j
-          .$(
-            'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value',
-          )
-          .first()
-          .text()
-          .replace(/\D+/g, '')}`;
       }
+      con.log('not a movie');
+      return `${huluId}?s=${j
+        .$(
+          'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > div.Select__control > div.Select__single-value',
+        )
+        .first()
+        .text()
+        .replace(/\D+/g, '')}`;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j.$('#LevelTwo__scroll-area > div > div > div.Details__subnav').first(),
       );
@@ -86,14 +83,13 @@ export const Hulu: pageInterface = {
           function() {
             if (page.url.split('/')[3] !== 'series') {
               return true;
-            } else {
-              return j
-                .$(
-                  'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > .Select__control > div.Select__single-value',
-                )
-                .first()
-                .text();
             }
+            return j
+              .$(
+                'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value, div.DetailsDropdown > div > div > .Select__control > div.Select__single-value',
+              )
+              .first()
+              .text();
           },
           async function() {
             if (await checkPage()) {
@@ -157,13 +153,13 @@ async function checkPage(): Promise<boolean> {
   episode = parseInt(json.items[0].number);
 
   if (json.items[0].season) {
-    //if its a series
+    // if its a series
     huluId = json.items[0].series_id;
     season = parseInt(json.items[0].season);
     name = json.items[0].series_name;
     movie = false;
   } else {
-    //if its a movie
+    // if its a movie
     huluId = json.items[0].id;
     season = 1;
     name = json.items[0].name;

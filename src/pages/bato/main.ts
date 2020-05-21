@@ -1,30 +1,29 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const bato: pageInterface = {
   name: 'bato',
   domain: 'https://bato.to',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('h3.nav-title > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(bato.sync.getOverviewUrl(url), 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j.$('h3.nav-title > a').attr('href'),
         bato.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const selectedOptionText = j
         .$('div.nav-chap > select > optgroup > option:selected')
         .text();
@@ -39,7 +38,7 @@ export const bato: pageInterface = {
 
       return Number(chapterTextMatches[0].match(/\d+/));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = utils.absoluteLink(
         j
           .$('div.nav-next > a')
@@ -53,24 +52,24 @@ export const bato: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h3.item-title > a')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('h3.item-title').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.chapter-list > div.main > div.item');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -79,7 +78,7 @@ export const bato: pageInterface = {
           bato.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const episodeText = selector.find('a > b').text();
 
         if (!episodeText) return NaN;

@@ -89,7 +89,8 @@
 </template>
 
 <script type="text/javascript">
-import { getList } from './../../_provider/listFactory';
+import { getList } from '../../_provider/listFactory';
+
 let interva;
 export default {
   props: {
@@ -98,29 +99,29 @@ export default {
       default: 'anime',
     },
   },
-  data: function() {
+  data() {
     return {
       items: [],
       history: [],
     };
   },
   watch: {
-    listType: function(type) {
+    listType(type) {
       this.load();
     },
   },
-  mounted: function() {
+  mounted() {
     this.load();
     interva = setInterval(() => {
       this.load();
     }, 5000);
   },
-  destroyed: function() {
+  destroyed() {
     clearInterval(interva);
   },
   methods: {
     lang: api.storage.lang,
-    load: async function() {
+    async load() {
       const listProvider = await getList(1, this.listType);
       listProvider
         .get()
@@ -136,14 +137,14 @@ export default {
             );
             con.log('elCache', elCache);
             if (typeof elCache !== 'undefined') {
-              episode = `${elCache['newestEp']}/${el.totalEp}`;
+              episode = `${elCache.newestEp}/${el.totalEp}`;
               trColor = 'orange';
-              if (elCache['finished']) {
+              if (elCache.finished) {
                 error = 'finished';
                 trColor = 'green';
               }
-              if (typeof elCache['error'] !== 'undefined') {
-                error = elCache['error'];
+              if (typeof elCache.error !== 'undefined') {
+                error = elCache.error;
                 trColor = 'red';
               }
             }

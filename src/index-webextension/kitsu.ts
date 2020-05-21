@@ -1,5 +1,5 @@
-import { kitsuClass } from './../kitsu/kitsuClass';
-import { firebaseNotification } from './../utils/firebaseNotification';
+import { kitsuClass } from '../kitsu/kitsuClass';
+import { firebaseNotification } from '../utils/firebaseNotification';
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
@@ -25,11 +25,9 @@ function messageKitsuListener(kitsu) {
         if (malUrl !== '') {
           con.log('TabMalUrl Message', malUrl);
           sendResponse(malUrl);
-        } else {
-          if (api.settings.get('syncMode') === 'KITSU') {
-            con.log('TabUrl Message', kitsu.url);
-            sendResponse(kitsu.url);
-          }
+        } else if (api.settings.get('syncMode') === 'KITSU') {
+          con.log('TabUrl Message', kitsu.url);
+          sendResponse(kitsu.url);
         }
       });
       return true;

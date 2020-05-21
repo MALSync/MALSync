@@ -1,31 +1,30 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Goyabu: pageInterface = {
   name: 'Goyabu',
   domain: 'https://goyabu.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'videos') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.user-box-txt > a > h3').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j.$('div.user-box-txt > a').attr('href');
 
       if (!anchorHref) return '';
 
       return anchorHref.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('div.user-box-txt > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = j.$('div.row.vibe-interactions > h1').text();
       if (episodePart.length === 0) return NaN;
 
@@ -35,7 +34,7 @@ export const Goyabu: pageInterface = {
 
       return Number(matches[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('ul > li > div.inner > div.data > span.title > a')
         .first()
@@ -43,17 +42,17 @@ export const Goyabu: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.left20.right20 > h1')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.phpvibe-video-list').first());
     },
   },

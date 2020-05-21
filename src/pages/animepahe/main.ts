@@ -1,31 +1,30 @@
-/*By Deterio*/
-import { pageInterface } from './../pageInterface';
+/* By Deterio */
+import { pageInterface } from '../pageInterface';
 
 export const animepahe: pageInterface = {
   name: 'animepahe',
   domain: 'https://animepahe.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] !== 'play') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.theatre-info h1 a')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${animepahe.domain}/anime/${animepahe.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(
         (j.$('.theatre-info h1')[0].childNodes[2].textContent || '').replace(
           /[^0-9\.]+/g,
@@ -33,7 +32,7 @@ export const animepahe: pageInterface = {
         ),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('.sequel a')
         .first()
@@ -41,21 +40,21 @@ export const animepahe: pageInterface = {
       if (!nextEp) return nextEp;
       return animepahe.domain + nextEp;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.anime-season'));
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils.getBaseText(j.$('.title-wrapper h1').first()).trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.anime-detail'));
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       let url = j
         .$('a[href^="https://myanimelist.net/anime/"]')
         .not('#malRating')
@@ -82,10 +81,10 @@ export const animepahe: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episode-list .episode');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         const anchor = selector.find('a').first();
 
         if (!anchor) return '';
@@ -96,7 +95,7 @@ export const animepahe: pageInterface = {
 
         return animepahe.domain + path;
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('.episode-number')

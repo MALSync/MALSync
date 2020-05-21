@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let obfusList = false;
 
@@ -6,28 +6,27 @@ export const MangaKatana: pageInterface = {
   name: 'MangaKatana',
   domain: 'http://mangakatana.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText($('#breadcrumb_wrap > ol > li:nth-child(2) > a > span'))
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j.$('#breadcrumb_wrap > ol > li:nth-child(2) > a').attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -42,7 +41,7 @@ export const MangaKatana: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (
         j
           .$('a.nav_button.next')
@@ -57,29 +56,30 @@ export const MangaKatana: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.info > h1.heading')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('#single_book').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         if (
           typeof j.$("div.chapters:not('.uk-hidden') > table > tbody > tr") !==
             'undefined' &&
           j.$("div.chapters:not('.uk-hidden') > table > tbody > tr").length
         ) {
           return j.$("div.chapters:not('.uk-hidden') > table > tbody > tr");
-        } else if (
+        }
+        if (
           typeof window.location.href.split('/')[5] === 'undefined' &&
           typeof j
             .$('#single_book > script')
@@ -98,11 +98,10 @@ export const MangaKatana: pageInterface = {
             .prev()
             .children()
             .children();
-        } else {
-          return j.$('.nowaythisexists');
         }
+        return j.$('.nowaythisexists');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         if (!obfusList) {
           return utils.absoluteLink(
             selector
@@ -111,17 +110,16 @@ export const MangaKatana: pageInterface = {
               .attr('href'),
             MangaKatana.domain,
           );
-        } else {
-          return utils.absoluteLink(
-            selector
-              .find('div > div > a')
-              .first()
-              .attr('href'),
-            MangaKatana.domain,
-          );
         }
+        return utils.absoluteLink(
+          selector
+            .find('div > div > a')
+            .first()
+            .attr('href'),
+          MangaKatana.domain,
+        );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         if (!obfusList) {
           return MangaKatana.sync.getEpisode(
             selector
@@ -129,14 +127,13 @@ export const MangaKatana: pageInterface = {
               .first()
               .attr('href'),
           );
-        } else {
-          return MangaKatana.sync.getEpisode(
-            selector
-              .find('div > div > a')
-              .first()
-              .attr('href'),
-          );
         }
+        return MangaKatana.sync.getEpisode(
+          selector
+            .find('div > div > a')
+            .first()
+            .attr('href'),
+        );
       },
     },
   },

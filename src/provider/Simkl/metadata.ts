@@ -1,11 +1,13 @@
-import { metadataInterface, searchInterface } from './../listInterface';
+import { metadataInterface, searchInterface } from '../listInterface';
 import * as helper from './helper';
 
 export class metadata implements metadataInterface {
   private xhr;
 
   id: number;
+
   simklId = NaN;
+
   readonly type: 'anime' | 'manga';
 
   private animeInfo;
@@ -46,7 +48,7 @@ export class metadata implements metadataInterface {
     if (isNaN(this.id)) {
       var de = { simkl: this.simklId };
     } else {
-      //@ts-ignore
+      // @ts-ignore
       var de = { mal: this.id };
     }
 

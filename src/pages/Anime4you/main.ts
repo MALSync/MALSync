@@ -1,37 +1,36 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Anime4you: pageInterface = {
   name: 'Anime4you',
   domain: 'https://www.anime4you.one',
   database: 'Anime4you',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[7] !== 'epi') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.titel')
         .text()
         .replace(j.$('.titel h5').text(), '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return parseInt(utils.urlPart(url, 6)).toString();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Anime4you.domain}/show/1/aid/${Anime4you.sync.getIdentifier(
         url,
       )}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(utils.urlPart(url, 8));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('.vidplayer .forward a')
         .first()
@@ -39,26 +38,26 @@ export const Anime4you: pageInterface = {
       if (!nextEp) return nextEp;
       return Anime4you.domain + nextEp;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#beschreibung > p').first());
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return Anime4you.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Anime4you.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       Anime4you.sync!.uiSelector!(selector);
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.episoden li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -67,7 +66,7 @@ export const Anime4you: pageInterface = {
           Anime4you.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Anime4you.sync!.getEpisode(
           Anime4you.overview!.list!.elementUrl(selector),
         );

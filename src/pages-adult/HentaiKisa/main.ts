@@ -1,41 +1,40 @@
-import { pageInterface } from './../../pages/pageInterface';
+import { pageInterface } from '../../pages/pageInterface';
 
 export const HentaiKisa: pageInterface = {
   name: 'HentaiKisa',
   domain: 'https://hentaikisa.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] !== null &&
       j.$('div.c a.infoan2')[0] &&
       j.$('#playerselector option:selected')[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.c a.infoan2')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return j.$('div.c a.infoan2').attr('href') || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${HentaiKisa.domain}/${j.$('div.c a.infoan2').attr('href')}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodeText = j.$('#playerselector option:selected').text();
 
       if (!episodeText) return NaN;
 
       return Number(episodeText.replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const num = $('#playerselector')
         .find('option:selected')
         .next()
@@ -50,7 +49,7 @@ export const HentaiKisa: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           '#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
@@ -58,10 +57,10 @@ export const HentaiKisa: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[3];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j
           .$(

@@ -1,13 +1,16 @@
-import { metadataInterface, searchInterface } from './../listInterface';
+import { metadataInterface, searchInterface } from '../listInterface';
 import * as helper from './helper';
-import { errorCode } from './../../../src/_provider/definitions';
+import { errorCode } from '../../_provider/definitions';
 
 export class metadata implements metadataInterface {
   private xhr;
 
   id: number;
+
   private kitsuSlug = '';
+
   kitsuId = NaN;
+
   readonly type: 'anime' | 'manga';
 
   private animeInfo;
@@ -143,7 +146,7 @@ export class metadata implements metadataInterface {
     try {
       this.animeInfo.included.forEach(function(i) {
         if (i.type === 'characters' && charArray.length < 10) {
-          let name = i.attributes.name;
+          let { name } = i.attributes;
           if (
             typeof i.attributes.malId !== 'undefined' &&
             i.attributes.malId !== null &&
@@ -356,7 +359,7 @@ export class metadata implements metadataInterface {
             };
           }
           const el = an[i.relationships.destination.data.id];
-          links[i.attributes.role]['links'].push(el);
+          links[i.attributes.role].links.push(el);
         }
       });
       el = Object.keys(links).map(key => links[key]);
@@ -412,10 +415,10 @@ function apiCall(mode, url, variables = {}, authentication = true) {
     Accept: 'application/vnd.api+json',
   };
   if (authentication)
-    headers['Authorization'] = `Bearer ${api.settings.get('kitsuToken')}`;
+    headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
   return api.request
     .xhr(mode, {
-      url: url,
+      url,
       headers,
       data: JSON.stringify(variables),
     })

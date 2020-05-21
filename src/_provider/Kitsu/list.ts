@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from './../listAbstract';
+import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class userlist extends ListAbstract {
@@ -10,9 +10,9 @@ export class userlist extends ListAbstract {
     const user = await this.userRequest();
 
     const opt = api.settings.get('kitsuOptions');
-    opt['titleLanguagePreference'] = user.attributes.titleLanguagePreference;
-    opt['sfwFilter'] = user.attributes.sfwFilter;
-    opt['ratingSystem'] = user.attributes.ratingSystem;
+    opt.titleLanguagePreference = user.attributes.titleLanguagePreference;
+    opt.sfwFilter = user.attributes.sfwFilter;
+    opt.ratingSystem = user.attributes.ratingSystem;
     api.settings.set('kitsuOptions', opt);
 
     return user.attributes.name;
@@ -22,11 +22,10 @@ export class userlist extends ListAbstract {
     const userId = await api.storage.get('kitsuUserId');
     if (typeof userId !== 'undefined') {
       return userId;
-    } else {
-      const user = await this.userRequest();
-      api.storage.set('kitsuUserId', user.id);
-      return user.id;
     }
+    const user = await this.userRequest();
+    api.storage.set('kitsuUserId', user.id);
+    return user.id;
   }
 
   private userRequest() {
@@ -153,7 +152,7 @@ export class userlist extends ListAbstract {
 
       if (listType === 'anime') {
         var tempData = this.fn({
-          malId: malId,
+          malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,
@@ -169,11 +168,11 @@ export class userlist extends ListAbstract {
               ? el.attributes.posterImage.large
               : '',
           tags: list.attributes.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
       } else {
         var tempData = this.fn({
-          malId: malId,
+          malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,
@@ -189,7 +188,7 @@ export class userlist extends ListAbstract {
               ? el.attributes.posterImage.large
               : '',
           tags: list.attributes.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
       }
 

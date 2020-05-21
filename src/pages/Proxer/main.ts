@@ -1,39 +1,37 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Proxer: pageInterface = {
   name: 'Proxer',
   domain: 'https://proxer.me',
   database: 'Proxer',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch' || url.split('/')[3] === 'read') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (url.indexOf('watch') !== -1) {
         return j
           .$('.wName')
           .text()
           .trim();
-      } else {
-        if (url.indexOf('read') !== -1) {
-          return j.$('div#breadcrumb a:first').text();
-        }
+      }
+      if (url.indexOf('read') !== -1) {
+        return j.$('div#breadcrumb a:first').text();
       }
 
       return '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `https://proxer.me/info/${Proxer.sync.getIdentifier(url)}/list`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (url.indexOf('watch') !== -1) {
         return getEpisodeFallback(
           `episode ${$('.wEp')
@@ -42,17 +40,16 @@ export const Proxer: pageInterface = {
             .trim()}`,
           url.split('/')[5],
         );
-      } else {
-        return getEpisodeFallback(
-          $('#breadcrumb > a')
-            .last()
-            .text()
-            .trim(),
-          url.split('/')[5],
-        );
       }
+      return getEpisodeFallback(
+        $('#breadcrumb > a')
+          .last()
+          .text()
+          .trim(),
+        url.split('/')[5],
+      );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return (
         Proxer.domain +
         $('.no_details a')!
@@ -62,7 +59,7 @@ export const Proxer: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#pageMetaAjax')
         .text()
@@ -70,21 +67,21 @@ export const Proxer: pageInterface = {
         .replace(/\(Anime\)|\(Manga\)$/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Proxer.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.hreview-aggregate > span').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j
           .$('span[id^="listTitle"]')
           .parent()
           .parent();
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a[href^="/watch"],a[href^="/read"],a[href^="/chapter"]')
@@ -93,7 +90,7 @@ export const Proxer: pageInterface = {
           Proxer.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return getEpisodeFallback(
           selector
             .find('span[id^="listTitle"]')
@@ -103,30 +100,27 @@ export const Proxer: pageInterface = {
           Proxer.overview!.list!.elementUrl(selector).split('/')[5],
         );
       },
-      paginationNext: function(updateCheck) {
+      paginationNext(updateCheck) {
         con.error('sadsad', updateCheck);
         if (updateCheck) {
           var el = j.$('.menu').last();
           if (typeof el[0] === 'undefined' || el.hasClass('active')) {
             return false;
-          } else {
-            el[0].click();
-            return true;
           }
-        } else {
-          var el = j
-            .$('.menu.active')
-            .first()
-            .next();
-          if (typeof el[0] === 'undefined') {
-            return false;
-          } else {
-            el[0].click();
-            return true;
-          }
+          el[0].click();
+          return true;
         }
+        var el = j
+          .$('.menu.active')
+          .first()
+          .next();
+        if (typeof el[0] === 'undefined') {
+          return false;
+        }
+        el[0].click();
+        return true;
       },
-      getTotal: function() {
+      getTotal() {
         const el = $(
           'img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]',
         )

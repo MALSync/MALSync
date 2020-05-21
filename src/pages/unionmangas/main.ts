@@ -1,27 +1,26 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const unionmangas: pageInterface = {
   name: 'unionmangas',
   domain: ['https://unionleitor.top', 'https://unionmangas.top'],
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[3] === 'leitor' &&
       url.split('/')[5] !== undefined &&
       url.split('/')[5].length > 0
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText($('body > div.breadcrumbs > div > div > a:nth-child(3)'))
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const identifierAnchorHref = j
         .$('body > div.breadcrumbs > div > div > a:nth-child(3)')
         .attr('href');
@@ -30,17 +29,17 @@ export const unionmangas: pageInterface = {
 
       return identifierAnchorHref.split('/')[4].toLowerCase();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('body > div.breadcrumbs > div > div > a:nth-child(3)')
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const num = $('#capitulo_trocar')
         .find('option:selected')
         .next()
@@ -56,29 +55,29 @@ export const unionmangas: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.row > div.col-md-12 > h2')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
 
       if (!urlPart4) return '';
 
       return urlPart4.toLowerCase();
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('div.row > div.col-md-12 > h2').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.row.lancamento-linha');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('div > a')
@@ -87,7 +86,7 @@ export const unionmangas: pageInterface = {
           unionmangas.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return utils
           .absoluteLink(
             selector

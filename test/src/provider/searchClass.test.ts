@@ -1,6 +1,6 @@
-import { searchClass } from './../../../src/_provider/Search/searchClass';
 import { expect } from 'chai';
 import * as request from 'request';
+import { searchClass } from '../../../src/_provider/Search/searchClass';
 
 describe('Sanitized Titel', function() {
   const titles = {
@@ -77,19 +77,13 @@ describe('Titel Similarity', function() {
 
 describe('Firebase', function() {
   before(function() {
-    global.con = require('./../../../src/utils/console');
-    global.con.log = function() {
-      return;
-    };
-    global.con.error = function() {
-      return;
-    };
-    global.con.info = function() {
-      return;
-    };
+    global.con = require('../../../src/utils/console');
+    global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
@@ -214,19 +208,13 @@ describe('Firebase', function() {
 
 describe('Mal Search', function() {
   before(function() {
-    global.con = require('./../../../src/utils/console');
-    global.con.log = function() {
-      return;
-    };
-    global.con.error = function() {
-      return;
-    };
-    global.con.info = function() {
-      return;
-    };
+    global.con = require('../../../src/utils/console');
+    global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
@@ -289,19 +277,13 @@ describe('Mal Search', function() {
 
 describe('Page Search', function() {
   before(function() {
-    global.con = require('./../../../src/utils/console');
-    global.con.log = function() {
-      return;
-    };
-    global.con.error = function() {
-      return;
-    };
-    global.con.info = function() {
-      return;
-    };
+    global.con = require('../../../src/utils/console');
+    global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
@@ -312,7 +294,7 @@ describe('Page Search', function() {
         },
       },
       settings: {
-        get: function(val) {
+        get(val) {
           if (val === 'syncMode') return 'MAL';
           throw 'setting not defined';
         },
@@ -392,19 +374,13 @@ describe('Page Search', function() {
 
 describe('Full Search', function() {
   before(function() {
-    global.con = require('./../../../src/utils/console');
-    global.con.log = function() {
-      return;
-    };
-    global.con.error = function() {
-      return;
-    };
-    global.con.info = function() {
-      return;
-    };
+    global.con = require('../../../src/utils/console');
+    global.con.log = function() {};
+    global.con.error = function() {};
+    global.con.info = function() {};
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           return new Promise(function(resolve, reject) {
             request(conf, (error, response, body) => {
               resolve({
@@ -415,7 +391,7 @@ describe('Full Search', function() {
         },
       },
       settings: {
-        get: function(val) {
+        get(val) {
           if (val === 'syncMode') return 'MAL';
           throw 'setting not defined';
         },

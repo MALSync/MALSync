@@ -265,7 +265,8 @@ p {
 </style>
 
 <script type="text/javascript">
-import dropdown from './../minimal/minimalApp/components/settingsDropdown.vue';
+import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
+
 export default {
   components: {
     dropdown,
@@ -277,10 +278,10 @@ export default {
   }),
   computed: {
     syncMode: {
-      get: function() {
+      get() {
         return this.mode;
       },
-      set: function(value) {
+      set(value) {
         this.mode = value;
         if (!value) return;
         api.settings.set('syncMode', value);

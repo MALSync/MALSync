@@ -1,32 +1,32 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Voiranime: pageInterface = {
   name: 'Voiranime',
   domain: 'http://voiranime.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if ($('.video-series-wrap').length) return true;
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return $('h1')
         .first()
         .text()
         .trim()
         .split(' – ')[0];
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart3 = utils.urlPart(url, 3);
 
       if (!urlPart3 || urlPart3.length === 0) return '';
 
       return urlPart3.replace(/(-saison-[^-]*)?-[^-]*-[^-]*$/i, '');
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Voiranime.domain}/${Voiranime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return parseInt(
         $('.series-current')
           .first()
@@ -34,7 +34,7 @@ export const Voiranime: pageInterface = {
           .trim(),
       );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$('.series-current')
@@ -48,24 +48,24 @@ export const Voiranime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return $('h1')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 3) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('h1').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('ul.video-series-list > li:not(.series-title)');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -74,7 +74,7 @@ export const Voiranime: pageInterface = {
           Voiranime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('a')

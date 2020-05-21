@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let film = false;
 
@@ -6,37 +6,34 @@ export const AnimesHouse: pageInterface = {
   name: 'AnimesHouse',
   domain: 'https://animeshouse.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (!film) {
         return j.$('#info > h1.epih1').text();
-      } else {
-        return j.$('div.sheader > div.data > h1').text();
       }
+      return j.$('div.sheader > div.data > h1').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (!film) {
         return AnimesHouse.sync
           .getTitle(url)
           .toLowerCase()
           .replace(/\s+/g, '_');
-      } else {
-        return url.split('/')[4];
       }
+      return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       if (!film) {
         return (
           j.$('div.pag_episodes > div:nth-child(2) > a').attr('href') || ''
         );
-      } else {
-        return url;
       }
+      return url;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (!film) {
         return Number(
           j
@@ -44,9 +41,8 @@ export const AnimesHouse: pageInterface = {
             .text()
             .replace(/\D+/g, ''),
         );
-      } else {
-        return 1;
       }
+      return 1;
     },
   },
   init(page) {

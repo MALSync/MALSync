@@ -1,17 +1,16 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const MangaKisa: pageInterface = {
   name: 'MangaKisa',
   domain: 'https://mangakisa.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] !== undefined && j.$('div.now2 > a.infoan2').length) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
-  isOverviewPage: function(url) {
+  isOverviewPage(url) {
     if (
       !url.split('/')[3] ||
       j.$('div.infoboxc > div.infodesbox > h1.infodes').length === 0
@@ -21,25 +20,25 @@ export const MangaKisa: pageInterface = {
     return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.now2 > a.infoan2')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j.$('div.now2 > a.infoan2').attr('href');
 
       if (!anchorHref) return '';
 
       return anchorHref.split('/')[1];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         MangaKisa.domain + (j.$('div.now2 > a.infoan2').attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = j.$('#chaptertext option:selected').text();
 
       if (!episodePart) return NaN;
@@ -50,7 +49,7 @@ export const MangaKisa: pageInterface = {
 
       return Number(matches[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const num = $('#chaptertext')
         .find('option:selected')
         .next()
@@ -66,7 +65,7 @@ export const MangaKisa: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
@@ -74,25 +73,25 @@ export const MangaKisa: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[3];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('.infoepboxmain').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div.infoepbox > a');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return `${MangaKisa.domain}/${selector
           .find('.infoepmain')
           .first()
           .parent()
           .attr('href')}`;
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('div.infoept2r > div, div.infoept2 > div')
           .first()

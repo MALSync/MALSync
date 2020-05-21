@@ -1,43 +1,43 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
+
 export const Branitube: pageInterface = {
   name: 'Branitube',
   domain: 'https://www.branitube.net',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (getType() !== 'anime') {
         return `${j.$('.nomeAnime').text()} ${getType()}`;
-      } else {
-        return j.$('.nomeAnime').text();
       }
+      return j.$('.nomeAnime').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${j.$('.nomeAnime').data('anid')}?${getType().replace(
         /\s/gm,
         '',
       )}`;
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       const tempUrl =
         Branitube.domain + (j.$('div.buttonEpisodes > a').attr('href') || '');
       if (getType() === 'anime') {
         return tempUrl;
-      } else if (getType() === 'ova') {
-        return `${tempUrl}/ovas`;
-      } else if (getType() === 'special') {
-        return `${tempUrl}/especiais`;
-      } else {
-        return `${tempUrl}/filmes`;
       }
+      if (getType() === 'ova') {
+        return `${tempUrl}/ovas`;
+      }
+      if (getType() === 'special') {
+        return `${tempUrl}/especiais`;
+      }
+      return `${tempUrl}/filmes`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (getType().indexOf('movie') === -1) {
         return Number(
           j
@@ -45,11 +45,10 @@ export const Branitube: pageInterface = {
             .text()
             .replace(/\D+/g, ''),
         );
-      } else {
-        return 1;
       }
+      return 1;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (
         getType().indexOf('movie') === -1 &&
         j.$('.cplPl').attr('data-npl') &&
@@ -62,7 +61,7 @@ export const Branitube: pageInterface = {
         }`;
       }
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       if (getType() === 'anime') {
         var malid = j.$('.nomeAnime').attr('data-anmalid');
         if (!malid || malid === '0') {
@@ -78,24 +77,23 @@ export const Branitube: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (getType() !== 'anime') {
         return `${j
           .$('div.animeInfos > ul > li.largeSize')
           .text()} ${getType()}`;
-      } else {
-        return j.$('div.animeInfos > ul > li.largeSize').text();
       }
+      return j.$('div.animeInfos > ul > li.largeSize').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return `${url.split('/')[4]}?${getType()}`;
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div class="animeResult" style="margin:8px;"> <p id="malp">${selector.html()}</p></div>`,
       ).prependTo(j.$('div.areaEpsList').first());
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       if (getType() === 'anime') {
         var malid = j
           .$('div.animeInfos > ul > li.largeSize')
@@ -108,12 +106,12 @@ export const Branitube: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           '.areaEpsList > .getTotalShowingEp > .item-ep > div.area-ep',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -122,7 +120,7 @@ export const Branitube: pageInterface = {
           Branitube.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return utils
           .getBaseText(
             selector
@@ -174,14 +172,12 @@ function getType() {
   }
   if (epInfo.indexOf('ova') !== -1) {
     return 'ova';
-  } else if (
-    epInfo.indexOf('especial') !== -1 ||
-    epInfo.indexOf('especiais') !== -1
-  ) {
-    return 'special';
-  } else if (epInfo.indexOf('filme') !== -1) {
-    return `movie ${epInfo.replace(/\D+/g, '').replace(/^0+/gm, '')}`;
-  } else {
-    return 'anime';
   }
+  if (epInfo.indexOf('especial') !== -1 || epInfo.indexOf('especiais') !== -1) {
+    return 'special';
+  }
+  if (epInfo.indexOf('filme') !== -1) {
+    return `movie ${epInfo.replace(/\D+/g, '').replace(/^0+/gm, '')}`;
+  }
+  return 'anime';
 }

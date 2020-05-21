@@ -1,26 +1,25 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const JapScan: pageInterface = {
   name: 'JapScan',
   domain: 'https://www.japscan.co',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'lecture-en-ligne') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText($('ol.breadcrumb > li:nth-child(3) > a').first())
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         JapScan.domain +
         (j
@@ -29,10 +28,10 @@ export const JapScan: pageInterface = {
           .attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const anchorHref =
         j
           .$('div.clearfix > p > a')
@@ -57,7 +56,7 @@ export const JapScan: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div#main > div.card > div.card-body > h1')
         .first()
@@ -65,20 +64,20 @@ export const JapScan: pageInterface = {
         .replace(/^[a-z]+/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j.$('div#main > div.card > div.card-body > h1').first(),
       );
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('div#chapters_list > div > div.chapters_list.text-truncate');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -87,7 +86,7 @@ export const JapScan: pageInterface = {
           JapScan.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('a')
           .first()

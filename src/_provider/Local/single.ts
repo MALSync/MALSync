@@ -1,17 +1,22 @@
-import { SingleAbstract } from './../singleAbstract';
+import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from './../definitions';
+import { errorCode } from '../definitions';
 
-//local://crunchyroll/anime/nogamenolife
+// local://crunchyroll/anime/nogamenolife
 
 export class Single extends SingleAbstract {
   private animeInfo: any;
+
   protected key!: string;
+
   protected id!: string;
+
   protected page!: string;
+
   protected title!: string;
 
   shortName = 'Local';
+
   authenticationUrl = '';
 
   protected handleUrl(url) {
@@ -68,12 +73,12 @@ export class Single extends SingleAbstract {
   }
 
   _getStreamingUrl() {
-    const tags = this.animeInfo.tags;
+    const { tags } = this.animeInfo;
     return utils.getUrlFromTags(tags);
   }
 
   _setStreamingUrl(url) {
-    let tags = this.animeInfo.tags;
+    let { tags } = this.animeInfo;
     if (!tags) tags = '';
     tags = utils.setUrlInTags(url, tags);
     this.animeInfo.tags = tags;

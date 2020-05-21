@@ -44,10 +44,10 @@ export default {
   },
   computed: {
     value: {
-      get: function() {
+      get() {
         return api.settings.get(this.option);
       },
-      set: function(value) {
+      set(value) {
         if (
           value !== '' &&
           value !== null &&

@@ -27,9 +27,7 @@ function main() {
     setInterval(async function() {
       const item = await api.storage.get('iframePlayer');
       if (typeof item !== 'undefined' && item !== 'null') {
-        page.setVideoTime(item, function(time) {
-          return;
-        });
+        page.setVideoTime(item, function(time) {});
         api.storage.set('iframePlayer', 'null');
       }
     }, 2000);

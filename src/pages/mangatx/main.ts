@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const mangatx: pageInterface = {
   name: 'mangatx',
   domain: 'https://mangatx.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$(
           'div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
@@ -20,10 +19,10 @@ export const mangatx: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$(
@@ -32,7 +31,7 @@ export const mangatx: pageInterface = {
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -47,7 +46,7 @@ export const mangatx: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$(
           'div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
@@ -56,17 +55,17 @@ export const mangatx: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           j.$('div.profile-manga > div > div > div > div.post-title > h1'),
         )
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j
           .$('div.profile-manga > div > div > div > div.post-title > h1')
@@ -75,12 +74,12 @@ export const mangatx: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           'div.page-content-listing.single-page > div > ul > li.wp-manga-chapter',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -89,7 +88,7 @@ export const mangatx: pageInterface = {
           mangatx.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return mangatx.sync.getEpisode(
           mangatx.overview!.list!.elementUrl(selector),
         );

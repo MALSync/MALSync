@@ -1,11 +1,11 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Kissanime: pageInterface = {
   name: 'kissanime',
   domain: 'https://kissanime.ru',
   database: 'Kissanime',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (typeof utils.urlPart(url, 5) !== 'undefined') {
       if (j.$('#centerDivVideo').length) {
         return true;
@@ -14,7 +14,7 @@ export const Kissanime: pageInterface = {
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#navsubbar a')
         .first()
@@ -23,16 +23,16 @@ export const Kissanime: pageInterface = {
         .replace('information', '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodePart = utils.urlPart(url, 5).replace(/1080p|720p/i, ' ');
 
       const episodeTextMatches = episodePart.match(
@@ -52,7 +52,7 @@ export const Kissanime: pageInterface = {
 
       return Number(episodeNumber.replace(/[^\d]/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const nextEp = j
         .$('#selectEpisode option:selected')
         .next()
@@ -64,24 +64,24 @@ export const Kissanime: pageInterface = {
     },
   },
   overview: {
-    getTitle: function() {
+    getTitle() {
       return j
         .$('.bigChar')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Kissanime.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.bigChar').first());
     },
     list: {
       offsetHandler: true,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.listing tr');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -90,7 +90,7 @@ export const Kissanime: pageInterface = {
           Kissanime.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         const url = Kissanime.overview!.list!.elementUrl(selector);
         if (
           /_ED|_OP|_Ending|_Opening|_Preview|_Trailer/i.test(

@@ -3,13 +3,13 @@ import {
   xhrResponseI,
   sendMessageI,
   responseMessageI,
-} from './../messageInterface';
+} from '../messageInterface';
 import { requestInterface } from './requestInterface';
 
 export const requestApi: requestInterface = {
   async xhr(method, url) {
     if (typeof requestApi.sendMessage !== 'undefined') {
-      return requestApi.sendMessage({ name: 'xhr', method: method, url: url });
+      return requestApi.sendMessage({ name: 'xhr', method, url });
     }
   },
 

@@ -84,7 +84,7 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: 'anime' | 'manga') {
     'Content-Type': 'application/vnd.api+json',
     Accept: 'application/vnd.api+json',
   };
-  if (accessToken()) headers['Authorization'] = `Bearer ${accessToken()}`;
+  if (accessToken()) headers.Authorization = `Bearer ${accessToken()}`;
   return api.request
     .xhr('GET', {
       url: `https://kitsu.io/api/edge/${type}?filter[slug]=${kitsuSlug}&page[limit]=1&include=mappings`,
@@ -105,7 +105,7 @@ export function kitsuSlugtoKitsu(kitsuSlug: string, type: 'anime' | 'manga') {
           }
         }
       }
-      return { res: res, malId: malId };
+      return { res, malId };
     });
 }
 
@@ -113,31 +113,30 @@ export async function userId() {
   const userId = await api.storage.get('kitsuUserId');
   if (typeof userId !== 'undefined') {
     return userId;
-  } else {
-    return api.request
-      .xhr('GET', {
-        url: 'https://kitsu.io/api/edge/users?filter[self]=true',
-        headers: {
-          Authorization: `Bearer ${accessToken()}`,
-          'Content-Type': 'application/vnd.api+json',
-          Accept: 'application/vnd.api+json',
-        },
-      })
-      .then(response => {
-        const res = JSON.parse(response.responseText);
-        con.log(res);
-        if (
-          typeof res.data === 'undefined' ||
-          !res.data.length ||
-          typeof res.data[0] === 'undefined'
-        ) {
-          utils.flashm(kitsu.noLogin, { error: true, type: 'error' });
-          throw 'Not authentificated';
-        }
-        api.storage.set('kitsuUserId', res.data[0].id);
-        return res.data[0].id;
-      });
   }
+  return api.request
+    .xhr('GET', {
+      url: 'https://kitsu.io/api/edge/users?filter[self]=true',
+      headers: {
+        Authorization: `Bearer ${accessToken()}`,
+        'Content-Type': 'application/vnd.api+json',
+        Accept: 'application/vnd.api+json',
+      },
+    })
+    .then(response => {
+      const res = JSON.parse(response.responseText);
+      con.log(res);
+      if (
+        typeof res.data === 'undefined' ||
+        !res.data.length ||
+        typeof res.data[0] === 'undefined'
+      ) {
+        utils.flashm(kitsu.noLogin, { error: true, type: 'error' });
+        throw 'Not authentificated';
+      }
+      api.storage.set('kitsuUserId', res.data[0].id);
+      return res.data[0].id;
+    });
 }
 
 export function getTitle(titles) {

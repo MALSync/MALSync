@@ -1,4 +1,4 @@
-import { ListAbstract, listElement } from './../listAbstract';
+import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
 export class userlist extends ListAbstract {
@@ -42,7 +42,7 @@ export class userlist extends ListAbstract {
               status: el.status,
               score: el.score,
               type: 'anime',
-              //@ts-ignore
+              // @ts-ignore
               uid: key,
               url: key,
               cacheKey: this.getCacheKey(
@@ -64,7 +64,7 @@ export class userlist extends ListAbstract {
               status: el.status,
               score: el.score,
               type: 'manga',
-              //@ts-ignore
+              // @ts-ignore
               uid: key,
               url: key,
               cacheKey: this.getCacheKey(
@@ -85,5 +85,6 @@ export class userlist extends ListAbstract {
   private getRegex = helper.getRegex;
 
   protected getSyncList = helper.getSyncList;
+
   protected getCacheKey = helper.getCacheKey;
 }

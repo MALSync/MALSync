@@ -31,25 +31,25 @@ export async function malSchedule() {
           .find('.info .remain-time')
           .text()
           .trim();
-        //day
+        // day
         const day = jpdate
           .split(' ')[1]
           .replace(',', '')
           .trim();
-        //month
+        // month
         let month = jpdate.split(' ')[0].trim();
-        //@ts-ignore
+        // @ts-ignore
         month = 'JanFebMarAprMayJunJulAugSepOctNovDec'.indexOf(month) / 3 + 1;
-        //year
+        // year
         const year = jpdate
           .split(' ')[2]
           .replace(',', '')
           .trim();
-        //time
+        // time
         const time = jpdate.split(' ')[3].trim();
         const minute = time.split(':')[1];
         const hour = time.split(':')[0];
-        //timezone
+        // timezone
         const timestamp = toTimestamp(year, month, day, hour, minute, 0);
         con.log(malId, timestamp);
         api.storage.set(`mal/${malId}/release`, timestamp);
@@ -74,7 +74,7 @@ export async function malSchedule() {
     const datum = new Date(
       Date.UTC(year, month - 1, day, hour, minute, second),
     );
-    return datum.getTime() - 32400000; //for GMT
+    return datum.getTime() - 32400000; // for GMT
   }
 
   async function clearScheduleCache() {
@@ -82,7 +82,7 @@ export async function malSchedule() {
     let deleted = 0;
 
     $.each(cacheArray, function(index, cache) {
-      //@ts-ignore
+      // @ts-ignore
       if (/^mal\/[^/]+\/(release|eps|aniSch)$/.test(index)) {
         api.storage.remove(String(index));
         deleted++;
@@ -124,7 +124,7 @@ export async function anilistScheduler(page = 0) {
   `;
 
   const variables = {
-    page: page,
+    page,
   };
 
   return api.request
@@ -135,8 +135,8 @@ export async function anilistScheduler(page = 0) {
         Accept: 'application/json',
       },
       data: JSON.stringify({
-        query: query,
-        variables: variables,
+        query,
+        variables,
       }),
     })
     .then(response => {

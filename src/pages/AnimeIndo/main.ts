@@ -1,24 +1,23 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimeIndo: pageInterface = {
   name: 'AnimeIndo',
   domain: 'http://animeindo.moe',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (
       url.split('/')[1] !== null &&
       j.$('#sct_content > div > div.preview')[0]
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('#sct_content > div > div.infobox > h3').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const anchorHref = j
         .$('#sct_content > div > div.ep_nav.fr > span.nav.all > a')
         .attr('href');
@@ -27,14 +26,14 @@ export const AnimeIndo: pageInterface = {
 
       return anchorHref.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('#sct_content > div > div.ep_nav.fr > span.nav.all > a')
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
@@ -49,7 +48,7 @@ export const AnimeIndo: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       const href = j
         .$('.nav.next a')
         .first()
@@ -60,7 +59,7 @@ export const AnimeIndo: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('#sct_content > div.nodeinfo > h2')
         .first()
@@ -68,18 +67,18 @@ export const AnimeIndo: pageInterface = {
         .replace(/sinopsis/gi, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('#sct_content > h1').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('ul.eps_lst > li:not(.hdr)');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -88,7 +87,7 @@ export const AnimeIndo: pageInterface = {
           AnimeIndo.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Number(
           selector
             .find('a')

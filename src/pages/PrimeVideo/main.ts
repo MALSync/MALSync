@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let thisData: any = null;
 
@@ -6,45 +6,45 @@ export const PrimeVideo: pageInterface = {
   name: 'Amazon Prime Video',
   domain: 'https://www.primevideo.com',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (thisData && thisData.ep) return true;
     return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (thisData && thisData!.title)
         return $('<div/>')
           .html(thisData!.title)
           .text();
       return '';
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (thisData && thisData!.id) return thisData!.id;
       throw 'No Id Found';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       if (thisData && thisData!.id)
         return `https://www.primevideo.com/detail/${thisData!.id}`;
       throw 'No Id Found';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (thisData && thisData!.ep) return thisData!.ep;
       return 1;
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return PrimeVideo.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return PrimeVideo.sync.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(j.$('div.av-detail-section > div > h1').first());
     },
   },
   init(page) {
-    let epId: any = undefined;
+    let epId: any;
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -143,7 +143,7 @@ function getApi(url, epId = 0) {
     gti: undefined,
   };
   const fns: any[] = [
-    //id
+    // id
     function(e) {
       if (
         e &&
@@ -164,7 +164,7 @@ function getApi(url, epId = 0) {
         }
       }
     },
-    //title, genres
+    // title, genres
     function(e) {
       if (
         e &&
@@ -174,7 +174,7 @@ function getApi(url, epId = 0) {
         e.props.state.detail.detail &&
         Object.keys(e.props.state.detail.detail).length
       ) {
-        //Parent
+        // Parent
         if (data.gti && e.props.state.detail.detail.hasOwnProperty(data.gti)) {
           var detail: any = e.props.state.detail.detail[data.gti];
         } else {
@@ -191,7 +191,7 @@ function getApi(url, epId = 0) {
           if (!data.genres.length && detail.genres && detail.genres.length)
             data.genres = detail.genres.map(e => e.id);
         }
-        //Episode
+        // Episode
         if (epId && e.props.state.detail.detail.hasOwnProperty(epId)) {
           const epDetail = e.props.state.detail.detail[epId];
           if (epDetail.episodeNumber) data.ep = epDetail.episodeNumber;

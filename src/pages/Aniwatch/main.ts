@@ -1,4 +1,4 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 let tabPage;
 
@@ -7,22 +7,20 @@ export const Aniwatch: pageInterface = {
   domain: 'https://aniwatch.me',
   database: 'Aniwatch',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (tabPage === 'stream' || tabPage === 'w2g') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (tabPage === 'stream') {
         return j.$('h1.md-headline.no-margin > span.border-right.pr-5').text();
-      } else {
-        return j.$('h2.md-title > span.border-right > a').text();
       }
+      return j.$('h2.md-title > span.border-right > a').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       if (tabPage === 'stream') {
         return url.split('/')[4];
       }
@@ -35,22 +33,21 @@ export const Aniwatch: pageInterface = {
 
       return anchorHref.split('/')[2];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return `${Aniwatch.domain}/anime/${Aniwatch.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       if (tabPage === 'stream') {
         return parseInt(utils.urlPart(url, 5));
-      } else {
-        return Number(
-          j
-            .$('h2.md-title > span.desc-color')
-            .text()
-            .replace(/\D+/g, ''),
-        );
       }
+      return Number(
+        j
+          .$('h2.md-title > span.desc-color')
+          .text()
+          .replace(/\D+/g, ''),
+      );
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (
         tabPage !== 'stream' ||
         !j.$('#anilyr-nextEpi').is('[disabled=disabled]')
@@ -65,15 +62,15 @@ export const Aniwatch: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('md-content > div > div.responsive-anime.anime-boxes-margin > h1')
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j
           .$(
@@ -103,9 +100,8 @@ export const Aniwatch: pageInterface = {
             .text()
             .replace(/\D+/g, '')
         );
-      } else {
-        return `${window.location.href}/${j.$('.md-tab.md-active').text()}`;
       }
+      return `${window.location.href}/${j.$('.md-tab.md-active').text()}`;
     });
     loaded();
     $(document).on('keydown', function(e) {
@@ -138,9 +134,8 @@ export const Aniwatch: pageInterface = {
                   .length
               ) {
                 return true;
-              } else {
-                return false;
               }
+              return false;
             },
             function() {
               console.log('pagehandle');
@@ -148,15 +143,13 @@ export const Aniwatch: pageInterface = {
             },
           );
         }
-      } else {
-        if (
-          page.url.split('/')[3] === 'watch2gether' &&
-          j.$('h2.md-title > span.border-right > a').text() &&
-          j.$('h2.md-title > span.desc-color').text()
-        ) {
-          tabPage = 'w2g';
-          page.handlePage();
-        }
+      } else if (
+        page.url.split('/')[3] === 'watch2gether' &&
+        j.$('h2.md-title > span.border-right > a').text() &&
+        j.$('h2.md-title > span.desc-color').text()
+      ) {
+        tabPage = 'w2g';
+        page.handlePage();
       }
     }
   },

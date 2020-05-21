@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as def from './../../../src/_provider/definitions';
+import * as def from '../../../src/_provider/definitions';
 
 export function generalSingleTests(Single, setGlobals) {
   describe('Url', function() {

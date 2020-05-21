@@ -1,30 +1,29 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Shinden: pageInterface = {
   name: 'Shinden',
   domain: 'https://shinden.pl',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'episode') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.page-title > a')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('h1.page-title > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodeText = j
         .$('dl.info-aside-list:nth-child(1) > dd:nth-child(2)')
         .text();
@@ -35,17 +34,17 @@ export const Shinden: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.page-title')
         .text()
         .replace(/anime:/gim, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.title-other').first());
     },
   },

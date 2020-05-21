@@ -115,7 +115,7 @@ window.addEventListener('popstate', function(event) {
   window.dispatchEvent(new Event('urlChange'));
 });
 
-//Helper
+// Helper
 function switchPage(id) {
   $('.page-visibility')
     .css('visibility', 'hidden')
@@ -136,7 +136,7 @@ function pushHistory(path, title) {
   )
     return;
   if (!title) title = path;
-  //replace
+  // replace
   const data = {};
   data.scroll = $(window).scrollTop();
   console.log(data);
@@ -145,7 +145,7 @@ function pushHistory(path, title) {
     window.location.pathname,
     window.location.pathname,
   );
-  //push
+  // push
   try {
     history.pushState(data, title, path);
     window.dispatchEvent(new Event('urlChange'));
@@ -170,7 +170,7 @@ function FormatNumberLength(num, length) {
   return r;
 }
 
-//Contributer
+// Contributer
 $.get('https://api.malsync.moe/static/contributor', function(data) {
   try {
     contributer(JSON.parse(data));

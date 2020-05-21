@@ -1,24 +1,23 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const MangaPlus: pageInterface = {
   name: 'MangaPlus',
   domain: 'https://mangaplus.shueisha.co.jp',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'viewer') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.Navigation-module_title_180OT')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const identifierHref = j
         .$('h1.Navigation-module_title_180OT')
         .first()
@@ -29,7 +28,7 @@ export const MangaPlus: pageInterface = {
 
       return identifierHref.split('/')[2];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         MangaPlus.domain +
         (j
@@ -39,7 +38,7 @@ export const MangaPlus: pageInterface = {
           .attr('href') || '')
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodeText = j
         .$('p.Navigation-module_chapterTitle_20juD')
         .first()
@@ -51,17 +50,17 @@ export const MangaPlus: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('h1.TitleDetailHeader-module_title_Iy33M')
         .first()
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j.$('div.TitleDetail-module_flexContainer_1oGb4').first(),
       );
@@ -87,9 +86,8 @@ export const MangaPlus: pageInterface = {
             j.$('h1.TitleDetailHeader-module_title_Iy33M').text()
           ) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         },
         function() {
           page.handlePage();
@@ -111,9 +109,8 @@ export const MangaPlus: pageInterface = {
               j.$('h1.TitleDetailHeader-module_title_Iy33M').text()
             ) {
               return true;
-            } else {
-              return false;
             }
+            return false;
           },
           function() {
             page.handlePage();

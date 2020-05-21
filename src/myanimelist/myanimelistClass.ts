@@ -1,5 +1,5 @@
-import { Single as malSingle } from './../_provider/MyAnimeList/single';
-import { userlist } from './../_provider/MyAnimeList/list';
+import { Single as malSingle } from '../_provider/MyAnimeList/single';
+import { userlist } from '../_provider/MyAnimeList/list';
 
 export class myanimelistClass {
   page:
@@ -12,11 +12,12 @@ export class myanimelistClass {
     | 'search'
     | null = null;
 
-  //detail
+  // detail
   readonly id: number | null = null;
+
   readonly type: 'anime' | 'manga' | null = null;
 
-  //bookmarks
+  // bookmarks
   readonly username: any = null;
 
   constructor(public url: string) {
@@ -232,8 +233,8 @@ export class myanimelistClass {
         let tempUrl = '';
         for (const streamKey in page) {
           const stream = page[streamKey];
-          tempHtml += `<div class="mal_links"><a target="_blank" href="${stream['url']}">${stream['title']}</a></div>`;
-          tempUrl = stream['url'];
+          tempHtml += `<div class="mal_links"><a target="_blank" href="${stream.url}">${stream.title}</a></div>`;
+          tempUrl = stream.url;
         }
         html += `<h2 id="${pageKey}Links" class="mal_links"><img src="${utils.favicon(
           tempUrl.split('/')[2],
@@ -383,7 +384,7 @@ export class myanimelistClass {
 
     if (this.page === 'modern') {
       var book = {
-        bookReady: function(callback) {
+        bookReady(callback) {
           utils.waitUntilTrue(
             function() {
               return $('#loading-spinner').css('display') === 'none';
@@ -439,13 +440,13 @@ export class myanimelistClass {
             },
           );
         },
-        getElement: function(malUrl) {
+        getElement(malUrl) {
           return $(`.list-item a[href^="${malUrl}"]`)
             .parent()
             .parent('.list-table-data');
         },
         streamingSelector: '.data.title .link',
-        cleanTags: function() {
+        cleanTags() {
           $('.tags span a').each(function(index) {
             if (typeof utils.getUrlFromTags($(this).text()) !== 'undefined') {
               $(this)
@@ -463,7 +464,7 @@ export class myanimelistClass {
       };
     } else if (this.page === 'classic') {
       var book = {
-        bookReady: function(callback) {
+        bookReady(callback) {
           listProvider
             .get()
             .then(list => {
@@ -474,11 +475,11 @@ export class myanimelistClass {
               listProvider.flashmError(e);
             });
         },
-        getElement: function(malUrl) {
+        getElement(malUrl) {
           return $(`a[href^="${malUrl}"]`);
         },
         streamingSelector: 'span',
-        cleanTags: function() {
+        cleanTags() {
           $('span[id^="tagLinks"] a').each(function(index) {
             if (typeof utils.getUrlFromTags($(this).text()) !== 'undefined') {
               $(this).remove();
@@ -506,7 +507,7 @@ export class myanimelistClass {
         const malUrl = el.url.replace('https://myanimelist.net', '');
         con.log(malUrl);
         const id = el.malId;
-        const type = el.type;
+        const { type } = el;
 
         if (typeof streamUrl !== 'undefined') {
           streamUI(

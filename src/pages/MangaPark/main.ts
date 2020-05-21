@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const MangaPark: pageInterface = {
   name: 'MangaPark',
   domain: 'https://mangapark.net',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $(
@@ -23,10 +22,10 @@ export const MangaPark: pageInterface = {
         .replace(/\w+$/g, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$(
@@ -36,7 +35,7 @@ export const MangaPark: pageInterface = {
         MangaPark.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       let string = utils
         .getBaseText(
           $(
@@ -55,7 +54,7 @@ export const MangaPark: pageInterface = {
       }
       return NaN;
     },
-    getVolume: function(url) {
+    getVolume(url) {
       let string = utils
         .getBaseText(
           $(
@@ -74,7 +73,7 @@ export const MangaPark: pageInterface = {
       }
       return NaN;
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       if (
         j
           .$(
@@ -94,7 +93,7 @@ export const MangaPark: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('body > section.manga > div.container.content > div > h2 > a')
         .first()
@@ -103,10 +102,10 @@ export const MangaPark: pageInterface = {
         .replace(/\w+$/g, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertBefore(
         j
           .$('body > section.manga > div.container.content > div.hd.sub')

@@ -1,20 +1,22 @@
 import { pageInterface, pageState } from './pageInterface';
-import { getSingle } from './../_provider/singleFactory';
-import { initIframeModal } from './../minimal/iframe';
-import { providerTemplates } from './../provider/templates';
-import { getPlayerTime } from './../utils/player';
-import { searchClass } from './../_provider/Search/vueSearchClass.ts';
+import { getSingle } from '../_provider/singleFactory';
+import { initIframeModal } from '../minimal/iframe';
+import { providerTemplates } from '../provider/templates';
+import { getPlayerTime } from '../utils/player';
+import { searchClass } from '../_provider/Search/vueSearchClass.ts';
 
 declare let browser: any;
 
-let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; //Chrome
+let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
 if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
-  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; //Firefox
+  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
 }
 
 export class syncPage {
   page: pageInterface;
+
   searchObj;
+
   singleObj;
 
   public novel = false;
@@ -34,7 +36,7 @@ export class syncPage {
     this.page.init(this);
 
     if (api.type === 'webextension') {
-      //Discord Presence
+      // Discord Presence
       try {
         chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {
           this.presence(info, sender, sendResponse);
@@ -56,10 +58,8 @@ export class syncPage {
             return page;
           }
         }
-      } else {
-        if (checkDomain(page.domain)) {
-          return page;
-        }
+      } else if (checkDomain(page.domain)) {
+        return page;
       }
 
       function checkDomain(domain) {
@@ -123,6 +123,7 @@ export class syncPage {
   }
 
   autoNextEpRun = false;
+
   public autoNextEp(item) {
     if (
       api.settings.get('autoNextEp') &&
@@ -146,7 +147,7 @@ export class syncPage {
 
     this.curState.lastVideoTime = item;
 
-    //@ts-ignore
+    // @ts-ignore
     if (
       typeof this.curState.videoChecked !== 'undefined' &&
       this.curState.videoChecked
@@ -179,59 +180,59 @@ export class syncPage {
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
           return;
-        } else {
-          let delta = resumeTime;
-          const minutes = Math.floor(delta / 60);
-          delta -= minutes * 60;
-          let sec = `${delta}`;
-          while (sec.length < 2) sec = `0${sec}`;
-          resumeTimeString = `${minutes}:${sec}`;
-
-          const resumeMsg = utils.flashm(
-            `<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">${api.storage.lang(
-              'syncPage_flashm_resumeMsg',
-              [resumeTimeString],
-            )}</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>`,
-            {
-              permanent: true,
-              error: false,
-              type: 'resume',
-              minimized: false,
-              position: 'top',
-            },
-          );
-
-          resumeMsg.find('.sync').on('click', function() {
-            timeCb(resumeTime);
-            This.curState.videoChecked = 2;
-            //@ts-ignore
-            j.$(this)
-              .parent()
-              .parent()
-              .remove();
-          });
-
-          resumeMsg.find('.resumeClose').on('click', function() {
-            This.curState.videoChecked = 2;
-            //@ts-ignore
-            j.$(this)
-              .parent()
-              .parent()
-              .remove();
-          });
         }
+        let delta = resumeTime;
+        const minutes = Math.floor(delta / 60);
+        delta -= minutes * 60;
+        let sec = `${delta}`;
+        while (sec.length < 2) sec = `0${sec}`;
+        resumeTimeString = `${minutes}:${sec}`;
+
+        const resumeMsg = utils.flashm(
+          `<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">${api.storage.lang(
+            'syncPage_flashm_resumeMsg',
+            [resumeTimeString],
+          )}</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>`,
+          {
+            permanent: true,
+            error: false,
+            type: 'resume',
+            minimized: false,
+            position: 'top',
+          },
+        );
+
+        resumeMsg.find('.sync').on('click', function() {
+          timeCb(resumeTime);
+          This.curState.videoChecked = 2;
+          // @ts-ignore
+          j.$(this)
+            .parent()
+            .parent()
+            .remove();
+        });
+
+        resumeMsg.find('.resumeClose').on('click', function() {
+          This.curState.videoChecked = 2;
+          // @ts-ignore
+          j.$(this)
+            .parent()
+            .parent()
+            .remove();
+        });
       } else {
         setTimeout(() => {
           this.curState.videoChecked = 2;
         }, 15000);
       }
 
-      //@ts-ignore
+      // @ts-ignore
       this.curState.videoChecked = true;
     }
   }
 
   curState: any = undefined;
+
   tempPlayer: any = undefined;
 
   async handlePage(curUrl = window.location.href) {
@@ -284,7 +285,6 @@ export class syncPage {
             if (typeof time !== 'undefined') {
               player.play();
               player.currentTime = time;
-              return;
             }
           });
         });
@@ -366,7 +366,7 @@ export class syncPage {
         }
       }
 
-      //Discord Presence
+      // Discord Presence
       if (api.type === 'webextension') {
         try {
           chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(
@@ -379,10 +379,10 @@ export class syncPage {
         }
       }
 
-      //fillUI
+      // fillUI
       this.fillUI();
 
-      //sync
+      // sync
       if (this.page.isSyncPage(this.url)) {
         if (
           !(
@@ -397,7 +397,7 @@ export class syncPage {
         const rerun = await this.searchObj.openCorrectionCheck();
 
         if (rerun) {
-          //If malUrl changed
+          // If malUrl changed
           this.handlePage(curUrl);
           return;
         }
@@ -465,7 +465,7 @@ export class syncPage {
                 j.$('.flashinfo').remove();
                 sync();
               });
-            //Debugging
+            // Debugging
             con.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
             if (typeof This.page.sync.nextEpUrl !== 'undefined') {
               con.log('nextEp', This.page.sync.nextEpUrl(This.url));
@@ -580,7 +580,7 @@ export class syncPage {
           split = ' | ';
         }
         if (hoverInfo) {
-          /*if(episodeInfoBox){//TODO
+          /* if(episodeInfoBox){//TODO
                 episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
                     undoAnime['checkIncrease'] = 0;
                     setanime(thisUrl, undoAnime, null, localListType);
@@ -589,7 +589,7 @@ export class syncPage {
                         j.$('.flashinfo').remove();
                     }
                 });
-            }*/
+            } */
 
           message += `
             <br>
@@ -618,8 +618,6 @@ export class syncPage {
         }
 
         this.fillUI();
-
-        return;
       })
       .catch(e => {
         this.singleObj.flashmError(e);
@@ -676,7 +674,7 @@ export class syncPage {
         const rerun = await This.searchObj.openCorrectionCheck();
 
         if (rerun) {
-          //If malUrl changed
+          // If malUrl changed
           This.handlePage();
           return;
         }
@@ -730,7 +728,7 @@ export class syncPage {
       const epList = this.getEpList();
       if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
-        const elementUrl = this.page.overview.list.elementUrl;
+        const { elementUrl } = this.page.overview.list;
         con.log(
           'Episode List',
           j.$.map(epList, function(val, i) {
@@ -791,7 +789,7 @@ export class syncPage {
       typeof this.page.overview !== 'undefined' &&
       typeof this.page.overview.list !== 'undefined'
     ) {
-      const elementEp = this.page.overview.list.elementEp;
+      const { elementEp } = this.page.overview.list;
       const elementArray = [] as JQuery<HTMLElement>[];
       let currentEpisode = 0;
       if (this.singleObj) {
@@ -880,10 +878,10 @@ export class syncPage {
         `updateCheck/${this.singleObj.getType()}/${this.singleObj.getCacheKey()}`,
       );
     }
-    return;
   }
 
   UILoaded = false;
+
   private loadUI() {
     var This = this;
     if (this.UILoaded) return;
@@ -903,7 +901,7 @@ export class syncPage {
       '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 
-    //ui += '<span id="MalLogin">';
+    // ui += '<span id="MalLogin">';
     wrapStart =
       '<span style="display: inline-block; display: none;" class="MalLogin">';
 
@@ -952,7 +950,7 @@ export class syncPage {
     ui += '</select>';
     ui += wrapEnd;
 
-    //ui += '</span>';
+    // ui += '</span>';
     ui += '</span>';
     ui += '</p>';
 
@@ -971,17 +969,15 @@ export class syncPage {
       if (typeof this.page.sync.uiSelector !== 'undefined') {
         this.page.sync.uiSelector(j.$(ui));
       }
-    } else {
-      if (typeof this.page.overview !== 'undefined') {
-        this.page.overview.uiSelector(j.$(ui));
-      }
+    } else if (typeof this.page.overview !== 'undefined') {
+      this.page.overview.uiSelector(j.$(ui));
     }
 
     var This = this;
     j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(
       function() {
         This.buttonclick();
-        //@ts-ignore
+        // @ts-ignore
         const el = j.$(this);
         This.calcSelectWidth(el);
       },
@@ -989,7 +985,7 @@ export class syncPage {
 
     j.$('#malEpisodes, #malVolumes')
       .on('input', function() {
-        //@ts-ignore
+        // @ts-ignore
         const el = j.$(this);
         let numberlength = el.val()!.toString().length;
         if (numberlength < 1) numberlength = 1;
@@ -1028,7 +1024,7 @@ export class syncPage {
     const rerun = await this.searchObj.openCorrectionCheck();
 
     if (rerun) {
-      //If malUrl changed
+      // If malUrl changed
       this.handlePage();
       return;
     }
@@ -1097,19 +1093,18 @@ export class syncPage {
             }
             sendResponse(pres);
             return;
-          } else {
-            if (!api.settings.get('presenceHidePage')) {
-              var browsingTemp = this.page.name;
-            } else {
-              var browsingTemp = this.page.type.toString();
-            }
-            pres.presence.startTimestamp = this.browsingtime;
-            pres.presence.state = api.storage.lang('Discord_rpc_browsing', [
-              browsingTemp,
-            ]);
-            sendResponse(pres);
-            return;
           }
+          if (!api.settings.get('presenceHidePage')) {
+            var browsingTemp = this.page.name;
+          } else {
+            var browsingTemp = this.page.type.toString();
+          }
+          pres.presence.startTimestamp = this.browsingtime;
+          pres.presence.state = api.storage.lang('Discord_rpc_browsing', [
+            browsingTemp,
+          ]);
+          sendResponse(pres);
+          return;
         }
       }
     } catch (e) {

@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const manga4life: pageInterface = {
   name: 'manga4life',
   domain: 'https://manga4life.com',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'read-online') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $(
@@ -21,10 +20,10 @@ export const manga4life: pageInterface = {
         )
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(manga4life.sync.getOverviewUrl(url), 4) || '';
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return utils.absoluteLink(
         j
           .$('div.MainContainer > div.container > div.row > div.Column > a')
@@ -33,7 +32,7 @@ export const manga4life: pageInterface = {
         manga4life.domain,
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return utils
         .getBaseText(
           $(
@@ -44,16 +43,16 @@ export const manga4life: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1')
         .first()
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j
           .$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1')

@@ -1,19 +1,18 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Otakustream: pageInterface = {
   name: 'Otakustream',
   domain: 'https://otakustream.tv',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'movie') return true;
     if (typeof url.split('/')[5] === 'undefined' || url.split('/')[5] === '') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       if (url.split('/')[3] === 'movie')
         return Otakustream.overview!.getTitle(url);
       return j
@@ -22,20 +21,20 @@ export const Otakustream: pageInterface = {
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
 
       if (!urlPart4) return '';
 
       return urlPart4.toLowerCase();
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return url
         .split('/')
         .slice(0, 5)
         .join('/');
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       let EpText = utils.urlPart(url, 5);
 
       if (!EpText) return NaN;
@@ -51,7 +50,7 @@ export const Otakustream: pageInterface = {
       }
       return parseInt(temp[0]);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j
           .$('.navigation-right')
@@ -62,24 +61,24 @@ export const Otakustream: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('.breadcrumb_last')
         .text()
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return Otakustream.sync!.getIdentifier(url);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(j.$('.single-details h1').first());
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('.ep-list li');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return utils.absoluteLink(
           selector
             .find('a')
@@ -88,7 +87,7 @@ export const Otakustream: pageInterface = {
           Otakustream.domain,
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return Otakustream.sync!.getEpisode(
           Otakustream.overview!.list!.elementUrl(selector),
         );

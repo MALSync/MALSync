@@ -1,37 +1,36 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const MangaNelo: pageInterface = {
   name: 'MangaNelo',
   domain: 'https://manganelo.com',
   database: 'MangaNelo',
   type: 'manga',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
         .$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)')
         .text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return (
         j
           .$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)')
           .attr('href') || ''
       );
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       return Number(url.split('/')[5].match(/\d+/gim));
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return j
         .$('div.panel-navigation > div > a.navi-change-chapter-btn-next.a-h')
         .first()
@@ -39,13 +38,13 @@ export const MangaNelo: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j.$('div.panel-story-info > div.story-info-right > h1').text();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       j.$(
         `<div id="malthing"> <p id="malp">${selector.html()}</p></div>`,
       ).insertBefore(j.$('div.panel-story-chapter-list').first());
@@ -53,12 +52,12 @@ export const MangaNelo: pageInterface = {
 
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$(
           'div.panel-story-chapter-list > ul.row-content-chapter > li.a-h',
         );
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('a')
@@ -66,7 +65,7 @@ export const MangaNelo: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('a')
           .first()

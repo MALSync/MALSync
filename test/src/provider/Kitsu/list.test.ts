@@ -1,17 +1,12 @@
 import { expect } from 'chai';
-import { userlist } from './../../../../src/_provider/Kitsu/list';
-import { generalListTests } from './../generalTests.exclude';
+import { userlist } from '../../../../src/_provider/Kitsu/list';
+import { generalListTests } from '../generalTests.exclude';
 
-global.con = require('./../../../../src/utils/console');
-global.con.log = function() {
-  return;
-};
-global.con.error = function() {
-  return;
-};
-global.con.info = function() {
-  return;
-};
+global.con = require('../../../../src/utils/console');
+
+global.con.log = function() {};
+global.con.error = function() {};
+global.con.info = function() {};
 
 const responses = {
   user: {
@@ -72,7 +67,7 @@ describe('Kitsu userlist', function() {
   before(function() {
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           if (conf.url.indexOf('/edge/users') !== -1) {
             return {
               responseText: getResponse('user'),
@@ -95,21 +90,19 @@ describe('Kitsu userlist', function() {
         },
       },
       settings: {
-        get: function() {
+        get() {
           return '';
         },
       },
       storage: {
-        lang: function() {
+        lang() {
           return 'lang';
         },
-        get: function(key) {
+        get(key) {
           if (key === 'kitsuUserId') return undefined;
           return '';
         },
-        set: function(key, val) {
-          return;
-        },
+        set(key, val) {},
       },
     };
   });

@@ -1,38 +1,31 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/Simkl/single';
-import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/definitions';
-
-import { generalSingleTests } from './../generalSingleTests.exclude';
-
 import * as request from 'request';
+import { Single } from '../../../../src/_provider/Simkl/single';
+import * as utils from '../../../../src/utils/general';
+import * as def from '../../../../src/_provider/definitions';
+
+import { generalSingleTests } from '../generalSingleTests.exclude';
 
 setGlobals();
 function setGlobals() {
-  global.con = require('./../../../../src/utils/console');
-  global.con.log = function() {
-    return;
-  };
-  global.con.error = function() {
-    return;
-  };
-  global.con.info = function() {
-    return;
-  };
+  global.con = require('../../../../src/utils/console');
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
 
   global.api = {
     token: process.env.SIMKL_API_KEY,
     noManga: true,
     noLimitless: true,
     settings: {
-      get: function(key) {
+      get(key) {
         if ('simklToken') return global.api.token;
         throw 'key not defined';
       },
     },
     status: 200,
     request: {
-      xhr: async function(post, conf, data) {
+      async xhr(post, conf, data) {
         return new Promise(function(resolve, reject) {
           const options = {
             url: conf.url,
@@ -59,11 +52,11 @@ function setGlobals() {
       },
     },
     storage: {
-      get: function(key) {
+      get(key) {
         return Promise.resolve(undefined);
       },
-      set: function(key, value) {
-        //state[key] = JSON.parse(JSON.stringify(value));
+      set(key, value) {
+        // state[key] = JSON.parse(JSON.stringify(value));
         return Promise.resolve();
       },
     },

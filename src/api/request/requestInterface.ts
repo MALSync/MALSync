@@ -3,7 +3,7 @@ import {
   xhrResponseI,
   sendMessageI,
   responseMessageI,
-} from './../messageInterface';
+} from '../messageInterface';
 
 export interface requestInterface {
   xhr(

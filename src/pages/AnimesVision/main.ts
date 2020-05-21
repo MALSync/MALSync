@@ -1,18 +1,17 @@
-import { pageInterface } from './../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const AnimesVision: pageInterface = {
   name: 'AnimesVision',
   domain: 'https://animesvision.biz',
   type: 'anime',
-  isSyncPage: function(url) {
+  isSyncPage(url) {
     if (url.split('/')[5] !== undefined) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $('div.goblock.play-anime > div.gobread > ol > li.active > h1'),
@@ -21,20 +20,20 @@ export const AnimesVision: pageInterface = {
         .replace(/[\s-\s]*$/, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return url.split('/')[4];
     },
-    getOverviewUrl: function(url) {
+    getOverviewUrl(url) {
       return j.$('#episodes-sv-1 > li > div.sli-name > a').attr('href') || '';
     },
-    getEpisode: function(url) {
+    getEpisode(url) {
       const episodetemp = url.split('/')[5].replace(/\D+/, '');
 
       if (!episodetemp) return NaN;
 
       return Number(episodetemp);
     },
-    nextEpUrl: function(url) {
+    nextEpUrl(url) {
       return utils.absoluteLink(
         j.$('#nextEp').attr('href'),
         AnimesVision.domain,
@@ -42,7 +41,7 @@ export const AnimesVision: pageInterface = {
     },
   },
   overview: {
-    getTitle: function(url) {
+    getTitle(url) {
       return utils
         .getBaseText(
           $('div.goblock.detail-anime > div.gobread > ol > li.active > span'),
@@ -51,10 +50,10 @@ export const AnimesVision: pageInterface = {
         .replace(/[\s-\s]*$/, '')
         .trim();
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    uiSelector: function(selector) {
+    uiSelector(selector) {
       selector.insertAfter(
         j.$(
           'div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content',
@@ -63,10 +62,10 @@ export const AnimesVision: pageInterface = {
     },
     list: {
       offsetHandler: false,
-      elementsSelector: function() {
+      elementsSelector() {
         return j.$('#episodes-sv-1 > li.ep-item');
       },
-      elementUrl: function(selector) {
+      elementUrl(selector) {
         return (
           selector
             .find('a')
@@ -74,7 +73,7 @@ export const AnimesVision: pageInterface = {
             .attr('href') || ''
         );
       },
-      elementEp: function(selector) {
+      elementEp(selector) {
         return selector
           .find('a')
           .first()

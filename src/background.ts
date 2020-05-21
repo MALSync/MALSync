@@ -66,7 +66,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
         getCookies(message.url.url, sender, xhr, () => {
-          //@ts-ignore
+          // @ts-ignore
           xhr.send(message.url.data);
         });
       } else {
@@ -82,20 +82,20 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
       return;
     }
     case 'videoTime': {
-      //@ts-ignore
+      // @ts-ignore
       chrome.tabs.sendMessage(sender.tab.id, {
         action: 'videoTime',
         item: message.item,
-        sender: sender,
+        sender,
       });
       return;
     }
     case 'content': {
-      //@ts-ignore
+      // @ts-ignore
       chrome.tabs.sendMessage(sender.tab.id, {
         action: 'content',
         item: message.item,
-        sender: sender,
+        sender,
       });
       return;
     }
@@ -146,7 +146,7 @@ function getCookies(url, sender, xhr, callback) {
       permissions: ['cookies'],
     },
     function(result) {
-      //@ts-ignore
+      // @ts-ignore
       if (!result || typeof browser === 'undefined' || !browser) {
         callback();
         return;
@@ -171,9 +171,9 @@ function getCookies(url, sender, xhr, callback) {
         chrome.tabs.query({ currentWindow: true, active: true }, function(
           tabs,
         ) {
-          //@ts-ignore
+          // @ts-ignore
           if (tabs[0] && typeof tabs[0].cookieStoreId !== 'undefined') {
-            //@ts-ignore
+            // @ts-ignore
             cookieId = tabs[0].cookieStoreId;
           }
           t(cookieId);
@@ -184,9 +184,9 @@ function getCookies(url, sender, xhr, callback) {
 
       function t(cookieId) {
         if (cookieId !== '') {
-          //@ts-ignore
+          // @ts-ignore
           browser.cookies
-            .getAll({ storeId: cookieId, url: url })
+            .getAll({ storeId: cookieId, url })
             .then(function(cookies) {
               con.log('Cookie Store', cookieId, cookies);
               let cookiesText = '';

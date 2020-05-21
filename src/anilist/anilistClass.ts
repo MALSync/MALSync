@@ -1,6 +1,6 @@
-import * as helper from './../provider/AniList/helper';
-import { Single as anilistSingle } from './../_provider/AniList/single';
-import { userlist } from './../_provider/AniList/list';
+import * as helper from '../provider/AniList/helper';
+import { Single as anilistSingle } from '../_provider/AniList/single';
+import { userlist } from '../_provider/AniList/list';
 
 interface detail {
   page: 'detail';
@@ -44,9 +44,9 @@ export class anilistClass {
             .split('/')
             .slice(0, 6)
             .join('/');
-        } else {
-          ogUrl = window.location.href;
         }
+        ogUrl = window.location.href;
+
         return ogUrl;
       },
     );
@@ -148,11 +148,11 @@ export class anilistClass {
           const stream = page[streamKey];
           tempHtml += `
           <div class="mal_links" style="margin-top: 5px;">
-            <a target="_blank" href="${stream['url']}">
-              ${stream['title']}
+            <a target="_blank" href="${stream.url}">
+              ${stream.title}
             </a>
           </div>`;
-          tempUrl = stream['url'];
+          tempUrl = stream.url;
         }
         html += `
           <div id="${pageKey}Links" class="mal_links" style="
@@ -318,6 +318,7 @@ export class anilistClass {
   }
 
   private tempAnimelist: any = null;
+
   private tempMangalist: any = null;
 
   bookmarks() {
@@ -372,11 +373,9 @@ export class anilistClass {
           fullListCallback(this.tempAnimelist);
           return;
         }
-      } else {
-        if (this.tempMangalist !== null) {
-          fullListCallback(this.tempMangalist);
-          return;
-        }
+      } else if (this.tempMangalist !== null) {
+        fullListCallback(this.tempMangalist);
+        return;
       }
 
       const listProvider: userlist = new userlist(1, this.page!.type);

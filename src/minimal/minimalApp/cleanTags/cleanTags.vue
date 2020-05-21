@@ -26,12 +26,12 @@
 </template>
 
 <script type="text/javascript">
-import { getSingle } from './../../../_provider/singleFactory';
-import { getOnlyList } from './../../../_provider/listFactory';
+import { getSingle } from '../../../_provider/singleFactory';
+import { getOnlyList } from '../../../_provider/listFactory';
 
 export default {
   props: {},
-  data: function() {
+  data() {
     return {
       animeLoading: false,
       animelist: null,
@@ -45,7 +45,7 @@ export default {
   watch: {},
   methods: {
     lang: api.storage.lang,
-    cleanTags: function() {
+    cleanTags() {
       this.animeLoading = true;
       getList('anime')
         .then(async list => {
@@ -61,7 +61,6 @@ export default {
               await cleanTags(anime.url);
             }
           }
-          return;
         })
         .then(() => {
           return getList('manga');
@@ -78,7 +77,6 @@ export default {
               await cleanTags(manga.url);
             }
           }
-          return;
         });
     },
   },
@@ -94,7 +92,6 @@ async function cleanTags(url) {
     })
     .catch(e => {
       con.error(e);
-      return;
     });
 }
 

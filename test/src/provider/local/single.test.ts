@@ -1,11 +1,10 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/Local/single';
-import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/definitions';
-
-import { generalSingleTests } from './../generalSingleTests.exclude';
-
 import * as request from 'request';
+import { Single } from '../../../../src/_provider/Local/single';
+import * as utils from '../../../../src/utils/general';
+import * as def from '../../../../src/_provider/definitions';
+
+import { generalSingleTests } from '../generalSingleTests.exclude';
 
 const state = {
   'local://crunchyroll/anime/nogamenolife': {
@@ -22,32 +21,26 @@ const state = {
 
 setGlobals();
 function setGlobals() {
-  global.con = require('./../../../../src/utils/console');
-  global.con.log = function() {
-    return;
-  };
-  global.con.error = function() {
-    return;
-  };
-  global.con.info = function() {
-    return;
-  };
+  global.con = require('../../../../src/utils/console');
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
 
   global.api = {
     settings: {
-      get: function(key) {
+      get(key) {
         return true;
       },
     },
     storage: {
-      get: function(key) {
+      get(key) {
         return Promise.resolve(state[key]);
       },
-      set: function(key, value) {
+      set(key, value) {
         state[key] = JSON.parse(JSON.stringify(value));
         return Promise.resolve();
       },
-      assetUrl: function(key) {
+      assetUrl(key) {
         return 'image';
       },
     },
