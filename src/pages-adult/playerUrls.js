@@ -102,31 +102,31 @@ module.exports = {
   dailymotion: {
     match: ['*://www.dailymotion.com/embed/*'],
   },
-  //gogoanime
+  // gogoanime
   theVideo: {
     match: ['*://vev.io/embed/*', '*://vev.red/embed/*'],
   },
-  //voiranime
+  // voiranime
   jwpstream: {
     match: ['*://jwpstream.com/jwps/yplayer.php*'],
   },
-  //voiranime
+  // voiranime
   vaplayer: {
     match: ['*://www.vaplayer.xyz/v/*'],
   },
-  //hanime
+  // hanime
   hanime: {
     match: ['*://player.hanime.tv/*'],
   },
-  //hentaihaven
+  // hentaihaven
   lewdhost: {
     match: ['*://stream.lewd.host/embed/*'],
   },
-  //hentaihaven
+  // hentaihaven
   tiwikiwi: {
     match: ['*://tiwi.kiwi/*'],
   },
-  //KissHentai
+  // KissHentai
   streamcherry: {
     match: ['*://streamcherry.com/embed/*'],
   },

@@ -13,6 +13,7 @@
         "parens",
         "readonly",
         "stylelint",
+        "userscript",
         "webextension",
         "webextensions",
         "webstore"
