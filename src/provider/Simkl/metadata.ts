@@ -45,14 +45,14 @@ export class metadata implements metadataInterface {
       this.id ? `MAL: ${this.id}` : `Simkl: ${this.simklId}`,
     );
 
-    if (isNaN(this.id)) {
+    if (Number.isNaN(this.id)) {
       var de = { simkl: this.simklId };
     } else {
       // @ts-ignore
       var de = { mal: this.id };
     }
 
-    if (isNaN(this.simklId)) {
+    if (Number.isNaN(this.simklId)) {
       const el = await helper.call('https://api.simkl.com/search/id', de, true);
       if (!el) throw 'Anime not found';
       con.error(el);

@@ -139,7 +139,7 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
-    if (isNaN(this.ids.mal)) {
+    if (Number.isNaN(this.ids.mal)) {
       var kitsuSlugRes = await this.kitsuSlugtoKitsu(
         this.ids.kitsu.slug,
         this.getType(),
@@ -152,7 +152,7 @@ export class Single extends SingleAbstract {
         throw this.errorObj(errorCode.EntryNotFound, 'Not found');
       }
     }
-    if (isNaN(this.ids.kitsu.id)) {
+    if (Number.isNaN(this.ids.kitsu.id)) {
       var kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
       try {
         this.ids.kitsu.id = kitsuRes.data[0].relationships.item.data.id;

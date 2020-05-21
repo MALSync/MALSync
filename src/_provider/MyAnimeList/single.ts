@@ -349,7 +349,7 @@ export class Single extends SingleAbstract {
           .split('value="')[1]
           .split('"')[0],
       );
-      if (isNaN(anime['.add_anime[num_watched_episodes]'])) {
+      if (Number.isNaN(anime['.add_anime[num_watched_episodes]'])) {
         anime['.add_anime[num_watched_episodes]'] = '';
       }
       anime['.add_anime[score]'] = getselect(data, 'add_anime[score]');
@@ -490,7 +490,7 @@ export class Single extends SingleAbstract {
         .split('value="')[1]
         .split('"')[0],
     );
-    if (isNaN(anime['.add_manga[num_read_volumes]'])) {
+    if (Number.isNaN(anime['.add_manga[num_read_volumes]'])) {
       anime['.add_manga[num_read_volumes]'] = '';
     }
     anime['.add_manga[num_read_chapters]'] = parseInt(
@@ -499,7 +499,7 @@ export class Single extends SingleAbstract {
         .split('value="')[1]
         .split('"')[0],
     );
-    if (isNaN(anime['.add_manga[num_read_chapters]'])) {
+    if (Number.isNaN(anime['.add_manga[num_read_chapters]'])) {
       anime['.add_manga[num_read_chapters]'] = '';
     }
     anime['.add_manga[score]'] = getselect(data, 'add_manga[score]');

@@ -55,7 +55,7 @@ export function mapToArray(provierList, resultList, masterM = false) {
       el.diff = {};
       temp.slaves.push(el);
     }
-    if (!isNaN(el.malId) && el.malId) {
+    if (!Number.isNaN(el.malId) && el.malId) {
       resultList[el.malId] = temp;
     } else {
       // TODO: List them

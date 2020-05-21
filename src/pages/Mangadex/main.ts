@@ -219,7 +219,7 @@ export const Mangadex: pageInterface = {
 
 function EpisodePartToEpisode(string) {
   if (!string) return '';
-  if (!isNaN(parseInt(string))) {
+  if (!Number.isNaN(parseInt(string))) {
     return string;
   }
   let temp = [];

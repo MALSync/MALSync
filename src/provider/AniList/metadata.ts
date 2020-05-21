@@ -42,7 +42,7 @@ export class metadata implements metadataInterface {
     );
     let selectId = this.id;
     let selectQuery = 'idMal';
-    if (isNaN(this.id)) {
+    if (Number.isNaN(this.id)) {
       selectId = this.aniId;
       selectQuery = 'id';
     }

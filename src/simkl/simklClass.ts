@@ -68,7 +68,7 @@ export class simklClass {
 
     if (
       (urlpart === 'anime' || urlpart === 'manga') &&
-      !isNaN(Number(url2part))
+      !Number.isNaN(Number(url2part))
     ) {
       const malObj = new simklSingle(this.url);
       await malObj.update();

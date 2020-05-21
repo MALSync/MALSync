@@ -135,7 +135,7 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
-    if (isNaN(this.ids.mal)) {
+    if (Number.isNaN(this.ids.mal)) {
       var de = { simkl: this.ids.simkl };
     } else {
       // @ts-ignore
@@ -201,12 +201,12 @@ export class Single extends SingleAbstract {
           con.log('Add anime', this.animeInfo);
         }
 
-        if (isNaN(this.ids.simkl)) {
+        if (Number.isNaN(this.ids.simkl)) {
           this.ids.simkl = parseInt(this.animeInfo.show.ids.simkl);
         }
 
         if (
-          isNaN(this.ids.mal) &&
+          Number.isNaN(this.ids.mal) &&
           typeof this.animeInfo.show.ids.mal !== 'undefined'
         ) {
           this.ids.mal = this.animeInfo.show.ids.mal;

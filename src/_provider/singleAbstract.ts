@@ -197,7 +197,7 @@ export abstract class SingleAbstract {
   }
 
   public getMalUrl(): string | null {
-    if (!isNaN(this.ids.mal)) {
+    if (!Number.isNaN(this.ids.mal)) {
       return `https://myanimelist.net/${this.getType()}/${
         this.ids.mal
       }/${encodeURIComponent(this.getTitle().replace(/\//, '_'))}`;
@@ -206,7 +206,7 @@ export abstract class SingleAbstract {
   }
 
   public getMalId(): number | null {
-    if (!isNaN(this.ids.mal)) {
+    if (!Number.isNaN(this.ids.mal)) {
       return this.ids.mal;
     }
     return null;

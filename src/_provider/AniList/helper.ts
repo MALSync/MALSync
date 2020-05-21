@@ -59,7 +59,7 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
 }
 
 export function getCacheKey(id, kitsuId) {
-  if (isNaN(id) || !id) {
+  if (Number.isNaN(id) || !id) {
     return `anilist:${kitsuId}`;
   }
   return id;

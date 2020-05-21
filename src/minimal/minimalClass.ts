@@ -251,7 +251,7 @@ export class minimal {
 
           function setUpdateCheckLast() {
             api.storage.get('updateCheckLast').then(updateCheckTime => {
-              if (isNaN(updateCheckTime)) return;
+              if (Number.isNaN(updateCheckTime)) return;
               const delta = Math.abs(updateCheckTime - Date.now());
 
               let text = utils.timeDiffToText(delta);

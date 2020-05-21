@@ -156,7 +156,7 @@ export const Mangarock: pageInterface = {
 
 function EpisodePartToEpisode(string) {
   if (!string) return '';
-  if (!isNaN(parseInt(string))) {
+  if (!Number.isNaN(parseInt(string))) {
     return string;
   }
   // https://mangarock.com/manga/mrs-serie-124208

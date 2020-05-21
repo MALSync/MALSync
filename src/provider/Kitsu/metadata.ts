@@ -51,7 +51,7 @@ export class metadata implements metadataInterface {
       'Update Kitsu info',
       this.id ? `MAL: ${this.id}` : `Kitsu: ${this.kitsuSlug}`,
     );
-    if (isNaN(this.id)) {
+    if (Number.isNaN(this.id)) {
       const kitsuSlugRes = await helper.kitsuSlugtoKitsu(
         this.kitsuSlug,
         this.type,
@@ -59,7 +59,7 @@ export class metadata implements metadataInterface {
       this.kitsuId = kitsuSlugRes.res.data[0].id;
       this.id = kitsuSlugRes.malId;
     }
-    if (isNaN(this.kitsuId)) {
+    if (Number.isNaN(this.kitsuId)) {
       const kitsuRes = await helper.malToKitsu(this.id, this.type);
       try {
         this.kitsuId = kitsuRes.data[0].relationships.item.data.id;

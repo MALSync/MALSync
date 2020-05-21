@@ -16,7 +16,7 @@ export function translateList(simklStatus, malStatus: null | number = null) {
 }
 
 export function getCacheKey(id, simklId) {
-  if (isNaN(id) || !id) {
+  if (Number.isNaN(id) || !id) {
     return `simkl:${simklId}`;
   }
   return id;
@@ -28,7 +28,7 @@ export function getEpisode(episode: string): number {
     const temp = episode.match(/e\d+/i);
     if (temp !== null) {
       const episodePart = parseInt(temp[0].replace(/\D/, ''));
-      if (isNaN(episodePart)) return 0;
+      if (Number.isNaN(episodePart)) return 0;
       return episodePart;
     }
   }

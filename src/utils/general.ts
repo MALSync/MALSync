@@ -562,7 +562,7 @@ export async function epPrediction(malId, callback) {
 
   if (typeof timestamp !== 'number') timestamp = Number(timestamp);
 
-  if (isNaN(timestamp)) return callback(false);
+  if (Number.isNaN(timestamp)) return callback(false);
 
   let airing = 1;
   let episode = 0;

@@ -8,7 +8,7 @@ export const Jkanime: pageInterface = {
   domain: 'https://jkanime.net/',
   type: 'anime',
   isSyncPage(url) {
-    if (isNaN(parseInt(utils.urlPart(url, 4)))) {
+    if (Number.isNaN(parseInt(utils.urlPart(url, 4)))) {
       return false;
     }
     return true;

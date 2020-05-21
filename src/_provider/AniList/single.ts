@@ -116,7 +116,7 @@ export class Single extends SingleAbstract {
   async _update() {
     let selectId = this.ids.mal;
     let selectQuery = 'idMal';
-    if (isNaN(this.ids.mal)) {
+    if (Number.isNaN(this.ids.mal)) {
       selectId = this.ids.ani;
       selectQuery = 'id';
     }
@@ -169,7 +169,7 @@ export class Single extends SingleAbstract {
         this.animeInfo = json.data.Media;
 
         this.ids.ani = this.animeInfo.id;
-        if (isNaN(this.ids.mal) && this.animeInfo.idMal) {
+        if (Number.isNaN(this.ids.mal) && this.animeInfo.idMal) {
           this.ids.mal = this.animeInfo.idMal;
         }
 

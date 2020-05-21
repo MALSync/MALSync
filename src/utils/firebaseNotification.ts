@@ -17,13 +17,13 @@ async function checkNotifications() {
     'https://kissanimelist.firebaseio.com/Data2/Notification/Current.json';
   const response = await api.request.xhr('GET', url);
   const current = parseInt(JSON.parse(response.responseText));
-  if (isNaN(current)) con.error('Could not read current Notification number');
+  if (Number.isNaN(current)) con.error('Could not read current Notification number');
 
   con.log('Current Notification', current);
   const last = parseInt(await api.storage.get('firebaseNotification'));
   const next = last + 1;
 
-  if (typeof last === undefined || isNaN(last)) {
+  if (typeof last === undefined || Number.isNaN(last)) {
     api.storage.set('firebaseNotification', current);
     return;
   }
