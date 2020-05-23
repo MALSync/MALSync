@@ -150,7 +150,7 @@ export async function getSingle(
 
 export async function call(
   url,
-  sData = {},
+  sData: any = {},
   asParameter = false,
   method: 'GET' | 'POST' = 'GET',
   login = true,
