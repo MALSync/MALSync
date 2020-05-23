@@ -290,6 +290,7 @@ export default {
   },
   watch: {},
   mounted() {
+    // eslint-disable-next-line
     componentHandler.upgradeDom();
 
     const [settingsEl] = document.getElementsByClassName('open-settings');

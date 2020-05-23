@@ -82,7 +82,7 @@ export const Mangadex: pageInterface = {
         .first()
         .attr('href');
 
-      if (!chapterAnchorHref) return;
+      if (!chapterAnchorHref) return '';
 
       const chapterHrefParts = chapterAnchorHref.split('/');
 

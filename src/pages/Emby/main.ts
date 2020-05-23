@@ -85,8 +85,8 @@ async function urlChange(page) {
           con.log('Season', data);
           item = data.Items[0];
           reqUrl = `/Genres?Ids=${item.SeriesId}`;
-          apiCall(reqUrl).then(response => {
-            const genres: any = JSON.parse(response.responseText);
+          apiCall(reqUrl).then(response2 => {
+            const genres: any = JSON.parse(response2.responseText);
             con.log('genres', genres);
             for (let i = 0; i < genres.Items.length; i++) {
               const genre = genres.Items[i];
@@ -323,8 +323,8 @@ export const Emby: pageInterface = {
         document.addEventListener('fullscreenchange', function() {
           if (
             window.fullScreen ||
-            (window.innerWidth === screen.width &&
-              window.innerHeight === screen.height)
+            (window.innerWidth === window.screen.width &&
+              window.innerHeight === window.screen.height)
           ) {
             $('html').addClass('miniMAL-Fullscreen');
           } else {

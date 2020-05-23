@@ -88,6 +88,7 @@ async function startCheck(type = 'anime') {
 }
 
 async function updateElement(el, type = 'anime', retryNum = 0) {
+  // eslint-disable-next-line no-async-promise-executor
   return new Promise(async (resolve, reject) => {
     const anime_num_episodes = el.totalEp;
     const anime_image_path = el.image;

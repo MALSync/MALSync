@@ -1,10 +1,5 @@
 import { requestInterface } from './requestInterface';
-import {
-  xhrI,
-  xhrResponseI,
-  sendMessageI,
-  responseMessageI,
-} from '../messageInterface';
+import { xhrResponseI } from '../messageInterface';
 
 declare let GM_xmlhttpRequest: any;
 

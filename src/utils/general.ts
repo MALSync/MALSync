@@ -53,6 +53,7 @@ export function episode(type: 'anime' | 'manga') {
 export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/;
 
 export enum status {
+  // eslint-disable-next-line no-shadow
   watching = 1,
   completed = 2,
   onhold = 3,
@@ -69,9 +70,8 @@ export function getselect(data, name) {
         return temp[i].split('value="')[1].split('"')[0];
       }
     }
-  } else {
-    return '';
   }
+  return '';
 }
 
 export function absoluteLink(url, domain) {
@@ -253,12 +253,12 @@ export async function getEntrySettings(type, id, tags = '') {
 
   if (api.settings.get('malTags')) {
     // TAG mode
-    var tagString = getUrlFromTags(tags);
+    const tagString = getUrlFromTags(tags);
     if (tagString) {
       if (tagString[0] === '{') {
         try {
-          var temp = JSON.parse(tagString);
-          for (var key in tempOptions) {
+          const temp = JSON.parse(tagString);
+          for (const key in tempOptions) {
             if (temp[key]) tempOptions[key] = temp[key];
           }
         } catch (e) {
@@ -270,12 +270,12 @@ export async function getEntrySettings(type, id, tags = '') {
     }
   } else {
     // No TAG mode
-    var temp: any = await api.storage.get(`tagSettings/${type}/${id}`);
+    let temp: any = await api.storage.get(`tagSettings/${type}/${id}`);
 
     if (temp) {
-      temp = JSON.parse(tagString);
+      temp = JSON.parse(tags);
 
-      for (var key in tempOptions) {
+      for (const key in tempOptions) {
         if (temp[key]) tempOptions[key] = temp[key];
       }
     }
@@ -369,7 +369,7 @@ export async function getMalToKissFirebase(type, id) {
           const cache = await api.storage.get(
             `MalToKiss/${stream}/${encodeURIComponent(streamKey)}`,
           );
-          var streamJson;
+          let streamJson;
 
           if (
             typeof cache !== 'undefined' &&
@@ -563,9 +563,13 @@ export async function epPrediction(malId, callback) {
 
   if (typeof timestamp !== 'number') timestamp = Number(timestamp);
 
-  if (Number.isNaN(timestamp)) return callback(false);
+  if (Number.isNaN(timestamp)) {
+    callback(false);
+    return;
+  }
 
   let airing = 1;
+  // eslint-disable-next-line no-shadow
   let episode = 0;
 
   if (Date.now() < timestamp) airing = 0;
@@ -618,6 +622,7 @@ export async function epPrediction(malId, callback) {
   }
 }
 
+// eslint-disable-next-line no-shadow
 export function statusTag(status, type, id) {
   const info = {
     anime: {
@@ -688,6 +693,7 @@ export function statusTag(status, type, id) {
   return false;
 }
 
+// eslint-disable-next-line consistent-return
 export function notifications(
   url: string,
   title: string,
@@ -967,7 +973,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
    * expects a list of:
    * `<img src="blank.gif" data-src="my_image.png" width="600" height="400" class="lazy">`
    */
-
+  // eslint-disable-next-line
   function loadImage(el, fn) {
     if (!j.$(el).is(':visible')) return false;
     if (j.$(el).hasClass('lazyBack')) {
@@ -980,7 +986,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
       img.onload = function() {
         if (el.parent) el.parent.replaceChild(img, el);
         else el.src = src;
-
+        // eslint-disable-next-line
         fn ? fn() : null;
       };
       img.src = src;
@@ -996,6 +1002,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
   const processScroll = function() {
     for (let i = 0; i < lazyimages.length; i++) {
       if (utils.elementInViewport(lazyimages[i], 600)) {
+        // eslint-disable-next-line
         loadImage(lazyimages[i], function() {
           lazyimages.splice(i, i);
         });

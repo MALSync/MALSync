@@ -36,6 +36,8 @@ export class metadata implements metadataInterface {
     } else {
       this.id = NaN;
     }
+
+    // eslint-disable-next-line consistent-return
     return this;
   }
 

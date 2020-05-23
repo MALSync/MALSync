@@ -76,7 +76,7 @@ export const WonderfulSubs: pageInterface = {
   },
 };
 
-var betaWonderfulSubs: pageInterface = {
+let betaWonderfulSubs: pageInterface = {
   name: 'betaWonderfulSubs',
   domain: 'https://beta.wonderfulsubs.com',
   type: 'anime',
@@ -98,7 +98,7 @@ var betaWonderfulSubs: pageInterface = {
         .replace(/ /g, '-');
     },
     getOverviewUrl(url) {
-      return `${'https://beta.wonderfulsubs.com' + '/watch/'}${url
+      return `${'https://beta.wonderfulsubs.com/watch/'}${url
         .split('/')[4]
         .replace(/\?[^?]*$/g, '')}`;
     },

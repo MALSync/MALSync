@@ -2,7 +2,6 @@ import { Single as malSingle } from '../../../_provider/MyAnimeList/single';
 import { Single as anilistSingle } from '../../../_provider/AniList/single';
 import { Single as kitsuSingle } from '../../../_provider/Kitsu/single';
 import { Single as simklSingle } from '../../../_provider/Simkl/single';
-import { Single as localSingle } from '../../../_provider/Local/single';
 
 import { userlist as malList } from '../../../_provider/MyAnimeList/list';
 import { userlist as anilistList } from '../../../_provider/AniList/list';
@@ -19,11 +18,11 @@ export function generateSync(
 ) {
   mapToArray(masterList, list, true);
 
-  for (var i in slaveLists) {
+  for (const i in slaveLists) {
     mapToArray(slaveLists[i], list, false);
   }
 
-  for (var i in list) {
+  for (const i in list) {
     changeCheck(list[i], mode);
     missingCheck(list[i], missing, typeArray, mode);
   }
@@ -119,7 +118,7 @@ export function missingCheck(item, missing, types, mode) {
 // Sync
 
 export async function syncList(list, thisMissing) {
-  for (var i in list) {
+  for (const i in list) {
     const el = list[i];
     if (el.diff) {
       try {
@@ -132,8 +131,8 @@ export async function syncList(list, thisMissing) {
   }
 
   const missing = thisMissing.slice();
-  for (var i in missing) {
-    var miss = missing[i];
+  for (const i in missing) {
+    const miss = missing[i];
     con.log('Sync missing', miss);
     await syncMissing(miss)
       .then(() => {
@@ -163,16 +162,18 @@ export async function syncMissing(item) {
   return syncItem(item, item.syncType);
 }
 
+// eslint-disable-next-line consistent-return
 export function syncItem(slave, pageType) {
   if (Object.keys(slave.diff).length !== 0) {
+    let singleClass: any;
     if (pageType === 'MAL') {
-      var singleClass: any = new malSingle(slave.url);
+      singleClass = new malSingle(slave.url);
     } else if (pageType === 'ANILIST') {
-      var singleClass: any = new anilistSingle(slave.url);
+      singleClass = new anilistSingle(slave.url);
     } else if (pageType === 'KITSU') {
-      var singleClass: any = new kitsuSingle(slave.url);
+      singleClass = new kitsuSingle(slave.url);
     } else if (pageType === 'SIMKL') {
-      var singleClass: any = new simklSingle(slave.url);
+      singleClass = new simklSingle(slave.url);
     } else {
       throw 'No sync type';
     }
@@ -280,7 +281,7 @@ export function getList(prov, type) {
     });
 }
 
-export var background = {
+export const background = {
   async isEnabled() {
     return api.storage.get('backgroundListSync').then(async function(state) {
       con.info('background list sync state', state);
@@ -307,6 +308,7 @@ export var background = {
       });
     }
     con.error('Background list Sync not allowed');
+    return [];
 
     async function syncLists(type) {
       const mode = 'mirror';

@@ -45,7 +45,7 @@ export const FallenAngels: pageInterface = {
         !matchesOfRestOfNextChapter ||
         matchesOfRestOfNextChapter.length === 0
       )
-        return;
+        return '';
 
       return matchesOfRestOfNextChapter[0].replace(/(^"|"$)/gm, '');
     },

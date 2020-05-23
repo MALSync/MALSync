@@ -1,9 +1,4 @@
-import {
-  xhrI,
-  xhrResponseI,
-  sendMessageI,
-  responseMessageI,
-} from '../messageInterface';
+import { xhrResponseI, sendMessageI } from '../messageInterface';
 
 export interface requestInterface {
   xhr(

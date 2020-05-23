@@ -177,7 +177,7 @@ export class anilistClass {
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           api.settings.set(String(key), false);
-          location.reload();
+          window.location.reload();
         });
       });
     });

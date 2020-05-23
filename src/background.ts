@@ -24,6 +24,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       },
     );
   } else if (details.reason === 'update') {
+    // Placeholder
   }
   chrome.alarms.clearAll();
 });
@@ -78,7 +79,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     }
     case 'iframeDone': {
       checkContinue(message);
-      return;
+      return undefined;
     }
     case 'videoTime': {
       // @ts-ignore
@@ -87,7 +88,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
         item: message.item,
         sender,
       });
-      return;
+      return undefined;
     }
     case 'content': {
       // @ts-ignore
@@ -96,10 +97,10 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
         item: message.item,
         sender,
       });
-      return;
+      return undefined;
     }
     case 'videoTimeSet': {
-      if (!message.sender?.tab?.id) return;
+      if (!message.sender?.tab?.id) return undefined;
 
       chrome.tabs.sendMessage(
         message.sender.tab.id,
@@ -111,7 +112,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
         { frameId: message.sender.frameId },
       );
 
-      return;
+      return undefined;
     }
     case 'minimalWindow': {
       api.storage.get('windowId').then(winId => {
@@ -135,6 +136,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
       });
       return true;
     }
+    default:
   }
   return undefined;
 }
@@ -181,13 +183,13 @@ function getCookies(url, sender, xhr, callback) {
         t(cookieId);
       }
 
-      function t(cookieId) {
-        if (cookieId !== '') {
+      function t(cookieIdT) {
+        if (cookieIdT !== '') {
           // @ts-ignore
           browser.cookies
-            .getAll({ storeId: cookieId, url })
+            .getAll({ storeId: cookieIdT, url })
             .then(function(cookies) {
-              con.log('Cookie Store', cookieId, cookies);
+              con.log('Cookie Store', cookieIdT, cookies);
               let cookiesText = '';
               for (const key in cookies) {
                 const cookie = cookies[key];
@@ -287,6 +289,7 @@ function webRequestListener() {
       if (result) {
         con.log('webRequest permissions found');
         chrome.webRequest.onHeadersReceived.addListener(
+          // eslint-disable-next-line consistent-return
           function(details) {
             if (details.initiator!.indexOf(chrome.runtime.id) !== -1) {
               con.log('Remove x-frame-options');

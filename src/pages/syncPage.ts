@@ -87,7 +87,7 @@ export class syncPage {
       if (this.page.isSyncPage(this.url)) {
         const nextEp = this.page.sync.nextEpUrl(this.url);
         if (nextEp) {
-          location.href = nextEp;
+          window.location.href = nextEp;
           return;
         }
       }
@@ -495,6 +495,7 @@ export class syncPage {
     }
   }
 
+  // eslint-disable-next-line consistent-return
   public openCorrectionUi() {
     if (this.searchObj) {
       return this.searchObj.openCorrection().then(rerun => {
@@ -789,12 +790,12 @@ export class syncPage {
 
   getEpList() {
     const This = this;
+    const elementArray = [] as JQuery<HTMLElement>[];
     if (
       typeof this.page.overview !== 'undefined' &&
       typeof this.page.overview.list !== 'undefined'
     ) {
       const { elementEp } = this.page.overview.list;
-      const elementArray = [] as JQuery<HTMLElement>[];
       let currentEpisode = 0;
       if (this.singleObj) {
         currentEpisode = parseInt(this.singleObj.getEpisode());
@@ -815,8 +816,8 @@ export class syncPage {
           con.info(e);
         }
       });
-      return elementArray;
     }
+    return elementArray;
   }
 
   offsetHandler(epList) {

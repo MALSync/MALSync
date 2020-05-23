@@ -1,4 +1,4 @@
-export var keyboardMap = [
+export const keyboardMap = [
   '', // [0]
   '', // [1]
   '', // [2]

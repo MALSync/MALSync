@@ -15,6 +15,7 @@ document.getElementsByTagName('head')[0].onclick = function(e) {
 };
 
 api.settings.init().then(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const minimalVue = new Vue({
     render: h => h(main),
   }).$mount('#app');

@@ -209,11 +209,10 @@ export const Plex: pageInterface = {
     );
 
     document.addEventListener('fullscreenchange', function() {
-      // @ts-ignore
       if (
         window.fullScreen ||
-        (window.innerWidth === screen.width &&
-          window.innerHeight === screen.height)
+        (window.innerWidth === window.screen.width &&
+          window.innerHeight === window.screen.height)
       ) {
         $('html').addClass('miniMAL-Fullscreen');
       } else {

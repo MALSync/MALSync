@@ -39,6 +39,8 @@ export class metadata implements metadataInterface {
     } else {
       this.id = NaN;
     }
+
+    // eslint-disable-next-line consistent-return
     return this;
   }
 
@@ -76,6 +78,7 @@ export class metadata implements metadataInterface {
       this.animeInfo = res;
 
       try {
+        // eslint-disable-next-line no-unused-expressions
         this.animeI().attributes.slug;
       } catch (e) {
         con.error(e);
@@ -122,15 +125,15 @@ export class metadata implements metadataInterface {
   getAltTitle() {
     const altTitle: string[] = [];
     try {
-      for (var prop in this.animeI().attributes.abbreviatedTitles) {
-        var el = this.animeI().attributes.abbreviatedTitles[prop];
+      for (const prop in this.animeI().attributes.abbreviatedTitles) {
+        const el = this.animeI().attributes.abbreviatedTitles[prop];
         if (el !== this.getTitle() && el) {
           altTitle.push(el);
         }
       }
 
-      for (var prop in this.animeI().attributes.titles) {
-        var el = this.animeI().attributes.titles[prop];
+      for (const prop in this.animeI().attributes.titles) {
+        const el = this.animeI().attributes.titles[prop];
         if (el !== this.getTitle() && el) {
           altTitle.push(el);
         }
@@ -309,27 +312,15 @@ export class metadata implements metadataInterface {
   getOpeningSongs() {
     const openingSongs = [];
 
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return openingSongs;
   }
 
   getEndingSongs() {
     const endingSongs = [];
-
-    try {
-    } catch (e) {
-      console.log('[iframeOverview] Error:', e);
-    }
-
     return endingSongs;
   }
 
   getRelated() {
-    const html = '';
     let el: {
       type: string;
       links: { url: string; title: string; statusTag: string }[];
@@ -358,8 +349,8 @@ export class metadata implements metadataInterface {
               links: [],
             };
           }
-          const el = an[i.relationships.destination.data.id];
-          links[i.attributes.role].links.push(el);
+          const tempEl = an[i.relationships.destination.data.id];
+          links[i.attributes.role].links.push(tempEl);
         }
       });
       el = Object.keys(links).map(key => links[key]);

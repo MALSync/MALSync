@@ -34,7 +34,31 @@
         "@typescript-eslint/no-this-alias": "warn",
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }]
+        "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
+        "global-require": "warn",
+        "import/no-unresolved": "warn",
+        "no-fallthrough": "off",
+        "no-inner-declarations": "warn", // TODO
+        "no-restricted-syntax": [
+          "error",
+          // TODO: Reenable rule
+          //{
+          //  "selector": "ForInStatement",
+          //  "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+          //},
+          {
+            "selector": "ForOfStatement",
+            "message": "iterators/generators require regenerator-runtime, which is too heavyweight for this guide to allow them. Separately, loops should be avoided in favor of array iterations."
+          },
+          {
+            "selector": "LabeledStatement",
+            "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+          },
+          {
+            "selector": "WithStatement",
+            "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+          }
+        ]
       }
     },
     {
@@ -83,6 +107,9 @@
     "no-continue": "off",
     "no-fallthrough": "off",
     "import/no-extraneous-dependencies": "off",
+    "no-script-url": "warn",
+    "prefer-promise-reject-errors": "warn", // TODO
+    "no-inner-declarations": "off", //TODO
     "new-cap": "warn", //TODO
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO

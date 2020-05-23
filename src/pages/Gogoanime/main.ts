@@ -43,6 +43,7 @@ export const Gogoanime: pageInterface = {
       if (typeof href !== 'undefined') {
         return Gogoanime.domain + href;
       }
+      return '';
     },
   },
   overview: {

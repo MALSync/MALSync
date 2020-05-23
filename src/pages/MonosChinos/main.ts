@@ -51,6 +51,7 @@ export const MonosChinos: pageInterface = {
           return href;
         }
       }
+      return '';
     },
   },
   overview: {

@@ -247,7 +247,7 @@ export class myanimelistClass {
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           api.settings.set(String(key), false);
-          location.reload();
+          window.location.reload();
         });
       });
     });
@@ -285,15 +285,17 @@ export class myanimelistClass {
           const linkContent = `<img style="${imgStyle}" src="${utils.favicon(
             page.domain,
           )}"> ${page.name}`;
+
+          let link;
           if (typeof page.completeSearchTag === 'undefined') {
-            var link = `<a target="_blank" href="${page.searchUrl.replace(
+            link = `<a target="_blank" href="${page.searchUrl.replace(
               '##searchkey##',
               titleEncoded,
             )}">
               ${linkContent}
             </a>`;
           } else {
-            var link = page.completeSearchTag(title, linkContent);
+            link = page.completeSearchTag(title, linkContent);
           }
 
           let googleSeach = '';
@@ -662,7 +664,7 @@ export class myanimelistClass {
           );
           $('#mal-sync-removeFriends').click(function() {
             api.settings.set('friendScore', false);
-            location.reload();
+            window.location.reload();
           });
         }
       });

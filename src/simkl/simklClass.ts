@@ -250,7 +250,6 @@ export class simklClass {
           );
         }
 
-        const googleSeach = '';
         if (typeof page.googleSearchDomain !== 'undefined') {
           tempAdd.googleSeach = `https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}`;
         }

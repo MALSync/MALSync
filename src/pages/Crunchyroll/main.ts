@@ -125,8 +125,7 @@ export const Crunchyroll: pageInterface = {
           j.$('.season-dropdown')
             .not(thisparent)
             .remove();
-          j
-            .$('.portrait-grid')
+          j.$('.portrait-grid')
             .css('display', 'block')
             .find('li.group-item img.landscape')
             .each(function() {
@@ -135,11 +134,11 @@ export const Crunchyroll: pageInterface = {
                 j
                   .$(this)
                   .attr('src', String(j.$(this).attr('data-thumbnailUrl')));
-            }),
-            j.$('.exclusivMal').remove();
+            });
+          j.$('.exclusivMal').remove();
           page.handlePage();
         });
-        let season = new RegExp('[?&]' + 'season' + '=([^&#]*)').exec(page.url);
+        let season = new RegExp('[?&]season=([^&#]*)').exec(page.url);
         if (season !== null) {
           // @ts-ignore
           season = season[1] || null;

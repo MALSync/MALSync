@@ -10,6 +10,7 @@ export class minimal {
 
   private minimalVue;
 
+  // eslint-disable-next-line no-shadow
   constructor(public minimal) {
     this.minimal.find('body').append('<div id="minimalApp"></div>');
     this.minimalVue = new Vue({
@@ -134,7 +135,6 @@ export class minimal {
 
   loadSettings() {
     const This = this;
-    const listener: (() => void)[] = [];
 
     // Listener
     this.minimal.find('#posLeft').val(api.settings.get('posLeft'));
@@ -236,9 +236,9 @@ export class minimal {
     if (api.type === 'webextension' && this.isPopup()) {
       chrome.alarms.get('updateCheck', (a: any) => {
         con.log(a);
-        interval = 0;
+        let interval = 0;
         if (typeof a !== 'undefined') {
-          var interval = a!.periodInMinutes;
+          interval = a!.periodInMinutes;
           this.minimal.find('.updateCheckEnable').show();
         }
         this.minimal.find('#updateCheckTime').val(interval);
@@ -428,16 +428,14 @@ export class minimal {
       )
       .then(response => {
         const searchResults = j.$.parseJSON(response.responseText);
-        this.minimal
-          .find(selector)
-          .append(
-            '<div class="mdl-grid">\
-          <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">\
-            <option value="anime">Anime</option>\
-            <option value="manga">Manga</option>\
-          </select>\
-        </div>',
-          );
+        this.minimal.find(selector).append(
+          `<div class="mdl-grid">
+            <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
+              <option value="anime">Anime</option>
+              <option value="manga">Manga</option>
+            </select>
+          </div>`,
+        );
         this.minimal.find('#searchListType').val(type);
         this.minimal.find('#searchListType').change(function(event) {
           This.searchMal(
@@ -448,11 +446,11 @@ export class minimal {
           );
         });
 
-        j.$.each(searchResults, (i, value) => {
-          j.$.each(value, (i, value) => {
-            j.$.each(value, (i, value) => {
-              if (typeof value !== 'object') return;
-              j.$.each(value, (i, value) => {
+        j.$.each(searchResults, (i, value0) => {
+          j.$.each(value0, (i2, value2) => {
+            j.$.each(value2, (i3, value3) => {
+              if (typeof value3 !== 'object') return;
+              j.$.each(value3, (i4, value) => {
                 if (typeof value.name !== 'undefined') {
                   This.minimal.find(`${selector} > div`).append(
                     `<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="${
