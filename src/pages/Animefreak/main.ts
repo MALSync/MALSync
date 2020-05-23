@@ -32,6 +32,7 @@ export const Animefreak: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Animefreak.domain);
       }
+      return '';
     },
   },
   overview: {

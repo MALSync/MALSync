@@ -1,7 +1,5 @@
 import { pageInterface } from '../pageInterface';
 
-// TODO needs refactoring
-
 export const Crunchyroll: pageInterface = {
   name: 'Crunchyroll',
   domain: 'https://www.crunchyroll.com',

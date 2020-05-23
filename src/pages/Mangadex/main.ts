@@ -87,7 +87,7 @@ export const Mangadex: pageInterface = {
       const chapterHrefParts = chapterAnchorHref.split('/');
 
       if (chapterHrefParts.length < 2 || chapterHrefParts[1] !== 'chapter')
-        return;
+        return '';
 
       return (
         Mangadex.domain +

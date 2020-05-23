@@ -58,13 +58,14 @@ export const AnimeKisa: pageInterface = {
         .next()
         .attr('value');
 
-      if (!num) return;
+      if (!num) return '';
 
       const href = url.replace(/\d+$/, num);
 
       if (typeof num !== 'undefined' && href !== url) {
         return utils.absoluteLink(href, AnimeKisa.domain);
       }
+      return '';
     },
   },
   overview: {

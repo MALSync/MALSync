@@ -49,6 +49,7 @@ export const tmofans: pageInterface = {
           return temp[0].replace(/\D+/g, '');
         }
       }
+      return '';
     },
   },
   overview: {

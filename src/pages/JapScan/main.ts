@@ -53,6 +53,7 @@ export const JapScan: pageInterface = {
             .attr('href') || '')
         );
       }
+      return '';
     },
   },
   overview: {

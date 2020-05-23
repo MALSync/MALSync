@@ -57,6 +57,7 @@ export const Turkanime: pageInterface = {
           Turkanime.domain,
         );
       }
+      return '';
     },
   },
   overview: {

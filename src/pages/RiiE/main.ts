@@ -53,6 +53,7 @@ export const RiiE: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, RiiE.domain);
       }
+      return '';
     },
   },
   overview: {

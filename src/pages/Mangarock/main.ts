@@ -63,6 +63,7 @@ export const Mangarock: pageInterface = {
           .slice(0, 6)
           .join('/')}/${num}`;
       }
+      return '';
     },
   },
   overview: {

@@ -30,8 +30,9 @@ async function urlChange(page, curUrl = window.location.href, player = false) {
       $('html').addClass('noApiKey');
       return;
     }
+    let data;
     try {
-      var data: any = JSON.parse(response.responseText);
+      data = JSON.parse(response.responseText);
     } catch (e) {
       con.error(e);
       $('html').addClass('noApiKey');
@@ -75,10 +76,11 @@ async function urlChange(page, curUrl = window.location.href, player = false) {
 async function apiCall(url, apiKey = null, base = null) {
   if (apiKey === null) apiKey = await getApiKey();
   if (base === null) base = await getBase();
+  let pre;
   if (url.indexOf('?') !== -1) {
-    var pre = '&';
+    pre = '&';
   } else {
-    var pre = '?';
+    pre = '?';
   }
   url = `${base + url + pre}X-Plex-Token=${apiKey}`;
   con.log('Api Call', url);

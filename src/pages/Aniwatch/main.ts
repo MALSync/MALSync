@@ -52,11 +52,11 @@ export const Aniwatch: pageInterface = {
         tabPage !== 'stream' ||
         !j.$('#anilyr-nextEpi').is('[disabled=disabled]')
       )
-        return;
+        return '';
 
       const urlPart5 = utils.urlPart(url, 5);
 
-      if (!urlPart5) return;
+      if (!urlPart5) return '';
 
       return url.replace(/\d+$/, String(parseInt(urlPart5) + 1));
     },

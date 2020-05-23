@@ -26,6 +26,7 @@ export const DreamSub: pageInterface = {
       if (jsonData.nextEpisode) {
         return jsonData.nextEpisode;
       }
+      return '';
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) {

@@ -51,7 +51,9 @@ export const nineAnime: pageInterface = {
     getIdentifier(url) {
       return '';
     },
-    uiSelector(selector) {},
+    uiSelector(selector) {
+      // no Ui
+    },
     list: {
       offsetHandler: false,
       elementsSelector() {

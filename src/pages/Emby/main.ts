@@ -126,6 +126,7 @@ async function returnPlayingItemId() {
           return sess.NowPlayingItem.Id;
         }
       }
+      return '';
     });
   });
 }
@@ -155,25 +156,22 @@ async function waitForBase() {
 }
 
 async function testApi() {
-  return new Promise(async (resolve, reject) => {
-    let base = await getBase();
-    if (typeof base === 'undefined' || base === '') {
-      con.info('No base');
-      base = await waitForBase();
+  let base = await getBase();
+  if (typeof base === 'undefined' || base === '') {
+    con.info('No base');
+    base = await waitForBase();
+  }
+
+  setBase(base);
+
+  apiCall('/System/Info', null, base).then(response => {
+    if (response.status !== 200) {
+      con.error('Not Authenticated');
+      setBase('');
+      throw 'Not Authenticated [Emby]';
+      return false;
     }
-
-    setBase(base);
-
-    apiCall('/System/Info', null, base).then(response => {
-      if (response.status !== 200) {
-        con.error('Not Authenticated');
-        setBase('');
-        reject();
-        return false;
-      }
-      resolve();
-      return true;
-    });
+    return true;
   });
 }
 
@@ -219,10 +217,11 @@ async function askForApiKey() {
 async function apiCall(url, apiKey = null, base = null) {
   if (apiKey === null) apiKey = await getApiKey();
   if (base === null) base = await getBase();
+  let pre;
   if (url.indexOf('?') !== -1) {
-    var pre = '&';
+    pre = '&';
   } else {
-    var pre = '?';
+    pre = '?';
   }
   url = `${base + url + pre}api_key=${apiKey}`;
   con.log('Api Call', url);

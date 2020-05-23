@@ -29,11 +29,11 @@ export const mangadenizi: pageInterface = {
       const script = j.$('body > div.container-fluid > script')[0].innerHTML;
       let matches = script.match(/next_chapter\s*=\s*".*"/gim);
 
-      if (!matches || matches.length === 0) return;
+      if (!matches || matches.length === 0) return '';
 
       matches = matches[0].match(/"(.*?)"/gm);
 
-      if (!matches || matches.length === 0) return;
+      if (!matches || matches.length === 0) return '';
 
       return matches[0].replace(/(^"|"$)/gm, '');
     },

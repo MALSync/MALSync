@@ -35,10 +35,11 @@ export const Nhentai: pageInterface = {
     getEpisode(url) {
       try {
         const scripts = j.$('script').text();
+        let episodePart;
         if (scripts.indexOf('"english":"') !== -1) {
-          var episodePart = scripts.split('"english":"')[1].split('"')[0];
+          episodePart = scripts.split('"english":"')[1].split('"')[0];
         } else {
-          var episodePart = scripts.split('"japanese":"')[1].split('"')[0];
+          episodePart = scripts.split('"japanese":"')[1].split('"')[0];
         }
         if (episodePart.length) {
           const temp = episodePart.match(/(ch|ch.|chapter).?\d+/gim);

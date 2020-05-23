@@ -35,7 +35,7 @@ export const FallenAngels: pageInterface = {
         /next_chapter\s*=\s*".*"/gim,
       );
 
-      if (!nextChapterMatches || nextChapterMatches.length === 0) return;
+      if (!nextChapterMatches || nextChapterMatches.length === 0) return '';
 
       const matchesOfRestOfNextChapter = nextChapterMatches[0].match(
         /"(.*?)"/gm,

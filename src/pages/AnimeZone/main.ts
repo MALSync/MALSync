@@ -26,6 +26,7 @@ export const AnimeZone: pageInterface = {
     nextEpUrl(url) {
       const href = j.$('.next a').attr('href');
       if (href) return utils.absoluteLink(href, AnimeZone.domain);
+      return '';
     },
   },
   overview: {
@@ -49,7 +50,7 @@ export const AnimeZone: pageInterface = {
           .first()
           .attr('href');
 
-        if (!anchorHref) return;
+        if (!anchorHref) return '';
 
         return utils.absoluteLink(
           anchorHref.replace(/^../gm, ''),

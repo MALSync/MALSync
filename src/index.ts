@@ -8,6 +8,8 @@ import { firebaseNotification } from './utils/firebaseNotification';
 import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
 
+let page;
+
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
     const mal = new myanimelistClass(window.location.href);
@@ -19,7 +21,6 @@ function main() {
   } else if (window.location.href.indexOf('simkl.com') > -1) {
     const simkl = new simklClass(window.location.href);
   } else {
-    let page;
     try {
       if (inIframe()) throw 'iframe';
       page = new syncPage(window.location.href, pages);

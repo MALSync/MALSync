@@ -63,7 +63,7 @@ export const Gogoanime: pageInterface = {
       elementUrl(selector) {
         const anchorHref = selector.attr('href');
 
-        if (!anchorHref) return;
+        if (!anchorHref) return '';
 
         return utils.absoluteLink(
           anchorHref.replace(/^ /, ''),

@@ -47,6 +47,7 @@ export const Samehadaku: pageInterface = {
         .$("div.naveps > div.nvs.rght > a:not('.nonex')")
         .attr('href');
       if (href) return utils.absoluteLink(href, Samehadaku.domain);
+      return '';
     },
   },
   overview: {

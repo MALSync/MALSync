@@ -3,7 +3,7 @@ import { getSingle } from '../_provider/singleFactory';
 import { initIframeModal } from '../minimal/iframe';
 import { providerTemplates } from '../provider/templates';
 import { getPlayerTime } from '../utils/player';
-import { searchClass } from '../_provider/Search/vueSearchClass.ts';
+import { searchClass } from '../_provider/Search/vueSearchClass';
 
 declare let browser: any;
 
@@ -506,10 +506,11 @@ export class syncPage {
   }
 
   private syncHandling(hoverInfo = false, undo = false) {
+    let p;
     if (undo) {
-      var p = this.singleObj.undo();
+      p = this.singleObj.undo();
     } else {
-      var p = this.singleObj.sync();
+      p = this.singleObj.sync();
     }
 
     return p
@@ -557,6 +558,7 @@ export class syncPage {
                 `UI_Status_Rewatching_${this.page.type}`,
               );
               break;
+            default:
           }
           message += split + statusString;
           split = ' | ';
@@ -605,12 +607,14 @@ export class syncPage {
             type: 'update',
           });
           flashmItem.find('.undoButton').on('click', e => {
-            e.target.closest('.flash')?.remove();
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
             this.syncHandling(false, true);
           });
           flashmItem.find('.wrongButton').on('click', e => {
             this.openCorrectionUi();
-            e.target.closest('.flash')?.remove();
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
             this.syncHandling(false, true);
           });
         } else {
@@ -823,7 +827,7 @@ export class syncPage {
       if (typeof epList[i] !== 'undefined') {
         con.log('Offset', i);
         if (i > 1) {
-          var calcOffset = 1 - i;
+          const calcOffset = 1 - i;
           utils.flashConfirm(
             api.storage.lang('syncPage_flashConfirm_offsetHandler_1', [
               String(calcOffset),
@@ -883,7 +887,7 @@ export class syncPage {
   UILoaded = false;
 
   private loadUI() {
-    var This = this;
+    const This = this;
     if (this.UILoaded) return;
     this.UILoaded = true;
     let wrapStart = '<span style="display: inline-block;">';
@@ -911,8 +915,8 @@ export class syncPage {
     ui += '</select>';
     ui += wrapEnd;
 
+    let middle = '';
     if (this.page.type === 'anime') {
-      var middle = '';
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;
       middle += '<span style=" text-decoration: none; outline: medium none;">';
@@ -922,7 +926,6 @@ export class syncPage {
       middle += '</span>';
       middle += wrapEnd;
     } else {
-      var middle = '';
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Volume')} </span>`;
       middle += '<span style=" text-decoration: none; outline: medium none;">';
@@ -954,17 +957,6 @@ export class syncPage {
     ui += '</span>';
     ui += '</p>';
 
-    let uihead = '';
-    uihead +=
-      '<p class="headui" style="float: right; margin: 0; margin-right: 10px">';
-    uihead += '';
-    uihead += '</p>';
-
-    let uiwrong = '';
-
-    uiwrong +=
-      '<button class="open-info-popup mdl-button" style="display:none; margin-left: 6px;">MAL</button>';
-
     if (this.page.isSyncPage(this.url)) {
       if (typeof this.page.sync.uiSelector !== 'undefined') {
         this.page.sync.uiSelector(j.$(ui));
@@ -973,7 +965,6 @@ export class syncPage {
       this.page.overview.uiSelector(j.$(ui));
     }
 
-    var This = this;
     j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(
       function() {
         This.buttonclick();
@@ -1045,12 +1036,14 @@ export class syncPage {
       if (info.action === 'presence') {
         console.log('Presence requested', info, this.curState);
 
+        let largeImageKeyTemp;
+        let largeImageTextTemp;
         if (!api.settings.get('presenceHidePage')) {
-          var largeImageKeyTemp = this.page.name.toLowerCase();
-          var largeImageTextTemp = this.page.name;
+          largeImageKeyTemp = this.page.name.toLowerCase();
+          largeImageTextTemp = this.page.name;
         } else {
-          var largeImageKeyTemp = 'malsync';
-          var largeImageTextTemp = 'MAL-Sync';
+          largeImageKeyTemp = 'malsync';
+          largeImageTextTemp = 'MAL-Sync';
         }
 
         const pres: any = {
@@ -1094,10 +1087,12 @@ export class syncPage {
             sendResponse(pres);
             return;
           }
+
+          let browsingTemp;
           if (!api.settings.get('presenceHidePage')) {
-            var browsingTemp = this.page.name;
+            browsingTemp = this.page.name;
           } else {
-            var browsingTemp = this.page.type.toString();
+            browsingTemp = this.page.type.toString();
           }
           pres.presence.startTimestamp = this.browsingtime;
           pres.presence.state = api.storage.lang('Discord_rpc_browsing', [

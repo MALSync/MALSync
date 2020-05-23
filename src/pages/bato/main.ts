@@ -49,6 +49,7 @@ export const bato: pageInterface = {
       if (href.split('/')[3] === 'chapter') {
         return href;
       }
+      return '';
     },
   },
   overview: {

@@ -26,6 +26,7 @@ export const TsukiMangas: pageInterface = {
       if (jsonData.nextChapter) {
         return jsonData.nextChapter;
       }
+      return '';
     },
     getMalUrl(provider) {
       if (jsonData.myanimelistID && jsonData.myanimelistID !== '0') {
@@ -112,6 +113,7 @@ export const TsukiMangas: pageInterface = {
               return true;
             }
           }
+          return false;
         },
         function() {
           if (

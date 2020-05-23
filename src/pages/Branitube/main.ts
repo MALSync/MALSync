@@ -60,15 +60,17 @@ export const Branitube: pageInterface = {
           url.split('/')[5]
         }`;
       }
+      return '';
     },
     getMalUrl(provider) {
+      let malid;
       if (getType() === 'anime') {
-        var malid = j.$('.nomeAnime').attr('data-anmalid');
+        malid = j.$('.nomeAnime').attr('data-anmalid');
         if (!malid || malid === '0') {
-          var malid = j.$('.epInfo').attr('data-epmalid');
+          malid = j.$('.epInfo').attr('data-epmalid');
         }
       } else {
-        var malid = j.$('.epInfo').attr('data-epmalid');
+        malid = j.$('.epInfo').attr('data-epmalid');
       }
       if (malid && malid !== '0') {
         return `https://myanimelist.net/anime/${malid}`;
@@ -94,10 +96,9 @@ export const Branitube: pageInterface = {
       ).prependTo(j.$('div.areaEpsList').first());
     },
     getMalUrl(provider) {
+      let malid;
       if (getType() === 'anime') {
-        var malid = j
-          .$('div.animeInfos > ul > li.largeSize')
-          .attr('data-malid');
+        malid = j.$('div.animeInfos > ul > li.largeSize').attr('data-malid');
       }
       if (malid && malid !== '0') {
         return `https://myanimelist.net/anime/${malid}`;
@@ -159,13 +160,14 @@ export const Branitube: pageInterface = {
 };
 
 function getType() {
+  let epInfo;
   if (window.location.href.split('/')[3] === 'watch') {
-    var epInfo = j
+    epInfo = j
       .$('.epInfo')
       .text()
       .toLowerCase();
   } else {
-    var epInfo = j
+    epInfo = j
       .$('div.areaTypesList.no-padding > ul > li > a.active')
       .text()
       .toLowerCase();

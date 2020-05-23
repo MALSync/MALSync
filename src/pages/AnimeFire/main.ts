@@ -40,6 +40,7 @@ export const AnimeFire: pageInterface = {
           j.$('li.page-item:nth-child(4) > a.page-link').attr('href'),
         );
       }
+      return '';
     },
   },
   init(page) {

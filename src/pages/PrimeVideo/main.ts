@@ -175,10 +175,11 @@ function getApi(url, epId = 0) {
         Object.keys(e.props.state.detail.detail).length
       ) {
         // Parent
+        let detail;
         if (data.gti && e.props.state.detail.detail.hasOwnProperty(data.gti)) {
-          var detail: any = e.props.state.detail.detail[data.gti];
+          detail = e.props.state.detail.detail[data.gti];
         } else {
-          var detail: any = Object.values(e.props.state.detail.detail)[0];
+          detail = Object.values(e.props.state.detail.detail)[0];
         }
 
         if (
@@ -189,7 +190,7 @@ function getApi(url, epId = 0) {
         }
         if (detail) {
           if (!data.genres.length && detail.genres && detail.genres.length)
-            data.genres = detail.genres.map(e => e.id);
+            data.genres = detail.genres.map(e2 => e2.id);
         }
         // Episode
         if (epId && e.props.state.detail.detail.hasOwnProperty(epId)) {
@@ -197,7 +198,7 @@ function getApi(url, epId = 0) {
           if (epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
           if (epDetail.entityType === 'Movie') data.ep = 1;
           if (!data.genres.length && epDetail.genres && epDetail.genres.length)
-            data.genres = epDetail.genres.map(e => e.id);
+            data.genres = epDetail.genres.map(e3 => e3.id);
         }
       }
     },

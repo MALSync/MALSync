@@ -102,15 +102,16 @@ export const Proxer: pageInterface = {
       },
       paginationNext(updateCheck) {
         con.error('sadsad', updateCheck);
+        let el;
         if (updateCheck) {
-          var el = j.$('.menu').last();
+          el = j.$('.menu').last();
           if (typeof el[0] === 'undefined' || el.hasClass('active')) {
             return false;
           }
           el[0].click();
           return true;
         }
-        var el = j
+        el = j
           .$('.menu.active')
           .first()
           .next();

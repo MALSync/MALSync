@@ -50,6 +50,7 @@ export const animeultima: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, animeultima.domain);
       }
+      return '';
     },
   },
   overview: {

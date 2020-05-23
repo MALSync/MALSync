@@ -64,7 +64,7 @@ export const TRanimeizle: pageInterface = {
         `.youtube-wrapper .my-15 a:first-child`,
       );
 
-      if (!nextEpisodeAnchor || nextEpisodeAnchor.href.includes('#')) return;
+      if (!nextEpisodeAnchor || nextEpisodeAnchor.href.includes('#')) return '';
 
       return nextEpisodeAnchor.href;
     },

@@ -53,6 +53,7 @@ export const MangaKatana: pageInterface = {
           .first()
           .attr('href');
       }
+      return '';
     },
   },
   overview: {

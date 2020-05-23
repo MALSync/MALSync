@@ -84,6 +84,7 @@ export const kawaiifu: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, kawaiifu.domain);
       }
+      return '';
     },
     uiSelector(selector) {
       selector.insertAfter(j.$('div.desc-top').first());
@@ -96,7 +97,9 @@ export const kawaiifu: pageInterface = {
     getIdentifier(url) {
       return '';
     },
-    uiSelector(selector) {},
+    uiSelector(selector) {
+      // no UI
+    },
     list: {
       offsetHandler: false,
       elementsSelector() {

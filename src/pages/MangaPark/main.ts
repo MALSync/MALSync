@@ -90,6 +90,7 @@ export const MangaPark: pageInterface = {
           MangaPark.domain,
         );
       }
+      return '';
     },
   },
   overview: {

@@ -56,6 +56,7 @@ export const AnimeIndo: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, AnimeIndo.domain);
       }
+      return '';
     },
   },
   overview: {

@@ -45,6 +45,7 @@ export const AnimeXin: pageInterface = {
           return href;
         }
       }
+      return '';
     },
   },
   overview: {

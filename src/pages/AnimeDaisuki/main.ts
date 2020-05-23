@@ -46,6 +46,7 @@ export const AnimeDaisuki: pageInterface = {
       if (typeof href !== 'undefined') {
         return AnimeDaisuki.domain + href;
       }
+      return '';
     },
   },
   overview: {

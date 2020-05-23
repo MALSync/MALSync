@@ -43,6 +43,7 @@ export const fourAnime: pageInterface = {
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, fourAnime.domain);
       }
+      return '';
     },
   },
   overview: {

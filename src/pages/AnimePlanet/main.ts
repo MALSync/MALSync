@@ -30,6 +30,7 @@ export const AnimePlanet: pageInterface = {
           return temp[0].replace(/\D+/g, '');
         }
       }
+      return NaN;
     },
     uiSelector(selector) {
       selector.insertBefore(j.$('#siteContainer > nav').first());
