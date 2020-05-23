@@ -185,7 +185,7 @@ export function setUrlInTags(url: string, tags: string) {
   if (!api.settings.get('malTags')) return tags;
   const addition = `malSync::${btoa(url)}::`;
   if (/(last|malSync)::[\d\D]+::/.test(tags)) {
-    tags = tags.replace(/(last|malSync)::[^\^]*?::/, addition);
+    tags = tags.replace(/(last|malSync)::[^^]*?::/, addition);
   } else {
     tags = `${tags},${addition}`;
   }
@@ -202,6 +202,7 @@ export async function getResumeWaching(
 ): Promise<{ url?: string; ep?: number } | void> {
   if (!api.settings.get('malResume')) return;
 
+  /* eslint-disable-next-line consistent-return */
   return api.storage.get(`resume/${type}/${id}`);
 }
 
@@ -215,6 +216,7 @@ export async function getContinueWaching(
 ): Promise<{ url?: string; ep?: number } | void> {
   if (!api.settings.get('malContinue')) return;
 
+  /* eslint-disable-next-line consistent-return */
   return api.storage.get(`continue/${type}/${id}`);
 }
 
@@ -450,6 +452,7 @@ export async function epPredictionUI(
     };
     //
     let { airing } = pre;
+    /* eslint-disable-next-line no-shadow */
     let { episode } = pre;
 
     if (typeof aniCache === 'object') {
@@ -766,13 +769,13 @@ export function flashm(
   }
   con.log('[Flash] Message:', text);
 
-  var colorF = '#323232';
+  let colorF = '#323232';
   if (
     typeof options !== 'undefined' &&
     typeof options.error !== 'undefined' &&
     options.error
   ) {
-    var colorF = '#3e0808';
+    colorF = '#3e0808';
   }
 
   let flashdiv = '#flash-div-bottom';
@@ -810,6 +813,8 @@ export function flashm(
         </div>\
       </div>`;
 
+  let flashmEl;
+
   if (
     typeof options !== 'undefined' &&
     typeof options.hoverInfo !== 'undefined' &&
@@ -818,15 +823,15 @@ export function flashm(
     messClass += ' flashinfo';
     mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
     j.$('#flashinfo-div').addClass('hover');
-    var flashm = j.$(mess).appendTo('#flashinfo-div');
+    flashmEl = j.$(mess).appendTo('#flashinfo-div');
     if (
       typeof options !== 'undefined' &&
       typeof options.minimized !== 'undefined' &&
       options.minimized
     )
-      flashm.css('max-height', '8px');
+      flashmEl.css('max-height', '8px');
   } else {
-    var flashm = j.$(mess).appendTo(flashdiv);
+    flashmEl = j.$(mess).appendTo(flashdiv);
   }
 
   if (
@@ -834,21 +839,21 @@ export function flashm(
     typeof options.permanent !== 'undefined' &&
     options.permanent
   ) {
-    flashm.slideDown(800);
+    flashmEl.slideDown(800);
   } else if (
     typeof options !== 'undefined' &&
     typeof options.hoverInfo !== 'undefined' &&
     options.hoverInfo
   ) {
-    flashm
+    flashmEl
       .slideDown(800)
       .delay(4000)
       .queue(function() {
         j.$('#flashinfo-div').removeClass('hover');
-        flashm.css('max-height', '8px');
+        flashmEl.css('max-height', '8px');
       });
   } else {
-    flashm
+    flashmEl
       .slideDown(800)
       .delay(4000)
       .slideUp(800, () => {
@@ -856,7 +861,7 @@ export function flashm(
         j.$(this).remove();
       });
   }
-  return flashm;
+  return flashmEl;
 }
 
 export async function flashConfirm(

@@ -43,7 +43,7 @@ export const Kissanime: pageInterface = {
 
       const [episodeText] = episodeTextMatches;
 
-      const episodeNumberMatches = episodeText.match(/\d+($|\-)/m);
+      const episodeNumberMatches = episodeText.match(/\d+($|-)/m);
 
       if (!episodeNumberMatches || episodeNumberMatches.length === 0)
         return NaN;
@@ -60,7 +60,7 @@ export const Kissanime: pageInterface = {
 
       if (!nextEp) return '';
 
-      return `${url.replace(/\/[^\/]*$/, '')}/${nextEp}`;
+      return `${url.replace(/\/[^/]*$/, '')}/${nextEp}`;
     },
   },
   overview: {

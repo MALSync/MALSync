@@ -9,10 +9,13 @@ function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
     // Do nothing
   } else if (window.location.href.indexOf('anilist.co') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const anilist = new anilistClass(window.location.href);
   } else if (window.location.href.indexOf('kitsu.io') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const kitsu = new kitsuClass(window.location.href);
   } else if (window.location.href.indexOf('simkl.com') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new simklClass(window.location.href);
   } else {
     let page;

@@ -130,7 +130,7 @@ export const Crunchyroll: pageInterface = {
             .find('li.group-item img.landscape')
             .each(function() {
               // @ts-ignore
-              void 0 === j.$(this).attr('src') &&
+              void 0 === j.$(this).attr('src') && // eslint-disable-line
                 j
                   .$(this)
                   .attr('src', String(j.$(this).attr('data-thumbnailUrl')));

@@ -76,7 +76,7 @@ export const animeflv: pageInterface = {
           scriptEps = scriptEps[1] || null;
           if (scriptEps !== null) {
             // @ts-ignore
-            const patron2 = /\[([^\[\]]{0,10},{0,10})\]/g;
+            const patron2 = /\[([^[\]]{0,10},{0,10})\]/g;
             // @ts-ignore
             const eps = scriptEps.toString().match(patron2);
             if (eps !== null) {

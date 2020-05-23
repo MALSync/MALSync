@@ -126,7 +126,7 @@ export class searchClass {
       / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
       '',
     );
-    resTitle = resTitle.replace(/ *\([^\)]+audio\)/i, '');
+    resTitle = resTitle.replace(/ *\([^)]+audio\)/i, '');
     resTitle = resTitle.replace(/ BD( |$)/i, '');
     resTitle = resTitle.trim();
     return resTitle;
@@ -483,6 +483,7 @@ export class searchClass {
         similarity?: any;
       } = { Kiss: kissurl, Mal: this.state.url };
       if (this.state.provider === 'user') {
+        /* eslint-disable-next-line */
         if (!confirm(api.storage.lang('correction_DBRequest'))) return;
         param.newCorrection = true;
       }

@@ -22,7 +22,7 @@ export const fourAnime: pageInterface = {
 
       if (!urlPart3) return '';
 
-      return urlPart3.replace(/\-episode[^]*$/g, '');
+      return urlPart3.replace(/-episode[^]*$/g, '');
     },
     getOverviewUrl(url) {
       return `${fourAnime.domain}/anime/${fourAnime.sync.getIdentifier(url)}`;
@@ -58,7 +58,7 @@ export const fourAnime: pageInterface = {
 
       if (!urlPart4) return '';
 
-      return urlPart4.replace(/\-episode[^]*$/g, '');
+      return urlPart4.replace(/-episode[^]*$/g, '');
     },
     uiSelector(selector) {
       selector.insertAfter(j.$('p.description-mobile').first());

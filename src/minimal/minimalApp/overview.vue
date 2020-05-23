@@ -833,7 +833,7 @@ export default {
           utils.flashm('Removed');
           this.renderObj.update();
         },
-        (e) => {
+        e => {
           this.renderObj.flashmError(e);
           this.renderObj.update();
           throw e;

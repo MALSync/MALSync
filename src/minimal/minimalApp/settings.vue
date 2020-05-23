@@ -548,10 +548,10 @@
             v-for="(contributerGroup, group) in contributer"
             class="inline-block"
           >
-            <div class="group" v-bind:key="group">{{ group }}</div>
+            <div :key="group" class="group">{{ group }}</div>
             <div
               v-for="contr in contributerGroup"
-              v-bind:key="contr.name"
+              :key="contr.name"
               class="inline-block"
             >
               <div class="user">

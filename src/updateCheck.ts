@@ -12,7 +12,7 @@ api.settings.init().then(() => {
 
   const page = new syncPage(window.location.href, pages);
   page.cdn = function() {
-    api.request.sendMessage?.({ name: 'iframeDone', id: 'retry', epList: [] });
+    api.request.sendMessage!({ name: 'iframeDone', id: 'retry', epList: [] });
   };
   page.handlePage = async function(curUrl = window.location.href) {
     con.log('handlePage');
@@ -69,7 +69,7 @@ api.settings.init().then(() => {
               typeof episodeList[key] === 'undefined')
           ) {
             episodeList[key] = tempEpisode.replace(
-              /\?mal-sync-background=[^\/]+/,
+              /\?mal-sync-background=[^/]+/,
               '',
             );
             changed = true;
@@ -102,11 +102,11 @@ api.settings.init().then(() => {
           }
         } else {
           con.log('send');
-          var len: undefined | number = undefined;
+          let len: undefined | number;
           if (typeof this.page.overview.list.getTotal !== 'undefined') {
             len = this.page.overview.list.getTotal();
           }
-          api.request.sendMessage?.({
+          api.request.sendMessage!({
             name: 'iframeDone',
             id: String(id),
             epList: episodeList,
@@ -116,11 +116,11 @@ api.settings.init().then(() => {
       }
     } catch (e) {
       con.error(e);
-      api.request.sendMessage?.({
+      api.request.sendMessage!({
         name: 'iframeDone',
         id: String(id),
         epList: episodeList,
-        len,
+        len: undefined,
         error: e,
       });
     }

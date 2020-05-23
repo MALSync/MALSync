@@ -29,7 +29,7 @@ async function checkApi(page) {
     let apiBase = '';
 
     if (url) {
-      if (/blob\:/i.test(url)) {
+      if (/blob:/i.test(url)) {
         apiBase = await getBase();
         itemId = await returnPlayingItemId();
         apiKey = await getApiKey();

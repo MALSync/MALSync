@@ -15,10 +15,13 @@ function main() {
     const mal = new myanimelistClass(window.location.href);
     mal.init();
   } else if (window.location.href.indexOf('anilist.co') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const anilist = new anilistClass(window.location.href);
   } else if (window.location.href.indexOf('kitsu.io') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const kitsu = new kitsuClass(window.location.href);
   } else if (window.location.href.indexOf('simkl.com') > -1) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new simklClass(window.location.href);
   } else {
     try {

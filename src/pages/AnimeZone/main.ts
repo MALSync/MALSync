@@ -87,6 +87,7 @@ export const AnimeZone: pageInterface = {
         mutationsList: MutationRecord[],
         observer: MutationObserver,
       ) {
+        /* eslint-disable-next-line */
         for (const mutation of mutationsList) {
           if (mutation.type !== 'childList') return;
 

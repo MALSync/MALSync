@@ -28,7 +28,7 @@ export const animepahe: pageInterface = {
     getEpisode(url) {
       return Number(
         (j.$('.theatre-info h1')[0].childNodes[2].textContent || '').replace(
-          /[^0-9\.]+/g,
+          /[^0-9.]+/g,
           '',
         ),
       );

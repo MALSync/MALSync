@@ -140,6 +140,7 @@ export class Single extends SingleAbstract {
 
   async _update() {
     if (Number.isNaN(this.ids.mal)) {
+      /* eslint-disable-next-line no-var */
       var kitsuSlugRes = await this.kitsuSlugtoKitsu(
         this.ids.kitsu.slug,
         this.getType(),
@@ -153,6 +154,7 @@ export class Single extends SingleAbstract {
       }
     }
     if (Number.isNaN(this.ids.kitsu.id)) {
+      /* eslint-disable-next-line no-var */
       var kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
       try {
         this.ids.kitsu.id = kitsuRes.data[0].relationships.item.data.id;
@@ -240,7 +242,7 @@ export class Single extends SingleAbstract {
       },
     };
     const tType = this.getType();
-    if (!tType) return;
+    if (!tType) return Promise.resolve();
     let updateUrl;
     let post;
     if (this.isOnList()) {

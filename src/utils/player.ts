@@ -127,6 +127,7 @@ async function setFullscreen(player) {
   }
 }
 
+/* eslint-disable */
 // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
 let init = false;
 

@@ -204,11 +204,8 @@ export default {
       return Object.values(this.list).filter(el => el.diff).length;
     },
     listDiff() {
-      return this.list.filter(
-        el =>
-          el.diff
-      );
-    }
+      return this.list.filter(el => el.diff);
+    },
   },
   watch: {},
   async mounted() {

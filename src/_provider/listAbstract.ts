@@ -168,9 +168,12 @@ export abstract class ListAbstract {
       },
       predictions: () => {
         if (predictionsObj !== null) return predictionsObj;
-        return new epPredictions(item.malId, item.cacheKey, item.type)
-          .init()
-          .then(obj => (predictionsObj = obj));
+        return (
+          new epPredictions(item.malId, item.cacheKey, item.type)
+            .init()
+            /* eslint-disable-next-line no-return-assign */
+            .then(obj => (predictionsObj = obj))
+        );
       },
     };
     return item;

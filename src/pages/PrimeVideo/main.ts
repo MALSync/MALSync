@@ -176,7 +176,13 @@ function getApi(url, epId = 0) {
       ) {
         // Parent
         let detail;
-        if (data.gti && e.props.state.detail.detail.hasOwnProperty(data.gti)) {
+        if (
+          data.gti &&
+          Object.prototype.hasOwnProperty.call(
+            e.props.state.detail.detail,
+            data.gti,
+          )
+        ) {
           detail = e.props.state.detail.detail[data.gti];
         } else {
           detail = Object.values(e.props.state.detail.detail)[0];
@@ -193,7 +199,13 @@ function getApi(url, epId = 0) {
             data.genres = detail.genres.map(e2 => e2.id);
         }
         // Episode
-        if (epId && e.props.state.detail.detail.hasOwnProperty(epId)) {
+        if (
+          epId &&
+          Object.prototype.hasOwnProperty.call(
+            e.props.state.detail.detail,
+            epId,
+          )
+        ) {
           const epDetail = e.props.state.detail.detail[epId];
           if (epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
           if (epDetail.entityType === 'Movie') data.ep = 1;

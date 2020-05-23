@@ -117,9 +117,9 @@ export const TsukiMangas: pageInterface = {
         },
         function() {
           if (
-            jsonData.hasOwnProperty('isReaderPage') &&
-            jsonData.hasOwnProperty('identifier') &&
-            jsonData.hasOwnProperty('overview_url')
+            Object.prototype.hasOwnProperty.call(jsonData, 'isReaderPage') &&
+            Object.prototype.hasOwnProperty.call(jsonData, 'identifier') &&
+            Object.prototype.hasOwnProperty.call(jsonData, 'overview_url')
           ) {
             page.handlePage();
           }

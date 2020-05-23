@@ -55,7 +55,7 @@ function getSeries(page) {
       .first()
       .text()
       .trim();
-    let temp = sesText.match(/^(S|St.\ )\d+/);
+    let temp = sesText.match(/^(S|St. )\d+/);
     if (temp !== null) {
       return `?s=${temp[0].replace(/^\D*/, '').trim()}`;
     }

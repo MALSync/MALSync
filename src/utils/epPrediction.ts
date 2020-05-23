@@ -33,6 +33,7 @@ export class epPredictions {
       return { ep: this.aniPrediction.currentEp, provider: 'ANILIST' };
     if (this.malPrediction && this.malPrediction.episode)
       return { ep: this.malPrediction.episode, provider: 'MAL' };
+    return undefined;
   }
 
   getNextEpTimestamp() {

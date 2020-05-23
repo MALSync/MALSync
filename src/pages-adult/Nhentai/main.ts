@@ -1,10 +1,8 @@
 import { pageInterface } from '../../pages/pageInterface';
 
 function cleanTitle(title) {
-  return title.replace(/(\([^\)]*\)|\[[^\]]*\])/g, '').trim();
+  return title.replace(/(\([^)]*\)|\[[^\]]*\])/g, '').trim();
 }
-
-let inter;
 
 export const Nhentai: pageInterface = {
   name: 'Nhentai',
@@ -80,7 +78,7 @@ export const Nhentai: pageInterface = {
     );
 
     j.$(document).ready(function() {
-      if (page.url.match(/nhentai.[^\/]*\/g\/\d+/i)) {
+      if (page.url.match(/nhentai.[^/]*\/g\/\d+/i)) {
         page.handlePage();
       }
     });
@@ -93,7 +91,7 @@ export const Nhentai: pageInterface = {
     });
 
     function start() {
-      if (page.url.match(/nhentai.[^\/]*\/g\/\d+/i)) {
+      if (page.url.match(/nhentai.[^/]*\/g\/\d+/i)) {
         page.handlePage();
       }
     }

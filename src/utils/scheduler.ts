@@ -21,7 +21,7 @@ export async function malSchedule() {
         $(this)
           .find('.info .remain-time')
           .text()
-          .match(/\w+\ \d+.\ \d+,\ \d+:\d+\ \(JST\)/i)
+          .match(/\w+ \d+. \d+, \d+:\d+ \(JST\)/i)
       ) {
         const malId = $(this)
           .find('a.link-title')
@@ -167,6 +167,7 @@ export async function anilistScheduler(page = 0) {
       con.log(res);
       console.groupEnd();
       if (res.data.Page.pageInfo.hasNextPage) {
+        /* eslint-disable-next-line consistent-return */
         return anilistScheduler(page + 1);
       }
     });
