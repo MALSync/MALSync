@@ -137,7 +137,7 @@ export async function getSingle(
       const el: any = listVal[i];
       if (
         typeof el.show.ids.mal !== 'undefined' &&
-        el.show.ids.mal === ids.mal
+        Number(el.show.ids.mal) === Number(ids.mal)
       ) {
         return el;
       }
@@ -157,6 +157,7 @@ export async function call(
 ) {
   if (asParameter) {
     url += `?${new URLSearchParams(Object.entries(sData))}`;
+    sData = undefined;
   }
   con.log('call', method, url, sData);
 
