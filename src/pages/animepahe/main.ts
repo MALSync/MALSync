@@ -16,10 +16,11 @@ export const animepahe: pageInterface = {
       return j
         .$('.theatre-info h1 a')
         .first()
-        .text();
+        .text()
+        .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return animepahe.sync.getTitle(url);
     },
     getOverviewUrl(url) {
       return `${animepahe.domain}/anime/${animepahe.sync.getIdentifier(url)}`;
@@ -49,7 +50,7 @@ export const animepahe: pageInterface = {
       return utils.getBaseText(j.$('.title-wrapper h1').first()).trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return animepahe.overview!.getTitle(url);
     },
     uiSelector(selector) {
       selector.insertAfter(j.$('.anime-detail'));
