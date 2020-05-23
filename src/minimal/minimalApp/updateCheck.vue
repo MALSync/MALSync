@@ -160,7 +160,6 @@ export default {
         });
 
       api.storage.get('notificationHistory').then(history => {
-        const historyHtml = '<h3>Notification History</h3>';
         history.forEach(entry => {
           let timeDiff = Date.now() - entry.timestamp;
 

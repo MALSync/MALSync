@@ -155,6 +155,7 @@ export default {
 
       if (this.state !== 1 && this.state !== '1') {
         listProvider.callbacks = {
+          // eslint-disable-next-line consistent-return
           continueCall: list => {
             this.loading = false;
             this.cache = false;

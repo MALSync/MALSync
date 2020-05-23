@@ -58,10 +58,12 @@ export default {
   methods: {
     lang: api.storage.lang,
     getDomain(page) {
+      let domain;
       if (typeof page.domain === 'object') {
-        var domain = page.domain[0];
+        domain = page.domain[0];
       } else {
-        var { domain } = page;
+        // eslint-disable-next-line
+        domain = page.domain;
       }
       return domain;
     },

@@ -25,7 +25,6 @@
       <div class="mdl-grid mdl-grid--no-spacing">
         <div
           v-for="(item, index) in ongoing"
-          v-if="item.item.top"
           :key="index"
           class="list-content mdl-cell--6-col mdl-cell--8-col-tablet"
           style="display: flex; align-items: center;"

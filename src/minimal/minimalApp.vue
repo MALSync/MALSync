@@ -343,6 +343,7 @@ export default {
     base() {
       if (this.page) {
         if (this.page.singleObj) return this.page.singleObj.getUrl();
+        // eslint-disable-next-line
         this.renderUrl = '';
         return '';
       }
@@ -417,6 +418,7 @@ export default {
       },
     },
     bookIcon() {
+      // eslint-disable-next-line
       const minimal = j.$(this.$el);
       if (this.currentTab === 'bookmarks') {
         if (this.onlySettings) {
@@ -569,6 +571,7 @@ export default {
     },
     fill(url, isBase = false) {
       con.log('fill', url);
+      // eslint-disable-next-line
       const minimal = j.$(this.$el);
       if (url === null) {
         if (this.isPopup()) {
@@ -604,6 +607,7 @@ export default {
         if (win) {
           win.focus();
         } else {
+          // eslint-disable-next-line no-alert
           alert(api.storage.lang('minimalClass_Popup'));
         }
       }
@@ -630,6 +634,7 @@ export default {
       }
     },
     bookClick() {
+      // eslint-disable-next-line
       const minimal = j.$(this.$el);
       if (this.bookIcon !== 'book') {
         this.selectTab('overview');

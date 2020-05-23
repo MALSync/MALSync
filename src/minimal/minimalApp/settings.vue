@@ -548,10 +548,10 @@
             v-for="(contributerGroup, group) in contributer"
             class="inline-block"
           >
-            <div class="group">{{ group }}</div>
+            <div class="group" v-bind:key="group">{{ group }}</div>
             <div
               v-for="contr in contributerGroup"
-              :key="contr.name"
+              v-bind:key="contr.name"
               class="inline-block"
             >
               <div class="user">
@@ -628,6 +628,7 @@
               :src="version.img"
             >
               <img :src="version.img" />
+              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
                 {{ lang('Loading') }}
               </span>
@@ -643,6 +644,7 @@
               <img
                 src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"
               />
+              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
                 {{ lang('Loading') }}
               </span>
@@ -658,6 +660,7 @@
               <img
                 src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
               />
+              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
                 {{ lang('Loading') }}
               </span>
@@ -673,6 +676,7 @@
               <img
                 src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"
               />
+              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
                 {{ lang('Loading') }}
               </span>
@@ -685,6 +689,7 @@
 </template>
 
 <script type="text/javascript">
+/* eslint-disable no-prototype-builtins */
 import checkbox from './components/settingsCheckbox.vue';
 import numberInput from './components/settingsNumberInput.vue';
 import dropdown from './components/settingsDropdown.vue';

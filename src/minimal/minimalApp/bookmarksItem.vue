@@ -218,7 +218,6 @@
 </template>
 
 <script type="text/javascript">
-import * as provider from '../../provider/provider.ts';
 
 export default {
   props: {
@@ -273,6 +272,7 @@ export default {
         (this.prediction.tagEpisode / this.barTotal) * 100;
       let color = 'orange';
       if (this.prediction.color !== '') {
+        // eslint-disable-next-line
         color = this.prediction.color;
       }
       return `width: ${predictionProgress}%; background-color: ${color}`;
@@ -317,7 +317,6 @@ export default {
           this.continueUrl = '';
           let resumeUrl = null;
           let continueUrl = null;
-          const id = this.item.malId;
           const { type } = this.item;
           const resumeUrlObj = await utils.getResumeWaching(
             type,

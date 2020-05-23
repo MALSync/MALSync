@@ -102,18 +102,19 @@
     "class-methods-use-this": "off",
     "no-throw-literal": "off",
     "no-await-in-loop": "off",
-    "prefer-destructuring": ["error", {"array": false,"object": true}],
+    "prefer-destructuring": ["error", {"array": false,"object": false}],
     "import/no-webpack-loader-syntax": "off",
     "no-continue": "off",
     "no-fallthrough": "off",
     "import/no-extraneous-dependencies": "off",
     "no-script-url": "warn",
+    "no-unused-vars": ["error", { "args": "none" }],
+    "no-use-before-define": "off",
     "prefer-promise-reject-errors": "warn", // TODO
     "no-inner-declarations": "off", //TODO
     "new-cap": "warn", //TODO
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO
-    "no-var": "off", //TODO
     "prettier/prettier": [
       "error",
       {

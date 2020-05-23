@@ -35,14 +35,14 @@ export default {
   },
   computed: {
     recommendations() {
-      let html = '';
+      let recommendationsHtml = '';
       try {
         const recommendationsBlock = this.xhr
           .split('Make a recommendation</a>')[1]
           .split('</h2>')[1]
           .split('<div class="mauto')[0];
         const htmlT = j.$.parseHTML(recommendationsBlock);
-        var recommendationsHtml = '';
+
         j.$.each(j.$(htmlT).filter('.borderClass'), (index, value) => {
           recommendationsHtml +=
             '<div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
@@ -96,8 +96,6 @@ export default {
           recommendationsHtml += '</div>';
         });
         recommendationsHtml += '';
-
-        html = recommendationsHtml;
       } catch (e) {
         console.log('[iframeRecommendations] Error:', e);
       }

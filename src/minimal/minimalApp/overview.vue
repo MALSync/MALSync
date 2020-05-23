@@ -771,6 +771,7 @@ export default {
         } else if (renderObj.getMalUrl() !== null) {
           this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
         } else {
+          // placeholder
         }
       } catch (e) {
         con.error('Could not retrive metadata', e);
@@ -832,7 +833,7 @@ export default {
           utils.flashm('Removed');
           this.renderObj.update();
         },
-        () => {
+        (e) => {
           this.renderObj.flashmError(e);
           this.renderObj.update();
           throw e;
@@ -867,7 +868,7 @@ export default {
         const relate = this.related[relatedKey];
         for (const linkKey in relate.links) {
           const link = relate.links[linkKey];
-          var url = utils.absoluteLink(link.url, 'https://myanimelist.net');
+          const url = utils.absoluteLink(link.url, 'https://myanimelist.net');
           if (typeof url !== 'undefined') {
             const tag = await utils.timeCache(
               `MALTAG/${url}`,

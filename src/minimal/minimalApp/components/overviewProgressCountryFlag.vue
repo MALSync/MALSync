@@ -31,9 +31,10 @@ export default {
       async handler(newVal, oldVal) {
         const cache = new Cache(`flag/${newVal}`, 48 * 60 * 60 * 1000);
         if (await cache.hasValue()) {
+          // eslint-disable-next-line no-return-assign
           cache.getValue().then(val => (this.flagHtml = val));
         } else {
-          return api.request
+          api.request
             .xhr(
               'GET',
               `https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/${newVal}.svg`,

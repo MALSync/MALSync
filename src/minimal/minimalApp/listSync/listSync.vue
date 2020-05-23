@@ -85,8 +85,7 @@
     >
 
     <div
-      v-for="(item, index) in list"
-      v-if="item.diff"
+      v-for="(item, index) in listDiff"
       :key="index"
       style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
     >
@@ -160,7 +159,7 @@
 </template>
 
 <script type="text/javascript">
-import * as sync from './syncHandler.ts';
+import * as sync from './syncHandler';
 
 export default {
   props: {
@@ -204,6 +203,12 @@ export default {
     listSyncLength() {
       return Object.values(this.list).filter(el => el.diff).length;
     },
+    listDiff() {
+      return this.list.filter(
+        el =>
+          el.diff
+      );
+    }
   },
   watch: {},
   async mounted() {
