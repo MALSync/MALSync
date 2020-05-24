@@ -2352,141 +2352,204 @@ const testsArray = [
 
 // Define global variables
 let browser;
-let page;
+let browserFull;
 const debugging = false;
 // var caseTitle = 'Proxer';
 
-before(async () => {
+async function getBrowser(headless = false) {
+  if(browser && headless) return browser;
+  if(browserFull && !headless) return browserFull;
+
   puppeteer.use(pluginStealth());
   puppeteer.use(AdblockerPlugin());
-  browser = await puppeteer.launch({ headless: true });
-});
+  let tempBrowser = await puppeteer.launch({ headless: headless });
+  if(headless) {
+    browser = tempBrowser;
+  }else{
+    browserFull = tempBrowser;
+  }
+  return tempBrowser;
+}
 
-beforeEach(async () => {
-  page = await browser.newPage();
-  await page.setViewport({ width: 1920, height: 1080 });
-});
+async function closeBrowser() {
+  if(browser) await browser.close();
+  if(browserFull) await browserFull.close();
+}
 
-afterEach(async () => {
-  await page.close();
-});
+function log(text, indetion = 0){
+  for(let i = 0; i <= indetion; i++){
+    text = '  '+text;
+  }
+  console.log(text);
+}
 
-after(async () => {
-  await browser.close();
-});
+function logC(text, indetion = 0, color = 'blue'){
+  let nColor = 0;
+  switch(color) {
+    case 'red':
+      nColor = 31;
+      break;
+    case 'blue':
+      nColor = 36;
+      break;
+    case 'green':
+      nColor = 32;
+      break;
+  }
+  text = '\x1b['+nColor+'m'+text+'\x1b[0m';
+  log(text, indetion);
+}
 
-testsArray.forEach(testPage => {
-  if (typeof caseTitle !== 'undefined' && caseTitle !== testPage.title) return;
-  describe(testPage.title, () => {
-    let doSkip = false;
-    if (typeof testPage.skip !== 'undefined' && testPage.skip) doSkip = true;
-    if (skipTest) doSkip = !doSkip;
-
-    it('Online', async function() {
-      if (doSkip) this.skip();
-      const [response] = await Promise.all([
-        page.goto(testPage.url, { timeout: 0 }),
-        page.waitForNavigation({ timeout: 0 }),
-      ]);
-
-      if (parseInt(response.headers().status) !== 200) {
-        console.log(`    X Online ${response.headers().status}`);
-
-        const content = await page.evaluate(() => document.body.innerHTML);
-        if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
-          console.log('    X CAPTCHA');
-          doSkip = true;
-          this.skip();
-        }
+async function cdn(page){
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      const content = await page.evaluate(
+        () => document.body.innerHTML,
+      );
+      if (
+        content.indexOf('Why do I have to complete a CAPTCHA?') !== -1
+      ) {
+        reject('Captcha');
       }
-    });
-
-    testPage.testCases.forEach(testCase => {
-      it(testCase.url, async function() {
-        if (doSkip) this.skip();
-        const [response] = await Promise.all([
-          page.goto(testCase.url, { timeout: 0 }),
-          page.waitForNavigation({ timeout: 0 }),
-        ]);
-        await page
-          .addScriptTag({
-            url:
-              'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-          })
-          .catch(() =>
-            page.addScriptTag({
-              url:
-                'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-            }),
-          );
-        await page.addScriptTag({ content: script });
-        const text = await page.evaluate(() => MalSyncTest());
-
-        if (debugging) console.log(text);
-
-        if (text === 'retry') {
-          this.retries(3);
-          await new Promise((resolve, reject) => {
-            setTimeout(async () => {
-              const content = await page.evaluate(
-                () => document.body.innerHTML,
-              );
-              if (
-                content.indexOf('Why do I have to complete a CAPTCHA?') !== -1
-              ) {
-                console.log('    X CAPTCHA');
-                doSkip = true;
-              }
-              resolve();
-            }, 7000);
-          });
-        }
-
-        expect(text.sync, 'Sync').to.equal(testCase.expected.sync);
-        expect(text.title, 'Title').to.equal(testCase.expected.title);
-        expect(text.identifier, 'Identifier').to.equal(
-          testCase.expected.identifier,
-        );
-        if (text.sync) {
-          expect(text.episode, 'Episode').to.equal(testCase.expected.episode);
-          var textOverview =
-            typeof text.overviewUrl !== 'undefined'
-              ? text.overviewUrl.replace(/www[^.]*\./, '')
-              : text.overviewUrl;
-          var testCaseOverview =
-            typeof testCase.expected.overviewUrl !== 'undefined'
-              ? testCase.expected.overviewUrl.replace(/www[^.]*\./, '')
-              : testCase.expected.overviewUrl;
-          expect(textOverview, 'Overview Url').to.equal(
-            testCase.expected.overviewUrl.replace(/www[^.]*\./, ''),
-          );
-          var textOverview =
-            typeof text.nextEpUrl !== 'undefined'
-              ? text.nextEpUrl.replace(/www[^.]*\./, '')
-              : text.nextEpUrl;
-          var testCaseOverview =
-            typeof testCase.expected.nextEpUrl !== 'undefined'
-              ? testCase.expected.nextEpUrl.replace(/www[^.]*\./, '')
-              : testCase.expected.nextEpUrl;
-          expect(textOverview, 'Next Episode').to.equal(testCaseOverview);
-        }
-        if (typeof text.uiSelector !== 'undefined') {
-          expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(
-            testCase.expected.uiSelector,
-          );
-        }
-        if (
-          typeof text.epList !== 'undefined' &&
-          typeof testCase.expected.epList !== 'undefined'
-        ) {
-          for (const key in testCase.expected.epList) {
-            expect(
-              testCase.expected.epList[key].replace(/www[^.]*\./, ''),
-              `EP${key}`,
-            ).to.equal(text.epList[key].replace(/www[^.]*\./, ''));
-          }
-        }
-      });
-    });
+      resolve();
+    }, 7000);
   });
-});
+}
+
+async function onlineTest(url, page) {
+  const [response] = await Promise.all([
+    await page.goto(url, { waitUntil: 'networkidle0'}),
+  ]);
+
+  if (parseInt(response.headers().status) !== 200) {
+    const content = await page.evaluate(() => document.body.innerHTML);
+    if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
+      throw 'CAPTCHA';
+    }
+    throw response.headers().status;
+  }
+}
+
+async function singleCase(test, page, retry = 0) {
+  const [response] = await Promise.all([
+    page.goto(test.url, { timeout: 0 }),
+    page.waitForNavigation({ timeout: 0 }),
+  ]);
+
+  await page
+    .addScriptTag({
+      url:
+        'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+    })
+    .catch(() =>
+      page.addScriptTag({
+        url:
+          'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+      }),
+    );
+  await page.addScriptTag({ content: script });
+  const text = await page.evaluate(() => MalSyncTest());
+
+  if (text === 'retry') {
+    if(retry > 2) throw 'Max retries';
+    log('Retry', 2);
+    await cdn(page);
+    retry++;
+    return singleCase(test, page, retry);
+  }
+
+  expect(text.sync, 'Sync').to.equal(test.expected.sync);
+  expect(text.title, 'Title').to.equal(test.expected.title);
+  expect(text.identifier, 'Identifier').to.equal(
+    test.expected.identifier,
+  );
+  if (text.sync) {
+    expect(text.episode, 'Episode').to.equal(test.expected.episode);
+    var textOverview =
+      typeof text.overviewUrl !== 'undefined'
+        ? text.overviewUrl.replace(/www[^.]*\./, '')
+        : text.overviewUrl;
+    var testOverview =
+      typeof test.expected.overviewUrl !== 'undefined'
+        ? test.expected.overviewUrl.replace(/www[^.]*\./, '')
+        : test.expected.overviewUrl;
+    expect(textOverview, 'Overview Url').to.equal(
+      test.expected.overviewUrl.replace(/www[^.]*\./, ''),
+    );
+    var textOverview =
+      typeof text.nextEpUrl !== 'undefined'
+        ? text.nextEpUrl.replace(/www[^.]*\./, '')
+        : text.nextEpUrl;
+    var testOverview =
+      typeof test.expected.nextEpUrl !== 'undefined'
+        ? test.expected.nextEpUrl.replace(/www[^.]*\./, '')
+        : test.expected.nextEpUrl;
+    expect(textOverview, 'Next Episode').to.equal(testOverview);
+  }
+  if (typeof text.uiSelector !== 'undefined') {
+    expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(
+      test.expected.uiSelector,
+    );
+  }
+  if (
+    typeof text.epList !== 'undefined' &&
+    typeof test.expected.epList !== 'undefined'
+  ) {
+    for (const key in test.expected.epList) {
+      expect(
+        test.expected.epList[key].replace(/www[^.]*\./, ''),
+        `EP${key}`,
+      ).to.equal(text.epList[key].replace(/www[^.]*\./, ''));
+    }
+  }
+}
+
+async function testPageCase(testPage, page){
+  //Online
+  try {
+    await onlineTest(testPage.url, page);
+    logC('Online', 1);
+  }catch(e){
+    logC('Offline', 1);
+    log(e, 2);
+  }
+  for (const testCase of testPage.testCases){
+    try {
+      logC(testCase.url, 1);
+      await singleCase(testCase, page);
+      logC('Passed', 2, 'green');
+    }catch(e){
+      logC('Failed', 2, 'red');
+      if(typeof e.showDiff !== 'undefined') {
+        log(e.message, 3);
+        log('expected: '+e.actual, 4);
+        log('actual:   '+e.expected, 4);
+      }else{
+        console.error(e);
+      }
+    }
+  }
+}
+
+main();
+async function main() {
+  //testPage = testsArray[0];
+  for (const testPage of testsArray){
+    //if(testPage.title !== 'Kissanime') continue;
+    log(testPage.title);
+    const b = await getBrowser()
+    const page = await b.newPage();
+    await page.setViewport({ width: 1920, height: 1080 });
+
+
+    try {
+      await testPageCase(testPage, page);
+    }catch(e) {
+      console.error(e);
+    }
+
+    await page.close();
+    log('');
+  }
+  await closeBrowser();
+}
