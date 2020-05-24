@@ -4,9 +4,11 @@ const pluginStealth = require('puppeteer-extra-plugin-stealth');
 const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker');
 
 const fs = require('fs');
+const dir = require('node-dir');
 
 const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
+let testsArray = [];
 
 // Define global variables
 let browser;
@@ -253,10 +255,28 @@ async function loopEl(testPage) {
 
 }
 
+async function initTestsArray() {
+  new Promise((resolve, reject) => {
+    dir.readFiles(__dirname+'/../../src/', {
+      match: /^tests.json$/
+    }, function(err, content, next) {
+      if (err) throw err;
+      testsArray.push(JSON.parse(content));
+      next();
+    },
+    function(err, files){
+      if (err) throw err;
+      console.log('Test files:',files);
+      resolve();
+    });
+  })
+}
+
 main();
 async function main() {
   let awaitArray = [];
   let running = 0;
+  await initTestsArray();
   if(mode.parallel) {
     await getBrowser()
     for (const testPage of testsArray){
@@ -284,4 +304,5 @@ async function main() {
   }
 
   await closeBrowser();
+  process.exit();
 }
