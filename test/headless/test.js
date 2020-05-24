@@ -2394,6 +2394,18 @@ function log(block, text, indetion = 0){
   }
 }
 
+function logEr(block, text, indetion = 0){
+  for(let i = 0; i <= indetion; i++){
+    text = '  '+text;
+  }
+  if(mode.blockLog){
+    if(!logBlocks[block]) logBlocks[block] = [];
+    logBlocks[block].push(text);
+  }else{
+    console.error(text);
+  }
+}
+
 function logC(block, text, indetion = 0, color = 'blue'){
   let nColor = 0;
   switch(color) {
@@ -2460,12 +2472,17 @@ async function singleCase(block, test, page, retry = 0) {
       url:
         'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
     })
-    .catch(() =>
-      page.addScriptTag({
+    .catch(() => {
+      return page.addScriptTag({
         url:
           'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-      }),
-    );
+      })
+
+    })
+    .catch(() => {
+      throw 'jquery could not be loaded';
+    });
+
   await page.addScriptTag({ content: script });
   const text = await page.evaluate(() => MalSyncTest());
 
@@ -2526,6 +2543,7 @@ async function singleCase(block, test, page, retry = 0) {
 async function testPageCase(block, testPage, page){
   log(block, '');
   log(block, testPage.title);
+  let passed = 1;
 
   try {
     await onlineTest(testPage.url, page);
@@ -2546,12 +2564,13 @@ async function testPageCase(block, testPage, page){
         log(block, 'expected: '+e.actual, 4);
         log(block, 'actual:   '+e.expected, 4);
       }else{
-        console.error(e);
+        logEr(e);
       }
+      passed = 0;
     }
   }
 
-  printLogBlock(block);
+  if(!mode.quite || (mode.quite && !passed)) printLogBlock(block);
 }
 
 async function loopEl(testPage) {
