@@ -1,0 +1,27 @@
+{
+  // nsfw
+  "title": "Nhentai",
+  "url": "https://nhentai.net/",
+  "testCases": [
+    {
+      "url": "https://nhentai.net/g/306629/1",
+      "expected": {
+        "sync": true,
+        "title": "Tamamo no Ushiro",
+        "identifier": "306629",
+        "overviewUrl": "https://nhentai.net/g/306629",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://nhentai.net/g/306629/",
+      "expected": {
+        "sync": false,
+        "title": "Tamamo no Ushiro",
+        "identifier": "306629",
+        "uiSelector": true
+      }
+    }
+  ]
+}

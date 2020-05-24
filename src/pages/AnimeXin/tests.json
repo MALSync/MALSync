@@ -1,0 +1,30 @@
+{
+  "title": "AnimeXin",
+  "url": "https://animexin.xyz/",
+  "testCases": [
+    {
+      "url": "https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/",
+      "expected": {
+        "sync": true,
+        "title": "The Daily Life of the Immortal King",
+        "identifier": "the-daily-life-of-the-immortal-king",
+        "overviewUrl": "https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/",
+        "nextEpUrl": "https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-9-subbed/",
+        "episode": 8,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animexin.xyz/anime/the-daily-life-of-the-immortal-king/",
+      "expected": {
+        "sync": false,
+        "title": "The Daily Life of the Immortal King",
+        "identifier": "the-daily-life-of-the-immortal-king",
+        "uiSelector": true,
+        "epList": {
+          "8": "https://animexin.xyz/the-daily-life-of-the-immortal-king-episode-8-subbed/"
+        }
+      }
+    }
+  ]
+}

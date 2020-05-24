@@ -1,0 +1,31 @@
+{
+  "title": "manganelo",
+  "url": "https://manganelo.com/",
+  "testCases": [
+    {
+      "url": "https://manganelo.com/chapter/dr_stone/chapter_114",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "dr_stone",
+        "overviewUrl": "https://manganelo.com/manga/dr_stone",
+        "nextEpUrl": "https://manganelo.com/chapter/dr_stone/chapter_115",
+        "episode": 114,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manganelo.com/manga/dr_stone",
+      "expected": {
+        "sync": false,
+        "title": "Dr. Stone",
+        "identifier": "dr_stone",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://manganelo.com/chapter/dr_stone/chapter_5",
+          "121": "https://manganelo.com/chapter/dr_stone/chapter_121"
+        }
+      }
+    }
+  ]
+}
