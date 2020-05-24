@@ -2358,6 +2358,7 @@ const debugging = false;
 var mode = {
   'quite': false,
   'parallel': true,
+  'blockLog': true
 }
 
 async function getBrowser(headless = false) {
@@ -2380,14 +2381,20 @@ async function closeBrowser() {
   if(browserFull) await browserFull.close();
 }
 
-function log(text, indetion = 0){
+var logBlocks = {};
+function log(block, text, indetion = 0){
   for(let i = 0; i <= indetion; i++){
     text = '  '+text;
   }
-  console.log(text);
+  if(mode.blockLog){
+    if(!logBlocks[block]) logBlocks[block] = [];
+    logBlocks[block].push(text);
+  }else{
+    console.log(text);
+  }
 }
 
-function logC(text, indetion = 0, color = 'blue'){
+function logC(block, text, indetion = 0, color = 'blue'){
   let nColor = 0;
   switch(color) {
     case 'red':
@@ -2401,7 +2408,15 @@ function logC(text, indetion = 0, color = 'blue'){
       break;
   }
   text = '\x1b['+nColor+'m'+text+'\x1b[0m';
-  log(text, indetion);
+  log(block, text, indetion);
+}
+
+function printLogBlock(block) {
+  if(mode.blockLog && logBlocks[block]){
+    logBlocks[block].forEach(el => {
+      console.log(el);
+    })
+  }
 }
 
 async function cdn(page){
@@ -2434,7 +2449,7 @@ async function onlineTest(url, page) {
   }
 }
 
-async function singleCase(test, page, retry = 0) {
+async function singleCase(block, test, page, retry = 0) {
   const [response] = await Promise.all([
     page.goto(test.url, { timeout: 0 }),
     page.waitForNavigation({ timeout: 0 }),
@@ -2456,7 +2471,7 @@ async function singleCase(test, page, retry = 0) {
 
   if (text === 'retry') {
     if(retry > 2) throw 'Max retries';
-    log('Retry', 2);
+    log(block, 'Retry', 2);
     await cdn(page);
     retry++;
     return singleCase(test, page, retry);
@@ -2508,49 +2523,52 @@ async function singleCase(test, page, retry = 0) {
   }
 }
 
-async function testPageCase(testPage, page){
-  //Online
+async function testPageCase(block, testPage, page){
+  log(block, '');
+  log(block, testPage.title);
+
   try {
     await onlineTest(testPage.url, page);
-    logC('Online', 1);
+    logC(block, 'Online', 1);
   }catch(e){
-    logC('Offline', 1);
-    log(e, 2);
+    logC(block, 'Offline', 1);
+    log(block, e, 2);
   }
   for (const testCase of testPage.testCases){
     try {
-      logC(testCase.url, 1);
-      await singleCase(testCase, page);
-      logC('Passed', 2, 'green');
+      logC(block, testCase.url, 1);
+      await singleCase(block, testCase, page);
+      logC(block, 'Passed', 2, 'green');
     }catch(e){
-      logC('Failed', 2, 'red');
+      logC(block, 'Failed', 2, 'red');
       if(typeof e.showDiff !== 'undefined') {
-        log(e.message, 3);
-        log('expected: '+e.actual, 4);
-        log('actual:   '+e.expected, 4);
+        log(block, e.message, 3);
+        log(block, 'expected: '+e.actual, 4);
+        log(block, 'actual:   '+e.expected, 4);
       }else{
         console.error(e);
       }
     }
   }
+
+  printLogBlock(block);
 }
 
 async function loopEl(testPage) {
   //if(testPage.title !== 'Kissanime') continue;
-  log(testPage.title);
   const b = await getBrowser()
   const page = await b.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
 
 
   try {
-    await testPageCase(testPage, page);
+    await testPageCase(testPage.title, testPage, page);
   }catch(e) {
     console.error(e);
   }
 
   await page.close();
-  log('');
+
 }
 
 main();
