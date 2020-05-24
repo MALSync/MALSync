@@ -2361,7 +2361,7 @@ var mode = {
   'blockLog': true
 }
 
-async function getBrowser(headless = false) {
+async function getBrowser(headless = true) {
   if(browser && headless) return browser;
   if(browserFull && !headless) return browserFull;
 
@@ -2470,12 +2470,12 @@ async function singleCase(block, test, page, retry = 0) {
   await page
     .addScriptTag({
       url:
-        'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+        'http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
     })
     .catch(() => {
       return page.addScriptTag({
         url:
-          'https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+          'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
       })
 
     })
@@ -2491,7 +2491,7 @@ async function singleCase(block, test, page, retry = 0) {
     log(block, 'Retry', 2);
     await cdn(page);
     retry++;
-    return singleCase(test, page, retry);
+    return singleCase(block, test, page, retry);
   }
 
   expect(text.sync, 'Sync').to.equal(test.expected.sync);
@@ -2557,15 +2557,15 @@ async function testPageCase(block, testPage, page){
       logC(block, testCase.url, 1);
       await Promise.race([
         singleCase(block, testCase, page),
-        new Promise((_, reject) => setTimeout(() => reject('timeout'), 30 * 1000))
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 45 * 1000))
       ]);
       logC(block, 'Passed', 2, 'green');
     }catch(e){
       logC(block, 'Failed', 2, 'red');
       if(typeof e.showDiff !== 'undefined') {
         log(block, e.message, 3);
-        log(block, 'expected: '+e.actual, 4);
-        log(block, 'actual:   '+e.expected, 4);
+        log(block, 'Recieved: '+e.actual, 4);
+        log(block, 'Expected:   '+e.expected, 4);
       }else{
         logEr(block, e, 3);
       }
