@@ -2361,6 +2361,8 @@ var mode = {
   'blockLog': true
 }
 
+if(process.env.CI) mode.quite = true;
+
 async function getBrowser(headless = true) {
   if(browser && headless) return browser;
   if(browserFull && !headless) return browserFull;
@@ -2565,7 +2567,7 @@ async function testPageCase(block, testPage, page){
       if(typeof e.showDiff !== 'undefined') {
         log(block, e.message, 3);
         log(block, 'Recieved: '+e.actual, 4);
-        log(block, 'Expected:   '+e.expected, 4);
+        log(block, 'Expected: '+e.expected, 4);
       }else{
         logEr(block, e, 3);
       }
