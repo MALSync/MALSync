@@ -2355,6 +2355,10 @@ let browser;
 let browserFull;
 const debugging = false;
 // var caseTitle = 'Proxer';
+var mode = {
+  'quite': false,
+  'parallel': true,
+}
 
 async function getBrowser(headless = false) {
   if(browser && headless) return browser;
@@ -2531,25 +2535,41 @@ async function testPageCase(testPage, page){
   }
 }
 
+async function loopEl(testPage) {
+  //if(testPage.title !== 'Kissanime') continue;
+  log(testPage.title);
+  const b = await getBrowser()
+  const page = await b.newPage();
+  await page.setViewport({ width: 1920, height: 1080 });
+
+
+  try {
+    await testPageCase(testPage, page);
+  }catch(e) {
+    console.error(e);
+  }
+
+  await page.close();
+  log('');
+}
+
 main();
 async function main() {
-  //testPage = testsArray[0];
-  for (const testPage of testsArray){
-    //if(testPage.title !== 'Kissanime') continue;
-    log(testPage.title);
-    const b = await getBrowser()
-    const page = await b.newPage();
-    await page.setViewport({ width: 1920, height: 1080 });
-
-
-    try {
-      await testPageCase(testPage, page);
-    }catch(e) {
-      console.error(e);
+  var awaitArray = [];
+  if(mode.parallel) {
+    await getBrowser()
+    for (const testPage of testsArray){
+      awaitArray.push(loopEl(testPage));
+      if(awaitArray.length > 20) {
+        await Promise.all(awaitArray);
+        awaitArray = [];
+      }
     }
-
-    await page.close();
-    log('');
+  }else{
+    for (const testPage of testsArray){
+      await loopEl(testPage);
+    }
   }
+
   await closeBrowser();
 }
