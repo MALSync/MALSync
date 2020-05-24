@@ -2555,7 +2555,10 @@ async function testPageCase(block, testPage, page){
   for (const testCase of testPage.testCases){
     try {
       logC(block, testCase.url, 1);
-      await singleCase(block, testCase, page);
+      await Promise.race([
+        singleCase(block, testCase, page),
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 30 * 1000))
+      ]);
       logC(block, 'Passed', 2, 'green');
     }catch(e){
       logC(block, 'Failed', 2, 'red');
@@ -2564,7 +2567,7 @@ async function testPageCase(block, testPage, page){
         log(block, 'expected: '+e.actual, 4);
         log(block, 'actual:   '+e.expected, 4);
       }else{
-        logEr(e);
+        logEr(block, e, 3);
       }
       passed = 0;
     }
