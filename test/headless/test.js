@@ -80,6 +80,9 @@ function logC(block, text, indetion = 0, color = 'blue'){
     case 'green':
       nColor = 32;
       break;
+    case 'yellow':
+      nColor = 33;
+      break;
   }
   text = '\x1b['+nColor+'m'+text+'\x1b[0m';
   log(block, text, indetion);
@@ -205,6 +208,7 @@ async function singleCase(block, test, page, retry = 0) {
 async function testPageCase(block, testPage, page){
   log(block, '');
   log(block, testPage.title);
+  if(testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
   let passed = 1;
 
   try {

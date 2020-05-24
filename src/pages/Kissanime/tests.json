@@ -2,7 +2,7 @@
   "title": "Kissanime",
   "enabled": true,
   "url": "https://kissanime.ru/",
-  "skip": true,
+  "unreliable": true,
   "testCases": [
     {
       "url": "https://kissanime.ru/Anime/No-Game-No-Life",
@@ -12,7 +12,7 @@
         "identifier": "No-Game-No-Life",
         "uiSelector": true,
         "epList": {
-          "5": "https://kissanime.ru/Anime/No-Game-No-Life/Episode-005?id=67493"
+          "5": "https://kissanime.ru/Anime/No-Game-No-Life/1080p-Episode-005?id=166525"
         }
       }
     },
