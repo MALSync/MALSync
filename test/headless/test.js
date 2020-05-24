@@ -14,6 +14,7 @@ let testsArray = [];
 let browser;
 let browserFull;
 const debugging = false;
+let buildFailed = false;
 // var caseTitle = 'Proxer';
 var mode = {
   'quite': false,
@@ -240,6 +241,7 @@ async function testPageCase(block, testPage, page){
   }
 
   if(!mode.quite || (mode.quite && !passed)) printLogBlock(block);
+  if(!passed && !testPage.unreliable) buildFailed = true;
 }
 
 async function loopEl(testPage) {
@@ -308,5 +310,6 @@ async function main() {
   }
 
   await closeBrowser();
+  if(buildFailed) process.exit(1);
   process.exit();
 }
