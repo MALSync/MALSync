@@ -2595,16 +2595,28 @@ async function loopEl(testPage) {
 
 main();
 async function main() {
-  var awaitArray = [];
+  let awaitArray = [];
+  let running = 0;
   if(mode.parallel) {
     await getBrowser()
     for (const testPage of testsArray){
-      awaitArray.push(loopEl(testPage));
-      if(awaitArray.length > 20) {
-        await Promise.all(awaitArray);
-        awaitArray = [];
-      }
+      await new Promise((resolve, reject) => {
+        let int;
+        int = setInterval(() => {
+          if(running < 20) {
+            clearInterval(int);
+            resolve();
+          }
+        }, 1000)
+      });
+      running++;
+      awaitArray.push(
+        loopEl(testPage).then(() => {
+          running--;
+        })
+      );
     }
+    await Promise.all(awaitArray);
   }else{
     for (const testPage of testsArray){
       await loopEl(testPage);
