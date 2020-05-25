@@ -179,13 +179,13 @@ async function singleCase(block, test, page, retry = 0) {
       test.expected.overviewUrl.replace(/www[^.]*\./, ''),
     );
     var textOverview =
-      typeof text.nextEpUrl !== 'undefined'
+      text.nextEpUrl
         ? text.nextEpUrl.replace(/www[^.]*\./, '')
-        : text.nextEpUrl;
+        : '';
     var testOverview =
-      typeof test.expected.nextEpUrl !== 'undefined'
+      test.expected.nextEpUrl
         ? test.expected.nextEpUrl.replace(/www[^.]*\./, '')
-        : test.expected.nextEpUrl;
+        : '';
     expect(textOverview, 'Next Episode').to.equal(testOverview);
   }
   if (typeof text.uiSelector !== 'undefined') {
