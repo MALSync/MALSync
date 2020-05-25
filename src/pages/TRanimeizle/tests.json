@@ -4,6 +4,7 @@
   {
     "title": "TRanimeizle",
     "url": "https://www.tranimeizle.com",
+    "enabled": false,
     "testCases": [
       {
         "url": "https://www.tranimeizle.com/anime/one-punch-man-izle-hd",

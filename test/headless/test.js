@@ -245,7 +245,8 @@ async function testPageCase(block, testPage, page){
 }
 
 async function loopEl(testPage) {
-  //if(testPage.title !== 'Kissanime') continue;
+  //if(testPage.title !== 'Kissanime') return;
+  if(!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser()
   const page = await b.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
