@@ -12,6 +12,10 @@ window.MalSyncTest = async function() {
     return 'Page Not Found';
   }
   return new Promise(function(resolve, reject) {
+    if (testForCloudflare()) {
+      resolve('retry');
+      return;
+    }
     page.init({
       url: window.location.href,
       handlePage() {
@@ -78,6 +82,16 @@ window.MalSyncTest = async function() {
     .text()
     .trim();
 };
+
+function testForCloudflare() {
+  if (
+    document.title === 'Just a moment...' ||
+    document.title.indexOf('Cloudflare') !== -1
+  ) {
+    return true;
+  }
+  return false;
+}
 
 function getPage(url) {
   for (const key in pages) {

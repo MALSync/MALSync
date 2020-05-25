@@ -119,11 +119,6 @@ export const Jkanime: pageInterface = {
     },
   },
   init(page) {
-    if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
-      con.log('loading');
-      page.cdn();
-      return;
-    }
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );

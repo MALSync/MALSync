@@ -33,6 +33,13 @@ export class syncPage {
     j.$(document).ready(function() {
       initIframeModal(This);
     });
+
+    if (this.testForCloudflare()) {
+      con.log('loading');
+      this.cdn();
+      return;
+    }
+
     this.page.init(this);
 
     if (api.type === 'webextension') {
@@ -845,6 +852,16 @@ export class syncPage {
         return;
       }
     }
+  }
+
+  testForCloudflare() {
+    if (
+      document.title === 'Just a moment...' ||
+      document.title.indexOf('Cloudflare') !== -1
+    ) {
+      return true;
+    }
+    return false;
   }
 
   cdn() {

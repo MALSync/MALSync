@@ -92,11 +92,6 @@ export const NekoSama: pageInterface = {
   },
 
   init(page) {
-    if (document.title === 'Just a moment...') {
-      con.log('loading');
-      page.cdn();
-      return;
-    }
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
