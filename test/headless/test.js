@@ -267,7 +267,15 @@ async function initTestsArray() {
       match: /^tests.json$/
     }, function(err, content, next) {
       if (err) throw err;
-      testsArray.push(JSON.parse(content));
+
+      try {
+        eval("var s = " + content.replace(/^[^{]*/g,''));
+        testsArray.push(s);
+      }catch(e) {
+        console.log(content);
+        throw e;
+      }
+
       next();
     },
     function(err, files){
