@@ -6,7 +6,7 @@ export const Kissanime: pageInterface = {
   database: 'Kissanime',
   type: 'anime',
   isSyncPage(url) {
-    if (typeof utils.urlPart(url, 5) !== 'undefined') {
+    if (utils.urlPart(url, 5)) {
       if (j.$('#centerDivVideo').length) {
         return true;
       }

@@ -21,7 +21,7 @@ export const Animevibe: pageInterface = {
       return `${Animevibe.domain}/a/${Animevibe.sync.getIdentifier(url)}/1`;
     },
     getEpisode(url) {
-      if (utils.urlPart(url, 5) === '') {
+      if (!utils.urlPart(url, 5)) {
         return 1;
       }
       return parseInt(utils.urlPart(url, 5));

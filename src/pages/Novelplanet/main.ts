@@ -6,7 +6,7 @@ export const Novelplanet: pageInterface = {
   database: 'Novelplanet',
   type: 'manga',
   isSyncPage(url) {
-    if (typeof utils.urlPart(url, 5) !== 'undefined') {
+    if (utils.urlPart(url, 5)) {
       return true;
     }
     return false;
