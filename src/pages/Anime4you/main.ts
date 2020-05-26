@@ -13,11 +13,7 @@ export const Anime4you: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.titel')
-        .text()
-        .replace(j.$('.titel h5').text(), '')
-        .trim();
+      return utils.getBaseText(j.$('div.titel > h3'));
     },
     getIdentifier(url) {
       return parseInt(utils.urlPart(url, 6)).toString();
