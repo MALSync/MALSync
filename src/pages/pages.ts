@@ -17,7 +17,6 @@ import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { fourAnime } from './fourAnime/main';
-import { DreamAnimes } from './DreamAnimes/main';
 import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
 import { AnimeDaisuki } from './AnimeDaisuki/main';
@@ -92,7 +91,6 @@ export const pages = {
   Emby,
   Plex,
   fourAnime,
-  DreamAnimes,
   animeultima,
   Aniflix,
   Animefreak,

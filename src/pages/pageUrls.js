@@ -168,9 +168,6 @@ module.exports = {
   fourAnime: {
     match: ['*://4anime.to/*'],
   },
-  DreamAnimes: {
-    match: ['*://www.dreamanimes.com.br/*'],
-  },
   animeultima: {
     match: ['*://*.animeultima.eu/a/*', '*://*.animeultima.to/a/*'],
   },
