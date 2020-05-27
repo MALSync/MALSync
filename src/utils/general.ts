@@ -50,7 +50,7 @@ export function episode(type: 'anime' | 'manga') {
   return api.storage.lang('UI_Episode');
 }
 
-export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/)/;
+export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/|^list-tagSettings$)/;
 
 export enum status {
   // eslint-disable-next-line no-shadow
@@ -242,6 +242,8 @@ export async function setEntrySettings(type, id, options, tags = '') {
         JSON.stringify(tempOptions),
       );
     }
+  } else {
+    tags = setUrlInTags('', tags);
   }
   return tags;
 }
@@ -275,7 +277,7 @@ export async function getEntrySettings(type, id, tags = '') {
     let temp: any = await api.storage.get(`tagSettings/${type}/${id}`);
 
     if (temp) {
-      temp = JSON.parse(tags);
+      temp = JSON.parse(temp);
 
       for (const key in tempOptions) {
         if (temp[key]) tempOptions[key] = temp[key];

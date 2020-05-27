@@ -173,9 +173,6 @@ export class userlist extends ListAbstract {
           this.done = true;
         }
 
-        if (this.compact) {
-          return this.prepareCompact(data, this.listType);
-        }
         return this.prepareData(data, this.listType);
       });
   }
