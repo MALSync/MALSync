@@ -51,9 +51,9 @@ export class userlist extends ListAbstract {
     con.log('[UserList][Simkl]', `status: ${this.status}`);
     if (this.listType === 'manga')
       throw { code: 415, message: 'Does not support manga' };
-    return this.syncList().then(list => {
+    return this.syncList().then(async list => {
       this.done = true;
-      const data = this.prepareData(
+      const data = await this.prepareData(
         Object.values(list),
         this.listType,
         this.status,
@@ -63,7 +63,7 @@ export class userlist extends ListAbstract {
     });
   }
 
-  private prepareData(data, listType, status): listElement[] {
+  private async prepareData(data, listType, status): Promise<listElement[]> {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
@@ -73,7 +73,7 @@ export class userlist extends ListAbstract {
       }
 
       if (listType === 'anime') {
-        const tempData = this.fn({
+        const tempData = await this.fn({
           malId: el.show.ids.mal,
           uid: el.show.ids.simkl,
           cacheKey: this.getCacheKey(el.show.ids.mal, el.show.ids.simkl),

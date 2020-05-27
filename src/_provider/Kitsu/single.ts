@@ -87,17 +87,13 @@ export class Single extends SingleAbstract {
     this.listI().attributes.volumesOwned = volume;
   }
 
-  _getStreamingUrl() {
-    const tags = this.listI().attributes.notes;
-    return utils.getUrlFromTags(tags);
-  }
-
-  _setStreamingUrl(url) {
+  _getTags() {
     let tags = this.listI().attributes.notes;
     if (tags === null || tags === 'null') tags = '';
+    return tags;
+  }
 
-    tags = utils.setUrlInTags(url, tags);
-
+  _setTags(tags) {
     this.listI().attributes.notes = tags;
   }
 

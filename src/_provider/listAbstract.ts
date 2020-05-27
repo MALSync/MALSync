@@ -19,6 +19,11 @@ export interface listElement {
     continueUrl: () => string;
     predictions: () => any;
   };
+  options?: {
+    u: string;
+    r: any;
+    c: any;
+  };
 }
 
 export abstract class ListAbstract {
@@ -150,7 +155,7 @@ export abstract class ListAbstract {
   }
 
   // itemFunctions;
-  fn(item) {
+  async fn(item) {
     let continueUrlTemp: any = null;
     let predictionsObj: any = null;
     item.fn = {
@@ -176,6 +181,11 @@ export abstract class ListAbstract {
         );
       },
     };
+    item.options = await utils.getEntrySettings(
+      item.type,
+      item.cacheKey,
+      item.tags,
+    );
     return item;
   }
 

@@ -99,23 +99,16 @@ export class Single extends SingleAbstract {
     }
   }
 
-  _getStreamingUrl() {
-    let tags = this.animeInfo['.add_anime[tags]'];
-    if (this.type === 'manga') {
-      tags = this.animeInfo['.add_manga[tags]'];
-    }
-    return utils.getUrlFromTags(tags);
-  }
-
-  _setStreamingUrl(url) {
+  _getTags() {
     let tags = this.animeInfo['.add_anime[tags]'];
     if (this.type === 'manga') {
       tags = this.animeInfo['.add_manga[tags]'];
     }
     if (!tags) tags = '';
+    return tags;
+  }
 
-    tags = utils.setUrlInTags(url, tags);
-
+  _setTags(tags) {
     if (this.type === 'manga') {
       this.animeInfo['.add_manga[tags]'] = tags;
       return;

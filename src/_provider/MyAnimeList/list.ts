@@ -45,9 +45,9 @@ export class userlist extends ListAbstract {
       `sorting: ${sorting}`,
     );
     const url = `https://myanimelist.net/${this.listType}list/${this.username}/load.json?offset=${this.offset}&status=${this.status}${sorting}`;
-    return api.request.xhr('GET', url).then(response => {
+    return api.request.xhr('GET', url).then(async response => {
       const res = this.jsonParse(response);
-      const data = this.prepareData(res);
+      const data = await this.prepareData(res);
       if (data.length > 299) {
         this.offset += 300;
       } else {
@@ -57,13 +57,13 @@ export class userlist extends ListAbstract {
     });
   }
 
-  public prepareData(data): listElement[] {
+  public async prepareData(data): Promise<listElement[]> {
     const newData = [] as listElement[];
     for (let i = 0; i < data.length; i++) {
       const el = data[i];
       if (this.listType === 'anime') {
         newData.push(
-          this.fn({
+          await this.fn({
             uid: el.anime_id,
             malId: el.anime_id,
             cacheKey: el.anime_id,
@@ -81,7 +81,7 @@ export class userlist extends ListAbstract {
         );
       } else {
         newData.push(
-          this.fn({
+          await this.fn({
             uid: el.manga_id,
             malId: el.manga_id,
             cacheKey: el.manga_id,

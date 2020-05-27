@@ -30,6 +30,12 @@ export abstract class SingleAbstract {
     simkl: NaN,
   };
 
+  protected options: {
+    u: string;
+    c: any;
+    r: any;
+  } | null = null;
+
   protected abstract handleUrl(url: string);
 
   public getType() {
@@ -106,17 +112,27 @@ export abstract class SingleAbstract {
     return this._getVolume();
   }
 
-  abstract _setStreamingUrl(streamingUrl: string): void;
+  abstract _setTags(tags: string): void;
+
+  abstract _getTags(): string;
 
   public setStreamingUrl(streamingUrl: string): SingleAbstract {
-    this._setStreamingUrl(streamingUrl);
+    if (this.options) {
+      this.options.u = streamingUrl;
+    }
     return this;
   }
 
-  abstract _getStreamingUrl(): string;
+  public getStreamingUrl(): string | undefined {
+    if (this.options && this.options.u) {
+      return this.options.u;
+    }
 
-  public getStreamingUrl(): string {
-    return this._getStreamingUrl();
+    return undefined;
+  }
+
+  public cleanTags() {
+    this.options = null;
   }
 
   abstract _update(): Promise<void>;
@@ -131,14 +147,31 @@ export abstract class SingleAbstract {
       })
       .then(() => {
         this.persistanceState = this.getStateEl();
+
+        return utils.getEntrySettings(
+          this.type,
+          this.getCacheKey(),
+          this._getTags(),
+        );
+      })
+      .then(options => {
+        this.options = options;
       });
   }
 
   abstract _sync(): Promise<void>;
 
-  public sync(): Promise<void> {
+  public async sync(): Promise<void> {
     con.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
+    this._setTags(
+      await utils.setEntrySettings(
+        this.type,
+        this.getCacheKey(),
+        this.options,
+        this._getTags(),
+      ),
+    );
     return this._sync()
       .catch(e => {
         this.lastError = e;
@@ -231,20 +264,22 @@ export abstract class SingleAbstract {
     });
   }
 
-  public setResumeWaching(url: string, ep: number) {
+  public setResumeWatching(url: string, ep: number) {
     return utils.setResumeWaching(url, ep, this.type, this.getCacheKey());
   }
 
-  public getResumeWaching() {
-    return utils.getResumeWaching(this.type, this.getCacheKey());
+  public getResumeWatching(): { url: string; ep: number } | null {
+    if (this.options && this.options.r) return this.options.r;
+    return null;
   }
 
-  public setContinueWaching(url: string, ep: number) {
+  public setContinueWatching(url: string, ep: number) {
     return utils.setContinueWaching(url, ep, this.type, this.getCacheKey());
   }
 
-  public getContinueWaching() {
-    return utils.getContinueWaching(this.type, this.getCacheKey());
+  public getContinueWatching(): { url: string; ep: number } | null {
+    if (this.options && this.options.c) return this.options.c;
+    return null;
   }
 
   getStateEl() {

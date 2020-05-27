@@ -13,7 +13,7 @@ export class userlist extends ListAbstract {
   async getPart() {
     con.log('[UserList][Local]', `status: ${this.status}`);
     this.done = true;
-    const data = this.prepareData(
+    const data = await this.prepareData(
       await this.getSyncList(),
       this.listType,
       this.status,
@@ -21,7 +21,7 @@ export class userlist extends ListAbstract {
     return data;
   }
 
-  private prepareData(data, listType, status): listElement[] {
+  private async prepareData(data, listType, status): Promise<listElement[]> {
     const newData = [] as listElement[];
     for (const key in data) {
       if (this.getRegex(listType).test(key)) {
@@ -32,7 +32,7 @@ export class userlist extends ListAbstract {
         }
         if (listType === 'anime') {
           newData.push(
-            this.fn({
+            await this.fn({
               airingState: 2,
               image: api.storage.assetUrl('questionmark.gif'),
               malId: 0,
@@ -54,7 +54,7 @@ export class userlist extends ListAbstract {
           );
         } else {
           newData.push(
-            this.fn({
+            await this.fn({
               airingState: 2,
               image: api.storage.assetUrl('questionmark.gif'),
               malId: 0,

@@ -67,17 +67,13 @@ export class Single extends SingleAbstract {
     this.animeInfo.mediaListEntry.progressVolumes = volume;
   }
 
-  _getStreamingUrl() {
-    const tags = this.animeInfo.mediaListEntry.notes;
-    return utils.getUrlFromTags(tags);
-  }
-
-  _setStreamingUrl(url) {
+  _getTags() {
     let tags = this.animeInfo.mediaListEntry.notes;
     if (tags === null || tags === 'null') tags = '';
+    return tags;
+  }
 
-    tags = utils.setUrlInTags(url, tags);
-
+  _setTags(tags) {
     this.animeInfo.mediaListEntry.notes = tags;
   }
 

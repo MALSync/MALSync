@@ -71,15 +71,13 @@ export class Single extends SingleAbstract {
     this.animeInfo.volumeprogress = volume;
   }
 
-  _getStreamingUrl() {
-    const { tags } = this.animeInfo;
-    return utils.getUrlFromTags(tags);
-  }
-
-  _setStreamingUrl(url) {
+  _getTags() {
     let { tags } = this.animeInfo;
     if (!tags) tags = '';
-    tags = utils.setUrlInTags(url, tags);
+    return tags;
+  }
+
+  _setTags(tags) {
     this.animeInfo.tags = tags;
   }
 
