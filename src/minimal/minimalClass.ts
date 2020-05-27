@@ -216,7 +216,10 @@ export class minimal {
       let deleted = 0;
 
       j.$.each(cacheArray, function(index, cache) {
-        if (!utils.syncRegex.test(String(index))) {
+        if (
+          !utils.syncRegex.test(String(index)) &&
+          !/(^tagSettings\/.*)/.test(String(index))
+        ) {
           api.storage.remove(String(index));
           deleted++;
         }

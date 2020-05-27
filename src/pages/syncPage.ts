@@ -480,14 +480,14 @@ export class syncPage {
           }
 
           function sync() {
-            This.singleObj.setResumeWaching(This.url, state.episode);
+            This.singleObj.setResumeWatching(This.url, state.episode);
             if (typeof This.page.sync.nextEpUrl !== 'undefined') {
               const continueWatching = This.page.sync.nextEpUrl(This.url);
               if (
                 continueWatching &&
                 !(continueWatching.indexOf('undefined') !== -1)
               ) {
-                This.singleObj.setContinueWaching(
+                This.singleObj.setContinueWatching(
                   continueWatching,
                   state.episode! + 1,
                 );

@@ -244,12 +244,10 @@
             <span v-html="lang('settings_malTags_Text')"></span>
           </tooltip>
         </checkbox>
-        <checkbox v-show="options.malTags" option="malContinue">{{
+        <checkbox option="malContinue">{{
           lang('settings_malContinue')
         }}</checkbox>
-        <checkbox v-show="options.malTags" option="malResume">{{
-          lang('settings_malResume')
-        }}</checkbox>
+        <checkbox option="malResume">{{ lang('settings_malResume') }}</checkbox>
       </div>
 
       <div

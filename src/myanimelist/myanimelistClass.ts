@@ -324,24 +324,23 @@ export class myanimelistClass {
     await malObj.update();
 
     const streamUrl = malObj.getStreamingUrl();
-    if (typeof streamUrl !== 'undefined') {
+    if (streamUrl) {
       $(document).ready(async function() {
         $('.h1 span').first().after(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${
-            streamUrl.split('/')[2]
+            streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="${utils.favicon(streamUrl.split('/')[2])}">
+            <img src="${utils.favicon(
+              streamUrl ? streamUrl.split('/')[2] : '',
+            )}">
           </a>
         </div>`);
 
-        const resumeUrlObj = await malObj.getResumeWaching();
-        const continueUrlObj = await malObj.getContinueWaching();
+        const resumeUrlObj = malObj.getResumeWatching();
+        const continueUrlObj = malObj.getContinueWatching();
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-        if (
-          typeof continueUrlObj !== 'undefined' &&
-          continueUrlObj.ep === malObj.getEpisode() + 1
-        ) {
+        if (continueUrlObj && continueUrlObj.ep === malObj.getEpisode() + 1) {
           $('#mal-sync-stream-div').append(
             `<a class="nextStream" title="${api.storage.lang(
               `overview_Continue_${malObj.getType()}`,
@@ -353,10 +352,7 @@ export class myanimelistClass {
               )}" width="16" height="16">
             </a>`,
           );
-        } else if (
-          typeof resumeUrlObj !== 'undefined' &&
-          resumeUrlObj.ep === malObj.getEpisode()
-        ) {
+        } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="${api.storage.lang(
               `overview_Resume_Episode_${malObj.getType()}`,
@@ -387,9 +383,9 @@ export class myanimelistClass {
             function() {
               return $('#loading-spinner').css('display') === 'none';
             },
-            function() {
+            async function() {
               callback(
-                listProvider.prepareData(
+                await listProvider.prepareData(
                   $.parseJSON($('.list-table').attr('data-items')!),
                 ),
               );
@@ -415,7 +411,7 @@ export class myanimelistClass {
                           .find('.title .link')
                           .first()
                           .attr('href'),
-                        utils.getUrlFromTags($(this).text()),
+                        $(this).text(),
                         parseInt(
                           par
                             .find('.progress .link')
@@ -501,21 +497,12 @@ export class myanimelistClass {
     book.bookReady(function(data) {
       This.bookmarksHDimages();
       $.each(data, async function(index, el) {
-        const streamUrl = utils.getUrlFromTags(el.tags);
         const malUrl = el.url.replace('https://myanimelist.net', '');
         con.log(malUrl);
         const id = el.malId;
         const { type } = el;
 
-        if (typeof streamUrl !== 'undefined') {
-          streamUI(
-            type,
-            malUrl,
-            streamUrl,
-            parseInt(el.watchedEp),
-            el.cacheKey,
-          );
-        }
+        streamUI(type, malUrl, el.tags, parseInt(el.watchedEp), el.cacheKey);
 
         utils.epPredictionUI(id, el.cacheKey, type, function(prediction) {
           if (!prediction) return;
@@ -526,45 +513,42 @@ export class myanimelistClass {
       book.cleanTags();
     });
 
-    async function streamUI(type, malUrl, streamUrl, curEp, cacheKey) {
-      const element = book.getElement(malUrl);
-      element.find(book.streamingSelector).after(`
-        <a class="mal-sync-stream" title="${
-          streamUrl.split('/')[2]
-        }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-          <img src="${utils.favicon(streamUrl.split('/')[2])}">
-        </a>`);
+    async function streamUI(type, malUrl, tags, curEp, cacheKey) {
+      const options = await utils.getEntrySettings(type, cacheKey, tags);
+      if (options && options.u) {
+        const element = book.getElement(malUrl);
+        element.find(book.streamingSelector).after(`
+          <a class="mal-sync-stream" title="${
+            options.u.split('/')[2]
+          }" target="_blank" style="margin: 0 0;" href="${options.u}">
+            <img src="${utils.favicon(options.u.split('/')[2])}">
+          </a>`);
 
-      const resumeUrlObj = await utils.getResumeWaching(type, cacheKey);
-      const continueUrlObj = await utils.getContinueWaching(type, cacheKey);
+        const resumeUrlObj = options.r;
+        const continueUrlObj = options.c;
 
-      con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-      if (
-        typeof continueUrlObj !== 'undefined' &&
-        continueUrlObj.ep === curEp + 1
-      ) {
-        element.find('.mal-sync-stream').after(
-          `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-            continueUrlObj.url
-          }">
-            <img src="${api.storage.assetUrl(
-              'double-arrow-16px.png',
-            )}" width="16" height="16">
-          </a>`,
-        );
-      } else if (
-        typeof resumeUrlObj !== 'undefined' &&
-        resumeUrlObj.ep === curEp
-      ) {
-        element.find('.mal-sync-stream').after(
-          `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-            resumeUrlObj.url
-          }">
-            <img src="${api.storage.assetUrl(
-              'arrow-16px.png',
-            )}" width="16" height="16">
-          </a>`,
-        );
+        con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
+        if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
+          element.find('.mal-sync-stream').after(
+            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+              continueUrlObj.url
+            }">
+              <img src="${api.storage.assetUrl(
+                'double-arrow-16px.png',
+              )}" width="16" height="16">
+            </a>`,
+          );
+        } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
+          element.find('.mal-sync-stream').after(
+            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+              resumeUrlObj.url
+            }">
+              <img src="${api.storage.assetUrl(
+                'arrow-16px.png',
+              )}" width="16" height="16">
+            </a>`,
+          );
+        }
       }
     }
   }

@@ -277,7 +277,7 @@ export default {
       return `width: ${predictionProgress}%; background-color: ${color}`;
     },
     streamUrl() {
-      return utils.getUrlFromTags(this.item.tags);
+      return this.item.options.u;
     },
     preTexter() {
       const pre = this.prediction.prediction;
@@ -316,25 +316,12 @@ export default {
           this.continueUrl = '';
           let resumeUrl = null;
           let continueUrl = null;
-          const { type } = this.item;
-          const resumeUrlObj = await utils.getResumeWaching(
-            type,
-            this.item.cacheKey,
-          );
-          const continueUrlObj = await utils.getContinueWaching(
-            type,
-            this.item.cacheKey,
-          );
+          const resumeUrlObj = this.item.options.r;
+          const continueUrlObj = this.item.options.c;
 
-          if (
-            typeof continueUrlObj !== 'undefined' &&
-            continueUrlObj.ep === ep + 1
-          ) {
+          if (continueUrlObj && continueUrlObj.ep === ep + 1) {
             continueUrl = continueUrlObj.url;
-          } else if (
-            typeof resumeUrlObj !== 'undefined' &&
-            resumeUrlObj.ep === ep
-          ) {
+          } else if (resumeUrlObj && resumeUrlObj.ep === ep) {
             resumeUrl = resumeUrlObj.url;
           }
           this.resumeUrl = resumeUrl;

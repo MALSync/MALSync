@@ -657,7 +657,6 @@ export default {
 
         con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
         if (
-          typeof this.mal.continueUrl !== 'undefined' &&
           this.mal.continueUrl &&
           this.mal.continueUrl.ep === malObj.getEpisode() + 1
         ) {
@@ -673,7 +672,6 @@ export default {
           )}
               </a>`;
         } else if (
-          typeof this.mal.resumeUrl !== 'undefined' &&
           this.mal.resumeUrl &&
           this.mal.resumeUrl.ep === malObj.getEpisode()
         ) {
@@ -801,8 +799,8 @@ export default {
         this.imageTemp = await this.renderObj.getImage();
       }
 
-      this.mal.resumeUrl = await renderObj.getResumeWaching();
-      this.mal.continueUrl = await renderObj.getContinueWaching();
+      this.mal.resumeUrl = renderObj.getResumeWatching();
+      this.mal.continueUrl = renderObj.getContinueWatching();
 
       utils.epPredictionUI(
         renderObj.id,

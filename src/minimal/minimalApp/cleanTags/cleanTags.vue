@@ -87,7 +87,7 @@ async function cleanTags(url) {
   return entryClass
     .update()
     .then(() => {
-      entryClass.setStreamingUrl('');
+      entryClass.cleanTags();
       return entryClass.sync();
     })
     .catch(e => {
