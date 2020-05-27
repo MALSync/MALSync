@@ -98,16 +98,17 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
     const id = Math.random()
       .toString(36)
       .substr(2, 9);
-    con.log(utils.getUrlFromTags(el.tags));
-    const streamUrl = utils.getUrlFromTags(el.tags);
-    if (typeof streamUrl !== 'undefined') {
+
+    if (el.options && el.options.u) {
+      console.log(el.options.u);
+
       const elCache = await api.storage.get(
         `updateCheck/${type}/${el.cacheKey}`,
       );
       con.log('cached', elCache);
       if (
         (typeof elCache !== 'undefined' && elCache.finished) ||
-        !isSupported(streamUrl)
+        !isSupported(el.options.u)
       ) {
         resolve();
         return;
@@ -116,7 +117,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       // Remove other iframes
       removeIframes();
       // Create iframe
-      openInvisiblePage(streamUrl, id);
+      openInvisiblePage(el.options.u, id);
 
       const timeout = setTimeout(async function() {
         api.storage.set(
@@ -184,7 +185,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
                 }
 
                 utils.notifications(
-                  streamUrl,
+                  el.options.u,
                   anime_title,
                   EpisodeText + newestEpisode,
                   anime_image_path,

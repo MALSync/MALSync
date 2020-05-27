@@ -269,25 +269,24 @@ export class anilistClass {
     await malObj.update();
 
     const streamUrl = malObj.getStreamingUrl();
-    if (typeof streamUrl !== 'undefined') {
+    if (streamUrl) {
       $(document).ready(async function() {
         $('#mal-sync-stream-div').remove();
         $('h1').first().append(`
         <div class="data title progress" id="mal-sync-stream-div" style="margin-top: -2px; display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${
-            streamUrl.split('/')[2]
+            streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="${utils.favicon(streamUrl.split('/')[2])}">
+            <img src="${utils.favicon(
+              streamUrl ? streamUrl.split('/')[2] : '',
+            )}">
           </a>
         </div>`);
 
-        const resumeUrlObj = await malObj.getResumeWaching();
-        const continueUrlObj = await malObj.getContinueWaching();
+        const resumeUrlObj = malObj.getResumeWatching();
+        const continueUrlObj = malObj.getContinueWatching();
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-        if (
-          typeof continueUrlObj !== 'undefined' &&
-          continueUrlObj.ep === malObj.getEpisode() + 1
-        ) {
+        if (continueUrlObj && continueUrlObj.ep === malObj.getEpisode() + 1) {
           $('#mal-sync-stream-div').append(
             `<a class="nextStream" title="${api.storage.lang(
               `overview_Continue_${malObj.getType()}`,
@@ -299,10 +298,7 @@ export class anilistClass {
               )}" width="16" height="16">
             </a>`,
           );
-        } else if (
-          typeof resumeUrlObj !== 'undefined' &&
-          resumeUrlObj.ep === malObj.getEpisode()
-        ) {
+        } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="${api.storage.lang(
               `overview_Resume_Episode_${malObj.getType()}`,
@@ -330,42 +326,25 @@ export class anilistClass {
         .not('.malSyncDone')
         .each((index, el) => {
           $(el).addClass('malSyncDone');
-          const streamUrl = utils.getUrlFromTags(
-            $(el)
-              .find('.notes')
-              .first()
-              .attr('label') || '',
-          );
-          if (typeof streamUrl !== 'undefined') {
-            con.log(streamUrl);
-            $(el)
-              .find('.title a')
-              .first().after(`
-            <a class="mal-sync-stream mal-rem" title="${
-              streamUrl.split('/')[2]
-            }" target="_blank" style="margin: 0 0; max-height: 14px;" href="${streamUrl}">
-              <img src="${utils.favicon(streamUrl.split('/')[2])}">
-            </a>`);
+          let label = $(el)
+            .find('.notes')
+            .first()
+            .attr('label');
 
-            let label = $(el)
-              .find('.notes')
-              .first()
-              .attr('label');
-            if (typeof label !== 'undefined') {
-              label = label
-                .replace(/(malSync|last)::[\d\D]+::/, '')
-                .replace(/#,/, '');
-              if (label.trim() === '' || label.trim() === ',') {
-                $(el)
-                  .find('.notes')
-                  .first()
-                  .css('visibility', 'hidden');
-              } else {
-                $(el)
-                  .find('.notes')
-                  .first()
-                  .attr('label', label);
-              }
+          if (typeof label !== 'undefined') {
+            label = label
+              .replace(/(malSync|last)::[\d\D]+::/, '')
+              .replace(/#,/, '');
+            if (label.trim() === '' || label.trim() === ',') {
+              $(el)
+                .find('.notes')
+                .first()
+                .css('visibility', 'hidden');
+            } else {
+              $(el)
+                .find('.notes')
+                .first()
+                .attr('label', label);
             }
           }
         });
@@ -381,8 +360,6 @@ export class anilistClass {
       }
 
       const listProvider: userlist = new userlist(1, this.page!.type);
-
-      listProvider.compact = true;
 
       listProvider
         .get()
@@ -402,40 +379,37 @@ export class anilistClass {
       function fullListCallback(list) {
         con.log(list);
         $.each(list, async (index, en) => {
-          con.log('en', en);
-          if (
-            typeof en.malid !== 'undefined' &&
-            en.malid !== null &&
-            en.malid
-          ) {
-            const element = $(
-              `.entry:not(.malSyncDone2) a[href^="/${This.page!.type}/${
-                en.id
-              }/"], .entry-card:not(.malSyncDone2) a[href^="/${
-                This.page!.type
-              }/${en.id}/"]`,
-            )
-              .first()
-              .parent();
-            con.log(element);
+          const tempEl = $(
+            `.entry:not(.malSyncDone2) a[href^="/${This.page!.type}/${
+              en.uid
+            }/"], .entry-card:not(.malSyncDone2) a[href^="/${This.page!.type}/${
+              en.uid
+            }/"]`,
+          );
+          if (tempEl.length) {
+            const element = tempEl.first().parent();
+
             element.parent().addClass('malSyncDone2');
 
-            const resumeUrlObj = await utils.getResumeWaching(
-              This.page!.type,
-              en.cacheKey,
-            );
-            const continueUrlObj = await utils.getContinueWaching(
-              This.page!.type,
-              en.cacheKey,
-            );
+            if (en.options && en.options.u) {
+              con.log(en.options.u);
+              element.find('a').first().after(`
+                <a class="mal-sync-stream mal-rem" title="${
+                  en.options.u.split('/')[2]
+                }" target="_blank" style="margin: 0 0; max-height: 14px;" href="${
+                en.options.u
+              }">
+                  <img src="${utils.favicon(en.options.u.split('/')[2])}">
+                </a>`);
+            }
+
+            const resumeUrlObj = en.options.r;
+            const continueUrlObj = en.options.c;
 
             const curEp = en.watchedEp;
 
             con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
-            if (
-              typeof continueUrlObj !== 'undefined' &&
-              continueUrlObj.ep === curEp + 1
-            ) {
+            if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
               element.prepend(
                 `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
                   continueUrlObj.url
@@ -445,10 +419,7 @@ export class anilistClass {
                   )}" width="16" height="16">
                 </a>`,
               );
-            } else if (
-              typeof resumeUrlObj !== 'undefined' &&
-              resumeUrlObj.ep === curEp
-            ) {
+            } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
               element.prepend(
                 `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
                   resumeUrlObj.url
