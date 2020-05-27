@@ -18,9 +18,7 @@ export const DreamAnimes: pageInterface = {
       return utils.urlPart(url, 5);
     },
     getOverviewUrl(url) {
-      return `${DreamAnimes.domain}/anime-info/${DreamAnimes.sync.getIdentifier(
-        url,
-      )}`;
+      return `${DreamAnimes.domain}/anime-info/${DreamAnimes.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 7));
@@ -38,9 +36,7 @@ export const DreamAnimes: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     let Interval;
 
@@ -56,10 +52,7 @@ export const DreamAnimes: pageInterface = {
     });
 
     function start() {
-      if (
-        utils.urlPart(page.url, 3) === 'online' ||
-        utils.urlPart(page.url, 3) === 'anime-info'
-      ) {
+      if (utils.urlPart(page.url, 3) === 'online' || utils.urlPart(page.url, 3) === 'anime-info') {
         if (DreamAnimes.isSyncPage(page.url)) {
           page.handlePage();
         } else {

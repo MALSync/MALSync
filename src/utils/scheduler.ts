@@ -58,10 +58,7 @@ export async function malSchedule() {
           .last()
           .text();
         if (episode.match(/^\d+/)) {
-          api.storage.set(
-            `mal/${malId}/eps`,
-            parseInt(episode.match(/^\d+/)![0]),
-          );
+          api.storage.set(`mal/${malId}/eps`, parseInt(episode.match(/^\d+/)![0]));
         }
       }
       found++;
@@ -71,9 +68,7 @@ export async function malSchedule() {
   });
 
   function toTimestamp(year, month, day, hour, minute, second) {
-    const datum = new Date(
-      Date.UTC(year, month - 1, day, hour, minute, second),
-    );
+    const datum = new Date(Date.UTC(year, month - 1, day, hour, minute, second));
     return datum.getTime() - 32400000; // for GMT
   }
 
@@ -144,16 +139,8 @@ export async function anilistScheduler(page = 0) {
       con.log(res.data.Page.pageInfo);
       res.data.Page.media.forEach(function(el) {
         const malId = el.idMal;
-        if (
-          malId &&
-          malId !== 'null' &&
-          malId !== null &&
-          typeof malId !== 'undefined'
-        ) {
-          if (
-            el.nextAiringEpisode !== null &&
-            el.nextAiringEpisode.episode > 1
-          ) {
+        if (malId && malId !== 'null' && malId !== null && typeof malId !== 'undefined') {
+          if (el.nextAiringEpisode !== null && el.nextAiringEpisode.episode > 1) {
             const elObj = {
               aniId: el.id,
               currentEp: el.nextAiringEpisode.episode - 1,

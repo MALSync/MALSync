@@ -35,10 +35,7 @@ export default {
           cache.getValue().then(val => (this.flagHtml = val));
         } else {
           api.request
-            .xhr(
-              'GET',
-              `https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/${newVal}.svg`,
-            )
+            .xhr('GET', `https://raw.githubusercontent.com/lipis/flag-icon-css/master/flags/4x3/${newVal}.svg`)
             .then(response => {
               if (response.responseText && response.status === 200) {
                 this.flagHtml = response.responseText;

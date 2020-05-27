@@ -82,9 +82,7 @@ export const AnimeXin: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         (page.url.split('/')[3] === 'anime' &&
@@ -92,8 +90,7 @@ export const AnimeXin: pageInterface = {
           page.url.split('/')[4].length &&
           j.$('div.infox > h1.entry-title').length &&
           j.$('div.bixbox.bxcl.epcheck').length) ||
-        (j.$('div.item.meta > div > span.epx > a').length &&
-          j.$('div.video-content').length)
+        (j.$('div.item.meta > div > span.epx > a').length && j.$('div.video-content').length)
       ) {
         page.handlePage();
       }

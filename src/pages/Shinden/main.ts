@@ -24,9 +24,7 @@ export const Shinden: pageInterface = {
       return j.$('h1.page-title > a').attr('href') || '';
     },
     getEpisode(url) {
-      const episodeText = j
-        .$('dl.info-aside-list:nth-child(1) > dd:nth-child(2)')
-        .text();
+      const episodeText = j.$('dl.info-aside-list:nth-child(1) > dd:nth-child(2)').text();
 
       if (!episodeText) return NaN;
 
@@ -49,14 +47,9 @@ export const Shinden: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'series' ||
-        page.url.split('/')[3] === 'episode'
-      ) {
+      if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'episode') {
         page.handlePage();
       }
     });

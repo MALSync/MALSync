@@ -5,11 +5,7 @@ export const Wakanim: pageInterface = {
   domain: 'https://www.wakanim.tv',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      j.$(
-        'body > section.episode > div > div > div.episode_main > div.episode_video > div',
-      ).length
-    ) {
+    if (j.$('body > section.episode > div > div > div.episode_main > div.episode_video > div').length) {
       return true;
     }
     return false;
@@ -21,32 +17,22 @@ export const Wakanim: pageInterface = {
     },
 
     getIdentifier(url) {
-      const ses = seasonHelper(
-        j.$('span.episode_subtitle > span:nth-child(2)').text(),
-      );
-      return `${j
-        .$('[itemprop="partOfSeries"] meta[itemprop="name"]')
-        .attr('content')} ${ses}`;
+      const ses = seasonHelper(j.$('span.episode_subtitle > span:nth-child(2)').text());
+      return `${j.$('[itemprop="partOfSeries"] meta[itemprop="name"]').attr('content')} ${ses}`;
     },
 
     getOverviewUrl(url) {
       return (
         Wakanim.domain +
         (j
-          .$(
-            'body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)',
-          )
+          .$('body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)')
           .attr('href') || '')
       );
     },
 
     getEpisode(url) {
       return Number(
-        j
-          .$(
-            'body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span',
-          )
-          .text(),
+        j.$('body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span').text(),
       );
     },
 
@@ -64,12 +50,8 @@ export const Wakanim: pageInterface = {
       return Wakanim.overview!.getIdentifier(url);
     },
     getIdentifier(url) {
-      const secondPart = seasonHelper(
-        j.$('#list-season-container > div > select > option:selected').text(),
-      );
-      return `${j
-        .$('[itemtype="http://schema.org/TVSeries"] > meta[itemprop="name"]')
-        .attr('content')} ${secondPart}`;
+      const secondPart = seasonHelper(j.$('#list-season-container > div > select > option:selected').text());
+      return `${j.$('[itemtype="http://schema.org/TVSeries"] > meta[itemprop="name"]').attr('content')} ${secondPart}`;
     },
 
     uiSelector(selector) {
@@ -82,10 +64,7 @@ export const Wakanim: pageInterface = {
         return j.$('li.-big');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector.find('a').attr('href'),
-          Wakanim.domain,
-        );
+        return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);
       },
       elementEp(selector) {
         const url = Wakanim.overview!.list!.elementUrl(selector);
@@ -99,20 +78,15 @@ export const Wakanim: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (
-      (page.url.split('/')[6] === 'show' &&
-        page.url.split('/')[9] === 'season') ||
+      (page.url.split('/')[6] === 'show' && page.url.split('/')[9] === 'season') ||
       page.url.split('/')[6] === 'episode'
     ) {
       utils.waitUntilTrue(
         function() {
           if (
-            j.$(
-              'body > div.SerieV2 > section > div.container > div > div.SerieV2-content',
-            ).length ||
+            j.$('body > div.SerieV2 > section > div.container > div > div.SerieV2-content').length ||
             j.$('#jwplayer-container').length
           ) {
             return true;
@@ -122,9 +96,7 @@ export const Wakanim: pageInterface = {
         function() {
           page.url = window.location.href;
           page.UILoaded = false;
-          $(
-            '#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp',
-          ).remove();
+          $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
           page.handlePage();
         },
       );
@@ -134,10 +106,7 @@ export const Wakanim: pageInterface = {
       page.url = window.location.href;
       page.UILoaded = false;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-      if (
-        page.url.split('/')[6] === 'show' &&
-        page.url.split('/')[9] === 'season'
-      ) {
+      if (page.url.split('/')[6] === 'show' && page.url.split('/')[9] === 'season') {
         utils.waitUntilTrue(
           function() {
             if (j.$('#list-season-container').length) {

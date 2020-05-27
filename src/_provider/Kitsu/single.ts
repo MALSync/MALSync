@@ -36,11 +36,7 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    if (
-      this.listI().attributes.reconsuming &&
-      this.listI().attributes.status === 'current'
-    )
-      return 23;
+    if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current') return 23;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
@@ -51,10 +47,7 @@ export class Single extends SingleAbstract {
     } else {
       this.listI().attributes.reconsuming = false;
     }
-    this.listI().attributes.status = helper.translateList(
-      status,
-      parseInt(status.toString()),
-    );
+    this.listI().attributes.status = helper.translateList(status, parseInt(status.toString()));
   }
 
   _getScore() {
@@ -98,10 +91,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return helper.getTitle(
-      this.animeI().attributes.titles,
-      this.animeI().attributes.canonicalTitle,
-    );
+    return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
   }
 
   _getTotalEpisodes() {
@@ -119,9 +109,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return `https://kitsu.io/${this.getType()}/${
-      this.animeI().attributes.slug
-    }`;
+    return `https://kitsu.io/${this.getType()}/${this.animeI().attributes.slug}`;
   }
 
   _getImage() {
@@ -129,18 +117,14 @@ export class Single extends SingleAbstract {
   }
 
   _getRating() {
-    if (this.animeI().attributes.averageRating === null)
-      return Promise.resolve('');
+    if (this.animeI().attributes.averageRating === null) return Promise.resolve('');
     return Promise.resolve(`${this.animeI().attributes.averageRating}%`);
   }
 
   async _update() {
     if (Number.isNaN(this.ids.mal)) {
       /* eslint-disable-next-line no-var */
-      var kitsuSlugRes = await this.kitsuSlugtoKitsu(
-        this.ids.kitsu.slug,
-        this.getType(),
-      );
+      var kitsuSlugRes = await this.kitsuSlugtoKitsu(this.ids.kitsu.slug, this.getType());
       try {
         this.ids.kitsu.id = kitsuSlugRes.res.data[0].id;
         this.ids.mal = kitsuSlugRes.malId;
@@ -168,9 +152,7 @@ export class Single extends SingleAbstract {
           `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userId}&filter[kind]=${this.getType()}&filter[${this.getType()}_id]=${
             this.ids.kitsu.id
           }&page[limit]=1&page[limit]=1&include=${this.getType()}&fields[${this.getType()}]=slug,titles,canonicalTitle,averageRating,posterImage,${
-            this.getType() === 'anime'
-              ? 'episodeCount'
-              : 'chapterCount,volumeCount'
+            this.getType() === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
           }`,
         );
       })
@@ -213,14 +195,12 @@ export class Single extends SingleAbstract {
           throw this.errorObj(errorCode.EntryNotFound, 'Not found');
         }
 
-        if (!this._authenticated)
-          throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });
   }
 
   async _sync() {
-    if (this.listI().attributes.ratingTwenty < 2)
-      this.listI().attributes.ratingTwenty = null;
+    if (this.listI().attributes.ratingTwenty < 2) this.listI().attributes.ratingTwenty = null;
     const variables: any = {
       data: {
         attributes: {
@@ -229,9 +209,7 @@ export class Single extends SingleAbstract {
           volumesOwned: this.listI().attributes.volumesOwned,
           reconsuming: this.listI().attributes.reconsuming,
           reconsumeCount: this.listI().attributes.reconsumeCount,
-          ratingTwenty: this.listI().attributes.ratingTwenty
-            ? this.listI().attributes.ratingTwenty
-            : null,
+          ratingTwenty: this.listI().attributes.ratingTwenty ? this.listI().attributes.ratingTwenty : null,
           status: this.listI().attributes.status,
         },
         type: 'library-entries',
@@ -242,9 +220,7 @@ export class Single extends SingleAbstract {
     let updateUrl;
     let post;
     if (this.isOnList()) {
-      updateUrl = `https://kitsu.io/api/edge/library-entries/${
-        this.listI().id
-      }`;
+      updateUrl = `https://kitsu.io/api/edge/library-entries/${this.listI().id}`;
       variables.data.id = this.listI().id;
       post = 'PATCH';
     } else {
@@ -276,8 +252,7 @@ export class Single extends SingleAbstract {
       'Content-Type': 'application/vnd.api+json',
       Accept: 'application/vnd.api+json',
     };
-    if (authentication)
-      headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
+    if (authentication) headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
     return api.request
       .xhr(mode, {
         url,
@@ -285,14 +260,8 @@ export class Single extends SingleAbstract {
         data: JSON.stringify(variables),
       })
       .then(response => {
-        if (
-          (response.status > 499 && response.status < 600) ||
-          response.status === 0
-        ) {
-          throw this.errorObj(
-            errorCode.ServerOffline,
-            `Server Offline status: ${response.status}`,
-          );
+        if ((response.status > 499 && response.status < 600) || response.status === 0) {
+          throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
         }
 
         const res = JSON.parse(response.responseText);
@@ -381,15 +350,8 @@ export class Single extends SingleAbstract {
     if (typeof userId !== 'undefined') {
       return userId;
     }
-    return this.apiCall(
-      'Get',
-      'https://kitsu.io/api/edge/users?filter[self]=true',
-    ).then(res => {
-      if (
-        typeof res.data === 'undefined' ||
-        !res.data.length ||
-        typeof res.data[0] === 'undefined'
-      ) {
+    return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
+      if (typeof res.data === 'undefined' || !res.data.length || typeof res.data[0] === 'undefined') {
         throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);
@@ -413,9 +375,7 @@ export class Single extends SingleAbstract {
         ];
         break;
       case 'regular': {
-        const regArr = [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-        ];
+        const regArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
         for (let i = 1; i < 11; i++) {
           regArr.push({
             value: (i * 2).toString(),
@@ -426,9 +386,7 @@ export class Single extends SingleAbstract {
         break;
       }
       case 'advanced': {
-        const resArr = [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-        ];
+        const resArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
         for (let i = 1; i < 21; i++) {
           resArr.push({
             value: i.toString(),

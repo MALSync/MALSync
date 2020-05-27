@@ -104,24 +104,17 @@ export const Plex: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return (
-        item.grandparentTitle +
-        (item.parentIndex > 1 ? ` Season ${item.parentIndex}` : '')
-      );
+      return item.grandparentTitle + (item.parentIndex > 1 ? ` Season ${item.parentIndex}` : '');
     },
     getIdentifier(url) {
-      if (typeof item.parentKey !== 'undefined')
-        return item.parentKey.split('/')[3];
-      if (typeof item.grandparentKey !== 'undefined')
-        return item.grandparentKey.split('/')[3];
+      if (typeof item.parentKey !== 'undefined') return item.parentKey.split('/')[3];
+      if (typeof item.grandparentKey !== 'undefined') return item.grandparentKey.split('/')[3];
       return item.key.split('/')[3];
     },
     getOverviewUrl(url) {
       return (
         Plex.domain +
-        $(
-          '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"][data-qa-id="metadataTitleLink"]',
-        )
+        $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"][data-qa-id="metadataTitleLink"]')
           .first()
           .attr('href')!
       );
@@ -142,9 +135,7 @@ export const Plex: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     utils.changeDetect(
       () => {
@@ -167,9 +158,7 @@ export const Plex: pageInterface = {
 
     utils.urlChangeDetect(function() {
       if (
-        !$(
-          '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
-        ).length
+        !$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length
       ) {
         urlChange(page);
       }
@@ -177,9 +166,7 @@ export const Plex: pageInterface = {
 
     j.$(document).ready(function() {
       if (
-        !$(
-          '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
-        ).length
+        !$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length
       ) {
         urlChange(page);
       }
@@ -198,9 +185,7 @@ export const Plex: pageInterface = {
         urlChange(page, Plex.domain + metaUrl, true);
       },
       () => {
-        const src = $(
-          '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
-        )
+        const src = $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]')
           .first()
           .attr('href');
         if (typeof src === 'undefined') return 'NaN';
@@ -211,8 +196,7 @@ export const Plex: pageInterface = {
     document.addEventListener('fullscreenchange', function() {
       if (
         window.fullScreen ||
-        (window.innerWidth === window.screen.width &&
-          window.innerHeight === window.screen.height)
+        (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)
       ) {
         $('html').addClass('miniMAL-Fullscreen');
       } else {

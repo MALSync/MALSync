@@ -35,9 +35,7 @@ export const Kissanime: pageInterface = {
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5).replace(/1080p|720p/i, ' ');
 
-      const episodeTextMatches = episodePart.match(
-        /[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/,
-      );
+      const episodeTextMatches = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
 
       if (!episodeTextMatches || episodeTextMatches.length === 0) return NaN;
 
@@ -45,8 +43,7 @@ export const Kissanime: pageInterface = {
 
       const episodeNumberMatches = episodeText.match(/\d+($|-)/m);
 
-      if (!episodeNumberMatches || episodeNumberMatches.length === 0)
-        return NaN;
+      if (!episodeNumberMatches || episodeNumberMatches.length === 0) return NaN;
 
       const [episodeNumber] = episodeNumberMatches;
 
@@ -106,9 +103,7 @@ export const Kissanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

@@ -19,9 +19,7 @@ export const Turkanime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return Turkanime.overview!.getIdentifier(
-        Turkanime.sync.getOverviewUrl(url),
-      );
+      return Turkanime.overview!.getIdentifier(Turkanime.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
@@ -33,10 +31,7 @@ export const Turkanime: pageInterface = {
       );
     },
     getEpisode(url) {
-      return getEpisode(
-        Turkanime.sync.getIdentifier(url),
-        Turkanime.overview!.getIdentifier(url),
-      );
+      return getEpisode(Turkanime.sync.getIdentifier(url), Turkanime.overview!.getIdentifier(url));
     },
     nextEpUrl(url) {
       if (
@@ -87,10 +82,7 @@ export const Turkanime: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return utils.absoluteLink(
-          anchorHref.replace(/^\/\//, 'http://'),
-          Turkanime.domain,
-        );
+        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'http://'), Turkanime.domain);
       },
       elementEp(selector) {
         const url = Turkanime.overview!.list!.elementUrl(selector);
@@ -98,16 +90,12 @@ export const Turkanime: pageInterface = {
           Turkanime.overview!.getIdentifier(window.location.href),
           Turkanime.overview!.getIdentifier(url),
         );
-        return Turkanime.sync!.getEpisode(
-          Turkanime.overview!.list!.elementUrl(selector),
-        );
+        return Turkanime.sync!.getEpisode(Turkanime.overview!.list!.elementUrl(selector));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (Turkanime.isSyncPage(page.url)) {
         page.handlePage();

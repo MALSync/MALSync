@@ -69,9 +69,7 @@ export const Twistmoe: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Twistmoe.sync!.getEpisode(
-          Twistmoe.overview!.list!.elementUrl(selector),
-        );
+        return Twistmoe.sync!.getEpisode(Twistmoe.overview!.list!.elementUrl(selector));
       },
     },
   },
@@ -88,9 +86,7 @@ export const Twistmoe: pageInterface = {
       page.handlePage();
     };
 
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       start();
 

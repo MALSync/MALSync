@@ -53,9 +53,7 @@ export class userlist extends ListAbstract {
   }
 
   deauth() {
-    return api.settings
-      .set('kitsuToken', '')
-      .then(() => api.storage.set('kitsuUserId', ''));
+    return api.settings.set('kitsuToken', '').then(() => api.storage.set('kitsuUserId', ''));
   }
 
   errorHandling(res) {
@@ -83,25 +81,16 @@ export class userlist extends ListAbstract {
       statusPart = `&filter[status]=${statusTemp}`;
     }
 
-    con.log(
-      '[UserList][Kitsu]',
-      `user: ${userid}`,
-      `status: ${this.status}`,
-      `offset: ${this.offset}`,
-    );
+    con.log('[UserList][Kitsu]', `user: ${userid}`, `status: ${this.status}`, `offset: ${this.offset}`);
 
     return api.request
       .xhr('GET', {
         url: `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
           this.listType
-        }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${
+        }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${this.listType},${this.listType}.mappings,${
           this.listType
-        },${this.listType}.mappings,${this.listType}.mappings.item&fields[${
-          this.listType
-        }]=slug,titles,canonicalTitle,averageRating,posterImage,${
-          this.listType === 'anime'
-            ? 'episodeCount'
-            : 'chapterCount,volumeCount'
+        }.mappings.item&fields[${this.listType}]=slug,titles,canonicalTitle,averageRating,posterImage,${
+          this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
         headers: {
           Authorization: `Bearer ${this.accessToken()}`,
@@ -131,10 +120,7 @@ export class userlist extends ListAbstract {
       const list = data.data[i];
       const el = data.included[i];
 
-      const name = helper.getTitle(
-        el.attributes.titles,
-        el.attributes.canonicalTitle,
-      );
+      const name = helper.getTitle(el.attributes.titles, el.attributes.canonicalTitle);
 
       let malId = NaN;
       for (let k = 0; k < data.included.length; k++) {
@@ -163,10 +149,7 @@ export class userlist extends ListAbstract {
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
           score: list.attributes.ratingTwenty / 2,
-          image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
-              : '',
+          image: el.attributes.posterImage && el.attributes.posterImage.large ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
         });
@@ -183,10 +166,7 @@ export class userlist extends ListAbstract {
           totalEp: el.attributes.chapterCount,
           status: helper.translateList(list.attributes.status),
           score: list.attributes.ratingTwenty / 2,
-          image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
-              : '',
+          image: el.attributes.posterImage && el.attributes.posterImage.large ? el.attributes.posterImage.large : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
         });

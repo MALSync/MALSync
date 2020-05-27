@@ -3,19 +3,13 @@
     <span class="mdl-list__item-primary-content">
       <slot />
       <div v-show="Object.keys(value).length === 1">
-        <tooltip
-          tag-style="color: #8a1818; font-size: 20px; padding-bottom: 0;"
-          icon-text="info"
-          >{{ lang('settings_shortcut_tooltip') }}</tooltip
-        >
+        <tooltip tag-style="color: #8a1818; font-size: 20px; padding-bottom: 0;" icon-text="info">{{
+          lang('settings_shortcut_tooltip')
+        }}</tooltip>
       </div>
     </span>
     <span class="mdl-list__item-secondary-action">
-      <div
-        v-if="Object.keys(value).length"
-        class="icon material-icons close-icon"
-        @click="value = {}"
-      >
+      <div v-if="Object.keys(value).length" class="icon material-icons close-icon" @click="value = {}">
         close
       </div>
       <div class="mdl-textfield mdl-js-textfield">
@@ -90,8 +84,7 @@ export default {
         return Object.keys(this.keys)
           .map(val => keyboardMap[val])
           .join(' + ');
-      if (!this.value || !Object.keys(this.value).length)
-        return this.lang('settings_Shortcuts_Click');
+      if (!this.value || !Object.keys(this.value).length) return this.lang('settings_Shortcuts_Click');
       return Object.keys(this.value)
         .map(val => keyboardMap[val])
         .join(' + ');

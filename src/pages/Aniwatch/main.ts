@@ -25,9 +25,7 @@ export const Aniwatch: pageInterface = {
         return url.split('/')[4];
       }
 
-      const anchorHref = j
-        .$('h2.md-title > span.border-right > a')
-        .attr('href');
+      const anchorHref = j.$('h2.md-title > span.border-right > a').attr('href');
 
       if (!anchorHref) return '';
 
@@ -48,11 +46,7 @@ export const Aniwatch: pageInterface = {
       );
     },
     nextEpUrl(url) {
-      if (
-        tabPage !== 'stream' ||
-        !j.$('#anilyr-nextEpi').is('[disabled=disabled]')
-      )
-        return '';
+      if (tabPage !== 'stream' || !j.$('#anilyr-nextEpi').is('[disabled=disabled]')) return '';
 
       const urlPart5 = utils.urlPart(url, 5);
 
@@ -63,27 +57,19 @@ export const Aniwatch: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('md-content > div > div.responsive-anime.anime-boxes-margin > h1')
-        .text();
+      return j.$('md-content > div > div.responsive-anime.anime-boxes-margin > h1').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       selector.insertBefore(
-        j
-          .$(
-            '#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div',
-          )
-          .first(),
+        j.$('#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div').first(),
       );
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     utils.changeDetect(loaded, () => {
       if (window.location.href.split('/')[3] === 'watch2gether') {
@@ -113,20 +99,12 @@ export const Aniwatch: pageInterface = {
           .$('.md-tab.md-active')
           .text()
           .toLowerCase();
-        if (
-          typeof tabPage !== 'undefined' &&
-          (tabPage === 'stream' || tabPage === 'overview')
-        ) {
+        if (typeof tabPage !== 'undefined' && (tabPage === 'stream' || tabPage === 'overview')) {
           utils.waitUntilTrue(
             function() {
               if (
-                j
-                  .$(
-                    'md-content > div > div.responsive-anime.anime-boxes-margin > h1',
-                  )
-                  .text().length ||
-                j.$('h1.md-headline.no-margin > span.border-right.pr-5').text()
-                  .length
+                j.$('md-content > div > div.responsive-anime.anime-boxes-margin > h1').text().length ||
+                j.$('h1.md-headline.no-margin > span.border-right.pr-5').text().length
               ) {
                 return true;
               }

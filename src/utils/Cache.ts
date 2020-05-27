@@ -1,19 +1,11 @@
 export class Cache {
-  constructor(
-    protected key: string,
-    protected ttl: number,
-    protected localStorage: boolean = true,
-  ) {
+  constructor(protected key: string, protected ttl: number, protected localStorage: boolean = true) {
     return this;
   }
 
   async hasValue() {
     const value = await this.getStorage();
-    if (
-      typeof value !== 'undefined' &&
-      value !== null &&
-      new Date().getTime() < value.timestamp
-    ) {
+    if (typeof value !== 'undefined' && value !== null && new Date().getTime() < value.timestamp) {
       return true;
     }
     return false;

@@ -5,11 +5,7 @@ export const HentaiHaven: pageInterface = {
   domain: 'https://hentaihaven.org',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] !== null &&
-      j.$('h1.entry-title')[0] &&
-      j.$('div.hentaiha-post-tabs')[0]
-    ) {
+    if (url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) {
       return true;
     }
     return false;
@@ -61,14 +57,10 @@ export const HentaiHaven: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
-        (page.url.split('/')[3] !== null &&
-          j.$('h1.entry-title')[0] &&
-          j.$('div.hentaiha-post-tabs')[0]) ||
+        (page.url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) ||
         page.url.split('/')[3] === 'series'
       ) {
         page.handlePage();

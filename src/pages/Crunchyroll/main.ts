@@ -97,9 +97,7 @@ export const Crunchyroll: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(document).ready(function() {
       if (j.$('.season-dropdown').length > 1) {
@@ -107,11 +105,7 @@ export const Crunchyroll: pageInterface = {
           '<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>',
         );
         j.$('.exclusivMal').click(function(evt) {
-          j.$('#showview_content').before(
-            `<div><a href="${
-              page.url.split('?')[0]
-            }">Show hidden seasons</a></div>`,
-          );
+          j.$('#showview_content').before(`<div><a href="${page.url.split('?')[0]}">Show hidden seasons</a></div>`);
           const thisparent = j.$(evt.target).parent();
           j.$('.season-dropdown')
             .not(thisparent)

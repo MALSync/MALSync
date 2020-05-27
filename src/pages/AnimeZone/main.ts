@@ -15,10 +15,7 @@ export const AnimeZone: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('.all-episodes > a').attr('href'),
-        AnimeZone.domain,
-      );
+      return utils.absoluteLink(j.$('.all-episodes > a').attr('href'), AnimeZone.domain);
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
@@ -52,10 +49,7 @@ export const AnimeZone: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return utils.absoluteLink(
-          anchorHref.replace(/^../gm, ''),
-          AnimeZone.domain,
-        );
+        return utils.absoluteLink(anchorHref.replace(/^../gm, ''), AnimeZone.domain);
       },
       elementEp(selector) {
         return selector
@@ -69,39 +63,28 @@ export const AnimeZone: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
 
       const target = j.$('#episode')[0];
       const config = { attributes: false, childList: true, subtree: true };
 
-      const callback = function(
-        mutationsList: MutationRecord[],
-        observer: MutationObserver,
-      ) {
+      const callback = function(mutationsList: MutationRecord[], observer: MutationObserver) {
         /* eslint-disable-next-line */
         for (const mutation of mutationsList) {
           if (mutation.type !== 'childList') return;
 
-          const srcElement:
-            | HTMLAnchorElement
-            | HTMLFrameElement
-            | null = document.querySelector('#episode a,  #episode iframe');
+          const srcElement: HTMLAnchorElement | HTMLFrameElement | null = document.querySelector(
+            '#episode a,  #episode iframe',
+          );
 
           if (!srcElement) return;
 
-          const url =
-            srcElement instanceof HTMLAnchorElement
-              ? srcElement.href
-              : srcElement.src;
+          const url = srcElement instanceof HTMLAnchorElement ? srcElement.href : srcElement.src;
           const src = url.replace(/^http:\/\//i, 'https://');
 
-          const embedContainer = document.querySelector(
-            '#episode .embed-container',
-          );
+          const embedContainer = document.querySelector('#episode .embed-container');
 
           if (!embedContainer) return;
 

@@ -27,9 +27,7 @@ export const AnimesHouse: pageInterface = {
     },
     getOverviewUrl(url) {
       if (!film) {
-        return (
-          j.$('div.pag_episodes > div:nth-child(2) > a').attr('href') || ''
-        );
+        return j.$('div.pag_episodes > div:nth-child(2) > a').attr('href') || '';
       }
       return url;
     },
@@ -46,14 +44,9 @@ export const AnimesHouse: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
-      ) {
+      if (page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0) {
         if (page.url.split('/')[3] === 'episodio') {
           const episodeText = j
             .$('#info > div > h3.epih3')
@@ -61,8 +54,7 @@ export const AnimesHouse: pageInterface = {
             .toLowerCase();
           if (
             episodeText.length &&
-            (episodeText.indexOf('episódio') !== -1 ||
-              episodeText.indexOf('episodio') !== -1) &&
+            (episodeText.indexOf('episódio') !== -1 || episodeText.indexOf('episodio') !== -1) &&
             episodeText.indexOf('ona') === -1 &&
             episodeText.indexOf('ova') === -1 &&
             episodeText.indexOf('special') === -1 &&

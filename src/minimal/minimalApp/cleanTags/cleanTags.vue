@@ -13,14 +13,11 @@
     <br />
     Anime:
     <span v-if="animeLoading && !animelistLength">Loading</span>
-    <span v-if="animelistLength"
-      >{{ animelistLength - animelist.length }}/{{ animelistLength }}</span
-    >
+    <span v-if="animelistLength">{{ animelistLength - animelist.length }}/{{ animelistLength }}</span>
     <br />
     Manga:
     <span v-if="mangaLoading && !mangalistLength">Loading</span>
-    <span v-if="mangalistLength"
-      >{{ mangalistLength - mangalist.length }}/{{ mangalistLength }}</span
+    <span v-if="mangalistLength">{{ mangalistLength - mangalist.length }}/{{ mangalistLength }}</span
     ><br />
   </div>
 </template>

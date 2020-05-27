@@ -1,22 +1,14 @@
 <template>
   <div v-if="obj" class="entry">
-    <a
-      class="result"
-      :href="obj.getDisplayUrl()"
-      target="_blank"
-      style="cursor: pointer;"
-    >
+    <a class="result" :href="obj.getDisplayUrl()" target="_blank" style="cursor: pointer;">
       <div class="image"><img v-if="image" :src="image" /></div>
       <div class="right">
         <span class="title">{{ obj.getTitle() }}</span>
-        <p v-if="obj.isOnList()">
-          {{ lang('UI_Status') }} {{ statusText(status) }}
-        </p>
+        <p v-if="obj.isOnList()">{{ lang('UI_Status') }} {{ statusText(status) }}</p>
         <p v-if="obj.isOnList()">{{ lang('UI_Score') }} {{ score }}</p>
         <p v-if="obj.isOnList()">
           {{ utilsepisode(obj.getType()) }} {{ episode
-          }}<span v-if="obj.getTotalEpisodes()" id="curEps"
-            >/{{ obj.getTotalEpisodes() }}</span
+          }}<span v-if="obj.getTotalEpisodes()" id="curEps">/{{ obj.getTotalEpisodes() }}</span
           ><span v-else>/?</span>
         </p>
       </div>

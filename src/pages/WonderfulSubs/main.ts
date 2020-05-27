@@ -24,9 +24,7 @@ export const WonderfulSubs: pageInterface = {
         .replace(/ /g, '-');
     },
     getOverviewUrl(url) {
-      return `${WonderfulSubs.domain}/watch/${url
-        .split('/')[4]
-        .replace(/\?[^?]*$/g, '')}`;
+      return `${WonderfulSubs.domain}/watch/${url.split('/')[4].replace(/\?[^?]*$/g, '')}`;
     },
     getEpisode(url) {
       return Number(
@@ -38,9 +36,7 @@ export const WonderfulSubs: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     page.url = window.location.href;
     if (page.url.split('/')[2] === 'beta.wonderfulsubs.com') {
       WonderfulSubs.isSyncPage = betaWonderfulSubs.isSyncPage;
@@ -98,9 +94,7 @@ let betaWonderfulSubs: pageInterface = {
         .replace(/ /g, '-');
     },
     getOverviewUrl(url) {
-      return `${'https://beta.wonderfulsubs.com/watch/'}${url
-        .split('/')[4]
-        .replace(/\?[^?]*$/g, '')}`;
+      return `${'https://beta.wonderfulsubs.com/watch/'}${url.split('/')[4].replace(/\?[^?]*$/g, '')}`;
     },
     getEpisode(url) {
       return Number(
@@ -112,9 +106,7 @@ let betaWonderfulSubs: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     page.url = window.location.href;
     if (page.url.split('/')[3] === 'watch') {
       utils.waitUntilTrue(

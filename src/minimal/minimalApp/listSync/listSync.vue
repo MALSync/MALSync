@@ -15,8 +15,7 @@
     >
       MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br />
       <span v-html="listProvider.mal.text"></span><br />
-      <span v-if="listProvider.mal.list"
-        >List: {{ listProvider.mal.list.length }}</span
+      <span v-if="listProvider.mal.list">List: {{ listProvider.mal.list.length }}</span
       ><br />
       <br />
     </div>
@@ -26,8 +25,7 @@
     >
       AniList <span v-if="listProvider.anilist.master">(Master)</span><br />
       <span v-html="listProvider.anilist.text"></span> <br />
-      <span v-if="listProvider.anilist.list"
-        >List: {{ listProvider.anilist.list.length }}</span
+      <span v-if="listProvider.anilist.list">List: {{ listProvider.anilist.list.length }}</span
       ><br />
       <br />
     </div>
@@ -37,8 +35,7 @@
     >
       Kitsu <span v-if="listProvider.kitsu.master">(Master)</span><br />
       <span v-html="listProvider.kitsu.text"></span><br />
-      <span v-if="listProvider.kitsu.list"
-        >List: {{ listProvider.kitsu.list.length }}</span
+      <span v-if="listProvider.kitsu.list">List: {{ listProvider.kitsu.list.length }}</span
       ><br />
       <br />
     </div>
@@ -48,8 +45,7 @@
     >
       Simkl <span v-if="listProvider.simkl.master">(Master)</span><br />
       <span v-html="listProvider.simkl.text"></span><br />
-      <span v-if="listProvider.simkl.list"
-        >List: {{ listProvider.simkl.list.length }}</span
+      <span v-if="listProvider.simkl.list">List: {{ listProvider.simkl.list.length }}</span
       ><br />
       <br />
     </div>
@@ -80,9 +76,7 @@
       </template>
     </button>
 
-    <span v-if="listLength"
-      >{{ listLength - listSyncLength }}/{{ listLength }}</span
-    >
+    <span v-if="listLength">{{ listLength - listSyncLength }}/{{ listLength }}</span>
 
     <div
       v-for="(item, index) in listDiff"
@@ -117,17 +111,13 @@
         ID: <a target="_blank" :href="slave.url">{{ slave.uid }}</a
         ><br />
         EP: {{ slave.watchedEp }}
-        <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;"
-          >→ {{ slave.diff.watchedEp }}</span
+        <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;">→ {{ slave.diff.watchedEp }}</span
         ><br />
         Status: {{ slave.status }}
-        <span v-if="slave.diff && slave.diff.status" style="color: green;"
-          >→ {{ slave.diff.status }}</span
+        <span v-if="slave.diff && slave.diff.status" style="color: green;">→ {{ slave.diff.status }}</span
         ><br />
         Score: {{ slave.score }}
-        <span v-if="slave.diff && slave.diff.score" style="color: green;"
-          >→ {{ slave.diff.score }}</span
-        >
+        <span v-if="slave.diff && slave.diff.score" style="color: green;">→ {{ slave.diff.score }}</span>
       </div>
     </div>
 
@@ -147,10 +137,7 @@
           Status: {{ item.status }}<br />
           Score: {{ item.score }}
         </div>
-        <div
-          v-if="item.error"
-          style="color: red; width: 100%; border-top: 1px solid;"
-        >
+        <div v-if="item.error" style="color: red; width: 100%; border-top: 1px solid;">
           {{ item.error }}
         </div>
       </div>
@@ -222,21 +209,9 @@ export default {
       simkl: this.listProvider.simkl,
     });
 
-    const listOptions = await sync.retriveLists(
-      providerList,
-      type,
-      api,
-      sync.getList,
-    );
+    const listOptions = await sync.retriveLists(providerList, type, api, sync.getList);
 
-    sync.generateSync(
-      listOptions.master,
-      listOptions.slaves,
-      mode,
-      listOptions.typeArray,
-      this.list,
-      this.missing,
-    );
+    sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
     this.list = { ...this.list };
 
     this.listReady = true;

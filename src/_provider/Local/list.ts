@@ -13,11 +13,7 @@ export class userlist extends ListAbstract {
   async getPart() {
     con.log('[UserList][Local]', `status: ${this.status}`);
     this.done = true;
-    const data = await this.prepareData(
-      await this.getSyncList(),
-      this.listType,
-      this.status,
-    );
+    const data = await this.prepareData(await this.getSyncList(), this.listType, this.status);
     return data;
   }
 
@@ -45,10 +41,7 @@ export class userlist extends ListAbstract {
 
               uid: key,
               url: key,
-              cacheKey: this.getCacheKey(
-                utils.urlPart(key, 4),
-                utils.urlPart(key, 2),
-              ),
+              cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
               watchedEp: el.progress,
             }),
           );
@@ -66,10 +59,7 @@ export class userlist extends ListAbstract {
               type: 'manga',
               uid: key,
               url: key,
-              cacheKey: this.getCacheKey(
-                utils.urlPart(key, 4),
-                utils.urlPart(key, 2),
-              ),
+              cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
               watchedEp: el.progress,
             }),
           );

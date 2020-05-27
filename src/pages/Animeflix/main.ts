@@ -13,9 +13,7 @@ export const Animeflix: pageInterface = {
   sync: {
     getTitle(url) {
       return utils
-        .getBaseText(
-          $('h4.title.text-truncate, h4.headline.text-truncate').first(),
-        )
+        .getBaseText($('h4.title.text-truncate, h4.headline.text-truncate').first())
         .replace('()', '')
         .trim();
     },
@@ -52,15 +50,11 @@ export const Animeflix: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(
-        `<div class="container"> <p id="malp">${selector.html()}</p></div>`,
-      ).insertAfter(j.$('div.my-3').first());
+      j.$(`<div class="container"> <p id="malp">${selector.html()}</p></div>`).insertAfter(j.$('div.my-3').first());
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     function check() {
       if (page.url.split('/')[3] === 'shows') {

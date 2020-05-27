@@ -19,9 +19,7 @@ export const Anime4you: pageInterface = {
       return parseInt(utils.urlPart(url, 6)).toString();
     },
     getOverviewUrl(url) {
-      return `${Anime4you.domain}/show/1/aid/${Anime4you.sync.getIdentifier(
-        url,
-      )}`;
+      return `${Anime4you.domain}/show/1/aid/${Anime4you.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 8));
@@ -63,16 +61,12 @@ export const Anime4you: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Anime4you.sync!.getEpisode(
-          Anime4you.overview!.list!.elementUrl(selector),
-        );
+        return Anime4you.sync!.getEpisode(Anime4you.overview!.list!.elementUrl(selector));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

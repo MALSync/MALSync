@@ -18,21 +18,14 @@ export const bato: pageInterface = {
       return utils.urlPart(bato.sync.getOverviewUrl(url), 4) || '';
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('h3.nav-title > a').attr('href'),
-        bato.domain,
-      );
+      return utils.absoluteLink(j.$('h3.nav-title > a').attr('href'), bato.domain);
     },
     getEpisode(url) {
-      const selectedOptionText = j
-        .$('div.nav-chap > select > optgroup > option:selected')
-        .text();
+      const selectedOptionText = j.$('div.nav-chap > select > optgroup > option:selected').text();
 
       if (!selectedOptionText) return NaN;
 
-      const chapterTextMatches = selectedOptionText.match(
-        /(ch\.|chapter)\D?\d+/i,
-      );
+      const chapterTextMatches = selectedOptionText.match(/(ch\.|chapter)\D?\d+/i);
 
       if (!chapterTextMatches || chapterTextMatches.length === 0) return NaN;
 
@@ -93,14 +86,9 @@ export const bato: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'chapter' ||
-        page.url.split('/')[3] === 'series'
-      ) {
+      if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'series') {
         page.handlePage();
       }
     });

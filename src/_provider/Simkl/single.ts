@@ -111,18 +111,12 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(
-      `https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`,
-    );
+    return Promise.resolve(`https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`);
   }
 
   async _getRating() {
     try {
-      const el = await this.call(
-        'https://api.simkl.com/ratings',
-        { simkl: this.ids.simkl },
-        true,
-      );
+      const el = await this.call('https://api.simkl.com/ratings', { simkl: this.ids.simkl }, true);
       return el.simkl.rating;
     } catch (e) {
       con.error(e);
@@ -163,17 +157,11 @@ export class Single extends SingleAbstract {
           this._onList = false;
           let el;
           if (de.simkl) {
-            el = await this.call(
-              `https://api.simkl.com/anime/${de.simkl}`,
-              { extended: 'full' },
-              true,
-            );
-            if (!el)
-              throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
+            el = await this.call(`https://api.simkl.com/anime/${de.simkl}`, { extended: 'full' }, true);
+            if (!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
           } else {
             el = await this.call('https://api.simkl.com/search/id', de, true);
-            if (!el)
-              throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
+            if (!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
             if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
               throw { code: 415, message: 'Is a special' };
             el = el[0];
@@ -198,10 +186,7 @@ export class Single extends SingleAbstract {
           this.ids.simkl = parseInt(this.animeInfo.show.ids.simkl);
         }
 
-        if (
-          Number.isNaN(this.ids.mal) &&
-          typeof this.animeInfo.show.ids.mal !== 'undefined'
-        ) {
+        if (Number.isNaN(this.ids.mal) && typeof this.animeInfo.show.ids.mal !== 'undefined') {
           this.ids.mal = this.animeInfo.show.ids.mal;
         }
 
@@ -212,8 +197,7 @@ export class Single extends SingleAbstract {
         }
         this.minWatchedEp = this.curWatchedEp + 1;
 
-        if (!this._authenticated)
-          throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });
   }
 
@@ -372,10 +356,7 @@ export class Single extends SingleAbstract {
 
   errorHandling(res, code) {
     if ((code > 499 && code < 600) || code === 0) {
-      throw this.errorObj(
-        errorCode.ServerOffline,
-        `Server Offline status: ${code}`,
-      );
+      throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${code}`);
     }
 
     if (res && typeof res.error !== 'undefined') {

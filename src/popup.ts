@@ -18,9 +18,7 @@ api.settings.init().then(() => {
 
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
     // @ts-ignore
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'TabMalUrl' }, function(
-      response,
-    ) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: 'TabMalUrl' }, function(response) {
       setTimeout(() => {
         if (typeof response !== 'undefined') {
           minimalObj.fillBase(response);

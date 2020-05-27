@@ -39,9 +39,7 @@ export const Kissmanga: pageInterface = {
         }catch(e){
           episodePart = episodePart.replace(kalUrl.split("/")[4],'');
         } */
-      let temp = episodePart.match(
-        /[c,C][h,H][a,A]?[p,P]?[t,T]?[e,E]?[r,R]?\D?\d+/,
-      );
+      let temp = episodePart.match(/[c,C][h,H][a,A]?[p,P]?[t,T]?[e,E]?[r,R]?\D?\d+/);
       if (temp === null) {
         episodePart = episodePart.replace(/[V,v][o,O][l,L]\D?\d+/, '');
         temp = episodePart.match(/\d{3}/);
@@ -117,9 +115,7 @@ export const Kissmanga: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

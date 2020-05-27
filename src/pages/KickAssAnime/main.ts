@@ -18,9 +18,7 @@ export const KickAssAnime: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return `${KickAssAnime.domain}/anime/${KickAssAnime.sync.getIdentifier(
-        url,
-      )}`;
+      return `${KickAssAnime.domain}/anime/${KickAssAnime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -50,9 +48,7 @@ export const KickAssAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'anime') {
         page.handlePage();

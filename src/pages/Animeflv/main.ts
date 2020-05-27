@@ -20,10 +20,7 @@ export const animeflv: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return `${utils.urlPart(
-        animeflv.domain + (j.$('.fa-th-list').attr('href') || ''),
-        4,
-      )}/${utils.urlPart(
+      return `${utils.urlPart(animeflv.domain + (j.$('.fa-th-list').attr('href') || ''), 4)}/${utils.urlPart(
         animeflv.domain + (j.$('.fa-th-list').attr('href') || ''),
         5,
       )}`;
@@ -83,11 +80,10 @@ export const animeflv: pageInterface = {
               // @ts-ignore
               eps.forEach(element => {
                 if (idMALSync !== null) {
-                  const Url = `${animeflv.domain}/ver/${element
-                    .split(',')[1]
-                    .replace(']', '')}/${utils.urlPart(url, 5)}-${element
-                    .split(',')[0]
-                    .replace('[', '')}`;
+                  const Url = `${animeflv.domain}/ver/${element.split(',')[1].replace(']', '')}/${utils.urlPart(
+                    url,
+                    5,
+                  )}-${element.split(',')[0].replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
                   idMALSync.innerHTML += `<li><a href="${Url}" epi="${Episodio}"></a> </li>`;
                 }
@@ -117,9 +113,7 @@ export const animeflv: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (document.title === 'Verifica que no eres un bot | AnimeFLV') {
       con.log('loading');
       page.cdn();

@@ -6,10 +6,7 @@
       class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
       style="width: 100%; position: absolute;"
     ></div>
-    <span
-      v-show="xhr != '' && reviews == ''"
-      class="mdl-chip"
-      style="margin: auto; margin-top: 16px; display: table;"
+    <span v-show="xhr != '' && reviews == ''" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"
       ><span class="mdl-chip__text">{{ lang('NothingFound') }}</span></span
     >
     <div v-if="xhr != ''" class="mdl-grid" v-html="reviews"></div>
@@ -41,10 +38,8 @@ export default {
         const reviewsData = j.$.parseHTML(reviews);
         let reviewsHtml = '';
         j.$.each(j.$(reviewsData).filter('.borderDark'), (index, value) => {
-          reviewsHtml +=
-            '<div class="mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp">';
-          reviewsHtml +=
-            '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
+          reviewsHtml += '<div class="mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp">';
+          reviewsHtml += '<div class="mdl-card__supporting-text mdl-card--border" style="color: black;">';
           j.$(value)
             .find('.spaceit > div')
             .css('max-width', '60%');
@@ -55,8 +50,7 @@ export default {
             .html();
           reviewsHtml += '</div>';
 
-          reviewsHtml +=
-            '<div class="mdl-card__supporting-text" style="color: black;">';
+          reviewsHtml += '<div class="mdl-card__supporting-text" style="color: black;">';
           j.$(value)
             .find('.textReadability, .textReadability > span')
             .contents()

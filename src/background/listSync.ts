@@ -4,11 +4,7 @@ export function listSyncInit() {
   chrome.alarms.get('listSync', async function(a) {
     if (typeof a === 'undefined') {
       let listSync = await api.storage.get('listSync');
-      if (
-        typeof listSync === 'undefined' ||
-        !parseInt(listSync) ||
-        parseInt(listSync) < Date.now()
-      ) {
+      if (typeof listSync === 'undefined' || !parseInt(listSync) || parseInt(listSync) < Date.now()) {
         listSync = Date.now() + 1000;
       }
       con.log('Create listSync Alarm', listSync);

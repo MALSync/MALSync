@@ -4,10 +4,7 @@
       <slot />
     </span>
     <span class="mdl-list__item-secondary-action">
-      <div
-        class="mdl-textfield mdl-js-textfield"
-        style="min-width: 35px; max-width: 35px; width: 100%; padding: 0;"
-      >
+      <div class="mdl-textfield mdl-js-textfield" style="min-width: 35px; max-width: 35px; width: 100%; padding: 0;">
         <input
           :id="option"
           v-model="value"
@@ -48,12 +45,7 @@ export default {
         return api.settings.get(this.option);
       },
       set(value) {
-        if (
-          value !== '' &&
-          value !== null &&
-          value >= this.min &&
-          value <= this.max
-        ) {
+        if (value !== '' && value !== null && value >= this.min && value <= this.max) {
           api.settings.set(this.option, value);
           this.$emit('changed', value);
         }

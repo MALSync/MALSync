@@ -13,11 +13,7 @@ export const MangaPark: pageInterface = {
   sync: {
     getTitle(url) {
       return utils
-        .getBaseText(
-          $(
-            'body > section.page > div > div.switch > div:nth-child(1) > div.path > span > a',
-          ),
-        )
+        .getBaseText($('body > section.page > div > div.switch > div:nth-child(1) > div.path > span > a'))
         .trim()
         .replace(/\w+$/g, '')
         .trim();
@@ -27,21 +23,13 @@ export const MangaPark: pageInterface = {
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$(
-            'body > section.page > div > div.switch > div:nth-child(1) > div.path > span > a',
-          )
-          .attr('href'),
+        j.$('body > section.page > div > div.switch > div:nth-child(1) > div.path > span > a').attr('href'),
         MangaPark.domain,
       );
     },
     getEpisode(url) {
       let string = utils
-        .getBaseText(
-          $(
-            'body > section.page > div > div.switch > div:nth-child(1) > div.path > span',
-          ),
-        )
+        .getBaseText($('body > section.page > div > div.switch > div:nth-child(1) > div.path > span'))
         .trim();
       let temp = [];
       temp = string.match(/(ch\.|chapter)\D?\d+/i);
@@ -56,11 +44,7 @@ export const MangaPark: pageInterface = {
     },
     getVolume(url) {
       let string = utils
-        .getBaseText(
-          $(
-            'body > section.page > div > div.switch > div:nth-child(1) > div.path > span',
-          ),
-        )
+        .getBaseText($('body > section.page > div > div.switch > div:nth-child(1) > div.path > span'))
         .trim();
       let temp = [];
       temp = string.match(/(vol\.|volume)\D?\d+/i);
@@ -76,16 +60,12 @@ export const MangaPark: pageInterface = {
     nextEpUrl(url) {
       if (
         j
-          .$(
-            'body > section.page > div.content > div.board > div.info > div:nth-child(1) > p:nth-child(3) > span',
-          )
+          .$('body > section.page > div.content > div.board > div.info > div:nth-child(1) > p:nth-child(3) > span')
           .text() === 'Next Chapter:'
       ) {
         return utils.absoluteLink(
           j
-            .$(
-              'body > section.page > div.content > div.board > div.info > div:nth-child(1) > p:nth-child(3) > a',
-            )
+            .$('body > section.page > div.content > div.board > div.info > div:nth-child(1) > p:nth-child(3) > a')
             .attr('href'),
           MangaPark.domain,
         );
@@ -107,17 +87,11 @@ export const MangaPark: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j
-          .$('body > section.manga > div.container.content > div.hd.sub')
-          .first(),
-      );
+      selector.insertBefore(j.$('body > section.manga > div.container.content > div.hd.sub').first());
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();

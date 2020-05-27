@@ -32,10 +32,8 @@ export class simklClass {
       this.interval = utils.waitUntilTrue(
         function() {
           return (
-            (!$('#global_div').length ||
-              parseInt($('#global_div').css('opacity')) === 1) &&
-            (!$('#tvMainTable').length ||
-              parseInt($('#tvMainTable').css('opacity')) === 1)
+            (!$('#global_div').length || parseInt($('#global_div').css('opacity')) === 1) &&
+            (!$('#tvMainTable').length || parseInt($('#tvMainTable').css('opacity')) === 1)
           );
         },
         () => {
@@ -46,9 +44,7 @@ export class simklClass {
       );
     });
 
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     $(document).ready(() => {
       this.init();
     });
@@ -66,10 +62,7 @@ export class simklClass {
     const urlpart = utils.urlPart(this.url, 3);
     const url2part = utils.urlPart(this.url, 4);
 
-    if (
-      (urlpart === 'anime' || urlpart === 'manga') &&
-      !Number.isNaN(Number(url2part))
-    ) {
+    if ((urlpart === 'anime' || urlpart === 'manga') && !Number.isNaN(Number(url2part))) {
       const malObj = new simklSingle(this.url);
       await malObj.update();
 
@@ -83,9 +76,7 @@ export class simklClass {
       con.log('page', this.page);
 
       if (!$('#malkiss').length)
-        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after(
-          '<div id="malkiss"></div>',
-        );
+        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after('<div id="malkiss"></div>');
       if (this.malkiss) this.malkiss.$destroy();
       this.malkiss = new Vue({
         el: '#malkiss',
@@ -124,10 +115,7 @@ export class simklClass {
       const simklId = utils.urlPart(this.url, 4);
       return helper.simklIdToMal(simklId).then(malId => {
         if (!malId) return '';
-        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(
-          this.url,
-          5,
-        )}`;
+        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(this.url, 5)}`;
       });
     }
     return '';
@@ -148,8 +136,7 @@ export class simklClass {
           JSON.stringify({
             code,
             client_id: helper.client_id,
-            client_secret:
-              '3f883e8e6cdd60d2d5e765aaf0612953f743dc77f44c422af98b38e083cf038b',
+            client_secret: '3f883e8e6cdd60d2d5e765aaf0612953f743dc77f44c422af98b38e083cf038b',
             redirect_uri: 'https://simkl.com/apps/chrome/mal-sync/connected/',
             grant_type: 'authorization_code',
           }),
@@ -157,10 +144,7 @@ export class simklClass {
           'POST',
         )
         .then(access_token => {
-          if (
-            typeof access_token.error !== 'undefined' ||
-            typeof access_token.access_token === 'undefined'
-          )
+          if (typeof access_token.error !== 'undefined' || typeof access_token.access_token === 'undefined')
             throw access_token;
           return api.settings.set('simklToken', access_token.access_token);
         })
@@ -178,9 +162,7 @@ export class simklClass {
 
     function ee(e) {
       con.error(e);
-      $(
-        '.firstStage .SimklTVKodititletext, .secondStage .SimklTVKodititletext',
-      ).text('Something went wrong');
+      $('.firstStage .SimklTVKodititletext, .secondStage .SimklTVKodititletext').text('Something went wrong');
     }
   }
 
@@ -238,10 +220,7 @@ export class simklClass {
         };
 
         if (typeof page.completeSearchTag === 'undefined') {
-          tempAdd.search = page.searchUrl.replace(
-            '##searchkey##',
-            titleEncoded,
-          );
+          tempAdd.search = page.searchUrl.replace('##searchkey##', titleEncoded);
         }
 
         if (typeof page.googleSearchDomain !== 'undefined') {
@@ -288,9 +267,7 @@ export class simklClass {
                 `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
                   continueUrlObj.url
                 }">
-                <img src="${api.storage.assetUrl(
-                  'double-arrow-16px.png',
-                )}" width="16" height="16">
+                <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
               </a>`,
               );
             } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
@@ -298,9 +275,7 @@ export class simklClass {
                 `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
                   resumeUrlObj.url
                 }">
-                <img src="${api.storage.assetUrl(
-                  'arrow-16px.png',
-                )}" width="16" height="16">
+                <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
               </a>`,
               );
             }
@@ -326,10 +301,7 @@ export class simklClass {
             exec();
           },
           () => {
-            return (
-              $('#tv_best_left_addContainer li').length +
-              $('#tv_best_left_addContainer > div').height()!
-            );
+            return $('#tv_best_left_addContainer li').length + $('#tv_best_left_addContainer > div').height()!;
           },
         );
 
@@ -337,8 +309,7 @@ export class simklClass {
           con.info('list');
           $.each(list, async (index, en) => {
             const element = $(`#c${en.uid}`);
-            if (!element || !element.length || element.hasClass('malSyncDone2'))
-              return;
+            if (!element || !element.length || element.hasClass('malSyncDone2')) return;
             element.addClass('malSyncDone2').css('position', 'relative');
 
             if (en.options && en.options.u) {
@@ -363,9 +334,7 @@ export class simklClass {
                   `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
                     continueUrlObj.url
                   }">
-                  <img src="${api.storage.assetUrl(
-                    'double-arrow-16px.png',
-                  )}" width="16" height="16">
+                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                 </a>`,
                 );
               } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
@@ -373,9 +342,7 @@ export class simklClass {
                   `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
                     resumeUrlObj.url
                   }">
-                  <img src="${api.storage.assetUrl(
-                    'arrow-16px.png',
-                  )}" width="16" height="16">
+                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                 </a>`,
                 );
               }

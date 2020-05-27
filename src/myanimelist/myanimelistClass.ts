@@ -2,15 +2,7 @@ import { Single as malSingle } from '../_provider/MyAnimeList/single';
 import { userlist } from '../_provider/MyAnimeList/list';
 
 export class myanimelistClass {
-  page:
-    | 'detail'
-    | 'bookmarks'
-    | 'modern'
-    | 'classic'
-    | 'character'
-    | 'people'
-    | 'search'
-    | null = null;
+  page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
 
   // detail
   readonly id: number | null = null;
@@ -116,18 +108,12 @@ export class myanimelistClass {
 
     const surHeight = height + 4;
     const surWidth = width + 4;
-    api.storage.addStyle(
-      `.picSurround img:not(.noKal){height: ${height}px !important; width: ${width}px !important;}`,
-    );
-    api.storage.addStyle(
-      '.picSurround img.lazyloaded.kal{width: auto !important;}',
-    );
+    api.storage.addStyle(`.picSurround img:not(.noKal){height: ${height}px !important; width: ${width}px !important;}`);
+    api.storage.addStyle('.picSurround img.lazyloaded.kal{width: auto !important;}');
     api.storage.addStyle(
       `.picSurround:not(.noKal) a{height: ${surHeight}px; width: ${surWidth}px; overflow: hidden; display: flex; justify-content: center;}`,
     );
-    api.storage.addStyle(
-      `.picSurround img[src*="userimages"]{max-width: ${width}px !important}`,
-    );
+    api.storage.addStyle(`.picSurround img[src*="userimages"]{max-width: ${width}px !important}`);
 
     let loaded = 0;
     try {
@@ -173,19 +159,12 @@ export class myanimelistClass {
           url = tags[i].getAttribute('src')!;
         }
 
-        if (
-          regexDimensions.test(url) ||
-          /voiceactors.*v.jpg$/g.test(url) ||
-          url.indexOf('questionmark') !== -1
-        ) {
+        if (regexDimensions.test(url) || /voiceactors.*v.jpg$/g.test(url) || url.indexOf('questionmark') !== -1) {
           url = utils.handleMalImages(url);
           if (!(url.indexOf('100x140') > -1)) {
             tags[i].setAttribute('data-src', url);
             url = url.replace(/v.jpg$/g, '.jpg');
-            tags[i].setAttribute(
-              'data-srcset',
-              url.replace(regexDimensions, ''),
-            );
+            tags[i].setAttribute('data-srcset', url.replace(regexDimensions, ''));
             tags[i].classList.add('lazyload');
           }
           tags[i].classList.add('kal');
@@ -209,9 +188,7 @@ export class myanimelistClass {
 
   setEpPrediction() {
     con.log('setEpPrediction');
-    utils.epPredictionUI(this.id, this.id, String(this.type), function(
-      prediction,
-    ) {
+    utils.epPredictionUI(this.id, this.id, String(this.type), function(prediction) {
       if (!prediction) return;
       con.log(prediction);
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
@@ -265,9 +242,7 @@ export class myanimelistClass {
       $('h2:contains("Information")').before(
         '<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />',
       );
-      api.storage.addStyle(
-        '#AniList.mal_links img{background-color: #898989;}',
-      );
+      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
         $('.MALSync-search').remove();
         const title = $('meta[property="og:title"]')
@@ -282,16 +257,11 @@ export class myanimelistClass {
           const page = pageSearch[key];
           if (page.type !== This.type) continue;
 
-          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(
-            page.domain,
-          )}"> ${page.name}`;
+          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
 
           let link;
           if (typeof page.completeSearchTag === 'undefined') {
-            link = `<a target="_blank" href="${page.searchUrl.replace(
-              '##searchkey##',
-              titleEncoded,
-            )}">
+            link = `<a target="_blank" href="${page.searchUrl.replace('##searchkey##', titleEncoded)}">
               ${linkContent}
             </a>`;
           } else {
@@ -331,9 +301,7 @@ export class myanimelistClass {
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="${utils.favicon(
-              streamUrl ? streamUrl.split('/')[2] : '',
-            )}">
+            <img src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
           </a>
         </div>`);
 
@@ -344,24 +312,16 @@ export class myanimelistClass {
           $('#mal-sync-stream-div').append(
             `<a class="nextStream" title="${api.storage.lang(
               `overview_Continue_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              continueUrlObj.url
-            }">
-              <img src="${api.storage.assetUrl(
-                'double-arrow-16px.png',
-              )}" width="16" height="16">
+            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="${api.storage.lang(
               `overview_Resume_Episode_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              resumeUrlObj.url
-            }">
-              <img src="${api.storage.assetUrl(
-                'arrow-16px.png',
-              )}" width="16" height="16">
+            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         }
@@ -384,19 +344,12 @@ export class myanimelistClass {
               return $('#loading-spinner').css('display') === 'none';
             },
             async function() {
-              callback(
-                await listProvider.prepareData(
-                  $.parseJSON($('.list-table').attr('data-items')!),
-                ),
-              );
+              callback(await listProvider.prepareData($.parseJSON($('.list-table').attr('data-items')!)));
 
               utils.changeDetect(
                 () => {
                   $('.tags span a').each(function(index) {
-                    if (
-                      typeof utils.getUrlFromTags($(this).text()) !==
-                      'undefined'
-                    ) {
+                    if (typeof utils.getUrlFromTags($(this).text()) !== 'undefined') {
                       const par = $(this)
                         .parent()
                         .parent()
@@ -518,9 +471,9 @@ export class myanimelistClass {
       if (options && options.u) {
         const element = book.getElement(malUrl);
         element.find(book.streamingSelector).after(`
-          <a class="mal-sync-stream" title="${
-            options.u.split('/')[2]
-          }" target="_blank" style="margin: 0 0;" href="${options.u}">
+          <a class="mal-sync-stream" title="${options.u.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${
+          options.u
+        }">
             <img src="${utils.favicon(options.u.split('/')[2])}">
           </a>`);
 
@@ -533,9 +486,7 @@ export class myanimelistClass {
             `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
               continueUrlObj.url
             }">
-              <img src="${api.storage.assetUrl(
-                'double-arrow-16px.png',
-              )}" width="16" height="16">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
@@ -543,9 +494,7 @@ export class myanimelistClass {
             `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
               resumeUrlObj.url
             }">
-              <img src="${api.storage.assetUrl(
-                'arrow-16px.png',
-              )}" width="16" height="16">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         }
@@ -557,10 +506,7 @@ export class myanimelistClass {
     $(document).ready(function() {
       $('.anime_detail_related_anime a').each(function() {
         const el = $(this);
-        const url = utils.absoluteLink(
-          el.attr('href'),
-          'https://myanimelist.net',
-        );
+        const url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if (typeof url !== 'undefined') {
           utils
             .timeCache(
@@ -568,11 +514,7 @@ export class myanimelistClass {
               async function() {
                 const malObj = new malSingle(url);
                 await malObj.update();
-                return utils.statusTag(
-                  malObj.getStatus(),
-                  malObj.getType(),
-                  malObj.getMalId(),
-                );
+                return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());
               },
               2 * 24 * 60 * 60 * 1000,
             )
@@ -628,16 +570,10 @@ export class myanimelistClass {
       url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       api.request.xhr('GET', `${url}/stats`).then(response => {
-        const friendHead = $(
-          'a[name=members]',
-          $(response.responseText).children(),
-        );
+        const friendHead = $('a[name=members]', $(response.responseText).children());
         if (!friendHead) return;
         const friendBody = friendHead.nextAll();
-        if (
-          friendBody.length > 1 &&
-          friendBody.find('a:contains("All Members")').length
-        ) {
+        if (friendBody.length > 1 && friendBody.find('a:contains("All Members")').length) {
           position
             .before(friendHead)
             .before(friendBody)

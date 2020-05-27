@@ -2,11 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const kawaiifu: pageInterface = {
   name: 'kawaiifu',
-  domain: [
-    'https://kawaiifu.com',
-    'https://bestwea.stream',
-    'https://animestuffs.com',
-  ],
+  domain: ['https://kawaiifu.com', 'https://bestwea.stream', 'https://animestuffs.com'],
   type: 'anime',
   isSyncPage(url) {
     if (
@@ -29,28 +25,18 @@ export const kawaiifu: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      if (
-        url.split('/')[3] === 'dub' ||
-        url.split('/')[3] === 'tv-series' ||
-        url.split('/')[3] === 'anime-movies'
-      ) {
+      if (url.split('/')[3] === 'dub' || url.split('/')[3] === 'tv-series' || url.split('/')[3] === 'anime-movies') {
         return url.split('/')[4].replace(/\.[^.]*$/g, '');
       }
       return url.split('/')[5].replace(/\.[^.]*$/g, '');
     },
     getOverviewUrl(url) {
-      if (
-        url.split('/')[3] === 'dub' ||
-        url.split('/')[3] === 'tv-series' ||
-        url.split('/')[3] === 'anime-movies'
-      ) {
-        return `https://kawaiifu.com/${url.split('/')[3]}/${url
-          .split('/')[4]
-          .replace(/\?[^?]*$/g, '')}`;
+      if (url.split('/')[3] === 'dub' || url.split('/')[3] === 'tv-series' || url.split('/')[3] === 'anime-movies') {
+        return `https://kawaiifu.com/${url.split('/')[3]}/${url.split('/')[4].replace(/\?[^?]*$/g, '')}`;
       }
-      return `https://kawaiifu.com/${url.split('/')[3]}/${
-        url.split('/')[4]
-      }/${url.split('/')[5].replace(/\?[^?]*$/g, '')}`;
+      return `https://kawaiifu.com/${url.split('/')[3]}/${url.split('/')[4]}/${url
+        .split('/')[5]
+        .replace(/\?[^?]*$/g, '')}`;
     },
     getEpisode(url) {
       if (
@@ -128,9 +114,7 @@ export const kawaiifu: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

@@ -1,12 +1,6 @@
 <template>
-  <div
-    id="material"
-    style="height: 100%;"
-    :class="{ 'pop-over': !navigation, [options.theme]: true }"
-  >
-    <div
-      class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp"
-    >
+  <div id="material" style="height: 100%;" :class="{ 'pop-over': !navigation, [options.theme]: true }">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button
           v-show="backbutton"
@@ -34,10 +28,7 @@
             class="mdl-textfield mdl-js-textfield mdl-textfield--expandable"
             style="margin-left: -57px; margin-top: 3px; padding-left: 40px;"
           >
-            <label
-              class="mdl-button mdl-js-button mdl-button--icon"
-              for="headMalSearch"
-            >
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
             </label>
             <div class="mdl-textfield__expandable-holder">
@@ -109,36 +100,22 @@
           :class="{ 'is-active': currentTab == tabs.reviews.title }"
           class="mdl-layout__tab-panel"
         >
-          <reviewsVue
-            :url="renderMalUrl"
-            :state="currentTab == tabs.reviews.title"
-          />
+          <reviewsVue :url="renderMalUrl" :state="currentTab == tabs.reviews.title" />
         </section>
         <section
           id="fixed-tab-3"
           :class="{ 'is-active': currentTab == tabs.recommendations.title }"
           class="mdl-layout__tab-panel"
         >
-          <recommendationsVue
-            :url="renderMalUrl"
-            :state="currentTab == tabs.recommendations.title"
-          />
+          <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title" />
         </section>
-        <section
-          id="fixed-tab-4"
-          :class="{ 'is-active': popOver }"
-          class="mdl-layout__tab-panel"
-        >
+        <section id="fixed-tab-4" :class="{ 'is-active': popOver }" class="mdl-layout__tab-panel">
           <bookmarksVue
             v-if="currentTab == tabs.bookmarks.title"
             :state="tabs.bookmarks.state"
             :list-type="tabs.bookmarks.type"
           >
-            <div
-              id="malList"
-              class="mdl-grid"
-              style="justify-content: space-around;"
-            >
+            <div id="malList" class="mdl-grid" style="justify-content: space-around;">
               <select
                 id="userListType"
                 v-model="tabs.bookmarks.type"
@@ -158,33 +135,19 @@
                   style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
                 >
                   <option :value="7">{{ lang('All') }}</option>
-                  <option :value="1" selected>{{
-                    lang('UI_Status_watching_' + tabs.bookmarks.type)
-                  }}</option>
+                  <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
                   <option :value="2">{{ lang('UI_Status_Completed') }}</option>
                   <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
                   <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
-                  <option :value="6">{{
-                    lang('UI_Status_planTo_' + tabs.bookmarks.type)
-                  }}</option>
+                  <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
                 </select>
                 <div
                   style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
                   class="bg-cell"
                   @click="listView = !listView"
                 >
-                  <i
-                    v-if="!listView"
-                    class="material-icons"
-                    style="position: relative; top: 2px;"
-                    >view_list</i
-                  >
-                  <i
-                    v-else
-                    class="material-icons"
-                    style="position: relative; top: 2px;"
-                    >view_module</i
-                  >
+                  <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
+                  <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
                 </div>
               </div>
             </div>
@@ -209,10 +172,7 @@
             </div>
           </searchVue>
           <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
-          <listSyncVue
-            v-if="currentTab == tabs.listSync.title"
-            :list-type="tabs.listSync.type"
-          >
+          <listSyncVue v-if="currentTab == tabs.listSync.title" :list-type="tabs.listSync.type">
             <select
               v-model="tabs.listSync.type"
               style="margin-bottom: 20px;"
@@ -493,10 +453,7 @@ export default {
   mounted() {
     if (this.isPopup()) {
       const state = popupStorage.fetch();
-      if (
-        typeof state !== 'undefined' &&
-        typeof state.currentTab !== 'undefined'
-      ) {
+      if (typeof state !== 'undefined' && typeof state.currentTab !== 'undefined') {
         ignoreNullBase = true;
         this.setCurrent(state);
       }
@@ -535,9 +492,7 @@ export default {
     selectTab(selectedTab) {
       if (
         this.onlySettings &&
-        (selectedTab === 'overview' ||
-          selectedTab === 'reviews' ||
-          selectedTab === 'recommendations')
+        (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')
       )
         selectedTab = 'settings';
       con.log('Tab Changed', selectedTab);
@@ -599,8 +554,7 @@ export default {
       return false;
     },
     urlClick(url) {
-      if (!/^local:\/\//i.test(url))
-        url = utils.absoluteLink(url, 'https://myanimelist.net');
+      if (!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       if (!this.fill(url)) {
         const win = window.open(url, '_blank');

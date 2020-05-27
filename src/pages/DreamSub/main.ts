@@ -54,14 +54,12 @@ export const DreamSub: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j
-          .$('ul#episodes-sv ul.innerSeas > li.ep-item')
-          .filter(function(index) {
-            if ($(this).find('div.sli-name > a.disabled').length) {
-              return false;
-            }
-            return true;
-          });
+        return j.$('ul#episodes-sv ul.innerSeas > li.ep-item').filter(function(index) {
+          if ($(this).find('div.sli-name > a.disabled').length) {
+            return false;
+          }
+          return true;
+        });
       },
       elementUrl(selector) {
         return utils.absoluteLink(
@@ -73,16 +71,12 @@ export const DreamSub: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(
-          DreamSub!.overview!.list!.elementUrl(selector).split('/')[5],
-        );
+        return parseInt(DreamSub!.overview!.list!.elementUrl(selector).split('/')[5]);
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       utils.waitUntilTrue(
         function() {

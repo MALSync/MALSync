@@ -38,12 +38,6 @@ export interface minimalWindow {
   name: 'minimalWindow';
 }
 
-export type sendMessageI =
-  | xhrI
-  | iframeDone
-  | videoTime
-  | videoTimeSet
-  | minimalWindow
-  | content;
+export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content;
 
 export type responseMessageI = xhrResponseI;

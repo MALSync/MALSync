@@ -8,14 +8,7 @@ import { userlist as anilistList } from '../../../_provider/AniList/list';
 import { userlist as kitsuList } from '../../../_provider/Kitsu/list';
 import { userlist as simklList } from '../../../_provider/Simkl/list';
 
-export function generateSync(
-  masterList: object,
-  slaveLists: object[],
-  mode,
-  typeArray,
-  list,
-  missing,
-) {
+export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing) {
   mapToArray(masterList, list, true);
 
   for (const i in slaveLists) {
@@ -179,12 +172,9 @@ export function syncItem(slave, pageType) {
     }
 
     return singleClass.update().then(() => {
-      if (typeof slave.diff.watchedEp !== 'undefined')
-        singleClass.setEpisode(slave.diff.watchedEp);
-      if (typeof slave.diff.status !== 'undefined')
-        singleClass.setStatus(slave.diff.status);
-      if (typeof slave.diff.score !== 'undefined')
-        singleClass.setScore(slave.diff.score);
+      if (typeof slave.diff.watchedEp !== 'undefined') singleClass.setEpisode(slave.diff.watchedEp);
+      if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
+      if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
       return singleClass.sync();
     });
   }
@@ -285,8 +275,7 @@ export const background = {
   async isEnabled() {
     return api.storage.get('backgroundListSync').then(async function(state) {
       con.info('background list sync state', state);
-      if (state && state.mode === (await api.settings.getAsync('syncMode')))
-        return true;
+      if (state && state.mode === (await api.settings.getAsync('syncMode'))) return true;
       background.disable();
       return false;
     });
@@ -338,21 +327,9 @@ export const background = {
         },
       });
 
-      const listOptions: any = await retriveLists(
-        providerList,
-        type,
-        api,
-        getList,
-      );
+      const listOptions: any = await retriveLists(providerList, type, api, getList);
 
-      generateSync(
-        listOptions.master,
-        listOptions.slaves,
-        mode,
-        listOptions.typeArray,
-        list,
-        missing,
-      );
+      generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
       con.log('Start syncing', list, missing);
       syncList(list, missing);
     }

@@ -26,12 +26,7 @@ export const animepahe: pageInterface = {
       return `${animepahe.domain}/anime/${animepahe.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(
-        (j.$('.theatre-info h1')[0].childNodes[2].textContent || '').replace(
-          /[^0-9.]+/g,
-          '',
-        ),
-      );
+      return Number((j.$('.theatre-info h1')[0].childNodes[2].textContent || '').replace(/[^0-9.]+/g, ''));
     },
     nextEpUrl(url) {
       const nextEp = j
@@ -108,9 +103,7 @@ export const animepahe: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (!animepahe.isSyncPage(page.url)) {
       utils.waitUntilTrue(
         function() {

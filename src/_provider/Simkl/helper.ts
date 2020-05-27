@@ -1,5 +1,4 @@
-export const client_id =
-  '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
+export const client_id = '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
 
 export function translateList(simklStatus, malStatus: null | number = null) {
   const list = {
@@ -36,11 +35,7 @@ export function getEpisode(episode: string): number {
 }
 
 export function simklIdToMal(simklId) {
-  return call(
-    `https://api.simkl.com/anime/${simklId}`,
-    { extended: 'full' },
-    true,
-  ).then(res => {
+  return call(`https://api.simkl.com/anime/${simklId}`, { extended: 'full' }, true).then(res => {
     if (typeof res.ids.mal === 'undefined') return null;
     return res.ids.mal;
   });
@@ -60,13 +55,8 @@ export async function syncList(lazy = false) {
   con.log('Activity', lastCheck, activity.anime);
 
   // removed_from_list
-  if (
-    lastCheck &&
-    lastCheck.removed_from_list !== activity.anime.removed_from_list
-  ) {
-    const checkRemoveList = await this.call(
-      'https://api.simkl.com/sync/all-items/anime',
-    );
+  if (lastCheck && lastCheck.removed_from_list !== activity.anime.removed_from_list) {
+    const checkRemoveList = await this.call('https://api.simkl.com/sync/all-items/anime');
     const newCacheList = {};
     if (checkRemoveList) {
       for (let i = 0; i < checkRemoveList.anime.length; i++) {
@@ -93,9 +83,7 @@ export async function syncList(lazy = false) {
   if (!cacheList) cacheList = {};
 
   if (lastCheck && lastCheck.rated_at !== activity.anime.rated_at) {
-    const rated = await this.call(
-      `https://api.simkl.com/sync/ratings/anime?${dateFrom}`,
-    );
+    const rated = await this.call(`https://api.simkl.com/sync/ratings/anime?${dateFrom}`);
     con.log('ratedUpdate', rated);
     if (rated) {
       for (let i = 0; i < rated.anime.length; i++) {
@@ -105,9 +93,7 @@ export async function syncList(lazy = false) {
     }
   }
 
-  const list = await this.call(
-    `https://api.simkl.com/sync/all-items/anime?${dateFrom}`,
-  );
+  const list = await this.call(`https://api.simkl.com/sync/all-items/anime?${dateFrom}`);
   con.log('listUpdate', list);
   if (list) {
     for (let i = 0; i < list.anime.length; i++) {
@@ -121,10 +107,7 @@ export async function syncList(lazy = false) {
   return cacheList;
 }
 
-export async function getSingle(
-  ids: { simkl?: string | number; mal?: string | number },
-  lazy = false,
-) {
+export async function getSingle(ids: { simkl?: string | number; mal?: string | number }, lazy = false) {
   const list = await this.syncList(lazy);
   if (ids.simkl) {
     if (list[ids.simkl] !== undefined) {
@@ -135,10 +118,7 @@ export async function getSingle(
     const listVal = Object.values(list);
     for (let i = 0; i < listVal.length; i++) {
       const el: any = listVal[i];
-      if (
-        typeof el.show.ids.mal !== 'undefined' &&
-        Number(el.show.ids.mal) === Number(ids.mal)
-      ) {
+      if (typeof el.show.ids.mal !== 'undefined' && Number(el.show.ids.mal) === Number(ids.mal)) {
         return el;
       }
     }
@@ -148,13 +128,7 @@ export async function getSingle(
   return null;
 }
 
-export async function call(
-  url,
-  sData: any = {},
-  asParameter = false,
-  method: 'GET' | 'POST' = 'GET',
-  login = true,
-) {
+export async function call(url, sData: any = {}, asParameter = false, method: 'GET' | 'POST' = 'GET', login = true) {
   if (asParameter) {
     url += `?${new URLSearchParams(Object.entries(sData))}`;
     sData = undefined;

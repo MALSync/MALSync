@@ -7,12 +7,7 @@
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
-      <input-button
-        v-if="!syncMode"
-        label="Url"
-        :state="searchClass.getUrl()"
-        @clicked="setPage"
-      ></input-button>
+      <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
 
       <input-button
         v-if="!syncMode"
@@ -79,11 +74,7 @@ export default {
       return this.$parent.searchClass.getSyncPage();
     },
     currentStateEp() {
-      if (
-        this.syncPage &&
-        this.syncPage.curState &&
-        this.syncPage.curState.episode
-      ) {
+      if (this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {
         return this.syncPage.curState.episode;
       }
       return undefined;

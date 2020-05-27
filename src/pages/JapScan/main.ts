@@ -12,9 +12,7 @@ export const JapScan: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText($('ol.breadcrumb > li:nth-child(3) > a').first())
-        .trim();
+      return utils.getBaseText($('ol.breadcrumb > li:nth-child(3) > a').first()).trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
@@ -69,9 +67,7 @@ export const JapScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j.$('div#main > div.card > div.card-body > h1').first(),
-      );
+      selector.insertAfter(j.$('div#main > div.card > div.card-body > h1').first());
     },
     list: {
       offsetHandler: false,
@@ -98,14 +94,11 @@ export const JapScan: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'manga' ||
-        (page.url.split('/')[3] === 'lecture-en-ligne' &&
-          j.$('div#image').length)
+        (page.url.split('/')[3] === 'lecture-en-ligne' && j.$('div#image').length)
       ) {
         page.handlePage();
       }

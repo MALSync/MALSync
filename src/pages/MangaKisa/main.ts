@@ -11,11 +11,7 @@ export const MangaKisa: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if (
-      !url.split('/')[3] ||
-      j.$('div.infoboxc > div.infodesbox > h1.infodes').length === 0
-    )
-      return false;
+    if (!url.split('/')[3] || j.$('div.infoboxc > div.infodesbox > h1.infodes').length === 0) return false;
 
     return true;
   },
@@ -34,9 +30,7 @@ export const MangaKisa: pageInterface = {
       return anchorHref.split('/')[1];
     },
     getOverviewUrl(url) {
-      return (
-        MangaKisa.domain + (j.$('div.now2 > a.infoan2').attr('href') || '')
-      );
+      return MangaKisa.domain + (j.$('div.now2 > a.infoan2').attr('href') || '');
     },
     getEpisode(url) {
       const episodePart = j.$('#chaptertext option:selected').text();
@@ -68,9 +62,7 @@ export const MangaKisa: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(
-          'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
-        )
+        .$('div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1')
         .text()
         .trim();
     },
@@ -101,9 +93,7 @@ export const MangaKisa: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

@@ -2,23 +2,14 @@
   <div class="search">
     <div class="input">
       <div class="group">
-        <input
-          v-model="searchKeyword"
-          type="text"
-          required
-          @focus="inputFocus()"
-        />
+        <input v-model="searchKeyword" type="text" required @focus="inputFocus()" />
         <span class="bar"></span>
         <label>{{ lang('correction_Search') }}</label>
       </div>
     </div>
 
     <div class="loadingBar">
-      <div
-        v-show="loading"
-        class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-        style="width: 100%;"
-      >
+      <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%;">
         <div class="progressbar bar bar1" style="width: 0%;"></div>
         <div class="bufferbar bar bar2" style="width: 100%;"></div>
         <div class="auxbar bar bar3" style="width: 0%;"></div>
@@ -26,12 +17,7 @@
     </div>
 
     <div v-if="searchKeyword" class="results">
-      <a
-        class="result"
-        href=""
-        style="cursor: pointer;"
-        @click="clickItem($event, '')"
-      >
+      <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
         <div class="image"></div>
         <div class="right">
           <span class="title">{{ lang('correction_NoEntry') }}</span>

@@ -137,8 +137,7 @@ export const settingsObj = {
 
   async getAsync(name: string) {
     const value = await api.storage.get(`settings/${name}`);
-    if (typeof value === 'undefined' && typeof this.options[name] !== undefined)
-      return this.options[name];
+    if (typeof value === 'undefined' && typeof this.options[name] !== undefined) return this.options[name];
     return value;
   },
 };

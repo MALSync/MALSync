@@ -18,9 +18,7 @@ export const mangadenizi: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return (
-        j.$('#navbar-collapse-1 > ul > li:nth-child(1) > a').attr('href') || ''
-      );
+      return j.$('#navbar-collapse-1 > ul > li:nth-child(1) > a').attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
@@ -79,9 +77,7 @@ export const mangadenizi: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();

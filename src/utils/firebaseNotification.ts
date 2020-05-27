@@ -1,11 +1,6 @@
 export async function firebaseNotification() {
-  const schedule = await api.storage.get(
-    'timestampUpdate/firebaseNotification',
-  );
-  if (
-    typeof schedule === 'undefined' ||
-    j.$.now() - schedule > 10 * 60 * 1000
-  ) {
+  const schedule = await api.storage.get('timestampUpdate/firebaseNotification');
+  if (typeof schedule === 'undefined' || j.$.now() - schedule > 10 * 60 * 1000) {
     await checkNotifications();
     api.storage.set('timestampUpdate/firebaseNotification', j.$.now());
   }
@@ -13,12 +8,10 @@ export async function firebaseNotification() {
 
 async function checkNotifications() {
   con.log('checkNotifications');
-  const url =
-    'https://kissanimelist.firebaseio.com/Data2/Notification/Current.json';
+  const url = 'https://kissanimelist.firebaseio.com/Data2/Notification/Current.json';
   const response = await api.request.xhr('GET', url);
   const current = parseInt(JSON.parse(response.responseText));
-  if (Number.isNaN(current))
-    con.error('Could not read current Notification number');
+  if (Number.isNaN(current)) con.error('Could not read current Notification number');
 
   con.log('Current Notification', current);
   const last = parseInt(await api.storage.get('firebaseNotification'));

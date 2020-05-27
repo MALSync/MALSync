@@ -27,9 +27,7 @@ export class metadata implements metadataInterface {
   getDescription() {
     let description = '';
     try {
-      description = this.xhr
-        .split('itemprop="description">')[1]
-        .split('</span')[0];
+      description = this.xhr.split('itemprop="description">')[1].split('</span')[0];
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
@@ -53,11 +51,7 @@ export class metadata implements metadataInterface {
     let altTitle: any[] = [];
 
     try {
-      const tempHtml = j.$.parseHTML(
-        `<div>${
-          this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]
-        }</div>`,
-      );
+      const tempHtml = j.$.parseHTML(`<div>${this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]}</div>`);
       altTitle = j
         .$(tempHtml)
         .find('.spaceit_pad')
@@ -75,12 +69,8 @@ export class metadata implements metadataInterface {
   getCharacters() {
     const charArray: any[] = [];
     try {
-      const characterBlock = this.xhr
-        .split('detail-characters-list')[1]
-        .split('</h2>')[0];
-      const charHtml = j.$.parseHTML(
-        `<div class="detail-characters-list ${characterBlock}`,
-      );
+      const characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
+      const charHtml = j.$.parseHTML(`<div class="detail-characters-list ${characterBlock}`);
 
       j.$.each(j.$(charHtml).find(':not(td) > table'), (index, value) => {
         const regexDimensions = /\/r\/\d*x\d*/g;
@@ -116,9 +106,7 @@ export class metadata implements metadataInterface {
   getStatistics() {
     const stats: any[] = [];
     try {
-      const statsBlock = this.xhr
-        .split('<h2>Statistics</h2>')[1]
-        .split('<h2>')[0];
+      const statsBlock = this.xhr.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
       // @ts-ignore
       const tempHtml = j.$.parseHTML(statsBlock);
 
@@ -163,9 +151,7 @@ export class metadata implements metadataInterface {
   getInfo() {
     const html: any[] = [];
     try {
-      const infoBlock = this.xhr
-        .split('<h2>Information</h2>')[1]
-        .split('<h2>')[0];
+      const infoBlock = this.xhr.split('<h2>Information</h2>')[1].split('<h2>')[0];
       const infoData = j.$.parseHTML(infoBlock);
       j.$.each(j.$(infoData).filter('div'), (index, value) => {
         const title = j
@@ -192,9 +178,7 @@ export class metadata implements metadataInterface {
 
   getExternalLinks(html) {
     try {
-      const infoBlock = `${
-        this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]
-      }</div>`;
+      const infoBlock = `${this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
       const infoData = j.$.parseHTML(infoBlock);
 
       let body = '';
@@ -217,9 +201,7 @@ export class metadata implements metadataInterface {
     const openingSongs: string[] = [];
 
     try {
-      const openingBlock = `<div>${
-        this.xhr.split('opnening">')[1].split('</div>')[0]
-      }</div>`;
+      const openingBlock = `<div>${this.xhr.split('opnening">')[1].split('</div>')[0]}</div>`;
       const openingData = j.$.parseHTML(openingBlock);
 
       j.$(openingData)
@@ -238,9 +220,7 @@ export class metadata implements metadataInterface {
     const endingSongs: string[] = [];
 
     try {
-      const endingBlock = `<div>${
-        this.xhr.split(' ending">')[1].split('</div>')[0]
-      }</div>`;
+      const endingBlock = `<div>${this.xhr.split(' ending">')[1].split('</div>')[0]}</div>`;
       const endingData = j.$.parseHTML(endingBlock);
 
       j.$(endingData)
@@ -298,12 +278,7 @@ export class metadata implements metadataInterface {
   }
 }
 
-export const search: searchInterface = async function(
-  keyword,
-  type: 'anime' | 'manga',
-  options = {},
-  sync = false,
-) {
+export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   const response = await api.request.xhr(
     'GET',
     `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`,

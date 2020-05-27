@@ -13,9 +13,7 @@ export const AnimesVision: pageInterface = {
   sync: {
     getTitle(url) {
       return utils
-        .getBaseText(
-          $('div.goblock.play-anime > div.gobread > ol > li.active > h1'),
-        )
+        .getBaseText($('div.goblock.play-anime > div.gobread > ol > li.active > h1'))
         .replace(/Dublado/gim, '')
         .replace(/[\s-\s]*$/, '')
         .trim();
@@ -34,18 +32,13 @@ export const AnimesVision: pageInterface = {
       return Number(episodetemp);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j.$('#nextEp').attr('href'),
-        AnimesVision.domain,
-      );
+      return utils.absoluteLink(j.$('#nextEp').attr('href'), AnimesVision.domain);
     },
   },
   overview: {
     getTitle(url) {
       return utils
-        .getBaseText(
-          $('div.goblock.detail-anime > div.gobread > ol > li.active > span'),
-        )
+        .getBaseText($('div.goblock.detail-anime > div.gobread > ol > li.active > span'))
         .replace(/Dublado/gim, '')
         .replace(/[\s-\s]*$/, '')
         .trim();
@@ -54,11 +47,7 @@ export const AnimesVision: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j.$(
-          'div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content',
-        ),
-      );
+      selector.insertAfter(j.$('div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content'));
     },
     list: {
       offsetHandler: false,
@@ -84,14 +73,9 @@ export const AnimesVision: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'animes' ||
-        page.url.split('/')[3] === 'filmes'
-      ) {
+      if (page.url.split('/')[3] === 'animes' || page.url.split('/')[3] === 'filmes') {
         page.handlePage();
       }
     });

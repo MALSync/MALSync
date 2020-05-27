@@ -39,24 +39,12 @@ function playerExtras(item, player) {
 
 async function setFullscreen(player) {
   if (!(await api.settings.getAsync('autofull'))) return;
-  if (
-    window.fullScreen ||
-    (window.innerWidth === window.screen.width &&
-      window.innerHeight === window.screen.height)
-  ) {
+  if (window.fullScreen || (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)) {
     con.info('Browser already in fullscreen');
   } else {
     let playerEl = player;
 
-    const ids = [
-      'player',
-      'vstr',
-      'vplayer',
-      'mgvideo',
-      'myVideo',
-      'b-video-wrapper',
-      'vilos',
-    ];
+    const ids = ['player', 'vstr', 'vplayer', 'mgvideo', 'myVideo', 'b-video-wrapper', 'vilos'];
 
     const classes = ['AT-player', 'plyr', 'AkiraPlayer', 'video-js'];
 
@@ -103,11 +91,7 @@ async function setFullscreen(player) {
       }
 
       function exitHandler() {
-        if (
-          document.webkitIsFullScreen ||
-          document.mozFullScreen ||
-          document.msFullscreenElement !== null
-        ) {
+        if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null) {
           player.removeAttribute('controls', 'controls');
         }
       }

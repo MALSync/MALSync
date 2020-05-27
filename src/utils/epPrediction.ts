@@ -1,9 +1,5 @@
 export class epPredictions {
-  constructor(
-    protected malId: number,
-    protected cacheKey: string,
-    protected listType: 'anime' | 'manga',
-  ) {
+  constructor(protected malId: number, protected cacheKey: string, protected listType: 'anime' | 'manga') {
     return this;
   }
 
@@ -15,8 +11,7 @@ export class epPredictions {
   }
 
   getAiring() {
-    if (this.updateCheckPrediction && !this.updateCheckPrediction.finished)
-      return true;
+    if (this.updateCheckPrediction && !this.updateCheckPrediction.finished) return true;
     if (this.malPrediction && this.malPrediction.airing) return true;
     return false;
   }
@@ -31,14 +26,12 @@ export class epPredictions {
     }
     if (this.aniPrediction && this.aniPrediction.currentEp)
       return { ep: this.aniPrediction.currentEp, provider: 'ANILIST' };
-    if (this.malPrediction && this.malPrediction.episode)
-      return { ep: this.malPrediction.episode, provider: 'MAL' };
+    if (this.malPrediction && this.malPrediction.episode) return { ep: this.malPrediction.episode, provider: 'MAL' };
     return undefined;
   }
 
   getNextEpTimestamp() {
-    if (this.aniPrediction && this.aniPrediction.nextEpTime)
-      return this.aniPrediction.nextEpTime * 1000;
+    if (this.aniPrediction && this.aniPrediction.nextEpTime) return this.aniPrediction.nextEpTime * 1000;
     // TODO: malPrediction
     return false;
   }
@@ -80,9 +73,7 @@ export class epPredictions {
       delta -= diffMinutes * 60;
 
       if (airing) {
-        episode =
-          diffWeeks -
-          (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
+        episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
         episode++;
         if (episode > 50) {
           episode = 0;
@@ -118,14 +109,8 @@ export class epPredictions {
   protected async initUpdateCheckPrediction() {
     if (!this.cacheKey) return;
     const updateCheckTime = await api.storage.get('updateCheckTime');
-    if (
-      typeof updateCheckTime !== 'undefined' &&
-      updateCheckTime &&
-      updateCheckTime !== '0'
-    ) {
-      const cache = await api.storage.get(
-        `updateCheck/${this.listType}/${this.cacheKey}`,
-      );
+    if (typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0') {
+      const cache = await api.storage.get(`updateCheck/${this.listType}/${this.cacheKey}`);
       if (typeof cache !== 'undefined' && typeof cache.error === 'undefined') {
         this.updateCheckPrediction = cache;
       }

@@ -112,8 +112,7 @@ export class syncPage {
 
   public setVideoTime(item, timeCb) {
     const syncDuration = api.settings.get('videoDuration');
-    const progress =
-      (item.current / (item.duration * (syncDuration / 100))) * 100;
+    const progress = (item.current / (item.duration * (syncDuration / 100))) * 100;
     if (j.$('#malSyncProgress').length) {
       if (progress < 100) {
         j.$('.ms-progress').css('width', `${progress}%`);
@@ -132,11 +131,7 @@ export class syncPage {
   autoNextEpRun = false;
 
   public autoNextEp(item) {
-    if (
-      api.settings.get('autoNextEp') &&
-      !this.autoNextEpRun &&
-      item.current === item.duration
-    ) {
+    if (api.settings.get('autoNextEp') && !this.autoNextEpRun && item.current === item.duration) {
       this.autoNextEpRun = true;
       this.openNextEp();
     }
@@ -155,10 +150,7 @@ export class syncPage {
     this.curState.lastVideoTime = item;
 
     // @ts-ignore
-    if (
-      typeof this.curState.videoChecked !== 'undefined' &&
-      this.curState.videoChecked
-    ) {
+    if (typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked) {
       if (this.curState.videoChecked > 1 && item.current > 10) {
         con.info('Set Resume', item.current);
         localStorage.setItem(localSelector, item.current);
@@ -170,11 +162,7 @@ export class syncPage {
     } else {
       const localItem = localStorage.getItem(localSelector);
       con.info('Resume', localItem);
-      if (
-        localItem !== null &&
-        parseInt(localItem) - 30 > item.current &&
-        parseInt(localItem) > 30
-      ) {
+      if (localItem !== null && parseInt(localItem) - 30 > item.current && parseInt(localItem) > 30) {
         if (!j.$('#MALSyncResume').length)
           j.$('#MALSyncResume')
             .parent()
@@ -258,19 +246,13 @@ export class syncPage {
         identifier: this.page.sync.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
-      );
+      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.curState = state;
       await this.searchObj.search();
 
-      state.episode =
-        +parseInt(`${this.page.sync.getEpisode(this.url)}`) +
-        parseInt(this.getOffset());
+      state.episode = +parseInt(`${this.page.sync.getEpisode(this.url)}`) + parseInt(this.getOffset());
       if (!state.episode && state.episode !== 0) {
         if (this.page.type === 'anime') {
           state.episode = 1;
@@ -302,10 +284,7 @@ export class syncPage {
         con.log('No overview definition');
         return;
       }
-      if (
-        typeof this.page.isOverviewPage !== 'undefined' &&
-        !this.page.isOverviewPage(this.url)
-      ) {
+      if (typeof this.page.isOverviewPage !== 'undefined' && !this.page.isOverviewPage(this.url)) {
         con.info('Not an overview/sync page');
         return;
       }
@@ -316,11 +295,7 @@ export class syncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(
-        state.title,
-        this.novel ? 'novel' : this.page.type,
-        state.identifier,
-      );
+      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.curState = state;
@@ -333,9 +308,9 @@ export class syncPage {
 
     let malUrl = this.searchObj.getUrl();
 
-    const localUrl = `local://${this.page.name}/${this.page.type}/${
-      state.identifier
-    }/${encodeURIComponent(state.title)}`;
+    const localUrl = `local://${this.page.name}/${this.page.type}/${state.identifier}/${encodeURIComponent(
+      state.title,
+    )}`;
 
     if ((malUrl === null || !malUrl) && api.settings.get('localSync')) {
       con.log('Local Fallback');
@@ -376,9 +351,7 @@ export class syncPage {
       // Discord Presence
       if (api.type === 'webextension') {
         try {
-          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(
-            response,
-          ) {
+          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(response) {
             con.log('Presence registred', response);
           });
         } catch (e) {
@@ -393,8 +366,8 @@ export class syncPage {
       if (this.page.isSyncPage(this.url)) {
         if (
           !(
-            typeof api.settings.get('enablePages')[this.page.name] ===
-              'undefined' || api.settings.get('enablePages')[this.page.name]
+            typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+            api.settings.get('enablePages')[this.page.name]
           )
         ) {
           con.info('Sync is disabled for this page', this.page.name);
@@ -409,29 +382,16 @@ export class syncPage {
           return;
         }
 
-        if (
-          await this.singleObj.checkSync(
-            state.episode,
-            state.volume,
-            this.novel,
-          )
-        ) {
+        if (await this.singleObj.checkSync(state.episode, state.volume, this.novel)) {
           this.singleObj.setEpisode(state.episode);
-          this.singleObj.setStreamingUrl(
-            this.page.sync.getOverviewUrl(this.url),
-          );
+          this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
 
-          if (
-            typeof state.volume !== 'undefined' &&
-            state.volume > this.singleObj.getVolume()
-          )
+          if (typeof state.volume !== 'undefined' && state.volume > this.singleObj.getVolume())
             this.singleObj.setVolume(state.volume);
 
           con.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
 
-          if (
-            api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant'
-          ) {
+          if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
             setTimeout(() => {
               sync();
             }, api.settings.get('delay') * 1000);
@@ -447,11 +407,7 @@ export class syncPage {
               minimized: false,
             };
 
-            if (
-              api.settings.get(`autoTrackingMode${this.page.type}`) ===
-                'video' &&
-              this.page.type === 'anime'
-            ) {
+            if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'video' && this.page.type === 'anime') {
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
@@ -483,14 +439,8 @@ export class syncPage {
             This.singleObj.setResumeWatching(This.url, state.episode);
             if (typeof This.page.sync.nextEpUrl !== 'undefined') {
               const continueWatching = This.page.sync.nextEpUrl(This.url);
-              if (
-                continueWatching &&
-                !(continueWatching.indexOf('undefined') !== -1)
-              ) {
-                This.singleObj.setContinueWatching(
-                  continueWatching,
-                  state.episode! + 1,
-                );
+              if (continueWatching && !(continueWatching.indexOf('undefined') !== -1)) {
+                This.singleObj.setContinueWatching(continueWatching, state.episode! + 1);
               }
             }
             This.syncHandling(true);
@@ -543,9 +493,7 @@ export class syncPage {
           let statusString = '';
           switch (parseInt(diffState.status)) {
             case 1:
-              statusString = api.storage.lang(
-                `UI_Status_watching_${this.page.type}`,
-              );
+              statusString = api.storage.lang(`UI_Status_watching_${this.page.type}`);
               break;
             case 2:
               statusString = api.storage.lang('UI_Status_Completed');
@@ -557,14 +505,10 @@ export class syncPage {
               statusString = api.storage.lang('UI_Status_Dropped');
               break;
             case 6:
-              statusString = api.storage.lang(
-                `UI_Status_planTo_${this.page.type}`,
-              );
+              statusString = api.storage.lang(`UI_Status_planTo_${this.page.type}`);
               break;
             case 23:
-              statusString = api.storage.lang(
-                `UI_Status_Rewatching_${this.page.type}`,
-              );
+              statusString = api.storage.lang(`UI_Status_Rewatching_${this.page.type}`);
               break;
             default:
           }
@@ -572,21 +516,15 @@ export class syncPage {
           split = ' | ';
         }
         if (this.page.type === 'manga' && diffState.volume) {
-          message += `${split + api.storage.lang('UI_Volume')} ${
-            diffState.volume
-          }/${totalVol}`;
+          message += `${split + api.storage.lang('UI_Volume')} ${diffState.volume}/${totalVol}`;
           split = ' | ';
         }
         if (diffState.episode) {
-          message += `${split + utils.episode(this.page.type)} ${
-            diffState.episode
-          }/${totalEp}`;
+          message += `${split + utils.episode(this.page.type)} ${diffState.episode}/${totalEp}`;
           split = ' | ';
         }
         if (diffState.score) {
-          message += `${split + api.storage.lang('UI_Score')} ${
-            diffState.score
-          }`;
+          message += `${split + api.storage.lang('UI_Score')} ${diffState.score}`;
           split = ' | ';
         }
         if (hoverInfo) {
@@ -719,9 +657,7 @@ export class syncPage {
     j.$('#MalData').css('display', 'flex');
     j.$('#MalInfo').text('');
 
-    this.calcSelectWidth(
-      j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus'),
-    );
+    this.calcSelectWidth(j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus'));
     j.$('#malEpisodes, #malVolumes').trigger('input');
 
     try {
@@ -733,10 +669,7 @@ export class syncPage {
 
   handleList(searchCurrent = false, reTry = 0) {
     j.$('.mal-sync-active').removeClass('mal-sync-active');
-    if (
-      typeof this.page.overview !== 'undefined' &&
-      typeof this.page.overview.list !== 'undefined'
-    ) {
+    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
       const epList = this.getEpList();
       if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
@@ -751,10 +684,7 @@ export class syncPage {
           }),
         );
         if (typeof this.page.overview.list.handleListHook !== 'undefined')
-          this.page.overview.list.handleListHook(
-            this.singleObj.getEpisode(),
-            epList,
-          );
+          this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
         const curEp = epList[parseInt(this.singleObj.getEpisode())];
         if (
           typeof curEp === 'undefined' &&
@@ -775,16 +705,10 @@ export class syncPage {
         }
 
         const nextEp = epList[this.singleObj.getEpisode() + 1];
-        if (
-          typeof nextEp !== 'undefined' &&
-          nextEp &&
-          !this.page.isSyncPage(this.url)
-        ) {
+        if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
           const message = `<a href="${elementUrl(
             nextEp,
-          )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [
-            this.singleObj.getEpisode() + 1,
-          ])}</a>`;
+          )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [this.singleObj.getEpisode() + 1])}</a>`;
           utils.flashm(message, {
             hoverInfo: true,
             type: 'nextEp',
@@ -798,10 +722,7 @@ export class syncPage {
   getEpList() {
     const This = this;
     const elementArray = [] as JQuery<HTMLElement>[];
-    if (
-      typeof this.page.overview !== 'undefined' &&
-      typeof this.page.overview.list !== 'undefined'
-    ) {
+    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
       const { elementEp } = this.page.overview.list;
       let currentEpisode = 0;
       if (this.singleObj) {
@@ -810,13 +731,9 @@ export class syncPage {
 
       this.page.overview.list.elementsSelector().each(function(index, el) {
         try {
-          const elEp =
-            parseInt(`${elementEp(j.$(el))}`) + parseInt(This.getOffset());
+          const elEp = parseInt(`${elementEp(j.$(el))}`) + parseInt(This.getOffset());
           elementArray[elEp] = j.$(el);
-          if (
-            (api.settings.get('highlightAllEp') && elEp <= currentEpisode) ||
-            elEp === currentEpisode
-          ) {
+          if ((api.settings.get('highlightAllEp') && elEp <= currentEpisode) || elEp === currentEpisode) {
             j.$(el).addClass('mal-sync-active');
           }
         } catch (e) {
@@ -837,9 +754,7 @@ export class syncPage {
         if (i > 1) {
           const calcOffset = 1 - i;
           utils.flashConfirm(
-            api.storage.lang('syncPage_flashConfirm_offsetHandler_1', [
-              String(calcOffset),
-            ]),
+            api.storage.lang('syncPage_flashConfirm_offsetHandler_1', [String(calcOffset)]),
             'offset',
             () => {
               this.setOffset(calcOffset);
@@ -855,10 +770,7 @@ export class syncPage {
   }
 
   testForCloudflare() {
-    if (
-      document.title === 'Just a moment...' ||
-      document.title.indexOf('Cloudflare') !== -1
-    ) {
+    if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
       return true;
     }
     return false;
@@ -896,9 +808,7 @@ export class syncPage {
       this.searchObj.setOffset(value);
     }
     if (typeof this.singleObj !== 'undefined') {
-      api.storage.remove(
-        `updateCheck/${this.singleObj.getType()}/${this.singleObj.getCacheKey()}`,
-      );
+      api.storage.remove(`updateCheck/${this.singleObj.getType()}/${this.singleObj.getCacheKey()}`);
     }
   }
 
@@ -914,18 +824,15 @@ export class syncPage {
     let ui = '<p id="malp">';
     ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
 
-    ui +=
-      '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
+    ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
     ui += wrapStart;
     ui += `<span class="info">${api.storage.lang('search_Score')} </span>`;
-    ui +=
-      '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+    ui += '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 
     // ui += '<span id="MalLogin">';
-    wrapStart =
-      '<span style="display: inline-block; display: none;" class="MalLogin">';
+    wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
     ui += `<span class="info">${api.storage.lang('UI_Status')} </span>`;
@@ -938,8 +845,7 @@ export class syncPage {
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;
       middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle +=
-        '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
+      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotal">0</span>';
       middle += '</span>';
       middle += wrapEnd;
@@ -947,8 +853,7 @@ export class syncPage {
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Volume')} </span>`;
       middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle +=
-        '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
+      middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotalVol">0</span>';
       middle += '</span>';
       middle += wrapEnd;
@@ -956,8 +861,7 @@ export class syncPage {
       middle += wrapStart;
       middle += `<span class="info">${api.storage.lang('UI_Chapter')} </span>`;
       middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle +=
-        '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
+      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotalCha">0</span>';
       middle += '</span>';
       middle += wrapEnd;
@@ -983,14 +887,12 @@ export class syncPage {
       this.page.overview.uiSelector(j.$(ui));
     }
 
-    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(
-      function() {
-        This.buttonclick();
-        // @ts-ignore
-        const el = j.$(this);
-        This.calcSelectWidth(el);
-      },
-    );
+    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function() {
+      This.buttonclick();
+      // @ts-ignore
+      const el = j.$(this);
+      This.calcSelectWidth(el);
+    });
 
     j.$('#malEpisodes, #malVolumes')
       .on('input', function() {
@@ -1010,9 +912,7 @@ export class syncPage {
         .$(selector)
         .find('option:selected')
         .text();
-      const aux = j
-        .$('<select style="width: auto;"/>')
-        .append(j.$('<option/>').text(text));
+      const aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
       const width = aux.width() || 0;
       if (width) {
         j.$('#malp').append(aux);
@@ -1024,8 +924,7 @@ export class syncPage {
 
   private async buttonclick() {
     this.singleObj.setEpisode(j.$('#malEpisodes').val());
-    if (j.$('#malVolumes').length)
-      this.singleObj.setVolume(j.$('#malVolumes').val());
+    if (j.$('#malVolumes').length) this.singleObj.setVolume(j.$('#malVolumes').val());
     this.singleObj.handleScoreCheckbox(j.$('#malUserRating').val());
     this.singleObj.handleStatusCheckbox(j.$('#malStatus').val());
     if (!this.page.isSyncPage(this.url)) {
@@ -1082,18 +981,14 @@ export class syncPage {
             let totalEp = this.singleObj.getTotalEpisodes();
             if (!totalEp) totalEp = '?';
 
-            pres.presence.state = `${utils.episode(
-              this.page.type,
-            )} ${ep} of ${totalEp}`;
+            pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
 
             if (typeof this.curState.lastVideoTime !== 'undefined') {
               if (this.curState.lastVideoTime.paused) {
                 pres.presence.smallImageKey = 'pause';
                 pres.presence.smallImageText = 'pause';
               } else {
-                const timeleft =
-                  this.curState.lastVideoTime.duration -
-                  this.curState.lastVideoTime.current;
+                const timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'playing';
@@ -1115,9 +1010,7 @@ export class syncPage {
             browsingTemp = this.page.type.toString();
           }
           pres.presence.startTimestamp = this.browsingtime;
-          pres.presence.state = api.storage.lang('Discord_rpc_browsing', [
-            browsingTemp,
-          ]);
+          pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
           sendResponse(pres);
           return;
         }

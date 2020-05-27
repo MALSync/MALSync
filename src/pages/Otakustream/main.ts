@@ -13,8 +13,7 @@ export const Otakustream: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      if (url.split('/')[3] === 'movie')
-        return Otakustream.overview!.getTitle(url);
+      if (url.split('/')[3] === 'movie') return Otakustream.overview!.getTitle(url);
       return j
         .$('#breadcrumbs a')
         .last()
@@ -88,16 +87,12 @@ export const Otakustream: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Otakustream.sync!.getEpisode(
-          Otakustream.overview!.list!.elementUrl(selector),
-        );
+        return Otakustream.sync!.getEpisode(Otakustream.overview!.list!.elementUrl(selector));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

@@ -4,16 +4,8 @@
       <slot />
     </span>
     <span class="mdl-list__item-secondary-action">
-      <label
-        class="mdl-switch mdl-js-switch mdl-js-ripple-effect"
-        :for="option"
-      >
-        <input
-          :id="option"
-          v-model="value"
-          type="checkbox"
-          class="mdl-switch__input"
-        />
+      <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="option">
+        <input :id="option" v-model="value" type="checkbox" class="mdl-switch__input" />
       </label>
     </span>
   </li>

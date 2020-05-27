@@ -18,14 +18,10 @@ export const Branitube: pageInterface = {
       return j.$('.nomeAnime').text();
     },
     getIdentifier(url) {
-      return `${j.$('.nomeAnime').data('anid')}?${getType().replace(
-        /\s/gm,
-        '',
-      )}`;
+      return `${j.$('.nomeAnime').data('anid')}?${getType().replace(/\s/gm, '')}`;
     },
     getOverviewUrl(url) {
-      const tempUrl =
-        Branitube.domain + (j.$('div.buttonEpisodes > a').attr('href') || '');
+      const tempUrl = Branitube.domain + (j.$('div.buttonEpisodes > a').attr('href') || '');
       if (getType() === 'anime') {
         return tempUrl;
       }
@@ -56,9 +52,7 @@ export const Branitube: pageInterface = {
         j.$('.cplPl').attr('data-npltype') &&
         j.$('.cplPl').attr('data-cpl') === j.$('.cplPl').attr('data-npltype')
       ) {
-        return `${Branitube.domain}/watch/${j.$('.cplPl').attr('data-npl')}/${
-          url.split('/')[5]
-        }`;
+        return `${Branitube.domain}/watch/${j.$('.cplPl').attr('data-npl')}/${url.split('/')[5]}`;
       }
       return '';
     },
@@ -81,9 +75,7 @@ export const Branitube: pageInterface = {
   overview: {
     getTitle(url) {
       if (getType() !== 'anime') {
-        return `${j
-          .$('div.animeInfos > ul > li.largeSize')
-          .text()} ${getType()}`;
+        return `${j.$('div.animeInfos > ul > li.largeSize').text()} ${getType()}`;
       }
       return j.$('div.animeInfos > ul > li.largeSize').text();
     },
@@ -91,9 +83,9 @@ export const Branitube: pageInterface = {
       return `${url.split('/')[4]}?${getType()}`;
     },
     uiSelector(selector) {
-      j.$(
-        `<div class="animeResult" style="margin:8px;"> <p id="malp">${selector.html()}</p></div>`,
-      ).prependTo(j.$('div.areaEpsList').first());
+      j.$(`<div class="animeResult" style="margin:8px;"> <p id="malp">${selector.html()}</p></div>`).prependTo(
+        j.$('div.areaEpsList').first(),
+      );
     },
     getMalUrl(provider) {
       let malid;
@@ -108,9 +100,7 @@ export const Branitube: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          '.areaEpsList > .getTotalShowingEp > .item-ep > div.area-ep',
-        );
+        return j.$('.areaEpsList > .getTotalShowingEp > .item-ep > div.area-ep');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
@@ -123,28 +113,20 @@ export const Branitube: pageInterface = {
       },
       elementEp(selector) {
         return utils
-          .getBaseText(
-            selector
-              .find('div.infos-bottom > div.ep-info > div.anime-content')
-              .first(),
-          )
+          .getBaseText(selector.find('div.infos-bottom > div.ep-info > div.anime-content').first())
           .replace(/\D+/g, '');
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0 &&
         page.url.split('/')[6] !== 'filmes' &&
         j
-          .$(
-            'div.areaTypesList.no-padding > ul > li > a.active > span.totalEps',
-          )
+          .$('div.areaTypesList.no-padding > ul > li > a.active > span.totalEps')
           .text()
           .replace(/\D+/g, '') !== '0'
       ) {

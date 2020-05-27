@@ -71,18 +71,14 @@ export const TRanimeizle: pageInterface = {
   },
   overview: {
     getTitle: () => {
-      const titleElement: HTMLHeadElement | null = document.querySelector(
-        '.playlist-title > h1',
-      );
+      const titleElement: HTMLHeadElement | null = document.querySelector('.playlist-title > h1');
 
       if (!titleElement) return '';
 
       return RemoveUnrelatedTurkishWordIzle(titleElement.innerText);
     },
     uiSelector: (selector: JQuery<HTMLElement>) => {
-      const animeDetailElement: HTMLDivElement | null = document.querySelector(
-        '.animeDetail',
-      );
+      const animeDetailElement: HTMLDivElement | null = document.querySelector('.animeDetail');
 
       if (!animeDetailElement) return;
 
@@ -112,9 +108,7 @@ export const TRanimeizle: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(document).ready(function() {
       if (!TRanimeizle.isSyncPage(page.url) && !IsOverviewUrl(page.url)) return;

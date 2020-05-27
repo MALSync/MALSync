@@ -9,9 +9,7 @@
 
       <correction v-if="page && page.UILoaded" :page="page"></correction>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{ lang('settings_General') }}</h2>
         </div>
@@ -21,12 +19,7 @@
             {{ lang('settings_Mode') }}
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select
-              id="syncMode"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none;"
-            >
+            <select id="syncMode" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="MAL">MyAnimeList</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
@@ -37,20 +30,13 @@
 
         <login option="syncMode"></login>
 
-        <dropdown
-          v-if="options.syncMode == 'SIMKL'"
-          option="syncModeSimkl"
-          text="Manga Sync Mode"
-        >
+        <dropdown v-if="options.syncMode == 'SIMKL'" option="syncModeSimkl" text="Manga Sync Mode">
           <option value="MAL">MyAnimeList</option>
           <option value="ANILIST">AniList</option>
           <option value="KITSU">Kitsu</option>
         </dropdown>
 
-        <login
-          v-if="options.syncMode == 'SIMKL'"
-          option="syncModeSimkl"
-        ></login>
+        <login v-if="options.syncMode == 'SIMKL'" option="syncModeSimkl"></login>
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
@@ -63,15 +49,9 @@
               class="inputtext mdl-textfield__input"
               style="outline: none;"
             >
-              <option value="video">{{
-                lang('settings_Animesync_Video')
-              }}</option>
-              <option value="instant">{{
-                lang('settings_Animesync_Instant')
-              }}</option>
-              <option value="manual">{{
-                lang('settings_Animesync_Manual')
-              }}</option>
+              <option value="video">{{ lang('settings_Animesync_Video') }}</option>
+              <option value="instant">{{ lang('settings_Animesync_Instant') }}</option>
+              <option value="manual">{{ lang('settings_Animesync_Manual') }}</option>
             </select>
           </span>
         </li>
@@ -86,56 +66,34 @@
               class="inputtext mdl-textfield__input"
               style="outline: none;"
             >
-              <option value="instant">{{
-                lang('settings_Animesync_Instant')
-              }}</option>
-              <option value="manual">{{
-                lang('settings_Animesync_Manual')
-              }}</option>
+              <option value="instant">{{ lang('settings_Animesync_Instant') }}</option>
+              <option value="manual">{{ lang('settings_Animesync_Manual') }}</option>
             </select>
           </span>
         </li>
         <numberInput
-          v-show="
-            options.autoTrackingModeanime == 'video' ||
-              options.autoTrackingModemanga == 'video'
-          "
+          v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'"
           option="videoDuration"
           :min="10"
           :max="99"
-          >{{
-            lang('settings_AutoTracking_Video', [options.videoDuration])
-          }}</numberInput
+          >{{ lang('settings_AutoTracking_Video', [options.videoDuration]) }}</numberInput
         >
 
         <numberInput
-          v-show="
-            options.autoTrackingModeanime == 'instant' ||
-              options.autoTrackingModemanga == 'instant'
-          "
+          v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'"
           option="delay"
-          >{{
-            lang('settings_AutoTracking_Instant', [options.delay])
-          }}</numberInput
+          >{{ lang('settings_AutoTracking_Instant', [options.delay]) }}</numberInput
         >
 
         <li class="mdl-list__item">
-          <button
-            id="allSitesUi"
-            type="button"
-            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-          >
+          <button id="allSitesUi" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             Websites
           </button>
         </li>
 
-        <shortcut option="correctionShort">{{
-          lang('settings_Shortcuts_Correction')
-        }}</shortcut>
+        <shortcut option="correctionShort">{{ lang('settings_Shortcuts_Correction') }}</shortcut>
 
-        <shortcut option="syncShort">{{
-          lang('settings_Shortcuts_Sync')
-        }}</shortcut>
+        <shortcut option="syncShort">{{ lang('settings_Shortcuts_Sync') }}</shortcut>
 
         <checkbox option="localSync"
           >{{ lang('settings_LocalSync') }}
@@ -161,9 +119,7 @@
         </li>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">
             {{ lang('settings_StreamingSite') }}
@@ -187,72 +143,45 @@
         <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">MyAnimeList</h2>
         </div>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{ lang('settings_Thumbnails') }}
-            <tooltip
-              ><span v-html="lang('settings_Thumbnails_text')"></span
-            ></tooltip>
+            <tooltip><span v-html="lang('settings_Thumbnails_text')"></span></tooltip>
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select
-              id="malThumbnail"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none;"
-            >
-              <option value="144">{{
-                lang('settings_Thumbnails_Large')
-              }}</option>
-              <option value="100">{{
-                lang('settings_Thumbnails_Medium')
-              }}</option>
-              <option value="60">{{
-                lang('settings_Thumbnails_Small')
-              }}</option>
-              <option value="0">{{
-                lang('settings_Thumbnails_Default')
-              }}</option>
+            <select id="malThumbnail" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="144">{{ lang('settings_Thumbnails_Large') }}</option>
+              <option value="100">{{ lang('settings_Thumbnails_Medium') }}</option>
+              <option value="60">{{ lang('settings_Thumbnails_Small') }}</option>
+              <option value="0">{{ lang('settings_Thumbnails_Default') }}</option>
             </select>
           </span>
         </li>
-        <checkbox option="friendScore">{{
-          lang('settings_FriendScore')
-        }}</checkbox>
+        <checkbox option="friendScore">{{ lang('settings_FriendScore') }}</checkbox>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">
             MyAnimeList / AniList / Kitsu / Simkl
           </h2>
         </div>
-        <checkbox option="epPredictions">{{
-          lang('settings_epPredictions')
-        }}</checkbox>
+        <checkbox option="epPredictions">{{ lang('settings_epPredictions') }}</checkbox>
         <checkbox option="malTags">
           {{ lang('settings_malTags') }}
           <tooltip direction="bottom">
             <span v-html="lang('settings_malTags_Text')"></span>
           </tooltip>
         </checkbox>
-        <checkbox option="malContinue">{{
-          lang('settings_malContinue')
-        }}</checkbox>
+        <checkbox option="malContinue">{{ lang('settings_malContinue') }}</checkbox>
         <checkbox option="malResume">{{ lang('settings_malResume') }}</checkbox>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">miniMAL</h2>
           <!--<span style="margin-left: auto; color: #7f7f7f;">Shortcut: Ctrl + m</span>-->
@@ -262,12 +191,7 @@
             Theme
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select
-              id="theme"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none;"
-            >
+            <select id="theme" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="light">Light</option>
               <option value="dark">Dark</option>
               <option value="serial">Serial</option>
@@ -275,22 +199,12 @@
           </span>
         </li>
         <span class="option-extension" style="display: none;"
-          ><checkbox option="minimalWindow">{{
-            lang('settings_miniMAL_window')
-          }}</checkbox></span
+          ><checkbox option="minimalWindow">{{ lang('settings_miniMAL_window') }}</checkbox></span
         >
-        <checkbox option="floatButtonStealth">{{
-          lang('settings_miniMAL_floatButtonStealth')
-        }}</checkbox>
-        <checkbox option="minimizeBigPopup">{{
-          lang('settings_miniMAL_minimizeBigPopup')
-        }}</checkbox>
-        <checkbox option="floatButtonHide">{{
-          lang('settings_miniMAL_floatButtonHide')
-        }}</checkbox>
-        <checkbox option="autoCloseMinimal">{{
-          lang('settings_miniMAL_autoCloseMinimal')
-        }}</checkbox>
+        <checkbox option="floatButtonStealth">{{ lang('settings_miniMAL_floatButtonStealth') }}</checkbox>
+        <checkbox option="minimizeBigPopup">{{ lang('settings_miniMAL_minimizeBigPopup') }}</checkbox>
+        <checkbox option="floatButtonHide">{{ lang('settings_miniMAL_floatButtonHide') }}</checkbox>
+        <checkbox option="autoCloseMinimal">{{ lang('settings_miniMAL_autoCloseMinimal') }}</checkbox>
 
         <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
@@ -299,11 +213,9 @@
           <span class="mdl-list__item-secondary-action">
             {{ commands._execute_browser_action.shortcut }}
             <span v-if="!commands._execute_browser_action.shortcut"
-              ><a
-                href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts"
-                target="_blank"
-                >{{ lang('settings_miniMAL_NotSet') }}</a
-              ></span
+              ><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{
+                lang('settings_miniMAL_NotSet')
+              }}</a></span
             >
           </span>
         </li>
@@ -313,18 +225,9 @@
             {{ lang('settings_miniMAL_Display') }}
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select
-              id="posLeft"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none;"
-            >
-              <option value="left">{{
-                lang('settings_miniMAL_Display_Left')
-              }}</option>
-              <option value="right">{{
-                lang('settings_miniMAL_Display_Right')
-              }}</option>
+            <select id="posLeft" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="left">{{ lang('settings_miniMAL_Display_Left') }}</option>
+              <option value="right">{{ lang('settings_miniMAL_Display_Right') }}</option>
             </select>
           </span>
         </li>
@@ -332,10 +235,7 @@
         ${materialCheckbox('displayFloatButton','Floating menu button')}
         ${materialCheckbox('outWay','Move video out of the way')}-->
         <li class="mdl-list__item" style="display: inline-block; width: 49%;">
-          <div
-            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-            style="width: 100%;"
-          >
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
             <input
               id="miniMalHeight"
               class="mdl-textfield__input"
@@ -349,17 +249,8 @@
           </div>
         </li>
         <li class="mdl-list__item" style="display: inline-block; width: 50%;">
-          <div
-            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-            style="width: 100%;"
-          >
-            <input
-              id="miniMalWidth"
-              class="mdl-textfield__input"
-              type="text"
-              step="1"
-              :value="options.miniMalWidth"
-            />
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+            <input id="miniMalWidth" class="mdl-textfield__input" type="text" step="1" :value="options.miniMalWidth" />
             <label class="mdl-textfield__label" for="miniMalWidth">
               {{ lang('settings_miniMAL_Width') }}
             </label>
@@ -367,35 +258,21 @@
         </li>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">
             {{ lang('settings_Video_Player') }}
           </h2>
         </div>
 
-        <checkbox option="autofull">{{
-          lang('settings_Video_Fullscreen')
-        }}</checkbox>
-        <checkbox option="autoresume">{{
-          lang('settings_Video_Resume')
-        }}</checkbox>
-        <checkbox option="autoNextEp">{{
-          lang('settings_autoNextEp')
-        }}</checkbox>
+        <checkbox option="autofull">{{ lang('settings_Video_Fullscreen') }}</checkbox>
+        <checkbox option="autoresume">{{ lang('settings_Video_Resume') }}</checkbox>
+        <checkbox option="autoNextEp">{{ lang('settings_autoNextEp') }}</checkbox>
 
-        <shortcut v-if="isExtension()" option="nextEpShort">{{
-          lang('settings_Shortcuts_Next_Episode')
-        }}</shortcut>
+        <shortcut v-if="isExtension()" option="nextEpShort">{{ lang('settings_Shortcuts_Next_Episode') }}</shortcut>
 
-        <shortcut v-if="isExtension()" option="introSkipFwd">{{
-          lang('settings_Shortcuts_Skip_Forward')
-        }}</shortcut>
-        <shortcut v-if="isExtension()" option="introSkipBwd">{{
-          lang('settings_Shortcuts_Skip_Backward')
-        }}</shortcut>
+        <shortcut v-if="isExtension()" option="introSkipFwd">{{ lang('settings_Shortcuts_Skip_Forward') }}</shortcut>
+        <shortcut v-if="isExtension()" option="introSkipBwd">{{ lang('settings_Shortcuts_Skip_Backward') }}</shortcut>
 
         <numberInput v-if="isExtension()" option="introSkip" :min="5">{{
           lang('settings_introSkip', [options.introSkip])
@@ -438,9 +315,7 @@
           </span>
         </li>
         <span class="updateCheckEnable" style="display: none;">
-          <checkbox option="updateCheckNotifications">{{
-            lang('settings_Notifications')
-          }}</checkbox>
+          <checkbox option="updateCheckNotifications">{{ lang('settings_Notifications') }}</checkbox>
         </span>
         <li class="mdl-list__item updateCheckEnable" style="display: none;">
           <button
@@ -453,9 +328,7 @@
         </li>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
           <a
@@ -466,14 +339,10 @@
             More Info</a
           >
         </div>
-        <checkbox option="presenceHidePage">{{
-          lang('settings_presenceHidePage')
-        }}</checkbox>
+        <checkbox option="presenceHidePage">{{ lang('settings_presenceHidePage') }}</checkbox>
       </div>
 
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">{{ lang('settings_ETC') }}</h2>
         </div>
@@ -481,25 +350,18 @@
         <span class="option-extension" style="display: none;"
           ><checkbox option="userscriptMode"
             >{{ lang('settings_Userscriptmode')
-            }}<tooltip direction="bottom">{{
-              lang('settings_Userscriptmode_Text')
-            }}</tooltip></checkbox
+            }}<tooltip direction="bottom">{{ lang('settings_Userscriptmode_Text') }}</tooltip></checkbox
           ></span
         >
         <span class="option-extension-popup" style="display: none;"
           ><checkbox option="strictCookies"
-            >{{ lang('settings_StrictCookies')
-            }}<tooltip>{{
-              lang('settings_StrictCookies_Text')
-            }}</tooltip></checkbox
+            >{{ lang('settings_StrictCookies') }}<tooltip>{{ lang('settings_StrictCookies_Text') }}</tooltip></checkbox
           ></span
         >
         <span class="option-extension" style="display: none;"
           ><checkbox option="highlightAllEp"
             >{{ lang('settings_highlightAllEp')
-            }}<tooltip>{{
-              lang('settings_highlightAllEp_Text')
-            }}</tooltip></checkbox
+            }}<tooltip>{{ lang('settings_highlightAllEp_Text') }}</tooltip></checkbox
           ></span
         >
         <li class="mdl-list__item">
@@ -518,11 +380,7 @@
         </li>
 
         <li class="mdl-list__item">
-          <button
-            id="clearCache"
-            type="button"
-            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-          >
+          <button id="clearCache" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             {{ lang('settings_ClearCache') }}
           </button>
           <button
@@ -542,39 +400,20 @@
         @click="myOpen()"
       >
         <div style="display: table; width: 100%;">
-          <template
-            v-for="(contributerGroup, group) in contributer"
-            class="inline-block"
-          >
+          <template v-for="(contributerGroup, group) in contributer" class="inline-block">
             <div :key="group" class="group">{{ group }}</div>
-            <div
-              v-for="contr in contributerGroup"
-              :key="contr.name"
-              class="inline-block"
-            >
+            <div v-for="contr in contributerGroup" :key="contr.name" class="inline-block">
               <div class="user">
                 <div class="image align-middle">
                   <clazy-load v-if="contr.gif" :src="contr.gif">
-                    <img
-                      :src="contr.gif"
-                      class="lazy init gif"
-                      style="max-width: 100%;"
-                    />
+                    <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;" />
                   </clazy-load>
                   <clazy-load :src="contr.image">
-                    <img
-                      :src="contr.image"
-                      class="lazy init"
-                      style="max-width: 100%;"
-                    />
+                    <img :src="contr.image" class="lazy init" style="max-width: 100%;" />
                   </clazy-load>
                 </div>
                 <div class="text align-middle">
-                  <div
-                    class="name"
-                    :style="'color:' + contr.color"
-                    :title="contr.name"
-                  >
+                  <div class="name" :style="'color:' + contr.color" :title="contr.name">
                     {{ contr.name }}
                   </div>
                   <div v-if="contr.subText" class="subtext">
@@ -586,19 +425,12 @@
           </template>
           <div class="user pop">
             <div class="image align-middle">
-              <i
-                class="material-icons"
-                style="color: white; padding: 4px 4px; cursor: pointer;"
-              >
+              <i class="material-icons" style="color: white; padding: 4px 4px; cursor: pointer;">
                 arrow_right_alt
               </i>
             </div>
           </div>
-          <a
-            rel="noreferrer"
-            href="https://discordapp.com/invite/cTH4yaw"
-            class="discord"
-          >
+          <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord">
             <div
               style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #fff 0%,#738bd7 74%);"
             ></div>
@@ -614,17 +446,10 @@
           </a>
         </div>
       </div>
-      <div
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <li class="mdl-list__item">
           <div style="line-height: 30px;">
-            <clazy-load
-              tag="a"
-              rel="noreferrer"
-              :href="version.link"
-              :src="version.img"
-            >
+            <clazy-load tag="a" rel="noreferrer" :href="version.link" :src="version.img">
               <img :src="version.img" />
               <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
@@ -729,17 +554,15 @@ export default {
     };
   },
   mounted() {
-    api.request
-      .xhr('GET', 'https://api.malsync.moe/static/contributor')
-      .then(response => {
-        try {
-          this.contributer = JSON.parse(response.responseText);
-        } catch (e) {
-          con.error('Contributer Could not be retieved', e);
-          return;
-        }
-        con.log('Contributer', this.contributer);
-      });
+    api.request.xhr('GET', 'https://api.malsync.moe/static/contributor').then(response => {
+      try {
+        this.contributer = JSON.parse(response.responseText);
+      } catch (e) {
+        con.error('Contributer Could not be retieved', e);
+        return;
+      }
+      con.log('Contributer', this.contributer);
+    });
     if (api.type === 'webextension' && j.$('#Mal-Sync-Popup').length) {
       chrome.commands.getAll(commands => {
         con.info('Commands', commands);
@@ -785,9 +608,7 @@ export default {
       const exportObj = await exportData();
       con.log('Export', exportObj);
 
-      const filecontent = `data:text/csv;charset=utf-8,${JSON.stringify(
-        exportObj,
-      )}`;
+      const filecontent = `data:text/csv;charset=utf-8,${JSON.stringify(exportObj)}`;
       const encodedUri = encodeURI(filecontent);
       try {
         const link = document.createElement('a');

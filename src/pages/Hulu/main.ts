@@ -46,8 +46,7 @@ export const Hulu: pageInterface = {
         .text()
         .replace(/\D+/g, '');
 
-      if (typeof currentSeason !== undefined && Number(currentSeason) > 1)
-        return `${name} season ${currentSeason}`;
+      if (typeof currentSeason !== undefined && Number(currentSeason) > 1) return `${name} season ${currentSeason}`;
 
       return name;
     },
@@ -66,9 +65,7 @@ export const Hulu: pageInterface = {
         .replace(/\D+/g, '')}`;
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j.$('#LevelTwo__scroll-area > div > div > div.Details__subnav').first(),
-      );
+      selector.insertBefore(j.$('#LevelTwo__scroll-area > div > div > div.Details__subnav').first());
     },
   },
   init(page) {
@@ -113,9 +110,7 @@ export const Hulu: pageInterface = {
       }
     }
 
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     startCheck();
 
@@ -138,13 +133,7 @@ async function checkPage(): Promise<boolean> {
 
   const json = JSON.parse(response.responseText);
 
-  if (
-    !(
-      json.items[0].genre_names.includes('Anime') ||
-      json.items[0].genre_names.includes('Animation')
-    )
-  )
-    return false;
+  if (!(json.items[0].genre_names.includes('Anime') || json.items[0].genre_names.includes('Animation'))) return false;
 
   episode = parseInt(json.items[0].number);
 

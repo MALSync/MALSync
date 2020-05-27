@@ -23,11 +23,7 @@ api.settings.init().then(() => {
           identifier: this.page.sync.getIdentifier(this.url),
         };
 
-        this.searchObj = new searchClass(
-          'state.title',
-          this.page.type,
-          state.identifier,
-        );
+        this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
         this.searchObj.setPage(this.page);
         this.searchObj.setSyncPage(this);
         await this.searchObj.getCachedOffset();
@@ -36,11 +32,7 @@ api.settings.init().then(() => {
           identifier: this.page.overview!.getIdentifier(this.url),
         };
 
-        this.searchObj = new searchClass(
-          'state.title',
-          this.page.type,
-          state.identifier,
-        );
+        this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
         this.searchObj.setPage(this.page);
         this.searchObj.setSyncPage(this);
         await this.searchObj.getCachedOffset();
@@ -48,10 +40,7 @@ api.settings.init().then(() => {
         con.log('Overview', state);
       }
 
-      if (
-        typeof this.page.overview !== 'undefined' &&
-        typeof this.page.overview.list !== 'undefined'
-      ) {
+      if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
         const { elementUrl } = this.page.overview.list;
         const tempEpisodeList = j.$.map(this.getEpList(), function(val, i) {
           if (typeof val !== 'undefined') {
@@ -63,25 +52,15 @@ api.settings.init().then(() => {
         let changed = false;
         for (const key in tempEpisodeList) {
           const tempEpisode = tempEpisodeList[key];
-          if (
-            tempEpisode !== '-' &&
-            (episodeList[key] === '-' ||
-              typeof episodeList[key] === 'undefined')
-          ) {
-            episodeList[key] = tempEpisode.replace(
-              /\?mal-sync-background=[^/]+/,
-              '',
-            );
+          if (tempEpisode !== '-' && (episodeList[key] === '-' || typeof episodeList[key] === 'undefined')) {
+            episodeList[key] = tempEpisode.replace(/\?mal-sync-background=[^/]+/, '');
             changed = true;
           }
         }
         // episodeList = episodeList.map(x => Object.assign(x, tempEpisodeList.find(y => y.id == x.id && x == '-')));
 
         con.log('Episode List', episodeList);
-        if (
-          typeof this.page.overview.list.paginationNext !== 'undefined' &&
-          changed
-        ) {
+        if (typeof this.page.overview.list.paginationNext !== 'undefined' && changed) {
           con.log('Pagination next');
           const This = this;
           try {

@@ -6,9 +6,7 @@
           <span class="mdl-list__item-primary-content">
             <a :href="getDomain(page)">
               <img
-                :src="
-                  'https://www.google.com/s2/favicons?domain=' + getDomain(page)
-                "
+                :src="'https://www.google.com/s2/favicons?domain=' + getDomain(page)"
                 height="16"
                 width="16"
                 style="margin-right: 5px;"
@@ -17,10 +15,7 @@
             </a>
           </span>
           <span class="mdl-list__item-secondary-action">
-            <label
-              class="mdl-switch mdl-js-switch mdl-js-ripple-effect"
-              :for="page.name"
-            >
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="page.name">
               <input
                 :id="page.name"
                 type="checkbox"
@@ -68,11 +63,7 @@ export default {
       return domain;
     },
     getPageState(page) {
-      if (
-        typeof this.enablePages[page.name] === 'undefined' ||
-        this.enablePages[page.name]
-      )
-        return true;
+      if (typeof this.enablePages[page.name] === 'undefined' || this.enablePages[page.name]) return true;
       return false;
     },
     setPageState(page, state) {

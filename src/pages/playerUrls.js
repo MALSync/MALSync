@@ -54,12 +54,7 @@ module.exports = {
     match: ['*://*.cloudvideo.tv/*'],
   },
   fembed: {
-    match: [
-      '*://*.fembed.net/*',
-      '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*',
-      '*://*.feurl.com/*',
-    ],
+    match: ['*://*.fembed.net/*', '*://*.fembed.com/*', '*://*.animeproxy.info/*', '*://*.feurl.com/*'],
   },
   youpload: {
     match: ['*://*.youpload.co/*'],
@@ -177,11 +172,7 @@ module.exports = {
   },
   // kissanime/9anime
   hydrax: {
-    match: [
-      '*://*.replay.watch/*',
-      '*://*.playhydrax.com/*',
-      '*://hydrax.net/*',
-    ],
+    match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*'],
   },
   // animeflv
   streamium: {

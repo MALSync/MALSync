@@ -87,8 +87,7 @@ export abstract class SingleAbstract {
 
   public setEpisode(episode: number): SingleAbstract {
     episode = parseInt(`${episode}`);
-    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
-      episode = this.getTotalEpisodes();
+    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes()) episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
   }
@@ -148,11 +147,7 @@ export abstract class SingleAbstract {
       .then(() => {
         this.persistanceState = this.getStateEl();
 
-        return utils.getEntrySettings(
-          this.type,
-          this.getCacheKey(),
-          this._getTags(),
-        );
+        return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
       })
       .then(options => {
         this.options = options;
@@ -164,14 +159,7 @@ export abstract class SingleAbstract {
   public async sync(): Promise<void> {
     con.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
-    this._setTags(
-      await utils.setEntrySettings(
-        this.type,
-        this.getCacheKey(),
-        this.options,
-        this._getTags(),
-      ),
-    );
+    this._setTags(await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()));
     return this._sync()
       .catch(e => {
         this.lastError = e;
@@ -231,9 +219,9 @@ export abstract class SingleAbstract {
 
   public getMalUrl(): string | null {
     if (!Number.isNaN(this.ids.mal)) {
-      return `https://myanimelist.net/${this.getType()}/${
-        this.ids.mal
-      }/${encodeURIComponent(this.getTitle().replace(/\//, '_'))}`;
+      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(
+        this.getTitle().replace(/\//, '_'),
+      )}`;
     }
     return null;
   }
@@ -312,11 +300,7 @@ export abstract class SingleAbstract {
     return undefined;
   }
 
-  public async checkSync(
-    episode: number,
-    volume?: number,
-    isNovel = false,
-  ): Promise<boolean> {
+  public async checkSync(episode: number, volume?: number, isNovel = false): Promise<boolean> {
     const curEpisode = this.getEpisode();
     const curStatus = this.getStatus();
     const curVolume = this.getVolume();
@@ -345,10 +329,7 @@ export abstract class SingleAbstract {
       return true;
     }
 
-    if (
-      curStatus !== definitions.status.Watching &&
-      curStatus !== definitions.status.Rewatching
-    ) {
+    if (curStatus !== definitions.status.Watching && curStatus !== definitions.status.Rewatching) {
       return this.startWatchingMessage();
     }
 
@@ -356,15 +337,10 @@ export abstract class SingleAbstract {
   }
 
   public async startWatchingMessage() {
-    return utils
-      .flashConfirm(
-        api.storage.lang(`syncPage_flashConfirm_start_${this.getType()}`),
-        'add',
-      )
-      .then(res => {
-        if (res) this.setStatus(definitions.status.Watching);
-        return res;
-      });
+    return utils.flashConfirm(api.storage.lang(`syncPage_flashConfirm_start_${this.getType()}`), 'add').then(res => {
+      if (res) this.setStatus(definitions.status.Watching);
+      return res;
+    });
   }
 
   public async finishWatchingMessage(): Promise<boolean> {
@@ -373,39 +349,29 @@ export abstract class SingleAbstract {
     let checkHtml =
       '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
     this.getScoreCheckbox().forEach(el => {
-      checkHtml += `<option value="${el.value}" ${
-        String(currentScore) === el.value ? 'selected' : ''
-      }>${el.label}</option>`;
+      checkHtml += `<option value="${el.value}" ${String(currentScore) === el.value ? 'selected' : ''}>${
+        el.label
+      }</option>`;
     });
     checkHtml += '</select></div>';
 
-    return utils
-      .flashConfirm(
-        api.storage.lang('syncPage_flashConfirm_complete') + checkHtml,
-        'complete',
-      )
-      .then(res => {
-        if (res) {
-          this.setStatus(definitions.status.Completed);
-          const finishScore = Number(j.$('#finish_score').val());
-          if (finishScore > 0) {
-            con.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
-            this.handleScoreCheckbox(j.$('#finish_score :selected').val());
-          }
+    return utils.flashConfirm(api.storage.lang('syncPage_flashConfirm_complete') + checkHtml, 'complete').then(res => {
+      if (res) {
+        this.setStatus(definitions.status.Completed);
+        const finishScore = Number(j.$('#finish_score').val());
+        if (finishScore > 0) {
+          con.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
+          this.handleScoreCheckbox(j.$('#finish_score :selected').val());
         }
+      }
 
-        return res;
-      });
+      return res;
+    });
   }
 
   public async startRewatchingMessage(): Promise<boolean> {
     return utils
-      .flashConfirm(
-        api.storage.lang(
-          `syncPage_flashConfirm_rewatch_start_${this.getType()}`,
-        ),
-        'add',
-      )
+      .flashConfirm(api.storage.lang(`syncPage_flashConfirm_rewatch_start_${this.getType()}`), 'add')
       .then(res => {
         if (res) this.setStatus(definitions.status.Rewatching);
         return res;
@@ -414,12 +380,7 @@ export abstract class SingleAbstract {
 
   public async finishRewatchingMessage(): Promise<boolean> {
     return utils
-      .flashConfirm(
-        api.storage.lang(
-          `syncPage_flashConfirm_rewatch_finish_${this.getType()}`,
-        ),
-        'complete',
-      )
+      .flashConfirm(api.storage.lang(`syncPage_flashConfirm_rewatch_finish_${this.getType()}`), 'complete')
       .then(res => {
         if (res) this.setStatus(definitions.status.Completed);
         return res;
@@ -452,9 +413,7 @@ export abstract class SingleAbstract {
 
   public getDisplayScoreCheckbox() {
     const curScore = this.getScoreCheckboxValue();
-    const labelEl = this.getScoreCheckbox().filter(
-      el => el.value === String(curScore),
-    );
+    const labelEl = this.getScoreCheckbox().filter(el => el.value === String(curScore));
     if (labelEl.length) return labelEl[0].label;
     return '';
   }
@@ -527,9 +486,7 @@ export abstract class SingleAbstract {
         return 'Incorrect url provided';
         break;
       case definitions.errorCode.EntryNotFound:
-        return `Entry for this ${this.getType()} could not be found on ${
-          this.shortName
-        }`;
+        return `Entry for this ${this.getType()} could not be found on ${this.shortName}`;
         break;
       default:
         return error.message;

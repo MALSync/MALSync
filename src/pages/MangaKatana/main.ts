@@ -14,17 +14,13 @@ export const MangaKatana: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText($('#breadcrumb_wrap > ol > li:nth-child(2) > a > span'))
-        .trim();
+      return utils.getBaseText($('#breadcrumb_wrap > ol > li:nth-child(2) > a > span')).trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j.$('#breadcrumb_wrap > ol > li:nth-child(2) > a').attr('href') || ''
-      );
+      return j.$('#breadcrumb_wrap > ol > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -74,8 +70,7 @@ export const MangaKatana: pageInterface = {
       offsetHandler: false,
       elementsSelector() {
         if (
-          typeof j.$("div.chapters:not('.uk-hidden') > table > tbody > tr") !==
-            'undefined' &&
+          typeof j.$("div.chapters:not('.uk-hidden') > table > tbody > tr") !== 'undefined' &&
           j.$("div.chapters:not('.uk-hidden') > table > tbody > tr").length
         ) {
           return j.$("div.chapters:not('.uk-hidden') > table > tbody > tr");
@@ -139,9 +134,7 @@ export const MangaKatana: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'manga' &&

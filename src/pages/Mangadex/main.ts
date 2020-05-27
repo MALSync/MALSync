@@ -32,9 +32,7 @@ export const Mangadex: pageInterface = {
     },
     getEpisode(url) {
       const chapterId = url.split('/')[4];
-      const curOption = j.$(
-        `#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`,
-      );
+      const curOption = j.$(`#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`);
       if (curOption.length) {
         const temp = curOption
           .text()
@@ -43,10 +41,7 @@ export const Mangadex: pageInterface = {
         if (temp !== null) {
           return EpisodePartToEpisode(temp[0]);
         }
-        if (
-          curOption.text().indexOf('oneshot') !== -1 ||
-          curOption.text().indexOf('Oneshot') !== -1
-        ) {
+        if (curOption.text().indexOf('oneshot') !== -1 || curOption.text().indexOf('Oneshot') !== -1) {
           return 1;
         }
       }
@@ -54,9 +49,7 @@ export const Mangadex: pageInterface = {
     },
     getVolume(url) {
       const chapterId = url.split('/')[4];
-      const curOption = j.$(
-        `#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`,
-      );
+      const curOption = j.$(`#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`);
       if (curOption.length) {
         let temp = curOption
           .text()
@@ -74,8 +67,7 @@ export const Mangadex: pageInterface = {
     nextEpUrl(url) {
       let linkDirection = 'left';
 
-      if (j.$('#content').attr('data-direction') === 'ltr')
-        linkDirection = 'right';
+      if (j.$('#content').attr('data-direction') === 'ltr') linkDirection = 'right';
 
       const chapterAnchorHref = j
         .$(`a.chapter-link-${linkDirection}.col-auto.arrow-link`)
@@ -86,8 +78,7 @@ export const Mangadex: pageInterface = {
 
       const chapterHrefParts = chapterAnchorHref.split('/');
 
-      if (chapterHrefParts.length < 2 || chapterHrefParts[1] !== 'chapter')
-        return '';
+      if (chapterHrefParts.length < 2 || chapterHrefParts[1] !== 'chapter') return '';
 
       return (
         Mangadex.domain +
@@ -145,9 +136,7 @@ export const Mangadex: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          '.chapter-container > .row:not(:first-of-type) .chapter-row',
-        );
+        return j.$('.chapter-container > .row:not(:first-of-type) .chapter-row');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
@@ -164,9 +153,7 @@ export const Mangadex: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (j.$('.card-header').length) {
       if (/chapter\/\d+\/comments/i.test(window.location.href)) {
         con.info('Comments');

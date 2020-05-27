@@ -24,8 +24,7 @@ export function errorHandling(res, silent = false) {
       switch (parseInt(error.status)) {
         case 401:
         case 403:
-          if (!silent)
-            utils.flashm(kitsu.noLogin, { error: true, type: 'error' });
+          if (!silent) utils.flashm(kitsu.noLogin, { error: true, type: 'error' });
           throw error.message;
           break;
         case 404:
@@ -126,11 +125,7 @@ export async function userId() {
     .then(response => {
       const res = JSON.parse(response.responseText);
       con.log(res);
-      if (
-        typeof res.data === 'undefined' ||
-        !res.data.length ||
-        typeof res.data[0] === 'undefined'
-      ) {
+      if (typeof res.data === 'undefined' || !res.data.length || typeof res.data[0] === 'undefined') {
         utils.flashm(kitsu.noLogin, { error: true, type: 'error' });
         throw 'Not authentificated';
       }

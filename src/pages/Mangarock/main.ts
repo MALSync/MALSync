@@ -100,9 +100,7 @@ export const Mangarock: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     start();
 
@@ -132,15 +130,8 @@ export const Mangarock: pageInterface = {
           let waitTimeout = false;
           utils.waitUntilTrue(
             function() {
-              con.log(
-                'visibility',
-                j.$('#page-content .col-lg-8 .lazyload-placeholder:visible')
-                  .length,
-              );
-              return (
-                !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible')
-                  .length || waitTimeout
-              );
+              con.log('visibility', j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length);
+              return !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length || waitTimeout;
             },
             function() {
               page.handlePage();

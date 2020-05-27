@@ -18,11 +18,7 @@ export const myAnime: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        myAnime.domain +
-        (j.$('#episode-details > div > span.current-series > a').attr('href') ||
-          '')
-      );
+      return myAnime.domain + (j.$('#episode-details > div > span.current-series > a').attr('href') || '');
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5) || '');
@@ -103,9 +99,7 @@ export const myAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'anime') {
         page.handlePage();

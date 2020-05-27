@@ -57,14 +57,9 @@ export const Goyabu: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'assistir' ||
-        page.url.split('/')[3] === 'videos'
-      ) {
+      if (page.url.split('/')[3] === 'assistir' || page.url.split('/')[3] === 'videos') {
         page.handlePage();
       }
     });

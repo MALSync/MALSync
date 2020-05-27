@@ -12,17 +12,11 @@ export const VIZ: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(
-          '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a',
-        )
-        .text();
+      return j.$('#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a').text();
     },
     getIdentifier(url) {
       const anchorHref = j
-        .$(
-          '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a',
-        )
+        .$('#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a')
         .attr('href');
 
       if (!anchorHref) return '';
@@ -32,26 +26,20 @@ export const VIZ: pageInterface = {
     getOverviewUrl(url) {
       return (
         VIZ.domain +
-        (j
-          .$(
-            '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a',
-          )
-          .attr('href') || '')
+        (j.$('#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > a').attr('href') ||
+          '')
       );
     },
     getEpisode(url) {
       const episodePart = j
-        .$(
-          '#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span',
-        )
+        .$('#product_row > div.bg-lighter-gray.mar-b-md.mar-b-lg--md.chapter_ribbon > div > h3 > span')
         .text();
 
       if (!episodePart) return NaN;
 
       const episodeNumberMatches = episodePart.match(/\d+/gim);
 
-      if (!episodeNumberMatches || episodeNumberMatches.length === 0)
-        return NaN;
+      if (!episodeNumberMatches || episodeNumberMatches.length === 0) return NaN;
 
       return Number(episodeNumberMatches[0]);
     },
@@ -82,12 +70,7 @@ export const VIZ: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return (
-          VIZ.domain +
-          anchorHref
-            .replace(/javascript:tryReadChapter\(\d+,'/gi, '')
-            .replace(/'\);/g, '')
-        );
+        return VIZ.domain + anchorHref.replace(/javascript:tryReadChapter\(\d+,'/gi, '').replace(/'\);/g, '');
       },
       elementEp(selector) {
         const anchorHref = selector
@@ -95,8 +78,7 @@ export const VIZ: pageInterface = {
           .first()
           .attr('href');
 
-        if (!anchorHref || anchorHref !== "javascript:void('join to read');")
-          return NaN;
+        if (!anchorHref || anchorHref !== "javascript:void('join to read');") return NaN;
 
         let episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
 
@@ -119,14 +101,11 @@ export const VIZ: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'shonenjump' &&
-        (page.url.split('/')[5] === 'chapter' ||
-          page.url.split('/')[4] === 'chapters')
+        (page.url.split('/')[5] === 'chapter' || page.url.split('/')[4] === 'chapters')
       ) {
         page.handlePage();
       }

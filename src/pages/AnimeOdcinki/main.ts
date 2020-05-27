@@ -15,10 +15,7 @@ export const AnimeOdcinki: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('.field-name-field-tytul-anime a').attr('href'),
-        AnimeOdcinki.domain,
-      );
+      return utils.absoluteLink(j.$('.field-name-field-tytul-anime a').attr('href'), AnimeOdcinki.domain);
     },
     getEpisode(url) {
       return parseInt(url.split('/')[5]);
@@ -62,9 +59,7 @@ export const AnimeOdcinki: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[5] !== undefined) {
         page.handlePage();

@@ -10,9 +10,7 @@
         <span v-if="item.item.top" class="list-content">
           <country-flag
             :country="correctFlag(item.language)"
-            :title="
-              item.language.toUpperCase() + ' ' + item.index.toUpperCase()
-            "
+            :title="item.language.toUpperCase() + ' ' + item.index.toUpperCase()"
             :text="item.index.toUpperCase()"
           />
         </span>
@@ -31,26 +29,16 @@
         >
           <country-flag
             :country="correctFlag(item.language)"
-            :title="
-              item.language.toUpperCase() + ' ' + item.index.toUpperCase()
-            "
+            :title="item.language.toUpperCase() + ' ' + item.index.toUpperCase()"
             :text="item.index.toUpperCase()"
           />
 
-          <template
-            v-if="item.item.top.state && item.item.top.state !== 'ongoing'"
-          >
+          <template v-if="item.item.top.state && item.item.top.state !== 'ongoing'">
             <span style="color: red; padding-right: 5px;">Incomplete</span>
           </template>
 
           <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
-            <template
-              v-if="
-                item.item.top.state &&
-                  item.item.top.state !== 'ongoing' &&
-                  item.item.top.stateInfo
-              "
-            >
+            <template v-if="item.item.top.state && item.item.top.state !== 'ongoing' && item.item.top.stateInfo">
               {{ item.item.top.stateInfo }}
             </template>
             <template v-else>
@@ -114,20 +102,12 @@ export default {
     },
     completed() {
       return this.elements.filter(
-        el =>
-          el.item &&
-          el.item.top &&
-          el.item.top.state &&
-          el.item.top.state === 'complete',
+        el => el.item && el.item.top && el.item.top.state && el.item.top.state === 'complete',
       );
     },
     ongoing() {
       return this.elements.filter(
-        el =>
-          el.item &&
-          el.item.top &&
-          el.item.top.state &&
-          el.item.top.state !== 'complete',
+        el => el.item && el.item.top && el.item.top.state && el.item.top.state !== 'complete',
       );
     },
   },
@@ -138,10 +118,7 @@ export default {
         this.xhr = '';
         const cur = `${newVal}s`;
         return api.request
-          .xhr(
-            'GET',
-            `https://api.malsync.moe/nc/mal/${this.type}/${newVal}/progress`,
-          )
+          .xhr('GET', `https://api.malsync.moe/nc/mal/${this.type}/${newVal}/progress`)
           .then(response => {
             if (cur === `${this.malId}s`) {
               this.xhr = JSON.parse(response.responseText);

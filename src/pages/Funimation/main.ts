@@ -5,10 +5,7 @@ export const Funimation: pageInterface = {
   domain: 'https://www.funimation.com',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      j.$('h1.show-headline.video-title')[0] &&
-      j.$('h2.episode-headline')[0]
-    ) {
+    if (j.$('h1.show-headline.video-title')[0] && j.$('h2.episode-headline')[0]) {
       return true;
     }
     return false;
@@ -21,15 +18,10 @@ export const Funimation: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        Funimation.domain +
-        (j.$('h1.show-headline.video-title a').attr('href') || '')
-      );
+      return Funimation.domain + (j.$('h1.show-headline.video-title a').attr('href') || '');
     },
     getEpisode(url) {
-      return utils
-        .getBaseText($('h1.show-headline.video-title'))
-        .replace(/\D+/g, '');
+      return utils.getBaseText($('h1.show-headline.video-title')).replace(/\D+/g, '');
     },
   },
   overview: {
@@ -40,20 +32,15 @@ export const Funimation: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$(
-        `<div class="container"> <p id="malp">${selector.html()}</p></div>`,
-      ).insertBefore(j.$('div.gradient-bg').first());
+      j.$(`<div class="container"> <p id="malp">${selector.html()}</p></div>`).insertBefore(
+        j.$('div.gradient-bg').first(),
+      );
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'shows' &&
-        (j.$('h1.show-headline.video-title')[0] || j.$('h1.heroTitle')[0])
-      ) {
+      if (page.url.split('/')[3] === 'shows' && (j.$('h1.show-headline.video-title')[0] || j.$('h1.heroTitle')[0])) {
         page.handlePage();
       }
     });

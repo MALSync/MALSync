@@ -218,15 +218,9 @@ export class Single extends SingleAbstract {
     j.$.each(this.animeInfo, function(index, value) {
       if (index.toString().charAt(0) === '.') {
         if (
-          !(
-            (index === '.add_anime[is_rewatching]' ||
-              index === '.add_manga[is_rereading]') &&
-            parseInt(value) === 0
-          )
+          !((index === '.add_anime[is_rewatching]' || index === '.add_manga[is_rereading]') && parseInt(value) === 0)
         ) {
-          parameter += `${encodeURIComponent(
-            index.toString().substring(1),
-          )}=${encodeURIComponent(value)}&`;
+          parameter += `${encodeURIComponent(index.toString().substring(1))}=${encodeURIComponent(value)}&`;
         }
       }
     });
@@ -247,14 +241,8 @@ export class Single extends SingleAbstract {
 
   protected apiCall(post, options) {
     return api.request.xhr(post, options).then(response => {
-      if (
-        (response.status > 499 && response.status < 600) ||
-        response.status === 0
-      ) {
-        throw this.errorObj(
-          errorCode.ServerOffline,
-          `Server Offline status: ${response.status}`,
-        );
+      if ((response.status > 499 && response.status < 600) || response.status === 0) {
+        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
       }
       if (
         response.finalUrl.indexOf('myanimelist.net/login.php') > -1 ||
@@ -274,10 +262,7 @@ export class Single extends SingleAbstract {
       typeof data.split('<form name="')[1] === 'undefined' &&
       (this.url.indexOf('/manga/') !== -1 || this.url.indexOf('/anime/') !== -1)
     ) {
-      throw this.errorObj(
-        errorCode.ServerOffline,
-        'MAL is down or otherwise giving bad data',
-      );
+      throw this.errorObj(errorCode.ServerOffline, 'MAL is down or otherwise giving bad data');
     }
 
     this._onList = true;
@@ -298,9 +283,7 @@ export class Single extends SingleAbstract {
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 
-      this.additionalInfo.totalEp = parseInt(
-        data.split('id="totalEpisodes">')[1].split('<')[0],
-      );
+      this.additionalInfo.totalEp = parseInt(data.split('id="totalEpisodes">')[1].split('<')[0]);
       this.additionalInfo.name = data
         .split('<a href="')[1]
         .split('">')[1]
@@ -323,9 +306,7 @@ export class Single extends SingleAbstract {
           .split('value="')[1]
           .split('"')[0],
       );
-      anime['.add_anime[status]'] = parseInt(
-        getselect(data, 'add_anime[status]'),
-      );
+      anime['.add_anime[status]'] = parseInt(getselect(data, 'add_anime[status]'));
       if (!anime['.add_anime[status]']) anime['.add_anime[status]'] = 6;
       // Rewatching
       if (
@@ -347,30 +328,12 @@ export class Single extends SingleAbstract {
         anime['.add_anime[num_watched_episodes]'] = '';
       }
       anime['.add_anime[score]'] = getselect(data, 'add_anime[score]');
-      anime['.add_anime[start_date][month]'] = getselect(
-        data,
-        'add_anime[start_date][month]',
-      );
-      anime['.add_anime[start_date][day]'] = getselect(
-        data,
-        'add_anime[start_date][day]',
-      );
-      anime['.add_anime[start_date][year]'] = getselect(
-        data,
-        'add_anime[start_date][year]',
-      );
-      anime['.add_anime[finish_date][month]'] = getselect(
-        data,
-        'add_anime[finish_date][month]',
-      );
-      anime['.add_anime[finish_date][day]'] = getselect(
-        data,
-        'add_anime[finish_date][day]',
-      );
-      anime['.add_anime[finish_date][year]'] = getselect(
-        data,
-        'add_anime[finish_date][year]',
-      );
+      anime['.add_anime[start_date][month]'] = getselect(data, 'add_anime[start_date][month]');
+      anime['.add_anime[start_date][day]'] = getselect(data, 'add_anime[start_date][day]');
+      anime['.add_anime[start_date][year]'] = getselect(data, 'add_anime[start_date][year]');
+      anime['.add_anime[finish_date][month]'] = getselect(data, 'add_anime[finish_date][month]');
+      anime['.add_anime[finish_date][day]'] = getselect(data, 'add_anime[finish_date][day]');
+      anime['.add_anime[finish_date][year]'] = getselect(data, 'add_anime[finish_date][year]');
       anime['.add_anime[tags]'] = utils.parseHtml(
         data
           .split('name="add_anime[tags]"')[1]
@@ -378,10 +341,7 @@ export class Single extends SingleAbstract {
           .split('<')[0],
       ); // textarea
       anime['.add_anime[priority]'] = getselect(data, 'add_anime[priority]');
-      anime['.add_anime[storage_type]'] = getselect(
-        data,
-        'add_anime[storage_type]',
-      );
+      anime['.add_anime[storage_type]'] = getselect(data, 'add_anime[storage_type]');
       anime['.add_anime[storage_value]'] = data
         .split('name="add_anime[storage_value]"')[1]
         .split('value="')[1]
@@ -390,26 +350,16 @@ export class Single extends SingleAbstract {
         .split('name="add_anime[num_watched_times]"')[1]
         .split('value="')[1]
         .split('"')[0];
-      anime['.add_anime[rewatch_value]'] = getselect(
-        data,
-        'add_anime[rewatch_value]',
-      );
+      anime['.add_anime[rewatch_value]'] = getselect(data, 'add_anime[rewatch_value]');
       anime['.add_anime[comments]'] = utils.parseHtml(
         data
           .split('name="add_anime[comments]"')[1]
           .split('>')[1]
           .split('<')[0],
       );
-      anime['.add_anime[is_asked_to_discuss]'] = getselect(
-        data,
-        'add_anime[is_asked_to_discuss]',
-      );
-      if (anime['.add_anime[is_asked_to_discuss]'] === '')
-        anime['.add_anime[is_asked_to_discuss]'] = 0; // #15
-      anime['.add_anime[sns_post_type]'] = getselect(
-        data,
-        'add_anime[sns_post_type]',
-      );
+      anime['.add_anime[is_asked_to_discuss]'] = getselect(data, 'add_anime[is_asked_to_discuss]');
+      if (anime['.add_anime[is_asked_to_discuss]'] === '') anime['.add_anime[is_asked_to_discuss]'] = 0; // #15
+      anime['.add_anime[sns_post_type]'] = getselect(data, 'add_anime[sns_post_type]');
     } else {
       anime['.csrf_token'] = data
         .split("'csrf_token'")[1]
@@ -423,12 +373,8 @@ export class Single extends SingleAbstract {
       }
       data = data.split('<form name="')[1].split('</form>')[0];
 
-      this.additionalInfo.totalEp = parseInt(
-        data.split('id="totalChap">')[1].split('<')[0],
-      );
-      this.additionalInfo.totalVol = parseInt(
-        data.split('id="totalVol">')[1].split('<')[0],
-      );
+      this.additionalInfo.totalEp = parseInt(data.split('id="totalChap">')[1].split('<')[0]);
+      this.additionalInfo.totalVol = parseInt(data.split('id="totalVol">')[1].split('<')[0]);
       this.additionalInfo.name = data
         .split('<a href="')[1]
         .split('">')[1]
@@ -457,9 +403,7 @@ export class Single extends SingleAbstract {
           .split('value="')[1]
           .split('"')[0],
       );
-      anime['.add_manga[status]'] = parseInt(
-        getselect(data, 'add_manga[status]'),
-      );
+      anime['.add_manga[status]'] = parseInt(getselect(data, 'add_manga[status]'));
       if (!anime['.add_manga[status]']) anime['.add_manga[status]'] = 6;
       // Rewatching
       if (
@@ -490,30 +434,12 @@ export class Single extends SingleAbstract {
         anime['.add_manga[num_read_chapters]'] = '';
       }
       anime['.add_manga[score]'] = getselect(data, 'add_manga[score]');
-      anime['.add_manga[start_date][month]'] = getselect(
-        data,
-        'add_manga[start_date][month]',
-      );
-      anime['.add_manga[start_date][day]'] = getselect(
-        data,
-        'add_manga[start_date][day]',
-      );
-      anime['.add_manga[start_date][year]'] = getselect(
-        data,
-        'add_manga[start_date][year]',
-      );
-      anime['.add_manga[finish_date][month]'] = getselect(
-        data,
-        'add_manga[finish_date][month]',
-      );
-      anime['.add_manga[finish_date][day]'] = getselect(
-        data,
-        'add_manga[finish_date][day]',
-      );
-      anime['.add_manga[finish_date][year]'] = getselect(
-        data,
-        'add_manga[finish_date][year]',
-      );
+      anime['.add_manga[start_date][month]'] = getselect(data, 'add_manga[start_date][month]');
+      anime['.add_manga[start_date][day]'] = getselect(data, 'add_manga[start_date][day]');
+      anime['.add_manga[start_date][year]'] = getselect(data, 'add_manga[start_date][year]');
+      anime['.add_manga[finish_date][month]'] = getselect(data, 'add_manga[finish_date][month]');
+      anime['.add_manga[finish_date][day]'] = getselect(data, 'add_manga[finish_date][day]');
+      anime['.add_manga[finish_date][year]'] = getselect(data, 'add_manga[finish_date][year]');
       anime['.add_manga[tags]'] = utils.parseHtml(
         data
           .split('name="add_manga[tags]"')[1]
@@ -521,10 +447,7 @@ export class Single extends SingleAbstract {
           .split('<')[0],
       ); // textarea
       anime['.add_manga[priority]'] = getselect(data, 'add_manga[priority]');
-      anime['.add_manga[storage_type]'] = getselect(
-        data,
-        'add_manga[storage_type]',
-      );
+      anime['.add_manga[storage_type]'] = getselect(data, 'add_manga[storage_type]');
       anime['.add_manga[num_retail_volumes]'] = data
         .split('name="add_manga[num_retail_volumes]"')[1]
         .split('value="')[1]
@@ -533,26 +456,16 @@ export class Single extends SingleAbstract {
         .split('name="add_manga[num_read_times]"')[1]
         .split('value="')[1]
         .split('"')[0];
-      anime['.add_manga[reread_value]'] = getselect(
-        data,
-        'add_manga[reread_value]',
-      );
+      anime['.add_manga[reread_value]'] = getselect(data, 'add_manga[reread_value]');
       anime['.add_manga[comments]'] = utils.parseHtml(
         data
           .split('name="add_manga[comments]"')[1]
           .split('>')[1]
           .split('<')[0],
       );
-      anime['.add_manga[is_asked_to_discuss]'] = getselect(
-        data,
-        'add_manga[is_asked_to_discuss]',
-      );
-      if (anime['.add_manga[is_asked_to_discuss]'] === '')
-        anime['.add_manga[is_asked_to_discuss]'] = 0; // #15
-      anime['.add_manga[sns_post_type]'] = getselect(
-        data,
-        'add_manga[sns_post_type]',
-      );
+      anime['.add_manga[is_asked_to_discuss]'] = getselect(data, 'add_manga[is_asked_to_discuss]');
+      if (anime['.add_manga[is_asked_to_discuss]'] === '') anime['.add_manga[is_asked_to_discuss]'] = 0; // #15
+      anime['.add_manga[sns_post_type]'] = getselect(data, 'add_manga[sns_post_type]');
     }
 
     anime['.submitIt'] = data
@@ -584,10 +497,7 @@ export class Single extends SingleAbstract {
 
   setStartingDateToNow() {
     const Datec = new Date();
-    if (
-      this.animeInfo['.add_anime[start_date][day]'] === '' ||
-      this.animeInfo['.add_manga[start_date][day]'] === ''
-    ) {
+    if (this.animeInfo['.add_anime[start_date][day]'] === '' || this.animeInfo['.add_manga[start_date][day]'] === '') {
       if (this.type === 'manga') {
         this.animeInfo['.add_manga[start_date][year]'] = Datec.getFullYear();
         this.animeInfo['.add_manga[start_date][month]'] = Datec.getMonth() + 1;

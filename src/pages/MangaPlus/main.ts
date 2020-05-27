@@ -61,25 +61,15 @@ export const MangaPlus: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j.$('div.TitleDetail-module_flexContainer_1oGb4').first(),
-      );
+      selector.insertBefore(j.$('div.TitleDetail-module_flexContainer_1oGb4').first());
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
-    if (
-      page.url.split('/')[3] === 'viewer' ||
-      page.url.split('/')[3] === 'titles'
-    ) {
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    if (page.url.split('/')[3] === 'viewer' || page.url.split('/')[3] === 'titles') {
       utils.waitUntilTrue(
         function() {
-          if (
-            j.$('h1.Navigation-module_title_180OT').text() ||
-            j.$('h1.TitleDetailHeader-module_title_Iy33M').text()
-          ) {
+          if (j.$('h1.Navigation-module_title_180OT').text() || j.$('h1.TitleDetailHeader-module_title_Iy33M').text()) {
             return true;
           }
           return false;
@@ -93,10 +83,7 @@ export const MangaPlus: pageInterface = {
       page.url = window.location.href;
       page.UILoaded = false;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
-      if (
-        page.url.split('/')[3] === 'viewer' ||
-        page.url.split('/')[3] === 'titles'
-      ) {
+      if (page.url.split('/')[3] === 'viewer' || page.url.split('/')[3] === 'titles') {
         utils.waitUntilTrue(
           function() {
             if (

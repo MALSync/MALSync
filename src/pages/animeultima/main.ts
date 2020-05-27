@@ -5,12 +5,7 @@ export const animeultima: pageInterface = {
   domain: 'https://animeultima.to',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] === 'a' &&
-      j.$(
-        'h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile',
-      )[0]
-    ) {
+    if (url.split('/')[3] === 'a' && j.$('h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile')[0]) {
       return true;
     }
     return false;
@@ -18,9 +13,7 @@ export const animeultima: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$(
-          'h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile',
-        )
+        .$('h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile')
         .text()
         .replace(/\n.*/g, '')
         .trim();
@@ -34,9 +27,7 @@ export const animeultima: pageInterface = {
     getEpisode(url) {
       return Number(
         j
-          .$(
-            'h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile',
-          )
+          .$('h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile')
           .text()
           .replace(/.*\n/g, '')
           .replace(/\D+/g, ''),
@@ -68,9 +59,7 @@ export const animeultima: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

@@ -45,9 +45,7 @@ export const MonosChinos: pageInterface = {
         .first()
         .attr('href');
       if (href) {
-        if (
-          MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)
-        ) {
+        if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
         }
       }
@@ -82,14 +80,9 @@ export const MonosChinos: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'ver' ||
-        page.url.split('/')[3] === 'anime'
-      ) {
+      if (page.url.split('/')[3] === 'ver' || page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });

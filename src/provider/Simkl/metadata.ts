@@ -22,15 +22,9 @@ export class metadata implements metadataInterface {
 
     this.type = urlPart3;
 
-    if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('myanimelist.net') > -1
-    ) {
+    if (typeof malUrl !== 'undefined' && malUrl.indexOf('myanimelist.net') > -1) {
       this.id = Number(utils.urlPart(malUrl, 4));
-    } else if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('simkl.com') > -1
-    ) {
+    } else if (typeof malUrl !== 'undefined' && malUrl.indexOf('simkl.com') > -1) {
       this.id = NaN;
       this.simklId = Number(utils.urlPart(malUrl, 4));
     } else {
@@ -42,10 +36,7 @@ export class metadata implements metadataInterface {
   }
 
   async init() {
-    con.log(
-      'Update Simkl info',
-      this.id ? `MAL: ${this.id}` : `Simkl: ${this.simklId}`,
-    );
+    con.log('Update Simkl info', this.id ? `MAL: ${this.id}` : `Simkl: ${this.simklId}`);
 
     let de;
     if (Number.isNaN(this.id)) {
@@ -61,17 +52,11 @@ export class metadata implements metadataInterface {
       this.simklId = el[0].ids.simkl;
     }
 
-    return helper
-      .call(
-        `https://api.simkl.com/anime/${this.simklId}`,
-        { extended: 'full' },
-        true,
-      )
-      .then(res => {
-        con.log(res);
-        this.animeInfo = res;
-        return this;
-      });
+    return helper.call(`https://api.simkl.com/anime/${this.simklId}`, { extended: 'full' }, true).then(res => {
+      con.log(res);
+      this.animeInfo = res;
+      return this;
+    });
   }
 
   getTitle() {
@@ -107,10 +92,7 @@ export class metadata implements metadataInterface {
   getAltTitle() {
     const altTitle: string[] = [];
     try {
-      if (
-        typeof this.animeInfo.en_title !== undefined &&
-        this.animeInfo.en_title
-      )
+      if (typeof this.animeInfo.en_title !== undefined && this.animeInfo.en_title)
         altTitle.push(this.animeInfo.en_title);
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
@@ -131,19 +113,13 @@ export class metadata implements metadataInterface {
           title: 'Score:',
           body: this.animeInfo.ratings.simkl.rating,
         });
-      if (
-        typeof this.animeInfo.ratings.mal !== 'undefined' &&
-        this.animeInfo.ratings.mal.rating !== null
-      )
+      if (typeof this.animeInfo.ratings.mal !== 'undefined' && this.animeInfo.ratings.mal.rating !== null)
         stats.push({
           title: 'MAL Score:',
           body: this.animeInfo.ratings.mal.rating,
         });
 
-      if (
-        typeof this.animeInfo.rank !== 'undefined' &&
-        this.animeInfo.rank !== null
-      )
+      if (typeof this.animeInfo.rank !== 'undefined' && this.animeInfo.rank !== null)
         stats.push({
           title: 'Ranked:',
           body: `#${this.animeInfo.rank}`,
@@ -162,55 +138,37 @@ export class metadata implements metadataInterface {
   getInfo() {
     const html: any[] = [];
     try {
-      if (
-        typeof this.animeInfo.anime_type !== 'undefined' &&
-        this.animeInfo.anime_type !== null
-      )
+      if (typeof this.animeInfo.anime_type !== 'undefined' && this.animeInfo.anime_type !== null)
         html.push({
           title: 'Type:',
           body: this.animeInfo.anime_type,
         });
 
-      if (
-        typeof this.animeInfo.total_episodes !== 'undefined' &&
-        this.animeInfo.total_episodes !== null
-      )
+      if (typeof this.animeInfo.total_episodes !== 'undefined' && this.animeInfo.total_episodes !== null)
         html.push({
           title: 'Episodes:',
           body: this.animeInfo.total_episodes,
         });
 
-      if (
-        typeof this.animeInfo.status !== 'undefined' &&
-        this.animeInfo.status !== null
-      )
+      if (typeof this.animeInfo.status !== 'undefined' && this.animeInfo.status !== null)
         html.push({
           title: 'Status:',
           body: this.animeInfo.status,
         });
 
-      if (
-        typeof this.animeInfo.year !== 'undefined' &&
-        this.animeInfo.year !== null
-      )
+      if (typeof this.animeInfo.year !== 'undefined' && this.animeInfo.year !== null)
         html.push({
           title: 'Year:',
           body: this.animeInfo.year,
         });
 
-      if (
-        typeof this.animeInfo.airs !== 'undefined' &&
-        this.animeInfo.airs !== null
-      )
+      if (typeof this.animeInfo.airs !== 'undefined' && this.animeInfo.airs !== null)
         html.push({
           title: 'Broadcast:',
           body: `${this.animeInfo.airs.day} at ${this.animeInfo.airs.time}`,
         });
 
-      if (
-        typeof this.animeInfo.network !== 'undefined' &&
-        this.animeInfo.network !== null
-      )
+      if (typeof this.animeInfo.network !== 'undefined' && this.animeInfo.network !== null)
         html.push({
           title: 'Licensor:',
           body: this.animeInfo.network,
@@ -219,11 +177,7 @@ export class metadata implements metadataInterface {
       const genres: string[] = [];
       this.animeInfo.genres.forEach(i => {
         if (genres.length < 6) {
-          genres.push(
-            `<a href="https://simkl.com/${
-              this.type
-            }/${i.toLowerCase()}">${i}</a>`,
-          );
+          genres.push(`<a href="https://simkl.com/${this.type}/${i.toLowerCase()}">${i}</a>`);
         }
       });
       if (genres.length)
@@ -232,19 +186,13 @@ export class metadata implements metadataInterface {
           body: genres.join(', '),
         });
 
-      if (
-        typeof this.animeInfo.runtime !== 'undefined' &&
-        this.animeInfo.runtime !== null
-      )
+      if (typeof this.animeInfo.runtime !== 'undefined' && this.animeInfo.runtime !== null)
         html.push({
           title: 'Duration:',
           body: `${this.animeInfo.runtime}mins`,
         });
 
-      if (
-        typeof this.animeInfo.certification !== 'undefined' &&
-        this.animeInfo.certification !== null
-      )
+      if (typeof this.animeInfo.certification !== 'undefined' && this.animeInfo.certification !== null)
         html.push({
           title: 'Rating:',
           body: this.animeInfo.certification,
@@ -277,34 +225,27 @@ export class metadata implements metadataInterface {
   }
 }
 
-export function search(
-  keyword,
-  type: 'anime' | 'manga',
-  options = {},
-  sync = false,
-): Promise<searchInterface> {
-  return helper
-    .call(`https://api.simkl.com/search/${type}`, { q: keyword }, true)
-    .then(res => {
-      const resItems: any = [];
-      con.log('search', res);
-      j.$.each(res, function(index, item) {
-        resItems.push({
-          id: item.ids.simkl_id,
-          name: item.title,
-          altNames: [],
-          url: `https://simkl.com/${type}/${item.ids.simkl_id}/${item.ids.slug}`,
-          malUrl: async () => {
-            const malId = await helper.simklIdToMal(item.ids.simkl_id);
-            return malId ? `https://myanimelist.net/${type}/${malId}` : null;
-          },
-          image: `https://simkl.in/posters/${item.poster}_cm.jpg`,
-          media_type: item.type,
-          isNovel: false,
-          score: null,
-          year: item.year,
-        });
+export function search(keyword, type: 'anime' | 'manga', options = {}, sync = false): Promise<searchInterface> {
+  return helper.call(`https://api.simkl.com/search/${type}`, { q: keyword }, true).then(res => {
+    const resItems: any = [];
+    con.log('search', res);
+    j.$.each(res, function(index, item) {
+      resItems.push({
+        id: item.ids.simkl_id,
+        name: item.title,
+        altNames: [],
+        url: `https://simkl.com/${type}/${item.ids.simkl_id}/${item.ids.slug}`,
+        malUrl: async () => {
+          const malId = await helper.simklIdToMal(item.ids.simkl_id);
+          return malId ? `https://myanimelist.net/${type}/${malId}` : null;
+        },
+        image: `https://simkl.in/posters/${item.poster}_cm.jpg`,
+        media_type: item.type,
+        isNovel: false,
+        score: null,
+        year: item.year,
       });
-      return resItems;
     });
+    return resItems;
+  });
 }

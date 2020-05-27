@@ -5,11 +5,7 @@ export const HentaiKisa: pageInterface = {
   domain: 'https://hentaikisa.com',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] !== null &&
-      j.$('div.c a.infoan2')[0] &&
-      j.$('#playerselector option:selected')[0]
-    ) {
+    if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {
       return true;
     }
     return false;
@@ -52,9 +48,7 @@ export const HentaiKisa: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(
-          '#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
-        )
+        .$('#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1')
         .text()
         .trim();
     },
@@ -62,13 +56,7 @@ export const HentaiKisa: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j
-          .$(
-            '#body > div.notmain > div > div.infobox > div.iepbox.nobackground',
-          )
-          .first(),
-      );
+      selector.insertBefore(j.$('#body > div.notmain > div > div.infobox > div.iepbox.nobackground').first());
     },
   },
   init(page) {
@@ -77,21 +65,13 @@ export const HentaiKisa: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
+        (page.url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) ||
         (page.url.split('/')[3] !== null &&
-          j.$('div.c a.infoan2')[0] &&
-          j.$('#playerselector option:selected')[0]) ||
-        (page.url.split('/')[3] !== null &&
-          j.$(
-            '#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
-          )[0] &&
-          j.$(
-            '#body > div.notmain > div > div.infobox > div.iepbox.nobackground',
-          )[0])
+          j.$('#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1')[0] &&
+          j.$('#body > div.notmain > div > div.infobox > div.iepbox.nobackground')[0])
       ) {
         page.handlePage();
       }

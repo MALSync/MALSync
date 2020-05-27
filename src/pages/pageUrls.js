@@ -122,10 +122,7 @@ module.exports = {
   },
   Branitube: {
     match: ['*://*.branitube.net/watch/*', '*://*.branitube.net/animes/*'],
-    exclude: [
-      '*://*.branitube.net/animes/filter/*',
-      '*://*.branitube.net/animes/pagina/*',
-    ],
+    exclude: ['*://*.branitube.net/animes/filter/*', '*://*.branitube.net/animes/pagina/*'],
   },
   Turkanime: {
     match: [
@@ -193,11 +190,7 @@ module.exports = {
     match: ['*://www.anime-planet.com/anime/*'],
   },
   KickAssAnime: {
-    match: [
-      '*://*.kickassanime.io/anime/*',
-      '*://*.kickassanime.ru/anime/*',
-      '*://*.kickassanime.rs/anime/*',
-    ],
+    match: ['*://*.kickassanime.io/anime/*', '*://*.kickassanime.ru/anime/*', '*://*.kickassanime.rs/anime/*'],
   },
   AnimeKisa: {
     match: ['*://animekisa.tv/*'],
@@ -233,11 +226,7 @@ module.exports = {
     match: ['*://*.neko-sama.fr/*'],
   },
   AnimeZone: {
-    match: [
-      '*://www.animezone.pl/odcinki/*',
-      '*://www.animezone.pl/odcinek/*',
-      '*://www.animezone.pl/anime/*',
-    ],
+    match: ['*://www.animezone.pl/odcinki/*', '*://www.animezone.pl/odcinek/*', '*://www.animezone.pl/anime/*'],
   },
   AnimeOdcinki: {
     match: ['*://anime-odcinki.pl/anime/*'],
@@ -288,19 +277,13 @@ module.exports = {
     match: ['*://www.hidive.com/*'],
   },
   JaiminisBox: {
-    match: [
-      '*://jaiminisbox.com/reader/series/*',
-      '*://jaiminisbox.com/reader/read/*',
-    ],
+    match: ['*://jaiminisbox.com/reader/series/*', '*://jaiminisbox.com/reader/read/*'],
   },
   FallenAngels: {
     match: ['*://manga.fascans.com/manga/*'],
   },
   animestrue: {
-    match: [
-      '*://*.animestrue.net/anime/*/temporada*',
-      '*://*.animestrue.site/anime/*/temporada*',
-    ],
+    match: ['*://*.animestrue.net/anime/*/temporada*', '*://*.animestrue.site/anime/*/temporada*'],
   },
   PrimeVideo: {
     match: ['*://*.primevideo.com/*'],

@@ -102,14 +102,9 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
     if (el.options && el.options.u) {
       console.log(el.options.u);
 
-      const elCache = await api.storage.get(
-        `updateCheck/${type}/${el.cacheKey}`,
-      );
+      const elCache = await api.storage.get(`updateCheck/${type}/${el.cacheKey}`);
       con.log('cached', elCache);
-      if (
-        (typeof elCache !== 'undefined' && elCache.finished) ||
-        !isSupported(el.options.u)
-      ) {
+      if ((typeof elCache !== 'undefined' && elCache.finished) || !isSupported(el.options.u)) {
         resolve();
         return;
       }
@@ -120,10 +115,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       openInvisiblePage(el.options.u, id);
 
       const timeout = setTimeout(async function() {
-        api.storage.set(
-          `updateCheck/${type}/${el.cacheKey}`,
-          checkError(elCache, 'Timeout'),
-        );
+        api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Timeout'));
         if (retry && retryNum < 3) {
           con.log('retry', retryNum);
           retry = false;
@@ -136,10 +128,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
         clearTimeout(timeout);
 
         if (typeof error !== undefined && error) {
-          api.storage.set(
-            `updateCheck/${type}/${el.cacheKey}`,
-            checkError(elCache, error),
-          );
+          api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, error));
           resolve();
           return;
         }
@@ -158,10 +147,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           });
 
           let finished = false;
-          if (
-            newestEpisode >= parseInt(anime_num_episodes) &&
-            parseInt(anime_num_episodes) !== 0
-          ) {
+          if (newestEpisode >= parseInt(anime_num_episodes) && parseInt(anime_num_episodes) !== 0) {
             con.log('Finished');
             finished = true;
           }
@@ -171,11 +157,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
             finished,
           });
 
-          if (
-            typeof elCache !== 'undefined' &&
-            newestEpisode > elCache.newestEp &&
-            elCache.newestEp !== ''
-          ) {
+          if (typeof elCache !== 'undefined' && newestEpisode > elCache.newestEp && elCache.newestEp !== '') {
             con.log('new Episode');
             api.settings.init().then(() => {
               if (api.settings.get('updateCheckNotifications')) {
@@ -184,12 +166,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
                   EpisodeText = 'Chapter ';
                 }
 
-                utils.notifications(
-                  el.options.u,
-                  anime_title,
-                  EpisodeText + newestEpisode,
-                  anime_image_path,
-                );
+                utils.notifications(el.options.u, anime_title, EpisodeText + newestEpisode, anime_image_path);
               }
             });
           } else {
@@ -198,38 +175,24 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
 
           if (typeof list !== 'undefined' && list.length > 0) {
             // Update next Episode link
-            const continueUrlObj = await utils.getContinueWaching(
-              type,
-              el.cacheKey,
-            );
+            const continueUrlObj = await utils.getContinueWaching(type, el.cacheKey);
             const nextUserEp = parseInt(num_watched_episodes) + 1;
 
             con.log('Continue', continueUrlObj);
-            if (
-              typeof continueUrlObj !== 'undefined' &&
-              continueUrlObj.ep === nextUserEp
-            ) {
+            if (typeof continueUrlObj !== 'undefined' && continueUrlObj.ep === nextUserEp) {
               con.log('Continue link up to date');
             } else {
               con.log('Update continue link');
               const nextUserEpUrl = list[nextUserEp];
               if (typeof nextUserEpUrl !== 'undefined') {
                 con.log('set continue link', nextUserEpUrl, nextUserEp);
-                utils.setContinueWaching(
-                  nextUserEpUrl,
-                  nextUserEp,
-                  type,
-                  el.cacheKey,
-                );
+                utils.setContinueWaching(nextUserEpUrl, nextUserEp, type, el.cacheKey);
               }
             }
           }
         } else {
           con.log(checkError(elCache, 'Episode list empty'));
-          api.storage.set(
-            `updateCheck/${type}/${el.cacheKey}`,
-            checkError(elCache, 'Episode list empty'),
-          );
+          api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty');
         }
         resolve();

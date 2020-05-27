@@ -5,11 +5,7 @@ export const tmofans: pageInterface = {
   domain: ['https://lectortmo.com', 'https://tmofans.com'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] === 'viewer' &&
-      url.split('/')[4] !== undefined &&
-      url.split('/')[4].length > 0
-    ) {
+    if (url.split('/')[3] === 'viewer' && url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {
       return true;
     }
     return false;
@@ -40,9 +36,7 @@ export const tmofans: pageInterface = {
       );
     },
     getEpisode(url) {
-      const episodePart = utils
-        .getBaseText($('#app > section:nth-child(2) > div > div > h2').first())
-        .trim();
+      const episodePart = utils.getBaseText($('#app > section:nth-child(2) > div > div > h2').first()).trim();
       if (episodePart.length) {
         const temp = episodePart.match(/Capítulo *\d*/gim);
         if (temp !== null) {
@@ -64,9 +58,7 @@ export const tmofans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         (page.url.split('/')[3] === 'library' &&

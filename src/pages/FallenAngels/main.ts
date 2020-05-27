@@ -22,30 +22,20 @@ export const FallenAngels: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j.$('#navbar-collapse-1 > ul > li:nth-child(1) > a').attr('href') || ''
-      );
+      return j.$('#navbar-collapse-1 > ul > li:nth-child(1) > a').attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
     },
     nextEpUrl(url) {
       const scriptContent = j.$('body > div.container-fluid > script').html();
-      const nextChapterMatches = scriptContent.match(
-        /next_chapter\s*=\s*".*"/gim,
-      );
+      const nextChapterMatches = scriptContent.match(/next_chapter\s*=\s*".*"/gim);
 
       if (!nextChapterMatches || nextChapterMatches.length === 0) return '';
 
-      const matchesOfRestOfNextChapter = nextChapterMatches[0].match(
-        /"(.*?)"/gm,
-      );
+      const matchesOfRestOfNextChapter = nextChapterMatches[0].match(/"(.*?)"/gm);
 
-      if (
-        !matchesOfRestOfNextChapter ||
-        matchesOfRestOfNextChapter.length === 0
-      )
-        return '';
+      if (!matchesOfRestOfNextChapter || matchesOfRestOfNextChapter.length === 0) return '';
 
       return matchesOfRestOfNextChapter[0].replace(/(^"|"$)/gm, '');
     },
@@ -91,9 +81,7 @@ export const FallenAngels: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();

@@ -19,15 +19,9 @@ export class metadata implements metadataInterface {
 
     this.type = urlPart3;
 
-    if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('myanimelist.net') > -1
-    ) {
+    if (typeof malUrl !== 'undefined' && malUrl.indexOf('myanimelist.net') > -1) {
       this.id = Number(utils.urlPart(malUrl, 4));
-    } else if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('anilist.co') > -1
-    ) {
+    } else if (typeof malUrl !== 'undefined' && malUrl.indexOf('anilist.co') > -1) {
       this.id = NaN;
       this.aniId = Number(utils.urlPart(malUrl, 4));
     } else {
@@ -36,10 +30,7 @@ export class metadata implements metadataInterface {
   }
 
   init() {
-    con.log(
-      'Update AniList info',
-      this.id ? `MAL: ${this.id}` : `AniList: ${this.aniId}`,
-    );
+    con.log('Update AniList info', this.id ? `MAL: ${this.id}` : `AniList: ${this.aniId}`);
     let selectId = this.id;
     let selectQuery = 'idMal';
     if (Number.isNaN(this.id)) {
@@ -328,8 +319,7 @@ export class metadata implements metadataInterface {
       if (this.xhr.data.Media.season !== null) {
         let season = this.xhr.data.Media.season.toLowerCase().replace('_', ' ');
         season = season.charAt(0).toUpperCase() + season.slice(1);
-        if (this.xhr.data.Media.endDate.year !== null)
-          season += ` ${this.xhr.data.Media.endDate.year}`;
+        if (this.xhr.data.Media.endDate.year !== null) season += ` ${this.xhr.data.Media.endDate.year}`;
         html.push({
           title: 'Season:',
           body: season,
@@ -361,9 +351,7 @@ export class metadata implements metadataInterface {
       if (this.xhr.data.Media.genres !== null) {
         const gen: string[] = [];
         this.xhr.data.Media.genres.forEach(function(i, index) {
-          gen.push(
-            `<a href="https://anilist.co/search/anime?includedGenres=${i}">${i}</a>`,
-          );
+          gen.push(`<a href="https://anilist.co/search/anime?includedGenres=${i}">${i}</a>`);
         });
         html.push({
           title: 'Genres:',
@@ -428,12 +416,7 @@ export class metadata implements metadataInterface {
   }
 }
 
-export async function search(
-  keyword,
-  type: 'anime' | 'manga',
-  options = {},
-  sync = false,
-): Promise<searchInterface> {
+export async function search(keyword, type: 'anime' | 'manga', options = {}, sync = false): Promise<searchInterface> {
   const query = `
     query ($search: String) {
       ${type}: Page (perPage: 10) {
@@ -493,17 +476,10 @@ export async function search(
       altNames: Object.values(item.title).concat(item.synonyms),
       url: item.siteUrl,
       malUrl: () => {
-        return item.idMal
-          ? `https://myanimelist.net/${type}/${item.idMal}`
-          : null;
+        return item.idMal ? `https://myanimelist.net/${type}/${item.idMal}` : null;
       },
       image: item.coverImage.medium,
-      media_type: item.format
-        ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace(
-            '_',
-            ' ',
-          )
-        : '',
+      media_type: item.format ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' ') : '',
       isNovel: item.format === 'NOVEL',
       score: item.averageScore,
       year: item.startDate.year,

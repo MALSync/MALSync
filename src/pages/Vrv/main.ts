@@ -10,11 +10,7 @@ function getSeries(page, overview = '') {
   ident = undefined;
   api.request.xhr('GET', page.url).then(response => {
     con.log(response);
-    json = JSON.parse(
-      `{${
-        response.responseText.split('__INITIAL_STATE__ = {')[1].split('};')[0]
-      }}`,
-    );
+    json = JSON.parse(`{${response.responseText.split('__INITIAL_STATE__ = {')[1].split('};')[0]}}`);
     con.log(json);
 
     if (overview.length) {
@@ -43,9 +39,7 @@ export const Vrv: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return `${
-        json.watch.mediaResource.json.series_title
-      } - ${json.watch.mediaResource.json.season_title.replace(
+      return `${json.watch.mediaResource.json.series_title} - ${json.watch.mediaResource.json.season_title.replace(
         json.watch.mediaResource.json.series_title,
         '',
       )}`;
@@ -54,16 +48,13 @@ export const Vrv: pageInterface = {
       return json.watch.mediaResource.json.season_id;
     },
     getOverviewUrl(url) {
-      return `${Vrv.domain}/series/${
-        json.watch.mediaResource.json.series_id
-      }?season=${Vrv.sync.getIdentifier(url)}`;
+      return `${Vrv.domain}/series/${json.watch.mediaResource.json.series_id}?season=${Vrv.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return json.watch.mediaResource.json.episode_number;
     },
     nextEpUrl(url) {
-      if (typeof json.watch.mediaResource.json.next_episode_id === 'undefined')
-        return '';
+      if (typeof json.watch.mediaResource.json.next_episode_id === 'undefined') return '';
       return `${Vrv.domain}/watch/${json.watch.mediaResource.json.next_episode_id}`;
     },
   },
@@ -141,9 +132,7 @@ export const Vrv: pageInterface = {
             }
             seasonInterval = utils.changeDetect(
               function() {
-                $(
-                  '#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp',
-                ).remove();
+                $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
                 page.UILoaded = false;
                 getSeries(
                   page,
@@ -164,9 +153,7 @@ export const Vrv: pageInterface = {
       }
     }
 
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       ready();
     });

@@ -10,13 +10,7 @@ export async function getList(...args) {
   let tempList: listElement[] = [];
   if (api.settings.get('localSync')) {
     const [status, callbacks, username, offset, templist] = args;
-    tempList = await new localList(
-      status,
-      callbacks,
-      username,
-      offset,
-      templist,
-    ).get();
+    tempList = await new localList(status, callbacks, username, offset, templist).get();
   }
 
   const list = getListObj(args);

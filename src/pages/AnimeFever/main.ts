@@ -12,11 +12,7 @@ export const AnimeFever: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(
-          'div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a',
-        )
-        .text();
+      return j.$('div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a').text();
     },
     getIdentifier(url) {
       return url.split('/')[4];
@@ -24,11 +20,8 @@ export const AnimeFever: pageInterface = {
     getOverviewUrl(url) {
       return (
         AnimeFever.domain +
-        (j
-          .$(
-            'div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a',
-          )
-          .attr('href') || '')
+        (j.$('div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a').attr('href') ||
+          '')
       );
     },
     getEpisode(url) {
@@ -59,9 +52,7 @@ export const AnimeFever: pageInterface = {
     getTitle(url) {
       return utils
         .getBaseText(
-          $(
-            '#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div',
-          ).first(),
+          $('#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div').first(),
         )
         .trim();
     },
@@ -70,11 +61,7 @@ export const AnimeFever: pageInterface = {
     },
     uiSelector(selector) {
       selector.insertAfter(
-        j
-          .$(
-            '#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1',
-          )
-          .first(),
+        j.$('#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1').first(),
       );
     },
   },
@@ -91,16 +78,8 @@ export const AnimeFever: pageInterface = {
         utils.waitUntilTrue(
           function() {
             if (
-              j
-                .$(
-                  'div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a',
-                )
-                .text() ||
-              j
-                .$(
-                  '#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div',
-                )
-                .text()
+              j.$('div.jw-wrapper.jw-reset > div.jw-controls.jw-reset > div.player-episode-info > div > a').text() ||
+              j.$('#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1 > div').text()
             ) {
               return true;
             }
@@ -112,9 +91,7 @@ export const AnimeFever: pageInterface = {
         );
       }
     }
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     checkPage();
     utils.urlChangeDetect(function() {
       checkPage();

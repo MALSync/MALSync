@@ -12,21 +12,13 @@ export const serimanga: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText(
-          $('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white'),
-        )
-        .trim();
+      return utils.getBaseText($('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white')).trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white')
-          .attr('href') || ''
-      );
+      return j.$('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white').attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
@@ -54,9 +46,7 @@ export const serimanga: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();

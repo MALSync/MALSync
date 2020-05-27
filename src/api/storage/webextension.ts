@@ -47,12 +47,7 @@ export const webextension: storageInterface = {
     try {
       const style = document.createElement('style');
       style.textContent = css;
-      (
-        document.head ||
-        document.body ||
-        document.documentElement ||
-        document
-      ).appendChild(style);
+      (document.head || document.body || document.documentElement || document).appendChild(style);
     } catch (e) {
       console.log(`Could not add css:${e}`);
     }

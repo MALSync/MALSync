@@ -1,8 +1,4 @@
-import {
-  xhrResponseI,
-  sendMessageI,
-  responseMessageI,
-} from './api/messageInterface';
+import { xhrResponseI, sendMessageI, responseMessageI } from './api/messageInterface';
 import { scheduleUpdate } from './utils/scheduler';
 import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
@@ -24,23 +20,18 @@ api.request.sendMessage = function(message: sendMessageI) {
 
 chrome.runtime.onInstalled.addListener(function(details) {
   if (details.reason === 'install') {
-    chrome.tabs.create(
-      { url: chrome.extension.getURL('install.html') },
-      function(tab) {
-        con.info('Open installPage');
-      },
-    );
+    chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function(tab) {
+      con.info('Open installPage');
+    });
   } else if (details.reason === 'update') {
     // Placeholder
   }
   chrome.alarms.clearAll();
 });
 
-chrome.runtime.onMessage.addListener(
-  (message: sendMessageI, sender, sendResponse) => {
-    return messageHandler(message, sender, sendResponse);
-  },
-);
+chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendResponse) => {
+  return messageHandler(message, sender, sendResponse);
+});
 
 function messageHandler(message: sendMessageI, sender, sendResponse) {
   switch (message.name) {
@@ -176,9 +167,7 @@ function getCookies(url, sender, xhr, callback) {
         typeof sender.envType !== 'undefined' &&
         sender.envType === 'addon_child'
       ) {
-        chrome.tabs.query({ currentWindow: true, active: true }, function(
-          tabs,
-        ) {
+        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
           // @ts-ignore
           if (tabs[0] && typeof tabs[0].cookieStoreId !== 'undefined') {
             // @ts-ignore
@@ -193,22 +182,20 @@ function getCookies(url, sender, xhr, callback) {
       function t(cookieIdT) {
         if (cookieIdT !== '') {
           // @ts-ignore
-          browser.cookies
-            .getAll({ storeId: cookieIdT, url })
-            .then(function(cookies) {
-              con.log('Cookie Store', cookieIdT, cookies);
-              let cookiesText = '';
-              for (const key in cookies) {
-                const cookie = cookies[key];
-                cookiesText += `${cookie.name}=${cookie.value}; `;
-              }
-              if (cookiesText !== '') {
-                xhr.setRequestHeader('CookieTemp', cookiesText);
-                xhr.withCredentials = 'true';
-              }
+          browser.cookies.getAll({ storeId: cookieIdT, url }).then(function(cookies) {
+            con.log('Cookie Store', cookieIdT, cookies);
+            let cookiesText = '';
+            for (const key in cookies) {
+              const cookie = cookies[key];
+              cookiesText += `${cookie.name}=${cookie.value}; `;
+            }
+            if (cookiesText !== '') {
+              xhr.setRequestHeader('CookieTemp', cookiesText);
+              xhr.withCredentials = 'true';
+            }
 
-              callback();
-            });
+            callback();
+          });
           return;
         }
 
@@ -233,17 +220,9 @@ chrome.alarms.get('schedule', function(a) {
 chrome.alarms.get('updateCheck', async function(a) {
   if (typeof a === 'undefined') {
     const updateCheckTime = await api.storage.get('updateCheckTime');
-    if (
-      typeof updateCheckTime !== 'undefined' &&
-      updateCheckTime &&
-      updateCheckTime !== '0'
-    ) {
+    if (typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0') {
       let updateCheck = await api.storage.get('updateCheck');
-      if (
-        typeof updateCheck === 'undefined' ||
-        !parseInt(updateCheck) ||
-        parseInt(updateCheck) < Date.now()
-      ) {
+      if (typeof updateCheck === 'undefined' || !parseInt(updateCheck) || parseInt(updateCheck) < Date.now()) {
         updateCheck = Date.now() + 1000;
       }
       con.log('Create updateCheck Alarm', `${updateCheckTime}m`, updateCheck);
@@ -301,10 +280,7 @@ function webRequestListener() {
             if (details.initiator!.indexOf(chrome.runtime.id) !== -1) {
               con.log('Remove x-frame-options');
               for (let i = 0; i < details.responseHeaders!.length; ++i) {
-                if (
-                  details.responseHeaders![i].name.toLowerCase() ===
-                  'x-frame-options'
-                ) {
+                if (details.responseHeaders![i].name.toLowerCase() === 'x-frame-options') {
                   details.responseHeaders!.splice(i, 1);
                   return {
                     responseHeaders: details.responseHeaders,
@@ -376,17 +352,9 @@ try {
   con.info('Permission on change', e);
 }
 
-chrome.runtime.onMessageExternal.addListener(function(
-  request,
-  sender,
-  sendResponse,
-) {
-  chrome.tabs.sendMessage(
-    request.tab,
-    { action: 'presence', data: request.info },
-    function(response) {
-      sendResponse(response);
-    },
-  );
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+  chrome.tabs.sendMessage(request.tab, { action: 'presence', data: request.info }, function(response) {
+    sendResponse(response);
+  });
   return true;
 });

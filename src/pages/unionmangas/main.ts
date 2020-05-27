@@ -5,36 +5,24 @@ export const unionmangas: pageInterface = {
   domain: ['https://unionleitor.top', 'https://unionmangas.top'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] === 'leitor' &&
-      url.split('/')[5] !== undefined &&
-      url.split('/')[5].length > 0
-    ) {
+    if (url.split('/')[3] === 'leitor' && url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText($('body > div.breadcrumbs > div > div > a:nth-child(3)'))
-        .trim();
+      return utils.getBaseText($('body > div.breadcrumbs > div > div > a:nth-child(3)')).trim();
     },
     getIdentifier(url) {
-      const identifierAnchorHref = j
-        .$('body > div.breadcrumbs > div > div > a:nth-child(3)')
-        .attr('href');
+      const identifierAnchorHref = j.$('body > div.breadcrumbs > div > div > a:nth-child(3)').attr('href');
 
       if (!identifierAnchorHref) return '';
 
       return identifierAnchorHref.split('/')[4].toLowerCase();
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('body > div.breadcrumbs > div > div > a:nth-child(3)')
-          .attr('href') || ''
-      );
+      return j.$('body > div.breadcrumbs > div > div > a:nth-child(3)').attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
@@ -101,14 +89,9 @@ export const unionmangas: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'leitor' ||
-        page.url.split('/')[3] === 'perfil-manga'
-      ) {
+      if (page.url.split('/')[3] === 'leitor' || page.url.split('/')[3] === 'perfil-manga') {
         page.handlePage();
       }
     });

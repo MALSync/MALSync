@@ -5,29 +5,16 @@ export const AnimeKisa: pageInterface = {
   domain: 'https://animekisa.tv',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] !== null &&
-      j.$('div.c a.infoan2')[0] &&
-      j.$('#playerselector option:selected')[0]
-    ) {
+    if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    const infoElement = j.$(
-      'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
-    );
-    const episodeList = j.$(
-      'div.notmain > div > div.infobox > div.infoepboxmain',
-    );
+    const infoElement = j.$('div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1');
+    const episodeList = j.$('div.notmain > div > div.infobox > div.infoepboxmain');
 
-    if (
-      !url.split('/')[3] ||
-      infoElement.length === 0 ||
-      episodeList.length === 0
-    )
-      return false;
+    if (!url.split('/')[3] || infoElement.length === 0 || episodeList.length === 0) return false;
 
     return true;
   },
@@ -71,9 +58,7 @@ export const AnimeKisa: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(
-          'div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1',
-        )
+        .$('div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1')
         .text()
         .trim();
     },
@@ -129,9 +114,7 @@ export const AnimeKisa: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

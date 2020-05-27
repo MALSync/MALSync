@@ -20,11 +20,7 @@ export const mangalivre: pageInterface = {
     getOverviewUrl(url) {
       return (
         mangalivre.domain +
-        (j
-          .$(
-            'div.series-info-popup-container > div > div > div.series-cover > a',
-          )
-          .attr('href') || '')
+        (j.$('div.series-info-popup-container > div > div > div.series-cover > a').attr('href') || '')
       );
     },
     getEpisode(url) {
@@ -48,9 +44,7 @@ export const mangalivre: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(
-          '#series-data > div.series-info.touchcarousel > span.series-title > h1',
-        )
+        .$('#series-data > div.series-info.touchcarousel > span.series-title > h1')
         .first()
         .text()
         .trim();
@@ -59,17 +53,11 @@ export const mangalivre: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j
-          .$('#series-data > div.series-info.touchcarousel > span.series-desc')
-          .first(),
-      );
+      selector.insertAfter(j.$('#series-data > div.series-info.touchcarousel > span.series-desc').first());
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();

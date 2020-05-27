@@ -12,20 +12,13 @@ export const Samehadaku: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(
-          'div.infoeps > div.episodeinf > div.infoanime > div > div.infox > h2',
-        )
-        .text();
+      return j.$('div.infoeps > div.episodeinf > div.infoanime > div > div.infox > h2').text();
     },
     getIdentifier(url) {
       return Samehadaku.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('div.naveps > div.nvs.nvsc > a').attr('href'),
-        Samehadaku.domain,
-      );
+      return utils.absoluteLink(j.$('div.naveps > div.nvs.nvsc > a').attr('href'), Samehadaku.domain);
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -43,26 +36,20 @@ export const Samehadaku: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$("div.naveps > div.nvs.rght > a:not('.nonex')")
-        .attr('href');
+      const href = j.$("div.naveps > div.nvs.rght > a:not('.nonex')").attr('href');
       if (href) return utils.absoluteLink(href, Samehadaku.domain);
       return '';
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('#infoarea > div > div.infoanime > div.infox > h1.entry-title')
-        .text();
+      return j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title'),
-      );
+      selector.insertBefore(j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title'));
     },
     list: {
       offsetHandler: false,
@@ -73,23 +60,17 @@ export const Samehadaku: pageInterface = {
         return selector.find('div.epsright > span.eps > a').attr('href') || '';
       },
       elementEp(selector) {
-        return Samehadaku.sync.getEpisode(
-          Samehadaku.overview!.list!.elementUrl(selector),
-        );
+        return Samehadaku.sync.getEpisode(Samehadaku.overview!.list!.elementUrl(selector));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'anime' ||
         (j.$('div.player-area.widget_senction > div.plarea').length &&
-          j.$(
-            'div.infoeps > div.episodeinf > div.infoanime > div > div.infox > h2',
-          ).length &&
+          j.$('div.infoeps > div.episodeinf > div.infoanime > div > div.infox > h2').length &&
           j.$('div.naveps > div.nvs.nvsc > a').length)
       ) {
         page.handlePage();

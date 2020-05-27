@@ -25,15 +25,9 @@ export class metadata implements metadataInterface {
 
     this.type = urlPart3;
 
-    if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('myanimelist.net') > -1
-    ) {
+    if (typeof malUrl !== 'undefined' && malUrl.indexOf('myanimelist.net') > -1) {
       this.id = Number(utils.urlPart(malUrl, 4));
-    } else if (
-      typeof malUrl !== 'undefined' &&
-      malUrl.indexOf('kitsu.io') > -1
-    ) {
+    } else if (typeof malUrl !== 'undefined' && malUrl.indexOf('kitsu.io') > -1) {
       this.id = NaN;
       this.kitsuSlug = utils.urlPart(malUrl, 4) || '';
     } else {
@@ -49,15 +43,9 @@ export class metadata implements metadataInterface {
   }
 
   async init() {
-    con.log(
-      'Update Kitsu info',
-      this.id ? `MAL: ${this.id}` : `Kitsu: ${this.kitsuSlug}`,
-    );
+    con.log('Update Kitsu info', this.id ? `MAL: ${this.id}` : `Kitsu: ${this.kitsuSlug}`);
     if (Number.isNaN(this.id)) {
-      const kitsuSlugRes = await helper.kitsuSlugtoKitsu(
-        this.kitsuSlug,
-        this.type,
-      );
+      const kitsuSlugRes = await helper.kitsuSlugtoKitsu(this.kitsuSlug, this.type);
       this.kitsuId = kitsuSlugRes.res.data[0].id;
       this.id = kitsuSlugRes.malId;
     }
@@ -150,19 +138,12 @@ export class metadata implements metadataInterface {
       this.animeInfo.included.forEach(function(i) {
         if (i.type === 'characters' && charArray.length < 10) {
           let { name } = i.attributes;
-          if (
-            typeof i.attributes.malId !== 'undefined' &&
-            i.attributes.malId !== null &&
-            i.attributes.malId
-          ) {
+          if (typeof i.attributes.malId !== 'undefined' && i.attributes.malId !== null && i.attributes.malId) {
             name = `<a href="https://myanimelist.net/character/${i.attributes.malId}">${name}</a>`;
           }
 
           charArray.push({
-            img:
-              i.attributes.image !== null
-                ? i.attributes.image.original
-                : api.storage.assetUrl('questionmark.gif'),
+            img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
             html: name,
           });
         }
@@ -208,10 +189,7 @@ export class metadata implements metadataInterface {
   getInfo() {
     const html: any[] = [];
     try {
-      if (
-        typeof this.animeI().attributes.subtype !== 'undefined' &&
-        this.animeI().attributes.subtype !== null
-      ) {
+      if (typeof this.animeI().attributes.subtype !== 'undefined' && this.animeI().attributes.subtype !== null) {
         let format = this.animeI()
           .attributes.subtype.toLowerCase()
           .replace('_', ' ');
@@ -240,10 +218,7 @@ export class metadata implements metadataInterface {
           body: `${this.animeI().attributes.episodeLength} mins`,
         });
 
-      if (
-        typeof this.animeI().attributes.status !== 'undefined' &&
-        this.animeI().attributes.status !== null
-      ) {
+      if (typeof this.animeI().attributes.status !== 'undefined' && this.animeI().attributes.status !== null) {
         let status = this.animeI()
           .attributes.status.toLowerCase()
           .replace('_', ' ');
@@ -254,19 +229,13 @@ export class metadata implements metadataInterface {
         });
       }
 
-      if (
-        typeof this.animeI().attributes.startDate !== 'undefined' &&
-        this.animeI().attributes.startDate !== null
-      )
+      if (typeof this.animeI().attributes.startDate !== 'undefined' && this.animeI().attributes.startDate !== null)
         html.push({
           title: 'Start Date:',
           body: this.animeI().attributes.startDate,
         });
 
-      if (
-        typeof this.animeI().attributes.endDate !== 'undefined' &&
-        this.animeI().attributes.endDate !== null
-      )
+      if (typeof this.animeI().attributes.endDate !== 'undefined' && this.animeI().attributes.endDate !== null)
         html.push({
           title: 'Start Date:',
           body: this.animeI().attributes.endDate,
@@ -286,19 +255,13 @@ export class metadata implements metadataInterface {
           body: genres.join(', '),
         });
 
-      if (
-        typeof this.animeI().attributes.ageRating !== 'undefined' &&
-        this.animeI().attributes.ageRating !== null
-      )
+      if (typeof this.animeI().attributes.ageRating !== 'undefined' && this.animeI().attributes.ageRating !== null)
         html.push({
           title: 'Rating:',
           body: this.animeI().attributes.ageRating,
         });
 
-      if (
-        typeof this.animeI().attributes.totalLength !== 'undefined' &&
-        this.animeI().attributes.totalLength !== null
-      )
+      if (typeof this.animeI().attributes.totalLength !== 'undefined' && this.animeI().attributes.totalLength !== null)
         html.push({
           title: 'Total playtime:',
           body: `${this.animeI().attributes.totalLength} mins`,
@@ -361,12 +324,7 @@ export class metadata implements metadataInterface {
   }
 }
 
-export const search: searchInterface = async function(
-  keyword,
-  type: 'anime' | 'manga',
-  options = {},
-  sync = false,
-) {
+export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   return apiCall(
     'GET',
     `https://kitsu.io/api/edge/${type}?filter[text]=${keyword}&page[limit]=10&page[offset]=0&fields[${type}]=id,slug,titles,averageRating,startDate,posterImage,subtype`,
@@ -386,8 +344,7 @@ export const search: searchInterface = async function(
           return malId ? `https://myanimelist.net/${type}/${malId}` : null;
         },
         image:
-          item.attributes.posterImage &&
-          typeof item.attributes.posterImage.tiny !== 'undefined'
+          item.attributes.posterImage && typeof item.attributes.posterImage.tiny !== 'undefined'
             ? item.attributes.posterImage.tiny
             : '',
         media_type: item.attributes.subtype,
@@ -405,8 +362,7 @@ function apiCall(mode, url, variables = {}, authentication = true) {
     'Content-Type': 'application/vnd.api+json',
     Accept: 'application/vnd.api+json',
   };
-  if (authentication)
-    headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
+  if (authentication) headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
   return api.request
     .xhr(mode, {
       url,
@@ -414,10 +370,7 @@ function apiCall(mode, url, variables = {}, authentication = true) {
       data: JSON.stringify(variables),
     })
     .then(response => {
-      if (
-        (response.status > 499 && response.status < 600) ||
-        response.status === 0
-      ) {
+      if ((response.status > 499 && response.status < 600) || response.status === 0) {
         throw {
           code: errorCode.ServerOffline,
           message: `Server Offline status: ${response.status}`,

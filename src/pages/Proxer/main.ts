@@ -122,9 +122,7 @@ export const Proxer: pageInterface = {
         return true;
       },
       getTotal() {
-        const el = $(
-          'img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]',
-        )
+        const el = $('img[src="/images/misc/manga.png"], img[src="/images/misc/play.png"]')
           .last()
           .parent()
           .parent()
@@ -138,13 +136,8 @@ export const Proxer: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
-    if (
-      page.url.split('/')[3] === 'watch' ||
-      page.url.split('/')[3] === 'read'
-    ) {
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    if (page.url.split('/')[3] === 'watch' || page.url.split('/')[3] === 'read') {
       if (page.url.split('/')[3] === 'watch') {
         Proxer.type = 'anime';
         Proxer.database = 'Proxeranime';
@@ -187,9 +180,7 @@ function ajaxHandle(page) {
           Proxer.database = 'Proxeranime';
         }
 
-        const tempCurrent: number = parseInt(
-          Proxer.overview!.getIdentifier(page.url),
-        );
+        const tempCurrent: number = parseInt(Proxer.overview!.getIdentifier(page.url));
         if (tempCurrent !== current) {
           current = tempCurrent;
           page.handlePage();

@@ -59,8 +59,7 @@ export class minimal {
       e.preventDefault();
       // @ts-ignore
       let url = j.$(this).attr('href') || '';
-      if (!/^local:\/\//i.test(url))
-        url = utils.absoluteLink(url, 'https://myanimelist.net');
+      if (!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       if (!This.fill(url)) {
         const win = window.open(url, '_blank');
@@ -110,13 +109,7 @@ export class minimal {
   injectCss() {
     this.minimal
       .find('head')
-      .append(
-        j
-          .$('<style>')
-          .html(
-            require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString(),
-          ),
-      );
+      .append(j.$('<style>').html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
   }
 
   fill(url: string | null) {
@@ -148,9 +141,7 @@ export class minimal {
         .css(String(j.$(this).val()), '0');
     });
 
-    this.minimal
-      .find('#autoTrackingModeanime')
-      .val(api.settings.get('autoTrackingModeanime'));
+    this.minimal.find('#autoTrackingModeanime').val(api.settings.get('autoTrackingModeanime'));
     this.minimal.find('#autoTrackingModeanime').change(function() {
       // @ts-ignore
       api.settings.set('autoTrackingModeanime', j.$(this).val());
@@ -163,9 +154,7 @@ export class minimal {
       This.minimal.attr('id', 'cr');
     });
 
-    this.minimal
-      .find('#autoTrackingModemanga')
-      .val(api.settings.get('autoTrackingModemanga'));
+    this.minimal.find('#autoTrackingModemanga').val(api.settings.get('autoTrackingModemanga'));
     this.minimal.find('#autoTrackingModemanga').change(function() {
       // @ts-ignore
       api.settings.set('autoTrackingModemanga', j.$(this).val());
@@ -205,10 +194,7 @@ export class minimal {
 
     this.minimal.find('#malThumbnail').val(api.settings.get('malThumbnail'));
     this.minimal.find('#malThumbnail').change(function() {
-      api.settings.set(
-        'malThumbnail',
-        This.minimal.find('#malThumbnail').val(),
-      );
+      api.settings.set('malThumbnail', This.minimal.find('#malThumbnail').val());
     });
 
     this.minimal.find('#clearCache').click(async function() {
@@ -216,10 +202,7 @@ export class minimal {
       let deleted = 0;
 
       j.$.each(cacheArray, function(index, cache) {
-        if (
-          !utils.syncRegex.test(String(index)) &&
-          !/(^tagSettings\/.*)/.test(String(index))
-        ) {
+        if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
           api.storage.remove(String(index));
           deleted++;
         }
@@ -280,15 +263,9 @@ export class minimal {
             chrome.permissions.request(
               {
                 permissions: ['webRequest', 'webRequestBlocking'],
-                origins: chrome.runtime
-                  .getManifest()
-                  .optional_permissions!.filter(permission => {
-                    return (
-                      permission !== 'webRequest' &&
-                      permission !== 'webRequestBlocking' &&
-                      permission !== 'cookies'
-                    );
-                  }),
+                origins: chrome.runtime.getManifest().optional_permissions!.filter(permission => {
+                  return permission !== 'webRequest' && permission !== 'webRequestBlocking' && permission !== 'cookies';
+                }),
               },
               function(granted) {
                 con.log('optional_permissions', granted);
@@ -425,10 +402,7 @@ export class minimal {
 
     this.minimal.find(selector).html('');
     api.request
-      .xhr(
-        'GET',
-        `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`,
-      )
+      .xhr('GET', `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`)
       .then(response => {
         const searchResults = j.$.parseJSON(response.responseText);
         this.minimal.find(selector).append(
@@ -441,12 +415,7 @@ export class minimal {
         );
         this.minimal.find('#searchListType').val(type);
         this.minimal.find('#searchListType').change(function(event) {
-          This.searchMal(
-            keyword,
-            This.minimal.find('#searchListType').val(),
-            selector,
-            callback,
-          );
+          This.searchMal(keyword, This.minimal.find('#searchListType').val(), selector, callback);
         });
 
         j.$.each(searchResults, (i, value0) => {
@@ -463,18 +432,16 @@ export class minimal {
                     value.image_url
                   }" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
                   <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">\
-                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">${
-                      value.name
-                    }</span>\
+                    <span style="font-size: 20px; font-weight: 400; line-height: 1;">${value.name}</span>\
                     <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">${api.storage.lang(
                       'search_Type',
                     )} ${value.payload.media_type}</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
-                      'search_Score',
-                    )} ${value.payload.score}</p>\
-                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang(
-                      'search_Year',
-                    )} ${value.payload.start_year}</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang('search_Score')} ${
+                      value.payload.score
+                    }</p>\
+                    <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang('search_Year')} ${
+                      value.payload.start_year
+                    }</p>\
                   </div>\
                   </a>`,
                   );

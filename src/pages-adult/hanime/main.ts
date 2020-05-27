@@ -32,9 +32,7 @@ export const hanime: pageInterface = {
 
       const temp = overviewPart.match(/-([^a-z]*)$/gim);
       if (temp !== null) {
-        return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(
-          url,
-        )}-1`;
+        return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(url)}-1`;
       }
       return `${hanime.domain}/videos/hentai/${hanime.sync.getIdentifier(url)}`;
     },
@@ -60,14 +58,9 @@ export const hanime: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'videos' &&
-        page.url.split('/')[4] === 'hentai'
-      ) {
+      if (page.url.split('/')[3] === 'videos' && page.url.split('/')[4] === 'hentai') {
         utils.waitUntilTrue(
           function() {
             return j.$('h1.tv-title').text();
@@ -82,10 +75,7 @@ export const hanime: pageInterface = {
       page.url = window.location.href;
       page.UILoaded = false;
       $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
-      if (
-        page.url.split('/')[3] === 'videos' &&
-        page.url.split('/')[4] === 'hentai'
-      ) {
+      if (page.url.split('/')[3] === 'videos' && page.url.split('/')[4] === 'hentai') {
         utils.waitUntilTrue(
           function() {
             return j.$('h1.tv-title').text();

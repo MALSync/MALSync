@@ -12,9 +12,7 @@
   See the License for the specific language governing permissions and
   limitations under the License
 -->
-  <div
-    class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100"
-  >
+  <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
     <header
       class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800"
     >
@@ -33,13 +31,9 @@
     <div class="demo-ribbon"></div>
     <main class="demo-main mdl-layout__content">
       <div class="demo-container mdl-grid">
-        <div
-          class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"
-        ></div>
+        <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="mdl-cell mdl-cell--8-col">
-          <div
-            class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800"
-          >
+          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
             <h3 class="noMarginTop mainHeader">
               {{ lang('minimalClass_versionMsg_Text_1') }}
             </h3>
@@ -52,9 +46,7 @@
                 class="inputtext mdl-textfield__input"
                 style="outline: none;"
               >
-                <option value="" disabled selected hidden
-                  >-- {{ lang('Select') }} --</option
-                >
+                <option value="" disabled selected hidden>-- {{ lang('Select') }} --</option>
                 <option value="MAL">MyAnimeList</option>
                 <option value="ANILIST">AniList</option>
                 <option value="KITSU">Kitsu</option>
@@ -74,11 +66,7 @@
                   >
                 </span>
               </li>
-              <dropdown
-                v-if="options.syncMode == 'SIMKL'"
-                option="syncModeSimkl"
-                text="Manga Sync Mode"
-              >
+              <dropdown v-if="options.syncMode == 'SIMKL'" option="syncModeSimkl" text="Manga Sync Mode">
                 <option value="MAL">MyAnimeList</option>
                 <option value="ANILIST">AniList</option>
                 <option value="KITSU">Kitsu</option>
@@ -86,9 +74,7 @@
 
               <li
                 v-if="
-                  options.syncMode == 'ANILIST' ||
-                    (options.syncMode == 'SIMKL' &&
-                      options.syncModeSimkl == 'ANILIST')
+                  options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')
                 "
                 class="mdl-list__item"
               >
@@ -104,22 +90,16 @@
                 </span>
               </li>
               <li
-                v-if="
-                  options.syncMode == 'KITSU' ||
-                    (options.syncMode == 'SIMKL' &&
-                      options.syncModeSimkl == 'KITSU')
-                "
+                v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')"
                 class="mdl-list__item"
               >
                 <span class="mdl-list__item-primary-content">
                   Kitsu
                 </span>
                 <span class="mdl-list__item-secondary-action">
-                  <a
-                    target="_blank"
-                    href="https://kitsu.io/404?mal-sync=authentication"
-                    >{{ lang('settings_Authenticate') }}</a
-                  >
+                  <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{
+                    lang('settings_Authenticate')
+                  }}</a>
                 </span>
               </li>
             </div>
@@ -146,14 +126,8 @@
             </p>
 
             <h4>{{ lang('minimalClass_versionMsg_Text_4') }}</h4>
-            <a
-              target="_blank"
-              href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs"
-            >
-              <img
-                alt="Filter List"
-                src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
-              />
+            <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
+              <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square" />
             </a>
             <h4>{{ lang('minimalClass_versionMsg_Text_2') }}</h4>
             <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
@@ -162,10 +136,7 @@
                 src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
               />
             </a>
-            <a
-              target="_blank"
-              href="https://github.com/lolamtisch/MALSync/issues"
-            >
+            <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
               <img
                 alt="Github Issues"
                 src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"

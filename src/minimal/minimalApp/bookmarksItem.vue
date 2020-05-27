@@ -5,13 +5,8 @@
     class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry"
     style="position: relative; padding: 0; width: 210px; height: 293px;"
   >
-    <div
-      class="data title"
-      style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;"
-    >
-      <div
-        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;"
-      >
+    <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
         <clazy-load
           :src="imageHi"
           margin="200px 0px"
@@ -35,9 +30,7 @@
         style=" position: absolute; top: 0; left: 0; padding: 0 5px; margin: 5px 0; text-align: center;"
       >
         <div style="width: 38px; height: 38px; position: relative;">
-          <i
-            class="material-icons"
-            style="color: #3f51b5; position: absolute; left: 0; top: 0; font-size: 38px;"
+          <i class="material-icons" style="color: #3f51b5; position: absolute; left: 0; top: 0; font-size: 38px;"
             >star</i
           >
           <div
@@ -48,10 +41,7 @@
         </div>
       </div>
 
-      <a
-        :href="item.url"
-        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"
-      ></a>
+      <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
       <span
         class="mdl-shadow--2dp"
         style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
@@ -59,17 +49,9 @@
         <a :href="item.url" style="color: black; text-decoration: none;">
           {{ item.title }}
         </a>
-        <div
-          id="p1"
-          class="mdl-progress"
-          style="position: absolute; top: -4px; left: 0;"
-        >
+        <div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;">
           <div class="progressbar bar bar1" :style="progress"></div>
-          <div
-            v-if="hasTotalEp"
-            class="bufferbar bar bar2"
-            style="width: calc(100% + 1px);"
-          ></div>
+          <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
           <div
             v-if="prediction && prediction.tagEpisode"
             class="predictionbar bar kal-ep-pre"
@@ -106,11 +88,7 @@
             style="margin: 0 5px 0 0; color: #BABABA;"
             :href="continueUrl"
           >
-            <img
-              :src="assetUrl('double-arrow-16px.png')"
-              width="16"
-              height="16"
-            />
+            <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16" />
           </a>
           <a
             v-if="resumeUrl"
@@ -128,16 +106,8 @@
   </div>
   <tr v-else style="cursor: pointer;" @click="openLink(item.url)">
     <td style="width: 64px;">
-      <div
-        style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden;"
-        class="imageTd"
-      >
-        <clazy-load
-          :src="imageHi"
-          margin="200px 0px"
-          :threshold="0.1"
-          :ratio="0.1"
-        >
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden;" class="imageTd">
+        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1">
           <img :src="imageHi" width="100%" />
         </clazy-load>
       </div>
@@ -191,11 +161,7 @@
         style="position: absolute; bottom: 0; left: 0; right: 0; width: auto; opacity: 0.5;"
       >
         <div class="progressbar bar bar1" :style="progress"></div>
-        <div
-          v-if="hasTotalEp"
-          class="bufferbar bar bar2"
-          style="width: calc(100% + 1px);"
-        ></div>
+        <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
         <div
           v-if="prediction && prediction.tagEpisode"
           class="predictionbar bar kal-ep-pre"
@@ -205,9 +171,7 @@
       </div>
     </td>
     <td style="width: 70px;">
-      {{ item.watchedEp }}/<template v-if="item.totalEp">{{
-        item.totalEp
-      }}</template>
+      {{ item.watchedEp }}/<template v-if="item.totalEp">{{ item.totalEp }}</template>
       <template v-else>?</template>
     </td>
     <td style="width: 57px;">
@@ -243,9 +207,7 @@ export default {
       let imageHi = this.item.image;
       const regexDimensions = /\/r\/\d*x\d*/g;
       if (regexDimensions.test(imageHi)) {
-        imageHi = imageHi
-          .replace(/v.jpg$/g, '.jpg')
-          .replace(regexDimensions, '');
+        imageHi = imageHi.replace(/v.jpg$/g, '.jpg').replace(regexDimensions, '');
       }
       return imageHi;
     },
@@ -267,8 +229,7 @@ export default {
       return `width: ${width}%; max-width: 100%;`;
     },
     predictionBar() {
-      const predictionProgress =
-        (this.prediction.tagEpisode / this.barTotal) * 100;
+      const predictionProgress = (this.prediction.tagEpisode / this.barTotal) * 100;
       let color = 'orange';
       if (this.prediction.color !== '') {
         // eslint-disable-next-line
@@ -347,14 +308,9 @@ export default {
       return api.storage.assetUrl(asset);
     },
     setPrediction() {
-      utils.epPredictionUI(
-        this.item.malId,
-        this.item.cacheKey,
-        this.item.type,
-        prediction => {
-          this.prediction = prediction;
-        },
-      );
+      utils.epPredictionUI(this.item.malId, this.item.cacheKey, this.item.type, prediction => {
+        this.prediction = prediction;
+      });
     },
     openLink(url) {
       const link = document.createElement('a');

@@ -1,28 +1,15 @@
 <template>
   <div>
-    <button
-      class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck"
-      @click="load()"
-    >
+    <button class="mdl-button mdl-js-button mdl-button--primary refresh-updateCheck" @click="load()">
       {{ lang('updateCheck_Refresh') }}
     </button>
-    <button
-      class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck"
-      @click="startCheck()"
-    >
+    <button class="mdl-button mdl-js-button mdl-button--accent startCheck-updateCheck" @click="startCheck()">
       {{ lang('updateCheck_StartCheck') }}
     </button>
-    <button
-      class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck"
-      @click="notificationTest()"
-    >
+    <button class="mdl-button mdl-js-button mdl-button--accent notification-updateCheck" @click="notificationTest()">
       {{ lang('updateCheck_NotificationCheck') }}
     </button>
-    <select
-      v-model="listType"
-      style="float: right;"
-      class="typeSelect-updateCheck"
-    >
+    <select v-model="listType" style="float: right;" class="typeSelect-updateCheck">
       <option value="anime">Anime</option>
       <option value="manga">Manga</option>
     </select>
@@ -35,16 +22,9 @@
         <th>{{ lang('updateCheck_Episode') }}</th>
         <th>{{ lang('updateCheck_Message') }}</th>
       </tr>
-      <tr
-        v-for="item in items"
-        :key="item.uid"
-        :style="{ backgroundColor: item.trColor }"
-      >
+      <tr v-for="item in items" :key="item.uid" :style="{ backgroundColor: item.trColor }">
         <th class="mdl-data-table__cell--non-numeric">
-          <button
-            class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck"
-            @click="deleteItem(item)"
-          >
+          <button class="mdl-button mdl-js-button mdl-button--icon delete-updateCheck" @click="deleteItem(item)">
             <i class="material-icons">delete</i>
           </button>
           <a :href="item.url" style="color: black;">
@@ -69,13 +49,8 @@
           :src="historyItem.iconUrl"
           style="margin: -8px 0 -8px -8px; height: 100px; width: 64px; background-color: grey;"
         />
-        <div
-          style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;"
-          class="mdl-cell"
-        >
-          <span style="font-size: 20px; font-weight: 400; line-height: 1;">{{
-            historyItem.title
-          }}</span>
+        <div style="flex-grow: 100; cursor: pointer; margin-top: 0; margin-bottom: 0;" class="mdl-cell">
+          <span style="font-size: 20px; font-weight: 400; line-height: 1;">{{ historyItem.title }}</span>
           <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">
             {{ historyItem.message }}
           </p>
@@ -132,9 +107,7 @@ export default {
             let error = '';
             let trColor = '';
             con.log('el', el);
-            const elCache = await api.storage.get(
-              `updateCheck/${this.listType}/${el.cacheKey}`,
-            );
+            const elCache = await api.storage.get(`updateCheck/${this.listType}/${el.cacheKey}`);
             con.log('elCache', elCache);
             if (typeof elCache !== 'undefined') {
               episode = `${elCache.newestEp}/${el.totalEp}`;

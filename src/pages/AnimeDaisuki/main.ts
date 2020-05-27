@@ -25,10 +25,7 @@ export const AnimeDaisuki: pageInterface = {
       return anchorHref.split('/')[3];
     },
     getOverviewUrl(url) {
-      return (
-        AnimeDaisuki.domain +
-        (j.$('nav.Brdcrmb.fa-home a:nth-child(3)').attr('href') || '')
-      );
+      return AnimeDaisuki.domain + (j.$('nav.Brdcrmb.fa-home a:nth-child(3)').attr('href') || '');
     },
     getEpisode(url) {
       return Number(
@@ -88,14 +85,9 @@ export const AnimeDaisuki: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'watch' ||
-        page.url.split('/')[3] === 'anime'
-      ) {
+      if (page.url.split('/')[3] === 'watch' || page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });

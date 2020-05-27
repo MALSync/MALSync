@@ -68,9 +68,7 @@ export const nineAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     utils.waitUntilTrue(
       function() {
         return j.$('.servers').length;

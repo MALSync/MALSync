@@ -19,18 +19,10 @@ export const DubbedAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils
-        .absoluteLink(
-          j.$('a.w-100.btn.btn-success').attr('href'),
-          DubbedAnime.domain,
-        )
-        .split('/')[4];
+      return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain).split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('a.w-100.btn.btn-success').attr('href'),
-        DubbedAnime.domain,
-      );
+      return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain);
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -50,9 +42,7 @@ export const DubbedAnime: pageInterface = {
     nextEpUrl(url) {
       return utils.absoluteLink(
         j
-          .$(
-            'body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a',
-          )
+          .$('body > div.container.mt-3.mb-3 > div > div.col-md-8 > div.row.mb-2 > div:nth-child(2) > a')
           .first()
           .attr('href'),
         DubbedAnime.domain,
@@ -75,9 +65,7 @@ export const DubbedAnime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$(
-          'div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)',
-        );
+        return j.$('div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
@@ -98,9 +86,7 @@ export const DubbedAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'episode') {
         page.handlePage();

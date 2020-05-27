@@ -22,9 +22,7 @@ export const OtakuFR: pageInterface = {
     },
     getEpisode(url) {
       const selectedOptionText = j
-        .$(
-          '#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected',
-        )
+        .$('#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected')
         .text();
 
       if (!selectedOptionText && selectedOptionText.length < 2) return NaN;
@@ -32,10 +30,7 @@ export const OtakuFR: pageInterface = {
       return Number(selectedOptionText.split(' ')[1]);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j.$('div.wpa_nav > ul:nth-child(2) > li > a').attr('href'),
-        OtakuFR.domain,
-      );
+      return utils.absoluteLink(j.$('div.wpa_nav > ul:nth-child(2) > li > a').attr('href'), OtakuFR.domain);
     },
   },
 
@@ -47,9 +42,7 @@ export const OtakuFR: pageInterface = {
       return OtakuFR.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j.$('#sct_content > div.wpa_pag.anm_det > h1').first(),
-      );
+      selector.insertAfter(j.$('#sct_content > div.wpa_pag.anm_det > h1').first());
     },
     list: {
       offsetHandler: true,
@@ -79,14 +72,9 @@ export const OtakuFR: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        $('.vdo_wrp > iframe').length ||
-        $('#sct_content > div.wpa_pag.anm_det > ul').length
-      ) {
+      if ($('.vdo_wrp > iframe').length || $('#sct_content > div.wpa_pag.anm_det > ul').length) {
         page.handlePage();
       }
     });

@@ -50,9 +50,7 @@ export const Mangakakalot: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(
-        `<div id="malthing"> <p id="malp">${selector.html()}</p></div>`,
-      ).insertBefore(j.$('#chapter').first());
+      j.$(`<div id="malthing"> <p id="malp">${selector.html()}</p></div>`).insertBefore(j.$('#chapter').first());
     },
 
     list: {
@@ -79,14 +77,9 @@ export const Mangakakalot: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'chapter' ||
-        page.url.split('/')[3] === 'manga'
-      ) {
+      if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'manga') {
         page.handlePage();
       }
     });

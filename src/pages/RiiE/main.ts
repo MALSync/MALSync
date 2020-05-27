@@ -24,9 +24,7 @@ export const RiiE: pageInterface = {
     getOverviewUrl(url) {
       return (
         j
-          .$(
-            '#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])',
-          )
+          .$('#content > div.postarea > div > div.post > div.newzone > div.right > a:not([rel])')
           .first()
           .attr('href') || ''
       );
@@ -90,16 +88,11 @@ export const RiiE: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'anime' ||
-        (j.$('#lightsVideo')[0] &&
-          j.$(
-            '#content > div.postarea > div > div.post > div.newzone > div.right',
-          )[0])
+        (j.$('#lightsVideo')[0] && j.$('#content > div.postarea > div > div.post > div.newzone > div.right')[0])
       )
         page.handlePage();
     });

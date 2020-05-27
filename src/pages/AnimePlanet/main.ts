@@ -21,9 +21,7 @@ export const AnimePlanet: pageInterface = {
       return AnimePlanet.domain + (j.$('h2.sub a').attr('href') || '');
     },
     getEpisode(url) {
-      const episodePart = utils
-        .getBaseText($('h2.sub'))
-        .replace(/\r?\n|\r/g, '');
+      const episodePart = utils.getBaseText($('h2.sub')).replace(/\r?\n|\r/g, '');
       if (episodePart.length) {
         const temp = episodePart.match(/.*-/g);
         if (temp !== null) {
@@ -48,14 +46,9 @@ export const AnimePlanet: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'anime' &&
-        utils.urlPart(page.url, 4) !== 'all'
-      ) {
+      if (page.url.split('/')[3] === 'anime' && utils.urlPart(page.url, 4) !== 'all') {
         page.handlePage();
       }
     });

@@ -29,29 +29,18 @@ export const AnimeFire: pageInterface = {
     },
     nextEpUrl(url) {
       if (j.$('li.page-item:nth-child(5) > a.page-link > span.prox').length) {
-        return buildNext(
-          url,
-          j.$('li.page-item:nth-child(5) > a.page-link').attr('href'),
-        );
+        return buildNext(url, j.$('li.page-item:nth-child(5) > a.page-link').attr('href'));
       }
       if (j.$('li.page-item:nth-child(4) > a.page-link > span.prox').length) {
-        return buildNext(
-          url,
-          j.$('li.page-item:nth-child(4) > a.page-link').attr('href'),
-        );
+        return buildNext(url, j.$('li.page-item:nth-child(4) > a.page-link').attr('href'));
       }
       return '';
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'animes' &&
-        typeof page.url.split('/')[5] !== 'undefined'
-      ) {
+      if (page.url.split('/')[3] === 'animes' && typeof page.url.split('/')[5] !== 'undefined') {
         page.handlePage();
       }
     });

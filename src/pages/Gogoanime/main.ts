@@ -2,11 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Gogoanime: pageInterface = {
   name: 'Gogoanime',
-  domain: [
-    'https://gogoanimes.co',
-    'https://gogoanime.tv',
-    'https://animego.to',
-  ],
+  domain: ['https://gogoanimes.co', 'https://gogoanime.tv', 'https://animego.to'],
   database: 'Gogoanime',
   type: 'anime',
   isSyncPage(url) {
@@ -66,10 +62,7 @@ export const Gogoanime: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return utils.absoluteLink(
-          anchorHref.replace(/^ /, ''),
-          Gogoanime.domain,
-        );
+        return utils.absoluteLink(anchorHref.replace(/^ /, ''), Gogoanime.domain);
       },
       elementEp(selector) {
         const url = Gogoanime.overview!.list!.elementUrl(selector);
@@ -98,9 +91,7 @@ export const Gogoanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     if (Gogoanime.isSyncPage(page.url)) {
       j.$(document).ready(function() {
         start();

@@ -30,8 +30,7 @@ export function getBaseText(element) {
 }
 
 export function favicon(domain) {
-  if (domain.indexOf('animeheaven') !== -1)
-    return 'http://animeheaven.eu/favicon.ico';
+  if (domain.indexOf('animeheaven') !== -1) return 'http://animeheaven.eu/favicon.ico';
   return `https://www.google.com/s2/favicons?domain=${domain}`;
 }
 
@@ -87,10 +86,7 @@ export function absoluteLink(url, domain) {
 
 export function parseHtml(text) {
   const parser = new DOMParser();
-  const dom = parser.parseFromString(
-    `<!doctype html><body>${text}`,
-    'text/html',
-  );
+  const dom = parser.parseFromString(`<!doctype html><body>${text}`, 'text/html');
   return dom.body.textContent;
 }
 
@@ -129,11 +125,7 @@ export function changeDetect(callback, func) {
   return Number(intervalId);
 }
 
-export function waitUntilTrue(
-  condition: Function,
-  callback: Function,
-  interval = 100,
-) {
+export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
   const intervalId = setInterval(function() {
     if (condition()) {
       clearInterval(intervalId);
@@ -153,9 +145,7 @@ export function checkDoubleExecution() {
       }
     });
   }
-  $('body').after(
-    `<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`,
-  );
+  $('body').after(`<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`);
 }
 
 export function getUrlFromTags(tags: string) {
@@ -196,10 +186,7 @@ export async function setResumeWaching(url: string, ep: number, type, id) {
   return api.storage.set(`resume/${type}/${id}`, { url, ep });
 }
 
-export async function getResumeWaching(
-  type,
-  id,
-): Promise<{ url?: string; ep?: number } | void> {
+export async function getResumeWaching(type, id): Promise<{ url?: string; ep?: number } | void> {
   if (!api.settings.get('malResume')) return;
 
   /* eslint-disable-next-line consistent-return */
@@ -210,10 +197,7 @@ export async function setContinueWaching(url: string, ep: number, type, id) {
   return api.storage.set(`continue/${type}/${id}`, { url, ep });
 }
 
-export async function getContinueWaching(
-  type,
-  id,
-): Promise<{ url?: string; ep?: number } | void> {
+export async function getContinueWaching(type, id): Promise<{ url?: string; ep?: number } | void> {
   if (!api.settings.get('malContinue')) return;
 
   /* eslint-disable-next-line consistent-return */
@@ -237,10 +221,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
       tags = setUrlInTags(JSON.stringify(tempOptions), tags);
     } else {
       // No TAG mode
-      await api.storage.set(
-        `tagSettings/${type}/${id}`,
-        JSON.stringify(tempOptions),
-      );
+      await api.storage.set(`tagSettings/${type}/${id}`, JSON.stringify(tempOptions));
     }
   } else {
     tags = setUrlInTags('', tags);
@@ -294,8 +275,7 @@ export async function getEntrySettings(type, id, tags = '') {
 }
 
 export function handleMalImages(url) {
-  if (url.indexOf('questionmark') !== -1)
-    return api.storage.assetUrl('questionmark.gif');
+  if (url.indexOf('questionmark') !== -1) return api.storage.assetUrl('questionmark.gif');
   return url;
 }
 
@@ -370,9 +350,7 @@ export async function getMalToKissFirebase(type, id) {
             streamKey,
           )}.json`;
 
-          const cache = await api.storage.get(
-            `MalToKiss/${stream}/${encodeURIComponent(streamKey)}`,
-          );
+          const cache = await api.storage.get(`MalToKiss/${stream}/${encodeURIComponent(streamKey)}`);
           let streamJson;
 
           if (
@@ -385,13 +363,9 @@ export async function getMalToKissFirebase(type, id) {
           } else {
             const streamRespose = await api.request.xhr('GET', streamUrl);
 
-            if (streamRespose)
-              streamJson = j.$.parseJSON(streamRespose.responseText);
+            if (streamRespose) streamJson = j.$.parseJSON(streamRespose.responseText);
 
-            api.storage.set(
-              `MalToKiss/${stream}/${encodeURIComponent(streamKey)}`,
-              streamJson,
-            );
+            api.storage.set(`MalToKiss/${stream}/${encodeURIComponent(streamKey)}`, streamJson);
           }
           if (!streamJson) {
             con.error(`[K2M] ${pageKey}/${streamKey} not found`);
@@ -423,22 +397,13 @@ export function getTooltip(text, style = '', direction = 'top') {
   <div class="mdl-tooltip mdl-tooltip--${direction} mdl-tooltip--large" for="tt${rNumber}">${text}</div>`;
 }
 
-export async function epPredictionUI(
-  malid,
-  cacheKey,
-  type = 'anime',
-  callback,
-) {
+export async function epPredictionUI(malid, cacheKey, type = 'anime', callback) {
   utils.epPrediction(malid, async function(pre) {
     if (!pre) callback(false);
     const updateCheckTime = await api.storage.get('updateCheckTime');
     const aniCache = await api.storage.get(`mal/${malid}/aniSch`);
     let elCache: any;
-    if (
-      typeof updateCheckTime !== 'undefined' &&
-      updateCheckTime &&
-      updateCheckTime !== '0'
-    ) {
+    if (typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0') {
       elCache = await api.storage.get(`updateCheck/${type}/${cacheKey}`);
     }
     if (pre === false && typeof elCache === 'undefined') return;
@@ -475,18 +440,11 @@ export async function epPredictionUI(
       }
     }
 
-    if (
-      typeof elCache !== 'undefined' &&
-      typeof elCache.error === 'undefined'
-    ) {
+    if (typeof elCache !== 'undefined' && typeof elCache.error === 'undefined') {
       if (!elCache.finished) {
         airing = true;
       }
-      if (
-        elCache.newestEp &&
-        elCache.newestEp !== '' &&
-        typeof elCache.newestEp !== 'undefined'
-      ) {
+      if (elCache.newestEp && elCache.newestEp !== '' && typeof elCache.newestEp !== 'undefined') {
         episode = elCache.newestEp;
         UI.color = 'red';
       }
@@ -498,9 +456,7 @@ export async function epPredictionUI(
     //
     if (airing) {
       if (pre.airing) {
-        UI.text = api.storage.lang('prediction_Episode', [
-          `${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`,
-        ]);
+        UI.text = api.storage.lang('prediction_Episode', [`${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`]);
       }
       if (episode) {
         UI.tag = `<span class="mal-sync-ep-pre" title="${UI.text}">[<span style="${UI.colorStyle};">${episode}</span>]</span>`;
@@ -509,9 +465,7 @@ export async function epPredictionUI(
     } else if (pre) {
       UI.text = '<span class="mal-sync-ep-pre">';
       UI.text += api.storage.lang('prediction_Airing', [
-        `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${
-          pre.diffMinutes
-        }m `,
+        `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m `,
       ]);
       UI.text += '</span>';
     }
@@ -552,10 +506,7 @@ export function timeDiffToText(delta) {
 }
 
 export function canHideTabs() {
-  if (
-    typeof browser !== 'undefined' &&
-    typeof browser.tabs.hide !== 'undefined'
-  ) {
+  if (typeof browser !== 'undefined' && typeof browser.tabs.hide !== 'undefined') {
     return true;
   }
   return false;
@@ -604,9 +555,7 @@ export async function epPrediction(malId, callback) {
   delta -= diffMinutes * 60;
 
   if (airing) {
-    episode =
-      diffWeeks -
-      (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
+    episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
     episode++;
     if (episode > 50) {
       episode = 0;
@@ -699,12 +648,7 @@ export function statusTag(status, type, id) {
 }
 
 // eslint-disable-next-line consistent-return
-export function notifications(
-  url: string,
-  title: string,
-  message: string,
-  iconUrl = '',
-) {
+export function notifications(url: string, title: string, message: string, iconUrl = '') {
   const messageObj = {
     type: 'basic',
     title,
@@ -747,11 +691,9 @@ export async function timeCache(key, dataFunction, ttl) {
     return value.data;
   }
   const result = await dataFunction();
-  return api.storage
-    .set(key, { data: result, timestamp: new Date().getTime() + ttl })
-    .then(() => {
-      return result;
-    });
+  return api.storage.set(key, { data: result, timestamp: new Date().getTime() + ttl }).then(() => {
+    return result;
+  });
 }
 
 // flashm
@@ -772,29 +714,17 @@ export function flashm(
   con.log('[Flash] Message:', text);
 
   let colorF = '#323232';
-  if (
-    typeof options !== 'undefined' &&
-    typeof options.error !== 'undefined' &&
-    options.error
-  ) {
+  if (typeof options !== 'undefined' && typeof options.error !== 'undefined' && options.error) {
     colorF = '#3e0808';
   }
 
   let flashdiv = '#flash-div-bottom';
-  if (
-    typeof options !== 'undefined' &&
-    typeof options.position !== 'undefined' &&
-    options.position
-  ) {
+  if (typeof options !== 'undefined' && typeof options.position !== 'undefined' && options.position) {
     flashdiv = `#flash-div-${options.position}`;
   }
 
   let messClass = 'flash';
-  if (
-    typeof options !== 'undefined' &&
-    typeof options.type !== 'undefined' &&
-    options.type
-  ) {
+  if (typeof options !== 'undefined' && typeof options.type !== 'undefined' && options.type) {
     const tempClass = `type-${options.type}`;
     j.$(`${flashdiv} .${tempClass}, #flashinfo-div .${tempClass}`)
       .removeClass(tempClass)
@@ -817,36 +747,20 @@ export function flashm(
 
   let flashmEl;
 
-  if (
-    typeof options !== 'undefined' &&
-    typeof options.hoverInfo !== 'undefined' &&
-    options.hoverInfo
-  ) {
+  if (typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo) {
     messClass += ' flashinfo';
     mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
     j.$('#flashinfo-div').addClass('hover');
     flashmEl = j.$(mess).appendTo('#flashinfo-div');
-    if (
-      typeof options !== 'undefined' &&
-      typeof options.minimized !== 'undefined' &&
-      options.minimized
-    )
+    if (typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized)
       flashmEl.css('max-height', '8px');
   } else {
     flashmEl = j.$(mess).appendTo(flashdiv);
   }
 
-  if (
-    typeof options !== 'undefined' &&
-    typeof options.permanent !== 'undefined' &&
-    options.permanent
-  ) {
+  if (typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent) {
     flashmEl.slideDown(800);
-  } else if (
-    typeof options !== 'undefined' &&
-    typeof options.hoverInfo !== 'undefined' &&
-    options.hoverInfo
-  ) {
+  } else if (typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo) {
     flashmEl
       .slideDown(800)
       .delay(4000)
@@ -1042,7 +956,6 @@ export function elementInViewport(el, horizontalOffset = 0) {
     rect.top >= 0 &&
     rect.left >= 0 &&
     // @ts-ignore
-    rect.top - horizontalOffset <=
-      (window.innerHeight || document.documentElement.clientHeight)
+    rect.top - horizontalOffset <= (window.innerHeight || document.documentElement.clientHeight)
   );
 }

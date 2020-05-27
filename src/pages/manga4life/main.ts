@@ -12,13 +12,7 @@ export const manga4life: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText(
-          $(
-            'div.MainContainer > div.container > div.row > div.Column > a',
-          ).first(),
-        )
-        .trim();
+      return utils.getBaseText($('div.MainContainer > div.container > div.row > div.Column > a').first()).trim();
     },
     getIdentifier(url) {
       return utils.urlPart(manga4life.sync.getOverviewUrl(url), 4) || '';
@@ -34,11 +28,7 @@ export const manga4life: pageInterface = {
     },
     getEpisode(url) {
       return utils
-        .getBaseText(
-          $(
-            'div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button',
-          ).first(),
-        )
+        .getBaseText($('div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button').first())
         .match(/\d+/gim);
     },
   },
@@ -53,22 +43,13 @@ export const manga4life: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j
-          .$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1')
-          .first(),
-      );
+      selector.insertAfter(j.$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1').first());
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'read-online' ||
-        page.url.split('/')[3] === 'manga'
-      ) {
+      if (page.url.split('/')[3] === 'read-online' || page.url.split('/')[3] === 'manga') {
         page.handlePage();
       }
     });

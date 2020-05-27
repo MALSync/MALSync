@@ -29,11 +29,7 @@ export class anilistClass {
           first = false;
           return undefined;
         }
-        if (
-          this.page !== null &&
-          this.page.page === 'bookmarks' &&
-          $('.lists').length
-        ) {
+        if (this.page !== null && this.page.page === 'bookmarks' && $('.lists').length) {
           return $('.lists')
             .first()
             .height();
@@ -55,9 +51,7 @@ export class anilistClass {
       this.init();
     }
 
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   }
 
   init() {
@@ -125,10 +119,7 @@ export class anilistClass {
       const aniListId = utils.urlPart(this.url, 4);
       return helper.aniListToMal(Number(aniListId), urlpart).then(malId => {
         if (!malId) return '';
-        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(
-          this.url,
-          5,
-        )}`;
+        return `https://myanimelist.net/${urlpart}/${malId}/${utils.urlPart(this.url, 5)}`;
       });
     }
     return '';
@@ -207,15 +198,11 @@ export class anilistClass {
           <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${api.storage.lang(
             'Search',
           )}</span>
-          <div class="MALSync-search"><a>[${api.storage.lang(
-            'Show',
-          )}]</a></div><br class="mal_links" />
+          <div class="MALSync-search"><a>[${api.storage.lang('Show')}]</a></div><br class="mal_links" />
         </div>
       `,
       );
-      api.storage.addStyle(
-        '#AniList.mal_links img{background-color: #898989;}',
-      );
+      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
         const title = $('meta[property="og:title"]').attr('content');
         const titleEncoded = encodeURI(title!);
@@ -226,16 +213,11 @@ export class anilistClass {
           const page = pageSearch[key];
           if (page.type !== This.page!.type) continue;
 
-          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(
-            page.domain,
-          )}"> ${page.name}`;
+          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
 
           let link;
           if (typeof page.completeSearchTag === 'undefined') {
-            link = `<a target="_blank" href="${page.searchUrl.replace(
-              '##searchkey##',
-              titleEncoded,
-            )}">
+            link = `<a target="_blank" href="${page.searchUrl.replace('##searchkey##', titleEncoded)}">
               ${linkContent}
             </a>`;
           } else {
@@ -277,9 +259,7 @@ export class anilistClass {
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="${utils.favicon(
-              streamUrl ? streamUrl.split('/')[2] : '',
-            )}">
+            <img src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
           </a>
         </div>`);
 
@@ -290,24 +270,16 @@ export class anilistClass {
           $('#mal-sync-stream-div').append(
             `<a class="nextStream" title="${api.storage.lang(
               `overview_Continue_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              continueUrlObj.url
-            }">
-              <img src="${api.storage.assetUrl(
-                'double-arrow-16px.png',
-              )}" width="16" height="16">
+            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
             `<a class="resumeStream" title="${api.storage.lang(
               `overview_Resume_Episode_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              resumeUrlObj.url
-            }">
-              <img src="${api.storage.assetUrl(
-                'arrow-16px.png',
-              )}" width="16" height="16">
+            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
           );
         }
@@ -332,9 +304,7 @@ export class anilistClass {
             .attr('label');
 
           if (typeof label !== 'undefined') {
-            label = label
-              .replace(/(malSync|last)::[\d\D]+::/, '')
-              .replace(/#,/, '');
+            label = label.replace(/(malSync|last)::[\d\D]+::/, '').replace(/#,/, '');
             if (label.trim() === '' || label.trim() === ',') {
               $(el)
                 .find('.notes')
@@ -382,9 +352,7 @@ export class anilistClass {
           const tempEl = $(
             `.entry:not(.malSyncDone2) a[href^="/${This.page!.type}/${
               en.uid
-            }/"], .entry-card:not(.malSyncDone2) a[href^="/${This.page!.type}/${
-              en.uid
-            }/"]`,
+            }/"], .entry-card:not(.malSyncDone2) a[href^="/${This.page!.type}/${en.uid}/"]`,
           );
           if (tempEl.length) {
             const element = tempEl.first().parent();
@@ -396,9 +364,7 @@ export class anilistClass {
               element.find('a').first().after(`
                 <a class="mal-sync-stream mal-rem" title="${
                   en.options.u.split('/')[2]
-                }" target="_blank" style="margin: 0 0; max-height: 14px;" href="${
-                en.options.u
-              }">
+                }" target="_blank" style="margin: 0 0; max-height: 14px;" href="${en.options.u}">
                   <img src="${utils.favicon(en.options.u.split('/')[2])}">
                 </a>`);
             }
@@ -414,9 +380,7 @@ export class anilistClass {
                 `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
                   continueUrlObj.url
                 }">
-                  <img src="${api.storage.assetUrl(
-                    'double-arrow-16px.png',
-                  )}" width="16" height="16">
+                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                 </a>`,
               );
             } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
@@ -424,25 +388,18 @@ export class anilistClass {
                 `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
                   resumeUrlObj.url
                 }">
-                  <img src="${api.storage.assetUrl(
-                    'arrow-16px.png',
-                  )}" width="16" height="16">
+                  <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                 </a>`,
               );
             }
 
-            utils.epPredictionUI(
-              en.malid,
-              en.cacheKey,
-              This.page!.type,
-              prediction => {
-                if (!prediction) return;
-                element
-                  .parent()
-                  .find('.progress')
-                  .append(prediction.tag);
-              },
-            );
+            utils.epPredictionUI(en.malid, en.cacheKey, This.page!.type, prediction => {
+              if (!prediction) return;
+              element
+                .parent()
+                .find('.progress')
+                .append(prediction.tag);
+            });
           }
         });
       }

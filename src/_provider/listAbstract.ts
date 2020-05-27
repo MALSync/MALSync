@@ -81,8 +81,7 @@ export abstract class ListAbstract {
       this.templist = this.templist.concat(retList);
 
       if (typeof this.callbacks.continueCall !== 'undefined') {
-        if (this.modes.cached)
-          this.getCache().setValue(this.templist.slice(0, 18));
+        if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
         // @ts-ignore
         await this.callbacks.continueCall(this.templist);
       }
@@ -92,8 +91,7 @@ export abstract class ListAbstract {
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
-    if (typeof this.callbacks.continueCall !== 'undefined')
-      this.callbacks.continueCall(this.templist);
+    if (typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
 
     return this.templist;
   }
@@ -181,11 +179,7 @@ export abstract class ListAbstract {
         );
       },
     };
-    item.options = await utils.getEntrySettings(
-      item.type,
-      item.cacheKey,
-      item.tags,
-    );
+    item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
     return item;
   }
 
@@ -234,10 +228,7 @@ export abstract class ListAbstract {
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
-    this.cacheObj = new Cache(
-      `list/${this.name}/${this.listType}/${this.status}`,
-      48 * 60 * 60 * 1000,
-    );
+    this.cacheObj = new Cache(`list/${this.name}/${this.listType}/${this.status}`, 48 * 60 * 60 * 1000);
     return this.cacheObj;
   }
 }

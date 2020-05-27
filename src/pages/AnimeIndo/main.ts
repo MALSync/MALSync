@@ -5,10 +5,7 @@ export const AnimeIndo: pageInterface = {
   domain: 'http://animeindo.moe',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      url.split('/')[1] !== null &&
-      j.$('#sct_content > div > div.preview')[0]
-    ) {
+    if (url.split('/')[1] !== null && j.$('#sct_content > div > div.preview')[0]) {
       return true;
     }
     return false;
@@ -18,20 +15,14 @@ export const AnimeIndo: pageInterface = {
       return j.$('#sct_content > div > div.infobox > h3').text();
     },
     getIdentifier(url) {
-      const anchorHref = j
-        .$('#sct_content > div > div.ep_nav.fr > span.nav.all > a')
-        .attr('href');
+      const anchorHref = j.$('#sct_content > div > div.ep_nav.fr > span.nav.all > a').attr('href');
 
       if (!anchorHref) return '';
 
       return anchorHref.split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('#sct_content > div > div.ep_nav.fr > span.nav.all > a')
-          .attr('href') || ''
-      );
+      return j.$('#sct_content > div > div.ep_nav.fr > span.nav.all > a').attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -100,14 +91,11 @@ export const AnimeIndo: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'anime' ||
-        (page.url.split('/')[3] !== null &&
-          j.$('#sct_content > div > div.preview')[0])
+        (page.url.split('/')[3] !== null && j.$('#sct_content > div > div.preview')[0])
       ) {
         page.handlePage();
       }

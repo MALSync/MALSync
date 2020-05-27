@@ -51,11 +51,7 @@ module.exports = {
     match: ['*://*.cloudvideo.tv/*'],
   },
   fembed: {
-    match: [
-      '*://*.fembed.net/*',
-      '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*',
-    ],
+    match: ['*://*.fembed.net/*', '*://*.fembed.com/*', '*://*.animeproxy.info/*'],
   },
   youpload: {
     match: ['*://*.youpload.co/*'],

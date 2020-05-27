@@ -29,11 +29,7 @@ export class searchClass {
 
   changed = false;
 
-  constructor(
-    protected title: string,
-    protected type: 'anime' | 'manga' | 'novel',
-    protected identifier: string,
-  ) {
+  constructor(protected title: string, protected type: 'anime' | 'manga' | 'novel', protected identifier: string) {
     this.sanitizedTitel = this.sanitizeTitel(this.title);
   }
 
@@ -122,10 +118,7 @@ export class searchClass {
   }
 
   public sanitizeTitel(title) {
-    let resTitle = title.replace(
-      / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
-      '',
-    );
+    let resTitle = title.replace(/ *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i, '');
     resTitle = resTitle.replace(/ *\([^)]+audio\)/i, '');
     resTitle = resTitle.replace(/ BD( |$)/i, '');
     resTitle = resTitle.trim();
@@ -139,11 +132,7 @@ export class searchClass {
       this.state = await this.searchForIt();
     }
 
-    if (
-      !this.state ||
-      (this.state &&
-        !['user', 'firebase', 'sync'].includes(this.state.provider))
-    ) {
+    if (!this.state || (this.state && !['user', 'firebase', 'sync'].includes(this.state.provider))) {
       const tempRes = await this.onsiteSearch();
       if (tempRes) this.state = tempRes;
     }
@@ -158,12 +147,10 @@ export class searchClass {
   }
 
   protected async getCache() {
-    return api.storage
-      .get(`${this.page.name}/${this.identifier}/Search`)
-      .then(state => {
-        if (state) state.cache = true;
-        return state;
-      });
+    return api.storage.get(`${this.page.name}/${this.identifier}/Search`).then(state => {
+      if (state) state.cache = true;
+      return state;
+    });
   }
 
   protected setCache(cache) {
@@ -171,23 +158,14 @@ export class searchClass {
     setTimeout(() => {
       this.databaseRequest();
     }, 200);
-    return api.storage.set(
-      `${this.page.name}/${this.identifier}/Search`,
-      cache,
-    );
+    return api.storage.set(`${this.page.name}/${this.identifier}/Search`, cache);
   }
 
   static similarity(externalTitle, title, titleArray: string[] = []) {
-    let simi = compareTwoStrings(
-      title.toLowerCase(),
-      externalTitle.toLowerCase(),
-    );
+    let simi = compareTwoStrings(title.toLowerCase(), externalTitle.toLowerCase());
     titleArray.forEach(el => {
       if (el) {
-        const tempSimi = compareTwoStrings(
-          title.toLowerCase(),
-          el.toLowerCase(),
-        );
+        const tempSimi = compareTwoStrings(title.toLowerCase(), el.toLowerCase());
         if (tempSimi > simi) simi = tempSimi;
       }
     });
@@ -220,18 +198,9 @@ export class searchClass {
       result = searchCompare(result, await this.pageSearch(), 0.5);
     }
 
-    if (
-      result &&
-      result.provider === 'firebase' &&
-      api.settings.get('syncMode') !== 'MAL' &&
-      !result.url
-    ) {
+    if (result && result.provider === 'firebase' && api.settings.get('syncMode') !== 'MAL' && !result.url) {
       const temp = await this.pageSearch();
-      if (
-        temp &&
-        !(temp.url.indexOf('myanimelist.net') !== -1) &&
-        temp.similarity.same
-      ) {
+      if (temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
         con.log('[SEARCH] Ignore Firebase', result);
         result = temp;
       }
@@ -240,11 +209,7 @@ export class searchClass {
     return result;
 
     function searchCompare(curVal, newVal, threshold = 0) {
-      if (
-        curVal !== false &&
-        newVal !== false &&
-        newVal.similarity.value > threshold
-      ) {
+      if (curVal !== false && newVal !== false && newVal.similarity.value > threshold) {
         if (curVal.similarity.value >= newVal.similarity.value) return curVal;
         return newVal;
       }
@@ -256,20 +221,14 @@ export class searchClass {
   public async firebase(): Promise<searchResult | false> {
     if (!this.page || !this.page.database) return false;
 
-    const url = `https://kissanimelist.firebaseio.com/Data2/${
-      this.page.database
-    }/${encodeURIComponent(
+    const url = `https://kissanimelist.firebaseio.com/Data2/${this.page.database}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),
     ).toLowerCase()}/Mal.json`;
     con.log('Firebase', url);
     const response = await api.request.xhr('GET', url);
 
     con.log('Firebase response', response.responseText);
-    if (
-      !response.responseText ||
-      response.responseText === 'null' ||
-      response.responseText.includes('error')
-    )
+    if (!response.responseText || response.responseText === 'null' || response.responseText.includes('error'))
       return false;
 
     const matches = response.responseText.match(/(?<=")(?!:)(?:.*?)(?=")/g);
@@ -280,8 +239,7 @@ export class searchClass {
 
     let returnUrl = '';
 
-    if (id !== 'Not-Found')
-      returnUrl = `https://myanimelist.net/${this.page.type}/${id}/${name}`;
+    if (id !== 'Not-Found') returnUrl = `https://myanimelist.net/${this.page.type}/${id}/${name}`;
 
     return {
       url: returnUrl,
@@ -306,11 +264,9 @@ export class searchClass {
     const response = await api.request.xhr('GET', url);
     con.log('malSync response', response);
 
-    if (response.status !== 400 && response.status !== 200)
-      throw new Error('malsync offline');
+    if (response.status !== 400 && response.status !== 200) throw new Error('malsync offline');
 
-    if (response.status === 400 && response.responseText?.includes('error'))
-      return false;
+    if (response.status === 400 && response.responseText?.includes('error')) return false;
 
     const res = JSON.parse(response.responseText);
 
@@ -328,13 +284,9 @@ export class searchClass {
   }
 
   public async malSearch(): Promise<searchResult | false> {
-    let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
-      this.sanitizedTitel,
-    )}`;
+    let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(this.sanitizedTitel)}`;
     if (this.type === 'novel') {
-      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(
-        this.sanitizedTitel,
-      )}`;
+      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(this.sanitizedTitel)}`;
     }
     con.log('malSearch', url);
 
@@ -345,9 +297,7 @@ export class searchClass {
       if (link !== false) {
         try {
           if (This.type === 'manga') {
-            const typeCheck = response.responseText
-              .split(`href="${link}" id="si`)[1]
-              .split('</tr>')[0];
+            const typeCheck = response.responseText.split(`href="${link}" id="si`)[1].split('</tr>')[0];
             if (typeCheck.indexOf('Novel') !== -1) {
               con.log('Novel Found check next entry');
               return handleResult(response, i + 1, This);
@@ -373,9 +323,7 @@ export class searchClass {
 
     function getLink(response, i) {
       try {
-        return response.responseText
-          .split('<a class="hoverinfo_trigger" href="')
-          [i].split('"')[0];
+        return response.responseText.split('<a class="hoverinfo_trigger" href="')[i].split('"')[0];
       } catch (e) {
         con.error(e);
         try {
@@ -394,9 +342,7 @@ export class searchClass {
     function getTitle(response, link) {
       try {
         const id = link.split('/')[4];
-        return response.responseText
-          .split(`rel="#sinfo${id}"><strong>`)[1]
-          .split('<')[0];
+        return response.responseText.split(`rel="#sinfo${id}"><strong>`)[1].split('<')[0];
       } catch (e) {
         con.error(e);
         return '';
@@ -411,27 +357,16 @@ export class searchClass {
   }
 
   public async pageSearch(): Promise<searchResult | false> {
-    const searchResult = await pageSearch(
-      this.sanitizedTitel,
-      this.getNormalizedType(),
-    );
+    const searchResult = await pageSearch(this.sanitizedTitel, this.getNormalizedType());
     let best: any = null;
     for (let i = 0; i < searchResult.length && i < 5; i++) {
       const el = searchResult[i];
-      const sim = searchClass.similarity(
-        el.name,
-        this.sanitizedTitel,
-        el.altNames,
-      );
+      const sim = searchClass.similarity(el.name, this.sanitizedTitel, el.altNames);
       const tempBest = {
         index: i,
         similarity: sim,
       };
-      if (
-        (this.type === 'manga' && !el.isNovel) ||
-        (this.type === 'novel' && el.isNovel) ||
-        this.type === 'anime'
-      ) {
+      if ((this.type === 'manga' && !el.isNovel) || (this.type === 'novel' && el.isNovel) || this.type === 'anime') {
         if (!best || sim.value > best.similarity.value) {
           best = tempBest;
         }
@@ -464,9 +399,10 @@ export class searchClass {
         if (this.page.isSyncPage(this.syncPage.url)) {
           kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
           if (this.page.database === 'Crunchyroll') {
-            kissurl = `${this.syncPage.url}?..${encodeURIComponent(
-              this.identifier.toLowerCase().split('#')[0],
-            ).replace(/\./g, '%2E')}`;
+            kissurl = `${this.syncPage.url}?..${encodeURIComponent(this.identifier.toLowerCase().split('#')[0]).replace(
+              /\./g,
+              '%2E',
+            )}`;
           }
         } else {
           if (this.page.database === 'Crunchyroll') {
@@ -489,34 +425,22 @@ export class searchClass {
       }
       param.similarity = this.state.similarity;
       const url = `https://kissanimelist.firebaseio.com/Data2/Request/${this.page.database}Request.json`;
-      api.request
-        .xhr('POST', { url, data: JSON.stringify(param) })
-        .then(response => {
-          if (
-            response.responseText !== 'null' &&
-            !(response.responseText.indexOf('error') > -1)
-          ) {
-            con.log('[DB] Send to database:', param);
-          } else {
-            con.error('[DB] Send to database:', response.responseText);
-          }
-        });
+      api.request.xhr('POST', { url, data: JSON.stringify(param) }).then(response => {
+        if (response.responseText !== 'null' && !(response.responseText.indexOf('error') > -1)) {
+          con.log('[DB] Send to database:', param);
+        } else {
+          con.error('[DB] Send to database:', response.responseText);
+        }
+      });
     }
   }
 
   public async onsiteSearch(): Promise<false | searchResult> {
-    if (
-      this.page &&
-      this.syncPage &&
-      this.syncPage.curState &&
-      this.syncPage.curState.on
-    ) {
+    if (this.page && this.syncPage && this.syncPage.curState && this.syncPage.curState.on) {
       let result: false | string = false;
       if (this.syncPage.curState.on === 'OVERVIEW') {
         if (this.page.overview && this.page.overview.getMalUrl) {
-          result = await this.page.overview.getMalUrl(
-            api.settings.get('syncMode'),
-          );
+          result = await this.page.overview.getMalUrl(api.settings.get('syncMode'));
         }
       } else if (this.page.sync && this.page.sync.getMalUrl) {
         result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
@@ -543,10 +467,7 @@ export class searchClass {
 
   protected identifierToDbKey(title) {
     if (this.page.database === 'Crunchyroll') {
-      return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(
-        /\./g,
-        '%2E',
-      );
+      return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
     }
     return title
       .toLowerCase()

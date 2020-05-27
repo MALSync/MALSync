@@ -78,16 +78,12 @@ export const JaiminisBox: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(
-          JaiminisBox.overview!.list!.elementUrl(selector).split('/')[8],
-        );
+        return parseInt(JaiminisBox.overview!.list!.elementUrl(selector).split('/')[8]);
       },
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       page.handlePage();
     });

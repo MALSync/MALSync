@@ -7,22 +7,14 @@
       style="width: 100%; position: absolute; top: 0;"
     ></div>
 
-    <span
-      v-if="error"
-      class="mdl-chip mdl-chip--deletable"
-      style="margin: auto; margin-top: 16px; display: table;"
-    >
+    <span v-if="error" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
       <span class="mdl-chip__text">Error</span>
       <button type="button" class="mdl-chip__action" @click="clickRender()">
         <i class="material-icons">refresh</i>
       </button>
     </span>
 
-    <span
-      v-if="objError"
-      class="mdl-chip mdl-chip--deletable"
-      style="margin: auto; margin-top: 16px; display: table;"
-    >
+    <span v-if="objError" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
       <span class="mdl-chip__text" v-html="objError"></span>
       <button type="button" class="mdl-chip__action" @click="reload()">
         <i class="material-icons">refresh</i>
@@ -62,11 +54,7 @@
           class="mdl-card__media mdl-cell mdl-cell--2-col"
           style="background-color: transparent; float:left; padding-right: 16px;"
         >
-          <clazy-load
-            :src="image"
-            class="malImage malClear"
-            style="width: 100%; height: auto;"
-          >
+          <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
             <img :src="image" style="height: auto; width: 100%;" />
           </clazy-load>
         </div>
@@ -83,24 +71,13 @@
             style="padding-left: 0; overflow:visible;"
             v-html="title"
           ></h1>
-          <div
-            class="malAltTitle mdl-card__supporting-text malClear"
-            style="padding: 10px 0 0 0; overflow:visible;"
-          >
-            <div
-              v-for="altTitl in altTitle"
-              :key="altTitl"
-              class="mdl-chip"
-              style="margin-right: 5px;"
-            >
+          <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0; overflow:visible;">
+            <div v-for="altTitl in altTitle" :key="altTitl" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{ altTitl }}</span>
             </div>
           </div>
         </div>
-        <div
-          class="malDescription malClear mdl-cell mdl-cell--10-col"
-          style="overflow: hidden;"
-        >
+        <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
           <p style="color: black;" v-html="description"></p>
           <div
             v-show="streaming"
@@ -113,55 +90,38 @@
       <div
         class="mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"
       >
-        <li
-          v-if="prediction && prediction.prediction.airing"
-          class="mdl-list__item"
-          style="width: 100%;"
-        >
+        <li v-if="prediction && prediction.prediction.airing" class="mdl-list__item" style="width: 100%;">
           {{ prediction.text }}
         </li>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tbody>
-            <li
-              class="mdl-list__item mdl-list__item--three-line"
-              style="width: 100%;"
-            >
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
                 <span>{{ lang('UI_Status') }} </span>
                 <span class="mdl-list__item-text-body">
                   <select
                     id="myinfo_status"
                     v-model="malStatus"
-                    :disabled="
-                      !this.renderObj || !this.renderObj.isAuthenticated()
-                    "
+                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
                     name="myinfo_status"
                     class="inputtext js-anime-status-dropdown mdl-textfield__input"
                     style="outline: none;"
                   >
-                    <option
-                      v-for="el in renderObj.getStatusCheckbox()"
-                      :key="el.value"
-                      :value="el.value"
-                      >{{ el.label }}</option
-                    >
+                    <option v-for="el in renderObj.getStatusCheckbox()" :key="el.value" :value="el.value">{{
+                      el.label
+                    }}</option>
                   </select>
                 </span>
               </span>
             </li>
-            <li
-              class="mdl-list__item mdl-list__item--three-line"
-              style="width: 100%;"
-            >
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
                 <span>{{ utils.episode(renderObj.getType()) }}</span>
                 <span class="mdl-list__item-text-body">
                   <input
                     id="myinfo_watchedeps"
                     v-model="malEpisode"
-                    :disabled="
-                      !this.renderObj || !this.renderObj.isAuthenticated()
-                    "
+                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_watchedeps"
                     size="3"
@@ -170,16 +130,11 @@
                     style="width: 35px; display: inline-block;"
                   />
                   / <span v-if="prediction" v-html="prediction.tag" />
-                  <span
-                    v-if="renderObj && renderObj.getTotalEpisodes()"
-                    id="curEps"
-                    >{{ renderObj.getTotalEpisodes() }}</span
+                  <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
+                    renderObj.getTotalEpisodes()
+                  }}</span
                   ><span v-else>?</span>
-                  <a
-                    href="javascript:void(0)"
-                    class="js-anime-increment-episode-button"
-                    target="_blank"
-                  >
+                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4"> </i>
                   </a>
                 </span>
@@ -196,9 +151,7 @@
                   <input
                     id="myinfo_volumes"
                     v-model="malVolume"
-                    :disabled="
-                      !this.renderObj || !this.renderObj.isAuthenticated()
-                    "
+                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_volumes"
                     size="3"
@@ -207,44 +160,31 @@
                     style="width: 35px; display: inline-block;"
                   />
                   /
-                  <span
-                    v-if="renderObj && renderObj.getTotalVolumes()"
-                    id="curVolumes"
-                    >{{ renderObj.getTotalVolumes() }}</span
+                  <span v-if="renderObj && renderObj.getTotalVolumes()" id="curVolumes">{{
+                    renderObj.getTotalVolumes()
+                  }}</span
                   ><span v-else>?</span>
-                  <a
-                    href="javascript:void(0)"
-                    class="js-anime-increment-episode-button"
-                    target="_blank"
-                  >
+                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
                     <i class="fa fa-plus-circle ml4"> </i>
                   </a>
                 </span>
               </span>
             </li>
-            <li
-              class="mdl-list__item mdl-list__item--three-line"
-              style="width: 100%;"
-            >
+            <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
               <span class="mdl-list__item-primary-content">
                 <span>{{ lang('UI_Score') }} </span>
                 <span class="mdl-list__item-text-body">
                   <select
                     id="myinfo_score"
                     v-model="malScore"
-                    :disabled="
-                      !this.renderObj || !this.renderObj.isAuthenticated()
-                    "
+                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
                     name="myinfo_score"
                     class="inputtext mdl-textfield__input"
                     style="outline: none;"
                   >
-                    <option
-                      v-for="el in renderObj.getScoreCheckbox()"
-                      :key="el.value"
-                      :value="el.value"
-                      >{{ el.label }}</option
-                    >
+                    <option v-for="el in renderObj.getScoreCheckbox()" :key="el.value" :value="el.value">{{
+                      el.label
+                    }}</option>
                   </select>
                 </span>
               </span>
@@ -273,15 +213,10 @@
                 @click="malSync()"
               />
               <small v-if="editUrl && renderObj">
-                <a :href="editUrl" target="_blank">{{
-                  lang('overview_EditDetails')
-                }}</a>
+                <a :href="editUrl" target="_blank">{{ lang('overview_EditDetails') }}</a>
               </small>
               <input
-                v-if="
-                  !(renderObj && !renderObj.isOnList()) &&
-                    typeof renderObj.delete !== 'undefined'
-                "
+                v-if="!(renderObj && !renderObj.isOnList()) && typeof renderObj.delete !== 'undefined'"
                 type="button"
                 class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
                 style="margin-left: 5px; margin-left: auto;"
@@ -289,10 +224,7 @@
                 @click="remove()"
               />
 
-              <i
-                class="material-icons"
-                style="margin-right: 0; margin-left: auto; cursor: pointer;"
-                @click="reload()"
+              <i class="material-icons" style="margin-right: 0; margin-left: auto; cursor: pointer;" @click="reload()"
                 >autorenew</i
               >
             </li>
@@ -304,11 +236,7 @@
         class="mdl-grid mdl-grid--no-spacing mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp related-block alternative-list mdl-grid malClear"
       >
         <ul class="mdl-list">
-          <li
-            v-for="relatedType in related"
-            :key="relatedType.url"
-            class="mdl-list__item mdl-list__item--two-line"
-          >
+          <li v-for="relatedType in related" :key="relatedType.url" class="mdl-list__item mdl-list__item--two-line">
             <span class="mdl-list__item-primary-content">
               <span>
                 {{ relatedType.type }}
@@ -328,25 +256,14 @@
         class="mdl-grid mdl-grid--no-spacing bg-cell mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear"
       >
         <ul class="mdl-list stream-block-inner">
-          <li
-            v-for="(streams, page) in kiss2mal"
-            :key="page"
-            class="mdl-list__item mdl-list__item--three-line"
-          >
+          <li v-for="(streams, page) in kiss2mal" :key="page" class="mdl-list__item mdl-list__item--three-line">
             <span class="mdl-list__item-primary-content">
               <span>
-                <img
-                  style="padding-bottom: 3px;"
-                  :src="getMal2KissFavicon(streams)"
-                />
+                <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(streams)" />
                 {{ page }}
               </span>
               <span id="KissAnimeLinks" class="mdl-list__item-text-body">
-                <div
-                  v-for="stream in streams"
-                  :key="stream.url"
-                  class="mal_links"
-                >
+                <div v-for="stream in streams" :key="stream.url" class="mal_links">
                   <a target="_blank" :href="stream.url">{{ stream.title }}</a>
                 </div>
               </span>
@@ -382,12 +299,7 @@
               <div class="" v-html="character.html"></div>
             </div>
           </div>
-          <div
-            v-for="n in 10"
-            :key="n"
-            class="listPlaceholder"
-            style="height: 0;"
-          >
+          <div v-for="n in 10" :key="n" class="listPlaceholder" style="height: 0;">
             <div class="mdl-grid" style="width: 126px;"></div>
           </div>
         </div>
@@ -423,11 +335,7 @@
           <span class="mdl-list__item-primary-content" style="height: auto;">
             <span>{{ lang('overview_EndingTheme') }}</span>
             <span class="mdl-list__item-text-body" style="height: auto;">
-              <span
-                v-for="endingSong in endingSongs"
-                :key="endingSong"
-                style="display: block; color: rgb(255,64,129);"
-              >
+              <span v-for="endingSong in endingSongs" :key="endingSong" style="display: block; color: rgb(255,64,129);">
                 {{ endingSong }}
               </span>
             </span>
@@ -442,35 +350,25 @@
         <div
           class="mdl-grid mdl-grid--no-spacing mdl-cell mdl-cell--12-col mdl-shadow--4dp info-block mdl-grid malClear"
         >
-          <ul
-            class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col"
-          >
+          <ul class="mdl-grid mdl-grid--no-spacing mdl-list mdl-cell mdl-cell--12-col">
             <li
               v-for="inf in info"
               :key="inf.title"
               class="mdl-list__item mdl-list__item--three-line mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet"
               style="height: auto;"
             >
-              <span
-                class="mdl-list__item-primary-content"
-                style="height: auto;"
-              >
+              <span class="mdl-list__item-primary-content" style="height: auto;">
                 <span>
                   {{ inf.title }}
                 </span>
-                <span class="mdl-list__item-text-body" v-html="inf.body">
-                </span>
+                <span class="mdl-list__item-text-body" v-html="inf.body"> </span>
               </span>
             </li>
           </ul>
         </div>
       </div>
 
-      <progressP
-        :mal-id="renderObj.getMalId()"
-        :type="renderObj.type"
-        :total-eps="renderObj.getTotalEpisodes()"
-      />
+      <progressP :mal-id="renderObj.getMalId()" :type="renderObj.type" :total-eps="renderObj.getTotalEpisodes()" />
     </div>
   </div>
 </template>
@@ -511,13 +409,11 @@ export default {
   },
   computed: {
     objError() {
-      if (this.renderObj && this.renderObj.getLastError())
-        return this.renderObj.getLastErrorMessage();
+      if (this.renderObj && this.renderObj.getLastError()) return this.renderObj.getLastErrorMessage();
       return null;
     },
     editUrl() {
-      if (typeof this.renderObj.getDetailUrl !== 'undefined')
-        return this.renderObj.getDetailUrl();
+      if (typeof this.renderObj.getDetailUrl !== 'undefined') return this.renderObj.getDetailUrl();
       return null;
     },
     malStatus: {
@@ -656,30 +552,20 @@ export default {
               </a>`;
 
         con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
-        if (
-          this.mal.continueUrl &&
-          this.mal.continueUrl.ep === malObj.getEpisode() + 1
-        ) {
+        if (this.mal.continueUrl && this.mal.continueUrl.ep === malObj.getEpisode() + 1) {
           streamhtml += `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
             `overview_Next_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${
-            this.mal.continueUrl.url
-          }">
+          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
                 <img src="${api.storage.assetUrl(
                   'double-arrow-16px.png',
                 )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
             `overview_Next_Episode_${malObj.getType()}`,
           )}
               </a>`;
-        } else if (
-          this.mal.resumeUrl &&
-          this.mal.resumeUrl.ep === malObj.getEpisode()
-        ) {
+        } else if (this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()) {
           streamhtml += `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
             `overview_Resume_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${
-            this.mal.resumeUrl.url
-          }">
+          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
                 <img src="${api.storage.assetUrl(
                   'arrow-16px.png',
                 )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
@@ -787,11 +673,9 @@ export default {
         }
 
         if (renderObj.getMalUrl().split('').length > 3) {
-          utils
-            .getMalToKissArray(renderObj.getType(), renderObj.getMalId())
-            .then(links => {
-              this.kiss2mal = links;
-            });
+          utils.getMalToKissArray(renderObj.getType(), renderObj.getMalId()).then(links => {
+            this.kiss2mal = links;
+          });
         }
       }
 
@@ -802,14 +686,9 @@ export default {
       this.mal.resumeUrl = renderObj.getResumeWatching();
       this.mal.continueUrl = renderObj.getContinueWatching();
 
-      utils.epPredictionUI(
-        renderObj.id,
-        renderObj.getCacheKey(),
-        renderObj.type,
-        prediction => {
-          this.prediction = prediction;
-        },
-      );
+      utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, prediction => {
+        this.prediction = prediction;
+      });
     },
     clickRender() {
       this.render(this.renderObj);
@@ -844,9 +723,7 @@ export default {
     },
     getMal2KissFavicon(streams) {
       try {
-        return utils.favicon(
-          streams[Object.keys(streams)[0]].url.split('/')[2],
-        );
+        return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
       } catch (e) {
         con.error(e);
         return '';
@@ -876,11 +753,7 @@ export default {
                 await new Promise((resolve, reject) => {
                   setTimeout(resolve, 2000);
                 });
-                return utils.statusTag(
-                  malObj.getStatus(),
-                  malObj.type,
-                  malObj.id,
-                );
+                return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
               },
               2 * 24 * 60 * 60 * 1000,
             );

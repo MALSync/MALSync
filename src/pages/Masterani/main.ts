@@ -71,9 +71,7 @@ export const Masterani: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Masterani.sync.getEpisode(
-          Masterani.overview!.list!.elementUrl(selector),
-        );
+        return Masterani.sync.getEpisode(Masterani.overview!.list!.elementUrl(selector));
       },
       paginationNext() {
         const el = j.$('.pagination .item').last();
@@ -86,9 +84,7 @@ export const Masterani: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     utils.waitUntilTrue(
       function() {
         return j.$('#stats,#watch').length;

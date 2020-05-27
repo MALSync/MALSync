@@ -5,10 +5,7 @@ export const animestrue: pageInterface = {
   domain: 'https://animestrue.site',
   type: 'anime',
   isSyncPage(url) {
-    if (
-      typeof url.split('/')[6] !== 'undefined' &&
-      url.split('/')[6].indexOf('episodio') !== -1
-    ) {
+    if (typeof url.split('/')[6] !== 'undefined' && url.split('/')[6].indexOf('episodio') !== -1) {
       return true;
     }
     return false;
@@ -16,9 +13,9 @@ export const animestrue: pageInterface = {
   sync: {
     getTitle(url) {
       if (Number(url.split('/')[5].match(/\d+/gim)) > 1) {
-        return `${utils.getBaseText(
-          $('div.anime-nome > a, #pageTitle').first(),
-        )} season ${url.split('/')[5].match(/\d+/gim)}`;
+        return `${utils.getBaseText($('div.anime-nome > a, #pageTitle').first())} season ${url
+          .split('/')[5]
+          .match(/\d+/gim)}`;
       }
 
       return utils.getBaseText($('div.anime-nome > a, #pageTitle').first());
@@ -27,9 +24,7 @@ export const animestrue: pageInterface = {
       return `${url.split('/')[4]}?s=${url.split('/')[5].match(/\d+/gim)}`;
     },
     getOverviewUrl(url) {
-      return `${animestrue.domain}/anime/${url.split('/')[4]}/${
-        url.split('/')[5]
-      }`;
+      return `${animestrue.domain}/anime/${url.split('/')[4]}/${url.split('/')[5]}`;
     },
     getEpisode(url) {
       return Number(url.split('/')[6].match(/\d+/gim));
@@ -82,16 +77,11 @@ export const animestrue: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       utils.waitUntilTrue(
         function() {
-          if (
-            j.$('div.anime-nome > a, #pageTitle').length &&
-            j.$('div.anime-nome > a, #pageTitle').text()
-          ) {
+          if (j.$('div.anime-nome > a, #pageTitle').length && j.$('div.anime-nome > a, #pageTitle').text()) {
             return true;
           }
           return false;

@@ -9,8 +9,7 @@ export class Single extends SingleAbstract {
 
   shortName = 'AniList';
 
-  authenticationUrl =
-    'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
+  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   protected handleUrl(url) {
     if (url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
@@ -31,9 +30,7 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    return parseInt(
-      helper.statusTranslate[this.animeInfo.mediaListEntry.status],
-    );
+    return parseInt(helper.statusTranslate[this.animeInfo.mediaListEntry.status]);
   }
 
   _setStatus(status) {
@@ -82,9 +79,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTotalEpisodes() {
-    const eps = this.animeInfo.episodes
-      ? this.animeInfo.episodes
-      : this.animeInfo.chapters;
+    const eps = this.animeInfo.episodes ? this.animeInfo.episodes : this.animeInfo.chapters;
     if (eps === null) return 0;
     return eps;
   }
@@ -96,9 +91,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return this.displayUrl !== '' && this.displayUrl !== null
-      ? this.displayUrl
-      : this.url;
+    return this.displayUrl !== '' && this.displayUrl !== null ? this.displayUrl : this.url;
   }
 
   _getImage() {
@@ -183,8 +176,7 @@ export class Single extends SingleAbstract {
           };
         }
 
-        if (!this._authenticated)
-          throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });
   }
 
@@ -229,8 +221,7 @@ export class Single extends SingleAbstract {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     };
-    if (authentication)
-      headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
+    if (authentication) headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
     return api.request
       .xhr('POST', {
         url: 'https://graphql.anilist.co',
@@ -241,14 +232,8 @@ export class Single extends SingleAbstract {
         }),
       })
       .then(response => {
-        if (
-          (response.status > 499 && response.status < 600) ||
-          response.status === 0
-        ) {
-          throw this.errorObj(
-            errorCode.ServerOffline,
-            `Server Offline status: ${response.status}`,
-          );
+        if ((response.status > 499 && response.status < 600) || response.status === 0) {
+          throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
         }
 
         const res = JSON.parse(response.responseText);
@@ -297,9 +282,7 @@ export class Single extends SingleAbstract {
         ];
         break;
       case 'POINT_10_DECIMAL': {
-        const decArr = [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-        ];
+        const decArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
         for (let i = 1; i < 101; i++) {
           decArr.push({ value: i.toString(), label: (i / 10).toFixed(1) });
         }
@@ -307,9 +290,7 @@ export class Single extends SingleAbstract {
         break;
       }
       case 'POINT_100': {
-        const resArr = [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-        ];
+        const resArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
         for (let i = 1; i < 101; i++) {
           resArr.push({ value: i.toString(), label: String(i) });
         }

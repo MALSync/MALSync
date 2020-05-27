@@ -8,11 +8,7 @@
     >
       {{ iconText }}
     </div>
-    <div
-      class="mdl-tooltip mdl-tooltip--large"
-      :class="directionClass"
-      :for="id"
-    >
+    <div class="mdl-tooltip mdl-tooltip--large" :class="directionClass" :for="id">
       <slot />
     </div>
   </div>

@@ -6,8 +6,7 @@ export class userlist extends ListAbstract {
 
   public compact = false;
 
-  authenticationUrl =
-    'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
+  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   getUsername() {
     const query = `
@@ -72,12 +71,7 @@ export class userlist extends ListAbstract {
 
   async getPart(): Promise<any> {
     if (this.offset < 1) this.offset = 1;
-    con.log(
-      '[UserList][AniList]',
-      `username: ${this.username}`,
-      `status: ${this.status}`,
-      `offset: ${this.offset}`,
-    );
+    con.log('[UserList][AniList]', `username: ${this.username}`, `status: ${this.status}`, `offset: ${this.offset}`);
 
     if (!this.username) {
       this.username = await this.getUsername();
@@ -138,10 +132,7 @@ export class userlist extends ListAbstract {
       page: this.offset,
       userName: this.username,
       type: this.listType.toUpperCase(),
-      status: helper.translateList(
-        parseInt(this.status.toString()),
-        parseInt(this.status.toString()),
-      ),
+      status: helper.translateList(parseInt(this.status.toString()), parseInt(this.status.toString())),
       sort: 'UPDATED_TIME_DESC',
     };
 

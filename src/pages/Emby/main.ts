@@ -240,10 +240,7 @@ export const Emby: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return (
-        item.SeriesName +
-        (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '')
-      );
+      return item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '');
     },
     getIdentifier(url) {
       if (typeof item.SeasonId !== 'undefined') return item.SeasonId;
@@ -251,9 +248,7 @@ export const Emby: pageInterface = {
       return item.Id;
     },
     getOverviewUrl(url) {
-      return `${Emby.domain}/#!/itemdetails.html?id=${Emby.sync.getIdentifier(
-        url,
-      )}`;
+      return `${Emby.domain}/#!/itemdetails.html?id=${Emby.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return item.IndexNumber;
@@ -261,10 +256,7 @@ export const Emby: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return (
-        item.SeriesName +
-        (item.IndexNumber > 1 ? ` Season ${item.IndexNumber}` : '')
-      );
+      return item.SeriesName + (item.IndexNumber > 1 ? ` Season ${item.IndexNumber}` : '');
     },
     getIdentifier(url) {
       return item.Id;
@@ -274,9 +266,7 @@ export const Emby: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(
-      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
-    );
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     testApi()
       .catch(() => {
         con.info('Not Authenticated');
@@ -299,13 +289,8 @@ export const Emby: pageInterface = {
           },
         );
         utils.urlChangeDetect(function() {
-          if (
-            !(window.location.href.indexOf('video') !== -1) &&
-            !(window.location.href.indexOf('#dlg') !== -1)
-          ) {
-            $(
-              '#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp',
-            ).remove();
+          if (!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)) {
+            $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
             page.UILoaded = false;
             urlChange(page);
           }
@@ -323,8 +308,7 @@ export const Emby: pageInterface = {
         document.addEventListener('fullscreenchange', function() {
           if (
             window.fullScreen ||
-            (window.innerWidth === window.screen.width &&
-              window.innerHeight === window.screen.height)
+            (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)
           ) {
             $('html').addClass('miniMAL-Fullscreen');
           } else {
