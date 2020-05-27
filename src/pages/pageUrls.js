@@ -165,9 +165,6 @@ module.exports = {
   Proxer: {
     match: ['*://proxer.me/*'],
   },
-  Novelplanet: {
-    match: ['*://novelplanet.com/Novel/*'],
-  },
   fourAnime: {
     match: ['*://4anime.to/*'],
   },

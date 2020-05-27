@@ -16,7 +16,6 @@ import { animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
-import { Novelplanet } from './Novelplanet/main';
 import { fourAnime } from './fourAnime/main';
 import { DreamAnimes } from './DreamAnimes/main';
 import { animeultima } from './animeultima/main';
@@ -92,7 +91,6 @@ export const pages = {
   Wakanim,
   Emby,
   Plex,
-  Novelplanet,
   fourAnime,
   DreamAnimes,
   animeultima,
