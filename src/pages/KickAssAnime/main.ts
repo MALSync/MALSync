@@ -5,7 +5,7 @@ export const KickAssAnime: pageInterface = {
   domain: 'https://www.kickassanime.rs',
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[5] === null) {
+    if (typeof url.split('/')[5] === 'undefined') {
       return false;
     }
     return true;
