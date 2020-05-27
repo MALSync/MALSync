@@ -1014,9 +1014,11 @@ export class syncPage {
         .$('<select style="width: auto;"/>')
         .append(j.$('<option/>').text(text));
       const width = aux.width() || 0;
-      j.$('#malp').append(aux);
-      j.$(selector).width(width + 5);
-      aux.remove();
+      if (width) {
+        j.$('#malp').append(aux);
+        j.$(selector).width(width + 5);
+        aux.remove();
+      }
     });
   }
 
