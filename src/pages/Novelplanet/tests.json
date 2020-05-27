@@ -1,6 +1,7 @@
 {
   "title": "Novelplanet",
   "url": "https://novelplanet.com",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://novelplanet.com/Novel/No-Game-No-Life",

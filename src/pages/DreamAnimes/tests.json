@@ -1,6 +1,7 @@
 {
   "title": "Dream Animes",
   "url": "https://dreamanimes.com.br/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://dreamanimes.com.br/online/legendado/no-game-no-life/episodio/4",
