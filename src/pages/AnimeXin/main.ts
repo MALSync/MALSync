@@ -12,13 +12,13 @@ export const AnimeXin: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.item.meta > div > span.epx > a').text();
+      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
     },
     getIdentifier(url) {
       return AnimeXin.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('div.item.meta > div > span.epx > a').attr('href') || '';
+      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -37,7 +37,7 @@ export const AnimeXin: pageInterface = {
     },
     nextEpUrl(url) {
       const href = j
-        .$('div.item.video-nav > div.naveps > div:nth-child(3) > a')
+        .$('div.naveps.bignav > div:nth-child(3) > a')
         .first()
         .attr('href');
       if (href) {
@@ -61,12 +61,12 @@ export const AnimeXin: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.bixbox.bxcl.epcheck > ul > li');
+        return j.$('div.bixbox.bxcl.epcheck > div.eplister > ul > li');
       },
       elementUrl(selector) {
         return (
           selector
-            .find('div.epl-title > a')
+            .find('a')
             .first()
             .attr('href') || ''
         );
@@ -74,7 +74,7 @@ export const AnimeXin: pageInterface = {
       elementEp(selector) {
         return AnimeXin.sync.getEpisode(
           selector
-            .find('div.epl-title > a')
+            .find('a')
             .first()
             .attr('href'),
         );
@@ -90,7 +90,7 @@ export const AnimeXin: pageInterface = {
           page.url.split('/')[4].length &&
           j.$('div.infox > h1.entry-title').length &&
           j.$('div.bixbox.bxcl.epcheck').length) ||
-        (j.$('div.item.meta > div > span.epx > a').length && j.$('div.video-content').length)
+        (j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').length && j.$('div.video-content').length)
       ) {
         page.handlePage();
       }
