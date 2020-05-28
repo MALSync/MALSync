@@ -1,7 +1,7 @@
 <template>
   <div class="mdl-grid bg-cell" style="display: block;">
     <div style="margin-bottom: 20px;">
-      This feature is still in alpha. Use at your own risk. More info
+      This feature is still in beta. Use at your own risk. More info
       <a href="https://github.com/lolamtisch/MALSync/wiki/List-Sync">Here</a>
     </div>
 
@@ -191,7 +191,13 @@ export default {
       return Object.values(this.list).filter(el => el.diff).length;
     },
     listDiff() {
-      return this.list.filter(el => el.diff);
+      const res = {};
+      for (const key in this.list) {
+        if (Object.prototype.hasOwnProperty.call(this.list, key) && this.list[key].diff) {
+          res[key] = this.list[key];
+        }
+      }
+      return res;
     },
   },
   watch: {},
