@@ -69,6 +69,7 @@ import { Samehadaku } from './Samehadaku/main';
 import { TsukiMangas } from './TsukiMangas/main';
 import { mangatx } from './mangatx/main';
 import { TRanimeizle } from './TRanimeizle/main';
+import { Anihub } from './Anihub/main';
 
 export const pages = {
   Kissanime,
@@ -142,4 +143,5 @@ export const pages = {
   TsukiMangas,
   mangatx,
   TRanimeizle,
+  Anihub,
 };

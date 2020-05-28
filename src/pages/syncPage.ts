@@ -230,6 +230,12 @@ export class syncPage {
 
   tempPlayer: any = undefined;
 
+  reset() {
+      this.url = window.location.href;
+      this.UILoaded = false;
+      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+  }
+
   async handlePage(curUrl = window.location.href) {
     let state: pageState;
     this.curState = undefined;

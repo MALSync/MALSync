@@ -324,4 +324,7 @@ module.exports = {
   TRanimeizle: {
     match: ['*://tranimeizle.com/*', '*://www.tranimeizle.com/*'],
   },
+  Anihub: {
+    match: ['*://anihub.tv/*'],
+  },
 };
