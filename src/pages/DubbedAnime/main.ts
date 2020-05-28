@@ -35,7 +35,7 @@ export const DubbedAnime: pageInterface = {
 
       const temp = episodePart.match(/-(episode|ova)-\d+-/gim);
 
-      if (!temp || temp.length === 0) return NaN;
+      if (!temp || temp.length === 0) return 1;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
