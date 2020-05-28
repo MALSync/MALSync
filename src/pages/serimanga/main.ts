@@ -21,7 +21,7 @@ export const serimanga: pageInterface = {
       return j.$('#reader > div.read-top-menu > div.rtm-logo > a.back.text-white').attr('href') || '';
     },
     getEpisode(url) {
-      return Number(url.split('/')[5]);
+      return parseInt(utils.urlPart(url, 5));
     },
     nextEpUrl(url) {
       return j
