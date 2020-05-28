@@ -21,6 +21,14 @@ function setGlobals() {
         throw 'key not defined';
       },
     },
+    storage: {
+      get(key) {
+        if (key.indexOf('continue') !== -1) return '';
+        if (key.indexOf('resume') !== -1) return '';
+        if (key.indexOf('tagSettings') !== -1) return '';
+        throw '[storage] key not found '+key;
+      }
+    },
     status: 200,
     request: {
       async xhr(post, conf, data) {

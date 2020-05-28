@@ -93,6 +93,12 @@ describe('AniList userlist', function() {
         lang() {
           return 'lang';
         },
+        get(key) {
+          if (key.indexOf('continue') !== -1) return '';
+          if (key.indexOf('resume') !== -1) return '';
+          if (key.indexOf('tagSettings') !== -1) return '';
+          throw '[storage] key not found '+key;
+        }
       },
     };
   });
