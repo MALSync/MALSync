@@ -24,7 +24,14 @@ chrome.runtime.onInstalled.addListener(function(details) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
-    // Placeholder
+    if (api.storage.version() === '0.7.6') {
+      // Set existing users to tags on.
+      api.storage.get('settings/malTags').then(res => {
+        if (typeof res === 'undefined') {
+          api.storage.set('settings/malTags', true);
+        }
+      });
+    }
   }
   chrome.alarms.clearAll();
 });
