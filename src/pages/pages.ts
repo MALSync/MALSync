@@ -21,7 +21,6 @@ import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
 import { AnimeDaisuki } from './AnimeDaisuki/main';
 import { Animefreak } from './Animefreak/main';
-import { AnimePlanet } from './AnimePlanet/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { AnimeKisa } from './AnimeKisa/main';
 import { Wakanim } from './Wakanim/main';
@@ -96,7 +95,6 @@ export const pages = {
   Aniflix,
   Animefreak,
   AnimeDaisuki,
-  AnimePlanet,
   KickAssAnime,
   AnimeKisa,
   AnimeIndo,
