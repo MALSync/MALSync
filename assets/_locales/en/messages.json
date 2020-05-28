@@ -580,7 +580,7 @@
       "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
-      "message": "If enabled: On your MyAnimeList/Anilist Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.",
+      "message": "If enabled: The streaming page that you have used last is permanently (across browsers) saved in the tags/Notes section in your list. The saved string in the tag section is ugly, only really recommended if you dont use the tag/notes section.",
       "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {

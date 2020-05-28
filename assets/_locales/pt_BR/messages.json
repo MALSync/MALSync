@@ -551,10 +551,6 @@
     "message": "Use Tags/Notas",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Se ativado: Na sua Lista de Anime MAL e na lista de favoritos no miniMAL, um link de ícone será adicionado ao último site de streaming usado que você estava usando para assistir a um anime.<br>Basta clicar no ícone para continuar assistindo o anime.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Continue assistindo links",
     "description": "Continue watching links"
