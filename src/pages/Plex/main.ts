@@ -174,8 +174,7 @@ export const Plex: pageInterface = {
 
     utils.changeDetect(
       () => {
-        page.UILoaded = false;
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        page.reset();
         const metaUrl = $(
           '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
         )

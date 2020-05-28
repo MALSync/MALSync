@@ -112,7 +112,7 @@ export const Netflix: pageInterface = {
     });
 
     function ready() {
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.reset();
       $('html').addClass('miniMAL-hide');
       if (utils.urlPart(window.location.href, 3) === 'watch') {
         utils.waitUntilTrue(

@@ -105,8 +105,7 @@ export const Vrv: pageInterface = {
   init(page) {
     function ready() {
       clearInterval(seasonInterval);
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-      page.UILoaded = false;
+      page.reset();
       if (utils.urlPart(window.location.href, 3) === 'watch') {
         getSeries(page);
       }

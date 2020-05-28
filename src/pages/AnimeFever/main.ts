@@ -67,9 +67,7 @@ export const AnimeFever: pageInterface = {
   },
   init(page) {
     function checkPage() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       if (
         page.url.split('/')[3] === 'series' &&
         typeof page.url.split('/')[4] !== undefined &&

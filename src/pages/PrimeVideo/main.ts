@@ -66,8 +66,7 @@ export const PrimeVideo: pageInterface = {
           return;
         }
         thisData = null;
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-        page.UILoaded = false;
+        page.reset();
         $('html').addClass('miniMAL-hide');
         const tempData = await getApi(utils.absoluteLink(epId.vidUrl, PrimeVideo.domain), epId.internalId);
         if (!tempData.genres.includes('av_genre_anime')) {
@@ -107,8 +106,7 @@ export const PrimeVideo: pageInterface = {
     async function ready() {
       thisData = null;
       epId = undefined;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-      page.UILoaded = false;
+      page.reset();
       $('html').addClass('miniMAL-hide');
       if (utils.urlPart(window.location.href, 3) === 'detail') {
         const tempData = await getApi(window.location.href);

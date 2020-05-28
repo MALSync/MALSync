@@ -115,9 +115,7 @@ export const Hulu: pageInterface = {
     startCheck();
 
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       con.log('url change');
       startCheck();
     });

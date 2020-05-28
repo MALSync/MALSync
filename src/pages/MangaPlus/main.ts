@@ -80,9 +80,7 @@ export const MangaPlus: pageInterface = {
       );
     }
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       if (page.url.split('/')[3] === 'viewer' || page.url.split('/')[3] === 'titles') {
         utils.waitUntilTrue(
           function() {

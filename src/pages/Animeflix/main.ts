@@ -77,9 +77,7 @@ export const Animeflix: pageInterface = {
     }
     check();
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       check();
     });
   },

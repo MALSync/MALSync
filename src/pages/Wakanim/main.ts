@@ -94,18 +94,14 @@ export const Wakanim: pageInterface = {
           return false;
         },
         function() {
-          page.url = window.location.href;
-          page.UILoaded = false;
-          $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+          page.reset();
           page.handlePage();
         },
       );
     }
 
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.reset();
       if (page.url.split('/')[6] === 'show' && page.url.split('/')[9] === 'season') {
         utils.waitUntilTrue(
           function() {

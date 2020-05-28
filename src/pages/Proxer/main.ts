@@ -152,9 +152,7 @@ export const Proxer: pageInterface = {
 
     ajaxHandle(page);
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       ajaxHandle(page);
     });
   },

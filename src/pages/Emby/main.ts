@@ -276,8 +276,7 @@ export const Emby: pageInterface = {
         con.info('Authenticated');
         utils.changeDetect(
           () => {
-            page.UILoaded = false;
-            $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+            page.reset();
             checkApi(page);
           },
           () => {
@@ -290,8 +289,7 @@ export const Emby: pageInterface = {
         );
         utils.urlChangeDetect(function() {
           if (!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)) {
-            $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-            page.UILoaded = false;
+            page.reset();
             urlChange(page);
           }
         });

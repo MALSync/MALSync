@@ -80,9 +80,7 @@ export const Aniflix: pageInterface = {
       ready();
     });
     function ready() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       if (page.url.split('/')[3] === 'show') {
         if (Aniflix.isSyncPage(page.url)) {
           utils.waitUntilTrue(

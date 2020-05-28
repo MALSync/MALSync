@@ -54,9 +54,7 @@ export const WonderfulSubs: pageInterface = {
         );
       }
       utils.urlChangeDetect(function() {
-        page.url = window.location.href;
-        page.UILoaded = false;
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        page.reset();
         if (page.url.split('/')[3] === 'watch') {
           utils.waitUntilTrue(
             function() {
@@ -119,9 +117,7 @@ let betaWonderfulSubs: pageInterface = {
       );
     }
     utils.urlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+      page.reset();
       if (page.url.split('/')[3] === 'watch') {
         utils.waitUntilTrue(
           function() {

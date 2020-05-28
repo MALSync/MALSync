@@ -91,9 +91,7 @@ export const Aniwatch: pageInterface = {
       }
     });
     function loaded() {
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-      page.url = window.location.href;
-      page.UILoaded = false;
+      page.reset();
       if (page.url.split('/')[3] === 'anime') {
         tabPage = j
           .$('.md-tab.md-active')

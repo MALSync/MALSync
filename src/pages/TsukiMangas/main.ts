@@ -85,9 +85,7 @@ export const TsukiMangas: pageInterface = {
     let oldJson = '';
 
     utils.fullUrlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+      page.reset();
       check();
     });
 

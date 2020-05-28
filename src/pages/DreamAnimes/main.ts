@@ -44,9 +44,7 @@ export const DreamAnimes: pageInterface = {
       start();
 
       utils.urlChangeDetect(function() {
-        page.url = window.location.href;
-        page.UILoaded = false;
-        $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+        page.reset();
         start();
       });
     });
