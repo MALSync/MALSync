@@ -95,8 +95,7 @@ export const DubbedAnime: pageInterface = {
         $('div.col-4.px-0 > button.subdub')
           .unbind('click')
           .click(function() {
-            j.$('#malp').remove();
-            page.UILoaded = false;
+            page.reset();
             page.handlePage();
           });
       }

@@ -131,8 +131,7 @@ export const Vrv: pageInterface = {
             }
             seasonInterval = utils.changeDetect(
               function() {
-                $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
-                page.UILoaded = false;
+                page.reset();
                 getSeries(
                   page,
                   $('.controls-select-trigger .season-info')

@@ -95,8 +95,7 @@ export const Aniflix: pageInterface = {
             },
           );
         } else {
-          j.$('#malp').remove();
-          page.UILoaded = false;
+          page.reset();
           utils.waitUntilTrue(
             function() {
               if (
@@ -115,8 +114,7 @@ export const Aniflix: pageInterface = {
               $('div.seasons-wrapper')
                 .unbind('click')
                 .click(function() {
-                  j.$('#malp').remove();
-                  page.UILoaded = false;
+                  page.reset();
                   page.handlePage();
                 });
             },

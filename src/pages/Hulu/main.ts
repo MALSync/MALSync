@@ -97,8 +97,7 @@ export const Hulu: pageInterface = {
                   'DOMSubtreeModified',
                   'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value',
                   function() {
-                    j.$('#malp').remove();
-                    page.UILoaded = false;
+                    page.reset();
                     page.handlePage();
                     $('html').removeClass('miniMAL-hide');
                   },

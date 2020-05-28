@@ -92,9 +92,7 @@ export const Twistmoe: pageInterface = {
 
       utils.changeDetect(
         () => {
-          page.url = window.location.href;
-          page.UILoaded = false;
-          $('#flashinfo-div, #flash-div-bottom, #flash-div-top').remove();
+          page.reset();
           start();
         },
         () => {
