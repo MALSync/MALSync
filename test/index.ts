@@ -18,6 +18,9 @@ window.MalSyncTest = async function() {
     }
     page.init({
       url: window.location.href,
+      reset() {
+        //do nothing
+      },
       handlePage() {
         if (page.isSyncPage(window.location.href)) {
           value.sync = true;
