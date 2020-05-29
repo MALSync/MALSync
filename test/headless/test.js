@@ -24,12 +24,13 @@ var mode = {
 
 if(process.env.CI) mode.quite = true;
 
+puppeteer.use(pluginStealth());
+puppeteer.use(AdblockerPlugin());
+
 async function getBrowser(headless = true) {
   if(browser && headless) return browser;
   if(browserFull && !headless) return browserFull;
 
-  puppeteer.use(pluginStealth());
-  puppeteer.use(AdblockerPlugin());
   let tempBrowser = await puppeteer.launch({ headless: headless });
   if(headless) {
     browser = tempBrowser;
@@ -98,7 +99,12 @@ function printLogBlock(block) {
 }
 
 async function cdn(page){
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
+    let cdnTimeout = 7000;
+    let bVersion = await page.browser().version()
+    if(!bVersion.includes('Headless')) {
+      cdnTimeout = 50000;
+    }
     setTimeout(async () => {
       const content = await page.evaluate(
         () => document.body.innerHTML,
@@ -109,7 +115,7 @@ async function cdn(page){
         reject('Captcha');
       }
       resolve();
-    }, 7000);
+    }, cdnTimeout);
   });
 }
 
@@ -121,7 +127,7 @@ async function onlineTest(url, page) {
   if (parseInt(response.headers().status) !== 200) {
     const content = await page.evaluate(() => document.body.innerHTML);
     if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
-      throw 'CAPTCHA';
+      throw 'Captcha';
     }
     throw response.headers().status;
   }
@@ -224,7 +230,7 @@ async function testPageCase(block, testPage, page){
       logC(block, testCase.url, 1);
       await Promise.race([
         singleCase(block, testCase, page),
-        new Promise((_, reject) => setTimeout(() => reject('timeout'), 45 * 1000))
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 75 * 1000))
       ]);
       logC(block, 'Passed', 2, 'green');
     }catch(e){
@@ -235,6 +241,9 @@ async function testPageCase(block, testPage, page){
         log(block, 'Expected: '+e.expected, 4);
       }else{
         logEr(block, e, 3);
+        if(e === 'Captcha') {
+          throw 'Captcha';
+        }
       }
       passed = 0;
     }
@@ -244,10 +253,10 @@ async function testPageCase(block, testPage, page){
   if(!passed && !testPage.unreliable) buildFailed = true;
 }
 
-async function loopEl(testPage) {
+async function loopEl(testPage, headless = true) {
   //if(testPage.title !== 'Kissanime') return;
   if(!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
-  const b = await getBrowser()
+  const b = await getBrowser(headless)
   const page = await b.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
 
@@ -255,7 +264,15 @@ async function loopEl(testPage) {
   try {
     await testPageCase(testPage.title, testPage, page);
   }catch(e) {
-    console.error(e);
+    if(e === 'Captcha') {
+      if(!process.env.CI && headless === true) {
+        await loopEl(testPage, false);
+      }else{
+        printLogBlock(testPage.title);
+      }
+    } else {
+      console.error(e);
+    }
   }
 
   await page.close();
@@ -302,7 +319,7 @@ async function main() {
             clearInterval(int);
             resolve();
           }
-        }, 1000)
+        }, 1)
       });
       running++;
       awaitArray.push(
