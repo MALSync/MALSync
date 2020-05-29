@@ -17,12 +17,12 @@ const debugging = false;
 let buildFailed = false;
 // var caseTitle = 'Proxer';
 var mode = {
-  'quite': false,
+  'quiet': false,
   'parallel': true,
   'blockLog': true
 }
 
-if(process.env.CI) mode.quite = true;
+if(process.env.CI) mode.quiet = true;
 
 puppeteer.use(pluginStealth());
 puppeteer.use(AdblockerPlugin());
@@ -249,7 +249,7 @@ async function testPageCase(block, testPage, page){
     }
   }
 
-  if(!mode.quite || (mode.quite && !passed)) printLogBlock(block);
+  if(!mode.quiet || (mode.quiet && !passed)) printLogBlock(block);
   if(!passed && !testPage.unreliable) buildFailed = true;
 }
 
