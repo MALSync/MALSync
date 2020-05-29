@@ -28,17 +28,12 @@ export const AnimeStreamingFR: pageInterface = {
       }
       return '';
     },
-    getMalUrl(provider) {
-      if(provider === "MAL"){
-        if (jsonData.mal_id)
-          return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-        else
-          return false;
-      }else if(provider === "ANILIST") {
+     getMalUrl(provider) {
+      if (jsonData.mal_id)
+        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
+      if(provider === "ANILIST") {
         if (jsonData.anilist_id)
           return `https://anilist.co/anime/${jsonData.anilist_id}`;
-        else
-          return false;
       }
       return false;
     },
