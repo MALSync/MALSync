@@ -973,7 +973,6 @@ export class syncPage {
         }
 
         if (this.curState) {
-
           const pres: any = {
             clientId: '606504719212478504',
             presence: {
