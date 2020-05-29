@@ -233,6 +233,7 @@ export class syncPage {
   reset() {
     this.url = window.location.href;
     this.UILoaded = false;
+    this.curState = undefined;
     $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
   }
 
@@ -971,17 +972,18 @@ export class syncPage {
           largeImageTextTemp = 'MAL-Sync';
         }
 
-        const pres: any = {
-          clientId: '606504719212478504',
-          presence: {
-            details: this.curState.title,
-            largeImageKey: largeImageKeyTemp,
-            largeImageText: largeImageTextTemp,
-            instance: true,
-          },
-        };
-
         if (this.curState) {
+
+          const pres: any = {
+            clientId: '606504719212478504',
+            presence: {
+              details: this.curState.title,
+              largeImageKey: largeImageKeyTemp,
+              largeImageText: largeImageTextTemp,
+              instance: true,
+            },
+          };
+
           if (typeof this.curState.episode !== 'undefined') {
             const ep = this.curState.episode;
             let totalEp = this.singleObj.getTotalEpisodes();
