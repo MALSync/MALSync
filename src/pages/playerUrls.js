@@ -75,7 +75,10 @@ module.exports = {
     match: ['*://*.animeflv.net/*'],
   },
   netu: {
-    match: ['*://*.hqq.tv/*'],
+    match: [
+      '*://*.hqq.tv/*',
+      '*://waaw.tv/*'
+    ],
   },
   jkanime: {
     match: ['*://*.jkanime.net/*'],
@@ -238,4 +241,8 @@ module.exports = {
   monoschinos: {
     match: ['*://reproductor.monoschinos.com/*'],
   },
+  // AnimeStreamingFR
+  uptostream: {
+    match: ['*://uptostream.com/iframe/*']
+  }
 };
