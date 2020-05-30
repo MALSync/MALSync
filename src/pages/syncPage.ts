@@ -976,7 +976,7 @@ export class syncPage {
           const pres: any = {
             clientId: '606504719212478504',
             presence: {
-              details: this.curState.title,
+              details: this.singleObj.getTitle() || this.curState.title,
               largeImageKey: largeImageKeyTemp,
               largeImageText: largeImageTextTemp,
               instance: true,
