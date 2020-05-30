@@ -75,10 +75,7 @@ module.exports = {
     match: ['*://*.animeflv.net/*'],
   },
   netu: {
-    match: [
-      '*://*.hqq.tv/*',
-      '*://waaw.tv/*'
-    ],
+    match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
   },
   jkanime: {
     match: ['*://*.jkanime.net/*'],
@@ -243,6 +240,6 @@ module.exports = {
   },
   // AnimeStreamingFR
   uptostream: {
-    match: ['*://uptostream.com/iframe/*']
-  }
+    match: ['*://uptostream.com/iframe/*'],
+  },
 };

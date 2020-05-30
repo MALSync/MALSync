@@ -143,5 +143,5 @@ export const pages = {
   mangatx,
   TRanimeizle,
   Anihub,
-  AnimeStreamingFR
+  AnimeStreamingFR,
 };
