@@ -324,4 +324,7 @@ module.exports = {
   Anihub: {
     match: ['*://anihub.tv/*'],
   },
+  AnimeStreamingFR: {
+    match: ['*://www.animestreamingfr.fr/anime/*']
+  }
 };

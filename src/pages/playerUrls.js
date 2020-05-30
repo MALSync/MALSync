@@ -75,7 +75,10 @@ module.exports = {
     match: ['*://*.animeflv.net/*'],
   },
   netu: {
-    match: ['*://*.hqq.tv/*'],
+    match: [
+      '*://*.hqq.tv/*',
+      '*://waaw.tv/*'
+    ],
   },
   jkanime: {
     match: ['*://*.jkanime.net/*'],
@@ -119,7 +122,7 @@ module.exports = {
     match: ['*://animedaisuki.moe/embed/*'],
   },
   Wakanim: {
-    match: ['*://wakanim.tv/*/*/*/embeddedplayer/*'],
+    match: ['*://*.wakanim.tv/*/*/*/embeddedplayer/*'],
   },
   superitu: {
     match: ['*://superitu.com/embed/*'],
@@ -238,4 +241,8 @@ module.exports = {
   monoschinos: {
     match: ['*://reproductor.monoschinos.com/*'],
   },
+  // AnimeStreamingFR
+  uptostream: {
+    match: ['*://uptostream.com/iframe/*']
+  }
 };
