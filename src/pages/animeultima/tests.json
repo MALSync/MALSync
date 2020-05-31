@@ -8,7 +8,7 @@
       "expected": {
         "sync": true,
         "title": "No Game No Life",
-        "identifier": "no-game-no-life_797937",
+        "identifier": "no-game-no-life_187175",
         "overviewUrl": "https://www10.animeultima.eu/a/no-game-no-life_797937",
         "episode": 4,
         "uiSelector": false
@@ -19,7 +19,7 @@
       "expected": {
         "sync": false,
         "title": "No Game No Life",
-        "identifier": "no-game-no-life_797937",
+        "identifier": "no-game-no-life_187175",
         "uiSelector": true
       }
     }
