@@ -17,62 +17,62 @@ const debugging = false;
 let buildFailed = false;
 // var caseTitle = 'Proxer';
 var mode = {
-  'quiet': false,
-  'parallel': true,
-  'blockLog': true
-}
+  quiet: false,
+  parallel: true,
+  blockLog: true,
+};
 
-if(process.env.CI) mode.quiet = true;
+if (process.env.CI) mode.quiet = true;
 
 puppeteer.use(pluginStealth());
 puppeteer.use(AdblockerPlugin());
 
 async function getBrowser(headless = true) {
-  if(browser && headless) return browser;
-  if(browserFull && !headless) return browserFull;
+  if (browser && headless) return browser;
+  if (browserFull && !headless) return browserFull;
 
   let tempBrowser = await puppeteer.launch({ headless: headless });
-  if(headless) {
+  if (headless) {
     browser = tempBrowser;
-  }else{
+  } else {
     browserFull = tempBrowser;
   }
   return tempBrowser;
 }
 
 async function closeBrowser() {
-  if(browser) await browser.close();
-  if(browserFull) await browserFull.close();
+  if (browser) await browser.close();
+  if (browserFull) await browserFull.close();
 }
 
 var logBlocks = {};
-function log(block, text, indetion = 0){
-  for(let i = 0; i <= indetion; i++){
-    text = '  '+text;
+function log(block, text, indetion = 0) {
+  for (let i = 0; i <= indetion; i++) {
+    text = '  ' + text;
   }
-  if(mode.blockLog){
-    if(!logBlocks[block]) logBlocks[block] = [];
+  if (mode.blockLog) {
+    if (!logBlocks[block]) logBlocks[block] = [];
     logBlocks[block].push(text);
-  }else{
+  } else {
     console.log(text);
   }
 }
 
-function logEr(block, text, indetion = 0){
-  for(let i = 0; i <= indetion; i++){
-    text = '  '+text;
+function logEr(block, text, indetion = 0) {
+  for (let i = 0; i <= indetion; i++) {
+    text = '  ' + text;
   }
-  if(mode.blockLog){
-    if(!logBlocks[block]) logBlocks[block] = [];
+  if (mode.blockLog) {
+    if (!logBlocks[block]) logBlocks[block] = [];
     logBlocks[block].push(text);
-  }else{
+  } else {
     console.error(text);
   }
 }
 
-function logC(block, text, indetion = 0, color = 'blue'){
+function logC(block, text, indetion = 0, color = 'blue') {
   let nColor = 0;
-  switch(color) {
+  switch (color) {
     case 'red':
       nColor = 31;
       break;
@@ -86,32 +86,28 @@ function logC(block, text, indetion = 0, color = 'blue'){
       nColor = 33;
       break;
   }
-  text = '\x1b['+nColor+'m'+text+'\x1b[0m';
+  text = '\x1b[' + nColor + 'm' + text + '\x1b[0m';
   log(block, text, indetion);
 }
 
 function printLogBlock(block) {
-  if(mode.blockLog && logBlocks[block]){
+  if (mode.blockLog && logBlocks[block]) {
     logBlocks[block].forEach(el => {
       console.log(el);
-    })
+    });
   }
 }
 
-async function cdn(page){
+async function cdn(page) {
   return new Promise(async (resolve, reject) => {
     let cdnTimeout = 7000;
-    let bVersion = await page.browser().version()
-    if(!bVersion.includes('Headless')) {
+    let bVersion = await page.browser().version();
+    if (!bVersion.includes('Headless')) {
       cdnTimeout = 50000;
     }
     setTimeout(async () => {
-      const content = await page.evaluate(
-        () => document.body.innerHTML,
-      );
-      if (
-        content.indexOf('Why do I have to complete a CAPTCHA?') !== -1
-      ) {
+      const content = await page.evaluate(() => document.body.innerHTML);
+      if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
         reject('Captcha');
       }
       resolve();
@@ -120,9 +116,7 @@ async function cdn(page){
 }
 
 async function onlineTest(url, page) {
-  const [response] = await Promise.all([
-    await page.goto(url, { waitUntil: 'networkidle0'}),
-  ]);
+  const [response] = await Promise.all([await page.goto(url, { waitUntil: 'networkidle0' })]);
 
   if (parseInt(response.headers().status) !== 200) {
     const content = await page.evaluate(() => document.body.innerHTML);
@@ -134,24 +128,21 @@ async function onlineTest(url, page) {
 }
 
 async function singleCase(block, test, page, retry = 0) {
-  const [response] = await Promise.all([
-    page.goto(test.url, { timeout: 0 }),
-    page.waitForNavigation({ timeout: 0 }),
-  ]);
+  const [response] = await Promise.all([page.goto(test.url, { timeout: 0 }), page.waitForNavigation({ timeout: 0 })]);
 
   await page
     .addScriptTag({
-      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8')
+      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8'),
     })
     .catch(() => {
       throw 'jquery could not be loaded';
-  });
+    });
 
   await page.addScriptTag({ content: script });
   const text = await page.evaluate(() => MalSyncTest());
 
   if (text === 'retry') {
-    if(retry > 2) throw 'Max retries';
+    if (retry > 2) throw 'Max retries';
     log(block, 'Retry', 2);
     await cdn(page);
     retry++;
@@ -160,80 +151,62 @@ async function singleCase(block, test, page, retry = 0) {
 
   expect(text.sync, 'Sync').to.equal(test.expected.sync);
   expect(text.title, 'Title').to.equal(test.expected.title);
-  expect(text.identifier, 'Identifier').to.equal(
-    test.expected.identifier,
-  );
+  expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
     var textOverview =
-      typeof text.overviewUrl !== 'undefined'
-        ? text.overviewUrl.replace(/www[^.]*\./, '')
-        : text.overviewUrl;
+      typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
     var testOverview =
       typeof test.expected.overviewUrl !== 'undefined'
         ? test.expected.overviewUrl.replace(/www[^.]*\./, '')
         : test.expected.overviewUrl;
-    expect(textOverview, 'Overview Url').to.equal(
-      test.expected.overviewUrl.replace(/www[^.]*\./, ''),
-    );
-    var textOverview =
-      text.nextEpUrl
-        ? text.nextEpUrl.replace(/www[^.]*\./, '')
-        : '';
-    var testOverview =
-      test.expected.nextEpUrl
-        ? test.expected.nextEpUrl.replace(/www[^.]*\./, '')
-        : '';
+    expect(textOverview, 'Overview Url').to.equal(test.expected.overviewUrl.replace(/www[^.]*\./, ''));
+    var textOverview = text.nextEpUrl ? text.nextEpUrl.replace(/www[^.]*\./, '') : '';
+    var testOverview = test.expected.nextEpUrl ? test.expected.nextEpUrl.replace(/www[^.]*\./, '') : '';
     expect(textOverview, 'Next Episode').to.equal(testOverview);
   }
   if (typeof text.uiSelector !== 'undefined') {
-    expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(
-      test.expected.uiSelector,
-    );
+    expect(text.uiSelector === 'TEST-UI', 'UI').to.equal(test.expected.uiSelector);
   }
-  if (
-    typeof text.epList !== 'undefined' &&
-    typeof test.expected.epList !== 'undefined'
-  ) {
+  if (typeof text.epList !== 'undefined' && typeof test.expected.epList !== 'undefined') {
     for (const key in test.expected.epList) {
-      expect(
-        test.expected.epList[key].replace(/www[^.]*\./, ''),
-        `EP${key}`,
-      ).to.equal(text.epList[key].replace(/www[^.]*\./, ''));
+      expect(test.expected.epList[key].replace(/www[^.]*\./, ''), `EP${key}`).to.equal(
+        text.epList[key].replace(/www[^.]*\./, ''),
+      );
     }
   }
 }
 
-async function testPageCase(block, testPage, page){
+async function testPageCase(block, testPage, page) {
   log(block, '');
   log(block, testPage.title);
-  if(testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
+  if (testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
   let passed = 1;
 
   try {
     await onlineTest(testPage.url, page);
     logC(block, 'Online', 1);
-  }catch(e){
+  } catch (e) {
     logC(block, 'Offline', 1);
     log(block, e, 2);
   }
-  for (const testCase of testPage.testCases){
+  for (const testCase of testPage.testCases) {
     try {
       logC(block, testCase.url, 1);
       await Promise.race([
         singleCase(block, testCase, page),
-        new Promise((_, reject) => setTimeout(() => reject('timeout'), 75 * 1000))
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 75 * 1000)),
       ]);
       logC(block, 'Passed', 2, 'green');
-    }catch(e){
+    } catch (e) {
       logC(block, 'Failed', 2, 'red');
-      if(typeof e.showDiff !== 'undefined') {
+      if (typeof e.showDiff !== 'undefined') {
         log(block, e.message, 3);
-        log(block, 'Recieved: '+e.actual, 4);
-        log(block, 'Expected: '+e.expected, 4);
-      }else{
+        log(block, 'Recieved: ' + e.actual, 4);
+        log(block, 'Expected: ' + e.expected, 4);
+      } else {
         logEr(block, e, 3);
-        if(e === 'Captcha') {
+        if (e === 'Captcha') {
           throw 'Captcha';
         }
       }
@@ -241,25 +214,24 @@ async function testPageCase(block, testPage, page){
     }
   }
 
-  if(!mode.quiet || (mode.quiet && !passed)) printLogBlock(block);
-  if(!passed && !testPage.unreliable) buildFailed = true;
+  if (!mode.quiet || (mode.quiet && !passed)) printLogBlock(block);
+  if (!passed && !testPage.unreliable) buildFailed = true;
 }
 
 async function loopEl(testPage, headless = true) {
   //if(testPage.title !== 'Kissanime') return;
-  if(!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
-  const b = await getBrowser(headless)
+  if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
+  const b = await getBrowser(headless);
   const page = await b.newPage();
   await page.setViewport({ width: 1920, height: 1080 });
 
-
   try {
     await testPageCase(testPage.title, testPage, page);
-  }catch(e) {
-    if(e === 'Captcha') {
-      if(!process.env.CI && headless === true) {
+  } catch (e) {
+    if (e === 'Captcha') {
+      if (!process.env.CI && headless === true) {
         await loopEl(testPage, false);
-      }else{
+      } else {
         printLogBlock(testPage.title);
       }
     } else {
@@ -268,32 +240,35 @@ async function loopEl(testPage, headless = true) {
   }
 
   await page.close();
-
 }
 
 async function initTestsArray() {
   new Promise((resolve, reject) => {
-    dir.readFiles(__dirname+'/../../src/', {
-      match: /^tests.json$/
-    }, function(err, content, next) {
-      if (err) throw err;
+    dir.readFiles(
+      __dirname + '/../../src/',
+      {
+        match: /^tests.json$/,
+      },
+      function(err, content, next) {
+        if (err) throw err;
 
-      try {
-        eval("var s = " + content.replace(/^[^{]*/g,''));
-        testsArray.push(s);
-      }catch(e) {
-        console.log(content);
-        throw e;
-      }
+        try {
+          eval('var s = ' + content.replace(/^[^{]*/g, ''));
+          testsArray.push(s);
+        } catch (e) {
+          console.log(content);
+          throw e;
+        }
 
-      next();
-    },
-    function(err, files){
-      if (err) throw err;
-      console.log('Test files:',files);
-      resolve();
-    });
-  })
+        next();
+      },
+      function(err, files) {
+        if (err) throw err;
+        console.log('Test files:', files);
+        resolve();
+      },
+    );
+  });
 }
 
 main();
@@ -301,33 +276,33 @@ async function main() {
   let awaitArray = [];
   let running = 0;
   await initTestsArray();
-  if(mode.parallel) {
-    await getBrowser()
-    for (const testPage of testsArray){
+  if (mode.parallel) {
+    await getBrowser();
+    for (const testPage of testsArray) {
       await new Promise((resolve, reject) => {
         let int;
         int = setInterval(() => {
-          if(running < 20) {
+          if (running < 20) {
             clearInterval(int);
             resolve();
           }
-        }, 1)
+        }, 1);
       });
       running++;
       awaitArray.push(
         loopEl(testPage).then(() => {
           running--;
-        })
+        }),
       );
     }
     await Promise.all(awaitArray);
-  }else{
-    for (const testPage of testsArray){
+  } else {
+    for (const testPage of testsArray) {
       await loopEl(testPage);
     }
   }
 
   await closeBrowser();
-  if(buildFailed) process.exit(1);
+  if (buildFailed) process.exit(1);
   process.exit();
 }
