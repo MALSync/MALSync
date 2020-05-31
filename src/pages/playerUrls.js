@@ -242,4 +242,8 @@ module.exports = {
   uptostream: {
     match: ['*://uptostream.com/iframe/*'],
   },
+  // AnimeStreamingFR
+  youtube: {
+    match: ['*://*.youtube.com/embed/*']
+  },
 };
