@@ -1,6 +1,7 @@
 {
   "title": "animeplanet",
   "url": "https://www.anime-planet.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.anime-planet.com/anime/the-rising-of-the-shield-hero/videos/229861",
