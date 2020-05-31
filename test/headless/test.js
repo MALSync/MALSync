@@ -141,19 +141,11 @@ async function singleCase(block, test, page, retry = 0) {
 
   await page
     .addScriptTag({
-      url:
-        'http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-    })
-    .catch(() => {
-      return page.addScriptTag({
-        url:
-          'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
-      })
-
+      content: fs.readFileSync(`./node_modules/jquery/dist/jquery.min.js`, 'utf8')
     })
     .catch(() => {
       throw 'jquery could not be loaded';
-    });
+  });
 
   await page.addScriptTag({ content: script });
   const text = await page.evaluate(() => MalSyncTest());
