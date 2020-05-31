@@ -7,24 +7,9 @@
       "expected": {
         "sync": false,
         "title": "No Game No Life",
-        "identifier": "no-game-no-life",
+        "identifier": "No Game No Life",
         "uiSelector": true,
-        "epList": {
-          "5´": "https://animepahe.com/anime/no-game-no-life/52827"
-        }
       }
     },
-    {
-      "url": "https://animepahe.com/anime/no-game-no-life/52832",
-      "expected": {
-        "sync": true,
-        "title": "No Game No Life",
-        "identifier": "no-game-no-life",
-        "overviewUrl": "https://animepahe.com/anime/no-game-no-life",
-        "nextEpUrl": "https://animepahe.com/anime/no-game-no-life/52834",
-        "episode": 8,
-        "uiSelector": true
-      }
-    }
   ]
 }
