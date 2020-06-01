@@ -1,42 +1,43 @@
-@import "./../pages";
+@import './../pages';
 
 @textColor: inherit;
 @activeEp: #cee1ff;
 
-#malp{
-  margin: 20px 0px;
-  span{
+#malp {
+  margin: 20px 0;
+  span {
     color: @textColor;
   }
   select > * {
     background-color: white !important;
   }
-  #MalData{
+  #MalData {
     flex-flow: column;
     .info {
       font-weight: bold;
     }
-    #malStatus, #malUserRating {
+    #malStatus,
+    #malUserRating {
       width: initial !important;
     }
   }
 }
 
 @media only screen and (max-width: 1440px) {
-  #malp{
-    .MalLogin{
+  #malp {
+    .MalLogin {
       width: 100%;
     }
   }
 }
 
-.MALSyncDark{
-  #MalData{
-    select option{
+.MALSyncDark {
+  #MalData {
+    select option {
       background-color: black !important;
     }
   }
-  .mal-sync-active{
+  .mal-sync-active {
     background-color: #0e1d35;
   }
 }
