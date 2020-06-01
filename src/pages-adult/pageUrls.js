@@ -1,52 +1,32 @@
 module.exports = {
   anilist: {
-    match: [
-      '*://anilist.co/404'
-    ]
+    match: ['*://anilist.co/404'],
   },
   kitsu: {
-    match: [
-      '*://kitsu.io/404?mal-sync=authentication*'
-    ]
+    match: ['*://kitsu.io/404?mal-sync=authentication*'],
   },
   simkl: {
-    match: [
-      '*://simkl.com/apps/chrome/mal-sync/connected*'
-    ]
+    match: ['*://simkl.com/apps/chrome/mal-sync/connected*'],
   },
   hanime: {
-    match : [
-      '*://*.hanime.tv/*'
-    ]
+    match: ['*://*.hanime.tv/*'],
   },
   HentaiHaven: {
-    match : [
-      '*://hentaihaven.org/*'
-    ]
+    match: ['*://hentaihaven.org/*'],
   },
   Hentaigasm: {
-    match : [
-      '*://hentaigasm.com/*'
-    ]
+    match: ['*://hentaigasm.com/*'],
   },
   KissHentai: {
-    match: [
-      '*://kisshentai.net/Hentai/*'
-    ]
+    match: ['*://kisshentai.net/Hentai/*'],
   },
   UnderHentai: {
-    match: [
-      '*://www.underhentai.net/*'
-    ]
+    match: ['*://www.underhentai.net/*'],
   },
   HentaiKisa: {
-    match: [
-      '*://hentaikisa.com/*'
-    ]
+    match: ['*://hentaikisa.com/*'],
   },
   Nhentai: {
-    match: [
-      '*://nhentai.net/g/*'
-    ]
+    match: ['*://nhentai.net/g/*'],
   },
 };

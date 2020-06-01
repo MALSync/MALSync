@@ -1,0 +1,15 @@
+{
+  "title": "tmofans",
+  "url": "https://lectortmo.com/",
+  "testCases": [
+    {
+      "url": "https://lectortmo.com/library/manga/50/one-piece",
+      "expected": {
+        "sync": false,
+        "title": "One Piece",
+        "identifier": "one-piece",
+        "uiSelector": true
+      }
+    }
+  ]
+}

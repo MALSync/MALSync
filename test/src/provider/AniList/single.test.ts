@@ -1,15 +1,14 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/AniList/single';
-import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/definitions';
-
-import {generalSingleTests} from './../generalSingleTests.exclude';
-
 import * as request from 'request';
+import { Single } from '../../../../src/_provider/AniList/single';
+import * as utils from '../../../../src/utils/general';
+import * as def from '../../../../src/_provider/definitions';
 
-setGlobals()
+import { generalSingleTests } from '../generalSingleTests.exclude';
+
+setGlobals();
 function setGlobals() {
-  global.con = require('./../../../../src/utils/console');
+  global.con = require('../../../../src/utils/console');
   global.con.log = function() {};
   global.con.error = function() {};
   global.con.info = function() {};
@@ -17,32 +16,40 @@ function setGlobals() {
   global.api = {
     token: process.env.ANILIST_API_KEY,
     settings: {
-      get: function(key) {
-        if('anilistToken') return global.api.token;
+      get(key) {
+        if ('anilistToken') return global.api.token;
         throw 'key not defined';
+      },
+    },
+    storage: {
+      get(key) {
+        if (key.indexOf('continue') !== -1) return '';
+        if (key.indexOf('resume') !== -1) return '';
+        if (key.indexOf('tagSettings') !== -1) return '';
+        throw '[storage] key not found '+key;
       }
     },
     status: 200,
     request: {
-      xhr: async function(post, conf, data) {
+      async xhr(post, conf, data) {
         return new Promise(function(resolve, reject) {
-          var options = {
+          const options = {
             url: conf.url,
             headers: conf.headers,
-            body: conf.data
-          }
+            body: conf.data,
+          };
           request.post(options, (error, response, body) => {
             resolve({
               responseText: body,
-              status: global.api.status
-            })
+              status: global.api.status,
+            });
           });
         });
-      }
+      },
     },
-  }
+  };
 
-  global.btoa = (input) => input;
+  global.btoa = input => input;
 
   global.utils = utils;
 
@@ -72,7 +79,7 @@ function setGlobals() {
         url: 'https://simkl.com/anime/46128/no-game-no-life',
         error: true,
         type: 'anime',
-      }
+      },
     ],
     apiTest: {
       defaultUrl: {
@@ -82,7 +89,8 @@ function setGlobals() {
         title: 'One Piece',
         eps: 0,
         vol: 0,
-        image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
+        image:
+          'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx21-tXMN3Y20PIL9.jpg',
         rating: 83,
         cacheKey: 21,
       },
@@ -90,12 +98,13 @@ function setGlobals() {
         url: 'https://anilist.co/anime/10083/Shiki-Specials/',
         displayUrl: 'https://anilist.co/anime/10083',
         malUrl: 'https://myanimelist.net/anime/10083/Shiki%20Specials',
-        title: "Shiki Specials",
+        title: 'Shiki Specials',
         eps: 2,
         vol: 0,
       },
       noMalEntry: {
-        url: 'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
+        url:
+          'https://anilist.co/manga/115067/Kagami-no-Kuni-no-Iris-SCP-Foundation/',
         displayUrl: 'https://anilist.co/manga/115067',
         title: 'Kagami no Kuni no Iris: SCP Foundation',
         eps: 0,
@@ -116,13 +125,13 @@ function setGlobals() {
       hasTotalEp: {
         url: 'https://anilist.co/anime/20954/Koe-no-Katachi/',
       },
-    }
-  }
+    },
+  };
 }
 
-describe('AniList single', function () {
-  before(function () {
+describe('AniList single', function() {
+  before(function() {
     setGlobals();
-  })
+  });
   generalSingleTests(Single, setGlobals);
 });

@@ -1,0 +1,34 @@
+  // IconCaptcha in use
+  // Should only be used with "headless": false
+  // and manuel captcha validation is required
+  {
+    "title": "TRanimeizle",
+    "url": "https://www.tranimeizle.com",
+    "enabled": false,
+    "testCases": [
+      {
+        "url": "https://www.tranimeizle.com/anime/one-punch-man-izle-hd",
+        "expected": {
+          "sync": false,
+          "title": "One Punch Man İzle",
+          "identifier": "one-punch-man-izle-hd",
+          "uiSelector": true,
+          "epList": {
+            "9": "https://www.tranimeizle.com/one-punch-man-9-bolum-izle"
+          }
+        }
+      },
+      {
+        "url": "https://www.tranimeizle.com/one-punch-man-2-bolum-izle",
+        "expected": {
+          "sync": true,
+          "title": "One Punch Man İzle",
+          "identifier": "one-punch-man-izle-hd",
+          "overviewUrl": "https://www.tranimeizle.com/anime/one-punch-man-izle-hd",
+          "nextEpUrl": "https://www.tranimeizle.com/one-punch-man-3-bolum-izle",
+          "episode": 2,
+          "uiSelector": false,
+        }
+      },
+    ]
+  }

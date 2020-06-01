@@ -1,22 +1,23 @@
 import { expect } from 'chai';
-import {userlist} from './../../../../src/_provider/Simkl/list';
-import {generalListTests} from './../generalTests.exclude';
+import { userlist } from '../../../../src/_provider/Simkl/list';
+import { generalListTests } from '../generalTests.exclude';
 
-global.con = require('./../../../../src/utils/console');
+global.con = require('../../../../src/utils/console');
+
 global.con.log = function() {};
 global.con.error = function() {};
 global.con.info = function() {};
 
-var responses = {
+const responses = {
   activities: {
-    data: JSON.stringify(require("./api/activities.json")),
+    data: JSON.stringify(require('./api/activities.json')),
   },
-  "all-items": {
-    data: JSON.stringify(require("./api/all-items.json"))
+  'all-items': {
+    data: JSON.stringify(require('./api/all-items.json')),
   },
 };
 
-var elements = [
+const elements = [
   {
     malId: '8937',
     uid: 38165,
@@ -49,52 +50,49 @@ var elements = [
   },
 ];
 
-global.api = {}
+global.api = {};
 
 function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Simkl userlist', function () {
-  before(function () {
+describe('Simkl userlist', function() {
+  before(function() {
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
-          if(conf.url.indexOf('sync/activities') !== -1) {
+        async xhr(post, conf, data) {
+          if (conf.url.indexOf('sync/activities') !== -1) {
             return {
               responseText: getResponse('activities'),
-              status: 200
+              status: 200,
             };
           }
-          if(conf.url.indexOf('all-items') !== -1) {
+          if (conf.url.indexOf('all-items') !== -1) {
             return {
               responseText: getResponse('all-items'),
-              status: 200
+              status: 200,
             };
           }
 
           throw conf.url;
-        }
+        },
       },
       settings: {
-        get: function() {
+        get() {
           return '';
-        }
+        },
       },
       storage: {
-        lang: function() {
+        lang() {
           return 'lang';
         },
-        get: function(key) {
+        get(key) {
           return '';
         },
-        set: function(key, val) {
-        }
-      }
-
-    }
+        set(key, val) {},
+      },
+    };
   });
 
-  generalListTests(userlist, elements, responses, {'noContinueCall': true});
-
+  generalListTests(userlist, elements, responses, { noContinueCall: true });
 });

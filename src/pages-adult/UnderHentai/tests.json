@@ -1,0 +1,26 @@
+{
+  "title": "UnderHentai", // nsfw
+  "url": "https://www.underhentai.net/",
+  "testCases": [
+    // {
+    //   url: 'https://www.underhentai.net/watch/?id=647&ep=2',
+    //   expected: {
+    //     sync: true,
+    //     title: 'Resort Boin',
+    //     identifier: 'resort-boin',
+    //     overviewUrl: 'https://www.underhentai.net/resort-boin',
+    //     episode: 2,
+    //     uiSelector: false,
+    //   }
+    // },
+    {
+      "url": "https://www.underhentai.net/resort-boin/",
+      "expected": {
+        "sync": false,
+        "title": "Resort Boin",
+        "identifier": "resort-boin",
+        "uiSelector": true
+      }
+    }
+  ]
+}

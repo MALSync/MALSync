@@ -1,167 +1,96 @@
 module.exports = {
   openload: {
-    match: [
-      '*://*.openload.co/*',
-      '*://*.openload.pw/*',
-    ]
+    match: ['*://*.openload.co/*', '*://*.openload.pw/*'],
   },
   streamango: {
-    match: [
-      '*://*.streamango.com/*',
-    ]
+    match: ['*://*.streamango.com/*'],
   },
   mp4upload: {
-    match: [
-      '*://*.mp4upload.com/*',
-    ]
+    match: ['*://*.mp4upload.com/*'],
   },
   mcloud: {
-    match: [
-      '*://*.mcloud.to/*',
-      '*://*.mcloud2.to/*',
-    ]
+    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*'],
   },
   prettyfast: {
-    match: [
-      '*://*.prettyfast.to/*',
-    ]
+    match: ['*://*.prettyfast.to/*'],
   },
   rapidvideo: {
-    match: [
-      '*://*.rapidvideo.com/*',
-      '*://*.rapidvid.to/*'
-    ]
+    match: ['*://*.rapidvideo.com/*', '*://*.rapidvid.to/*'],
   },
   crunchyroll: {
-    match: [
-      '*://*.static.crunchyroll.com/*',
-    ]
+    match: ['*://*.static.crunchyroll.com/*'],
   },
   Vrv: {
-    match: [
-      '*://*.static.vrv.co/*',
-    ]
+    match: ['*://*.static.vrv.co/*'],
   },
   vidstreaming: {
-    match: [
-      '*://*.vidstreaming.io/*',
-      '*://*.vidstreaming.me/*'
-    ]
+    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*'],
   },
   xstreamcdn: {
-    match: [
-      '*://*.xstreamcdn.com/*',
-      '*://*.gcloud.live/*'
-    ]
+    match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
   },
   oload: {
-    match: [
-      '*://*.oload.tv/*',
-    ]
+    match: ['*://*.oload.tv/*'],
   },
   mail: {
-    match: [
-      '*://*.mail.ru/*',
-    ]
+    match: ['*://*.mail.ru/*'],
   },
   myvi: {
-    match: [
-      '*://*.myvi.ru/*',
-    ]
+    match: ['*://*.myvi.ru/*'],
   },
   sibnet: {
-    match: [
-      '*://*.sibnet.ru/*',
-    ]
+    match: ['*://*.sibnet.ru/*'],
   },
   tune: {
-    match: [
-      '*://*.tune.pk/*',
-    ]
+    match: ['*://*.tune.pk/*'],
   },
   vimple: {
-    match: [
-      '*://*.vimple.ru/*',
-    ]
+    match: ['*://*.vimple.ru/*'],
   },
   href: {
-    match: [
-      '*://*.href.li/*',
-      '*://*.vk.com/*'
-    ]
+    match: ['*://*.href.li/*', '*://*.vk.com/*'],
   },
   cloudvideo: {
-    match: [
-      '*://*.cloudvideo.tv/*',
-    ]
+    match: ['*://*.cloudvideo.tv/*'],
   },
   fembed: {
-    match: [
-      '*://*.fembed.net/*',
-      '*://*.fembed.com/*',
-      '*://*.animeproxy.info/*',
-      '*://*.feurl.com/*'
-    ]
+    match: ['*://*.fembed.net/*', '*://*.fembed.com/*', '*://*.animeproxy.info/*', '*://*.feurl.com/*'],
   },
   youpload: {
-    match: [
-      '*://*.youpload.co/*',
-    ]
+    match: ['*://*.youpload.co/*'],
   },
   yourupload: {
-    match: [
-      '*://*.yourupload.com/*',
-    ]
+    match: ['*://*.yourupload.com/*'],
   },
   vidlox: {
-    match: [
-      '*://*.vidlox.me/*',
-    ]
+    match: ['*://*.vidlox.me/*'],
   },
   kwik: {
-    match: [
-      '*://*.kwik.cx/*',
-    ]
+    match: ['*://*.kwik.cx/*'],
   },
   mega: {
-    match: [
-      '*://*.mega.nz/*',
-    ]
+    match: ['*://*.mega.nz/*'],
   },
   animeflv: {
-    match: [
-      '*://*.animeflv.net/*',
-    ]
+    match: ['*://*.animeflv.net/*'],
   },
   netu: {
-    match: [
-      '*://*.hqq.tv/*',
-    ]
+    match: ['*://*.hqq.tv/*', '*://waaw.tv/*'],
   },
   jkanime: {
-    match: [
-      '*://*.jkanime.net/*',
-    ]
+    match: ['*://*.jkanime.net/*'],
   },
   ok: {
-    match: [
-      '*://*.ok.ru/*',
-    ]
+    match: ['*://*.ok.ru/*'],
   },
   novelplanet: {
-    match: [
-      '*://*.novelplanet.me/*'
-    ]
+    match: ['*://*.novelplanet.me/*'],
   },
   proxer: {
-    match: [
-      '*://*.stream.proxer.me/*',
-    ]
+    match: ['*://*.stream.proxer.me/*'],
   },
   Verystream: {
-    match: [
-      '*://verystream.com/*'
-    ]
+    match: ['*://verystream.com/*'],
   },
   animeultima: {
     match: [
@@ -169,223 +98,148 @@ module.exports = {
       '*://*.animeultima.eu/faststream/*',
       '*://*.animeultima.to/e/*',
       '*://*.animeultima.to/faststream/*',
-    ]
+    ],
   },
   vidoza: {
-    match: [
-      '*://*.vidoza.net/*'
-    ]
+    match: ['*://*.vidoza.net/*'],
   },
   crazyload: {
-    match: [
-      '*://crazyload.co/*'
-    ]
+    match: ['*://crazyload.co/*'],
   },
   gounlimited: {
-    match: [
-      '*://gounlimited.to/*'
-    ]
+    match: ['*://gounlimited.to/*'],
   },
   anistream: {
-    match: [
-      '*://www.ani-stream.com/*'
-    ]
+    match: ['*://www.ani-stream.com/*'],
   },
   aniflex: {
-    match: [
-      '*://flex.aniflex.org/public/dist/*'
-    ]
+    match: ['*://flex.aniflex.org/public/dist/*'],
   },
   animedaisuki: {
-    match: [
-      '*://animedaisuki.moe/embed/*'
-    ]
+    match: ['*://animedaisuki.moe/embed/*'],
   },
   Wakanim: {
-    match: [
-      '*://wakanim.tv/*/*/*/embeddedplayer/*',
-    ]
+    match: ['*://*.wakanim.tv/*/*/*/embeddedplayer/*'],
   },
   superitu: {
-    match: [
-      '*://superitu.com/embed/*',
-    ]
+    match: ['*://superitu.com/embed/*'],
   },
   dailymotion: {
-    match: [
-      '*://www.dailymotion.com/embed/*',
-    ]
+    match: ['*://www.dailymotion.com/embed/*'],
   },
-  //gogoanime
+  // gogoanime
   theVideo: {
-    match: [
-      '*://vev.io/embed/*',
-      '*://vev.red/embed/*',
-    ]
+    match: ['*://vev.io/embed/*', '*://vev.red/embed/*'],
   },
   Funimation: {
-    match: [
-      '*://www.funimation.com/player/*'
-    ]
+    match: ['*://www.funimation.com/player/*'],
   },
-  //voiranime
+  // voiranime
   jwpstream: {
-    match: [
-      '*://jwpstream.com/jwps/yplayer.php*'
-    ]
+    match: ['*://jwpstream.com/jwps/yplayer.php*'],
   },
-  //voiranime
+  // voiranime
   vaplayer: {
-    match: [
-      '*://www.vaplayer.xyz/v/*'
-    ]
+    match: ['*://www.vaplayer.xyz/v/*'],
   },
-  //dubbedanime
+  // dubbedanime
   mp4sh: {
-    match: [
-      '*://mp4.sh/embed/*'
-    ]
+    match: ['*://mp4.sh/embed/*'],
   },
-  //animeultima
+  // animeultima
   mystream: {
-    match: [
-      '*://embed.mystream.to/*'
-    ]
+    match: ['*://embed.mystream.to/*'],
   },
-  //animeultima
+  // animeultima
   bitchute: {
-    match: [
-      '*://*.bitchute.com/embed/*'
-    ]
+    match: ['*://*.bitchute.com/embed/*'],
   },
-  //animeultima
+  // animeultima
   streamcherry: {
-    match: [
-      '*://*.streamcherry.com/embed/*'
-    ]
+    match: ['*://*.streamcherry.com/embed/*'],
   },
-  //anime-odcinki
+  // anime-odcinki
   clipwatching: {
-    match: [
-      '*://*.clipwatching.com/*'
-    ]
+    match: ['*://*.clipwatching.com/*'],
   },
-  //anime-odcinki
+  // anime-odcinki
   flix555: {
-    match: [
-      '*://*.flix555.com/*'
-    ]
+    match: ['*://*.flix555.com/*'],
   },
-  //anime-odcinki
+  // anime-odcinki
   vshare: {
-    match: [
-      '*://*.vshare.io/v/*'
-    ]
+    match: ['*://*.vshare.io/v/*'],
   },
-  //kissanime/9anime
+  // kissanime/9anime
   hydrax: {
-    match: [
-      '*://*.replay.watch/*',
-      '*://*.playhydrax.com/*',
-      '*://hydrax.net/*'
-    ]
+    match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*'],
   },
-  //animeflv
+  // animeflv
   streamium: {
-    match: [
-      '*://*.streamium.xyz/*'
-    ]
+    match: ['*://*.streamium.xyz/*'],
   },
-  //kickassanime
+  // kickassanime
   animopacestream: {
-    match: [
-      '*://animo-pace-stream.io/*'
-    ]
+    match: ['*://animo-pace-stream.io/*'],
   },
-  //Neko-sama
+  // Neko-sama
   pstream: {
-    match: [
-      '*://*.pstream.net/e/*'
-    ]
+    match: ['*://*.pstream.net/e/*'],
   },
-  //Animeultima
+  // Animeultima
   animefever: {
-    match: [
-      '*://*.animefever.tv/embed/*'
-    ]
+    match: ['*://*.animefever.tv/embed/*'],
   },
-  //kickassanime
+  // kickassanime
   haloani: {
-    match: [
-      '*://*.haloani.ru/*'
-    ]
+    match: ['*://*.haloani.ru/*'],
   },
-  //moeclip
+  // moeclip
   moeclip: {
-    match: [
-      '*://*.moeclip.com/v/*',
-      '*://*.moeclip.com/embed/*'
-    ]
+    match: ['*://*.moeclip.com/v/*', '*://*.moeclip.com/embed/*'],
   },
-  //gogoanime
+  // gogoanime
   mixdrop: {
-    match: [
-      '*://*.mixdrop.co/e/*'
-    ]
+    match: ['*://*.mixdrop.co/e/*'],
   },
-  //animexin
+  // animexin
   gdriveplayer: {
-    match: [
-      '*://gdriveplayer.me/embed*'
-    ]
+    match: ['*://gdriveplayer.me/embed*'],
   },
-  //OtakuFR
+  // OtakuFR
   sendvid: {
-    match:[
-      '*://sendvid.net/v/*',
-      '*://sendvid.com/embed/*'
-    ]
+    match: ['*://sendvid.net/v/*', '*://sendvid.com/embed/*'],
   },
-  //OtakuFR
+  // OtakuFR
   streamz: {
-    match: [
-      '*://streamz.cc/*'
-    ]
+    match: ['*://streamz.cc/*'],
   },
-  //OtakuFR
+  // OtakuFR
   vidbm: {
-    match: [
-      '*://*.vidbm.com/embed-*'
-    ]
+    match: ['*://*.vidbm.com/embed-*'],
   },
-  //OtakuFR
+  // OtakuFR
   cloudhost: {
-    match: [
-      '*://*.cloudhost.to/*/mediaplayer/*/_embed.php?*'
-    ]
+    match: ['*://*.cloudhost.to/*/mediaplayer/*/_embed.php?*'],
   },
-  //OtakuFR
+  // OtakuFR
   letsupload: {
-    match: [
-      '*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'
-    ]
+    match: ['*://*.letsupload.co/*/mediaplayer/*/_embed.php?*'],
   },
-  //Samehadaku
+  // Samehadaku
   mangakyo: {
-    match: [
-      '*://player.mangakyo.me/stream/embed.php*'
-    ]
+    match: ['*://player.mangakyo.me/stream/embed.php*'],
   },
-  //9anime
+  // 9anime
   streamtape: {
-    match: [
-      '*://streamtape.com/*'
-    ]
+    match: ['*://streamtape.com/*'],
   },
-  //monoschinos
+  // monoschinos
   monoschinos: {
-    match: [
-      '*://reproductor.monoschinos.com/*'
-    ]
+    match: ['*://reproductor.monoschinos.com/*'],
+  },
+  // AnimeStreamingFR
+  uptostream: {
+    match: ['*://uptostream.com/iframe/*'],
   },
 };

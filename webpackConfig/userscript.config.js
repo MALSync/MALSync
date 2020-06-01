@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require("webpack");
+const webpack = require('webpack');
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages/pageUrls');
@@ -9,37 +9,40 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
 
-const generateMatchExcludes = (urls) => {
-  var match = [];
-  var exclude = [];
-  for (var key in urls) {
-    var el = urls[key];
-    if(typeof el.match !== "undefined") match = match.concat(el.match);
-    if(typeof el.exclude !== "undefined") exclude = exclude.concat(el.exclude);
+const generateMatchExcludes = urls => {
+  let match = [];
+  let exclude = [];
+  for (const key in urls) {
+    const el = urls[key];
+    if (typeof el.match !== 'undefined') match = match.concat(el.match);
+    if (typeof el.exclude !== 'undefined') exclude = exclude.concat(el.exclude);
   }
-  return {match: match, exclude: exclude}
-}
+  return { match: match, exclude: exclude };
+};
 
 const generateResources = () => {
-  var resources = [];
-  for (var key in resourcesJson) {
-    var el = resourcesJson[key];
-    resources.push(key+' '+el);
+  const resources = [];
+  for (const key in resourcesJson) {
+    const el = resourcesJson[key];
+    resources.push(`${key} ${el}`);
   }
   return resources;
-}
+};
 
 const metadata = {
-  'name': package['productName'],
-  'namespace': 'https://greasyfork.org/users/92233',
-  'description': package['description'],
-  'version': package['version'],
-  'author': package['author'],
-  'license': 'GPL-3.0',
-  'iconURL': 'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png',
-  'downloadURL': 'https://github.com/lolamtisch/MALSync/releases/latest/download/malsync.user.js',
-  'updateURL': 'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.meta.js',
-  'grant': [
+  name: package['productName'],
+  namespace: 'https://greasyfork.org/users/92233',
+  description: package['description'],
+  version: package['version'],
+  author: package['author'],
+  license: 'GPL-3.0',
+  iconURL:
+    'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png',
+  downloadURL:
+    'https://github.com/lolamtisch/MALSync/releases/latest/download/malsync.user.js',
+  updateURL:
+    'https://greasyfork.org/scripts/372847-mal-sync/code/MAL-Sync.meta.js',
+  grant: [
     'GM_xmlhttpRequest',
     'GM_getValue',
     'GM_setValue',
@@ -49,27 +52,29 @@ const metadata = {
     'GM_getResourceText',
     'GM.xmlHttpRequest',
     'GM.getValue',
-    'GM.setValue'
+    'GM.setValue',
   ],
-  'match' : generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
-  'exclude' : generateMatchExcludes(pageUrls).exclude,
-  'require ' : 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
-  'resource' : generateResources(),
+  match: generateMatchExcludes(pageUrls).match.concat(
+    generateMatchExcludes(playerUrls).match,
+  ),
+  exclude: generateMatchExcludes(pageUrls).exclude,
+  'require ': 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+  resource: generateResources(),
   'run-at': 'document_start',
-  'connect': [
+  connect: [
     'myanimelist.net',
     'kissanimelist.firebaseio.com',
     'graphql.anilist.co',
     'media.kitsu.io',
     'api.simkl.com',
     'api.malsync.moe',
-    '*'
-  ]
+    '*',
+  ],
 };
 
-const generateMetadataBlock = (metadata) => {
+const generateMetadataBlock = metadata => {
   let block = '';
-  for (let key in metadata) {
+  for (const key in metadata) {
     if (metadata.hasOwnProperty(key)) {
       let values = metadata[key];
       if (values) {
@@ -77,23 +82,23 @@ const generateMetadataBlock = (metadata) => {
           values = [values];
         }
         for (let i = 0; i < values.length; i++) {
-          block += '// @' + key + ' ' + values[i] + '\n';
+          block += `// @${key} ${values[i]}\n`;
         }
       } else {
-        block += '// @' + key + '\n';
+        block += `// @${key}\n`;
       }
     }
   }
 
-  return '// ==UserScript==\n'
-    + block
-    + '// ==/UserScript==\n\n'
-    + 'var i18n = ' + JSON.stringify(i18n()) + '\n';
+  return (
+    `// ==UserScript==\n${block}// ==/UserScript==\n\n` +
+    `var i18n = ${JSON.stringify(i18n())}\n`
+  );
 };
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/index.ts')
+    index: path.join(__dirname, '..', 'src/index.ts'),
   },
   module: {
     rules: [
@@ -103,29 +108,33 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           appendTsSuffixTo: [/\.vue$/],
-        }
+        },
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{ loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
+        use: [
+          { loader: 'to-string-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' },
+        ],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
-        loader: 'vue-loader'
-      }
-    ]
+        loader: 'vue-loader',
+      },
+    ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ],
+    extensions: ['.tsx', '.ts', '.js', '.less', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js',
+    },
   },
   output: {
     filename: 'malsync.user.js',
-    path: path.resolve(__dirname, '..', 'dist')
+    path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -135,25 +144,25 @@ module.exports = {
       api: path.resolve(__dirname, './../src/api/userscript'),
     }),
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
+      maxChunks: 1,
     }),
     new VueLoaderPlugin(),
     new TerserPlugin({
       terserOptions: {
         output: {
           beautify: true,
-          comments: false
+          comments: false,
         },
         mangle: false,
         compress: true,
-      }
+      },
     }),
     new wrapper({
       test: /\.js$/,
-      header: generateMetadataBlock(metadata)
+      header: generateMetadataBlock(metadata),
     }),
   ],
   optimization: {
-    minimize: false
+    minimize: false,
   },
 };

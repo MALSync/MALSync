@@ -3,7 +3,7 @@
   Manga = "manga"
 } */
 
-export type contentType = "anime" | "manga";
+export type contentType = 'anime' | 'manga';
 
 export enum status {
   NoState = 0,
@@ -27,7 +27,7 @@ export enum score {
   R7 = 7,
   R8 = 8,
   R9 = 9,
-  R10 = 10
+  R10 = 10,
 }
 
 export enum errorCode {
@@ -39,6 +39,6 @@ export enum errorCode {
 }
 
 export interface error {
-  code: errorCode,
-  message: string,
+  code: errorCode;
+  message: string;
 }

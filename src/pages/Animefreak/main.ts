@@ -1,51 +1,57 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 export const Animefreak: pageInterface = {
-  name: "Animefreak",
-  domain: "https://www.animefreak.tv",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (url.split("/")[5] === "episode") {
+  name: 'Animefreak',
+  domain: 'https://www.animefreak.tv',
+  type: 'anime',
+  isSyncPage(url) {
+    if (url.split('/')[5] === 'episode') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){return j.$("div.top-breadcrumb li:nth-child(2) a").text()},
-    getIdentifier: function(url) {
-      return url.split("/")[4];
+    getTitle(url) {
+      return j.$('div.top-breadcrumb li:nth-child(2) a').text();
     },
-    getOverviewUrl: function(url){
-      return Animefreak.domain+'/watch/'+Animefreak.sync.getIdentifier(url);
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    getEpisode: function(url){
-      return Number(url.split("/")[6].replace(/\D+/g, ""));
+    getOverviewUrl(url) {
+      return `${Animefreak.domain}/watch/${Animefreak.sync.getIdentifier(url)}`;
     },
-    nextEpUrl: function(url){
-      var href = j.$(".fa-step-forward").first().parent().attr('href');
-      if(typeof href !== 'undefined'){
+    getEpisode(url) {
+      return Number(url.split('/')[6].replace(/\D+/g, ''));
+    },
+    nextEpUrl(url) {
+      const href = j
+        .$('.fa-step-forward')
+        .first()
+        .parent()
+        .attr('href');
+      if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Animefreak.domain);
       }
+      return '';
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j.$("div.top-breadcrumb li:nth-child(2) a").text();
+  overview: {
+    getTitle(url) {
+      return j.$('div.top-breadcrumb li:nth-child(2) a').text();
     },
-    getIdentifier: function(url){
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    uiSelector: function(selector){
-      selector.insertBefore(j.$("div.anime-title").first());
+    uiSelector(selector) {
+      selector.insertBefore(j.$('div.anime-title').first());
     },
   },
   init(page) {
-    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split("/")[3] === "watch") {
+      if (page.url.split('/')[3] === 'watch') {
         page.handlePage();
-    }
-  });
-  }
+      }
+    });
+  },
 };

@@ -1,101 +1,104 @@
-import {storageInterface} from "./storageInterface";
+import { storageInterface } from './storageInterface';
 
-declare var i18n: string[];
+declare let i18n: string[];
 
 export const webextension: storageInterface = {
-    async set(key: string, value: string): Promise<any> {
-      const obj = {} as any;
-      obj[key] = value;
-      return new Promise((resolve, reject) => {
-          getStorage(key).set(obj, function(){
-              resolve();
-          });
+  async set(key: string, value: string): Promise<any> {
+    const obj = {} as any;
+    obj[key] = value;
+    return new Promise((resolve, reject) => {
+      getStorage(key).set(obj, function() {
+        resolve();
       });
-    },
+    });
+  },
 
-    async get(key: string): Promise<any> {
-      return new Promise((resolve, reject) => {
-          getStorage(key).get(key, function(results){
-              resolve(results[key]);
-          });
+  async get(key: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      getStorage(key).get(key, function(results) {
+        resolve(results[key]);
       });
-    },
+    });
+  },
 
-    async remove(key: string): Promise<any> {
-      return new Promise((resolve, reject) => {
-          getStorage(key).remove(key, function(){
-              resolve();
-          });
+  async remove(key: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      getStorage(key).remove(key, function() {
+        resolve();
       });
-    },
+    });
+  },
 
-    async list(type = 'local'): Promise<any> {
-      return new Promise((resolve, reject) => {
-        if(type === 'local'){
-          chrome.storage.local.get(null, function(results){
-              resolve(results);
-          });
-        }else{
-          chrome.storage.sync.get(null, function(results){
-              resolve(results);
-          });
-        }
-      });
-    },
-
-    async addStyle(css){
-      try {
-          var style = document.createElement('style');
-          style.textContent = css;
-          (document.head || document.body || document.documentElement || document).appendChild(style);
-      } catch (e) {
-          console.log("Could not add css:" + e);
+  async list(type = 'local'): Promise<any> {
+    return new Promise((resolve, reject) => {
+      if (type === 'local') {
+        chrome.storage.local.get(null, function(results) {
+          resolve(results);
+        });
+      } else {
+        chrome.storage.sync.get(null, function(results) {
+          resolve(results);
+        });
       }
-    },
+    });
+  },
 
-    version(){
-      return chrome.runtime.getManifest().version;
-    },
+  async addStyle(css) {
+    try {
+      const style = document.createElement('style');
+      style.textContent = css;
+      (document.head || document.body || document.documentElement || document).appendChild(style);
+    } catch (e) {
+      console.log(`Could not add css:${e}`);
+    }
+  },
 
-    lang(selector, args){
-      if(api.settings.get('forceEn')){
-        var message = i18n[selector];
-        if(typeof args !== 'undefined'){
-          for(var argIndex = 0; argIndex < args.length; argIndex++) {
-            message = message.replace("$"+(argIndex + 1), args[argIndex]);
-          }
+  version() {
+    return chrome.runtime.getManifest().version;
+  },
+
+  lang(selector, args) {
+    if (api.settings.get('forceEn')) {
+      let message = i18n[selector];
+      if (typeof args !== 'undefined') {
+        for (let argIndex = 0; argIndex < args.length; argIndex++) {
+          message = message.replace(`$${argIndex + 1}`, args[argIndex]);
         }
-        return message;
       }
+      return message;
+    }
+    // @ts-ignore
+    return chrome.i18n.getMessage(selector, args);
+  },
+
+  assetUrl(filename) {
+    return chrome.extension.getURL(`assets/${filename}`);
+  },
+
+  injectCssResource(res, head) {
+    const path = chrome.extension.getURL(`vendor/${res}`);
+    head.append(
+      j
+        .$('<link>')
+        .attr('rel', 'stylesheet')
+        .attr('type', 'text/css')
+        .attr('href', path),
+    );
+  },
+
+  injectjsResource(res, head) {
+    const s = document.createElement('script');
+    s.src = chrome.extension.getURL(`vendor/${res}`);
+    s.onload = function() {
       // @ts-ignore
-      return chrome.i18n.getMessage(selector, args);
-    },
+      this.remove();
+    };
+    head.get(0).appendChild(s);
+  },
 
-    assetUrl(filename){
-      return chrome.extension.getURL('assets/'+filename);
-    },
-
-    injectCssResource(res, head){
-      var path = chrome.extension.getURL('vendor/'+res);
-      head.append(j.$('<link>')
-          .attr("rel","stylesheet")
-          .attr("type","text/css")
-          .attr("href", path));
-    },
-
-    injectjsResource(res, head){
-      var s = document.createElement('script');
-      s.src = chrome.extension.getURL('vendor/'+res);
-      s.onload = function() {
-        // @ts-ignore
-        this.remove();
-      };
-      head.get(0).appendChild(s);
-    },
-
-    updateDom(head){
-      var s = document.createElement('script');
-      s.text = `
+  updateDom(head) {
+    const s = document.createElement('script');
+    s.text = `
         document.getElementsByTagName('head')[0].onclick = function(e){
           try{
             componentHandler.upgradeDom();
@@ -106,20 +109,20 @@ export const webextension: storageInterface = {
             },500);
           }
         }`;
-      s.onload = function() {
-        // @ts-ignore
-        this.remove();
-      };
-      head.get(0).appendChild(s);
-    },
+    s.onload = function() {
+      // @ts-ignore
+      this.remove();
+    };
+    head.get(0).appendChild(s);
+  },
 
-    storageOnChanged(cb){
-      chrome.storage.onChanged.addListener(cb);
-    }
+  storageOnChanged(cb) {
+    chrome.storage.onChanged.addListener(cb);
+  },
 };
 
-function getStorage(key:string){
-  if(utils.syncRegex.test(key)){
+function getStorage(key: string) {
+  if (utils.syncRegex.test(key)) {
     return chrome.storage.sync;
   }
   return chrome.storage.local;

@@ -1,0 +1,26 @@
+{
+  "title": "KissHentai", // nsfw
+  "url": "http://kisshentai.net/",
+  "testCases": [
+    {
+      "url": "http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2/Episode-001?id=51",
+      "expected": {
+        "sync": true,
+        "title": "Bloods: Inraku no Ketsuzoku 2",
+        "identifier": "Bloods-Inraku-no-Ketsuzoku-2",
+        "overviewUrl": "http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "http://kisshentai.net/Hentai/Bloods-Inraku-no-Ketsuzoku-2",
+      "expected": {
+        "sync": false,
+        "title": "Bloods: Inraku no Ketsuzoku 2",
+        "identifier": "Bloods-Inraku-no-Ketsuzoku-2",
+        "uiSelector": true
+      }
+    }
+  ]
+}

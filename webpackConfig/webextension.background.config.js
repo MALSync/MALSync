@@ -1,27 +1,27 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
   entry: {
-    index: path.join(__dirname, '..', 'src/background.ts')
+    index: path.join(__dirname, '..', 'src/background.ts'),
   },
   module: {
     rules: [
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: ['.tsx', '.ts', '.js'],
   },
   mode: 'development',
   output: {
     filename: 'background.js',
-    path: path.resolve(__dirname, '..', 'dist', 'webextension')
+    path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -30,5 +30,5 @@ module.exports = {
       api: path.resolve(__dirname, './../src/api/webextension'),
       j: path.resolve(__dirname, './../src/utils/j'),
     }),
-  ]
+  ],
 };

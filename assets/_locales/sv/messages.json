@@ -547,10 +547,6 @@
     "message": "Använd Taggar/Anteckningar",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Vid aktivering så kommer det att läggas en ikon-länk till den streaming sida du senast använde för att titta på en anime, vid din anime lista på MyAnimeList/AniList och i miniMAL.<br>Klicka bara på ikonen för att fortsätta titta på animen.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Länkar för att fortsätta titta på episoder",
     "description": "Continue watching links"

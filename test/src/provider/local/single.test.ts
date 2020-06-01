@@ -1,53 +1,52 @@
 import { expect } from 'chai';
-import { Single } from './../../../../src/_provider/Local/single';
-import * as utils from './../../../../src/utils/general';
-import * as def from './../../../../src/_provider/definitions';
-
-import {generalSingleTests} from './../generalSingleTests.exclude';
-
 import * as request from 'request';
+import { Single } from '../../../../src/_provider/Local/single';
+import * as utils from '../../../../src/utils/general';
+import * as def from '../../../../src/_provider/definitions';
 
-var state = {
+import { generalSingleTests } from '../generalSingleTests.exclude';
+
+const state = {
   'local://crunchyroll/anime/nogamenolife': {
     name: 'Unknown',
-    tags: "",
+    tags: '',
     progress: 0,
     volumeprogress: 0,
     rewatching: false,
     rewatchingCount: 0,
     score: '',
-    status: 6
-  }
+    status: 6,
+  },
 };
 
-setGlobals()
+setGlobals();
 function setGlobals() {
-  global.con = require('./../../../../src/utils/console');
+  global.con = require('../../../../src/utils/console');
   global.con.log = function() {};
   global.con.error = function() {};
   global.con.info = function() {};
 
   global.api = {
     settings: {
-      get: function(key) {
+      get(key) {
         return true;
       },
     },
     storage: {
-      get: function(key) {
+      get(key) {
         return Promise.resolve(state[key]);
       },
-      set: function(key, value) {
+      set(key, value) {
         state[key] = JSON.parse(JSON.stringify(value));
         return Promise.resolve();
       },
-      assetUrl: function(key) {
+      assetUrl(key) {
         return 'image';
       },
     },
-  }
+  };
 
-  global.btoa = (input) => input;
+  global.btoa = input => input;
 
   global.utils = utils;
 
@@ -77,7 +76,7 @@ function setGlobals() {
         url: 'https://simkl.com/anime/46128/no-game-no-life',
         error: true,
         type: 'anime',
-      }
+      },
     ],
     apiTest: {
       defaultUrl: {
@@ -99,30 +98,31 @@ function setGlobals() {
         eps: 0,
         vol: 0,
       },
-    }
-  }
+    },
+  };
 }
 
-describe('Local single', function () {
-  before(function () {
+describe('Local single', function() {
+  before(function() {
     setGlobals();
-  })
+  });
   generalSingleTests(Single, setGlobals);
 
-
-  describe('title', function () {
+  describe('title', function() {
     [
       'test/213',
       '',
       'Fate/kaleid liner PRISMA☆ILLYA',
       'This is a title',
-    ].forEach((el) => {
-      it(el+'', async function () {
-        var singleEntry = new Single('local://crunchyroll/anime/notonlist/'+encodeURIComponent(el));
+    ].forEach(el => {
+      it(`${el}`, async function() {
+        const singleEntry = new Single(
+          `local://crunchyroll/anime/notonlist/${encodeURIComponent(el)}`,
+        );
         await singleEntry.update();
-        if(!el) el = 'Unknown';
+        if (!el) el = 'Unknown';
         expect(singleEntry.getTitle()).equal(el);
-      })
-    })
+      });
+    });
   });
 });

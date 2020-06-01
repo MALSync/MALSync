@@ -1,64 +1,58 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 export const KickAssAnime: pageInterface = {
-  name: "KickAssAnime",
-  domain: "https://www.kickassanime.rs",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (url.split("/")[5] == null) {
+  name: 'KickAssAnime',
+  domain: 'https://www.kickassanime.rs',
+  type: 'anime',
+  isSyncPage(url) {
+    if (typeof url.split('/')[5] === 'undefined') {
       return false;
-    } else {
-      return true;
     }
+    return true;
   },
   sync: {
-    getTitle: function(url){
-      return utils.getBaseText($('#animeInfoTab > a'))
+    getTitle(url) {
+      return utils.getBaseText($('#animeInfoTab > a'));
     },
-    getIdentifier: function(url) {
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    getOverviewUrl: function(url){
-      return KickAssAnime.domain+'/anime/'+KickAssAnime.sync.getIdentifier(url);
+    getOverviewUrl(url) {
+      return `${KickAssAnime.domain}/anime/${KickAssAnime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function (url) {
-      let urlParts = url.split("/");
+    getEpisode(url) {
+      const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
 
-      let episodePart = urlParts[5];
+      const episodePart = urlParts[5];
 
       if (episodePart.length === 0) return NaN;
 
-      let temp = episodePart.match(/episode-\d*/gi);
+      const temp = episodePart.match(/episode-\d*/gi);
 
       if (!temp || temp.length === 0) return NaN;
 
-      return Number(temp[0].replace(/\D+/g, ""));
+      return Number(temp[0].replace(/\D+/g, ''));
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j.$("h1.title").text();
+  overview: {
+    getTitle(url) {
+      return j.$('h1.title').text();
     },
-    getIdentifier: function(url){
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    uiSelector: function(selector){
-      selector.insertAfter(j.$("div.anime-info.border.rounded.mb-3").first());
+    uiSelector(selector) {
+      selector.insertAfter(j.$('div.anime-info.border.rounded.mb-3').first());
     },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){
-      if (page.url.split("/")[3] == "anime") {
+    j.$(document).ready(function() {
+      if (page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });
-  }
+  },
 };

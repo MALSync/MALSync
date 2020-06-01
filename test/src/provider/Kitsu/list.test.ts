@@ -1,25 +1,26 @@
 import { expect } from 'chai';
-import {userlist} from './../../../../src/_provider/Kitsu/list';
-import {generalListTests} from './../generalTests.exclude';
+import { userlist } from '../../../../src/_provider/Kitsu/list';
+import { generalListTests } from '../generalTests.exclude';
 
-global.con = require('./../../../../src/utils/console');
+global.con = require('../../../../src/utils/console');
+
 global.con.log = function() {};
 global.con.error = function() {};
 global.con.info = function() {};
 
-var responses = {
+const responses = {
   user: {
-    data: JSON.stringify(require("./api/user.json"))
+    data: JSON.stringify(require('./api/user.json')),
   },
-  "Page1": {
-    data: JSON.stringify(require("./api/list-Page1.json"))
+  Page1: {
+    data: JSON.stringify(require('./api/list-Page1.json')),
   },
-  "Page2": {
-    data: JSON.stringify(require("./api/list-Page2.json"))
+  Page2: {
+    data: JSON.stringify(require('./api/list-Page2.json')),
   },
 };
 
-var elements = [
+const elements = [
   {
     malId: '6547',
     uid: '4604',
@@ -32,9 +33,10 @@ var elements = [
     totalEp: 13,
     status: 2,
     score: 10,
-    image: 'https://media.kitsu.io/anime/poster_images/4604/large.jpg?1416274148',
+    image:
+      'https://media.kitsu.io/anime/poster_images/4604/large.jpg?1416274148',
     tags: '\n=== MAL Tags ===\nScore: 8.35',
-    airingState: undefined
+    airingState: undefined,
   },
   {
     malId: '9776',
@@ -48,64 +50,62 @@ var elements = [
     totalEp: 12,
     status: 2,
     score: 9,
-    image: 'https://media.kitsu.io/anime/poster_images/5861/large.jpg?1486237007',
+    image:
+      'https://media.kitsu.io/anime/poster_images/5861/large.jpg?1486237007',
     tags: '\n=== MAL Tags ===\nScore: 7.04',
-    airingState: undefined
-  }
+    airingState: undefined,
+  },
 ];
 
-global.api = {}
+global.api = {};
 
 function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Kitsu userlist', function () {
-  before(function () {
+describe('Kitsu userlist', function() {
+  before(function() {
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
-          if(conf.url.indexOf('/edge/users') !== -1) {
+        async xhr(post, conf, data) {
+          if (conf.url.indexOf('/edge/users') !== -1) {
             return {
               responseText: getResponse('user'),
             };
           }
 
-          if(conf.url.indexOf('page[offset]=0') !== -1) {
+          if (conf.url.indexOf('page[offset]=0') !== -1) {
             return {
               responseText: getResponse('Page1'),
             };
           }
 
-          if(conf.url.indexOf('page[offset]=50') !== -1) {
+          if (conf.url.indexOf('page[offset]=50') !== -1) {
             return {
               responseText: getResponse('Page2'),
             };
           }
 
           throw conf.url;
-        }
+        },
       },
       settings: {
-        get: function() {
+        get() {
           return '';
-        }
+        },
       },
       storage: {
-        lang: function() {
+        lang() {
           return 'lang';
         },
-        get: function(key) {
-          if(key == 'kitsuUserId') return undefined;
+        get(key) {
+          if (key === 'kitsuUserId') return undefined;
           return '';
         },
-        set: function(key, val) {
-        }
-      }
-
-    }
+        set(key, val) {},
+      },
+    };
   });
 
   generalListTests(userlist, elements, responses);
-
 });

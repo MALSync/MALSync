@@ -1,0 +1,45 @@
+{
+  "title": "Voiranime",
+  "url": "http://voiranime.com",
+  "testCases": [
+    {
+      "url": "http://voiranime.com/no-game-no-life-06-vostfr/",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "overviewUrl": "http://voiranime.com/no-game-no-life",
+        "nextEpUrl": "http://voiranime.com/no-game-no-life-07-vostfr/",
+        "episode": 6,
+        "uiSelector": false,
+        "epList": {
+          "5": "http://voiranime.com/no-game-no-life-05-vostfr/"
+        }
+      }
+    },
+    {
+      "url": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-04-vf/",
+      "expected": {
+        "sync": true,
+        "title": "Boku no Hero Academia (My Hero Academia) (Saison 2)",
+        "identifier": "boku-no-hero-academia-my-hero-academia",
+        "overviewUrl": "http://voiranime.com/boku-no-hero-academia-my-hero-academia",
+        "nextEpUrl": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/",
+        "episode": 4,
+        "uiSelector": false,
+        "epList": {
+          "5": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/"
+        }
+      }
+    },
+    {
+      "url": "http://voiranime.com/no-game-no-life/",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "uiSelector": true
+      }
+    }
+  ]
+}

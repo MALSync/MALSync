@@ -1,1 +1,1 @@
-export var $ = jQuery;
+export const $ = jQuery;

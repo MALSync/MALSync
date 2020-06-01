@@ -1,0 +1,27 @@
+{
+  "title": "MangaPark",
+  "url": "https://mangapark.net/",
+  "testCases": [
+    {
+      "url": "https://mangapark.net/manga/grand-blue-inoue-kenji/i2086171/v5/c20/1",
+      "expected": {
+        "sync": true,
+        "title": "Grand Blue",
+        "identifier": "grand-blue-inoue-kenji",
+        "overviewUrl": "https://mangapark.net/manga/grand-blue-inoue-kenji",
+        "nextEpUrl": "https://mangapark.net/manga/grand-blue-inoue-kenji/i2086169/v5/c21/1",
+        "episode": 20,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangapark.net/manga/grand-blue-inoue-kenji",
+      "expected": {
+        "sync": false,
+        "title": "Grand Blue",
+        "identifier": "grand-blue-inoue-kenji",
+        "uiSelector": true
+      }
+    }
+  ]
+}

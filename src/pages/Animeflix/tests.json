@@ -1,0 +1,26 @@
+{
+  "title": "Animeflix",
+  "url": "https://animeflix.io/",
+  "testCases": [
+    {
+      "url": "https://animeflix.io/shows/bleach/episode-358-927911/sub",
+      "expected": {
+        "sync": true,
+        "title": "Bleach",
+        "identifier": "bleach",
+        "overviewUrl": "https://animeflix.io/shows/bleach",
+        "episode": 358,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animeflix.io/shows/bleach",
+      "expected": {
+        "sync": false,
+        "title": "Bleach",
+        "identifier": "bleach",
+        "uiSelector": true
+      }
+    }
+  ]
+}

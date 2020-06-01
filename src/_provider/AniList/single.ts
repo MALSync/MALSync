@@ -1,31 +1,31 @@
-import {SingleAbstract} from './../singleAbstract';
-import * as helper from "./helper";
-import {errorCode} from "./../definitions";
+import { SingleAbstract } from '../singleAbstract';
+import * as helper from './helper';
+import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
-
   private animeInfo: any;
 
-  private displayUrl: string = '';
+  private displayUrl = '';
 
   shortName = 'AniList';
+
   authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   protected handleUrl(url) {
-    if(url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
+    if (url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.ids.ani = Number(utils.urlPart(url, 4));
       return;
     }
-    if(url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
-      this.type = utils.urlPart(url, 3) === "anime" ? "anime" : "manga";
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported')
+    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
   }
 
-  getCacheKey(){
+  getCacheKey() {
     return helper.getCacheKey(this.ids.mal, this.ids.ani);
   }
 
@@ -38,9 +38,9 @@ export class Single extends SingleAbstract {
   }
 
   _getScore() {
-    if(this.animeInfo.mediaListEntry.score === 0) return 0;
-    var score = Math.round(this.animeInfo.mediaListEntry.score / 10);
-    if(score === 0) return 1;
+    if (this.animeInfo.mediaListEntry.score === 0) return 0;
+    const score = Math.round(this.animeInfo.mediaListEntry.score / 10);
+    if (score === 0) return 1;
     return score;
   }
 
@@ -53,7 +53,7 @@ export class Single extends SingleAbstract {
   }
 
   _setEpisode(episode) {
-    this.animeInfo.mediaListEntry.progress = parseInt(episode+'');
+    this.animeInfo.mediaListEntry.progress = parseInt(`${episode}`);
   }
 
   _getVolume() {
@@ -64,17 +64,13 @@ export class Single extends SingleAbstract {
     this.animeInfo.mediaListEntry.progressVolumes = volume;
   }
 
-  _getStreamingUrl() {
-    var tags = this.animeInfo.mediaListEntry.notes;
-    return utils.getUrlFromTags(tags);
+  _getTags() {
+    let tags = this.animeInfo.mediaListEntry.notes;
+    if (tags === null || tags === 'null') tags = '';
+    return tags;
   }
 
-  _setStreamingUrl(url) {
-    var tags = this.animeInfo.mediaListEntry.notes;
-    if(tags == null || tags == 'null') tags = '';
-
-    tags = utils.setUrlInTags(url, tags);
-
+  _setTags(tags) {
     this.animeInfo.mediaListEntry.notes = tags;
   }
 
@@ -83,19 +79,19 @@ export class Single extends SingleAbstract {
   }
 
   _getTotalEpisodes() {
-    var eps = this.animeInfo.episodes? this.animeInfo.episodes: this.animeInfo.chapters;
-    if(eps == null) return 0;
+    const eps = this.animeInfo.episodes ? this.animeInfo.episodes : this.animeInfo.chapters;
+    if (eps === null) return 0;
     return eps;
   }
 
   _getTotalVolumes() {
-    var vol = this.animeInfo.volumes;
-    if(!vol) return 0;
+    const vol = this.animeInfo.volumes;
+    if (!vol) return 0;
     return vol;
   }
 
   _getDisplayUrl() {
-    return this.displayUrl !== '' && this.displayUrl != null ? this.displayUrl : this.url;
+    return this.displayUrl !== '' && this.displayUrl !== null ? this.displayUrl : this.url;
   }
 
   _getImage() {
@@ -107,14 +103,14 @@ export class Single extends SingleAbstract {
   }
 
   async _update() {
-    var selectId = this.ids.mal;
-    var selectQuery = 'idMal';
-    if(isNaN(this.ids.mal)){
+    let selectId = this.ids.mal;
+    let selectQuery = 'idMal';
+    if (Number.isNaN(this.ids.mal)) {
       selectId = this.ids.ani;
       selectQuery = 'id';
     }
 
-    var query = `
+    const query = `
     query ($id: Int, $type: MediaType) {
       Media (${selectQuery}: $id, type: $type) {
         id
@@ -141,51 +137,51 @@ export class Single extends SingleAbstract {
       }
     }
     `;
-    ​
-    var variables = {
+    const variables = {
       id: selectId,
-      type: this.type!.toUpperCase()
+      type: this.type!.toUpperCase(),
     };
 
     this._authenticated = true;
 
     return this.apiCall(query, variables)
       .catch(e => {
-        if(e.code === errorCode.NotAutenticated){
+        if (e.code === errorCode.NotAutenticated) {
           this._authenticated = false;
           return this.apiCall(query, variables, false);
         }
         throw e;
-      }).then(json => {
-        con.log('[SINGLE]','Data',json);
+      })
+      .then(json => {
+        con.log('[SINGLE]', 'Data', json);
 
         this.animeInfo = json.data.Media;
 
         this.ids.ani = this.animeInfo.id;
-        if(isNaN(this.ids.mal) && this.animeInfo.idMal){
+        if (Number.isNaN(this.ids.mal) && this.animeInfo.idMal) {
           this.ids.mal = this.animeInfo.idMal;
         }
 
         this.displayUrl = this.animeInfo.siteUrl;
         this._onList = true;
-        if(this.animeInfo.mediaListEntry === null){
+        if (this.animeInfo.mediaListEntry === null) {
           this._onList = false;
           this.animeInfo.mediaListEntry = {
-            notes: "",
+            notes: '',
             progress: 0,
             progressVolumes: 0,
             repeat: 0,
             score: 0,
-            status: 'PLANNING'
-          }
+            status: 'PLANNING',
+          };
         }
 
-        if(!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
       });
   }
 
   async _sync() {
-    var query = `
+    let query = `
       mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String) {
         SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes) {
           id
@@ -194,16 +190,16 @@ export class Single extends SingleAbstract {
         }
       }
     `;
-    ​
-    var variables = {
-      "mediaId": this.ids.ani,
-      "status": this.animeInfo.mediaListEntry.status,
-      "progress": this.animeInfo.mediaListEntry.progress,
-      "scoreRaw": this.animeInfo.mediaListEntry.score,
-      "notes": this.animeInfo.mediaListEntry.notes
+    const variables = {
+      mediaId: this.ids.ani,
+      status: this.animeInfo.mediaListEntry.status,
+      progress: this.animeInfo.mediaListEntry.progress,
+      scoreRaw: this.animeInfo.mediaListEntry.score,
+      notes: this.animeInfo.mediaListEntry.notes,
+      volumes: null,
     };
 
-    if(this.type == 'manga'){
+    if (this.type === 'manga') {
       query = `
         mutation ($mediaId: Int, $status: MediaListStatus, $progress: Int, $scoreRaw: Int, $notes: String, $volumes: Int) {
           SaveMediaListEntry (mediaId: $mediaId, status: $status, progress: $progress, scoreRaw: $scoreRaw, notes: $notes, progressVolumes: $volumes) {
@@ -214,49 +210,51 @@ export class Single extends SingleAbstract {
           }
         }
       `;
-      variables['volumes'] = this.animeInfo.mediaListEntry.progressVolumes;
+      variables.volumes = this.animeInfo.mediaListEntry.progressVolumes;
     }
 
     return this.apiCall(query, variables);
   }
 
   protected apiCall(query, variables, authentication = true) {
-    var headers = {
+    const headers: any = {
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    }
-    if(authentication) headers['Authorization'] = 'Bearer ' + api.settings.get('anilistToken')
-    return api.request.xhr('POST', {
-      url: 'https://graphql.anilist.co',
-      headers,
-      data: JSON.stringify({
-        query,
-        variables
+      Accept: 'application/json',
+    };
+    if (authentication) headers.Authorization = `Bearer ${api.settings.get('anilistToken')}`;
+    return api.request
+      .xhr('POST', {
+        url: 'https://graphql.anilist.co',
+        headers,
+        data: JSON.stringify({
+          query,
+          variables,
+        }),
       })
-    }).then((response) => {
-      if((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, 'Server Offline status: '+response.status)
-      }
-
-      var res = JSON.parse(response.responseText);
-
-      if(typeof res.errors != 'undefined' && res.errors.length){
-        con.error('[SINGLE]','Error',res.errors);
-        var error = res.errors[0];
-        switch(error.status) {
-          case 400:
-            throw this.errorObj(errorCode.NotAutenticated, error.message);
-            break;
-          case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.message);
-            break;
-          default:
-            throw this.errorObj(error.status, error.message);
+      .then(response => {
+        if ((response.status > 499 && response.status < 600) || response.status === 0) {
+          throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
         }
-      }
 
-      return res;
-    })
+        const res = JSON.parse(response.responseText);
+
+        if (typeof res.errors !== 'undefined' && res.errors.length) {
+          con.error('[SINGLE]', 'Error', res.errors);
+          const error = res.errors[0];
+          switch (error.status) {
+            case 400:
+              throw this.errorObj(errorCode.NotAutenticated, error.message);
+              break;
+            case 404:
+              throw this.errorObj(errorCode.EntryNotFound, error.message);
+              break;
+            default:
+              throw this.errorObj(error.status, error.message);
+          }
+        }
+
+        return res;
+      });
   }
 
   private getScoreMode() {
@@ -264,63 +262,61 @@ export class Single extends SingleAbstract {
   }
 
   public getScoreCheckbox() {
-    switch(this.getScoreMode()) {
+    switch (this.getScoreMode()) {
       case 'POINT_3':
         return [
-          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
-          {value: '85', label: '🙂'},
-          {value: '60', label: '😐'},
-          {value: '35', label: '🙁'},
+          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
+          { value: '85', label: '🙂' },
+          { value: '60', label: '😐' },
+          { value: '35', label: '🙁' },
         ];
         break;
       case 'POINT_5':
         return [
-          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
-          {value: '90', label: '★★★★★'},
-          {value: '70', label: '★★★★'},
-          {value: '50', label: '★★★'},
-          {value: '30', label: '★★'},
-          {value: '10', label: '★'},
+          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
+          { value: '90', label: '★★★★★' },
+          { value: '70', label: '★★★★' },
+          { value: '50', label: '★★★' },
+          { value: '30', label: '★★' },
+          { value: '10', label: '★' },
         ];
         break;
-      case 'POINT_10_DECIMAL':
-        var resArr =  [
-          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
-        ];
-        for(var i = 1; i < 101; i++){
-          resArr.push({value: i.toString(), label: (i / 10).toFixed(1)});
+      case 'POINT_10_DECIMAL': {
+        const decArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
+        for (let i = 1; i < 101; i++) {
+          decArr.push({ value: i.toString(), label: (i / 10).toFixed(1) });
+        }
+        return decArr;
+        break;
+      }
+      case 'POINT_100': {
+        const resArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
+        for (let i = 1; i < 101; i++) {
+          resArr.push({ value: i.toString(), label: String(i) });
         }
         return resArr;
         break;
-      case 'POINT_100':
-        var resArr =  [
-          {value: '0', label: api.storage.lang("UI_Score_Not_Rated")},
-        ];
-        for(var i = 1; i < 101; i++){
-          resArr.push({value: i.toString(), label: String(i)});
-        }
-        return resArr;
-        break;
+      }
       default:
         return super.getScoreCheckbox();
     }
   }
 
   public getScoreCheckboxValue() {
-    var curScore = this.animeInfo.mediaListEntry.score;
-    switch(this.getScoreMode()) {
+    const curScore = this.animeInfo.mediaListEntry.score;
+    switch (this.getScoreMode()) {
       case 'POINT_3':
-        if(!curScore) return 0;
-        if(curScore >= 73) return 85;
-        if(curScore <= 47) return 35;
-        return 60
+        if (!curScore) return 0;
+        if (curScore >= 73) return 85;
+        if (curScore <= 47) return 35;
+        return 60;
         break;
       case 'POINT_5':
-        if(!curScore) return 0;
-        if(curScore < 20) return 10;
-        if(curScore < 40) return 30;
-        if(curScore < 60) return 50;
-        if(curScore < 80) return 70;
+        if (!curScore) return 0;
+        if (curScore < 20) return 10;
+        if (curScore < 40) return 30;
+        if (curScore < 60) return 50;
+        if (curScore < 80) return 70;
         return 90;
         break;
       case 'POINT_10_DECIMAL':
@@ -333,7 +329,7 @@ export class Single extends SingleAbstract {
   }
 
   public handleScoreCheckbox(value) {
-    switch(this.getScoreMode()) {
+    switch (this.getScoreMode()) {
       case 'POINT_3':
       case 'POINT_5':
       case 'POINT_10_DECIMAL':
@@ -344,5 +340,4 @@ export class Single extends SingleAbstract {
         super.handleScoreCheckbox(value);
     }
   }
-
 }

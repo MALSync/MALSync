@@ -1,0 +1,31 @@
+{
+  "title": "FallenAngels",
+  "url": "https://manga.fascans.com/",
+  "testCases": [
+    {
+      "url": "https://manga.fascans.com/manga/plunderer/53/2",
+      "expected": {
+        "sync": true,
+        "title": "Plunderer",
+        "identifier": "plunderer",
+        "overviewUrl": "https://manga.fascans.com/manga/plunderer",
+        "episode": 53,
+        "nextEpUrl": "https://manga.fascans.com/manga/plunderer/54",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manga.fascans.com/manga/plunderer",
+      "expected": {
+        "sync": false,
+        "title": "Plunderer",
+        "identifier": "plunderer",
+        "uiSelector": true,
+        "epList": {
+          "53": "https://manga.fascans.com/manga/plunderer/53",
+          "18": "https://manga.fascans.com/manga/plunderer/18"
+        }
+      }
+    }
+  ]
+}

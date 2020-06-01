@@ -1,67 +1,70 @@
-import {pageInterface} from "./../../pages/pageInterface";
+import { pageInterface } from '../../pages/pageInterface';
 
 export const HentaiHaven: pageInterface = {
-  name: "HentaiHaven",
-  domain: "https://hentaihaven.org",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (url.split("/")[3] !== null && j.$("h1.entry-title")[0] && j.$("div.hentaiha-post-tabs")[0]) {
+  name: 'HentaiHaven',
+  domain: 'https://hentaihaven.org',
+  type: 'anime',
+  isSyncPage(url) {
+    if (url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){return j.$("div > header > div > a").text()},
-    getIdentifier: function(url) {
-      const anchorHref = j.$("div > header > div > a").attr("href");
-
-      if(!anchorHref) return "";
-
-      return anchorHref.split("/")[4];
+    getTitle(url) {
+      return j.$('div > header > div > a').text();
     },
-    getOverviewUrl: function(url){
-      return j.$("div > header > div > a").attr("href") || "";
+    getIdentifier(url) {
+      const anchorHref = j.$('div > header > div > a').attr('href');
+
+      if (!anchorHref) return '';
+
+      return anchorHref.split('/')[4];
     },
-    getEpisode: function (url) {
-      let urlParts = url.split("/");
-  
+    getOverviewUrl(url) {
+      return j.$('div > header > div > a').attr('href') || '';
+    },
+    getEpisode(url) {
+      const urlParts = url.split('/');
+
       if (!urlParts || urlParts.length === 0) return NaN;
-  
-      let episodePart = urlParts[3];
-  
+
+      const episodePart = urlParts[3];
+
       if (episodePart.length === 0) return NaN;
-  
-      let temp = episodePart.match(/-episode-\d*/gi);
-  
+
+      const temp = episodePart.match(/-episode-\d*/gi);
+
       if (!temp || temp.length === 0) return NaN;
-  
-      return Number(temp[0].replace(/\D+/g, ""));
+
+      return Number(temp[0].replace(/\D+/g, ''));
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j.$("h1.archive-title").text()
+  overview: {
+    getTitle(url) {
+      return j.$('h1.archive-title').text();
     },
-    getIdentifier: function(url){
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    uiSelector: function(selector){
-      selector.insertAfter(j.$("div.archive-meta.category-meta").first());
+    uiSelector(selector) {
+      selector.insertAfter(j.$('div.archive-meta.category-meta').first());
     },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
+  init(page) {
+    if (document.title === 'Just a moment...') {
+      con.log('loading');
       page.cdn();
       return;
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){
-      if((page.url.split("/")[3] !== null && j.$("h1.entry-title")[0] && j.$("div.hentaiha-post-tabs")[0]) || (page.url.split("/")[3] === "series"))
-      {
+    j.$(document).ready(function() {
+      if (
+        (page.url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) ||
+        page.url.split('/')[3] === 'series'
+      ) {
         page.handlePage();
       }
     });
-  }
+  },
 };

@@ -1,73 +1,82 @@
-import {pageInterface} from "./../../pages/pageInterface";
+import { pageInterface } from '../../pages/pageInterface';
 
-function cleanTitle(title){
-  return title.replace(/(\([^\)]*\)|\[[^\]]*\])/g,'').trim();
+function cleanTitle(title) {
+  return title.replace(/(\([^)]*\)|\[[^\]]*\])/g, '').trim();
 }
 
-var inter;
-
 export const Nhentai: pageInterface = {
-  name: "Nhentai",
-  domain: "https://nhentai.net",
-  type: "manga",
-  isSyncPage: function(url) {
-    if (url.split("/")[5] && url.split("/")[5].length){
+  name: 'Nhentai',
+  domain: 'https://nhentai.net',
+  type: 'manga',
+  isSyncPage(url) {
+    if (url.split('/')[5] && url.split('/')[5].length) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){
-      var scripts = j.$('script').text();
+    getTitle(url) {
+      const scripts = j.$('script').text();
       con.info(scripts);
       try {
-        return scripts.split('"pretty":\"')[1].split('\"}')[0];
-      }catch(e) {
+        return scripts.split('"pretty":"')[1].split('"}')[0];
+      } catch (e) {
         return '';
       }
     },
-    getIdentifier: function(url) {
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    getOverviewUrl: function(url){
-      return Nhentai.domain+'/g/'+Nhentai.sync.getIdentifier(url);
+    getOverviewUrl(url) {
+      return `${Nhentai.domain}/g/${Nhentai.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url){
+    getEpisode(url) {
       try {
-        var scripts = j.$('script').text();
-        if(scripts.indexOf('"english":"') !== -1) {
-          var episodePart = scripts.split('"english":"')[1].split('"')[0];
-        }else {
-          var episodePart = scripts.split('"japanese":"')[1].split('"')[0];
+        const scripts = j.$('script').text();
+        let episodePart;
+        if (scripts.indexOf('"english":"') !== -1) {
+          episodePart = scripts.split('"english":"')[1].split('"')[0];
+        } else {
+          episodePart = scripts.split('"japanese":"')[1].split('"')[0];
         }
-        if(episodePart.length){
-          var temp = episodePart.match(/(ch|ch.|chapter).?\d+/gmi);
-          if(temp !== null){
-            return Number(temp[0].replace(/\D+/g, ""));
+        if (episodePart.length) {
+          const temp = episodePart.match(/(ch|ch.|chapter).?\d+/gim);
+          if (temp !== null) {
+            return Number(temp[0].replace(/\D+/g, ''));
           }
         }
-      }catch(e) {
+      } catch (e) {
         con.info(e);
       }
       return 1;
     },
   },
-  overview:{
-    getTitle: function(){return cleanTitle(j.$('meta[itemprop="name"]').first().attr('content'));},
-    getIdentifier: function(url){return Nhentai.sync.getIdentifier(url);},
-    uiSelector: function(selector){selector.insertAfter(j.$("#info h1").first());},
+  overview: {
+    getTitle() {
+      return cleanTitle(
+        j
+          .$('meta[itemprop="name"]')
+          .first()
+          .attr('content'),
+      );
+    },
+    getIdentifier(url) {
+      return Nhentai.sync.getIdentifier(url);
+    },
+    uiSelector(selector) {
+      selector.insertAfter(j.$('#info h1').first());
+    },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
+  init(page) {
+    if (document.title === 'Just a moment...') {
+      con.log('loading');
       page.cdn();
       return;
     }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    j.$(document).ready(function(){
-      if(page.url.match(/nhentai.[^\/]*\/g\/\d+/i)) {
+    j.$(document).ready(function() {
+      if (page.url.match(/nhentai.[^/]*\/g\/\d+/i)) {
         page.handlePage();
       }
     });
@@ -75,12 +84,14 @@ export const Nhentai: pageInterface = {
     return;
     start();
 
-    utils.changeDetect(start, () => {return window.location.href.replace(/\d*$/, '')});
+    utils.changeDetect(start, () => {
+      return window.location.href.replace(/\d*$/, '');
+    });
 
     function start() {
-      if(page.url.match(/nhentai.[^\/]*\/g\/\d+/i)) {
+      if (page.url.match(/nhentai.[^/]*\/g\/\d+/i)) {
         page.handlePage();
       }
     }
-  }
+  },
 };

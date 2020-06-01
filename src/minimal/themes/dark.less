@@ -1,11 +1,12 @@
-#material.dark, #material.serial {
+#material.dark,
+#material.serial {
   @black: #000000;
   @primary: #212121;
   @light: #484848;
   @white: #ffffff;
   @lighttransparent: #484848e6;
   @blue: rgb(76, 97, 214);
-  @pink: #F43B7A;
+  @pink: #f43b7a;
   p {
     color: @white !important;
   }
@@ -19,11 +20,11 @@
 
   .mdl-layout__content {
     background-color: @primary;
-    a{
-      color:@pink;
+    a {
+      color: @pink;
     }
   }
-  #malList{
+  #malList {
     .mdl-cell {
       div.mdl-shadow--2dp {
         background-color: @lighttransparent !important;
@@ -38,8 +39,8 @@
     }
   }
 
-  #malReviews{
-    .lightLink{
+  #malReviews {
+    .lightLink {
       color: white;
     }
   }
@@ -81,7 +82,7 @@
     }
   }
 
-  #malNotOnMal{
+  #malNotOnMal {
     background-color: @white;
   }
 
@@ -94,17 +95,13 @@
   .mdl-layout__content::-webkit-scrollbar-thumb {
     background-color: @white !important;
   }
-  .mdl-layout__content{
+  .mdl-layout__content {
     scrollbar-color: @white @light;
   }
   .mdl-progress {
     .bufferbar {
-      background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.7)
-        ),
-      linear-gradient(to right, @blue, @blue);
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        linear-gradient(to right, @blue, @blue);
     }
     .auxbar {
       visibility: hidden !important;
@@ -127,34 +124,30 @@
   .mdl-textfield__label {
     color: @pink;
   }
-  .mdl-textfield{
+  .mdl-textfield {
     color: @white;
-    .mdl-textfield__label{
+    .mdl-textfield__label {
       color: @pink !important;
-      &:after{
+      &::after {
         background-color: @pink;
       }
     }
   }
 
-  #characterList .loading{
+  #characterList .loading {
     background-color: @primary;
   }
-  .malImage.loading{
+  .malImage.loading {
     background-color: @primary;
   }
 
-  .searchItem{
+  .searchItem {
     color: @white;
   }
 
   .discord {
     div:not(.loaded) {
-      background-image: -webkit-linear-gradient(
-        top,
-        @light 0%,
-        rgb(115, 139, 215) 74%
-        ) !important;
+      background-image: -webkit-linear-gradient(top, @light 0%, rgb(115, 139, 215) 74%) !important;
     }
   }
   div .history {
@@ -167,4 +160,4 @@
   }
 }
 
-@import "./serial.less";
+@import './serial.less';

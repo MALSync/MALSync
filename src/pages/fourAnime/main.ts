@@ -1,78 +1,87 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 export const fourAnime: pageInterface = {
-  name: "4Anime",
-  domain: "https://4anime.to",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (j.$(".singletitletop")[0] && j.$(".episodes")[0] ) {
+  name: '4Anime',
+  domain: 'https://4anime.to',
+  type: 'anime',
+  isSyncPage(url) {
+    if (j.$('.singletitletop')[0] && j.$('.episodes')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url) {
+    getTitle(url) {
       return j
-      .$("span.singletitletop a")
-      .text()
-      .trim();
+        .$('span.singletitletop a')
+        .text()
+        .trim();
     },
-    getIdentifier: function(url) {
-      const urlPart3 = utils.urlPart(url,3);
+    getIdentifier(url) {
+      const urlPart3 = utils.urlPart(url, 3);
 
-      if(!urlPart3) return "";
+      if (!urlPart3) return '';
 
-      return urlPart3.replace(/\-episode[^]*$/g, "");
+      return urlPart3.replace(/-episode[^]*$/g, '');
     },
-    getOverviewUrl: function(url) {
-      return fourAnime.domain + "/anime/" + fourAnime.sync.getIdentifier(url);
+    getOverviewUrl(url) {
+      return `${fourAnime.domain}/anime/${fourAnime.sync.getIdentifier(url)}`;
     },
-    getEpisode: function(url) {
-      return Number(j
-      .$("ul.episodes a.active")
-      .text()
-      .replace(/\D+/g, ""))
+    getEpisode(url) {
+      return Number(
+        j
+          .$('ul.episodes a.active')
+          .text()
+          .replace(/\D+/g, ''),
+      );
     },
-    nextEpUrl: function(url){
-      var href = j.$(".anipager-next a").first().attr('href');
-      if(typeof href !== 'undefined'){
+    nextEpUrl(url) {
+      const href = j
+        .$('.anipager-next a')
+        .first()
+        .attr('href');
+      if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, fourAnime.domain);
       }
+      return '';
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j .$("p.single-anime-desktop").text().trim();
+  overview: {
+    getTitle(url) {
+      return j
+        .$('p.single-anime-desktop')
+        .text()
+        .trim();
     },
-    getIdentifier: function(url){
-      const urlPart4 = utils.urlPart(url,4);
+    getIdentifier(url) {
+      const urlPart4 = utils.urlPart(url, 4);
 
-      if(!urlPart4) return "";
+      if (!urlPart4) return '';
 
-      return urlPart4.replace(/\-episode[^]*$/g, "");
+      return urlPart4.replace(/-episode[^]*$/g, '');
     },
-    uiSelector: function(selector){
-      selector.insertAfter(j.$("p.description-mobile").first());
+    uiSelector(selector) {
+      selector.insertAfter(j.$('p.description-mobile').first());
     },
-    list:{
+    list: {
       offsetHandler: false,
-      elementsSelector: function(){return j.$(".episodes.range a");},
-      elementUrl: function(selector){return utils.absoluteLink(selector.attr('href'), fourAnime.domain);},
-      elementEp: function(selector){return Number(selector.text())},
-    }
+      elementsSelector() {
+        return j.$('.episodes.range a');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), fourAnime.domain);
+      },
+      elementEp(selector) {
+        return Number(selector.text());
+      },
+    },
   },
   init(page) {
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
-    api.storage.addStyle(require("!to-string-loader!css-loader!less-loader!./style.less").toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (j.$(".singletitletop")[0] && j.$(".episodes")[0] || page.url.split("/")[3] == "anime") {
+      if ((j.$('.singletitletop')[0] && j.$('.episodes')[0]) || page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });
-  }
+  },
 };

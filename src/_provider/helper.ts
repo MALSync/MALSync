@@ -1,7 +1,7 @@
-export function getSyncMode(type = ''){
-  var mode = api.settings.get('syncMode');
+export function getSyncMode(type = '') {
+  const mode = api.settings.get('syncMode');
   //
-  if(mode === 'SIMKL' && (type === 'manga' || type.indexOf('/manga/') !== -1)){
+  if (mode === 'SIMKL' && (type === 'manga' || type.indexOf('/manga/') !== -1)) {
     return api.settings.get('syncModeSimkl');
   }
   //
