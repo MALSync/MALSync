@@ -328,8 +328,6 @@ module.exports = {
     match: ['*://www.animestreamingfr.fr/anime/*'],
   },
   Scantrad: {
-    match: [
-      '*://scantrad.net/*'
-    ]
-  }
+    match: ['*://scantrad.net/*'],
+  },
 };

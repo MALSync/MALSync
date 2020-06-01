@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Scantrad: pageInterface = {
   name: 'Scantrad',
-  domain: 'https://scantrad.net/',
+  domain: 'https://scantrad.net',
   type: 'manga',
   isSyncPage(url) {
     return url.split('/')[3] === 'mangas';
@@ -15,7 +15,7 @@ export const Scantrad: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(Scantrad.sync.getOverviewUrl(url), 3);
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
@@ -29,6 +29,11 @@ export const Scantrad: pageInterface = {
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
     },
+    nextEpUrl(url) {
+      const href = j.$('a.next_chapitre').attr('href');
+      if (href && !href.endsWith('end')) return utils.absoluteLink(href, Scantrad.domain);
+      return '';
+    },
   },
   overview: {
     getTitle(url) {
@@ -38,16 +43,21 @@ export const Scantrad: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return Scantrad.sync.getIdentifier(url);
+      return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
       selector.appendTo(j.$('.info'));
     },
   },
   init(page) {
-    api.storage.addStyle(require('./style.less').toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      page.handlePage();
+      if (
+        (page.url.split('/')[3] === 'mangas' && typeof page.url.split('/')[4] !== 'undefined') ||
+        (j.$('body > div.main-fiche > div.mf-info > div.titre').length && j.$('#chap-top').length)
+      ) {
+        page.handlePage();
+      }
     });
   },
 };
