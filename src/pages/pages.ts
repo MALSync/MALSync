@@ -70,6 +70,7 @@ import { mangatx } from './mangatx/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
+import { Scantrad } from './Scantrad/main';
 
 export const pages = {
   Kissanime,
@@ -144,4 +145,5 @@ export const pages = {
   TRanimeizle,
   Anihub,
   AnimeStreamingFR,
+  Scantrad,
 };
