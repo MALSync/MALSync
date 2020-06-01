@@ -495,4 +495,9 @@ module.exports = {
       '*://www.tranimeizle.com/*',
     ]
   },
+  Scantrad: {
+    match: [
+      '*://scantrad.net/*'
+    ]
+  }
 };
