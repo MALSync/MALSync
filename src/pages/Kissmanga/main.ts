@@ -73,11 +73,19 @@ export const Kissmanga: pageInterface = {
       return Number(volumeNumber[0].slice(-3));
     },
     nextEpUrl(url) {
-      return j
-        .$('img.btnNext')
-        .first()
-        .parent()
-        .attr('href');
+      const num = $('select.selectChapter')
+        .find('option:selected')
+        .next()
+        .attr('value');
+
+      if (!num) return '';
+
+      const href = url.replace(/[^/]*.$/, num);
+
+      if (href !== url) {
+        return utils.absoluteLink(href, Kissmanga.domain);
+      }
+      return '';
     },
   },
   overview: {
