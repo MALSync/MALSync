@@ -31,7 +31,6 @@ import { Voiranime } from './Voiranime/main';
 import { DubbedAnime } from './DubbedAnime/main';
 import { VIZ } from './VIZ/main';
 import { MangaNelo } from './MangaNelo/main';
-import { Mangakakalot } from './Mangakakalot/main';
 import { NekoSama } from './NekoSama/main';
 import { AnimeZone } from './AnimeZone/main';
 import { AnimeOdcinki } from './AnimeOdcinki/main';
@@ -105,7 +104,6 @@ export const pages = {
   Voiranime,
   DubbedAnime,
   MangaNelo,
-  Mangakakalot,
   VIZ,
   NekoSama,
   AnimeOdcinki,

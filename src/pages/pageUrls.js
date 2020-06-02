@@ -210,9 +210,6 @@ module.exports = {
   MangaNelo: {
     match: ['*://manganelo.com/*'],
   },
-  Mangakakalot: {
-    match: ['*://mangakakalot.com/*'],
-  },
   NekoSama: {
     match: ['*://*.neko-sama.fr/*'],
   },

@@ -1,6 +1,7 @@
 {
   "title": "mangakakalot",
   "url": "https://mangakakalot.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://mangakakalot.com/chapter/domestic_na_kanojo/chapter_203",
