@@ -1,7 +1,7 @@
 {
   "title": "animeultima",
   "url": "https://www10.animeultima.eu/",
-  "skip": true, // Changing identifier
+  "unreliable": true, // Changing identifier
   "testCases": [
     {
       "url": "https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub",
