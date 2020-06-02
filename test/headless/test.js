@@ -105,6 +105,12 @@ async function cdn(page) {
     if (!bVersion.includes('Headless')) {
       cdnTimeout = 50000;
     }
+
+    const loadContent = await page.evaluate(() => document.body.innerHTML);
+    if (loadContent.indexOf('Access denied') !== -1) {
+      reject('Blocked');
+    }
+
     setTimeout(async () => {
       const content = await page.evaluate(() => document.body.innerHTML);
       if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
@@ -209,6 +215,9 @@ async function testPageCase(block, testPage, page) {
         if (e === 'Captcha') {
           throw 'Captcha';
         }
+        if (e === 'Blocked') {
+          throw 'Blocked';
+        }
       }
       passed = 0;
     }
@@ -234,6 +243,8 @@ async function loopEl(testPage, headless = true) {
       } else {
         printLogBlock(testPage.title);
       }
+    } else if (e === 'Blocked') {
+      printLogBlock(testPage.title);
     } else {
       console.error(e);
     }
