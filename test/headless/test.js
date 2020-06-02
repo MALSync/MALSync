@@ -195,7 +195,7 @@ async function testPageCase(block, testPage, page) {
       logC(block, testCase.url, 1);
       await Promise.race([
         singleCase(block, testCase, page),
-        new Promise((_, reject) => setTimeout(() => reject('timeout'), 75 * 1000)),
+        new Promise((_, reject) => setTimeout(() => reject('timeout'), 100 * 1000)),
       ]);
       logC(block, 'Passed', 2, 'green');
     } catch (e) {
@@ -282,7 +282,7 @@ async function main() {
       await new Promise((resolve, reject) => {
         let int;
         int = setInterval(() => {
-          if (running < 20) {
+          if (running < 5) {
             clearInterval(int);
             resolve();
           }
