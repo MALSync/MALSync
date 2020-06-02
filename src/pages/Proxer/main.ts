@@ -193,7 +193,7 @@ function ajaxHandle(page) {
       },
     );
   }
-  if (detailPart === 'details' || typeof detailPart === 'undefined') {
+  if (detailPart === 'details' || !detailPart) {
     utils.waitUntilTrue(
       function() {
         return j.$('.hreview-aggregate').length;
