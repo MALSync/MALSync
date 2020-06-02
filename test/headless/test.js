@@ -144,6 +144,13 @@ async function singleCase(block, test, page, retry = 0) {
       throw 'jquery could not be loaded';
     });
 
+  const loadContent = await page.evaluate(() => document.body.innerHTML);
+
+  if (loadContent.indexOf('>nginx<') !== -1) {
+    log(block, 'nginx error', 2);
+    throw 'Blocked';
+  }
+
   await page.addScriptTag({ content: script });
   const text = await page.evaluate(() => MalSyncTest());
 
