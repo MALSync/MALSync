@@ -34,22 +34,16 @@ function createTable() {
     if (typeof page.domain === 'object') page.domain = page.domain[0];
 
     const htmlContent = `<tr>
-    <td><a href="${
-      page.domain
-    }"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${
+    <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${
       page.name
     }</a></td>
     ${rowCondition(typeof page.overview !== 'undefined')}
     ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
     ${rowCondition(typeof page.database !== 'undefined')}
-    ${rowCondition(
-      typeof page.overview !== 'undefined' &&
-        typeof page.overview.list !== 'undefined',
-    )}
+    ${rowCondition(typeof page.overview !== 'undefined' && typeof page.overview.list !== 'undefined')}
   </tr>`;
 
-    if (typeof page.type !== undefined && page.type === 'anime')
-      animehtml += htmlContent;
+    if (typeof page.type !== undefined && page.type === 'anime') animehtml += htmlContent;
     else mangahtml += htmlContent;
   }
 
@@ -124,10 +118,7 @@ function adultDep() {
     if (err) {
       return console.log(err);
     }
-    const result = data.replace(
-      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
-      `<!--pages-->${html}<!--/pages-->`,
-    );
+    const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
 
     fs.writeFile(descFile, result, 'utf8', function(err) {
       if (err) return console.log(err);
@@ -204,10 +195,7 @@ function readMe() {
     if (err) {
       return console.log(err);
     }
-    const result = data.replace(
-      /<!--pages-->((.|\n|\r)*)<!--\/pages-->/g,
-      `<!--pages-->${html}<!--/pages-->`,
-    );
+    const result = data.replace(/<!--pages-->((.|\n|\r)*)<!--\/pages-->/g, `<!--pages-->${html}<!--/pages-->`);
 
     fs.writeFile(descFile, result, 'utf8', function(err) {
       if (err) return console.log(err);
