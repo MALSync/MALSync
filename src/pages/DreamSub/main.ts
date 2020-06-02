@@ -77,6 +77,11 @@ export const DreamSub: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    if (document.title === 'Verifica che non sei un bot | DreamSub') {
+      con.log('loading');
+      page.cdn();
+      return;
+    }
     j.$(document).ready(function() {
       utils.waitUntilTrue(
         function() {
