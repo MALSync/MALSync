@@ -25,9 +25,9 @@ export const AnimesVision: pageInterface = {
       return j.$('#episodes-sv-1 > li > div.sli-name > a').attr('href') || '';
     },
     getEpisode(url) {
-      const episodetemp = url.split('/')[5].replace(/\D+/, '');
+      const episodetemp = utils.urlPart(url, 5).replace(/\D+/, '');
 
-      if (!episodetemp) return NaN;
+      if (!episodetemp) return 1;
 
       return Number(episodetemp);
     },
