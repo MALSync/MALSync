@@ -75,7 +75,7 @@ function createTable() {
       <tr>
         <th>Page</th>
         <th>Overview Page</th>
-        <th>Next Episode</th>
+        <th>Next Chapter</th>
         <th>Database Support</th>
         <th>Update Check</th>
       </tr>
