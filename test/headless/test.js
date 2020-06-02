@@ -134,7 +134,12 @@ async function onlineTest(url, page) {
 }
 
 async function singleCase(block, test, page, retry = 0) {
-  const [response] = await Promise.all([page.goto(test.url, { timeout: 0 }), page.waitForNavigation({ timeout: 0 })]);
+  try {
+    const [response] = await Promise.all([page.goto(test.url, { timeout: 0 }), page.waitForNavigation({ timeout: 30000 })]);
+  } catch(e) {
+    log(block, 'Page loads too long', 2);
+    await page.evaluate(() => window.stop());
+  }
 
   await page
     .addScriptTag({
