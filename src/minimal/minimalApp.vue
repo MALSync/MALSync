@@ -220,7 +220,7 @@ import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
 import { getSingle } from '../_provider/singleFactory';
-import { getList } from './../_provider/listFactory';
+import { getList } from '../_provider/listFactory';
 
 let timer;
 let ignoreCurrentTab = true;
@@ -640,15 +640,15 @@ export default {
     searchClick(item) {
       this.urlClick(item.url);
     },
-    openLink: function(url) {
-      var link = document.createElement('a');
+    openLink(url) {
+      let link = document.createElement('a');
       link.href = url;
       document.getElementById('malList').appendChild(link);
       link.click();
     },
     async openRandom(status, type) {
       utils.flashm('Loading');
-      let listProvider = await getList(status, type);
+      const listProvider = await getList(status, type);
       listProvider
         .get()
         .then(async list => {
