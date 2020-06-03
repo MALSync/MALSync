@@ -1,0 +1,362 @@
+[
+  {
+    "domain": "https://kissanime.ru",
+    "type": "anime",
+    "name": "kissanime"
+  },
+  {
+    "domain": "https://kissmanga.com",
+    "type": "manga",
+    "name": "kissmanga"
+  },
+  {
+    "domain": "https://9anime.to",
+    "type": "anime",
+    "name": "9anime"
+  },
+  {
+    "domain": "https://www.crunchyroll.com",
+    "type": "anime",
+    "name": "Crunchyroll"
+  },
+  {
+    "domain": "https://vrv.co",
+    "type": "anime",
+    "name": "Vrv"
+  },
+  {
+    "domain": "https://www.mangadex.org",
+    "type": "manga",
+    "name": "Mangadex"
+  },
+  {
+    "domain": "https://gogoanimes.co",
+    "type": "anime",
+    "name": "Gogoanime"
+  },
+  {
+    "domain": "https://twist.moe",
+    "type": "anime",
+    "name": "Twistmoe"
+  },
+  {
+    "domain": "https://www.anime4you.one",
+    "type": "anime",
+    "name": "Anime4you"
+  },
+  {
+    "domain": "https://www.branitube.net",
+    "type": "anime",
+    "name": "Branitube"
+  },
+  {
+    "domain": "http://www.turkanime.tv",
+    "type": "anime",
+    "name": "Turkanime"
+  },
+  {
+    "domain": "https://animepahe.com",
+    "type": "anime",
+    "name": "animepahe"
+  },
+  {
+    "domain": "https://www.netflix.com",
+    "type": "anime",
+    "name": "Netflix"
+  },
+  {
+    "domain": "https://animeflv.net",
+    "type": "anime",
+    "name": "animeflv"
+  },
+  {
+    "domain": "https://jkanime.net/",
+    "type": "anime",
+    "name": "Jkanime"
+  },
+  {
+    "domain": "https://proxer.me",
+    "type": "anime",
+    "name": "Proxer"
+  },
+  {
+    "domain": "https://www.wakanim.tv",
+    "type": "anime",
+    "name": "Wakanim"
+  },
+  {
+    "domain": "http://app.emby.media",
+    "type": "anime",
+    "name": "Emby"
+  },
+  {
+    "domain": "http://app.plex.tv",
+    "type": "anime",
+    "name": "Plex"
+  },
+  {
+    "domain": "https://4anime.to",
+    "type": "anime",
+    "name": "4Anime"
+  },
+  {
+    "domain": "https://animeultima.to",
+    "type": "anime",
+    "name": "animeultima"
+  },
+  {
+    "domain": "https://www1.aniflix.tv",
+    "type": "anime",
+    "name": "Aniflix"
+  },
+  {
+    "domain": "https://www.animefreak.tv",
+    "type": "anime",
+    "name": "Animefreak"
+  },
+  {
+    "domain": "https://animedaisuki.moe",
+    "type": "anime",
+    "name": "AnimeDaisuki"
+  },
+  {
+    "domain": "https://www.kickassanime.rs",
+    "type": "anime",
+    "name": "KickAssAnime"
+  },
+  {
+    "domain": "https://animekisa.tv",
+    "type": "anime",
+    "name": "AnimeKisa"
+  },
+  {
+    "domain": "http://animeindo.moe",
+    "type": "anime",
+    "name": "AnimeIndo"
+  },
+  {
+    "domain": "https://shinden.pl",
+    "type": "anime",
+    "name": "Shinden"
+  },
+  {
+    "domain": "https://www.funimation.com",
+    "type": "anime",
+    "name": "Funimation"
+  },
+  {
+    "domain": "http://voiranime.com",
+    "type": "anime",
+    "name": "Voiranime"
+  },
+  {
+    "domain": "https://ww5.dubbedanime.net",
+    "type": "anime",
+    "name": "DubbedAnime"
+  },
+  {
+    "domain": "https://manganelo.com",
+    "type": "manga",
+    "name": "MangaNelo"
+  },
+  {
+    "domain": "https://www.viz.com",
+    "type": "manga",
+    "name": "VIZ"
+  },
+  {
+    "domain": "https://www.neko-sama.fr",
+    "type": "anime",
+    "name": "NekoSama"
+  },
+  {
+    "domain": "https://anime-odcinki.pl",
+    "type": "anime",
+    "name": "AnimeOdcinki"
+  },
+  {
+    "domain": "https://www.animezone.pl",
+    "type": "anime",
+    "name": "AnimeZone"
+  },
+  {
+    "domain": "https://animeflix.io",
+    "type": "anime",
+    "name": "Animeflix"
+  },
+  {
+    "domain": "https://serimanga.com",
+    "type": "manga",
+    "name": "serimanga"
+  },
+  {
+    "domain": "https://mangadenizi.com",
+    "type": "manga",
+    "name": "mangadenizi"
+  },
+  {
+    "domain": "https://moeclip.com",
+    "type": "anime",
+    "name": "moeclip"
+  },
+  {
+    "domain": "https://mangalivre.net",
+    "type": "manga",
+    "name": "mangalivre"
+  },
+  {
+    "domain": "https://lectortmo.com",
+    "type": "manga",
+    "name": "tmofans"
+  },
+  {
+    "domain": "https://unionleitor.top",
+    "type": "manga",
+    "name": "unionmangas"
+  },
+  {
+    "domain": "https://mangaplus.shueisha.co.jp",
+    "type": "manga",
+    "name": "MangaPlus"
+  },
+  {
+    "domain": "https://www.japscan.co",
+    "type": "manga",
+    "name": "JapScan"
+  },
+  {
+    "domain": "https://mangakisa.com",
+    "type": "manga",
+    "name": "MangaKisa"
+  },
+  {
+    "domain": "https://goyabu.com",
+    "type": "anime",
+    "name": "Goyabu"
+  },
+  {
+    "domain": "https://animesvision.biz",
+    "type": "anime",
+    "name": "AnimesVision"
+  },
+  {
+    "domain": "https://www.hulu.com",
+    "type": "anime",
+    "name": "Hulu"
+  },
+  {
+    "domain": "https://aniwatch.me",
+    "type": "anime",
+    "name": "Aniwatch"
+  },
+  {
+    "domain": "https://www.hidive.com",
+    "type": "anime",
+    "name": "Hidive"
+  },
+  {
+    "domain": "https://jaiminisbox.com",
+    "type": "manga",
+    "name": "JaiminisBox"
+  },
+  {
+    "domain": "https://manga.fascans.com/",
+    "type": "manga",
+    "name": "FallenAngels"
+  },
+  {
+    "domain": "https://animestrue.site",
+    "type": "anime",
+    "name": "animestrue"
+  },
+  {
+    "domain": "https://www.primevideo.com",
+    "type": "anime",
+    "name": "Amazon Prime Video"
+  },
+  {
+    "domain": "http://mangakatana.com",
+    "type": "manga",
+    "name": "MangaKatana"
+  },
+  {
+    "domain": "https://manga4life.com",
+    "type": "manga",
+    "name": "manga4life"
+  },
+  {
+    "domain": "https://bato.to",
+    "type": "manga",
+    "name": "bato"
+  },
+  {
+    "domain": "https://dreamsub.stream",
+    "type": "anime",
+    "name": "DreamSub"
+  },
+  {
+    "domain": "https://mangapark.net",
+    "type": "manga",
+    "name": "MangaPark"
+  },
+  {
+    "domain": "https://animeshouse.net",
+    "type": "anime",
+    "name": "AnimesHouse"
+  },
+  {
+    "domain": "https://animexin.xyz",
+    "type": "anime",
+    "name": "AnimeXin"
+  },
+  {
+    "domain": "https://monoschinos.com",
+    "type": "anime",
+    "name": "MonosChinos"
+  },
+  {
+    "domain": "https://animefire.net",
+    "type": "anime",
+    "name": "AnimeFire"
+  },
+  {
+    "domain": "https://www.otakufr.com",
+    "type": "anime",
+    "name": "OtakuFR"
+  },
+  {
+    "domain": "https://samehadaku.vip",
+    "type": "anime",
+    "name": "Samehadaku"
+  },
+  {
+    "domain": "https://www.tsukimangas.com",
+    "type": "manga",
+    "name": "Tsuki Mangás"
+  },
+  {
+    "domain": "https://mangatx.com",
+    "type": "manga",
+    "name": "mangatx"
+  },
+  {
+    "domain": "https://www.tranimeizle.com/",
+    "type": "anime",
+    "name": "TRanimeizle"
+  },
+  {
+    "domain": "https://anihub.tv",
+    "type": "anime",
+    "name": "Anihub"
+  },
+  {
+    "domain": "https://www.animestreamingfr.fr",
+    "type": "anime",
+    "name": "AnimeStreamingFR"
+  },
+  {
+    "domain": "https://scantrad.net",
+    "type": "manga",
+    "name": "Scantrad"
+  }
+]
