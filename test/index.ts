@@ -13,7 +13,10 @@ window.MalSyncTest = async function() {
   }
   return new Promise(function(resolve, reject) {
     if (testForCloudflare()) {
-      resolve('retry');
+      resolve({
+        sync: 'cdn',
+        type: 'default'
+      });
       return;
     }
     page.init({
@@ -74,8 +77,11 @@ window.MalSyncTest = async function() {
         }
         resolve(value);
       },
-      cdn() {
-        resolve('retry');
+      cdn(type) {
+        resolve({
+          sync: 'cdn',
+          type: type
+        });
       },
     });
   });

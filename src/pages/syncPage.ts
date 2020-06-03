@@ -783,7 +783,7 @@ export class syncPage {
     return false;
   }
 
-  cdn() {
+  cdn(type: 'default' | 'captcha' | 'blocked' = 'default') {
     api.storage.addStyle(`
       .bubbles {
         display: none !important;

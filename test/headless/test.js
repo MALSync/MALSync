@@ -98,8 +98,12 @@ function printLogBlock(block) {
   }
 }
 
-async function cdn(page) {
+async function cdn(page, type) {
   return new Promise(async (resolve, reject) => {
+
+    if(type === 'captcha') reject('Captcha');
+    if(type === 'blocked') reject('Blocked');
+
     let cdnTimeout = 7000;
     let bVersion = await page.browser().version();
     if (!bVersion.includes('Headless')) {
@@ -159,10 +163,10 @@ async function singleCase(block, test, page, retry = 0) {
   await page.addScriptTag({ content: script });
   const text = await page.evaluate(() => MalSyncTest());
 
-  if (text === 'retry') {
+  if (text.sync === 'cdn') {
     if (retry > 2) throw 'Max retries';
-    log(block, 'Retry', 2);
-    await cdn(page);
+    log(block, 'Retry '+text.type, 2);
+    await cdn(page, text.type);
     retry++;
     return singleCase(block, test, page, retry);
   }
