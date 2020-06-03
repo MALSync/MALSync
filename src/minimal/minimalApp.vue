@@ -144,6 +144,14 @@
                 <div
                   style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
                   class="bg-cell"
+                  v-if="tabs.bookmarks.state === 6"
+                  @click="openRandom(6, tabs.bookmarks.type)"
+                >
+                  <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
+                </div>
+                <div
+                  style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                  class="bg-cell"
                   @click="listView = !listView"
                 >
                   <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
@@ -212,6 +220,7 @@ import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
 import { getSingle } from '../_provider/singleFactory';
+import { getList } from './../_provider/listFactory';
 
 let timer;
 let ignoreCurrentTab = true;
@@ -630,6 +639,28 @@ export default {
     },
     searchClick(item) {
       this.urlClick(item.url);
+    },
+    openLink: function(url) {
+      var link = document.createElement('a');
+      link.href = url;
+      document.getElementById('malList').appendChild(link);
+      link.click();
+    },
+    async openRandom(status, type) {
+      utils.flashm('Loading');
+      let listProvider = await getList(status, type);
+      listProvider
+        .get()
+        .then(async list => {
+          if (list && list.length > 1) {
+            this.openLink(list[Math.floor(Math.random() * list.length)].url);
+          } else {
+            utils.flashm('List is too small!');
+          }
+        })
+        .catch(e => {
+          con.error(e);
+        });
     },
   },
 };
