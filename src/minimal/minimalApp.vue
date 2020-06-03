@@ -641,7 +641,7 @@ export default {
       this.urlClick(item.url);
     },
     openLink(url) {
-      let link = document.createElement('a');
+      const link = document.createElement('a');
       link.href = url;
       document.getElementById('malList').appendChild(link);
       link.click();
