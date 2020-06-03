@@ -202,3 +202,24 @@ function readMe() {
     });
   });
 }
+
+createJson();
+function createJson() {
+  const pageList = Object.values(require('../src/pages/pages.ts').pages);
+  const res = [];
+  for (var page in pageList) {
+    page = pageList[page];
+
+    if (typeof page.domain === 'object') page.domain = page.domain[0];
+    res.push({
+      domain: page.domain,
+      type: page.type,
+      name: page.name
+    })
+  }
+
+  const descFile = path.join(__dirname, '../src/pages/list.json');
+  fs.writeFile(descFile, JSON.stringify(res, null, 2), 'utf8', function(err) {
+    if (err) return console.log(err);
+  });
+}
