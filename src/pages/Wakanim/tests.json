@@ -15,11 +15,11 @@
     //   }
     // },
     {
-      "url": "https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu",
+      "url": "https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu/season/870/staffel-1",
       "expected": {
         "sync": false,
-        "title": "AFTERLOST",
-        "identifier": "493",
+        "title": "AFTERLOST (OmU.) Staffel 1",
+        "identifier": "AFTERLOST (OmU.) Staffel 1",
         "uiSelector": true
       }
     }
