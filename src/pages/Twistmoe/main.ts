@@ -75,6 +75,13 @@ export const Twistmoe: pageInterface = {
   },
   init(page) {
     const start = () => {
+      if (
+        !$('.information .series-title')
+          .text()
+          .trim()
+      )
+        return;
+
       const urlPart3 = utils.urlPart(page.url, 3);
 
       if (!urlPart3) {
