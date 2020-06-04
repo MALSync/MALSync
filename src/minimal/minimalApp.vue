@@ -228,6 +228,7 @@ let ignoreNullBase = false;
 const STORAGE_KEY = 'VUE-MAL-SYNC';
 const scrollHandler = {};
 let scrollHandlerArray = [];
+let randomListCache = { anime: [], manga: [] };
 const popupStorage = {
   fetch() {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -647,20 +648,23 @@ export default {
       link.click();
     },
     async openRandom(status, type) {
-      utils.flashm('Loading');
-      const listProvider = await getList(status, type);
-      listProvider
-        .get()
-        .then(async list => {
-          if (list && list.length > 1) {
-            this.openLink(list[Math.floor(Math.random() * list.length)].url);
-          } else {
-            utils.flashm('List is too small!');
-          }
-        })
-        .catch(e => {
-          con.error(e);
-        });
+      if (!randomListCache[type].length) {
+        utils.flashm('Loading');
+        const listProvider = await getList(status, type);
+        await listProvider
+          .get()
+          .then(async list => {
+            randomListCache[type] = list;
+          })
+          .catch(e => {
+            con.error(e);
+          });
+      }
+      if (randomListCache[type].length > 1) {
+        this.openLink(randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url);
+      } else {
+        utils.flashm('List is too small!');
+      }
     },
   },
 };
