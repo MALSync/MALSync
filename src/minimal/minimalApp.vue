@@ -228,7 +228,7 @@ let ignoreNullBase = false;
 const STORAGE_KEY = 'VUE-MAL-SYNC';
 const scrollHandler = {};
 let scrollHandlerArray = [];
-let randomListCache = { anime: [], manga: [] };
+const randomListCache = { anime: [], manga: [] };
 const popupStorage = {
   fetch() {
     const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
