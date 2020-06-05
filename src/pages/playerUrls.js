@@ -242,4 +242,8 @@ module.exports = {
   uptostream: {
     match: ['*://uptostream.com/iframe/*'],
   },
+  // Gogoanime
+  uptostream: {
+    match: ['*://easyload.io/e/*'],
+  },
 };
