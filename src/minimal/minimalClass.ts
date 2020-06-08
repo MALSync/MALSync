@@ -378,13 +378,13 @@ export class minimal {
               <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
                 <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
               </a><br>
-              <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
-                <img alt="Github Issues" src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
+              <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
+                <img alt="Github Issues" src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white">
               </a><br>
               <br>
               ${api.storage.lang('minimalClass_versionMsg_Text_3')}<br>
-              <a target="_blank" href="https://github.com/lolamtisch/MALSync">
-                <img alt="Github" src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
+              <a target="_blank" href="https://github.com/MALSync/MALSync">
+                <img alt="Github" src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github">
               </a>
             </div>
           `;

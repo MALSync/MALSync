@@ -22,7 +22,7 @@
             id="iconimage"
             height="32"
             width="32"
-            src="https://github.com/lolamtisch/MALSync/blob/master/assets/icons/icon128.png?raw=true"
+            src="https://github.com/MALSync/MALSync/blob/master/assets/icons/icon128.png?raw=true"
           />Mal-Sync</span
         >
         <div class="mdl-layout-spacer"></div>
@@ -136,18 +136,18 @@
                 src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
               />
             </a>
-            <a target="_blank" href="https://github.com/lolamtisch/MALSync/issues">
+            <a target="_blank" href="https://github.com/MALSync/MALSync/issues">
               <img
                 alt="Github Issues"
-                src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
+                src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white"
               />
             </a>
 
             <h4>{{ lang('minimalClass_versionMsg_Text_3') }}</h4>
-            <a target="_blank" href="https://github.com/lolamtisch/MALSync">
+            <a target="_blank" href="https://github.com/MALSync/MALSync">
               <img
                 alt="Github"
-                src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
+                src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&amp;logo=github&amp;logoColor=white&amp;label=Github"
               />
             </a>
           </div>

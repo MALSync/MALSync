@@ -50,7 +50,7 @@ export const userscriptLegacy: storageInterface = {
   },
 
   assetUrl(filename) {
-    return `https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/assets/${filename}`;
+    return `https://raw.githubusercontent.com/MALSync/MALSync/master/assets/assets/${filename}`;
   },
 
   injectCssResource(res, head) {

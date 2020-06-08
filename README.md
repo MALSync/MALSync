@@ -1,12 +1,12 @@
-[![img](https://img.shields.io/travis/com/lolamtisch/MALSync.svg?style=flat-square&logo=travis)](https://travis-ci.com/lolamtisch/MALSync)
+[![img](https://img.shields.io/travis/com/MALSync/MALSync.svg?style=flat-square&logo=travis)](https://travis-ci.com/MALSync/MALSync)
 [![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)
-[![img](https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/lolamtisch/MALSync/issues)
-[![CodeFactor](https://www.codefactor.io/repository/github/lolamtisch/malsync/badge)](https://www.codefactor.io/repository/github/lolamtisch/malsync)
+[![img](https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/MALSync/MALSync/issues)
+[![CodeFactor](https://www.codefactor.io/repository/github/MALSync/MALSync/badge)](https://www.codefactor.io/repository/github/MALSync/MALSync)
 
 # MAL-Sync
-**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.  
+**MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.
 
-Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as a centralized bookmarks system for all supported pages.  
+Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as a centralized bookmarks system for all supported pages.
 
 #### **Supported Pages** <a id="anchor-link"></a>
 
@@ -23,11 +23,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
       <tr>
                 <td><a href="https://kissanime.ru"><img src="https://www.google.com/s2/favicons?domain=https://kissanime.ru"> kissanime</a></td>
                 <td><a href="https://kissmanga.com"><img src="https://www.google.com/s2/favicons?domain=https://kissmanga.com"> kissmanga</a></td>
-                <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
+                <td><a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://9anime.to"><img src="https://www.google.com/s2/favicons?domain=https://9anime.to"> 9anime</a></td>
                 <td><a href="https://www.mangadex.org"><img src="https://www.google.com/s2/favicons?domain=https://www.mangadex.org"> Mangadex</a></td>
-                <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/lolamtisch/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
+                <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://www.crunchyroll.com"><img src="https://www.google.com/s2/favicons?domain=https://www.crunchyroll.com"> Crunchyroll</a></td>
                 <td><a href="https://novelplanet.com"><img src="https://www.google.com/s2/favicons?domain=https://novelplanet.com"> Novelplanet</a></td>
@@ -219,9 +219,9 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 
 [List of supported features by page](pages.md)
 
-#### **Download**  
-[![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)  
-[![Firefox](https://img.shields.io/amo/users/mal-sync.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mal-sync)  
+#### **Download**
+[![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)
+[![Firefox](https://img.shields.io/amo/users/mal-sync.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mal-sync)
 [![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/de/scripts/372847-mal-sync)
 #### **Complementary Adult Userscript**
 [Here](src/pages-adult/README.md)
@@ -243,12 +243,12 @@ miniMAL (Extension Popup)
 Update Check [BETA]
   - Checks for new episodes/chapter in the background and sends out a notification
   - Updates the links to the next episode
-  - Makes current episode estimation more accurate  
+  - Makes current episode estimation more accurate
 !This feature is disabled by default. You will need to enable it in the miniMAL popup!
 
 ## Want to Contribute?
-Then let me know on [Discord](https://discordapp.com/invite/cTH4yaw).  
+Then let me know on [Discord](https://discordapp.com/invite/cTH4yaw).
 
-How to build? [Wiki](https://github.com/lolamtisch/MALSync/wiki/Build)
+How to build? [Wiki](https://github.com/MALSync/MALSync/wiki/Build)
 
-You can't code, but want to help? [Donations](https://github.com/lolamtisch/MALSync/wiki/Donations)
+You can't code, but want to help? [Donations](https://github.com/MALSync/MALSync/wiki/Donations)

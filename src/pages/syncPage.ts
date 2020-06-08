@@ -790,7 +790,7 @@ export class syncPage {
       }
       div#cf-content:before {
         content: '';
-        background-image: url(https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png);
+        background-image: url(https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png);
         height: 64px;
         width: 64px;
         display: block;

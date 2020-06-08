@@ -98,7 +98,7 @@
         <checkbox option="localSync"
           >{{ lang('settings_LocalSync') }}
           <a
-            href="https://github.com/lolamtisch/MALSync/wiki/Local-Sync"
+            href="https://github.com/MALSync/MALSync/wiki/Local-Sync"
             target="_blank"
             style="margin-left: auto; margin-right: 10px;"
             >[INFO]</a
@@ -212,7 +212,7 @@
           <span class="mdl-list__item-secondary-action">
             {{ commands._execute_browser_action.shortcut }}
             <span v-if="!commands._execute_browser_action.shortcut"
-              ><a href="https://github.com/lolamtisch/MALSync/wiki/Shortcuts" target="_blank">{{
+              ><a href="https://github.com/MALSync/MALSync/wiki/Shortcuts" target="_blank">{{
                 lang('settings_miniMAL_NotSet')
               }}</a></span
             >
@@ -332,7 +332,7 @@
           <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
           <a
             style="margin-left: auto;"
-            href="https://github.com/lolamtisch/MALSync/wiki/Discord-Rich-Presence"
+            href="https://github.com/MALSync/MALSync/wiki/Discord-Rich-Presence"
             target="_blank"
           >
             More Info</a
@@ -476,11 +476,11 @@
             <clazy-load
               tag="a"
               rel="noreferrer"
-              href="https://github.com/lolamtisch/MALSync"
-              src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
+              href="https://github.com/MALSync/MALSync"
+              src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
             >
               <img
-                src="https://img.shields.io/github/last-commit/lolamtisch/malsync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
+                src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
               />
               <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">
@@ -492,11 +492,11 @@
             <clazy-load
               tag="a"
               rel="noreferrer"
-              href="https://github.com/lolamtisch/MALSync/issues"
-              src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"
+              href="https://github.com/MALSync/MALSync/issues"
+              src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white"
             >
               <img
-                src="https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white"
+                src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white"
               />
               <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
               <span slot="placeholder">

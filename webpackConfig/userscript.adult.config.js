@@ -37,7 +37,7 @@ const metadata = {
   author: package['author'],
   license: 'GPL-3.0',
   iconURL:
-    'https://raw.githubusercontent.com/lolamtisch/MALSync/master/assets/icons/icon128.png',
+    'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
   downloadURL:
     'https://greasyfork.org/scripts/387981-mal-sync-adult-fatexxxblood-edition/code/MAL-Sync%20Adult%20%5BFateXXXBlood%20Edition%5D.user.js',
   updateURL:

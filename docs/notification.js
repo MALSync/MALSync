@@ -45,7 +45,7 @@ function changelog() {
   changelogData.forEach(function(version) {
     html += `<div class="card change" id="${version.title.replace(/\./g, '-')}">
         <div class="card-header">
-          <a href="https://github.com/lolamtisch/MALSync/releases/tag/${
+          <a href="https://github.com/MALSync/MALSync/releases/tag/${
             version.title
           }">
             Version ${version.title}
@@ -77,7 +77,7 @@ function changelog() {
       issues.forEach(function(issue) {
         message = message.replace(
           issue,
-          `<a href="https://github.com/lolamtisch/MALSync/issues/${issue.replace(
+          `<a href="https://github.com/MALSync/MALSync/issues/${issue.replace(
             '#',
             '',
           )}">${issue}</a>`,

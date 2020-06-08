@@ -2,7 +2,7 @@
   <div class="mdl-grid bg-cell" style="display: block;">
     <div style="margin-bottom: 20px;">
       This feature is still in beta. Use at your own risk. More info
-      <a href="https://github.com/lolamtisch/MALSync/wiki/List-Sync">Here</a>
+      <a href="https://github.com/MALSync/MALSync/wiki/List-Sync">Here</a>
     </div>
 
     <div>

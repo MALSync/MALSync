@@ -94,7 +94,7 @@ export class Single extends SingleAbstract {
   }
 
   _getDisplayUrl() {
-    return 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync';
+    return 'https://github.com/MALSync/MALSync/wiki/Local-Sync';
   }
 
   _getImage() {

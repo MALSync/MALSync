@@ -81,7 +81,7 @@ function setGlobals() {
     apiTest: {
       defaultUrl: {
         url: 'local://crunchyroll/anime/nogamenolife',
-        displayUrl: 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync',
+        displayUrl: 'https://github.com/MALSync/MALSync/wiki/Local-Sync',
         malUrl: null,
         title: 'Unknown',
         eps: 0,
@@ -92,7 +92,7 @@ function setGlobals() {
       },
       notOnListUrl: {
         url: 'local://crunchyroll/anime/notonlist',
-        displayUrl: 'https://github.com/lolamtisch/MALSync/wiki/Local-Sync',
+        displayUrl: 'https://github.com/MALSync/MALSync/wiki/Local-Sync',
         malUrl: null,
         title: 'Unknown',
         eps: 0,

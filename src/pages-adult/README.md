@@ -1,8 +1,8 @@
 # MAL-Sync Adult
 
-**Does not work with Greasemonkey!**  
+**Does not work with Greasemonkey!**
 
-This is an complementary script for <a href="https://github.com/lolamtisch/MALSync">MAL-Sync</a>. You need to have both installed. Keep in mind that the settings are independent and need to be set in both manually. For initial authentication it is possibly needed to disable the extension temporary.
+This is an complementary script for <a href="https://github.com/MALSync/MALSync">MAL-Sync</a>. You need to have both installed. Keep in mind that the settings are independent and need to be set in both manually. For initial authentication it is possibly needed to disable the extension temporary.
 
 #### **Supported Pages** <a id="anchor-link"></a>
 <!--pages-->

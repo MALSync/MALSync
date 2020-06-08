@@ -832,7 +832,7 @@
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
-        "content": "<a target=\"_blank\" href=\"https://github.com/lolamtisch/MALSync#supported-pages-\">",
+        "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
         "example": "<a>"
       },
       "LinkEnd1": {
