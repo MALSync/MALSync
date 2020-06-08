@@ -1,0 +1,27 @@
+{
+  "title": "Wakanim",
+  "url": "https://www.wakanim.tv",
+  "testCases": [
+    // {
+    //   url: 'https://www.wakanim.tv/de/v2/catalogue/episode/8787/afterlost-omu-staffel-1-folge-4-omu',
+    //   expected: {
+    //     sync: true,
+    //     title: 'AFTERLOST (OmU.)',
+    //     identifier: '493',
+    //     overviewUrl: 'https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu',
+    //     nextEpUrl: 'https://www.wakanim.tv/de/v2/catalogue/episode/8788/afterlost-omu-staffel-1-folge-5-omu',
+    //     episode: 4,
+    //     uiSelector: false,
+    //   }
+    // },
+    {
+      "url": "https://www.wakanim.tv/de/v2/catalogue/show/493/afterlost-omu/season/870/staffel-1",
+      "expected": {
+        "sync": false,
+        "title": "AFTERLOST (OmU.) Staffel 1",
+        "identifier": "AFTERLOST (OmU.) Staffel 1",
+        "uiSelector": true
+      }
+    }
+  ]
+}

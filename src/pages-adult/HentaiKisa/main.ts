@@ -1,63 +1,77 @@
-import {pageInterface} from "./../../pages/pageInterface";
+import { pageInterface } from '../../pages/pageInterface';
 
 export const HentaiKisa: pageInterface = {
-  name: "HentaiKisa",
-  domain: "https://hentaikisa.com",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (url.split("/")[3] !== null && j.$("div.c a.infoan2")[0] && j.$("#playerselector option:selected")[0]) {
+  name: 'HentaiKisa',
+  domain: 'https://hentaikisa.com',
+  type: 'anime',
+  isSyncPage(url) {
+    if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){return j.$("div.c a.infoan2").text().trim()},
-    getIdentifier: function(url) {
-      return j.$("div.c a.infoan2").attr("href") || "";
+    getTitle(url) {
+      return j
+        .$('div.c a.infoan2')
+        .text()
+        .trim();
     },
-    getOverviewUrl: function(url){
-      return HentaiKisa.domain + "/" + j.$("div.c a.infoan2").attr("href");
+    getIdentifier(url) {
+      return j.$('div.c a.infoan2').attr('href') || '';
     },
-    getEpisode: function(url){
-      const episodeText = j.$("#playerselector option:selected").text();
-
-      if(!episodeText) return NaN;
-
-      return Number(episodeText.replace(/\D+/g, ""));
+    getOverviewUrl(url) {
+      return `${HentaiKisa.domain}/${j.$('div.c a.infoan2').attr('href')}`;
     },
-    nextEpUrl: function(url){
-      var num = $("#playerselector").find("option:selected").next().attr('value');
+    getEpisode(url) {
+      const episodeText = j.$('#playerselector option:selected').text();
 
-      if(!num) return;
-      
-      var href = url.replace(/\d+$/, num);
-      if(typeof num !== 'undefined' && href !== url){
+      if (!episodeText) return NaN;
+
+      return Number(episodeText.replace(/\D+/g, ''));
+    },
+    nextEpUrl(url) {
+      const num = $('#playerselector')
+        .find('option:selected')
+        .next()
+        .attr('value');
+
+      if (!num) return '';
+
+      const href = url.replace(/\d+$/, num);
+      if (typeof num !== 'undefined' && href !== url) {
         return utils.absoluteLink(href, HentaiKisa.domain);
       }
+      return '';
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1").text().trim();
+  overview: {
+    getTitle(url) {
+      return j
+        .$('#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1')
+        .text()
+        .trim();
     },
-    getIdentifier: function(url){
-      return url.split("/")[3];
+    getIdentifier(url) {
+      return url.split('/')[3];
     },
-    uiSelector: function(selector){selector.insertBefore(j.$("#body > div.notmain > div > div.infobox > div.iepbox.nobackground").first());},
+    uiSelector(selector) {
+      selector.insertBefore(
+        j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground').first(),
+      );
+    },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){
-      if (page.url.split("/")[3] !== null && j.$("div.c a.infoan2")[0] && j.$("#playerselector option:selected")[0] || page.url.split("/")[3] !== null && j.$("#body > div.notmain > div > div.infobox > div.infoboxc > div.infodesbox > h1")[0] && j.$("#body > div.notmain > div > div.infobox > div.iepbox.nobackground")[0])
-      {
-       page.handlePage();
-     }
-   });
-  }
+    j.$(document).ready(function() {
+      if (
+        (page.url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) ||
+        (page.url.split('/')[3] !== null &&
+          j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1')[0] &&
+          j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground')[0])
+      ) {
+        page.handlePage();
+      }
+    });
+  },
 };

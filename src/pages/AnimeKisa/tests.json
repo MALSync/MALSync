@@ -1,0 +1,30 @@
+{
+  "title": "AnimeKisa",
+  "url": "https://animekisa.tv/",
+  "testCases": [
+    {
+      "url": "https://animekisa.tv/phantom-requiem-for-the-phantom-episode-9",
+      "expected": {
+        "sync": true,
+        "title": "Phantom: Requiem for the Phantom",
+        "identifier": "phantom-requiem-for-the-phantom",
+        "overviewUrl": "https://animekisa.tv/phantom-requiem-for-the-phantom",
+        "episode": 9,
+        "nextEpUrl": "https://animekisa.tv/phantom-requiem-for-the-phantom-episode-10",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animekisa.tv/phantom-requiem-for-the-phantom",
+      "expected": {
+        "sync": false,
+        "title": "Phantom: Requiem for the Phantom",
+        "identifier": "phantom-requiem-for-the-phantom",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animekisa.tv/phantom-requiem-for-the-phantom-episode-5"
+        }
+      }
+    }
+  ]
+}

@@ -1,101 +1,117 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 let jsonData;
 
 export const TsukiMangas: pageInterface = {
-  name: "Tsuki Mangás",
-  domain: "https://www.tsukimangas.com",
-  type: "manga",
-  isSyncPage: function(url) {
+  name: 'Tsuki Mangás',
+  domain: 'https://www.tsukimangas.com',
+  type: 'manga',
+  isSyncPage(url) {
     return jsonData.isReaderPage;
   },
   sync: {
-    getTitle: function(url){
+    getTitle(url) {
       return jsonData.mangaName;
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return jsonData.identifier;
     },
-    getOverviewUrl: function(url){
+    getOverviewUrl(url) {
       return jsonData.overview_url;
     },
-    getEpisode: function(url){
+    getEpisode(url) {
       return jsonData.currentChapter;
     },
-    nextEpUrl: function(url){
-      if(jsonData.nextChapter) {
+    nextEpUrl(url) {
+      if (jsonData.nextChapter) {
         return jsonData.nextChapter;
       }
+      return '';
     },
-    getMalUrl: function(provider) {
-      if(jsonData.myanimelistID && jsonData.myanimelistID !== "0") {
-        return "https://myanimelist.net/manga/" + jsonData.myanimelistID;
+    getMalUrl(provider) {
+      if (jsonData.myanimelistID && jsonData.myanimelistID !== '0') {
+        return `https://myanimelist.net/manga/${jsonData.myanimelistID}`;
       }
-      if(provider === 'ANILIST' && jsonData.anilistID && jsonData.anilistID !== "0"){
-        return "https://anilist.co/manga/" + jsonData.anilistID;
+      if (provider === 'ANILIST' && jsonData.anilistID && jsonData.anilistID !== '0') {
+        return `https://anilist.co/manga/${jsonData.anilistID}`;
       }
       return false;
     },
   },
   overview: {
-    getTitle: function(url){
+    getTitle(url) {
       return TsukiMangas.sync.getTitle(url);
     },
-    getIdentifier: function(url) {
+    getIdentifier(url) {
       return TsukiMangas.sync.getIdentifier(url);
     },
-    uiSelector: function(selector){
+    uiSelector(selector) {
       selector.insertAfter(j.$('h2'));
     },
-    getMalUrl: function(provider) {
+    getMalUrl(provider) {
       return TsukiMangas.sync.getMalUrl!(provider);
     },
-    list:{
+    list: {
       offsetHandler: false,
-      elementsSelector: function(){
-        return j.$("div.over23 > div.allbox > div.allcap");
+      elementsSelector() {
+        return j.$('div.over23 > div.allbox > div.allcap');
       },
-      elementUrl: function(selector){
-        return utils.absoluteLink(selector.find('a').first().attr('href'),TsukiMangas.domain);
+      elementUrl(selector) {
+        return utils.absoluteLink(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+          TsukiMangas.domain,
+        );
       },
-      elementEp: function(selector){
-        return utils.absoluteLink(selector.find('a').first().attr('href'),TsukiMangas.domain).split("/")[5];
-      }
-    }
+      elementEp(selector) {
+        return utils
+          .absoluteLink(
+            selector
+              .find('a')
+              .first()
+              .attr('href'),
+            TsukiMangas.domain,
+          )
+          .split('/')[5];
+      },
+    },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     let interval;
-    let oldJson = "";
+    let oldJson = '';
 
     utils.fullUrlChangeDetect(function() {
-      page.url = window.location.href;
-      page.UILoaded = false;
-      $("#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp").remove();
+      page.reset();
       check();
     });
 
     function check() {
       clearInterval(interval);
-      interval = utils.waitUntilTrue(function(){
-        if(j.$('#syncData').length) {
-          jsonData = JSON.parse(j.$('#syncData').text());
-          if(jsonData.mangaName && JSON.stringify(jsonData) !== oldJson){
-            oldJson = JSON.stringify(jsonData);
-            return true;
+      interval = utils.waitUntilTrue(
+        function() {
+          if (j.$('#syncData').length) {
+            jsonData = JSON.parse(j.$('#syncData').text());
+            if (jsonData.mangaName && JSON.stringify(jsonData) !== oldJson) {
+              oldJson = JSON.stringify(jsonData);
+              return true;
+            }
           }
-        }
-      }, function(){
-        if(jsonData.hasOwnProperty("isReaderPage") && jsonData.hasOwnProperty("identifier") && jsonData.hasOwnProperty("overview_url")) {
-          page.handlePage();
-        }
-      });
+          return false;
+        },
+        function() {
+          if (
+            Object.prototype.hasOwnProperty.call(jsonData, 'isReaderPage') &&
+            Object.prototype.hasOwnProperty.call(jsonData, 'identifier') &&
+            Object.prototype.hasOwnProperty.call(jsonData, 'overview_url')
+          ) {
+            page.handlePage();
+          }
+        },
+      );
     }
-  }
+  },
 };

@@ -551,10 +551,6 @@
     "message": "Etiket/Notları Kullan",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Eğer aktif edilirse: En son izlediğin animeyi kullandığın yayımlayıcı siteyi, MAL'da ki anime listene yer imi ekler.<br>İkona tek basışla anime izlemeye devam et.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "İzlemeye devam et linkleri",
     "description": "Continue watching links"

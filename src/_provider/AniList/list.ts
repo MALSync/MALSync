@@ -1,5 +1,5 @@
-import {ListAbstract, listElement} from './../listAbstract';
-import * as helper from "./helper";
+import { ListAbstract, listElement } from '../listAbstract';
+import * as helper from './helper';
 
 export class userlist extends ListAbstract {
   name = 'AniList';
@@ -9,7 +9,7 @@ export class userlist extends ListAbstract {
   authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   getUsername() {
-    var query = `
+    const query = `
     query {
       Viewer {
         name
@@ -24,29 +24,31 @@ export class userlist extends ListAbstract {
     }
     `;
 
-    return this.api.request.xhr('POST', {
-      url: 'https://graphql.anilist.co',
-      headers: {
-        'Authorization': 'Bearer ' + this.accessToken(),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      data: JSON.stringify({
-        query: query,
-        variables: []
+    return this.api.request
+      .xhr('POST', {
+        url: 'https://graphql.anilist.co',
+        headers: {
+          Authorization: `Bearer ${this.accessToken()}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        data: JSON.stringify({
+          query,
+          variables: [],
+        }),
       })
-    }).then((response) => {
-      var res = this.jsonParse(response);
-      con.log(res);
-      this.errorHandling(res);
-      if(res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
-        var opt = api.settings.get('anilistOptions');
-        opt['displayAdultContent'] = res.data.Viewer.options.displayAdultContent;
-        opt['scoreFormat'] = res.data.Viewer.mediaListOptions.scoreFormat;
-        api.settings.set('anilistOptions', opt);
-      }
-      return res.data.Viewer.name;
-    });
+      .then(response => {
+        const res = this.jsonParse(response);
+        con.log(res);
+        this.errorHandling(res);
+        if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
+          const opt = api.settings.get('anilistOptions');
+          opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
+          opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
+          api.settings.set('anilistOptions', opt);
+        }
+        return res.data.Viewer.name;
+      });
   }
 
   deauth() {
@@ -54,12 +56,12 @@ export class userlist extends ListAbstract {
   }
 
   errorHandling(res) {
-    if(typeof res.errors != 'undefined'){
+    if (typeof res.errors !== 'undefined') {
       con.error(res.errors);
       throw {
         code: res.errors[0].status,
         message: res.errors[0].message,
-      }
+      };
     }
   }
 
@@ -68,14 +70,14 @@ export class userlist extends ListAbstract {
   }
 
   async getPart(): Promise<any> {
-    if(this.offset < 1) this.offset = 1;
-    con.log('[UserList][AniList]', 'username: '+this.username, 'status: '+this.status, 'offset: '+this.offset);
+    if (this.offset < 1) this.offset = 1;
+    con.log('[UserList][AniList]', `username: ${this.username}`, `status: ${this.status}`, `offset: ${this.offset}`);
 
-    if(!this.username){
+    if (!this.username) {
       this.username = await this.getUsername();
     }
 
-    var query = `
+    let query = `
     query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort] ) {
       Page (page: $page, perPage: 100) {
         pageInfo {
@@ -108,7 +110,7 @@ export class userlist extends ListAbstract {
     }
     `;
 
-    if(this.compact){
+    if (this.compact) {
       query = `
       query ($page: Int, $userName: String, $type: MediaType, $status: MediaListStatus, $sort: [MediaListSort]) {
         Page (page: $page, perPage: 100) {
@@ -126,56 +128,53 @@ export class userlist extends ListAbstract {
       }
       `;
     }
-    ​
-    var variables = {
+    const variables = {
       page: this.offset,
       userName: this.username,
       type: this.listType.toUpperCase(),
       status: helper.translateList(parseInt(this.status.toString()), parseInt(this.status.toString())),
-      sort: 'UPDATED_TIME_DESC'
+      sort: 'UPDATED_TIME_DESC',
     };
 
-    if(this.status !== 1){
-      //@ts-ignore
+    if (this.status !== 1) {
+      // @ts-ignore
       variables.sort = null;
     }
 
-    return this.api.request.xhr('POST', {
-      url: 'https://graphql.anilist.co',
-      headers: {
-        'Authorization': 'Bearer ' + this.accessToken(),
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      data: JSON.stringify({
-        query: query,
-        variables: variables
+    return this.api.request
+      .xhr('POST', {
+        url: 'https://graphql.anilist.co',
+        headers: {
+          Authorization: `Bearer ${this.accessToken()}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        data: JSON.stringify({
+          query,
+          variables,
+        }),
       })
-    }).then((response) => {
-      var res = this.jsonParse(response);
-      con.log('res', res);
-      this.errorHandling(res);
-      var data = res.data.Page.mediaList;
-      this.offset = this.offset + 1;
-      if(!res.data.Page.pageInfo.hasNextPage){
-        this.done = true;
-      }
+      .then(response => {
+        const res = this.jsonParse(response);
+        con.log('res', res);
+        this.errorHandling(res);
+        const data = res.data.Page.mediaList;
+        this.offset += 1;
+        if (!res.data.Page.pageInfo.hasNextPage) {
+          this.done = true;
+        }
 
-      if(this.compact){
-        return this.prepareCompact(data, this.listType);
-      }else{
         return this.prepareData(data, this.listType);
-      }
-
-    });
+      });
   }
 
-  private prepareData(data, listType): listElement[]{
-    var newData = [] as listElement[];
-    for (var i = 0; i < data.length; i++) {
-      var el = data[i];
-      if(listType === "anime"){
-        var tempData = this.fn({
+  private async prepareData(data, listType): Promise<listElement[]> {
+    const newData = [] as listElement[];
+    for (let i = 0; i < data.length; i++) {
+      const el = data[i];
+      let tempData;
+      if (listType === 'anime') {
+        tempData = await this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
@@ -188,10 +187,10 @@ export class userlist extends ListAbstract {
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
           tags: el.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
-      }else{
-        var tempData = this.fn({
+      } else {
+        tempData = await this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
@@ -204,11 +203,11 @@ export class userlist extends ListAbstract {
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
           tags: el.notes,
-          airingState: el['anime_airing_status'],
+          airingState: el.anime_airing_status,
         });
       }
 
-      if(tempData.totalEp == null){
+      if (tempData.totalEp === null) {
         tempData.totalEp = 0;
       }
 
@@ -217,16 +216,21 @@ export class userlist extends ListAbstract {
     return newData;
   }
 
-  private prepareCompact(data, listType){
-    var newData = [] as {malid: number, id: number, watchedEp: number, cacheKey: string|number}[];
-    for (var i = 0; i < data.length; i++) {
-      var el = data[i];
+  private prepareCompact(data, listType) {
+    const newData = [] as {
+      malid: number;
+      id: number;
+      watchedEp: number;
+      cacheKey: string | number;
+    }[];
+    for (let i = 0; i < data.length; i++) {
+      const el = data[i];
       newData.push({
         malid: el.media.idMal,
         id: el.media.id,
         watchedEp: el.progress,
         cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
-      })
+      });
     }
     return newData;
   }

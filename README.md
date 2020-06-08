@@ -1,7 +1,7 @@
 [![img](https://img.shields.io/travis/com/lolamtisch/MALSync.svg?style=flat-square&logo=travis)](https://travis-ci.com/lolamtisch/MALSync)
 [![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)
 [![img](https://img.shields.io/github/issues/lolamtisch/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/lolamtisch/MALSync/issues)
-[![Codacy Badge](https://img.shields.io/codacy/grade/e07fabd76b97499788614bf48f8248db.svg?style=flat-square&logo=codacy&logoColor=white)](https://www.codacy.com/app/francisco.seipel/MALSync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=lolamtisch/MALSync&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/lolamtisch/malsync/badge)](https://www.codefactor.io/repository/github/lolamtisch/malsync)
 
 # MAL-Sync
 **MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.  

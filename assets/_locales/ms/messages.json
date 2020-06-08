@@ -579,10 +579,6 @@
     "message": "Gunakan Tag/Nota",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Jika diaktifkan: Tersedia dalam senarai Anime MyAnimeList/Anilist anda dan senarai penanda miniMAL, pautan icon akan ditambahkan ke tapak streaming yang terakhir anda lawati untuk menonton anime.<br>Hanya klik ikon untuk terus menonton anime.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Pautan teruskan episod",
     "description": "Continue watching links"

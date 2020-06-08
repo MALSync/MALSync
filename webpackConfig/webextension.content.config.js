@@ -1,17 +1,37 @@
-const webpack = require("webpack");
+const webpack = require('webpack');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
-    'content-script': path.join(__dirname, '..', 'src/index-webextension/content.ts'),
-    'mal-script': path.join(__dirname, '..', 'src/index-webextension/myanimelist.ts'),
-    'anilist-script': path.join(__dirname, '..', 'src/index-webextension/anilist.ts'),
-    'kitsu-script': path.join(__dirname, '..', 'src/index-webextension/kitsu.ts'),
-    'simkl-script': path.join(__dirname, '..', 'src/index-webextension/simkl.ts'),
-    'iframe': path.join(__dirname, '..', 'src/iframe.ts'),
-    'popup': path.join(__dirname, '..', 'src/popup.ts'),
-    'install': path.join(__dirname, '..', 'src/index-webextension/install.ts'),
+    'content-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/content.ts',
+    ),
+    'mal-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/myanimelist.ts',
+    ),
+    'anilist-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/anilist.ts',
+    ),
+    'kitsu-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/kitsu.ts',
+    ),
+    'simkl-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/simkl.ts',
+    ),
+    iframe: path.join(__dirname, '..', 'src/iframe.ts'),
+    popup: path.join(__dirname, '..', 'src/popup.ts'),
+    install: path.join(__dirname, '..', 'src/index-webextension/install.ts'),
     'update-check': path.join(__dirname, '..', 'src/updateCheck.ts'),
   },
   module: {
@@ -22,12 +42,17 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           appendTsSuffixTo: [/\.vue$/],
-        }
+        },
       },
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ['vue-style-loader', { loader: 'to-string-loader' }, {loader: 'css-loader'}, {loader: 'less-loader'}]
+        use: [
+          'vue-style-loader',
+          { loader: 'to-string-loader' },
+          { loader: 'css-loader' },
+          { loader: 'less-loader' },
+        ],
       },
       {
         test: /\.vue$/,
@@ -35,21 +60,21 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           shadowMode: true,
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js', '.less', '.vue' ],
+    extensions: ['.tsx', '.ts', '.js', '.less', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js',
+    },
   },
   mode: 'development',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '..', 'dist', 'webextension')
+    path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
     new VueLoaderPlugin(),
@@ -59,6 +84,5 @@ module.exports = {
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/webextension'),
     }),
-
-  ]
+  ],
 };

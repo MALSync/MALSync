@@ -1,0 +1,41 @@
+@import './../pages';
+
+@textColor: inherit;
+@activeEp: #cee1ff;
+
+#malp {
+  margin: 20px 0;
+  span {
+    color: @textColor;
+  }
+  select > * {
+    background-color: white !important;
+  }
+  #MalData {
+    flex-flow: column;
+    .info {
+      font-weight: bold;
+    }
+    #malStatus,
+    #malUserRating {
+      width: initial !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  #malp {
+    .MalLogin {
+      width: 100%;
+    }
+  }
+}
+
+#MalData {
+  select option {
+    background-color: black !important;
+  }
+}
+.mal-sync-active {
+  background-color: #0e1d35;
+}

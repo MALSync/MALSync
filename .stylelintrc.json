@@ -1,0 +1,11 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+  "ignoreFiles": ["**/*.js"],
+  "plugins": ["stylelint-prettier"],
+  "rules": {
+    "prettier/prettier": true,
+    "no-empty-source": null,
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null
+  }
+}

@@ -1,25 +1,26 @@
 import { expect } from 'chai';
-import {userlist} from './../../../../src/_provider/AniList/list';
-import {generalListTests} from './../generalTests.exclude';
+import { userlist } from '../../../../src/_provider/AniList/list';
+import { generalListTests } from '../generalTests.exclude';
 
-global.con = require('./../../../../src/utils/console');
+global.con = require('../../../../src/utils/console');
+
 global.con.log = function() {};
 global.con.error = function() {};
 global.con.info = function() {};
 
-var responses = {
+const responses = {
   user: {
-    data: JSON.stringify(require("./api/user.json"))
+    data: JSON.stringify(require('./api/user.json')),
   },
-  "Page1": {
-    data: JSON.stringify(require("./api/list-Page1.json"))
+  Page1: {
+    data: JSON.stringify(require('./api/list-Page1.json')),
   },
-  "Page2": {
-    data: JSON.stringify(require("./api/list-Page2.json"))
+  Page2: {
+    data: JSON.stringify(require('./api/list-Page2.json')),
   },
 };
 
-var elements = [
+const elements = [
   {
     uid: 9624,
     malId: 9624,
@@ -31,9 +32,10 @@ var elements = [
     totalEp: 12,
     status: 6,
     score: 0,
-    image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b9624-VKt16M5xFfkG.jpg',
+    image:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b9624-VKt16M5xFfkG.jpg',
     tags: null,
-    airingState: undefined
+    airingState: undefined,
   },
   {
     uid: 112124,
@@ -46,31 +48,32 @@ var elements = [
     totalEp: 0,
     status: 6,
     score: 0,
-    image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b112124-fY30NnaklY5W.jpg',
+    image:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/b112124-fY30NnaklY5W.jpg',
     tags: null,
-    airingState: undefined
-  }
+    airingState: undefined,
+  },
 ];
 
-global.api = {}
+global.api = {};
 
 function getResponse(key) {
   return responses[key].data;
 }
 
-describe('AniList userlist', function () {
-  before(function () {
+describe('AniList userlist', function() {
+  before(function() {
     global.api = {
       request: {
-        xhr: async function(post, conf, data) {
+        async xhr(post, conf, data) {
           conf.data = JSON.parse(conf.data);
-          if(!conf.data.variables.page) {
+          if (!conf.data.variables.page) {
             return {
               responseText: getResponse('user'),
             };
           }
 
-          if(conf.data.variables.page == 1) {
+          if (conf.data.variables.page === 1) {
             return {
               responseText: getResponse('Page1'),
             };
@@ -79,22 +82,26 @@ describe('AniList userlist', function () {
           return {
             responseText: getResponse('Page2'),
           };
-        }
+        },
       },
       settings: {
-        get: function() {
+        get() {
           return '';
-        }
+        },
       },
       storage: {
-        lang: function() {
+        lang() {
           return 'lang';
+        },
+        get(key) {
+          if (key.indexOf('continue') !== -1) return '';
+          if (key.indexOf('resume') !== -1) return '';
+          if (key.indexOf('tagSettings') !== -1) return '';
+          throw '[storage] key not found '+key;
         }
-      }
-
-    }
-  })
+      },
+    };
+  });
 
   generalListTests(userlist, elements, responses);
-
 });

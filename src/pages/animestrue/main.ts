@@ -1,82 +1,95 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 export const animestrue: pageInterface = {
-  name: "animestrue",
-  domain: "https://animestrue.site",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (typeof url.split("/")[6] !== "undefined" && url.split("/")[6].indexOf("episodio") !== -1) {
+  name: 'animestrue',
+  domain: 'https://animestrue.site',
+  type: 'anime',
+  isSyncPage(url) {
+    if (typeof url.split('/')[6] !== 'undefined' && url.split('/')[6].indexOf('episodio') !== -1) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){
-      if(Number(url.split("/")[5].match(/\d+/gmi)) > 1) {
-        return utils.getBaseText($("div.anime-nome > a, #pageTitle").first()) + " season " + url.split("/")[5].match(/\d+/gmi);
+    getTitle(url) {
+      if (Number(url.split('/')[5].match(/\d+/gim)) > 1) {
+        return `${utils.getBaseText($('div.anime-nome > a, #pageTitle').first())} season ${url
+          .split('/')[5]
+          .match(/\d+/gim)}`;
       }
 
-      return utils.getBaseText($("div.anime-nome > a, #pageTitle").first());
+      return utils.getBaseText($('div.anime-nome > a, #pageTitle').first());
     },
-    getIdentifier: function(url) {
-      return url.split("/")[4] + "?s=" + url.split("/")[5].match(/\d+/gmi);
+    getIdentifier(url) {
+      return `${url.split('/')[4]}?s=${url.split('/')[5].match(/\d+/gim)}`;
     },
-    getOverviewUrl: function(url){
-      return animestrue.domain + "/anime/" + url.split("/")[4] + "/" + url.split("/")[5];
+    getOverviewUrl(url) {
+      return `${animestrue.domain}/anime/${url.split('/')[4]}/${url.split('/')[5]}`;
     },
-    getEpisode: function(url){
-      return  Number(url.split("/")[6].match(/\d+/gmi));
+    getEpisode(url) {
+      return Number(url.split('/')[6].match(/\d+/gim));
     },
-    nextEpUrl: function(url){
-      var nextEp = j.$('ul.episodios > li.active').next().find("div > a").attr('href');
-      if(!nextEp) return undefined;
-      return utils.absoluteLink(nextEp,animestrue.domain);
+    nextEpUrl(url) {
+      const nextEp = j
+        .$('ul.episodios > li.active')
+        .next()
+        .find('div > a')
+        .attr('href');
+      if (!nextEp) return undefined;
+      return utils.absoluteLink(nextEp, animestrue.domain);
     },
   },
-  overview:{
-    getTitle: function(url){
+  overview: {
+    getTitle(url) {
       return animestrue.sync.getTitle(url);
     },
-    getIdentifier: function(url){
+    getIdentifier(url) {
       return animestrue.sync.getIdentifier(url);
     },
-    uiSelector: function(selector){
-      selector.insertBefore(j.$("#pageTitle").first());
+    uiSelector(selector) {
+      selector.insertBefore(j.$('#pageTitle').first());
     },
-    list:{
+    list: {
       offsetHandler: false,
-      elementsSelector: function(){
-        return j.$("#listar_animes > li > div > div > table > tbody > tr");
+      elementsSelector() {
+        return j.$('#listar_animes > li > div > div > table > tbody > tr');
       },
-      elementUrl: function(selector){
-        return utils.absoluteLink(selector.find('td > a').first().attr('href'),animestrue.domain);
+      elementUrl(selector) {
+        return utils.absoluteLink(
+          selector
+            .find('td > a')
+            .first()
+            .attr('href'),
+          animestrue.domain,
+        );
       },
-      elementEp: function(selector){
-        return animestrue.sync.getEpisode(utils.absoluteLink(selector.find('td > a').first().attr('href'),animestrue.domain));
-      }
-    }
+      elementEp(selector) {
+        return animestrue.sync.getEpisode(
+          utils.absoluteLink(
+            selector
+              .find('td > a')
+              .first()
+              .attr('href'),
+            animestrue.domain,
+          ),
+        );
+      },
+    },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){
+    j.$(document).ready(function() {
       utils.waitUntilTrue(
         function() {
-          if (j.$("div.anime-nome > a, #pageTitle").length && j.$("div.anime-nome > a, #pageTitle").text()) {
+          if (j.$('div.anime-nome > a, #pageTitle').length && j.$('div.anime-nome > a, #pageTitle').text()) {
             return true;
-          } else {
-            return false;
           }
+          return false;
         },
         function() {
           page.handlePage();
-        }
+        },
       );
     });
-  }
+  },
 };

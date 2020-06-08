@@ -1,19 +1,33 @@
 <template>
   <div id="material">
     <div v-if="syncMode && minimized">
-      <a @click="minimized = false" style="cursor: pointer;">
+      <a style="cursor: pointer;" @click="minimized = false">
         Action required
       </a>
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
-      <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" v-on:clicked="setPage"></input-button>
+      <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
 
-      <input-button v-if="!syncMode" :label="lang('correction_Offset')" :state="offset" type="number" v-on:clicked="setOffset" v-on:change="val => inputOffset = val"></input-button>
-      <div id="offsetUi" v-if="inputOffset && inputOffset !== '0'">
-        <div class="offsetBox" v-for="index in 5" :key="index">
-          <div class="mdl-color--primary top">{{index}}</div>
-          <div class="bottom" :class="{active: parseInt(currentStateEp) === calcEpOffset(index)}">{{calcEpOffset(index)}}</div>
+      <input-button
+        v-if="!syncMode"
+        :label="lang('correction_Offset')"
+        :state="offset"
+        type="number"
+        @clicked="setOffset"
+        @change="val => (inputOffset = val)"
+      ></input-button>
+      <div v-if="inputOffset && inputOffset !== '0'" id="offsetUi">
+        <div v-for="index in 5" :key="index" class="offsetBox">
+          <div class="mdl-color--primary top">{{ index }}</div>
+          <div
+            class="bottom"
+            :class="{
+              active: parseInt(currentStateEp) === calcEpOffset(index),
+            }"
+          >
+            {{ calcEpOffset(index) }}
+          </div>
         </div>
         <div class="offsetBox">
           <div class="mdl-color--primary top">...</div>
@@ -25,65 +39,72 @@
         </div>
       </div>
 
-      <search :keyword="searchClass.getSanitizedTitel()" :type="searchClass.getNormalizedType()" :syncMode="syncMode" :currentId="searchClass.getId()" v-on:clicked="setPage($event.url, $event.id)"></search>
+      <search
+        :keyword="searchClass.getSanitizedTitel()"
+        :type="searchClass.getNormalizedType()"
+        :sync-mode="syncMode"
+        :current-id="searchClass.getId()"
+        @clicked="setPage($event.url, $event.id)"
+      ></search>
     </div>
     <a v-if="!(syncMode && minimized)" class="close" @click="close()">CLOSE</a>
   </div>
 </template>
 
 <script type="text/javascript">
-  import search from './components/search.vue'
-  import inputButton from './components/inputButton.vue'
-  import entry from './components/entry.vue'
+import search from './components/search.vue';
+import inputButton from './components/inputButton.vue';
+import entry from './components/entry.vue';
 
-  export default {
-    components: {
-      entry,
-      inputButton,
-      search
+export default {
+  components: {
+    entry,
+    inputButton,
+    search,
+  },
+  data: () => ({
+    inputOffset: 0,
+    minimized: false,
+  }),
+  computed: {
+    searchClass() {
+      return this.$parent.searchClass;
     },
-    data: () => ({
-      inputOffset: 0,
-      minimized: false,
-    }),
-    created: function() {
-      this.minimized = api.settings.get('minimizeBigPopup');
+    syncPage() {
+      return this.$parent.searchClass.getSyncPage();
     },
-    computed: {
-      searchClass: function() {
-        return this.$parent.searchClass;
-      },
-      syncPage: function() {
-        return this.$parent.searchClass.getSyncPage();
-      },
-      currentStateEp: function() {
-        if(this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {
-          return this.syncPage.curState.episode;
-        }
-      },
-      syncMode: function() {
-        return this.$parent.syncMode;
-      },
-      offset: function() {
-        return this.searchClass.getOffset();
+    currentStateEp() {
+      if (this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {
+        return this.syncPage.curState.episode;
       }
+      return undefined;
     },
-    methods: {
-      lang: api.storage.lang,
-      setPage: function(url, id = 0) {
-        this.searchClass.setUrl(url, id);
-        utils.flashm(api.storage.lang("correction_NewUrl",[url]) , false);
-        this.close();
-      },
-      setOffset: function(offset) {
-        this.searchClass.setOffset(offset);
-      },
-      close: function() {
-        this.$root.$destroy();
-      },
-      calcEpOffset: function (ep) {
-        return parseInt(ep) - parseInt(this.inputOffset);
-      }
-    }
-  }
+    syncMode() {
+      return this.$parent.syncMode;
+    },
+    offset() {
+      return this.searchClass.getOffset();
+    },
+  },
+  created() {
+    this.minimized = api.settings.get('minimizeBigPopup');
+  },
+  methods: {
+    lang: api.storage.lang,
+    setPage(url, id = 0) {
+      this.searchClass.setUrl(url, id);
+      utils.flashm(api.storage.lang('correction_NewUrl', [url]), false);
+      this.close();
+    },
+    setOffset(offset) {
+      this.searchClass.setOffset(offset);
+    },
+    close() {
+      this.$root.$destroy();
+    },
+    calcEpOffset(ep) {
+      return parseInt(ep) - parseInt(this.inputOffset);
+    },
+  },
+};
 </script>

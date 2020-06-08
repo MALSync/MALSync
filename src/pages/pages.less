@@ -2,61 +2,72 @@
 @activeEp: #002966;
 @inputBackground: #111111;
 
-#malStatus, #malTotal, #malEpisodes, #malUserRating, #malRating, #malVolumes, #malTotalVol, #malTotalCha, #AddMal{
+#malStatus,
+#malTotal,
+#malEpisodes,
+#malUserRating,
+#malRating,
+#malVolumes,
+#malTotalVol,
+#malTotalCha,
+#AddMal {
   color: @textColor;
 }
 
-.mal-sync-active{
+.mal-sync-active {
   background-color: @activeEp;
 }
 
-#malp{
-  select{
-    option{
+#malp {
+  select {
+    option {
       background-color: @inputBackground;
     }
   }
 }
 
-#malp{
-  #malStatus, #malUserRating, #malEpisodes, #malVolumes, #malEpisodes{
+#malp {
+  #malStatus,
+  #malUserRating,
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes {
     font-size: inherit;
     font-family: inherit;
     background: transparent;
-    border-width: 1px;
     border-color: grey;
     text-decoration: none;
     outline: medium none;
-
-    border-width: 0px;
+    border-width: 0;
     height: auto;
     padding: 0;
     margin: 0;
     line-height: 1;
   }
 
-  #malEpisodes, #malVolumes, #malEpisodes{
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes {
     text-align: center;
     border-bottom-width: 1px;
-    &:focus{
+    &:focus {
       border-color: @textColor;
     }
   }
-
 }
 
-#malSyncProgress{
-  &.ms-loading{
+#malSyncProgress {
+  &.ms-loading {
     height: 4px;
     width: 100%;
     position: relative;
     overflow: hidden;
     background-color: #ddd;
 
-    &:before{
+    &::before {
       display: block;
       position: absolute;
-      content: "";
+      content: '';
       left: -200px;
       width: 200px;
       height: 4px;
@@ -65,16 +76,29 @@
     }
 
     @keyframes loading {
-        from {left: -200px; width: 30%;}
-        50% {width: 30%;}
-        70% {width: 70%;}
-        80% { left: 50%;}
-        95% {left: 120%;}
-        to {left: 100%;}
+      from {
+        left: -200px;
+        width: 30%;
+      }
+      50% {
+        width: 30%;
+      }
+      70% {
+        width: 70%;
+      }
+      80% {
+        left: 50%;
+      }
+      95% {
+        left: 120%;
+      }
+      to {
+        left: 100%;
+      }
     }
   }
-  &.ms-done{
-    .ms-progress{
+  &.ms-done {
+    .ms-progress {
       width: 100% !important;
       background-color: #ff4081 !important;
       transition: background-color 1s !important;

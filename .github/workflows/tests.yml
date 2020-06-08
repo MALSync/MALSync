@@ -8,9 +8,14 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
-    - name: Tests
+    - name: install
       run: |
         npm ci
+    - name: Lint
+      run: |
+        npm run lint:ci
+    - name: Tests
+      run: |
         npm run test:ts:ci
       env:
         ANILIST_API_KEY: ${{ secrets.ANILIST_API_KEY }}

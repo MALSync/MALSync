@@ -579,10 +579,6 @@
     "message": "Benutze Tags/Notes",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Wenn aktiviert werden auf deiner Animeliste links zu der zuletzt benutzten Streaming Seite angezeigt.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Nächste Episode Links",
     "description": "Continue watching links"

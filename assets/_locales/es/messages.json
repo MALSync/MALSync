@@ -579,10 +579,6 @@
     "message": "Utilizar etiquetas/notas",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Si está activado: En tu Lista de anime de MyAnimeList/Anilist y en la lista de marcadores en miniMAL se agregará un icono al último sitio de transmisión que estabas usando para ver el anime.<br>Simplemente haz clic en el ícono para continuar viéndolo.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Enlaces para continuar viendo",
     "description": "Continue watching links"

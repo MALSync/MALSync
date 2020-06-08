@@ -1,84 +1,99 @@
-import { pageInterface } from "./../pageInterface";
+import { pageInterface } from '../pageInterface';
 
 export const AnimeXin: pageInterface = {
-  name: "AnimeXin",
-  domain: "https://animexin.xyz",
-  type: "anime",
-  isSyncPage: function(url) {
-    if (url.split("/")[3] !== "anime") {
+  name: 'AnimeXin',
+  domain: 'https://animexin.xyz',
+  type: 'anime',
+  isSyncPage(url) {
+    if (url.split('/')[3] !== 'anime') {
       return true;
-    } else {
-      return false;
     }
+    return false;
   },
   sync: {
-    getTitle: function(url){
-      return j.$("div.item.meta > div > span.epx > a").text();
+    getTitle(url) {
+      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
     },
-    getIdentifier: function(url) {
-      return AnimeXin.sync.getOverviewUrl(url).split("/")[4];
+    getIdentifier(url) {
+      return AnimeXin.sync.getOverviewUrl(url).split('/')[4];
     },
-    getOverviewUrl: function(url){
-      return j.$("div.item.meta > div > span.epx > a").attr("href") || "";
+    getOverviewUrl(url) {
+      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href') || '';
     },
-    getEpisode: function (url) {
-      let urlParts = url.split("/");
+    getEpisode(url) {
+      const urlParts = url.split('/');
 
       if (!urlParts || urlParts.length === 0) return NaN;
 
-      let episodePart = urlParts[3];
+      const episodePart = urlParts[3];
 
       if (episodePart.length === 0) return NaN;
 
-      let temp = episodePart.match(/-episode-\d*/gi);
+      const temp = episodePart.match(/-episode-\d*/gi);
 
       if (!temp || temp.length === 0) return NaN;
 
-      return Number(temp[0].replace(/\D+/g, ""));
+      return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl: function(url){
-      var href = j.$('div.item.video-nav > div.naveps > div:nth-child(3) > a').first().attr('href');
-      if(href){
-        if(AnimeXin.sync.getEpisode(url) < AnimeXin.sync.getEpisode(href)) {
+    nextEpUrl(url) {
+      const href = j
+        .$('div.naveps.bignav > div:nth-child(3) > a')
+        .first()
+        .attr('href');
+      if (href) {
+        if (AnimeXin.sync.getEpisode(url) < AnimeXin.sync.getEpisode(href)) {
           return href;
         }
       }
+      return '';
     },
   },
-  overview:{
-    getTitle: function(url){
-      return j.$("div.infox > h1.entry-title").text();
+  overview: {
+    getTitle(url) {
+      return j.$('div.infox > h1.entry-title').text();
     },
-    getIdentifier: function(url){
-      return url.split("/")[4];
+    getIdentifier(url) {
+      return url.split('/')[4];
     },
-    uiSelector: function(selector){
-      selector.insertBefore(j.$("div.infox > h1.entry-title").first());
+    uiSelector(selector) {
+      selector.insertBefore(j.$('div.infox > h1.entry-title').first());
     },
-    list:{
+    list: {
       offsetHandler: false,
-      elementsSelector: function(){
-        return j.$("div.bixbox.bxcl.epcheck > ul > li");
+      elementsSelector() {
+        return j.$('div.bixbox.bxcl.epcheck > div.eplister > ul > li');
       },
-      elementUrl: function(selector){
-        return selector.find('div.epl-title > a').first().attr('href') || "";
+      elementUrl(selector) {
+        return (
+          selector
+            .find('a')
+            .first()
+            .attr('href') || ''
+        );
       },
-      elementEp: function(selector){
-        return AnimeXin.sync.getEpisode(selector.find('div.epl-title > a').first().attr('href'));
-      }
-    }
+      elementEp(selector) {
+        return AnimeXin.sync.getEpisode(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+        );
+      },
+    },
   },
-  init(page){
-    if(document.title == "Just a moment..."){
-      con.log("loading");
-      page.cdn();
-      return;
-    }
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function(){
-      if((page.url.split("/")[3] === "anime" && page.url.split("/")[4] !== undefined && page.url.split("/")[4].length && j.$("div.infox > h1.entry-title").length && j.$("div.bixbox.bxcl.epcheck").length) || (j.$("div.item.meta > div > span.epx > a").length && j.$("div.video-content").length)) {
+    j.$(document).ready(function() {
+      if (
+        (page.url.split('/')[3] === 'anime' &&
+          page.url.split('/')[4] !== undefined &&
+          page.url.split('/')[4].length &&
+          j.$('div.infox > h1.entry-title').length &&
+          j.$('div.bixbox.bxcl.epcheck').length) ||
+        (j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').length && j.$('div.video-content').length)
+      ) {
         page.handlePage();
       }
     });
-  }
+  },
 };

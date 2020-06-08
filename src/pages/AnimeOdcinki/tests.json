@@ -1,0 +1,30 @@
+{
+  "title": "AnimeOdcinki",
+  "url": "https://anime-odcinki.pl/",
+  "testCases": [
+    {
+      "url": "https://anime-odcinki.pl/anime/cop-craft/1",
+      "expected": {
+        "sync": true,
+        "title": "Cop Craft",
+        "identifier": "cop-craft",
+        "overviewUrl": "https://anime-odcinki.pl/anime/cop-craft",
+        "nextEpUrl": "https://anime-odcinki.pl/anime/cop-craft/2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://anime-odcinki.pl/anime/cop-craft",
+      "expected": {
+        "sync": false,
+        "title": "Cop Craft",
+        "identifier": "cop-craft",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://anime-odcinki.pl/anime/cop-craft/5"
+        }
+      }
+    }
+  ]
+}

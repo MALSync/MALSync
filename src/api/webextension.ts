@@ -1,11 +1,11 @@
-import {webextension} from "./storage/webextension";
-import {requestApi} from "./request/requestWebextension";
-import {settingsObj} from "./settings";
+import { webextension } from './storage/webextension';
+import { requestApi } from './request/requestWebextension';
+import { settingsObj } from './settings';
 
-export var storage = webextension;
+export const storage = webextension;
 
-export var request = requestApi;
+export const request = requestApi;
 
-export var settings = settingsObj;
+export const settings = settingsObj;
 
-export var type = 'webextension';
+export const type = 'webextension';

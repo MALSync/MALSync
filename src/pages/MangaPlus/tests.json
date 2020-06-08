@@ -1,0 +1,26 @@
+{
+  "title": "MangaPlus",
+  "url": "https://mangaplus.shueisha.co.jp/",
+  "testCases": [
+    {
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1000393",
+      "expected": {
+        "sync": true,
+        "title": "My Hero Academia",
+        "identifier": "100017",
+        "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100017",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangaplus.shueisha.co.jp/titles/100017",
+      "expected": {
+        "sync": false,
+        "title": "My Hero Academia",
+        "identifier": "100017",
+        "uiSelector": true
+      }
+    }
+  ]
+}

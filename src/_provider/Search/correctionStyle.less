@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 #material {
@@ -7,7 +7,7 @@
   color: white;
 
   * {
-    box-sizing:border-box;
+    box-sizing: border-box;
   }
 
   .scroll {
@@ -25,8 +25,8 @@
 
   //Typography
 
-  @primaryColor: rgb(63,81,181);
-  @accentColor: #F43B7A;
+  @primaryColor: rgb(63, 81, 181);
+  @accentColor: #f43b7a;
   @cardColor: #484848;
 
   .mdl-color--primary {
@@ -34,7 +34,7 @@
   }
 
   & {
-    font-family: "Helvetica","Arial",sans-serif;
+    font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 20px;
@@ -58,9 +58,6 @@
   .search {
     .input {
       width: 100%;
-    }
-    .results {
-
     }
   }
 
@@ -91,7 +88,6 @@
       margin-top: 0;
       margin-bottom: 0;
       padding: 5px 10px;
-
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -121,76 +117,78 @@
 
   //input
   .group {
-    position:relative;
+    position: relative;
     margin-bottom: 15px;
     margin-top: 25px;
 
     input {
-      font-size:18px;
-      padding:10px 10px 10px 5px;
-      display:block;
-      background-color: transparent;
+      font-size: 18px;
+      padding: 10px 10px 10px 5px;
+      display: block;
       color: white;
       width: 100%;
-      border:none;
+      border: none;
       background-color: @cardColor;
-      border-bottom:1px solid white;
+      border-bottom: 1px solid white;
       &:focus {
-        outline:none;
+        outline: none;
       }
     }
 
     label {
-      color:#999;
-      font-size:18px;
-      font-weight:normal;
-      position:absolute;
-      pointer-events:none;
-      left:5px;
-      top:10px;
-      transition:0.2s ease all;
-      -moz-transition:0.2s ease all;
-      -webkit-transition:0.2s ease all;
+      color: #999;
+      font-size: 18px;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 5px;
+      top: 10px;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
     }
 
-    input:focus ~ label, input:valid ~ label {
+    input:focus ~ label,
+    input:valid ~ label {
       left: 0;
-      top:-20px;
-      font-size:14px;
+      top: -20px;
+      font-size: 14px;
       color: @accentColor;
     }
 
     .bar {
-      position:relative;
-      display:block;
+      position: relative;
+      display: block;
 
-      &:before, &:after {
-        content:'';
-        height:2px;
-        width:0;
-        bottom:0px;
-        position:absolute;
+      &::before,
+      &::after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 0;
+        position: absolute;
         background: @accentColor;
-        transition:0.2s ease all;
-        -moz-transition:0.2s ease all;
-        -webkit-transition:0.2s ease all;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
       }
 
-      &:before {
-        left:50%;
+      &::before {
+        left: 50%;
       }
-      &:after {
-        right:50%;
+      &::after {
+        right: 50%;
       }
     }
 
-    input:focus ~ .bar:before, input:focus ~ .bar:after {
-      width:50%;
+    input:focus ~ .bar::before,
+    input:focus ~ .bar::after {
+      width: 50%;
     }
   }
 
   // ProgressBar
-  .mdl-progress{
+  .mdl-progress {
     display: block;
     position: relative;
     height: 3px;
@@ -232,7 +230,7 @@
 
   .loadingBar {
     position: relative;
-    .mdl-progress{
+    .mdl-progress {
       position: absolute;
       top: -9px;
     }
@@ -262,20 +260,20 @@
   }
 
   // Offset Ui
-  #offsetUi{
+  #offsetUi {
     display: flex;
     justify-content: space-around;
-    .offsetBox{
+    .offsetBox {
       text-align: center;
       min-width: 40px;
       margin-left: 5px;
       margin-right: 5px;
 
-      .top{
+      .top {
         padding: 5px 10px;
       }
 
-      .bottom{
+      .bottom {
         padding: 5px 10px;
         &.active {
           border: 1px solid @accentColor;

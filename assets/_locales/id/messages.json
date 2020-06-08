@@ -579,10 +579,6 @@
     "message": "Gunakan Tag/Catatan",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Jika diaktifkan: Terdapat di daftar Anime MyAnimeList/Anilist kamu dan daftar bookmark  miniMAL, tautan ikon akan ditambahkan ke situs streaming yang terakhir kamu kunjungi untuk menonton anime. <br> Cukup klik ikon untuk melanjutkan menonton anime.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Tautan lanjutkan episode",
     "description": "Continue watching links"

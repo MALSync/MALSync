@@ -551,10 +551,6 @@
     "message": "Usa Tag/note",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Se abilitato: Nella tua lista degli Anime di MAL e nella lista dei segnalibri di miniMAL, verrà aggiunta un'icona-link all'ultimo sito che hai usato per vedere gli anime.<br>Cliccaci sopra e potrai continuare a vedere l'ultimo anime che stavi guardando.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "Link continua a guardare",
     "description": "Continue watching links"

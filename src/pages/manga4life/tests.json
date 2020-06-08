@@ -1,0 +1,26 @@
+{
+  "title": "manga4life",
+  "url": "https://manga4life.com/",
+  "testCases": [
+    {
+      "url": "https://manga4life.com/read-online/Solo-Leveling-chapter-105-page-1.html",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "Solo-Leveling",
+        "overviewUrl": "https://manga4life.com/manga/Solo-Leveling",
+        "episode": 105,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manga4life.com/manga/Solo-Leveling",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "Solo-Leveling",
+        "uiSelector": true
+      }
+    }
+  ]
+}

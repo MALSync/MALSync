@@ -6,7 +6,7 @@ const dist = path.join(__dirname, '../dist');
 
 const output = fs.createWriteStream(path.join(dist, '/webextension.zip'));
 const archive = archiver('zip', {
-  zlib: { level: 9 }
+  zlib: { level: 9 },
 });
 archive.pipe(output);
 archive.directory(path.join(dist, 'webextension'), false);

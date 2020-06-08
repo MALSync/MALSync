@@ -1,0 +1,18 @@
+{
+  "title": "AnimeFire",
+  "url": "https://animefire.net/",
+  "testCases": [
+    {
+      "url": "https://animefire.net/animes/high-school-dxd-born/6",
+      "expected": {
+        "sync": true,
+        "title": "high school dxd born",
+        "identifier": "high-school-dxd-born",
+        "overviewUrl": "https://animefire.net/animes/high-school-dxd-born-todos-os-episodios",
+        "nextEpUrl": "https://animefire.net/animes/high-school-dxd-born/7",
+        "episode": 6,
+        "uiSelector": false
+      }
+    }
+  ]
+}
