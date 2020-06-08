@@ -8,7 +8,7 @@ const dir = require('node-dir');
 
 const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
-let testsArray = [];
+const testsArray = [];
 
 // Define global variables
 let browser;
@@ -16,7 +16,7 @@ let browserFull;
 const debugging = false;
 let buildFailed = false;
 // var caseTitle = 'Proxer';
-var mode = {
+const mode = {
   quiet: false,
   parallel: true,
   blockLog: true,
@@ -31,7 +31,7 @@ async function getBrowser(headless = true) {
   if (browser && headless) return browser;
   if (browserFull && !headless) return browserFull;
 
-  let tempBrowser = await puppeteer.launch({ headless: headless });
+  const tempBrowser = await puppeteer.launch({ headless });
   if (headless) {
     browser = tempBrowser;
   } else {
@@ -45,10 +45,10 @@ async function closeBrowser() {
   if (browserFull) await browserFull.close();
 }
 
-var logBlocks = {};
+const logBlocks = {};
 function log(block, text, indetion = 0) {
   for (let i = 0; i <= indetion; i++) {
-    text = '  ' + text;
+    text = `  ${text}`;
   }
   if (mode.blockLog) {
     if (!logBlocks[block]) logBlocks[block] = [];
@@ -60,7 +60,7 @@ function log(block, text, indetion = 0) {
 
 function logEr(block, text, indetion = 0) {
   for (let i = 0; i <= indetion; i++) {
-    text = '  ' + text;
+    text = `  ${text}`;
   }
   if (mode.blockLog) {
     if (!logBlocks[block]) logBlocks[block] = [];
@@ -86,13 +86,13 @@ function logC(block, text, indetion = 0, color = 'blue') {
       nColor = 33;
       break;
   }
-  text = '\x1b[' + nColor + 'm' + text + '\x1b[0m';
+  text = `\x1b[${nColor}m${text}\x1b[0m`;
   log(block, text, indetion);
 }
 
 function printLogBlock(block) {
   if (mode.blockLog && logBlocks[block]) {
-    logBlocks[block].forEach(el => {
+    logBlocks[block].forEach((el) => {
       console.log(el);
     });
   }
@@ -100,12 +100,11 @@ function printLogBlock(block) {
 
 async function cdn(page, type) {
   return new Promise(async (resolve, reject) => {
-
-    if(type === 'captcha') reject('Captcha');
-    if(type === 'blocked') reject('Blocked');
+    if (type === 'captcha') reject('Captcha');
+    if (type === 'blocked') reject('Blocked');
 
     let cdnTimeout = 7000;
-    let bVersion = await page.browser().version();
+    const bVersion = await page.browser().version();
     if (!bVersion.includes('Headless')) {
       cdnTimeout = 50000;
     }
@@ -140,7 +139,7 @@ async function onlineTest(url, page) {
 async function singleCase(block, test, page, retry = 0) {
   try {
     const [response] = await Promise.all([page.goto(test.url, { timeout: 0 }), page.waitForNavigation({ timeout: 30000 })]);
-  } catch(e) {
+  } catch (e) {
     log(block, 'Page loads too long', 2);
     await page.evaluate(() => window.stop());
   }
@@ -165,7 +164,7 @@ async function singleCase(block, test, page, retry = 0) {
 
   if (text.sync === 'cdn') {
     if (retry > 2) throw 'Max retries';
-    log(block, 'Retry '+text.type, 2);
+    log(block, `Retry ${text.type}`, 2);
     await cdn(page, text.type);
     retry++;
     return singleCase(block, test, page, retry);
@@ -176,10 +175,8 @@ async function singleCase(block, test, page, retry = 0) {
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
-    var textOverview =
-      typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
-    var testOverview =
-      typeof test.expected.overviewUrl !== 'undefined'
+    var textOverview = typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
+    var testOverview = typeof test.expected.overviewUrl !== 'undefined'
         ? test.expected.overviewUrl.replace(/www[^.]*\./, '')
         : test.expected.overviewUrl;
     expect(textOverview, 'Overview Url').to.equal(test.expected.overviewUrl.replace(/www[^.]*\./, ''));
@@ -224,8 +221,8 @@ async function testPageCase(block, testPage, page) {
       logC(block, 'Failed', 2, 'red');
       if (typeof e.showDiff !== 'undefined') {
         log(block, e.message, 3);
-        log(block, 'Recieved: ' + e.actual, 4);
-        log(block, 'Expected: ' + e.expected, 4);
+        log(block, `Recieved: ${e.actual}`, 4);
+        log(block, `Expected: ${e.expected}`, 4);
       } else {
         logEr(block, e, 3);
         if (e === 'Captcha') {
@@ -244,7 +241,7 @@ async function testPageCase(block, testPage, page) {
 }
 
 async function loopEl(testPage, headless = true) {
-  //if(testPage.title !== 'Kissanime') return;
+  // if(testPage.title !== 'Kissanime') return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
   const page = await b.newPage();
@@ -272,15 +269,15 @@ async function loopEl(testPage, headless = true) {
 async function initTestsArray() {
   new Promise((resolve, reject) => {
     dir.readFiles(
-      __dirname + '/../../src/',
+      `${__dirname}/../../src/`,
       {
         match: /^tests.json$/,
       },
-      function(err, content, next) {
+      (err, content, next) => {
         if (err) throw err;
 
         try {
-          eval('var s = ' + content.replace(/^[^{]*/g, ''));
+          eval(`var s = ${content.replace(/^[^{]*/g, '')}`);
           testsArray.push(s);
         } catch (e) {
           console.log(content);
@@ -289,7 +286,7 @@ async function initTestsArray() {
 
         next();
       },
-      function(err, files) {
+      (err, files) => {
         if (err) throw err;
         console.log('Test files:', files);
         resolve();
@@ -300,7 +297,7 @@ async function initTestsArray() {
 
 main();
 async function main() {
-  let awaitArray = [];
+  const awaitArray = [];
   let running = 0;
   await initTestsArray();
   if (mode.parallel) {
