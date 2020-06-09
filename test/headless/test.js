@@ -202,6 +202,8 @@ async function testPageCase(block, testPage, page) {
   if (testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
   let passed = 1;
 
+  if(typeof testPage.offline === 'undefined') testPage.offline = false;
+
   try {
     await onlineTest(testPage.url, page);
     logC(block, 'Online', 1);
@@ -237,11 +239,15 @@ async function testPageCase(block, testPage, page) {
   }
 
   if (!mode.quiet || (mode.quiet && !passed)) printLogBlock(block);
-  if (!passed && !testPage.unreliable) buildFailed = true;
+  if (!passed && !testPage.unreliable && !testPage.offline) buildFailed = true;
+  if (passed && testPage.offline) {
+    console.log('      Reset offline');
+    resetOnline(testPage.path);
+  }
 }
 
 async function loopEl(testPage, headless = true) {
-  // if(testPage.title !== 'Kissanime') return;
+  if(testPage.title !== 'Kissmanga') return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
   const page = await b.newPage();
@@ -273,11 +279,12 @@ async function initTestsArray() {
       {
         match: /^tests.json$/,
       },
-      (err, content, next) => {
+      (err, content, file, next) => {
         if (err) throw err;
 
         try {
           eval(`var s = ${content.replace(/^[^{]*/g, '')}`);
+          s.path = file;
           testsArray.push(s);
         } catch (e) {
           console.log(content);
@@ -292,6 +299,19 @@ async function initTestsArray() {
         resolve();
       },
     );
+  });
+}
+
+async function resetOnline(path) {
+  fs.readFile(path, 'utf8', function(err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    const result = data.replace(/"offline" *: *true *,/g, `"offline": false,`);
+
+    fs.writeFile(path, result, 'utf8', function(err) {
+      if (err) return console.log(err);
+    });
   });
 }
 
