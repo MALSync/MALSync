@@ -124,6 +124,11 @@ export const Kissmanga: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    if (document.title.trim() === 'Are You Human') {
+      con.log('loading');
+      page.cdn('captcha');
+      return;
+    }
     j.$(document).ready(function() {
       page.handlePage();
     });
