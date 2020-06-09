@@ -1,6 +1,7 @@
 {
   "title": "Samehadaku",
   "url": "https://samehadaku.vip/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://samehadaku.vip/tower-of-god-episode-3/",

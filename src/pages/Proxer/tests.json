@@ -1,7 +1,7 @@
 {
   "title": "Proxer",
   "url": "https://proxer.me/",
-  "skip": true,
+  "offline": true,
   "testCases": [
     {
       "url": "https://proxer.me/watch/6587/2/gerdub",
