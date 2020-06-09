@@ -1,0 +1,113 @@
+name: Release deploy
+on:
+  release:
+    types:
+      - created
+      - edited
+
+jobs:
+
+  webextension:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Pack
+      run: |
+        npm run package
+    - name: Upload webextension
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/webextension.zip
+        asset_name: webextension.zip
+        asset_content_type: application/zip
+
+  userscript:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Pack
+      run: |
+        npm run package
+    - name: Upload userscript
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/malsync.user.js
+        asset_name: malsync.user.js
+        asset_content_type: application/javascript
+    - name: Upload adult userscript
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./dist/malsync-adult.user.js
+        asset_name: malsync-adult.user.js
+        asset_content_type: application/javascript
+
+  chrome:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Pack
+      run: |
+        npm run package
+    - name: Deploy
+      uses: trmcnvn/chrome-addon@v2
+      with:
+        extension: kekjfbackdeiabghhcdklcdoekaanoel
+        zip: dist/webextension.zip
+        client-id: ${{ secrets.DEV_CHROME_CLIENT_ID }}
+        client-secret: ${{ secrets.DEV_CHROME_CLIENT_SECRET }}
+        refresh-token: ${{ secrets.DEV_CHROME_REFRESH_TOKEN }}
+
+  firefox:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Build
+      run: |
+        npm ci
+        npm run build
+    - name: Pack
+      run: |
+        npm run package
+    - name: Deploy
+      run: |
+        npm run package:firefox
+      env:
+        SIGN_KEY: ${{ secrets.SIGN_KEY }}
+        SIGN_SECRET: ${{ secrets.SIGN_SECRET }}
+        SIGN_ID: ${{ secrets.SIGN_ID }}
