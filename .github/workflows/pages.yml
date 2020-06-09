@@ -1,0 +1,17 @@
+name: Page tests
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Page Tests
+      run: |
+        npm ci
+        npm run test:headless
+      env:
+        CI: true
+

@@ -1,0 +1,31 @@
+{
+  "title": "AnimeZone",
+  "url": "https://www.animezone.pl/",
+  "skip": true,
+  "testCases": [
+    {
+      "url": "https://www.animezone.pl/odcinek/cop-craft/1",
+      "expected": {
+        "sync": true,
+        "title": "Cop Craft",
+        "identifier": "cop-craft",
+        "overviewUrl": "https://www.animezone.pl/anime/cop-craft",
+        "nextEpUrl": "https://www.animezone.pl/odcinek/cop-craft/2",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.animezone.pl/anime/cop-craft",
+      "expected": {
+        "sync": false,
+        "title": "Cop Craft",
+        "identifier": "cop-craft",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://www.animezone.pl/odcinek/cop-craft/5"
+        }
+      }
+    }
+  ]
+}

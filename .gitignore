@@ -19,7 +19,6 @@ lib-cov
 build/Release
 
 # Dependency directories
-package-lock.json
 yarn.lock
 node_modules/
 jspm_packages/
@@ -40,7 +39,6 @@ jspm_packages/
 .env
 
 .vs/
-.vscode/
 config.json
 bwd/
 

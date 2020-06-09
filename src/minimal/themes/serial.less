@@ -1,0 +1,203 @@
+#material.serial {
+  @keyframes flicker {
+    0% {
+      opacity: 0.27861;
+    }
+    5% {
+      opacity: 0.34769;
+    }
+    10% {
+      opacity: 0.23604;
+    }
+    15% {
+      opacity: 0.90626;
+    }
+    20% {
+      opacity: 0.18128;
+    }
+    25% {
+      opacity: 0.83891;
+    }
+    30% {
+      opacity: 0.65583;
+    }
+    35% {
+      opacity: 0.67807;
+    }
+    40% {
+      opacity: 0.26559;
+    }
+    45% {
+      opacity: 0.84693;
+    }
+    50% {
+      opacity: 0.96019;
+    }
+    55% {
+      opacity: 0.08594;
+    }
+    60% {
+      opacity: 0.20313;
+    }
+    65% {
+      opacity: 0.71988;
+    }
+    70% {
+      opacity: 0.53455;
+    }
+    75% {
+      opacity: 0.37288;
+    }
+    80% {
+      opacity: 0.71428;
+    }
+    85% {
+      opacity: 0.70419;
+    }
+    90% {
+      opacity: 0.7003;
+    }
+    95% {
+      opacity: 0.36108;
+    }
+    100% {
+      opacity: 0.24387;
+    }
+  }
+
+  @keyframes fadein {
+    0% {
+      box-shadow: 0 0 2px 0 #bddbe040;
+      filter: brightness(30);
+      opacity: 0.1;
+    }
+    2% {
+      -webkit-filter: contrast(0) brightness(0);
+      filter: contrast(0) brightness(0);
+      opacity: 0;
+    }
+    40% {
+      filter: contrast(1) brightness(1.1) saturate(1.1);
+      opacity: 1;
+    }
+    100% {
+      filter: contrast(1) brightness(1) saturate(1);
+      opacity: 1;
+    }
+  }
+
+  .mdl-layout__header {
+    box-shadow: 0 0 10px 0 #bddbe04f;
+  }
+
+  .bg-cell,
+  .bookEntry,
+  #malList select {
+    position: relative;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0 #bddbe040;
+    animation: fadein 2s;
+
+    &::after {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(18, 16, 16, 0.03);
+      opacity: 0;
+      z-index: 99;
+      pointer-events: none;
+      animation: flicker 1.15s infinite;
+    }
+  }
+
+  .mdl-layout {
+    filter: contrast(130%);
+  }
+
+  .mdl-layout__content {
+    &::-webkit-scrollbar-thumb {
+      box-shadow: 0 0 31px 24px #feffff;
+    }
+    &::-webkit-scrollbar {
+      background-color: transparent !important;
+    }
+  }
+
+  img {
+    filter: contrast(130%);
+    background-blend-mode: screen, difference, lighten;
+  }
+
+  .mdl-layout__header {
+    position: relative;
+    border-radius: 0;
+    &::before {
+      filter: saturate(2);
+      content: '';
+      position: absolute;
+      background-image: url(https://i.imgur.com/U1DCaLV.gif);
+      background-size: cover;
+      top: -209px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  }
+
+  &::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.5) 50%),
+      linear-gradient(90deg, rgba(255, 0, 0, 0.12), rgba(0, 255, 0, 0.04), rgba(0, 0, 255, 0.12));
+    z-index: 99;
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+
+#cr #material.serial {
+  @keyframes turn-off {
+    100% {
+      transform: scale(1, 1) translate3d(0, 0, 0);
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+      opacity: 1;
+    }
+    80% {
+      transform: scale(1, 1.3) translate3d(0, 0, 0);
+      -webkit-filter: brightness(1);
+      filter: brightness(1);
+      opacity: 1;
+    }
+    40% {
+      transform: scale(1.3, 0.001) translate3d(0, 0, 0);
+      -webkit-filter: brightness(10);
+      filter: brightness(10);
+    }
+    0% {
+      animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      transform: scale(0, 0.0001) translate3d(0, 0, 0);
+      -webkit-filter: brightness(50);
+      filter: brightness(50);
+    }
+  }
+
+  .mdl-layout__container {
+    background-color: black;
+    .mdl-layout {
+      animation: turn-off 1s linear;
+      animation-fill-mode: backwards;
+    }
+  }
+}

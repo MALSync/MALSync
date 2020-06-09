@@ -1,0 +1,43 @@
+{
+  "title": "Mangadex",
+  "url": "https://mangadex.org/manga/8173/no-game-no-life",
+  "testCases": [
+    {
+      "url": "https://mangadex.org/manga/8173/no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "8173",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://www.mangadex.org/chapter/808449"
+        }
+      }
+    },
+    {
+      "url": "https://mangadex.org/chapter/808444",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "8173",
+        "overviewUrl": "https://www.mangadex.org/title/8173/no-game-no-life",
+        "nextEpUrl": "https://www.mangadex.org/chapter/808449",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      // oneshot
+      "url": "https://mangadex.org/chapter/38989/3",
+      "expected": {
+        "sync": true,
+        "title": "High Spec Lovers",
+        "identifier": "9270",
+        "overviewUrl": "https://mangadex.org/title/9270/high-spec-lovers",
+        "nextEpUrl": null,
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}

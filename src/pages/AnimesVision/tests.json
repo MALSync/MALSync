@@ -1,0 +1,82 @@
+{
+  "title": "AnimesVision",
+  "url": "https://animesvision.biz/",
+  "skip": true, // geolock
+  "testCases": [
+    {
+      // anime
+      "url": "https://animesvision.biz/animes/strike-the-blood-3/episodio-04/legendado",
+      "expected": {
+        "sync": true,
+        "title": "Strike the Blood 3",
+        "identifier": "strike-the-blood-3",
+        "overviewUrl": "https://animesvision.biz/animes/strike-the-blood-3",
+        "nextEpUrl": "https://animesvision.biz/animes/strike-the-blood-3/episodio-05/legendado",
+        "episode": 4,
+        "uiSelector": false
+      }
+    },
+    {
+      // anime overview
+      "url": "https://animesvision.biz/animes/strike-the-blood-3",
+      "expected": {
+        "sync": false,
+        "title": "Strike the Blood 3",
+        "identifier": "strike-the-blood-3",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animesvision.biz/animes/strike-the-blood-3/episodio-05/legendado"
+        }
+      }
+    },
+    {
+      // movie
+      "url": "https://animesvision.biz/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo/filme-legendado/legendado",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo",
+        "identifier": "mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
+        "overviewUrl": "https://animesvision.biz/animes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
+        "nextEpUrl": null,
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      // movie overview
+      "url": "https://animesvision.biz/filmes/mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei Movie: Hoshi wo Yobu Shoujo",
+        "identifier": "mahouka-koukou-no-rettousei-movie-hoshi-wo-yobu-shoujo",
+        "uiSelector": true
+      }
+    },
+    {
+      // dub
+      "url": "https://animesvision.biz/animes/nanatsu-no-taizai-dublado/episodio-06/dublado",
+      "expected": {
+        "sync": true,
+        "title": "Nanatsu no Taizai",
+        "identifier": "nanatsu-no-taizai-dublado",
+        "overviewUrl": "https://animesvision.biz/animes/nanatsu-no-taizai-dublado",
+        "nextEpUrl": "https://animesvision.biz/animes/nanatsu-no-taizai-dublado/episodio-07/dublado",
+        "episode": 6,
+        "uiSelector": false
+      }
+    },
+    {
+      // dub overview
+      "url": "https://animesvision.biz/animes/nanatsu-no-taizai-dublado",
+      "expected": {
+        "sync": false,
+        "title": "Nanatsu no Taizai",
+        "identifier": "nanatsu-no-taizai-dublado",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animesvision.biz/animes/nanatsu-no-taizai-dublado/episodio-05/dublado"
+        }
+      }
+    }
+  ]
+}

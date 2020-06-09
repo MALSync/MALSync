@@ -1,11 +1,11 @@
-import {userscriptLegacy} from "./storage/userscriptLegacy";
-import {requestUserscriptLegacy} from "./request/requestUserscriptLegacy";
-import {settingsObj} from "./settings";
+import { userscriptLegacy } from './storage/userscriptLegacy';
+import { requestUserscriptLegacy } from './request/requestUserscriptLegacy';
+import { settingsObj } from './settings';
 
-export var storage = userscriptLegacy;
+export const storage = userscriptLegacy;
 
-export var request = requestUserscriptLegacy;
+export const request = requestUserscriptLegacy;
 
-export var settings = settingsObj;
+export const settings = settingsObj;
 
-export var type = 'userscript';
+export const type = 'userscript';

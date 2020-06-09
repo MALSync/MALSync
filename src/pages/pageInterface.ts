@@ -1,52 +1,46 @@
+import { syncPage } from './syncPage';
+
 export interface pageInterface {
-    domain: string | string[],
-    name: string,
-    type: "anime"|"manga",
-    isSyncPage: (url) => boolean,
-    sync:{
-      getTitle: (url) => string,
-      getIdentifier: (url) => string,
-      getOverviewUrl: (url) => string,
-      getEpisode: (url) => number,
-      getVolume?: (url) => number,
-
-      nextEpUrl?: (url) => string,
-
-      uiSelector?: (selector) => void,
-    },
-    overview?:{
-      getTitle: (url) => string,
-      getIdentifier: (url) => string,
-      uiSelector: (selector) => void,
-      list?:{
-        offsetHandler: boolean,
-        elementsSelector: () => JQuery<HTMLElement>,
-        elementUrl: (selector) => string,
-        elementEp: (selector) => number,
-        paginationNext?: () => boolean,
-        handleListHook?: (ep:number, epList) => void,
-      }
-    },
-    database?: string, //ignore, only for first party implementations
-    init: (page:any) => void,
-}
-
-interface pageSearch {
-    name: string,
-    type: 'anime'|'manga',
-    domain: string,
-    googleSearchDomain?: string,
-    searchUrl: (titleEncoded) => string,
-    completeSearchTag?: (title, linkContent) => string
+  domain: string | string[];
+  name: string;
+  type: 'anime' | 'manga';
+  isSyncPage: (url: string) => boolean; // Return true if the current page is the sync page (Chapter/episode page)
+  isOverviewPage?: (url: string) => boolean; // Return true if the current page is the Overview page
+  sync: {
+    // Definitions for the sync page
+    getTitle: (url: string) => string; // Returns the title of the anime, used for the search on mal
+    getIdentifier: (url: string) => string; // An unique identifier of the anime. Has to be the same on the sync and overview page
+    getOverviewUrl: (url: string) => string; // Return a link to the Overview page.
+    getEpisode: (url: string) => number; // Return the recognized episode or chapter number as integer.
+    getVolume?: (url: string) => number; // (optional) Return the current volume number
+    nextEpUrl?: (url: string) => string | undefined; // (optional) return the link to the next episode. Used for links on the userlist
+    uiSelector?: (selector: JQuery<HTMLElement>) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
+    getMalUrl?: (provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL') => Promise<string | false> | string | false; // (optional) Return the MALUrl. Only really needs to be implemented if the page provides that info.
+  };
+  overview?: {
+    getTitle: (url: string) => string;
+    getIdentifier: (url: string) => string;
+    uiSelector: (selector: JQuery<HTMLElement>) => void;
+    getMalUrl?: (provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL') => Promise<string | false> | string | false;
+    list?: {
+      // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.
+      offsetHandler: boolean;
+      elementsSelector: () => JQuery<HTMLElement>;
+      elementUrl: (selector: JQuery<HTMLElement>) => string;
+      elementEp: (selector) => number;
+      paginationNext?: (updateCheck: boolean) => boolean;
+      handleListHook?: (ep: number, epList: JQuery<HTMLElement>[]) => void;
+      getTotal?: () => number | undefined;
+    };
+  };
+  database?: string; // ignore, only for first party implementations
+  init: (page: syncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
 }
 
 export interface pageState {
-    title: string,
-    identifier: string,
-    episode?: number,
-    volume?: number
-}
-
-export interface pageSearchObj {
-    [key: string]: pageSearch
+  on: 'SYNC' | 'OVERVIEW';
+  title: string;
+  identifier: string;
+  episode?: number;
+  volume?: number;
 }

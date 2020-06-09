@@ -1,17 +1,17 @@
 export interface storageInterface {
-  set(key: string, value: string): Promise<void>;
+  set(key: string, value: any): Promise<void>;
 
-  get(key: string): Promise<string|undefined>;
+  get(key: string): Promise<any | undefined>;
 
   remove(key: string): Promise<void>;
 
-  list(): Promise<void>;
+  list(from?: string): Promise<any[]>;
 
   addStyle(css: string): Promise<void>;
 
   version(): string;
 
-  lang(selector, args:string[]): string;
+  lang(selector, args?: string[]): string;
 
   assetUrl(filename: string): string;
 
@@ -20,4 +20,6 @@ export interface storageInterface {
   injectjsResource(res: string, head): void;
 
   updateDom(head): void;
+
+  storageOnChanged(cb: (changes, namespace) => void): any;
 }

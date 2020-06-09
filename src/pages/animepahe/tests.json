@@ -1,0 +1,15 @@
+{
+  "title": "Animepahe",
+  "url": "https://animepahe.com",
+  "testCases": [
+    {
+      "url": "https://animepahe.com/anime/no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "No Game No Life",
+        "uiSelector": true,
+      }
+    },
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "title": "PrimeVideo",
+  "url": "https://www.primevideo.com/",
+  "enabled": false,
+  "testCases": [
+    {
+      // season 1 overview
+      "url": "https://www.primevideo.com/detail/0HSUS652VW673MGGPPLZXZ6O8C",
+      "expected": {
+        "sync": false,
+        "title": "BEATLESS",
+        "identifier": "0HSUS652VW673MGGPPLZXZ6O8C",
+        "uiSelector": true
+      }
+    },
+    {
+      // season 2 overview
+      "url": "https://www.primevideo.com/detail/0K1UMWRFQ63FY6Z8PC9BK376J8",
+      "expected": {
+        "sync": false,
+        "title": "Chi's Sweet Adventure Season 2",
+        "identifier": "0K1UMWRFQ63FY6Z8PC9BK376J8",
+        "uiSelector": true
+      }
+    },
+    {
+      // season 3 overview
+      "url": "https://www.primevideo.com/detail/0GMA6H790B7EMLNVN83K54XMRA",
+      "expected": {
+        "sync": false,
+        "title": "PSYCHO-PASS 3",
+        "identifier": "0GMA6H790B7EMLNVN83K54XMRA",
+        "uiSelector": true
+      }
+    }
+  ]
+}

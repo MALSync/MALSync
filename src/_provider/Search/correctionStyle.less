@@ -1,0 +1,285 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+#material {
+  all: initial;
+  color: white;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .scroll {
+    overflow-y: auto;
+    max-height: 80vh;
+    scrollbar-width: none;
+  }
+
+  .close {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  //Typography
+
+  @primaryColor: rgb(63, 81, 181);
+  @accentColor: #f43b7a;
+  @cardColor: #484848;
+
+  .mdl-color--primary {
+    background-color: @primaryColor;
+  }
+
+  & {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  p {
+    font-weight: 400;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0;
+    margin: 0 0 16px;
+  }
+
+  a {
+    color: @accentColor;
+    text-decoration: none !important;
+  }
+
+  //Search
+
+  .search {
+    .input {
+      width: 100%;
+    }
+  }
+
+  .result {
+    cursor: pointer;
+    display: flex;
+    margin-bottom: 15px;
+    background-color: @cardColor;
+    max-width: 400px;
+    &.active {
+      border: 1px solid @accentColor;
+      border-style: dashed;
+    }
+    .image {
+      height: 100px;
+      width: 64px;
+      min-width: 64px;
+      background-color: grey;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    .right {
+      flex-grow: 100;
+      cursor: pointer;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 5px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .title {
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1;
+        margin-bottom: 3px;
+      }
+      p {
+        margin-bottom: 0;
+        line-height: 20px;
+        color: white;
+      }
+    }
+  }
+
+  //Input Button
+  .inputButton {
+    display: flex;
+    align-items: center;
+    .group {
+      width: 100%;
+    }
+  }
+
+  //input
+  .group {
+    position: relative;
+    margin-bottom: 15px;
+    margin-top: 25px;
+
+    input {
+      font-size: 18px;
+      padding: 10px 10px 10px 5px;
+      display: block;
+      color: white;
+      width: 100%;
+      border: none;
+      background-color: @cardColor;
+      border-bottom: 1px solid white;
+      &:focus {
+        outline: none;
+      }
+    }
+
+    label {
+      color: #999;
+      font-size: 18px;
+      font-weight: normal;
+      position: absolute;
+      pointer-events: none;
+      left: 5px;
+      top: 10px;
+      transition: 0.2s ease all;
+      -moz-transition: 0.2s ease all;
+      -webkit-transition: 0.2s ease all;
+    }
+
+    input:focus ~ label,
+    input:valid ~ label {
+      left: 0;
+      top: -20px;
+      font-size: 14px;
+      color: @accentColor;
+    }
+
+    .bar {
+      position: relative;
+      display: block;
+
+      &::before,
+      &::after {
+        content: '';
+        height: 2px;
+        width: 0;
+        bottom: 0;
+        position: absolute;
+        background: @accentColor;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+      }
+
+      &::before {
+        left: 50%;
+      }
+      &::after {
+        right: 50%;
+      }
+    }
+
+    input:focus ~ .bar::before,
+    input:focus ~ .bar::after {
+      width: 50%;
+    }
+  }
+
+  // ProgressBar
+  .mdl-progress {
+    display: block;
+    position: relative;
+    height: 3px;
+    width: 500px;
+    max-width: 100%;
+
+    > .bar {
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0%;
+      transition: width 0.2s linear;
+    }
+
+    > .bar1 {
+      background-color: @primaryColor;
+      animation-name: indeterminate1;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+
+  @keyframes indeterminate1 {
+    0% {
+      left: 0%;
+      width: 0%;
+    }
+    50% {
+      left: 25%;
+      width: 75%;
+    }
+    75% {
+      left: 100%;
+      width: 0%;
+    }
+  }
+
+  .loadingBar {
+    position: relative;
+    .mdl-progress {
+      position: absolute;
+      top: -9px;
+    }
+  }
+
+  //Button
+  button {
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: @primaryColor;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    position: relative;
+    height: 42px;
+    padding: 0 16px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+  }
+
+  // Offset Ui
+  #offsetUi {
+    display: flex;
+    justify-content: space-around;
+    .offsetBox {
+      text-align: center;
+      min-width: 40px;
+      margin-left: 5px;
+      margin-right: 5px;
+
+      .top {
+        padding: 5px 10px;
+      }
+
+      .bottom {
+        padding: 5px 10px;
+        &.active {
+          border: 1px solid @accentColor;
+          border-top: 0;
+        }
+      }
+    }
+  }
+}

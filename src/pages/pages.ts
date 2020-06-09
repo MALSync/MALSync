@@ -1,135 +1,147 @@
-import {Kissanime} from "./Kissanime/main";
-import {Kissmanga} from "./Kissmanga/main";
-import {nineAnime} from "./nineAnime/main";
-import {Crunchyroll} from "./Crunchyroll/main";
-import {Masterani} from "./Masterani/main";
-import {Mangadex} from "./Mangadex/main";
-import {Mangarock} from "./Mangarock/main";
-import {Gogoanime} from "./Gogoanime/main";
-import {Anime4you} from "./Anime4you/main";
-import {Branitube} from "./Branitube/main";
-import {Turkanime} from "./Turkanime/main";
-import {Twistmoe} from "./Twistmoe/main";
-import {Emby} from "./Emby/main";
-import {Plex} from "./Plex/main";
-import {Netflix} from "./Netflix/main";
-import {Otakustream} from "./Otakustream/main";
-import {animepahe} from "./animepahe/main";
-import {animeflv} from "./Animeflv/main";
-import {Jkanime} from "./Jkanime/main";
-
-import {pageSearchObj} from "./pageInterface";
+import { Kissanime } from './Kissanime/main';
+import { Kissmanga } from './Kissmanga/main';
+import { nineAnime } from './nineAnime/main';
+import { Crunchyroll } from './Crunchyroll/main';
+import { Mangadex } from './Mangadex/main';
+import { Gogoanime } from './Gogoanime/main';
+import { Anime4you } from './Anime4you/main';
+import { Branitube } from './Branitube/main';
+import { Turkanime } from './Turkanime/main';
+import { Twistmoe } from './Twistmoe/main';
+import { Emby } from './Emby/main';
+import { Plex } from './Plex/main';
+import { Netflix } from './Netflix/main';
+import { animepahe } from './animepahe/main';
+import { animeflv } from './Animeflv/main';
+import { Jkanime } from './Jkanime/main';
+import { Vrv } from './Vrv/main';
+import { Proxer } from './Proxer/main';
+import { fourAnime } from './fourAnime/main';
+import { animeultima } from './animeultima/main';
+import { Aniflix } from './Aniflix/main';
+import { AnimeDaisuki } from './AnimeDaisuki/main';
+import { Animefreak } from './Animefreak/main';
+import { KickAssAnime } from './KickAssAnime/main';
+import { AnimeKisa } from './AnimeKisa/main';
+import { Wakanim } from './Wakanim/main';
+import { AnimeIndo } from './AnimeIndo/main';
+import { Shinden } from './Shinden/main';
+import { Funimation } from './Funimation/main';
+import { Voiranime } from './Voiranime/main';
+import { DubbedAnime } from './DubbedAnime/main';
+import { VIZ } from './VIZ/main';
+import { MangaNelo } from './MangaNelo/main';
+import { NekoSama } from './NekoSama/main';
+import { AnimeZone } from './AnimeZone/main';
+import { AnimeOdcinki } from './AnimeOdcinki/main';
+import { Animeflix } from './Animeflix/main';
+import { serimanga } from './serimanga/main';
+import { mangadenizi } from './mangadenizi/main';
+import { moeclip } from './moeclip/main';
+import { mangalivre } from './mangalivre/main';
+import { tmofans } from './tmofans/main';
+import { unionmangas } from './unionmangas/main';
+import { MangaPlus } from './MangaPlus/main';
+import { JapScan } from './JapScan/main';
+import { MangaKisa } from './MangaKisa/main';
+import { Goyabu } from './Goyabu/main';
+import { AnimesVision } from './AnimesVision/main';
+import { Hulu } from './Hulu/main';
+import { Aniwatch } from './Aniwatch/main';
+import { Hidive } from './Hidive/main';
+import { JaiminisBox } from './JaiminisBox/main';
+import { FallenAngels } from './FallenAngels/main';
+import { animestrue } from './animestrue/main';
+import { PrimeVideo } from './PrimeVideo/main';
+import { MangaKatana } from './MangaKatana/main';
+import { manga4life } from './manga4life/main';
+import { bato } from './bato/main';
+import { DreamSub } from './DreamSub/main';
+import { MangaPark } from './MangaPark/main';
+import { AnimesHouse } from './AnimesHouse/main';
+import { AnimeXin } from './AnimeXin/main';
+import { MonosChinos } from './MonosChinos/main';
+import { AnimeFire } from './AnimeFire/main';
+import { OtakuFR } from './OtakuFR/main';
+import { Samehadaku } from './Samehadaku/main';
+import { TsukiMangas } from './TsukiMangas/main';
+import { mangatx } from './mangatx/main';
+import { TRanimeizle } from './TRanimeizle/main';
+import { Anihub } from './Anihub/main';
+import { AnimeStreamingFR } from './AnimeStreamingFR/main';
+import { Scantrad } from './Scantrad/main';
 
 export const pages = {
-    Kissanime: Kissanime,
-    Kissmanga: Kissmanga,
-    nineAnime: nineAnime,
-    Crunchyroll: Crunchyroll,
-    Masterani: Masterani,
-    Mangadex: Mangadex,
-    Mangarock: Mangarock,
-    Gogoanime: Gogoanime,
-    Anime4you: Anime4you,
-    Branitube: Branitube,
-    Turkanime: Turkanime,
-    Twistmoe: Twistmoe,
-    animeflv: animeflv,
-    Jkanime: Jkanime,
-    Emby,
-    Plex,
-    Netflix,
-    Otakustream,
-    animepahe,
+  Kissanime,
+  Kissmanga,
+  nineAnime,
+  Crunchyroll,
+  Vrv,
+  Mangadex,
+  Gogoanime,
+  Twistmoe,
+  Anime4you,
+  Branitube,
+  Turkanime,
+  animepahe,
+  Netflix,
+  animeflv,
+  Jkanime,
+  Proxer,
+  Wakanim,
+  Emby,
+  Plex,
+  fourAnime,
+  animeultima,
+  Aniflix,
+  Animefreak,
+  AnimeDaisuki,
+  KickAssAnime,
+  AnimeKisa,
+  AnimeIndo,
+  Shinden,
+  Funimation,
+  Voiranime,
+  DubbedAnime,
+  MangaNelo,
+  VIZ,
+  NekoSama,
+  AnimeOdcinki,
+  AnimeZone,
+  Animeflix,
+  serimanga,
+  mangadenizi,
+  moeclip,
+  mangalivre,
+  tmofans,
+  unionmangas,
+  MangaPlus,
+  JapScan,
+  MangaKisa,
+  Goyabu,
+  AnimesVision,
+  Hulu,
+  Aniwatch,
+  Hidive,
+  JaiminisBox,
+  FallenAngels,
+  animestrue,
+  PrimeVideo,
+  MangaKatana,
+  manga4life,
+  bato,
+  DreamSub,
+  MangaPark,
+  AnimesHouse,
+  AnimeXin,
+  MonosChinos,
+  AnimeFire,
+  OtakuFR,
+  Samehadaku,
+  TsukiMangas,
+  mangatx,
+  TRanimeizle,
+  Anihub,
+  AnimeStreamingFR,
+  Scantrad,
 };
-
-export const pageSearch:pageSearchObj = {
-    Crunchyroll: {
-      name: 'Crunchyroll',
-      type: 'anime',
-      domain: 'www.crunchyroll.com',
-      searchUrl: (titleEncoded) => {return 'http://www.crunchyroll.com/search?q='+titleEncoded}
-    },
-    Netflix: {
-      name: 'Netflix',
-      type: 'anime',
-      domain: 'www.netflix.com',
-      searchUrl: (titleEncoded) => {return 'https://www.netflix.com/search?q='+titleEncoded}
-    },
-    nineAnime: {
-      name: '9Anime',
-      type: 'anime',
-      domain: '9anime.to',
-      googleSearchDomain: '9anime.to/watch',
-      searchUrl: (titleEncoded) => {return 'https://www1.9anime.to/search?keyword='+titleEncoded}
-    },
-    Otakustream: {
-      name: 'Otakustream',
-      type: 'anime',
-      domain: 'otakustream.tv',
-      searchUrl: (titleEncoded) => {return 'https://otakustream.tv/?s='+titleEncoded},
-    },
-    Kissanime: {
-      name: 'Kissanime',
-      type: 'anime',
-      domain: 'kissanime.ru',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissanime.ru/Search/Anime" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
-    },
-    Gogoanime: {
-      name: 'Gogoanime',
-      type: 'anime',
-      domain: 'www.gogoanime.in',
-      searchUrl: (titleEncoded) => {return 'http://gogoanimes.co/search.html?keyword='+titleEncoded}
-    },
-    Turkanime: {
-      name: 'Turkanime',
-      type: 'anime',
-      domain: 'www.turkanime.tv/',
-      searchUrl: (titleEncoded) => {return 'https://www.google.com/search?q='+titleEncoded+'+site:turkanime.tv/anime/'},
-      googleSearchDomain: 'turkanime.tv/anime/'
-    },
-    animeflv: {
-      name: 'animeflv',
-      type: 'anime',
-      domain: 'animeflv.net',
-      searchUrl: (titleEncoded) => {return 'https://animeflv.net/browse?q='+titleEncoded}
-    },
-    Jkanime: {
-      name: 'Jkanime',
-      type: 'anime',
-      domain: 'jkanime.net',
-      searchUrl: (titleEncoded) => {return 'https://jkanime.net/buscar/'+titleEncoded+'/1/'}
-    },
-    Mangadex: {
-      name: 'Mangadex',
-      type: 'manga',
-      domain: 'mangadex.org',
-      searchUrl: (titleEncoded) => {return 'https://mangadex.org/quick_search/'+titleEncoded}
-    },
-    Mangarock: {
-      name: 'Mangarock',
-      type: 'manga',
-      domain: 'mangarock.com',
-      searchUrl: (titleEncoded) => {return 'https://mangarock.com/search?q='+titleEncoded}
-    },
-    Kissmanga: {
-      name: 'Kissmanga',
-      type: 'manga',
-      domain: 'kissmanga.com',
-      searchUrl: (titleEncoded) => {return ''},
-      completeSearchTag: (title, linkContent) => {return '<form class="mal_links" target="_blank" action="https://kissmanga.com/Search/Manga" style="display: inline;" id="kissanimeSearch" method="post" _lpchecked="1"><a href="#" class="submitKissanimeSearch" onclick="document.getElementById(\'kissanimeSearch\').submit(); return false;">'+linkContent+'</a><input type="hidden" id="keyword" name="keyword" value="'+title+'"/></form>'}
-    },
-    AniList: {
-      name: 'AniList',
-      type: 'anime',
-      domain: 'anilist.co',
-      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/anime?sort=SEARCH_MATCH&search='+titleEncoded}
-    },
-    AniListManga: {
-      name: 'AniList',
-      type: 'manga',
-      domain: 'anilist.co',
-      searchUrl: (titleEncoded) => {return 'https://anilist.co/search/manga?sort=SEARCH_MATCH&search='+titleEncoded}
-    },
-
-}

@@ -1,0 +1,30 @@
+{
+  "title": "Scantrad",
+  "url": "https://scantrad.net/",
+  "testCases": [
+    {
+      "url": "https://scantrad.net/mangas/one-punch-man/129",
+      "expected": {
+        "sync": true,
+        "title": "One Punch-Man",
+        "identifier": "one-punch-man",
+        "overviewUrl": "https://scantrad.net/one-punch-man",
+        "nextEpUrl": "https://scantrad.net/mangas/one-punch-man/130",
+        "episode": 129,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://scantrad.net/one-punch-man",
+      "expected": {
+        "sync": false,
+        "title": "One Punch-Man",
+        "identifier": "one-punch-man",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://samehadaku.vip/tower-of-god-episode-3/"
+        }
+      }
+    }
+  ]
+}

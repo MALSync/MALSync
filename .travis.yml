@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "9"
+  - "10"
 dist: trusty
 sudo: required
 addons:
@@ -9,13 +9,11 @@ cache:
   npm: true
   directories:
   - node_modules
-before_install:
-  - npm install --global web-ext
 install:
   - npm install
 script:
-  - npm run test
   - npm run build
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh ./package/localization/deploy.sh; fi
 before_deploy:
   - npm run package
   - npm run package:chrome
@@ -28,6 +26,7 @@ deploy:
   file:
   - "./dist/mal_sync-*.xpi"
   - "./dist/malsync.user.js"
+  - "./dist/malsync-adult.user.js"
   - "./dist/webextension.zip"
   on:
     tags: true

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./src/",
     "noImplicitAny": false,
+    "noImplicitThis": false,
     "module": "es6",
     "moduleResolution": "node",
     "target": "es6",
@@ -9,6 +10,11 @@
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
-    "strict": true
-  }
+    "strict": true,
+  },
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.exclude.ts",
+    "node_modules"
+  ]
 }

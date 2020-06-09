@@ -1,0 +1,18 @@
+{
+  "title": "Anime Streaming FR",
+  "url": "https://www.animestreamingfr.fr/",
+  "testCases": [
+    {
+      "url": "https://www.animestreamingfr.fr/anime/219/4/1/2/1",
+      "expected": {
+        "sync": true,
+        "title": "Hachi-nan tte, Sore wa Nai deshou!",
+        "identifier": "219-1-1",
+        "overviewUrl": "https://www.animestreamingfr.fr/anime/219",
+        "episode": 4,
+        "nextEpUrl": "https://www.animestreamingfr.fr/anime/219/5/1/2/1",
+        "uiSelector": true
+      }
+    }
+  ]
+}

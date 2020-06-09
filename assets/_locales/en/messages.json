@@ -19,6 +19,10 @@
       "message": "Reset",
       "description": "Reset"
     },
+    "Remove": {
+      "message": "Remove",
+      "description": "Button for removing entry from MAL..."
+    },
     "Loading": {
       "message": "Loading",
       "description": "Loading"
@@ -60,7 +64,7 @@
       "description": "All"
     },
     "Package_Description": {
-      "message": "Integrates MyAnimeList/AniList/Kitsu into various sites, with auto episode tracking.",
+      "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
       "description": "Description MALSync"
     },
     "UI_Status": {
@@ -95,6 +99,14 @@
       "message": "Plan to Read",
       "description": "Plan to Read"
     },
+    "UI_Status_Rewatching_anime": {
+      "message": "Rewatching",
+      "description": "Status to rewatch anime"
+    },
+    "UI_Status_Rewatching_manga": {
+      "message": "Rereading",
+      "description": "Status to reread manga"
+    },
     "UI_Episode": {
       "message": "Episode:",
       "description": "Episode"
@@ -110,6 +122,10 @@
     "UI_Score": {
       "message": "Your Score:",
       "description": "Score"
+    },
+    "UI_Score_Not_Rated": {
+      "message": "Not rated",
+      "description": "Text if nothing is selected in the rating dropdown"
     },
     "UI_Score_Masterpiece": {
       "message": "(10) Masterpiece",
@@ -209,9 +225,25 @@
       "message": "Start watching?",
       "description": "Start watching anime message"
     },
+    "syncPage_flashConfirm_rewatch_finish_anime": {
+      "message": "Finish rewatching?",
+      "description": "Finish rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_finish_manga": {
+      "message": "Finish rereading?",
+      "description": "Finish rereading manga message"
+    },
     "syncPage_flashConfirm_start_manga": {
       "message": "Start reading?",
       "description": "Start reading manga message"
+    },
+    "syncPage_flashConfirm_rewatch_start_anime": {
+      "message": "Rewatch Anime?",
+      "description": "Start rewatching anime message"
+    },
+    "syncPage_flashConfirm_rewatch_start_manga": {
+      "message": "Reread Manga?",
+      "description": "Start rereading manga message"
     },
     "syncPage_flashConfirm_Anime_Correct": {
       "message": "Is \"$anime$\" correct?",
@@ -268,7 +300,7 @@
       "description": "The token has been obtained and saved"
     },
     "kitsuClass_authentication_text": {
-      "message": "To login with Kitsu, you need to enter your account's e-mail and password.</br> Your credentials are not stored on your computer or anywhere else. </br> They are directly sent to kitsu. Only the returned access token is saved.</br>",
+      "message": "To login with Kitsu, you need to enter your account's e-mail and password.<br>Your credentials are not stored on your computer or anywhere else.<br>They are directly sent to Kitsu. Only the returned access token is saved.<br>",
       "description": "Authentication text in Kitsu"
     },
     "kitsuClass_authentication_Password": {
@@ -307,6 +339,26 @@
       "message": "mins",
       "description": "mins"
     },
+    "prediction_Episode":{
+      "message": "Next episode estimated in $time$",
+      "description": "Text for next episode estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
+    "prediction_Airing":{
+      "message": "Airing in $time$",
+      "description": "Text for airing estimation",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2d 1h 32m"
+        }
+      }
+    },
     "correction_Offset": {
       "message": "Episode Offset",
       "description": "Episode Offset"
@@ -317,19 +369,19 @@
     },
     "correction_WrongUrl": {
       "message": "Only change this URL if it points to the wrong anime page on MAL.",
-      "description": "Url is Wrong"
+      "description": "URL is Wrong"
     },
     "correction_Search": {
       "message": "Correction Search",
       "description": "Correction Search"
     },
     "correction_Search_text": {
-      "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList Url\" shown above.<br> To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
+      "message": "This field is for finding an anime, when you need to correct the \"MyAnimeList URL\" shown above.<br>To make a search, simply begin typing the name of an anime, and a list with results will automatically appear as you type.",
       "description": "Search text"
     },
     "correction_NoMal": {
       "message": "If the Anime/Manga can't be found on MAL",
-      "description": "Anime/Manga no found in MAL"
+      "description": "Anime/Manga not found in MAL"
     },
     "correction_NoEntry": {
       "message": "No entry on MyAnimeList",
@@ -350,8 +402,8 @@
       "description": "Offset reset"
     },
     "correction_NewUrl": {
-      "message": "new url '$malUrl$' set.",
-      "description": "new url",
+      "message": "New URL '$malUrl$' set.",
+      "description": "New URL",
       "placeholders": {
         "malUrl": {
           "content": "$1",
@@ -360,8 +412,12 @@
       }
     },
     "correction_NewUrlReset": {
-      "message": "MyAnimeList url reset",
-      "description": "url reset"
+      "message": "MyAnimeList URL reset",
+      "description": "URL reset"
+    },
+    "correction_DBRequest": {
+      "message": "Submit database correction request?",
+      "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
     },
     "overview_Continue_anime": {
       "message": "Continue watching",
@@ -427,6 +483,18 @@
       "message": "Authenticate",
       "description": "Authenticate"
     },
+    "settings_LocalSync": {
+      "message": "Local storage fallback",
+      "description": "Option to activate the local storage fallback sync"
+    },
+    "settings_LocalSync_Import": {
+      "message": "Import",
+      "description": "Button to import local storage fallback data"
+    },
+    "settings_LocalSync_Export": {
+      "message": "Export",
+      "description": "Button to Export Local storage fallback data"
+    },
     "settings_Animesync": {
       "message": "Anime sync",
       "description": "Anime sync"
@@ -458,7 +526,7 @@
       }
     },
     "settings_AutoTracking_Instant": {
-      "message": "Delay instant autotracking by $delay$ Seconds",
+      "message": "Delay instant autotracking by $delay$ seconds",
       "description": "Delay instant autotracking",
       "placeholders": {
         "delay": {
@@ -472,7 +540,7 @@
       "description": "Streaming Site Links"
     },
     "settings_StreamingSite_text": {
-      "message": "If disabled, the streaming site will no longer appear in an animes sidebar on MAL.",
+      "message": "If disabled, the streaming site will no longer appear in an anime’s sidebar on MyAnimeList/AniList/Kitsu/Simkl.",
       "description": "Streaming Site Links - Text"
     },
     "settings_Thumbnails": {
@@ -480,7 +548,7 @@
       "description": "Thumbnails"
     },
     "settings_Thumbnails_text": {
-      "message": "The option is for resizing the thumbnails on MAL.<br>Like thumbnails for characters, people, recommendations, etc.",
+      "message": "The option is for resizing the thumbnails on MyAnimeList eg. thumbnails for characters, people, recommendations, etc.",
       "description": "Thumbnails - Text"
     },
     "settings_Thumbnails_Large": {
@@ -512,7 +580,7 @@
       "description": "Use Tags/Notes"
     },
     "settings_malTags_Text": {
-      "message": "If enabled: On your MAL Anime List and the bookmark list in miniMAL, an icon-link will be added to the last used streaming site you were using to watch an anime.<br>Simply click the icon to continue watching the anime.",
+      "message": "If enabled: The streaming page that you have used last is permanently (across browsers) saved in the tags/Notes section in your list. The saved string in the tag section is ugly, only really recommended if you dont use the tag/notes section.",
       "description": "Use Tags/Notes - Text"
     },
     "settings_malContinue": {
@@ -524,8 +592,12 @@
       "description": "Resume watching links"
     },
     "settings_miniMAL_floatButtonStealth": {
-      "message": "Stealth floating menu button",
-      "description": "Stealth floating menu button"
+      "message": "Stealth UI mode",
+      "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+    },
+    "settings_miniMAL_minimizeBigPopup": {
+      "message": "Minimize big pop-ups",
+      "description": "Shows an 'action required' popup hidding big popups"
     },
     "settings_miniMAL_floatButtonHide": {
       "message": "Hide miniMAL floating menu button",
@@ -538,6 +610,10 @@
     "settings_miniMAL_Display": {
       "message": "Display to the",
       "description": "Display to the"
+    },
+    "settings_miniMAL_window": {
+      "message": "Open in separate window",
+      "description": "Open miniMAL in separate window checkbox"
     },
     "settings_miniMAL_Display_Left": {
       "message": "Left",
@@ -567,9 +643,50 @@
       "message": "Not Set",
       "description": "miniMAL Not Set"
     },
+
+    "settings_Video_Player": {
+      "message": "Video Player",
+      "description": "Video settings header"
+    },
+    "settings_Video_Fullscreen": {
+      "message": "Auto fullscreen",
+      "description": "Auto fullscreen toggle"
+    },
+    "settings_Video_Resume": {
+      "message": "Auto resume",
+      "description": "Auto resume video where you left off toggle"
+    },
+    "settings_autoNextEp": {
+      "message": "Autoplay next episode",
+      "description": "Autoplays the next episode after the video ends"
+    },
+    "settings_Shortcuts_Correction": {
+      "message": "Open anime relation correction popup",
+      "description": "Text for the correction ui shortcut"
+    },
+    "settings_Shortcuts_Sync": {
+      "message": "Set episode/chapter as read",
+      "description": "Text for the sync ui shortcut"
+    },
+    "settings_Shortcuts_Next_Episode": {
+      "message": "Open next episode shortcut",
+      "description": "Description for the next episode shortcut option"
+    },
+    "settings_Shortcuts_Skip_Forward": {
+      "message": "Skips the opening",
+      "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Skip_Backward": {
+      "message": "Jump back to opening's beginning",
+      "description": "Description for the the opening skip shortcut"
+    },
+    "settings_Shortcuts_Click": {
+      "message": "Click to enter shortcut",
+      "description": "Shown if no shortcut is set for an option"
+    },
     "settings_introSkip": {
-      "message": "Skips $Seconds$ Seconds",
-      "description": "Skips video Seconds",
+      "message": "Set opening skip length ($Seconds$ seconds)",
+      "description": "Skips video seconds",
       "placeholders": {
         "Seconds": {
           "content": "$1",
@@ -621,9 +738,25 @@
       "message": "This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option",
       "description": "Strict Cookies - Text"
     },
+    "settings_highlightAllEp": {
+      "message": "Highlight all Episodes/Chapters",
+      "description": "Highlight all Episodes/Chapters"
+    },
+    "settings_highlightAllEp_Text": {
+      "message": "This option will highlight all watched chapters/episodes in the list you can find on some Anime/Manga sites",
+      "description": "Highlight all Episodes/Chapters - Text"
+    },
     "settings_ClearCache": {
       "message": "Clear Cache",
       "description": "Clear Cache"
+    },
+    "settings_presenceHidePage": {
+      "message": "Show MAL-Sync icon instead of page icon",
+      "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+    },
+    "settings_shortcut_tooltip": {
+      "message": "It is not recommended to set the shortcut to a single key",
+      "description": "Shows this message if the users has only a single key set as shortcut"
     },
     "updateCheck_Refresh": {
       "message": "Refresh",
@@ -666,8 +799,8 @@
       "description": "Settings"
     },
     "minimalClass_Popup": {
-      "message": "Please allow popups for this website",
-      "description": "Please allow popups for this website"
+      "message": "Please allow pop-ups for this website",
+      "description": "Please allow pop-ups for this website"
     },
     "minimalClass_versionMsg": {
       "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
@@ -688,7 +821,7 @@
       }
     },
     "minimalClass_versionMsg_Text_1": {
-      "message": "Thanks for installing MAL-Sync",
+      "message": "Thank you for installing MAL-Sync",
       "description": "Update version - Text 1"
     },
     "minimalClass_versionMsg_Text_2": {
@@ -698,6 +831,48 @@
     "minimalClass_versionMsg_Text_3": {
       "message": "Open Source Code:",
       "description": "Update version - Text 3"
+    },
+    "minimalClass_versionMsg_Text_4": {
+      "message": "uBlock users please subscribe to this filter list! This fixes some problems like broken images",
+      "description": "Update version - Text 4"
+    },
+    "installPage_Mode": {
+      "message": "Please select which Anime database you want use:",
+      "description": "Header for the MAL-sync provider dropdown"
+    },
+    "installPage_Howto": {
+      "message": "How to use?",
+      "description": "Header for how to use section"
+    },
+    "installPage_Howto_Description": {
+      "message": "Just open an episode or chapter on any of the $Link1$supported pages$LinkEnd1$. The sync waits until 85% of the video is watched. For mangas it syncs on page load. This can be changed in the $Link2$settings$LinkEnd2$.",
+      "description": "How to use description text",
+      "placeholders": {
+        "Link1": {
+          "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+          "example": "<a>"
+        },
+        "LinkEnd1": {
+          "content": "</a>",
+          "example": "</a>"
+        },
+        "Link2": {
+          "content": "<a class=\"open-settings\" href=\"#\">",
+          "example": "<a>"
+        },
+        "LinkEnd2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
+    },
+    "installPage_Wrong": {
+      "message": "It syncs to the wrong MAL entry?",
+      "description": "Header of the wrong section on the install page"
+    },
+      "installPage_Wrong_Description": {
+      "message": "You can easily change the relation like shown in the gif below. An episode offset can be set on that page too.",
+      "description": "Description of the wrong section on the install page"
     },
     "Anilist_Authenticate": {
       "message": "Please Authenticate $Link1$Here$Link2$",
@@ -712,5 +887,51 @@
           "example": "</a>"
         }
       }
+    },
+    "Emby_Authenticate": {
+      "message": "MAL-Sync needs an Emby API key to work. More infos $Link1$Here$Link2$",
+      "description": "Emby Authentication",
+      "placeholders": {
+        "Link1": {
+          "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+          "example": "<a>"
+        },
+        "Link2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
+    },
+    "Error_Authenticate": {
+      "message": "Please Authenticate $Link1$Here$Link2$",
+      "description": "Update version - Text 3",
+      "placeholders": {
+        "Link1": {
+          "content": "<a target=\"_blank\" href=\"$1\">",
+          "example": "<a>"
+        },
+        "Link2": {
+          "content": "</a>",
+          "example": "</a>"
+        }
+      }
+    },
+    "Discord_rpc_browsing": {
+      "message": "Browsing $Page$",
+      "description": "Discord rich Presence text if on overview page",
+      "placeholders": {
+        "Page": {
+          "content": "$1",
+          "example": "Mangadex"
+        }
+      }
+    },
+    "nextEpShort_no_support": {
+      "message": "This page doesn't support opening the next episode",
+      "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+    },
+    "nextEpShort_no_nextEp": {
+      "message": "Couldn't find the next episode",
+      "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     }
 }

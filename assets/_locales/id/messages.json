@@ -1,0 +1,924 @@
+{
+  "Search": {
+    "message": "Cari",
+    "description": "Search"
+  },
+  "Show": {
+    "message": "Tampilkan",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "Bantuan",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "Perbarui",
+    "description": "Update"
+  },
+  "Reset": {
+    "message": "Reset",
+    "description": "Reset"
+  },
+  "Remove": {
+    "message": "Hapus",
+    "description": "Button for removing entry from MAL..."
+  },
+  "Loading": {
+    "message": "Memuat",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "Pilih",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "Ya",
+    "description": "Yes"
+  },
+  "No": {
+    "message": "Tidak",
+    "description": "No"
+  },
+  "NothingFound": {
+    "message": "Tidak Ditemukan",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "Anime/Manga Tidak Ditemukan!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "Entri Tidak Ditemukan",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "layar penuh",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "tutup",
+    "description": "close"
+  },
+  "All": {
+    "message": "Semua",
+    "description": "All"
+  },
+  "Package_Description": {
+    "message": "Mengintegrasi MyAnimeList/AniList/Kitsu/Simkl ke beragam situs dengan pelacak episode otomatis.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "Status:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "Sedang Menonton",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "Sedang Membaca",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Selesai",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "Ditahan",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Dihentikan",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "Direncanakan",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Direncanakan",
+    "description": "Plan to Read"
+  },
+  "UI_Status_Rewatching_anime": {
+    "message": "Menonton Ulang",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Membaca Ulang",
+    "description": "Status to reread manga"
+  },
+  "UI_Episode": {
+    "message": "Episode:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "Volume:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Bab:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "Penilaianmu:",
+    "description": "Score"
+  },
+  "UI_Score_Not_Rated": {
+    "message": "Tidak dinilai",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) Luar Biasa",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) Unggul",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) Sangat Bagus",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) Bagus",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) Baik",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) Rata-rata",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) Buruk",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) Sangat Buruk",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) Mengerikan",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) Menjijikan",
+    "description": "Appalling - Score"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "Lanjutkan di $time$",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "Perbarui $page$ ke episode $epNr$",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "Perbarui $page$ ke bab $epNr$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "Urungkan",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "Salah?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Pembaruan gagal",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "Tetapkan sebagai tamat?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "Mulai menonton?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Selesai menonton ulang?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Selesai membaca ulang?",
+    "description": "Finish rereading manga message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "Mulai membaca?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Tonton ulang anime?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Baca ulang manga?",
+    "description": "Start rereading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "Apakah ini adalah \"$anime$\"?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "Tambahkan ke $page$",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "Episode $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "Bab $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "Kemungkinan offset episode dari $calcOffset$ terdeteksi. Apakah itu benar?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "Token tersimpan, kamu dapat menutup laman ini",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "Untuk masuk dengan Kitsu, kamu perlu mengisi email dan password akunmu.<br> Informasi kamu tidak tersimpan di komputermu atau dimana saja.<br>Informasi tersebut langsung dikirim ke Kitsu. Hanya token akses yang dikembalikan yang disimpan<br>",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "Kata Sandi",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "Masuk",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "Token tersimpan, kamu dapat menutup laman ini.",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "Otentikasi salah",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Days": {
+    "message": "Hari",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "Hari",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "Jam",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "Jam",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "mnt",
+    "description": "mins"
+  },
+  "prediction_Episode": {
+    "message": "Episode berikutnya diperkirakan mengudara dalam $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "Mengudara dalam $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "correction_Offset": {
+    "message": "Offset Episode",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "Masukkan offset episode. Apabila anime memiliki 12 episode, tapi menggunakan angka 0-11 daripada 1-12, kamu dapat mengetik \"+1\" di offset episode.",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "Ubah URL/tautan ini jika MAL menunjuk ke halaman anime yang salah.",
+    "description": "URL is Wrong"
+  },
+  "correction_Search": {
+    "message": "Koreksi Pencarian",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "Bidang ini untuk menemukan anime, ketika Anda harus memperbaiki \"URL MyAnimeList\" yang ditunjukkan di atas.<br>Untuk melakukan pencarian, cukup mulai mengetik nama anime, dan daftar dengan hasil akan secara otomatis muncul saat Anda mengetik.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "Klik tombol ini apabila anime/manga tidak ditemukan di MAL",
+    "description": "Anime/Manga not found in MAL"
+  },
+  "correction_NoEntry": {
+    "message": "Tidak ada Entri di MyAnimeList",
+    "description": "No entry on MyAnimeList"
+  },
+  "correction_NewOffset": {
+    "message": "Offset ($offset$) baru disetel.",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "Offset direset",
+    "description": "Offset reset"
+  },
+  "correction_NewUrl": {
+    "message": "URL baru $malUrl$ tersetel.",
+    "description": "New URL",
+    "placeholders": {
+      "malUrl": {
+        "content": "$1",
+        "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+      }
+    }
+  },
+  "correction_NewUrlReset": {
+    "message": "URL MyAnimeList tereset",
+    "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Ajukan permintaan koreksi database?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+  },
+  "overview_Continue_anime": {
+    "message": "Lanjutkan menonton",
+    "description": "Continue watching"
+  },
+  "overview_Continue_manga": {
+    "message": "Lanjutkan membaca",
+    "description": "Continue reading"
+  },
+  "overview_Next_Episode_anime": {
+    "message": "Episode Selanjutnya",
+    "description": "Next Episode"
+  },
+  "overview_Next_Episode_manga": {
+    "message": "Bab Selanjutnya",
+    "description": "Next Chapter"
+  },
+  "overview_Resume_Episode_anime": {
+    "message": "Lanjutkan Episode",
+    "description": "Resume Episode"
+  },
+  "overview_Resume_Episode_manga": {
+    "message": "Lanjutkan Bab",
+    "description": "Resume Chapter"
+  },
+  "overview_EditDetails": {
+    "message": "Sunting Rincian",
+    "description": "Edit Details"
+  },
+  "overview_Characters": {
+    "message": "Karakter",
+    "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Lagu Pembuka:",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Lagu Penutup:",
+    "description": "Ending Theme"
+  },
+  "search_Type": {
+    "message": "Tipe:",
+    "description": "Type"
+  },
+  "search_Score": {
+    "message": "Skor:",
+    "description": "Score"
+  },
+  "search_Year": {
+    "message": "Tahun:",
+    "description": "Year"
+  },
+  "settings_General": {
+    "message": "Umum",
+    "description": "General"
+  },
+  "settings_Mode": {
+    "message": "Sumber",
+    "description": "Mode"
+  },
+  "settings_Authenticate": {
+    "message": "Otentikasi",
+    "description": "Authenticate"
+  },
+  "settings_LocalSync": {
+    "message": "Pencadangan penyimpanan lokal",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "Impor",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Ekspor",
+    "description": "Button to Export Local storage fallback data"
+  },
+  "settings_Animesync": {
+    "message": "Sinkronisasi Anime",
+    "description": "Anime sync"
+  },
+  "settings_Animesync_Video": {
+    "message": "Video",
+    "description": "Video"
+  },
+  "settings_Animesync_Instant": {
+    "message": "Instan",
+    "description": "Instant"
+  },
+  "settings_Animesync_Manual": {
+    "message": "Manual",
+    "description": "Manual"
+  },
+  "settings_Mangasync": {
+    "message": "Sinkronisasi Manga",
+    "description": "Manga sync"
+  },
+  "settings_AutoTracking_Video": {
+    "message": "Perbarui ketika $videoDuration$ kemajuan video",
+    "description": "Update Episode of video progress",
+    "placeholders": {
+      "videoDuration": {
+        "content": "$1",
+        "example": "85"
+      }
+    }
+  },
+  "settings_AutoTracking_Instant": {
+    "message": "Tunda auto-tracking instan selama $delay$ detik",
+    "description": "Delay instant autotracking",
+    "placeholders": {
+      "delay": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "settings_StreamingSite": {
+    "message": "Tautan Situs Streaming",
+    "description": "Streaming Site Links"
+  },
+  "settings_StreamingSite_text": {
+    "message": "Jika dimatikan, situs streaming tidak akan muncul di sidebar anime MyAnimeList/AniList/Kitsu.",
+    "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "Thumbnail",
+    "description": "Thumbnails"
+  },
+  "settings_Thumbnails_text": {
+    "message": "Opsi untuk mengubah ukuran thumbnail di MyAnimeList.<br>Seperti thumbnail untuk karakter, orang, rekomendasi, dll.",
+    "description": "Thumbnails - Text"
+  },
+  "settings_Thumbnails_Large": {
+    "message": "Besar",
+    "description": "Thumbnails Large"
+  },
+  "settings_Thumbnails_Medium": {
+    "message": "Sedang",
+    "description": "Thumbnails Medium"
+  },
+  "settings_Thumbnails_Small": {
+    "message": "Kecil",
+    "description": "Thumbnails Small"
+  },
+  "settings_Thumbnails_Default": {
+    "message": "Standar MAL",
+    "description": "Thumbnails MAL Default"
+  },
+  "settings_FriendScore": {
+    "message": "Skor teman di laman detail",
+    "description": "Friend scores on detail page"
+  },
+  "settings_epPredictions": {
+    "message": "Prakiraan jumlah episode",
+    "description": "Estimate episode number"
+  },
+  "settings_malTags": {
+    "message": "Gunakan Tag/Catatan",
+    "description": "Use Tags/Notes"
+  },
+  "settings_malContinue": {
+    "message": "Tautan lanjutkan episode",
+    "description": "Continue watching links"
+  },
+  "settings_malResume": {
+    "message": "Tautan kembali melanjutkan menonton",
+    "description": "Resume watching links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Mode UI sembunyi",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_floatButtonHide": {
+    "message": "Sembunyikan tombol menu mengambang miniMAL",
+    "description": "Hide miniMAL floating menu button"
+  },
+  "settings_miniMAL_autoCloseMinimal": {
+    "message": "Tutup miniMAL ketika mengklik di luar",
+    "description": "Clicking outside closes miniMAL"
+  },
+  "settings_miniMAL_Display": {
+    "message": "Tampilkan miniMAL ke",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_window": {
+    "message": "Buka di jendela terpisah",
+    "description": "Open miniMAL in separate window checkbox"
+  },
+  "settings_miniMAL_Display_Left": {
+    "message": "Kiri",
+    "description": "miniMAL Display Left"
+  },
+  "settings_miniMAL_Display_Right": {
+    "message": "Kanan",
+    "description": "miniMAL Display Right"
+  },
+  "settings_miniMAL_Height": {
+    "message": "Panjang (px/ %)",
+    "description": "miniMAL Height"
+  },
+  "settings_miniMAL_Width": {
+    "message": "Lebar (px / %)",
+    "description": "miniMAL Width"
+  },
+  "settings_Shortcuts": {
+    "message": "Pintasan",
+    "description": "Shortcuts"
+  },
+  "settings_miniMAL_Open": {
+    "message": "Buka miniMAL",
+    "description": "miniMAL Open"
+  },
+  "settings_miniMAL_NotSet": {
+    "message": "Belum Disetel",
+    "description": "miniMAL Not Set"
+  },
+  "settings_Video_Player": {
+    "message": "Pemutar Video",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Otomatiskan layar penuh",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Lanjutkan video secara otomatis",
+    "description": "Auto resume video where you left off toggle"
+  },
+  "settings_autoNextEp": {
+    "message": "Mainkan otomatis episode selanjutnya",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Buka popup koreksi relasi anime",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Buka pintasan episode selanjutnya",
+    "description": "Description for the next episode shortcut option"
+  },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Lewati lagu pembuka",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Mundur ke permulaan lagu pembuka",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Ketuk untuk membuka pintasan",
+    "description": "Shown if no shortcut is set for an option"
+  },
+  "settings_introSkip": {
+    "message": "Atur durasi lewati lagu opening  selama ($seconds$ detik)",
+    "description": "Skips video seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_UpdateCheck": {
+    "message": "Periksa Pembaruan",
+    "description": "Update Check"
+  },
+  "settings_UpdateCheck_Text": {
+    "message": "Periksa episode terbaru pada latar belakang.",
+    "description": "Update Check - Text"
+  },
+  "settings_Interval": {
+    "message": "Selang waktu",
+    "description": "Interval"
+  },
+  "settings_Interval_Off": {
+    "message": "Mati",
+    "description": "Interval - Off"
+  },
+  "settings_Notifications": {
+    "message": "Pemberitahuan",
+    "description": "Notifications"
+  },
+  "settings_Debugging": {
+    "message": "Debugging",
+    "description": "Debugging"
+  },
+  "settings_ETC": {
+    "message": "Lainnya",
+    "description": "ETC"
+  },
+  "settings_Userscriptmode": {
+    "message": "Mode Userscript",
+    "description": "Userscript mode"
+  },
+  "settings_Userscriptmode_Text": {
+    "message": "Nonaktifkan skrip konten. Hal ini memungkinkan pengguna menggunakan ekstensi dan userscript secara bersamaan.",
+    "description": "Userscript mode - Text"
+  },
+  "settings_StrictCookies": {
+    "message": "Perketat Cookies",
+    "description": "Strict Cookies"
+  },
+  "settings_StrictCookies_Text": {
+    "message": "Opsi ini untuk menambah dukungan terhadap Firefox Multi-Account Containers. Pastikan untuk memuat ulang peramban setelah mengaktifkan opsi ini.",
+    "description": "Strict Cookies - Text"
+  },
+  "settings_highlightAllEp": {
+    "message": "Soroti semua episode/bab",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Opsi ini akan menyoroti semua anime/manga yang telah ditonton/dibaca dalam daftar yang kamu bisa temukan di beberapa situs anime/manga",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
+  "settings_ClearCache": {
+    "message": "Hapus Cache",
+    "description": "Clear Cache"
+  },
+  "settings_presenceHidePage": {
+    "message": "Tampilkan ikon MAL-Sync ketimbang menggunakan ikon laman pada status Discord",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Tidak direkomendasikan mengatur pintasan hanya dengan satu tombol saja ",
+    "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "updateCheck_Refresh": {
+    "message": "Segarkan",
+    "description": "Refresh"
+  },
+  "updateCheck_StartCheck": {
+    "message": "Mulai Memeriksa",
+    "description": "Start Check"
+  },
+  "updateCheck_NotificationCheck": {
+    "message": "Periksa Pemberitahuan",
+    "description": "Notification Check"
+  },
+  "updateCheck_Episode": {
+    "message": "Episode",
+    "description": "Episode"
+  },
+  "updateCheck_Message": {
+    "message": "Catatan",
+    "description": "Message"
+  },
+  "updateCheck_NotificationHistory": {
+    "message": "Riwayat Pemberitahuan",
+    "description": "Notification History"
+  },
+  "minimalApp_Overview": {
+    "message": "Tinjauan",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "Ulasan",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "Rekomendasi",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "Pengaturan",
+    "description": "Settings"
+  },
+  "minimalClass_Popup": {
+    "message": "Mohon untuk aktifkan pop-up di situs ini",
+    "description": "Please allow pop-ups for this website"
+  },
+  "minimalClass_versionMsg": {
+    "message": "Diperbarui ke versi $Version$ $Link$Riwayat Perubahan$LinkEnd$",
+    "description": "Update version",
+    "placeholders": {
+      "Version": {
+        "content": "$1",
+        "example": "0.1.4"
+      },
+      "Link": {
+        "content": "$2",
+        "example": "[<a>"
+      },
+      "LinkEnd": {
+        "content": "</a>]",
+        "example": "</a>]"
+      }
+    }
+  },
+  "minimalClass_versionMsg_Text_1": {
+    "message": "Terimakasih untuk telah memasang MAL-Sync",
+    "description": "Update version - Text 1"
+  },
+  "minimalClass_versionMsg_Text_2": {
+    "message": "Punya Pertanyaan?",
+    "description": "Update version - Text 2"
+  },
+  "minimalClass_versionMsg_Text_3": {
+    "message": "Kode Open Source:",
+    "description": "Update version - Text 3"
+  },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "Pengguna uBlock tolong untuk subscribe ke dalam list filter! Hal ini dapat memperbaiki beberapa masalah seperti gambar menghilang.",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Silahkan pilih database anime apa yang kamu akan gunakan",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Bagaimana cara menggunaka?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Cukup buka satu episode atau bab di salah satu $Link1$halaman yang didukung $LinkEnd1$. Sinkronisasi akan ditunda (di-delay) sampai 85% dari kemajuan video. Untuk manga akan disinkronkan pada saat memuat laman. Kamu dapat mengubah setelan ini di $Link2$pengaturan$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "Disinkronkan ke entri MAL yang salah?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Kamu dapat mengubahnya dengan mudah  relasi antara laman dan entri seperti yang ditunjukkan pada GIF berikut. Offset episode dapat diatur melalui halaman juga.",
+    "description": "Description of the wrong section on the install page"
+  },
+  "Anilist_Authenticate": {
+    "message": "Tolong Otentikasikan $Link1$Disini$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync memerlukan Key API Emby agar dapat bekerja. Informasi lebih lanjut $Link1$disini$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Error_Authenticate": {
+    "message": "Tolong Otentikasikan $Link1$Disini$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "Telusuri $Page$",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
+      }
+    }
+  },
+  "nextEpShort_no_support": {
+    "message": "Laman ini tidak mendukung pembukaan episode selanjutnya",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Tidak dapat menemukan episode selanjutnya",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  }
+}

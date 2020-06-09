@@ -1,0 +1,19 @@
+@import './../pages';
+
+@activeEp: #b8daff !important;
+
+html#dark {
+  #malp * {
+    color: white !important;
+  }
+  #malp select option {
+    background-color: black !important;
+  }
+}
+
+html:not(#dark) {
+  #malp select option {
+    color: black !important;
+    background-color: white !important;
+  }
+}

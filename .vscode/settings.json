@@ -1,0 +1,14 @@
+{
+  // https://eslint.vuejs.org/user-guide/#editor-integrations
+  // https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint#optional-but-recommended-setup
+  "css.validate": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80],
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  "less.validate": false,
+  "scss.validate": false,
+  "vetur.validation.template": false,
+  "workbench.colorCustomizations": {
+    "editorRuler.foreground": "#ffffff18"
+  }
+}

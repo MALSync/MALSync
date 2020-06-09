@@ -19,6 +19,10 @@
     "message": "Sıfırla",
     "description": "Reset"
   },
+  "Remove": {
+    "message": "Kaldır",
+    "description": "Button for removing entry from MAL..."
+  },
   "Loading": {
     "message": "Yükleniyor",
     "description": "Loading"
@@ -60,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "MAL/AniList/Kitsu'yu çeşitli sitelere bölüm takibi ile entegre eder.",
+    "message": "MAL/AniList/Kitsu/Simkl'yu çeşitli sitelere bölüm takibi ile entegre eder.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -111,44 +115,48 @@
     "message": "Skorun",
     "description": "Score"
   },
+  "UI_Score_Not_Rated": {
+    "message": "Oylanmamış",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
   "UI_Score_Masterpiece": {
-    "message": "Şaheser",
+    "message": "(10) Şaheser",
     "description": "Masterpiece - Score"
   },
   "UI_Score_Great": {
-    "message": "Müthiş",
+    "message": "(9) Müthiş",
     "description": "Great - Score"
   },
   "UI_Score_VeryGood": {
-    "message": "Çok iyi",
+    "message": "(8) Çok iyi",
     "description": "Very Good - Score"
   },
   "UI_Score_Good": {
-    "message": "İyi",
+    "message": "(7) İyi",
     "description": "Good - Score"
   },
   "UI_Score_Fine": {
-    "message": "Fena değil",
+    "message": "(6) Fena değil",
     "description": "Fine - Score"
   },
   "UI_Score_Average": {
-    "message": "Averaj",
+    "message": "(5) Averaj",
     "description": "Average - Score"
   },
   "UI_Score_Bad": {
-    "message": "Kötü",
+    "message": "(4) Kötü",
     "description": "Bad - Score"
   },
   "UI_Score_VeryBad": {
-    "message": "Çok kötü",
+    "message": "(3) Çok kötü",
     "description": "Very Bad - Score"
   },
   "UI_Score_Horrible": {
-    "message": "Berbat",
+    "message": "(2) Berbat",
     "description": "Horrible - Score"
   },
   "UI_Score_Appalling": {
-    "message": "Dehşet verici",
+    "message": "(1) Dehşet verici",
     "description": "Appalling - Score"
   },
   "syncPage_flashm_resumeMsg": {
@@ -307,6 +315,26 @@
     "message": "Dakikalar",
     "description": "mins"
   },
+  "prediction_Episode": {
+    "message": "Tahmini yeni bölüm $time$'da",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
+  "prediction_Airing": {
+    "message": "$time$'da yayınlanacak",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2d 1h 32m"
+      }
+    }
+  },
   "correction_Offset": {
     "message": "Bölüm dengelemesi",
     "description": "Episode Offset"
@@ -317,7 +345,7 @@
   },
   "correction_WrongUrl": {
     "message": "URL'yi sadece Mal'da yanlış sayfayı açıyorsa değiştir",
-    "description": "Url is Wrong"
+    "description": "URL is Wrong"
   },
   "correction_Search": {
     "message": "Düzgün arama",
@@ -329,7 +357,7 @@
   },
   "correction_NoMal": {
     "message": "Eğer Anime/Manga MAL'da bulunamazsa",
-    "description": "Anime/Manga no found in MAL"
+    "description": "Anime/Manga not found in MAL"
   },
   "correction_NoEntry": {
     "message": "MAL'da böyle bir girdi yok",
@@ -351,7 +379,7 @@
   },
   "correction_NewUrl": {
     "message": "Yeni url ayarla '$malUrl$'",
-    "description": "new url",
+    "description": "New URL",
     "placeholders": {
       "malUrl": {
         "content": "$1",
@@ -361,7 +389,7 @@
   },
   "correction_NewUrlReset": {
     "message": "MAL url sıfırla",
-    "description": "url reset"
+    "description": "URL reset"
   },
   "overview_Continue_anime": {
     "message": "İzlemeye devam et",
@@ -426,6 +454,18 @@
   "settings_Authenticate": {
     "message": "Doğrulama",
     "description": "Authenticate"
+  },
+  "settings_LocalSync": {
+    "message": "Yerel depoya geridönüş (log gibi)",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "İçeri aktarmak",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "Dışarı aktarmak",
+    "description": "Button to Export Local storage fallback data"
   },
   "settings_Animesync": {
     "message": "Anime senkronizasyonu",
@@ -511,10 +551,6 @@
     "message": "Etiket/Notları Kullan",
     "description": "Use Tags/Notes"
   },
-  "settings_malTags_Text": {
-    "message": "Eğer aktif edilirse: En son izlediğin animeyi kullandığın yayımlayıcı siteyi, MAL'da ki anime listene yer imi ekler.<br>İkona tek basışla anime izlemeye devam et.",
-    "description": "Use Tags/Notes - Text"
-  },
   "settings_malContinue": {
     "message": "İzlemeye devam et linkleri",
     "description": "Continue watching links"
@@ -522,10 +558,6 @@
   "settings_malResume": {
     "message": "İzlemeyi sürdür linkleri",
     "description": "Resume watching links"
-  },
-  "settings_miniMAL_floatButtonStealth": {
-    "message": "miniMAL butonunu sakla",
-    "description": "Stealth floating menu button"
   },
   "settings_miniMAL_floatButtonHide": {
     "message": "miniMAL butonunu gizle",
@@ -538,6 +570,10 @@
   "settings_miniMAL_Display": {
     "message": "miniMAL yeri",
     "description": "Display to the"
+  },
+  "settings_miniMAL_window": {
+    "message": "Ayrı bir pencerede aç",
+    "description": "Open miniMAL in separate window checkbox"
   },
   "settings_miniMAL_Display_Left": {
     "message": "Sol",
@@ -567,9 +603,29 @@
     "message": "Ayarlanmamış",
     "description": "miniMAL Not Set"
   },
+  "settings_Video_Player": {
+    "message": "Video Oynatıcısı",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "Otomatik Tam ekran",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Otomatik Devam Ettirme",
+    "description": "Auto resume video where you left off toggle"
+  },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "Açılışları atlar",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "Açılışların başından başlar",
+    "description": "Description for the the opening skip shortcut"
+  },
   "settings_introSkip": {
-    "message": "$Seconds$ Saniye Atla",
-    "description": "Skips video Seconds",
+    "message": "$Seconds$ Açılış atlama süresini ayarla",
+    "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
         "content": "$1",
@@ -621,9 +677,21 @@
     "message": "Bu seçenek Firefox Multi-Account Containers desteğini aktif eder. Bu seçeneği etkinleştirdikten sonra tarayıcıyı yeniden başlattığınızdan emin olun",
     "description": "Strict Cookies - Text"
   },
+  "settings_highlightAllEp": {
+    "message": "Tüm Bölümleri işaretle",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "Bu seçenek Bazı Anime/Manga sitelerinde bulabileceğiniz listelerde, izlediğiniz bölümleri işaretler",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
   "settings_ClearCache": {
     "message": "Önbelleği Temizle",
     "description": "Clear Cache"
+  },
+  "settings_presenceHidePage": {
+    "message": "Sayfa ikonu yerine MAL-Sync ikonunu göster",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
   "updateCheck_Refresh": {
     "message": "Yenile",
@@ -667,7 +735,7 @@
   },
   "minimalClass_Popup": {
     "message": "Lütfen bu websitesi için açılır pencerelere izin verin",
-    "description": "Please allow popups for this website"
+    "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
     "message": "$Version$ Sürümüne güncellendi. $Link$CHANGELOG$LinkEnd$",
@@ -699,6 +767,48 @@
     "message": "Açık Kaynak Kodu:",
     "description": "Update version - Text 3"
   },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "uBlock kullanıcıları lütfen bu filtreler listesine abone olun! Bu bozuk resimler gibi problemleri çözer  ",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "Hangi Anime veritabanını kullanmak istediğinizi seçin:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "Nasıl Kullanılır?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "Sadece desteklenen sitelerden $Link1$supported pages$LinkEnd1$ bir bölüm yada manga bölümü açın. Senkronize işlemi videonun %85'inin izlenmesini bekler. Mangalar için sayfaların yüklenmesini bekler. Bu ayar burdan değiştirilebilir $Link2$settings$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "MAL girdisi yanlış mı senkronize oldu?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "Kolaylıkla anime ilişkilerini alttaki gifte gösterildiği gibi değiştirebilirsiniz. Bir bölüm dengelemesini de bu sayfadan ayarlayabilirsiniz.",
+    "description": "Description of the wrong section on the install page"
+  },
   "Anilist_Authenticate": {
     "message": "Lütfen doğrulamayı yapın $Link1$Here$Link2$",
     "description": "Update version - Text 3",
@@ -710,6 +820,44 @@
       "Link2": {
         "content": "</a>",
         "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync çalışması için bir Emby API anahtarına ihtiyaç duyar. Daha fazla bilgi için $Link1$Here$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Error_Authenticate": {
+    "message": "Lütfen doğrulamayı yapın $Link1$Here$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "$Page$'de Geziniyor",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
       }
     }
   }

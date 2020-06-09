@@ -1,0 +1,26 @@
+name: Tests
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: install
+      run: |
+        npm ci
+    - name: Lint
+      run: |
+        npm run lint:ci
+    - name: Tests
+      run: |
+        npm run test:ts:ci
+      env:
+        ANILIST_API_KEY: ${{ secrets.ANILIST_API_KEY }}
+        KITSU_API_KEY: ${{ secrets.KITSU_API_KEY }}
+        SIMKL_API_KEY: ${{ secrets.SIMKL_API_KEY }}

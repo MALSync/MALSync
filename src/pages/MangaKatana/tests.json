@@ -1,0 +1,59 @@
+{
+  "title": "MangaKatana",
+  "url": "http://mangakatana.com/",
+  "testCases": [
+    {
+      // obfuscated manga
+      "url": "http://mangakatana.com/manga/solo-leveling.21708/c103",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "solo-leveling.21708",
+        "overviewUrl": "http://mangakatana.com/manga/solo-leveling.21708",
+        "episode": 103,
+        "nextEpUrl": "http://mangakatana.com/manga/solo-leveling.21708/c104",
+        "uiSelector": false
+      }
+    },
+    {
+      // obfuscated overview
+      "url": "http://mangakatana.com/manga/solo-leveling.21708",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "solo-leveling.21708",
+        "uiSelector": true,
+        "epList": {
+          "102": "http://mangakatana.com/manga/solo-leveling.21708/c102",
+          "2": "http://mangakatana.com/manga/solo-leveling.21708/c2"
+        }
+      }
+    },
+    {
+      // manga
+      "url": "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei - Yokohama Souran Hen",
+        "identifier": "mahouka-koukou-no-rettousei-yokohama-souran-hen.9014",
+        "overviewUrl": "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014",
+        "episode": 4,
+        "nextEpUrl": "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c5",
+        "uiSelector": false
+      }
+    },
+    {
+      // overview
+      "url": "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei - Yokohama Souran Hen",
+        "identifier": "mahouka-koukou-no-rettousei-yokohama-souran-hen.9014",
+        "uiSelector": true,
+        "epList": {
+          "4": "http://mangakatana.com/manga/mahouka-koukou-no-rettousei-yokohama-souran-hen.9014/c4"
+        }
+      }
+    }
+  ]
+}

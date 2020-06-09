@@ -1,312 +1,541 @@
-import {pages} from "./pages";
-import {pageInterface, pageState} from "./pageInterface";
-import {entryClass} from "./../provider/provider";
-import {initIframeModal} from "./../minimal/iframe";
-import {providerTemplates} from "./../provider/templates";
-import {getPlayerTime} from "./../utils/player";
+import { pageInterface, pageState } from './pageInterface';
+import { getSingle } from '../_provider/singleFactory';
+import { initIframeModal } from '../minimal/iframe';
+import { providerTemplates } from '../provider/templates';
+import { getPlayerTime } from '../utils/player';
+import { searchClass } from '../_provider/Search/vueSearchClass';
 
-export class syncPage{
+declare let browser: any;
+
+let extensionId = 'agnaejlkbiiggajjmnpmeheigkflbnoo'; // Chrome
+if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
+  extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
+}
+
+export class syncPage {
   page: pageInterface;
-  malObj;
-  oldMalObj;
 
-  constructor(public url){
+  searchObj;
+
+  singleObj;
+
+  public novel = false;
+
+  constructor(public url, public pages) {
     this.page = this.getPage(url);
-    if (this.page == null) {
+    if (this.page === null) {
       throw new Error('Page could not be recognized');
     }
   }
 
-  init(){
-    var This = this;
-    j.$(document).ready(function(){
+  init() {
+    const This = this;
+    j.$(document).ready(function() {
       initIframeModal(This);
     });
+
+    if (this.testForCloudflare()) {
+      con.log('loading');
+      this.cdn();
+      return;
+    }
+
     this.page.init(this);
+
+    if (api.type === 'webextension') {
+      // Discord Presence
+      try {
+        chrome.runtime.onMessage.addListener((info, sender, sendResponse) => {
+          this.presence(info, sender, sendResponse);
+        });
+      } catch (e) {
+        con.error(e);
+      }
+    }
   }
 
-  private getPage(url){
-    for (var key in pages) {
-      var page = pages[key];
-      if(j.$.isArray(page.domain)){
-        for (var k in page.domain) {
-          var singleDomain = page.domain[k];
-          if(checkDomain(singleDomain)){
+  private getPage(url) {
+    for (const key in this.pages) {
+      const page = this.pages[key];
+      if (j.$.isArray(page.domain)) {
+        for (const k in page.domain) {
+          const singleDomain = page.domain[k];
+          if (checkDomain(singleDomain)) {
             page.domain = singleDomain;
             return page;
           }
         }
-      }else{
-        if(checkDomain(page.domain)){
-          return page;
-        }
+      } else if (checkDomain(page.domain)) {
+        return page;
       }
 
-      function checkDomain(domain){
-        if( url.indexOf(utils.urlPart(domain, 2).split('.').slice(-2, -1)[0] +'.') > -1 ){
+      function checkDomain(domain) {
+        if (
+          url.indexOf(
+            `${
+              utils
+                .urlPart(domain, 2)
+                .replace('.com.br', '.br')
+                .split('.')
+                .slice(-2, -1)[0]
+            }.`,
+          ) > -1
+        ) {
           return true;
         }
         return false;
       }
-
     }
     return null;
   }
 
-  public setVideoTime(item, timeCb){
-    var syncDuration = api.settings.get('videoDuration');
-    var progress = item.current / (item.duration * ( syncDuration / 100 ) ) * 100;
-    if(j.$('#malSyncProgress').length){
-      if(progress < 100){
-        j.$('.ms-progress').css('width', progress+'%');
-        j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
-      }else{
+  public openNextEp() {
+    if (typeof this.page.sync.nextEpUrl !== 'undefined') {
+      if (this.page.isSyncPage(this.url)) {
+        const nextEp = this.page.sync.nextEpUrl(this.url);
+        if (nextEp) {
+          window.location.href = nextEp;
+          return;
+        }
+      }
+      utils.flashm(api.storage.lang('nextEpShort_no_nextEp'), {
+        error: true,
+        type: 'EpError',
+      });
+      return;
+    }
+    utils.flashm(api.storage.lang('nextEpShort_no_support'), {
+      error: true,
+      type: 'EpError',
+    });
+  }
+
+  public setVideoTime(item, timeCb) {
+    const syncDuration = api.settings.get('videoDuration');
+    const progress = (item.current / (item.duration * (syncDuration / 100))) * 100;
+    if (j.$('#malSyncProgress').length) {
+      if (progress < 100) {
+        j.$('.ms-progress').css('width', `${progress}%`);
+        j.$('#malSyncProgress')
+          .removeClass('ms-loading')
+          .removeClass('ms-done');
+      } else {
         j.$('#malSyncProgress').addClass('ms-done');
-        j.$('.flash .sync').click();
+        j.$('.flash.type-update .sync').click();
       }
     }
     this.handleVideoResume(item, timeCb);
+    this.autoNextEp(item);
   }
 
-  private handleVideoResume(item, timeCb){
-    if(typeof this.curState === 'undefined' || typeof this.curState.identifier === 'undefined' || typeof this.curState.episode === 'undefined') return;
-    var This = this;
-    var localSelector = this.curState.identifier+'/'+this.curState.episode;
+  autoNextEpRun = false;
 
-    //@ts-ignore
-    if(typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked){
-      if(this.curState.videoChecked > 1){
-        con.info('Set Resume',item.current);
+  public autoNextEp(item) {
+    if (api.settings.get('autoNextEp') && !this.autoNextEpRun && item.current === item.duration) {
+      this.autoNextEpRun = true;
+      this.openNextEp();
+    }
+  }
+
+  private handleVideoResume(item, timeCb) {
+    if (
+      typeof this.curState === 'undefined' ||
+      typeof this.curState.identifier === 'undefined' ||
+      typeof this.curState.episode === 'undefined'
+    )
+      return;
+    const This = this;
+    const localSelector = `${this.curState.identifier}/${this.curState.episode}`;
+
+    this.curState.lastVideoTime = item;
+
+    // @ts-ignore
+    if (typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked) {
+      if (this.curState.videoChecked > 1 && item.current > 10) {
+        con.info('Set Resume', item.current);
         localStorage.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
         setTimeout(() => {
           this.curState.videoChecked = 2;
-        }, 10000)
+        }, 10000);
       }
-
-    }else{
-      var localItem = localStorage.getItem(localSelector);
+    } else {
+      const localItem = localStorage.getItem(localSelector);
       con.info('Resume', localItem);
-      if(localItem !== null && (parseInt(localItem) - 30) > item.current && parseInt(localItem) > 30){
-        if(!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
-        var resumeTime = Math.round(parseInt(localItem));
-        var resumeTimeString = '';
+      if (localItem !== null && parseInt(localItem) - 30 > item.current && parseInt(localItem) > 30) {
+        if (!j.$('#MALSyncResume').length)
+          j.$('#MALSyncResume')
+            .parent()
+            .parent()
+            .remove();
+        const resumeTime = Math.round(parseInt(localItem));
+        let resumeTimeString = '';
 
-        var delta = resumeTime;
-        var minutes = Math.floor(delta / 60);
+        if (api.settings.get('autoresume')) {
+          timeCb(resumeTime);
+          This.curState.videoChecked = 2;
+          return;
+        }
+        let delta = resumeTime;
+        const minutes = Math.floor(delta / 60);
         delta -= minutes * 60;
-        var sec = delta+"";
-        while (sec.length < 2) sec = "0" + sec;
-        resumeTimeString = minutes+':'+sec;
+        let sec = `${delta}`;
+        while (sec.length < 2) sec = `0${sec}`;
+        resumeTimeString = `${minutes}:${sec}`;
 
-        var resumeMsg = utils.flashm(
-          '<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">'+api.storage.lang("syncPage_flashm_resumeMsg",[resumeTimeString])+'</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>' ,
+        const resumeMsg = utils.flashm(
+          `<button id="MALSyncResume" class="sync" style="margin-bottom: 2px; background-color: transparent; border: none; color: rgb(255,64,129);cursor: pointer;">${api.storage.lang(
+            'syncPage_flashm_resumeMsg',
+            [resumeTimeString],
+          )}</button><br><button class="resumeClose" style="background-color: transparent; border: none; color: white;margin-top: 10px;cursor: pointer;">Close</button>`,
           {
             permanent: true,
             error: false,
             type: 'resume',
             minimized: false,
-            position: "top"
-          }
+            position: 'top',
+          },
         );
 
-        resumeMsg.find('.sync').on('click', function(){
+        resumeMsg.find('.sync').on('click', function() {
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
+          // @ts-ignore
+          j.$(this)
+            .parent()
+            .parent()
+            .remove();
         });
 
-        resumeMsg.find('.resumeClose').on('click', function(){
+        resumeMsg.find('.resumeClose').on('click', function() {
           This.curState.videoChecked = 2;
-          //@ts-ignore
-          j.$(this).parent().parent().remove();
+          // @ts-ignore
+          j.$(this)
+            .parent()
+            .parent()
+            .remove();
         });
-
-      }else{
+      } else {
         setTimeout(() => {
           this.curState.videoChecked = 2;
-        }, 15000)
+        }, 15000);
       }
 
-      //@ts-ignore
+      // @ts-ignore
       this.curState.videoChecked = true;
     }
   }
 
-  curState:any = undefined;
-  tempPlayer:any = undefined;
+  curState: any = undefined;
 
-  async handlePage(curUrl = window.location.href){
-    var state: pageState;
+  tempPlayer: any = undefined;
+
+  reset() {
+    this.url = window.location.href;
+    this.UILoaded = false;
     this.curState = undefined;
-    var This = this;
-    this.url = curUrl;
+    $('#flashinfo-div, #flash-div-bottom, #flash-div-top, #malp').remove();
+  }
 
-    this.loadUI();
-    if(this.page.isSyncPage(this.url)){
+  async handlePage(curUrl = window.location.href) {
+    let state: pageState;
+    this.curState = undefined;
+    this.searchObj = undefined;
+    const This = this;
+    this.url = curUrl;
+    this.browsingtime = Date.now();
+
+    if (this.page.isSyncPage(this.url)) {
+      this.loadUI();
       state = {
+        on: 'SYNC',
         title: this.page.sync.getTitle(this.url),
-        identifier: this.page.sync.getIdentifier(this.url)
+        identifier: this.page.sync.getIdentifier(this.url),
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
-      state.episode = +parseInt(this.page.sync.getEpisode(this.url)+'')+parseInt(this.getOffset());
-      if (typeof(this.page.sync.getVolume) != "undefined"){
-        state.volume = this.page.sync.getVolume(this.url)
+
+      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.curState = state;
+      await this.searchObj.search();
+
+      state.episode = +parseInt(`${this.page.sync.getEpisode(this.url)}`) + parseInt(this.getOffset());
+      if (!state.episode && state.episode !== 0) {
+        if (this.page.type === 'anime') {
+          state.episode = 1;
+        } else {
+          state.episode = 0;
+        }
       }
-      if(this.page.type == 'anime'){
+      if (typeof this.page.sync.getVolume !== 'undefined') {
+        state.volume = this.page.sync.getVolume(this.url);
+      }
+      if (this.page.type === 'anime') {
         getPlayerTime((item, player) => {
           this.tempPlayer = player;
-          this.setVideoTime(item, (time) => {
-            if(typeof player === 'undefined'){
+          this.setVideoTime(item, time => {
+            if (typeof player === 'undefined') {
               con.error('No player Found');
               return;
             }
-            if(typeof time !== 'undefined'){
+            if (typeof time !== 'undefined') {
               player.play();
               player.currentTime = time;
-              return;
             }
           });
         });
       }
       con.log('Sync', state);
-    }else{
-      if (typeof(this.page.overview) == "undefined"){
+    } else {
+      if (typeof this.page.overview === 'undefined') {
         con.log('No overview definition');
         return;
       }
+      if (typeof this.page.isOverviewPage !== 'undefined' && !this.page.isOverviewPage(this.url)) {
+        con.info('Not an overview/sync page');
+        return;
+      }
+      this.loadUI();
       state = {
+        on: 'OVERVIEW',
         title: this.page.overview.getTitle(this.url),
-        identifier: this.page.overview.getIdentifier(this.url)
+        identifier: this.page.overview.getIdentifier(this.url),
       };
-      this.offset = await api.storage.get(this.page.name+'/'+state.identifier+'/Offset');
+
+      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj.setPage(this.page);
+      this.searchObj.setSyncPage(this);
+      this.curState = state;
+      await this.searchObj.search();
+
       con.log('Overview', state);
     }
 
     this.curState = state;
 
-    var malUrl = await this.getMalUrl(state.identifier, state.title, this.page);
+    let malUrl = this.searchObj.getUrl();
 
-    if(malUrl === null){
-      j.$("#MalInfo").text(api.storage.lang('Not_Found'));
+    const localUrl = `local://${this.page.name}/${this.page.type}/${state.identifier}/${encodeURIComponent(
+      state.title,
+    )}`;
+
+    if ((malUrl === null || !malUrl) && api.settings.get('localSync')) {
+      con.log('Local Fallback');
+      malUrl = localUrl;
+    }
+
+    if (malUrl === null) {
+      j.$('#MalInfo').text(api.storage.lang('Not_Found'));
+      j.$('#MalData').css('display', 'none');
       con.log('Not on mal');
-    }else if(!malUrl){
-      j.$("#MalInfo").text(api.storage.lang('NothingFound'));
+    } else if (!malUrl) {
+      j.$('#MalInfo').text(api.storage.lang('NothingFound'));
+      j.$('#MalData').css('display', 'none');
       con.log('Nothing found');
-    }else{
+    } else {
       con.log('MyAnimeList', malUrl);
-      this.malObj = entryClass(malUrl);
-      await this.malObj.init();
-      this.oldMalObj = this.malObj.clone();
-
-
-      //fillUI
-      this.fillUI();
-
-      if(!this.malObj.login){
-        utils.flashm( providerTemplates().noLogin, {error: true, type: 'error'});
-        return;
+      try {
+        this.singleObj = getSingle(malUrl);
+        await this.singleObj.update();
+      } catch (e) {
+        if (e.code === 901) {
+          utils.flashm('Incorrect url provided', {
+            error: true,
+            type: 'error',
+          });
+          throw e;
+        } else if (e.code === 904 && api.settings.get('localSync')) {
+          con.log('Local Fallback');
+          this.singleObj = getSingle(localUrl);
+          await this.singleObj.update();
+        } else {
+          this.singleObj.flashmError(e);
+          this.fillUI();
+          throw e;
+        }
       }
 
-      //sync
-      if(this.page.isSyncPage(this.url)){
-        if(await this.handleAnimeUpdate(state)){
-          con.log('Start Sync ('+api.settings.get('delay')+' Seconds)');
+      // Discord Presence
+      if (api.type === 'webextension') {
+        try {
+          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(response) {
+            con.log('Presence registred', response);
+          });
+        } catch (e) {
+          con.error(e);
+        }
+      }
 
-          if(api.settings.get('autoTrackingMode'+this.page.type) === 'instant'){
-            setTimeout(()=>{
+      // fillUI
+      this.fillUI();
+
+      // sync
+      if (this.page.isSyncPage(this.url)) {
+        if (
+          !(
+            typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+            api.settings.get('enablePages')[this.page.name]
+          )
+        ) {
+          con.info('Sync is disabled for this page', this.page.name);
+          return;
+        }
+
+        const rerun = await this.searchObj.openCorrectionCheck();
+
+        if (rerun) {
+          // If malUrl changed
+          this.handlePage(curUrl);
+          return;
+        }
+
+        if (await this.singleObj.checkSync(state.episode, state.volume, this.novel)) {
+          this.singleObj.setEpisode(state.episode);
+          this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
+
+          if (typeof state.volume !== 'undefined' && state.volume > this.singleObj.getVolume())
+            this.singleObj.setVolume(state.volume);
+
+          con.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
+
+          if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
+            setTimeout(() => {
               sync();
             }, api.settings.get('delay') * 1000);
-          }else{
-            var message = '<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">'+api.storage.lang("syncPage_flashm_sync_"+This.page.type, [providerTemplates().shortName, state.episode])+'</button>';
-            var options = {hoverInfo: true, error: true, type: 'update', minimized: false}
+          } else {
+            let message = `<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">${api.storage.lang(
+              `syncPage_flashm_sync_${This.page.type}`,
+              [providerTemplates(malUrl).shortName, String(state.episode)],
+            )}</button>`;
+            let options = {
+              hoverInfo: true,
+              error: true,
+              type: 'update',
+              minimized: false,
+            };
 
-            if(api.settings.get('autoTrackingMode'+this.page.type) === 'video' && this.page.type == 'anime'){
+            if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'video' && this.page.type === 'anime') {
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
                 </div>
-              `+message;
-              options = {hoverInfo: true, error: false, type: 'update', minimized: true}
+              ${message}`;
+              options = {
+                hoverInfo: true,
+                error: false,
+                type: 'update',
+                minimized: true,
+              };
             }
 
-            utils.flashm( message , options).find('.sync').on('click', function(){
-              j.$('.flashinfo').remove();
-              sync();
-            });
-            //Debugging
+            utils
+              .flashm(message, options)
+              .find('.sync')
+              .on('click', function() {
+                j.$('.flashinfo').remove();
+                sync();
+              });
+            // Debugging
             con.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
-            if(typeof This.page.sync.nextEpUrl !== 'undefined'){
+            if (typeof This.page.sync.nextEpUrl !== 'undefined') {
               con.log('nextEp', This.page.sync.nextEpUrl(This.url));
             }
           }
 
-          function sync(){
-            This.malObj.setResumeWaching(This.url, state.episode);
-            if(typeof This.page.sync.nextEpUrl !== 'undefined'){
-              var continueWatching = This.page.sync.nextEpUrl(This.url);
-              if(continueWatching && !(continueWatching.indexOf('undefined') != -1)){
-                This.malObj.setContinueWaching(continueWatching, state.episode! + 1);
+          function sync() {
+            This.singleObj.setResumeWatching(This.url, state.episode);
+            if (typeof This.page.sync.nextEpUrl !== 'undefined') {
+              const continueWatching = This.page.sync.nextEpUrl(This.url);
+              if (continueWatching && !(continueWatching.indexOf('undefined') !== -1)) {
+                This.singleObj.setContinueWatching(continueWatching, state.episode! + 1);
               }
             }
             This.syncHandling(true);
           }
-
-        }else{
+        } else {
           con.log('Nothing to Sync');
         }
       }
-
     }
   }
 
-  private syncHandling(hoverInfo = false){
-    var This = this;
-    return this.malObj.sync()
-      .then(function(){
-        var message = This.malObj.name;
-        var split = '<br>';
-        var totalVol = This.malObj.totalVol;
-        if (totalVol == 0) totalVol = '?';
-        var totalEp = This.malObj.totalEp;
-        if (totalEp == 0) totalEp = '?';
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getStatus() != This.oldMalObj.getStatus()){
-          var statusString = "";
-          switch (parseInt(This.malObj.getStatus())) {
+  // eslint-disable-next-line consistent-return
+  public openCorrectionUi() {
+    if (this.searchObj) {
+      return this.searchObj.openCorrection().then(rerun => {
+        if (rerun) {
+          this.handlePage();
+        }
+      });
+    }
+  }
+
+  private syncHandling(hoverInfo = false, undo = false) {
+    let p;
+    if (undo) {
+      p = this.singleObj.undo();
+    } else {
+      p = this.singleObj.sync();
+    }
+
+    return p
+      .then(() => {
+        let message = this.singleObj.getTitle();
+        let split = '<br>';
+        let totalVol = this.singleObj.getTotalVolumes();
+        if (totalVol === 0) totalVol = '?';
+        let totalEp = this.singleObj.getTotalEpisodes();
+        if (totalEp === 0) totalEp = '?';
+        let diffState = this.singleObj.getStateDiff();
+
+        if (!diffState)
+          diffState = {
+            episode: this.singleObj.getEpisode(),
+            volume: this.singleObj.getVolume(),
+            status: this.singleObj.getStatus(),
+            score: this.singleObj.getScore(),
+          };
+
+        if (diffState.status) {
+          let statusString = '';
+          switch (parseInt(diffState.status)) {
             case 1:
-              statusString = api.storage.lang("UI_Status_watching_"+This.page.type);
+              statusString = api.storage.lang(`UI_Status_watching_${this.page.type}`);
               break;
             case 2:
-              statusString = api.storage.lang("UI_Status_Completed");
+              statusString = api.storage.lang('UI_Status_Completed');
               break;
             case 3:
-              statusString = api.storage.lang("UI_Status_OnHold");
+              statusString = api.storage.lang('UI_Status_OnHold');
               break;
             case 4:
-              statusString = api.storage.lang("UI_Status_Dropped");
+              statusString = api.storage.lang('UI_Status_Dropped');
               break;
             case 6:
-              statusString = api.storage.lang("UI_Status_planTo_"+This.page.type);
+              statusString = api.storage.lang(`UI_Status_planTo_${this.page.type}`);
               break;
+            case 23:
+              statusString = api.storage.lang(`UI_Status_Rewatching_${this.page.type}`);
+              break;
+            default:
           }
           message += split + statusString;
-          split = ' | '
+          split = ' | ';
         }
-        if(This.page.type == 'manga' && ( typeof This.oldMalObj == "undefined" || This.malObj.getVolume() != This.oldMalObj.getVolume() )){
-          message += split + api.storage.lang("UI_Volume") + ' ' + This.malObj.getVolume()+"/"+totalVol;
-          split = ' | '
+        if (this.page.type === 'manga' && diffState.volume) {
+          message += `${split + api.storage.lang('UI_Volume')} ${diffState.volume}/${totalVol}`;
+          split = ' | ';
         }
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getEpisode() != This.oldMalObj.getEpisode()){
-          message += split + api.storage.lang("UI_Episode")+ ' ' + This.malObj.getEpisode()+"/"+totalEp;
-          split = ' | '
+        if (diffState.episode) {
+          message += `${split + utils.episode(this.page.type)} ${diffState.episode}/${totalEp}`;
+          split = ' | ';
         }
-        if(typeof This.oldMalObj == "undefined" || This.malObj.getScore() != This.oldMalObj.getScore() && This.malObj.getScore() != ''){
-          message += split + api.storage.lang("UI_Score") + ' ' + This.malObj.getScore();
-          split = ' | '
+        if (diffState.score) {
+          message += `${split + api.storage.lang('UI_Score')} ${diffState.score}`;
+          split = ' | ';
         }
-        if(hoverInfo){
-            /*if(episodeInfoBox){//TODO
+        if (hoverInfo) {
+          /* if(episodeInfoBox){//TODO
                 episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
                     undoAnime['checkIncrease'] = 0;
                     setanime(thisUrl, undoAnime, null, localListType);
@@ -315,505 +544,487 @@ export class syncPage{
                         j.$('.flashinfo').remove();
                     }
                 });
-            }*/
-          if(typeof This.oldMalObj != "undefined"){
-            message += `
-              <br>
-              <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_undo")+`
-              </button>
-              <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
-                `+api.storage.lang("syncPage_flashm_sync_undefined_wrong")+`
-              </button>`;
-          }
-          var flashmItem = utils.flashm(message, {hoverInfo: true, type: 'update'})
-          flashmItem.find('.undoButton').on('click', function(this){
-            this.closest('.flash').remove();
-            This.malObj = This.oldMalObj;
-            This.oldMalObj = undefined;
-            This.syncHandling();
+            } */
+
+          message += `
+            <br>
+            <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              ${api.storage.lang('syncPage_flashm_sync_undefined_undo')}
+            </button>
+            <button class="wrongButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
+              ${api.storage.lang('syncPage_flashm_sync_undefined_wrong')}
+            </button>`;
+
+          const flashmItem = utils.flashm(message, {
+            hoverInfo: true,
+            type: 'update',
           });
-          flashmItem.find('.wrongButton').on('click', function(this){
-            This.malObj.wrong = true;
-            if(!This.malObj.miniMAL){
-              var miniButton = j.$('button.open-info-popup');
-              if(miniButton.css('display') != 'none'){
-                miniButton.click();
-              }else{
-                miniButton.click();
-                miniButton.click();
-              }
-            }
+          flashmItem.find('.undoButton').on('click', e => {
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
+            this.syncHandling(false, true);
           });
-        }else{
+          flashmItem.find('.wrongButton').on('click', e => {
+            this.openCorrectionUi();
+            const fl = e.target.closest('.flash');
+            if (fl) fl.remove();
+            this.syncHandling(false, true);
+          });
+        } else {
           utils.flashm(message);
         }
 
-        This.fillUI();
-
-        return;
-      }).catch(function(e){
-        con.error(e);
-        utils.flashm( api.storage.lang("syncPage_flashm_failded") , {error: true});
-        return;
+        this.fillUI();
+      })
+      .catch(e => {
+        this.singleObj.flashmError(e);
+        throw e;
       });
   }
 
-  private async handleAnimeUpdate(state){
-    var status = utils.status;
-    if(
-      this.malObj.getEpisode() >= state.episode &&
-      //Rewatching
-      !(
-        this.malObj.getStatus() == status.completed &&
-        state.episode === 1 &&
-        this.malObj.totalEp !== 1 &&
-        this.malObj.getRewatching() !== 1
-      )
-    ){
-      return false;
-    }
-    this.malObj.setEpisode(state.episode);
-    this.malObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
-    this.malObj.setStartingDateToNow();
+  fillUI() {
+    j.$('.MalLogin').css('display', 'initial');
+    j.$('#AddMalDiv, #LoginMalDiv').remove();
 
-    if(this.malObj.getStatus() !== status.completed && parseInt(state.episode) === this.malObj.totalEp && parseInt(state.episode) != 0 ){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_complete"), 'complete')) {
-        this.malObj.setStatus(status.completed);
-        this.malObj.setCompletionDateToNow()
-        return true;
-      }
-    }
+    j.$('#malRating').attr('href', this.singleObj.getDisplayUrl());
 
-    if(this.malObj.getStatus() !== status.watching && this.malObj.getStatus() !== status.completed && state.status !== status.completed){
-      if (await utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_start_"+this.page.type), 'start')) {
-        this.malObj.setStatus(status.watching);
-      }else{
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  fillUI(){
-    j.$('.MalLogin').css("display","initial");
-    j.$('#AddMalDiv').remove();
-
-    j.$("#malRating").attr("href", this.malObj.getDisplayUrl());
-    this.malObj.getRating().then((rating)=>{j.$("#malRating").text(rating);});
-
-    if(!this.malObj.login){
-      j.$('.MalLogin').css("display","none");
-      j.$("#MalData").css("display","flex");
-      j.$("#MalInfo").text("");
-      j.$("#malRating").after("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>"+providerTemplates().noLogin+"</span>");
+    if (this.singleObj.getLastError()) {
+      j.$('.MalLogin').css('display', 'none');
+      j.$('#MalData').css('display', 'flex');
+      j.$('#MalInfo').text('');
+      j.$('#malRating').after(
+        `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+      );
       return;
     }
 
-    if(this.malObj.addAnime){
-      j.$('.MalLogin').css("display","none");
-      j.$("#malRating").after("<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>"+api.storage.lang(`syncPage_malObj_addAnime`,[providerTemplates().shortName])+"</a></span>")
-      var This = this;
-      j.$('#AddMal').click(function() {
-        This.malObj.setStatus(6);
+    let scoreCheckbox = '';
+    this.singleObj.getScoreCheckbox().forEach(el => {
+      scoreCheckbox += `<option value="${el.value}" >${el.label}</option>`;
+    });
+    j.$('#malUserRating').html(scoreCheckbox);
+
+    let statusCheckbox = '';
+    this.singleObj.getStatusCheckbox().forEach(el => {
+      statusCheckbox += `<option value="${el.value}" >${el.label}</option>`;
+    });
+    j.$('#malStatus').html(statusCheckbox);
+
+    this.singleObj.getRating().then(rating => {
+      j.$('#malRating').text(rating);
+    });
+
+    if (!this.singleObj.isOnList()) {
+      j.$('.MalLogin').css('display', 'none');
+      j.$('#malRating').after(
+        `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
+          `syncPage_malObj_addAnime`,
+          [this.singleObj.shortName],
+        )}</a></span>`,
+      );
+      const This = this;
+      j.$('#AddMal').click(async function() {
+        if (!This.page.isSyncPage(This.url)) {
+          This.singleObj.setStreamingUrl(This.url);
+        }
+
+        const rerun = await This.searchObj.openCorrectionCheck();
+
+        if (rerun) {
+          // If malUrl changed
+          This.handlePage();
+          return;
+        }
+
         This.syncHandling()
           .then(() => {
-            return This.malObj.update();
-          }).then(() => {
+            return This.singleObj.update();
+          })
+          .then(() => {
             This.fillUI();
           });
       });
-    }else{
-      j.$("#malTotal, #malTotalCha").text(this.malObj.totalEp);
-      if(this.malObj.totalEp == 0){
-         j.$("#malTotal, #malTotalCha").text('?');
+    } else {
+      j.$('#malTotal, #malTotalCha').text(this.singleObj.getTotalEpisodes());
+      if (this.singleObj.getTotalEpisodes() === 0) {
+        j.$('#malTotal, #malTotalCha').text('?');
       }
 
-      j.$("#malTotalVol").text(this.malObj.totalVol);
-      if(this.malObj.totalVol == 0){
-         j.$("#malTotalVol").text('?');
+      j.$('#malTotalVol').text(this.singleObj.getTotalVolumes());
+      if (this.singleObj.getTotalVolumes() === 0) {
+        j.$('#malTotalVol').text('?');
       }
 
-      j.$("#malEpisodes").val(this.malObj.getEpisode());
-      j.$("#malVolumes").val(this.malObj.getVolume());
+      j.$('#malEpisodes').val(this.singleObj.getEpisode());
+      j.$('#malVolumes').val(this.singleObj.getVolume());
 
-      j.$("#malStatus").val(this.malObj.getStatus());
-      j.$("#malUserRating").val(this.malObj.getScore());
+      j.$('#malStatus').val(this.singleObj.getStatusCheckboxValue());
+      j.$('#malUserRating').val(this.singleObj.getScoreCheckboxValue());
     }
-    j.$("#MalData").css("display","flex");
-    j.$("#MalInfo").text("");
+    j.$('#MalData').css('display', 'flex');
+    j.$('#MalInfo').text('');
 
-    j.$( "#malEpisodes, #malVolumes" ).trigger('input');
+    this.calcSelectWidth(j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus'));
+    j.$('#malEpisodes, #malVolumes').trigger('input');
 
-    try{
+    try {
       this.handleList(true);
-    }catch(e){
-      con.error(e)
+    } catch (e) {
+      con.error(e);
     }
   }
 
-  handleList(searchCurrent = false, reTry = 0){
+  handleList(searchCurrent = false, reTry = 0) {
     j.$('.mal-sync-active').removeClass('mal-sync-active');
-    if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
-      var epList = this.getEpList();
-      if (typeof(epList) != "undefined" && epList.length > 0){
+    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
+      const epList = this.getEpList();
+      if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
-        var elementUrl = this.page.overview.list.elementUrl;
-        con.log("Episode List", j.$.map( epList, function( val, i ) {if(typeof(val) != "undefined"){return elementUrl(val)}return '-';}));
-        if(typeof(this.page.overview.list.handleListHook) !== "undefined") this.page.overview.list.handleListHook(this.malObj.getEpisode(), epList);
-        var curEp = epList[this.malObj.getEpisode()];
-        if (typeof(curEp) != "undefined" && curEp){
-          curEp.addClass('mal-sync-active');
-        }else if(this.malObj.getEpisode() && searchCurrent && reTry < 10 && typeof this.page.overview.list.paginationNext !== 'undefined'){
+        const { elementUrl } = this.page.overview.list;
+        con.log(
+          'Episode List',
+          j.$.map(epList, function(val, i) {
+            if (typeof val !== 'undefined') {
+              return elementUrl(val);
+            }
+            return '-';
+          }),
+        );
+        if (typeof this.page.overview.list.handleListHook !== 'undefined')
+          this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
+        const curEp = epList[parseInt(this.singleObj.getEpisode())];
+        if (
+          typeof curEp === 'undefined' &&
+          !curEp &&
+          this.singleObj.getEpisode() &&
+          searchCurrent &&
+          reTry < 10 &&
+          typeof this.page.overview.list.paginationNext !== 'undefined'
+        ) {
           con.log('Pagination next');
-          var This = this;
-          if(this.page.overview.list.paginationNext()){
-            setTimeout(function(){
+          const This = this;
+          if (this.page.overview.list.paginationNext(false)) {
+            setTimeout(function() {
               reTry++;
               This.handleList(true, reTry);
             }, 500);
           }
         }
 
-        var nextEp = epList[this.malObj.getEpisode() + 1];
-        if (typeof(nextEp) != "undefined" && nextEp && !this.page.isSyncPage(this.url)){
-          var message = '<a href="'+elementUrl(nextEp)+'">'+api.storage.lang("syncPage_malObj_nextEp_"+this.page.type, [this.malObj.getEpisode()+1])+'</a>';
-          utils.flashm( message , {hoverInfo: true, type: 'nextEp'});
+        const nextEp = epList[this.singleObj.getEpisode() + 1];
+        if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
+          const message = `<a href="${elementUrl(
+            nextEp,
+          )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [this.singleObj.getEpisode() + 1])}</a>`;
+          utils.flashm(message, {
+            hoverInfo: true,
+            type: 'nextEp',
+            minimized: true,
+          });
         }
-
       }
     }
   }
 
-  getEpList(){
-    var This = this;
-    if (typeof(this.page.overview) != "undefined" && typeof(this.page.overview.list) != "undefined"){
-      var elementEp = this.page.overview.list.elementEp;
-      var elementArray = [] as JQuery<HTMLElement>[];
-      this.page.overview.list.elementsSelector().each( function(index, el) {
-        try{
-          var elEp = parseInt(elementEp(j.$(el))+"")+parseInt(This.getOffset());
+  getEpList() {
+    const This = this;
+    const elementArray = [] as JQuery<HTMLElement>[];
+    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
+      const { elementEp } = this.page.overview.list;
+      let currentEpisode = 0;
+      if (this.singleObj) {
+        currentEpisode = parseInt(this.singleObj.getEpisode());
+      }
+
+      this.page.overview.list.elementsSelector().each(function(index, el) {
+        try {
+          const elEp = parseInt(`${elementEp(j.$(el))}`) + parseInt(This.getOffset());
           elementArray[elEp] = j.$(el);
-        }catch(e){
+          if ((api.settings.get('highlightAllEp') && elEp <= currentEpisode) || elEp === currentEpisode) {
+            j.$(el).addClass('mal-sync-active');
+          }
+        } catch (e) {
           con.info(e);
         }
-
       });
-      return elementArray;
     }
+    return elementArray;
   }
 
-  offsetHandler(epList){
-    if(!this.page.overview!.list!.offsetHandler) return;
-    if(typeof this.offset !== 'undefined' && this.offset !== "0") return;
-    for (var i = 0; i < epList.length; ++i) {
+  offsetHandler(epList) {
+    if (!this.page.overview!.list!.offsetHandler) return;
+    if (this.getOffset()) return;
+    if (!this.searchObj || this.searchObj.provider === 'user') return;
+    for (let i = 0; i < epList.length; ++i) {
       if (typeof epList[i] !== 'undefined') {
         con.log('Offset', i);
-        if(i > 1){
-          var calcOffset = 1 - i;
-          utils.flashConfirm(api.storage.lang("syncPage_flashConfirm_offsetHandler_1", [calcOffset]), 'offset', () => {
-            this.setOffset(calcOffset);
-          }, () => {
-            this.setOffset(0);
-          });
+        if (i > 1) {
+          const calcOffset = 1 - i;
+          utils.flashConfirm(
+            api.storage.lang('syncPage_flashConfirm_offsetHandler_1', [String(calcOffset)]),
+            'offset',
+            () => {
+              this.setOffset(calcOffset);
+            },
+            () => {
+              this.setOffset(0);
+            },
+          );
         }
         return;
       }
     }
   }
 
-  cdn(){
-
-  }
-
-  async getMalUrl(identifier: string, title: string, page){
-    var This = this;
-    var cache = await api.storage.get(this.page.name+'/'+identifier+'/Mal' , null);
-    if(typeof(cache) != "undefined"){
-      con.log('Cache', this.page.name+'/'+identifier, cache);
-      return cache;
+  testForCloudflare() {
+    if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
+      return true;
     }
-
-    if(typeof page.database != "undefined"){
-      var firebaseVal = await firebase();
-      if(firebaseVal !== false){
-        return firebaseVal;
-      }
-    }
-
-    var malSearchVal = await malSearch();
-    if(malSearchVal !== false){
-      return malSearchVal;
-    }
-
     return false;
+  }
 
-    function firebase(){
-      var url = 'https://kissanimelist.firebaseio.com/Data2/'+page.database+'/'+encodeURIComponent(titleToDbKey(identifier)).toLowerCase()+'/Mal.json';
-      con.log("Firebase", url);
-      return api.request.xhr('GET', url).then((response) => {
-        con.log("Firebase response",response.responseText);
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
-          var returnUrl:any = '';
-          if(response.responseText.split('"')[1] == 'Not-Found'){
-            returnUrl = null;
-          }else{
-            returnUrl = 'https://myanimelist.net/'+page.type+'/'+response.responseText.split('"')[1]+'/'+response.responseText.split('"')[3];
-          }
-          This.setCache(returnUrl, false, identifier);
-          return returnUrl;
-        }else{
-          return false;
-        }
-      });
-    }
-
-    function malSearch(){
-      var url = "https://myanimelist.net/"+page.type+".php?q=" + encodeURI(title);
-      con.log("malSearch", url);
-      return api.request.xhr('GET', url).then((response) => {
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("  error ") > -1)){
-          try{
-            var link = response.responseText.split('<a class="hoverinfo_trigger" href="')[1].split('"')[0];
-            This.setCache(link, true, identifier);
-            return link
-          }catch(e){
-            con.error(e);
-            try{
-              var link = response.responseText.split('class="picSurround')[1].split('<a')[1].split('href="')[1].split('"')[0];
-              This.setCache(link, true, identifier);
-              return link
-            }catch(e){
-              con.error(e);
-              return false;
-            }
-          }
-
-        }else{
-          return false;
-        }
-      });
-    }
-
-    //Helper
-    function titleToDbKey(title) {
-      if( window.location.href.indexOf("crunchyroll.com") > -1 ){
-          return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
+  cdn(type: 'default' | 'captcha' | 'blocked' = 'default') {
+    api.storage.addStyle(`
+      .bubbles {
+        display: none !important;
       }
-      return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
-    };
-
-  }
-
-  public setCache(url, toDatabase:boolean|'correction', identifier:any = null){
-    if(identifier == null){
-      if(this.page.isSyncPage(this.url)){
-        identifier = this.page.sync.getIdentifier(this.url);
-      }else{
-        identifier = this.page.overview!.getIdentifier(this.url);
+      div#cf-content:before {
+        content: '';
+        background-image: url(https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png);
+        height: 64px;
+        width: 64px;
+        display: block;
+        background-size: cover;
+        animation: rotate 3s linear infinite;
+        background-color: #251e2b;
+        border-radius: 50%;
       }
-    }
-
-    api.storage.set(this.page.name+'/'+identifier+'/Mal' , url);
-
-    this.databaseRequest(url, toDatabase, identifier);
+      @keyframes rotate{ to{ transform: rotate(360deg); } }
+    `);
   }
 
-  public databaseRequest(malurl, toDatabase:boolean|'correction', identifier, kissurl:any = null){
-    if(typeof this.page.database != 'undefined' && toDatabase){
-      if(kissurl == null){
-        if(this.page.isSyncPage(this.url)){
-          kissurl = this.page.sync.getOverviewUrl(this.url);
-        }else{
-          kissurl = this.url;
-        }
-      }
-      var param = { Kiss: kissurl, Mal: malurl};
-      if(toDatabase == 'correction'){
-        param['newCorrection'] = true;
-      }
-      var url = 'https://kissanimelist.firebaseio.com/Data2/Request/'+this.page.database+'Request.json';
-      api.request.xhr('POST', {url: url, data: JSON.stringify(param)}).then((response) => {
-        if(response.responseText !== 'null' && !(response.responseText.indexOf("error") > -1)){
-          con.log("[DB] Send to database:", param);
-        }else{
-          con.error("[DB] Send to database:", response.responseText);
-        }
+  getOffset() {
+    if (this.searchObj && this.searchObj.getOffset()) {
+      return this.searchObj.getOffset();
+    }
+    return 0;
+  }
 
-      });
-
+  async setOffset(value: number) {
+    if (this.searchObj) {
+      this.searchObj.setOffset(value);
+    }
+    if (typeof this.singleObj !== 'undefined') {
+      api.storage.remove(`updateCheck/${this.singleObj.getType()}/${this.singleObj.getCacheKey()}`);
     }
   }
 
+  UILoaded = false;
 
-  public deleteCache(){
-    var getIdentifier;
-    if(this.page.isSyncPage(this.url)){
-      getIdentifier = this.page.sync.getIdentifier;
-    }else{
-      getIdentifier = this.page.overview!.getIdentifier;
-    }
-
-    api.storage.remove(this.page.name+'/'+getIdentifier(this.url)+'/Mal');
-  }
-
-  private offset;
-
-  getOffset(){
-    if(typeof this.offset == 'undefined') return 0;
-    return this.offset;
-  }
-
-  async setOffset(value:number){
-    this.offset = value;
-    var getIdentifier;
-    if(this.page.isSyncPage(this.url)){
-      getIdentifier = this.page.sync.getIdentifier;
-    }else{
-      getIdentifier = this.page.overview!.getIdentifier;
-      this.handleList();
-    }
-    var returnValue = api.storage.set(this.page.name+'/'+getIdentifier(this.url)+'/Offset', value);
-    if(typeof this.malObj != 'undefined'){
-      api.storage.remove('updateCheck/'+this.malObj.type+'/'+this.malObj.id)
-    }
-    return returnValue;
-  }
-
-  UILoaded:boolean = false;
-  private loadUI(){
-    if(this.UILoaded) return;
+  private loadUI() {
+    const This = this;
+    if (this.UILoaded) return;
     this.UILoaded = true;
-    var wrapStart = '<span style="display: inline-block;">';
-    var wrapEnd = '</span>';
+    let wrapStart = '<span style="display: inline-block;">';
+    const wrapEnd = '</span>';
 
-    var ui = '<p id="malp">';
-    ui += '<span id="MalInfo">'+api.storage.lang("Loading")+'</span>';
+    let ui = '<p id="malp">';
+    ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
 
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+providerTemplates().score+' </span>';
+    ui += `<span class="info">${api.storage.lang('search_Score')} </span>`;
     ui += '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 
-    //ui += '<span id="MalLogin">';
+    // ui += '<span id="MalLogin">';
     wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
 
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("UI_Status")+' </span>';
+    ui += `<span class="info">${api.storage.lang('UI_Status')} </span>`;
     ui += '<select id="malStatus">';
-    //ui += '<option value="0" ></option>';
-    ui += '<option value="1" >'+api.storage.lang("UI_Status_watching_"+this.page.type)+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("UI_Status_Completed")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("UI_Status_OnHold")+'</option>';
-    ui += '<option value="4" >'+api.storage.lang("UI_Status_Dropped")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("UI_Status_planTo_"+this.page.type)+'</option>';
     ui += '</select>';
     ui += wrapEnd;
 
-    if(this.page.type == 'anime'){
-        var middle = '';
-        middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Episode")+' </span>';
-        middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-        middle += '/<span id="malTotal">0</span>';
-        middle += '</span>';
-        middle += wrapEnd;
+    let middle = '';
+    if (this.page.type === 'anime') {
+      middle += wrapStart;
+      middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;">';
+      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotal">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
+    } else {
+      middle += wrapStart;
+      middle += `<span class="info">${api.storage.lang('UI_Volume')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;">';
+      middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalVol">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
 
-    }else{
-        var middle = '';
-        middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Volume")+' </span>';
-        middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
-        middle += '/<span id="malTotalVol">0</span>';
-        middle += '</span>';
-        middle += wrapEnd;
-
-
-        middle += wrapStart;
-        middle += '<span class="info">'+api.storage.lang("UI_Chapter")+' </span>';
-        middle += '<span style=" text-decoration: none; outline: medium none;">';
-        middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-        middle += '/<span id="malTotalCha">0</span>';
-        middle += '</span>';
-        middle += wrapEnd;
+      middle += wrapStart;
+      middle += `<span class="info">${api.storage.lang('UI_Chapter')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;">';
+      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalCha">0</span>';
+      middle += '</span>';
+      middle += wrapEnd;
     }
 
     ui += middle;
 
-
     ui += wrapStart;
-    ui += '<span class="info">'+api.storage.lang("UI_Score")+'</span>';
-    ui += '<select id="malUserRating"><option value="">'+api.storage.lang("Select")+'</option>';
-    ui += '<option value="10" >'+api.storage.lang("UI_Score_Masterpiece")+'</option>';
-    ui += '<option value="9" >'+api.storage.lang("UI_Score_Great")+'</option>';
-    ui += '<option value="8" >'+api.storage.lang("UI_Score_VeryGood")+'</option>';
-    ui += '<option value="7" >'+api.storage.lang("UI_Score_Good")+'</option>';
-    ui += '<option value="6" >'+api.storage.lang("UI_Score_Fine")+'</option>';
-    ui += '<option value="5" >'+api.storage.lang("UI_Score_Average")+'</option>';
-    ui += '<option value="4" >'+api.storage.lang("UI_Score_Bad")+'</option>';
-    ui += '<option value="3" >'+api.storage.lang("UI_Score_VeryBad")+'</option>';
-    ui += '<option value="2" >'+api.storage.lang("UI_Score_Horrible")+'</option>';
-    ui += '<option value="1" >'+api.storage.lang("UI_Score_Appalling")+'</option>';
+    ui += `<span class="info">${api.storage.lang('UI_Score')}</span>`;
+    ui += '<select id="malUserRating">';
     ui += '</select>';
     ui += wrapEnd;
 
-    //ui += '</span>';
+    // ui += '</span>';
     ui += '</span>';
     ui += '</p>';
 
-    var uihead ='';
-    uihead += '<p class="headui" style="float: right; margin: 0; margin-right: 10px">';
-    uihead += '';
-    uihead += '</p>';
-
-    var uiwrong ='';
-
-    uiwrong += '<button class="open-info-popup mdl-button" style="display:none; margin-left: 6px;">MAL</button>';
-
-    if(this.page.isSyncPage(this.url)){
-      if (typeof(this.page.sync.uiSelector) != "undefined"){
+    if (this.page.isSyncPage(this.url)) {
+      if (typeof this.page.sync.uiSelector !== 'undefined') {
         this.page.sync.uiSelector(j.$(ui));
       }
-    }else{
-      if (typeof(this.page.overview) != "undefined"){
-        this.page.overview.uiSelector(j.$(ui));
-      }
+    } else if (typeof this.page.overview !== 'undefined') {
+      this.page.overview.uiSelector(j.$(ui));
     }
 
-    var This = this;
-    j.$( "#malEpisodes, #malVolumes, #malUserRating, #malStatus" ).change(function() {
-        This.buttonclick();
+    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function() {
+      This.buttonclick();
+      // @ts-ignore
+      const el = j.$(this);
+      This.calcSelectWidth(el);
     });
 
-    j.$( "#malEpisodes, #malVolumes" ).on('input', function(){
-      //@ts-ignore
-      var el = j.$(this);
-      var numberlength = el.val()!.toString().length;
-      if(numberlength < 1) numberlength = 1;
-      var numberWidth = (numberlength * 7.7) + 3;
-      el.css('width', numberWidth+'px');
-    }).trigger('input');
-
+    j.$('#malEpisodes, #malVolumes')
+      .on('input', function() {
+        // @ts-ignore
+        const el = j.$(this);
+        let numberlength = el.val()!.toString().length;
+        if (numberlength < 1) numberlength = 1;
+        const numberWidth = numberlength * 7.7 + 3;
+        el.css('width', `${numberWidth}px`);
+      })
+      .trigger('input');
   }
 
-  private buttonclick(){
-    this.malObj.setEpisode(j.$("#malEpisodes").val());
-    if( j.$("#malVolumes").length ) this.malObj.setVolume(j.$("#malVolumes").val());
-    this.malObj.setScore(j.$("#malUserRating").val());
-    this.malObj.setStatus(j.$("#malStatus").val());
+  private calcSelectWidth(selectors) {
+    selectors.each(function(index, selector) {
+      const text = j
+        .$(selector)
+        .find('option:selected')
+        .text();
+      const aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
+      const width = aux.width() || 0;
+      if (width) {
+        j.$('#malp').append(aux);
+        j.$(selector).width(width + 5);
+        aux.remove();
+      }
+    });
+  }
+
+  private async buttonclick() {
+    this.singleObj.setEpisode(j.$('#malEpisodes').val());
+    if (j.$('#malVolumes').length) this.singleObj.setVolume(j.$('#malVolumes').val());
+    this.singleObj.handleScoreCheckbox(j.$('#malUserRating').val());
+    this.singleObj.handleStatusCheckbox(j.$('#malStatus').val());
+    if (!this.page.isSyncPage(this.url)) {
+      this.singleObj.setStreamingUrl(this.url);
+    }
+
+    const rerun = await this.searchObj.openCorrectionCheck();
+
+    if (rerun) {
+      // If malUrl changed
+      this.handlePage();
+      return;
+    }
 
     this.syncHandling()
       .then(() => {
-        return this.malObj.update();
-      }).then(() => {
+        return this.singleObj.update();
+      })
+      .then(() => {
         this.fillUI();
       });
   }
 
-}
+  private browsingtime = Date.now();
 
+  private presence(info, sender, sendResponse) {
+    try {
+      if (info.action === 'presence') {
+        console.log('Presence requested', info, this.curState);
+
+        let largeImageKeyTemp;
+        let largeImageTextTemp;
+        if (!api.settings.get('presenceHidePage')) {
+          largeImageKeyTemp = this.page.name.toLowerCase();
+          largeImageTextTemp = this.page.name;
+        } else {
+          largeImageKeyTemp = 'malsync';
+          largeImageTextTemp = 'MAL-Sync';
+        }
+
+        if (this.curState) {
+          const pres: any = {
+            clientId: '606504719212478504',
+            presence: {
+              details: this.singleObj.getTitle() || this.curState.title,
+              largeImageKey: largeImageKeyTemp,
+              largeImageText: largeImageTextTemp,
+              instance: true,
+            },
+          };
+
+          if (typeof this.curState.episode !== 'undefined') {
+            const ep = this.curState.episode;
+            let totalEp = this.singleObj.getTotalEpisodes();
+            if (!totalEp) totalEp = '?';
+
+            pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
+
+            if (typeof this.curState.lastVideoTime !== 'undefined') {
+              if (this.curState.lastVideoTime.paused) {
+                pres.presence.smallImageKey = 'pause';
+                pres.presence.smallImageText = 'pause';
+              } else {
+                const timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+                pres.presence.endTimestamp = Date.now() + timeleft * 1000;
+                pres.presence.smallImageKey = 'play';
+                pres.presence.smallImageText = 'playing';
+              }
+            } else {
+              if (typeof this.curState.startTime === 'undefined') {
+                this.curState.startTime = Date.now();
+              }
+              pres.presence.startTimestamp = this.curState.startTime;
+            }
+            sendResponse(pres);
+            return;
+          }
+
+          let browsingTemp;
+          if (!api.settings.get('presenceHidePage')) {
+            browsingTemp = this.page.name;
+          } else {
+            browsingTemp = this.page.type.toString();
+          }
+          pres.presence.startTimestamp = this.browsingtime;
+          pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
+          sendResponse(pres);
+          return;
+        }
+      }
+    } catch (e) {
+      con.error(e);
+    }
+    sendResponse({});
+  }
+}

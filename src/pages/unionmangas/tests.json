@@ -1,0 +1,32 @@
+{
+  "title": "unionmangas",
+  "url": "https://unionmangas.top/",
+  "testCases": [
+    {
+      "url": "https://unionleitor.top/leitor/Solo_Leveling/76",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "solo-leveling",
+        "overviewUrl": "https://unionleitor.top/manga/solo-leveling",
+        "episode": 76,
+        "nextEpUrl": "https://unionleitor.top/leitor/Solo_Leveling/77",
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://unionleitor.top/perfil-manga/solo-leveling",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "solo-leveling",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://unionleitor.top/leitor/Solo_Leveling/05",
+          "87": "https://unionleitor.top/leitor/Solo_Leveling/87",
+          "101": "https://unionleitor.top/leitor/Solo_Leveling/101"
+        }
+      }
+    }
+  ]
+}

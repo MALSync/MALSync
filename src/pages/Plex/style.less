@@ -1,20 +1,28 @@
-@import "./../pages";
+@import './../pages';
 
 @textColor: inherit;
 
-.miniMAL-Fullscreen, .miniMAL-hide{
-  .open-info-popup.floatbutton, #flashinfo-div, #flash-div-bottom, #flash-div-top{
+.miniMAL-Fullscreen,
+.miniMAL-hide {
+  .open-info-popup.floatbutton,
+  #flashinfo-div,
+  #flash-div-bottom,
+  #flash-div-top {
     display: none !important;
   }
 }
 
-#malp{
+#malp {
   max-width: 700px;
   margin: 0;
 }
 
-.noApiKey{
-  [data-qa-id="moreButton"]{
+.noApiKey {
+  [data-qa-id='moreButton'] {
     background-color: red;
   }
+}
+
+#flashinfo-div {
+  z-index: 200000 !important;
 }

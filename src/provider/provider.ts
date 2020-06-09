@@ -1,85 +1,72 @@
-import * as mal from "./MyAnimeList/entryClass";
-import * as malUserList from "./MyAnimeList/userList";
-import * as anilist from "./AniList/entryClass";
-import * as anilistUserList from "./AniList/userList";
-import * as kitsu from "./Kitsu/entryClass";
-import * as kitsuUserList from "./Kitsu/userList";
-import {listElement} from "./listInterface";
+import { search as malSearch } from './MyAnimeList/metadata';
+import { search as aniSearch } from './AniList/metadata';
+import { search as kitsuSearch } from './Kitsu/metadata';
+import { search as simklSearch } from './Simkl/metadata';
 
 interface entryClass {
-  readonly id: number,
-  readonly type: "anime"|"manga",
+  readonly id: number;
+  readonly type: 'anime' | 'manga';
 
-  url: string,
-  name: string,
-  totalEp: number,
-  totalVol?: number,
-  addAnime: boolean,
-  login: boolean,
-  wrong: boolean,
+  url: string;
+  name: string;
+  totalEp: number;
+  totalVol?: number;
+  addAnime: boolean;
+  login: boolean;
+  wrong: boolean;
+  silent: boolean;
 
-  init(),
-  update(),
-  getDisplayUrl(),
-  getMalUrl():string|null,
-  getEpisode(),
-  setEpisode(ep:number),
-  getVolume(),
-  setVolume(ep:number),
-  getStatus(),
-  setStatus(status:number),
-  getScore(),
-  setScore(score:number),
-  getRewatching(): 1|0,
-  setRewatching(rewatching:1|0),
-  setCompletionDateToNow(),
-  setStartingDateToNow(),
-  getStreamingUrl(),
-  setStreamingUrl(url:string),
-  getRating: () => Promise<any>,
-  setResumeWaching: (url:string, ep:number) => Promise<any>,
-  getResumeWaching: () => Promise<{url:string, ep:number}>,
-  setContinueWaching: (url:string, ep:number) => Promise<any>,
-  getContinueWaching:() => Promise<{url:string, ep:number}>,
-  getImage: () => Promise<string>,
-  clone(),
-  sync(),
+  init();
+  update();
+  delete?();
+  getDisplayUrl();
+  getDetailUrl?: () => string | null;
+  getMalUrl(): string | null;
+  getEpisode();
+  setEpisode(ep: number);
+  getVolume();
+  setVolume(ep: number);
+  getStatus();
+  setStatus(status: number);
+  getScore();
+  setScore(score: number);
+  getRewatching(): 1 | 0;
+  setRewatching(rewatching: 1 | 0);
+  setCompletionDateToNow();
+  setStartingDateToNow();
+  getStreamingUrl();
+  setStreamingUrl(url: string);
+  getRating: () => Promise<any>;
+  getCacheKey: () => string | number;
+  setResumeWaching: (url: string, ep: number) => Promise<any>;
+  getResumeWaching: () => Promise<{ url: string; ep: number }>;
+  setContinueWaching: (url: string, ep: number) => Promise<any>;
+  getContinueWaching: () => Promise<{ url: string; ep: number }>;
+  getImage: () => Promise<string>;
+  clone();
+  sync();
 }
 
-function getSyncMode(){
-  return api.settings.get('syncMode');
-}
-
-export function entryClass(url:string, miniMAL:boolean = false, silent:boolean = false): entryClass{
-  var syncMode = getSyncMode();
-  if(syncMode == 'MAL'){
-    return new mal.entryClass(url, miniMAL);
-  }else if(syncMode == 'ANILIST'){
-    return new anilist.entryClass(url, miniMAL, silent);
-  }else{
-    return new kitsu.entryClass(url, miniMAL, silent);
+function getSyncMode(type = '') {
+  const mode = api.settings.get('syncMode');
+  //
+  if (mode === 'SIMKL' && (type === 'manga' || type.indexOf('/manga/') !== -1)) {
+    return api.settings.get('syncModeSimkl');
   }
+  //
+  return mode;
 }
 
-export function userList(
-  status = 1,
-  localListType = 'anime',
-  callbacks: {
-    singleCallback?: (el: listElement, index: number, total: number) => void,
-    finishCallback?,
-    fullListCallback?: (list: listElement[]) => void,
-    continueCall?,
-  },
-  username = null,
-  offset = 0,
-  templist = []
-){
-  var syncMode = getSyncMode();
-  if(syncMode == 'MAL'){
-    return malUserList.userList(status, localListType, callbacks, username, offset, templist);
-  }else if(syncMode == 'ANILIST'){
-    return anilistUserList.userList(status, localListType, callbacks, username, offset, templist);
-  }else{
-    return kitsuUserList.userList(status, localListType, callbacks, username, offset, templist);
+export function search(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
+  const syncMode = getSyncMode(type);
+  if (syncMode === 'KITSU') {
+    return kitsuSearch(keyword, type, options, sync);
   }
+  if (syncMode === 'ANILIST') {
+    return aniSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'SIMKL') {
+    return simklSearch(keyword, type, options, sync);
+  }
+  return malSearch(keyword, type, options, sync);
 }
