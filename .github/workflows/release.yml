@@ -78,6 +78,8 @@ jobs:
       run: |
         npm ci
         npm run build
+      env:
+        MODE: travis
     - name: Pack
       run: |
         npm run package
@@ -101,6 +103,8 @@ jobs:
       run: |
         npm ci
         npm run build
+      env:
+        MODE: travis
     - name: Pack
       run: |
         npm run package
