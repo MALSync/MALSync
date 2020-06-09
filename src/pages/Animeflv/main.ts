@@ -6,9 +6,13 @@ export const animeflv: pageInterface = {
   domain: 'https://animeflv.net',
   type: 'anime',
   isSyncPage(url) {
-    if (j.$('h2.SubTitle').length) {
-      return true;
-    }
+    if (utils.urlPart(url, 3) === 'ver') return true;
+
+    return false;
+  },
+  isOverviewPage(url) {
+    if (utils.urlPart(url, 3) === 'anime') return true;
+
     return false;
   },
   sync: {
@@ -20,10 +24,7 @@ export const animeflv: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return `${utils.urlPart(animeflv.domain + (j.$('.fa-th-list').attr('href') || ''), 4)}/${utils.urlPart(
-        animeflv.domain + (j.$('.fa-th-list').attr('href') || ''),
-        5,
-      )}`;
+      return utils.urlPart(`${animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
     },
     getOverviewUrl(url) {
       return animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
@@ -48,10 +49,10 @@ export const animeflv: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('h2.Title').text();
+      return j.$('h1.Title').text();
     },
     getIdentifier(url) {
-      return `${utils.urlPart(url, 4)}/${utils.urlPart(url, 5)}`;
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       selector.insertAfter(j.$('.Description'));
@@ -80,10 +81,7 @@ export const animeflv: pageInterface = {
               // @ts-ignore
               eps.forEach(element => {
                 if (idMALSync !== null) {
-                  const Url = `${animeflv.domain}/ver/${element.split(',')[1].replace(']', '')}/${utils.urlPart(
-                    url,
-                    5,
-                  )}-${element.split(',')[0].replace('[', '')}`;
+                  const Url = `${animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element.split(',')[0].replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
                   idMALSync.innerHTML += `<li><a href="${Url}" epi="${Episodio}"></a> </li>`;
                 }
