@@ -1,5 +1,6 @@
 /* By kaiserdj */
 import { pageInterface } from '../pageInterface';
+import { domain } from 'process';
 
 export const animeflv: pageInterface = {
   name: 'animeflv',
@@ -24,10 +25,7 @@ export const animeflv: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return `${utils.urlPart(animeflv.domain + (j.$('.fa-th-list').attr('href') || ''), 4)}/${utils.urlPart(
-        animeflv.domain + (j.$('.fa-th-list').attr('href') || ''),
-        5,
-      )}`;
+      return utils.urlPart(`${animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
     },
     getOverviewUrl(url) {
       return animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
