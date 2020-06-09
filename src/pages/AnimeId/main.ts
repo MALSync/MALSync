@@ -1,3 +1,4 @@
+/* By kaiserdj */
 import { pageInterface } from '../pageInterface';
 
 export const AnimeId: pageInterface = {
