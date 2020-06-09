@@ -16,10 +16,15 @@ export const Nhentai: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      const scripts = j.$('script').text();
+      const scripts = j
+        .$('script')
+        .text()
+        .replace(/\\u0022/g, '"');
+
       con.info(scripts);
       try {
-        return scripts.split('"pretty":"')[1].split('"}')[0];
+        const pl = '';
+        return scripts.split(`"pretty":${pl}"`)[1].split('"}')[0];
       } catch (e) {
         return '';
       }
