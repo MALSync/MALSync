@@ -142,9 +142,9 @@
                   <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
                 </select>
                 <div
+                  v-if="tabs.bookmarks.state === 6"
                   style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
                   class="bg-cell"
-                  v-if="tabs.bookmarks.state === 6"
                   @click="openRandom(6, tabs.bookmarks.type)"
                 >
                   <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>

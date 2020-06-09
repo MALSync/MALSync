@@ -81,7 +81,9 @@ export const animeflv: pageInterface = {
               // @ts-ignore
               eps.forEach(element => {
                 if (idMALSync !== null) {
-                  const Url = `${animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element.split(',')[0].replace('[', '')}`;
+                  const Url = `${animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element
+                    .split(',')[0]
+                    .replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
                   idMALSync.innerHTML += `<li><a href="${Url}" epi="${Episodio}"></a> </li>`;
                 }
