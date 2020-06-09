@@ -327,4 +327,7 @@ module.exports = {
   Scantrad: {
     match: ['*://scantrad.net/*'],
   },
+  AnimeId: {
+    match: ['*://www.animeid.tv/*'],
+  },
 };

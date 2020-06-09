@@ -1,0 +1,30 @@
+{
+  "title": "AnimeId",
+  "url": "https://www.animeid.tv",
+  "testCases": [
+    {
+      "url": "https://www.animeid.tv/no-game-no-life",
+      "expected": {
+        "sync": false,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://www.animeid.tv/v/no-game-no-life-5"
+        }
+      }
+    },
+    {
+      "url": "https://www.animeid.tv/v/no-game-no-life-11",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "no-game-no-life",
+        "overviewUrl": "https://www.animeid.tv/no-game-no-life",
+        "nextEpUrl": "https://www.animeid.tv/v/no-game-no-life-12",
+        "episode": 11,
+        "uiSelector": true
+      }
+    }
+  ]
+}
