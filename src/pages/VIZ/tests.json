@@ -1,6 +1,7 @@
 {
   "title": "viz",
   "url": "https://www.viz.com/",
+  "offline": true,
   "skip": true,
   "testCases": [
     {

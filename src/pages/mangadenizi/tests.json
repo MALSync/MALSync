@@ -1,6 +1,7 @@
 {
   "title": "mangadenizi",
   "url": "https://mangadenizi.com/",
+  "offline": true,
   "testCases": [
     {
       "url": "https://mangadenizi.com/manga/one-piece/0769/2",

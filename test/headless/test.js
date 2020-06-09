@@ -202,7 +202,8 @@ async function testPageCase(block, testPage, page) {
   if (testPage.unreliable) logC(block, 'Unreliable', 1, 'yellow');
   let passed = 1;
 
-  if(typeof testPage.offline === 'undefined') testPage.offline = false;
+  if (typeof testPage.offline === 'undefined') testPage.offline = false;
+  if (testPage.offline) logC(block, 'Offline', 1, 'yellow');
 
   try {
     await onlineTest(testPage.url, page);
