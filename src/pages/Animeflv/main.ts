@@ -1,6 +1,5 @@
 /* By kaiserdj */
 import { pageInterface } from '../pageInterface';
-import { domain } from 'process';
 
 export const animeflv: pageInterface = {
   name: 'animeflv',
