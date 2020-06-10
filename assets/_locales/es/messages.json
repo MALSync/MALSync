@@ -579,6 +579,10 @@
     "message": "Utilizar etiquetas/notas",
     "description": "Use Tags/Notes"
   },
+  "settings_malTags_Text": {
+    "message": "Si activado: La última página de streaming que has usado es guardada permanentemente (entre navegadores) en la sección de etiquetas/notas en tu lista. La cadena guardada en la sección de etiqueta es fea, solo realmente recomendada si no usas la sección de etiquetas/notas.",
+    "description": "Use Tags/Notes - Text"
+  },
   "settings_malContinue": {
     "message": "Enlaces para continuar viendo",
     "description": "Continue watching links"
@@ -658,6 +662,10 @@
   "settings_Shortcuts_Correction": {
     "message": "Abrir ventana emergente de corrección de relación de anime",
     "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Sync": {
+    "message": "Establecer episodio/capítulo como leido",
+    "description": "Text for the sync ui shortcut"
   },
   "settings_Shortcuts_Next_Episode": {
     "message": "Atajo para abrir el siguiente episodio",
