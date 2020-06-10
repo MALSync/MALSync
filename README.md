@@ -213,6 +213,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr>
+              </tr><tr>
+                <td><a href="https://www.animeid.tv/"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv/"> AnimeID</a></td>
+                <td></td>
+                <td></td>
+              </tr>
     </tbody>
   </table>
   <!--/pages-->

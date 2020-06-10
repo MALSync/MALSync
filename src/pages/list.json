@@ -358,5 +358,10 @@
     "domain": "https://scantrad.net",
     "type": "manga",
     "name": "Scantrad"
+  },
+  {
+    "domain": "https://www.animeid.tv/",
+    "type": "anime",
+    "name": "AnimeId"
   }
 ]
