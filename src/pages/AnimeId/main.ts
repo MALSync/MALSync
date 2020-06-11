@@ -43,9 +43,6 @@ export const AnimeId: pageInterface = {
       const epi = `${AnimeId.domain}${j.$(`.buttons li a`)[2].getAttribute(`href`)}`;
       return epi;
     },
-    uiSelector(selector) {
-      selector.insertAfter(j.$('#player'));
-    },
   },
   overview: {
     getTitle(url) {
@@ -67,9 +64,10 @@ export const AnimeId: pageInterface = {
         );
         const idMALSync = document.getElementById('MALSyncUl');
 
-        const lastEpi = j.$(`section#capitulos li a`)[0].getAttribute('href');
-        if (lastEpi !== undefined && lastEpi !== null) {
-          const numLastEpi = lastEpi.split(`-`).pop();
+        let lastEpi: HTMLElement | string | null = j.$(`section#capitulos li a`)[0];
+        if (lastEpi) {
+          lastEpi = lastEpi.getAttribute('href');
+          const numLastEpi = lastEpi!.split(`-`).pop();
           if (numLastEpi !== undefined) {
             for (let x = 1; x < Number.parseInt(numLastEpi) + 1; x++) {
               if (idMALSync !== null) {
