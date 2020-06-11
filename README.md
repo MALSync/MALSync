@@ -70,6 +70,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
+                <td><a href="https://www.animeid.tv/"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv/"> AnimeID</a></td>
                 <td><a href="https://mangaplus.shueisha.co.jp"><img src="https://www.google.com/s2/favicons?domain=https://mangaplus.shueisha.co.jp"> MangaPlus</a></td>
                 <td></td>
               </tr><tr>
@@ -210,11 +211,6 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
-                <td></td>
-                <td></td>
-              </tr>
-              </tr><tr>
-                <td><a href="https://www.animeid.tv/"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv/"> AnimeID</a></td>
                 <td></td>
                 <td></td>
               </tr>
