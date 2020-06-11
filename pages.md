@@ -216,12 +216,6 @@
               <td>:x:</td>
               <td>:heavy_check_mark:</td>
             </tr><tr>
-              <td><a href="https://www.animeid.tv/"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv/"> AnimeID</a></td>
-              <td>:heavy_check_mark:</td>
-              <td>:heavy_check_mark:</td>
-              <td>:x:</td>
-              <td>:heavy_check_mark:</td>
-            </tr><tr>
               <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
               <td>:heavy_check_mark:</td>
               <td>:x:</td>
