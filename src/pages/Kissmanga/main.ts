@@ -51,7 +51,7 @@ export const Kissmanga: pageInterface = {
             episodeNumber = Number(temp[0]);
           }
         } else {
-          episodePart = temp[0];
+          episodeNumber = Number(temp[0]);
         }
       } else {
         const matches = temp[0].match(/\d+/);
