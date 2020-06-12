@@ -230,12 +230,18 @@ export class searchClass {
     con.log('Firebase response', response.responseText);
     if (!response.responseText || response.responseText === 'null' || response.responseText.includes('error'))
       return false;
+    let matches;
+    try {
+      matches = JSON.parse(response.responseText);
+    } catch (e) {
+      con.info('firebase parse failed');
+      return false;
+    }
 
-    const matches = response.responseText.match(/(?<=")(?!:)(?:.*?)(?=")/g);
+    if (!matches || Object.keys(matches).length === 0) return false;
 
-    if (!matches || matches.length === 0) return false;
-
-    const [id, name] = matches;
+    const id = Object.keys(matches)[0];
+    const name = matches[id];
 
     let returnUrl = '';
 
