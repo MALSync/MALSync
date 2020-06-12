@@ -121,10 +121,10 @@ export class metadata implements metadataInterface {
             .find('.dark_text')
             .text();
           const body =
-            j
+            typeof j
               .$(value)
               .find('span[itemprop=ratingValue]')
-              .height() !== null
+              .height() !== 'undefined'
               ? j
                   .$(value)
                   .find('span[itemprop=ratingValue]')
