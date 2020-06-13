@@ -24,7 +24,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
-    if (api.storage.version() === '0.7.6') {
+    if (api.storage.version() === '0.7.8') {
       // Set existing users to tags on.
       api.storage.get('settings/malTags').then(res => {
         if (typeof res === 'undefined') {
