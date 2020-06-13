@@ -178,6 +178,7 @@
         </checkbox>
         <checkbox option="malContinue">{{ lang('settings_malContinue') }}</checkbox>
         <checkbox option="malResume">{{ lang('settings_malResume') }}</checkbox>
+        <checkbox option="usedPage">{{ lang('settings_usedPage') }}</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">

@@ -15,6 +15,7 @@ export const settingsObj = {
     malTags: false,
     malContinue: true,
     malResume: true,
+    usedPage: true,
     epPredictions: true,
 
     theme: 'light',

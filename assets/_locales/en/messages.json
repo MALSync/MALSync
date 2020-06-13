@@ -591,6 +591,10 @@
       "message": "Resume watching links",
       "description": "Resume watching links"
     },
+    "settings_usedPage": {
+      "message": "Last used page links",
+      "description": "Last used page links"
+    },
     "settings_miniMAL_floatButtonStealth": {
       "message": "Stealth UI mode",
       "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"

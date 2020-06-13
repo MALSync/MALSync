@@ -270,6 +270,8 @@ export async function getEntrySettings(type, id, tags = '') {
   const resumeUrlObj = await getResumeWaching(type, id);
   if (resumeUrlObj) tempOptions.r = resumeUrlObj;
 
+  if (!api.settings.get('usedPage')) tempOptions.u = null;
+
   return tempOptions;
 }
 
