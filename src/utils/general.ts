@@ -149,7 +149,6 @@ export function checkDoubleExecution() {
 }
 
 export function getUrlFromTags(tags: string) {
-  if (!api.settings.get('malTags')) return undefined;
   if (/malSync::[\d\D]+::/.test(tags)) {
     return atobURL(tags.split('malSync::')[1].split('::')[0]);
   }
