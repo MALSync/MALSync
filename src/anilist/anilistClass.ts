@@ -393,7 +393,7 @@ export class anilistClass {
               );
             }
 
-            utils.epPredictionUI(en.malid, en.cacheKey, This.page!.type, prediction => {
+            utils.epPredictionUI(en.malId, en.cacheKey, This.page!.type, prediction => {
               if (!prediction) return;
               element
                 .parent()
