@@ -67,6 +67,9 @@ export class userlist extends ListAbstract {
         continue;
       }
 
+      let curep = this.getEpisode(el.last_watched);
+      if (st === 2) curep = el.total_episodes_count;
+
       if (listType === 'anime') {
         const tempData = await this.fn({
           malId: el.show.ids.mal,
@@ -75,7 +78,7 @@ export class userlist extends ListAbstract {
           type: listType,
           title: el.show.title,
           url: `https://simkl.com/${listType}/${el.show.ids.simkl}`,
-          watchedEp: this.getEpisode(el.last_watched),
+          watchedEp: curep,
           totalEp: el.total_episodes_count,
           status: st,
           score: el.user_rating ? el.user_rating : 0,

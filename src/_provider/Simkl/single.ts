@@ -66,6 +66,7 @@ export class Single extends SingleAbstract {
   }
 
   _getEpisode() {
+    if (this._getStatus() === 2) return this._getTotalEpisodes();
     return this.curWatchedEp;
   }
 
