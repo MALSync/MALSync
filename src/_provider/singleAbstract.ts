@@ -3,8 +3,11 @@ import * as definitions from './definitions';
 export abstract class SingleAbstract {
   constructor(protected url: string) {
     this.handleUrl(url);
+    this.logger = con.m('[S]', '#348fff');
     return this;
   }
+
+  protected logger;
 
   protected type: definitions.contentType | null = null;
 
@@ -137,7 +140,7 @@ export abstract class SingleAbstract {
   abstract _update(): Promise<void>;
 
   public update(): Promise<void> {
-    con.log('[SINGLE]', 'Update info', this.ids);
+    this.logger.log('[SINGLE]', 'Update info', this.ids);
     this.lastError = null;
     return this._update()
       .catch(e => {
@@ -157,7 +160,7 @@ export abstract class SingleAbstract {
   abstract _sync(): Promise<void>;
 
   public async sync(): Promise<void> {
-    con.log('[SINGLE]', 'Sync', this.ids);
+    this.logger.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
     this._setTags(await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()));
     return this._sync()
@@ -171,7 +174,7 @@ export abstract class SingleAbstract {
   }
 
   public undo(): Promise<void> {
-    con.log('[SINGLE]', 'Undo', this.undoState);
+    this.logger.log('[SINGLE]', 'Undo', this.undoState);
     if (!this.undoState) throw new Error('No undo state found');
     this.setStateEl(this.undoState);
     return this.sync().then(() => {
@@ -360,7 +363,7 @@ export abstract class SingleAbstract {
         this.setStatus(definitions.status.Completed);
         const finishScore = Number(j.$('#finish_score').val());
         if (finishScore > 0) {
-          con.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
+          this.logger.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
           this.handleScoreCheckbox(j.$('#finish_score :selected').val());
         }
       }

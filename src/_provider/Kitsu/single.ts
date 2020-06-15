@@ -3,6 +3,12 @@ import * as helper from './helper';
 import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, '#d65e43');
+    return this;
+  }
+
   private animeInfo: any;
 
   listI() {
@@ -191,7 +197,7 @@ export class Single extends SingleAbstract {
         try {
           this.animeI();
         } catch (e) {
-          con.error(e);
+          this.logger.error(e);
           throw this.errorObj(errorCode.EntryNotFound, 'Not found');
         }
 
@@ -242,7 +248,7 @@ export class Single extends SingleAbstract {
       post = 'POST';
     }
 
-    con.log(post, variables);
+    this.logger.log(post, variables);
 
     return this.apiCall(post, updateUrl, variables);
   }
@@ -267,7 +273,7 @@ export class Single extends SingleAbstract {
         const res = JSON.parse(response.responseText);
 
         if (typeof res.errors !== 'undefined' && res.errors.length) {
-          con.error('[SINGLE]', 'Error', res.errors);
+          this.logger.error('[SINGLE]', 'Error', res.errors);
           const error = res.errors[0];
           switch (parseInt(error.status)) {
             case 401:

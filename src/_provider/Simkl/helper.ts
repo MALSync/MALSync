@@ -44,6 +44,8 @@ export function simklIdToMal(simklId) {
 let cacheList;
 
 export async function syncList(lazy = false) {
+  const logger = con.m('Simkl', '#9b7400').m('list');
+
   if (typeof cacheList === 'undefined') {
     cacheList = await api.storage.get('simklList');
   } else if (lazy) {
@@ -52,7 +54,7 @@ export async function syncList(lazy = false) {
 
   const lastCheck = await api.storage.get('simklLastCheck');
   const activity = await this.call('https://api.simkl.com/sync/activities');
-  con.log('Activity', lastCheck, activity.anime);
+  logger.log('Activity', lastCheck, activity.anime);
 
   // removed_from_list
   if (lastCheck && lastCheck.removed_from_list !== activity.anime.removed_from_list) {
@@ -67,7 +69,7 @@ export async function syncList(lazy = false) {
       }
     }
     cacheList = newCacheList;
-    con.log('remove', cacheList);
+    logger.log('remove', cacheList);
   }
 
   // Check if update Needed
@@ -75,7 +77,7 @@ export async function syncList(lazy = false) {
   if (lastCheck && cacheList) {
     dateFrom = `date_from=${lastCheck.all}`;
     if (lastCheck.all === activity.anime.all) {
-      con.log('Up to date');
+      logger.log('Up to date');
       return cacheList;
     }
   }
@@ -84,7 +86,7 @@ export async function syncList(lazy = false) {
 
   if (lastCheck && lastCheck.rated_at !== activity.anime.rated_at) {
     const rated = await this.call(`https://api.simkl.com/sync/ratings/anime?${dateFrom}`);
-    con.log('ratedUpdate', rated);
+    logger.log('ratedUpdate', rated);
     if (rated) {
       for (let i = 0; i < rated.anime.length; i++) {
         const el = rated.anime[i];
@@ -94,14 +96,14 @@ export async function syncList(lazy = false) {
   }
 
   const list = await this.call(`https://api.simkl.com/sync/all-items/anime?${dateFrom}`);
-  con.log('listUpdate', list);
+  logger.log('listUpdate', list);
   if (list) {
     for (let i = 0; i < list.anime.length; i++) {
       const el = list.anime[i];
       cacheList[el.show.ids.simkl] = el;
     }
   }
-  con.log('totalList', cacheList);
+  logger.log('totalList', cacheList);
   await api.storage.set('simklList', cacheList);
   await api.storage.set('simklLastCheck', activity.anime);
   return cacheList;
@@ -129,11 +131,13 @@ export async function getSingle(ids: { simkl?: string | number; mal?: string | n
 }
 
 export async function call(url, sData: any = {}, asParameter = false, method: 'GET' | 'POST' = 'GET', login = true) {
+  const logger = con.m('Simkl', '#9b7400').m('call');
+
   if (asParameter) {
     url += `?${new URLSearchParams(Object.entries(sData))}`;
     sData = undefined;
   }
-  con.log('call', method, url, sData);
+  logger.log(method, url, sData);
 
   const headers: any = {
     'simkl-api-key': client_id,
@@ -142,7 +146,7 @@ export async function call(url, sData: any = {}, asParameter = false, method: 'G
   };
 
   if (login) headers.Authorization = `Bearer ${api.settings.get('simklToken')}`;
-  else con.log('No login');
+  else logger.log('No login');
 
   return api.request
     .xhr(method, {

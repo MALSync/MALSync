@@ -4,6 +4,12 @@ import { errorCode } from '../definitions';
 // local://crunchyroll/anime/nogamenolife
 
 export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, 'black');
+    return this;
+  }
+
   private animeInfo: any;
 
   protected key!: string;

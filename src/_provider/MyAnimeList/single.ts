@@ -2,6 +2,12 @@ import { SingleAbstract } from '../singleAbstract';
 import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, '#2e51a2');
+    return this;
+  }
+
   private animeInfo: any;
 
   private displayUrl = '';
@@ -180,7 +186,7 @@ export class Single extends SingleAbstract {
 
   async _update() {
     const editUrl = `https://myanimelist.net/ownlist/${this.type}/${this.ids.mal}/edit?hideLayout`;
-    con.log('Update MAL info', editUrl);
+    this.logger.log('Update MAL info', editUrl);
     return this.apiCall('GET', editUrl).then(data => {
       this._authenticated = true;
       this.animeInfo = this.getObject(data);
@@ -224,15 +230,15 @@ export class Single extends SingleAbstract {
         }
       }
     });
-    con.log('[SET] URL:', url);
-    con.log('[SET] Object:', this.animeInfo);
+    this.logger.log('[SET] URL:', url);
+    this.logger.log('[SET] Object:', this.animeInfo);
     return this.apiCall('POST', {
       url,
       data: parameter,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     }).then(data => {
       if (data.indexOf('Successfully') >= 0) {
-        con.log('Update Succeeded');
+        this.logger.log('Update Succeeded');
       } else {
         throw this.errorObj(errorCode.ServerOffline, 'Update failed');
       }
@@ -472,7 +478,7 @@ export class Single extends SingleAbstract {
       .split('name="submitIt"')[1]
       .split('value="')[1]
       .split('"')[0];
-    con.log('[GET] Object:', anime);
+    this.logger.log('[GET] Object:', anime);
     return anime;
   }
 
@@ -491,7 +497,7 @@ export class Single extends SingleAbstract {
       this.animeInfo['.add_anime[finish_date][month]'] = Datec.getMonth() + 1;
       this.animeInfo['.add_anime[finish_date][day]'] = Datec.getDate();
     } else {
-      con.error('Completion date already set');
+      this.logger.error('Completion date already set');
     }
   }
 
@@ -507,7 +513,7 @@ export class Single extends SingleAbstract {
       this.animeInfo['.add_anime[start_date][month]'] = Datec.getMonth() + 1;
       this.animeInfo['.add_anime[start_date][day]'] = Datec.getDate();
     } else {
-      con.info('Start date already set');
+      this.logger.info('Start date already set');
     }
   }
 }

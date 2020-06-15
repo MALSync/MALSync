@@ -12,6 +12,8 @@ if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
   extensionId = '{57081fef-67b4-482f-bcb0-69296e63ec4f}'; // Firefox
 }
 
+const logger = con.m('Sync', '#348fff');
+
 export class syncPage {
   page: pageInterface;
 
@@ -35,7 +37,7 @@ export class syncPage {
     });
 
     if (this.testForCloudflare()) {
-      con.log('loading');
+      logger.log('loading');
       this.cdn();
       return;
     }
@@ -49,7 +51,7 @@ export class syncPage {
           this.presence(info, sender, sendResponse);
         });
       } catch (e) {
-        con.error(e);
+        logger.error(e);
       }
     }
   }
@@ -152,7 +154,7 @@ export class syncPage {
     // @ts-ignore
     if (typeof this.curState.videoChecked !== 'undefined' && this.curState.videoChecked) {
       if (this.curState.videoChecked > 1 && item.current > 10) {
-        con.info('Set Resume', item.current);
+        logger.info('Set Resume', item.current);
         localStorage.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
         setTimeout(() => {
@@ -161,7 +163,7 @@ export class syncPage {
       }
     } else {
       const localItem = localStorage.getItem(localSelector);
-      con.info('Resume', localItem);
+      logger.info('Resume', localItem);
       if (localItem !== null && parseInt(localItem) - 30 > item.current && parseInt(localItem) > 30) {
         if (!j.$('#MALSyncResume').length)
           j.$('#MALSyncResume')
@@ -275,7 +277,7 @@ export class syncPage {
           this.tempPlayer = player;
           this.setVideoTime(item, time => {
             if (typeof player === 'undefined') {
-              con.error('No player Found');
+              logger.error('No player Found');
               return;
             }
             if (typeof time !== 'undefined') {
@@ -285,14 +287,14 @@ export class syncPage {
           });
         });
       }
-      con.log('Sync', state);
+      logger.m('Sync', 'green').log(state);
     } else {
       if (typeof this.page.overview === 'undefined') {
-        con.log('No overview definition');
+        logger.log('No overview definition');
         return;
       }
       if (typeof this.page.isOverviewPage !== 'undefined' && !this.page.isOverviewPage(this.url)) {
-        con.info('Not an overview/sync page');
+        logger.info('Not an overview/sync page');
         return;
       }
       this.loadUI();
@@ -308,7 +310,7 @@ export class syncPage {
       this.curState = state;
       await this.searchObj.search();
 
-      con.log('Overview', state);
+      logger.m('Overview', 'green').log(state);
     }
 
     this.curState = state;
@@ -320,20 +322,20 @@ export class syncPage {
     )}`;
 
     if ((malUrl === null || !malUrl) && api.settings.get('localSync')) {
-      con.log('Local Fallback');
+      logger.log('Local Fallback');
       malUrl = localUrl;
     }
 
     if (malUrl === null) {
       j.$('#MalInfo').text(api.storage.lang('Not_Found'));
       j.$('#MalData').css('display', 'none');
-      con.log('Not on mal');
+      logger.log('Not on mal');
     } else if (!malUrl) {
       j.$('#MalInfo').text(api.storage.lang('NothingFound'));
       j.$('#MalData').css('display', 'none');
-      con.log('Nothing found');
+      logger.log('Nothing found');
     } else {
-      con.log('MyAnimeList', malUrl);
+      logger.log('MyAnimeList', malUrl);
       try {
         this.singleObj = getSingle(malUrl);
         await this.singleObj.update();
@@ -345,7 +347,7 @@ export class syncPage {
           });
           throw e;
         } else if (e.code === 904 && api.settings.get('localSync')) {
-          con.log('Local Fallback');
+          logger.log('Local Fallback');
           this.singleObj = getSingle(localUrl);
           await this.singleObj.update();
         } else {
@@ -359,10 +361,10 @@ export class syncPage {
       if (api.type === 'webextension') {
         try {
           chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(response) {
-            con.log('Presence registred', response);
+            logger.log('Presence registred', response);
           });
         } catch (e) {
-          con.error(e);
+          logger.error(e);
         }
       }
 
@@ -377,7 +379,7 @@ export class syncPage {
             api.settings.get('enablePages')[this.page.name]
           )
         ) {
-          con.info('Sync is disabled for this page', this.page.name);
+          logger.info('Sync is disabled for this page', this.page.name);
           return;
         }
 
@@ -396,7 +398,7 @@ export class syncPage {
           if (typeof state.volume !== 'undefined' && state.volume > this.singleObj.getVolume())
             this.singleObj.setVolume(state.volume);
 
-          con.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
+          logger.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
 
           if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
             setTimeout(() => {
@@ -436,9 +438,9 @@ export class syncPage {
                 sync();
               });
             // Debugging
-            con.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
+            logger.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
             if (typeof This.page.sync.nextEpUrl !== 'undefined') {
-              con.log('nextEp', This.page.sync.nextEpUrl(This.url));
+              logger.log('nextEp', This.page.sync.nextEpUrl(This.url));
             }
           }
 
@@ -453,7 +455,7 @@ export class syncPage {
             This.syncHandling(true);
           }
         } else {
-          con.log('Nothing to Sync');
+          logger.log('Nothing to Sync');
         }
       }
     }
@@ -670,7 +672,7 @@ export class syncPage {
     try {
       this.handleList(true);
     } catch (e) {
-      con.error(e);
+      logger.error(e);
     }
   }
 
@@ -681,7 +683,7 @@ export class syncPage {
       if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
         const { elementUrl } = this.page.overview.list;
-        con.log(
+        logger.log(
           'Episode List',
           j.$.map(epList, function(val, i) {
             if (typeof val !== 'undefined') {
@@ -701,7 +703,7 @@ export class syncPage {
           reTry < 10 &&
           typeof this.page.overview.list.paginationNext !== 'undefined'
         ) {
-          con.log('Pagination next');
+          logger.log('Pagination next');
           const This = this;
           if (this.page.overview.list.paginationNext(false)) {
             setTimeout(function() {
@@ -744,7 +746,7 @@ export class syncPage {
             j.$(el).addClass('mal-sync-active');
           }
         } catch (e) {
-          con.info(e);
+          logger.info(e);
         }
       });
     }
@@ -757,7 +759,7 @@ export class syncPage {
     if (!this.searchObj || this.searchObj.provider === 'user') return;
     for (let i = 0; i < epList.length; ++i) {
       if (typeof epList[i] !== 'undefined') {
-        con.log('Offset', i);
+        logger.log('Offset', i);
         if (i > 1) {
           const calcOffset = 1 - i;
           utils.flashConfirm(
@@ -1023,7 +1025,7 @@ export class syncPage {
         }
       }
     } catch (e) {
-      con.error(e);
+      logger.error(e);
     }
     sendResponse({});
   }

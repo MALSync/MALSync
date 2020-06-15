@@ -46,7 +46,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     return Function.prototype.bind.call(
       console.log,
       console,
-      `%cMAL-Sync-BG ${moduleText}`,
+      `%cMB ${moduleText}`,
       'background-color: #2e51a2; color: white; padding: 2px 10px; border-radius: 3px;',
       ...moduleStyle,
     );
@@ -56,7 +56,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     return Function.prototype.bind.call(
       console.error,
       console,
-      `%cMAL-Sync-BG ${moduleText}`,
+      `%cMB ${moduleText}`,
       'background-color: #8f0000; color: white; padding: 2px 10px; border-radius: 3px;',
       ...moduleStyle,
     );
@@ -66,7 +66,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     return Function.prototype.bind.call(
       console.info,
       console,
-      `%cMAL-Sync-BG ${moduleText}`,
+      `%cMB ${moduleText}`,
       'background-color: wheat; color: black; padding: 2px 10px; border-radius: 3px;',
       ...moduleStyle,
     );

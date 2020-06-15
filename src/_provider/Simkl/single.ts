@@ -3,6 +3,12 @@ import * as helper from './helper';
 import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, '#9b7400');
+    return this;
+  }
+
   private animeInfo: any;
 
   private episodeUpdate = false;
@@ -80,7 +86,7 @@ export class Single extends SingleAbstract {
   }
 
   _setVolume(volume) {
-    con.error('You cant set Volumes for animes');
+    this.logger.error('You cant set Volumes for animes');
   }
 
   _getTags() {
@@ -120,7 +126,7 @@ export class Single extends SingleAbstract {
       const el = await this.call('https://api.simkl.com/ratings', { simkl: this.ids.simkl }, true);
       return el.simkl.rating;
     } catch (e) {
-      con.error(e);
+      this.logger.error(e);
       return 'N/A';
     }
   }
@@ -144,7 +150,7 @@ export class Single extends SingleAbstract {
         throw e;
       })
       .then(async res => {
-        con.log(res);
+        this.logger.log(res);
 
         this.episodeUpdate = false;
         this.statusUpdate = false;
@@ -180,7 +186,7 @@ export class Single extends SingleAbstract {
             watched_episodes_count: 0,
             show: el,
           };
-          con.log('Add anime', this.animeInfo);
+          this.logger.log('Add anime', this.animeInfo);
         }
 
         if (Number.isNaN(this.ids.simkl)) {
@@ -203,7 +209,7 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    con.log(
+    this.logger.log(
       '[SET] Object:',
       this.animeInfo,
       'status',
@@ -234,7 +240,7 @@ export class Single extends SingleAbstract {
         false,
         'POST',
       );
-      con.log('Status response', response);
+      this.logger.log('Status response', response);
     }
 
     // Episode and memo
@@ -271,7 +277,7 @@ export class Single extends SingleAbstract {
             false,
             'POST',
           );
-          con.log('Episode response', response);
+          this.logger.log('Episode response', response);
         }
       } else {
         for (let i = this.minWatchedEp - 1; i > curEp; i -= 1) {
@@ -300,7 +306,7 @@ export class Single extends SingleAbstract {
           false,
           'POST',
         );
-        con.log('Episode remove response', response);
+        this.logger.log('Episode remove response', response);
       }
 
       this.minWatchedEp = curEp + 1;
@@ -324,7 +330,7 @@ export class Single extends SingleAbstract {
           false,
           'POST',
         );
-        con.log('Rating response', response);
+        this.logger.log('Rating response', response);
       } else {
         const response = await this.call(
           'https://api.simkl.com/sync/ratings/remove',
@@ -340,7 +346,7 @@ export class Single extends SingleAbstract {
           false,
           'POST',
         );
-        con.log('Rating remove response', response);
+        this.logger.log('Rating remove response', response);
       }
     }
 
@@ -361,7 +367,7 @@ export class Single extends SingleAbstract {
     }
 
     if (res && typeof res.error !== 'undefined') {
-      con.error('[SINGLE]', 'Error', res.error);
+      this.logger.error('[SINGLE]', 'Error', res.error);
       const { error } = res;
       if (error.code) {
         switch (error.code) {

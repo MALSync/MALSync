@@ -27,10 +27,13 @@ export class searchClass {
 
   protected state: searchResult | false = false;
 
+  protected logger;
+
   changed = false;
 
   constructor(protected title: string, protected type: 'anime' | 'manga' | 'novel', protected identifier: string) {
     this.sanitizedTitel = this.sanitizeTitel(this.title);
+    this.logger = con.m('search', 'red');
   }
 
   setPage(page) {
@@ -141,7 +144,7 @@ export class searchClass {
       await this.setCache(this.state);
     }
 
-    con.log('[SEARCH] Result', this.state);
+    this.logger.log('Result', this.state);
 
     return this.state;
   }
@@ -186,7 +189,7 @@ export class searchClass {
     try {
       result = searchCompare(result, await this.malSync());
     } catch (e) {
-      con.error('MALSync api down', e);
+      this.logger.error('MALSync api down', e);
       result = searchCompare(result, await this.firebase());
     }
 
@@ -201,7 +204,7 @@ export class searchClass {
     if (result && result.provider === 'firebase' && api.settings.get('syncMode') !== 'MAL' && !result.url) {
       const temp = await this.pageSearch();
       if (temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
-        con.log('[SEARCH] Ignore Firebase', result);
+        this.logger.log('Ignore Firebase', result);
         result = temp;
       }
     }
@@ -221,20 +224,22 @@ export class searchClass {
   public async firebase(): Promise<searchResult | false> {
     if (!this.page || !this.page.database) return false;
 
+    let logger = this.logger.m('Firebase');
+
     const url = `https://kissanimelist.firebaseio.com/Data2/${this.page.database}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),
     ).toLowerCase()}/Mal.json`;
-    con.log('Firebase', url);
+    logger.log(url);
     const response = await api.request.xhr('GET', url);
 
-    con.log('Firebase response', response.responseText);
+    logger.log('response', response.responseText);
     if (!response.responseText || response.responseText === 'null' || response.responseText.includes('error'))
       return false;
     let matches;
     try {
       matches = JSON.parse(response.responseText);
     } catch (e) {
-      con.info('firebase parse failed');
+      logger.info('Parse failed');
       return false;
     }
 
@@ -259,16 +264,18 @@ export class searchClass {
   }
 
   public async malSync(): Promise<searchResult | false> {
+    let logger = this.logger.m('API');
+
     if (!this.page) return false;
     const dbPl = this.page.database ? this.page.database : this.page.name;
     if (!dbPl) return false;
     const url = `https://api.malsync.moe/page/${dbPl}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),
     ).toLowerCase()}`;
-    con.log('malSync', url);
+    logger.log(url);
 
     const response = await api.request.xhr('GET', url);
-    con.log('malSync response', response);
+    logger.log('Response', response);
 
     if (response.status !== 400 && response.status !== 200) throw new Error('malsync offline');
 
@@ -290,11 +297,13 @@ export class searchClass {
   }
 
   public async malSearch(): Promise<searchResult | false> {
+    let logger = this.logger.m('MAL');
+
     let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(this.sanitizedTitel)}`;
     if (this.type === 'novel') {
       url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(this.sanitizedTitel)}`;
     }
-    con.log('malSearch', url);
+    logger.log(url);
 
     function handleResult(response, i = 1, This) {
       const link = getLink(response, i);
@@ -305,7 +314,7 @@ export class searchClass {
           if (This.type === 'manga') {
             const typeCheck = response.responseText.split(`href="${link}" id="si`)[1].split('</tr>')[0];
             if (typeCheck.indexOf('Novel') !== -1) {
-              con.log('Novel Found check next entry');
+              logger.log('Novel Found check next entry');
               return handleResult(response, i + 1, This);
             }
           }
@@ -314,7 +323,7 @@ export class searchClass {
           sim = searchClass.similarity(malTitel, This.sanitizedTitel);
           id = parseInt(link.split('/')[4]);
         } catch (e) {
-          con.error(e);
+          logger.error(e);
         }
       }
 
@@ -331,7 +340,7 @@ export class searchClass {
       try {
         return response.responseText.split('<a class="hoverinfo_trigger" href="')[i].split('"')[0];
       } catch (e) {
-        con.error(e);
+        logger.error(e);
         try {
           return response.responseText
             .split('class="picSurround')
@@ -339,7 +348,7 @@ export class searchClass {
             .split('href="')[1]
             .split('"')[0];
         } catch (e2) {
-          con.error(e2);
+          logger.error(e2);
           return false;
         }
       }
@@ -350,7 +359,7 @@ export class searchClass {
         const id = link.split('/')[4];
         return response.responseText.split(`rel="#sinfo${id}"><strong>`)[1].split('<')[0];
       } catch (e) {
-        con.error(e);
+        logger.error(e);
         return '';
       }
     }
@@ -395,6 +404,7 @@ export class searchClass {
   }
 
   public databaseRequest() {
+    let logger = this.logger.m('DB Request');
     if (this.page && this.page.database && this.syncPage && this.state) {
       if (this.state.cache) return;
       if (this.state.provider === 'user' && !this.changed) return;
@@ -412,7 +422,7 @@ export class searchClass {
           }
         } else {
           if (this.page.database === 'Crunchyroll') {
-            con.log('CR block');
+            logger.log('CR block');
             return;
           }
           kissurl = this.syncPage.url;
@@ -433,9 +443,9 @@ export class searchClass {
       const url = `https://kissanimelist.firebaseio.com/Data2/Request/${this.page.database}Request.json`;
       api.request.xhr('POST', { url, data: JSON.stringify(param) }).then(response => {
         if (response.responseText !== 'null' && !(response.responseText.indexOf('error') > -1)) {
-          con.log('[DB] Send to database:', param);
+          logger.log('Send to database:', param);
         } else {
-          con.error('[DB] Send to database:', response.responseText);
+          logger.error('Send to database:', response.responseText);
         }
       });
     }
@@ -452,7 +462,7 @@ export class searchClass {
         result = await this.page.sync.getMalUrl(api.settings.get('syncMode'));
       }
       if (result) {
-        con.log('[SEARCH]', 'Overwrite by onsite url', result);
+        this.logger.m('Onsite').log('[SEARCH]', 'Overwrite by onsite url', result);
         return {
           url: result,
           offset: 0,

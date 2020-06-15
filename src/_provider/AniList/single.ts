@@ -3,6 +3,12 @@ import * as helper from './helper';
 import { errorCode } from '../definitions';
 
 export class Single extends SingleAbstract {
+  constructor(protected url: string) {
+    super(url);
+    this.logger = con.m(this.shortName, '#3db4f2');
+    return this;
+  }
+
   private animeInfo: any;
 
   private displayUrl = '';
@@ -153,7 +159,7 @@ export class Single extends SingleAbstract {
         throw e;
       })
       .then(json => {
-        con.log('[SINGLE]', 'Data', json);
+        this.logger.log('[SINGLE]', 'Data', json);
 
         this.animeInfo = json.data.Media;
 
@@ -239,7 +245,7 @@ export class Single extends SingleAbstract {
         const res = JSON.parse(response.responseText);
 
         if (typeof res.errors !== 'undefined' && res.errors.length) {
-          con.error('[SINGLE]', 'Error', res.errors);
+          this.logger.error('[SINGLE]', 'Error', res.errors);
           const error = res.errors[0];
           switch (error.status) {
             case 400:
