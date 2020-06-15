@@ -36,7 +36,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
   const temp: any = {};
 
   temp.m = (name2, color2 = '') => {
-    return m(name2, color2, blocks);
+    return m(name2, color2, [...blocks]);
   };
 
   const moduleText = blocks.reduce((sum, el) => `${sum}%c${el.name}`, '');
