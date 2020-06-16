@@ -32,5 +32,101 @@ export function msToTime(milliseconds: number): timeElement {
 }
 
 export function shortTime(el: timeElement): timeElement {
-  return el;
+  if (el.y > 1) {
+    if (el.d > 182) {
+      return {
+        y: el.y + 1,
+        d: 0,
+        h: 0,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: el.y,
+      d: 0,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.y) {
+    return {
+      y: el.y,
+      d: el.d,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.d > 3) {
+    if (el.h > 11) {
+      return {
+        y: 0,
+        d: el.d + 1,
+        h: 0,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: 0,
+      d: el.d,
+      h: 0,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.d) {
+    return {
+      y: 0,
+      d: el.d,
+      h: el.h,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.h > 5) {
+    if (el.m > 29) {
+      return {
+        y: 0,
+        d: 0,
+        h: el.h + 1,
+        m: 0,
+        s: 0,
+      };
+    }
+    return {
+      y: 0,
+      d: 0,
+      h: el.h,
+      m: 0,
+      s: 0,
+    };
+  }
+  if (el.h) {
+    return {
+      y: 0,
+      d: 0,
+      h: el.h,
+      m: el.m,
+      s: 0,
+    };
+  }
+  if (el.m > 14) {
+    return {
+      y: 0,
+      d: 0,
+      h: 0,
+      m: el.m,
+      s: 0,
+    };
+  }
+  return {
+    y: 0,
+    d: 0,
+    h: 0,
+    m: el.m,
+    s: el.s,
+  };
 }

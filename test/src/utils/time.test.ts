@@ -173,7 +173,7 @@ describe('shortTime', function() {
       },
       result: {
         y: 0,
-        d: 5,
+        d: 4,
         h: 0,
         m: 0,
         s: 0,
