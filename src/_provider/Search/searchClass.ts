@@ -224,7 +224,7 @@ export class searchClass {
   public async firebase(): Promise<searchResult | false> {
     if (!this.page || !this.page.database) return false;
 
-    let logger = this.logger.m('Firebase');
+    const logger = this.logger.m('Firebase');
 
     const url = `https://kissanimelist.firebaseio.com/Data2/${this.page.database}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),
@@ -264,7 +264,7 @@ export class searchClass {
   }
 
   public async malSync(): Promise<searchResult | false> {
-    let logger = this.logger.m('API');
+    const logger = this.logger.m('API');
 
     if (!this.page) return false;
     const dbPl = this.page.database ? this.page.database : this.page.name;
@@ -297,7 +297,7 @@ export class searchClass {
   }
 
   public async malSearch(): Promise<searchResult | false> {
-    let logger = this.logger.m('MAL');
+    const logger = this.logger.m('MAL');
 
     let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(this.sanitizedTitel)}`;
     if (this.type === 'novel') {
@@ -404,7 +404,7 @@ export class searchClass {
   }
 
   public databaseRequest() {
-    let logger = this.logger.m('DB Request');
+    const logger = this.logger.m('DB Request');
     if (this.page && this.page.database && this.syncPage && this.state) {
       if (this.state.cache) return;
       if (this.state.provider === 'user' && !this.changed) return;

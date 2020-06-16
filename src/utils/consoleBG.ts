@@ -1,3 +1,5 @@
+/* eslint-disable no-bitwise */
+
 export const log = (function() {
   return Function.prototype.bind.call(
     console.log,
@@ -26,8 +28,10 @@ export const info = (function() {
 })();
 
 export const m = (name, color = '', blocks: { name: string; style: string }[] = []) => {
-  if (!color) color = '#2e51a2';
-  const style = `background-color: ${color}; color: white; padding: 2px 10px; border-radius: 3px; margin-left: -5px; border-left: 1px solid white;`;
+  let fontColor = 'white';
+  if (!color) color = stringToColour(name);
+  if (color[0] === '#') fontColor = getColorByBgColor(color);
+  const style = `background-color: ${color}; color: ${fontColor}; mix-blend-mode: difference; padding: 2px 10px; border-radius: 3px; margin-left: -5px; border-left: 1px solid white;`;
   blocks.push({
     name,
     style,
@@ -74,3 +78,20 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
 
   return temp;
 };
+
+function stringToColour(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  let colour = '#';
+  for (let i = 0; i < 3; i++) {
+    const value = (hash >> (i * 8)) & 0xff;
+    colour += `00${value.toString(16)}`.substr(-2);
+  }
+  return colour;
+}
+
+function getColorByBgColor(bgColor) {
+  return parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2 ? '#000' : '#fff';
+}
