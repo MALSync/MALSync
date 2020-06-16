@@ -166,3 +166,7 @@ export function timeToString(el: timeElement): string {
 
   return output.trim();
 }
+
+export function msDiffToShortTimeString(ms: number): string {
+  return timeToString(shortTime(msToTime(ms)));
+}

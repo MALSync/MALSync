@@ -384,5 +384,10 @@ describe('shortTime', function() {
     });
   });
 
+  it('msDiffToShortTimeString', function() {
+    const res = timeM.msDiffToShortTimeString((1000) + (60 * 1000) + (60 * 60 * 1000) + (24 * 60 * 60 * 1000) + (365 * 24 * 60 * 60 * 1000));
+    expect(res).equal('1 y 1 d');
+  })
+
 });
 
