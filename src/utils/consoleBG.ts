@@ -31,7 +31,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
   let fontColor = 'white';
   if (!color) color = stringToColour(name);
   if (color[0] === '#') fontColor = getColorByBgColor(color);
-  const style = `background-color: ${color}; color: ${fontColor}; mix-blend-mode: difference; padding: 2px 10px; border-radius: 3px; margin-left: -5px; border-left: 1px solid white;`;
+  const style = `background-color: ${color}; color: ${fontColor}; padding: 2px 10px; border-radius: 3px; margin-left: -5px; border-left: 1px solid white;`;
   blocks.push({
     name,
     style,
