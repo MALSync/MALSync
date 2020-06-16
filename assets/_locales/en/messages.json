@@ -319,6 +319,14 @@
       "message": "Credentials wrong",
       "description": "Credentials wrong"
     },
+    "bookmarksItem_Years": {
+      "message": "Years",
+      "description": "Years"
+    },
+    "bookmarksItem_Year": {
+      "message": "Year",
+      "description": "Year"
+    },
     "bookmarksItem_Days": {
       "message": "Days",
       "description": "Days"
@@ -338,6 +346,18 @@
     "bookmarksItem_mins": {
       "message": "mins",
       "description": "mins"
+    },
+    "bookmarksItem_min": {
+      "message": "min",
+      "description": "min"
+    },
+    "bookmarksItem_secs": {
+      "message": "seconds",
+      "description": "seconds"
+    },
+    "bookmarksItem_sec": {
+      "message": "second",
+      "description": "second"
     },
     "prediction_Episode":{
       "message": "Next episode estimated in $time$",

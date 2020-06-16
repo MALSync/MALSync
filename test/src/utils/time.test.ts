@@ -310,3 +310,79 @@ describe('shortTime', function() {
 
   });
 });
+
+describe('shortTime', function() {
+  before(function() {
+    global.api = {
+      storage: {
+        lang: function(key) {
+          const val = {
+            "bookmarksItem_Year": "y",
+            "bookmarksItem_Years": "ys",
+            "bookmarksItem_Day": "d",
+            "bookmarksItem_Days": "ds",
+            "bookmarksItem_Hour": "h",
+            "bookmarksItem_Hours": "hs",
+            "bookmarksItem_min": "m",
+            "bookmarksItem_mins": "ms",
+            "bookmarksItem_sec": "s",
+            "bookmarksItem_secs": "ss",
+          };
+          return val[key];
+        }
+      }
+    }
+  });
+
+  const times = [
+    {
+      input: {
+        y: 2,
+        d: 200,
+        h: 20,
+        m: 50,
+        s: 50,
+      },
+      result: '2 ys 200 ds 20 hs 50 ms 50 ss'
+    },
+    {
+      input: {
+        y: 1,
+        d: 1,
+        h: 1,
+        m: 1,
+        s: 1,
+      },
+      result: '1 y 1 d 1 h 1 m 1 s'
+    },
+    {
+      input: {
+        y: 0,
+        d: 10,
+        h: 0,
+        m: 23,
+        s: 10,
+      },
+      result: '10 ds 23 ms 10 ss'
+    },
+    {
+      input: {
+        y: 1,
+        d: 0,
+        h: 2,
+        m: 0,
+        s: 17,
+      },
+      result: '1 y 2 hs 17 ss'
+    },
+  ];
+
+  times.forEach(function(time) {
+    it(time.result, function() {
+      const res = timeM.timeToString(time.input);
+      expect(res).equal(time.result);
+    });
+  });
+
+});
+

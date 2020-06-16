@@ -130,3 +130,39 @@ export function shortTime(el: timeElement): timeElement {
     s: el.s,
   };
 }
+
+export function timeToString(el: timeElement): string {
+  let output = '';
+
+  if (el.y === 1) {
+    output += ` ${el.y} ${api.storage.lang('bookmarksItem_Year')}`;
+  } else if (el.y > 1) {
+    output += ` ${el.y} ${api.storage.lang('bookmarksItem_Years')}`;
+  }
+
+  if (el.d === 1) {
+    output += ` ${el.d} ${api.storage.lang('bookmarksItem_Day')}`;
+  } else if (el.d > 1) {
+    output += ` ${el.d} ${api.storage.lang('bookmarksItem_Days')}`;
+  }
+
+  if (el.h === 1) {
+    output += ` ${el.h} ${api.storage.lang('bookmarksItem_Hour')}`;
+  } else if (el.h > 1) {
+    output += ` ${el.h} ${api.storage.lang('bookmarksItem_Hours')}`;
+  }
+
+  if (el.m === 1) {
+    output += ` ${el.m} ${api.storage.lang('bookmarksItem_min')}`;
+  } else if (el.m > 1) {
+    output += ` ${el.m} ${api.storage.lang('bookmarksItem_mins')}`;
+  }
+
+  if (el.s === 1) {
+    output += ` ${el.s} ${api.storage.lang('bookmarksItem_sec')}`;
+  } else if (el.s > 1) {
+    output += ` ${el.s} ${api.storage.lang('bookmarksItem_secs')}`;
+  }
+
+  return output.trim();
+}
