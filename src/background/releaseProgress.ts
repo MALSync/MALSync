@@ -94,9 +94,9 @@ export async function single(el, type, logger = con.m('release')) {
 export function getProgress(res, mode = 'default') {
   if (mode === 'default') {
     if (res.en && res.en.sub && res.en.sub.top) {
-      let top = res.en.sub.top;
+      const top = res.en.sub.top;
       if (res.jp && res.jp.dub && res.jp.dub.top && res.jp.dub.top.predicition) {
-        if(!top.predicition && top.lastEp.total === res.jp.dub.top.lastEp.total) {
+        if (!top.predicition && top.lastEp.total === res.jp.dub.top.lastEp.total) {
           top.predicition = res.jp.dub.top.predicition;
           top.predicition.probability = 'medium';
         }

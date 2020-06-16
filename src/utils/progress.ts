@@ -12,7 +12,9 @@ export class Progress {
 
   // Progress
   protected async initReleaseProgress() {
-    const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${this.type}/${this.cacheKey}`);
+    const releaseItem: undefined | releaseItemInterface = await api.storage.get(
+      `release/${this.type}/${this.cacheKey}`,
+    );
 
     this.logger.m('Init Release').log(releaseItem);
     if (!releaseItem) return;
@@ -21,19 +23,19 @@ export class Progress {
   }
 
   protected getProgressCurrentEpisode() {
-    let re = this.releaseItem;
+    const re = this.releaseItem;
     if (re && re.value && re.value.lastEp && re.value.lastEp.total) return re.value.lastEp.total;
     return null;
   }
 
   protected isProgressFinished() {
-    let re = this.releaseItem;
+    const re = this.releaseItem;
     if (re && re.finished) return true;
     return false;
   }
 
   protected getProgressPrediction() {
-    let re = this.releaseItem;
+    const re = this.releaseItem;
     if (re && re.value && re.value.predicition && re.value.predicition.timestamp) return re.value.predicition.timestamp;
     return null;
   }
