@@ -393,6 +393,10 @@ describe('shortTime', function() {
     expect(res).equal('1 y 1 d');
   })
   describe('timestampToShortTime', function() {
+    it('0', function() {
+      const res = timeM.timestampToShortTime(0);
+      expect(res).equal('');
+    })
     it('Now', function() {
       const res = timeM.timestampToShortTime(Date.now() + 1000);
       expect(res).equal('n');

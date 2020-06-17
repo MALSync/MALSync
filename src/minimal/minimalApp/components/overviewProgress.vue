@@ -47,7 +47,7 @@
             </template>
 
             <template v-if="item.item.top.lastEp.timestamp">
-              ({{ releaseTime(item.item.top.lastEp.timestamp) }} ago)
+              ({{ releaseTime(item.item.top.lastEp.timestamp) }})
             </template>
             <template v-if="item.item.top.predicition">
               [next in
@@ -62,6 +62,7 @@
 
 <script type="text/javascript">
 import CountryFlag from './overviewProgressCountryFlag.vue';
+import { timestampToShortTime } from '../../../utils/time';
 
 export default {
   components: {
@@ -129,8 +130,7 @@ export default {
   },
   methods: {
     releaseTime(ms) {
-      const diff = Date.now() - ms;
-      return utils.timeDiffToText(Math.abs(diff));
+      return timestampToShortTime(ms);
     },
     correctFlag(flag) {
       switch (flag.toLowerCase()) {

@@ -1,4 +1,5 @@
 import { releaseItemInterface } from '../background/releaseProgress';
+import { timestampToShortTime } from './time';
 
 export class Progress {
   protected logger;
@@ -54,7 +55,11 @@ export class Progress {
     return this.isProgressFinished();
   }
 
-  getPrediction(): number {
+  getPredictionTimestamp(): number {
     return this.getProgressPrediction();
+  }
+
+  getPrediction(): string {
+    return timestampToShortTime(this.getPredictionTimestamp());
   }
 }
