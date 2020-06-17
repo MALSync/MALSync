@@ -359,6 +359,20 @@
       "message": "second",
       "description": "second"
     },
+    "bookmarksItem_now": {
+      "message": "Now",
+      "description": "Now"
+    },
+    "bookmarksItem_ago":{
+      "message": "$time$ ago",
+      "description": "Text for time in the past",
+      "placeholders": {
+        "time": {
+          "content": "$1",
+          "example": "2 days 1 hour"
+        }
+      }
+    },
     "prediction_Episode":{
       "message": "Next episode estimated in $time$",
       "description": "Text for next episode estimation",

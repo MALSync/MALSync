@@ -315,7 +315,10 @@ describe('shortTime', function() {
   before(function() {
     global.api = {
       storage: {
-        lang: function(key) {
+        lang: function(key, array) {
+          if(key === 'bookmarksItem_ago') {
+            return array[0] + ' ago';
+          }
           const val = {
             "bookmarksItem_Year": "y",
             "bookmarksItem_Years": "ys",
@@ -327,6 +330,7 @@ describe('shortTime', function() {
             "bookmarksItem_mins": "ms",
             "bookmarksItem_sec": "s",
             "bookmarksItem_secs": "ss",
+            "bookmarksItem_now": "n",
           };
           return val[key];
         }
@@ -388,6 +392,33 @@ describe('shortTime', function() {
     const res = timeM.msDiffToShortTimeString((1000) + (60 * 1000) + (60 * 60 * 1000) + (24 * 60 * 60 * 1000) + (365 * 24 * 60 * 60 * 1000));
     expect(res).equal('1 y 1 d');
   })
+  describe('timestampToShortTime', function() {
+    it('Now', function() {
+      const res = timeM.timestampToShortTime(Date.now() + 1000);
+      expect(res).equal('n');
+    })
+    it('Now past', function() {
+      const res = timeM.timestampToShortTime(Date.now() - 1000);
+      expect(res).equal('n');
+    })
+    it('+2d', function() {
+      const res = timeM.timestampToShortTime(Date.now() + (2 * 24 * 61 * 60 * 1000));
+      expect(res).equal('2 ds');
+    })
+    it('-2d', function() {
+      const res = timeM.timestampToShortTime(Date.now() - (2 * 24 * 61 * 60 * 1000));
+      expect(res).equal('2 ds ago');
+    })
+    it('+1y', function() {
+      const res = timeM.timestampToShortTime(Date.now() + (365 * 24 * 60 * 60 * 1000));
+      expect(res).equal('1 y');
+    })
+    it('-1y', function() {
+      const res = timeM.timestampToShortTime(Date.now() - (365 * 24 * 60 * 60 * 1000));
+      expect(res).equal('1 y ago');
+    })
+  });
+
 
 });
 
