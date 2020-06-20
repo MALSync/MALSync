@@ -3,17 +3,6 @@
   "url": "https://animixplay.com/",
   "testCases": [
     {
-      "url": "https://animixplay.com/v1/kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2/ep5",
-      "expected": {
-        "sync": true,
-        "title": "Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen 2",
-        "identifier": "kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2",
-        "overviewUrl": "https://animixplay.com/v1/kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2",
-        "episode": 5,
-        "uiSelector": true
-      }
-    },
-    {
       "url": "https://animixplay.com/v2/2518/kami-no-tou/ep12",
       "expected": {
         "sync": true,
