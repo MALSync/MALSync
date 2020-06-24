@@ -23,6 +23,17 @@
         "episode": 5,
         "uiSelector": true
       }
+    },
+    {
+      "url": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep7",
+      "expected": {
+        "sync": true,
+        "title": "Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen 2nd Season",
+        "identifier": "4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
+        "overviewUrl": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
+        "episode": 7,
+        "uiSelector": true
+      }
     }
   ]
 }
