@@ -330,4 +330,7 @@ module.exports = {
   AnimeId: {
     match: ['*://www.animeid.tv/*'],
   },
+  MyAnimeListVideo: {
+    match: ['*://myanimelist.net/anime/*/*/episode/*'],
+  },
 };
