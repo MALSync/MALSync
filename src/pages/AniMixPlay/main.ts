@@ -56,7 +56,7 @@ export const AniMixPlay: pageInterface = {
         return `${url}/ep${episode}`;
       },
       elementEp(selector) {
-        return episode;
+        return selector.text().replace(/\D+/g, '');
       },
     },
   },
