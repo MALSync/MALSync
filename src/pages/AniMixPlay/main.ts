@@ -51,7 +51,7 @@ export const AniMixPlay: pageInterface = {
         const url = window.location.href;
 
         if (regex.test(url)) {
-          return url.replace(regex, `ep${episode}`);
+          return url.replace(regex, `/ep${episode}`);
         }
         return `${url}/ep${episode}`;
       },
