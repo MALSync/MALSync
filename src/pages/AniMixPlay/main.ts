@@ -29,6 +29,16 @@ export const AniMixPlay: pageInterface = {
     uiSelector(selector) {
       selector.insertAfter(j.$('span.animetitle').first());
     },
+    nextEpUrl(url) {
+      const nextEpisodeButton = j
+        .$('#epslistplace > button:disabled')
+        .last()
+        .next();
+      if (nextEpisodeButton && nextEpisodeButton.length) {
+        return AniMixPlay.overview!.list!.elementUrl(nextEpisodeButton);
+      }
+      return '';
+    },
   },
   overview: {
     getTitle(url) {
