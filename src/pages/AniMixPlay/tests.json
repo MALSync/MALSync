@@ -10,7 +10,10 @@
         "identifier": "2518",
         "overviewUrl": "https://animixplay.com/v2/2518/kami-no-tou",
         "episode": 12,
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "7": "https://animixplay.com/v2/2518/kami-no-tou/ep7"
+        }
       }
     },
     {
@@ -21,7 +24,10 @@
         "identifier": "yesterday-wo-utatte-900312",
         "overviewUrl": "https://animixplay.com/v3/yesterday-wo-utatte-900312",
         "episode": 5,
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "7": "https://animixplay.com/v3/yesterday-wo-utatte-900312/ep7"
+        }
       }
     },
     {
@@ -32,7 +38,10 @@
         "identifier": "4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
         "overviewUrl": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
         "episode": 7,
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "9": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep9"
+        }
       }
     }
   ]
