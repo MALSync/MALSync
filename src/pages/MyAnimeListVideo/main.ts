@@ -21,7 +21,7 @@ export const MyAnimeListVideo: pageInterface = {
       return parseInt(utils.urlPart(url, 7));
     },
     getMalUrl(provider) {
-      return 'https://myanimelist.net/anime/' + window.location.href.split('/')[4];
+      return `https://myanimelist.net/anime/${window.location.href.split('/')[4]}`;
     },
   },
   init(page) {
