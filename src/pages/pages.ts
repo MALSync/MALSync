@@ -71,6 +71,7 @@ import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
 import { AnimeId } from './AnimeId/main';
+import { MangaHere } from './MangaHere/main';
 
 export const pages = {
   Kissanime,
@@ -146,4 +147,5 @@ export const pages = {
   AnimeStreamingFR,
   Scantrad,
   AnimeId,
+  MangaHere,
 };

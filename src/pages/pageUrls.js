@@ -330,4 +330,7 @@ module.exports = {
   AnimeId: {
     match: ['*://www.animeid.tv/*'],
   },
+  MangaHere: {
+    match: ['*://*.mangahere.cc/manga/*'],
+  },
 };
