@@ -41,7 +41,7 @@ export const MangaHere: pageInterface = {
       return NaN;
     },
     nextEpUrl(url) {
-      const href = j.$('div.pager-list-left > a:nth-child(3)').attr('href');
+      const href = j.$('div.pager-list-left > a:contains("Next Chapter")').attr('href');
       if (href) return utils.absoluteLink(href, MangaHere.domain);
       return '';
     },
