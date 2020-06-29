@@ -68,14 +68,9 @@ import { getList } from '../../_provider/listFactory';
 
 let interva;
 export default {
-  props: {
-    listType: {
-      type: String,
-      default: 'anime',
-    },
-  },
   data() {
     return {
+      listType: 'anime',
       items: [],
       history: [],
     };
