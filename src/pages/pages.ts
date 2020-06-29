@@ -72,6 +72,7 @@ import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
 import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
+import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 
 export const pages = {
   Kissanime,
@@ -148,4 +149,5 @@ export const pages = {
   Scantrad,
   AnimeId,
   AniMixPlay,
+  MyAnimeListVideo,
 };

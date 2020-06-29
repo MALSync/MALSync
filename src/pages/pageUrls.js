@@ -333,4 +333,7 @@ module.exports = {
   AniMixPlay: {
     match: ['*://animixplay.com/v*'],
   },
+  MyAnimeListVideo: {
+    match: ['*://myanimelist.net/anime/*/*/episode/*'],
+  },
 };

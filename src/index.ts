@@ -14,6 +14,9 @@ function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
     const mal = new myanimelistClass(window.location.href);
     mal.init();
+    if (window.location.href.indexOf('episode') > -1) {
+      runPage();
+    }
   } else if (window.location.href.indexOf('anilist.co') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const anilist = new anilistClass(window.location.href);
@@ -24,25 +27,7 @@ function main() {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new simklClass(window.location.href);
   } else {
-    try {
-      if (inIframe()) throw 'iframe';
-      page = new syncPage(window.location.href, pages);
-    } catch (e) {
-      con.info(e);
-      iframe();
-      return;
-    }
-    page.init();
-    api.storage.set('iframePlayer', 'null');
-    setInterval(async function() {
-      const item = await api.storage.get('iframePlayer');
-      if (typeof item !== 'undefined' && item !== 'null') {
-        page.setVideoTime(item, function(time) {
-          /* Do nothing */
-        });
-        api.storage.set('iframePlayer', 'null');
-      }
-    }, 2000);
+    runPage();
   }
   firebaseNotification();
 
@@ -69,6 +54,28 @@ api.settings.init().then(() => {
   main();
   scheduler();
 });
+
+function runPage() {
+  try {
+    if (inIframe()) throw 'iframe';
+    page = new syncPage(window.location.href, pages);
+  } catch (e) {
+    con.info(e);
+    iframe();
+    return;
+  }
+  page.init();
+  api.storage.set('iframePlayer', 'null');
+  setInterval(async function() {
+    const item = await api.storage.get('iframePlayer');
+    if (typeof item !== 'undefined' && item !== 'null') {
+      page.setVideoTime(item, function(time) {
+        /* Do nothing */
+      });
+      api.storage.set('iframePlayer', 'null');
+    }
+  }, 2000);
+}
 
 async function scheduler() {
   const schedule = await api.storage.get('timestampUpdate/release');
