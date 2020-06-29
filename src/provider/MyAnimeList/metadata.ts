@@ -21,7 +21,9 @@ export class metadata implements metadataInterface {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return title;
+    return $('<div>')
+      .html(title)
+      .text();
   }
 
   getDescription() {

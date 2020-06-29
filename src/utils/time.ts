@@ -172,7 +172,7 @@ export function msDiffToShortTimeString(ms: number): string {
 }
 
 export function timestampToShortTime(tm: number): string {
-  if(!tm) return '';
+  if (!tm) return '';
   const curTime = Date.now();
   let diff;
   let future;
