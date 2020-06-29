@@ -62,7 +62,7 @@ export const MangaHere: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#list-1 > ul.detail-main-list > li');
+        return j.$('ul.detail-main-list > li');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
