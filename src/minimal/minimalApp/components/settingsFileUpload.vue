@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       button: true,
-    }
+    };
   },
   methods: {
     type() {

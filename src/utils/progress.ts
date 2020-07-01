@@ -62,4 +62,32 @@ export class Progress {
   getPrediction(): string {
     return timestampToShortTime(this.getPredictionTimestamp());
   }
+
+  getBars(curEp, totalEp): { totalWidth: number; epWidth: number; predWidth: number } {
+    const predEp = this.getCurrentEpisode();
+    const res = {
+      totalWidth: 100,
+      epWidth: 0,
+      predWidth: 0,
+    };
+    if (!totalEp) {
+      res.totalWidth = 0;
+      if (curEp && (!predEp || curEp >= predEp)) {
+        totalEp = Math.ceil(curEp * 1.2);
+      } else if (predEp && (!curEp || curEp < predEp)) {
+        totalEp = Math.ceil(predEp * 1.2);
+      } else {
+        return res;
+      }
+    }
+    if (curEp) {
+      res.epWidth = (curEp / totalEp) * 100;
+      if (res.epWidth > 100) res.epWidth = 100;
+    }
+    if (predEp) {
+      res.predWidth = (predEp / totalEp) * 100;
+      if (res.predWidth > 100) res.predWidth = 100;
+    }
+    return res;
+  }
 }
