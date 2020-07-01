@@ -27,6 +27,15 @@ export const info = (function() {
   );
 })();
 
+export const debug = (function() {
+  return Function.prototype.bind.call(
+    console.debug,
+    console,
+    '%cMAL-Sync-BG',
+    'background-color: steelblue; color: black; padding: 2px 10px; border-radius: 3px;',
+  );
+})();
+
 export const m = (name, color = '', blocks: { name: string; style: string }[] = []) => {
   let fontColor = 'white';
   if (!color) color = stringToColour(name);
@@ -72,6 +81,16 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
       console,
       `%cMB ${moduleText}`,
       'background-color: wheat; color: black; padding: 2px 10px; border-radius: 3px;',
+      ...moduleStyle,
+    );
+  })();
+
+  temp.debug = (function() {
+    return Function.prototype.bind.call(
+      console.debug,
+      console,
+      `%cMB ${moduleText}`,
+      'background-color: steelblue; color: black; padding: 2px 10px; border-radius: 3px;',
       ...moduleStyle,
     );
   })();

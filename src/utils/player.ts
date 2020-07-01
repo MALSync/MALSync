@@ -1,5 +1,7 @@
 let inter;
 
+const logger = con.m('Player');
+
 export function getPlayerTime(callback) {
   clearInterval(inter);
   inter = setInterval(function() {
@@ -16,7 +18,7 @@ export function getPlayerTime(callback) {
           duration,
           paused,
         };
-        con.info(window.location.href, item);
+        logger.debug(window.location.href, item);
         callback(item, player);
         playerExtras(item, player);
         break;
@@ -31,7 +33,7 @@ function playerExtras(item, player) {
   const tempVideoIdentifier = player.currentSrc;
   if (item.current > 1 && videoIdentifier !== tempVideoIdentifier) {
     videoIdentifier = tempVideoIdentifier;
-    con.info('New player detected');
+    logger.log('New player detected', player.currentSrc);
 
     setFullscreen(player);
   }
