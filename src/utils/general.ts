@@ -829,6 +829,9 @@ function initflashm() {
                  .mini-stealth .flashinfo{
                     opacity: 0;
                  }
+                  #flashinfo-div.hover.mini-stealth .flashinfo.type-update{
+                    opacity: 0.7;
+                 }
                  #flashinfo-div.hover .flashinfo{
                     opacity: 1;
                  }
