@@ -59,6 +59,10 @@ export abstract class MetaOverviewAbstract {
     related: [],
   };
 
+  getMeta() {
+    return this.meta;
+  }
+
   protected errorObj(code: definitions.errorCode, message): definitions.error {
     return {
       code,
