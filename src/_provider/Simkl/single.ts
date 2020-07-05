@@ -361,30 +361,7 @@ export class Single extends SingleAbstract {
 
   protected call = helper.call;
 
-  errorHandling(res, code) {
-    if ((code > 499 && code < 600) || code === 0) {
-      throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${code}`);
-    }
-
-    if (res && typeof res.error !== 'undefined') {
-      this.logger.error('[SINGLE]', 'Error', res.error);
-      const { error } = res;
-      if (error.code) {
-        switch (error.code) {
-          default:
-            throw this.errorObj(error.code, error.error);
-        }
-      } else {
-        switch (error) {
-          case 'user_token_failed':
-            throw this.errorObj(errorCode.NotAutenticated, 'user_token_failed');
-            break;
-          default:
-            throw error;
-        }
-      }
-    }
-  }
+  protected errorHandling = helper.errorHandling;
 
   jsonParse(response) {
     if (response.responseText === '') {
