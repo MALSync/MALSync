@@ -38,7 +38,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private async getData() {
-    return api.request.xhr('GET', 'https://myanimelist.net/'+this.type+'/'+this.malId).then(response => {
+    return api.request.xhr('GET', `https://myanimelist.net/${this.type}/${this.malId}`).then(response => {
       return response.responseText;
     });
   }
@@ -131,7 +131,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    this.meta.characters = charArray
+    this.meta.characters = charArray;
   }
 
   private statistics(data) {
@@ -307,5 +307,4 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
     this.meta.related = el;
   }
-
 }
