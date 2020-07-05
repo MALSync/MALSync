@@ -375,10 +375,7 @@
 
 <script type="text/javascript">
 import { getSingle } from '../../_provider/singleFactory';
-import { metadata as malMeta } from '../../provider/MyAnimeList/metadata';
-import { metadata as aniMeta } from '../../provider/AniList/metadata';
-import { metadata as kitsuMeta } from '../../provider/Kitsu/metadata';
-import { metadata as simklMeta } from '../../provider/Simkl/metadata';
+import { getOverview } from '../../_provider/metaDataFactory';
 
 import progressP from './components/overviewProgress.vue';
 
@@ -473,7 +470,7 @@ export default {
     statistics() {
       let stats = {};
       try {
-        stats = this.metaObj.getStatistics();
+        stats = this.metaObj.statistics;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -488,7 +485,7 @@ export default {
     image() {
       let image = '';
       try {
-        image = this.metaObj.getImage();
+        image = this.metaObj.image;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -504,7 +501,7 @@ export default {
     title() {
       let title = '';
       try {
-        title = this.metaObj.getTitle();
+        title = this.metaObj.title;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -518,7 +515,7 @@ export default {
     description() {
       let description = '';
       try {
-        description = this.metaObj.getDescription();
+        description = this.metaObj.description;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -527,7 +524,7 @@ export default {
     altTitle() {
       let altTitle = {};
       try {
-        altTitle = this.metaObj.getAltTitle();
+        altTitle = this.metaObj.alternativeTitle;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -582,7 +579,7 @@ export default {
     characters() {
       let char = {};
       try {
-        char = this.metaObj.getCharacters();
+        char = this.metaObj.characters;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -591,7 +588,7 @@ export default {
     info() {
       let info = {};
       try {
-        info = this.metaObj.getInfo();
+        info = this.metaObj.info;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -600,7 +597,7 @@ export default {
     openingSongs() {
       let opening = {};
       try {
-        opening = this.metaObj.getOpeningSongs();
+        opening = this.metaObj.openingSongs;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -609,7 +606,7 @@ export default {
     endingSongs() {
       let ending = {};
       try {
-        ending = this.metaObj.getEndingSongs();
+        ending = this.metaObj.endingSongs;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }
@@ -644,19 +641,8 @@ export default {
       //
 
       try {
-        if (/^local:\/\//i.test(renderObj.url)) {
-          this.metaObj = {};
-        } else if (syncMode === 'ANILIST') {
-          this.metaObj = await new aniMeta(renderObj.url).init();
-        } else if (syncMode === 'KITSU') {
-          this.metaObj = await new kitsuMeta(renderObj.url).init();
-        } else if (syncMode === 'SIMKL') {
-          this.metaObj = await new simklMeta(renderObj.url).init();
-        } else if (renderObj.getMalUrl() !== null) {
-          this.metaObj = await new malMeta(renderObj.getMalUrl()).init();
-        } else {
-          // placeholder
-        }
+        const ov = await getOverview(renderObj.url, renderObj.getType()).init();
+        this.metaObj = ov.getMeta();
       } catch (e) {
         con.error('Could not retrive metadata', e);
         this.error = e;
@@ -732,7 +718,7 @@ export default {
     getRelated() {
       let related = {};
       try {
-        related = this.metaObj.getRelated();
+        related = this.metaObj.related;
       } catch (e) {
         console.log('[iframeOverview] Error:', e);
       }

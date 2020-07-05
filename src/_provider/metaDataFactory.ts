@@ -5,7 +5,7 @@ import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
 
-export function getOverview(url, type) {
+export function getOverview(url, type, syncMode = '') {
   if (!syncMode) {
     syncMode = helper.getSyncMode(type);
   }
