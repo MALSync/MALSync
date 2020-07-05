@@ -1,3 +1,5 @@
+import { status, errorCode } from '../definitions';
+
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
     current: 1,
@@ -45,4 +47,52 @@ export function getCacheKey(id, kitsuId) {
     return `kitsu:${kitsuId}`;
   }
   return id;
+}
+
+export function malToKitsu(malid: number, type: 'anime' | 'manga') {
+  return this.apiCall(
+    'GET',
+    `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
+    {},
+    false
+  )
+}
+
+export function apiCall(mode, url, variables = {}, authentication = true) {
+  const headers: any = {
+    'Content-Type': 'application/vnd.api+json',
+    Accept: 'application/vnd.api+json',
+  };
+  if (authentication) headers.Authorization = `Bearer ${api.settings.get('kitsuToken')}`;
+  return api.request
+    .xhr(mode, {
+      url,
+      headers,
+      data: JSON.stringify(variables),
+    })
+    .then(response => {
+      if ((response.status > 499 && response.status < 600) || response.status === 0) {
+        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
+      }
+
+      const res = JSON.parse(response.responseText);
+
+      if (typeof res.errors !== 'undefined' && res.errors.length) {
+        this.logger.error('[SINGLE]', 'Error', res.errors);
+        const error = res.errors[0];
+        switch (parseInt(error.status)) {
+          case 401:
+          case 403:
+            throw this.errorObj(errorCode.NotAutenticated, error.detail);
+            break;
+          case 404:
+            throw this.errorObj(errorCode.EntryNotFound, error.detail);
+            break;
+          default:
+            throw this.errorObj(error.status, error.detail);
+        }
+      }
+
+      return res;
+    });
 }
