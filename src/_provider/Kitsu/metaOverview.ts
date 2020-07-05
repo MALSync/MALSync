@@ -26,7 +26,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private kitsuSlug: string;
 
-  private kitsuId: number = NaN;
+  private kitsuId = NaN;
 
   private readonly malId: number;
 
@@ -60,10 +60,10 @@ export class MetaOverview extends MetaOverviewAbstract {
       try {
         this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
         kitsuRes.included.forEach(el => {
-          if(el.id === this.kitsuId) {
+          if (el.id === this.kitsuId) {
             this.kitsuSlug = el.attributes.slug;
           }
-        })
+        });
         if (!this.kitsuSlug) throw 'No slug';
       } catch (e) {
         throw this.errorObj(errorCode.EntryNotFound, e.message);
@@ -74,9 +74,8 @@ export class MetaOverview extends MetaOverviewAbstract {
       'GET',
       `https://kitsu.io/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&`,
       {},
-      false
+      false,
     ).then(res => {
-
       try {
         res.data = res.data[0];
         // eslint-disable-next-line no-unused-expressions
@@ -95,10 +94,9 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private description() {
     this.meta.description = `<span style="white-space: pre-line;">${this.animeI().attributes.synopsis.replace(
-        '—',
-        ' ',
-      )}</span>`;
-
+      '—',
+      ' ',
+    )}</span>`;
   }
 
   private image() {
@@ -122,7 +120,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private characters() {
-    this.animeInfo.included.forEach((i) => {
+    this.animeInfo.included.forEach(i => {
       if (i.type === 'characters' && this.meta.characters.length < 10) {
         let { name } = i.attributes;
         if (typeof i.attributes.malId !== 'undefined' && i.attributes.malId !== null && i.attributes.malId) {
@@ -175,10 +173,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (
-      typeof this.animeI().attributes.episodeCount !== 'undefined' &&
-      this.animeI().attributes.episodeCount !== null
-    )
+    if (typeof this.animeI().attributes.episodeCount !== 'undefined' && this.animeI().attributes.episodeCount !== null)
       this.meta.info.push({
         title: 'Episodes:',
         body: this.animeI().attributes.episodeCount,
@@ -245,36 +240,36 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private related() {
     const links: any = {};
-      const an: any[] = [];
-      this.animeInfo.included.forEach(function(i) {
-        if (i.type === 'manga' || i.type === 'anime') {
-          an[i.id] = {
-            url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
-            title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
-            statusTag: '',
+    const an: any[] = [];
+    this.animeInfo.included.forEach(function(i) {
+      if (i.type === 'manga' || i.type === 'anime') {
+        an[i.id] = {
+          url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
+          title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
+          statusTag: '',
+        };
+      }
+    });
+
+    this.animeInfo.included.forEach(function(i) {
+      if (i.type === 'mediaRelationships') {
+        if (typeof links[i.attributes.role] === 'undefined') {
+          let title = i.attributes.role.toLowerCase().replace('_', ' ');
+          title = title.charAt(0).toUpperCase() + title.slice(1);
+
+          links[i.attributes.role] = {
+            type: title,
+            links: [],
           };
         }
-      });
-
-      this.animeInfo.included.forEach(function(i) {
-        if (i.type === 'mediaRelationships') {
-          if (typeof links[i.attributes.role] === 'undefined') {
-            let title = i.attributes.role.toLowerCase().replace('_', ' ');
-            title = title.charAt(0).toUpperCase() + title.slice(1);
-
-            links[i.attributes.role] = {
-              type: title,
-              links: [],
-            };
-          }
-          const tempEl = an[i.relationships.destination.data.id];
-          links[i.attributes.role].links.push(tempEl);
-        }
-      });
-      this.meta.related = Object.keys(links).map(key => links[key]);
-
+        const tempEl = an[i.relationships.destination.data.id];
+        links[i.attributes.role].links.push(tempEl);
+      }
+    });
+    this.meta.related = Object.keys(links).map(key => links[key]);
   }
 
   protected apiCall = helper.apiCall;
+
   protected malToKitsu = helper.malToKitsu;
 }

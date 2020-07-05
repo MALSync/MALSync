@@ -1,4 +1,4 @@
-import { status, errorCode } from '../definitions';
+import { errorCode } from '../definitions';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -54,8 +54,8 @@ export function malToKitsu(malid: number, type: 'anime' | 'manga') {
     'GET',
     `https://kitsu.io/api/edge/mappings?filter[externalSite]=myanimelist/${type}&filter[externalId]=${malid}&include=item&fields[item]=id`,
     {},
-    false
-  )
+    false,
+  );
 }
 
 export function apiCall(mode, url, variables = {}, authentication = true) {
