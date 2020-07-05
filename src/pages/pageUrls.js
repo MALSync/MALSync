@@ -333,4 +333,7 @@ module.exports = {
   MangaHere: {
     match: ['*://*.mangahere.cc/manga/*'],
   },
+  MangaFox: {
+    match: ['*://*.fanfox.net/manga/*', '*://*.mangafox.la/manga/*'],
+  },
 };
