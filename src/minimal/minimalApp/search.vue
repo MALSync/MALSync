@@ -35,7 +35,7 @@
 </template>
 
 <script type="text/javascript">
-import { search } from '../../provider/provider';
+import { search } from '../../_provider/searchFactory';
 
 export default {
   components: {},

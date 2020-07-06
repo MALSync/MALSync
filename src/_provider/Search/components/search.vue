@@ -45,7 +45,7 @@
 </template>
 
 <script type="text/javascript">
-import { search } from '../../../provider/provider';
+import { search } from '../../searchFactory';
 
 let searchTimeout;
 export default {

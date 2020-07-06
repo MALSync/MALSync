@@ -4,7 +4,7 @@
 
 import { compareTwoStrings } from 'string-similarity';
 
-import { search as pageSearch } from '../../provider/provider';
+import { search as pageSearch } from '../searchFactory';
 
 interface searchResult {
   id?: number;

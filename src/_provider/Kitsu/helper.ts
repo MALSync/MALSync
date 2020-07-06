@@ -58,6 +58,23 @@ export function malToKitsu(malid: number, type: 'anime' | 'manga') {
   );
 }
 
+export function kitsuToMal(kitsuId: number, type: 'anime' | 'manga') {
+  return api.request
+    .xhr('GET', {
+      url: `https://kitsu.io/api/edge/${type}/${kitsuId}/mappings?filter[externalSite]=myanimelist/${type}`,
+      headers: {
+        'Content-Type': 'application/vnd.api+json',
+        Accept: 'application/vnd.api+json',
+      },
+    })
+    .then(response => {
+      const res = JSON.parse(response.responseText);
+      con.log('[KtoM]', res);
+      if (typeof res.data === 'undefined' || !res.data.length) return null;
+      return res.data[0].attributes.externalId;
+    });
+}
+
 export function apiCall(mode, url, variables = {}, authentication = true) {
   const headers: any = {
     'Content-Type': 'application/vnd.api+json',
