@@ -10,6 +10,12 @@ export const manga4life: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'manga') {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return utils.getBaseText($('div.MainContainer > div.container > div.row > div.Column > a').first()).trim();
@@ -48,10 +54,22 @@ export const manga4life: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'read-online' || page.url.split('/')[3] === 'manga') {
-        page.handlePage();
-      }
+      utils.waitUntilTrue(
+        function() {
+          if (manga4life.isSyncPage(page.url)) {
+            return manga4life.sync.getTitle(page.url) && manga4life.sync.getEpisode(page.url);
+          }
+          if (manga4life.isOverviewPage!(page.url)) {
+            return manga4life.overview!.getTitle(page.url);
+          }
+          return false;
+        },
+        function() {
+          page.handlePage();
+        },
+      );
     });
   },
 };
