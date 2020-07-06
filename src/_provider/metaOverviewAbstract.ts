@@ -1,4 +1,5 @@
 import * as definitions from './definitions';
+import { Cache } from '../utils/Cache';
 
 export interface Overview {
   title: string;
@@ -37,8 +38,21 @@ export abstract class MetaOverviewAbstract {
 
   protected abstract readonly type: 'anime' | 'manga';
 
+  private run = false;
+
   async init() {
+    if (this.run) return this;
+
+    if (await this.getCache().hasValueAndIsNotEmpty()) {
+      this.logger.log('Cached');
+      this.meta = await this.getCache().getValue();
+      this.run = true;
+      return this;
+    }
+
     await this._init();
+    this.run = true;
+    this.getCache().setValue(this.getMeta());
     return this;
   }
 
@@ -61,6 +75,14 @@ export abstract class MetaOverviewAbstract {
 
   getMeta() {
     return this.meta;
+  }
+
+  cacheObj: any = undefined;
+
+  getCache() {
+    if (this.cacheObj) return this.cacheObj;
+    this.cacheObj = new Cache(this.url, 5 * 24 * 60 * 60 * 1000);
+    return this.cacheObj;
   }
 
   protected errorObj(code: definitions.errorCode, message): definitions.error {
