@@ -12,6 +12,12 @@ function setGlobals() {
     return global.con;
   };
   global.utils = utils;
+  global.localStorage = {
+    getItem: function(key) {
+      return null;
+    },
+    setItem: function(key,value) {}
+  }
   global.api = {
     token: process.env.SIMKL_API_KEY,
     noManga: true,

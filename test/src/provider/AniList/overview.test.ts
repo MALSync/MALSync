@@ -13,6 +13,12 @@ function setGlobals() {
     return global.con;
   };
   global.utils = utils;
+  global.localStorage = {
+    getItem: function(key) {
+      return null;
+    },
+    setItem: function(key,value) {}
+  }
   global.api = {
       request: {
         async xhr(post, conf, data) {
