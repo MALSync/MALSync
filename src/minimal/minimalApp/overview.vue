@@ -633,6 +633,8 @@ export default {
 
       if (renderObj === null) return;
 
+      const stateTest = renderObj.url;
+
       let syncMode = api.settings.get('syncMode');
       //
       if (syncMode === 'SIMKL' && renderObj.type === 'manga') {
@@ -642,6 +644,7 @@ export default {
 
       try {
         const ov = await getOverview(renderObj.url, renderObj.getType()).init();
+        if(!this.renderObj || stateTest !== this.renderObj.url) return;
         this.metaObj = ov.getMeta();
       } catch (e) {
         con.error('Could not retrive metadata', e);
@@ -660,19 +663,23 @@ export default {
 
         if (renderObj.getMalUrl().split('').length > 3) {
           utils.getMalToKissArray(renderObj.getType(), renderObj.getMalId()).then(links => {
+            if(!this.renderObj || stateTest !== this.renderObj.url) return;
             this.kiss2mal = links;
           });
         }
       }
 
       if (this.renderObj.shortName !== 'MAL') {
-        this.imageTemp = await this.renderObj.getImage();
+        const tempi = await this.renderObj.getImage();
+        if(!this.renderObj || stateTest !== this.renderObj.url) return;
+        this.imageTemp = tempi;
       }
 
       this.mal.resumeUrl = renderObj.getResumeWatching();
       this.mal.continueUrl = renderObj.getContinueWatching();
 
       utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, prediction => {
+        if(!this.renderObj || stateTest !== this.renderObj.url) return;
         this.prediction = prediction;
       });
     },
