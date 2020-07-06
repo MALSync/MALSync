@@ -252,4 +252,8 @@ module.exports = {
   easyload: {
     match: ['*://easyload.io/e/*'],
   },
+  // Kissanime
+  googleusercontent: {
+    match: ['*://*.googleusercontent.com/gadgets/*'],
+  },
 };
