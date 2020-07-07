@@ -63,7 +63,7 @@ export const AnimeSimple: pageInterface = {
         return Number(text.replace(/\D+/g, ''));
       },
       paginationNext(updateCheck) {
-        con.error('updatecheck', updateCheck);
+        con.log('updatecheck', updateCheck);
         let el;
         if (updateCheck) {
           el = j.$('ul.pagination  > li.page-item > a').last();
