@@ -407,7 +407,6 @@ export default {
         .update()
         .then(() => {
           this.renderObj = tempRenderObj;
-          this.tabs.bookmarks.type = this.renderObj.getType();
           this.tabs.search.type = this.renderObj.getType();
         })
         .catch(e => {
@@ -603,6 +602,7 @@ export default {
       if (this.bookIcon !== 'book') {
         this.selectTab('overview');
       } else {
+        if (this.renderObj) this.tabs.bookmarks.type = this.renderObj.getType();
         this.selectTab('bookmarks');
       }
     },

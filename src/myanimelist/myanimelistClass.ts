@@ -296,7 +296,7 @@ export class myanimelistClass {
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function() {
-        $('.h1 span').first().after(`
+        $('.h1 span > span').first().after(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''

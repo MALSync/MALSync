@@ -330,6 +330,12 @@ module.exports = {
   AnimeId: {
     match: ['*://www.animeid.tv/*'],
   },
+  AniMixPlay: {
+    match: ['*://animixplay.com/v*'],
+  },
+  MyAnimeListVideo: {
+    match: ['*://myanimelist.net/anime/*/*/episode/*'],
+  },
   MangaHere: {
     match: ['*://*.mangahere.cc/manga/*'],
   },

@@ -95,7 +95,7 @@ function setGlobals() {
         displayUrl: 'https://simkl.com/anime/38636',
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         title: 'One Piece',
-        eps: 932,
+        eps: 936,
         vol: 0,
         image: 'https://simkl.in/posters/72/7248108487b1ea37_ca.jpg',
         rating: 8.6,
@@ -122,7 +122,7 @@ function setGlobals() {
         malUrl: 'https://myanimelist.net/anime/21/One%20Piece',
         displayUrl: 'https://simkl.com/anime/38636',
         title: 'One Piece',
-        eps: 932,
+        eps: 936,
         vol: 0,
       },
       nonExistingMAL: {

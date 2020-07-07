@@ -1,22 +1,3 @@
-export function translateList(aniStatus, malStatus: null | number = null) {
-  const list = {
-    CURRENT: 1,
-    PLANNING: 6,
-    COMPLETED: 2,
-    DROPPED: 4,
-    PAUSED: 3,
-    REPEATING: 1,
-  };
-  if (malStatus !== null) {
-    return Object.keys(list).find(key => list[key] === malStatus);
-  }
-  return list[aniStatus];
-}
-
-export function accessToken() {
-  return api.settings.get('anilistToken');
-}
-
 export function errorHandling(res, silent = false): any {
   if (typeof res.errors !== 'undefined') {
     for (let i = 0, len = res.errors.length; i < len; i++) {
@@ -84,11 +65,4 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
       errorHandling(res);
       return res.data.Media.idMal;
     });
-}
-
-export function getCacheKey(id, kitsuId) {
-  if (Number.isNaN(id) || !id) {
-    return `anilist:${kitsuId}`;
-  }
-  return id;
 }

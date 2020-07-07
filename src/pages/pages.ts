@@ -71,6 +71,8 @@ import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
 import { AnimeId } from './AnimeId/main';
+import { AniMixPlay } from './AniMixPlay/main';
+import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 
@@ -148,6 +150,8 @@ export const pages = {
   AnimeStreamingFR,
   Scantrad,
   AnimeId,
+  AniMixPlay,
+  MyAnimeListVideo,
   MangaHere,
   MangaFox,
 };

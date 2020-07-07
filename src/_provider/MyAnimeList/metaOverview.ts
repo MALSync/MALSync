@@ -1,57 +1,88 @@
-import { metadataInterface, searchInterface } from '../listInterface';
+import { MetaOverviewAbstract } from '../metaOverviewAbstract';
+import { errorCode } from '../definitions';
 
-export class metadata implements metadataInterface {
-  private xhr = '';
-
-  constructor(public malUrl: string) {
-    return this;
+export class MetaOverview extends MetaOverviewAbstract {
+  constructor(url) {
+    super(url);
+    this.logger = this.logger.m('MAL');
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
+      this.malId = Number(utils.urlPart(url, 4));
+      return this;
+    }
+    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
   }
 
-  init() {
-    return api.request.xhr('GET', this.malUrl).then(response => {
-      this.xhr = response.responseText;
-      return this;
+  protected readonly type;
+
+  private readonly malId: number;
+
+  async _init() {
+    this.logger.log('Retrieve', this.type, `MAL: ${this.malId}`);
+
+    const data = await this.getData();
+    // this.logger.log('Data', data);
+
+    this.title(data);
+    this.description(data);
+    this.image(data);
+    this.alternativeTitle(data);
+    this.characters(data);
+    this.statistics(data);
+    this.info(data);
+    this.openingSongs(data);
+    this.endingSongs(data);
+    this.related(data);
+
+    this.logger.log('Res', this.meta);
+  }
+
+  private async getData() {
+    return api.request.xhr('GET', `https://myanimelist.net/${this.type}/${this.malId}`).then(response => {
+      return response.responseText;
     });
   }
 
-  getTitle() {
+  private title(data) {
     let title = '';
     try {
-      title = this.xhr.split('itemprop="name">')[1].split('<')[0];
+      title = data.split('itemprop="name">')[1].split('<')[0];
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return title;
+    this.meta.title = $('<div>')
+      .html(title)
+      .text();
   }
 
-  getDescription() {
+  private description(data) {
     let description = '';
     try {
-      description = this.xhr.split('itemprop="description">')[1].split('</span')[0];
+      description = data.split('itemprop="description">')[1].split('</span')[0];
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return description;
+    this.meta.description = description;
   }
 
-  getImage() {
+  private image(data) {
     let image = '';
     try {
-      image = this.xhr
+      image = data
         .split('property="og:image"')[1]
         .split('content="')[1]
         .split('"')[0];
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return image;
+    this.meta.image = image;
   }
 
-  getAltTitle() {
+  private alternativeTitle(data) {
     let altTitle: any[] = [];
 
     try {
-      const tempHtml = j.$.parseHTML(`<div>${this.xhr.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]}</div>`);
+      const tempHtml = j.$.parseHTML(`<div>${data.split('<h2>Alternative Titles</h2>')[1].split('<h2>')[0]}</div>`);
       altTitle = j
         .$(tempHtml)
         .find('.spaceit_pad')
@@ -63,13 +94,13 @@ export class metadata implements metadataInterface {
       console.log('[iframeOverview] Error:', e);
     }
 
-    return altTitle;
+    this.meta.alternativeTitle = altTitle;
   }
 
-  getCharacters() {
+  private characters(data) {
     const charArray: any[] = [];
     try {
-      const characterBlock = this.xhr.split('detail-characters-list')[1].split('</h2>')[0];
+      const characterBlock = data.split('detail-characters-list')[1].split('</h2>')[0];
       const charHtml = j.$.parseHTML(`<div class="detail-characters-list ${characterBlock}`);
 
       j.$.each(j.$(charHtml).find(':not(td) > table'), (index, value) => {
@@ -100,13 +131,13 @@ export class metadata implements metadataInterface {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return charArray;
+    this.meta.characters = charArray;
   }
 
-  getStatistics() {
+  private statistics(data) {
     const stats: any[] = [];
     try {
-      const statsBlock = this.xhr.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
+      const statsBlock = data.split('<h2>Statistics</h2>')[1].split('<h2>')[0];
       // @ts-ignore
       const tempHtml = j.$.parseHTML(statsBlock);
 
@@ -145,13 +176,13 @@ export class metadata implements metadataInterface {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return stats;
+    this.meta.statistics = stats;
   }
 
-  getInfo() {
+  private info(data) {
     const html: any[] = [];
     try {
-      const infoBlock = this.xhr.split('<h2>Information</h2>')[1].split('<h2>')[0];
+      const infoBlock = data.split('<h2>Information</h2>')[1].split('<h2>')[0];
       const infoData = j.$.parseHTML(infoBlock);
       j.$.each(j.$(infoData).filter('div'), (index, value) => {
         const title = j
@@ -169,16 +200,16 @@ export class metadata implements metadataInterface {
             .trim(),
         });
       });
-      this.getExternalLinks(html);
+      this.getExternalLinks(html, data);
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return html;
+    this.meta.info = html;
   }
 
-  getExternalLinks(html) {
+  getExternalLinks(html, data) {
     try {
-      const infoBlock = `${this.xhr.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
+      const infoBlock = `${data.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
       const infoData = j.$.parseHTML(infoBlock);
 
       let body = '';
@@ -197,11 +228,11 @@ export class metadata implements metadataInterface {
     }
   }
 
-  getOpeningSongs() {
+  openingSongs(data) {
     const openingSongs: string[] = [];
 
     try {
-      const openingBlock = `<div>${this.xhr.split('opnening">')[1].split('</div>')[0]}</div>`;
+      const openingBlock = `<div>${data.split('opnening">')[1].split('</div>')[0]}</div>`;
       const openingData = j.$.parseHTML(openingBlock);
 
       j.$(openingData)
@@ -213,14 +244,14 @@ export class metadata implements metadataInterface {
       console.log('[iframeOverview] Error:', e);
     }
 
-    return openingSongs;
+    this.meta.openingSongs = openingSongs;
   }
 
-  getEndingSongs() {
+  endingSongs(data) {
     const endingSongs: string[] = [];
 
     try {
-      const endingBlock = `<div>${this.xhr.split(' ending">')[1].split('</div>')[0]}</div>`;
+      const endingBlock = `<div>${data.split(' ending">')[1].split('</div>')[0]}</div>`;
       const endingData = j.$.parseHTML(endingBlock);
 
       j.$(endingData)
@@ -232,13 +263,13 @@ export class metadata implements metadataInterface {
       console.log('[iframeOverview] Error:', e);
     }
 
-    return endingSongs;
+    this.meta.endingSongs = endingSongs;
   }
 
-  getRelated() {
+  private related(data) {
     const el: { type: string; links: any[] }[] = [];
     try {
-      const relatedBlock = this.xhr
+      const relatedBlock = data
         .split('Related ')[1]
         .split('</h2>')[1]
         .split('<h2>')[0];
@@ -274,31 +305,6 @@ export class metadata implements metadataInterface {
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    return el;
+    this.meta.related = el;
   }
 }
-
-export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
-  const response = await api.request.xhr(
-    'GET',
-    `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`,
-  );
-
-  const searchResults = JSON.parse(response.responseText);
-  const { items } = searchResults.categories[0];
-
-  return items.map(item => ({
-    id: item.id,
-    name: item.name,
-    altNames: [],
-    url: item.url,
-    malUrl: () => {
-      return item.url;
-    },
-    image: item.image_url,
-    media_type: item.payload.media_type,
-    isNovel: item.payload.media_type === 'Novel',
-    score: item.payload.score,
-    year: item.payload.start_year,
-  }));
-};

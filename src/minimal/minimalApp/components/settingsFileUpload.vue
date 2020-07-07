@@ -27,11 +27,10 @@
 
 <script type="text/javascript">
 export default {
-  props: {
-    button: {
-      type: Boolean,
-      default: true,
-    },
+  data() {
+    return {
+      button: true,
+    };
   },
   methods: {
     type() {

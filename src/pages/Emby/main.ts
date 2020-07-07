@@ -164,7 +164,7 @@ async function testApi() {
 
   setBase(base);
 
-  apiCall('/System/Info', null, base).then(response => {
+  return apiCall('/System/Info', null, base).then(response => {
     if (response.status !== 200) {
       con.error('Not Authenticated');
       setBase('');
