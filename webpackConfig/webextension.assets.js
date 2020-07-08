@@ -164,6 +164,7 @@ const generateManifest = () => {
       'https://discover.hulu.com/',
       'https://www.primevideo.com/',
       'https://api.malsync.moe/',
+      'https://api.myanimelist.net/',
       'tabHide',
     ],
     optional_permissions: ['cookies'].concat(
