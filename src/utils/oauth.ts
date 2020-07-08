@@ -1,4 +1,4 @@
-const cliendId = '10093a3f9f0174b6b5577c40e9accdae';
+const clientId = '10093a3f9f0174b6b5577c40e9accdae';
 
 export async function oauth() {
   if (window.location.href.includes('code=')) {
@@ -21,7 +21,7 @@ function generateUrl() {
   const challenge = generateRandomString(50);
   const state = generateRandomString(10);
   sessionStorage.setItem(state, challenge);
-  const url = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${cliendId}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
+  const url = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${clientId}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
   $('.card-text.succ').prepend(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`);
   $('body').removeClass();
   $('body').addClass('success');
@@ -49,7 +49,7 @@ async function getRefreshToken() {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      data: `&client_id=${cliendId}&grant_type=authorization_code&code=${code}&code_verifier=${challenge}`,
+      data: `&client_id=${clientId}&grant_type=authorization_code&code=${code}&code_verifier=${challenge}`,
     })
     .then(res => JSON.parse(res.responseText))
     .then(json => {
