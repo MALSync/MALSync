@@ -7,6 +7,7 @@ import { scheduleUpdate } from './utils/scheduler';
 import { firebaseNotification } from './utils/firebaseNotification';
 import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
+import { oauth } from './utils/oauth';
 
 let page;
 
@@ -26,6 +27,8 @@ function main() {
   } else if (window.location.href.indexOf('simkl.com') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const simkl = new simklClass(window.location.href);
+  } else if (window.location.href.indexOf('malsync.moe/mal/oauth') > -1) {
+    oauth();
   } else {
     runPage();
   }
