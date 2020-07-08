@@ -12,7 +12,7 @@ export function search(keyword, type: 'anime' | 'manga', options = {}, sync = fa
         altNames: [],
         url: `https://simkl.com/${type}/${item.ids.simkl_id}/${item.ids.slug}`,
         malUrl: async () => {
-          const malId = await helper.simklIdToMal(item.ids.simkl_id);
+          const malId = await simklIdToMal(item.ids.simkl_id);
           return malId ? `https://myanimelist.net/${type}/${malId}` : null;
         },
         image: `https://simkl.in/posters/${item.poster}_cm.jpg`,
@@ -90,4 +90,11 @@ async function call(url, sData = {}, asParameter = false, methode: 'GET' | 'POST
         return { status: response.status, message: getErrorText() };
       }
     });
+}
+
+export function simklIdToMal(simklId) {
+  return call(`https://api.simkl.com/anime/${simklId}`, { extended: 'full' }, true).then(res => {
+    if (typeof res.ids.mal === 'undefined') return null;
+    return res.ids.mal;
+  });
 }
