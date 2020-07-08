@@ -78,6 +78,9 @@ export const settingsObj = {
       ratingSystem: 'regular',
     },
     simklToken: '',
+
+    malToken: '',
+    malRefresh: '',
   },
 
   async init() {

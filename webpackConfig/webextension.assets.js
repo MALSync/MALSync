@@ -16,12 +16,14 @@ const malUrls = { myanimelist: pageUrls.myanimelist };
 const aniUrls = { anilist: pageUrls.anilist };
 const kitsuUrls = { anilist: pageUrls.kitsu };
 const simklUrls = { anilist: pageUrls.simkl };
+const malsyncUrls = { anilist: pageUrls.malsync };
 
 const contentUrls = pageUrls;
 delete contentUrls.anilist;
 delete contentUrls.myanimelist;
 delete contentUrls.kitsu;
 delete contentUrls.simkl;
+delete contentUrls.malsync;
 
 const generateMatchExcludes = urls => {
   let match = [];
@@ -89,6 +91,14 @@ const generateManifest = () => {
           '*mal-sync-background=*',
         ]),
         js: ['vendor/jquery.min.js', 'i18n.js', 'mal-script.js'],
+        run_at: 'document_start',
+      },
+      {
+        matches: generateMatchExcludes(malsyncUrls).match,
+        exclude_globs: generateMatchExcludes(malsyncUrls).exclude.concat([
+          '*mal-sync-background=*',
+        ]),
+        js: ['vendor/jquery.min.js', 'i18n.js', 'oauth-script.js'],
         run_at: 'document_start',
       },
       {
