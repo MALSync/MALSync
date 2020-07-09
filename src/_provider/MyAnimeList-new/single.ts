@@ -69,7 +69,7 @@ export class Single extends SingleAbstract {
     if (this.type === 'manga') {
       return this.animeInfo.my_list_status.num_chapters_read;
     }
-    return this.animeInfo.my_list_status.num_episodes_watched;
+    return this.animeInfo.my_list_status.num_watched_episodes;
   }
 
   _setEpisode(episode) {
@@ -78,7 +78,7 @@ export class Single extends SingleAbstract {
       this.animeInfo.my_list_status.num_chapters_read = episode;
       return;
     }
-    this.animeInfo.my_list_status.num_episodes_watched = episode;
+    this.animeInfo.my_list_status.num_watched_episodes = episode;
   }
 
   _getVolume() {
@@ -185,18 +185,53 @@ export class Single extends SingleAbstract {
         } else {
           this.animeInfo.my_list_status = {
             is_rewatching: false,
-            num_episodes_watched: 0,
+            num_watched_episodes: 0,
             score: 0,
             status: 'plan_to_watch',
             tags: [],
           };
         }
       }
+
+      // Handle api bug
+      if (this.animeInfo.my_list_status && typeof this.animeInfo.my_list_status.num_episodes_watched !== 'undefined') {
+        this.animeInfo.my_list_status.num_watched_episodes = this.animeInfo.my_list_status.num_episodes_watched;
+        delete this.animeInfo.my_list_status.num_episodes_watched;
+      }
     });
   }
 
   async _sync() {
-    return Promise.resolve();
+    const sentData = {};
+    for (const property in this.animeInfo.my_list_status) {
+      switch (property) {
+        case 'priority':
+        case 'num_watched_episodes':
+        case 'num_volumes_read':
+        case 'num_chapters_read':
+        case 'score':
+        case 'is_rewatching':
+        case 'is_rereading':
+        case 'num_times_rewatched':
+        case 'num_times_reread':
+        case 'rewatch_value':
+        case 'reread_value':
+        case 'tags':
+        case 'comments':
+        case 'status':
+          sentData[property] = this.animeInfo.my_list_status[property];
+          break;
+        default:
+      }
+    }
+    this.logger.m('Sync').log(this.ids.mal, sentData);
+    return this.apiCall({
+      type: 'PUT',
+      path: `${this.type}/${this.ids.mal}/my_list_status`,
+      dataObj: sentData,
+    }).then(res => {
+      this.logger.m('Sync').log('res', res);
+    });
   }
 
   apiCall = helper.apiCall;
