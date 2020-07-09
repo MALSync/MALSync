@@ -78,11 +78,18 @@ export class Single extends SingleAbstract {
   }
 
   _getTags() {
-    return '1';
+    if (!this.animeInfo.my_list_status.tags.length) {
+      return '';
+    }
+    return this.animeInfo.my_list_status.tags.join(',');
   }
 
   _setTags(tags) {
-    return '1';
+    if (!tags || tags.trim() === ',') {
+      this.animeInfo.my_list_status.tags = [];
+      return;
+    }
+    this.animeInfo.my_list_status.tags = tags.split(',');
   }
 
   private getRewatching(): boolean {
@@ -131,7 +138,7 @@ export class Single extends SingleAbstract {
       type: 'GET',
       path: `${this.type}/${this.ids.mal}`,
       fields: [
-        'my_list_status{tags,is_rewatching,is_rereading}',
+        'my_list_status{tags,is_rewatching,is_rereading,start_date,finish_date}',
         'num_episodes',
         'mean',
         // Manga
@@ -143,7 +150,27 @@ export class Single extends SingleAbstract {
       this._authenticated = true;
       this.animeInfo = res;
       this._onList = true;
-      if (!this.animeInfo.my_list_status) this._onList = false;
+      if (!this.animeInfo.my_list_status) {
+        this._onList = false;
+        if (this.type === 'manga') {
+          this.animeInfo.my_list_status = {
+            is_rereading: false,
+            num_chapters_read: 0,
+            num_volumes_read: 0,
+            score: 0,
+            status: 'plan_to_read',
+            tags: [],
+          };
+        } else {
+          this.animeInfo.my_list_status = {
+            is_rewatching: false,
+            num_episodes_watched: 0,
+            score: 0,
+            status: 'plan_to_watch',
+            tags: [],
+          };
+        }
+      }
     });
   }
 
