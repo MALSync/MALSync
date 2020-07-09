@@ -58,6 +58,7 @@ export abstract class SingleAbstract {
   abstract _setStatus(status: definitions.status): void;
 
   public setStatus(status: definitions.status): SingleAbstract {
+    status = Number(status);
     this._setStatus(status);
     return this;
   }

@@ -44,7 +44,17 @@ export class Single extends SingleAbstract {
   }
 
   _setStatus(status) {
-    return 1;
+    if (status === 23) {
+      status = 2;
+      this.setRewatching(true);
+    } else {
+      this.setRewatching(false);
+    }
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.status = helper.mangaStatus[status];
+      return;
+    }
+    this.animeInfo.my_list_status.status = helper.animeStatus[status];
   }
 
   _getScore() {
@@ -100,7 +110,11 @@ export class Single extends SingleAbstract {
   }
 
   private setRewatching(state: boolean) {
-    return '1';
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.is_rereading = state;
+      return;
+    }
+    this.animeInfo.my_list_status.is_rewatching = state;
   }
 
   _getTitle() {
