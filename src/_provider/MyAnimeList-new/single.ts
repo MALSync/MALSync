@@ -62,7 +62,7 @@ export class Single extends SingleAbstract {
   }
 
   _setScore(score) {
-    return '1';
+    this.animeInfo.my_list_status.score = score;
   }
 
   _getEpisode() {
@@ -73,7 +73,12 @@ export class Single extends SingleAbstract {
   }
 
   _setEpisode(episode) {
-    return '1';
+    if (!episode) episode = 0;
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.num_chapters_read = episode;
+      return;
+    }
+    this.animeInfo.my_list_status.num_episodes_watched = episode;
   }
 
   _getVolume() {
@@ -84,7 +89,9 @@ export class Single extends SingleAbstract {
   }
 
   _setVolume(volume) {
-    return '1';
+    if (this.type === 'manga') {
+      this.animeInfo.my_list_status.num_volumes_read = volume;
+    }
   }
 
   _getTags() {
