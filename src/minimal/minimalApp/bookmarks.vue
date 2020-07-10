@@ -88,6 +88,7 @@ export default {
       errorText: null,
       cache: false,
       destroyTimer: undefined,
+      reload: false,
     };
   },
   computed: {
@@ -111,6 +112,7 @@ export default {
   mounted() {
     this.load();
     this.$parent.registerScroll('books', this.handleScroll);
+    clearTimeout(this.destroyTimer);
   },
   activated() {
     this.$nextTick(() => {
@@ -121,12 +123,17 @@ export default {
     });
     clearTimeout(this.destroyTimer);
     this.$parent.registerScroll('books', this.handleScroll);
+    if(this.reload){
+      this.reload = false;
+      this.load();
+    }
   },
   deactivated() {
     this.$parent.unregisterScroll('books');
     clearTimeout(this.destroyTimer);
     this.destroyTimer = setTimeout(() => {
-      this.$destroy();
+      this.items = [];
+      this.reload = true;
     }, (30 * 1000));
   },
   methods: {
