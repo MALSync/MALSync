@@ -1,5 +1,5 @@
 import { errorCode, status } from '../definitions';
-import { clientId } from '../../utils/oauth.ts';
+import { clientId } from '../../utils/oauth';
 
 export const apiDomain = 'https://api.myanimelist.net/v2/';
 
@@ -55,7 +55,7 @@ export async function apiCall(options: {
       if (res && res.error) {
         switch (res.error) {
           case 'invalid_token':
-            if (await refreshTokken(this.logger)) {
+            if (await refreshToken(this.logger)) {
               return this.apiCall(options);
             }
             throw this.errorObj(errorCode.NotAutenticated, res.message ?? res.error);
@@ -78,18 +78,18 @@ export async function apiCall(options: {
     });
 }
 
-async function refreshTokken(logger) {
+async function refreshToken(logger) {
   const l = logger.m('Refresh');
   l.log('Refresh Access Token');
-  const rTokken = api.settings.get('malRefresh');
-  if (!rTokken) return false;
+  const rToken = api.settings.get('malRefresh');
+  if (!rToken) return false;
   return api.request
     .xhr('POST', {
       url: 'https://myanimelist.net/v1/oauth2/token',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      data: `client_id=${clientId}&grant_type=refresh_token&refresh_token=${rTokken}`,
+      data: `client_id=${clientId}&grant_type=refresh_token&refresh_token=${rToken}`,
     })
     .then(res => JSON.parse(res.responseText))
     .then(json => {
