@@ -2,6 +2,7 @@ import { syncPage } from './syncPage';
 
 export interface pageInterface {
   domain: string | string[];
+  languages: string[]; // (ISO language name) https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
   name: string;
   type: 'anime' | 'manga';
   isSyncPage: (url: string) => boolean; // Return true if the current page is the sync page (Chapter/episode page)

@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const HentaiKisa: pageInterface = {
   name: 'HentaiKisa',
   domain: 'https://hentaikisa.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {

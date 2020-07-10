@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const manga4life: pageInterface = {
   name: 'manga4life',
   domain: 'https://manga4life.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'read-online') {

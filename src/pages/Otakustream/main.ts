@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Otakustream: pageInterface = {
   name: 'Otakustream',
   domain: 'https://otakustream.tv',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'movie') return true;

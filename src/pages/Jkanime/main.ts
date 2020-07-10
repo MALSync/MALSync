@@ -6,6 +6,7 @@ let check = false;
 export const Jkanime: pageInterface = {
   name: 'Jkanime',
   domain: 'https://jkanime.net/',
+  languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
     if (Number.isNaN(parseInt(utils.urlPart(url, 4)))) {

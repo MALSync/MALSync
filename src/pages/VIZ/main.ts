@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const VIZ: pageInterface = {
   name: 'VIZ',
   domain: 'https://www.viz.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'shonenjump' && url.split('/')[5] === 'chapter') {

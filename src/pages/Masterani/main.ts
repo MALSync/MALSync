@@ -4,6 +4,7 @@ export const Masterani: pageInterface = {
   name: 'Masterani',
   domain: 'https://www.masterani.me',
   database: 'Masterani',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[4] !== 'watch') {

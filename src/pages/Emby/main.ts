@@ -231,6 +231,7 @@ async function apiCall(url, apiKey = null, base = null) {
 export const Emby: pageInterface = {
   name: 'Emby',
   domain: 'http://app.emby.media',
+  languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
     if (item.Type === 'Episode') {

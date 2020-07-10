@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const tmofans: pageInterface = {
   name: 'tmofans',
   domain: ['https://lectortmo.com', 'https://tmofans.com'],
+  languages: ['Spanish'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'viewer' && url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {

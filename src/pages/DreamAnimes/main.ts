@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const DreamAnimes: pageInterface = {
   name: 'Dream Animes',
   domain: 'https://dreamanimes.com.br',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'online') {

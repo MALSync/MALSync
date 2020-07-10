@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const OtakuFR: pageInterface = {
   name: 'OtakuFR',
   domain: 'https://www.otakufr.com',
+  languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('.vdo_wrp > iframe').length) {

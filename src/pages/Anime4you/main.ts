@@ -4,6 +4,7 @@ export const Anime4you: pageInterface = {
   name: 'Anime4you',
   domain: 'https://www.anime4you.one',
   database: 'Anime4you',
+  languages: ['German'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[7] !== 'epi') {

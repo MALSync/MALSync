@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const animestrue: pageInterface = {
   name: 'animestrue',
   domain: 'https://animestrue.site',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (typeof url.split('/')[6] !== 'undefined' && url.split('/')[6].indexOf('episodio') !== -1) {

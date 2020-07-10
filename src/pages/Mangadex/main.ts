@@ -4,6 +4,7 @@ export const Mangadex: pageInterface = {
   name: 'Mangadex',
   domain: 'https://www.mangadex.org',
   database: 'Mangadex',
+  languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] !== 'chapter') {

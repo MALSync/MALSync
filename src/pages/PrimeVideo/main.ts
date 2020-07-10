@@ -5,6 +5,7 @@ let thisData: any = null;
 export const PrimeVideo: pageInterface = {
   name: 'Amazon Prime Video',
   domain: 'https://www.primevideo.com',
+  languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
     if (thisData && thisData.ep) return true;

@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Animeflix: pageInterface = {
   name: 'Animeflix',
   domain: 'https://animeflix.io',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {

@@ -4,6 +4,7 @@ import { pageInterface } from '../pageInterface';
 export const animepahe: pageInterface = {
   name: 'animepahe',
   domain: 'https://animepahe.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== 'play') {

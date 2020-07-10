@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const Hentaigasm: pageInterface = {
   name: 'Hentaigasm',
   domain: 'http://hentaigasm.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (

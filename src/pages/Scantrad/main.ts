@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Scantrad: pageInterface = {
   name: 'Scantrad',
   domain: 'https://scantrad.net',
+  languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
     return url.split('/')[3] === 'mangas';
