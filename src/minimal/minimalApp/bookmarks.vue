@@ -87,6 +87,7 @@ export default {
       loading: true,
       errorText: null,
       cache: false,
+      destroyTimer: undefined,
     };
   },
   computed: {
@@ -118,9 +119,14 @@ export default {
         .find('head')
         .click();
     });
+    clearTimeout(this.destroyTimer);
   },
   deactivated() {
     this.$parent.unregisterScroll('books');
+    clearTimeout(this.destroyTimer);
+    this.destroyTimer = setTimeout(() => {
+      this.$destroy();
+    }, (30 * 1000));
   },
   methods: {
     lang: api.storage.lang,
