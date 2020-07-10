@@ -166,39 +166,49 @@ export class Single extends SingleAbstract {
         'num_chapters',
         'num_volumes',
       ],
-    }).then(res => {
-      this.logger.m('Api').log(res);
-      this._authenticated = true;
-      this.animeInfo = res;
-      this._onList = true;
-      if (!this.animeInfo.my_list_status) {
-        this._onList = false;
-        if (this.type === 'manga') {
-          this.animeInfo.my_list_status = {
-            is_rereading: false,
-            num_chapters_read: 0,
-            num_volumes_read: 0,
-            score: 0,
-            status: 'plan_to_read',
-            tags: [],
-          };
-        } else {
-          this.animeInfo.my_list_status = {
-            is_rewatching: false,
-            num_watched_episodes: 0,
-            score: 0,
-            status: 'plan_to_watch',
-            tags: [],
-          };
+    })
+      .catch(e => {
+        if (e.code === errorCode.NotAutenticated) {
+          this._authenticated = false;
         }
-      }
+        throw e;
+      })
+      .then(res => {
+        this.logger.m('Api').log(res);
+        this._authenticated = true;
+        this.animeInfo = res;
+        this._onList = true;
+        if (!this.animeInfo.my_list_status) {
+          this._onList = false;
+          if (this.type === 'manga') {
+            this.animeInfo.my_list_status = {
+              is_rereading: false,
+              num_chapters_read: 0,
+              num_volumes_read: 0,
+              score: 0,
+              status: 'plan_to_read',
+              tags: [],
+            };
+          } else {
+            this.animeInfo.my_list_status = {
+              is_rewatching: false,
+              num_watched_episodes: 0,
+              score: 0,
+              status: 'plan_to_watch',
+              tags: [],
+            };
+          }
+        }
 
-      // Handle api bug
-      if (this.animeInfo.my_list_status && typeof this.animeInfo.my_list_status.num_episodes_watched !== 'undefined') {
-        this.animeInfo.my_list_status.num_watched_episodes = this.animeInfo.my_list_status.num_episodes_watched;
-        delete this.animeInfo.my_list_status.num_episodes_watched;
-      }
-    });
+        // Handle api bug
+        if (
+          this.animeInfo.my_list_status &&
+          typeof this.animeInfo.my_list_status.num_episodes_watched !== 'undefined'
+        ) {
+          this.animeInfo.my_list_status.num_watched_episodes = this.animeInfo.my_list_status.num_episodes_watched;
+          delete this.animeInfo.my_list_status.num_episodes_watched;
+        }
+      });
   }
 
   async _sync() {
