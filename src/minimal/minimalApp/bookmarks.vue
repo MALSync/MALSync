@@ -120,6 +120,7 @@ export default {
         .click();
     });
     clearTimeout(this.destroyTimer);
+    this.$parent.registerScroll('books', this.handleScroll);
   },
   deactivated() {
     this.$parent.unregisterScroll('books');

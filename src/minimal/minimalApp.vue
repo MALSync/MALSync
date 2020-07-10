@@ -554,6 +554,7 @@ export default {
         /^local:\/\//i.test(url)
       ) {
         if (!isBase) {
+          this.tabs[this.currentTab].scroll = this.getScroll();
           this.history.push(this.getCurrent(this.currentTab));
         }
         this.renderUrl = url;
