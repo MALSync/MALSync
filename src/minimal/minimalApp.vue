@@ -411,6 +411,7 @@ export default {
         })
         .catch(e => {
           this.renderObj = tempRenderObj;
+          this.renderObj.flashmError(e);
           throw e;
         });
     },
