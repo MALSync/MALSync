@@ -1,4 +1,5 @@
 import { errorCode, status } from '../definitions';
+import { clientId } from '../../utils/oauth.ts';
 
 export const apiDomain = 'https://api.myanimelist.net/v2/';
 
@@ -35,7 +36,7 @@ export async function apiCall(options: {
       headers,
       data,
     })
-    .then(response => {
+    .then(async response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
         throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
       }
@@ -54,7 +55,7 @@ export async function apiCall(options: {
       if (res && res.error) {
         switch (res.error) {
           case 'invalid_token':
-            if (refreshTokken()) {
+            if (await refreshTokken(this.logger)) {
               return this.apiCall(options);
             }
             throw this.errorObj(errorCode.NotAutenticated, res.message ?? res.error);
@@ -77,8 +78,34 @@ export async function apiCall(options: {
     });
 }
 
-function refreshTokken() {
-  return false;
+async function refreshTokken(logger) {
+  const l = logger.m('Refresh');
+  l.log('Refresh Access Token');
+  const rTokken = api.settings.get('malRefresh');
+  if (!rTokken) return false;
+  return api.request
+    .xhr('POST', {
+      url: 'https://myanimelist.net/v1/oauth2/token',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: `client_id=${clientId}&grant_type=refresh_token&refresh_token=${rTokken}`,
+    })
+    .then(res => JSON.parse(res.responseText))
+    .then(json => {
+      if (json && json.refresh_token && json.access_token) {
+        api.settings.set('malToken', json.access_token);
+        api.settings.set('malRefresh', json.refresh_token);
+        return true;
+      }
+      if (json && json.error) {
+        l.error(json.error, '|', json.message);
+        api.settings.set('malRefresh', '');
+        return false;
+      }
+      l.error('Something went wrong');
+      return false;
+    });
 }
 
 export enum animeStatus {

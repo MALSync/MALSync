@@ -1,4 +1,4 @@
-const clientId = '10093a3f9f0174b6b5577c40e9accdae';
+export const clientId = '10093a3f9f0174b6b5577c40e9accdae';
 
 export async function oauth() {
   if (window.location.href.includes('code=')) {
