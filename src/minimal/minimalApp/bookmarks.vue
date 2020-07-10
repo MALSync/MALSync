@@ -123,7 +123,7 @@ export default {
     });
     clearTimeout(this.destroyTimer);
     this.$parent.registerScroll('books', this.handleScroll);
-    if(this.reload){
+    if (this.reload) {
       this.reload = false;
       this.load();
     }
@@ -134,7 +134,7 @@ export default {
     this.destroyTimer = setTimeout(() => {
       this.items = [];
       this.reload = true;
-    }, (30 * 1000));
+    }, 30 * 1000);
   },
   methods: {
     lang: api.storage.lang,
