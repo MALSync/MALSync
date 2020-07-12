@@ -1,0 +1,30 @@
+{
+  "title": "JustAnime",
+  "url": "https://justanime.app/",
+  "testCases": [
+    {
+      "url": "https://justanime.app/anime/41120",
+      "expected": {
+        "sync": false,
+        "title": "Fugou Keiji: Balance:Unlimited",
+        "identifier": 41120,
+        "uiSelector": true,
+        "epList": {
+          "2": "https://justanime.app/watch;id=41120;ep=02"
+        }
+      }
+    },
+    {
+      "url": "https://justanime.app/watch;id=41120;ep=01",
+      "expected": {
+        "sync": true,
+        "title": "Fugou Keiji: Balance:Unlimited",
+        "identifier": 41120,
+        "overviewUrl": "https://justanime.app/anime/41120",
+        "nextEpUrl": "https://justanime.app/watch;id=41120;ep=02",
+        "episode": 1,
+        "uiSelector": false
+      }
+    }
+  ]
+}
