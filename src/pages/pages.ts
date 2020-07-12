@@ -73,6 +73,7 @@ import { Scantrad } from './Scantrad/main';
 import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
+import { AnimeUnity } from './AnimeUnity/main';
 
 export const pages = {
   Kissanime,
@@ -150,4 +151,5 @@ export const pages = {
   AnimeId,
   AniMixPlay,
   MyAnimeListVideo,
+  AnimeUnity,
 };

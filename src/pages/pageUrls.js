@@ -336,4 +336,7 @@ module.exports = {
   MyAnimeListVideo: {
     match: ['*://myanimelist.net/anime/*/*/episode/*'],
   },
+  AnimeUnity: {
+    match: ['*://animeunity.it/anime/*'],
+  },
 };

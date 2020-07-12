@@ -1,0 +1,17 @@
+{
+  "title": "AnimeUnity",
+  "url": "https://animeunity.it/",
+  "testCases": [
+    {
+      "url": "https://animeunity.it/anime/331-mahouka-koukou-no-rettousei/7846",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "331-mahouka-koukou-no-rettousei",
+        "overviewUrl": "https://animeunity.it/anime/331-mahouka-koukou-no-rettousei",
+        "episode": 8,
+        "uiSelector": true
+      }
+    }
+  ]
+}
