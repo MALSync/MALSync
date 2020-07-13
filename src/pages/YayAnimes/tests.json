@@ -1,0 +1,25 @@
+{
+    "title": "YayAnimes",
+    "url": "https://yayanimes.net",
+    "testCases": [
+      {
+        "url": "https://yayanimes.net/gabriel-dropout-episodio-1/",
+        "expected": {
+          "sync": true,
+          "title": "Gabriel DropOut",
+          "identifier": "gabriel-dropout-episodio-1",
+          "uiSelector": false
+        }
+      },
+      {
+          "url": "https://yayanimes.net/gabriel-dropout/",
+          "expected": {
+              "sync": true,
+              "title": "Gabriel DropOut",
+              "identifier": "gabriel-dropout",
+              "uiSelector": true
+      }
+      }
+    ]
+  }
+  
