@@ -99,6 +99,14 @@
     "message": "Pretende ler",
     "description": "Plan to Read"
   },
+  "UI_Status_Rewatching_anime": {
+    "message": "Re-assistindo",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Re-lendo",
+    "description": "Status to reread manga"
+  },
   "UI_Episode": {
     "message": "Episódio:",
     "description": "Episode"
@@ -221,6 +229,14 @@
     "message": "Começar a ler?",
     "description": "Start reading manga message"
   },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Re-assistir o Anime?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Re-ler o Mangá?",
+    "description": "Start rereading manga message"
+  },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "\"$anime$\" está correto?",
     "description": "Is anime correct",
@@ -295,6 +311,14 @@
     "message": "Credenciais erradas",
     "description": "Credentials wrong"
   },
+  "bookmarksItem_Years": {
+    "message": "Anos",
+    "description": "Years"
+  },
+  "bookmarksItem_Year": {
+    "message": "Ano",
+    "description": "Year"
+  },
   "bookmarksItem_Days": {
     "message": "Dias",
     "description": "Days"
@@ -314,6 +338,32 @@
   "bookmarksItem_mins": {
     "message": "min",
     "description": "mins"
+  },
+  "bookmarksItem_min": {
+    "message": "min",
+    "description": "min"
+  },
+  "bookmarksItem_secs": {
+    "message": "segundos",
+    "description": "seconds"
+  },
+  "bookmarksItem_sec": {
+    "message": "segundo",
+    "description": "second"
+  },
+  "bookmarksItem_now": {
+    "message": "Agora",
+    "description": "Now"
+  },
+  "bookmarksItem_ago": {
+    "message": "$time$ atrás",
+    "description": "Text for time in the past",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
   },
   "prediction_Episode": {
     "message": "Próximo episódio estimado em $time$",
@@ -390,6 +440,10 @@
   "correction_NewUrlReset": {
     "message": "MyAnimeList url resetada",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Enviar pedido de correção do banco de dados?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "Continue assistindo",
@@ -551,6 +605,10 @@
     "message": "Use Tags/Notas",
     "description": "Use Tags/Notes"
   },
+  "settings_malTags_Text": {
+    "message": "Se ativo: A pagina de streaming que você estava usando antes é salvo permanentemente (pelos navegadores) na seção de tags/Notas na sua lista. A string salva na seção de tags é feia, apenas realmente recomendo se você não usa a seção de tag/Notas. ",
+    "description": "Use Tags/Notes - Text"
+  },
   "settings_malContinue": {
     "message": "Continue assistindo links",
     "description": "Continue watching links"
@@ -558,6 +616,18 @@
   "settings_malResume": {
     "message": "Retomar assistindo links",
     "description": "Resume watching links"
+  },
+  "settings_usedPage": {
+    "message": "Links das ultimas paginas usadas",
+    "description": "Last used page links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Modo de Furtividade da UI",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_minimizeBigPopup": {
+    "message": "Minimizar pop-ups grandes",
+    "description": "Shows an 'action required' popup hidding big popups"
   },
   "settings_miniMAL_floatButtonHide": {
     "message": "Ocultar o botão do menu flutuante miniMAL",
@@ -615,6 +685,22 @@
     "message": "Resumo automático (Vídeo)",
     "description": "Auto resume video where you left off toggle"
   },
+  "settings_autoNextEp": {
+    "message": "Começar automaticamente o próximo episódio.",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Abrir popup de correção de relação do anime.",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Sync": {
+    "message": "Definir episódio/capítulo como lido.",
+    "description": "Text for the sync ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Atalho para abrir o proximo epsódio",
+    "description": "Description for the next episode shortcut option"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Pula a abertura",
     "description": "Description for the the opening skip shortcut"
@@ -622,6 +708,10 @@
   "settings_Shortcuts_Skip_Backward": {
     "message": "Volta para o começo da abertura",
     "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Clique para colocar um atalho",
+    "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
     "message": "Define o quanto vai pular da abertura ($Seconds$ segundos)",
@@ -864,5 +954,13 @@
         "example": "Mangadex"
       }
     }
+  },
+  "nextEpShort_no_support": {
+    "message": "Essa pagina não suporta abrir o próximo episódio",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Não consegui achar o próximo episódio",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
