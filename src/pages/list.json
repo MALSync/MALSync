@@ -363,5 +363,10 @@
     "domain": "https://www.animeid.tv",
     "type": "anime",
     "name": "AnimeId"
+  },
+  {
+    "domain": "https://yayanimes.net",
+    "type": "anime",
+    "name": "YayAnimes"
   }
 ]

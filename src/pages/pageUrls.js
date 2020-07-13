@@ -336,4 +336,7 @@ module.exports = {
   MyAnimeListVideo: {
     match: ['*://myanimelist.net/anime/*/*/episode/*'],
   },
+  YayAnimes: {
+    match: ['*://yayanimes.net/*'],
+  },
 };
