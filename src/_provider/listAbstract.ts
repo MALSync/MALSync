@@ -1,5 +1,6 @@
 import { epPredictions } from '../utils/epPrediction';
 import { Cache } from '../utils/Cache';
+import * as definitions from './definitions';
 
 export interface listElement {
   uid: number;
@@ -50,6 +51,7 @@ export abstract class ListAbstract {
     protected offset = 0,
     protected templist: listElement[] = [],
   ) {
+    this.status = Number(this.status);
     return this;
   }
 
@@ -150,6 +152,13 @@ export abstract class ListAbstract {
         return error.message;
         break;
     }
+  }
+
+  protected errorObj(code: definitions.errorCode, message): definitions.error {
+    return {
+      code,
+      message,
+    };
   }
 
   // itemFunctions;
