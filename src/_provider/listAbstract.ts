@@ -34,6 +34,8 @@ export abstract class ListAbstract {
 
   abstract readonly name;
 
+  protected logger;
+
   // Modes
   modes = {
     sortAiring: false,
@@ -52,6 +54,7 @@ export abstract class ListAbstract {
     protected templist: listElement[] = [],
   ) {
     this.status = Number(this.status);
+    this.logger = con.m('[S]', '#348fff');
     return this;
   }
 
