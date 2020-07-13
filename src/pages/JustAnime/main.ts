@@ -68,6 +68,7 @@ export const JustAnime: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     let interval;
+    let oldJson;
 
     utils.fullUrlChangeDetect(function() {
       page.reset();
@@ -80,7 +81,10 @@ export const JustAnime: pageInterface = {
         function() {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
-            return true;
+            if (JSON.stringify(jsonData) !== oldJson) {
+              oldJson = JSON.stringify(jsonData);
+              return true;
+            }
           }
           return false;
         },
