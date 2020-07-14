@@ -46,14 +46,13 @@ export async function apiCall(options: {
           throw this.errorObj(errorCode.GenericError, 'Invalid Parameters');
           break;
         case 403:
-          throw this.errorObj(errorCode.GenericError, `Banned?`);
-          break;
         default:
       }
 
       const res = JSON.parse(response.responseText);
       if (res && res.error) {
         switch (res.error) {
+          case 'forbidden':
           case 'invalid_token':
             if (await refreshToken(this.logger)) {
               return this.apiCall(options);
