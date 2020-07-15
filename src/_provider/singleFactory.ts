@@ -1,6 +1,6 @@
 import * as helper from './helper';
 
-import { Single as malSingle } from './MyAnimeList/single';
+import { Single as malSingle } from './MyAnimeList_legacy/single';
 import { Single as anilistSingle } from './AniList/single';
 import { Single as kitsuSingle } from './Kitsu/single';
 import { Single as simklSingle } from './Simkl/single';
