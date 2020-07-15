@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const bato: pageInterface = {
   name: 'bato',
   domain: 'https://bato.to',
+  languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {

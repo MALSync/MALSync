@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimesVision: pageInterface = {
   name: 'AnimesVision',
   domain: 'https://animesvision.biz',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined) {

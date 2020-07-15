@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const RiiE: pageInterface = {
   name: 'RiiE',
   domain: 'https://www.riie.net',
+  languages: ['Indonesian'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('#lightsVideo')[0]) {

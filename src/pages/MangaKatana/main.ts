@@ -5,6 +5,7 @@ let obfusList = false;
 export const MangaKatana: pageInterface = {
   name: 'MangaKatana',
   domain: 'http://mangakatana.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {

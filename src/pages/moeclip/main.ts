@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const moeclip: pageInterface = {
   name: 'moeclip',
   domain: 'https://moeclip.com',
+  languages: ['Indonesian'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('div.video-content')[0] && j.$('h1.entry-title.title-font')[0]) {

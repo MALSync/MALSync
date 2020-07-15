@@ -1,9 +1,9 @@
-import { Single as malSingle } from '../../../_provider/MyAnimeList/single';
+import { Single as malSingle } from '../../../_provider/MyAnimeList_legacy/single';
 import { Single as anilistSingle } from '../../../_provider/AniList/single';
 import { Single as kitsuSingle } from '../../../_provider/Kitsu/single';
 import { Single as simklSingle } from '../../../_provider/Simkl/single';
 
-import { userlist as malList } from '../../../_provider/MyAnimeList/list';
+import { userlist as malList } from '../../../_provider/MyAnimeList_legacy/list';
 import { userlist as anilistList } from '../../../_provider/AniList/list';
 import { userlist as kitsuList } from '../../../_provider/Kitsu/list';
 import { userlist as simklList } from '../../../_provider/Simkl/list';

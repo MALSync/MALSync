@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { userlist } from '../../../../src/_provider/MyAnimeList/list';
+import { userlist } from '../../../../src/_provider/MyAnimeList_legacy/list';
 import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');

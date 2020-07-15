@@ -6,6 +6,7 @@ export const Aniwatch: pageInterface = {
   name: 'Aniwatch',
   domain: 'https://aniwatch.me',
   database: 'Aniwatch',
+  languages: ['English', 'German'],
   type: 'anime',
   isSyncPage(url) {
     if (tabPage === 'stream' || tabPage === 'w2g') {

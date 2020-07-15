@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const NekoSama: pageInterface = {
   name: 'NekoSama',
   domain: 'https://www.neko-sama.fr',
+  languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('#watch').length) {

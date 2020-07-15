@@ -4,6 +4,7 @@ export const Kissmanga: pageInterface = {
   name: 'kissmanga',
   domain: 'https://kissmanga.com',
   database: 'Kissmanga',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (utils.urlPart(url, 5)) {

@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimePlanet: pageInterface = {
   name: 'AnimePlanet',
   domain: 'https://www.anime-planet.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[6] === null) {

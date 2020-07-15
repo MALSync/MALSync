@@ -5,6 +5,7 @@ let film = false;
 export const AnimesHouse: pageInterface = {
   name: 'AnimesHouse',
   domain: 'https://animeshouse.net',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     return true;

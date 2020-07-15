@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const MonosChinos: pageInterface = {
   name: 'MonosChinos',
   domain: 'https://monoschinos.com',
+  languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'ver') {

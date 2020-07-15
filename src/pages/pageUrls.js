@@ -28,6 +28,9 @@ module.exports = {
   simkl: {
     match: ['*://simkl.com/*'],
   },
+  malsync: {
+    match: ['*://malsync.moe/mal/oauth*'],
+  },
   Kissanime: {
     match: ['*://kissanime.ru/Anime/*', '*://kissanime.to/Anime/*'],
   },

@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Goyabu: pageInterface = {
   name: 'Goyabu',
   domain: 'https://goyabu.com',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'videos') {

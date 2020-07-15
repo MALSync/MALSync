@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const mangatx: pageInterface = {
   name: 'mangatx',
   domain: 'https://mangatx.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {

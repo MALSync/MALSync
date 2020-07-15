@@ -1,5 +1,5 @@
-import { Single as malSingle } from '../_provider/MyAnimeList/single';
-import { userlist } from '../_provider/MyAnimeList/list';
+import { Single as malSingle } from '../_provider/MyAnimeList_legacy/single';
+import { userlist } from '../_provider/MyAnimeList_legacy/list';
 
 export class myanimelistClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;

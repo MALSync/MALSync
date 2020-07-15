@@ -4,6 +4,7 @@ export const nineAnime: pageInterface = {
   name: '9anime',
   domain: 'https://9anime.to',
   database: '9anime',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     return true;

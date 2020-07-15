@@ -4,6 +4,7 @@ export const Novelplanet: pageInterface = {
   name: 'Novelplanet',
   domain: 'https://novelplanet.com',
   database: 'Novelplanet',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (utils.urlPart(url, 5)) {

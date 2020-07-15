@@ -4,6 +4,7 @@ export const Gogoanime: pageInterface = {
   name: 'Gogoanime',
   domain: ['https://gogoanimes.co', 'https://gogoanime.tv', 'https://animego.to'],
   database: 'Gogoanime',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(url, 3) === 'category') {

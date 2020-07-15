@@ -20,6 +20,7 @@ function IsOverviewUrl(url: string) {
 export const TRanimeizle: pageInterface = {
   name: 'TRanimeizle',
   domain: 'https://www.tranimeizle.com/',
+  languages: ['Turkish'],
   type: 'anime',
   isSyncPage(_url: string) {
     const url = new URL(_url);

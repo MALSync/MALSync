@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const JaiminisBox: pageInterface = {
   name: 'JaiminisBox',
   domain: 'https://jaiminisbox.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[4] === 'read') {

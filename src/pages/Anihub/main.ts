@@ -5,6 +5,7 @@ let jsonData;
 export const Anihub: pageInterface = {
   name: 'Anihub',
   domain: 'https://anihub.tv',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     return jsonData.isStreaming;

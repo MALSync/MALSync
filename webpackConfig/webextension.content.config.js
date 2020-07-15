@@ -29,6 +29,11 @@ module.exports = {
       '..',
       'src/index-webextension/simkl.ts',
     ),
+    'oauth-script': path.join(
+      __dirname,
+      '..',
+      'src/index-webextension/oauth.ts',
+    ),
     iframe: path.join(__dirname, '..', 'src/iframe.ts'),
     popup: path.join(__dirname, '..', 'src/popup.ts'),
     install: path.join(__dirname, '..', 'src/index-webextension/install.ts'),

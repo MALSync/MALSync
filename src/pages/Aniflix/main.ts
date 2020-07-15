@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Aniflix: pageInterface = {
   name: 'Aniflix',
   domain: 'https://www1.aniflix.tv',
+  languages: ['German'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[6] === 'season') {
