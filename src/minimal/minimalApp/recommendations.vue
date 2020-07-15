@@ -7,12 +7,53 @@
       style="width: 100%; position: absolute;"
     ></div>
     <span
-      v-show="xhr != '' && recommendations == ''"
+      v-show="xhr != '' && recommendations && recommendations.length === 0"
       class="mdl-chip"
       style="margin: auto; margin-top: 16px; display: table;"
       ><span class="mdl-chip__text">{{ lang('NothingFound') }}</span></span
     >
-    <div v-if="xhr != ''" class="mdl-grid" v-html="recommendations"></div>
+    <div v-if="xhr != ''" class="mdl-grid">
+      <div
+        v-for="rec in recommendations"
+        :key="rec.titleName"
+        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid"
+      >
+        <div class="mdl-card__media" style="background-color: transparent; margin: 8px;">
+          <a :href="rec.titleHref">
+            <img :src="rec.imageUrl" width="50" />
+          </a>
+        </div>
+        <div class="mdl-cell" style="flex-grow: 100;">
+          <div>
+            <a :href="rec.titleHref"
+              ><strong>{{ rec.titleName }}</strong></a
+            >
+          </div>
+          <div>
+            <div style="white-space: pre-wrap">{{ rec.user.text }}</div>
+            <div>
+              Recommended by <a :href="rec.user.userHref">{{ rec.user.username }}</a>
+            </div>
+          </div>
+          <div v-if="rec.children.length">
+            <a
+              class="nojs"
+              href="#"
+              @click="activeItem === rec.titleName ? (activeItem = '') : (activeItem = rec.titleName)"
+              >Read recommendations by {{ rec.children.length }} more user</a
+            >
+            <div v-show="activeItem === rec.titleName" class="more">
+              <div v-for="child in rec.children" :key="child.username" style="padding: 3px; margin: 4px 0;">
+                <div style="white-space: pre-wrap">{{ child.text }}</div>
+                <div>
+                  Recommended by <a :href="child.userHref">{{ child.username }}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -31,11 +72,12 @@ export default {
   data() {
     return {
       xhr: '',
+      activeItem: '',
     };
   },
   computed: {
     recommendations() {
-      let recommendationsHtml = '';
+      const array = [];
       try {
         const recommendationsBlock = this.xhr
           .split('Make a recommendation</a>')[1]
@@ -43,61 +85,68 @@ export default {
           .split('<div class="mauto')[0];
         const htmlT = j.$.parseHTML(recommendationsBlock);
 
+        function getUserRec(value) {
+          const text = j
+            .$(value)
+            .find('.detail-user-recs-text')
+            .first()
+            .text()
+            .trim();
+
+          const username = j
+            .$(value)
+            .find('.detail-user-recs-text')
+            .next()
+            .find('a')
+            .last()
+            .text();
+
+          const userHref = `https://myanimelist.net${j
+            .$(value)
+            .find('.detail-user-recs-text')
+            .next()
+            .find('a')
+            .last()
+            .attr('href')}`;
+
+          return { text, username, userHref };
+        }
+
+        console.log(htmlT);
         j.$.each(j.$(htmlT).filter('.borderClass'), (index, value) => {
-          recommendationsHtml +=
-            '<div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid">';
-          recommendationsHtml += '<div class="mdl-card__media" style="background-color: transparent; margin: 8px;">';
-          recommendationsHtml += j
-            .$(value)
-            .find('.picSurround')
-            .html();
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '<div class="mdl-cell" style="flex-grow: 100;">';
-          recommendationsHtml += '<div class="">';
+          const imageBlock = j.$(value).find('.picSurround');
+
+          const titleHref = imageBlock.find('a').attr('href');
+
+          const titleName = imageBlock
+            .find('a > img')
+            .first()
+            .attr('alt');
+
+          const imageUrl = imageBlock
+            .find('a > img')
+            .first()
+            .attr('data-src');
+
+          const user = getUserRec(value);
+
+          const children = [];
           j.$(value)
-            .find('.button_edit, .button_add, td:eq(1) > div:eq(1) span')
-            .remove();
-          recommendationsHtml += j
-            .$(value)
-            .find('td:eq(1) > div:eq(1)')
-            .html();
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '<div class="">';
-          j.$(value)
-            .find('a[href^="/dbchanges.php?go=report"]')
-            .remove();
-          recommendationsHtml += j
-            .$(value)
-            .find('.borderClass')
-            .html();
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '<div class="">';
-          recommendationsHtml +=
-            typeof j
-              .$(value)
-              .find('.spaceit')
-              .html() !== 'undefined'
-              ? j
-                  .$(value)
-                  .find('.spaceit')
-                  .html()
-              : '';
-          recommendationsHtml += '<div class="more" style="display: none;">';
-          recommendationsHtml += j
-            .$(value)
             .find('td:eq(1) > div')
             .last()
-            .html();
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '</div>';
-          recommendationsHtml += '</div>';
+            .find('div.borderClass')
+            .each((index2, value2) => {
+              children.push(getUserRec(value2));
+            });
+
+          array.push({ titleHref, titleName, imageUrl, user, children });
         });
-        recommendationsHtml += '';
+
+        console.log(array);
       } catch (e) {
         console.log('[iframeRecommendations] Error:', e);
       }
-      return recommendationsHtml;
+      return array;
     },
   },
   watch: {
@@ -116,35 +165,6 @@ export default {
         });
       }
     },
-  },
-  updated() {
-    const minimal = j.$(this.$el);
-    minimal
-      .find('.js-similar-recommendations-button')
-      .addClass('nojs')
-      .click(function() {
-        j.$(this)
-          .parent()
-          .find('.more')
-          .toggle();
-      });
-    minimal
-      .find('.js-toggle-recommendation-button')
-      .addClass('nojs')
-      .click(function() {
-        const revID = j.$(this).attr('data-id');
-        minimal.find(`#recommend${revID}`).css('display', 'initial');
-
-        j.$(this).remove();
-      });
-    minimal
-      .find('#malRecommendations .more .borderClass')
-      .addClass('mdl-shadow--2dp')
-      .css('padding', '10px');
-
-    minimal.find('.lazyload').each(function() {
-      j.$(this).attr('src', j.$(this).attr('data-src'));
-    }); // TODO: use lazyloading
   },
   methods: {
     lang: api.storage.lang,
