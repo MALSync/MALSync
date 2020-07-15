@@ -36,15 +36,25 @@
             </div>
           </div>
           <div v-if="rec.children.length">
-            <a
-              class="nojs"
-              href="#"
-              @click="activeItem === rec.titleName ? (activeItem = '') : (activeItem = rec.titleName)"
+            <a class="nojs" href="#" @click="activeItems.push(rec.titleName)"
               >Read recommendations by {{ rec.children.length }} more user</a
             >
-            <div v-show="activeItem === rec.titleName" class="more">
-              <div v-for="child in rec.children" :key="child.username" style="padding: 3px; margin: 4px 0;">
-                <div style="white-space: pre-wrap">{{ child.text }}</div>
+            <div v-show="activeItems.includes(rec.titleName)" class="more">
+              <div v-for="(child, index) in rec.children" :key="child.username" style="padding: 3px; margin: 4px 0;">
+                <div style="white-space: pre-wrap">
+                  <span>{{ child.text }}</span
+                  ><span v-if="child.readmore">
+                    <!-- prettier-ignore -->
+                    <a
+                      v-show="!activeReadMores.includes(index)"
+                      href="#"
+                      class="nojs"
+                      @click="activeReadMores.push(index)"
+                      > read more</a
+                    >
+                    <span v-show="activeReadMores.includes(index)">{{ child.readmore }}</span>
+                  </span>
+                </div>
                 <div>
                   Recommended by <a :href="child.userHref">{{ child.username }}</a>
                 </div>
@@ -72,7 +82,8 @@ export default {
   data() {
     return {
       xhr: '',
-      activeItem: '',
+      activeItems: [],
+      activeReadMores: [],
     };
   },
   computed: {
@@ -85,13 +96,21 @@ export default {
           .split('<div class="mauto')[0];
         const htmlT = j.$.parseHTML(recommendationsBlock);
 
+        function getBaseText(element) {
+          let text = element.text();
+          element.children().each(function() {
+            text = text.replace(j.$(this).text(), '');
+          });
+          return text;
+        }
+
         function getUserRec(value) {
-          const text = j
-            .$(value)
-            .find('.detail-user-recs-text')
-            .first()
-            .text()
-            .trim();
+          const text = getBaseText(
+            j
+              .$(value)
+              .find('.detail-user-recs-text')
+              .first(),
+          ).trim();
 
           const username = j
             .$(value)
@@ -109,10 +128,18 @@ export default {
             .last()
             .attr('href')}`;
 
-          return { text, username, userHref };
+          let readmore = '';
+          if (j.$(value).find('.detail-user-recs-text > span[id^=recommend]').length) {
+            readmore = j
+              .$(value)
+              .find('.detail-user-recs-text > span[id^=recommend]')
+              .text()
+              .trim();
+          }
+
+          return { text, username, userHref, readmore };
         }
 
-        console.log(htmlT);
         j.$.each(j.$(htmlT).filter('.borderClass'), (index, value) => {
           const imageBlock = j.$(value).find('.picSurround');
 
