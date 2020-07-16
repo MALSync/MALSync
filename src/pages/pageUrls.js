@@ -351,4 +351,7 @@ module.exports = {
   MangaFox: {
     match: ['*://*.fanfox.net/manga/*', '*://*.mangafox.la/manga/*'],
   },
+  JustAnime: {
+    match: ['*://justanime.app/*'],
+  },
 };
