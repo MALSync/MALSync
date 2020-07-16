@@ -48,6 +48,7 @@
     "typescript": "^3.9.5",
     "vue": "^2.6.11",
     "vue-clazy-load": "^0.4.2",
+    "vue-dompurify-html": "^2.2.1",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
     "web-ext": "^4.2.0",

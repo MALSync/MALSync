@@ -1,9 +1,10 @@
 import Vue from 'vue';
+import VueDOMPurifyHTML from 'vue-dompurify-html';
 import * as VueClazyLoad from 'vue-clazy-load';
 import minimalApp from './minimalApp.vue';
 
-// @ts-ignore
 Vue.use(VueClazyLoad);
+Vue.use(VueDOMPurifyHTML);
 
 export class minimal {
   private history: string[] = [];

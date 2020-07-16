@@ -105,7 +105,7 @@
             </div>
 
             <h4>{{ lang('installPage_Howto') }}</h4>
-            <p v-html="lang('installPage_Howto_Description')"></p>
+            <p v-dompurify-html="lang('installPage_Howto_Description')"></p>
 
             <h4>{{ lang('installPage_Wrong') }}</h4>
             <p>{{ lang('installPage_Wrong_Description') }}</p>

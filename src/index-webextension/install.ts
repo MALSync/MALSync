@@ -1,5 +1,8 @@
 import Vue from 'vue';
+import VueDOMPurifyHTML from 'vue-dompurify-html';
 import main from '../installPage/main.vue';
+
+Vue.use(VueDOMPurifyHTML);
 
 declare let componentHandler: any;
 

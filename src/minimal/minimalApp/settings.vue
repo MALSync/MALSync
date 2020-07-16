@@ -149,7 +149,9 @@
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{ lang('settings_Thumbnails') }}
-            <tooltip><span v-html="lang('settings_Thumbnails_text')"></span></tooltip>
+            <tooltip
+              ><span>{{ lang('settings_Thumbnails_text') }}</span></tooltip
+            >
           </span>
           <span class="mdl-list__item-secondary-action">
             <select id="malThumbnail" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -173,7 +175,7 @@
         <checkbox option="malTags">
           {{ lang('settings_malTags') }}
           <tooltip direction="bottom">
-            <span v-html="lang('settings_malTags_Text')"></span>
+            <span>{{ lang('settings_malTags_Text') }}</span>
           </tooltip>
         </checkbox>
         <checkbox option="malContinue">{{ lang('settings_malContinue') }}</checkbox>
