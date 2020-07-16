@@ -354,4 +354,7 @@ module.exports = {
   JustAnime: {
     match: ['*://justanime.app/*'],
   },
+  YayAnimes: {
+    match: ['*://yayanimes.net/*'],
+  },
 };

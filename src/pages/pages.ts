@@ -78,6 +78,7 @@ import { AnimeUnity } from './AnimeUnity/main';
 import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { JustAnime } from './JustAnime/main';
+import { YayAnimes } from './YayAnimes/main';
 
 export const pages = {
   Kissanime,
@@ -160,4 +161,5 @@ export const pages = {
   MangaHere,
   MangaFox,
   JustAnime,
+  YayAnimes,
 };
