@@ -339,4 +339,7 @@ module.exports = {
   MyAnimeListVideo: {
     match: ['*://myanimelist.net/anime/*/*/episode/*'],
   },
+  AnimeSimple: {
+    match: ['*://*.animesimple.com/*'],
+  },
 };

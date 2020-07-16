@@ -32,6 +32,7 @@ export class searchClass {
   changed = false;
 
   constructor(protected title: string, protected type: 'anime' | 'manga' | 'novel', protected identifier: string) {
+    this.identifier += '';
     this.sanitizedTitel = this.sanitizeTitel(this.title);
     this.logger = con.m('search', 'red');
   }
