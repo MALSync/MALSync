@@ -5,6 +5,7 @@ let jsonData;
 export const JustAnime: pageInterface = {
   name: 'JustAnime',
   domain: 'https://justanime.app',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     return jsonData.page && jsonData.page === 'episode';

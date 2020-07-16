@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const YayAnimes: pageInterface = {
   name: 'YayAnimes',
   domain: 'https://yayanimes.net',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (YayAnimes.sync.getEpisode(url) && !YayAnimes.isOverviewPage!(url)) {

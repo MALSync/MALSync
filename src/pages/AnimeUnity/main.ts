@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeUnity: pageInterface = {
   name: 'AnimeUnity',
   domain: 'https://animeunity.it',
+  languages: ['Italian'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[4] !== undefined && url.split('/')[4].length) {
