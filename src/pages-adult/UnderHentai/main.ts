@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const UnderHentai: pageInterface = {
   name: 'UnderHentai',
   domain: 'https://www.underhentai.net',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {

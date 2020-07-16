@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Funimation: pageInterface = {
   name: 'Funimation',
   domain: 'https://www.funimation.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('h1.show-headline.video-title')[0] && j.$('h2.episode-headline')[0]) {

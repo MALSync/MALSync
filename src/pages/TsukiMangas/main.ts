@@ -5,6 +5,7 @@ let jsonData;
 export const TsukiMangas: pageInterface = {
   name: 'Tsuki Mangás',
   domain: 'https://www.tsukimangas.com',
+  languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
     return jsonData.isReaderPage;

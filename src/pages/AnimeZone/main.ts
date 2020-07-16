@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeZone: pageInterface = {
   name: 'AnimeZone',
   domain: 'https://www.animezone.pl',
+  languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
     return url.split('/')[5] !== undefined;

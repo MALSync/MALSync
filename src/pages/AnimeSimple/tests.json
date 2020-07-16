@@ -1,0 +1,30 @@
+{
+  "title": "AnimeSimple",
+  "url": "https://ww1.animesimple.com/",
+  "testCases": [
+    {
+      "url": "https://ww1.animesimple.com/series/1513-mahouka-koukou-no-rettousei-anime.html",
+      "expected": {
+        "sync": false,
+        "title": "The Irregular at Magic High School",
+        "identifier": 1513,
+        "uiSelector": true,
+        "epList": {
+          "20": "https://ww1.animesimple.com/watch/145438-mahouka-koukou-no-rettousei-episode-20-anime.html"
+        }
+      }
+    },
+    {
+      "url": "https://ww1.animesimple.com/watch/143882-mahouka-koukou-no-rettousei-episode-11-anime.html",
+      "expected": {
+        "sync": true,
+        "title": "The Irregular at Magic High School",
+        "identifier": 1513,
+        "episode": 11,
+        "overviewUrl": "https://ww1.animesimple.com/series/1513-mahouka-koukou-no-rettousei-anime.html",
+        "nextEpUrl": "https://ww1.animesimple.com/watch/144034-mahouka-koukou-no-rettousei-episode-12-anime.html",
+        "uiSelector": true
+      }
+    }
+  ]
+}

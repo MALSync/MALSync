@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const KickAssAnime: pageInterface = {
   name: 'KickAssAnime',
   domain: 'https://www.kickassanime.rs',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (typeof url.split('/')[5] === 'undefined') {

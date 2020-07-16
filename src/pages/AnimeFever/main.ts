@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeFever: pageInterface = {
   name: 'AnimeFever',
   domain: 'https://www.animefever.tv',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[5] === 'episode') {

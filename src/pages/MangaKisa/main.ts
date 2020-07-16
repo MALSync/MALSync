@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const MangaKisa: pageInterface = {
   name: 'MangaKisa',
   domain: 'https://mangakisa.com',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] !== undefined && j.$('div.now2 > a.infoan2').length) {

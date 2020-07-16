@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Animefreak: pageInterface = {
   name: 'Animefreak',
   domain: 'https://www.animefreak.tv',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[5] === 'episode') {

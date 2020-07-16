@@ -36,13 +36,6 @@ export function getEpisode(episode: string): number {
   return 0;
 }
 
-export function simklIdToMal(simklId) {
-  return call(`https://api.simkl.com/anime/${simklId}`, { extended: 'full' }, true).then(res => {
-    if (typeof res.ids.mal === 'undefined') return null;
-    return res.ids.mal;
-  });
-}
-
 let cacheList;
 
 export async function syncList(lazy = false) {

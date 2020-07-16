@@ -4,6 +4,7 @@ export const Mangakakalot: pageInterface = {
   name: 'Mangakakalot',
   domain: 'https://mangakakalot.com',
   database: 'MangaNelo',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {

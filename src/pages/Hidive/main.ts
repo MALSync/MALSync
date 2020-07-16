@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Hidive: pageInterface = {
   name: 'Hidive',
   domain: 'https://www.hidive.com',
+  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'stream') {

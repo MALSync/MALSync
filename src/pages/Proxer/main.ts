@@ -4,6 +4,7 @@ export const Proxer: pageInterface = {
   name: 'Proxer',
   domain: 'https://proxer.me',
   database: 'Proxer',
+  languages: ['German', 'English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch' || url.split('/')[3] === 'read') {

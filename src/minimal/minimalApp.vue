@@ -110,56 +110,58 @@
           <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title" />
         </section>
         <section id="fixed-tab-4" :class="{ 'is-active': popOver }" class="mdl-layout__tab-panel">
-          <bookmarksVue
-            v-if="currentTab == tabs.bookmarks.title"
-            :state="tabs.bookmarks.state"
-            :list-type="tabs.bookmarks.type"
-          >
-            <div id="malList" class="mdl-grid" style="justify-content: space-around;">
-              <select
-                id="userListType"
-                v-model="tabs.bookmarks.type"
-                name="myinfo_score"
-                class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
-                style="outline: none; background-color: white; border: none;"
-              >
-                <option value="anime">Anime</option>
-                <option value="manga">Manga</option>
-              </select>
-              <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+          <keepAlive :max="1">
+            <bookmarksVue
+              v-if="currentTab == tabs.bookmarks.title"
+              :state="tabs.bookmarks.state"
+              :list-type="tabs.bookmarks.type"
+            >
+              <div id="malList" class="mdl-grid" style="justify-content: space-around;">
                 <select
-                  id="userListState"
-                  v-model="tabs.bookmarks.state"
+                  id="userListType"
+                  v-model="tabs.bookmarks.type"
                   name="myinfo_score"
-                  class="inputtext mdl-textfield__input"
-                  style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
+                  class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
+                  style="outline: none; background-color: white; border: none;"
                 >
-                  <option :value="7">{{ lang('All') }}</option>
-                  <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
-                  <option :value="2">{{ lang('UI_Status_Completed') }}</option>
-                  <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
-                  <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
-                  <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
+                  <option value="anime">Anime</option>
+                  <option value="manga">Manga</option>
                 </select>
-                <div
-                  v-if="tabs.bookmarks.state === 6"
-                  style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
-                  class="bg-cell"
-                  @click="openRandom(6, tabs.bookmarks.type)"
-                >
-                  <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
-                </div>
-                <div
-                  style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
-                  class="bg-cell"
-                  @click="listView = !listView"
-                >
-                  <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
-                  <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
+                <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+                  <select
+                    id="userListState"
+                    v-model="tabs.bookmarks.state"
+                    name="myinfo_score"
+                    class="inputtext mdl-textfield__input"
+                    style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
+                  >
+                    <option :value="7">{{ lang('All') }}</option>
+                    <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
+                    <option :value="2">{{ lang('UI_Status_Completed') }}</option>
+                    <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
+                    <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
+                    <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
+                  </select>
+                  <div
+                    v-if="tabs.bookmarks.state === 6"
+                    style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                    class="bg-cell"
+                    @click="openRandom(6, tabs.bookmarks.type)"
+                  >
+                    <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
+                  </div>
+                  <div
+                    style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                    class="bg-cell"
+                    @click="listView = !listView"
+                  >
+                    <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
+                    <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
+                  </div>
                 </div>
               </div>
-            </div>
-          </bookmarksVue>
+            </bookmarksVue>
+          </keepAlive>
           <searchVue
             v-if="currentTab == tabs.search.title"
             :keyword="tabs.search.keyword"
@@ -411,6 +413,7 @@ export default {
         })
         .catch(e => {
           this.renderObj = tempRenderObj;
+          this.renderObj.flashmError(e);
           throw e;
         });
     },
@@ -551,6 +554,7 @@ export default {
         /^local:\/\//i.test(url)
       ) {
         if (!isBase) {
+          this.tabs[this.currentTab].scroll = this.getScroll();
           this.history.push(this.getCurrent(this.currentTab));
         }
         this.renderUrl = url;

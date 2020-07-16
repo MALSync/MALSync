@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const serimanga: pageInterface = {
   name: 'serimanga',
   domain: 'https://serimanga.com',
+  languages: ['Turkish'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {

@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const MangaPlus: pageInterface = {
   name: 'MangaPlus',
   domain: 'https://mangaplus.shueisha.co.jp',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'viewer') {

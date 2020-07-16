@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Wakanim: pageInterface = {
   name: 'Wakanim',
   domain: 'https://www.wakanim.tv',
+  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('body > section.episode > div > div > div.episode_main > div.episode_video > div').length) {

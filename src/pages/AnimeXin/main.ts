@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeXin: pageInterface = {
   name: 'AnimeXin',
   domain: 'https://animexin.xyz',
+  languages: ['English', 'Spanish', 'Indonesian', 'Portuguese', 'Turkish', 'Italian'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== 'anime') {

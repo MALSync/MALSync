@@ -4,6 +4,7 @@ export const Twistmoe: pageInterface = {
   name: 'Twistmoe',
   domain: 'https://twist.moe',
   database: 'Twistmoe',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     return true;

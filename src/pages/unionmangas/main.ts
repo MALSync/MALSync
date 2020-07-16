@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const unionmangas: pageInterface = {
   name: 'unionmangas',
   domain: ['https://unionleitor.top', 'https://unionmangas.top'],
+  languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'leitor' && url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {

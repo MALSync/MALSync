@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const HentaiHaven: pageInterface = {
   name: 'HentaiHaven',
   domain: 'https://hentaihaven.org',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) {

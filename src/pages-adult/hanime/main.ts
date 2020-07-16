@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const hanime: pageInterface = {
   name: 'hanime',
   domain: 'https://hanime.tv',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'videos' && url.split('/')[4] === 'hentai') {

@@ -5,6 +5,7 @@ import { pageInterface } from '../pageInterface';
 export const WonderfulSubs: pageInterface = {
   name: 'WonderfulSubs',
   domain: 'https://wonderfulsubs.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {
@@ -73,6 +74,7 @@ export const WonderfulSubs: pageInterface = {
 let betaWonderfulSubs: pageInterface = {
   name: 'betaWonderfulSubs',
   domain: 'https://beta.wonderfulsubs.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {

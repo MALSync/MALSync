@@ -4,6 +4,7 @@ export const Crunchyroll: pageInterface = {
   name: 'Crunchyroll',
   domain: 'https://www.crunchyroll.com',
   database: 'Crunchyroll',
+  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
     if (typeof url.split('/')[4] !== 'undefined') {

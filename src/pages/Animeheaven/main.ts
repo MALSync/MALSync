@@ -4,6 +4,7 @@ export const Animeheaven: pageInterface = {
   name: 'Animeheaven',
   domain: 'http://animeheaven.eu',
   database: 'Animeheaven',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(url, 3) === 'watch.php') {

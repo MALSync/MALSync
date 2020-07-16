@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const mangalivre: pageInterface = {
   name: 'mangalivre',
   domain: 'https://mangalivre.net',
+  languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[6] !== undefined && url.split('/')[6].length > 0) {

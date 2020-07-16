@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeDaisuki: pageInterface = {
   name: 'AnimeDaisuki',
   domain: 'https://animedaisuki.moe',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {

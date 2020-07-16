@@ -7,6 +7,7 @@ function cleanTitle(title) {
 export const Nhentai: pageInterface = {
   name: 'Nhentai',
   domain: 'https://nhentai.net',
+  languages: ['English', 'Chinese', 'Japanese'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[5] && url.split('/')[5].length) {

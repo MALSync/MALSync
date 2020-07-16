@@ -72,6 +72,7 @@ export const Netflix: pageInterface = {
   name: 'Netflix',
   domain: 'https://www.netflix.com',
   database: 'Netflix',
+  languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
     return true;

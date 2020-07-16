@@ -32,6 +32,7 @@ function getSeries(page, overview = '') {
 export const Vrv: pageInterface = {
   name: 'Vrv',
   domain: 'https://vrv.co',
+  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(window.location.href, 3) === 'series') return false;

@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeIndo: pageInterface = {
   name: 'AnimeIndo',
   domain: 'http://animeindo.moe',
+  languages: ['Indonesian'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[1] !== null && j.$('#sct_content > div > div.preview')[0]) {
