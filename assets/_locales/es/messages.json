@@ -548,7 +548,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "La opción es para cambiar el tamaño de las miniaturas en MyAnimeList.<br>Por ejemplo las miniaturas de los personajes, personas, recomendaciones, etc.",
+    "message": "La opción es para cambiar el tamaño de las miniaturas en MyAnimeList. Por ejemplo las miniaturas de los personajes, personas, recomendaciones, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

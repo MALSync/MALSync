@@ -520,7 +520,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Questa opzione serve per ridimensionare le anteprime di MAL.<br>Per esempio per personaggi, persone, consigli, ecc.",
+    "message": "Questa opzione serve per ridimensionare le anteprime di MAL. Per esempio per personaggi, persone, consigli, ecc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

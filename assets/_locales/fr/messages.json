@@ -548,7 +548,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Cette option sert à redimensionner les miniatures sur MyAnimeList.<br>Comme les miniatures pour les personnages, les personnes, les recommandations, etc.",
+    "message": "Cette option sert à redimensionner les miniatures sur MyAnimeList. Comme les miniatures pour les personnages, les personnes, les recommandations, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {
