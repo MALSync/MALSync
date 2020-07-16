@@ -1,6 +1,6 @@
 export interface xhrI {
   name: 'xhr';
-  method: 'GET' | 'POST';
+  method: 'GET' | 'POST' | 'PUT';
   url: string | { url: string; data?: any; headers?: any };
 }
 export interface xhrResponseI {

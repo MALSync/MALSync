@@ -4,6 +4,7 @@ export const Mangarock: pageInterface = {
   name: 'Mangarock',
   domain: 'https://mangarock.com',
   database: 'Mangarock',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (utils.urlPart(url, 5)) {

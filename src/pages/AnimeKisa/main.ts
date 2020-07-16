@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeKisa: pageInterface = {
   name: 'AnimeKisa',
   domain: 'https://animekisa.tv',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {

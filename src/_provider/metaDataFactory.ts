@@ -1,6 +1,6 @@
 import * as helper from './helper';
 import { MetaOverview as LocalMeta } from './Local/metaOverview';
-import { MetaOverview as MalMeta } from './MyAnimeList/metaOverview';
+import { MetaOverview as MalMeta } from './MyAnimeList_legacy/metaOverview';
 import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';

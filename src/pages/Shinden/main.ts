@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Shinden: pageInterface = {
   name: 'Shinden',
   domain: 'https://shinden.pl',
+  languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'episode') {

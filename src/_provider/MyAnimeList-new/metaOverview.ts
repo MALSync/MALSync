@@ -1,0 +1,392 @@
+import { MetaOverviewAbstract } from '../metaOverviewAbstract';
+import { errorCode } from '../definitions';
+import * as helper from './helper';
+import { msDiffToShortTimeString } from '../../utils/time';
+
+enum mediaTypeDefinition {
+  unknown = 'Unknown',
+  tv = 'TV',
+  ova = 'OVA',
+  movie = 'Movie',
+  special = 'Special',
+  ona = 'ONA',
+  music = 'Music',
+  manga = 'Manga',
+  novel = 'Novel',
+  one_shot = 'One shot',
+  doujinshi = 'Doujinshi',
+  manhwa = 'Manhwa',
+  manhua = 'Manhua',
+  oel = 'OEL',
+}
+
+enum airingStatusDefinition {
+  finished_airing = 'Finished Airing',
+  currently_airing = 'Currently Airing',
+  not_yet_aired = 'Not Yet Aired',
+  finished = 'Finished',
+  currently_publishing = 'Currently Publishing',
+  not_yet_published = 'Not Yet Published',
+}
+
+enum sourceDefinition {
+  other = 'Other',
+  original = 'Original',
+  manga = 'Manga',
+  '4_koma_manga' = '4 Koma Manga',
+  web_manga = 'Web Manga',
+  digital_manga = 'Digital Manga',
+  novel = 'Novel',
+  light_novel = 'Light Novel',
+  visual_novel = 'Visual Novel',
+  game = 'Game',
+  card_game = 'Card Game',
+  book = 'Book',
+  picture_book = 'Picture Book',
+  radio = 'Radio',
+  music = 'Music',
+}
+
+enum ratingDefinition {
+  g = 'G - All Ages',
+  pg = 'PG - Children',
+  pg_13 = 'PG 13 - Teens 13 and Older',
+  r = 'R - 17+ (violence & profanity)',
+  'r+' = 'R+ - Profanity & Mild Nudity',
+  rx = 'Rx - Hentai',
+}
+
+export class MetaOverview extends MetaOverviewAbstract {
+  constructor(url) {
+    super(url);
+    this.logger = this.logger.m('MAL');
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+      this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
+      this.malId = Number(utils.urlPart(url, 4));
+      return;
+    }
+    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+  }
+
+  protected readonly type;
+
+  private readonly malId: number;
+
+  async _init() {
+    this.logger.log('Retrieve', this.type, this.malId);
+
+    const data = await this.getData();
+    this.logger.log('Data', data);
+
+    this.title(data);
+    this.description(data);
+    this.image(data);
+    this.alternativeTitle(data);
+    this.statistics(data);
+    this.info(data);
+    this.related(data);
+
+    this.logger.log('Res', this.meta);
+  }
+
+  private async getData() {
+    return this.apiCall({
+      type: 'GET',
+      path: `${this.type}/${this.malId}`,
+      fields: [
+        'synopsis',
+        'alternative_titles',
+        'mean',
+        'rank',
+        'popularity',
+        'num_list_users',
+        'num_scoring_users',
+        'related_anime',
+        'related_manga',
+        // Info
+        'media_type',
+        'num_episodes',
+        'num_chapters',
+        'num_volumes',
+        'status',
+        'start_date',
+        'end_date',
+        'start_season',
+        'broadcast',
+        'studios',
+        'authors{first_name,last_name}',
+        'source',
+        'genres',
+        'average_episode_duration',
+        'rating',
+        'serialization',
+      ],
+    });
+  }
+
+  private title(data) {
+    this.meta.title = data.title;
+  }
+
+  private description(data) {
+    if (data.synopsis) this.meta.description = data.synopsis;
+  }
+
+  private image(data) {
+    if (data.main_picture && data.main_picture.medium) this.meta.image = data.main_picture.medium;
+  }
+
+  private alternativeTitle(data) {
+    if (data.alternative_titles) {
+      for (const prop in data.alternative_titles) {
+        const el = data.alternative_titles[prop];
+        if (Array.isArray(el)) {
+          this.meta.alternativeTitle = this.meta.alternativeTitle.concat(el);
+        } else if (el) this.meta.alternativeTitle.push(el);
+      }
+    }
+  }
+
+  private statistics(data) {
+    if (data.mean)
+      this.meta.statistics.push({
+        title: 'Score:',
+        body: data.mean,
+      });
+
+    if (data.rank)
+      this.meta.statistics.push({
+        title: 'Ranked:',
+        body: `#${data.rank}`,
+      });
+
+    if (data.popularity)
+      this.meta.statistics.push({
+        title: 'Popularity:',
+        body: `#${data.popularity}`,
+      });
+
+    if (data.num_list_users)
+      this.meta.statistics.push({
+        title: 'Members:',
+        body: data.num_list_users.toLocaleString(),
+      });
+
+    if (data.num_scoring_users)
+      this.meta.statistics.push({
+        title: 'Rated:',
+        body: data.num_scoring_users.toLocaleString(),
+      });
+  }
+
+  private info(data) {
+    if (data.media_type) {
+      const format = mediaTypeDefinition[data.media_type];
+      this.meta.info.push({
+        title: 'Format:',
+        body: `<a href="https://myanimelist.net/top${this.type}.php?type=${data.media_type}">${format ??
+          data.media_type}</a>`,
+      });
+    }
+
+    if (data.num_episodes) {
+      this.meta.info.push({
+        title: 'Episodes:',
+        body: data.num_episodes,
+      });
+    } else if (data.num_episodes === 0) {
+      this.meta.info.push({
+        title: 'Episodes:',
+        body: 'Unknown',
+      });
+    }
+
+    if (data.num_chapters) {
+      this.meta.info.push({
+        title: 'Chapters:',
+        body: data.num_chapters,
+      });
+    } else if (data.num_chapters === 0) {
+      this.meta.info.push({
+        title: 'Chapters:',
+        body: 'Unknown',
+      });
+    }
+
+    if (data.num_volumes) {
+      this.meta.info.push({
+        title: 'Volumes:',
+        body: data.num_volumes,
+      });
+    } else if (data.num_volumes === 0) {
+      this.meta.info.push({
+        title: 'Volumes:',
+        body: 'Unknown',
+      });
+    }
+
+    if (data.status) {
+      const format = airingStatusDefinition[data.status];
+      this.meta.info.push({
+        title: 'Status:',
+        body: format ?? data.status,
+      });
+    }
+
+    if (data.start_date) {
+      let format = '';
+      if (data.start_date) format += `${data.start_date} `;
+      format += 'to ';
+      if (data.end_date) {
+        format += data.end_date;
+      } else {
+        format += '?';
+      }
+      this.meta.info.push({
+        title: 'Aired:',
+        body: format,
+      });
+    }
+
+    if (data.start_season) {
+      let format = '';
+      if (data.start_season.season) format += `${data.start_season.season} `;
+      if (data.start_season.year) format += data.start_season.year;
+      this.meta.info.push({
+        title: 'Premiered:',
+        body: `<a href="https://myanimelist.net/${this.type}/season/${data.start_season.year}/${data.start_season.season}">${format}</a>`,
+      });
+    }
+
+    if (data.broadcast) {
+      let format = '';
+      if (data.broadcast.day_of_the_week) format += `${data.broadcast.day_of_the_week} `;
+      if (data.broadcast.day_of_the_week && data.broadcast.start_time) format += 'at ';
+      if (data.broadcast.start_time) format += `${data.broadcast.start_time} (JST)`;
+      this.meta.info.push({
+        title: 'Broadcast:',
+        body: format,
+      });
+    }
+
+    if (data.studios) {
+      let studios = '';
+      data.studios.forEach(function(i, index) {
+        if (studios !== '') studios += ', ';
+        studios += `<a href="https://myanimelist.net/anime/producer/${i.id}">${i.name}</a>`;
+      });
+      if (studios !== '')
+        this.meta.info.push({
+          title: 'Studios:',
+          body: studios,
+        });
+    }
+
+    if (data.authors) {
+      let authors = '';
+      data.authors.forEach(function(i, index) {
+        if (authors !== '') authors += ', ';
+        authors += `<a href="https://myanimelist.net/people/${i.node.id}">
+          ${i.node.last_name ?? ''}${i.node.last_name && i.node.first_name ? ',' : ''}
+          ${i.node.first_name ?? ''}
+        </a> ${i.role ? `(${i.role})` : ''}`;
+      });
+      if (authors !== '')
+        this.meta.info.push({
+          title: 'Authors:',
+          body: authors,
+        });
+    }
+
+    if (data.source) {
+      const format = sourceDefinition[data.source];
+      this.meta.info.push({
+        title: 'Source:',
+        body: format ?? data.source,
+      });
+    }
+
+    if (data.genres) {
+      let genres = '';
+      data.genres.forEach((i, index) => {
+        if (genres !== '') genres += ', ';
+        genres += `<a href="https://myanimelist.net/${this.type}/genre/${i.id}">${i.name}</a>`;
+      });
+      if (genres !== '')
+        this.meta.info.push({
+          title: 'Genres:',
+          body: genres,
+        });
+    }
+
+    if (data.average_episode_duration) {
+      this.meta.info.push({
+        title: 'Episode Duration:',
+        body: msDiffToShortTimeString(data.average_episode_duration * 1000),
+      });
+    }
+
+    if (data.rating) {
+      const format = ratingDefinition[data.rating];
+      this.meta.info.push({
+        title: 'Rating:',
+        body: format ?? data.rating,
+      });
+    }
+
+    if (data.serialization) {
+      let serialization = '';
+      data.serialization.forEach(function(i, index) {
+        if (serialization !== '') serialization += ', ';
+        serialization += `<a href="https://myanimelist.net/manga/magazine/${i.node.id}">${i.node.name}</a>`;
+      });
+      if (serialization !== '')
+        this.meta.info.push({
+          title: 'Serialization:',
+          body: serialization,
+        });
+    }
+  }
+
+  private related(data) {
+    const links: any = {};
+
+    if (data.related_anime.length) {
+      data.related_anime.forEach(el => {
+        if (typeof links[el.relation_type] === 'undefined') {
+          links[el.relation_type] = {
+            type: el.relation_type_formatted,
+            links: [],
+          };
+        }
+
+        links[el.relation_type].links.push({
+          url: `https://myanimelist.net/anime/${el.node.id}`,
+          title: el.node.title,
+          statusTag: '',
+        });
+      });
+    }
+
+    if (data.related_manga.length) {
+      data.related_manga.forEach(el => {
+        if (typeof links[el.relation_type] === 'undefined') {
+          links[el.relation_type] = {
+            type: el.relation_type_formatted,
+            links: [],
+          };
+        }
+
+        links[el.relation_type].links.push({
+          url: `https://myanimelist.net/manga/${el.node.id}`,
+          title: el.node.title,
+          statusTag: '',
+        });
+      });
+    }
+
+    this.meta.related = Object.keys(links).map(key => links[key]);
+  }
+
+  protected apiCall = helper.apiCall;
+}

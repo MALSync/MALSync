@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Voiranime: pageInterface = {
   name: 'Voiranime',
   domain: 'http://voiranime.com',
+  languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
     if ($('.video-series-wrap').length) return true;

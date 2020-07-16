@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Turkanime: pageInterface = {
   name: 'Turkanime',
   domain: 'http://www.turkanime.tv',
+  languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== 'video') {

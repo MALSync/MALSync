@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Branitube: pageInterface = {
   name: 'Branitube',
   domain: 'https://www.branitube.net',
+  languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {

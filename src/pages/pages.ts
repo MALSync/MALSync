@@ -73,6 +73,7 @@ import { Scantrad } from './Scantrad/main';
 import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
+import { AnimeSimple } from './AnimeSimple/main';
 import { AnimeUnity } from './AnimeUnity/main';
 
 export const pages = {
@@ -151,5 +152,6 @@ export const pages = {
   AnimeId,
   AniMixPlay,
   MyAnimeListVideo,
+  AnimeSimple,
   AnimeUnity,
 };

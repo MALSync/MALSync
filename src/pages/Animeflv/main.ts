@@ -4,6 +4,7 @@ import { pageInterface } from '../pageInterface';
 export const animeflv: pageInterface = {
   name: 'animeflv',
   domain: 'https://animeflv.net',
+  languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(url, 3) === 'ver') return true;

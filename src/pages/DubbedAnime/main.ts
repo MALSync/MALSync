@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const DubbedAnime: pageInterface = {
   name: 'DubbedAnime',
   domain: 'https://ww5.dubbedanime.net',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'episode') {

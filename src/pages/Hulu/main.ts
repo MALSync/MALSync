@@ -10,6 +10,7 @@ let nextEp: any;
 export const Hulu: pageInterface = {
   name: 'Hulu',
   domain: 'https://www.hulu.com',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'watch') {

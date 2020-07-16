@@ -37,6 +37,7 @@ function createTable() {
     <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${
       page.name
     }</a></td>
+    <td>${page.languages.join(', ')}</td>
     ${rowCondition(typeof page.overview !== 'undefined')}
     ${rowCondition(typeof page.sync.nextEpUrl !== 'undefined')}
     ${rowCondition(typeof page.database !== 'undefined')}
@@ -53,6 +54,7 @@ function createTable() {
     <thead>
       <tr>
         <th>Page</th>
+        <th>Languages</th>
         <th>Overview Page</th>
         <th>Next Episode</th>
         <th>Database Support</th>
@@ -68,6 +70,7 @@ function createTable() {
     <thead>
       <tr>
         <th>Page</th>
+        <th>Languages</th>
         <th>Overview Page</th>
         <th>Next Chapter</th>
         <th>Database Support</th>

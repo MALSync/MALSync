@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const fourAnime: pageInterface = {
   name: '4Anime',
   domain: 'https://4anime.to',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (j.$('.singletitletop')[0] && j.$('.episodes')[0]) {

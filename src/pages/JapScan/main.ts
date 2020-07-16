@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const JapScan: pageInterface = {
   name: 'JapScan',
   domain: 'https://www.japscan.co',
+  languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'lecture-en-ligne') {

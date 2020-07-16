@@ -4,6 +4,7 @@ export const Kissanime: pageInterface = {
   name: 'kissanime',
   domain: 'https://kissanime.ru',
   database: 'Kissanime',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(url, 5)) {

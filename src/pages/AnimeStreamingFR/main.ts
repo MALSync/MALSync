@@ -5,6 +5,7 @@ let jsonData;
 export const AnimeStreamingFR: pageInterface = {
   name: 'AnimeStreamingFR',
   domain: 'https://www.animestreamingfr.fr',
+  languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
     return jsonData.isStreaming;

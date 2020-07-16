@@ -95,6 +95,7 @@ async function apiCall(url, apiKey = null, base = null) {
 export const Plex: pageInterface = {
   name: 'Plex',
   domain: 'http://app.plex.tv',
+  languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
     if (item.type === 'episode') {

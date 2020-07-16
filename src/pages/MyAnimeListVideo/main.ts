@@ -3,6 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const MyAnimeListVideo: pageInterface = {
   name: 'MyAnimeList',
   domain: 'https://myanimelist.net',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     return true;

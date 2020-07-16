@@ -4,6 +4,7 @@ import { pageInterface } from '../pageInterface';
 export const AnimeId: pageInterface = {
   name: 'AnimeId',
   domain: 'https://www.animeid.tv',
+  languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(url, 3) === `v`) return true;

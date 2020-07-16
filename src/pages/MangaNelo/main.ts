@@ -4,6 +4,7 @@ export const MangaNelo: pageInterface = {
   name: 'MangaNelo',
   domain: 'https://manganelo.com',
   database: 'MangaNelo',
+  languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[3] === 'chapter') {

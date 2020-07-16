@@ -3,6 +3,7 @@ import { pageInterface } from '../../pages/pageInterface';
 export const KissHentai: pageInterface = {
   name: 'KissHentai',
   domain: 'http://kisshentai.net',
+  languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'Hentai' && j.$('div#videoKissHentai')[0]) {
