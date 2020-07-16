@@ -55,8 +55,8 @@
             <p v-for="(line, index2) in review.rText" :key="index2">{{ line }}</p>
           </div>
           <div v-if="review.rReadmore">
-            <a v-show="!activeReadMores.includes(index)" href="#" class="nojs" @click="activeReadMores.push(index)">
-              read more</a
+            <a v-show="!activeReadMores.includes(index)" href="#" class="nojs" @click="activeReadMores.push(index)"
+              >read more</a
             >
             <p v-for="(line, index3) in review.rReadmore" v-show="activeReadMores.includes(index)" :key="index3">
               {{ line }}
