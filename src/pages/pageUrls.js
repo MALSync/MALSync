@@ -342,4 +342,10 @@ module.exports = {
   AnimeSimple: {
     match: ['*://*.animesimple.com/*'],
   },
+  MangaHere: {
+    match: ['*://*.mangahere.cc/manga/*'],
+  },
+  MangaFox: {
+    match: ['*://*.fanfox.net/manga/*', '*://*.mangafox.la/manga/*'],
+  },
 };

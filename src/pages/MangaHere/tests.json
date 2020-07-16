@@ -1,0 +1,30 @@
+{
+  "title": "MangaHere",
+  "url": "https://www.mangahere.cc",
+  "testCases": [
+    {
+      "url": "https://www.mangahere.cc/manga/berserk_of_gluttony/c021/1.html",
+      "expected": {
+        "sync": true,
+        "title": "Berserk of Gluttony",
+        "identifier": "berserk_of_gluttony",
+        "overviewUrl": "http://www.mangahere.cc/manga/berserk_of_gluttony/",
+        "nextEpUrl": "http://www.mangahere.cc/manga/berserk_of_gluttony/c022/1.html",
+        "episode": 21,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.mangahere.cc/manga/berserk_of_gluttony/",
+      "expected": {
+        "sync": false,
+        "title": "Berserk of Gluttony",
+        "identifier": "berserk_of_gluttony",
+        "uiSelector": true,
+        "epList": {
+          "16": "http://www.mangahere.cc/manga/berserk_of_gluttony/c016/1.html"
+        }
+      }
+    }
+  ]
+}

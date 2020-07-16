@@ -1,0 +1,31 @@
+{
+  "title": "MangaFox",
+  "url": "http://fanfox.net/",
+  "testCases": [
+    {
+      "url": "http://fanfox.net/manga/solo_leveling/c106/1.html#ipg1",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "solo_leveling",
+        "overviewUrl": "http://fanfox.net/manga/solo_leveling/",
+        "nextEpUrl": "http://fanfox.net/manga/solo_leveling/c107/1.html",
+        "episode": 106,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "http://fanfox.net/manga/solo_leveling/",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "solo_leveling",
+        "uiSelector": true,
+        "epList": {
+          "16": "http://fanfox.net/manga/solo_leveling/c016/1.html",
+          "96": "http://fanfox.net/manga/solo_leveling/c096/1.html"
+        }
+      }
+    }
+  ]
+}

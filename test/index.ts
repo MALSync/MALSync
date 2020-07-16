@@ -106,13 +106,14 @@ function getPage(url) {
   for (const key in pages) {
     const page = pages[key];
     if (j.$.isArray(page.domain)) {
-      for (const k in page.domain) {
-        const singleDomain = page.domain[k];
+      var resPage;
+      page.domain.forEach(singleDomain => {
         if (checkDomain(singleDomain)) {
           page.domain = singleDomain;
-          return page;
+          resPage = page;
         }
-      }
+      });
+      if(resPage) return resPage;
     } else if (checkDomain(page.domain)) {
       return page;
     }

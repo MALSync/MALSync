@@ -74,6 +74,8 @@ import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeSimple } from './AnimeSimple/main';
+import { MangaHere } from './MangaHere/main';
+import { MangaFox } from './MangaFox/main';
 
 export const pages = {
   Kissanime,
@@ -152,4 +154,6 @@ export const pages = {
   AniMixPlay,
   MyAnimeListVideo,
   AnimeSimple,
+  MangaHere,
+  MangaFox,
 };
