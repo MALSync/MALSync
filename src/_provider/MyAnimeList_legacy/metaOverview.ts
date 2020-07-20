@@ -198,12 +198,40 @@ export class MetaOverview extends MetaOverviewAbstract {
         j.$(value)
           .find('.dark_text')
           .remove();
+
+        //@ts-ignore
+        let aTags: {text: string, url: string, subtext?: string}[] = j.$(value).find('a').map((i, el) => {
+          return {
+            text: j.$(el).text().trim(),
+            url: j.$(el).attr('href'),
+          }
+        })
+
+        j.$(value).find('a, span').remove();
+
+        let textTags = j.$(value).text().split(',');
+
+        let body: any[] = [];
+
+        if(!aTags.length){
+          body = textTags.map(el => {
+            return {
+              text: el
+            }
+          })
+        }else if(aTags.length === textTags.length ){
+          body = aTags.map((i, el) => {
+            //@ts-ignore
+            el.subtext = textTags[i].trim();
+            return el;
+          })
+        }else{
+          body = aTags;
+        }
+
         html.push({
           title: title.trim(),
-          body: j
-            .$(value)
-            .html()
-            .trim(),
+          body: body,
         });
       });
       this.getExternalLinks(html, data);
@@ -218,12 +246,14 @@ export class MetaOverview extends MetaOverviewAbstract {
       const infoBlock = `${data.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
       const infoData = j.$.parseHTML(infoBlock);
 
-      let body = '';
+      let body: any[] = [];
       j.$.each(j.$(infoData).find('a'), (index, value) => {
-        if (index) body += ', ';
-        body += `<a href="${j.$(value).attr('href')}">${j.$(value).text()}</a>`;
+        body.push({
+          text: j.$(value).text(),
+          url: j.$(value).attr('href')
+        })
       });
-      if (body !== '') {
+      if (body.length) {
         html.push({
           title: 'External Links',
           body,

@@ -367,7 +367,12 @@
                 <span>
                   {{ inf.title }}
                 </span>
-                <span class="mdl-list__item-text-body" v-html="inf.body"> </span>
+                <span class="mdl-list__item-text-body">
+                  <span
+                    v-for="(b, ind) in inf.body"
+                    :key="b.title"
+                  ><template v-if="ind > 0">, </template><template v-if="b.url"><a :href="b.url">{{b.text}}</a></template><template v-else>{{b.text}}</template><small v-if="b.subtext && b.subtext"> {{b.subtext}}</small></span>
+                </span>
               </span>
             </li>
           </ul>
