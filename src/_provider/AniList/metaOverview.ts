@@ -197,7 +197,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (i.node.name.first) name += i.node.name.first;
         this.meta.characters.push({
           img: i.node.image.large,
-          name: name,
+          name,
           url: i.node.siteUrl,
         });
       });
@@ -249,7 +249,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.data.Media.episodes)
       this.meta.info.push({
         title: 'Episodes:',
-        body: [{ text:  data.data.Media.episodes}],
+        body: [{ text: data.data.Media.episodes }],
       });
 
     if (data.data.Media.duration)
@@ -270,13 +270,19 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.data.Media.startDate.year)
       this.meta.info.push({
         title: 'Start Date:',
-        body: [{ text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}` }],
+        body: [
+          {
+            text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
+          },
+        ],
       });
 
     if (data.data.Media.endDate.year)
       this.meta.info.push({
         title: 'End Date:',
-        body: [{ text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}` }],
+        body: [
+          { text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}` },
+        ],
       });
 
     if (data.data.Media.season) {
@@ -289,7 +295,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    let studios: any = [];
+    const studios: any = [];
     data.data.Media.studios.edges.forEach(function(i, index) {
       if (i.isMain) {
         studios.push({
@@ -327,12 +333,12 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    let external: any[] = [];
+    const external: any[] = [];
     data.data.Media.externalLinks.forEach(function(i, index) {
       external.push({
         text: i.site,
-        url: i.url
-      })
+        url: i.url,
+      });
     });
     if (external.length)
       this.meta.info.push({

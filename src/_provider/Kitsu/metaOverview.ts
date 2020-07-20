@@ -119,11 +119,11 @@ export class MetaOverview extends MetaOverviewAbstract {
   private characters() {
     this.animeInfo.included.forEach(i => {
       if (i.type === 'characters' && this.meta.characters.length < 10) {
-        let { name } = i.attributes;
+        const { name } = i.attributes;
 
         this.meta.characters.push({
           img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
-          name: name,
+          name,
           url: `https://myanimelist.net/character/${i.attributes.malId}`,
         });
       }
@@ -211,7 +211,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (i.type === 'categories' && genres.length < 6) {
         genres.push({
           text: i.attributes.title,
-          url:`https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
+          url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
         });
       }
     });

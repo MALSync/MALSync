@@ -15,7 +15,7 @@
     </span>
 
     <span v-if="objError" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
-      <span class="mdl-chip__text" v-dompurify-html="objError"></span>
+      <span v-dompurify-html="objError" class="mdl-chip__text"></span>
       <button type="button" class="mdl-chip__action" @click="reload()">
         <i class="material-icons">refresh</i>
       </button>
@@ -41,7 +41,7 @@
               <span>
                 {{ stat.title }}
               </span>
-              <span class="mdl-list__item-sub-title">{{stat.body}}</span>
+              <span class="mdl-list__item-sub-title">{{ stat.body }}</span>
             </span>
           </li>
         </ul>
@@ -66,10 +66,7 @@
             target="_blank"
             ><i class="material-icons">open_in_new</i></a
           >
-          <h1
-            class="malTitle mdl-card__title-text malClear"
-            style="padding-left: 0; overflow:visible;"
-          >{{title}}</h1>
+          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0; overflow:visible;">{{ title }}</h1>
           <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0; overflow:visible;">
             <div v-for="altTitl in altTitle" :key="altTitl" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{ altTitl }}</span>
@@ -77,7 +74,7 @@
           </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p style="color: black; white-space: pre-line;">{{description}}</p>
+          <p style="color: black; white-space: pre-line;">{{ description }}</p>
           <div
             v-show="streaming"
             class="mdl-card__actions mdl-card--border"
@@ -297,10 +294,10 @@
               </clazy-load>
               <div>
                 <a :href="character.url">
-                  {{character.name}}
+                  {{ character.name }}
                 </a>
                 <div class="spaceit_pad">
-                  <small>{{character.subtext}}</small>
+                  <small>{{ character.subtext }}</small>
                 </div>
               </div>
             </div>
@@ -368,10 +365,13 @@
                   {{ inf.title }}
                 </span>
                 <span class="mdl-list__item-text-body">
-                  <span
-                    v-for="(b, ind) in inf.body"
-                    :key="b.title"
-                  ><template v-if="ind > 0">, </template><template v-if="b.url"><a :href="b.url">{{b.text}}</a></template><template v-else>{{b.text}}</template><small v-if="b.subtext && b.subtext"> {{b.subtext}}</small></span>
+                  <span v-for="(b, ind) in inf.body" :key="b.title"
+                    ><template v-if="ind > 0">, </template
+                    ><template v-if="b.url"
+                      ><a :href="b.url">{{ b.text }}</a></template
+                    ><template v-else>{{ b.text }}</template
+                    ><small v-if="b.subtext && b.subtext"> {{ b.subtext }}</small></span
+                  >
                 </span>
               </span>
             </li>

@@ -59,9 +59,9 @@ export class MetaOverview extends MetaOverviewAbstract {
     let description = '';
     try {
       description = data.split('itemprop="description">')[1].split('</span')[0];
-      const tmp = document.createElement("DIV");
+      const tmp = document.createElement('DIV');
       tmp.innerHTML = description;
-      description = tmp.textContent || tmp.innerText || "";
+      description = tmp.textContent || tmp.innerText || '';
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
@@ -121,17 +121,27 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         charImg = utils.handleMalImages(charImg);
 
-        let charObjLink = j
-            .$(value)
-            .find('.borderClass .spaceit_pad')
-            .first()
-            .parent();
+        const charObjLink = j
+          .$(value)
+          .find('.borderClass .spaceit_pad')
+          .first()
+          .parent();
 
         charArray.push({
           img: charImg,
-          name: charObjLink.find('a').first().text(),
-          url: charObjLink.find('a').first().attr('href'),
-          subtext: charObjLink.find('.spaceit_pad').first().text().trim(),
+          name: charObjLink
+            .find('a')
+            .first()
+            .text(),
+          url: charObjLink
+            .find('a')
+            .first()
+            .attr('href'),
+          subtext: charObjLink
+            .find('.spaceit_pad')
+            .first()
+            .text()
+            .trim(),
         });
       });
     } catch (e) {
@@ -199,39 +209,50 @@ export class MetaOverview extends MetaOverviewAbstract {
           .find('.dark_text')
           .remove();
 
-        //@ts-ignore
-        let aTags: {text: string, url: string, subtext?: string}[] = j.$(value).find('a').map((i, el) => {
-          return {
-            text: j.$(el).text().trim(),
-            url: j.$(el).attr('href'),
-          }
-        })
+        // @ts-ignore
+        const aTags: { text: string; url: string; subtext?: string }[] = j
+          .$(value)
+          .find('a')
+          .map((i, el) => {
+            return {
+              text: j
+                .$(el)
+                .text()
+                .trim(),
+              url: j.$(el).attr('href'),
+            };
+          });
 
-        j.$(value).find('a, span').remove();
+        j.$(value)
+          .find('a, span')
+          .remove();
 
-        let textTags = j.$(value).text().split(',');
+        const textTags = j
+          .$(value)
+          .text()
+          .split(',');
 
         let body: any[] = [];
 
-        if(!aTags.length){
+        if (!aTags.length) {
           body = textTags.map(el => {
             return {
-              text: el
-            }
-          })
-        }else if(aTags.length === textTags.length ){
+              text: el,
+            };
+          });
+        } else if (aTags.length === textTags.length) {
           body = aTags.map((i, el) => {
-            //@ts-ignore
+            // @ts-ignore
             el.subtext = textTags[i].trim();
             return el;
-          })
-        }else{
+          });
+        } else {
           body = aTags;
         }
 
         html.push({
           title: title.trim(),
-          body: body,
+          body,
         });
       });
       this.getExternalLinks(html, data);
@@ -246,12 +267,12 @@ export class MetaOverview extends MetaOverviewAbstract {
       const infoBlock = `${data.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
       const infoData = j.$.parseHTML(infoBlock);
 
-      let body: any[] = [];
+      const body: any[] = [];
       j.$.each(j.$(infoData).find('a'), (index, value) => {
         body.push({
           text: j.$(value).text(),
-          url: j.$(value).attr('href')
-        })
+          url: j.$(value).attr('href'),
+        });
       });
       if (body.length) {
         html.push({

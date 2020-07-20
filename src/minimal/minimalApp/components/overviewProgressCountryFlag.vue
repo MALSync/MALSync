@@ -1,6 +1,6 @@
 <template>
   <div v-if="country" class="flagIcon mdl-shadow--2dp" :title="text">
-    <div v-if="flagHtml" class="flagflag" v-dompurify-html="flagHtml"></div>
+    <div v-if="flagHtml" v-dompurify-html="flagHtml" class="flagflag"></div>
     <div v-else class="flagCountry">{{ country }}</div>
     <div v-if="text !== 'SUB'" class="flagText">{{ text }}</div>
   </div>

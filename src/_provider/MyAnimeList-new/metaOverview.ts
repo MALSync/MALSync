@@ -184,10 +184,12 @@ export class MetaOverview extends MetaOverviewAbstract {
       const format = mediaTypeDefinition[data.media_type];
       this.meta.info.push({
         title: 'Format:',
-        body: [{
-          text: format ?? data.media_type,
-          url: `https://myanimelist.net/top${this.type}.php?type=${data.media_type}`
-        }],
+        body: [
+          {
+            text: format ?? data.media_type,
+            url: `https://myanimelist.net/top${this.type}.php?type=${data.media_type}`,
+          },
+        ],
       });
     }
 
@@ -231,7 +233,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const format = airingStatusDefinition[data.status];
       this.meta.info.push({
         title: 'Status:',
-        body: [{ text: (format ?? data.status) }],
+        body: [{ text: format ?? data.status }],
       });
     }
 
@@ -256,10 +258,12 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (data.start_season.year) format += data.start_season.year;
       this.meta.info.push({
         title: 'Premiered:',
-        body: [{
-          url: `https://myanimelist.net/${this.type}/season/${data.start_season.year}/${data.start_season.season}`,
-          text: format
-        }],
+        body: [
+          {
+            url: `https://myanimelist.net/${this.type}/season/${data.start_season.year}/${data.start_season.season}`,
+            text: format,
+          },
+        ],
       });
     }
 
@@ -275,12 +279,12 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     if (data.studios) {
-      let studios: any[] = [];
+      const studios: any[] = [];
       data.studios.forEach(function(i, index) {
         studios.push({
           text: i.name,
           url: `https://myanimelist.net/anime/producer/${i.id}`,
-        })
+        });
       });
       if (studios.length)
         this.meta.info.push({
@@ -290,13 +294,14 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     if (data.authors) {
-      let authors: any[] = [];
+      const authors: any[] = [];
       data.authors.forEach(function(i, index) {
         authors.push({
-          text: `${i.node.last_name ?? ''}${i.node.last_name && i.node.first_name ? ',' : ''} ${i.node.first_name ?? ''}`,
+          text: `${i.node.last_name ?? ''}${i.node.last_name && i.node.first_name ? ',' : ''} ${i.node.first_name ??
+            ''}`,
           url: `https://myanimelist.net/people/${i.node.id}`,
           subtext: i.role ? `(${i.role})` : '',
-        })
+        });
       });
       if (authors.length)
         this.meta.info.push({
@@ -309,17 +314,17 @@ export class MetaOverview extends MetaOverviewAbstract {
       const format = sourceDefinition[data.source];
       this.meta.info.push({
         title: 'Source:',
-        body: [{ text: (format ?? data.source) }],
+        body: [{ text: format ?? data.source }],
       });
     }
 
     if (data.genres) {
-      let genres: any[] = [];
+      const genres: any[] = [];
       data.genres.forEach((i, index) => {
         genres.push({
           text: i.name,
           url: `https://myanimelist.net/${this.type}/genre/${i.id}`,
-        })
+        });
       });
       if (genres.length)
         this.meta.info.push({
@@ -339,17 +344,17 @@ export class MetaOverview extends MetaOverviewAbstract {
       const format = ratingDefinition[data.rating];
       this.meta.info.push({
         title: 'Rating:',
-        body: [{ text: (format ?? data.rating) }],
+        body: [{ text: format ?? data.rating }],
       });
     }
 
     if (data.serialization) {
-      let serialization: any[] = [];
+      const serialization: any[] = [];
       data.serialization.forEach(function(i, index) {
         serialization.push({
           text: i.node.name,
           url: `https://myanimelist.net/manga/magazine/${i.node.id}`,
-        })
+        });
       });
       if (serialization.length)
         this.meta.info.push({
