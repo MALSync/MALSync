@@ -77,7 +77,7 @@
           </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p style="color: black;" v-html="description"></p>
+          <p style="color: black; white-space: pre-line;">{{description}}</p>
           <div
             v-show="streaming"
             class="mdl-card__actions mdl-card--border"

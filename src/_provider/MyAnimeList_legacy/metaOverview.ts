@@ -59,10 +59,13 @@ export class MetaOverview extends MetaOverviewAbstract {
     let description = '';
     try {
       description = data.split('itemprop="description">')[1].split('</span')[0];
+      const tmp = document.createElement("DIV");
+      tmp.innerHTML = description;
+      description = tmp.textContent || tmp.innerText || "";
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
-    this.meta.description = description;
+    this.meta.description = description.trim();
   }
 
   private image(data) {
