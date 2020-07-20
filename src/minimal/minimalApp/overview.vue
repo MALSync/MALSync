@@ -15,7 +15,7 @@
     </span>
 
     <span v-if="objError" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
-      <span class="mdl-chip__text" v-html="objError"></span>
+      <span class="mdl-chip__text" v-dompurify-html="objError"></span>
       <button type="button" class="mdl-chip__action" @click="reload()">
         <i class="material-icons">refresh</i>
       </button>
@@ -41,7 +41,7 @@
               <span>
                 {{ stat.title }}
               </span>
-              <span class="mdl-list__item-sub-title" v-html="stat.body"> </span>
+              <span class="mdl-list__item-sub-title">{{stat.body}}</span>
             </span>
           </li>
         </ul>
@@ -69,8 +69,7 @@
           <h1
             class="malTitle mdl-card__title-text malClear"
             style="padding-left: 0; overflow:visible;"
-            v-html="title"
-          ></h1>
+          >{{title}}</h1>
           <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0; overflow:visible;">
             <div v-for="altTitl in altTitle" :key="altTitl" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{ altTitl }}</span>
@@ -129,7 +128,7 @@
                     value="6"
                     style="width: 35px; display: inline-block;"
                   />
-                  / <span v-if="prediction" v-html="prediction.tag" />
+                  / <span v-if="prediction" v-dompurify-html="prediction.tag" />
                   <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
                     renderObj.getTotalEpisodes()
                   }}</span
