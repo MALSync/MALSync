@@ -195,10 +195,10 @@ export class MetaOverview extends MetaOverviewAbstract {
           name += ', ';
         }
         if (i.node.name.first) name += i.node.name.first;
-        name = `<a href="${i.node.siteUrl}">${name}</a>`;
         this.meta.characters.push({
           img: i.node.image.large,
-          html: name,
+          name: name,
+          url: i.node.siteUrl,
         });
       });
     }

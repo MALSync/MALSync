@@ -295,7 +295,14 @@
               >
                 <img :src="character.img" style="height: auto; width: 100%;" />
               </clazy-load>
-              <div class="" v-html="character.html"></div>
+              <div>
+                <a :href="character.url">
+                  {{character.name}}
+                </a>
+                <div class="spaceit_pad">
+                  <small>{{character.subtext}}</small>
+                </div>
+              </div>
             </div>
           </div>
           <div v-for="n in 10" :key="n" class="listPlaceholder" style="height: 0;">

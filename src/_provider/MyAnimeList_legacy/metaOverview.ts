@@ -118,14 +118,17 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         charImg = utils.handleMalImages(charImg);
 
-        charArray.push({
-          img: charImg,
-          html: j
+        let charObjLink = j
             .$(value)
             .find('.borderClass .spaceit_pad')
             .first()
-            .parent()
-            .html(),
+            .parent();
+
+        charArray.push({
+          img: charImg,
+          name: charObjLink.find('a').first().text(),
+          url: charObjLink.find('a').first().attr('href'),
+          subtext: charObjLink.find('.spaceit_pad').first().text().trim(),
         });
       });
     } catch (e) {

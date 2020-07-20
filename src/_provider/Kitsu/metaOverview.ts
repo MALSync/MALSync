@@ -123,13 +123,11 @@ export class MetaOverview extends MetaOverviewAbstract {
     this.animeInfo.included.forEach(i => {
       if (i.type === 'characters' && this.meta.characters.length < 10) {
         let { name } = i.attributes;
-        if (typeof i.attributes.malId !== 'undefined' && i.attributes.malId !== null && i.attributes.malId) {
-          name = `<a href="https://myanimelist.net/character/${i.attributes.malId}">${name}</a>`;
-        }
 
         this.meta.characters.push({
           img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
-          html: name,
+          name: name,
+          url: `https://myanimelist.net/character/${i.attributes.malId}`,
         });
       }
     });

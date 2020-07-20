@@ -8,7 +8,9 @@ export interface Overview {
   image: string;
   characters: {
     img: string;
-    html: string;
+    name: string;
+    url: string;
+    subtext?: string;
   }[];
   statistics: {
     title: string;
