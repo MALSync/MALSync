@@ -1,6 +1,6 @@
 import { pageInterface, pageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
-import { initIframeModal } from '../minimal/iframe';
+import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { getPlayerTime } from '../utils/player';
 import { searchClass } from '../_provider/Search/vueSearchClass';
@@ -33,7 +33,7 @@ export class syncPage {
   init() {
     const This = this;
     j.$(document).ready(function() {
-      initIframeModal(This);
+      initFloatButton(This);
     });
 
     if (this.testForCloudflare()) {
