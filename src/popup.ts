@@ -16,18 +16,11 @@ document.getElementsByTagName('head')[0].onclick = function(e) {
 api.settings.init().then(() => {
   const minimalObj = new minimal($('html'));
 
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    // @ts-ignore
-    chrome.tabs.sendMessage(tabs[0].id, { action: 'TabMalUrl' }, function(response) {
-      setTimeout(() => {
-        if (typeof response !== 'undefined') {
-          minimalObj.fillBase(response);
-        } else {
-          minimalObj.fillBase(null);
-        }
-      }, 500);
-    });
-  });
+  checkFill(minimalObj);
+
+  window.onfocus = function(){
+    checkFill(minimalObj);
+  }
 
   try {
     const mode = $('html').attr('mode');
@@ -48,4 +41,28 @@ api.settings.init().then(() => {
 function isFirefox() {
   if ($('#Mal-Sync-Popup').css('min-height') === '600px') return true;
   return false;
+}
+
+function checkFill(minimalObj) {
+  chrome.windows.getLastFocused( { populate: true, windowTypes: ['normal'] }, ( windowEl ) => {
+    con.m('Focus').log(windowEl);
+    if(windowEl.tabs && windowEl.tabs.length) {
+      windowEl.tabs.some(function(el) {
+        if (el.active) {
+          // @ts-ignore
+          chrome.tabs.sendMessage(el.id, { action: 'TabMalUrl' }, function(response) {
+            setTimeout(() => {
+              if (typeof response !== 'undefined') {
+                minimalObj.fillBase(response);
+              } else {
+                minimalObj.fillBase(null);
+              }
+            }, 500);
+          });
+          return true;
+        }
+        return false;
+      });
+    }
+  });
 }
