@@ -75,12 +75,64 @@
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
           <p style="color: black; white-space: pre-line;">{{ description }}</p>
+
           <div
-            v-show="streaming"
+            v-if="renderObj && renderObj.isAuthenticated()"
             class="mdl-card__actions mdl-card--border"
             style="padding-left: 0;"
-            v-html="streaming"
-          ></div>
+          >
+            <div
+              v-if="renderObj.getStreamingUrl()"
+              class="data title progress"
+              style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"
+            >
+              <a
+                class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="renderObj.getStreamingUrl().split('/')[2]"
+                target="_blank"
+                style="margin: 0 5px; color: white;"
+                :href="renderObj.getStreamingUrl()"
+              >
+                <img
+                  :src="utils.favicon(renderObj.getStreamingUrl().split('/')[2])"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />
+                {{ lang(`overview_Continue_${renderObj.getType()}`) }}
+              </a>
+
+              <a
+                v-if="mal.continueUrl && mal.continueUrl.ep === renderObj.getEpisode() + 1"
+                class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="lang(`overview_Next_Episode_${renderObj.getType()}`)"
+                target="_blank"
+                style="margin: 0 5px 0 0; color: white;"
+                :href="mal.continueUrl.url"
+              >
+                <img
+                  :src="assetUrl('double-arrow-16px.png')"
+                  width="16"
+                  height="16"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />{{ lang(`overview_Next_Episode_${renderObj.getType()}`) }}
+              </a>
+
+              <a
+                v-else-if="mal.resumeUrl && mal.resumeUrl.ep === renderObj.getEpisode()"
+                class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="lang(`overview_Resume_Episode_${renderObj.getType()}`)"
+                target="_blank"
+                style="margin: 0 5px 0 0; color: white;"
+                :href="mal.resumeUrl.url"
+              >
+                <img
+                  :src="assetUrl('arrow-16px.png')"
+                  width="16"
+                  height="16"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />{{ lang(`overview_Resume_Episode_${renderObj.getType()}`) }}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -240,7 +292,7 @@
               <span class="mdl-list__item-sub-title">
                 <div v-for="link in relatedType.links" :key="link.title">
                   <a :href="link.url">{{ link.title }}</a>
-                  <span v-html="link.statusTag"></span>
+                  <span v-dompurify-html="link.statusTag"></span>
                 </div>
               </span>
             </span>
@@ -541,52 +593,6 @@ export default {
       }
       return altTitle;
     },
-    streaming() {
-      let streamhtml = null;
-      const malObj = this.renderObj;
-      if (malObj === null || !malObj.isAuthenticated()) return null;
-      const streamUrl = malObj.getStreamingUrl();
-      if (typeof streamUrl !== 'undefined') {
-        streamhtml = `
-            <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
-              <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${
-                streamUrl.split('/')[2]
-              }" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(
-                  streamUrl.split('/')[2],
-                )}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-          `overview_Continue_${malObj.getType()}`,
-        )}
-              </a>`;
-
-        con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
-        if (this.mal.continueUrl && this.mal.continueUrl.ep === malObj.getEpisode() + 1) {
-          streamhtml += `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
-            `overview_Next_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl(
-                  'double-arrow-16px.png',
-                )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-            `overview_Next_Episode_${malObj.getType()}`,
-          )}
-              </a>`;
-        } else if (this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()) {
-          streamhtml += `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
-            `overview_Resume_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl(
-                  'arrow-16px.png',
-                )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-            `overview_Resume_Episode_${malObj.getType()}`,
-          )}
-              </a>`;
-        }
-
-        streamhtml += `</div>
-          `;
-      }
-      return streamhtml;
-    },
     characters() {
       let char = {};
       try {
@@ -631,6 +637,7 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
+    assetUrl: api.storage.assetUrl,
     async render(renderObj) {
       this.metaObj = null;
       this.error = null;

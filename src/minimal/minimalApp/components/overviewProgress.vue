@@ -122,7 +122,11 @@ export default {
           .xhr('GET', `https://api.malsync.moe/nc/mal/${this.type}/${newVal}/progress`)
           .then(response => {
             if (cur === `${this.malId}s`) {
-              this.xhr = JSON.parse(response.responseText);
+              try {
+                this.xhr = JSON.parse(response.responseText);
+              } catch (e) {
+                con.error('No progress informations found');
+              }
             }
           });
       },
