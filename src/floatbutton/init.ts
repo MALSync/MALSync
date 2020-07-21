@@ -1,4 +1,4 @@
-import { floatClick } from './userscript';
+import { floatClick } from './extension';
 
 export function initFloatButton(page) {
   const posLeft = api.settings.get('posLeft');
@@ -59,7 +59,6 @@ export function initFloatButton(page) {
     document.addEventListener('click', function(e) {
       if (!e || !e.target) return;
       if (j.$(e.target).hasClass('open-info-popup')) {
-        alert('clicked');
         floatClick(page);
       }
       if (j.$(e.target).hasClass('modal-kal')) {
