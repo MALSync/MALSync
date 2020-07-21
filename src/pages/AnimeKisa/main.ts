@@ -55,6 +55,9 @@ export const AnimeKisa: pageInterface = {
       }
       return '';
     },
+    getMalUrl(provider) {
+      return AnimeKisa.overview!.getMalUrl!(provider);
+    },
   },
   overview: {
     getTitle(url) {
