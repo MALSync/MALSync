@@ -18,9 +18,9 @@ api.settings.init().then(() => {
 
   checkFill(minimalObj);
 
-  window.onfocus = function(){
+  $(window).focus(() => {
     checkFill(minimalObj);
-  }
+  });
 
   try {
     const mode = $('html').attr('mode');
@@ -44,25 +44,18 @@ function isFirefox() {
 }
 
 function checkFill(minimalObj) {
-  chrome.windows.getLastFocused( { populate: true, windowTypes: ['normal'] }, ( windowEl ) => {
-    con.m('Focus').log(windowEl);
-    if(windowEl.tabs && windowEl.tabs.length) {
-      windowEl.tabs.some(function(el) {
-        if (el.active) {
-          // @ts-ignore
-          chrome.tabs.sendMessage(el.id, { action: 'TabMalUrl' }, function(response) {
-            setTimeout(() => {
-              if (typeof response !== 'undefined') {
-                minimalObj.fillBase(response);
-              } else {
-                minimalObj.fillBase(null);
-              }
-            }, 500);
-          });
-          return true;
-        }
-        return false;
+  con.log('CheckFill');
+  chrome.tabs.query({ active: true, windowType: 'normal' }, function(tabs) {
+    tabs.forEach(el => {
+      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function(response) {
+        setTimeout(() => {
+          if (typeof response !== 'undefined') {
+            minimalObj.fillBase(response);
+          } else {
+            minimalObj.fillBase(null);
+          }
+        }, 500);
       });
-    }
+    });
   });
 }

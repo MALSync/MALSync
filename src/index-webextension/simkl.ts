@@ -1,11 +1,17 @@
 import { simklClass } from '../simkl/simklClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
+let lastFocus;
+
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
   const simkl = new simklClass(window.location.href);
   messageSimklListener(simkl);
   firebaseNotification();
+
+  $(window).blur(function() {
+    lastFocus = Date.now();
+  });
 }
 
 const css =
@@ -20,17 +26,19 @@ function messageSimklListener(simkl) {
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action === 'TabMalUrl') {
-      con.info('miniMAL');
-      simkl.getMalUrl().then(malUrl => {
-        if (malUrl !== '') {
-          con.log('TabMalUrl Message', malUrl);
-          sendResponse(malUrl);
-        } else if (api.settings.get('syncMode') === 'SIMKL') {
-          con.log('TabUrl Message', simkl.url);
-          sendResponse(simkl.url);
-        }
-      });
-      return true;
+      if (Date.now() - lastFocus < 3 * 1000) {
+        con.info('miniMAL');
+        simkl.getMalUrl().then(malUrl => {
+          if (malUrl !== '') {
+            con.log('TabMalUrl Message', malUrl);
+            sendResponse(malUrl);
+          } else if (api.settings.get('syncMode') === 'SIMKL') {
+            con.log('TabUrl Message', simkl.url);
+            sendResponse(simkl.url);
+          }
+        });
+        return true;
+      }
     }
     return false;
   });
