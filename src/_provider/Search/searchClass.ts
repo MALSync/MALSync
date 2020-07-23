@@ -189,7 +189,7 @@ export class searchClass {
     try {
       result = searchCompare(result, await this.malSync());
     } catch (e) {
-      this.logger.error('MALSync api down', e);
+      if (this.page && this.page.database) this.logger.error('MALSync api down', e);
       result = searchCompare(result, await this.firebase());
     }
 

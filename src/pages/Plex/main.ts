@@ -50,7 +50,7 @@ async function urlChange(page, curUrl = window.location.href, player = false) {
         con.log('Show', data);
         utils.waitUntilTrue(
           function() {
-            return j.$('[data-qa-id="preplayMainTitle"]').length;
+            return j.$('[data-qa-id="preplay-mainTitle"]').length;
           },
           function() {
             page.UILoaded = false;
@@ -132,7 +132,7 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('[data-qa-id="preplayMainTitle"]').first());
+      selector.insertAfter(j.$('[data-qa-id="preplay-mainTitle"]').first());
     },
   },
   init(page) {
@@ -140,7 +140,7 @@ export const Plex: pageInterface = {
 
     utils.changeDetect(
       () => {
-        const href = $('[download]').attr('href');
+        const href = $('[href*="X-Plex-Token"]').attr('href');
         const apiBase = href!
           .split('/')
           .splice(0, 3)
@@ -149,10 +149,27 @@ export const Plex: pageInterface = {
         con.info('Set Api', apiBase, apiKey);
         setApiKey(apiKey);
         setBase(apiBase);
-        $('html').removeClass('noApiKey');
+        if ($('html.noApiKey').length) {
+          $('html').removeClass('noApiKey');
+          if (
+            !$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length
+          ) {
+            urlChange(page);
+          } else {
+            page.reset();
+            const metaUrl = $(
+              '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
+            )
+              .first()
+              .attr('href');
+            if (typeof metaUrl === 'undefined') return;
+            urlChange(page, Plex.domain + metaUrl, true);
+          }
+        }
+
       },
       () => {
-        const src = $('[download]').length;
+        const src = $('[href*="X-Plex-Token"]').length;
         return src;
       },
     );
@@ -176,6 +193,12 @@ export const Plex: pageInterface = {
     utils.changeDetect(
       () => {
         page.reset();
+        if (
+          !$('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]').length
+        ) {
+          urlChange(page);
+          return;
+        }
         const metaUrl = $(
           '[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"] [data-qa-id="metadataTitleLink"]',
         )
