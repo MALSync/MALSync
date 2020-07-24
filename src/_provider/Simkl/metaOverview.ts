@@ -73,7 +73,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private description(data) {
     const description = data.overview;
-    if (description) this.meta.description = description.replace(/<br>/g, '\n');
+    if (description) this.meta.description = description;
   }
 
   private image(data) {

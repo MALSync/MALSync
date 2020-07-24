@@ -93,7 +93,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private description() {
-    this.meta.description = this.animeI().attributes.synopsis.replace('—', ' ');
+    this.meta.description = `<span style="white-space: pre-line;">${this.animeI().attributes.synopsis.replace(
+      '—',
+      ' ',
+    )}</span>`;
   }
 
   private image() {

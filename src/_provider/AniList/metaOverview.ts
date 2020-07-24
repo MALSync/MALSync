@@ -64,7 +64,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         volumes
         averageScore
         synonyms
-        description(asHtml: false)
+        description(asHtml: true)
         coverImage{
           large
         }
@@ -165,7 +165,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private description(data) {
     const description = data?.data?.Media?.description;
-    if (description) this.meta.description = description.replace(/<br>/g, '');
+    if (description) this.meta.description = description;
   }
 
   private image(data) {
