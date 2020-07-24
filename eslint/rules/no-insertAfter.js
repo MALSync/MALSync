@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.insertAfter is potentially dangerous. Use "utils.safeinsertAfter($HTML, $)" instead'
+          message: '$.insertAfter is potentially dangerous. Use "j.safeinsertAfter($HTML, $)" instead'
         })
       }
     }

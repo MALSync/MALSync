@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.before is potentially dangerous. Use "utils.safeBefore($, html)" instead'
+          message: '$.before is potentially dangerous. Use "j.safeBefore($, html)" instead'
         })
       }
     }

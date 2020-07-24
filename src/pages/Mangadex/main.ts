@@ -102,12 +102,11 @@ export const Mangadex: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.container .card .edit.row > * > .row')
-        .first()
-        .after(
-          '<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>',
-        );
-      selector.appendTo(j.$('.container .card .kal-ui').first());
+      j.safeAfter(
+        j.$('.container .card .edit.row > * > .row').first(),
+        '<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MyAnimeList:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>',
+      );
+      j.safeAppendTo(selector, j.$('.container .card .kal-ui').first());
     },
     getMalUrl(provider) {
       let url = j

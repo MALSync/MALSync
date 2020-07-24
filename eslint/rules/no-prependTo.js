@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.prependTo is potentially dangerous. Use "utils.safePrependTo($Html, $)" instead'
+          message: '$.prependTo is potentially dangerous. Use "j.safePrependTo($Html, $)" instead'
         })
       }
     }

@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.html is potentially dangerous. Use "utils.safeHtml(selector, html)" instead'
+          message: '$.html is potentially dangerous. Use "j.safeHtml(selector, html)" instead'
         })
       }
     }

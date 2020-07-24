@@ -5,7 +5,18 @@ import * as _console from './src/utils/console';
 declare global {
   let con: typeof _console;
   let utils: typeof _utils;
-  let j: { $: JQueryStatic };
+  let j: {
+    $: JQueryStatic ,
+    safeAfter,
+    safeAppend,
+    safeAppendTo,
+    safeBefore,
+    safeHtml,
+    safeInsertAfter,
+    safeInsertBefore,
+    safePrepend,
+    safePrependTo,
+  };
   let api: typeof webextension;
 
   interface Window {

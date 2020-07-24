@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.insertBefore is potentially dangerous. Use "utils.safeInsertBefore($HTML, $)" instead'
+          message: '$.insertBefore is potentially dangerous. Use "j.safeInsertBefore($HTML, $)" instead'
         })
       }
     }
