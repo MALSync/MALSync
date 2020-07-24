@@ -20,6 +20,7 @@
     "*.min.js",
     "docs/",
     "package/",
+    "eslint/",
     "test/", //TODO
     "webpackConfig/" //TODO
   ],
@@ -33,8 +34,17 @@
       ],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
+      "plugins": ["@typescript-eslint", "jquery-unsafe-malsync"],
       "rules": {
+        "jquery-unsafe-malsync/no-after": 2,
+        "jquery-unsafe-malsync/no-append": 2,
+        "jquery-unsafe-malsync/no-appendTo": 2,
+        "jquery-unsafe-malsync/no-before": 2,
+        "jquery-unsafe-malsync/no-html": 2,
+        "jquery-unsafe-malsync/no-prepend": 2,
+        "jquery-unsafe-malsync/no-prependTo": 2,
+        "jquery-unsafe-malsync/no-insertAfter": 2,
+        "jquery-unsafe-malsync/no-insertBefore": 2,
         "@typescript-eslint/ban-ts-ignore": "warn",
         "@typescript-eslint/camelcase": "warn",
         "@typescript-eslint/class-name-casing": "warn",

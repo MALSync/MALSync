@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p style="color: black;" v-dompurify-html="description"></p>
+          <p v-dompurify-html="description" style="color: black;"></p>
           <div
             v-if="renderObj && renderObj.isAuthenticated()"
             class="mdl-card__actions mdl-card--border"
