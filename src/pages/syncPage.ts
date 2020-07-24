@@ -23,7 +23,13 @@ export class syncPage {
 
   public novel = false;
 
-  constructor(public url, public pages) {
+  constructor(
+    public url,
+    public pages,
+    protected floatClick: any = () => {
+      throw 'No click handling found';
+    },
+  ) {
     this.page = this.getPage(url);
     if (this.page === null) {
       throw new Error('Page could not be recognized');
@@ -33,7 +39,7 @@ export class syncPage {
   init() {
     const This = this;
     j.$(document).ready(function() {
-      initFloatButton(This);
+      initFloatButton(This, This.floatClick);
     });
 
     if (this.testForCloudflare()) {

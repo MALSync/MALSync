@@ -166,7 +166,6 @@ export const Plex: pageInterface = {
             urlChange(page, Plex.domain + metaUrl, true);
           }
         }
-
       },
       () => {
         const src = $('[href*="X-Plex-Token"]').length;

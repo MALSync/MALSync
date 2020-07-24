@@ -1,6 +1,4 @@
-import { floatClick } from './extension';
-
-export function initFloatButton(page) {
+export function initFloatButton(page, floatClick) {
   const posLeft = api.settings.get('posLeft');
   const miniMalWidth = api.settings.get('miniMalWidth');
   const miniMalHeight = api.settings.get('miniMalHeight');

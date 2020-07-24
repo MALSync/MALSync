@@ -2,12 +2,13 @@ import { syncPage } from '../pages/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
 import { pages } from '../pages/pages';
 import { shortcutListener } from '../utils/player';
+import { floatClick } from '../floatbutton/extension';
 
 let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
-  const page = new syncPage(window.location.href, pages);
+  const page = new syncPage(window.location.href, pages, floatClick);
   messagePageListener(page);
   page.init();
   firebaseNotification();
