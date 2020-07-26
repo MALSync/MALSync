@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.appendTo is potentially dangerous. Use "j.safeAppendTo($Html, $)" instead'
+          message: '$.appendTo is potentially dangerous. Use "utils.safeAppendTo($Html, $)" instead'
         })
       }
     }

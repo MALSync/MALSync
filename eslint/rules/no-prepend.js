@@ -12,7 +12,7 @@ module.exports = function(context) {
       if (utils.isjQuery(node)) {
         context.report({
           node: node,
-          message: '$.prepend is potentially dangerous. Use "j.safePrepend($, html)" instead'
+          message: '$.prepend is potentially dangerous. Use "utils.safePrepend($, html)" instead'
         })
       }
     }
