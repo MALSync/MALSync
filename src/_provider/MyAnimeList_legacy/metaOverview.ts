@@ -51,7 +51,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       console.log('[iframeOverview] Error:', e);
     }
     this.meta.title = $('<div>')
-      .html(title)
+      .html(j.html(title))
       .text();
   }
 

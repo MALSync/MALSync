@@ -108,7 +108,7 @@ export const animeflv: pageInterface = {
           const epiAct = `<li class="fa-play-circle Next"><a href="${epilist[
             epi
           ][0].toString()}"><figure><img src="${cover}" alt=""></figure><h3 class="Title">${name}</h3><p>Episodio ${epi}</p><span style="position: absolute; top: 0; bottom: 0; margin: auto; right: 20px; line-height: 30px; font-size: 16px; font-weight: 700; height: 30px;">Siguiente Episodio</span></a></li>`;
-          j.$('.Main .ListCaps').prepend(epiAct);
+          j.$('.Main .ListCaps').prepend(j.html(epiAct));
         }
       },
     },

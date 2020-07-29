@@ -36,7 +36,7 @@ export function initFloatButton(page, floatClick) {
     material += `<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; ${position}">`;
     material += '</div>';
     material += '</dialog>';
-    j.$('body').after(material);
+    j.$('body').after(j.html(material));
 
     let additionalClasses = '';
     if (api.settings.get('floatButtonStealth')) {
@@ -49,7 +49,7 @@ export function initFloatButton(page, floatClick) {
     let floatbutton = `<button class="open-info-popup floatbutton ${additionalClasses}" style="">`;
     floatbutton +=
       '<i class="my-float open-info-popup" style="margin-top:22px;"><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px"></div></i></button>';
-    j.$('#info-popup').after(floatbutton);
+    j.$('#info-popup').after(j.html(floatbutton));
 
     j.$('.open-info-popup').show();
     if (api.settings.get('autoCloseMinimal')) j.$('.modal-kal').css('pointer-events', 'initial');

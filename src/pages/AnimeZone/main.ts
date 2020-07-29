@@ -97,7 +97,7 @@ export const AnimeZone: pageInterface = {
           iframe.height = '100%';
 
           iframe.setAttribute('allowfullscreen', 'true');
-          embedContainer.append(iframe);
+          embedContainer.append(j.html(iframe));
           observer.disconnect();
         }
       };

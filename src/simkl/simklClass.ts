@@ -76,7 +76,7 @@ export class simklClass {
       con.log('page', this.page);
 
       if (!$('#malkiss').length)
-        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after('<div id="malkiss"></div>');
+        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after(j.html('<div id="malkiss"></div>'));
       if (this.malkiss) this.malkiss.$destroy();
       this.malkiss = new Vue({
         el: '#malkiss',
@@ -247,14 +247,16 @@ export class simklClass {
 
           if (en.options && en.options.u) {
             con.log(en.options.u);
-            element.after(`
+            element.after(
+              j.html(`
             <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${
               en.options.u.split('/')[2]
             }" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px;" href="${
-              en.options.u
-            }">
+                en.options.u
+              }">
               <img src="${utils.favicon(en.options.u.split('/')[2])}">
-            </a>`);
+            </a>`),
+            );
 
             const resumeUrlObj = en.options.r;
             const continueUrlObj = en.options.c;
@@ -264,19 +266,23 @@ export class simklClass {
             con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
             if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
               element.parent().append(
-                `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
-                  continueUrlObj.url
-                }">
+                j.html(
+                  `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
+                    continueUrlObj.url
+                  }">
                 <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
               </a>`,
+                ),
               );
             } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
               element.parent().append(
-                `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
-                  resumeUrlObj.url
-                }">
+                j.html(
+                  `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="display: inline-block; height: 0; position: relative; top: -11px; margin-left: 5px; color: #BABABA;" href="${
+                    resumeUrlObj.url
+                  }">
                 <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
               </a>`,
+                ),
               );
             }
           }
@@ -314,14 +320,16 @@ export class simklClass {
 
             if (en.options && en.options.u) {
               con.log(en.options.u);
-              element.append(`
+              element.append(
+                j.html(`
               <a class="mal-sync-stream mal-rem" onclick="event.stopPropagation();" title="${
                 en.options.u.split('/')[2]
               }" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 0; background-color: #00000057; padding: 5px;" href="${
-                en.options.u
-              }">
+                  en.options.u
+                }">
                 <img src="${utils.favicon(en.options.u.split('/')[2])}">
-              </a>`);
+              </a>`),
+              );
 
               const resumeUrlObj = en.options.r;
               const continueUrlObj = en.options.c;
@@ -331,19 +339,23 @@ export class simklClass {
               con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
               if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
                 element.append(
-                  `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
-                    continueUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
+                      continueUrlObj.url
+                    }">
                   <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                 </a>`,
+                  ),
                 );
               } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
                 element.append(
-                  `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
-                    resumeUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="resumeStream mal-rem" onclick="event.stopPropagation();" title="Resume watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
+                      resumeUrlObj.url
+                    }">
                   <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                 </a>`,
+                  ),
                 );
               }
             }

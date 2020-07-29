@@ -7,12 +7,12 @@ const postUnsave = [
   'append',
   'before',
   'html',
-  'insertAfter',
-  'insertBefore',
   'prepend',
 ]
 
 const preUnsave = [
+  'insertAfter',
+  'insertBefore',
   'appendTo',
   'prependTo',
 ]

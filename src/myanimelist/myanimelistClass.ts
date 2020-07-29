@@ -194,8 +194,8 @@ export class myanimelistClass {
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist')
         .prev()
-        .before(`<div class="mal-sync-pre-remove">${prediction.text}</div>`);
-      $('[id="curEps"], [id="totalChaps"]').before(`${prediction.tag} `);
+        .before(j.html(`<div class="mal-sync-pre-remove">${prediction.text}</div>`));
+      $('[id="curEps"], [id="totalChaps"]').before(j.html(`${prediction.tag} `));
     });
   }
 
@@ -220,7 +220,7 @@ export class myanimelistClass {
         html += '<br class="mal_links" />';
       }
       $(document).ready(function() {
-        $('h2:contains("Information")').before(html);
+        $('h2:contains("Information")').before(j.html(html));
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           api.settings.set(String(key), false);
@@ -240,7 +240,9 @@ export class myanimelistClass {
         pageSearch = pages;
       });
       $('h2:contains("Information")').before(
-        '<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />',
+        j.html(
+          '<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />',
+        ),
       );
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
@@ -283,7 +285,7 @@ export class myanimelistClass {
           </div>`;
         }
 
-        $('#mal-sync-search-links').after(html);
+        $('#mal-sync-search-links').after(j.html(html));
       });
     });
   }
@@ -296,33 +298,41 @@ export class myanimelistClass {
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function() {
-        $('.h1 span > span').first().after(`
+        $('.h1 span > span')
+          .first()
+          .after(
+            j.html(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
             <img src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
           </a>
-        </div>`);
+        </div>`),
+          );
 
         const resumeUrlObj = malObj.getResumeWatching();
         const continueUrlObj = malObj.getContinueWatching();
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if (continueUrlObj && continueUrlObj.ep === malObj.getEpisode() + 1) {
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang(
-              `overview_Continue_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            j.html(
+              `<a class="nextStream" title="${api.storage.lang(
+                `overview_Continue_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang(
-              `overview_Resume_Episode_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            j.html(
+              `<a class="resumeStream" title="${api.storage.lang(
+                `overview_Resume_Episode_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         }
       });
@@ -406,7 +416,7 @@ export class myanimelistClass {
           element
             .find('.data.progress span, .data.chapter span')
             .first()
-            .after(tag);
+            .after(j.html(tag));
         },
       };
     } else if (this.page === 'classic') {
@@ -439,7 +449,7 @@ export class myanimelistClass {
             .parent()
             .find('span[id^="epText"] a span, span[id^="chap"]')
             .first()
-            .after(tag);
+            .after(j.html(tag));
         },
       };
     } else {
@@ -470,12 +480,14 @@ export class myanimelistClass {
       const options = await utils.getEntrySettings(type, cacheKey, tags);
       if (options && options.u) {
         const element = book.getElement(malUrl);
-        element.find(book.streamingSelector).after(`
+        element.find(book.streamingSelector).after(
+          j.html(`
           <a class="mal-sync-stream" title="${options.u.split('/')[2]}" target="_blank" style="margin: 0 0;" href="${
-          options.u
-        }">
+            options.u
+          }">
             <img src="${utils.favicon(options.u.split('/')[2])}">
-          </a>`);
+          </a>`),
+        );
 
         const resumeUrlObj = options.r;
         const continueUrlObj = options.c;
@@ -483,19 +495,23 @@ export class myanimelistClass {
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
           element.find('.mal-sync-stream').after(
-            `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              continueUrlObj.url
-            }">
+            j.html(
+              `<a class="nextStream" title="Continue watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+                continueUrlObj.url
+              }">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
           element.find('.mal-sync-stream').after(
-            `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
-              resumeUrlObj.url
-            }">
+            j.html(
+              `<a class="resumeStream" title="Resume watching" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+                resumeUrlObj.url
+              }">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         }
       }
@@ -520,7 +536,7 @@ export class myanimelistClass {
             )
             .then(function(tag: any) {
               if (tag) {
-                el.after(tag);
+                el.after(j.html(tag));
               }
             });
         }
@@ -543,12 +559,12 @@ export class myanimelistClass {
             el.parent()
               .find('> a')
               .first()
-              .after(tag);
+              .after(j.html(tag));
           } else {
             el.parent()
               .parent()
               .find('> a')
-              .after(tag);
+              .after(j.html(tag));
           }
           el.remove();
         }
@@ -575,12 +591,14 @@ export class myanimelistClass {
         const friendBody = friendHead.nextAll();
         if (friendBody.length > 1 && friendBody.find('a:contains("All Members")').length) {
           position
-            .before(friendHead)
-            .before(friendBody)
-            .before('<br>');
+            .before(j.html(friendHead))
+            .before(j.html(friendBody))
+            .before(j.html('<br>'));
 
           $('a:contains("All Members")').after(
-            ' | <span id="mal-sync-removeFriends" title="remove" style="cursor: pointer; color: #1d439b;">X</span>',
+            j.html(
+              ' | <span id="mal-sync-removeFriends" title="remove" style="cursor: pointer; color: #1d439b;">X</span>',
+            ),
           );
           $('#mal-sync-removeFriends').click(function() {
             api.settings.set('friendScore', false);

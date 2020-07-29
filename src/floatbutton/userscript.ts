@@ -37,7 +37,9 @@ function createIframe(page) {
   };
   document.getElementById('modal-content')!.appendChild(iframe);
   j.$('#modal-content').append(
-    '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>',
+    j.html(
+      '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>',
+    ),
   );
 
   if (!j.$('#info-iframe').length || j.$('#info-iframe').css('display') !== 'block') {

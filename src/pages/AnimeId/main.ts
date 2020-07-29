@@ -94,7 +94,7 @@ export const AnimeId: pageInterface = {
           const epiAct = `<li><a href="${epilist[
             epi
           ][0].toString()}"><strong>Capítulo ${epi}</strong><small class="right">Siguiente Episodio</small></li><li></li>`;
-          j.$('#listado').prepend(epiAct);
+          j.$('#listado').prepend(j.html(epiAct));
         }
       },
     },

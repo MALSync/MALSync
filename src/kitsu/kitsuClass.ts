@@ -116,7 +116,8 @@ export class kitsuClass {
     }
     $(document).ready(function() {
       $('body').after(
-        `
+        j.html(
+          `
         <div id="mal-sync-login" style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px; max-width: 600px; margin-left: auto; margin-right: auto;">
           <h1>MAL-Sync</h1>
           <br>
@@ -136,6 +137,7 @@ export class kitsuClass {
           </div>
         </div>
       `,
+        ),
       );
       $('#mal-sync-login #mal-sync-button').click(function() {
         $('#mal-sync-login #mal-sync-button').attr('disabled', 'disabled');
@@ -199,33 +201,41 @@ export class kitsuClass {
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function() {
-        $('.media--title h3').first().after(`
+        $('.media--title h3')
+          .first()
+          .after(
+            j.html(`
         <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: -4px; display: inline;">
           <a class="mal-sync-stream" title="${
             streamUrl.split('/')[2]
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
             <img src="${utils.favicon(streamUrl.split('/')[2])}">
           </a>
-        </div>`);
+        </div>`),
+          );
 
         const resumeUrlObj = malObj.getResumeWatching();
         const continueUrlObj = malObj.getContinueWatching();
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if (continueUrlObj && continueUrlObj.ep === malObj.getEpisode() + 1) {
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang(
-              `overview_Continue_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            j.html(
+              `<a class="nextStream" title="${api.storage.lang(
+                `overview_Continue_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang(
-              `overview_Resume_Episode_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            j.html(
+              `<a class="resumeStream" title="${api.storage.lang(
+                `overview_Resume_Episode_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         }
       });
@@ -273,11 +283,11 @@ export class kitsuClass {
         if ($('#mal-sync-search-links').length) {
           $('#mal-sync-search-links')
             .first()
-            .after(html);
+            .after(j.html(html));
         } else {
           $('.media-summary')
             .first()
-            .after(html);
+            .after(j.html(html));
         }
 
         $('.remove-mal-sync').click(function() {
@@ -302,7 +312,8 @@ export class kitsuClass {
       $('.media-summary')
         .first()
         .after(
-          `
+          j.html(
+            `
         <div id="mal-sync-search-links" style="
             background: white;
             margin-bottom: 15px;
@@ -318,6 +329,7 @@ export class kitsuClass {
           <div class="MALSync-search"><a>[${api.storage.lang('Show')}]</a></div>
         </div>
       `,
+          ),
         );
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
@@ -356,7 +368,7 @@ export class kitsuClass {
           </div>`;
         }
 
-        $('.MALSync-search').html(html);
+        $('.MALSync-search').html(j.html(html));
       });
     });
   }
@@ -418,21 +430,25 @@ export class kitsuClass {
               con.log(en.options.u);
 
               if (cover) {
-                element.prepend(`
+                element.prepend(
+                  j.html(`
                   <a class="mal-sync-stream mal-rem" title="${
                     en.options.u.split('/')[2]
                   }" target="_blank" style="margin: 0 0; z-index: 22; position:absolute; left: 0px; top: 0px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${
-                  en.options.u
-                }">
+                    en.options.u
+                  }">
                     <img src="${utils.favicon(en.options.u.split('/')[2])}">
-                  </a>`);
+                  </a>`),
+                );
               } else {
-                element.find('.title-wrapper').append(`
+                element.find('.title-wrapper').append(
+                  j.html(`
                   <a class="mal-sync-stream mal-rem" title="${
                     en.options.u.split('/')[2]
                   }" target="_blank" style="padding: 0 5px;" href="${en.options.u}">
                     <img src="${utils.favicon(en.options.u.split('/')[2])}">
-                  </a>`);
+                  </a>`),
+                );
               }
             }
 
@@ -445,37 +461,45 @@ export class kitsuClass {
             if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
               if (cover) {
                 element.prepend(
-                  `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${
-                    continueUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${
+                      continueUrlObj.url
+                    }">
                     <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                   </a>`,
+                  ),
                 );
               } else {
                 element.find('.title-wrapper').append(
-                  `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="padding: 0;" href="${
-                    continueUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="padding: 0;" href="${
+                      continueUrlObj.url
+                    }">
                     <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                   </a>`,
+                  ),
                 );
               }
             } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
               if (cover) {
                 element.prepend(
-                  `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${
-                    resumeUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="color: #BABABA; z-index: 22; position:absolute; top: 0px; left: 26px; background-color: #ffffff5c; padding: 0 5px 3px 5px;" href="${
+                      resumeUrlObj.url
+                    }">
                     <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                   </a>`,
+                  ),
                 );
               } else {
                 element.find('.title-wrapper').append(
-                  `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="padding: 0;" href="${
-                    resumeUrlObj.url
-                  }">
+                  j.html(
+                    `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="padding: 0;" href="${
+                      resumeUrlObj.url
+                    }">
                     <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                   </a>`,
+                  ),
                 );
               }
             }
@@ -485,7 +509,7 @@ export class kitsuClass {
               element
                 .parent()
                 .find('.entry-unit, .progress-cell > span:last-of-type')
-                .append(prediction.tag);
+                .append(j.html(prediction.tag));
             });
           }
         });

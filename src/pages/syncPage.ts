@@ -601,7 +601,9 @@ export class syncPage {
       j.$('#MalData').css('display', 'flex');
       j.$('#MalInfo').text('');
       j.$('#malRating').after(
-        `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+        j.html(
+          `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+        ),
       );
       return;
     }
@@ -610,13 +612,13 @@ export class syncPage {
     this.singleObj.getScoreCheckbox().forEach(el => {
       scoreCheckbox += `<option value="${el.value}" >${el.label}</option>`;
     });
-    j.$('#malUserRating').html(scoreCheckbox);
+    j.$('#malUserRating').html(j.html(scoreCheckbox));
 
     let statusCheckbox = '';
     this.singleObj.getStatusCheckbox().forEach(el => {
       statusCheckbox += `<option value="${el.value}" >${el.label}</option>`;
     });
-    j.$('#malStatus').html(statusCheckbox);
+    j.$('#malStatus').html(j.html(statusCheckbox));
 
     this.singleObj.getRating().then(rating => {
       j.$('#malRating').text(rating);
@@ -625,10 +627,12 @@ export class syncPage {
     if (!this.singleObj.isOnList()) {
       j.$('.MalLogin').css('display', 'none');
       j.$('#malRating').after(
-        `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
-          `syncPage_malObj_addAnime`,
-          [this.singleObj.shortName],
-        )}</a></span>`,
+        j.html(
+          `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
+            `syncPage_malObj_addAnime`,
+            [this.singleObj.shortName],
+          )}</a></span>`,
+        ),
       );
       const This = this;
       j.$('#AddMal').click(async function() {
@@ -927,10 +931,10 @@ export class syncPage {
         .$(selector)
         .find('option:selected')
         .text();
-      const aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
+      const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
       const width = aux.width() || 0;
       if (width) {
-        j.$('#malp').append(aux);
+        j.$('#malp').append(j.html(aux));
         j.$(selector).width(width + 5);
         aux.remove();
       }

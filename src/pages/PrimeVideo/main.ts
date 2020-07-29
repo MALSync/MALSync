@@ -15,7 +15,7 @@ export const PrimeVideo: pageInterface = {
     getTitle(url) {
       if (thisData && thisData!.title)
         return $('<div/>')
-          .html(thisData!.title)
+          .html(j.html(thisData!.title))
           .text();
       return '';
     },
