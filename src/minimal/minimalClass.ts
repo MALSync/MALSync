@@ -108,8 +108,10 @@ export class minimal {
   }
 
   injectCss() {
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     this.minimal
       .find('head')
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       .append(j.$('<style>').html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
   }
 

@@ -156,7 +156,9 @@ export class kitsuClass {
 
             await api.settings.set('kitsuToken', token);
 
-            $('#mal-sync-login').html(`<h1>MAL-Sync</h1><br>${api.storage.lang('kitsuClass_authentication_Success')}`);
+            $('#mal-sync-login').html(
+              j.html(`<h1>MAL-Sync</h1><br>${api.storage.lang('kitsuClass_authentication_Success')}`),
+            );
           },
           error(result) {
             try {

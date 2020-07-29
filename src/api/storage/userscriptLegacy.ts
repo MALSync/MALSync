@@ -54,7 +54,9 @@ export const userscriptLegacy: storageInterface = {
   },
 
   injectCssResource(res, head) {
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     head.append(
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       j
         .$('<style>')
         .attr('rel', 'stylesheet')
