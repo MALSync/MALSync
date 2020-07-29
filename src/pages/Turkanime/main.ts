@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Turkanime: pageInterface = {
   name: 'Turkanime',
-  domain: 'http://www.turkanime.tv',
+  domain: 'https://www.turkanime.net',
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {
@@ -35,24 +35,8 @@ export const Turkanime: pageInterface = {
       return getEpisode(Turkanime.sync.getIdentifier(url), Turkanime.overview!.getIdentifier(url));
     },
     nextEpUrl(url) {
-      if (
-        j
-          .$('.panel-footer a[href^="video"]')
-          .last()
-          .attr('href') !==
-        j
-          .$('.panel-footer a[href^="video"]')
-          .first()
-          .attr('href')
-      ) {
-        return utils.absoluteLink(
-          j
-            .$('.panel-footer a[href^="video"]')
-            .last()
-            .attr('href'),
-          Turkanime.domain,
-        );
-      }
+      const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
+      if (href) return utils.absoluteLink(href, Turkanime.domain);
       return '';
     },
   },
@@ -83,7 +67,7 @@ export const Turkanime: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'http://'), Turkanime.domain);
+        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), Turkanime.domain);
       },
       elementEp(selector) {
         const url = Turkanime.overview!.list!.elementUrl(selector);
