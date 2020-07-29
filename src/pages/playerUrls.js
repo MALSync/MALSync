@@ -256,4 +256,8 @@ module.exports = {
   googleusercontent: {
     match: ['*://*.googleusercontent.com/gadgets/*'],
   },
+  // animedesu
+  animedesu: {
+    match: ['*://animedesu.pl/player/desu.php?v=*'],
+  },
 };

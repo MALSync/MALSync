@@ -1,9 +1,9 @@
 import { pageInterface } from '../pageInterface';
 
-export const AnimeXin: pageInterface = {
-  name: 'AnimeXin',
-  domain: 'https://animexin.xyz',
-  languages: ['English', 'Spanish', 'Indonesian', 'Portuguese', 'Turkish', 'Italian'],
+export const AnimeDesu: pageInterface = {
+  name: 'AnimeDesu',
+  domain: 'https://animedesu.pl',
+  languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] !== 'anime') {
@@ -16,21 +16,15 @@ export const AnimeXin: pageInterface = {
       return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
     },
     getIdentifier(url) {
-      return AnimeXin.sync.getOverviewUrl(url).split('/')[4];
+      return AnimeDesu.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
       return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
-      const urlParts = url.split('/');
+      const episodePart = url.split('/')[3];
 
-      if (!urlParts || urlParts.length === 0) return NaN;
-
-      const episodePart = urlParts[3];
-
-      if (episodePart.length === 0) return NaN;
-
-      const temp = episodePart.match(/-episode-\d*/gi);
+      const temp = episodePart.match(/-odcinek-\d*/gi);
 
       if (!temp || temp.length === 0) return 1;
 
@@ -42,7 +36,7 @@ export const AnimeXin: pageInterface = {
         .first()
         .attr('href');
       if (href) {
-        if (AnimeXin.sync.getEpisode(url) < AnimeXin.sync.getEpisode(href)) {
+        if (AnimeDesu.sync.getEpisode(url) < AnimeDesu.sync.getEpisode(href)) {
           return href;
         }
       }
@@ -57,7 +51,9 @@ export const AnimeXin: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.infox > h1.entry-title').first());
+      j.$('div.infox > h1.entry-title')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -73,7 +69,7 @@ export const AnimeXin: pageInterface = {
         );
       },
       elementEp(selector) {
-        return AnimeXin.sync.getEpisode(
+        return AnimeDesu.sync.getEpisode(
           selector
             .find('a')
             .first()
