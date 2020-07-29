@@ -66,7 +66,9 @@ export const Hulu: pageInterface = {
         .replace(/\D+/g, '')}`;
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#LevelTwo__scroll-area > div > div > div.Details__subnav').first());
+      j.$('#LevelTwo__scroll-area > div > div > div.Details__subnav')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

@@ -56,7 +56,9 @@ export const animeultima: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.tags.is-marginless').first());
+      j.$('div.tags.is-marginless')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

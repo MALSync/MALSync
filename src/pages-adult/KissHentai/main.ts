@@ -61,7 +61,9 @@ export const KissHentai: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.bigChar').first());
+      j.$('.bigChar')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

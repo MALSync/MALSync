@@ -70,7 +70,9 @@ export const AnimeKisa: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('.infoepboxmain').first());
+      j.$('.infoepboxmain')
+        .first()
+        .before(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j

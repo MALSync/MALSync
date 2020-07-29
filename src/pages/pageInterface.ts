@@ -15,13 +15,13 @@ export interface pageInterface {
     getEpisode: (url: string) => number; // Return the recognized episode or chapter number as integer.
     getVolume?: (url: string) => number; // (optional) Return the current volume number
     nextEpUrl?: (url: string) => string | undefined; // (optional) return the link to the next episode. Used for links on the userlist
-    uiSelector?: (selector: JQuery<HTMLElement>) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
+    uiSelector?: (selector: string) => void; // (optional) Inject a small ui with current status chapter... Only use this if there is no overview page
     getMalUrl?: (provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL') => Promise<string | false> | string | false; // (optional) Return the MALUrl. Only really needs to be implemented if the page provides that info.
   };
   overview?: {
     getTitle: (url: string) => string;
     getIdentifier: (url: string) => string;
-    uiSelector: (selector: JQuery<HTMLElement>) => void;
+    uiSelector: (selector: string) => void;
     getMalUrl?: (provider: 'MAL' | 'ANILIST' | 'KITSU' | 'SIMKL') => Promise<string | false> | string | false;
     list?: {
       // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.

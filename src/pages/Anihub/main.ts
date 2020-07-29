@@ -44,7 +44,7 @@ export const Anihub: pageInterface = {
       return Anihub.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.aniinfos > p > b'));
+      j.$('div.aniinfos > p > b').after(j.html(selector));
     },
     getMalUrl(provider) {
       return Anihub.sync.getMalUrl!(provider);

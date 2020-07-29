@@ -71,7 +71,9 @@ export const Otakustream: pageInterface = {
       return Otakustream.sync!.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.single-details h1').first());
+      j.$('.single-details h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

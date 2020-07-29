@@ -132,7 +132,9 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('[data-qa-id="preplay-mainTitle"]').first());
+      j.$('[data-qa-id="preplay-mainTitle"]')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

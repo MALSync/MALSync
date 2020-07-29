@@ -52,7 +52,9 @@ export const Turkanime: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.prependTo(j.$('#detayPaylas .panel-body').first());
+      j.$('#detayPaylas .panel-body')
+        .first()
+        .prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,

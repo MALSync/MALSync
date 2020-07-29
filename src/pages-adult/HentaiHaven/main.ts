@@ -49,7 +49,9 @@ export const HentaiHaven: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.archive-meta.category-meta').first());
+      j.$('div.archive-meta.category-meta')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

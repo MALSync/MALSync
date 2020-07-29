@@ -64,9 +64,9 @@ export const Aniwatch: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j.$('#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div').first(),
-      );
+      j.$('#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

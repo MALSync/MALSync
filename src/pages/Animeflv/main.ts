@@ -45,7 +45,7 @@ export const animeflv: pageInterface = {
       return animeflv.domain + nextEp;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.CapOptns'));
+      j.$('.CapOptns').after(j.html(selector));
     },
   },
   overview: {
@@ -56,7 +56,7 @@ export const animeflv: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.Description'));
+      j.$('.Description').after(j.html(selector));
     },
     list: {
       offsetHandler: false,

@@ -752,11 +752,13 @@ export function flashm(
     messClass += ' flashinfo';
     mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
     j.$('#flashinfo-div').addClass('hover');
-    flashmEl = j.$(mess).appendTo('#flashinfo-div');
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    flashmEl = j.$(j.html(mess)).appendTo('#flashinfo-div');
     if (typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized)
       flashmEl.css('max-height', '8px');
   } else {
-    flashmEl = j.$(mess).appendTo(flashdiv);
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    flashmEl = j.$(j.html(mess)).appendTo(flashdiv);
   }
 
   if (typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent) {

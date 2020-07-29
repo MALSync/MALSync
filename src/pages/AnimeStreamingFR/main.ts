@@ -37,7 +37,9 @@ export const AnimeStreamingFR: pageInterface = {
       return false;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$(jsonData.selector_position).first());
+      j.$(jsonData.selector_position)
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

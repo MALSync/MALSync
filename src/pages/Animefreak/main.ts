@@ -44,7 +44,9 @@ export const Animefreak: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.anime-title').first());
+      j.$('div.anime-title')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

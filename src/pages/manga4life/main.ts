@@ -44,7 +44,9 @@ export const manga4life: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1').first());
+      j.$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

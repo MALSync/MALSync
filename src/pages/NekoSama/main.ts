@@ -52,7 +52,9 @@ export const NekoSama: pageInterface = {
       return NekoSama.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#head > div.content > div > div > div > div').first());
+      j.$('#head > div.content > div > div > div > div')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

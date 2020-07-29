@@ -40,9 +40,9 @@ export const nineAnime: pageInterface = {
       return nineAnime.domain + nextEp;
     },
     uiSelector(selector) {
-      j.$(
-        `<div class="widget info"><div class="widget-body"> <p id="malp">${selector.html()}</p></div></div>`,
-      ).insertBefore(j.$('.widget.info').first());
+      j.$('.widget.info')
+        .first()
+        .before(j.html(`<div class="widget info"><div class="widget-body"> ${selector}</div></div>`));
     },
   },
   overview: {

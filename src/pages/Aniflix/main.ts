@@ -70,7 +70,9 @@ export const Aniflix: pageInterface = {
         .replace(/\D+/g, '')}`;
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.episodes').first());
+      j.$('div.episodes')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

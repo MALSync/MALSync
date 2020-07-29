@@ -61,7 +61,9 @@ export const DubbedAnime: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#episodes > div > div.row.mb-3.pr-2').first());
+      j.$('#episodes > div > div.row.mb-3.pr-2')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

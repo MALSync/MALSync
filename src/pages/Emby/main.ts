@@ -282,7 +282,9 @@ export const Emby: pageInterface = {
       return item.Id;
     },
     uiSelector(selector) {
-      selector.appendTo(j.$('.page:not(.hide) .nameContainer').first());
+      j.$('.page:not(.hide) .nameContainer')
+        .first()
+        .append(j.html(selector));
     },
   },
   init(page) {

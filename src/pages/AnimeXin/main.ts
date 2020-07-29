@@ -57,7 +57,9 @@ export const AnimeXin: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.infox > h1.entry-title').first());
+      j.$('div.infox > h1.entry-title')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

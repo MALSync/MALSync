@@ -47,7 +47,7 @@ export const TsukiMangas: pageInterface = {
       return TsukiMangas.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('h2'));
+      j.$('h2').after(j.html(selector));
     },
     getMalUrl(provider) {
       return TsukiMangas.sync.getMalUrl!(provider);

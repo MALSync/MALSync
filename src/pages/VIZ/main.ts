@@ -56,7 +56,9 @@ export const VIZ: pageInterface = {
       return url.split('/')[5];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#series-intro').first());
+      j.$('#series-intro')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

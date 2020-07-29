@@ -481,7 +481,8 @@ export class minimal {
       </div>
     `;
 
-    const flashmDiv = j.$(mess).appendTo(this.minimal.find('.mdl-layout'));
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    const flashmDiv = j.$(j.html(mess)).appendTo(this.minimal.find('.mdl-layout'));
     flashmDiv.find('.close').click(function() {
       flashmDiv.slideUp(100, function() {
         flashmDiv.remove();

@@ -100,7 +100,9 @@ export const Kissmanga: pageInterface = {
       return Kissmanga.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.bigChar').first());
+      j.$('.bigChar')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: true,

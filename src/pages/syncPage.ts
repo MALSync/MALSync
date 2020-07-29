@@ -900,10 +900,10 @@ export class syncPage {
 
     if (this.page.isSyncPage(this.url)) {
       if (typeof this.page.sync.uiSelector !== 'undefined') {
-        this.page.sync.uiSelector(j.$(ui));
+        this.page.sync.uiSelector(ui);
       }
     } else if (typeof this.page.overview !== 'undefined') {
-      this.page.overview.uiSelector(j.$(ui));
+      this.page.overview.uiSelector(ui);
     }
 
     j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function() {

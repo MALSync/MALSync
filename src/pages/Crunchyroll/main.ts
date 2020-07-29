@@ -75,7 +75,9 @@ export const Crunchyroll: pageInterface = {
       }
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#tabs').first());
+      j.$('#tabs')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: true,

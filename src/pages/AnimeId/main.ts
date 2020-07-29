@@ -53,7 +53,7 @@ export const AnimeId: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('article'));
+      j.$('article').after(j.html(selector));
     },
     list: {
       offsetHandler: false,

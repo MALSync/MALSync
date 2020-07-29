@@ -35,7 +35,9 @@ export const AnimeZone: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.ratings .panel-body .description').first());
+      j.$('.ratings .panel-body .description')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

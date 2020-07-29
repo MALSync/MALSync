@@ -33,7 +33,7 @@ export const DreamAnimes: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#pcontent h3'));
+      j.$('#pcontent h3').after(j.html(selector));
     },
   },
   init(page) {

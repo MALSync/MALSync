@@ -47,7 +47,7 @@ export const Scantrad: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      selector.appendTo(j.$('.info'));
+      j.$('.info').append(j.html(selector));
     },
   },
   init(page) {

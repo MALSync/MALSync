@@ -64,7 +64,9 @@ export const AnimeIndo: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#sct_content > h1').first());
+      j.$('#sct_content > h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

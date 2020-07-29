@@ -62,7 +62,9 @@ export const fourAnime: pageInterface = {
       return urlPart4.replace(/-episode[^]*$/g, '');
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('p.description-mobile').first());
+      j.$('p.description-mobile')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
