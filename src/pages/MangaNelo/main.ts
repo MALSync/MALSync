@@ -72,6 +72,7 @@ export const MangaNelo: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'manga') {
+        if(!j.$("head > .mode-dark").length) $('body').addClass('MALSyncWhite');
         page.handlePage();
       }
     });
