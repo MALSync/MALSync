@@ -32,10 +32,10 @@ export function initFloatButton(page, floatClick) {
       position = `width: 100vw; height: 100%; position: absolute; top: 0%; ${posLeft}: 0%`;
     }
     let material =
-      '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
+      '<div class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
     material += `<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; ${position}">`;
     material += '</div>';
-    material += '</dialog>';
+    material += '</div>';
     j.$('body').after(j.html(material));
 
     let additionalClasses = '';
