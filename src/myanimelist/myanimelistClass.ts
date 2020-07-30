@@ -589,10 +589,16 @@ export class myanimelistClass {
         const friendHead = $('a[name=members]', $(response.responseText).children());
         if (!friendHead) return;
         const friendBody = friendHead.nextAll();
+
+        let bodyHtml = '';
+
+        friendBody.each((i, val) => {
+          bodyHtml += val.outerHTML;
+        });
         if (friendBody.length > 1 && friendBody.find('a:contains("All Members")').length) {
           position
-            .before(j.html(friendHead))
-            .before(j.html(friendBody))
+            .before(j.html(friendHead.html()))
+            .before(j.html(bodyHtml))
             .before(j.html('<br>'));
 
           $('a:contains("All Members")').after(
