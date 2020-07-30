@@ -71,7 +71,7 @@ export const AnimeIndo: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.eps_lst > li:not(.hdr)');
+        return j.$('ul.eps_lst,ul#epl').find('li:not(.hdr)');
       },
       elementUrl(selector) {
         return utils.absoluteLink(

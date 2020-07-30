@@ -11,7 +11,10 @@
         "overviewUrl": "http://animeindo.moe/anime/zankyou-no-terror",
         "episode": 6,
         "nextEpUrl": "http://animeindo.moe/zankyou-no-terror-episode-07.html",
-        "uiSelector": false
+        "uiSelector": false,
+        "epList": {
+          "5": "http://animeindo.moe/zankyou-no-terror-episode-05.html"
+        }
       }
     },
     {
