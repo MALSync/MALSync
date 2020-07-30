@@ -34,8 +34,24 @@
       ],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint", "jquery-unsafe-malsync"],
+      "plugins": ["@typescript-eslint", "jquery-unsafe-malsync", "no-unsanitized"],
       "rules": {
+        "no-unsanitized/method": [
+          "error",
+          {
+            "escape": {
+              "methods": ["j.html"]
+            }
+          }
+        ],
+        "no-unsanitized/property": [
+          "error",
+          {
+            "escape": {
+              "methods": ["j.html"]
+            }
+          }
+        ],
         "jquery-unsafe-malsync/no-xss-jquery": 2,
         "@typescript-eslint/ban-ts-ignore": "warn",
         "@typescript-eslint/camelcase": "warn",
