@@ -71,7 +71,7 @@ export const Jkanime: pageInterface = {
             .trim();
           for (let i = 1; i <= Number(lastEps); i++) {
             if (idMALSync !== null) {
-              idMALSync.innerHTML += `<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`;
+              idMALSync.innerHTML += j.html(`<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`);
             }
           }
           return j.$('.MALSync a');

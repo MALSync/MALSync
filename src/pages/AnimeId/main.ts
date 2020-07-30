@@ -72,10 +72,9 @@ export const AnimeId: pageInterface = {
           if (numLastEpi !== undefined) {
             for (let x = 1; x < Number.parseInt(numLastEpi) + 1; x++) {
               if (idMALSync !== null) {
-                idMALSync.innerHTML += `<li><a href="${AnimeId.domain}/v/${utils.urlPart(
-                  url,
-                  3,
-                )}-${x}" epi="${x}"></a> </li>`;
+                idMALSync.innerHTML += j.html(
+                  `<li><a href="${AnimeId.domain}/v/${utils.urlPart(url, 3)}-${x}" epi="${x}"></a> </li>`,
+                );
               }
             }
           }

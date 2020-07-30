@@ -86,7 +86,7 @@ export const animeflv: pageInterface = {
                     .split(',')[0]
                     .replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
-                  idMALSync.innerHTML += `<li><a href="${Url}" epi="${Episodio}"></a> </li>`;
+                  idMALSync.innerHTML += j.html(`<li><a href="${Url}" epi="${Episodio}"></a> </li>`);
                 }
               });
             }

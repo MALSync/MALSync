@@ -39,12 +39,12 @@ export class searchClass extends searchClassExtend {
         .get(0)!
         .attachShadow({ mode: 'open' });
 
-      shadow.innerHTML = `
+      shadow.innerHTML = j.html(`
         <style>
           ${require('!to-string-loader!css-loader!less-loader!./correctionStyle.less').toString()}
         </style>
         <div id="correctionApp"></div>
-        `;
+        `);
       const element = flasmessage
         .find('.shadow')
         .get(0)!
