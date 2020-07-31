@@ -342,4 +342,7 @@ module.exports = {
   AnimeDesu: {
     match: ['*://animedesu.pl/*'],
   },
+  Simplyaweeb: {
+    match: ['*://simplyaweeb.com/series/*', '*://simplyaweeb.com/manga/*'],
+  },
 };

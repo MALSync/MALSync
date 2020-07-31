@@ -74,6 +74,7 @@ import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeDesu } from './AnimeDesu/main';
+import { Simplyaweeb } from './Simplyaweeb/main';
 
 export const pages = {
   Kissanime,
@@ -152,4 +153,5 @@ export const pages = {
   AniMixPlay,
   MyAnimeListVideo,
   AnimeDesu,
+  Simplyaweeb,
 };
