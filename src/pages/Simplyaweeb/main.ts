@@ -7,6 +7,7 @@ export const Simplyaweeb: pageInterface = {
   domain: 'https://simplyaweeb.com',
   languages: ['English'],
   type: 'anime',
+  database: 'Gogoanime',
   isSyncPage(url) {
     return true;
   },
@@ -15,7 +16,7 @@ export const Simplyaweeb: pageInterface = {
       return jsonData.name;
     },
     getIdentifier(url) {
-      return `${jsonData.id}-${jsonData.type}`;
+      return jsonData.id;
     },
     getOverviewUrl(url) {
       return url;
@@ -39,7 +40,13 @@ export const Simplyaweeb: pageInterface = {
         const data = JSON.parse(text);
         if (data && data.length) {
           jsonData = data[0];
-          Simplyaweeb.type = jsonData.type;
+          if (jsonData.type === 'anime') {
+            Simplyaweeb.type = 'anime';
+            Simplyaweeb.database = 'Gogoanime';
+          } else {
+            Simplyaweeb.type = 'manga';
+            Simplyaweeb.database = 'MangaNelo';
+          }
           page.handlePage();
         }
       }
