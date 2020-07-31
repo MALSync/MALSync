@@ -1,5 +1,8 @@
-import { Single as malSingle } from '../_provider/MyAnimeList_legacy/single';
-import { userlist } from '../_provider/MyAnimeList_legacy/list';
+import { Single as legacySingle } from '../_provider/MyAnimeList_legacy/single';
+import { userlist as legacyList } from '../_provider/MyAnimeList_legacy/list';
+
+import { Single as apiSingle } from '../_provider/MyAnimeList_api/single';
+import { userlist as apiList } from '../_provider/MyAnimeList_api/list';
 
 export class myanimelistClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
@@ -292,7 +295,13 @@ export class myanimelistClass {
 
   async streamingUI() {
     con.log('Streaming UI');
-    const malObj = new malSingle(this.url);
+    let malObj;
+    if (api.settings.get('syncMode') === 'MALAPI') {
+      malObj = new apiSingle(this.url);
+    } else {
+      malObj = new legacySingle(this.url);
+    }
+
     await malObj.update();
 
     const streamUrl = malObj.getStreamingUrl();
@@ -343,7 +352,15 @@ export class myanimelistClass {
     con.log(`Bookmarks [${this.username}][${this.page}]`);
     const This = this;
 
-    const listProvider = new userlist(7, this.type!, {}, this.username);
+    let listProvider;
+    let dataProvider;
+    if (api.settings.get('syncMode') === 'MALAPI') {
+      listProvider = new apiList(7, this.type!);
+      dataProvider = new legacyList(7, this.type!, {}, this.username);
+    } else {
+      listProvider = new legacyList(7, this.type!, {}, this.username);
+      dataProvider = listProvider;
+    }
 
     let book;
     if (this.page === 'modern') {
@@ -354,7 +371,7 @@ export class myanimelistClass {
               return $('#loading-spinner').css('display') === 'none';
             },
             async function() {
-              callback(await listProvider.prepareData($.parseJSON($('.list-table').attr('data-items')!)));
+              callback(await dataProvider.prepareData($.parseJSON($('.list-table').attr('data-items')!)));
 
               utils.changeDetect(
                 () => {
@@ -528,7 +545,13 @@ export class myanimelistClass {
             .timeCache(
               `MALTAG/${url}`,
               async function() {
-                const malObj = new malSingle(url);
+                let malObj;
+                if (api.settings.get('syncMode') === 'MALAPI') {
+                  malObj = new apiSingle(url);
+                } else {
+                  malObj = new legacySingle(url);
+                }
+
                 await malObj.update();
                 return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());
               },
