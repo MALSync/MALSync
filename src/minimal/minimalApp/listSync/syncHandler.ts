@@ -195,6 +195,8 @@ export async function retriveLists(
 
   // @ts-ignore
   const masterMode = apiTemp.settings.get('syncMode');
+  if (masterMode === 'MALAPI') throw 'Sync with the mal api is not yet supported';
+
   const listP: any = [];
 
   providerList.forEach(pi => {
