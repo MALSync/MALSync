@@ -7,7 +7,6 @@ export const Simplyaweeb: pageInterface = {
   domain: 'https://simplyaweeb.com',
   languages: ['English'],
   type: 'anime',
-  database: 'Gogoanime',
   isSyncPage(url) {
     return true;
   },
