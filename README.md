@@ -53,7 +53,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://mangalivre.net"><img src="https://www.google.com/s2/favicons?domain=https://mangalivre.net"> mangalivre</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="http://www.turkanime.tv"><img src="https://www.google.com/s2/favicons?domain=http://www.turkanime.tv"> Turkanime</a></td>
+                <td><a href="https://www.turkanime.net"><img src="https://www.google.com/s2/favicons?domain=https://www.turkanime.net"> Turkanime</a></td>
                 <td><a href="https://lectortmo.com"><img src="https://www.google.com/s2/favicons?domain=https://lectortmo.com"> tmofans</a></td>
                 <td></td>
               </tr><tr>
@@ -110,11 +110,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="http://animeindo.moe"><img src="https://www.google.com/s2/favicons?domain=http://animeindo.moe"> AnimeIndo</a></td>
-                <td></td>
+                <td><a href="http://www.mangahere.cc"><img src="https://www.google.com/s2/favicons?domain=http://www.mangahere.cc"> MangaHere</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://shinden.pl"><img src="https://www.google.com/s2/favicons?domain=https://shinden.pl"> Shinden</a></td>
-                <td></td>
+                <td><a href="http://fanfox.net"><img src="https://www.google.com/s2/favicons?domain=http://fanfox.net"> MangaFox</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.funimation.com"><img src="https://www.google.com/s2/favicons?domain=https://www.funimation.com"> Funimation</a></td>
@@ -218,6 +218,38 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animeid.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv"> AnimeId</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animixplay.com"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.com"> AniMixPlay</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://myanimelist.net"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net"> MyAnimeList</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://ww1.animesimple.com"><img src="https://www.google.com/s2/favicons?domain=https://ww1.animesimple.com"> AnimeSimple</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animeunity.it"><img src="https://www.google.com/s2/favicons?domain=https://animeunity.it"> AnimeUnity</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://justanime.app"><img src="https://www.google.com/s2/favicons?domain=https://justanime.app"> JustAnime</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://yayanimes.net"><img src="https://www.google.com/s2/favicons?domain=https://yayanimes.net"> YayAnimes</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animedesu.pl"><img src="https://www.google.com/s2/favicons?domain=https://animedesu.pl"> AnimeDesu</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://simplyaweeb.com"><img src="https://www.google.com/s2/favicons?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
                 <td></td>
                 <td></td>
               </tr>

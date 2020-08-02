@@ -50,7 +50,7 @@
     "name": "Branitube"
   },
   {
-    "domain": "http://www.turkanime.tv",
+    "domain": "https://www.turkanime.net",
     "type": "anime",
     "name": "Turkanime"
   },
@@ -365,8 +365,53 @@
     "name": "AnimeId"
   },
   {
+    "domain": "https://animixplay.com",
+    "type": "anime",
+    "name": "AniMixPlay"
+  },
+  {
+    "domain": "https://myanimelist.net",
+    "type": "anime",
+    "name": "MyAnimeList"
+  },
+  {
+    "domain": "https://ww1.animesimple.com",
+    "type": "anime",
+    "name": "AnimeSimple"
+  },
+  {
+    "domain": "https://animeunity.it",
+    "type": "anime",
+    "name": "AnimeUnity"
+  },
+  {
+    "domain": "http://www.mangahere.cc",
+    "type": "manga",
+    "name": "MangaHere"
+  },
+  {
+    "domain": "http://fanfox.net",
+    "type": "manga",
+    "name": "MangaFox"
+  },
+  {
+    "domain": "https://justanime.app",
+    "type": "anime",
+    "name": "JustAnime"
+  },
+  {
     "domain": "https://yayanimes.net",
     "type": "anime",
     "name": "YayAnimes"
+  },
+  {
+    "domain": "https://animedesu.pl",
+    "type": "anime",
+    "name": "AnimeDesu"
+  },
+  {
+    "domain": "https://simplyaweeb.com",
+    "type": "anime",
+    "name": "Simplyaweeb"
   }
 ]

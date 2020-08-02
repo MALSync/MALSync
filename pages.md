@@ -62,6 +62,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://animedesu.pl"><img src="https://www.google.com/s2/favicons?domain=https://animedesu.pl"> AnimeDesu</a></td>
+    <td>Polish</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://animefire.net"><img src="https://www.google.com/s2/favicons?domain=https://animefire.net"> AnimeFire</a></td>
     <td>Portuguese</td>
     <td>:x:</td>
@@ -132,6 +139,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://ww1.animesimple.com"><img src="https://www.google.com/s2/favicons?domain=https://ww1.animesimple.com"> AnimeSimple</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.animestreamingfr.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.animestreamingfr.fr"> AnimeStreamingFR</a></td>
     <td>French</td>
     <td>:x:</td>
@@ -160,6 +174,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://animeunity.it"><img src="https://www.google.com/s2/favicons?domain=https://animeunity.it"> AnimeUnity</a></td>
+    <td>Italian</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
     <td>English, Spanish, Indonesian, Portuguese, Turkish, Italian</td>
     <td>:heavy_check_mark:</td>
@@ -169,6 +190,13 @@
   </tr><tr>
     <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
     <td>Polish</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://animixplay.com"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.com"> AniMixPlay</a></td>
+    <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -258,6 +286,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://justanime.app"><img src="https://www.google.com/s2/favicons?domain=https://justanime.app"> JustAnime</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.kickassanime.rs"><img src="https://www.google.com/s2/favicons?domain=https://www.kickassanime.rs"> KickAssAnime</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -285,6 +320,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://myanimelist.net"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net"> MyAnimeList</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://www.neko-sama.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.neko-sama.fr"> NekoSama</a></td>
     <td>French</td>
@@ -335,6 +377,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://simplyaweeb.com"><img src="https://www.google.com/s2/favicons?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://www.tranimeizle.com/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.com/"> TRanimeizle</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
@@ -342,7 +391,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="http://www.turkanime.tv"><img src="https://www.google.com/s2/favicons?domain=http://www.turkanime.tv"> Turkanime</a></td>
+    <td><a href="https://www.turkanime.net"><img src="https://www.google.com/s2/favicons?domain=https://www.turkanime.net"> Turkanime</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -376,6 +425,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://yayanimes.net"><img src="https://www.google.com/s2/favicons?domain=https://yayanimes.net"> YayAnimes</a></td>
+    <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr>
     </tbody>
   </table>
@@ -447,6 +503,20 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="http://fanfox.net"><img src="https://www.google.com/s2/favicons?domain=http://fanfox.net"> MangaFox</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="http://www.mangahere.cc"><img src="https://www.google.com/s2/favicons?domain=http://www.mangahere.cc"> MangaHere</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="http://mangakatana.com"><img src="https://www.google.com/s2/favicons?domain=http://mangakatana.com"> MangaKatana</a></td>
