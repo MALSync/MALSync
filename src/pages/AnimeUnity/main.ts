@@ -35,7 +35,7 @@ export const AnimeUnity: pageInterface = {
       return 1;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.general > h1.title'));
+      j.$('div.general > h1.title').after(j.html(selector));
     },
   },
   init(page) {

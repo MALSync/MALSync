@@ -61,7 +61,7 @@ export const YayAnimes: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      selector.insertAfter('#content > div.contentBox > div > div > div.boxAnimeSobre');
+      j.$('#content > div.contentBox > div > div > div.boxAnimeSobre').after(j.html(selector));
     },
   },
   init(page) {

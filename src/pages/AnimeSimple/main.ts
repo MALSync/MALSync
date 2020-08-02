@@ -45,7 +45,9 @@ export const AnimeSimple: pageInterface = {
       return AnimeSimple.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$(jsonData.selector_position).first());
+      j.$(jsonData.selector_position)
+        .first()
+        .after(j.html(selector));
     },
     getMalUrl(provider) {
       return AnimeSimple.sync.getMalUrl!(provider);

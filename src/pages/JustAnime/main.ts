@@ -44,7 +44,9 @@ export const JustAnime: pageInterface = {
       return JustAnime.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$(jsonData.selector_position).first());
+      j.$(jsonData.selector_position)
+        .first()
+        .after(j.html(selector));
     },
     getMalUrl(provider) {
       return JustAnime.sync.getMalUrl!(provider);

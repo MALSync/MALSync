@@ -40,9 +40,13 @@ export const MangaNelo: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(`<div id="malthing" class="panel-story-chapter-list"> <p class="row-title-chapter" style="width: 100%;"><span class="row-title-chapter-name">MAL-Sync</span></p> <p id="malp" class="panel-story-info-description" style="border-top: 0;margin-top: 0;">${selector.html()}</p></div>`).insertBefore(
-        j.$('div.panel-story-chapter-list').first(),
-      );
+      j.$('div.panel-story-chapter-list')
+        .first()
+        .before(
+          j.html(
+            `<div id="malthing" class="panel-story-chapter-list"> <p class="row-title-chapter" style="width: 100%;"><span class="row-title-chapter-name">MAL-Sync</span></p> <div class="panel-story-info-description" style="border-top: 0;margin-top: 0;">${selector}</div></div>`,
+          ),
+        );
     },
 
     list: {

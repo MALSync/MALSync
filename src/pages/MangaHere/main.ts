@@ -63,7 +63,9 @@ export function getInter(): pageInterface {
         return utils.urlPart(url, 4);
       },
       uiSelector(selector) {
-        selector.insertBefore(j.$('div.detail-main').first());
+        j.$('div.detail-main')
+          .first()
+          .before(j.html(selector));
       },
       list: {
         offsetHandler: false,
