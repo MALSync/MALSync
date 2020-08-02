@@ -35,7 +35,9 @@ export const AnimeZone: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.ratings .panel-body .description').first());
+      j.$('.ratings .panel-body .description')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -97,7 +99,7 @@ export const AnimeZone: pageInterface = {
           iframe.height = '100%';
 
           iframe.setAttribute('allowfullscreen', 'true');
-          embedContainer.append(iframe);
+          embedContainer.append(j.html(iframe));
           observer.disconnect();
         }
       };

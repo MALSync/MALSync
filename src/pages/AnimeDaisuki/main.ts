@@ -58,7 +58,9 @@ export const AnimeDaisuki: pageInterface = {
       return url.split('/')[5];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('section.WdgtCn').first());
+      j.$('section.WdgtCn')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

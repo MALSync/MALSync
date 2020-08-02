@@ -41,7 +41,7 @@ export class searchClass extends searchClassExtend {
 
       shadow.innerHTML = `
         <style>
-          ${require('!to-string-loader!css-loader!less-loader!./correctionStyle.less').toString()}
+          ${j.html(require('!to-string-loader!css-loader!less-loader!./correctionStyle.less').toString())}
         </style>
         <div id="correctionApp"></div>
         `;

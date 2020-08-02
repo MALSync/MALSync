@@ -24,6 +24,7 @@ export const settingsObj = {
     miniMALonMal: false,
     floatButtonStealth: false,
     minimizeBigPopup: false,
+    floatButtonCorrection: false,
     floatButtonHide: false,
     autoCloseMinimal: false,
     outWay: true,

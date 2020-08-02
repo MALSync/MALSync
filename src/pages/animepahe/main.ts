@@ -38,7 +38,7 @@ export const animepahe: pageInterface = {
       return animepahe.domain + nextEp;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.anime-season'));
+      j.$('.anime-season').after(j.html(selector));
     },
   },
   overview: {
@@ -49,7 +49,7 @@ export const animepahe: pageInterface = {
       return animepahe.overview!.getTitle(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.anime-detail'));
+      j.$('.anime-detail').after(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j

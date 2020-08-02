@@ -53,7 +53,7 @@ export const AnimeId: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('article'));
+      j.$('article').after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -72,10 +72,9 @@ export const AnimeId: pageInterface = {
           if (numLastEpi !== undefined) {
             for (let x = 1; x < Number.parseInt(numLastEpi) + 1; x++) {
               if (idMALSync !== null) {
-                idMALSync.innerHTML += `<li><a href="${AnimeId.domain}/v/${utils.urlPart(
-                  url,
-                  3,
-                )}-${x}" epi="${x}"></a> </li>`;
+                idMALSync.innerHTML += j.html(
+                  `<li><a href="${AnimeId.domain}/v/${utils.urlPart(url, 3)}-${x}" epi="${x}"></a> </li>`,
+                );
               }
             }
           }
@@ -94,7 +93,7 @@ export const AnimeId: pageInterface = {
           const epiAct = `<li><a href="${epilist[
             epi
           ][0].toString()}"><strong>Capítulo ${epi}</strong><small class="right">Siguiente Episodio</small></li><li></li>`;
-          j.$('#listado').prepend(epiAct);
+          j.$('#listado').prepend(j.html(epiAct));
         }
       },
     },

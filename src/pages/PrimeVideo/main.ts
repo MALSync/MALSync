@@ -15,7 +15,7 @@ export const PrimeVideo: pageInterface = {
     getTitle(url) {
       if (thisData && thisData!.title)
         return $('<div/>')
-          .html(thisData!.title)
+          .html(j.html(thisData!.title))
           .text();
       return '';
     },
@@ -40,7 +40,9 @@ export const PrimeVideo: pageInterface = {
       return PrimeVideo.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.av-detail-section > div > h1').first());
+      j.$('div.av-detail-section > div > h1')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

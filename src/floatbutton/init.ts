@@ -1,52 +1,4 @@
-import { minimal } from './minimalClass';
-
-let minimalObj;
-
-function createIframe(page) {
-  const iframe = document.createElement('iframe');
-  iframe.setAttribute('id', 'info-iframe');
-  iframe.setAttribute('style', 'height:100%;width:100%;border:0;display:block;');
-  iframe.onload = function() {
-    const head = j
-      .$('#info-iframe')
-      .contents()
-      .find('head');
-
-    api.storage.injectjsResource('material.js', head);
-    api.storage.updateDom(head);
-
-    api.storage.injectCssResource('material.css', head);
-    api.storage.injectCssResource('materialFont.css', head);
-
-    setTimeout(function() {
-      minimalObj = new minimal(
-        j
-          .$('#info-iframe')
-          .contents()
-          .find('html'),
-      );
-      if (typeof page !== 'undefined') {
-        if (typeof page.singleObj !== 'undefined') {
-          minimalObj.fillBase(page.singleObj.getUrl());
-        } else {
-          minimalObj.fillBase(null);
-        }
-        minimalObj.setPageSync(page);
-      }
-    }, 200);
-  };
-  document.getElementById('modal-content')!.appendChild(iframe);
-  j.$('#modal-content').append(
-    '<div class="kal-tempHeader" style="position:  absolute; width: 100%; height:  103px; background-color: rgb(63,81,181); "></div>',
-  );
-
-  if (!j.$('#info-iframe').length || j.$('#info-iframe').css('display') !== 'block') {
-    j.$('#info-popup').remove();
-    alert('The miniMAL iframe could not be loaded.\nThis could be caused by an AdBlocker.');
-  }
-}
-
-export function initIframeModal(page) {
+export function initFloatButton(page, floatClick) {
   const posLeft = api.settings.get('posLeft');
   const miniMalWidth = api.settings.get('miniMalWidth');
   const miniMalHeight = api.settings.get('miniMalHeight');
@@ -80,11 +32,11 @@ export function initIframeModal(page) {
       position = `width: 100vw; height: 100%; position: absolute; top: 0%; ${posLeft}: 0%`;
     }
     let material =
-      '<dialog class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
+      '<div class="modal-kal" id="info-popup" style="pointer-events: none;display: none; position: fixed;z-index: 9999;left: 0;top: 0;bottom: 0;width: 100%; height: 100%; background-color: transparent; padding: 0; margin: 0; border: 0;">';
     material += `<div id="modal-content" class="modal-content-kal" Style="pointer-events: all; background-color: #f9f9f9; margin: 0; ${position}">`;
     material += '</div>';
-    material += '</dialog>';
-    j.$('body').after(material);
+    material += '</div>';
+    j.$('body').after(j.html(material));
 
     let additionalClasses = '';
     if (api.settings.get('floatButtonStealth')) {
@@ -97,29 +49,15 @@ export function initIframeModal(page) {
     let floatbutton = `<button class="open-info-popup floatbutton ${additionalClasses}" style="">`;
     floatbutton +=
       '<i class="my-float open-info-popup" style="margin-top:22px;"><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px; margin-bottom: 15%;"></div><div class="open-info-popup" style="width: 100%; height: 4px"></div></i></button>';
-    j.$('#info-popup').after(floatbutton);
+    j.$('#info-popup').after(j.html(floatbutton));
 
     j.$('.open-info-popup').show();
     if (api.settings.get('autoCloseMinimal')) j.$('.modal-kal').css('pointer-events', 'initial');
+
     document.addEventListener('click', function(e) {
       if (!e || !e.target) return;
-
       if (j.$(e.target).hasClass('open-info-popup')) {
-        con.log('Open miniMAL');
-        if (j.$('#info-popup').css('display') === 'none') {
-          document.getElementById('info-popup')!.style.display = 'block';
-          // fillIframe(url, currentMalData);
-          j.$('.floatbutton').fadeOut();
-          if (!j.$('#info-iframe').length) {
-            createIframe(page);
-          } else if (typeof minimalObj !== 'undefined' && typeof page.malObj !== 'undefined') {
-            minimalObj.fillBase(page.malObj.url);
-            minimalObj.setPageSync(page);
-          }
-        } else {
-          document.getElementById('info-popup')!.style.display = 'none';
-          j.$('.floatbutton').fadeIn();
-        }
+        floatClick(page);
       }
       if (j.$(e.target).hasClass('modal-kal')) {
         document.getElementById('info-popup')!.style.display = 'none';

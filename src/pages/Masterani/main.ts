@@ -55,7 +55,9 @@ export const Masterani: pageInterface = {
       return Masterani.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.prependTo(j.$('#stats').first());
+      j.$('#stats')
+        .first()
+        .prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,

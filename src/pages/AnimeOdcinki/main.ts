@@ -33,7 +33,9 @@ export const AnimeOdcinki: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#user-anime-top').first());
+      j.$('#user-anime-top')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

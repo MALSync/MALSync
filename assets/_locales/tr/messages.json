@@ -520,7 +520,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Bu ayar MAL'da ki kapak resimlerinin boyutunu tekrar ayarlar.<br>Karakterlerin, Kişilerin, Önerilerin vb.",
+    "message": "Bu ayar MAL'da ki kapak resimlerinin boyutunu tekrar ayarlar. Karakterlerin, Kişilerin, Önerilerin vb.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

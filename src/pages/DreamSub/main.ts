@@ -44,7 +44,9 @@ export const DreamSub: pageInterface = {
       return DreamSub.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.detail-content').first());
+      j.$('div.detail-content')
+        .first()
+        .after(j.html(selector));
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) {

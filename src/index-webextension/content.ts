@@ -2,13 +2,20 @@ import { syncPage } from '../pages/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
 import { pages } from '../pages/pages';
 import { shortcutListener } from '../utils/player';
+import { floatClick } from '../floatbutton/extension';
+
+let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
-  const page = new syncPage(window.location.href, pages);
+  const page = new syncPage(window.location.href, pages, floatClick);
   messagePageListener(page);
   page.init();
   firebaseNotification();
+
+  $(window).blur(function() {
+    lastFocus = Date.now();
+  });
 }
 
 const css =
@@ -24,8 +31,10 @@ function messagePageListener(page) {
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (msg.action === 'TabMalUrl') {
-      con.log('TabMalUrl Message', page.singleObj.url);
-      sendResponse(page.singleObj.url);
+      if (Date.now() - lastFocus < 3 * 1000) {
+        con.log('TabMalUrl Message', page.singleObj.url);
+        sendResponse(page.singleObj.url);
+      }
     }
     if (msg.action === 'videoTime') {
       page.setVideoTime(msg.item, function(time) {

@@ -14,7 +14,7 @@
       style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
     >
       MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br />
-      <span v-html="listProvider.mal.text"></span><br />
+      <span v-dompurify-html="listProvider.mal.text"></span><br />
       <span v-if="listProvider.mal.list">List: {{ listProvider.mal.list.length }}</span
       ><br />
       <br />
@@ -24,7 +24,7 @@
       style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
     >
       AniList <span v-if="listProvider.anilist.master">(Master)</span><br />
-      <span v-html="listProvider.anilist.text"></span> <br />
+      <span v-dompurify-html="listProvider.anilist.text"></span> <br />
       <span v-if="listProvider.anilist.list">List: {{ listProvider.anilist.list.length }}</span
       ><br />
       <br />
@@ -34,7 +34,7 @@
       style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
     >
       Kitsu <span v-if="listProvider.kitsu.master">(Master)</span><br />
-      <span v-html="listProvider.kitsu.text"></span><br />
+      <span v-dompurify-html="listProvider.kitsu.text"></span><br />
       <span v-if="listProvider.kitsu.list">List: {{ listProvider.kitsu.list.length }}</span
       ><br />
       <br />
@@ -44,7 +44,7 @@
       style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
     >
       Simkl <span v-if="listProvider.simkl.master">(Master)</span><br />
-      <span v-html="listProvider.simkl.text"></span><br />
+      <span v-dompurify-html="listProvider.simkl.text"></span><br />
       <span v-if="listProvider.simkl.list">List: {{ listProvider.simkl.list.length }}</span
       ><br />
       <br />

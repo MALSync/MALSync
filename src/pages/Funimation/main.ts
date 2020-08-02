@@ -33,9 +33,9 @@ export const Funimation: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$(`<div class="container"> <p id="malp">${selector.html()}</p></div>`).insertBefore(
-        j.$('div.gradient-bg').first(),
-      );
+      j.$('div.gradient-bg')
+        .first()
+        .before(j.html(`<div class="container"> ${selector}</div>`));
     },
   },
   init(page) {

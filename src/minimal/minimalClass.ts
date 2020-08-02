@@ -1,9 +1,10 @@
 import Vue from 'vue';
+import VueDOMPurifyHTML from 'vue-dompurify-html';
 import * as VueClazyLoad from 'vue-clazy-load';
 import minimalApp from './minimalApp.vue';
 
-// @ts-ignore
 Vue.use(VueClazyLoad);
+Vue.use(VueDOMPurifyHTML);
 
 export class minimal {
   private history: string[] = [];
@@ -12,7 +13,7 @@ export class minimal {
 
   // eslint-disable-next-line no-shadow
   constructor(public minimal) {
-    this.minimal.find('body').append('<div id="minimalApp"></div>');
+    this.minimal.find('body').append(j.html('<div id="minimalApp"></div>'));
     this.minimalVue = new Vue({
       el: this.minimal.find('#minimalApp').get(0),
       methods: {
@@ -22,7 +23,7 @@ export class minimal {
       },
       render: h => h(minimalApp),
     });
-    this.minimal.find('head').append('<base href="https://myanimelist.net/">');
+    this.minimal.find('head').append(j.html('<base href="https://myanimelist.net/">'));
 
     this.uiListener();
     this.injectCss();
@@ -107,8 +108,10 @@ export class minimal {
   }
 
   injectCss() {
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     this.minimal
       .find('head')
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       .append(j.$('<style>').html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
   }
 
@@ -400,18 +403,20 @@ export class minimal {
   searchMal(keyword, type = 'all', selector, callback) {
     const This = this;
 
-    this.minimal.find(selector).html('');
+    this.minimal.find(selector).html(j.html(''));
     api.request
       .xhr('GET', `https://myanimelist.net/search/prefix.json?type=${type}&keyword=${keyword}&v=1`)
       .then(response => {
         const searchResults = j.$.parseJSON(response.responseText);
         this.minimal.find(selector).append(
-          `<div class="mdl-grid">
+          j.html(
+            `<div class="mdl-grid">
             <select name="myinfo_score" id="searchListType" class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col" style="outline: none; background-color: white; border: none;">
               <option value="anime">Anime</option>
               <option value="manga">Manga</option>
             </select>
           </div>`,
+          ),
         );
         this.minimal.find('#searchListType').val(type);
         this.minimal.find('#searchListType').change(function(event) {
@@ -425,9 +430,10 @@ export class minimal {
               j.$.each(value3, (i4, value) => {
                 if (typeof value.name !== 'undefined') {
                   This.minimal.find(`${selector} > div`).append(
-                    `<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="${
-                      value.url
-                    }" style="cursor: pointer;">\
+                    j.html(
+                      `<a class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--2dp mdl-grid searchItem" href="${
+                        value.url
+                      }" style="cursor: pointer;">\
                   <img src="${
                     value.image_url
                   }" style="margin: -8px 0px -8px -8px; height: 100px; width: 64px; background-color: grey;"></img>\
@@ -437,13 +443,14 @@ export class minimal {
                       'search_Type',
                     )} ${value.payload.media_type}</p>\
                     <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang('search_Score')} ${
-                      value.payload.score
-                    }</p>\
+                        value.payload.score
+                      }</p>\
                     <p style="margin-bottom: 0; line-height: 20px;">${api.storage.lang('search_Year')} ${
-                      value.payload.start_year
-                    }</p>\
+                        value.payload.start_year
+                      }</p>\
                   </div>\
                   </a>`,
+                    ),
                   );
                 }
               });
@@ -474,7 +481,8 @@ export class minimal {
       </div>
     `;
 
-    const flashmDiv = j.$(mess).appendTo(this.minimal.find('.mdl-layout'));
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    const flashmDiv = j.$(j.html(mess)).appendTo(this.minimal.find('.mdl-layout'));
     flashmDiv.find('.close').click(function() {
       flashmDiv.slideUp(100, function() {
         flashmDiv.remove();

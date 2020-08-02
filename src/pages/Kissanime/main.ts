@@ -72,7 +72,9 @@ export const Kissanime: pageInterface = {
       return Kissanime.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.bigChar').first());
+      j.$('.bigChar')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: true,

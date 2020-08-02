@@ -79,6 +79,8 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
+import { AnimeDesu } from './AnimeDesu/main';
+import { Simplyaweeb } from './Simplyaweeb/main';
 
 export const pages = {
   Kissanime,
@@ -162,4 +164,6 @@ export const pages = {
   MangaFox,
   JustAnime,
   YayAnimes,
+  AnimeDesu,
+  Simplyaweeb,
 };

@@ -62,7 +62,9 @@ export const MangaPlus: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.TitleDetail-module_flexContainer_1oGb4').first());
+      j.$('div.TitleDetail-module_flexContainer_1oGb4')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

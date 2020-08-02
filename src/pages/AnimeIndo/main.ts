@@ -64,12 +64,14 @@ export const AnimeIndo: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#sct_content > h1').first());
+      j.$('#sct_content > h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.eps_lst > li:not(.hdr)');
+        return j.$('ul.eps_lst,ul#epl').find('li:not(.hdr)');
       },
       elementUrl(selector) {
         return utils.absoluteLink(

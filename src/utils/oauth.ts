@@ -22,7 +22,7 @@ function generateUrl() {
   const state = generateRandomString(10);
   sessionStorage.setItem(state, challenge);
   const url = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${clientId}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
-  $('.card-text.succ').prepend(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`);
+  $('.card-text.succ').prepend(j.html(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`));
   $('body').removeClass();
   $('body').addClass('success');
 }
@@ -56,7 +56,7 @@ async function getRefreshToken() {
       if (json && json.refresh_token && json.access_token) {
         api.settings.set('malToken', json.access_token);
         api.settings.set('malRefresh', json.refresh_token);
-        $('.card-text.succ').prepend(api.storage.lang('anilistClass_authentication'));
+        $('.card-text.succ').prepend(j.html(api.storage.lang('anilistClass_authentication')));
         $('body').removeClass();
         $('body').addClass('success');
         return;

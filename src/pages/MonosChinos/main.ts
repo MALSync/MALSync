@@ -65,7 +65,9 @@ export const MonosChinos: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('h1.Title').first());
+      j.$('h1.Title')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

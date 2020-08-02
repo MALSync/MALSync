@@ -78,12 +78,12 @@ export const TRanimeizle: pageInterface = {
 
       return RemoveUnrelatedTurkishWordIzle(titleElement.innerText);
     },
-    uiSelector: (selector: JQuery<HTMLElement>) => {
+    uiSelector: selector => {
       const animeDetailElement: HTMLDivElement | null = document.querySelector('.animeDetail');
 
       if (!animeDetailElement) return;
 
-      selector.prependTo(animeDetailElement);
+      animeDetailElement.prepend(j.html(selector));
     },
     getIdentifier: (url: string) => {
       const identifier = utils.urlPart(url, 4);

@@ -54,7 +54,9 @@ export const Hidive: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$(`<div class="container"> <p id="malp">${selector.html()}</p></div>`).insertAfter(j.$('div.details').first());
+      j.$('div.details')
+        .first()
+        .after(j.html(`<div class="container"> ${selector}</div>`));
     },
     list: {
       offsetHandler: false,

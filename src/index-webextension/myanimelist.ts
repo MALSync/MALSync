@@ -1,12 +1,18 @@
 import { myanimelistClass } from '../myanimelist/myanimelistClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
+let lastFocus;
+
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
   const mal = new myanimelistClass(window.location.href);
   messageMalListener(mal);
   mal.init();
   firebaseNotification();
+
+  $(window).blur(function() {
+    lastFocus = Date.now();
+  });
 }
 
 const css =
@@ -18,11 +24,16 @@ api.settings.init().then(() => {
 });
 
 function messageMalListener(mal) {
+  const logger = con.m('TabMalUrl');
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action === 'TabMalUrl') {
-      con.log('TabMalUrl Message', mal.url);
-      sendResponse(mal.url);
+    if (Date.now() - lastFocus < 3 * 1000) {
+      if (msg.action === 'TabMalUrl') {
+        logger.log('Response', mal.url);
+        sendResponse(mal.url);
+      }
+      return;
     }
+    logger.log('Focus timeout');
   });
 }

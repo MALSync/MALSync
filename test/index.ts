@@ -38,7 +38,7 @@ window.MalSyncTest = async function() {
           }
           if (typeof page.sync.uiSelector !== 'undefined') {
             page.sync.uiSelector(
-              j.$('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'),
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }
@@ -48,7 +48,7 @@ window.MalSyncTest = async function() {
           value.identifier = page.overview.getIdentifier(window.location.href);
           if (typeof page.overview.uiSelector !== 'undefined') {
             page.overview.uiSelector(
-              j.$('<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'),
+              '<div><div id="MAL-SYNC-TEST">TEST-UI</div></div>'
             );
             value.uiSelector = j.$('#MAL-SYNC-TEST').text();
           }

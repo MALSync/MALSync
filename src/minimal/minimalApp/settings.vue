@@ -24,6 +24,7 @@
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
               <option value="SIMKL">Simkl</option>
+              <option value="MALAPI">MyAnimeList API (BETA)</option>
             </select>
           </span>
         </li>
@@ -149,7 +150,9 @@
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             {{ lang('settings_Thumbnails') }}
-            <tooltip><span v-html="lang('settings_Thumbnails_text')"></span></tooltip>
+            <tooltip
+              ><span>{{ lang('settings_Thumbnails_text') }}</span></tooltip
+            >
           </span>
           <span class="mdl-list__item-secondary-action">
             <select id="malThumbnail" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -173,7 +176,7 @@
         <checkbox option="malTags">
           {{ lang('settings_malTags') }}
           <tooltip direction="bottom">
-            <span v-html="lang('settings_malTags_Text')"></span>
+            <span>{{ lang('settings_malTags_Text') }}</span>
           </tooltip>
         </checkbox>
         <checkbox option="malContinue">{{ lang('settings_malContinue') }}</checkbox>
@@ -203,6 +206,7 @@
         >
         <checkbox option="floatButtonStealth">{{ lang('settings_miniMAL_floatButtonStealth') }}</checkbox>
         <checkbox option="minimizeBigPopup">{{ lang('settings_miniMAL_minimizeBigPopup') }}</checkbox>
+        <checkbox option="floatButtonCorrection">{{ lang('settings_miniMAL_floatButtonCorrection') }}</checkbox>
         <checkbox option="floatButtonHide">{{ lang('settings_miniMAL_floatButtonHide') }}</checkbox>
         <checkbox option="autoCloseMinimal">{{ lang('settings_miniMAL_autoCloseMinimal') }}</checkbox>
 

@@ -122,14 +122,12 @@ export class MetaOverview extends MetaOverviewAbstract {
   private characters() {
     this.animeInfo.included.forEach(i => {
       if (i.type === 'characters' && this.meta.characters.length < 10) {
-        let { name } = i.attributes;
-        if (typeof i.attributes.malId !== 'undefined' && i.attributes.malId !== null && i.attributes.malId) {
-          name = `<a href="https://myanimelist.net/character/${i.attributes.malId}">${name}</a>`;
-        }
+        const { name } = i.attributes;
 
         this.meta.characters.push({
           img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
-          html: name,
+          name,
+          url: `https://myanimelist.net/character/${i.attributes.malId}`,
         });
       }
     });
@@ -169,14 +167,14 @@ export class MetaOverview extends MetaOverviewAbstract {
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
         title: 'Format:',
-        body: format,
+        body: [{ text: format }],
       });
     }
 
     if (typeof this.animeI().attributes.episodeCount !== 'undefined' && this.animeI().attributes.episodeCount !== null)
       this.meta.info.push({
         title: 'Episodes:',
-        body: this.animeI().attributes.episodeCount,
+        body: [{ text: this.animeI().attributes.episodeCount }],
       });
 
     if (
@@ -185,7 +183,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     )
       this.meta.info.push({
         title: 'Episode Duration:',
-        body: `${this.animeI().attributes.episodeLength} mins`,
+        body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
       });
 
     if (typeof this.animeI().attributes.status !== 'undefined' && this.animeI().attributes.status !== null) {
@@ -195,46 +193,47 @@ export class MetaOverview extends MetaOverviewAbstract {
       status = status.charAt(0).toUpperCase() + status.slice(1);
       this.meta.info.push({
         title: 'Status:',
-        body: status,
+        body: [{ text: status }],
       });
     }
 
     if (typeof this.animeI().attributes.startDate !== 'undefined' && this.animeI().attributes.startDate !== null)
       this.meta.info.push({
         title: 'Start Date:',
-        body: this.animeI().attributes.startDate,
+        body: [{ text: this.animeI().attributes.startDate }],
       });
 
     if (typeof this.animeI().attributes.endDate !== 'undefined' && this.animeI().attributes.endDate !== null)
       this.meta.info.push({
         title: 'Start Date:',
-        body: this.animeI().attributes.endDate,
+        body: [{ text: this.animeI().attributes.endDate }],
       });
 
-    const genres: string[] = [];
+    const genres: any[] = [];
     this.animeInfo.included.forEach(i => {
       if (i.type === 'categories' && genres.length < 6) {
-        genres.push(
-          `<a href="https://kitsu.io/${this.type}?categories=${i.attributes.slug}">${i.attributes.title}</a>`,
-        );
+        genres.push({
+          text: i.attributes.title,
+          url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
+        });
       }
     });
     if (genres.length)
       this.meta.info.push({
         title: 'Genres:',
-        body: genres.join(', '),
+        body: genres,
       });
 
     if (typeof this.animeI().attributes.ageRating !== 'undefined' && this.animeI().attributes.ageRating !== null)
       this.meta.info.push({
         title: 'Rating:',
-        body: this.animeI().attributes.ageRating,
+        body: [{ text: this.animeI().attributes.ageRating }],
       });
 
     if (typeof this.animeI().attributes.totalLength !== 'undefined' && this.animeI().attributes.totalLength !== null)
       this.meta.info.push({
         title: 'Total playtime:',
-        body: `${this.animeI().attributes.totalLength} mins`,
+        body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
       });
   }
 

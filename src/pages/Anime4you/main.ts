@@ -34,7 +34,9 @@ export const Anime4you: pageInterface = {
       return Anime4you.domain + nextEp;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.beschreibung > div > p').first());
+      j.$('.beschreibung > div > p')
+        .first()
+        .after(j.html(selector));
     },
   },
   overview: {

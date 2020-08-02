@@ -42,7 +42,9 @@ export const Twistmoe: pageInterface = {
       );
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.information').first());
+      j.$('.information')
+        .first()
+        .after(j.html(selector));
     },
   },
   overview: {

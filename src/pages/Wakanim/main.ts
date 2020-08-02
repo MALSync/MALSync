@@ -56,7 +56,9 @@ export const Wakanim: pageInterface = {
     },
 
     uiSelector(selector) {
-      selector.insertBefore(j.$('#nav-show').first());
+      j.$('#nav-show')
+        .first()
+        .before(j.html(selector));
     },
 
     list: {

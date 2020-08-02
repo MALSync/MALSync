@@ -32,7 +32,9 @@ export const AnimePlanet: pageInterface = {
       return NaN;
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#siteContainer > nav').first());
+      j.$('#siteContainer > nav')
+        .first()
+        .before(j.html(selector));
     },
   },
   overview: {
@@ -43,7 +45,9 @@ export const AnimePlanet: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#siteContainer > nav').first());
+      j.$('#siteContainer > nav')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

@@ -43,7 +43,9 @@ export const serimanga: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.sub-top-text').first());
+      j.$('div.sub-top-text')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

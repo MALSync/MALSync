@@ -51,7 +51,9 @@ export const Animeflix: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(`<div class="container"> <p id="malp">${selector.html()}</p></div>`).insertAfter(j.$('div.my-3').first());
+      j.$('div.my-3')
+        .first()
+        .after(j.html(`<div class="container"> ${selector}</div>`));
     },
   },
   init(page) {

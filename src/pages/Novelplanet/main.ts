@@ -74,7 +74,9 @@ export const Novelplanet: pageInterface = {
       return Novelplanet.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.post-contentDetails p').first());
+      j.$('.post-contentDetails p')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

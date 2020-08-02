@@ -60,7 +60,9 @@ export const unionmangas: pageInterface = {
       return urlPart4.toLowerCase();
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.row > div.col-md-12 > h2').first());
+      j.$('div.row > div.col-md-12 > h2')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

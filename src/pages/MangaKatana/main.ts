@@ -65,7 +65,9 @@ export const MangaKatana: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#single_book').first());
+      j.$('#single_book')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

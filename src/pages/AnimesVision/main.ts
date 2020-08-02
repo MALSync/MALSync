@@ -48,7 +48,7 @@ export const AnimesVision: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content'));
+      j.$('div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content').after(j.html(selector));
     },
     list: {
       offsetHandler: false,

@@ -32,7 +32,7 @@ export const AnimeXin: pageInterface = {
 
       const temp = episodePart.match(/-episode-\d*/gi);
 
-      if (!temp || temp.length === 0) return NaN;
+      if (!temp || temp.length === 0) return 1;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
@@ -57,7 +57,9 @@ export const AnimeXin: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.infox > h1.entry-title').first());
+      j.$('div.infox > h1.entry-title')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

@@ -79,7 +79,9 @@ export const Mangarock: pageInterface = {
       return utils.urlPart(url, 4).replace(/mrs-serie-/i, '');
     },
     uiSelector(selector) {
-      selector.insertBefore($('#chapters-list').first());
+      $('#chapters-list')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

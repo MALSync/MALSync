@@ -20,6 +20,7 @@
     "*.min.js",
     "docs/",
     "package/",
+    "eslint/",
     "test/", //TODO
     "webpackConfig/" //TODO
   ],
@@ -33,8 +34,25 @@
       ],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
+      "plugins": ["@typescript-eslint", "jquery-unsafe-malsync", "no-unsanitized"],
       "rules": {
+        "no-unsanitized/method": [
+          "error",
+          {
+            "escape": {
+              "methods": ["j.html"]
+            }
+          }
+        ],
+        "no-unsanitized/property": [
+          "error",
+          {
+            "escape": {
+              "methods": ["j.html"]
+            }
+          }
+        ],
+        "jquery-unsafe-malsync/no-xss-jquery": 2,
         "@typescript-eslint/ban-ts-ignore": "warn",
         "@typescript-eslint/camelcase": "warn",
         "@typescript-eslint/class-name-casing": "warn",
@@ -77,6 +95,7 @@
       "plugins": ["vue", "prettier"],
       "rules": {
         "vue/component-tags-order": "off",
+        "vue/no-v-html": "error",
         "no-restricted-syntax": [
           "error",
           // TODO: Reenable rule

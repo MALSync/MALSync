@@ -1,6 +1,7 @@
 import * as helper from './helper';
 import { listElement } from './listAbstract';
 import { userlist as malList } from './MyAnimeList_legacy/list';
+import { userlist as malApiList } from './MyAnimeList_api/list';
 import { userlist as anilistList } from './AniList/list';
 import { userlist as kitsuList } from './Kitsu/list';
 import { userlist as simklList } from './Simkl/list';
@@ -35,6 +36,9 @@ function getListObj(args, syncMode = '') {
 
   if (syncMode === 'MAL') {
     return new malList(status, callbacks, username, offset, templist);
+  }
+  if (syncMode === 'MALAPI') {
+    return new malApiList(status, callbacks, username, offset, templist);
   }
   if (syncMode === 'ANILIST') {
     return new anilistList(status, callbacks, username, offset, templist);

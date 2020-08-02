@@ -101,13 +101,15 @@ export class anilistClass {
 
       $(document).ready(function() {
         $('.page-content .container').html(
-          `
+          j.html(
+            `
           <div style="text-align: center; margin-top: 50px; background-color: white; border: 1px solid lightgrey; padding: 10px;">
             <h1>MAL-Sync</h1>
             <br>
             ${api.storage.lang('anilistClass_authentication')}
           </div>
         `,
+          ),
         );
       });
     }
@@ -164,7 +166,7 @@ export class anilistClass {
       }
       $(document).ready(function() {
         $('.mal_links').remove();
-        $('.sidebar .data').before(html);
+        $('.sidebar .data').before(j.html(html));
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           api.settings.set(String(key), false);
@@ -185,7 +187,8 @@ export class anilistClass {
       });
       $('#mal-sync-search-links').remove();
       $('.sidebar .data').before(
-        `
+        j.html(
+          `
         <div id="mal-sync-search-links" style="
             background: rgb(var(--color-foreground));
             border-radius: 3px;
@@ -201,6 +204,7 @@ export class anilistClass {
           <div class="MALSync-search"><a>[${api.storage.lang('Show')}]</a></div><br class="mal_links" />
         </div>
       `,
+        ),
       );
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
@@ -239,7 +243,7 @@ export class anilistClass {
           </div>`;
         }
 
-        $('.MALSync-search').html(html);
+        $('.MALSync-search').html(j.html(html));
       });
     });
   }
@@ -254,33 +258,41 @@ export class anilistClass {
     if (streamUrl) {
       $(document).ready(async function() {
         $('#mal-sync-stream-div').remove();
-        $('h1').first().append(`
+        $('h1')
+          .first()
+          .append(
+            j.html(`
         <div class="data title progress" id="mal-sync-stream-div" style="margin-top: -2px; display: inline-block; position: relative; top: 2px;">
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''
           }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
             <img src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
           </a>
-        </div>`);
+        </div>`),
+          );
 
         const resumeUrlObj = malObj.getResumeWatching();
         const continueUrlObj = malObj.getContinueWatching();
         con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
         if (continueUrlObj && continueUrlObj.ep === malObj.getEpisode() + 1) {
           $('#mal-sync-stream-div').append(
-            `<a class="nextStream" title="${api.storage.lang(
-              `overview_Continue_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+            j.html(
+              `<a class="nextStream" title="${api.storage.lang(
+                `overview_Continue_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         } else if (resumeUrlObj && resumeUrlObj.ep === malObj.getEpisode()) {
           $('#mal-sync-stream-div').append(
-            `<a class="resumeStream" title="${api.storage.lang(
-              `overview_Resume_Episode_${malObj.getType()}`,
-            )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+            j.html(
+              `<a class="resumeStream" title="${api.storage.lang(
+                `overview_Resume_Episode_${malObj.getType()}`,
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
+            ),
           );
         }
       });
@@ -361,12 +373,17 @@ export class anilistClass {
 
             if (en.options && en.options.u) {
               con.log(en.options.u);
-              element.find('a').first().after(`
+              element
+                .find('a')
+                .first()
+                .after(
+                  j.html(`
                 <a class="mal-sync-stream mal-rem" title="${
                   en.options.u.split('/')[2]
                 }" target="_blank" style="margin: 0 0; max-height: 14px;" href="${en.options.u}">
                   <img src="${utils.favicon(en.options.u.split('/')[2])}">
-                </a>`);
+                </a>`),
+                );
             }
 
             const resumeUrlObj = en.options.r;
@@ -377,19 +394,23 @@ export class anilistClass {
             con.log('Resume', resumeUrlObj, 'Continue', continueUrlObj);
             if (continueUrlObj && continueUrlObj.ep === curEp + 1) {
               element.prepend(
-                `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
-                  continueUrlObj.url
-                }">
+                j.html(
+                  `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
+                    continueUrlObj.url
+                  }">
                   <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
                 </a>`,
+                ),
               );
             } else if (resumeUrlObj && resumeUrlObj.ep === curEp) {
               element.prepend(
-                `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
-                  resumeUrlObj.url
-                }">
+                j.html(
+                  `<a class="resumeStream mal-rem" title="Resume watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
+                    resumeUrlObj.url
+                  }">
                   <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
                 </a>`,
+                ),
               );
             }
 
@@ -398,7 +419,7 @@ export class anilistClass {
               element
                 .parent()
                 .find('.progress')
-                .append(prediction.tag);
+                .append(j.html(prediction.tag));
             });
           }
         });

@@ -62,7 +62,9 @@ export const JaiminisBox: pageInterface = {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('h1.title').first());
+      j.$('h1.title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

@@ -70,7 +70,9 @@ export const Vrv: pageInterface = {
       return ident.json.id;
     },
     uiSelector(selector) {
-      selector.insertAfter($('.erc-series-info .series-title').first());
+      $('.erc-series-info .series-title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: true,

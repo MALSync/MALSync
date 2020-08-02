@@ -15,7 +15,7 @@
     </span>
 
     <span v-if="objError" class="mdl-chip mdl-chip--deletable" style="margin: auto; margin-top: 16px; display: table;">
-      <span class="mdl-chip__text" v-html="objError"></span>
+      <span v-dompurify-html="objError" class="mdl-chip__text"></span>
       <button type="button" class="mdl-chip__action" @click="reload()">
         <i class="material-icons">refresh</i>
       </button>
@@ -41,7 +41,7 @@
               <span>
                 {{ stat.title }}
               </span>
-              <span class="mdl-list__item-sub-title" v-html="stat.body"> </span>
+              <span class="mdl-list__item-sub-title">{{ stat.body }}</span>
             </span>
           </li>
         </ul>
@@ -66,11 +66,7 @@
             target="_blank"
             ><i class="material-icons">open_in_new</i></a
           >
-          <h1
-            class="malTitle mdl-card__title-text malClear"
-            style="padding-left: 0; overflow:visible;"
-            v-html="title"
-          ></h1>
+          <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0; overflow:visible;">{{ title }}</h1>
           <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0; overflow:visible;">
             <div v-for="altTitl in altTitle" :key="altTitl" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{ altTitl }}</span>
@@ -78,13 +74,64 @@
           </div>
         </div>
         <div class="malDescription malClear mdl-cell mdl-cell--10-col" style="overflow: hidden;">
-          <p style="color: black;" v-html="description"></p>
+          <p v-dompurify-html="description" style="color: black;"></p>
           <div
-            v-show="streaming"
+            v-if="renderObj && renderObj.isAuthenticated()"
             class="mdl-card__actions mdl-card--border"
             style="padding-left: 0;"
-            v-html="streaming"
-          ></div>
+          >
+            <div
+              v-if="renderObj.getStreamingUrl()"
+              class="data title progress"
+              style="display: inline-block; position: relative; top: 2px; margin-left: -2px;"
+            >
+              <a
+                class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="renderObj.getStreamingUrl().split('/')[2]"
+                target="_blank"
+                style="margin: 0 5px; color: white;"
+                :href="renderObj.getStreamingUrl()"
+              >
+                <img
+                  :src="utils.favicon(renderObj.getStreamingUrl().split('/')[2])"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />
+                {{ lang(`overview_Continue_${renderObj.getType()}`) }}
+              </a>
+
+              <a
+                v-if="mal.continueUrl && mal.continueUrl.ep === renderObj.getEpisode() + 1"
+                class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="lang(`overview_Next_Episode_${renderObj.getType()}`)"
+                target="_blank"
+                style="margin: 0 5px 0 0; color: white;"
+                :href="mal.continueUrl.url"
+              >
+                <img
+                  :src="assetUrl('double-arrow-16px.png')"
+                  width="16"
+                  height="16"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />{{ lang(`overview_Next_Episode_${renderObj.getType()}`) }}
+              </a>
+
+              <a
+                v-else-if="mal.resumeUrl && mal.resumeUrl.ep === renderObj.getEpisode()"
+                class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
+                :title="lang(`overview_Resume_Episode_${renderObj.getType()}`)"
+                target="_blank"
+                style="margin: 0 5px 0 0; color: white;"
+                :href="mal.resumeUrl.url"
+              >
+                <img
+                  :src="assetUrl('arrow-16px.png')"
+                  width="16"
+                  height="16"
+                  style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;"
+                />{{ lang(`overview_Resume_Episode_${renderObj.getType()}`) }}
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       <div
@@ -129,7 +176,7 @@
                     value="6"
                     style="width: 35px; display: inline-block;"
                   />
-                  / <span v-if="prediction" v-html="prediction.tag" />
+                  / <span v-if="prediction" v-dompurify-html="prediction.tag" />
                   <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
                     renderObj.getTotalEpisodes()
                   }}</span
@@ -244,7 +291,7 @@
               <span class="mdl-list__item-sub-title">
                 <div v-for="link in relatedType.links" :key="link.title">
                   <a :href="link.url">{{ link.title }}</a>
-                  <span v-html="link.statusTag"></span>
+                  <span v-dompurify-html="link.statusTag"></span>
                 </div>
               </span>
             </span>
@@ -296,7 +343,14 @@
               >
                 <img :src="character.img" style="height: auto; width: 100%;" />
               </clazy-load>
-              <div class="" v-html="character.html"></div>
+              <div>
+                <a :href="character.url">
+                  {{ character.name }}
+                </a>
+                <div class="spaceit_pad">
+                  <small>{{ character.subtext }}</small>
+                </div>
+              </div>
             </div>
           </div>
           <div v-for="n in 10" :key="n" class="listPlaceholder" style="height: 0;">
@@ -361,7 +415,15 @@
                 <span>
                   {{ inf.title }}
                 </span>
-                <span class="mdl-list__item-text-body" v-html="inf.body"> </span>
+                <span class="mdl-list__item-text-body">
+                  <span v-for="(b, ind) in inf.body" :key="b.title"
+                    ><template v-if="ind > 0">, </template
+                    ><template v-if="b.url"
+                      ><a :href="b.url">{{ b.text }}</a></template
+                    ><template v-else>{{ b.text }}</template
+                    ><small v-if="b.subtext && b.subtext"> {{ b.subtext }}</small></span
+                  >
+                </span>
               </span>
             </li>
           </ul>
@@ -530,52 +592,6 @@ export default {
       }
       return altTitle;
     },
-    streaming() {
-      let streamhtml = null;
-      const malObj = this.renderObj;
-      if (malObj === null || !malObj.isAuthenticated()) return null;
-      const streamUrl = malObj.getStreamingUrl();
-      if (typeof streamUrl !== 'undefined') {
-        streamhtml = `
-            <div class="data title progress" style="display: inline-block; position: relative; top: 2px; margin-left: -2px;">
-              <a class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${
-                streamUrl.split('/')[2]
-              }" target="_blank" style="margin: 0px 5px; color: white;" href="${streamUrl}">
-                <img src="${utils.favicon(
-                  streamUrl.split('/')[2],
-                )}" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-          `overview_Continue_${malObj.getType()}`,
-        )}
-              </a>`;
-
-        con.log('Resume', this.mal.resumeUrl, 'Continue', this.mal.continueUrl);
-        if (this.mal.continueUrl && this.mal.continueUrl.ep === malObj.getEpisode() + 1) {
-          streamhtml += `<a class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
-            `overview_Next_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.continueUrl.url}">
-                <img src="${api.storage.assetUrl(
-                  'double-arrow-16px.png',
-                )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-            `overview_Next_Episode_${malObj.getType()}`,
-          )}
-              </a>`;
-        } else if (this.mal.resumeUrl && this.mal.resumeUrl.ep === malObj.getEpisode()) {
-          streamhtml += `<a class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised" title="${api.storage.lang(
-            `overview_Resume_Episode_${malObj.getType()}`,
-          )}" target="_blank" style="margin: 0px 5px 0px 0px; color: white;" href="${this.mal.resumeUrl.url}">
-                <img src="${api.storage.assetUrl(
-                  'arrow-16px.png',
-                )}" width="16" height="16" style="padding-bottom: 3px; padding-right: 6px; margin-left: -3px;">${api.storage.lang(
-            `overview_Resume_Episode_${malObj.getType()}`,
-          )}
-              </a>`;
-        }
-
-        streamhtml += `</div>
-          `;
-      }
-      return streamhtml;
-    },
     characters() {
       let char = {};
       try {
@@ -620,6 +636,7 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
+    assetUrl: api.storage.assetUrl,
     async render(renderObj) {
       this.metaObj = null;
       this.error = null;

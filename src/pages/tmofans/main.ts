@@ -55,7 +55,9 @@ export const tmofans: pageInterface = {
       return utils.urlPart(url, 6) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('header.container-fluid').first());
+      j.$('header.container-fluid')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

@@ -57,9 +57,9 @@ export const HentaiKisa: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertBefore(
-        j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground').first(),
-      );
+      j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {
