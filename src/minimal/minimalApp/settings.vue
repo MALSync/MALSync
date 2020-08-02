@@ -24,6 +24,7 @@
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
               <option value="SIMKL">Simkl</option>
+              <option value="MALAPI">MyAnimeList API (BETA)</option>
             </select>
           </span>
         </li>

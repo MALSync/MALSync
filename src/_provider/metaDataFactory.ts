@@ -1,6 +1,7 @@
 import * as helper from './helper';
 import { MetaOverview as LocalMeta } from './Local/metaOverview';
 import { MetaOverview as MalMeta } from './MyAnimeList_legacy/metaOverview';
+import { MetaOverview as MalApiMeta } from './MyAnimeList_api/metaOverview';
 import { MetaOverview as AniMeta } from './AniList/metaOverview';
 import { MetaOverview as KitsuMeta } from './Kitsu/metaOverview';
 import { MetaOverview as SimklMeta } from './Simkl/metaOverview';
@@ -24,6 +25,9 @@ export function getOverview(url, type, syncMode = '') {
   }
   if (syncMode === 'MAL') {
     return new MalMeta(url);
+  }
+  if (syncMode === 'MALAPI') {
+    return new MalApiMeta(url);
   }
 
   throw 'Unknown sync mode';
