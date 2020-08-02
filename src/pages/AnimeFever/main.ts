@@ -61,9 +61,9 @@ export const AnimeFever: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertAfter(
-        j.$('#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1').first(),
-      );
+      j.$('#ov-anime > div.top-detail.relative > div.uk-width-expand.relative.z-10 > div > h1')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

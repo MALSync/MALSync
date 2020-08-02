@@ -520,7 +520,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "De optie van het vergroten of verkleinen van de thumbnails van MAL. <br> Zoals thumbnails van karakters, mensen, aanbevelingen, etc.",
+    "message": "De optie van het vergroten of verkleinen van de thumbnails van MAL. Zoals thumbnails van karakters, mensen, aanbevelingen, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

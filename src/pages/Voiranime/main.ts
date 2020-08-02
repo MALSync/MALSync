@@ -59,7 +59,9 @@ export const Voiranime: pageInterface = {
       return utils.urlPart(url, 3) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('h1').first());
+      j.$('h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

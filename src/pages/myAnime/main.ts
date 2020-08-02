@@ -46,7 +46,9 @@ export const myAnime: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('img.anime-bg').first());
+      j.$('img.anime-bg')
+        .first()
+        .after(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j

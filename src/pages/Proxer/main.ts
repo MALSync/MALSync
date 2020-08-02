@@ -72,7 +72,9 @@ export const Proxer: pageInterface = {
       return Proxer.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.hreview-aggregate > span').first());
+      j.$('.hreview-aggregate > span')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

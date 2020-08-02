@@ -113,66 +113,70 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (data.anime_type && data.anime_type)
       this.meta.info.push({
         title: 'Type:',
-        body: data.anime_type,
+        body: [{ text: data.anime_type }],
       });
 
     if (data.total_episodes && data.total_episodes)
       this.meta.info.push({
         title: 'Episodes:',
-        body: data.total_episodes,
+        body: [{ text: data.total_episodes }],
       });
 
     if (data.status && data.status)
       this.meta.info.push({
         title: 'Status:',
-        body: data.status,
+        body: [{ text: data.status }],
       });
 
     if (data.year && data.year)
       this.meta.info.push({
         title: 'Year:',
-        body: data.year,
+        body: [{ text: data.year }],
       });
 
     if (data.airs && data.airs)
       this.meta.info.push({
         title: 'Broadcast:',
-        body: `${data.airs.day} at ${data.airs.time}`,
+        body: [{ text: `${data.airs.day} at ${data.airs.time}` }],
       });
 
     if (data.network && data.network)
       this.meta.info.push({
         title: 'Licensor:',
-        body: data.network,
+        body: [{ text: data.network }],
       });
 
-    const genres: string[] = [];
+    const genres: any[] = [];
     data.genres.forEach(i => {
       if (genres.length < 6) {
-        genres.push(`<a href="https://simkl.com/${this.type}/${i.toLowerCase()}">${i}</a>`);
+        genres.push({
+          text: i,
+          url: `https://simkl.com/${this.type}/${i.toLowerCase()}`,
+        });
       }
     });
     if (genres.length)
       this.meta.info.push({
         title: 'Genres:',
-        body: genres.join(', '),
+        body: genres,
       });
 
     if (data.runtime && data.runtime)
       this.meta.info.push({
         title: 'Duration:',
-        body: `${data.runtime}mins`,
+        body: [{ text: `${data.runtime}mins` }],
       });
 
     if (data.certification && data.certification)
       this.meta.info.push({
         title: 'Rating:',
-        body: data.certification,
+        body: [{ text: data.certification }],
       });
   }
 
   private related(data) {
     const links: any = {};
+    if (!data.relations) return;
     data.relations.forEach(i => {
       if (!links[i.relation_type]) {
         let title = i.relation_type.toLowerCase().replace('_', ' ');

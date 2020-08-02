@@ -56,7 +56,9 @@ export const Hentaigasm: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.loop-actions').first());
+      j.$('div.loop-actions')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

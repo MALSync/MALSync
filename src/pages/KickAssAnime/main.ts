@@ -45,7 +45,9 @@ export const KickAssAnime: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.anime-info.border.rounded.mb-3').first());
+      j.$('div.anime-info.border.rounded.mb-3')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

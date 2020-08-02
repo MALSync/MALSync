@@ -5,7 +5,7 @@ import * as _console from './src/utils/console';
 declare global {
   let con: typeof _console;
   let utils: typeof _utils;
-  let j: { $: JQueryStatic };
+  let j: { $: JQueryStatic; html: (string) => string };
   let api: typeof webextension;
 
   interface Window {

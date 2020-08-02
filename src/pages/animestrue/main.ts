@@ -48,7 +48,9 @@ export const animestrue: pageInterface = {
       return animestrue.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#pageTitle').first());
+      j.$('#pageTitle')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

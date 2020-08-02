@@ -43,7 +43,9 @@ export const OtakuFR: pageInterface = {
       return OtakuFR.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#sct_content > div.wpa_pag.anm_det > h1').first());
+      j.$('#sct_content > div.wpa_pag.anm_det > h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: true,

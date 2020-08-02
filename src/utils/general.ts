@@ -145,7 +145,7 @@ export function checkDoubleExecution() {
       }
     });
   }
-  $('body').after(`<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`);
+  $('body').after(j.html(`<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`));
 }
 
 export function getUrlFromTags(tags: string) {
@@ -752,11 +752,13 @@ export function flashm(
     messClass += ' flashinfo';
     mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
     j.$('#flashinfo-div').addClass('hover');
-    flashmEl = j.$(mess).appendTo('#flashinfo-div');
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    flashmEl = j.$(j.html(mess)).appendTo('#flashinfo-div');
     if (typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized)
       flashmEl.css('max-height', '8px');
   } else {
-    flashmEl = j.$(mess).appendTo(flashdiv);
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    flashmEl = j.$(j.html(mess)).appendTo(flashdiv);
   }
 
   if (typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent) {
@@ -882,9 +884,11 @@ function initflashm() {
   if (api.settings.get('floatButtonStealth')) extraClass = 'mini-stealth';
 
   j.$('body').after(
-    `<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
+    j.html(
+      `<div id="flash-div-top" style="text-align: center;pointer-events: none;position: fixed;top:-5px;width:100%;z-index: 2147483647;left: 0;"></div>\
         <div id="flash-div-bottom" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;z-index: 2147483647;left: 0;"><div id="flash" style="display:none;  background-color: red;padding: 20px; margin: 0 auto;max-width: 60%;          -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;background:rgba(227,0,0,0.6);"></div></div>\
         <div id="flashinfo-div" class="${extraClass}" style="text-align: center;pointer-events: none;position: fixed;bottom:0px;width:100%;left: 0;">`,
+    ),
   );
 }
 

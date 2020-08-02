@@ -135,14 +135,33 @@ async function waitForBase() {
   return new Promise((resolve, reject) => {
     utils.waitUntilTrue(
       function() {
-        return j.$('*[data-url]').length;
+        return (
+          j.$('*[data-url]').length ||
+          (j
+            .$('.view:not(.hide) .cardImageContainer')
+            .first()
+            .css('background-image') &&
+            j
+              .$('.view:not(.hide) .cardImageContainer')
+              .first()
+              .css('background-image') !== 'none')
+        );
       },
       function() {
-        const elementUrl =
+        let elementUrl =
           j
             .$('*[data-url]')
             .first()
             .attr('data-url') || '';
+
+        if (!elementUrl) {
+          elementUrl = j
+            .$('.view:not(.hide) .cardImageContainer')
+            .first()
+            .css('background-image')
+            .replace('url("', '')
+            .replace('")', '');
+        }
 
         const base = elementUrl
           .split('/')
@@ -263,7 +282,9 @@ export const Emby: pageInterface = {
       return item.Id;
     },
     uiSelector(selector) {
-      selector.appendTo(j.$('.page:not(.hide) .detailSection').first());
+      j.$('.page:not(.hide) .nameContainer')
+        .first()
+        .append(j.html(selector));
     },
   },
   init(page) {

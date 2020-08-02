@@ -1,11 +1,17 @@
 import { anilistClass } from '../anilist/anilistClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
+let lastFocus;
+
 function main() {
   if (api.settings.get('userscriptMode')) throw 'Userscript mode';
   const anilist = new anilistClass(window.location.href);
   messageAniListListener(anilist);
   firebaseNotification();
+
+  $(window).blur(function() {
+    lastFocus = Date.now();
+  });
 }
 
 const css =
@@ -17,21 +23,26 @@ api.settings.init().then(() => {
 });
 
 function messageAniListListener(anilist) {
+  const logger = con.m('TabMalUrl');
   // @ts-ignore
   chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-    if (msg.action === 'TabMalUrl') {
-      con.info('miniMAL');
-      anilist.getMalUrl().then(malUrl => {
-        if (malUrl !== '') {
-          con.log('TabMalUrl Message', malUrl);
-          sendResponse(malUrl);
-        } else if (api.settings.get('syncMode') === 'ANILIST') {
-          con.log('TabUrl Message', anilist.url);
-          sendResponse(anilist.url);
-        }
-      });
-      return true;
+    if (Date.now() - lastFocus < 3 * 1000) {
+      if (msg.action === 'TabMalUrl') {
+        logger.info('miniMAL');
+        anilist.getMalUrl().then(malUrl => {
+          if (malUrl !== '') {
+            logger.log('TabMalUrl Message', malUrl);
+            sendResponse(malUrl);
+          } else if (api.settings.get('syncMode') === 'ANILIST') {
+            logger.log('TabUrl Message', anilist.url);
+            sendResponse(anilist.url);
+          }
+        });
+        return true;
+      }
+      return false;
     }
+    logger.log('Focus timeout');
     return false;
   });
 }

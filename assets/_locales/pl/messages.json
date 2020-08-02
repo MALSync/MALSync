@@ -548,7 +548,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Opcja polega na zmianie rozmiaru miniatur na MyAnimeList.\nPodobnie jak miniatury dla postaci, osób, rekomendacji itp.",
+    "message": "Opcja polega na zmianie rozmiaru miniatur na MyAnimeList. Podobnie jak miniatury dla postaci, osób, rekomendacji itp.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

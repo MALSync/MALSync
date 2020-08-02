@@ -50,7 +50,9 @@ export const Animeheaven: pageInterface = {
       return Animeheaven.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('.infoepboxmain').first());
+      j.$('.infoepboxmain')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,

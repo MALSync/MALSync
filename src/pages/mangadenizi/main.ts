@@ -48,7 +48,9 @@ export const mangadenizi: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('h2.widget-title').first());
+      j.$('h2.widget-title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

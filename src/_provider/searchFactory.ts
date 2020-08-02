@@ -1,5 +1,6 @@
 import * as helper from './helper';
 import { search as malSearch } from './MyAnimeList_legacy/search';
+import { search as malApiSearch } from './MyAnimeList_api/search';
 import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
 import { search as simklSearch } from './Simkl/search';
@@ -17,6 +18,9 @@ export function search(keyword, type: 'anime' | 'manga', options = {}, sync = fa
   }
   if (syncMode === 'SIMKL') {
     return simklSearch(keyword, type, options, sync);
+  }
+  if (syncMode === 'MALAPI') {
+    return malApiSearch(keyword, type, options, sync);
   }
   return malSearch(keyword, type, options, sync);
 }

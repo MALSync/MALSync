@@ -548,7 +548,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Pilihan untuk mengubah saiz thumbnail di MyAnimeList. <br> Seperti thumbnail untuk karakter, orang, cadangan, dan lain lain.",
+    "message": "Pilihan untuk mengubah saiz thumbnail di MyAnimeList. Seperti thumbnail untuk karakter, orang, cadangan, dan lain lain.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

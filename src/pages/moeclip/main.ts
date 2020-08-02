@@ -64,7 +64,9 @@ export const moeclip: pageInterface = {
         .trim();
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.entry-meta').first());
+      j.$('div.entry-meta')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

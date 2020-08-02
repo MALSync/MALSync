@@ -195,10 +195,10 @@ export class MetaOverview extends MetaOverviewAbstract {
           name += ', ';
         }
         if (i.node.name.first) name += i.node.name.first;
-        name = `<a href="${i.node.siteUrl}">${name}</a>`;
         this.meta.characters.push({
           img: i.node.image.large,
-          html: name,
+          name,
+          url: i.node.siteUrl,
         });
       });
     }
@@ -242,20 +242,20 @@ export class MetaOverview extends MetaOverviewAbstract {
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
         title: 'Format:',
-        body: format,
+        body: [{ text: format }],
       });
     }
 
     if (data.data.Media.episodes)
       this.meta.info.push({
         title: 'Episodes:',
-        body: data.data.Media.episodes,
+        body: [{ text: data.data.Media.episodes }],
       });
 
     if (data.data.Media.duration)
       this.meta.info.push({
         title: 'Episode Duration:',
-        body: `${data.data.Media.duration} mins`,
+        body: [{ text: `${data.data.Media.duration} mins` }],
       });
 
     if (data.data.Media.status) {
@@ -263,20 +263,26 @@ export class MetaOverview extends MetaOverviewAbstract {
       status = status.charAt(0).toUpperCase() + status.slice(1);
       this.meta.info.push({
         title: 'Status:',
-        body: status,
+        body: [{ text: status }],
       });
     }
 
     if (data.data.Media.startDate.year)
       this.meta.info.push({
         title: 'Start Date:',
-        body: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
+        body: [
+          {
+            text: `${data.data.Media.startDate.year}-${data.data.Media.startDate.month}-${data.data.Media.startDate.day}`,
+          },
+        ],
       });
 
     if (data.data.Media.endDate.year)
       this.meta.info.push({
         title: 'End Date:',
-        body: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}`,
+        body: [
+          { text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}` },
+        ],
       });
 
     if (data.data.Media.season) {
@@ -285,18 +291,20 @@ export class MetaOverview extends MetaOverviewAbstract {
       if (data.data.Media.endDate.year) season += ` ${data.data.Media.endDate.year}`;
       this.meta.info.push({
         title: 'Season:',
-        body: season,
+        body: [{ text: season }],
       });
     }
 
-    let studios = '';
+    const studios: any = [];
     data.data.Media.studios.edges.forEach(function(i, index) {
       if (i.isMain) {
-        if (studios !== '') studios += ', ';
-        studios += `<a href="${i.node.siteUrl}">${i.node.name}</a>`;
+        studios.push({
+          text: i.node.name,
+          url: i.node.siteUrl,
+        });
       }
     });
-    if (studios !== '')
+    if (studios.length)
       this.meta.info.push({
         title: 'Studios:',
         body: studios,
@@ -307,27 +315,32 @@ export class MetaOverview extends MetaOverviewAbstract {
       source = source.charAt(0).toUpperCase() + source.slice(1);
       this.meta.info.push({
         title: 'Source:',
-        body: source,
+        body: [{ text: source }],
       });
     }
 
     if (data.data.Media.genres) {
-      const gen: string[] = [];
+      const gen: any[] = [];
       data.data.Media.genres.forEach(function(i, index) {
-        gen.push(`<a href="https://anilist.co/search/anime?includedGenres=${i}">${i}</a>`);
+        gen.push({
+          text: i,
+          url: `https://anilist.co/search/anime?includedGenres=${i}`,
+        });
       });
       this.meta.info.push({
         title: 'Genres:',
-        body: gen.join(', '),
+        body: gen,
       });
     }
 
-    let external = '';
+    const external: any[] = [];
     data.data.Media.externalLinks.forEach(function(i, index) {
-      if (external !== '') external += ', ';
-      external += `<a href="${i.url}">${i.site}</a>`;
+      external.push({
+        text: i.site,
+        url: i.url,
+      });
     });
-    if (external !== '')
+    if (external.length)
       this.meta.info.push({
         title: 'External Links:',
         body: external,

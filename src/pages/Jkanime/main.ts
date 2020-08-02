@@ -41,7 +41,7 @@ export const Jkanime: pageInterface = {
       return nextUrl;
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.server-box'));
+      j.$('.server-box').after(j.html(selector));
     },
   },
   overview: {
@@ -52,7 +52,7 @@ export const Jkanime: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.sinopsis-links'));
+      j.$('.sinopsis-links').after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -71,7 +71,7 @@ export const Jkanime: pageInterface = {
             .trim();
           for (let i = 1; i <= Number(lastEps); i++) {
             if (idMALSync !== null) {
-              idMALSync.innerHTML += `<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`;
+              idMALSync.innerHTML += j.html(`<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`);
             }
           }
           return j.$('.MALSync a');

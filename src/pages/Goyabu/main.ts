@@ -54,7 +54,9 @@ export const Goyabu: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.phpvibe-video-list').first());
+      j.$('div.phpvibe-video-list')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

@@ -50,7 +50,7 @@ export const Samehadaku: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title'));
+      j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title').before(j.html(selector));
     },
     list: {
       offsetHandler: false,

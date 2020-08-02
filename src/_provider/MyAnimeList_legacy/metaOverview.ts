@@ -51,7 +51,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       console.log('[iframeOverview] Error:', e);
     }
     this.meta.title = $('<div>')
-      .html(title)
+      .html(j.html(title))
       .text();
   }
 
@@ -118,14 +118,27 @@ export class MetaOverview extends MetaOverviewAbstract {
 
         charImg = utils.handleMalImages(charImg);
 
+        const charObjLink = j
+          .$(value)
+          .find('.borderClass .spaceit_pad')
+          .first()
+          .parent();
+
         charArray.push({
           img: charImg,
-          html: j
-            .$(value)
-            .find('.borderClass .spaceit_pad')
+          name: charObjLink
+            .find('a')
             .first()
-            .parent()
-            .html(),
+            .text(),
+          url: charObjLink
+            .find('a')
+            .first()
+            .attr('href'),
+          subtext: charObjLink
+            .find('.spaceit_pad')
+            .first()
+            .text()
+            .trim(),
         });
       });
     } catch (e) {
@@ -192,12 +205,51 @@ export class MetaOverview extends MetaOverviewAbstract {
         j.$(value)
           .find('.dark_text')
           .remove();
+
+        // @ts-ignore
+        const aTags: { text: string; url: string; subtext?: string }[] = j
+          .$(value)
+          .find('a')
+          .map((i, el) => {
+            return {
+              text: j
+                .$(el)
+                .text()
+                .trim(),
+              url: j.$(el).attr('href'),
+            };
+          });
+
+        j.$(value)
+          .find('a, span')
+          .remove();
+
+        const textTags = j
+          .$(value)
+          .text()
+          .split(',');
+
+        let body: any[] = [];
+
+        if (!aTags.length) {
+          body = textTags.map(el => {
+            return {
+              text: el,
+            };
+          });
+        } else if (aTags.length === textTags.length) {
+          body = aTags.map((i, el) => {
+            // @ts-ignore
+            el.subtext = textTags[i].trim();
+            return el;
+          });
+        } else {
+          body = aTags;
+        }
+
         html.push({
           title: title.trim(),
-          body: j
-            .$(value)
-            .html()
-            .trim(),
+          body,
         });
       });
       this.getExternalLinks(html, data);
@@ -212,12 +264,14 @@ export class MetaOverview extends MetaOverviewAbstract {
       const infoBlock = `${data.split('<h2>External Links</h2>')[1].split('</div>')[0]}</div>`;
       const infoData = j.$.parseHTML(infoBlock);
 
-      let body = '';
+      const body: any[] = [];
       j.$.each(j.$(infoData).find('a'), (index, value) => {
-        if (index) body += ', ';
-        body += `<a href="${j.$(value).attr('href')}">${j.$(value).text()}</a>`;
+        body.push({
+          text: j.$(value).text(),
+          url: j.$(value).attr('href'),
+        });
       });
-      if (body !== '') {
+      if (body.length) {
         html.push({
           title: 'External Links',
           body,

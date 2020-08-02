@@ -59,7 +59,8 @@ module.exports = {
       '*crunchyroll.com/',
       '*crunchyroll.com',
       '*crunchyroll.com/acct*',
-      '*crunchyroll.com/anime*',
+      '*crunchyroll.com/anime-feature/*',
+      '*crunchyroll.com/anime-news/*',
       '*crunchyroll.com/comics*',
       '*crunchyroll.com/edit*',
       '*crunchyroll.com/email*',
@@ -356,5 +357,11 @@ module.exports = {
   },
   YayAnimes: {
     match: ['*://yayanimes.net/*'],
+  },
+  AnimeDesu: {
+    match: ['*://animedesu.pl/*'],
+  },
+  Simplyaweeb: {
+    match: ['*://simplyaweeb.com/series/*', '*://simplyaweeb.com/manga/*'],
   },
 };

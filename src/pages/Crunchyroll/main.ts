@@ -75,7 +75,9 @@ export const Crunchyroll: pageInterface = {
       }
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('#tabs').first());
+      j.$('#tabs')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -103,10 +105,14 @@ export const Crunchyroll: pageInterface = {
     j.$(document).ready(function() {
       if (j.$('.season-dropdown').length > 1) {
         j.$('.season-dropdown').append(
-          '<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>',
+          j.html(
+            '<span class="exclusivMal" style="float: right; margin-right: 20px; color: #0A6DA4;" onclick="return false;">MAL</span>',
+          ),
         );
         j.$('.exclusivMal').click(function(evt) {
-          j.$('#showview_content').before(`<div><a href="${page.url.split('?')[0]}">Show hidden seasons</a></div>`);
+          j.$('#showview_content').before(
+            j.html(`<div><a href="${page.url.split('?')[0]}">Show hidden seasons</a></div>`),
+          );
           const thisparent = j.$(evt.target).parent();
           j.$('.season-dropdown')
             .not(thisparent)

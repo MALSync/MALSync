@@ -1,6 +1,6 @@
 import { pageInterface, pageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
-import { initIframeModal } from '../minimal/iframe';
+import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { getPlayerTime } from '../utils/player';
 import { searchClass } from '../_provider/Search/vueSearchClass';
@@ -23,7 +23,13 @@ export class syncPage {
 
   public novel = false;
 
-  constructor(public url, public pages) {
+  constructor(
+    public url,
+    public pages,
+    protected floatClick: any = () => {
+      throw 'No click handling found';
+    },
+  ) {
     this.page = this.getPage(url);
     if (this.page === null) {
       throw new Error('Page could not be recognized');
@@ -33,7 +39,7 @@ export class syncPage {
   init() {
     const This = this;
     j.$(document).ready(function() {
-      initIframeModal(This);
+      initFloatButton(This, This.floatClick);
     });
 
     if (this.testForCloudflare()) {
@@ -596,7 +602,9 @@ export class syncPage {
       j.$('#MalData').css('display', 'flex');
       j.$('#MalInfo').text('');
       j.$('#malRating').after(
-        `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+        j.html(
+          `&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='LoginMalDiv'>${this.singleObj.getLastErrorMessage()}</span>`,
+        ),
       );
       return;
     }
@@ -605,13 +613,13 @@ export class syncPage {
     this.singleObj.getScoreCheckbox().forEach(el => {
       scoreCheckbox += `<option value="${el.value}" >${el.label}</option>`;
     });
-    j.$('#malUserRating').html(scoreCheckbox);
+    j.$('#malUserRating').html(j.html(scoreCheckbox));
 
     let statusCheckbox = '';
     this.singleObj.getStatusCheckbox().forEach(el => {
       statusCheckbox += `<option value="${el.value}" >${el.label}</option>`;
     });
-    j.$('#malStatus').html(statusCheckbox);
+    j.$('#malStatus').html(j.html(statusCheckbox));
 
     this.singleObj.getRating().then(rating => {
       j.$('#malRating').text(rating);
@@ -620,10 +628,12 @@ export class syncPage {
     if (!this.singleObj.isOnList()) {
       j.$('.MalLogin').css('display', 'none');
       j.$('#malRating').after(
-        `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
-          `syncPage_malObj_addAnime`,
-          [this.singleObj.shortName],
-        )}</a></span>`,
+        j.html(
+          `<span id='AddMalDiv'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='#' id='AddMal' onclick='return false;'>${api.storage.lang(
+            `syncPage_malObj_addAnime`,
+            [this.singleObj.shortName],
+          )}</a></span>`,
+        ),
       );
       const This = this;
       j.$('#AddMal').click(async function() {
@@ -891,10 +901,10 @@ export class syncPage {
 
     if (this.page.isSyncPage(this.url)) {
       if (typeof this.page.sync.uiSelector !== 'undefined') {
-        this.page.sync.uiSelector(j.$(ui));
+        this.page.sync.uiSelector(ui);
       }
     } else if (typeof this.page.overview !== 'undefined') {
-      this.page.overview.uiSelector(j.$(ui));
+      this.page.overview.uiSelector(ui);
     }
 
     j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function() {
@@ -922,10 +932,10 @@ export class syncPage {
         .$(selector)
         .find('option:selected')
         .text();
-      const aux = j.$('<select style="width: auto;"/>').append(j.$('<option/>').text(text));
+      const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
       const width = aux.width() || 0;
       if (width) {
-        j.$('#malp').append(aux);
+        j.$('#malp').append(j.html(aux));
         j.$(selector).width(width + 5);
         aux.remove();
       }

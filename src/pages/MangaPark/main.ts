@@ -88,7 +88,9 @@ export const MangaPark: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('body > section.manga > div.container.content > div.hd.sub').first());
+      j.$('body > section.manga > div.container.content > div.hd.sub')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {

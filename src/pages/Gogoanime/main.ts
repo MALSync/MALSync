@@ -51,7 +51,9 @@ export const Gogoanime: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      selector.prependTo(j.$('.anime_info_body').first());
+      j.$('.anime_info_body')
+        .first()
+        .prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,

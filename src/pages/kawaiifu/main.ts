@@ -74,7 +74,9 @@ export const kawaiifu: pageInterface = {
       return '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.desc-top').first());
+      j.$('div.desc-top')
+        .first()
+        .after(j.html(selector));
     },
   },
   overview: {

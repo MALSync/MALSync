@@ -44,7 +44,9 @@ export const Shinden: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('.title-other').first());
+      j.$('.title-other')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

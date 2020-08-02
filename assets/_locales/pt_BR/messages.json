@@ -574,7 +574,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Essa opção é para redimensionar as miniaturas no MAL.<br>Como miniaturas de personagens, pessoas, recomendações etc.\n",
+    "message": "Essa opção é para redimensionar as miniaturas no MAL. Como miniaturas de personagens, pessoas, recomendações etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

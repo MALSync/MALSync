@@ -516,7 +516,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Alternativet är för att ändra storlek på miniatyrbilder på MyAnimeList.<br>Som miniatyrbilder för karaktärer, personer, rekommendationer, etc.",
+    "message": "Alternativet är för att ändra storlek på miniatyrbilder på MyAnimeList. Som miniatyrbilder för karaktärer, personer, rekommendationer, etc.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

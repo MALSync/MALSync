@@ -59,7 +59,9 @@ export const mangatx: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('div.profile-manga > div > div > div > div.post-title > h1').first());
+      j.$('div.profile-manga > div > div > div > div.post-title > h1')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

@@ -8,6 +8,7 @@ import { firebaseNotification } from './utils/firebaseNotification';
 import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
 import { oauth } from './utils/oauth';
+import { floatClick } from './floatbutton/userscript';
 
 let page;
 
@@ -61,7 +62,7 @@ api.settings.init().then(() => {
 function runPage() {
   try {
     if (inIframe()) throw 'iframe';
-    page = new syncPage(window.location.href, pages);
+    page = new syncPage(window.location.href, pages, floatClick);
   } catch (e) {
     con.info(e);
     iframe();

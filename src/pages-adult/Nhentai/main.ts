@@ -70,7 +70,9 @@ export const Nhentai: pageInterface = {
       return Nhentai.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#info h1').first());
+      j.$('#info h1')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

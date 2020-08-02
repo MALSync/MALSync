@@ -1,0 +1,8 @@
+{
+  "name": "eslint-plugin-jquery-unsafe-malsync",
+  "version": "0.1.0",
+  "description": "Disallow jQuery functions with XSS potential.",
+  "license": "MIT",
+  "author": "David Graham",
+  "main": "index.js"
+}

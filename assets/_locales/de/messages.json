@@ -582,7 +582,7 @@
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Diese Option definiert die größe der Thumbnails auf MAL.<br>Wie zum Beispiel für characters, people und recommendations",
+    "message": "Diese Option definiert die größe der Thumbnails auf MAL. Wie zum Beispiel für characters, people und recommendations",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {

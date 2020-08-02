@@ -54,7 +54,9 @@ export const mangalivre: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#series-data > div.series-info.touchcarousel > span.series-desc').first());
+      j.$('#series-data > div.series-info.touchcarousel > span.series-desc')
+        .first()
+        .after(j.html(selector));
     },
   },
   init(page) {

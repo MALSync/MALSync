@@ -53,7 +53,7 @@
       style="margin: 16px auto 70px auto; display: table; padding-right: 5px; border: 2px solid red;"
       @click="!loading ? load() : ''"
     >
-      <span class="mdl-chip__text" v-html="errorText"></span>
+      <span v-dompurify-html="errorText" class="mdl-chip__text"></span>
       <button type="button" class="mdl-chip__action">
         <i class="material-icons">autorenew</i>
       </button>

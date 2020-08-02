@@ -4,6 +4,7 @@ import { kitsuClass } from './kitsu/kitsuClass';
 import { simklClass } from './simkl/simklClass';
 import { getPlayerTime } from './utils/player';
 import { pages } from './pages-adult/pages';
+import { floatClick } from './floatbutton/userscript';
 
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
@@ -21,7 +22,7 @@ function main() {
     let page;
     try {
       if (inIframe()) throw 'iframe';
-      page = new syncPage(window.location.href, pages);
+      page = new syncPage(window.location.href, pages, floatClick);
     } catch (e) {
       con.info(e);
       iframe();

@@ -8,7 +8,9 @@ export interface Overview {
   image: string;
   characters: {
     img: string;
-    html: string;
+    name: string;
+    url: string;
+    subtext?: string;
   }[];
   statistics: {
     title: string;
@@ -16,7 +18,11 @@ export interface Overview {
   }[];
   info: {
     title: string;
-    body: string;
+    body: {
+      text: string;
+      url?: string;
+      subtext?: string;
+    }[];
   }[];
   openingSongs: string[];
   endingSongs: string[];

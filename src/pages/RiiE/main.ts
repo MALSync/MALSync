@@ -63,7 +63,9 @@ export const RiiE: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      selector.insertAfter(j.$('#content > div.naru > div.areaxb').first());
+      j.$('#content > div.naru > div.areaxb')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,

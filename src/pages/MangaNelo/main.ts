@@ -40,9 +40,9 @@ export const MangaNelo: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$(`<div id="malthing"> <p id="malp">${selector.html()}</p></div>`).insertBefore(
-        j.$('div.panel-story-chapter-list').first(),
-      );
+      j.$('div.panel-story-chapter-list')
+        .first()
+        .before(j.html(`<div id="malthing"> ${selector}</div>`));
     },
 
     list: {

@@ -61,7 +61,9 @@ export const UnderHentai: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      selector.insertBefore(j.$('div.content-table').first());
+      j.$('div.content-table')
+        .first()
+        .before(j.html(selector));
     },
   },
   init(page) {
