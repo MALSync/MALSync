@@ -152,7 +152,7 @@ module.exports = {
     match: ['*://animepahe.com/play/*', '*://animepahe.com/anime/*'],
   },
   animeflv: {
-    match: ['*://animeflv.net/anime/*', '*://animeflv.net/ver/*'],
+    match: ['*://*.animeflv.net/anime/*', '*://*.animeflv.net/ver/*'],
   },
   jkanime: {
     match: ['*://jkanime.net/*'],
