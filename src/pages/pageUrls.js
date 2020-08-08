@@ -364,4 +364,7 @@ module.exports = {
   Simplyaweeb: {
     match: ['*://simplyaweeb.com/series/*', '*://simplyaweeb.com/manga/*'],
   },
+  Animevibe: {
+    match: ['*://animevibe.tv/ani/*'],
+  },
 };

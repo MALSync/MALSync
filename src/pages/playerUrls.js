@@ -260,4 +260,8 @@ module.exports = {
   animedesu: {
     match: ['*://animedesu.pl/player/desu.php?v=*'],
   },
+  // animevibe
+  animevibe: {
+    match: ['*://*.animevibe.tv/players/*.php*'],
+  },
 };

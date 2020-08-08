@@ -81,6 +81,7 @@ import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
 import { AnimeDesu } from './AnimeDesu/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
+import { Animevibe } from './Animevibe/main';
 
 export const pages = {
   Kissanime,
@@ -166,4 +167,5 @@ export const pages = {
   YayAnimes,
   AnimeDesu,
   Simplyaweeb,
+  Animevibe,
 };
