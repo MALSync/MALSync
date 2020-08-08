@@ -319,6 +319,14 @@
     "message": "Credenciales incorrectas",
     "description": "Credentials wrong"
   },
+  "bookmarksItem_Years": {
+    "message": "años",
+    "description": "Years"
+  },
+  "bookmarksItem_Year": {
+    "message": "año",
+    "description": "Year"
+  },
   "bookmarksItem_Days": {
     "message": "Días",
     "description": "Days"
@@ -338,6 +346,32 @@
   "bookmarksItem_mins": {
     "message": "min",
     "description": "mins"
+  },
+  "bookmarksItem_min": {
+    "message": "min",
+    "description": "min"
+  },
+  "bookmarksItem_secs": {
+    "message": "segundos",
+    "description": "seconds"
+  },
+  "bookmarksItem_sec": {
+    "message": "segundo",
+    "description": "second"
+  },
+  "bookmarksItem_now": {
+    "message": "recién",
+    "description": "Now"
+  },
+  "bookmarksItem_ago": {
+    "message": "hace $time$",
+    "description": "Text for time in the past",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
   },
   "prediction_Episode": {
     "message": "Siguiente episodio esperado para dentro de $time$",
@@ -591,6 +625,10 @@
     "message": "Enlaces para reanudar reproducciones",
     "description": "Resume watching links"
   },
+  "settings_usedPage": {
+    "message": "Últimos enlaces de página usados",
+    "description": "Last used page links"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Modo de IU sigilosa",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -598,6 +636,10 @@
   "settings_miniMAL_minimizeBigPopup": {
     "message": "Minimizar las ventanas emergentes grandes",
     "description": "Shows an 'action required' popup hidding big popups"
+  },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "Remapear botón flotante para UI corregida",
+    "description": "Remap floating button to the correction UI"
   },
   "settings_miniMAL_floatButtonHide": {
     "message": "Ocultar el botón del menú flotante de miniMAL",
