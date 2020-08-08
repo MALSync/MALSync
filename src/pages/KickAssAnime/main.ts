@@ -47,7 +47,7 @@ export const KickAssAnime: pageInterface = {
       return j.$('h1.title').text();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('div.anime-info.border.rounded.mb-3')
