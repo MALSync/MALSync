@@ -36,6 +36,11 @@ export const KickAssAnime: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
+    nextEpUrl(url) {
+      const href = j.$("#sidebar-anime-info > div > div > a:contains('Next Episode')").attr('href');
+      if (href) return utils.absoluteLink(href, KickAssAnime.domain);
+      return '';
+    },
   },
   overview: {
     getTitle(url) {
@@ -47,7 +52,32 @@ export const KickAssAnime: pageInterface = {
     uiSelector(selector) {
       j.$('div.anime-info.border.rounded.mb-3')
         .first()
-        .after(j.html(selector));
+        .after(
+          j.html(`<div class="border rounded mb-2 p-3"><div class="font-weight-bold">MAL-Sync</div>${selector}</div`),
+        );
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('div.anime-list tbody > tr');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.find('a').attr('href'), KickAssAnime.domain);
+      },
+      elementEp(selector) {
+        const text = selector.find('a').text();
+        if (!text.toLowerCase().includes('episode')) return NaN;
+        return Number(text.replace(/\D+/g, ''));
+      },
+      paginationNext(updateCheck) {
+        con.log('updatecheck', updateCheck);
+        const el = j.$(' div.main-episode-list > div > div > div > button:nth-child(2):enabled');
+        if (typeof el[0] === 'undefined') {
+          return false;
+        }
+        el[0].click();
+        return true;
+      },
     },
   },
   init(page) {
