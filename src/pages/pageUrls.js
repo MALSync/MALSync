@@ -335,7 +335,7 @@ module.exports = {
     match: ['*://www.animeid.tv/*'],
   },
   AniMixPlay: {
-    match: ['*://animixplay.com/v*'],
+    match: ['*://animixplay.to/v*', '*://animixplay.com/v*'],
   },
   MyAnimeListVideo: {
     match: ['*://myanimelist.net/anime/*/*/episode/*'],

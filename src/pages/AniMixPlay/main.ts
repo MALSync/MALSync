@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AniMixPlay: pageInterface = {
   name: 'AniMixPlay',
-  domain: 'https://animixplay.com',
+  domain: ['https://animixplay.to', 'https://animixplay.com'],
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
