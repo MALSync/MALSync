@@ -26,9 +26,10 @@ export const unionmangas: pageInterface = {
       return j.$('body > div.breadcrumbs > div > div > a:nth-child(3)').attr('href') || '';
     },
     getEpisode(url) {
-      return Number(url.split('/')[5]);
+      return parseInt(utils.urlPart(url, 5));
     },
     nextEpUrl(url) {
+      const newUrl = url.split(/[?#]/)[0];
       const num = $('#capitulo_trocar')
         .find('option:selected')
         .next()
@@ -36,9 +37,9 @@ export const unionmangas: pageInterface = {
 
       if (!num) return '';
 
-      const href = url.replace(/\d+$/, num);
+      const href = newUrl.replace(/\d+$/, num);
 
-      if (typeof num !== 'undefined' && href !== url) {
+      if (typeof num !== 'undefined' && href !== newUrl) {
         return utils.absoluteLink(href, unionmangas.domain);
       }
       return '';
@@ -94,7 +95,11 @@ export const unionmangas: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'leitor' || page.url.split('/')[3] === 'perfil-manga') {
+      if (
+        page.url.split('/')[3] === 'leitor' ||
+        page.url.split('/')[3] === 'perfil-manga' ||
+        page.url.split('/')[3] === 'manga'
+      ) {
         page.handlePage();
       }
     });
