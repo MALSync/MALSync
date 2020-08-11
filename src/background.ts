@@ -128,6 +128,8 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
               {
                 url: chrome.runtime.getURL('window.html'),
                 type: 'popup',
+                width: message.width ?? 0,
+                height: message.height ?? 0,
               },
               function(win) {
                 api.storage.set('windowId', win!.id);
