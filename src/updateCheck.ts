@@ -92,6 +92,8 @@ api.settings.init().then(() => {
             len,
           });
         }
+      } else {
+        throw 'Not supported';
       }
     } catch (e) {
       con.error(e);
