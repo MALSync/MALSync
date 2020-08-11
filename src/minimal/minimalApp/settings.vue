@@ -231,6 +231,7 @@
           <span class="mdl-list__item-secondary-action">
             <select id="posLeft" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
               <option value="left">{{ lang('settings_miniMAL_Display_Left') }}</option>
+              <option value="center" v-if="isExtension()">{{ lang('settings_miniMAL_Display_Center') }}</option>
               <option value="right">{{ lang('settings_miniMAL_Display_Right') }}</option>
             </select>
           </span>

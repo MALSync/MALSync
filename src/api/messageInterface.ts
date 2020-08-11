@@ -38,6 +38,7 @@ export interface minimalWindow {
   name: 'minimalWindow';
   height: number;
   width: number;
+  left: number;
 }
 
 export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content;

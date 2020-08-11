@@ -124,18 +124,25 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
         if (typeof winId === 'undefined') winId = 22;
         chrome.windows.update(winId, { focused: true }, function() {
           if (chrome.runtime.lastError) {
-            chrome.windows.create(
-              {
-                url: chrome.runtime.getURL('window.html'),
-                type: 'popup',
-                width: message.width ?? 0,
-                height: message.height ?? 0,
-              },
-              function(win) {
-                api.storage.set('windowId', win!.id);
-                sendResponse();
-              },
-            );
+            const config: any = {
+              url: chrome.runtime.getURL('window.html'),
+              type: 'popup',
+            }
+
+            if(message.width) {
+              config.width = message.width;
+            }
+            if (message.height) {
+              config.height = message.height;
+            }
+            if (message.left) {
+              config.left = message.left;
+            }
+
+            chrome.windows.create(config, function(win) {
+              api.storage.set('windowId', win!.id);
+              sendResponse();
+            });
           } else {
             sendResponse();
           }
