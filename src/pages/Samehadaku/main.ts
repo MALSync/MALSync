@@ -44,7 +44,11 @@ export const Samehadaku: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('#infoarea > div > div.infoanime > div.infox > h1.entry-title').text();
+      return j
+        .$('#infoarea > div > div.infoanime > div.infox > h1.entry-title')
+        .text()
+        .replace(/subtitle indonesia/i, '')
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
