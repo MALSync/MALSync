@@ -11,7 +11,7 @@
         "overviewUrl": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/1/",
         "nextEpUrl": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/5/",
         "episode": 4,
-        "uiSelector": false,
+        "uiSelector": true,
         "epList": {
           "7": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/7/"
         }
