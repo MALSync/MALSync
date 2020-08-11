@@ -50,7 +50,7 @@ export const KickAssAnime: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.anime-info.border.rounded.mb-3')
+      j.$('div.anime-info')
         .first()
         .after(
           j.html(`<div class="border rounded mb-2 p-3"><div class="font-weight-bold">MAL-Sync</div>${selector}</div`),
@@ -84,7 +84,14 @@ export const KickAssAnime: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'anime') {
-        page.handlePage();
+        utils.waitUntilTrue(
+          function() {
+            return KickAssAnime.sync.getTitle(page.url) || KickAssAnime.overview!.getTitle(page.url);
+          },
+          function() {
+            page.handlePage();
+          },
+        );
       }
     });
   },
