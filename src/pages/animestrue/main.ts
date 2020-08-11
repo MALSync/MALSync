@@ -28,16 +28,7 @@ export const animestrue: pageInterface = {
       return `${animestrue.domain}/anime/${url.split('/')[4]}/${url.split('/')[5]}`;
     },
     getEpisode(url) {
-      return Number(url.split('/')[6].match(/\d+/gim));
-    },
-    nextEpUrl(url) {
-      const nextEp = j
-        .$('ul.episodios > li.active')
-        .next()
-        .find('div > a')
-        .attr('href');
-      if (!nextEp) return undefined;
-      return utils.absoluteLink(nextEp, animestrue.domain);
+      return Number(utils.urlPart(url, 6).match(/\d+/gim));
     },
   },
   overview: {
@@ -81,8 +72,17 @@ export const animestrue: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      utils.waitUntilTrue(
+
+    let Interval;
+
+    utils.fullUrlChangeDetect(function() {
+      page.reset();
+      check();
+    });
+
+    function check() {
+      clearInterval(Interval);
+      Interval = utils.waitUntilTrue(
         function() {
           if (j.$('div.anime-nome > a, #pageTitle').length && j.$('div.anime-nome > a, #pageTitle').text()) {
             return true;
@@ -93,6 +93,6 @@ export const animestrue: pageInterface = {
           page.handlePage();
         },
       );
-    });
+    }
   },
 };
