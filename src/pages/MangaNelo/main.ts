@@ -54,7 +54,6 @@ export const MangaNelo: pageInterface = {
           ),
         );
     },
-
     list: {
       offsetHandler: false,
       elementsSelector() {
@@ -69,12 +68,12 @@ export const MangaNelo: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('a')
-          .first()
-          .attr('href')
-          .split('/')[5]
-          .match(/\d+/gim);
+        return MangaNelo.sync.getEpisode(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+        );
       },
     },
   },
