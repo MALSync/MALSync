@@ -25,7 +25,7 @@ export const mangalivre: pageInterface = {
       );
     },
     getEpisode(url) {
-      return parseInt(j.$("span.current-chapter > em[reader-current-chapter]").text());
+      return parseInt(j.$('span.current-chapter > em[reader-current-chapter]').text());
     },
     nextEpUrl(url) {
       const href = utils.absoluteLink(
@@ -62,7 +62,11 @@ export const mangalivre: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if ((page.url.split('/')[3] === 'manga' || page.url.split('/')[3] === 'ler') && page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0) {
+      if (
+        (page.url.split('/')[3] === 'manga' || page.url.split('/')[3] === 'ler') &&
+        page.url.split('/')[4] !== undefined &&
+        page.url.split('/')[4].length > 0
+      ) {
         page.handlePage();
       }
     });

@@ -1,4 +1,5 @@
 import { minimal } from './minimal/minimalClass';
+import { openMinimal } from './floatbutton/extension';
 
 declare let componentHandler: any;
 
@@ -26,7 +27,7 @@ api.settings.init().then(() => {
     const mode = $('html').attr('mode');
     con.log('Mode', mode);
     if (mode === 'popup' && api.settings.get('minimalWindow')) {
-      chrome.runtime.sendMessage({ name: 'minimalWindow' }, function(response) {
+      openMinimal(function(response) {
         $('html').css('height', '0');
         if (!isFirefox()) {
           window.close();

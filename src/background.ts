@@ -127,9 +127,9 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
             const config: any = {
               url: chrome.runtime.getURL('window.html'),
               type: 'popup',
-            }
+            };
 
-            if(message.width) {
+            if (message.width) {
               config.width = message.width;
             }
             if (message.height) {
