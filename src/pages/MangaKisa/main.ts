@@ -68,7 +68,7 @@ export const MangaKisa: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return url.split('/')[3];
+      return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
       j.$('.infoepboxmain')
@@ -89,9 +89,11 @@ export const MangaKisa: pageInterface = {
       },
       elementEp(selector) {
         return selector
-          .find('div.infoept2r > div, div.infoept2 > div')
+          .find('div.infoept1 > div')
           .first()
-          .text();
+          .text()
+          .match(/(?:chapter |Ch.)+\d+/gi)[0]
+          .replace(/\D+/g, '');
       },
     },
   },
