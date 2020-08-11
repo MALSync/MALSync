@@ -44,7 +44,7 @@ export const MangaNelo: pageInterface = {
         .first()
         .before(
           j.html(
-            `<div id="malthing" class="panel-story-chapter-list"> <p class="row-title-chapter" style="width: 100%;"><span class="row-title-chapter-name">MAL-Sync</span></p> <div class="panel-story-info-description" style="border-top: 0;margin-top: 0;">${selector}</div></div>`,
+            `<div id="malthing" class="panel-story-chapter-list"> <p class="row-title-chapter" style="width: 100%;"><span class="row-title-chapter-name">MAL-Sync</span></p> <div class="panel-story-info-description" style="border-top: 0;margin-top: 0;background: inherit;">${selector}</div></div>`,
           ),
         );
     },

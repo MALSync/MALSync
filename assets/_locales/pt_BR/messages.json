@@ -100,11 +100,11 @@
     "description": "Plan to Read"
   },
   "UI_Status_Rewatching_anime": {
-    "message": "Re-assistindo",
+    "message": "Reassistindo",
     "description": "Status to rewatch anime"
   },
   "UI_Status_Rewatching_manga": {
-    "message": "Re-lendo",
+    "message": "Relendo",
     "description": "Status to reread manga"
   },
   "UI_Episode": {
@@ -225,16 +225,24 @@
     "message": "Começar a assistir?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Terminar de reassistir?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Terminar de reler?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "Começar a ler?",
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "Re-assistir o Anime?",
+    "message": "Reassistir o Anime?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
-    "message": "Re-ler o Mangá?",
+    "message": "Reler o Mangá?",
     "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
@@ -629,6 +637,10 @@
     "message": "Minimizar pop-ups grandes",
     "description": "Shows an 'action required' popup hidding big popups"
   },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "Remapear botão flutuante para o popup de correção",
+    "description": "Remap floating button to the correction UI"
+  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Ocultar o botão do menu flutuante miniMAL",
     "description": "Hide miniMAL floating menu button"
@@ -698,7 +710,7 @@
     "description": "Text for the sync ui shortcut"
   },
   "settings_Shortcuts_Next_Episode": {
-    "message": "Atalho para abrir o proximo epsódio",
+    "message": "Atalho para abrir o proximo episódio",
     "description": "Description for the next episode shortcut option"
   },
   "settings_Shortcuts_Skip_Forward": {
