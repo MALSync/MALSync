@@ -219,6 +219,14 @@ module.exports = {
   },
   AnimeZone: {
     match: ['*://www.animezone.pl/odcinki/*', '*://www.animezone.pl/odcinek/*', '*://www.animezone.pl/anime/*'],
+    exclude: [
+      '*://www.animezone.pl/anime/lista*',
+      '*://www.animezone.pl/anime/sezony*',
+      '*://www.animezone.pl/anime/ranking*',
+      '*://www.animezone.pl/anime/nadchodzace*',
+      '*://www.animezone.pl/anime/premiery*',
+      '*://www.animezone.pl/anime/filmy*',
+    ],
   },
   AnimeOdcinki: {
     match: ['*://anime-odcinki.pl/anime/*'],

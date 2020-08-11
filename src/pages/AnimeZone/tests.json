@@ -4,26 +4,27 @@
   "skip": true,
   "testCases": [
     {
-      "url": "https://www.animezone.pl/odcinek/cop-craft/1",
+      "url": "https://www.animezone.pl/odcinek/black-clover-tv/131",
       "expected": {
         "sync": true,
-        "title": "Cop Craft",
-        "identifier": "cop-craft",
-        "overviewUrl": "https://www.animezone.pl/anime/cop-craft",
-        "nextEpUrl": "https://www.animezone.pl/odcinek/cop-craft/2",
-        "episode": 1,
+        "title": "Black Clover (TV)",
+        "identifier": "black-clover-tv",
+        "overviewUrl": "https://www.animezone.pl/anime/black-clover-tv",
+        "nextEpUrl": "https://www.animezone.pl/odcinek/black-clover-tv/132",
+        "episode": 131,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www.animezone.pl/anime/cop-craft",
+      "url": "https://www.animezone.pl/anime/black-clover-tv",
       "expected": {
         "sync": false,
-        "title": "Cop Craft",
-        "identifier": "cop-craft",
+        "title": "Black Clover (TV)",
+        "identifier": "black-clover-tv",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.animezone.pl/odcinek/cop-craft/5"
+          "5": "https://www.animezone.pl/odcinek/black-clover-tv/5",
+          "132": "https://www.animezone.pl/odcinek/black-clover-tv/132"
         }
       }
     }
