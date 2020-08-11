@@ -23,7 +23,13 @@ export const MangaNelo: pageInterface = {
       return j.$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)').attr('href') || '';
     },
     getEpisode(url) {
-      return Number(url.split('/')[5].match(/\d+/gim));
+      const episodePart = utils.urlPart(url, 5);
+
+      const temp = episodePart.match(/chapter_\d+/gi);
+
+      if (!temp || !temp.length) return 0;
+
+      return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
       return j
