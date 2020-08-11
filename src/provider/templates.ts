@@ -13,7 +13,7 @@ export function providerTemplates(malUrl?) {
     return local;
   }
   const syncMode = getSyncMode();
-  if (syncMode === 'MAL') {
+  if (syncMode === 'MAL' || syncMode === 'MALAPI') {
     return mal;
   }
   if (syncMode === 'ANILIST') {
