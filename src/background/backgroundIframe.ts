@@ -1,5 +1,6 @@
 import { Mutex } from 'async-mutex';
 import { getList } from '../_provider/listFactory';
+import { openInvisiblePage } from './exclusive/iframeOpen-general';
 
 declare let browser: any;
 export function checkInit() {
@@ -112,7 +113,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       // Remove other iframes
       removeIframes();
       // Create iframe
-      openInvisiblePage(el.options.u, id);
+      openInvisiblePage(el.options.u, id, hiddenTabs);
 
       const timeout = setTimeout(async function() {
         api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Timeout'));
@@ -209,28 +210,6 @@ function checkError(elCache, error) {
   }
   elCache.error = error;
   return elCache;
-}
-
-function openInvisiblePage(url: string, id) {
-  url = `${url + (url.split('?')[1] ? '&' : '?')}mal-sync-background=${id}`;
-  if (utils.canHideTabs()) {
-    // Firefox
-    browser.tabs
-      .create({
-        url,
-        active: false,
-      })
-      .then(tab => {
-        hiddenTabs.push(tab.id);
-        browser.tabs.hide(tab.id);
-      });
-  } else {
-    // Chrome
-    const ifrm = document.createElement('iframe');
-    ifrm.setAttribute('src', url);
-    ifrm.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms');
-    document.body.appendChild(ifrm);
-  }
 }
 
 function removeIframes() {

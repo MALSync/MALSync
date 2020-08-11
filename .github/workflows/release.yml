@@ -107,6 +107,7 @@ jobs:
         npm run build
       env:
         MODE: travis
+        APP_TARGET: firefox
     - name: Pack
       run: |
         npm run package

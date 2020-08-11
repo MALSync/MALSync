@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const appTarget = process.env.APP_TARGET || 'general';
 
 module.exports = {
   entry: {
@@ -24,6 +25,9 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
+    new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
+      resource.request = resource.request.replace(/-general/, `-${appTarget}`);
+    }),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/consoleBG'),
       utils: path.resolve(__dirname, './../src/utils/general'),
