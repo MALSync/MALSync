@@ -20,7 +20,7 @@ export const DubbedAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain).split('/')[4];
+      return DubbedAnime.overview.getIdentifier(DubbedAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain);
@@ -58,7 +58,7 @@ export const DubbedAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('#episodes > div > div.row.mb-3.pr-2')
