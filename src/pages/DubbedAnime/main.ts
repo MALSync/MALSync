@@ -20,7 +20,7 @@ export const DubbedAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return DubbedAnime.overview.getIdentifier(DubbedAnime.sync.getOverviewUrl(url));
+      return DubbedAnime.overview!.getIdentifier(DubbedAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain);
