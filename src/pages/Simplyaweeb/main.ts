@@ -44,7 +44,6 @@ export const Simplyaweeb: pageInterface = {
             Simplyaweeb.database = 'Gogoanime';
           } else {
             Simplyaweeb.type = 'manga';
-            Simplyaweeb.database = 'MangaNelo';
           }
           page.handlePage();
         }
