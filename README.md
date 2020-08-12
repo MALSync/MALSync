@@ -221,7 +221,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animixplay.com"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.com"> AniMixPlay</a></td>
+                <td><a href="https://animixplay.to"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.to"> AniMixPlay</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
@@ -250,6 +250,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://simplyaweeb.com"><img src="https://www.google.com/s2/favicons?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
                 <td></td>
                 <td></td>
               </tr>
