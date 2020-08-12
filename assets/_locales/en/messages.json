@@ -979,9 +979,5 @@
     "nextEpShort_no_support": {
       "message": "This page doesn't support opening the next episode",
       "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
-    },
-    "nextEpShort_no_nextEp": {
-      "message": "Couldn't find the next episode",
-      "description": "Error message if no next episode could be found after pressing the next episode shortcut"
     }
 }
