@@ -41,6 +41,12 @@ export class Progress {
     return null;
   }
 
+  protected getProgressLastTimestamp() {
+    const re = this.releaseItem;
+    if (re && re.value && re.value.lastEp && re.value.lastEp.timestamp) return re.value.lastEp.timestamp;
+    return null;
+  }
+
   // General
   async init() {
     await this.initReleaseProgress();
@@ -61,6 +67,14 @@ export class Progress {
 
   getPrediction(): string {
     return timestampToShortTime(this.getPredictionTimestamp());
+  }
+
+  getLastTimestamp(): number {
+    return this.getProgressLastTimestamp();
+  }
+
+  getLast(): string {
+    return timestampToShortTime(this.getLastTimestamp());
   }
 
   getBars(curEp, totalEp): { totalWidth: number; epWidth: number; predWidth: number } {
