@@ -378,4 +378,7 @@ module.exports = {
   WuxiaWorld: {
     match: ['*://wuxiaworld.site/novel/*'],
   },
+  AnimeOnDemand: {
+    match: ['*://www.anime-on-demand.de/anime/*'],
+  },
 };

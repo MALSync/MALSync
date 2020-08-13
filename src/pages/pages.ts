@@ -83,6 +83,7 @@ import { AnimeDesu } from './AnimeDesu/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
+import { AnimeOnDemand } from './AnimeOnDemand/main';
 
 export const pages = {
   Kissanime,
@@ -170,4 +171,5 @@ export const pages = {
   Simplyaweeb,
   Animevibe,
   WuxiaWorld,
+  AnimeOnDemand,
 };
