@@ -4,6 +4,7 @@ export interface releaseItemInterface {
   timestamp: number;
   value: any;
   finished: boolean;
+  mode: string;
 }
 
 export async function main() {
@@ -20,7 +21,7 @@ export async function listUpdate(state, type) {
     .then(async list => {
       for (let i = 0; i < list.length; i++) {
         try {
-          await single(list[i], type, logger);
+          await single(list[i], type, 'default', logger);
         } catch (e) {
           logger.error(e);
         }
@@ -31,7 +32,12 @@ export async function listUpdate(state, type) {
     });
 }
 
-export async function single(el, type, logger = con.m('release')) {
+export async function single(
+  el: { uid: number; malId: number; title: string; cacheKey: string },
+  type,
+  mode = 'default',
+  logger = con.m('release'),
+) {
   logger = logger.m(el.uid.toString());
   logger.log(el.title, el.cacheKey, el.malId);
   if (!el.malId) {
@@ -42,7 +48,11 @@ export async function single(el, type, logger = con.m('release')) {
 
   logger.m('Load').log(releaseItem);
 
-  if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
+  let force = false;
+
+  if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) force = true;
+
+  if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000 && !force) {
     logger.log('Up to date');
     return;
   }
@@ -51,7 +61,8 @@ export async function single(el, type, logger = con.m('release')) {
     releaseItem &&
     releaseItem.finished &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 1000
+    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 1000 &&
+    !force
   ) {
     logger.log('Fininshed');
     return;
@@ -61,18 +72,21 @@ export async function single(el, type, logger = con.m('release')) {
     releaseItem &&
     !releaseItem.value &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 1000
+    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 1000 &&
+    !force
   ) {
     logger.log('Nulled');
     return;
   }
+
+  if (force) logger.log('Update forced');
 
   const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${el.malId}/progress`);
   await new Promise(resolve => setTimeout(() => resolve(), 500));
   const xhr = JSON.parse(response.responseText);
   logger.log(xhr);
 
-  const progressValue = getProgress(xhr);
+  const progressValue = getProgress(xhr, mode);
 
   if (!progressValue) {
     logger.log('No value for the selected mode');
@@ -87,11 +101,12 @@ export async function single(el, type, logger = con.m('release')) {
   await api.storage.set(`release/${type}/${el.cacheKey}`, {
     timestamp: Date.now(),
     value: progressValue,
+    mode,
     finished,
   } as releaseItemInterface);
 }
 
-export function getProgress(res, mode = 'default') {
+export function getProgress(res, mode) {
   if (mode === 'default') {
     if (res.en && res.en.sub && res.en.sub.top) {
       const top = res.en.sub.top;
