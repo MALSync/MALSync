@@ -1,4 +1,4 @@
-import { releaseItemInterface } from '../background/releaseProgress';
+import { releaseItemInterface, single as updateProgress } from '../background/releaseProgress';
 import { timestampToShortTime } from './time';
 
 export class Progress {
@@ -12,7 +12,9 @@ export class Progress {
   }
 
   // Progress
-  protected async initReleaseProgress() {
+  protected async initReleaseProgress(liveData) {
+    if (liveData) await updateProgress(liveData, this.type, 'default');
+
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(
       `release/${this.type}/${this.cacheKey}`,
     );
@@ -48,8 +50,8 @@ export class Progress {
   }
 
   // General
-  async init() {
-    await this.initReleaseProgress();
+  async init(live: { uid: number; malId: number | null; title: string; cacheKey: string } | false = false) {
+    await this.initReleaseProgress(live);
     return this;
   }
 

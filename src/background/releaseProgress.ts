@@ -21,7 +21,7 @@ export async function listUpdate(state, type) {
     .then(async list => {
       for (let i = 0; i < list.length; i++) {
         try {
-          await single(list[i], type, 'default', logger);
+          await single(list[i], type, 'default', logger, true);
         } catch (e) {
           logger.error(e);
         }
@@ -33,10 +33,11 @@ export async function listUpdate(state, type) {
 }
 
 export async function single(
-  el: { uid: number; malId: number; title: string; cacheKey: string },
+  el: { uid: number; malId: number | null; title: string; cacheKey: string },
   type,
   mode = 'default',
   logger = con.m('release'),
+  batch = false,
 ) {
   logger = logger.m(el.uid.toString());
   logger.log(el.title, el.cacheKey, el.malId);
@@ -82,7 +83,7 @@ export async function single(
   if (force) logger.log('Update forced');
 
   const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${el.malId}/progress`);
-  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  if (batch) await new Promise(resolve => setTimeout(() => resolve(), 500));
   const xhr = JSON.parse(response.responseText);
   logger.log(xhr);
 
