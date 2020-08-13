@@ -171,7 +171,7 @@ export function msDiffToShortTimeString(ms: number): string {
   return timeToString(shortTime(msToTime(ms)));
 }
 
-export function timestampToShortTime(tm: number): string {
+export function timestampToShortTime(tm: number, ago = true): string {
   if (!tm) return '';
   const curTime = Date.now();
   let diff;
@@ -188,7 +188,7 @@ export function timestampToShortTime(tm: number): string {
 
   let short = msDiffToShortTimeString(diff);
 
-  if (!future) short = api.storage.lang('bookmarksItem_ago', [short]);
+  if (!future && ago) short = api.storage.lang('bookmarksItem_ago', [short]);
 
   return short;
 }

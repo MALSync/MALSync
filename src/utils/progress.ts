@@ -69,12 +69,32 @@ export class Progress {
     return timestampToShortTime(this.getPredictionTimestamp());
   }
 
+  getPredictionText(): string {
+    const pre = this.getPrediction();
+    if (pre) return api.storage.lang('prediction_Episode', [pre]);
+    return '';
+  }
+
   getLastTimestamp(): number {
     return this.getProgressLastTimestamp();
   }
 
-  getLast(): string {
-    return timestampToShortTime(this.getLastTimestamp());
+  getLast(ago = true): string {
+    return timestampToShortTime(this.getLastTimestamp(), ago);
+  }
+
+  getLastText(): string {
+    const last = this.getLast(false);
+    if (last) return api.storage.lang('prediction_Last', [last]);
+    return '';
+  }
+
+  getAutoText(): string {
+    const preT = this.getPredictionText();
+    if (preT) return preT;
+    const lastT = this.getLastText();
+    if (lastT) return lastT;
+    return '';
   }
 
   getBars(curEp, totalEp): { totalWidth: number; epWidth: number; predWidth: number } {
