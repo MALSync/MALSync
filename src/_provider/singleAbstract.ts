@@ -1,5 +1,8 @@
 import * as definitions from './definitions';
 
+import { Progress } from '../utils/progress';
+import { predictionXhr } from '../background/releaseProgress';
+
 export abstract class SingleAbstract {
   constructor(protected url: string) {
     this.handleUrl(url);
@@ -136,6 +139,47 @@ export abstract class SingleAbstract {
 
   public cleanTags() {
     this.options = null;
+  }
+
+  protected progress;
+
+  protected progressXhr;
+
+  public async initProgress(){
+    const xhr = await predictionXhr(this.getType()!, this.getMalId());
+    return new Progress(this.getCacheKey(), this.getType()!)
+      .init({
+        uid: this.getCacheKey(),
+        malId: this.getMalId(),
+        title: this.getTitle(),
+        cacheKey: this.getCacheKey(),
+        xhr,
+      })
+      .then(progress => {
+        this.progress = progress;
+        this.progressXhr = xhr;
+      });
+  }
+
+  public getProgress() {
+    if (!this.progress) return false;
+    return this.progress;
+  }
+
+  public getProgressOptions() {
+    const op: { value: string; key: string }[] = [];
+    this.progressXhr.forEach(el => {
+      if (el.state === 'complete') return;
+      let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
+      if (el.title) val = el.title;
+      if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
+      if (el.state === 'dropped') val += ` Incomplete`;
+      op.push({
+        key: el.id,
+        value: val,
+      });
+    });
+    return op;
   }
 
   abstract _update(): Promise<void>;

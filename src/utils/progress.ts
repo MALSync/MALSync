@@ -50,7 +50,9 @@ export class Progress {
   }
 
   // General
-  async init(live: { uid: number; malId: number | null; title: string; cacheKey: string } | false = false) {
+  async init(
+    live: { uid: number; malId: number | null; title: string; cacheKey: string; xhr?: object } | false = false,
+  ) {
     await this.initReleaseProgress(live);
     return this;
   }

@@ -21,7 +21,7 @@ export async function listUpdate(state, type) {
     .then(async list => {
       for (let i = 0; i < list.length; i++) {
         try {
-          await single(list[i], type, 'default', logger, true);
+          await single(list[i], type, 'default', logger);
         } catch (e) {
           logger.error(e);
         }
@@ -32,12 +32,17 @@ export async function listUpdate(state, type) {
     });
 }
 
+export async function predictionXhr(type: string, malId: number | null) {
+  if (!malId) return {};
+  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${malId}/pr`);
+  return JSON.parse(response.responseText);
+}
+
 export async function single(
-  el: { uid: number; malId: number | null; title: string; cacheKey: string },
+  el: { uid: number; malId: number | null; title: string; cacheKey: string; xhr?: object },
   type,
   mode = 'default',
   logger = con.m('release'),
-  batch = false,
 ) {
   logger = logger.m(el.uid.toString());
   logger.log(el.title, el.cacheKey, el.malId);
@@ -82,9 +87,13 @@ export async function single(
 
   if (force) logger.log('Update forced');
 
-  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${el.malId}/pr`);
-  if (batch) await new Promise(resolve => setTimeout(() => resolve(), 500));
-  const xhr = JSON.parse(response.responseText);
+  let xhr;
+  if (typeof el.xhr !== 'undefined') {
+    xhr = el.xhr;
+  } else {
+    xhr = await predictionXhr(type, el.malId);
+    await new Promise(resolve => setTimeout(() => resolve(), 500));
+  }
   logger.log(xhr);
 
   const progressValue = getProgress(xhr, mode);
@@ -113,6 +122,8 @@ export function getProgress(res, mode) {
     fallbackPrediction?: string,
     fallback?: string,
   } = {};
+
+  if (!res.length) return null;
 
   if (mode === 'default') {
     config.mainId = 'en/sub';
