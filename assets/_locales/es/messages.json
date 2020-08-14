@@ -379,7 +379,17 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last": {
+    "message": "Último episodio emitido hace $time$",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -389,7 +399,7 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
       }
     }
   },
