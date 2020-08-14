@@ -375,4 +375,10 @@ module.exports = {
   Animevibe: {
     match: ['*://animevibe.tv/ani/*'],
   },
+  WuxiaWorld: {
+    match: ['*://wuxiaworld.site/novel/*'],
+  },
+  AnimeOnDemand: {
+    match: ['*://www.anime-on-demand.de/anime/*'],
+  },
 };
