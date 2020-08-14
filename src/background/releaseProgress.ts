@@ -82,7 +82,7 @@ export async function single(
 
   if (force) logger.log('Update forced');
 
-  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${el.malId}/progress`);
+  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${el.malId}/pr`);
   if (batch) await new Promise(resolve => setTimeout(() => resolve(), 500));
   const xhr = JSON.parse(response.responseText);
   logger.log(xhr);
@@ -108,17 +108,33 @@ export async function single(
 }
 
 export function getProgress(res, mode) {
+  const config: {
+    mainId?: string,
+    fallbackPrediction?: string,
+    fallback?: string,
+  } = {};
+
   if (mode === 'default') {
-    if (res.en && res.en.sub && res.en.sub.top) {
-      const top = res.en.sub.top;
-      if (res.jp && res.jp.dub && res.jp.dub.top && res.jp.dub.top.predicition) {
-        if (!top.predicition && top.lastEp.total === res.jp.dub.top.lastEp.total) {
-          top.predicition = res.jp.dub.top.predicition;
-          top.predicition.probability = 'medium';
-        }
-      }
-      return top;
+    config.mainId = 'en/sub';
+    config.fallbackPrediction = 'jp/dub';
+  }
+
+  let top;
+
+  if (config.mainId) {
+    const mainTemp = res.find(el => el.id === config.mainId);
+    if (mainTemp) top = mainTemp;
+  }
+
+  if (config.fallbackPrediction && top && !top.predicition) {
+    const predTemp = res.find(el => el.id === config.fallbackPrediction);
+    if (predTemp && predTemp.predicition && top.lastEp.total === predTemp.lastEp.total) {
+      top.predicition = predTemp.predicition;
+      top.predicition.probability = 'medium';
     }
   }
-  return null;
+
+  if (!top) return null;
+
+  return top;
 }
