@@ -423,4 +423,7 @@ module.exports = {
   KireiCake: {
     match: ['*://reader.kireicake.com/*'],
   },
+  SenseScans: {
+    match: ['*://sensescans.com/reader*']
+  }
 };
