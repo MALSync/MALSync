@@ -1,14 +1,14 @@
 @import './../pages';
 
 @textColor: #838aa0;
-@activeEp: #98cff0;
+@activeEp: initial;
 
 #malthing {
   background-color: #1b1b1b;
   margin-top: 10px;
   width: 100%;
   padding: 24px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   height: auto !important;
 }
 
@@ -22,10 +22,14 @@
 }
 
 #malp {
-  margin-block-end: 0px !important;
-  margin-bottom: 0px !important;
+  margin-block-end: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 #MALSyncheading {
   margin-top: 10px;
+}
+
+.mal-sync-active {
+  box-shadow: inset 0 0 0 1px #98cff0 !important;
 }
