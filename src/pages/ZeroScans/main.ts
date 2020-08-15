@@ -30,7 +30,7 @@ export function getInter(): pageInterface {
         return j.$('div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn').attr('href') || '';
       },
       getEpisode(url) {
-        return Number(url.split('/')[6]);
+        return Number(utils.urlPart(url, 6));
       },
       getVolume(url) {
         return Number(url.split('/')[5]);
