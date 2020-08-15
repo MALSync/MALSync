@@ -49,7 +49,7 @@ export function getInter(): pageInterface {
           .trim();
       },
       getIdentifier(url) {
-        return url.split('/')[4];
+        return utils.urlPart(url, 4);
       },
       uiSelector(selector) {
         j.$('div.col-lg-9.col-md-8.col-xs-12.text-muted div.row.py-2')
