@@ -414,4 +414,7 @@ module.exports = {
   ZeroScans: {
     match: ['*://zeroscans.com/*'],
   },
+  DeathTollScans: {
+    match: ['*://reader.deathtollscans.net/*'],
+  },
 };

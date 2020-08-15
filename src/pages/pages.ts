@@ -95,6 +95,7 @@ import { ReaperScans } from './ReaperScans/main';
 import { SecretScans } from './SecretScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
+import { DeathTollScans } from './DeathTollScans/main';
 
 export const pages = {
   Kissanime,
@@ -194,4 +195,5 @@ export const pages = {
   SecretScans,
   SKScans,
   ZeroScans,
+  DeathTollScans,
 };
