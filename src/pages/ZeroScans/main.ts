@@ -86,8 +86,8 @@ export function getInter(): pageInterface {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       j.$(document).ready(function() {
         if (
-          page.url.split('/')[3] == 'comics' &&
-          (page.url.split('/').length == '5' || page.url.split('/').length == '7')
+          page.url.split('/')[3] === 'comics' &&
+          (page.url.split('/').length === 5 || page.url.split('/').length === 7)
         ) {
           page.handlePage();
         }
