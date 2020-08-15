@@ -84,6 +84,17 @@ import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
+import { EdelgardeScans } from './EdelgardeScans/main';
+import { HatigarmScanz } from './HatigarmScanz/main';
+import { KKJScans } from './KKJScans/main';
+import { KrakenScans } from './KrakenScans/main';
+import { LeviatanScans } from './LeviatanScans/main';
+import { MethodScans } from './MethodScans/main';
+import { NonamesScans } from './NonamesScans/main';
+import { ReaperScans } from './ReaperScans/main';
+import { SecretScans } from './SecretScans/main';
+import { SKScans } from './SKScans/main';
+import { ZeroScans } from './ZeroScans/main';
 
 export const pages = {
   Kissanime,
@@ -172,4 +183,15 @@ export const pages = {
   Animevibe,
   WuxiaWorld,
   AnimeOnDemand,
+  EdelgardeScans,
+  HatigarmScanz,
+  KKJScans,
+  KrakenScans,
+  LeviatanScans,
+  MethodScans,
+  NonamesScans,
+  ReaperScans,
+  SecretScans,
+  SKScans,
+  ZeroScans,
 };
