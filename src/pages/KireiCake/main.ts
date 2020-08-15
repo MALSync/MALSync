@@ -6,45 +6,75 @@ export const KireiCake: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'read'){
+    if (url.split('/')[3] === 'read') {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j.$("div.topbar_left h1 a").first().text();
+      return j
+        .$('div.topbar_left h1 a')
+        .first()
+        .text();
     },
     getIdentifier(url) {
-	  return url.split('/')[4];
+      return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$("div.topbar_left h1 a").first().attr("href") || '';
+      return (
+        j
+          .$('div.topbar_left h1 a')
+          .first()
+          .attr('href') || ''
+      );
     },
     getEpisode(url) {
-	  return Number(url.split('/')[7]);
+      return Number(url.split('/')[7]);
     },
-	  getVolume(url) {
-	    return Number(url.split('/')[6]);
-	  },
-	  nextEpUrl(url) {
-	    const nextUrl = j.$(`select option[value='${j.$("div.topbar_left form").last().find("select option").first().attr("value")}']`).last().prev().attr("value");
-	    const CurrentUrl = j.$("div.topbar_left form").last().find("select option").first().attr("value");
-	    if (CurrentUrl !== nextUrl){ 
-	      return nextUrl;
-	    }
-	    return undefined;
-	  },
+    getVolume(url) {
+      return Number(url.split('/')[6]);
+    },
+    nextEpUrl(url) {
+      const nextUrl = j
+        .$(
+          `select option[value='${j
+            .$('div.topbar_left form')
+            .last()
+            .find('select option')
+            .first()
+            .attr('value')}']`,
+        )
+        .last()
+        .prev()
+        .attr('value');
+      const CurrentUrl = j
+        .$('div.topbar_left form')
+        .last()
+        .find('select option')
+        .first()
+        .attr('value');
+      if (CurrentUrl !== nextUrl) {
+        return nextUrl;
+      }
+      return undefined;
+    },
   },
   overview: {
     getTitle(url) {
-      return j.$("h1.title").first().text().trim();
-	  },
+      return j
+        .$('h1.title')
+        .first()
+        .text()
+        .trim();
+    },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('h1.title').first().after(j.html(selector));
+      j.$('h1.title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -57,7 +87,7 @@ export const KireiCake: pageInterface = {
             .find('div.title a')
             .first()
             .attr('href'),
-		  KireiCake.domain,
+          KireiCake.domain,
         );
       },
       elementEp(selector) {
@@ -74,4 +104,3 @@ export const KireiCake: pageInterface = {
     });
   },
 };
-

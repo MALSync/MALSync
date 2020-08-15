@@ -145,7 +145,7 @@ export abstract class SingleAbstract {
 
   protected progressXhr;
 
-  public async initProgress(){
+  public async initProgress() {
     const xhr = await predictionXhr(this.getType()!, this.getMalId());
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({

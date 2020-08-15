@@ -424,6 +424,6 @@ module.exports = {
     match: ['*://reader.kireicake.com/*'],
   },
   SenseScans: {
-    match: ['*://sensescans.com/reader*']
-  }
+    match: ['*://sensescans.com/reader*'],
+  },
 };

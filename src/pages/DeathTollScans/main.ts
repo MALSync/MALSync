@@ -13,13 +13,21 @@ export const DeathTollScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.tbtitle div.text a').first().text();
+      return j
+        .$('div.tbtitle div.text a')
+        .first()
+        .text();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('div.tbtitle div.text a').first().attr('href') || '';
+      return (
+        j
+          .$('div.tbtitle div.text a')
+          .first()
+          .attr('href') || ''
+      );
     },
     getEpisode(url) {
       return Number(url.split('/')[7]);
@@ -28,18 +36,34 @@ export const DeathTollScans: pageInterface = {
       return Number(url.split('/')[6]);
     },
     nextEpUrl(url) {
-      return j.$(`div.tbtitle ul.dropdown li a[href='${j.$('div.tbtitle div.text a').eq(1).attr('href')}']`).parent().prev().find('a').attr('href');
+      return j
+        .$(
+          `div.tbtitle ul.dropdown li a[href='${j
+            .$('div.tbtitle div.text a')
+            .eq(1)
+            .attr('href')}']`,
+        )
+        .parent()
+        .prev()
+        .find('a')
+        .attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('h1.title').first().text().trim();
+      return j
+        .$('h1.title')
+        .first()
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('h1.title').first().after(j.html(selector));
+      j.$('h1.title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -69,4 +93,3 @@ export const DeathTollScans: pageInterface = {
     });
   },
 };
-

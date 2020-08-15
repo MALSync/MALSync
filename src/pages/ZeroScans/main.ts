@@ -18,13 +18,16 @@ export function getInter(): pageInterface {
     },
     sync: {
       getTitle(url) {
-        return j.$(".d-flex .heading h6.text-highlight").text().trim();
+        return j
+          .$('.d-flex .heading h6.text-highlight')
+          .text()
+          .trim();
       },
       getIdentifier(url) {
         return url.split('/')[4];
       },
       getOverviewUrl(url) {
-        return j.$("div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn").attr("href") || '';
+        return j.$('div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn').attr('href') || '';
       },
       getEpisode(url) {
         return Number(url.split('/')[6]);
@@ -33,12 +36,17 @@ export function getInter(): pageInterface {
         return Number(url.split('/')[5]);
       },
       nextEpUrl(url) {
-        return j.$("div#content.flex div.container.py-5 div#pages-container div.d-flex a:contains('Next')").attr('href');
+        return j
+          .$("div#content.flex div.container.py-5 div#pages-container div.d-flex a:contains('Next')")
+          .attr('href');
       },
     },
     overview: {
       getTitle(url) {
-        return j.$(".d-flex .heading h5.text-highlight").text().trim();
+        return j
+          .$('.d-flex .heading h5.text-highlight')
+          .text()
+          .trim();
       },
       getIdentifier(url) {
         return url.split('/')[4];
@@ -48,7 +56,7 @@ export function getInter(): pageInterface {
           .first()
           .before(
             j.html(
-              `<div id= "MALSyncheading" class="heading"> <h6 class="text-highlight">MAL-Sync</h6></div><div id="malthing">${selector}</div>`
+              `<div id= "MALSyncheading" class="heading"> <h6 class="text-highlight">MAL-Sync</h6></div><div id="malthing">${selector}</div>`,
             ),
           );
       },
@@ -77,7 +85,10 @@ export function getInter(): pageInterface {
     init(page) {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       j.$(document).ready(function() {
-        if (page.url.split('/')[3] == 'comics' && (page.url.split('/').length == '5' || page.url.split('/').length == '7')) {
+        if (
+          page.url.split('/')[3] == 'comics' &&
+          (page.url.split('/').length == '5' || page.url.split('/').length == '7')
+        ) {
           page.handlePage();
         }
       });
