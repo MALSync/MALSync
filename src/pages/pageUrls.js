@@ -420,4 +420,7 @@ module.exports = {
   HelveticaScans: {
     match: ['*://helveticascans.com/r*'],
   },
+  KireiCake: {
+    match: ['*://reader.kireicake.com/*'],
+  },
 };

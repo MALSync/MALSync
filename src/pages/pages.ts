@@ -97,6 +97,7 @@ import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
 import { HelveticaScans } from './HelveticaScans/main';
+import { KireiCake } from './KireiCake/main';
 
 export const pages = {
   Kissanime,
@@ -198,4 +199,5 @@ export const pages = {
   ZeroScans,
   DeathTollScans,
   HelveticaScans,
+  KireiCake,
 };
