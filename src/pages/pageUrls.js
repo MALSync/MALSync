@@ -417,4 +417,7 @@ module.exports = {
   DeathTollScans: {
     match: ['*://reader.deathtollscans.net/*'],
   },
+  HelveticaScans: {
+    match: ['*://helveticascans.com/r*'],
+  },
 };
