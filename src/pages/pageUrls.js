@@ -143,7 +143,14 @@ module.exports = {
     match: ['*://www.netflix.com/*'],
   },
   animepahe: {
-    match: ['*://animepahe.com/play/*', '*://animepahe.com/anime/*'],
+    match: [
+      '*://animepahe.com/play/*',
+      '*://animepahe.com/anime/*',
+      '*://animepahe.ru/play/*',
+      '*://animepahe.ru/anime/*',
+      '*://animepahe.org/play/*',
+      '*://animepahe.org/anime/*',
+    ],
   },
   animeflv: {
     match: ['*://*.animeflv.net/anime/*', '*://*.animeflv.net/ver/*'],
