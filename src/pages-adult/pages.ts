@@ -3,7 +3,6 @@ import { HentaiHaven } from './HentaiHaven/main';
 import { Hentaigasm } from './Hentaigasm/main';
 import { KissHentai } from './KissHentai/main';
 import { UnderHentai } from './UnderHentai/main';
-import { HentaiKisa } from './HentaiKisa/main';
 import { Nhentai } from './Nhentai/main';
 
 export const pages = {
@@ -12,6 +11,5 @@ export const pages = {
   Hentaigasm,
   KissHentai,
   UnderHentai,
-  HentaiKisa,
   Nhentai,
 };

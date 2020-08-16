@@ -43,7 +43,6 @@ import { tmofans } from './tmofans/main';
 import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { MangaKisa } from './MangaKisa/main';
 import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
@@ -131,7 +130,6 @@ export const pages = {
   unionmangas,
   MangaPlus,
   JapScan,
-  MangaKisa,
   Goyabu,
   AnimesVision,
   Hulu,

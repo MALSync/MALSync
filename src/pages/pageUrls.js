@@ -258,9 +258,6 @@ module.exports = {
   JapScan: {
     match: ['*://*.japscan.co/*'],
   },
-  MangaKisa: {
-    match: ['*://mangakisa.com/*'],
-  },
   Goyabu: {
     match: ['*://goyabu.com/*'],
   },
