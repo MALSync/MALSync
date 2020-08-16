@@ -31,12 +31,6 @@ module.exports = {
   malsync: {
     match: ['*://malsync.moe/mal/oauth*'],
   },
-  Kissanime: {
-    match: ['*://kissanime.ru/Anime/*', '*://kissanime.to/Anime/*'],
-  },
-  kissmanga: {
-    match: ['*://kissmanga.com/Manga/*'],
-  },
   nineAnime: {
     match: [
       '*://*.9anime.to/watch/*',

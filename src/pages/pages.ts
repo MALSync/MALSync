@@ -1,5 +1,3 @@
-import { Kissanime } from './Kissanime/main';
-import { Kissmanga } from './Kissmanga/main';
 import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
@@ -85,8 +83,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
 
 export const pages = {
-  Kissanime,
-  Kissmanga,
   nineAnime,
   Crunchyroll,
   Vrv,

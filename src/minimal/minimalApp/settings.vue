@@ -128,7 +128,6 @@
           <tooltip>{{ lang('settings_StreamingSite_text') }}</tooltip>
         </div>
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
-        <checkbox option="Kissanime">KissAnime</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
         <checkbox option="Netflix">Netflix</checkbox>
@@ -136,7 +135,6 @@
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
         <checkbox option="Aniwatch">Aniwatch</checkbox>
-        <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
