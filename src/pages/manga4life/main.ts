@@ -57,7 +57,7 @@ export const manga4life: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        j.$("div.BoxBody > div.list-group > div.list-group-item.ShowAllChapters").click()
+        j.$('div.BoxBody > div.list-group > div.list-group-item.ShowAllChapters').click();
         return j.$('div.BoxBody > div.list-group > a.list-group-item.ChapterLink');
       },
       elementUrl(selector) {
