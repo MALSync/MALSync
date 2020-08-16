@@ -1,6 +1,7 @@
 {
   "title": "Kissmanga",
   "url": "https://kissmanga.com/",
+  "enabled": false,
   "unreliable": true,
   "testCases": [
     {
