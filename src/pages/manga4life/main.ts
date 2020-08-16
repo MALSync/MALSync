@@ -54,6 +54,23 @@ export const manga4life: pageInterface = {
         .first()
         .after(j.html(selector));
     },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        j.$("div.BoxBody > div.list-group > div.list-group-item.ShowAllChapters").click()
+        return j.$('div.BoxBody > div.list-group > a.list-group-item.ChapterLink');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), manga4life.domain);
+      },
+      elementEp(selector) {
+        return selector
+          .find('span')
+          .first()
+          .text()
+          .match(/\d+/gim);
+      },
+    },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
