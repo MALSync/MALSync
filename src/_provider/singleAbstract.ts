@@ -154,6 +154,7 @@ export abstract class SingleAbstract {
         malId: this.getMalId(),
         title: this.getTitle(),
         cacheKey: this.getCacheKey(),
+        progressMode: this.getProgressMode(),
         xhr,
       })
       .then(progress => {
@@ -185,8 +186,8 @@ export abstract class SingleAbstract {
     return op;
   }
 
+  private updateProgress = false;
   public getProgressMode(): string {
-    console.log(this.options);
     if (this.options && this.options.p) {
       return this.options.p;
     }
@@ -197,8 +198,8 @@ export abstract class SingleAbstract {
   public setProgressMode(mode: string): void {
     if (this.options) {
       this.options.p = mode;
+      this.updateProgress = true;
     }
-    console.log(this.options);
   }
 
   abstract _update(): Promise<void>;
@@ -234,6 +235,7 @@ export abstract class SingleAbstract {
       })
       .then(() => {
         this.undoState = this.persistanceState;
+        if (this.updateProgress) this.initProgress();
       });
   }
 

@@ -13,7 +13,7 @@ export class Progress {
 
   // Progress
   protected async initReleaseProgress(liveData) {
-    if (liveData) await updateProgress(liveData, this.type, 'default');
+    if (liveData) await updateProgress(liveData, this.type, liveData.progressMode);
 
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(
       `release/${this.type}/${this.cacheKey}`,
@@ -51,7 +51,9 @@ export class Progress {
 
   // General
   async init(
-    live: { uid: number; malId: number | null; title: string; cacheKey: string; xhr?: object } | false = false,
+    live:
+      | { uid: number; malId: number | null; title: string; cacheKey: string; progressMode: string; xhr?: object }
+      | false = false,
   ) {
     await this.initReleaseProgress(live);
     return this;

@@ -277,9 +277,6 @@
                   >
                     <option value="">
                       Default
-                      <template v-if="renderObj.getProgress() && renderObj.getProgress().isAiring()"
-                        >EP{{ renderObj.getProgress().getCurrentEpisode() }}</template
-                      >
                     </option>
                     <option v-for="o in renderObj.getProgressOptions()" :key="o.key" :value="o.key">{{
                       o.value

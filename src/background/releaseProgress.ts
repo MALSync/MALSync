@@ -8,6 +8,7 @@ export interface releaseItemInterface {
 }
 
 export async function main() {
+  await api.settings.init();
   await listUpdate(1, 'anime');
   await listUpdate(1, 'manga');
 }
@@ -21,7 +22,9 @@ export async function listUpdate(state, type) {
     .then(async list => {
       for (let i = 0; i < list.length; i++) {
         try {
-          await single(list[i], type, 'default', logger);
+          if (list[i].options) {
+            await single(list[i], type, list[i].options!.p, logger);
+          }
         } catch (e) {
           logger.error(e);
         }
@@ -44,8 +47,9 @@ export async function single(
   mode = 'default',
   logger = con.m('release'),
 ) {
+  if (!mode) mode = 'default';
   logger = logger.m(el.uid.toString());
-  logger.log(el.title, el.cacheKey, el.malId);
+  logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
   if (!el.malId) {
     logger.log('No MAL Id');
     return;
@@ -127,8 +131,11 @@ export function getProgress(res, mode) {
 
   if (mode === 'default') {
     config.mainId = 'en/sub';
-    config.fallbackPrediction = 'jp/dub';
+  } else {
+    config.mainId = mode;
   }
+
+  config.fallbackPrediction = 'jp/dub';
 
   let top;
 
