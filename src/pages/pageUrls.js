@@ -426,4 +426,7 @@ module.exports = {
   SenseScans: {
     match: ['*://sensescans.com/reader*'],
   },
+  ManhuaPlus: {
+    match: ['*://manhuaplus.com/manga*'],
+  },
 };

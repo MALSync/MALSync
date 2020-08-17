@@ -99,6 +99,7 @@ import { DeathTollScans } from './DeathTollScans/main';
 import { HelveticaScans } from './HelveticaScans/main';
 import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
+import { ManhuaPlus } from './ManhuaPlus/main';
 
 export const pages = {
   Kissanime,
@@ -202,4 +203,5 @@ export const pages = {
   HelveticaScans,
   KireiCake,
   SenseScans,
+  ManhuaPlus,
 };
