@@ -28,7 +28,7 @@ export const AniMixPlay: pageInterface = {
       );
     },
     uiSelector(selector) {
-      j.$('button.followbtn')
+      j.$('button#followbtn')
         .first()
         .after(j.html(selector));
     },
