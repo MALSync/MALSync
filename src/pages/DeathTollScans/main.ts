@@ -11,6 +11,12 @@ export const DeathTollScans: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (j.$('div.comic.info').length) {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j

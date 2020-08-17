@@ -11,6 +11,12 @@ export const KireiCake: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (j.$('div.list').length) {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j
