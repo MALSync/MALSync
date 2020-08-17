@@ -40,6 +40,7 @@ export abstract class SingleAbstract {
     u: string;
     c: any;
     r: any;
+    p: any;
   } | null = null;
 
   protected abstract handleUrl(url: string);
@@ -182,6 +183,22 @@ export abstract class SingleAbstract {
       });
     }
     return op;
+  }
+
+  public getProgressMode(): string {
+    console.log(this.options);
+    if (this.options && this.options.p) {
+      return this.options.p;
+    }
+
+    return '';
+  }
+
+  public setProgressMode(mode: string): void {
+    if (this.options) {
+      this.options.p = mode;
+    }
+    console.log(this.options);
   }
 
   abstract _update(): Promise<void>;

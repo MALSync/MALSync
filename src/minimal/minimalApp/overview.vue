@@ -269,13 +269,13 @@
                 <span>TODO </span>
                 <span class="mdl-list__item-text-body">
                   <select
-                    id="myinfo_WHAT"
-                    v-model="malWHAT"
-                    name="myinfo_WHAT"
+                    id="myinfo_progressmode"
+                    v-model="malProgressMode"
+                    name="myinfo_progressmode"
                     class="inputtext mdl-textfield__input"
                     style="outline: none;"
                   >
-                    <option>
+                    <option value="">
                       Default
                       <template v-if="renderObj.getProgress() && renderObj.getProgress().isAiring()"
                         >EP{{ renderObj.getProgress().getCurrentEpisode() }}</template
@@ -578,6 +578,19 @@ export default {
       set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.handleScoreCheckbox(value);
+        }
+      },
+    },
+    malProgressMode: {
+      get() {
+        if (this.renderObj && this.renderObj.isAuthenticated()) {
+          return this.renderObj.getProgressMode();
+        }
+        return null;
+      },
+      set(value) {
+        if (this.renderObj && this.renderObj.isAuthenticated()) {
+          this.renderObj.setProgressMode(value);
         }
       },
     },

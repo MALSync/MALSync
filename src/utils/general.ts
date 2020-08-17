@@ -209,6 +209,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
     for (const key in options) {
       switch (key) {
         case 'u':
+        case 'p':
           tempOptions[key] = options[key];
           break;
         default:
@@ -233,6 +234,7 @@ export async function getEntrySettings(type, id, tags = '') {
     u: null, // url
     c: null, // Continue Url
     r: null, // Resume Url
+    p: '', // Progress Mode
   };
 
   if (api.settings.get('malTags')) {
