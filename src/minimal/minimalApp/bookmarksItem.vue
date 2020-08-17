@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!listView"
-    :title="prediction && prediction.text"
+    :title="item.fn.progress && item.fn.progress.getAutoText()"
     class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry"
     style="position: relative; padding: 0; width: 210px; height: 293px;"
   >
@@ -17,12 +17,13 @@
           <img :src="imageHi" width="100%" />
         </clazy-load>
       </div>
+
       <div
-        v-if="prediction && prediction.text"
+        v-if="item.fn.progress && item.fn.progress.isAiring()"
         class="mdl-shadow--2dp"
         style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0 5px; margin: 5px 0; text-align: center;"
       >
-        {{ preTexter }}
+        {{ item.fn.progress.getAuto() }}
       </div>
 
       <div
@@ -53,7 +54,7 @@
           <div class="progressbar bar bar1" :style="progress"></div>
           <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
           <div
-            v-if="prediction && prediction.tagEpisode"
+            v-if="item.fn.progress && item.fn.progress.isAiring()"
             class="predictionbar bar kal-ep-pre"
             :style="predictionBar"
           ></div>
@@ -117,10 +118,10 @@
       style="white-space: normal; position: relative; padding-left: 10px; padding-right: 28px;"
     >
       <div
-        v-if="prediction && prediction.text"
+        v-if="item.fn.progress && item.fn.progress.isAiring()"
         style="position: absolute; top: 0; left: 0; padding: 0 11px; margin: 0 0; text-align: center;     font-size: 10px;"
       >
-        {{ preTexter }}
+        {{ item.fn.progress.getAuto() }}
       </div>
       <span style="font-weight: bold;">{{ item.title }}</span>
 
@@ -163,7 +164,7 @@
         <div class="progressbar bar bar1" :style="progress"></div>
         <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
         <div
-          v-if="prediction && prediction.tagEpisode"
+          v-if="item.fn.progress && item.fn.progress.isAiring()"
           class="predictionbar bar kal-ep-pre"
           :style="predictionBar"
         ></div>
@@ -194,7 +195,6 @@ export default {
   },
   data() {
     return {
-      prediction: undefined,
       resumeUrl: null,
       continueUrl: null,
     };
@@ -211,61 +211,22 @@ export default {
       }
       return imageHi;
     },
-    barTotal() {
-      if (this.prediction && this.prediction.tagEpisode && !this.hasTotalEp) {
-        if (this.prediction.tagEpisode > this.item.watchedEp) {
-          return Math.ceil(this.prediction.tagEpisode * 1.2);
-        }
-        return Math.ceil(this.item.watchedEp * 1.2);
-      }
-
-      return this.item.totalEp;
-    },
     hasTotalEp() {
-      return parseInt(this.item.totalEp) !== 0;
+      return this.barData.totalWidth;
+    },
+    barData() {
+      if (!this.item.fn.progress) return {};
+      return this.item.fn.progress.getBars(this.item.watchedEp, this.item.totalEp);
     },
     progress() {
-      const width = (this.item.watchedEp / this.barTotal) * 100;
-      return `width: ${width}%; max-width: 100%;`;
+      return `width: ${this.barData.epWidth}%; max-width: 100%;`;
     },
     predictionBar() {
-      const predictionProgress = (this.prediction.tagEpisode / this.barTotal) * 100;
-      let color = 'orange';
-      if (this.prediction.color !== '') {
-        // eslint-disable-next-line
-        color = this.prediction.color;
-      }
-      return `width: ${predictionProgress}%; background-color: ${color}`;
+      const color = 'orange';
+      return `width: ${this.barData.predWidth}%; background-color: ${color}`;
     },
     streamUrl() {
       return this.item.options.u;
-    },
-    preTexter() {
-      const pre = this.prediction.prediction;
-      let { diffDays } = pre;
-      const { diffHours } = pre;
-      const { diffMinutes } = pre;
-      // Round hours
-      if (diffDays > 1 && diffHours > 12) {
-        diffDays++;
-      }
-
-      let text = '';
-      if (diffDays > 1) {
-        return `${text + diffDays} ${api.storage.lang('bookmarksItem_Days')}`;
-      }
-      if (diffDays === 1) {
-        text += `${diffDays} ${api.storage.lang('bookmarksItem_Day')} `;
-      }
-
-      if (diffHours > 1) {
-        return `${text + diffHours} ${api.storage.lang('bookmarksItem_Hours')}`;
-      }
-      if (diffHours === 1) {
-        text += `${diffHours} ${api.storage.lang('bookmarksItem_Hour')} `;
-      }
-
-      return `${text + diffMinutes} ${api.storage.lang('bookmarksItem_mins')}`;
     },
   },
   watch: {
@@ -291,14 +252,6 @@ export default {
       },
     },
   },
-  async mounted() {
-    if (typeof this.prediction === 'undefined') {
-      this.setPrediction();
-      setInterval(() => {
-        this.setPrediction();
-      }, 60 * 1000);
-    }
-  },
   methods: {
     lang: api.storage.lang,
     favicon(domain) {
@@ -306,11 +259,6 @@ export default {
     },
     assetUrl(asset) {
       return api.storage.assetUrl(asset);
-    },
-    setPrediction() {
-      utils.epPredictionUI(this.item.malId, this.item.cacheKey, this.item.type, prediction => {
-        this.prediction = prediction;
-      });
     },
     openLink(url) {
       const link = document.createElement('a');

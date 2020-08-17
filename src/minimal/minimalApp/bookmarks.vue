@@ -157,6 +157,7 @@ export default {
         this.items = list;
       });
 
+      listProvider.modes.initProgress = true;
       if (this.state !== 1 && this.state !== '1') {
         listProvider.callbacks = {
           // eslint-disable-next-line consistent-return

@@ -65,6 +65,10 @@ export class Progress {
     return this.isProgressFinished();
   }
 
+  isAiring(): boolean {
+    return !this.isFinished();
+  }
+
   getPredictionTimestamp(): number {
     return this.getProgressPrediction();
   }
@@ -90,6 +94,14 @@ export class Progress {
   getLastText(): string {
     const last = this.getLast(false);
     if (last) return api.storage.lang('prediction_Last', [last]);
+    return '';
+  }
+
+  getAuto(): string {
+    const preT = this.getPrediction();
+    if (preT) return preT;
+    const lastT = this.getLast();
+    if (lastT) return lastT;
     return '';
   }
 

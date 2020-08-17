@@ -1,5 +1,6 @@
 import { epPredictions } from '../utils/epPrediction';
 import { Cache } from '../utils/Cache';
+import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
 
 export interface listElement {
@@ -19,6 +20,8 @@ export interface listElement {
   fn: {
     continueUrl: () => string;
     predictions: () => any;
+    initProgress: () => void;
+    progress: false | Progress;
   };
   options?: {
     u: string;
@@ -39,6 +42,7 @@ export abstract class ListAbstract {
   // Modes
   modes = {
     sortAiring: false,
+    initProgress: false,
     cached: false,
   };
 
@@ -190,27 +194,36 @@ export abstract class ListAbstract {
             .then(obj => (predictionsObj = obj))
         );
       },
+      initProgress: () => {
+        return new Progress(item.cacheKey, item.type).init().then(progress => {
+          item.fn.progress = progress;
+        });
+      },
+      progress: false,
     };
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
+    if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
     return item;
   }
 
   // Modes
-  async sortAiringList() {
+  async initProgress() {
     const listP: any = [];
     this.templist.forEach(item => {
-      listP.push(item.fn.predictions());
+      listP.push(item.fn.initProgress());
     });
 
     await Promise.all(listP);
+  }
 
+  async sortAiringList() {
     const normalItems: listElement[] = [];
     let preItems: listElement[] = [];
     let watchedItems: listElement[] = [];
     this.templist.forEach(item => {
-      const prediction = item.fn.predictions();
-      if (prediction.getAiring() && prediction.getNextEpTimestamp()) {
-        if (item.watchedEp < prediction.getEp().ep) {
+      const prediction = item.fn.progress;
+      if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
+        if (item.watchedEp < prediction.getCurrentEpisode()) {
           preItems.push(item);
         } else {
           watchedItems.push(item);
@@ -226,8 +239,8 @@ export abstract class ListAbstract {
     this.templist = preItems.concat(watchedItems, normalItems);
 
     function sortItems(a, b) {
-      let valA = a.fn.predictions().getNextEpTimestamp();
-      let valB = b.fn.predictions().getNextEpTimestamp();
+      let valA = a.fn.progress.getPredictionTimestamp();
+      let valB = b.fn.progress.getPredictionTimestamp();
 
       if (!valA) valA = 999999999999;
       if (!valB) valB = valA;
