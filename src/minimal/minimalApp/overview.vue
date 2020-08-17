@@ -80,22 +80,6 @@
             class="mdl-card__actions mdl-card--border"
             style="padding-left: 0;"
           >
-            <div v-if="renderObj.getProgress()">
-              curep {{renderObj.getProgress().getCurrentEpisode()}}<br>
-              finished {{renderObj.getProgress().isFinished()}}<br>
-              predtstp {{renderObj.getProgress().getPredictionTimestamp()}}<br>
-              predi {{renderObj.getProgress().getPrediction()}}<br>
-              predi text {{renderObj.getProgress().getPredictionText()}}<br>
-              laststp {{renderObj.getProgress().getLastTimestamp()}}<br>
-              last {{renderObj.getProgress().getLast()}}<br>
-              last text {{renderObj.getProgress().getLastText()}}<br>
-              auto text {{renderObj.getProgress().getAutoText()}}<br>
-              bar {{renderObj.getProgress().getBars()}}<br>
-              opt {{renderObj.getProgressOptions()}}<br>
-              <select v-model="selected">
-                <option :value="o.key" v-for="o in renderObj.getProgressOptions()">{{o.value}}</option>
-              </select>
-            </div>
             <div
               v-if="renderObj.getStreamingUrl()"
               class="data title progress"
@@ -150,12 +134,14 @@
           </div>
         </div>
       </div>
+      <div class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp malClear" v-if="renderObj.getProgress() && renderObj.getProgress().isAiring() && renderObj.getProgress().getPredictionText()" style="width: 100%;">
+        <div class="mdl-cell" style="width: 100%;">
+          {{ renderObj.getProgress().getPredictionText() }}
+        </div>
+      </div>
       <div
         class="mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"
       >
-        <li v-if="prediction && prediction.prediction.airing" class="mdl-list__item" style="width: 100%;">
-          {{ prediction.text }}
-        </li>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
@@ -192,7 +178,10 @@
                     value="6"
                     style="width: 35px; display: inline-block;"
                   />
-                  / <span v-if="prediction" v-dompurify-html="prediction.tag" />
+                  /
+                  <span v-if="renderObj.getProgress() && renderObj.getProgress().isAiring()" :title="renderObj.getProgress().getAutoText()">
+                    [{{renderObj.getProgress().getCurrentEpisode()}}]
+                  </span>
                   <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
                     renderObj.getTotalEpisodes()
                   }}</span
