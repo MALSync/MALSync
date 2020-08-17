@@ -59,9 +59,13 @@ export const mangatx: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('div.profile-manga > div > div > div > div.post-title > h1')
+      j.$('div.c-page__content div.c-blog__heading')
         .first()
-        .after(j.html(selector));
+        .before(
+          j.html(
+            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
+          ),
+        );
     },
     list: {
       offsetHandler: false,

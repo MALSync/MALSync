@@ -1,7 +1,10 @@
 @import './../pages';
 
-.mal-sync-active * {
-  color: white !important;
+@textColor: #888 !important;
+@activeEp: #98cff0;
+
+#malthing {
+  margin-bottom: 38px;
 }
 
 #malp {
@@ -9,7 +12,26 @@
     float: left;
     margin-right: 5px;
   }
+  #MalInfo{
+    float: none;
+    display: flex;
+  }
+  #MalData {
+    float: none;
+  }
   select option {
-    background-color: white !important;
+    background-color: #fff !important;
+  }
+  #malStatus,
+  #malUserRating,
+  #malEpisodes,
+  #malVolumes,
+  #malEpisodes {
+    line-height: normal;
+    inline-size: auto;
+  }
+  #malTotalVol,
+  #malTotalCha {
+    float: none;
   }
 }
