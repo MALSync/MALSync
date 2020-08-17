@@ -168,17 +168,19 @@ export abstract class SingleAbstract {
 
   public getProgressOptions() {
     const op: { value: string; key: string }[] = [];
-    this.progressXhr.forEach(el => {
-      if (el.state === 'complete') return;
-      let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
-      if (el.title) val = el.title;
-      if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
-      if (el.state === 'dropped') val += ` Incomplete`;
-      op.push({
-        key: el.id,
-        value: val,
+    if (this.progressXhr) {
+      this.progressXhr.forEach(el => {
+        if (el.state === 'complete') return;
+        let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
+        if (el.title) val = el.title;
+        if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
+        if (el.state === 'dropped') val += ` Incomplete`;
+        op.push({
+          key: el.id,
+          value: val,
+        });
       });
-    });
+    }
     return op;
   }
 

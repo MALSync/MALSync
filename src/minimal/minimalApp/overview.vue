@@ -134,7 +134,13 @@
           </div>
         </div>
       </div>
-      <div class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp malClear" v-if="renderObj.getProgress() && renderObj.getProgress().isAiring() && renderObj.getProgress().getPredictionText()" style="width: 100%;">
+      <div
+        v-if="
+          renderObj.getProgress() && renderObj.getProgress().isAiring() && renderObj.getProgress().getPredictionText()
+        "
+        class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp malClear"
+        style="width: 100%;"
+      >
         <div class="mdl-cell" style="width: 100%;">
           {{ renderObj.getProgress().getPredictionText() }}
         </div>
@@ -179,8 +185,15 @@
                     style="width: 35px; display: inline-block;"
                   />
                   /
-                  <span v-if="renderObj.getProgress() && renderObj.getProgress().isAiring()" :title="renderObj.getProgress().getAutoText()">
-                    [{{renderObj.getProgress().getCurrentEpisode()}}]
+                  <span
+                    v-if="
+                      renderObj.getProgress() &&
+                        renderObj.getProgress().isAiring() &&
+                        renderObj.getProgress().getCurrentEpisode()
+                    "
+                    :title="renderObj.getProgress().getAutoText()"
+                  >
+                    [{{ renderObj.getProgress().getCurrentEpisode() }}]
                   </span>
                   <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
                     renderObj.getTotalEpisodes()
@@ -236,6 +249,40 @@
                   >
                     <option v-for="el in renderObj.getScoreCheckbox()" :key="el.value" :value="el.value">{{
                       el.label
+                    }}</option>
+                  </select>
+                </span>
+              </span>
+            </li>
+            <li
+              v-if="
+                renderObj &&
+                  renderObj.isAuthenticated() &&
+                  renderObj.isOnList() &&
+                  renderObj.getProgressOptions() &&
+                  renderObj.getProgressOptions().length
+              "
+              class="mdl-list__item mdl-list__item--three-line"
+              style="width: 100%;"
+            >
+              <span class="mdl-list__item-primary-content">
+                <span>TODO </span>
+                <span class="mdl-list__item-text-body">
+                  <select
+                    id="myinfo_WHAT"
+                    v-model="malWHAT"
+                    name="myinfo_WHAT"
+                    class="inputtext mdl-textfield__input"
+                    style="outline: none;"
+                  >
+                    <option>
+                      Default
+                      <template v-if="renderObj.getProgress() && renderObj.getProgress().isAiring()"
+                        >EP{{ renderObj.getProgress().getCurrentEpisode() }}</template
+                      >
+                    </option>
+                    <option v-for="o in renderObj.getProgressOptions()" :key="o.key" :value="o.key">{{
+                      o.value
                     }}</option>
                   </select>
                 </span>
