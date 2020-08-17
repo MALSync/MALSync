@@ -80,6 +80,22 @@
             class="mdl-card__actions mdl-card--border"
             style="padding-left: 0;"
           >
+            <div v-if="renderObj.getProgress()">
+              curep {{renderObj.getProgress().getCurrentEpisode()}}<br>
+              finished {{renderObj.getProgress().isFinished()}}<br>
+              predtstp {{renderObj.getProgress().getPredictionTimestamp()}}<br>
+              predi {{renderObj.getProgress().getPrediction()}}<br>
+              predi text {{renderObj.getProgress().getPredictionText()}}<br>
+              laststp {{renderObj.getProgress().getLastTimestamp()}}<br>
+              last {{renderObj.getProgress().getLast()}}<br>
+              last text {{renderObj.getProgress().getLastText()}}<br>
+              auto text {{renderObj.getProgress().getAutoText()}}<br>
+              bar {{renderObj.getProgress().getBars()}}<br>
+              opt {{renderObj.getProgressOptions()}}<br>
+              <select v-model="selected">
+                <option :value="o.key" v-for="o in renderObj.getProgressOptions()">{{o.value}}</option>
+              </select>
+            </div>
             <div
               v-if="renderObj.getStreamingUrl()"
               class="data title progress"

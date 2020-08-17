@@ -410,6 +410,7 @@ export default {
         .then(() => {
           this.renderObj = tempRenderObj;
           this.tabs.search.type = this.renderObj.getType();
+          this.renderObj.initProgress();
         })
         .catch(e => {
           this.renderObj = tempRenderObj;

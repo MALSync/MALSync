@@ -141,7 +141,7 @@ export abstract class SingleAbstract {
     this.options = null;
   }
 
-  protected progress;
+  protected progress: boolean | Progress = false;
 
   protected progressXhr;
 

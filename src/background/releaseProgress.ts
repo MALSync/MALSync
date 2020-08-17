@@ -118,9 +118,9 @@ export async function single(
 
 export function getProgress(res, mode) {
   const config: {
-    mainId?: string,
-    fallbackPrediction?: string,
-    fallback?: string,
+    mainId?: string;
+    fallbackPrediction?: string;
+    fallback?: string;
   } = {};
 
   if (!res.length) return null;
