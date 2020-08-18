@@ -115,6 +115,10 @@ export class Progress {
     return '';
   }
 
+  getColor(): string {
+    return '#f57c00';
+  }
+
   getBars(curEp, totalEp): { totalWidth: number; epWidth: number; predWidth: number } {
     const predEp = this.getCurrentEpisode();
     const res = {

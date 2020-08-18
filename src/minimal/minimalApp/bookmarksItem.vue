@@ -50,14 +50,21 @@
         <a :href="item.url" style="color: black; text-decoration: none;">
           {{ item.title }}
         </a>
-        <div id="p1" class="mdl-progress" style="position: absolute; top: -4px; left: 0;">
+        <div id="p1" class="mdl-progress pr-bar" style="position: absolute; top: -4px; left: 0;">
           <div class="progressbar bar bar1" :style="progress"></div>
           <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
           <div
             v-if="item.fn.progress && item.fn.progress.isAiring()"
             class="predictionbar bar kal-ep-pre"
             :style="predictionBar"
-          ></div>
+          >
+            <div
+              v-if="barData.predWidth && barData.predWidth !== 100 && barData.predWidth <= barData.epWidth"
+              class="bar-tab"
+            >
+              <i class="material-icons">arrow_drop_up</i>
+            </div>
+          </div>
           <div class="auxbar bar bar3" style="width: 0%;"></div>
         </div>
         <div
@@ -158,7 +165,7 @@
 
       <div
         id="p1"
-        class="mdl-progress"
+        class="mdl-progress pr-bar"
         style="position: absolute; bottom: 0; left: 0; right: 0; width: auto; opacity: 0.5;"
       >
         <div class="progressbar bar bar1" :style="progress"></div>
@@ -167,7 +174,14 @@
           v-if="item.fn.progress && item.fn.progress.isAiring()"
           class="predictionbar bar kal-ep-pre"
           :style="predictionBar"
-        ></div>
+        >
+          <div
+            v-if="barData.predWidth && barData.predWidth !== '100' && barData.predWidth <= barData.epWidth"
+            class="bar-tab"
+          >
+            <i class="material-icons">arrow_drop_up</i>
+          </div>
+        </div>
         <div class="auxbar bar bar3" style="width: 0%;"></div>
       </div>
     </td>
@@ -222,8 +236,8 @@ export default {
       return `width: ${this.barData.epWidth}%; max-width: 100%;`;
     },
     predictionBar() {
-      const color = 'orange';
-      return `width: ${this.barData.predWidth}%; background-color: ${color}`;
+      const color = this.item.fn.progress.getColor();
+      return `width: ${this.barData.predWidth}%; background-color: ${color}; color: ${color};`;
     },
     streamUrl() {
       return this.item.options.u;
