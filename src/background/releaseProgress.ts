@@ -120,6 +120,29 @@ export async function single(
   } as releaseItemInterface);
 }
 
+export function progressIsOld(releaseItem: releaseItemInterface) {
+  if (releaseItem && releaseItem.timestamp) {
+    const diff = new Date().getTime() - releaseItem.timestamp;
+
+    if (releaseItem.finished && diff < 7 * 24 * 60 * 1000) {
+      // logger.log('Fininshed');
+      return false;
+    }
+
+    if (!releaseItem.value && diff < 1 * 24 * 60 * 1000) {
+      // logger.log('Nulled');
+      return false;
+    }
+
+    if (diff < 1 * 24 * 60 * 1000) {
+      // logger.log('not old');
+      return false;
+    }
+  }
+
+  return true;
+}
+
 export function getProgress(res, mode) {
   const config: {
     mainId?: string;

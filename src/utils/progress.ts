@@ -1,4 +1,4 @@
-import { releaseItemInterface, single as updateProgress } from '../background/releaseProgress';
+import { releaseItemInterface, progressIsOld, single as updateProgress } from '../background/releaseProgress';
 import { timestampToShortTime } from './time';
 
 export class Progress {
@@ -21,6 +21,10 @@ export class Progress {
 
     this.logger.m('Init Release').log(releaseItem);
     if (!releaseItem) return;
+    if (progressIsOld(releaseItem)) {
+      this.logger.log('Too old');
+      return;
+    }
 
     this.releaseItem = releaseItem;
   }
