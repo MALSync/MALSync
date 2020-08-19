@@ -101,6 +101,13 @@ export class Progress {
   }
 
   getPredictionTimestamp(): number {
+    if (
+      this.updateItem &&
+      this.getUpdateCurrentEpisode() &&
+      this.getUpdateCurrentEpisode() !== this.getProgressCurrentEpisode()
+    ) {
+      return NaN;
+    }
     return this.getProgressPrediction();
   }
 
