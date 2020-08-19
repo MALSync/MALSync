@@ -25,7 +25,13 @@ export const ManhuaPlus: pageInterface = {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).attr('href') || '';
     },
     getEpisode(url) {
-      return Number(url.split('/')[5].match(/\d+/gim));
+      const episodePart = utils.urlPart(url, 5);
+
+      const temp = episodePart.match(/chapter-\d+/gim);
+
+      if (!temp || temp.length === 0) return 1;
+
+      return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
       return j
@@ -55,7 +61,7 @@ export const ManhuaPlus: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.main.version-chap li.wp-manga-chapter');
+        return j.$('ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
         return (
@@ -66,14 +72,7 @@ export const ManhuaPlus: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .text()
-            .trim()
-            .replace('Chapter ', ''),
-        );
+        return ManhuaPlus.sync.getEpisode(ManhuaPlus.overview!.list!.elementUrl(selector));
       },
     },
   },
