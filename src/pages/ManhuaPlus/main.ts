@@ -1,12 +1,12 @@
 import { pageInterface } from '../pageInterface';
 
-export const mangatx: pageInterface = {
-  name: 'mangatx',
-  domain: 'https://mangatx.com',
+export const ManhuaPlus: pageInterface = {
+  name: 'ManhuaPlus',
+  domain: 'https://manhuaplus.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+    if (url.split('/')[5].indexOf('chapter') >= 0) {
       return true;
     }
     return false;
@@ -14,36 +14,18 @@ export const mangatx: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a')
+        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2])
         .text()
         .trim();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$(
-            'div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
-          )
-          .attr('href') || ''
-      );
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).attr('href') || '';
     },
     getEpisode(url) {
-      const urlParts = url.split('/');
-
-      if (!urlParts || urlParts.length === 0) return NaN;
-
-      const episodePart = urlParts[5];
-
-      if (episodePart.length === 0) return NaN;
-
-      const temp = episodePart.match(/chapter-\d+/gim);
-
-      if (!temp || temp.length === 0) return NaN;
-
-      return Number(temp[0].replace(/\D+/g, ''));
+      return Number(url.split('/')[5].match(/\d+/gim));
     },
     nextEpUrl(url) {
       return j
@@ -53,10 +35,13 @@ export const mangatx: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils.getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1')).trim();
+      return j
+        .$(j.$('ol.breadcrumb li a')[3])
+        .text()
+        .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('div.c-page__content div.c-blog__heading')
@@ -70,19 +55,25 @@ export const mangatx: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.page-content-listing.single-page > div > ul > li.wp-manga-chapter');
+        return j.$('ul.main.version-chap li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
+        return (
           selector
             .find('a')
             .first()
-            .attr('href'),
-          mangatx.domain,
+            .attr('href') || ''
         );
       },
       elementEp(selector) {
-        return mangatx.sync.getEpisode(mangatx.overview!.list!.elementUrl(selector));
+        return Number(
+          selector
+            .find('a')
+            .first()
+            .text()
+            .trim()
+            .replace('Chapter ', ''),
+        );
       },
     },
   },

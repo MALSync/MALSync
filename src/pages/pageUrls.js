@@ -379,4 +379,52 @@ module.exports = {
   AnimeOnDemand: {
     match: ['*://www.anime-on-demand.de/anime/*'],
   },
+  EdelgardeScans: {
+    match: ['*://edelgardescans.com/*'],
+  },
+  HatigarmScanz: {
+    match: ['*://hatigarmscanz.net/*'],
+  },
+  KKJScans: {
+    match: ['*://kkjscans.co/*'],
+  },
+  KrakenScans: {
+    match: ['*://krakenscans.com/*'],
+  },
+  LeviatanScans: {
+    match: ['*://leviatanscans.com/*'],
+  },
+  MethodScans: {
+    match: ['*://methodscans.com/*'],
+  },
+  NonamesScans: {
+    match: ['*://the-nonames.com/*'],
+  },
+  ReaperScans: {
+    match: ['*://reaperscans.com/*'],
+  },
+  SecretScans: {
+    match: ['*://secretscans.co/*'],
+  },
+  SKScans: {
+    match: ['*://skscans.com/*'],
+  },
+  ZeroScans: {
+    match: ['*://zeroscans.com/*'],
+  },
+  DeathTollScans: {
+    match: ['*://reader.deathtollscans.net/*'],
+  },
+  HelveticaScans: {
+    match: ['*://helveticascans.com/r*'],
+  },
+  KireiCake: {
+    match: ['*://reader.kireicake.com/*'],
+  },
+  SenseScans: {
+    match: ['*://sensescans.com/reader*'],
+  },
+  ManhuaPlus: {
+    match: ['*://manhuaplus.com/manga*'],
+  },
 };
