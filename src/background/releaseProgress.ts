@@ -71,7 +71,7 @@ export async function single(
     releaseItem &&
     releaseItem.finished &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 1000 &&
+    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000 &&
     !force
   ) {
     logger.log('Fininshed');
@@ -82,7 +82,7 @@ export async function single(
     releaseItem &&
     !releaseItem.value &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 1000 &&
+    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000 &&
     !force
   ) {
     logger.log('Nulled');
@@ -124,17 +124,17 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
   if (releaseItem && releaseItem.timestamp) {
     const diff = new Date().getTime() - releaseItem.timestamp;
 
-    if (releaseItem.finished && diff < 7 * 24 * 60 * 1000) {
+    if (releaseItem.finished && diff < 7 * 24 * 60 * 60 * 1000) {
       // logger.log('Fininshed');
       return false;
     }
 
-    if (!releaseItem.value && diff < 1 * 24 * 60 * 1000) {
+    if (!releaseItem.value && diff < 1 * 24 * 60 * 60 * 1000) {
       // logger.log('Nulled');
       return false;
     }
 
-    if (diff < 1 * 24 * 60 * 1000) {
+    if (diff < 1 * 24 * 60 * 60 * 1000) {
       // logger.log('not old');
       return false;
     }
