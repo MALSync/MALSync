@@ -97,6 +97,7 @@ import { HelveticaScans } from './HelveticaScans/main';
 import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
+import { Readm } from './Readm/main';
 
 export const pages = {
   nineAnime,
@@ -198,4 +199,5 @@ export const pages = {
   KireiCake,
   SenseScans,
   ManhuaPlus,
+  Readm,
 };

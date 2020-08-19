@@ -427,4 +427,7 @@ module.exports = {
   ManhuaPlus: {
     match: ['*://manhuaplus.com/manga*'],
   },
+  Readm: {
+    match: ['*://readm.org/manga/*'],
+  },
 };
