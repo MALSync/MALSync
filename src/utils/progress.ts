@@ -6,6 +6,8 @@ export class Progress {
 
   protected releaseItem: undefined | releaseItemInterface = undefined;
 
+  protected updateItem: undefined | { timestamp: number; finished: boolean; newestEp: any; error?: string } = undefined;
+
   constructor(protected cacheKey: string, protected type: 'anime' | 'manga') {
     this.logger = con.m('progress').m(cacheKey.toString());
     return this;
@@ -53,17 +55,40 @@ export class Progress {
     return null;
   }
 
+  // Update Check
+  protected async initUpdateCheck() {
+    if (api.type !== 'webextension') return;
+    const update = await api.storage.get(`updateCheck/${this.type}/${this.cacheKey}`);
+    if (!update) return;
+    if (update.error) return;
+    if (!update.timestamp) return;
+    if (new Date().getTime() - update.timestamp > 24 * 60 * 60 * 1000) {
+      con.log('too old');
+      return;
+    }
+    con.m('update check').log(update);
+    this.updateItem = update;
+  }
+
+  protected getUpdateCurrentEpisode() {
+    const re = this.updateItem;
+    if (re && re.newestEp) return re.newestEp;
+    return null;
+  }
+
   // General
   async init(
     live:
       | { uid: number; malId: number | null; title: string; cacheKey: string; progressMode: string; xhr?: object }
       | false = false,
   ) {
-    await this.initReleaseProgress(live);
+    await Promise.all([this.initReleaseProgress(live), this.initUpdateCheck()]);
+
     return this;
   }
 
   getCurrentEpisode(): number {
+    if (this.updateItem && this.getUpdateCurrentEpisode()) return this.getUpdateCurrentEpisode();
     return this.getProgressCurrentEpisode();
   }
 
@@ -90,6 +115,13 @@ export class Progress {
   }
 
   getLastTimestamp(): number {
+    if (
+      this.updateItem &&
+      this.getUpdateCurrentEpisode() &&
+      this.getUpdateCurrentEpisode() !== this.getProgressCurrentEpisode()
+    ) {
+      return NaN;
+    }
     return this.getProgressLastTimestamp();
   }
 
@@ -120,6 +152,7 @@ export class Progress {
   }
 
   getColor(): string {
+    if (this.updateItem && this.getUpdateCurrentEpisode()) return '#e91e63';
     return '#f57c00';
   }
 
