@@ -3,13 +3,26 @@
   "url": "https://animepahe.com",
   "testCases": [
     {
-      "url": "https://animepahe.com/anime/no-game-no-life",
+      "url": "https://pahe.win/a/176",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
-        "identifier": "No Game No Life",
-        "uiSelector": true,
+        "identifier": "176",
+        "uiSelector": true
       }
     },
+    {
+      "url": "https://pahe.win/a/176/4",
+      "expected": {
+        "sync": true,
+        "title": "No Game No Life",
+        "identifier": "176",
+        "uiSelector": true,
+        "episode": 4,
+        "overviewUrl": "https://pahe.win/a/176",
+        "nextEpUrl": "https://pahe.win/a/176/5",
+        "uiSelector": true
+      }
+    }
   ]
 }
