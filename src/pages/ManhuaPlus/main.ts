@@ -84,7 +84,17 @@ export const ManhuaPlus: pageInterface = {
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0
       ) {
-        page.handlePage();
+        utils.waitUntilTrue(
+          function() {
+            if (j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length) {
+              return true;
+            }
+            return false;
+          },
+          function() {
+            page.handlePage();
+          },
+        );
       }
     });
   },
