@@ -1,5 +1,4 @@
 import { xhrResponseI, sendMessageI, responseMessageI } from './api/messageInterface';
-import { scheduleUpdate } from './utils/scheduler';
 import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
@@ -221,18 +220,6 @@ function getCookies(url, sender, xhr, callback) {
   );
 }
 
-chrome.alarms.get('schedule', function(a) {
-  if (typeof a === 'undefined') {
-    con.log('Create schedule Alarm');
-    chrome.alarms.create('schedule', {
-      periodInMinutes: 60 * 24,
-    });
-    scheduleUpdate();
-  } else {
-    con.log(a);
-  }
-});
-
 chrome.alarms.get('updateCheck', async function(a) {
   if (typeof a === 'undefined') {
     const updateCheckTime = await api.storage.get('updateCheckTime');
@@ -249,15 +236,6 @@ chrome.alarms.get('updateCheck', async function(a) {
     }
   } else {
     con.log(a);
-  }
-});
-
-chrome.alarms.onAlarm.addListener(function(alarm) {
-  if (typeof alarm.periodInMinutes !== 'undefined') {
-    api.storage.set(alarm.name, Date.now() + alarm.periodInMinutes * 1000 * 60);
-  }
-  if (alarm.name === 'schedule') {
-    scheduleUpdate();
   }
 });
 

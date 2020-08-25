@@ -3,7 +3,6 @@ import { myanimelistClass } from './myanimelist/myanimelistClass';
 import { anilistClass } from './anilist/anilistClass';
 import { kitsuClass } from './kitsu/kitsuClass';
 import { simklClass } from './simkl/simklClass';
-import { scheduleUpdate } from './utils/scheduler';
 import { firebaseNotification } from './utils/firebaseNotification';
 import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
@@ -56,7 +55,6 @@ console.log('%cMAL-Sync', css, `Version: ${api.storage.version()}`);
 
 api.settings.init().then(() => {
   main();
-  scheduler();
 });
 
 function runPage() {
@@ -79,14 +77,6 @@ function runPage() {
       api.storage.set('iframePlayer', 'null');
     }
   }, 2000);
-}
-
-async function scheduler() {
-  const schedule = await api.storage.get('timestampUpdate/release');
-  if (typeof schedule === 'undefined' || j.$.now() - schedule > 345600000) {
-    await scheduleUpdate();
-    api.storage.set('timestampUpdate/release', j.$.now());
-  }
 }
 
 function iframe() {
