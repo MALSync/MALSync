@@ -506,13 +506,19 @@ export class kitsuClass {
               }
             }
 
-            utils.epPredictionUI(en.malId, en.cacheKey, This.page!.type, prediction => {
-              if (!prediction) return;
+            await en.fn.initProgress();
+            if (en.fn.progress && en.fn.progress.isAiring() && en.fn.progress.getCurrentEpisode()) {
               element
                 .parent()
                 .find('.entry-unit, .progress-cell > span:last-of-type')
-                .append(j.html(prediction.tag));
-            });
+                .first()
+                .append(
+                  j.html(
+                    ` <span class="mal-sync-ep-pre" title="${en.fn.progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${en.fn.progress.getColor()};">${en.fn.progress.getCurrentEpisode()}</span>]</span>`,
+                  ),
+                );
+            }
+
           }
         });
       }
