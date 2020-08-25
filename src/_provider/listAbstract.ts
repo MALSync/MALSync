@@ -1,4 +1,3 @@
-import { epPredictions } from '../utils/epPrediction';
 import { Cache } from '../utils/Cache';
 import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
@@ -19,7 +18,6 @@ export interface listElement {
   airingState: number;
   fn: {
     continueUrl: () => string;
-    predictions: () => any;
     initProgress: () => void;
     progress: false | Progress;
   };
@@ -185,15 +183,6 @@ export abstract class ListAbstract {
 
           return continueUrlTemp;
         });
-      },
-      predictions: () => {
-        if (predictionsObj !== null) return predictionsObj;
-        return (
-          new epPredictions(item.malId, item.cacheKey, item.type)
-            .init()
-            /* eslint-disable-next-line no-return-assign */
-            .then(obj => (predictionsObj = obj))
-        );
       },
       initProgress: () => {
         return new Progress(item.cacheKey, item.type).init().then(progress => {
