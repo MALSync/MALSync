@@ -117,7 +117,7 @@ export class Progress {
 
   getPredictionText(): string {
     const pre = this.getPrediction();
-    if (pre) return api.storage.lang('prediction_Episode', [pre]);
+    if (pre) return api.storage.lang(`prediction_Episode_${this.type}`, [pre]);
     return '';
   }
 
@@ -138,7 +138,7 @@ export class Progress {
 
   getLastText(): string {
     const last = this.getLast(false);
-    if (last) return api.storage.lang('prediction_Last', [last]);
+    if (last) return api.storage.lang(`prediction_Last_${this.type}`, [last]);
     return '';
   }
 

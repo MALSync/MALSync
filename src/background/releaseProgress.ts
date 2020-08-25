@@ -91,6 +91,11 @@ export async function single(
 
   if (force) logger.log('Update forced');
 
+  if (mode === 'off') {
+    logger.log('Disabled');
+    el.xhr = [];
+  }
+
   let xhr;
   if (typeof el.xhr !== 'undefined') {
     xhr = el.xhr;

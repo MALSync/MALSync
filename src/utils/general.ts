@@ -459,7 +459,7 @@ export async function epPredictionUI(malid, cacheKey, type = 'anime', callback) 
     //
     if (airing) {
       if (pre.airing) {
-        UI.text = api.storage.lang('prediction_Episode', [`${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`]);
+        UI.text = api.storage.lang(`prediction_Episode_${type}`, [`${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`]);
       }
       if (episode) {
         UI.tag = `<span class="mal-sync-ep-pre" title="${UI.text}">[<span style="${UI.colorStyle};">${episode}</span>]</span>`;

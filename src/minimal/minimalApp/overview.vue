@@ -266,7 +266,7 @@
               style="width: 100%;"
             >
               <span class="mdl-list__item-primary-content">
-                <span>TODO </span>
+                <span>{{ lang('settings_progress_dropdown') }}</span>
                 <span class="mdl-list__item-text-body">
                   <select
                     id="myinfo_progressmode"
@@ -276,11 +276,14 @@
                     style="outline: none;"
                   >
                     <option value="">
-                      Default
+                      {{ lang('settings_progress_default') }}
                     </option>
                     <option v-for="o in renderObj.getProgressOptions()" :key="o.key" :value="o.key">{{
                       o.value
                     }}</option>
+                    <option value="off">
+                      {{ lang('settings_progress_disabled') }}
+                    </option>
                   </select>
                 </span>
               </span>
