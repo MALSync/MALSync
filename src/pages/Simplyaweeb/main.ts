@@ -18,10 +18,14 @@ export const Simplyaweeb: pageInterface = {
       return jsonData.id;
     },
     getOverviewUrl(url) {
-      return url;
+      return jsonData.series_url;
     },
     getEpisode(url) {
       return jsonData.episode;
+    },
+    nextEpUrl(url) {
+      if (jsonData.next_episode_url) return jsonData.next_episode_url;
+      return '';
     },
   },
   init(page) {
