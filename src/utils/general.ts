@@ -30,7 +30,7 @@ export function getBaseText(element) {
 }
 
 export function favicon(domain) {
-  if (domain.indexOf('animeheaven') !== -1) return 'http://animeheaven.eu/favicon.ico';
+  if (domain.indexOf('pahe.win') !== -1) return `https://www.google.com/s2/favicons?domain=animepahe.com`;
   return `https://www.google.com/s2/favicons?domain=${domain}`;
 }
 

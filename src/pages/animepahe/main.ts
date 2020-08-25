@@ -108,8 +108,8 @@ export const animepahe: pageInterface = {
     utils.waitUntilTrue(
       function() {
         if (!animepahe.isSyncPage(window.location.href))
-          return animepahe.overview!.list!.elementsSelector!() && getId() !== 'undefined';
-        return getId() !== 'undefined';
+          return animepahe.overview!.list!.elementsSelector!() && typeof getId() !== 'undefined';
+        return typeof getId() !== 'undefined';
       },
       function() {
         page.url = getUrl(getId(), false);
@@ -140,7 +140,7 @@ function getId() {
       return id;
     }
   }
-  return 'undefined';
+  return undefined;
 }
 
 function getUrl(aid, overviewForce, increment = 0) {
