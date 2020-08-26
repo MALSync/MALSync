@@ -2,6 +2,7 @@ import { xhrResponseI, sendMessageI, responseMessageI } from './api/messageInter
 import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
+import { initProgressScheduler } from './background/releaseProgress';
 
 try {
   initSyncTags();
@@ -241,6 +242,7 @@ chrome.alarms.get('updateCheck', async function(a) {
 
 checkInit();
 listSyncInit();
+initProgressScheduler();
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(info) {

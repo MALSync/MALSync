@@ -63,6 +63,7 @@ export const settingsObj = {
     correctionShort: [67],
     syncShort: [],
 
+    progressInterval: 120,
     updateCheckNotifications: true,
 
     bookMarksList: false,

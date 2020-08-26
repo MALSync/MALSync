@@ -7,10 +7,46 @@ export interface releaseItemInterface {
   mode: string;
 }
 
+export function initProgressScheduler() {
+  chrome.alarms.get('progressSync', async a => {
+    if (typeof a === 'undefined') {
+      const progressInterval = await api.settings.getAsync('progressInterval');
+      if (!progressInterval) {
+        con.log('Do not create progressSync Alarm', progressInterval);
+        return;
+      }
+      con.log('Create progressSync Alarm', progressInterval);
+      chrome.alarms.create('progressSync', {
+        periodInMinutes: parseInt(progressInterval),
+        when: Date.now() + 1000,
+      });
+    } else {
+      con.log('progressSync Scheduler already exists', a);
+    }
+  });
+
+  chrome.alarms.onAlarm.addListener(alarm => {
+    if (alarm.name === 'progressSync') {
+      api.settings.init().then(async () => {
+        console.groupCollapsed('Progress');
+        await main();
+        console.groupEnd();
+      });
+    }
+  });
+}
+
 export async function main() {
-  await api.settings.init();
-  await listUpdate(1, 'anime');
-  await listUpdate(1, 'manga');
+  try {
+    setBadgeText('⌛');
+    await api.settings.init();
+    await listUpdate(1, 'anime');
+    await listUpdate(1, 'manga');
+    con.log('Progress done');
+  } catch (e) {
+    con.log('Progress Failed', e);
+  }
+  setBadgeText('');
 }
 
 export async function listUpdate(state, type) {
@@ -183,4 +219,12 @@ export function getProgress(res, mode) {
   if (!top) return null;
 
   return top;
+}
+
+function setBadgeText(text: string) {
+  try {
+    chrome.browserAction.setBadgeText({ text });
+  } catch (e) {
+    con.error(e);
+  }
 }

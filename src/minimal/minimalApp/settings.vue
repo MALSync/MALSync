@@ -282,6 +282,18 @@
         }}</numberInput>
       </div>
 
+      <div id="progressCheck" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <dropdown option="progressInterval" :text="lang('settings_Interval')">
+          <option value="0">{{ lang('settings_Interval_Off') }}</option>
+          <option value="30">30min</option>
+          <option value="60">1h</option>
+          <option value="120">2h</option>
+          <option value="240">4h</option>
+          <option value="720">12h</option>
+          <option value="1440">24h</option>
+        </dropdown>
+      </div>
+
       <div
         id="updateCheck"
         class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
