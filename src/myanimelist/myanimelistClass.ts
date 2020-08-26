@@ -483,17 +483,19 @@ export class myanimelistClass {
       This.bookmarksHDimages();
       $.each(data, async function(index, el) {
         const malUrl = el.url.replace('https://myanimelist.net', '');
-        con.log(malUrl);
-        const id = el.malId;
         const { type } = el;
 
         streamUI(type, malUrl, el.tags, parseInt(el.watchedEp), el.cacheKey);
 
-        utils.epPredictionUI(id, el.cacheKey, type, function(prediction) {
-          if (!prediction) return;
+        await el.fn.initProgress();
+
+        if (el.fn.progress && el.fn.progress.isAiring() && el.fn.progress.getCurrentEpisode()) {
           const element = book.getElement(malUrl);
-          book.predictionPos(element, prediction.tag);
-        });
+          book.predictionPos(
+            element,
+            `<span class="mal-sync-ep-pre" title="${el.fn.progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${el.fn.progress.getColor()};">${el.fn.progress.getCurrentEpisode()}</span>]</span>`,
+          );
+        }
       });
       book.cleanTags();
     });
