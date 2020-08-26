@@ -514,7 +514,6 @@ export default {
       },
       kiss2mal: {},
       related: [],
-      prediction: null,
       utils,
     };
   },
@@ -710,7 +709,6 @@ export default {
       this.mal.continueUrl = null;
       this.kiss2mal = {};
       this.related = [];
-      this.prediction = null;
       this.imageTemp = null;
 
       if (renderObj === null) return;
@@ -760,10 +758,6 @@ export default {
       this.mal.resumeUrl = renderObj.getResumeWatching();
       this.mal.continueUrl = renderObj.getContinueWatching();
 
-      utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, prediction => {
-        if (!this.renderObj || stateTest !== this.renderObj.url) return;
-        this.prediction = prediction;
-      });
     },
     clickRender() {
       this.render(this.renderObj);
