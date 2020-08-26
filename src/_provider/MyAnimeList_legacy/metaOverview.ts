@@ -58,7 +58,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   private description(data) {
     let description = '';
     try {
-      description = data.split('itemprop="description">')[1].split('</p')[0];
+      description = data
+        .split('itemprop="description">')[1]
+        .split('</p')[0]
+        .split('</span')[0];
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
