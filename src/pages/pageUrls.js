@@ -34,10 +34,7 @@ module.exports = {
   nineAnime: {
     match: [
       '*://*.9anime.to/watch/*',
-      '*://*.9anime.is/watch/*',
       '*://*.9anime.ru/watch/*',
-      '*://*.9anime.ch/watch/*',
-      // '*://*.9anime.nl/watch/*', Not part of 9anime anymore
       '*://*.9anime.live/watch/*',
       '*://*.9anime.one/watch/*',
       '*://*.9anime.page/watch/*',
@@ -45,6 +42,7 @@ module.exports = {
       '*://*.9anime.life/watch/*',
       '*://*.9anime.love/watch/*',
       '*://*.9anime.tv/watch/*',
+      '*://*.9anime.app/watch/*',
     ],
   },
   Crunchyroll: {
