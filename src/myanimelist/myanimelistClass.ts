@@ -186,7 +186,7 @@ export class myanimelistClass {
   }
 
   setEpPrediction(progress) {
-    if (progress && progress.isAiring()) {
+    if (progress && progress.isAiring() && progress.getCurrentEpisode()) {
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist')
         .prev()
