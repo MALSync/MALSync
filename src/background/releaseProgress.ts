@@ -9,24 +9,31 @@ export interface releaseItemInterface {
 
 export function initProgressScheduler() {
   chrome.alarms.get('progressSync', async a => {
-    if (typeof a === 'undefined') {
-      const progressInterval = await api.settings.getAsync('progressInterval');
-      if (!progressInterval) {
-        con.log('Do not create progressSync Alarm', progressInterval);
-        return;
-      }
-      con.log('Create progressSync Alarm', progressInterval);
-      chrome.alarms.create('progressSync', {
-        periodInMinutes: parseInt(progressInterval),
-        when: Date.now() + 1000,
-      });
-    } else {
-      con.log('progressSync Scheduler already exists', a);
+    const progressInterval = await api.settings.getAsync('progressInterval');
+    const progressSyncLast = await api.storage.get('progressSyncLast');
+    if (!progressInterval) {
+      con.log('progressSync disabled', progressInterval);
+      if (a) chrome.alarms.clear('progressSync');
+      return;
     }
+
+    if (typeof a !== 'undefined' && Date.now() - progressSyncLast < progressInterval * 60 * 1000) {
+      con.log('progressSync already set and on time', progressSyncLast, a);
+      return;
+    }
+
+    if (a) chrome.alarms.clear('progressSync');
+
+    con.log('Create progressSync Alarm', progressInterval, progressSyncLast);
+    chrome.alarms.create('progressSync', {
+      periodInMinutes: parseInt(progressInterval),
+      when: Date.now() + 1000,
+    });
   });
 
   chrome.alarms.onAlarm.addListener(alarm => {
     if (alarm.name === 'progressSync') {
+      api.storage.set('progressSyncLast', Date.now());
       api.settings.init().then(async () => {
         console.groupCollapsed('Progress');
         await main();
