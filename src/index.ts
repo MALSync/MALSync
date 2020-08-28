@@ -8,6 +8,7 @@ import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
+import { initUserProgressScheduler } from './background/releaseProgress';
 
 let page;
 
@@ -47,6 +48,8 @@ function main() {
       default:
     }
   });
+
+  initUserProgressScheduler();
 }
 
 const css =

@@ -43,6 +43,20 @@ export function initProgressScheduler() {
   });
 }
 
+export async function initUserProgressScheduler() {
+  setTimeout(async () => {
+    const progressInterval = await api.settings.getAsync('progressInterval');
+    const progressSyncLast = await api.storage.get('progressSyncLast');
+    if (Date.now() - progressSyncLast < progressInterval * 60 * 1000) {
+      con.log('Progress on time');
+      return;
+    }
+    if (await main()) {
+      api.storage.set('progressSyncLast', Date.now());
+    }
+  }, 30 * 1000);
+}
+
 export async function main() {
   try {
     setBadgeText('⌛');
@@ -50,10 +64,13 @@ export async function main() {
     await listUpdate(1, 'anime');
     await listUpdate(1, 'manga');
     con.log('Progress done');
+    setBadgeText('');
+    return true;
   } catch (e) {
     con.log('Progress Failed', e);
   }
   setBadgeText('');
+  return false;
 }
 
 export async function listUpdate(state, type) {
@@ -229,6 +246,8 @@ export function getProgress(res, mode) {
 }
 
 function setBadgeText(text: string) {
+  // @ts-ignore
+  if (api.type === 'userscript') return;
   try {
     chrome.browserAction.setBadgeText({ text });
   } catch (e) {
