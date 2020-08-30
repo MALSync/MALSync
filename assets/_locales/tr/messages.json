@@ -64,7 +64,7 @@
     "description": "All"
   },
   "Package_Description": {
-    "message": "MAL/AniList/Kitsu/Simkl'yu çeşitli sitelere bölüm takibi ile entegre eder.",
+    "message": "MAL/AniList/Kitsu/Simkl'yu otomatik bölüm takibi ile çeşitli sitelere entegre eder.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -72,15 +72,15 @@
     "description": "Status"
   },
   "UI_Status_watching_anime": {
-    "message": "İzliyor",
+    "message": "İzleniyor",
     "description": "Watching"
   },
   "UI_Status_watching_manga": {
-    "message": "Okuyor",
+    "message": "Okunuyor",
     "description": "Reading"
   },
   "UI_Status_Completed": {
-    "message": "Tamamladı",
+    "message": "Tamamlandı",
     "description": "Completed"
   },
   "UI_Status_OnHold": {
@@ -88,16 +88,24 @@
     "description": "On-Hold"
   },
   "UI_Status_Dropped": {
-    "message": "Bıraktı",
+    "message": "Bırakıldı",
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "İzlemeyi düşünüyor",
+    "message": "İzlenmesi Planlanıyor",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Okumayı düşünüyor",
+    "message": "Okunması Planlanıyor",
     "description": "Plan to Read"
+  },
+  "UI_Status_Rewatching_anime": {
+    "message": "Yeniden İzleniyor",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Yeniden Okunuyor",
+    "description": "Status to reread manga"
   },
   "UI_Episode": {
     "message": "Bölüm",
@@ -210,16 +218,32 @@
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
-    "message": "Tamamladı olarak ayarlansın mı?",
+    "message": "Tamamlandı olarak ayarlansın mı?",
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
     "message": "İzlemeye başladın mı?",
     "description": "Start watching anime message"
   },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "Yeniden İzlemen Bitti mi?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "Yeniden Okuman Bitti mi?",
+    "description": "Finish rereading manga message"
+  },
   "syncPage_flashConfirm_start_manga": {
     "message": "Okumaya başladın mı?",
     "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Yeniden mi İzliyorsun?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "Yeniden mi Okuyorsun?",
+    "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
     "message": "\"$anime$\" Doğru mu?",
@@ -262,7 +286,7 @@
     }
   },
   "syncPage_flashConfirm_offsetHandler_1": {
-    "message": "Olası Bölüm dengelemesi $calcOffset$ bulundu.\nDoğru mu ?",
+    "message": "Olası Bölüm kayması $calcOffset$ bulundu.\nDoğru mu ?",
     "description": "offsetHandler Episode",
     "placeholders": {
       "calcOffset": {
@@ -292,8 +316,16 @@
     "description": "Authentication success"
   },
   "kitsuClass_authentication_Wrong": {
-    "message": "Bilgiler yanlış",
+    "message": "Kullanıcı Bilgileri yanlış",
     "description": "Credentials wrong"
+  },
+  "bookmarksItem_Years": {
+    "message": "Yıllar",
+    "description": "Years"
+  },
+  "bookmarksItem_Year": {
+    "message": "Yıl",
+    "description": "Year"
   },
   "bookmarksItem_Days": {
     "message": "Günler",
@@ -315,13 +347,49 @@
     "message": "Dakikalar",
     "description": "mins"
   },
+  "bookmarksItem_min": {
+    "message": "dakika",
+    "description": "min"
+  },
+  "bookmarksItem_secs": {
+    "message": "saniyeler",
+    "description": "seconds"
+  },
+  "bookmarksItem_sec": {
+    "message": "saniye",
+    "description": "second"
+  },
+  "bookmarksItem_now": {
+    "message": "Şimdi",
+    "description": "Now"
+  },
+  "bookmarksItem_ago": {
+    "message": "$time$ önce",
+    "description": "Text for time in the past",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
   "prediction_Episode": {
     "message": "Tahmini yeni bölüm $time$'da",
     "description": "Text for next episode estimation",
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last": {
+    "message": "Son bölüm $time$ önce yayınlandı",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -331,7 +399,7 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -340,15 +408,15 @@
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Bölüm dengelemesi girin, Eğer bir animenin 12 bölümü var ise,  ama 1-12 yerine 0-11 numaralarını kullanıyorsa, bölüm dengelemesine \"+1\" yazın.",
+    "message": "Bölüm kayma değerini girin, Eğer bir animenin 12 bölümü var ise,  ama 1-12 yerine 0-11 numaralarını kullanıyorsa, bölüm kaymasına \"+1\" yazın.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "URL'yi sadece Mal'da yanlış sayfayı açıyorsa değiştir",
+    "message": "URL'yi sadece MAL'da yanlış sayfayı açıyorsa değiştir",
     "description": "URL is Wrong"
   },
   "correction_Search": {
-    "message": "Düzgün arama",
+    "message": "Aramayı Düzelt",
     "description": "Correction Search"
   },
   "correction_Search_text": {
@@ -364,7 +432,7 @@
     "description": "No entry on MyAnimeList"
   },
   "correction_NewOffset": {
-    "message": "Yeni dengeleme ayarla.",
+    "message": "Yeni kayma değeri ayarla.",
     "description": "New Offset",
     "placeholders": {
       "offset": {
@@ -374,7 +442,7 @@
     }
   },
   "correction_OffsetReset": {
-    "message": "Dengelemeyi sıfırla.",
+    "message": "Kayma değerini sıfırla.",
     "description": "Offset reset"
   },
   "correction_NewUrl": {
@@ -390,6 +458,10 @@
   "correction_NewUrlReset": {
     "message": "MAL url sıfırla",
     "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "Veritabanı doğrulama isteğini gönder?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
     "message": "İzlemeye devam et",
@@ -551,6 +623,10 @@
     "message": "Etiket/Notları Kullan",
     "description": "Use Tags/Notes"
   },
+  "settings_malTags_Text": {
+    "message": "Aktif edilirse: Kullandığın yayın sitesini listende ki tags/Notes kısmına kalıcı şekilde kaydeder. Tag kısmına kaydedilen dizi çirkin, bu yüzden tag kısmını kullanmıyorsanız, bu seçeneği aktif etmeniz tavsiye edilir.",
+    "description": "Use Tags/Notes - Text"
+  },
   "settings_malContinue": {
     "message": "İzlemeye devam et linkleri",
     "description": "Continue watching links"
@@ -558,6 +634,22 @@
   "settings_malResume": {
     "message": "İzlemeyi sürdür linkleri",
     "description": "Resume watching links"
+  },
+  "settings_usedPage": {
+    "message": "Son Kullanılan Sayfa Linkleri",
+    "description": "Last used page links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "Gizli UI modu",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_minimizeBigPopup": {
+    "message": "Büyük Pop-up'ları küçült",
+    "description": "Shows an 'action required' popup hidding big popups"
+  },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "Kayan butonu düzeltme UI'sine ata",
+    "description": "Remap floating button to the correction UI"
   },
   "settings_miniMAL_floatButtonHide": {
     "message": "miniMAL butonunu gizle",
@@ -615,6 +707,22 @@
     "message": "Otomatik Devam Ettirme",
     "description": "Auto resume video where you left off toggle"
   },
+  "settings_autoNextEp": {
+    "message": "Bir sonraki bölümü otomatik oynat.",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "Anime Bağlantıları/İlişkileri düzeltme pop-up'ını aç",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Sync": {
+    "message": "Bölünü Okunmuş olarak ayarla",
+    "description": "Text for the sync ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "Yeni bölümü aç kısayolu",
+    "description": "Description for the next episode shortcut option"
+  },
   "settings_Shortcuts_Skip_Forward": {
     "message": "Açılışları atlar",
     "description": "Description for the the opening skip shortcut"
@@ -622,6 +730,10 @@
   "settings_Shortcuts_Skip_Backward": {
     "message": "Açılışların başından başlar",
     "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "Kısayol girmek için tıkla",
+    "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
     "message": "$Seconds$ Açılış atlama süresini ayarla",
@@ -692,6 +804,10 @@
   "settings_presenceHidePage": {
     "message": "Sayfa ikonu yerine MAL-Sync ikonunu göster",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "Sadece tek bir tuşa kısayol atamak tavsiye edilmiyor.",
+    "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "updateCheck_Refresh": {
     "message": "Yenile",
@@ -860,5 +976,13 @@
         "example": "Mangadex"
       }
     }
+  },
+  "nextEpShort_no_support": {
+    "message": "Bu sayfa bir sonraki bölmü açma özelliğini desteklemiyor.",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "Bir sonraki bölüm bulunamadı",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
   }
 }
