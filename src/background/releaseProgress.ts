@@ -1,5 +1,8 @@
 import { getList } from '../_provider/listFactory';
 
+const animelist = require('./lists/anime.json');
+const mangalist = require('./lists/manga.json');
+
 export interface releaseItemInterface {
   timestamp: number;
   value: any;
@@ -165,7 +168,7 @@ export async function single(
   }
   logger.log(xhr);
 
-  const progressValue = getProgress(xhr, mode);
+  const progressValue = getProgress(xhr, mode, type);
 
   if (!progressValue) {
     logger.log('No value for the selected mode');
@@ -208,7 +211,7 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
   return true;
 }
 
-export function getProgress(res, mode) {
+export function getProgress(res, mode, type) {
   const config: {
     mainId?: string;
     fallbackPrediction?: string;
@@ -218,7 +221,12 @@ export function getProgress(res, mode) {
   if (!res.length) return null;
 
   if (mode === 'default') {
-    config.mainId = 'en/sub';
+    if (type === 'anime') {
+      config.mainId = api.settings.get('progressIntervalDefaultAnime');
+    } else {
+      config.mainId = api.settings.get('progressIntervalDefaultManga');
+    }
+    config.fallback = 'en/sub';
   } else {
     config.mainId = mode;
   }
@@ -229,6 +237,11 @@ export function getProgress(res, mode) {
 
   if (config.mainId) {
     const mainTemp = res.find(el => el.id === config.mainId);
+    if (mainTemp) top = mainTemp;
+  }
+
+  if (config.fallback && !top) {
+    const mainTemp = res.find(el => el.id === config.fallback);
     if (mainTemp) top = mainTemp;
   }
 
@@ -246,16 +259,8 @@ export function getProgress(res, mode) {
 }
 
 export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ key: string; label: string }[]> {
-  return [
-    {
-      key: 'en/sub',
-      label: 'English (Sub)',
-    },
-    {
-      key: 'en/dub',
-      label: 'English (Dub)',
-    },
-  ];
+  if (type === 'anime') return animelist;
+  return mangalist;
 }
 
 function setBadgeText(text: string) {
