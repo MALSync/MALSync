@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
 import { Progress } from '../utils/progress';
-import { predictionXhr } from '../background/releaseProgress';
+import { getProgressTypeList, predictionXhr } from '../background/releaseProgress';
 
 export abstract class SingleAbstract {
   constructor(protected url: string) {
@@ -146,8 +146,11 @@ export abstract class SingleAbstract {
 
   protected progressXhr;
 
+  protected prList: { key: string; label: string }[] = [];
+
   public async initProgress(){
     const xhr = await predictionXhr(this.getType()!, this.getMalId());
+    this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
@@ -174,6 +177,10 @@ export abstract class SingleAbstract {
       this.progressXhr.forEach(el => {
         if (el.state === 'complete') return;
         let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
+        if (this.prList && this.prList.length) {
+          const tTemp = this.prList.find(p => p.key === el.id);
+          if (tTemp) val = tTemp.label;
+        }
         if (el.title) val = el.title;
         if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
         if (el.state === 'dropped') val += ` Incomplete`;
@@ -187,6 +194,7 @@ export abstract class SingleAbstract {
   }
 
   private updateProgress = false;
+
   public getProgressMode(): string {
     if (this.options && this.options.p) {
       return this.options.p;

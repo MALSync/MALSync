@@ -782,6 +782,18 @@
       "message": "Off",
       "description": "Interval - Off"
     },
+    "settings_Interval_Default_Anime": {
+      "message": "Default Anime",
+      "description": "Dropdown label for selecting the global progress anime source"
+    },
+    "settings_Interval_Default_Manga": {
+      "message": "Default Manga",
+      "description": "Dropdown label for selecting the global progress manga source"
+    },
+    "settings_ProgressCheck": {
+      "message": "Progress Check",
+      "description": "Header for the progress section in the settings"
+    },
     "settings_Notifications": {
       "message": "Notifications",
       "description": "Notifications"

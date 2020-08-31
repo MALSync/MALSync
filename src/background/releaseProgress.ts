@@ -245,6 +245,19 @@ export function getProgress(res, mode) {
   return top;
 }
 
+export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ key: string; label: string }[]> {
+  return [
+    {
+      key: 'en/sub',
+      label: 'English (Sub)',
+    },
+    {
+      key: 'en/dub',
+      label: 'English (Dub)',
+    },
+  ];
+}
+
 function setBadgeText(text: string) {
   // @ts-ignore
   if (api.type === 'userscript') return;

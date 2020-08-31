@@ -64,6 +64,8 @@ export const settingsObj = {
     syncShort: [],
 
     progressInterval: 120,
+    progressIntervalDefaultAnime: 'en/sub',
+    progressIntervalDefaultManga: 'en/sub',
     updateCheckNotifications: true,
 
     bookMarksList: false,
