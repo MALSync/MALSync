@@ -289,7 +289,7 @@
           </h2>
         </div>
 
-        <dropdown option="progressInterval" :text="lang('settings_Interval')">
+        <dropdown option="progressInterval" :text="lang('settings_Interval')" @changed="startProgressSync()">
           <option value="0">{{ lang('settings_Interval_Off') }}</option>
           <option value="30">30min</option>
           <option value="60">1h</option>
@@ -299,11 +299,19 @@
           <option value="1440">24h</option>
         </dropdown>
 
-        <dropdown option="progressIntervalDefaultAnime" :text="lang('settings_Interval_Default_Anime')">
+        <dropdown
+          option="progressIntervalDefaultAnime"
+          :text="lang('settings_Interval_Default_Anime')"
+          @changed="startProgressSync()"
+        >
           <option v-for="drop in progressAnimeDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
         </dropdown>
 
-        <dropdown option="progressIntervalDefaultManga" :text="lang('settings_Interval_Default_Manga')">
+        <dropdown
+          option="progressIntervalDefaultManga"
+          :text="lang('settings_Interval_Default_Manga')"
+          @changed="startProgressSync()"
+        >
           <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
         </dropdown>
       </div>
@@ -664,6 +672,15 @@ export default {
       }
       utils.flashm('File exported');
     },
+    startProgressSync() {
+      if (this.isExtension()) {
+        con.log('Trigger Progress update');
+        chrome.alarms.create('progressSync', {
+          periodInMinutes: parseInt(api.settings.get('progressInterval')),
+          when: Date.now() + 1000,
+        });
+      }
+    }
   },
 };
 </script>
