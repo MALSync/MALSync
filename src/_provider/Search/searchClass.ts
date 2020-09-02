@@ -125,8 +125,8 @@ export class searchClass {
     let resTitle = title.replace(/ *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i, '');
     resTitle = resTitle.replace(/ *\([^)]+audio\)/i, '');
     resTitle = resTitle.replace(/ BD( |$)/i, '');
-    resTitle = resTitle.substring(0, 99); // truncate
     resTitle = resTitle.trim();
+    resTitle = resTitle.substring(0, 99); // truncate
     return resTitle;
   }
 
