@@ -1,0 +1,30 @@
+{
+  "title": "tioanime",
+  "url": "https://tioanime.com/",
+  "testCases": [
+    {
+      "url": "https://tioanime.com/anime/mahouka-koukou-no-rettousei",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "mahouka-koukou-no-rettousei",
+        "uiSelector": true,
+        "epList": {
+          "24": "https://tioanime.com/ver/mahouka-koukou-no-rettousei-24"
+        }
+      }
+    },
+    {
+      "url": "https://tioanime.com/ver/mahouka-koukou-no-rettousei-25",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "mahouka-koukou-no-rettousei",
+        "episode": 25,
+        "overviewUrl": "https://tioanime.com/anime/mahouka-koukou-no-rettousei",
+        "nextEpUrl": "https://tioanime.com/ver/mahouka-koukou-no-rettousei-26",
+        "uiSelector": false
+      }
+    }
+  ]
+}

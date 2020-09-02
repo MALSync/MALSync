@@ -98,6 +98,7 @@ import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
+import { tioanime } from './tioanime/main';
 
 export const pages = {
   nineAnime,
@@ -200,4 +201,5 @@ export const pages = {
   SenseScans,
   ManhuaPlus,
   Readm,
+  tioanime,
 };

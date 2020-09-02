@@ -428,4 +428,7 @@ module.exports = {
   Readm: {
     match: ['*://readm.org/manga/*'],
   },
+  tioanime: {
+    match: ['*://tioanime.com/anime/*', '*://tioanime.com/ver/*'],
+  },
 };
