@@ -168,9 +168,8 @@ export abstract class ListAbstract {
   }
 
   // itemFunctions;
-  async fn(item) {
+  async fn(item, streamurl = '') {
     let continueUrlTemp: any = null;
-    let predictionsObj: any = null;
     item.fn = {
       continueUrl: () => {
         if (continueUrlTemp !== null) return continueUrlTemp;
@@ -192,6 +191,7 @@ export abstract class ListAbstract {
       progress: false,
     };
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
+    if (streamurl) item.options.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
     return item;
   }
