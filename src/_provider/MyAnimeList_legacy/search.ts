@@ -7,6 +7,10 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
   );
 
   const searchResults = JSON.parse(response.responseText);
+  if (searchResults.errors) {
+    console.error('Search Failed', searchResults.errors);
+    return [];
+  }
   const { items } = searchResults.categories[0];
 
   return items.map(item => ({

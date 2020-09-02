@@ -368,6 +368,7 @@ export class searchClass {
     const response = await api.request.xhr('GET', url);
 
     if (!response || response.responseText?.includes('  error ')) return false;
+    if (!response || response.responseText?.includes('No titles that matched')) return false;
 
     return handleResult(response, 1, this);
   }
