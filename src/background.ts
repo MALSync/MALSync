@@ -121,32 +121,48 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     }
     case 'minimalWindow': {
       api.storage.get('windowId').then(winId => {
-        if (typeof winId === 'undefined') winId = 22;
-        chrome.windows.update(winId, { focused: true }, function() {
-          if (chrome.runtime.lastError) {
-            const config: any = {
-              url: chrome.runtime.getURL('window.html'),
-              type: 'popup',
-            };
+        if (typeof winId === 'undefined') winId = 2231223212;
+        if (chrome.windows.update && chrome.windows.create) {
+          chrome.windows.update(winId, { focused: true }, function() {
+            if (chrome.runtime.lastError) {
+              const config: any = {
+                url: chrome.runtime.getURL('window.html'),
+                type: 'popup',
+              };
 
-            if (message.width) {
-              config.width = message.width;
-            }
-            if (message.height) {
-              config.height = message.height;
-            }
-            if (message.left) {
-              config.left = message.left;
-            }
+              if (message.width) {
+                config.width = message.width;
+              }
+              if (message.height) {
+                config.height = message.height;
+              }
+              if (message.left) {
+                config.left = message.left;
+              }
 
-            chrome.windows.create(config, function(win) {
-              api.storage.set('windowId', win!.id);
+              chrome.windows.create(config, function(win) {
+                api.storage.set('windowId', win!.id);
+                sendResponse();
+              });
+            } else {
               sendResponse();
-            });
-          } else {
-            sendResponse();
-          }
-        });
+            }
+          });
+        } else {
+          chrome.tabs.update(winId, { active: true }, function() {
+            if (chrome.runtime.lastError) {
+              const config: any = {
+                url: chrome.runtime.getURL('window.html'),
+                active: true,
+              };
+
+              chrome.tabs.create(config, function(win) {
+                api.storage.set('windowId', win!.id);
+                sendResponse();
+              });
+            }
+          });
+        }
       });
       return true;
     }
