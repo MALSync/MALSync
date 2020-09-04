@@ -1,7 +1,5 @@
+import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
-
-const animelist = require('./lists/anime.json');
-const mangalist = require('./lists/manga.json');
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -259,8 +257,21 @@ export function getProgress(res, mode, type) {
 }
 
 export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ key: string; label: string }[]> {
-  if (type === 'anime') return animelist;
-  return mangalist;
+  const cacheObj = new Cache(`ProgressTypeList${type}`, 24 * 60 * 60 * 1000, false);
+  if (!(await cacheObj.hasValueAndIsNotEmpty())) {
+    con.log('Getting new ProgressTypeList Cache');
+    const url = `https://api.malsync.moe/general/progress/${type}`;
+    const request = await api.request.xhr('GET', url).then(async response => {
+      if (response.status === 200 && response.responseText) {
+        return JSON.parse(response.responseText);
+      }
+      return [];
+    });
+    await cacheObj.setValue(request);
+    return request;
+  }
+  con.log('PageSearch Cached');
+  return cacheObj.getValue();
 }
 
 function setBadgeText(text: string) {

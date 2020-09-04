@@ -121,7 +121,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     }
     case 'minimalWindow': {
       api.storage.get('windowId').then(winId => {
-        if (typeof winId === 'undefined') winId = 2231223212;
+        if (typeof winId === 'undefined') winId = 22;
         if (chrome.windows.update && chrome.windows.create) {
           chrome.windows.update(winId, { focused: true }, function() {
             if (chrome.runtime.lastError) {
