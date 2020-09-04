@@ -51,7 +51,9 @@ export const tioanime: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      // TODO Ui
+      j.$('.principal')
+        .first()
+        .prepend(j.html(`<div class="info">${selector}</div>`));
     },
     list: {
       offsetHandler: false,
