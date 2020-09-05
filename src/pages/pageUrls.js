@@ -34,10 +34,7 @@ module.exports = {
   nineAnime: {
     match: [
       '*://*.9anime.to/watch/*',
-      '*://*.9anime.is/watch/*',
       '*://*.9anime.ru/watch/*',
-      '*://*.9anime.ch/watch/*',
-      // '*://*.9anime.nl/watch/*', Not part of 9anime anymore
       '*://*.9anime.live/watch/*',
       '*://*.9anime.one/watch/*',
       '*://*.9anime.page/watch/*',
@@ -45,6 +42,7 @@ module.exports = {
       '*://*.9anime.life/watch/*',
       '*://*.9anime.love/watch/*',
       '*://*.9anime.tv/watch/*',
+      '*://*.9anime.app/watch/*',
     ],
   },
   Crunchyroll: {
@@ -378,5 +376,59 @@ module.exports = {
   },
   AnimeOnDemand: {
     match: ['*://www.anime-on-demand.de/anime/*'],
+  },
+  EdelgardeScans: {
+    match: ['*://edelgardescans.com/*'],
+  },
+  HatigarmScanz: {
+    match: ['*://hatigarmscanz.net/*'],
+  },
+  KKJScans: {
+    match: ['*://kkjscans.co/*'],
+  },
+  KrakenScans: {
+    match: ['*://krakenscans.com/*'],
+  },
+  LeviatanScans: {
+    match: ['*://leviatanscans.com/*'],
+  },
+  MethodScans: {
+    match: ['*://methodscans.com/*'],
+  },
+  NonamesScans: {
+    match: ['*://the-nonames.com/*'],
+  },
+  ReaperScans: {
+    match: ['*://reaperscans.com/*'],
+  },
+  SecretScans: {
+    match: ['*://secretscans.co/*'],
+  },
+  SKScans: {
+    match: ['*://skscans.com/*'],
+  },
+  ZeroScans: {
+    match: ['*://zeroscans.com/*'],
+  },
+  DeathTollScans: {
+    match: ['*://reader.deathtollscans.net/*'],
+  },
+  HelveticaScans: {
+    match: ['*://helveticascans.com/r*'],
+  },
+  KireiCake: {
+    match: ['*://reader.kireicake.com/*'],
+  },
+  SenseScans: {
+    match: ['*://sensescans.com/reader*'],
+  },
+  ManhuaPlus: {
+    match: ['*://manhuaplus.com/manga*'],
+  },
+  Readm: {
+    match: ['*://readm.org/manga/*'],
+  },
+  tioanime: {
+    match: ['*://tioanime.com/anime/*', '*://tioanime.com/ver/*'],
   },
 };
