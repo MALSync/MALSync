@@ -99,6 +99,7 @@ export const AnimeZone: pageInterface = {
           iframe.height = '100%';
 
           iframe.setAttribute('allowfullscreen', 'true');
+          // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
           embedContainer.append(iframe);
           observer.disconnect();
         }

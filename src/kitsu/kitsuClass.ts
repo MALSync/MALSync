@@ -518,7 +518,6 @@ export class kitsuClass {
                   ),
                 );
             }
-
           }
         });
       }

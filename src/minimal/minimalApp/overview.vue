@@ -757,7 +757,6 @@ export default {
 
       this.mal.resumeUrl = renderObj.getResumeWatching();
       this.mal.continueUrl = renderObj.getContinueWatching();
-
     },
     clickRender() {
       this.render(this.renderObj);

@@ -148,7 +148,7 @@ export abstract class SingleAbstract {
 
   protected prList: { key: string; label: string }[] = [];
 
-  public async initProgress(){
+  public async initProgress() {
     const xhr = await predictionXhr(this.getType()!, this.getMalId());
     this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)

@@ -147,7 +147,7 @@ export class Single extends SingleAbstract {
   }
 
   getStreamingUrl(): string | undefined {
-    if(this.animeInfo && this.animeInfo.sUrl) return this.animeInfo.sUrl;
+    if (this.animeInfo && this.animeInfo.sUrl) return this.animeInfo.sUrl;
     return super.getStreamingUrl();
   }
 }

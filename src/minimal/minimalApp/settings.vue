@@ -680,7 +680,7 @@ export default {
           when: Date.now() + 1000,
         });
       }
-    }
+    },
   },
 };
 </script>
