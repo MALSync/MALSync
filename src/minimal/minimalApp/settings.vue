@@ -128,7 +128,6 @@
           <tooltip>{{ lang('settings_StreamingSite_text') }}</tooltip>
         </div>
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
-        <checkbox option="Kissanime">KissAnime</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
         <checkbox option="Netflix">Netflix</checkbox>
@@ -136,7 +135,6 @@
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
         <checkbox option="Aniwatch">Aniwatch</checkbox>
-        <checkbox option="Kissmanga">KissManga</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
@@ -282,6 +280,40 @@
         <numberInput v-if="isExtension()" option="introSkip" :min="5">{{
           lang('settings_introSkip', [options.introSkip])
         }}</numberInput>
+      </div>
+
+      <div id="progressCheck" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">
+            {{ lang('settings_ProgressCheck') }}
+          </h2>
+        </div>
+
+        <dropdown option="progressInterval" :text="lang('settings_Interval')" @changed="startProgressSync()">
+          <option value="0">{{ lang('settings_Interval_Off') }}</option>
+          <option value="30">30min</option>
+          <option value="60">1h</option>
+          <option value="120">2h</option>
+          <option value="240">4h</option>
+          <option value="720">12h</option>
+          <option value="1440">24h</option>
+        </dropdown>
+
+        <dropdown
+          option="progressIntervalDefaultAnime"
+          :text="lang('settings_Interval_Default_Anime')"
+          @changed="startProgressSync()"
+        >
+          <option v-for="drop in progressAnimeDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
+        </dropdown>
+
+        <dropdown
+          option="progressIntervalDefaultManga"
+          :text="lang('settings_Interval_Default_Manga')"
+          @changed="startProgressSync()"
+        >
+          <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
+        </dropdown>
       </div>
 
       <div
@@ -528,6 +560,7 @@ import tooltip from './components/tooltip.vue';
 import correction from './correction.vue';
 
 import { exportData, importData } from '../../_provider/Local/import';
+import { getProgressTypeList } from '../../background/releaseProgress';
 
 export default {
   components: {
@@ -552,6 +585,8 @@ export default {
       isOpen: false,
       options: api.settings.options,
       commands: null,
+      progressAnimeDropdown: [],
+      progressMangaDropdown: [],
       version: {
         link: `https://malsync.moe/changelog#${api.storage.version()}`,
         img: `https://img.shields.io/badge/Changelog-${api.storage.version()}-green.svg?style=flat-square&logo=data:image/png;base64,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`,
@@ -559,6 +594,10 @@ export default {
     };
   },
   mounted() {
+    // eslint-disable-next-line no-return-assign
+    getProgressTypeList('anime').then(re => (this.progressAnimeDropdown = re));
+    // eslint-disable-next-line no-return-assign
+    getProgressTypeList('manga').then(re => (this.progressMangaDropdown = re));
     api.request.xhr('GET', 'https://api.malsync.moe/static/contributor').then(response => {
       try {
         this.contributer = JSON.parse(response.responseText);
@@ -633,6 +672,15 @@ export default {
       }
       utils.flashm('File exported');
     },
+    startProgressSync() {
+      if (this.isExtension()) {
+        con.log('Trigger Progress update');
+        chrome.alarms.create('progressSync', {
+          periodInMinutes: parseInt(api.settings.get('progressInterval')),
+          when: Date.now() + 1000,
+        });
+      }
+    }
   },
 };
 </script>

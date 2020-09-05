@@ -1,5 +1,3 @@
-import { Kissanime } from './Kissanime/main';
-import { Kissmanga } from './Kissmanga/main';
 import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
@@ -43,7 +41,6 @@ import { tmofans } from './tmofans/main';
 import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { MangaKisa } from './MangaKisa/main';
 import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
@@ -86,8 +83,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
 
 export const pages = {
-  Kissanime,
-  Kissmanga,
   nineAnime,
   Crunchyroll,
   Vrv,
@@ -131,7 +126,6 @@ export const pages = {
   unionmangas,
   MangaPlus,
   JapScan,
-  MangaKisa,
   Goyabu,
   AnimesVision,
   Hulu,

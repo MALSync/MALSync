@@ -1,5 +1,6 @@
 {
   "title": "HentaiKisa",
+  "enabled": false,
   "url": "https://hentaikisa.com/",
   "testCases": [
     {

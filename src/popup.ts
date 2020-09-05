@@ -50,9 +50,9 @@ function checkFill(minimalObj) {
     tabs.forEach(el => {
       chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function(response) {
         setTimeout(() => {
-          if (typeof response !== 'undefined') {
+          if (typeof response !== 'undefined' && response.length) {
             minimalObj.fillBase(response);
-          } else {
+          } else if ($('html').attr('mode') === 'popup') {
             minimalObj.fillBase(null);
           }
         }, 500);

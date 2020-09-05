@@ -209,6 +209,7 @@ export async function setEntrySettings(type, id, options, tags = '') {
     for (const key in options) {
       switch (key) {
         case 'u':
+        case 'p':
           tempOptions[key] = options[key];
           break;
         default:
@@ -233,6 +234,7 @@ export async function getEntrySettings(type, id, tags = '') {
     u: null, // url
     c: null, // Continue Url
     r: null, // Resume Url
+    p: '', // Progress Mode
   };
 
   if (api.settings.get('malTags')) {
@@ -398,82 +400,6 @@ export function getTooltip(text, style = '', direction = 'top') {
   <div class="mdl-tooltip mdl-tooltip--${direction} mdl-tooltip--large" for="tt${rNumber}">${text}</div>`;
 }
 
-export async function epPredictionUI(malid, cacheKey, type = 'anime', callback) {
-  utils.epPrediction(malid, async function(pre) {
-    if (!pre) callback(false);
-    const updateCheckTime = await api.storage.get('updateCheckTime');
-    const aniCache = await api.storage.get(`mal/${malid}/aniSch`);
-    let elCache: any;
-    if (typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0') {
-      elCache = await api.storage.get(`updateCheck/${type}/${cacheKey}`);
-    }
-    if (pre === false && typeof elCache === 'undefined') return;
-    const UI = {
-      tag: '',
-      text: '',
-      color: '',
-      colorStyle: '',
-      tagEpisode: false,
-      prediction: pre,
-      aniCache,
-      elCache,
-    };
-    //
-    let { airing } = pre;
-    /* eslint-disable-next-line no-shadow */
-    let { episode } = pre;
-
-    if (typeof aniCache === 'object') {
-      const timestamp = aniCache.nextEpTime * 1000;
-      if (Date.now() < timestamp) {
-        episode = aniCache.currentEp;
-        let delta = (timestamp - Date.now()) / 1000;
-        pre.diffDays = Math.floor(delta / 86400);
-        delta -= pre.diffDays * 86400;
-
-        pre.diffHours = Math.floor(delta / 3600) % 24;
-        delta -= pre.diffHours * 3600;
-
-        pre.diffMinutes = Math.floor(delta / 60) % 60;
-        delta -= pre.diffMinutes * 60;
-      } else if (Date.now() - timestamp < 1000 * 60 * 60 * 24) {
-        episode = aniCache.currentEp + 1;
-      }
-    }
-
-    if (typeof elCache !== 'undefined' && typeof elCache.error === 'undefined') {
-      if (!elCache.finished) {
-        airing = true;
-      }
-      if (elCache.newestEp && elCache.newestEp !== '' && typeof elCache.newestEp !== 'undefined') {
-        episode = elCache.newestEp;
-        UI.color = 'red';
-      }
-    }
-    if (UI.color !== '') {
-      // UI.colorStyle = 'text-decoration: underline overline !important; text-decoration-color: '+UI.color+' !important;'
-      UI.colorStyle = 'background-color: #00ff0057;';
-    }
-    //
-    if (airing) {
-      if (pre.airing) {
-        UI.text = api.storage.lang('prediction_Episode', [`${pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m`]);
-      }
-      if (episode) {
-        UI.tag = `<span class="mal-sync-ep-pre" title="${UI.text}">[<span style="${UI.colorStyle};">${episode}</span>]</span>`;
-        UI.tagEpisode = episode;
-      }
-    } else if (pre) {
-      UI.text = '<span class="mal-sync-ep-pre">';
-      UI.text += api.storage.lang('prediction_Airing', [
-        `${pre.diffWeeks * 7 + pre.diffDays}d ${pre.diffHours}h ${pre.diffMinutes}m `,
-      ]);
-      UI.text += '</span>';
-    }
-    callback(UI);
-  });
-}
-
 export function timeDiffToText(delta) {
   let text = '';
 
@@ -511,70 +437,6 @@ export function canHideTabs() {
     return true;
   }
   return false;
-}
-
-export async function epPrediction(malId, callback) {
-  if (!api.settings.get('epPredictions')) return;
-
-  let timestamp = await api.storage.get(`mal/${malId}/release`);
-
-  if (typeof timestamp !== 'number') timestamp = Number(timestamp);
-
-  if (Number.isNaN(timestamp)) {
-    callback(false);
-    return;
-  }
-
-  let airing = 1;
-  // eslint-disable-next-line no-shadow
-  let episode = 0;
-
-  if (Date.now() < timestamp) airing = 0;
-
-  let delta;
-  if (airing) {
-    delta = Math.abs(Date.now() - timestamp) / 1000;
-  } else {
-    delta = Math.abs(timestamp - Date.now()) / 1000;
-  }
-
-  const diffWeeks = Math.floor(delta / (86400 * 7));
-  delta -= diffWeeks * (86400 * 7);
-
-  if (airing) {
-    // We need the time until the week is complete
-    delta = 86400 * 7 - delta;
-  }
-
-  const diffDays = Math.floor(delta / 86400);
-  delta -= diffDays * 86400;
-
-  const diffHours = Math.floor(delta / 3600) % 24;
-  delta -= diffHours * 3600;
-
-  const diffMinutes = Math.floor(delta / 60) % 60;
-  delta -= diffMinutes * 60;
-
-  if (airing) {
-    episode = diffWeeks - (new Date().getFullYear() - new Date(timestamp).getFullYear()); // Remove 1 week between years
-    episode++;
-    if (episode > 50) {
-      episode = 0;
-    }
-  }
-
-  const maxEp = await api.storage.get(`mal/${malId}/release`);
-  if (typeof maxEp === 'undefined' || episode < maxEp) {
-    callback({
-      timestamp,
-      airing,
-      diffWeeks,
-      diffDays,
-      diffHours,
-      diffMinutes,
-      episode,
-    });
-  }
 }
 
 // eslint-disable-next-line no-shadow

@@ -315,7 +315,7 @@
     "message": "minuten",
     "description": "mins"
   },
-  "prediction_Episode": {
+  "prediction_Episode_anime": {
     "message": "Volgende aflevering is ingeschat in $time$",
     "description": "Text for next episode estimation",
     "placeholders": {

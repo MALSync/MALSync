@@ -135,11 +135,19 @@
         </div>
       </div>
       <div
+        v-if="
+          renderObj.getProgress() && renderObj.getProgress().isAiring() && renderObj.getProgress().getPredictionText()
+        "
+        class="mdl-grid mdl-cell bg-cell mdl-shadow--4dp malClear"
+        style="width: 100%;"
+      >
+        <div class="mdl-cell" style="width: 100%;">
+          {{ renderObj.getProgress().getPredictionText() }}
+        </div>
+      </div>
+      <div
         class="mdl-cell bg-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp data-block mdl-grid mdl-grid--no-spacing malClear"
       >
-        <li v-if="prediction && prediction.prediction.airing" class="mdl-list__item" style="width: 100%;">
-          {{ prediction.text }}
-        </li>
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tbody>
             <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
@@ -176,7 +184,17 @@
                     value="6"
                     style="width: 35px; display: inline-block;"
                   />
-                  / <span v-if="prediction" v-dompurify-html="prediction.tag" />
+                  /
+                  <span
+                    v-if="
+                      renderObj.getProgress() &&
+                        renderObj.getProgress().isAiring() &&
+                        renderObj.getProgress().getCurrentEpisode()
+                    "
+                    :title="renderObj.getProgress().getAutoText()"
+                  >
+                    [{{ renderObj.getProgress().getCurrentEpisode() }}]
+                  </span>
                   <span v-if="renderObj && renderObj.getTotalEpisodes()" id="curEps">{{
                     renderObj.getTotalEpisodes()
                   }}</span
@@ -232,6 +250,40 @@
                     <option v-for="el in renderObj.getScoreCheckbox()" :key="el.value" :value="el.value">{{
                       el.label
                     }}</option>
+                  </select>
+                </span>
+              </span>
+            </li>
+            <li
+              v-if="
+                renderObj &&
+                  renderObj.isAuthenticated() &&
+                  renderObj.isOnList() &&
+                  renderObj.getProgressOptions() &&
+                  renderObj.getProgressOptions().length
+              "
+              class="mdl-list__item mdl-list__item--three-line"
+              style="width: 100%;"
+            >
+              <span class="mdl-list__item-primary-content">
+                <span>{{ lang('settings_progress_dropdown') }}</span>
+                <span class="mdl-list__item-text-body">
+                  <select
+                    id="myinfo_progressmode"
+                    v-model="malProgressMode"
+                    name="myinfo_progressmode"
+                    class="inputtext mdl-textfield__input"
+                    style="outline: none;"
+                  >
+                    <option value="">
+                      {{ lang('settings_progress_default') }}
+                    </option>
+                    <option v-for="o in renderObj.getProgressOptions()" :key="o.key" :value="o.key">{{
+                      o.value
+                    }}</option>
+                    <option value="off">
+                      {{ lang('settings_progress_disabled') }}
+                    </option>
                   </select>
                 </span>
               </span>
@@ -462,7 +514,6 @@ export default {
       },
       kiss2mal: {},
       related: [],
-      prediction: null,
       utils,
     };
   },
@@ -526,6 +577,19 @@ export default {
       set(value) {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           this.renderObj.handleScoreCheckbox(value);
+        }
+      },
+    },
+    malProgressMode: {
+      get() {
+        if (this.renderObj && this.renderObj.isAuthenticated()) {
+          return this.renderObj.getProgressMode();
+        }
+        return null;
+      },
+      set(value) {
+        if (this.renderObj && this.renderObj.isAuthenticated()) {
+          this.renderObj.setProgressMode(value);
         }
       },
     },
@@ -645,7 +709,6 @@ export default {
       this.mal.continueUrl = null;
       this.kiss2mal = {};
       this.related = [];
-      this.prediction = null;
       this.imageTemp = null;
 
       if (renderObj === null) return;
@@ -695,10 +758,6 @@ export default {
       this.mal.resumeUrl = renderObj.getResumeWatching();
       this.mal.continueUrl = renderObj.getContinueWatching();
 
-      utils.epPredictionUI(renderObj.id, renderObj.getCacheKey(), renderObj.type, prediction => {
-        if (!this.renderObj || stateTest !== this.renderObj.url) return;
-        this.prediction = prediction;
-      });
     },
     clickRender() {
       this.render(this.renderObj);

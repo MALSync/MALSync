@@ -31,12 +31,6 @@ module.exports = {
   malsync: {
     match: ['*://malsync.moe/mal/oauth*'],
   },
-  Kissanime: {
-    match: ['*://kissanime.ru/Anime/*', '*://kissanime.to/Anime/*'],
-  },
-  kissmanga: {
-    match: ['*://kissmanga.com/Manga/*'],
-  },
   nineAnime: {
     match: [
       '*://*.9anime.to/watch/*',
@@ -149,7 +143,14 @@ module.exports = {
     match: ['*://www.netflix.com/*'],
   },
   animepahe: {
-    match: ['*://animepahe.com/play/*', '*://animepahe.com/anime/*'],
+    match: [
+      '*://animepahe.com/play/*',
+      '*://animepahe.com/anime/*',
+      '*://animepahe.ru/play/*',
+      '*://animepahe.ru/anime/*',
+      '*://animepahe.org/play/*',
+      '*://animepahe.org/anime/*',
+    ],
   },
   animeflv: {
     match: ['*://*.animeflv.net/anime/*', '*://*.animeflv.net/ver/*'],
@@ -257,9 +258,6 @@ module.exports = {
   },
   JapScan: {
     match: ['*://*.japscan.co/*'],
-  },
-  MangaKisa: {
-    match: ['*://mangakisa.com/*'],
   },
   Goyabu: {
     match: ['*://goyabu.com/*'],
