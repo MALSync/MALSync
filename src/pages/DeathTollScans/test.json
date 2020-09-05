@@ -1,0 +1,31 @@
+{
+  "title": "DeathTollScans",
+  "url": "https://reader.deathtollscans.net/",
+  "testCases": [
+    {
+      "url": "https://reader.deathtollscans.net/read/nanba_mg5/en/4/28/",
+      "expected": {
+        "sync": true,
+        "title": "Nanba MG5",
+        "identifier": "nanba_mg5",
+        "overviewUrl": "https://reader.deathtollscans.net/series/nanba_mg5/",
+        "nextEpUrl": "https://reader.deathtollscans.net/read/nanba_mg5/en/4/29/",
+        "episode": 28,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://reader.deathtollscans.net/series/nanba_mg5/",
+      "expected": {
+        "sync": false,
+        "title": "Nanba MG5",
+        "identifier": "nanba_mg5",
+        "uiSelector": true,
+        "epList": {
+          "19": "https://reader.deathtollscans.net/read/nanba_mg5/en/3/19/",
+          "80": "https://reader.deathtollscans.net/read/nanba_mg5/en/10/80/"
+        }
+      }
+    }
+  ]
+}

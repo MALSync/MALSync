@@ -28,40 +28,45 @@ export class userlist extends ListAbstract {
         }
         if (listType === 'anime') {
           newData.push(
-            await this.fn({
-              airingState: 2,
-              image: api.storage.assetUrl('questionmark.gif'),
-              malId: 0,
-              tags: el.tags,
-              title: el.name,
-              totalEp: 0,
-              status: el.status,
-              score: el.score,
-              type: 'anime',
-
-              uid: key,
-              url: key,
-              cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
-              watchedEp: el.progress,
-            }),
+            await this.fn(
+              {
+                airingState: 2,
+                image: api.storage.assetUrl('questionmark.gif'),
+                malId: 0,
+                tags: el.tags,
+                title: el.name,
+                totalEp: 0,
+                status: el.status,
+                score: el.score,
+                type: 'anime',
+                uid: key,
+                url: key,
+                cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
+                watchedEp: el.progress,
+              },
+              el.sUrl,
+            ),
           );
         } else {
           newData.push(
-            await this.fn({
-              airingState: 2,
-              image: api.storage.assetUrl('questionmark.gif'),
-              malId: 0,
-              tags: el.tags,
-              title: el.name,
-              totalEp: 0,
-              status: el.status,
-              score: el.score,
-              type: 'manga',
-              uid: key,
-              url: key,
-              cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
-              watchedEp: el.progress,
-            }),
+            await this.fn(
+              {
+                airingState: 2,
+                image: api.storage.assetUrl('questionmark.gif'),
+                malId: 0,
+                tags: el.tags,
+                title: el.name,
+                totalEp: 0,
+                status: el.status,
+                score: el.score,
+                type: 'manga',
+                uid: key,
+                url: key,
+                cacheKey: this.getCacheKey(utils.urlPart(key, 4), utils.urlPart(key, 2)),
+                watchedEp: el.progress,
+              },
+              el.sUrl,
+            ),
           );
         }
       }

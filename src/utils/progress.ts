@@ -1,10 +1,12 @@
-import { releaseItemInterface, single as updateProgress } from '../background/releaseProgress';
+import { releaseItemInterface, progressIsOld, single as updateProgress } from '../background/releaseProgress';
 import { timestampToShortTime } from './time';
 
 export class Progress {
   protected logger;
 
   protected releaseItem: undefined | releaseItemInterface = undefined;
+
+  protected updateItem: undefined | { timestamp: number; finished: boolean; newestEp: any; error?: string } = undefined;
 
   constructor(protected cacheKey: string, protected type: 'anime' | 'manga') {
     this.logger = con.m('progress').m(cacheKey.toString());
@@ -13,7 +15,7 @@ export class Progress {
 
   // Progress
   protected async initReleaseProgress(liveData) {
-    if (liveData) await updateProgress(liveData, this.type, 'default');
+    if (liveData) await updateProgress(liveData, this.type, liveData.progressMode);
 
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(
       `release/${this.type}/${this.cacheKey}`,
@@ -21,6 +23,10 @@ export class Progress {
 
     this.logger.m('Init Release').log(releaseItem);
     if (!releaseItem) return;
+    if (progressIsOld(releaseItem)) {
+      this.logger.log('Too old');
+      return;
+    }
 
     this.releaseItem = releaseItem;
   }
@@ -49,15 +55,40 @@ export class Progress {
     return null;
   }
 
+  // Update Check
+  protected async initUpdateCheck() {
+    if (api.type !== 'webextension') return;
+    const update = await api.storage.get(`updateCheck/${this.type}/${this.cacheKey}`);
+    if (!update) return;
+    if (update.error) return;
+    if (!update.timestamp) return;
+    if (new Date().getTime() - update.timestamp > 24 * 60 * 60 * 1000) {
+      con.log('too old');
+      return;
+    }
+    con.m('update check').log(update);
+    this.updateItem = update;
+  }
+
+  protected getUpdateCurrentEpisode() {
+    const re = this.updateItem;
+    if (re && re.newestEp) return re.newestEp;
+    return null;
+  }
+
   // General
   async init(
-    live: { uid: number; malId: number | null; title: string; cacheKey: string; xhr?: object } | false = false,
+    live:
+      | { uid: number; malId: number | null; title: string; cacheKey: string; progressMode: string; xhr?: object }
+      | false = false,
   ) {
-    await this.initReleaseProgress(live);
+    await Promise.all([this.initReleaseProgress(live), this.initUpdateCheck()]);
+
     return this;
   }
 
   getCurrentEpisode(): number {
+    if (this.updateItem && this.getUpdateCurrentEpisode()) return this.getUpdateCurrentEpisode();
     return this.getProgressCurrentEpisode();
   }
 
@@ -65,7 +96,18 @@ export class Progress {
     return this.isProgressFinished();
   }
 
+  isAiring(): boolean {
+    return !this.isFinished();
+  }
+
   getPredictionTimestamp(): number {
+    if (
+      this.updateItem &&
+      this.getUpdateCurrentEpisode() &&
+      this.getUpdateCurrentEpisode() !== this.getProgressCurrentEpisode()
+    ) {
+      return NaN;
+    }
     return this.getProgressPrediction();
   }
 
@@ -75,11 +117,18 @@ export class Progress {
 
   getPredictionText(): string {
     const pre = this.getPrediction();
-    if (pre) return api.storage.lang('prediction_Episode', [pre]);
+    if (pre) return api.storage.lang(`prediction_Episode_${this.type}`, [pre]);
     return '';
   }
 
   getLastTimestamp(): number {
+    if (
+      this.updateItem &&
+      this.getUpdateCurrentEpisode() &&
+      this.getUpdateCurrentEpisode() !== this.getProgressCurrentEpisode()
+    ) {
+      return NaN;
+    }
     return this.getProgressLastTimestamp();
   }
 
@@ -89,7 +138,15 @@ export class Progress {
 
   getLastText(): string {
     const last = this.getLast(false);
-    if (last) return api.storage.lang('prediction_Last', [last]);
+    if (last) return api.storage.lang(`prediction_Last_${this.type}`, [last]);
+    return '';
+  }
+
+  getAuto(): string {
+    const preT = this.getPrediction();
+    if (preT) return preT;
+    const lastT = this.getLast();
+    if (lastT) return lastT;
     return '';
   }
 
@@ -99,6 +156,11 @@ export class Progress {
     const lastT = this.getLastText();
     if (lastT) return lastT;
     return '';
+  }
+
+  getColor(): string {
+    if (this.updateItem && this.getUpdateCurrentEpisode()) return '#e91e63';
+    return '#f57c00';
   }
 
   getBars(curEp, totalEp): { totalWidth: number; epWidth: number; predWidth: number } {

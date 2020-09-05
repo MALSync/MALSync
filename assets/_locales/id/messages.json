@@ -339,7 +339,7 @@
     "message": "mnt",
     "description": "mins"
   },
-  "prediction_Episode": {
+  "prediction_Episode_anime": {
     "message": "Episode berikutnya diperkirakan mengudara dalam $time$",
     "description": "Text for next episode estimation",
     "placeholders": {

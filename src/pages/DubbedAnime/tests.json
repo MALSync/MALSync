@@ -4,20 +4,20 @@
   "testCases": [
     {
       // check for ova
-      "url": "https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dubbed#",
+      "url": "https://ww5.dubbedanime.net/episode/89274-golden-boy-ova-3-english-dub#",
       "expected": {
         "sync": true,
         "title": "Golden Boy",
         "identifier": "796-golden-boy",
         "overviewUrl": "https://ww5.dubbedanime.net/anime/796-golden-boy/#episodes",
-        "nextEpUrl": "https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dubbed",
+        "nextEpUrl": "https://ww5.dubbedanime.net/episode/89275-golden-boy-ova-4-english-dub",
         "episode": 3,
         "uiSelector": false
       }
     },
     {
       // check for movie
-      "url": "https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dubbed",
+      "url": "https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dub",
       "expected": {
         "sync": true,
         "title": "A Silent Voice MOVIE",
@@ -30,13 +30,13 @@
     },
     {
       // check for anime/episode
-      "url": "https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dubbed",
+      "url": "https://ww5.dubbedanime.net/episode/177318-golgo-13-episode-36-english-dub",
       "expected": {
         "sync": true,
         "title": "Golgo 13",
         "identifier": "3072-golgo-13",
         "overviewUrl": "https://ww5.dubbedanime.net/anime/3072-golgo-13/#episodes",
-        "nextEpUrl": "https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dubbed",
+        "nextEpUrl": "https://ww5.dubbedanime.net/episode/177319-golgo-13-episode-37-english-dub",
         "episode": 36,
         "uiSelector": false
       }
@@ -50,8 +50,8 @@
         "identifier": "3072-golgo-13",
         "uiSelector": true,
         "epList": {
-          "5": "https://ww5.dubbedanime.net/episode/177287-golgo-13-episode-5-english-dubbed",
-          "43": "https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dubbed"
+          "5": "https://ww5.dubbedanime.net/episode/177287-golgo-13-episode-5-english-dub",
+          "43": "https://ww5.dubbedanime.net/episode/177325-golgo-13-episode-43-english-dub"
         }
       }
     }

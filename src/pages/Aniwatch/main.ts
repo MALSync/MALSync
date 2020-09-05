@@ -47,7 +47,7 @@ export const Aniwatch: pageInterface = {
       );
     },
     nextEpUrl(url) {
-      if (tabPage !== 'stream' || !j.$('#anilyr-nextEpi').is('[disabled=disabled]')) return '';
+      if (tabPage !== 'stream' || j.$('#anilyr-nextEpi').is('[disabled=disabled]')) return '';
 
       const urlPart5 = utils.urlPart(url, 5);
 

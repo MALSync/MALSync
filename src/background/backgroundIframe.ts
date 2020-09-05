@@ -154,6 +154,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           }
 
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, {
+            timestamp: Date.now(),
             newestEp: newestEpisode,
             finished,
           });
@@ -206,7 +207,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
 
 function checkError(elCache, error) {
   if (typeof elCache === 'undefined') {
-    elCache = { newestEp: '', finished: false };
+    elCache = { newestEp: '', finished: false, timestamp: Date.now() };
   }
   elCache.error = error;
   return elCache;

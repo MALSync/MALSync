@@ -1,8 +1,8 @@
 import { xhrResponseI, sendMessageI, responseMessageI } from './api/messageInterface';
-import { scheduleUpdate } from './utils/scheduler';
 import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
+import { initProgressScheduler } from './background/releaseProgress';
 
 try {
   initSyncTags();
@@ -122,31 +122,47 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     case 'minimalWindow': {
       api.storage.get('windowId').then(winId => {
         if (typeof winId === 'undefined') winId = 22;
-        chrome.windows.update(winId, { focused: true }, function() {
-          if (chrome.runtime.lastError) {
-            const config: any = {
-              url: chrome.runtime.getURL('window.html'),
-              type: 'popup',
-            };
+        if (chrome.windows.update && chrome.windows.create) {
+          chrome.windows.update(winId, { focused: true }, function() {
+            if (chrome.runtime.lastError) {
+              const config: any = {
+                url: chrome.runtime.getURL('window.html'),
+                type: 'popup',
+              };
 
-            if (message.width) {
-              config.width = message.width;
-            }
-            if (message.height) {
-              config.height = message.height;
-            }
-            if (message.left) {
-              config.left = message.left;
-            }
+              if (message.width) {
+                config.width = message.width;
+              }
+              if (message.height) {
+                config.height = message.height;
+              }
+              if (message.left) {
+                config.left = message.left;
+              }
 
-            chrome.windows.create(config, function(win) {
-              api.storage.set('windowId', win!.id);
+              chrome.windows.create(config, function(win) {
+                api.storage.set('windowId', win!.id);
+                sendResponse();
+              });
+            } else {
               sendResponse();
-            });
-          } else {
-            sendResponse();
-          }
-        });
+            }
+          });
+        } else {
+          chrome.tabs.update(winId, { active: true }, function() {
+            if (chrome.runtime.lastError) {
+              const config: any = {
+                url: chrome.runtime.getURL('window.html'),
+                active: true,
+              };
+
+              chrome.tabs.create(config, function(win) {
+                api.storage.set('windowId', win!.id);
+                sendResponse();
+              });
+            }
+          });
+        }
       });
       return true;
     }
@@ -221,18 +237,6 @@ function getCookies(url, sender, xhr, callback) {
   );
 }
 
-chrome.alarms.get('schedule', function(a) {
-  if (typeof a === 'undefined') {
-    con.log('Create schedule Alarm');
-    chrome.alarms.create('schedule', {
-      periodInMinutes: 60 * 24,
-    });
-    scheduleUpdate();
-  } else {
-    con.log(a);
-  }
-});
-
 chrome.alarms.get('updateCheck', async function(a) {
   if (typeof a === 'undefined') {
     const updateCheckTime = await api.storage.get('updateCheckTime');
@@ -252,17 +256,9 @@ chrome.alarms.get('updateCheck', async function(a) {
   }
 });
 
-chrome.alarms.onAlarm.addListener(function(alarm) {
-  if (typeof alarm.periodInMinutes !== 'undefined') {
-    api.storage.set(alarm.name, Date.now() + alarm.periodInMinutes * 1000 * 60);
-  }
-  if (alarm.name === 'schedule') {
-    scheduleUpdate();
-  }
-});
-
 checkInit();
 listSyncInit();
+initProgressScheduler();
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(info) {

@@ -1,5 +1,6 @@
 {
   "title": "MangaKisa",
+  "enabled": false,
   "url": "https://mangakisa.com/",
   "testCases": [
     {

@@ -57,16 +57,12 @@ export class myanimelistClass {
     switch (this.page) {
       case 'detail':
         this.thumbnails();
-        this.setEpPrediction();
         this.streamingUI();
         this.malToKiss();
         this.siteSearch();
         this.related();
         this.friendScore();
         this.relatedTag();
-        setInterval(() => {
-          this.setEpPrediction();
-        }, 1000 * 60);
         break;
       case 'bookmarks':
         $(document).ready(() => {
@@ -189,17 +185,18 @@ export class myanimelistClass {
     }
   }
 
-  setEpPrediction() {
-    con.log('setEpPrediction');
-    utils.epPredictionUI(this.id, this.id, String(this.type), function(prediction) {
-      if (!prediction) return;
-      con.log(prediction);
+  setEpPrediction(progress) {
+    if (progress && progress.isAiring() && progress.getCurrentEpisode()) {
       $('.mal-sync-pre-remove, .mal-sync-ep-pre').remove();
       $('#addtolist')
         .prev()
-        .before(j.html(`<div class="mal-sync-pre-remove">${prediction.text}</div>`));
-      $('[id="curEps"], [id="totalChaps"]').before(j.html(`${prediction.tag} `));
-    });
+        .before(j.html(`<div class="mal-sync-pre-remove">${progress.getAutoText()}</div>`));
+      $('[id="curEps"], [id="totalChaps"]').before(
+        j.html(
+          `<span class="mal-sync-ep-pre" title="${progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${progress.getColor()};">${progress.getCurrentEpisode()}</span>]</span> `,
+        ),
+      );
+    }
   }
 
   async malToKiss() {
@@ -346,6 +343,14 @@ export class myanimelistClass {
         }
       });
     }
+
+    await malObj.initProgress();
+
+    this.setEpPrediction(malObj.getProgress());
+
+    setInterval(() => {
+      this.setEpPrediction(malObj.getProgress());
+    }, 1000 * 60);
   }
 
   bookmarks() {
@@ -478,17 +483,19 @@ export class myanimelistClass {
       This.bookmarksHDimages();
       $.each(data, async function(index, el) {
         const malUrl = el.url.replace('https://myanimelist.net', '');
-        con.log(malUrl);
-        const id = el.malId;
         const { type } = el;
 
         streamUI(type, malUrl, el.tags, parseInt(el.watchedEp), el.cacheKey);
 
-        utils.epPredictionUI(id, el.cacheKey, type, function(prediction) {
-          if (!prediction) return;
+        await el.fn.initProgress();
+
+        if (el.fn.progress && el.fn.progress.isAiring() && el.fn.progress.getCurrentEpisode()) {
           const element = book.getElement(malUrl);
-          book.predictionPos(element, prediction.tag);
-        });
+          book.predictionPos(
+            element,
+            `<span class="mal-sync-ep-pre" title="${el.fn.progress.getAutoText()}">[<span style="border-bottom: 1px dotted ${el.fn.progress.getColor()};">${el.fn.progress.getCurrentEpisode()}</span>]</span>`,
+          );
+        }
       });
       book.cleanTags();
     });

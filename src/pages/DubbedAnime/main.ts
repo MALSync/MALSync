@@ -43,7 +43,7 @@ export const DubbedAnime: pageInterface = {
     nextEpUrl(url) {
       return utils.absoluteLink(
         j
-          .$('body > div.container > div > div > div > div > a:contains("Next")')
+          .$('body > div.container > div > div > a:contains("Next")')
           .first()
           .attr('href'),
         DubbedAnime.domain,

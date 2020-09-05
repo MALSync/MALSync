@@ -1,0 +1,31 @@
+{
+  "title": "ManhuaPlus",
+  "url": "https://manhuaplus.com/",
+  "testCases": [
+    {
+      "url": "https://manhuaplus.com/manga/peerless-battle-spirit/chapter-102/",
+      "expected": {
+        "sync": true,
+        "title": "Peerless Battle Spirit",
+        "identifier": "peerless-battle-spirit",
+        "overviewUrl": "https://manhuaplus.com/manga/peerless-battle-spirit/",
+        "nextEpUrl": "https://manhuaplus.com/manga/peerless-battle-spirit/chapter-103/",
+        "episode": 102,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manhuaplus.com/manga/peerless-battle-spirit/",
+      "expected": {
+        "sync": false,
+        "title": "Peerless Battle Spirit",
+        "identifier": "peerless-battle-spirit",
+        "uiSelector": true,
+        "epList": {
+          "78": "https://manhuaplus.com/manga/peerless-battle-spirit/chapter-78/",
+          "178": "https://manhuaplus.com/manga/peerless-battle-spirit/chapter-178/"
+        }
+      }
+    }
+  ]
+}

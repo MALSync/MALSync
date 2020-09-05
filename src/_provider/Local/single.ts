@@ -123,6 +123,7 @@ export class Single extends SingleAbstract {
       this.animeInfo = {
         name: this.title,
         tags: '',
+        sUrl: '',
         progress: 0,
         volumeprogress: 0,
         score: 0,
@@ -137,5 +138,16 @@ export class Single extends SingleAbstract {
 
   delete() {
     return api.storage.remove(this.key);
+  }
+
+  // Overload
+  setStreamingUrl(streamingUrl: string): SingleAbstract {
+    if (this.animeInfo && streamingUrl) this.animeInfo.sUrl = streamingUrl;
+    return super.setStreamingUrl(streamingUrl);
+  }
+
+  getStreamingUrl(): string | undefined {
+    if(this.animeInfo && this.animeInfo.sUrl) return this.animeInfo.sUrl;
+    return super.getStreamingUrl();
   }
 }

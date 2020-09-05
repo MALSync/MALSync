@@ -1,0 +1,31 @@
+{
+  "title": "ZeroScans",
+  "url": "https://zeroscans.com/",
+  "testCases": [
+    {
+      "url": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/151",
+      "expected": {
+        "sync": true,
+        "title": "Hero? I Quit A Long Time Ago",
+        "identifier": "636122-hero-i-quit-a-long-time-ago",
+        "overviewUrl": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago",
+        "nextEpUrl": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/152",
+        "episode": 151,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago",
+      "expected": {
+        "sync": false,
+        "title": "Hero? I Quit A Long Time Ago",
+        "identifier": "636122-hero-i-quit-a-long-time-ago",
+        "uiSelector": true,
+        "epList": {
+          "58": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/58",
+          "180": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/180"
+        }
+      }
+    }
+  ]
+}

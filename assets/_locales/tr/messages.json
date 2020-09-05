@@ -373,7 +373,7 @@
       }
     }
   },
-  "prediction_Episode": {
+  "prediction_Episode_anime": {
     "message": "Tahmini yeni bölüm $time$'da",
     "description": "Text for next episode estimation",
     "placeholders": {

@@ -1,5 +1,3 @@
-import { Kissanime } from './Kissanime/main';
-import { Kissmanga } from './Kissmanga/main';
 import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
@@ -43,7 +41,6 @@ import { tmofans } from './tmofans/main';
 import { unionmangas } from './unionmangas/main';
 import { MangaPlus } from './MangaPlus/main';
 import { JapScan } from './JapScan/main';
-import { MangaKisa } from './MangaKisa/main';
 import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
@@ -84,10 +81,26 @@ import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
+import { EdelgardeScans } from './EdelgardeScans/main';
+import { HatigarmScanz } from './HatigarmScanz/main';
+import { KKJScans } from './KKJScans/main';
+import { KrakenScans } from './KrakenScans/main';
+import { LeviatanScans } from './LeviatanScans/main';
+import { MethodScans } from './MethodScans/main';
+import { NonamesScans } from './NonamesScans/main';
+import { ReaperScans } from './ReaperScans/main';
+import { SecretScans } from './SecretScans/main';
+import { SKScans } from './SKScans/main';
+import { ZeroScans } from './ZeroScans/main';
+import { DeathTollScans } from './DeathTollScans/main';
+import { HelveticaScans } from './HelveticaScans/main';
+import { KireiCake } from './KireiCake/main';
+import { SenseScans } from './SenseScans/main';
+import { ManhuaPlus } from './ManhuaPlus/main';
+import { Readm } from './Readm/main';
+import { tioanime } from './tioanime/main';
 
 export const pages = {
-  Kissanime,
-  Kissmanga,
   nineAnime,
   Crunchyroll,
   Vrv,
@@ -131,7 +144,6 @@ export const pages = {
   unionmangas,
   MangaPlus,
   JapScan,
-  MangaKisa,
   Goyabu,
   AnimesVision,
   Hulu,
@@ -172,4 +184,22 @@ export const pages = {
   Animevibe,
   WuxiaWorld,
   AnimeOnDemand,
+  EdelgardeScans,
+  HatigarmScanz,
+  KKJScans,
+  KrakenScans,
+  LeviatanScans,
+  MethodScans,
+  NonamesScans,
+  ReaperScans,
+  SecretScans,
+  SKScans,
+  ZeroScans,
+  DeathTollScans,
+  HelveticaScans,
+  KireiCake,
+  SenseScans,
+  ManhuaPlus,
+  Readm,
+  tioanime,
 };

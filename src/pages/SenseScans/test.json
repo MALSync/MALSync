@@ -1,0 +1,31 @@
+{
+  "title": "SenseScans",
+  "url": "https://sensescans.com/",
+  "testCases": [
+    {
+      "url": "https://sensescans.com/reader/read/adventure_of_sinbad/en/6/42/",
+      "expected": {
+        "sync": true,
+        "title": "Adventure of Sinbad",
+        "identifier": "adventure_of_sinbad",
+        "overviewUrl": "https://sensescans.com/reader/series/adventure_of_sinbad/",
+        "nextEpUrl": "https://sensescans.com/reader/read/adventure_of_sinbad/en/6/43/",
+        "episode": 42,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sensescans.com/reader/series/adventure_of_sinbad/",
+      "expected": {
+        "sync": false,
+        "title": "Adventure of Sinbad",
+        "identifier": "adventure_of_sinbad",
+        "uiSelector": true,
+        "epList": {
+          "18": "https://sensescans.com/reader/read/adventure_of_sinbad/en/3/18/",
+          "131": "https://sensescans.com/reader/read/adventure_of_sinbad/en/13/131/"
+        }
+      }
+    }
+  ]
+}

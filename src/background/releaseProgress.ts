@@ -1,3 +1,4 @@
+import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
 
 export interface releaseItemInterface {
@@ -7,9 +8,70 @@ export interface releaseItemInterface {
   mode: string;
 }
 
+export function initProgressScheduler() {
+  chrome.alarms.get('progressSync', async a => {
+    const progressInterval = await api.settings.getAsync('progressInterval');
+    const progressSyncLast = await api.storage.get('progressSyncLast');
+    if (!progressInterval) {
+      con.log('progressSync disabled', progressInterval);
+      if (a) chrome.alarms.clear('progressSync');
+      return;
+    }
+
+    if (typeof a !== 'undefined' && Date.now() - progressSyncLast < progressInterval * 60 * 1000) {
+      con.log('progressSync already set and on time', progressSyncLast, a);
+      return;
+    }
+
+    if (a) chrome.alarms.clear('progressSync');
+
+    con.log('Create progressSync Alarm', progressInterval, progressSyncLast);
+    chrome.alarms.create('progressSync', {
+      periodInMinutes: parseInt(progressInterval),
+      when: Date.now() + 1000,
+    });
+  });
+
+  chrome.alarms.onAlarm.addListener(alarm => {
+    if (alarm.name === 'progressSync') {
+      api.storage.set('progressSyncLast', Date.now());
+      api.settings.init().then(async () => {
+        console.groupCollapsed('Progress');
+        await main();
+        console.groupEnd();
+      });
+    }
+  });
+}
+
+export async function initUserProgressScheduler() {
+  setTimeout(async () => {
+    const progressInterval = await api.settings.getAsync('progressInterval');
+    const progressSyncLast = await api.storage.get('progressSyncLast');
+    if (Date.now() - progressSyncLast < progressInterval * 60 * 1000) {
+      con.log('Progress on time');
+      return;
+    }
+    if (await main()) {
+      api.storage.set('progressSyncLast', Date.now());
+    }
+  }, 30 * 1000);
+}
+
 export async function main() {
-  await listUpdate(1, 'anime');
-  await listUpdate(1, 'manga');
+  try {
+    setBadgeText('⌛');
+    await api.settings.init();
+    await listUpdate(1, 'anime');
+    await listUpdate(1, 'manga');
+    con.log('Progress done');
+    setBadgeText('');
+    return true;
+  } catch (e) {
+    con.log('Progress Failed', e);
+  }
+  setBadgeText('');
+  return false;
 }
 
 export async function listUpdate(state, type) {
@@ -21,7 +83,9 @@ export async function listUpdate(state, type) {
     .then(async list => {
       for (let i = 0; i < list.length; i++) {
         try {
-          await single(list[i], type, 'default', logger);
+          if (list[i].options) {
+            await single(list[i], type, list[i].options!.p, logger);
+          }
         } catch (e) {
           logger.error(e);
         }
@@ -44,8 +108,9 @@ export async function single(
   mode = 'default',
   logger = con.m('release'),
 ) {
+  if (!mode) mode = 'default';
   logger = logger.m(el.uid.toString());
-  logger.log(el.title, el.cacheKey, el.malId);
+  logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
   if (!el.malId) {
     logger.log('No MAL Id');
     return;
@@ -67,7 +132,7 @@ export async function single(
     releaseItem &&
     releaseItem.finished &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 1000 &&
+    Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000 &&
     !force
   ) {
     logger.log('Fininshed');
@@ -78,7 +143,7 @@ export async function single(
     releaseItem &&
     !releaseItem.value &&
     releaseItem.timestamp &&
-    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 1000 &&
+    Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000 &&
     !force
   ) {
     logger.log('Nulled');
@@ -86,6 +151,11 @@ export async function single(
   }
 
   if (force) logger.log('Update forced');
+
+  if (mode === 'off') {
+    logger.log('Disabled');
+    el.xhr = [];
+  }
 
   let xhr;
   if (typeof el.xhr !== 'undefined') {
@@ -96,7 +166,7 @@ export async function single(
   }
   logger.log(xhr);
 
-  const progressValue = getProgress(xhr, mode);
+  const progressValue = getProgress(xhr, mode, type);
 
   if (!progressValue) {
     logger.log('No value for the selected mode');
@@ -116,24 +186,60 @@ export async function single(
   } as releaseItemInterface);
 }
 
-export function getProgress(res, mode) {
+export function progressIsOld(releaseItem: releaseItemInterface) {
+  if (releaseItem && releaseItem.timestamp) {
+    const diff = new Date().getTime() - releaseItem.timestamp;
+
+    if (releaseItem.finished && diff < 7 * 24 * 60 * 60 * 1000) {
+      // logger.log('Fininshed');
+      return false;
+    }
+
+    if (!releaseItem.value && diff < 1 * 24 * 60 * 60 * 1000) {
+      // logger.log('Nulled');
+      return false;
+    }
+
+    if (diff < 1 * 24 * 60 * 60 * 1000) {
+      // logger.log('not old');
+      return false;
+    }
+  }
+
+  return true;
+}
+
+export function getProgress(res, mode, type) {
   const config: {
-    mainId?: string,
-    fallbackPrediction?: string,
-    fallback?: string,
+    mainId?: string;
+    fallbackPrediction?: string;
+    fallback?: string;
   } = {};
 
   if (!res.length) return null;
 
   if (mode === 'default') {
-    config.mainId = 'en/sub';
-    config.fallbackPrediction = 'jp/dub';
+    if (type === 'anime') {
+      config.mainId = api.settings.get('progressIntervalDefaultAnime');
+    } else {
+      config.mainId = api.settings.get('progressIntervalDefaultManga');
+    }
+    config.fallback = 'en/sub';
+  } else {
+    config.mainId = mode;
   }
+
+  config.fallbackPrediction = 'jp/dub';
 
   let top;
 
   if (config.mainId) {
     const mainTemp = res.find(el => el.id === config.mainId);
+    if (mainTemp) top = mainTemp;
+  }
+
+  if (config.fallback && !top) {
+    const mainTemp = res.find(el => el.id === config.fallback);
     if (mainTemp) top = mainTemp;
   }
 
@@ -148,4 +254,32 @@ export function getProgress(res, mode) {
   if (!top) return null;
 
   return top;
+}
+
+export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ key: string; label: string }[]> {
+  const cacheObj = new Cache(`ProgressTypeList${type}`, 24 * 60 * 60 * 1000, false);
+  if (!(await cacheObj.hasValueAndIsNotEmpty())) {
+    con.log('Getting new ProgressTypeList Cache');
+    const url = `https://api.malsync.moe/general/progress/${type}`;
+    const request = await api.request.xhr('GET', url).then(async response => {
+      if (response.status === 200 && response.responseText) {
+        return JSON.parse(response.responseText);
+      }
+      return [];
+    });
+    await cacheObj.setValue(request);
+    return request;
+  }
+  con.log('PageSearch Cached');
+  return cacheObj.getValue();
+}
+
+function setBadgeText(text: string) {
+  // @ts-ignore
+  if (api.type === 'userscript') return;
+  try {
+    chrome.browserAction.setBadgeText({ text });
+  } catch (e) {
+    con.error(e);
+  }
 }

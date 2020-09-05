@@ -373,7 +373,7 @@
       }
     }
   },
-  "prediction_Episode": {
+  "prediction_Episode_anime": {
     "message": "Nächste Episode erwartet in $time$",
     "description": "Text for next episode estimation",
     "placeholders": {

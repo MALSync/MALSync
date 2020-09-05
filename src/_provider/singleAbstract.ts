@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
 import { Progress } from '../utils/progress';
-import { predictionXhr } from '../background/releaseProgress';
+import { getProgressTypeList, predictionXhr } from '../background/releaseProgress';
 
 export abstract class SingleAbstract {
   constructor(protected url: string) {
@@ -40,6 +40,7 @@ export abstract class SingleAbstract {
     u: string;
     c: any;
     r: any;
+    p: any;
   } | null = null;
 
   protected abstract handleUrl(url: string);
@@ -141,18 +142,22 @@ export abstract class SingleAbstract {
     this.options = null;
   }
 
-  protected progress;
+  protected progress: boolean | Progress = false;
 
   protected progressXhr;
 
+  protected prList: { key: string; label: string }[] = [];
+
   public async initProgress(){
     const xhr = await predictionXhr(this.getType()!, this.getMalId());
+    this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
         malId: this.getMalId(),
         title: this.getTitle(),
         cacheKey: this.getCacheKey(),
+        progressMode: this.getProgressMode(),
         xhr,
       })
       .then(progress => {
@@ -168,18 +173,41 @@ export abstract class SingleAbstract {
 
   public getProgressOptions() {
     const op: { value: string; key: string }[] = [];
-    this.progressXhr.forEach(el => {
-      if (el.state === 'complete') return;
-      let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
-      if (el.title) val = el.title;
-      if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
-      if (el.state === 'dropped') val += ` Incomplete`;
-      op.push({
-        key: el.id,
-        value: val,
+    if (this.progressXhr) {
+      this.progressXhr.forEach(el => {
+        if (el.state === 'complete') return;
+        let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
+        if (this.prList && this.prList.length) {
+          const tTemp = this.prList.find(p => p.key === el.id);
+          if (tTemp) val = tTemp.label;
+        }
+        if (el.title) val = el.title;
+        if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
+        if (el.state === 'dropped') val += ` Incomplete`;
+        op.push({
+          key: el.id,
+          value: val,
+        });
       });
-    });
+    }
     return op;
+  }
+
+  private updateProgress = false;
+
+  public getProgressMode(): string {
+    if (this.options && this.options.p) {
+      return this.options.p;
+    }
+
+    return '';
+  }
+
+  public setProgressMode(mode: string): void {
+    if (this.options) {
+      this.options.p = mode;
+      this.updateProgress = true;
+    }
   }
 
   abstract _update(): Promise<void>;
@@ -215,6 +243,7 @@ export abstract class SingleAbstract {
       })
       .then(() => {
         this.undoState = this.persistanceState;
+        if (this.updateProgress) this.initProgress();
       });
   }
 

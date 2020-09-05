@@ -339,7 +339,7 @@
     "message": "mins",
     "description": "mins"
   },
-  "prediction_Episode": {
+  "prediction_Episode_anime": {
     "message": "Prochain épisode estimé dans $time$",
     "description": "Text for next episode estimation",
     "placeholders": {

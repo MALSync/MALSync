@@ -1,6 +1,6 @@
 {
   "title": "Kissanime",
-  "enabled": true,
+  "enabled": false,
   "url": "https://kissanime.ru/",
   "unreliable": true,
   "testCases": [
