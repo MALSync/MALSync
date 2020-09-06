@@ -5,6 +5,7 @@ let jsonData;
 export const AnimeSimple: pageInterface = {
   name: 'AnimeSimple',
   domain: 'https://ww1.animesimple.com',
+  database: 'AnimeSimple',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
