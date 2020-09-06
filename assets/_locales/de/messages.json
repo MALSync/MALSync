@@ -379,7 +379,37 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_anime": {
+    "message": "Letzte Episode vor $time$ veröffentlicht",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Episode_manga": {
+    "message": "Nächstes Kapitel erwartet in $time$",
+    "description": "Text for next chapter estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_manga": {
+    "message": "Letzte Kapitel vor $time$ veröffentlicht",
+    "description": "Text for last chapter release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -389,7 +419,7 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -633,6 +663,10 @@
     "message": "Minimiere große Popups",
     "description": "Shows an 'action required' popup hidding big popups"
   },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "Der miniMAL button öffnet die Korrekturoberfläche",
+    "description": "Remap floating button to the correction UI"
+  },
   "settings_miniMAL_floatButtonHide": {
     "message": "Verstecke den miniMAL Menü Button",
     "description": "Hide miniMAL floating menu button"
@@ -743,6 +777,18 @@
     "message": "Aus",
     "description": "Interval - Off"
   },
+  "settings_Interval_Default_Anime": {
+    "message": "Default Anime",
+    "description": "Dropdown label for selecting the global progress anime source"
+  },
+  "settings_Interval_Default_Manga": {
+    "message": "Default Manga",
+    "description": "Dropdown label for selecting the global progress manga source"
+  },
+  "settings_ProgressCheck": {
+    "message": "Fortschrittschätzung",
+    "description": "Header for the progress section in the settings"
+  },
   "settings_Notifications": {
     "message": "Benachrichtigungen",
     "description": "Notifications"
@@ -790,6 +836,18 @@
   "settings_shortcut_tooltip": {
     "message": "Es wird nicht empfohlen, die Verknüpfung auf eine einzelne Taste festzulegen",
     "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "settings_progress_dropdown": {
+    "message": "Fortschrittschätzung:",
+    "description": "Text over the dropdown to select the Episode estimation/prediction source"
+  },
+  "settings_progress_disabled": {
+    "message": "Deaktiviert",
+    "description": "Dropdown option to disable the estimation for an anime/manga"
+  },
+  "settings_progress_default": {
+    "message": "Default",
+    "description": "Dropdown option to use the default in the estimation for an anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Refresh",
