@@ -171,12 +171,19 @@ export function syncItem(slave, pageType) {
       throw 'No sync type';
     }
 
-    return singleClass.update().then(() => {
-      if (typeof slave.diff.watchedEp !== 'undefined') singleClass.setEpisode(slave.diff.watchedEp);
-      if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
-      if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
-      return singleClass.sync();
-    });
+    return singleClass
+      .update()
+      .then(() => {
+        if (typeof slave.diff.watchedEp !== 'undefined') singleClass.setEpisode(slave.diff.watchedEp);
+        if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
+        if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
+        return singleClass.sync();
+      })
+      .then(() => {
+        return new Promise(resolve => setTimeout(resolve, 3000));
+      }).catch(e => {
+        return new Promise((resolve, reject) => setTimeout(() => reject(e), 3000));
+      });
   }
 }
 
