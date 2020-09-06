@@ -268,6 +268,9 @@ export class Single extends SingleAbstract {
       typeof data.split('<form name="')[1] === 'undefined' &&
       (this.url.indexOf('/manga/') !== -1 || this.url.indexOf('/anime/') !== -1)
     ) {
+      if (data.indexOf('you are not a bot') > -1) {
+        throw this.errorObj(errorCode.GenericError, `Access restricted. Please open myanimelist.net`);
+      }
       throw this.errorObj(errorCode.ServerOffline, 'MAL is down or otherwise giving bad data');
     }
 
