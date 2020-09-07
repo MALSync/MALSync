@@ -60,6 +60,7 @@ module.exports = {
       '*://*.animeproxy.info/*',
       '*://*.feurl.com/*',
       '*://*.embedsito.com/v/*',
+      '*://*.fcdn.stream/v/*',
     ],
   },
   youpload: {
@@ -267,5 +268,13 @@ module.exports = {
   // animixplay
   animixplay: {
     match: ['*://*.animixplay.to/api/live*'],
+  },
+  // animekisa
+  animekisa: {
+    match: ['*://third-party.animekisa.tv/player-*.php?*'],
+  },
+  // animekisa
+  cloud9: {
+    match: ['*://cloud9.to/e*/*'],
   },
 };
