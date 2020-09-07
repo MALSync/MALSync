@@ -27,7 +27,8 @@ export const AnimeOnDemand: pageInterface = {
     getEpisode(url) {
       const episodeTitle = j.$('#player_container div.jw-title > div.jw-title-primary').text();
       if (episodeTitle.length) {
-        if (episodePartToEpisode(episodeTitle) !== 'undefined') return Number(episodePartToEpisode(episodeTitle));
+        if (typeof episodePartToEpisode(episodeTitle) !== 'undefined')
+          return Number(episodePartToEpisode(episodeTitle));
         return 1;
       }
       return NaN;
@@ -51,7 +52,7 @@ export const AnimeOnDemand: pageInterface = {
 };
 
 function episodePartToEpisode(string) {
-  if (!string) return 'undefined';
+  if (!string) return undefined;
   let temp = [];
   temp = string.match(/(ep\.|episode)\D?\d+/i);
   if (temp !== null) {
@@ -61,5 +62,5 @@ function episodePartToEpisode(string) {
       return temp[0];
     }
   }
-  return 'undefined';
+  return undefined;
 }
