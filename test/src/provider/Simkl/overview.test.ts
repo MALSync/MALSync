@@ -67,6 +67,7 @@ function setGlobals() {
   };
 }
 
+if (!process.env.ANILIST_API_KEY) return;
 
 describe('Simkl overview', function() {
   before(function() {

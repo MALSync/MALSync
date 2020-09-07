@@ -129,6 +129,8 @@ function setGlobals() {
   };
 }
 
+if(!process.env.ANILIST_API_KEY) return;
+
 describe('AniList single', function() {
   before(function() {
     setGlobals();

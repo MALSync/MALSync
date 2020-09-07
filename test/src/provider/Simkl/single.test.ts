@@ -135,6 +135,8 @@ function setGlobals() {
   };
 }
 
+if (!process.env.ANILIST_API_KEY) return;
+
 describe('Simkl single', function() {
   before(function() {
     setGlobals();

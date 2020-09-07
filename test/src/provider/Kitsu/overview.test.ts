@@ -64,6 +64,7 @@ function setGlobals() {
   };
 }
 
+if (!process.env.ANILIST_API_KEY) return;
 
 describe('Kitsu overview', function() {
   before(function() {

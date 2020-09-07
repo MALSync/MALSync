@@ -40,6 +40,7 @@ function setGlobals() {
     };
 }
 
+if (!process.env.ANILIST_API_KEY) return;
 
 describe('AniList overview', function() {
   before(function() {
