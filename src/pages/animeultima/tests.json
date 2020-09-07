@@ -4,22 +4,22 @@
   "unreliable": true, // Changing identifier
   "testCases": [
     {
-      "url": "https://www11.animeultima.eu/a/no-game-no-life_797937/episode-4_521521-sub",
+      "url": "https://www11.animeultima.eu/a/no-game-no-life_809403/episode-4_521521-sub",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
-        "identifier": "no-game-no-life_187175",
-        "overviewUrl": "https://www10.animeultima.eu/a/no-game-no-life_797937",
+        "identifier": "no-game-no-life_809403",
+        "overviewUrl": "https://www10.animeultima.eu/a/no-game-no-life_809403",
         "episode": 4,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www10.animeultima.eu/a/no-game-no-life_797937",
+      "url": "https://www10.animeultima.eu/a/no-game-no-life_809403",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
-        "identifier": "no-game-no-life_187175",
+        "identifier": "no-game-no-life_809403",
         "uiSelector": true
       }
     }
