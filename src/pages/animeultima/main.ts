@@ -60,6 +60,15 @@ export const animeultima: pageInterface = {
         .first()
         .after(j.html(selector));
     },
+    getMalUrl(provider) {
+      const url = j
+        .$('a[href^="https://myanimelist.net/anime/"]')
+        .not('#malRating')
+        .first()
+        .attr('href');
+      if (url) return url;
+      return false;
+    },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
