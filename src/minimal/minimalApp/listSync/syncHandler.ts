@@ -181,7 +181,8 @@ export function syncItem(slave, pageType) {
       })
       .then(() => {
         return new Promise(resolve => setTimeout(resolve, 3000));
-      }).catch(e => {
+      })
+      .catch(e => {
         return new Promise((resolve, reject) => setTimeout(() => reject(e), 3000));
       });
   }
