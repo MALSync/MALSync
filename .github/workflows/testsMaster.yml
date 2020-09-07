@@ -1,4 +1,4 @@
-name: Tests
+name: Tests Master
 on:
   push:
     branches:
@@ -14,9 +14,6 @@ jobs:
     - name: install
       run: |
         npm ci
-    - name: Lint
-      run: |
-        npm run lint:ci
     - name: Tests
       run: |
         npm run test:ts:ci

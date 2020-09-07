@@ -1,8 +1,5 @@
 name: Tests
-on:
-  push:
-    branches-ignore:
-      - master
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,3 +14,10 @@ jobs:
     - name: Lint
       run: |
         npm run lint:ci
+    - name: Tests
+      run: |
+        npm run test:ts:ci
+      env:
+        ANILIST_API_KEY: ${{ secrets.ANILIST_API_KEY }}
+        KITSU_API_KEY: ${{ secrets.KITSU_API_KEY }}
+        SIMKL_API_KEY: ${{ secrets.SIMKL_API_KEY }}
