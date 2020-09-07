@@ -3,14 +3,14 @@
   "url": "https://scantrad.net/",
   "testCases": [
     {
-      "url": "https://scantrad.net/mangas/one-punch-man/129",
+      "url": "https://scantrad.net/mangas/one-punch-man/132",
       "expected": {
         "sync": true,
         "title": "One Punch-Man",
         "identifier": "one-punch-man",
         "overviewUrl": "https://scantrad.net/one-punch-man",
-        "nextEpUrl": "https://scantrad.net/mangas/one-punch-man/130",
-        "episode": 129,
+        "nextEpUrl": "https://scantrad.net/mangas/one-punch-man/133",
+        "episode": 132,
         "uiSelector": false
       }
     },
