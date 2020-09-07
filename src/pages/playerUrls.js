@@ -264,4 +264,8 @@ module.exports = {
   animevibe: {
     match: ['*://*.animevibe.tv/players/*.php*'],
   },
+  // animixplay
+  animixplay: {
+    match: ['*://*.animixplay.to/api/live*'],
+  },
 };
