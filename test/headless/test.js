@@ -348,6 +348,7 @@ async function main() {
   }
 
   await closeBrowser();
-  if (buildFailed) process.exit(1);
+  if (buildFailed) console.error('BUILD FAILED')
+  //if (buildFailed) process.exit(1);
   process.exit();
 }
