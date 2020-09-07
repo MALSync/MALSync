@@ -61,6 +61,7 @@ module.exports = {
       '*://*.feurl.com/*',
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
+      '*://*.vaplayer.xyz/v/*',
     ],
   },
   youpload: {
