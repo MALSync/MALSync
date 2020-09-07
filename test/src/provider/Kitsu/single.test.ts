@@ -148,7 +148,7 @@ function setGlobals() {
   };
 }
 
-if (!process.env.ANILIST_API_KEY) return;
+if (process.env.NO_API) return;
 
 describe('Kitsu single', function() {
   before(function() {
