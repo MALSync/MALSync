@@ -76,6 +76,8 @@ describe('Titel Similarity', function() {
 });
 
 describe('Firebase', function() {
+  // Not in use anymore
+  return;
   before(function() {
     global.con = require('../../../src/utils/console');
     global.con.log = function() {};
@@ -219,6 +221,7 @@ describe('Mal Search', function() {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
+                status: response.statusCode,
               });
             });
           });
@@ -288,6 +291,7 @@ describe('Page Search', function() {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
+                status: response.statusCode,
               });
             });
           });
@@ -385,6 +389,7 @@ describe('Full Search', function() {
             request(conf, (error, response, body) => {
               resolve({
                 responseText: body,
+                status: response.statusCode,
               });
             });
           });
@@ -400,6 +405,8 @@ describe('Full Search', function() {
   });
 
   it('Firebase', async function() {
+    // TODO: Readd when new novel page is supported
+    return;
     this.timeout(10000);
     const searchObj = new searchClass(
       'No Game No Life',
@@ -422,7 +429,7 @@ describe('Full Search', function() {
       'Something-that-does-not-exist',
     );
     searchObj.setPage({
-      database: 'Kissanime',
+      database: 'Twistmoe',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();
@@ -432,12 +439,12 @@ describe('Full Search', function() {
   it('Not Found', async function() {
     this.timeout(10000);
     const searchObj = new searchClass(
-      'Avatar: The Last Airbender Season 1',
+      'Avatar: The Last Airbender',
       'anime',
-      'Avatar-The-Last-Airbender-Season-1',
+      'k1n4',
     );
     searchObj.setPage({
-      database: 'Kissanime',
+      database: '9anime',
       type: 'anime',
     });
     const result = await searchObj.searchForIt();

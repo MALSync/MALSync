@@ -191,8 +191,7 @@ export class searchClass {
     try {
       result = searchCompare(result, await this.malSync());
     } catch (e) {
-      if (this.page && this.page.database) this.logger.error('MALSync api down', e);
-      result = searchCompare(result, await this.firebase());
+      if (this.page && this.page.database) this.logger.error('MALSync api error or not supported', e);
     }
 
     if ((result && result.provider !== 'firebase') || !result) {
@@ -284,8 +283,6 @@ export class searchClass {
     if (response.status === 400 && response.responseText?.includes('error')) return false;
 
     const res = JSON.parse(response.responseText);
-
-    if (!res.malUrl) return false;
 
     return {
       url: res.malUrl,
