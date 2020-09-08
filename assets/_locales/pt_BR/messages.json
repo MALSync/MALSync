@@ -790,7 +790,7 @@
     "description": "Dropdown label for selecting the global progress manga source"
   },
   "settings_ProgressCheck": {
-    "message": "Verificar  progresso",
+    "message": "Verificar progresso",
     "description": "Header for the progress section in the settings"
   },
   "settings_Notifications": {
@@ -842,7 +842,7 @@
     "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "settings_progress_dropdown": {
-    "message": "Estimativa  da fonte",
+    "message": "Estimativa da fonte",
     "description": "Text over the dropdown to select the Episode estimation/prediction source"
   },
   "settings_progress_disabled": {
