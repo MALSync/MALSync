@@ -383,16 +383,36 @@
       }
     }
   },
-  "prediction_Last":{
-  "message": "Último episódio lançou há $time$",
-  "description": "Text for last episode release time",
-  "placeholders": {
-    "time": {
-      "content": "$1",
-      "example": "2 days 1 hour"
+  "prediction_Last_anime": {
+    "message": "Último episódio lançado $time$ atrás",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
     }
-  }
-},
+  },
+  "prediction_Episode_manga": {
+    "message": "Próximo capítulo estimado em $time$",
+    "description": "Text for next chapter estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_manga": {
+    "message": "Último capítulo lançado $time$ atrás",
+    "description": "Text for last chapter release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
   "prediction_Airing": {
     "message": "Estreia em $time$",
     "description": "Text for airing estimation",
@@ -761,6 +781,18 @@
     "message": "Desligado",
     "description": "Interval - Off"
   },
+  "settings_Interval_Default_Anime": {
+    "message": "Padrão Anime",
+    "description": "Dropdown label for selecting the global progress anime source"
+  },
+  "settings_Interval_Default_Manga": {
+    "message": "Padrão Mangá",
+    "description": "Dropdown label for selecting the global progress manga source"
+  },
+  "settings_ProgressCheck": {
+    "message": "Verificar progresso",
+    "description": "Header for the progress section in the settings"
+  },
   "settings_Notifications": {
     "message": "Notificações",
     "description": "Notifications"
@@ -808,6 +840,18 @@
   "settings_shortcut_tooltip": {
     "message": "Não é recomendável definir o atalho para uma única tecla",
     "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "settings_progress_dropdown": {
+    "message": "Estimativa da fonte",
+    "description": "Text over the dropdown to select the Episode estimation/prediction source"
+  },
+  "settings_progress_disabled": {
+    "message": "Desativado",
+    "description": "Dropdown option to disable the estimation for an anime/manga"
+  },
+  "settings_progress_default": {
+    "message": "Padrão",
+    "description": "Dropdown option to use the default in the estimation for an anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Atualizar",
