@@ -1,15 +1,5 @@
 [
   {
-    "domain": "https://kissanime.ru",
-    "type": "anime",
-    "name": "kissanime"
-  },
-  {
-    "domain": "https://kissmanga.com",
-    "type": "manga",
-    "name": "kissmanga"
-  },
-  {
     "domain": "https://9anime.to",
     "type": "anime",
     "name": "9anime"
@@ -225,11 +215,6 @@
     "name": "JapScan"
   },
   {
-    "domain": "https://mangakisa.com",
-    "type": "manga",
-    "name": "MangaKisa"
-  },
-  {
     "domain": "https://goyabu.com",
     "type": "anime",
     "name": "Goyabu"
@@ -418,5 +403,105 @@
     "domain": "https://animevibe.tv",
     "type": "anime",
     "name": "Animevibe"
+  },
+  {
+    "domain": "https://wuxiaworld.site",
+    "type": "manga",
+    "name": "WuxiaWorld"
+  },
+  {
+    "domain": "https://www.anime-on-demand.de",
+    "type": "anime",
+    "name": "AnimeOnDemand"
+  },
+  {
+    "domain": "https://edelgardescans.com",
+    "type": "manga",
+    "name": "EdelgardeScans"
+  },
+  {
+    "domain": "https://hatigarmscanz.net",
+    "type": "manga",
+    "name": "HatigarmScanz"
+  },
+  {
+    "domain": "https://kkjscans.co",
+    "type": "manga",
+    "name": "KKJScans"
+  },
+  {
+    "domain": "https://krakenscans.com",
+    "type": "manga",
+    "name": "KrakenScans"
+  },
+  {
+    "domain": "https://leviatanscans.com",
+    "type": "manga",
+    "name": "LeviatanScans"
+  },
+  {
+    "domain": "https://methodscans.com",
+    "type": "manga",
+    "name": "MethodScans"
+  },
+  {
+    "domain": "https://the-nonames.com",
+    "type": "manga",
+    "name": "NonamesScans"
+  },
+  {
+    "domain": "https://reaperscans.com",
+    "type": "manga",
+    "name": "ReaperScans"
+  },
+  {
+    "domain": "https://secretscans.co",
+    "type": "manga",
+    "name": "SecretScans"
+  },
+  {
+    "domain": "https://skscans.com",
+    "type": "manga",
+    "name": "SKScans"
+  },
+  {
+    "domain": "https://zeroscans.com",
+    "type": "manga",
+    "name": "ZeroScans"
+  },
+  {
+    "domain": "https://reader.deathtollscans.net",
+    "type": "manga",
+    "name": "DeathTollScans"
+  },
+  {
+    "domain": "https://helveticascans.com",
+    "type": "manga",
+    "name": "HelveticaScans"
+  },
+  {
+    "domain": "https://reader.kireicake.com",
+    "type": "manga",
+    "name": "KireiCake"
+  },
+  {
+    "domain": "https://sensescans.com",
+    "type": "manga",
+    "name": "SenseScans"
+  },
+  {
+    "domain": "https://manhuaplus.com",
+    "type": "manga",
+    "name": "ManhuaPlus"
+  },
+  {
+    "domain": "https://readm.org",
+    "type": "anime",
+    "name": "Readm"
+  },
+  {
+    "domain": "https://tioanime.com",
+    "type": "anime",
+    "name": "tioanime"
   }
 ]
