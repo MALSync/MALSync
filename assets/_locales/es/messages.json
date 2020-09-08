@@ -393,6 +393,26 @@
       }
     }
   },
+  "prediction_Episode_manga": {
+    "message": "Siguiente capítulo en $time$ aproximadamente",
+    "description": "Text for next chapter estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_manga": {
+    "message": "Último capítulo lanzado hace $time$",
+    "description": "Text for last chapter release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
   "prediction_Airing": {
     "message": "Se emitirá en $time$",
     "description": "Text for airing estimation",
@@ -732,7 +752,7 @@
     "description": "Description for the the opening skip shortcut"
   },
   "settings_Shortcuts_Click": {
-    "message": "Clic para ingresar el atajo",
+    "message": "Establecer atajo",
     "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
@@ -760,6 +780,18 @@
   "settings_Interval_Off": {
     "message": "Apagado",
     "description": "Interval - Off"
+  },
+  "settings_Interval_Default_Anime": {
+    "message": "Predeterminado para anime",
+    "description": "Dropdown label for selecting the global progress anime source"
+  },
+  "settings_Interval_Default_Manga": {
+    "message": "Predeterminado para manga",
+    "description": "Dropdown label for selecting the global progress manga source"
+  },
+  "settings_ProgressCheck": {
+    "message": "Revisión de progreso",
+    "description": "Header for the progress section in the settings"
   },
   "settings_Notifications": {
     "message": "Notificaciones",
@@ -808,6 +840,18 @@
   "settings_shortcut_tooltip": {
     "message": "No se recomienda establecer los atajos a una sola tecla",
     "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "settings_progress_dropdown": {
+    "message": "Fuente de la estimación",
+    "description": "Text over the dropdown to select the Episode estimation/prediction source"
+  },
+  "settings_progress_disabled": {
+    "message": "Desactivada",
+    "description": "Dropdown option to disable the estimation for an anime/manga"
+  },
+  "settings_progress_default": {
+    "message": "Predeterminada",
+    "description": "Dropdown option to use the default in the estimation for an anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Refrescar",
