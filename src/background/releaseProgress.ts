@@ -10,7 +10,7 @@ export interface releaseItemInterface {
 
 export function initProgressScheduler() {
   chrome.alarms.get('progressSync', async a => {
-    const progressInterval = await api.settings.getAsync('progressInterval');
+    const progressInterval = parseInt(await api.settings.getAsync('progressInterval'));
     const progressSyncLast = await api.storage.get('progressSyncLast');
     if (!progressInterval) {
       con.log('progressSync disabled', progressInterval);
@@ -27,7 +27,7 @@ export function initProgressScheduler() {
 
     con.log('Create progressSync Alarm', progressInterval, progressSyncLast);
     chrome.alarms.create('progressSync', {
-      periodInMinutes: parseInt(progressInterval),
+      periodInMinutes: progressInterval,
       when: Date.now() + 1000,
     });
   });
