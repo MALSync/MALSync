@@ -62,6 +62,9 @@ export async function main() {
   try {
     setBadgeText('⌛');
     await api.settings.init();
+    if (!api.settings.get('epPredictions')) {
+      throw 'epPredictions disabled';
+    }
     await listUpdate(1, 'anime');
     await listUpdate(1, 'manga');
     con.log('Progress done');
@@ -113,6 +116,10 @@ export async function single(
   logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
   if (!el.malId) {
     logger.log('No MAL Id');
+    return;
+  }
+  if (!api.settings.get('epPredictions')) {
+    logger.log('epPredictions disabled');
     return;
   }
   const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
