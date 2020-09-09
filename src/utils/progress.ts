@@ -88,6 +88,8 @@ export class Progress {
   }
 
   getCurrentEpisode(): number {
+    // @ts-ignore
+    if (!api.settings.get('epPredictions')) return null;
     if (this.updateItem && this.getUpdateCurrentEpisode()) return this.getUpdateCurrentEpisode();
     return this.getProgressCurrentEpisode();
   }
