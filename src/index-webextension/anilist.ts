@@ -4,7 +4,7 @@ import { firebaseNotification } from '../utils/firebaseNotification';
 let lastFocus;
 
 function main() {
-  if (api.settings.get('userscriptMode')) throw 'Userscript mode';
+  if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
   const anilist = new anilistClass(window.location.href);
   messageAniListListener(anilist);
   firebaseNotification();

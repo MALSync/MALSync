@@ -385,8 +385,8 @@
           <h2 class="mdl-card__title-text">{{ lang('settings_ETC') }}</h2>
         </div>
         <checkbox option="forceEn">Force english</checkbox>
-        <span class="option-extension" style="display: none;"
-          ><checkbox option="userscriptMode"
+        <span style="display: none;"
+          ><checkbox option="userscriptModeButton"
             >{{ lang('settings_Userscriptmode')
             }}<tooltip direction="bottom">{{ lang('settings_Userscriptmode_Text') }}</tooltip></checkbox
           ></span

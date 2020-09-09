@@ -4,7 +4,7 @@ import { firebaseNotification } from '../utils/firebaseNotification';
 let lastFocus;
 
 function main() {
-  if (api.settings.get('userscriptMode')) throw 'Userscript mode';
+  if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
   const kitsu = new kitsuClass(window.location.href);
   messageKitsuListener(kitsu);
   firebaseNotification();

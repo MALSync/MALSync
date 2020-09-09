@@ -5,7 +5,7 @@ export const settingsObj = {
     enablePages: {},
     forceEn: false,
     presenceHidePage: false,
-    userscriptMode: false,
+    userscriptModeButton: false,
     strictCookies: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',

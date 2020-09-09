@@ -7,7 +7,7 @@ import { floatClick } from '../floatbutton/extension';
 let lastFocus;
 
 function main() {
-  if (api.settings.get('userscriptMode')) throw 'Userscript mode';
+  if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
   const page = new syncPage(window.location.href, pages, floatClick);
   messagePageListener(page);
   page.init();
