@@ -43,6 +43,7 @@ module.exports = {
       '*://*.9anime.love/watch/*',
       '*://*.9anime.tv/watch/*',
       '*://*.9anime.app/watch/*',
+      '*://*.9anime.at/watch/*',
     ],
   },
   Crunchyroll: {
