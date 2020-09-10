@@ -675,9 +675,11 @@ export default {
     },
     startProgressSync() {
       if (this.isExtension()) {
+        const inter = parseInt(api.settings.get('progressInterval'));
+        if(!inter) return;
         con.log('Trigger Progress update');
         chrome.alarms.create('progressSync', {
-          periodInMinutes: parseInt(api.settings.get('progressInterval')),
+          periodInMinutes: inter,
           when: Date.now() + 1000,
         });
       }

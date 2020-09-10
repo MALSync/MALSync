@@ -301,10 +301,19 @@ export const background = {
   async sync() {
     if (await background.isEnabled()) {
       con.log('Start Background list Sync');
+      setBadgeText('♻');
 
-      return syncLists('anime').then(() => {
-        return syncLists('manga');
-      });
+      return syncLists('anime')
+        .then(() => {
+          return syncLists('manga');
+        })
+        .then(() => {
+          setBadgeText('');
+        })
+        .catch(e => {
+          con.error(e);
+          setBadgeText('');
+        });
     }
     con.error('Background list Sync not allowed');
     return [];
@@ -341,7 +350,17 @@ export const background = {
 
       generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
       con.log('Start syncing', list, missing);
-      syncList(list, missing);
+      await syncList(list, missing);
     }
   },
 };
+
+function setBadgeText(text: string) {
+  // @ts-ignore
+  if (api.type === 'userscript') return;
+  try {
+    chrome.browserAction.setBadgeText({ text });
+  } catch (e) {
+    con.error(e);
+  }
+}
