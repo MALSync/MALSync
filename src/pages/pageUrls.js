@@ -272,9 +272,6 @@ module.exports = {
   Hidive: {
     match: ['*://www.hidive.com/*'],
   },
-  JaiminisBox: {
-    match: ['*://jaiminisbox.com/reader/series/*', '*://jaiminisbox.com/reader/read/*'],
-  },
   FallenAngels: {
     match: ['*://manga.fascans.com/manga/*'],
   },
@@ -385,9 +382,6 @@ module.exports = {
   },
   KKJScans: {
     match: ['*://kkjscans.co/*'],
-  },
-  KrakenScans: {
-    match: ['*://krakenscans.com/*'],
   },
   LeviatanScans: {
     match: ['*://leviatanscans.com/*'],

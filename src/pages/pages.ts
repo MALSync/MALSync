@@ -46,7 +46,6 @@ import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
 import { Aniwatch } from './Aniwatch/main';
 import { Hidive } from './Hidive/main';
-import { JaiminisBox } from './JaiminisBox/main';
 import { FallenAngels } from './FallenAngels/main';
 import { animestrue } from './animestrue/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -84,7 +83,6 @@ import { AnimeOnDemand } from './AnimeOnDemand/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
 import { KKJScans } from './KKJScans/main';
-import { KrakenScans } from './KrakenScans/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { MethodScans } from './MethodScans/main';
 import { NonamesScans } from './NonamesScans/main';
@@ -149,7 +147,6 @@ export const pages = {
   Hulu,
   Aniwatch,
   Hidive,
-  JaiminisBox,
   FallenAngels,
   animestrue,
   PrimeVideo,
@@ -187,7 +184,6 @@ export const pages = {
   EdelgardeScans,
   HatigarmScanz,
   KKJScans,
-  KrakenScans,
   LeviatanScans,
   MethodScans,
   NonamesScans,
