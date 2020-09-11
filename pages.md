@@ -370,13 +370,6 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://readm.org"><img src="https://www.google.com/s2/favicons?domain=https://readm.org"> Readm</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -453,6 +446,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://yugenani.me/"><img src="https://www.google.com/s2/favicons?domain=https://yugenani.me/"> YugenAnime</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
   </tr>
     </tbody>
   </table>
@@ -512,13 +512,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://jaiminisbox.com"><img src="https://www.google.com/s2/favicons?domain=https://jaiminisbox.com"> JaiminisBox</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://www.japscan.co"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.co"> JapScan</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
@@ -534,13 +527,6 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://kkjscans.co"><img src="https://www.google.com/s2/favicons?domain=https://kkjscans.co"> KKJScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://krakenscans.com"><img src="https://www.google.com/s2/favicons?domain=https://krakenscans.com"> KrakenScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -646,6 +632,13 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://the-nonames.com"><img src="https://www.google.com/s2/favicons?domain=https://the-nonames.com"> NonamesScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://readm.org"><img src="https://www.google.com/s2/favicons?domain=https://readm.org"> Readm</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

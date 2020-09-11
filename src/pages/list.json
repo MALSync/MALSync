@@ -240,11 +240,6 @@
     "name": "Hidive"
   },
   {
-    "domain": "https://jaiminisbox.com",
-    "type": "manga",
-    "name": "JaiminisBox"
-  },
-  {
     "domain": "https://manga.fascans.com/",
     "type": "manga",
     "name": "FallenAngels"
@@ -430,11 +425,6 @@
     "name": "KKJScans"
   },
   {
-    "domain": "https://krakenscans.com",
-    "type": "manga",
-    "name": "KrakenScans"
-  },
-  {
     "domain": "https://leviatanscans.com",
     "type": "manga",
     "name": "LeviatanScans"
@@ -496,12 +486,17 @@
   },
   {
     "domain": "https://readm.org",
-    "type": "anime",
+    "type": "manga",
     "name": "Readm"
   },
   {
     "domain": "https://tioanime.com",
     "type": "anime",
     "name": "tioanime"
+  },
+  {
+    "domain": "https://yugenani.me/",
+    "type": "anime",
+    "name": "YugenAnime"
   }
 ]
