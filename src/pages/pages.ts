@@ -97,6 +97,7 @@ import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
+import { YugenAnime } from './YugenAnime/main';
 
 export const pages = {
   nineAnime,
@@ -198,4 +199,5 @@ export const pages = {
   ManhuaPlus,
   Readm,
   tioanime,
+  YugenAnime,
 };
