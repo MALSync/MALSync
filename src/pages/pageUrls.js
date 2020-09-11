@@ -430,4 +430,7 @@ module.exports = {
   YugenAnime: {
     match: ['*://yugenani.me/*'],
   },
+  AnimeTribes: {
+    match: ['*://animetribes.ru/watch/*'],
+  },
 };

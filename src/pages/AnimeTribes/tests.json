@@ -1,0 +1,21 @@
+{
+  "title": "AnimeTribes",
+  "url": "https://animetribes.ru/",
+  "testCases": [
+    {
+      "url": "https://animetribes.ru/watch/mahouka-koukou-no-rettousei/7/",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "mahouka-koukou-no-rettousei",
+        "overviewUrl": "https://animetribes.ru/watch/mahouka-koukou-no-rettousei/1/",
+        "nextEpUrl": "https://animetribes.ru/watch/mahouka-koukou-no-rettousei/8/",
+        "episode": 7,
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animetribes.ru/watch/mahouka-koukou-no-rettousei/5/"
+        }
+      }
+    }
+  ]
+}

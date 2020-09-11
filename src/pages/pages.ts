@@ -98,6 +98,7 @@ import { ManhuaPlus } from './ManhuaPlus/main';
 import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
 import { YugenAnime } from './YugenAnime/main';
+import { AnimeTribes } from './AnimeTribes/main';
 
 export const pages = {
   nineAnime,
@@ -200,4 +201,5 @@ export const pages = {
   Readm,
   tioanime,
   YugenAnime,
+  AnimeTribes
 };
