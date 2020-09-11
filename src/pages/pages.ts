@@ -201,5 +201,5 @@ export const pages = {
   Readm,
   tioanime,
   YugenAnime,
-  AnimeTribes
+  AnimeTribes,
 };
