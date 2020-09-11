@@ -427,7 +427,7 @@ module.exports = {
   tioanime: {
     match: ['*://tioanime.com/anime/*', '*://tioanime.com/ver/*'],
   },
-  YugAnime: {
-    match: ['*://yugenani.me/anime/*', '*://yugenani.me/watch/*'],
+  YugenAnime: {
+    match: ['*://yugenani.me/*'],
   },
 };
