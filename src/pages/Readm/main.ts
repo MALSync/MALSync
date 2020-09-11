@@ -4,7 +4,7 @@ export const Readm: pageInterface = {
   name: 'Readm',
   domain: 'https://readm.org',
   languages: ['English'],
-  type: 'anime',
+  type: 'manga',
   isSyncPage(url) {
     if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
       return true;
