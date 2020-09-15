@@ -430,4 +430,7 @@ module.exports = {
   YugenAnime: {
     match: ['*://yugenani.me/*'],
   },
+  MangaSee: {
+    match: ['*://mangasee123.com/manga*', '*://mangasee123.com/read-online*'],
+  },
 };

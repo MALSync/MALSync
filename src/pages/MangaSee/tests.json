@@ -1,0 +1,30 @@
+{
+  "title": "MangaSee",
+  "url": "https://mangasee123.com",
+  "testCases": [
+    {
+      "url": "https://mangasee123.com/read-online/Martial-Peak-chapter-638-page-1.html",
+      "expected": {
+        "sync": true,
+        "title": "Martial Peak",
+        "identifier": "Martial-Peak",
+        "overviewUrl": "https://mangasee123.com/manga/Martial-Peak",
+        "episode": 638,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangasee123.com/manga/Martial-Peak",
+      "expected": {
+        "sync": false,
+        "title": "Martial Peak",
+        "identifier": "Martial-Peak",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://mangasee123.com/read-online/Martial-Peak-chapter-9-page-1.html",
+          "425": "https://mangasee123.com/read-online/Martial-Peak-chapter-425-page-1.html"
+        }
+      }
+    }
+  ]
+}
