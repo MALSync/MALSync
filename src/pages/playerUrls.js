@@ -278,4 +278,8 @@ module.exports = {
   cloud9: {
     match: ['*://cloud9.to/e*/*'],
   },
+  // gogoanime
+  gogostream: {
+    match: ['*://*.gogo-stream.com/streaming.php?*', '*://*.gogo-stream.com/load.php?*'],
+  },
 };
