@@ -178,9 +178,9 @@ module.exports = {
   vshare: {
     match: ['*://*.vshare.io/v/*'],
   },
-  // kissanime/9anime
+  // kissanime/9anime/gogoanime
   hydrax: {
-    match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*'],
+    match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*', '*://*.hydracdn.network/*'],
   },
   // animeflv
   streamium: {
