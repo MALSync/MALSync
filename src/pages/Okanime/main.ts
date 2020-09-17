@@ -27,7 +27,9 @@ export const Okanime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector: () =>
-        isRealOverview(window.location.href) ? j.$('#episodes .enable-photos-box a') : j.$('.result-item.episode'),
+        isRealOverview(window.location.href)
+          ? j.$('#episodes .enable-photos-box a:not(.btn)')
+          : j.$('.result-item.episode'),
       elementUrl: selector => utils.absoluteLink(selector.attr('href'), Okanime.domain),
       elementEp: selector => {
         return Okanime.sync.getEpisode(Okanime.overview!.list!.elementUrl(selector));
@@ -82,7 +84,12 @@ export const Okanime: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(() => {
-      page.handlePage();
+      utils.waitUntilTrue(
+        () => Okanime.overview!.list!.elementsSelector(),
+        () => {
+          page.handlePage();
+        },
+      );
     });
   },
 };
