@@ -433,4 +433,7 @@ module.exports = {
   MangaSee: {
     match: ['*://mangasee123.com/manga*', '*://mangasee123.com/read-online*'],
   },
+  Okanime: {
+    match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
+  },
 };
