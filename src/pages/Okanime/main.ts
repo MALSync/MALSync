@@ -73,13 +73,12 @@ export const Okanime: pageInterface = {
       );
     },
     uiSelector: selector => {
-      console.log('Invoked from uiSelector, This is the sync page !!!!!!!');
       j.$('div.user-block .translated-box')
         .first()
         .prepend(j.html(selector));
     },
   },
-  init(page): void {
+  init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(() => {
