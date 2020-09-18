@@ -85,7 +85,7 @@ export const Okanime: pageInterface = {
 
     j.$(() => {
       utils.waitUntilTrue(
-        () => Okanime.overview!.list!.elementsSelector(),
+        () => Okanime.overview!.list!.elementsSelector().length,
         () => {
           page.handlePage();
         },
