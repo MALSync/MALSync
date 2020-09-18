@@ -278,4 +278,12 @@ module.exports = {
   cloud9: {
     match: ['*://cloud9.to/e*/*'],
   },
+  // okanime
+  okanime: {
+    match: ['*://*.okanime.com/cdn/*/embed/?*'],
+  },
+  // okanime
+  okgaming: {
+    match: ['*://*.okgaming.org/I/*'],
+  },
 };
