@@ -1,11 +1,35 @@
 @import './../pages';
 
-@textColor: white;
+@textColor: rgb(0, 0, 0);
+@activeEp: #b2d1ff !important;
 
-.mal-sync-active a {
-  background-color: #72abff !important;
+#malp {
+  background-color: white;
+
+  span {
+    color: @textColor;
+  }
+  select > * {
+    background-color: white !important;
+  }
+  input[type='password'],
+  input[type='text'] {
+    min-width: 50px;
+  }
 }
-
-#flashinfo-div {
-  z-index: 100 !important;
+#malStatus {
+  min-width: 155px;
+  flex-grow: 3;
+}
+#malUserRating {
+  min-width: 140px;
+  flex-grow: 3;
+}
+.MalLogin {
+  display: flex !important;
+  align-items: center;
+}
+.MalLogin span {
+  display: flex !important;
+  align-items: center;
 }

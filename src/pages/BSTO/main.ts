@@ -7,7 +7,7 @@ export const BSTO: pageInterface = {
   type: 'anime',
 
   isSyncPage(url) {
-    if (url.split('/')[3] === 'serie') {
+    if (url.split('/')[3] === 'serie' && url.split('/').length > 6) {
       return true;
     }
     return false;
@@ -51,9 +51,9 @@ export const BSTO: pageInterface = {
       return nextURL.href;
     },
     uiSelector(selector) {
-      j.$('p')
+      j.$('.selectors')
         .first()
-        .after(j.html(`<div class="container"> ${selector}</div>`));
+        .before(j.html(`<div class="MALContainer"> ${selector}</div>`));
     },
   },
   overview: {
@@ -62,26 +62,55 @@ export const BSTO: pageInterface = {
         .$('h2')[0]
         .innerHTML.split('<small>')[0]
         .trim();
+      let Volume = 1;
+      if (url.split('/').length >= 5) {
+        Volume = Number(url.split('/')[5]);
+      }
       if (title.split('|').length > 0) {
         title = title.split('|')[0];
       }
-      const Volume = Number(url.split('/')[5]);
       return `${title} ${Volume}`;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
-      return url.split('/')[4] + 1;
+      const mainNAme = url.split('/')[4];
+      let Volume = 1;
+      if (url.split('/').length >= 5) {
+        Volume = Number(url.split('/')[5]);
+      }
+      return `${mainNAme}${Volume}`;
     }, // An unique identifier of the anime. Has to be the same on the sync and overview page
     uiSelector(selector) {
-      j.$('p')
+      j.$('.selectors')
         .first()
-        .after(j.html(`<div class="container"> ${selector}</div>`));
+        .before(j.html(`<div class="MALContainer"> ${selector}</div>`));
     },
   },
   init(page) {
     // eslint-disable-next-line global-require
+
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      page.handlePage();
+      ready();
     });
+    utils.urlChangeDetect(function() {
+      ready();
+    });
+
+    function ready() {
+      page.reset();
+      $('html').addClass('miniMAL-hide');
+      if (
+        j
+          .$('.infos')
+          .first()
+          .children()
+          .first()
+          .children()[1]
+          .innerText.indexOf('Anime') >= 0
+      ) {
+        $('html').removeClass('miniMAL-hide');
+        page.handlePage();
+      }
+    }
   }, // This is the most important function. It controls when to start the check. Every time c is called it will check the overview/sync page.
 };
