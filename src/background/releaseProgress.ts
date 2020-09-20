@@ -68,6 +68,8 @@ export async function main() {
     }
     await listUpdate(1, 'anime');
     await listUpdate(1, 'manga');
+    //await listUpdateWithPOST(1, 'anime');
+    //await listUpdateWithPOST(1, 'manga');
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -79,6 +81,28 @@ export async function main() {
 }
 
 export async function listUpdate(state, type) {
+  const logger = con.m('release').m(type);
+  logger.log('Start', type, state);
+  const listProvider = await getList(state, type);
+  return listProvider
+    .get()
+    .then(async list => {
+      for (let i = 0; i < list.length; i++) {
+        try {
+          if (list[i].options) {
+            await single(list[i], type, list[i].options!.p, logger);
+          }
+        } catch (e) {
+          logger.error(e);
+        }
+      }
+    })
+    .catch(e => {
+      logger.error(e);
+    });
+}
+
+export async function listUpdateWithPOST(state, type) {
   const logger = con.m('release').m(type);
   logger.log('Start', type, state);
   const listProvider = await getList(state, type);
