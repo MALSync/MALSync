@@ -7,13 +7,13 @@ export const BSTO: pageInterface = {
   type: 'anime',
 
   isSyncPage(url) {
-    if (url.split('/')[3] === 'serie' && url.split('/').length > 6) {
+    if (url.split('/')[3] === 'serie' && url.split('/').length > 5) {
       return true;
     }
     return false;
   }, // Return true if the current page is the sync page (Chapter/episode page)
   isOverviewPage(url) {
-    if (url.split('/').length === 6) {
+    if (url.split('/')[3] === 'serie' && url.split('/').length === 5) {
       return true;
     }
     return false;
@@ -64,7 +64,9 @@ export const BSTO: pageInterface = {
         .trim();
       let Volume = 1;
       if (url.split('/').length >= 5) {
-        Volume = Number(url.split('/')[5]);
+        if (url.split('/')[5]) {
+          Volume = Number(url.split('/')[5]);
+        }
       }
       if (title.split('|').length > 0) {
         title = title.split('|')[0];
@@ -75,7 +77,9 @@ export const BSTO: pageInterface = {
       const mainNAme = url.split('/')[4];
       let Volume = 1;
       if (url.split('/').length >= 5) {
-        Volume = Number(url.split('/')[5]);
+        if (url.split('/')[5]) {
+          Volume = Number(url.split('/')[5]);
+        }
       }
       return `${mainNAme}${Volume}`;
     }, // An unique identifier of the anime. Has to be the same on the sync and overview page
