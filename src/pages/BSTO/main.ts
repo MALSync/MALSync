@@ -1,4 +1,3 @@
-import { getEpisode } from '../../_provider/Simkl/helper';
 import { pageInterface } from '../pageInterface';
 
 export const BSTO: pageInterface = {
@@ -29,7 +28,7 @@ export const BSTO: pageInterface = {
       if (title.split('|').length > 0) {
         title = title.split('|')[0];
       }
-      let Volume = Number(url.split('/')[5]);
+      const Volume = Number(url.split('/')[5]);
       return title + ' ' + Volume;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
@@ -48,10 +47,10 @@ export const BSTO: pageInterface = {
       return Number(url.split('/')[5]);
     }, // (optional) Return the current volume number
     nextEpUrl(url) {
-      let currEp = Number(url.split('/')[6].charAt(0));
-      let nextEp = currEp + 1;
-      let nextEle = <HTMLElement>j.$('.e' + nextEp)[0];
-      let nextURL = <HTMLAnchorElement>nextEle.children[0];
+      const currEp = Number(url.split('/')[6].charAt(0));
+      const nextEp = currEp + 1;
+      const nextEle = j.$('.e' + nextEp)[0] as HTMLElement;
+      const nextURL = nextEle.children[0] as HTMLAnchorElement;
       return nextURL.href;
     },
     uiSelector(selector) {
@@ -66,7 +65,11 @@ export const BSTO: pageInterface = {
         .$('h2')[0]
         .innerHTML.split('<small>')[0]
         .trim();
-      return title;
+      if (title.split('|').length > 0) {
+        title = title.split('|')[0];
+      }
+      const Volume = Number(url.split('/')[5]);
+      return title + ' ' + Volume;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
       return url.split('/')[4];
