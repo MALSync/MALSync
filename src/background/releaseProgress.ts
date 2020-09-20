@@ -1,6 +1,7 @@
 import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
 import { listElement } from '../_provider/listAbstract';
+import { xhrResponseI } from '../api/messageInterface';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -134,10 +135,18 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
   if (malDATA === null) return [{}];
   if (malDATA.length <= 0) return [{}];
   malDATA.map(el => el.malId);
-  const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: malDATA };
+  const waitFor = ms => new Promise(r => setTimeout(r, ms));
+  const returnArray: xhrResponseI[] = [];
+  for (let i = 0; i <= malDATA.length; ) {
+    const tempArray = malDATA.slice(i, i + 49);
+    const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: tempArray };
+    await waitFor(50);
+    const response = await api.request.xhr('POST', Request);
+    returnArray.push(JSON.parse(response.responseText));
+    i += 50;
+  }
 
-  const response = await api.request.xhr('POST', Request);
-  return JSON.parse(response.responseText);
+  return returnArray.reduce((acc: xhrResponseI[], val) => acc.concat(val), []);
 }
 
 export async function multiple(Array: listElement[], type, mode = 'default', logger = con.m('release')) {
