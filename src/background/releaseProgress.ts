@@ -131,8 +131,8 @@ export async function predictionXhrGET(type: string, malId: number | null) {
 }
 
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
-  if (malDATA == null) return;
-  if (malDATA.length <= 0) return;
+  if (malDATA === null) return [{}];
+  if (malDATA.length <= 0) return [{}];
   malDATA.map(el => el.malId);
   const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: malDATA };
 
