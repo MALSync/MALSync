@@ -67,12 +67,11 @@ export async function main() {
     if (!api.settings.get('epPredictions')) {
       throw 'epPredictions disabled';
     }
+
     await listUpdate(1, 'anime');
     await listUpdate(1, 'manga');
-    /**
-     * await listUpdateWithPOST(1, 'anime');
-     * await listUpdateWithPOST(1, 'manga');
-     */
+    // await listUpdateWithPOST(1, 'anime');
+    // await listUpdateWithPOST(1, 'manga');
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -134,12 +133,12 @@ export async function predictionXhrGET(type: string, malId: number | null) {
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
   if (malDATA === null) return [{}];
   if (malDATA.length <= 0) return [{}];
-  malDATA.map(el => el.malId);
+  const malDATAID = malDATA.map(el => el.malId);
   const waitFor = ms => new Promise(r => setTimeout(r, ms));
   const returnArray: xhrResponseI[] = [];
-  for (let i = 0; i <= malDATA.length; ) {
-    const tempArray = malDATA.slice(i, i + 49);
-    const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: tempArray };
+  for (let i = 0; i <= malDATAID.length; ) {
+    const tempArray = malDATAID.slice(i, i + 49);
+    const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: JSON.stringify(tempArray) };
     await waitFor(50);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
@@ -165,8 +164,15 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     logger.log('epPredictions disabled');
     return;
   }
+
+  async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+
   const remoteUpdateList: listElement[] = [];
-  Array.forEach(async el => {
+  await asyncForEach(Array, async el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
     logger.m('Load').log(releaseItem);
