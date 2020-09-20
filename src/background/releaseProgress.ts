@@ -115,15 +115,17 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
 
 export async function multiple(Array: listElement[], type, mode = 'default', logger = con.m('release')) {
   if (!mode) mode = 'default';
-  Array.forEach(el => {
-    logger = logger.m(el.uid.toString());
-    logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
-  });
 
   if (!Array) {
     logger.log('No MAL Id List');
     return;
+  } else {
+    Array.forEach(el => {
+      logger = logger.m(el.uid.toString());
+      logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
+    });
   }
+
   if (!api.settings.get('epPredictions')) {
     logger.log('epPredictions disabled');
     return;
@@ -169,19 +171,21 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
   xhrArray.forEach(xhr => {
     logger.log(xhr);
 
-    const progressValue = getProgress(xhr, mode, type);
+    let progressValue = getProgress(xhr, mode, type);
 
     if (!progressValue) {
       logger.log('No value for the selected mode');
+    } else {
+      let elref = remoteUpdateList.find(el => el.malId === progressValue.malId);
     }
 
     let finished = false;
 
-    if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
+    if (progressValue && elref && progressValue.state && progressValue.state === 'complete') finished = true;
 
     logger.m('Save').log(progressValue);
 
-    await api.storage.set(`release/${type}/${el.cacheKey}`, {
+    await api.storage.set(`release/${type}/${elref.cacheKey}`, {
       timestamp: Date.now(),
       value: progressValue,
       mode,
