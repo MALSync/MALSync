@@ -134,8 +134,6 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
 
     logger.m('Load').log(releaseItem);
 
-    let force = false;
-
     if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
       remoteUpdateList.push(el);
     } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
@@ -162,15 +160,12 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     }
   });
 
-  if (mode === 'off') {
-    logger.log('Disabled');
-  }
-
   let xhrArray;
   if (remoteUpdateList.length > 0) {
     xhrArray = await predictionXhrPOST(type, remoteUpdateList);
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   }
+
   xhrArray.forEach(xhr => {
     logger.log(xhr);
 
