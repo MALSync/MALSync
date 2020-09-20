@@ -4,13 +4,13 @@ import { openInvisiblePage } from './exclusive/iframeOpen-general';
 
 declare let browser: any;
 export function checkInit() {
-  chrome.alarms.get('updateCheck', function(a) {
+  chrome.alarms.get('updateCheck', function (a) {
     if (typeof a !== 'undefined') {
       con.log(a);
     }
   });
 
-  chrome.alarms.onAlarm.addListener(function(alarm) {
+  chrome.alarms.onAlarm.addListener(function (alarm) {
     if (alarm.name === 'updateCheck' || alarm.name === 'updateCheckNow') {
       api.settings.init().then(() => {
         startCheck('anime');
@@ -115,7 +115,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       // Create iframe
       openInvisiblePage(el.options.u, id, hiddenTabs);
 
-      const timeout = setTimeout(async function() {
+      const timeout = setTimeout(async function () {
         api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Timeout'));
         if (retry && retryNum < 3) {
           con.log('retry', retryNum);
@@ -125,7 +125,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
         }
         resolve();
       }, 60000);
-      continueCheck[id] = async function(list, len, error) {
+      continueCheck[id] = async function (list, len, error) {
         clearTimeout(timeout);
 
         if (typeof error !== undefined && error) {

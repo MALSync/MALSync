@@ -1,5 +1,6 @@
 import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
+import { listElement } from './listAbstract';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -84,11 +85,9 @@ export async function listUpdate(state, type) {
   return listProvider
     .get()
     .then(async list => {
-      for (let i = 0; i < list.length; i++) {
+      if (list.length > 0) {
         try {
-          if (list[i].options) {
-            await single(list[i], type, list[i].options!.p, logger);
-          }
+          await multiple(list, type, logger);
         } catch (e) {
           logger.error(e);
         }
@@ -99,10 +98,101 @@ export async function listUpdate(state, type) {
     });
 }
 
-export async function predictionXhr(type: string, malId: number | null) {
+export async function predictionXhrGET(type: string, malId: number | null) {
   if (!malId) return {};
   const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${malId}/pr`);
   return JSON.parse(response.responseText);
+}
+
+export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
+  if (malDATA !== null && malDATA.length <= 0) return {};
+  malDATA.map(el => el.malId);
+  const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: malDATA };
+
+  const response = await api.request.xhr('POST', Request);
+  return JSON.parse(response.responseText);
+}
+
+export async function multiple(Array: listElement[], type, mode = 'default', logger = con.m('release')) {
+  if (!mode) mode = 'default';
+  Array.forEach(el => {
+    logger = logger.m(el.uid.toString());
+    logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
+  });
+
+  if (!Array) {
+    logger.log('No MAL Id List');
+    return;
+  }
+  if (!api.settings.get('epPredictions')) {
+    logger.log('epPredictions disabled');
+    return;
+  }
+  let remoteUpdateList = [];
+  Array.forEach(el => {
+    const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
+
+    logger.m('Load').log(releaseItem);
+
+    let force = false;
+
+    if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
+      remoteUpdateList.push(el);
+    } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
+      logger.log('Up to date');
+      continue;
+    } else if (
+      releaseItem &&
+      releaseItem.finished &&
+      releaseItem.timestamp &&
+      Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
+    ) {
+      logger.log('Fininshed');
+      continue;
+    } else if (
+      releaseItem &&
+      !releaseItem.value &&
+      releaseItem.timestamp &&
+      Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
+    ) {
+      logger.log('Nulled');
+      continue;
+    } else {
+      remoteUpdateList.push(el);
+    }
+  });
+
+  if (mode === 'off') {
+    logger.log('Disabled');
+  }
+
+  let xhrArray;
+  if (remoteUpdateList.length > 0) {
+    xhrArray = await predictionXhrPOST(type, remoteUpdateList);
+    await new Promise(resolve => setTimeout(() => resolve(), 500));
+  }
+  xhrArray.forEach(xhr => {
+    logger.log(xhr);
+
+    const progressValue = getProgress(xhr, mode, type);
+
+    if (!progressValue) {
+      logger.log('No value for the selected mode');
+    }
+
+    let finished = false;
+
+    if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
+
+    logger.m('Save').log(progressValue);
+
+    await api.storage.set(`release/${type}/${el.cacheKey}`, {
+      timestamp: Date.now(),
+      value: progressValue,
+      mode,
+      finished,
+    } as releaseItemInterface);
+  });
 }
 
 export async function single(
@@ -168,7 +258,7 @@ export async function single(
   if (typeof el.xhr !== 'undefined') {
     xhr = el.xhr;
   } else {
-    xhr = await predictionXhr(type, el.malId);
+    xhr = await predictionXhrGET(type, el.malId);
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   }
   logger.log(xhr);
