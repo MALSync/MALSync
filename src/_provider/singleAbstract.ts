@@ -428,7 +428,7 @@ export abstract class SingleAbstract {
     this.getScoreCheckbox().forEach(el => {
       checkHtml += `<option value="${el.value}" ${String(currentScore) === el.value ? 'selected' : ''}>${
         el.label
-        }</option>`;
+      }</option>`;
     });
     checkHtml += '</select></div>';
 
