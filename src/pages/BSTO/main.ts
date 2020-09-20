@@ -29,7 +29,7 @@ export const BSTO: pageInterface = {
         title = title.split('|')[0];
       }
       const Volume = Number(url.split('/')[5]);
-      return title + ' ' + Volume;
+      return `${title} ${Volume}`;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
       return url.split('/')[4];
@@ -49,7 +49,7 @@ export const BSTO: pageInterface = {
     nextEpUrl(url) {
       const currEp = Number(url.split('/')[6].charAt(0));
       const nextEp = currEp + 1;
-      const nextEle = j.$('.e' + nextEp)[0] as HTMLElement;
+      const nextEle = j.$(`.e${nextEp}`)[0] as HTMLElement;
       const nextURL = nextEle.children[0] as HTMLAnchorElement;
       return nextURL.href;
     },
@@ -69,7 +69,7 @@ export const BSTO: pageInterface = {
         title = title.split('|')[0];
       }
       const Volume = Number(url.split('/')[5]);
-      return title + ' ' + Volume;
+      return `${title} ${Volume}`;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
       return url.split('/')[4];
@@ -81,6 +81,8 @@ export const BSTO: pageInterface = {
     },
   },
   init(page) {
+    // eslint-disable-next-line global-require
+    // eslint-disable-next-line import/no-unresolved
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     page.handlePage();
   }, // This is the most important function. It controls when to start the check. Every time c is called it will check the overview/sync page.
