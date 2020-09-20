@@ -26,6 +26,9 @@ export const BSTO: pageInterface = {
         .$('h2')[0]
         .innerHTML.split('<small>')[0]
         .trim();
+      if (title.split('|').length > 0) {
+        title = title.split('|')[0];
+      }
       let Volume = Number(url.split('/')[5]);
       return title + ' ' + Volume;
     }, // Returns the title of the anime, used for the search on mal
