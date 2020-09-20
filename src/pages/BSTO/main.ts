@@ -32,7 +32,7 @@ export const BSTO: pageInterface = {
       return `${title} ${Volume}`;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
-      return url.split('/')[4];
+      return url.split('/')[4] + Number(url.split('/')[5]);
     }, // An unique identifier of the anime. Has to be the same on the sync and overview page
     getOverviewUrl(url) {
       return url
@@ -43,9 +43,6 @@ export const BSTO: pageInterface = {
     getEpisode(url) {
       return Number(url.split('/')[6].charAt(0));
     }, // Return the recognized episode or chapter number as integer.
-    getVolume(url) {
-      return Number(url.split('/')[5]);
-    }, // (optional) Return the current volume number
     nextEpUrl(url) {
       const currEp = Number(url.split('/')[6].charAt(0));
       const nextEp = currEp + 1;
@@ -72,7 +69,7 @@ export const BSTO: pageInterface = {
       return `${title} ${Volume}`;
     }, // Returns the title of the anime, used for the search on mal
     getIdentifier(url) {
-      return url.split('/')[4];
+      return url.split('/')[4] + 1;
     }, // An unique identifier of the anime. Has to be the same on the sync and overview page
     uiSelector(selector) {
       j.$('p')
@@ -82,8 +79,9 @@ export const BSTO: pageInterface = {
   },
   init(page) {
     // eslint-disable-next-line global-require
-    // eslint-disable-next-line import/no-unresolved
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    page.handlePage();
+    j.$(document).ready(function() {
+      page.handlePage();
+    });
   }, // This is the most important function. It controls when to start the check. Every time c is called it will check the overview/sync page.
 };

@@ -99,6 +99,7 @@ import { Readm } from './Readm/main';
 import { tioanime } from './tioanime/main';
 import { YugenAnime } from './YugenAnime/main';
 import { MangaSee } from './MangaSee/main';
+import { BSTO } from './BSTO/main';
 
 export const pages = {
   nineAnime,
@@ -202,4 +203,5 @@ export const pages = {
   tioanime,
   YugenAnime,
   MangaSee,
+  BSTO,
 };
