@@ -156,7 +156,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     return;
   }
   const remoteUpdateList = [];
-  Array.forEach(el => {
+  Array.forEach(async el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
     logger.m('Load').log(releaseItem);
@@ -190,7 +190,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   }
 
-  xhrArray.forEach(xhr => {
+  xhrArray.forEach(async xhr => {
     logger.log(xhr);
 
     const progressValue = getProgress(xhr, mode, type);
