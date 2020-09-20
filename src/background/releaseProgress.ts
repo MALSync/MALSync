@@ -68,10 +68,10 @@ export async function main() {
       throw 'epPredictions disabled';
     }
 
-    await listUpdate(1, 'anime');
-    await listUpdate(1, 'manga');
-    // await listUpdateWithPOST(1, 'anime');
-    // await listUpdateWithPOST(1, 'manga');
+    // await listUpdate(1, 'anime');
+    // await listUpdate(1, 'manga');
+    await listUpdateWithPOST(1, 'anime');
+    await listUpdateWithPOST(1, 'manga');
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -138,7 +138,10 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
   const returnArray: xhrResponseI[] = [];
   for (let i = 0; i <= malDATAID.length; ) {
     const tempArray = malDATAID.slice(i, i + 49);
-    const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: JSON.stringify(tempArray) };
+    const Request = {
+      url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
+      data: JSON.stringify({ malids: tempArray }),
+    };
     await waitFor(50);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
