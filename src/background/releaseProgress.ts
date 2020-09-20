@@ -1,6 +1,6 @@
 import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
-import { listElement } from './listAbstract';
+import { listElement } from '../_provider/listAbstract';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -71,7 +71,7 @@ export async function main() {
     /**
      * await listUpdateWithPOST(1, 'anime');
      * await listUpdateWithPOST(1, 'manga');
-     **/
+     */
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -144,7 +144,6 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
 
   if (!Array) {
     logger.log('No MAL Id List');
-    return;
   } else {
     Array.forEach(el => {
       logger = logger.m(el.uid.toString());
@@ -166,7 +165,6 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       remoteUpdateList.push(el);
     } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
       logger.log('Up to date');
-      return;
     } else if (
       releaseItem &&
       releaseItem.finished &&
@@ -174,7 +172,6 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
     ) {
       logger.log('Fininshed');
-      return;
     } else if (
       releaseItem &&
       !releaseItem.value &&
@@ -182,7 +179,6 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
     ) {
       logger.log('Nulled');
-      return;
     } else {
       remoteUpdateList.push(el);
     }
