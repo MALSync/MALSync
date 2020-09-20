@@ -68,8 +68,10 @@ export async function main() {
     }
     await listUpdate(1, 'anime');
     await listUpdate(1, 'manga');
-    //await listUpdateWithPOST(1, 'anime');
-    //await listUpdateWithPOST(1, 'manga');
+    /**
+     * await listUpdateWithPOST(1, 'anime');
+     * await listUpdateWithPOST(1, 'manga');
+     **/
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -154,7 +156,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     logger.log('epPredictions disabled');
     return;
   }
-  let remoteUpdateList = [];
+  const remoteUpdateList = [];
   Array.forEach(el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
@@ -164,7 +166,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       remoteUpdateList.push(el);
     } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
       logger.log('Up to date');
-      continue;
+      return;
     } else if (
       releaseItem &&
       releaseItem.finished &&
@@ -172,7 +174,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
     ) {
       logger.log('Fininshed');
-      continue;
+      return;
     } else if (
       releaseItem &&
       !releaseItem.value &&
@@ -180,7 +182,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
       Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
     ) {
       logger.log('Nulled');
-      continue;
+      return;
     } else {
       remoteUpdateList.push(el);
     }
@@ -195,21 +197,18 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
   xhrArray.forEach(xhr => {
     logger.log(xhr);
 
-    let progressValue = getProgress(xhr, mode, type);
-
+    const progressValue = getProgress(xhr, mode, type);
+    const elRef = remoteUpdateList.find(el => xhr[0].malId === progressValue.malId);
     if (!progressValue) {
       logger.log('No value for the selected mode');
-    } else {
-      let elref = remoteUpdateList.find(el => el.malId === progressValue.malId);
     }
-
     let finished = false;
 
-    if (progressValue && elref && progressValue.state && progressValue.state === 'complete') finished = true;
+    if (progressValue && elRef && progressValue.state && progressValue.state === 'complete') finished = true;
 
     logger.m('Save').log(progressValue);
 
-    await api.storage.set(`release/${type}/${elref.cacheKey}`, {
+    await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
       timestamp: Date.now(),
       value: progressValue,
       mode,
