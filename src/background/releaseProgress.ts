@@ -131,7 +131,8 @@ export async function predictionXhrGET(type: string, malId: number | null) {
 }
 
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
-  if (malDATA !== null && malDATA.length <= 0) return {};
+  if (malDATA == null) return;
+  if (malDATA.length <= 0) return;
   malDATA.map(el => el.malId);
   const Request = { url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`, data: malDATA };
 
@@ -155,7 +156,7 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
     logger.log('epPredictions disabled');
     return;
   }
-  const remoteUpdateList = [];
+  const remoteUpdateList: listElement[] = [];
   Array.forEach(async el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
@@ -195,21 +196,25 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
 
     const progressValue = getProgress(xhr, mode, type);
     const elRef = remoteUpdateList.find(el => xhr[0].malId === progressValue.malId);
+    if (!elRef) {
+      return;
+    }
     if (!progressValue) {
       logger.log('No value for the selected mode');
     }
     let finished = false;
 
-    if (progressValue && elRef && progressValue.state && progressValue.state === 'complete') finished = true;
+    if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
 
     logger.m('Save').log(progressValue);
-
-    await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
-      timestamp: Date.now(),
-      value: progressValue,
-      mode,
-      finished,
-    } as releaseItemInterface);
+    if (elRef.cacheKey) {
+      await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
+        timestamp: Date.now(),
+        value: progressValue,
+        mode,
+        finished,
+      } as releaseItemInterface);
+    }
   });
 }
 
