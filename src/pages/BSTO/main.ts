@@ -50,9 +50,8 @@ export const BSTO: pageInterface = {
       if (nextEp) {
         const nextURL = nextEle.children[0] as HTMLAnchorElement;
         return nextURL.href;
-      } else {
-        return '';
       }
+      return '';
     },
     uiSelector(selector) {
       j.$('.selectors')
