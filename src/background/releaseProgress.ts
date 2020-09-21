@@ -72,6 +72,10 @@ export async function main() {
     // await listUpdate(1, 'manga');
     await listUpdateWithPOST(1, 'anime');
     await listUpdateWithPOST(1, 'manga');
+    if (api.settings.get('loadPTWForProgress')) {
+      await listUpdateWithPOST(6, 'anime');
+      await listUpdateWithPOST(6, 'manga');
+    }
     con.log('Progress done');
     setBadgeText('');
     return true;

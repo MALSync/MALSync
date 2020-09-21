@@ -32,6 +32,7 @@ export const settingsObj = {
     miniMalHeight: '90%',
     malThumbnail: 100,
     friendScore: true,
+    loadPTWForProgress: false,
 
     SiteSearch: true,
     '9anime': true,
