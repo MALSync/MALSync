@@ -114,16 +114,15 @@ export const BSTO: pageInterface = {
   },
   init(page) {
     // eslint-disable-next-line global-require
-
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       ready();
     });
-    utils.urlChangeDetect(function() {
-      ready();
-    });
-
     function ready() {
+      /* eslint-disable-next-line */
+      j.$('body').append(
+        '<script>var openWindow = window.open; window.open = function (url, windowName, windowFeatures) {if(!url.startsWith("https://vivo")) openWindow(url, windowName, windowFeatures)}</script>',
+      );
       page.reset();
       $('html').addClass('miniMAL-hide');
       if (
@@ -139,5 +138,26 @@ export const BSTO: pageInterface = {
         page.handlePage();
       }
     }
-  }, // This is the most important function. It controls when to start the check. Every time c is called it will check the overview/sync page.
+    utils.waitUntilTrue(
+      function() {
+        return j.$('div.hoster-player > a[href^="https://vivo"]').length;
+      },
+      function() {
+        const array = j
+          .$('div.hoster-player > a[href^="https://vivo"]')!
+          .attr('href')!
+          .split('/');
+        const id = array.pop()!;
+        array.push('embed');
+        array.push(id);
+        const output = array.join('/');
+        /* eslint-disable-next-line */
+        j.$('div.hoster-player').html('');
+        /* eslint-disable-next-line */
+        j.$('div.hoster-player').append(
+          `<iframe src="${output}" width="560" height="315" scrolling="no" frameborder="0" allowfullscreen></iframe>`,
+        );
+      },
+    );
+  },
 };
