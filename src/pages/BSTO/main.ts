@@ -7,13 +7,13 @@ export const BSTO: pageInterface = {
   type: 'anime',
 
   isSyncPage(url) {
-    if (url.split('/')[3] === 'serie' && url.split('/').length > 5) {
+    if (url.split('/')[3] === 'serie' && url.split('/').length > 7) {
       return true;
     }
     return false;
   }, // Return true if the current page is the sync page (Chapter/episode page)
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'serie' && url.split('/').length === 5) {
+    if (url.split('/')[3] === 'serie' && url.split('/').length === 7) {
       return true;
     }
     return false;
@@ -41,14 +41,18 @@ export const BSTO: pageInterface = {
         .join('/');
     },
     getEpisode(url) {
-      return Number(url.split('/')[6].charAt(0));
+      return Number(j.$('.active>a')[1].innerText);
     }, // Return the recognized episode or chapter number as integer.
     nextEpUrl(url) {
-      const currEp = Number(url.split('/')[6].charAt(0));
+      const currEp = Number(j.$('.active>a')[1].innerText);
       const nextEp = currEp + 1;
       const nextEle = j.$(`.e${nextEp}`)[0] as HTMLElement;
-      const nextURL = nextEle.children[0] as HTMLAnchorElement;
-      return nextURL.href;
+      if (nextEp) {
+        const nextURL = nextEle.children[0] as HTMLAnchorElement;
+        return nextURL.href;
+      } else {
+        return '';
+      }
     },
     uiSelector(selector) {
       j.$('.selectors')
@@ -87,6 +91,26 @@ export const BSTO: pageInterface = {
       j.$('.selectors')
         .first()
         .before(j.html(`<div class="MALContainer"> ${selector}</div>`));
+    },
+    list: {
+      // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('table.episodes tr');
+      }, //  => JQuery<HTMLElement>;
+      elementUrl(selector: JQuery<HTMLElement>) {
+        const anchorHref = selector
+          .find('td')
+          .first()
+          .attr('href');
+        if (!anchorHref) return '';
+        return anchorHref;
+      }, // => string;
+      elementEp(selector) {
+        const anchorNb = selector.find('td').first().innerText;
+        if (!anchorNb) return '';
+        return anchorNb;
+      }, // => number;
     },
   },
   init(page) {
