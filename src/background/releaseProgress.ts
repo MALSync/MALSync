@@ -67,7 +67,7 @@ export async function main() {
     if (!api.settings.get('epPredictions')) {
       throw 'epPredictions disabled';
     }
-
+    // was replaced with POST request
     // await listUpdate(1, 'anime');
     // await listUpdate(1, 'manga');
     await listUpdateWithPOST(1, 'anime');
@@ -141,6 +141,7 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
     const Request = {
       url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
       data: JSON.stringify({ malids: tempArray }),
+      headers: { 'Content-Type': 'application/json' },
     };
     await waitFor(50);
     const response = await api.request.xhr('POST', Request);
@@ -151,13 +152,13 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
   return returnArray.reduce((acc: xhrResponseI[], val) => acc.concat(val), []);
 }
 
-export async function multiple(Array: listElement[], type, mode = 'default', logger = con.m('release')) {
-  if (!mode) mode = 'default';
-
+export async function multiple(Array: listElement[], type, logger = con.m('release')) {
   if (!Array) {
     logger.log('No MAL Id List');
   } else {
     Array.forEach(el => {
+      let mode = el.options!.p;
+      if (!mode) mode = 'default';
       logger = logger.m(el.uid.toString());
       logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
     });
@@ -177,7 +178,8 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
   const remoteUpdateList: listElement[] = [];
   await asyncForEach(Array, async el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
-
+    let mode = el.options!.p;
+    if (!mode) mode = 'default';
     logger.m('Load').log(releaseItem);
 
     if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
@@ -211,12 +213,14 @@ export async function multiple(Array: listElement[], type, mode = 'default', log
 
   xhrArray.forEach(async xhr => {
     logger.log(xhr);
-
-    const progressValue = getProgress(xhr, mode, type);
-    const elRef = remoteUpdateList.find(el => xhr[0].malId === progressValue.malId);
+    const elRef = remoteUpdateList.find(el => xhr.malid === el.malId);
     if (!elRef) {
       return;
     }
+    let mode = elRef.options!.p;
+    if (!mode) mode = 'default';
+    const progressValue = getProgressPOST(xhr, mode, type);
+
     if (!progressValue) {
       logger.log('No value for the selected mode');
     }
@@ -345,6 +349,54 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
   }
 
   return true;
+}
+
+export function getProgressPOST(res, mode, type) {
+  const config: {
+    mainId?: string;
+    fallbackPrediction?: string;
+    fallback?: string;
+  } = {};
+  res = res.data;
+
+  if (!res.length) return null;
+
+  if (mode === 'default') {
+    if (type === 'anime') {
+      config.mainId = api.settings.get('progressIntervalDefaultAnime');
+    } else {
+      config.mainId = api.settings.get('progressIntervalDefaultManga');
+    }
+    config.fallback = 'en/sub';
+  } else {
+    config.mainId = mode;
+  }
+
+  config.fallbackPrediction = 'jp/dub';
+
+  let top;
+
+  if (config.mainId) {
+    const mainTemp = res.find(el => el.id === config.mainId);
+    if (mainTemp) top = mainTemp;
+  }
+
+  if (config.fallback && !top) {
+    const mainTemp = res.find(el => el.id === config.fallback);
+    if (mainTemp) top = mainTemp;
+  }
+
+  if (config.fallbackPrediction && top && !top.predicition) {
+    const predTemp = res.find(el => el.id === config.fallbackPrediction);
+    if (predTemp && predTemp.predicition && top.lastEp.total === predTemp.lastEp.total) {
+      top.predicition = predTemp.predicition;
+      top.predicition.probability = 'medium';
+    }
+  }
+
+  if (!top) return null;
+
+  return top;
 }
 
 export function getProgress(res, mode, type) {
