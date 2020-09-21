@@ -159,8 +159,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     Array.forEach(el => {
       let mode = el.options!.p;
       if (!mode) mode = 'default';
-      logger = logger.m(el.uid.toString());
-      logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
+      logger.m(el.malId).log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
     });
   }
 
@@ -180,26 +179,29 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
     let mode = el.options!.p;
     if (!mode) mode = 'default';
-    logger.m('Load').log(releaseItem);
+    logger
+      .m(el.malId)
+      .m('Load')
+      .log(releaseItem);
 
     if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
       remoteUpdateList.push(el);
     } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
-      logger.log('Up to date');
+      logger.m(el.malId).log('Up to date');
     } else if (
       releaseItem &&
       releaseItem.finished &&
       releaseItem.timestamp &&
       Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
     ) {
-      logger.log('Fininshed');
+      logger.m(el.malId).log('Fininshed');
     } else if (
       releaseItem &&
       !releaseItem.value &&
       releaseItem.timestamp &&
       Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
     ) {
-      logger.log('Nulled');
+      logger.m(el.malId).log('Nulled');
     } else {
       remoteUpdateList.push(el);
     }
@@ -212,23 +214,26 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   }
 
   xhrArray.forEach(async xhr => {
-    logger.log(xhr);
     const elRef = remoteUpdateList.find(el => xhr.malid === el.malId);
     if (!elRef) {
       return;
     }
+    logger.m(elRef.malId).log(xhr);
     let mode = elRef.options!.p;
     if (!mode) mode = 'default';
     const progressValue = getProgressPOST(xhr, mode, type);
 
     if (!progressValue) {
-      logger.log('No value for the selected mode');
+      logger.m(elRef.malId).log('No value for the selected mode');
     }
     let finished = false;
 
     if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
 
-    logger.m('Save').log(progressValue);
+    logger
+      .m(elRef.malId)
+      .m('Save')
+      .log(progressValue);
     if (elRef.cacheKey) {
       await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
         timestamp: Date.now(),
