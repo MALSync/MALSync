@@ -436,4 +436,7 @@ module.exports = {
   AnimeTribes: {
     match: ['*://animetribes.ru/watch/*'],
   },
+  Okanime: {
+    match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
+  },
 };

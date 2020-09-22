@@ -1,0 +1,51 @@
+@import './../pages';
+
+.background-styling(@color) {
+  background-color: @color;
+  border-radius: 5px;
+  padding: 3px 3px 5px 3px;
+  .video-subtitle {
+    color: white;
+  }
+}
+
+#flashinfo-div,
+#flash-div-bottom,
+#flash-div-top,
+#malp > span {
+  direction: ltr;
+}
+
+#MalData {
+  flex-direction: row-reverse;
+}
+
+.MalLogin option {
+  background: inherit !important;
+}
+
+.mal-sync-active {
+  background-color: inherit !important;
+
+  .video-item {
+    .background-styling(@activeEp);
+  }
+
+  ~ a .video-item {
+    .background-styling(#429cc6);
+  }
+}
+
+.translated-box #malp #MalData span.info ~ * {
+  color: rgb(164, 163, 163) !important;
+
+  & > * {
+    color: rgb(164, 163, 163) !important;
+  }
+}
+
+// Sync page
+.mal-sync-active.result-item.episode {
+  background-color: #0056b3 !important;
+  border-radius: 5px;
+}
