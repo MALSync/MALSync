@@ -225,7 +225,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     logger.m(elRef.malId).log(xhr);
     let mode = elRef.options!.p;
     if (!mode) mode = 'default';
-    const progressValue = getProgressPOST(xhr, mode, type);
+    const progressValue = getProgress(xhr, mode, type);
 
     if (!progressValue) {
       logger.m(elRef.malId).log('No value for the selected mode');
@@ -358,54 +358,6 @@ export function progressIsOld(releaseItem: releaseItemInterface) {
   }
 
   return true;
-}
-
-export function getProgressPOST(res, mode, type) {
-  const config: {
-    mainId?: string;
-    fallbackPrediction?: string;
-    fallback?: string;
-  } = {};
-  res = res.data;
-
-  if (!res.length) return null;
-
-  if (mode === 'default') {
-    if (type === 'anime') {
-      config.mainId = api.settings.get('progressIntervalDefaultAnime');
-    } else {
-      config.mainId = api.settings.get('progressIntervalDefaultManga');
-    }
-    config.fallback = 'en/sub';
-  } else {
-    config.mainId = mode;
-  }
-
-  config.fallbackPrediction = 'jp/dub';
-
-  let top;
-
-  if (config.mainId) {
-    const mainTemp = res.find(el => el.id === config.mainId);
-    if (mainTemp) top = mainTemp;
-  }
-
-  if (config.fallback && !top) {
-    const mainTemp = res.find(el => el.id === config.fallback);
-    if (mainTemp) top = mainTemp;
-  }
-
-  if (config.fallbackPrediction && top && !top.predicition) {
-    const predTemp = res.find(el => el.id === config.fallbackPrediction);
-    if (predTemp && predTemp.predicition && top.lastEp.total === predTemp.lastEp.total) {
-      top.predicition = predTemp.predicition;
-      top.predicition.probability = 'medium';
-    }
-  }
-
-  if (!top) return null;
-
-  return top;
 }
 
 export function getProgress(res, mode, type) {
