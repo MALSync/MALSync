@@ -67,9 +67,6 @@ export async function main() {
     if (!api.settings.get('epPredictions')) {
       throw 'epPredictions disabled';
     }
-    // was replaced with POST request
-    // await listUpdate(1, 'anime');
-    // await listUpdate(1, 'manga');
     await listUpdateWithPOST(1, 'anime');
     await listUpdateWithPOST(1, 'manga');
     if (api.settings.get('loadPTWForProgress')) {
