@@ -1,5 +1,7 @@
 import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
+import { listElement } from '../_provider/listAbstract';
+import { xhrResponseI } from '../api/messageInterface';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -65,8 +67,15 @@ export async function main() {
     if (!api.settings.get('epPredictions')) {
       throw 'epPredictions disabled';
     }
-    await listUpdate(1, 'anime');
-    await listUpdate(1, 'manga');
+    // was replaced with POST request
+    // await listUpdate(1, 'anime');
+    // await listUpdate(1, 'manga');
+    await listUpdateWithPOST(1, 'anime');
+    await listUpdateWithPOST(1, 'manga');
+    if (api.settings.get('loadPTWForProgress')) {
+      await listUpdateWithPOST(6, 'anime');
+      await listUpdateWithPOST(6, 'manga');
+    }
     con.log('Progress done');
     setBadgeText('');
     return true;
@@ -99,10 +108,145 @@ export async function listUpdate(state, type) {
     });
 }
 
-export async function predictionXhr(type: string, malId: number | null) {
+export async function listUpdateWithPOST(state, type) {
+  const logger = con.m('release').m(type);
+  logger.log('Start', type, state);
+  const listProvider = await getList(state, type);
+  return listProvider
+    .get()
+    .then(async list => {
+      if (list.length > 0) {
+        try {
+          await multiple(list, type, logger);
+        } catch (e) {
+          logger.error(e);
+        }
+      }
+    })
+    .catch(e => {
+      logger.error(e);
+    });
+}
+
+export async function predictionXhrGET(type: string, malId: number | null) {
   if (!malId) return {};
   const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${malId}/pr`);
   return JSON.parse(response.responseText);
+}
+
+export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
+  if (malDATA === null) return [{}];
+  if (malDATA.length <= 0) return [{}];
+  const malDATAID = malDATA.map(el => el.malId);
+  const waitFor = ms => new Promise(r => setTimeout(r, ms));
+  const returnArray: xhrResponseI[] = [];
+  for (let i = 0; i <= malDATAID.length; ) {
+    const tempArray = malDATAID.slice(i, i + 49);
+    const Request = {
+      url: `https://api.malsync.moe/nc/mal/${type}/POST/pr`,
+      data: JSON.stringify({ malids: tempArray }),
+      headers: { 'Content-Type': 'application/json' },
+    };
+    await waitFor(50);
+    const response = await api.request.xhr('POST', Request);
+    returnArray.push(JSON.parse(response.responseText));
+    i += 50;
+  }
+
+  return returnArray.reduce((acc: xhrResponseI[], val) => acc.concat(val), []);
+}
+
+export async function multiple(Array: listElement[], type, logger = con.m('release')) {
+  if (!Array) {
+    logger.log('No MAL Id List');
+  } else {
+    Array.forEach(el => {
+      let mode = el.options!.p;
+      if (!mode) mode = 'default';
+      logger.m(el.malId).log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
+    });
+  }
+
+  if (!api.settings.get('epPredictions')) {
+    logger.log('epPredictions disabled');
+    return;
+  }
+
+  async function asyncForEach(array, callback) {
+    for (let index = 0; index < array.length; index++) {
+      await callback(array[index], index, array);
+    }
+  }
+
+  const remoteUpdateList: listElement[] = [];
+  await asyncForEach(Array, async el => {
+    const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
+    let mode = el.options!.p;
+    if (!mode) mode = 'default';
+    logger
+      .m(el.malId)
+      .m('Load')
+      .log(releaseItem);
+
+    if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
+      remoteUpdateList.push(el);
+    } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
+      logger.m(el.malId).log('Up to date');
+    } else if (
+      releaseItem &&
+      releaseItem.finished &&
+      releaseItem.timestamp &&
+      Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
+    ) {
+      logger.m(el.malId).log('Fininshed');
+    } else if (
+      releaseItem &&
+      !releaseItem.value &&
+      releaseItem.timestamp &&
+      Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
+    ) {
+      logger.m(el.malId).log('Nulled');
+    } else {
+      remoteUpdateList.push(el);
+    }
+  });
+
+  let xhrArray;
+  if (remoteUpdateList.length > 0) {
+    xhrArray = await predictionXhrPOST(type, remoteUpdateList);
+    await new Promise(resolve => setTimeout(() => resolve(), 500));
+  }
+
+  xhrArray.forEach(async xhr => {
+    const elRef = remoteUpdateList.find(el => xhr.malid === el.malId);
+    if (!elRef) {
+      return;
+    }
+    logger.m(elRef.malId).log(xhr);
+    let mode = elRef.options!.p;
+    if (!mode) mode = 'default';
+    const progressValue = getProgress(xhr, mode, type);
+
+    if (!progressValue) {
+      logger.m(elRef.malId).log('No value for the selected mode');
+    }
+    let finished = false;
+
+    if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
+
+    logger
+      .m(elRef.malId)
+      .m('Save')
+      .log(progressValue);
+    if (elRef.cacheKey) {
+      await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
+        timestamp: Date.now(),
+        value: progressValue,
+        mode,
+        finished,
+      } as releaseItemInterface);
+    }
+  });
 }
 
 export async function single(
@@ -168,7 +312,7 @@ export async function single(
   if (typeof el.xhr !== 'undefined') {
     xhr = el.xhr;
   } else {
-    xhr = await predictionXhr(type, el.malId);
+    xhr = await predictionXhrGET(type, el.malId);
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   }
   logger.log(xhr);

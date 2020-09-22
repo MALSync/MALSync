@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
 import { Progress } from '../utils/progress';
-import { getProgressTypeList, predictionXhr } from '../background/releaseProgress';
+import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
 
 export abstract class SingleAbstract {
   constructor(protected url: string) {
@@ -149,7 +149,7 @@ export abstract class SingleAbstract {
   protected prList: { key: string; label: string }[] = [];
 
   public async initProgress() {
-    const xhr = await predictionXhr(this.getType()!, this.getMalId());
+    const xhr = await predictionXhrGET(this.getType()!, this.getMalId());
     this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({

@@ -711,6 +711,10 @@
     "message": "Nicht gesetzt",
     "description": "miniMAL Not Set"
   },
+  "settings_loadPTWForProgress": {
+    "message": "PTW/PTR für Fortschrittsauswertung laden",
+    "description": "Zusätzlich zu CW/CR auch PTW/PTR bei der Fortschrittsauswertung laden"
+  },
   "settings_Video_Player": {
     "message": "Videoplayer",
     "description": "Video settings header"

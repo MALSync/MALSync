@@ -315,6 +315,7 @@
         >
           <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
         </dropdown>
+        <checkbox option="loadPTWForProgress">{{ lang('settings_loadPTWForProgress') }}</checkbox>
       </div>
 
       <div
@@ -676,7 +677,7 @@ export default {
     startProgressSync() {
       if (this.isExtension()) {
         const inter = parseInt(api.settings.get('progressInterval'));
-        if(!inter) return;
+        if (!inter) return;
         con.log('Trigger Progress update');
         chrome.alarms.create('progressSync', {
           periodInMinutes: inter,
