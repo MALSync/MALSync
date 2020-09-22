@@ -10,5 +10,6 @@
   "vetur.validation.template": false,
   "workbench.colorCustomizations": {
     "editorRuler.foreground": "#ffffff18"
-  }
+  },
+  "Files.eol": "\n"
 }

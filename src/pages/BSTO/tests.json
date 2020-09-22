@@ -1,0 +1,39 @@
+{
+  "title": "bs.to",
+  "enabled": true,
+  "url": "https://bs.to",
+  "testCases": [
+    {
+      "url": "https://bs.to/serie/Sword-Art-Online/",
+      "expected": {
+        "sync": false,
+        "title": "Sword Art Online",
+        "identifier": "Sword-Art-Online1",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://bs.to/serie/Sword-Art-Online/1/2-Beater/de",
+      "expected": {
+        "sync": true,
+        "title": "Sword Art Online",
+        "identifier": "Sword-Art-Online1",
+        "overviewUrl": "https://bs.to/serie/Sword-Art-Online/",
+        "nextEpUrl": "https://bs.to/serie/Sword-Art-Online/1/3-Das-Rentier-mit-der-roten-Nase/de",
+        "episode": 2,
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://bs.to/serie/Sword-Art-Online/3/2-Der-Teufelsbaum/de",
+      "expected": {
+        "sync": true,
+        "title": "Sword Art Online 3",
+        "identifier": "Sword-Art-Online3",
+        "episode": 2,
+        "overviewUrl": "https://bs.to/serie/Sword-Art-Online/",
+        "nextEpUrl": "https://bs.to/serie/Sword-Art-Online/3/3-Das-Grenzgebirge/de"
+      }
+    }
+  ]
+}
