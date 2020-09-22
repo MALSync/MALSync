@@ -82,7 +82,10 @@ export const manga4life: pageInterface = {
             return manga4life.sync.getTitle(page.url) && manga4life.sync.getEpisode(page.url);
           }
           if (manga4life.isOverviewPage!(page.url)) {
-            return manga4life.overview!.getTitle(page.url);
+            return (
+              manga4life.overview!.getTitle(page.url) &&
+              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]').length
+            );
           }
           return false;
         },

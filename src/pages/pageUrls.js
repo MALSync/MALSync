@@ -433,6 +433,9 @@ module.exports = {
   MangaSee: {
     match: ['*://mangasee123.com/manga*', '*://mangasee123.com/read-online*'],
   },
+  AnimeTribes: {
+    match: ['*://animetribes.ru/watch/*'],
+  },
   Okanime: {
     match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
   },
