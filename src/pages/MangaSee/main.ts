@@ -11,6 +11,12 @@ export const MangaSee: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'manga') {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j
@@ -74,9 +80,23 @@ export const MangaSee: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'read-online' || page.url.split('/')[3] === 'manga') {
-        page.handlePage();
-      }
+      utils.waitUntilTrue(
+        function() {
+          if (MangaSee.isSyncPage(page.url)) {
+            return MangaSee.sync.getTitle(page.url) && MangaSee.sync.getEpisode(page.url);
+          }
+          if (MangaSee.isOverviewPage!(page.url)) {
+            return (
+              MangaSee.overview!.getTitle(page.url) &&
+              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]').length
+            );
+          }
+          return false;
+        },
+        function() {
+          page.handlePage();
+        },
+      );
     });
   },
 };
