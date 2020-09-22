@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const BSTO: pageInterface = {
   domain: 'https://bs.to',
-  languages: ['German'], // (ISO language name) https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+  languages: ['German'],
   name: 'bs.to',
   type: 'anime',
 
@@ -11,29 +11,20 @@ export const BSTO: pageInterface = {
       return true;
     }
     return false;
-  }, // Return true if the current page is the sync page (Chapter/episode page)
+  },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'serie' && url.split('/').length === 7) {
+    if (url.split('/')[3] === 'serie' && url.split('/').length >= 4) {
       return true;
     }
     return false;
   },
   sync: {
-    // Definitions for the sync page
     getTitle(url) {
-      let title = j
-        .$('h2')[0]
-        .innerHTML.split('<small>')[0]
-        .trim();
-      if (title.split('|').length > 0) {
-        title = title.split('|')[0];
-      }
-      const Volume = Number(url.split('/')[5]);
-      return `${title} ${Volume}`;
-    }, // Returns the title of the anime, used for the search on mal
+      return BSTO.overview!.getTitle(url);
+    },
     getIdentifier(url) {
-      return url.split('/')[4] + Number(url.split('/')[5]);
-    }, // An unique identifier of the anime. Has to be the same on the sync and overview page
+      return BSTO.overview!.getIdentifier(url);
+    },
     getOverviewUrl(url) {
       return url
         .split('/')
@@ -41,15 +32,14 @@ export const BSTO: pageInterface = {
         .join('/');
     },
     getEpisode(url) {
-      return Number(j.$('.active>a')[1].innerText);
-    }, // Return the recognized episode or chapter number as integer.
+      return Number(j.$('.episode .active > a').text());
+    },
     nextEpUrl(url) {
-      const currEp = Number(j.$('.active>a')[1].innerText);
+      const currEp = BSTO.sync.getEpisode(url);
       const nextEp = currEp + 1;
-      const nextEle = j.$(`.e${nextEp}`)[0] as HTMLElement;
-      if (nextEp) {
-        const nextURL = nextEle.children[0] as HTMLAnchorElement;
-        return nextURL.href;
+      const nextEle = j.$(`.e${nextEp} > a`);
+      if (nextEle.length) {
+        return utils.absoluteLink(nextEle.attr('href'), BSTO.domain);
       }
       return '';
     },
@@ -61,83 +51,75 @@ export const BSTO: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      let title = j
-        .$('h2')[0]
-        .innerHTML.split('<small>')[0]
-        .trim();
-      let Volume = 1;
-      if (url.split('/').length >= 5) {
-        if (url.split('/')[5]) {
-          Volume = Number(url.split('/')[5]);
-        }
+      let title = utils.getBaseText(j.$('h2').first()).trim();
+      title = title.split('|')[0];
+
+      let Season = 1;
+      if (utils.urlPart(url, 5)) {
+        Season = Number(utils.urlPart(url, 5));
       }
-      if (title.split('|').length > 0) {
-        title = title.split('|')[0];
-      }
-      return `${title} ${Volume}`;
-    }, // Returns the title of the anime, used for the search on mal
+
+      return `${title} ${Season}`;
+    },
     getIdentifier(url) {
-      const mainNAme = url.split('/')[4];
-      let Volume = 1;
-      if (url.split('/').length >= 5) {
-        if (url.split('/')[5]) {
-          Volume = Number(url.split('/')[5]);
-        }
+      const mainId = url.split('/')[4];
+
+      let Season = 1;
+      if (utils.urlPart(url, 5)) {
+        Season = Number(utils.urlPart(url, 5));
       }
-      return `${mainNAme}${Volume}`;
-    }, // An unique identifier of the anime. Has to be the same on the sync and overview page
+
+      return `${mainId}?s=${Season}`;
+    },
     uiSelector(selector) {
       j.$('.selectors')
         .first()
         .before(j.html(`<div class="MALContainer"> ${selector}</div>`));
     },
     list: {
-      // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.
       offsetHandler: false,
       elementsSelector() {
-        return j.$('table.episodes tr');
-      }, //  => JQuery<HTMLElement>;
+        return j.$('table.episodes tr, div.episode li[class^="e"]');
+      },
       elementUrl(selector: JQuery<HTMLElement>) {
         const anchorHref = selector
-          .find('td')
+          .find('a')
           .first()
           .attr('href');
         if (!anchorHref) return '';
         return anchorHref;
-      }, // => string;
+      },
       elementEp(selector) {
-        const anchorNb = selector.find('td').first().innerText;
+        const anchorNb = selector
+          .find('a')
+          .first()
+          .text();
         if (!anchorNb) return '';
         return anchorNb;
-      }, // => number;
+      },
     },
   },
   init(page) {
     // eslint-disable-next-line global-require
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      ready();
-    });
-    function ready() {
       /* eslint-disable-next-line */
       j.$('body').append(
         '<script>var openWindow = window.open; window.open = function (url, windowName, windowFeatures) {if(!url.startsWith("https://vivo")) openWindow(url, windowName, windowFeatures)}</script>',
       );
-      page.reset();
       $('html').addClass('miniMAL-hide');
       if (
         j
-          .$('.infos')
-          .first()
-          .children()
-          .first()
-          .children()[1]
-          .innerText.indexOf('Anime') >= 0
+          .$('.infos span:contains("Genres")')
+          .next('p')
+          .text()
+          .indexOf('Anime') >= 0 &&
+        parseInt(utils.urlPart(page.url, 5)) !== 0 // ignore specials since its bad on this page
       ) {
         $('html').removeClass('miniMAL-hide');
         page.handlePage();
       }
-    }
+    });
     utils.waitUntilTrue(
       function() {
         return j.$('div.hoster-player > a[href^="https://vivo"]').length;
