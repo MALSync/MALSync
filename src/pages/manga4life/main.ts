@@ -75,7 +75,18 @@ export const manga4life: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
+    let Interval;
+
     j.$(document).ready(function() {
+      check();
+
+      utils.urlChangeDetect(function() {
+        page.reset();
+        check();
+      });
+    });
+
+    function check() {
       utils.waitUntilTrue(
         function() {
           if (manga4life.isSyncPage(page.url)) {
@@ -93,6 +104,6 @@ export const manga4life: pageInterface = {
           page.handlePage();
         },
       );
-    });
+    }
   },
 };
