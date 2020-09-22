@@ -71,6 +71,25 @@ export const Anime4you: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      /* eslint-disable-next-line */
+      j.$('body').append(
+        `<script>
+        var openWindow = window.open; 
+        window.open = function (url, windowName, windowFeatures) {
+          if(!url.startsWith("https://vivo")) {
+            openWindow(url, windowName, windowFeatures);
+          } else {
+            $('#videoframe').remove();
+            var array = url.split('/');
+            var id = array.pop();
+            array.push('embed');
+            array.push(id);
+            var output = array.join('/');
+            $('div.vidplayer.container > div.embed-responsive').append('<iframe id="videoframe" src="'+ output +'" scrolling="no" frameborder="0" allowfullscreen></iframe>')
+          }
+        }
+        </script>`,
+      );
       page.handlePage();
     });
   },
