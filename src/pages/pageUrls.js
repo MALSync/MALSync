@@ -287,7 +287,7 @@ module.exports = {
     match: ['*://mangakatana.com/manga/*'],
   },
   manga4life: {
-    match: ['*://manga4life.com/*'],
+    match: ['*://*.manga4life.com/*'],
   },
   bato: {
     match: ['*://bato.to/*'],
@@ -431,7 +431,7 @@ module.exports = {
     match: ['*://yugenani.me/*'],
   },
   MangaSee: {
-    match: ['*://mangasee123.com/manga*', '*://mangasee123.com/read-online*'],
+    match: ['*://*.mangasee123.com/manga*', '*://*.mangasee123.com/read-online*'],
   },
   AnimeTribes: {
     match: ['*://animetribes.ru/watch/*'],
