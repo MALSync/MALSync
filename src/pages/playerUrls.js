@@ -286,4 +286,8 @@ module.exports = {
   okgaming: {
     match: ['*://*.okgaming.org/I/*'],
   },
+  // bs.to
+  vivo: {
+    match: ['*://vivo.sx/embed/*'],
+  },
 };
