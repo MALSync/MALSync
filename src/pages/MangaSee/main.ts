@@ -82,11 +82,7 @@ export const MangaSee: pageInterface = {
 
     j.$(document).ready(function() {
       check();
-
-      utils.urlChangeDetect(function() {
-        page.reset();
-        check();
-      });
+      checkupdate();
     });
 
     function check() {
@@ -107,6 +103,33 @@ export const MangaSee: pageInterface = {
           page.handlePage();
         },
       );
+    }
+    function checkupdate() {
+      if (MangaSee.isSyncPage(page.url)) {
+        utils.waitUntilTrue(
+          function() {
+            if (
+              j
+                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
+                .first()
+                .text()
+                .trim() !== 'undefined'
+            ) {
+              return true;
+            }
+            return false;
+          },
+          function() {
+            utils.changeDetect(check, () => {
+              return j
+                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
+                .first()
+                .text()
+                .trim();
+            });
+          },
+        );
+      }
     }
   },
 };
