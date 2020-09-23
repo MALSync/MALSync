@@ -98,9 +98,11 @@ export const Anime4you: pageInterface = {
               $('div.vidplayer.container > div.embed-responsive').append(
                 `<iframe class="videoframe" src="${output}" scrolling="no" frameborder="0" allowfullscreen></iframe>`,
               );
-            })
-            .wrap('li'),
+            }),
         );
+        j.$('.streamhost.vivo')
+          .last()
+          .wrap('<li></li>');
         j.$('.streamhost.vivo')
           .first()
           .hide();
