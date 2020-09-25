@@ -406,4 +406,8 @@ export class Single extends SingleAbstract {
         super.handleScoreCheckbox(value);
     }
   }
+
+  delete() {
+    return this.apiCall('DELETE', `https://kitsu.io/api/edge/library-entries/${this.listI().id}`);
+  }
 }

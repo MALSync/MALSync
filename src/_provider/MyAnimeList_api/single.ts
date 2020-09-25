@@ -244,5 +244,12 @@ export class Single extends SingleAbstract {
     });
   }
 
+  delete() {
+    return this.apiCall({
+      type: 'DELETE',
+      path: `${this.type}/${this.ids.mal}/my_list_status`,
+    });
+  }
+
   apiCall = helper.apiCall;
 }

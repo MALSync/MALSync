@@ -519,4 +519,13 @@ export class Single extends SingleAbstract {
       this.logger.info('Start date already set');
     }
   }
+
+  delete() {
+    const url = `https://myanimelist.net/ownlist/${this.type}/${this.ids.mal}/delete`;
+    return this.apiCall('POST', {
+      url,
+      data: `csrf_token=${this.animeInfo['.csrf_token']}`,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  }
 }
