@@ -439,4 +439,7 @@ module.exports = {
   Okanime: {
     match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
   },
+  AnimeOwl: {
+    match: ['*://animeowl.net/*'],
+  },
 };
