@@ -93,7 +93,7 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
       }
 
       if (response.status === 204) {
-        return;
+        return {};
       }
 
       const res = JSON.parse(response.responseText);
