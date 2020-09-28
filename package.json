@@ -4,7 +4,7 @@
   "author": "lolamtisch@gmail.com",
   "license": "GPL-3.0-only",
   "repository": "github:MALSync/MALSync",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "devDependencies": {
     "@types/chai": "^4.2.11",
