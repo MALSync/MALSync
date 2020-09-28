@@ -290,4 +290,8 @@ module.exports = {
   gogostream: {
     match: ['*://*.gogo-stream.com/streaming.php?*', '*://*.gogo-stream.com/load.php?*'],
   },
+  // bs.to
+  vivo: {
+    match: ['*://vivo.sx/embed/*'],
+  },
 };
