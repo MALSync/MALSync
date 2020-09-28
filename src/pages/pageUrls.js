@@ -257,7 +257,7 @@ module.exports = {
     match: ['*://mangaplus.shueisha.co.jp/*'],
   },
   JapScan: {
-    match: ['*://*.japscan.co/*'],
+    match: ['*://*.japscan.se/*'],
   },
   Goyabu: {
     match: ['*://goyabu.com/*'],

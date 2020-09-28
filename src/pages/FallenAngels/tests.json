@@ -3,27 +3,27 @@
   "url": "https://manga.fascans.com/",
   "testCases": [
     {
-      "url": "https://manga.fascans.com/manga/plunderer/53/2",
+      "url": "https://manga.fascans.com/manga/baby-steps/362/1",
       "expected": {
         "sync": true,
-        "title": "Plunderer",
-        "identifier": "plunderer",
-        "overviewUrl": "https://manga.fascans.com/manga/plunderer",
-        "episode": 53,
-        "nextEpUrl": "https://manga.fascans.com/manga/plunderer/54",
+        "title": "Baby Steps",
+        "identifier": "baby-steps",
+        "overviewUrl": "https://manga.fascans.com/manga/baby-steps",
+        "episode": 362,
+        "nextEpUrl": "https://manga.fascans.com/manga/baby-steps/363",
         "uiSelector": false
       }
     },
     {
-      "url": "https://manga.fascans.com/manga/plunderer",
+      "url": "https://manga.fascans.com/manga/baby-steps",
       "expected": {
         "sync": false,
-        "title": "Plunderer",
-        "identifier": "plunderer",
+        "title": "Baby Steps",
+        "identifier": "baby-steps",
         "uiSelector": true,
         "epList": {
-          "53": "https://manga.fascans.com/manga/plunderer/53",
-          "18": "https://manga.fascans.com/manga/plunderer/18"
+          "288": "https://manga.fascans.com/manga/baby-steps/288",
+          "380": "https://manga.fascans.com/manga/baby-steps/380"
         }
       }
     }
