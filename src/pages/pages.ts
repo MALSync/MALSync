@@ -101,6 +101,7 @@ import { YugenAnime } from './YugenAnime/main';
 import { MangaSee } from './MangaSee/main';
 import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
+import { Fastani } from './Fastani/main';
 
 export const pages = {
   nineAnime,
@@ -206,4 +207,5 @@ export const pages = {
   MangaSee,
   AnimeTribes,
   Okanime,
+  Fastani,
 };
