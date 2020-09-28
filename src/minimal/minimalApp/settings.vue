@@ -378,6 +378,7 @@
             More Info</a
           >
         </div>
+        <checkbox option="rpc">{{ lang('settings_enabled') }}</checkbox>
         <checkbox option="presenceHidePage">{{ lang('settings_presenceHidePage') }}</checkbox>
       </div>
 
