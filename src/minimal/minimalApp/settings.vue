@@ -207,7 +207,7 @@
         <checkbox option="minimizeBigPopup">{{ lang('settings_miniMAL_minimizeBigPopup') }}</checkbox>
         <checkbox option="floatButtonCorrection">{{ lang('settings_miniMAL_floatButtonCorrection') }}</checkbox>
         <checkbox option="floatButtonHide">{{ lang('settings_miniMAL_floatButtonHide') }}</checkbox>
-        <checkbox option="autoCloseMinimal">{{ lang('settings_miniMAL_autoCloseMinimal') }}</checkbox>
+        <checkbox v-if="!isExtension()" option="autoCloseMinimal">{{ lang('settings_miniMAL_autoCloseMinimal') }}</checkbox>
 
         <li v-if="commands" class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
