@@ -73,5 +73,40 @@ export const Anime4you: pageInterface = {
     j.$(document).ready(function() {
       page.handlePage();
     });
+    utils.waitUntilTrue(
+      function() {
+        return j.$('.streamhost.vivo').length;
+      },
+      function() {
+        // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+        j.$('ul.streamer').append(
+          j
+            .$('.streamhost.vivo')
+            .clone()
+            .click(function() {
+              j.$('#videoframe').remove();
+              const array = j
+                .$('.streamhost.vivo')
+                .first()
+                .attr('href')!
+                .split('/');
+              const id = array.pop()!;
+              array.push('embed');
+              array.push(id);
+              const output = array.join('/');
+              // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+              $('div.vidplayer.container > div.embed-responsive').append(
+                `<iframe class="videoframe" src="${output}" scrolling="no" frameborder="0" allowfullscreen></iframe>`,
+              );
+            }),
+        );
+        j.$('.streamhost.vivo')
+          .last()
+          .wrap('<li></li>');
+        j.$('.streamhost.vivo')
+          .first()
+          .hide();
+      },
+    );
   },
 };
