@@ -442,6 +442,9 @@ module.exports = {
   BSTO: {
     match: ['*://bs.to/serie/*'],
   },
+  Pantsubase: {
+    match: ['*://pantsubase.tv/anime/*', '*://pantsubase.tv/watch/*'],
+  },
   Fastani: {
     match: ['*://fastani.net/*'],
   },
