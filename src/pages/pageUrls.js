@@ -445,4 +445,7 @@ module.exports = {
   Pantsubase: {
     match: ['*://pantsubase.tv/anime/*', '*://pantsubase.tv/watch/*'],
   },
+  Fastani: {
+    match: ['*://fastani.net/*'],
+  },
 };
