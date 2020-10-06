@@ -294,4 +294,8 @@ module.exports = {
   vivo: {
     match: ['*://vivo.sx/embed/*'],
   },
+  // pantsubase.tv
+  googleDrive: {
+    match: ['*://ani.googledrive.stream/vidstreaming/*'],
+  },
 };
