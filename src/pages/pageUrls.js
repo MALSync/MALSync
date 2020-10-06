@@ -448,4 +448,7 @@ module.exports = {
   Fastani: {
     match: ['*://fastani.net/*'],
   },
+  AnimeOwl: {
+    match: ['*://animeowl.net/*'],
+  },
 };

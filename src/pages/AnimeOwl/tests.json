@@ -1,0 +1,31 @@
+{
+  "title": "AnimeOwl",
+  "url": "https://animeowl.net/",
+  "testCases": [
+    {
+      "url": "https://animeowl.net/tv-show/mahouka-koukou-no-rettousei/",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "mahouka-koukou-no-rettousei",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://animeowl.net/mahouka-koukou-no-rettousei/?ep=14&ep_id=222354",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "mahouka-koukou-no-rettousei",
+        "uiSelector": true,
+        "episode": 14,
+        "overviewUrl": "https://animeowl.net/tv-show/mahouka-koukou-no-rettousei/",
+        "nextEpUrl": "https://animeowl.net/mahouka-koukou-no-rettousei/?ep=15&ep_id=200799",
+        "uiSelector": true,
+        "epList": {
+          "9": "https://animeowl.net/mahouka-koukou-no-rettousei/?ep=9&ep_id=227073"
+        }
+      }
+    }
+  ]
+}
