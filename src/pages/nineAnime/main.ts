@@ -14,35 +14,36 @@ export const nineAnime: pageInterface = {
       return j.$('h1.title').text();
     },
     getIdentifier(url) {
-      url = url.split('/')[4].split('?')[0];
+      url = utils.urlPart(url, 4);
       if (url.indexOf('.') > -1) {
         url = url.split('.')[1];
       }
       return url;
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return utils.absoluteLink(
+        j
+          .$('ul.episodes > li > a')
+          .first()
+          .attr('href'),
+        nineAnime.domain,
+      );
     },
     getEpisode(url) {
-      return parseInt(j.$('.servers .episodes a.active').attr('data-base')!);
+      return parseInt(j.$('ul.episodes > li > a.active').attr('data-base')!);
     },
     nextEpUrl(url) {
       const nextEp = j
-        .$('.servers .episodes a.active')
+        .$('ul.episodes > li > a.active')
         .parent('li')
         .next()
         .find('a')
         .attr('href');
       if (!nextEp) return nextEp;
-      return nineAnime.domain + nextEp;
+      return utils.absoluteLink(nextEp, nineAnime.domain);
     },
     uiSelector(selector) {
-      j.$('.widget.info')
-        .first()
-        .before(j.html(`<div class="widget info"><div class="widget-body"> ${selector}</div></div>`));
+      j.$('#episodes').after(j.html(`<section>${selector}</section>`));
     },
   },
   overview: {
@@ -58,7 +59,7 @@ export const nineAnime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.episodes.range a');
+        return j.$('ul.episodes > li > a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), nineAnime.domain);
@@ -72,7 +73,7 @@ export const nineAnime: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     utils.waitUntilTrue(
       function() {
-        return j.$('.servers').length;
+        return j.$('ul.episodes > li').length;
       },
       function() {
         con.info('Start check');

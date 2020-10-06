@@ -4,6 +4,7 @@ export const settingsObj = {
     autoTrackingModemanga: 'instant',
     enablePages: {},
     forceEn: false,
+    rpc: true,
     presenceHidePage: false,
     userscriptModeButton: false,
     strictCookies: false,

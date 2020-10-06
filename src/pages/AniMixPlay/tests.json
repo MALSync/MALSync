@@ -1,49 +1,49 @@
 {
   "title": "AniMixPlay",
-  "url": "https://animixplay.com/",
+  "url": "https://animixplay.to/",
   "testCases": [
     {
-      "url": "https://animixplay.com/v2/2518/kami-no-tou/ep12",
+      "url": "https://animixplay.to/v2/2518/kami-no-tou/ep12",
       "expected": {
         "sync": true,
         "title": "Kami no Tou",
         "identifier": "2518",
-        "overviewUrl": "https://animixplay.com/v2/2518/kami-no-tou",
-        "nextEpUrl": "https://animixplay.com/v2/2518/kami-no-tou/ep13",
+        "overviewUrl": "https://animixplay.to/v2/2518/kami-no-tou",
+        "nextEpUrl": "https://animixplay.to/v2/2518/kami-no-tou/ep13",
         "episode": 12,
         "uiSelector": true,
         "epList": {
-          "7": "https://animixplay.com/v2/2518/kami-no-tou/ep7"
+          "7": "https://animixplay.to/v2/2518/kami-no-tou/ep7"
         }
       }
     },
     {
-      "url": "https://animixplay.com/v3/yesterday-wo-utatte-900312/ep5",
+      "url": "https://animixplay.to/v3/yesterday-wo-utatte-900312/ep5",
       "expected": {
         "sync": true,
         "title": "Yesterday wo Utatte",
         "identifier": "yesterday-wo-utatte-900312",
-        "overviewUrl": "https://animixplay.com/v3/yesterday-wo-utatte-900312",
-        "nextEpUrl": "https://animixplay.com/v3/yesterday-wo-utatte-900312/ep6",
+        "overviewUrl": "https://animixplay.to/v3/yesterday-wo-utatte-900312",
+        "nextEpUrl": "https://animixplay.to/v3/yesterday-wo-utatte-900312/ep6",
         "episode": 5,
         "uiSelector": true,
         "epList": {
-          "7": "https://animixplay.com/v3/yesterday-wo-utatte-900312/ep7"
+          "7": "https://animixplay.to/v3/yesterday-wo-utatte-900312/ep7"
         }
       }
     },
     {
-      "url": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep7",
+      "url": "https://animixplay.to/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep7",
       "expected": {
         "sync": true,
         "title": "Kaguya-sama wa Kokurasetai?: Tensai-tachi no Renai Zunousen 2nd Season",
         "identifier": "4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
-        "overviewUrl": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
-        "nextEpUrl": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep8",
+        "overviewUrl": "https://animixplay.to/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season",
+        "nextEpUrl": "https://animixplay.to/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep8",
         "episode": 7,
         "uiSelector": true,
         "epList": {
-          "9": "https://animixplay.com/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep9"
+          "9": "https://animixplay.to/v4/4-kaguya-sama-wa-kokurasetai-tensai-tachi-no-renai-zunousen-2nd-season/ep9"
         }
       }
     }

@@ -1,44 +1,44 @@
 {
   "title": "JapScan",
-  "url": "https://www.japscan.co/",
+  "url": "https://www.japscan.se/",
   "testCases": [
     {
-      "url": "https://www.japscan.co/lecture-en-ligne/one-punch-man/119/",
+      "url": "https://www.japscan.se/lecture-en-ligne/one-punch-man/119/",
       "expected": {
         "sync": true,
         "title": "One Punch Man",
         "identifier": "one-punch-man",
-        "overviewUrl": "https://www.japscan.co/manga/one-punch-man/",
-        "nextEpUrl": "https://www.japscan.co/lecture-en-ligne/one-punch-man/120/",
+        "overviewUrl": "https://www.japscan.se/manga/one-punch-man/",
+        "nextEpUrl": "https://www.japscan.se/lecture-en-ligne/one-punch-man/120/",
         "episode": 119,
         "uiSelector": false
       }
     },
     {
       // manga overview
-      "url": "https://www.japscan.co/manga/one-punch-man/",
+      "url": "https://www.japscan.se/manga/one-punch-man/",
       "expected": {
         "sync": false,
         "title": "One Punch Man",
         "identifier": "one-punch-man",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.japscan.co/lecture-en-ligne/one-punch-man/5/",
-          "166": "https://www.japscan.co/lecture-en-ligne/one-punch-man/166/"
+          "5": "https://www.japscan.se/lecture-en-ligne/one-punch-man/5/",
+          "166": "https://www.japscan.se/lecture-en-ligne/one-punch-man/166/"
         }
       }
     },
     {
       // manhwa overview
-      "url": "https://www.japscan.co/manga/solo-leveling/",
+      "url": "https://www.japscan.se/manga/solo-leveling/",
       "expected": {
         "sync": false,
         "title": "Solo Leveling",
         "identifier": "solo-leveling",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.japscan.co/lecture-en-ligne/solo-leveling/5/",
-          "92": "https://www.japscan.co/lecture-en-ligne/solo-leveling/92/"
+          "5": "https://www.japscan.se/lecture-en-ligne/solo-leveling/5/",
+          "92": "https://www.japscan.se/lecture-en-ligne/solo-leveling/92/"
         }
       }
     }

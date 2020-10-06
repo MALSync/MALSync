@@ -101,6 +101,9 @@ import { YugenAnime } from './YugenAnime/main';
 import { MangaSee } from './MangaSee/main';
 import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
+import { BSTO } from './BSTO/main';
+import { Pantsubase } from './Pantsubase/main';
+import { Fastani } from './Fastani/main';
 import { AnimeOwl } from './AnimeOwl/main';
 
 export const pages = {
@@ -207,5 +210,8 @@ export const pages = {
   MangaSee,
   AnimeTribes,
   Okanime,
+  BSTO,
+  Pantsubase,
+  Fastani,
   AnimeOwl,
 };

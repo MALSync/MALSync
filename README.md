@@ -62,7 +62,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeflv.net"><img src="https://www.google.com/s2/favicons?domain=https://animeflv.net"> animeflv</a></td>
-                <td><a href="https://www.japscan.co"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.co"> JapScan</a></td>
+                <td><a href="https://www.japscan.se"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.se"> JapScan</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net/"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net/"> Jkanime</a></td>
@@ -174,7 +174,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://dreamsub.stream"><img src="https://www.google.com/s2/favicons?domain=https://dreamsub.stream"> DreamSub</a></td>
-                <td></td>
+                <td><a href="https://mangasee123.com"><img src="https://www.google.com/s2/favicons?domain=https://mangasee123.com"> MangaSee</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
@@ -262,6 +262,18 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://yugenani.me/"><img src="https://www.google.com/s2/favicons?domain=https://yugenani.me/"> YugenAnime</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://animetribes.ru"><img src="https://www.google.com/s2/favicons?domain=https://animetribes.ru"> AnimeTribes</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.okanime.com"><img src="https://www.google.com/s2/favicons?domain=https://www.okanime.com"> Okanime</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://bs.to"><img src="https://www.google.com/s2/favicons?domain=https://bs.to"> bs.to</a></td>
                 <td></td>
                 <td></td>
               </tr>

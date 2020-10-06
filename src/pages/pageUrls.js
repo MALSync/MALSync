@@ -257,7 +257,7 @@ module.exports = {
     match: ['*://mangaplus.shueisha.co.jp/*'],
   },
   JapScan: {
-    match: ['*://*.japscan.co/*'],
+    match: ['*://*.japscan.se/*'],
   },
   Goyabu: {
     match: ['*://goyabu.com/*'],
@@ -438,6 +438,15 @@ module.exports = {
   },
   Okanime: {
     match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
+  },
+  BSTO: {
+    match: ['*://bs.to/serie/*'],
+  },
+  Pantsubase: {
+    match: ['*://pantsubase.tv/anime/*', '*://pantsubase.tv/watch/*'],
+  },
+  Fastani: {
+    match: ['*://fastani.net/*'],
   },
   AnimeOwl: {
     match: ['*://animeowl.net/*'],
