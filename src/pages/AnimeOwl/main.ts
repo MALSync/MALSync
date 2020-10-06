@@ -66,7 +66,7 @@ export const AnimeOwl: pageInterface = {
     uiSelector(selector) {
       j.$('div.post-info > div:nth-child(2) > div.row:nth-child(1)')
         .first()
-        .after(j.html(`<div class="row">${selector}</div>`));
+        .after(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
     },
     list: {
       offsetHandler: false,
