@@ -257,7 +257,7 @@ module.exports = {
     match: ['*://mangaplus.shueisha.co.jp/*'],
   },
   JapScan: {
-    match: ['*://*.japscan.co/*'],
+    match: ['*://*.japscan.se/*'],
   },
   Goyabu: {
     match: ['*://goyabu.com/*'],
@@ -438,6 +438,9 @@ module.exports = {
   },
   Okanime: {
     match: ['*://www.okanime.com/animes/*', '*://www.okanime.com/movies/*'],
+  },
+  BSTO: {
+    match: ['*://bs.to/serie/*'],
   },
   Fastani: {
     match: ['*://fastani.net/*'],

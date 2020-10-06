@@ -174,6 +174,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://animetribes.ru"><img src="https://www.google.com/s2/favicons?domain=https://animetribes.ru"> AnimeTribes</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://animeultima.to"><img src="https://www.google.com/s2/favicons?domain=https://animeultima.to"> animeultima</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -225,6 +232,13 @@
   </tr><tr>
     <td><a href="https://www.branitube.net"><img src="https://www.google.com/s2/favicons?domain=https://www.branitube.net"> Branitube</a></td>
     <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://bs.to"><img src="https://www.google.com/s2/favicons?domain=https://bs.to"> bs.to</a></td>
+    <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -349,6 +363,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://www.okanime.com"><img src="https://www.google.com/s2/favicons?domain=https://www.okanime.com"> Okanime</a></td>
+    <td>Arabic</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.otakufr.com"><img src="https://www.google.com/s2/favicons?domain=https://www.otakufr.com"> OtakuFR</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
@@ -371,7 +392,7 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
-    <td>English</td>
+    <td>Indonesian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -451,7 +472,7 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
   </tr>
     </tbody>
@@ -512,7 +533,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.japscan.co"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.co"> JapScan</a></td>
+    <td><a href="https://www.japscan.se"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.se"> JapScan</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -609,6 +630,13 @@
     <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://mangasee123.com"><img src="https://www.google.com/s2/favicons?domain=https://mangasee123.com"> MangaSee</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://mangatx.com"><img src="https://www.google.com/s2/favicons?domain=https://mangatx.com"> mangatx</a></td>
     <td>English</td>

@@ -76,6 +76,11 @@ export const manga4life: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(document).ready(function() {
+      check();
+      checkupdate();
+    });
+
+    function check() {
       utils.waitUntilTrue(
         function() {
           if (manga4life.isSyncPage(page.url)) {
@@ -93,6 +98,33 @@ export const manga4life: pageInterface = {
           page.handlePage();
         },
       );
-    });
+    }
+    function checkupdate() {
+      if (manga4life.isSyncPage(page.url)) {
+        utils.waitUntilTrue(
+          function() {
+            if (
+              j
+                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
+                .first()
+                .text()
+                .trim() !== 'undefined'
+            ) {
+              return true;
+            }
+            return false;
+          },
+          function() {
+            utils.changeDetect(check, () => {
+              return j
+                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
+                .first()
+                .text()
+                .trim();
+            });
+          },
+        );
+      }
+    }
   },
 };

@@ -365,7 +365,7 @@ export class syncPage {
       }
 
       // Discord Presence
-      if (api.type === 'webextension') {
+      if (api.type === 'webextension' && api.settings.get('rpc')) {
         try {
           chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(response) {
             logger.log('Presence registred', response);

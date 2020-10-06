@@ -210,7 +210,7 @@
     "name": "MangaPlus"
   },
   {
-    "domain": "https://www.japscan.co",
+    "domain": "https://www.japscan.se",
     "type": "manga",
     "name": "JapScan"
   },
@@ -498,5 +498,25 @@
     "domain": "https://yugenani.me/",
     "type": "anime",
     "name": "YugenAnime"
+  },
+  {
+    "domain": "https://mangasee123.com",
+    "type": "manga",
+    "name": "MangaSee"
+  },
+  {
+    "domain": "https://animetribes.ru",
+    "type": "anime",
+    "name": "AnimeTribes"
+  },
+  {
+    "domain": "https://www.okanime.com",
+    "type": "anime",
+    "name": "Okanime"
+  },
+  {
+    "domain": "https://bs.to",
+    "type": "anime",
+    "name": "bs.to"
   }
 ]

@@ -219,10 +219,10 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     if (!elRef) {
       return;
     }
-    logger.m(elRef.malId).log(xhr);
+    logger.m(elRef.malId).log(xhr.data);
     let mode = elRef.options!.p;
     if (!mode) mode = 'default';
-    const progressValue = getProgress(xhr, mode, type);
+    const progressValue = getProgress(xhr.data, mode, type);
 
     if (!progressValue) {
       logger.m(elRef.malId).log('No value for the selected mode');

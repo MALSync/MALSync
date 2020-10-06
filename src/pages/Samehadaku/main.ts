@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 export const Samehadaku: pageInterface = {
   name: 'Samehadaku',
   domain: 'https://samehadaku.vip',
-  languages: ['English'],
+  languages: ['Indonesian'],
   type: 'anime',
   isSyncPage(url) {
     if (url.split('/')[3] === 'anime') {
