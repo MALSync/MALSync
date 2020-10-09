@@ -33,7 +33,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://manganelo.com"><img src="https://www.google.com/s2/favicons?domain=https://manganelo.com"> MangaNelo</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://gogoanimes.co"><img src="https://www.google.com/s2/favicons?domain=https://gogoanimes.co"> Gogoanime</a></td>
+                <td><a href="https://gogoanimes.so"><img src="https://www.google.com/s2/favicons?domain=https://gogoanimes.so"> Gogoanime</a></td>
                 <td><a href="https://www.viz.com"><img src="https://www.google.com/s2/favicons?domain=https://www.viz.com"> VIZ</a></td>
                 <td></td>
               </tr><tr>
