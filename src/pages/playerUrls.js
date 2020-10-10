@@ -298,4 +298,8 @@ module.exports = {
   googleDrive: {
     match: ['*://ani.googledrive.stream/vidstreaming/*'],
   },
+  // 9anime
+  vidstream: {
+    match: ['*://vidstream.pro/e/*'],
+  },
 };
