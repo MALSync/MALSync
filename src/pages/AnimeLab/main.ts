@@ -3,7 +3,16 @@ import { pageInterface } from '../pageInterface';
 
 // Define the variable proxy element:
 const proxy = new ScriptProxy();
-proxy.addCaptureVariable('videos', 'return videos');
+proxy.addCaptureVariable(
+  'videos',
+  `
+    if (window.hasOwnProperty("videos")) {
+      return videos;
+    } else {
+      return undefined;
+    }
+  `,
+);
 
 // Function that, given a working proxy, will pull information from the page
 function extractMetadata() {
@@ -20,8 +29,13 @@ function extractMetadata() {
   let playlistPosition = -1;
 
   for (let index = 0; index < videos.length; index++) {
+    if (!('videoEntry' in videos[index])) {
+      continue;
+    }
+
     if (videos[index].videoEntry.slug === slug) {
       playlistPosition = index;
+      break;
     }
   }
 
@@ -95,6 +109,10 @@ export const AnimeLab: pageInterface = {
     const callback = (caller: ScriptProxy) => {
       page.handlePage();
     };
+
+    if (!AnimeLab.isSyncPage(page.url)) {
+      return;
+    }
 
     j.$(document).ready(() => {
       proxy.addProxy(callback);
