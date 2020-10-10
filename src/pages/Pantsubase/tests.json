@@ -23,7 +23,7 @@
         "episode": 11,
         "overviewUrl": "https://pantsubase.tv/anime/mahouka-koukou-no-rettousei",
         "nextEpUrl": "https://pantsubase.tv/watch/mahouka-koukou-no-rettousei-episode-12",
-        "uiSelector": true
+        "uiSelector": false
       }
     }
   ]

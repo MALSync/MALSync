@@ -45,9 +45,6 @@ export const Pantsubase: pageInterface = {
         Pantsubase.domain,
       );
     },
-    uiSelector(selector) {
-      j.$('div.episode-title-episode > h3').after(j.html(selector));
-    },
   },
   overview: {
     getTitle(url) {
