@@ -323,7 +323,7 @@ module.exports = {
     match: ['*://mangatx.com/*'],
   },
   TRanimeizle: {
-    match: ['*://tranimeizle.com/*', '*://www.tranimeizle.com/*'],
+    match: ['*://tranimeizle.net/*', '*://www.tranimeizle.net/*'],
   },
   Anihub: {
     match: ['*://anihub.tv/*'],

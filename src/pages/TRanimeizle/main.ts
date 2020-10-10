@@ -1,12 +1,12 @@
 import { pageInterface } from '../pageInterface';
 
 function GetOverviewAnchor(): HTMLAnchorElement | null {
-  return document.querySelector(`a[href^="anime"]`);
+  return document.querySelector(`a[href^="/anime"]`);
 }
 
 function RemoveUnrelatedTurkishWordIzle(title: string) {
   // "izle" is the translation of the word "watch"
-  return title.replace(/(?: |-)izle.*/i, '');
+  return title.replace(/(?: |-)izle.*/i, '').replace(/(?: |-)İzle.*/i, '');
 }
 
 function IsOverviewUrl(url: string) {
@@ -14,12 +14,12 @@ function IsOverviewUrl(url: string) {
 }
 
 // Example urls
-// overview page url: https://www.tranimeizle.com/anime/one-punch-man-izle-hd
-// sync page url: https://www.tranimeizle.com/one-punch-man-1-bolum-izle
+// overview page url: https://www.tranimeizle.net/anime/one-punch-man-izle-hd
+// sync page url: https://www.tranimeizle.net/one-punch-man-1-bolum-izle
 
 export const TRanimeizle: pageInterface = {
   name: 'TRanimeizle',
-  domain: 'https://www.tranimeizle.com/',
+  domain: 'https://www.tranimeizle.net/',
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(_url: string) {
