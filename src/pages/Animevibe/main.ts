@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Animevibe: pageInterface = {
   name: 'Animevibe',
-  domain: 'https://animevibe.tv',
+  domain: ['https://animevibe.wtf', 'https://animemate.xyz'],
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {

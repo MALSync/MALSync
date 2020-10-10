@@ -368,7 +368,7 @@ module.exports = {
     match: ['*://simplyaweeb.com/series/*', '*://simplyaweeb.com/manga/*'],
   },
   Animevibe: {
-    match: ['*://animevibe.tv/ani/*'],
+    match: ['*://animevibe.wtf/ani/*', '*://animemate.xyz/ani/*'],
   },
   WuxiaWorld: {
     match: ['*://wuxiaworld.site/novel/*'],
