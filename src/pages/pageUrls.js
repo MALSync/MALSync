@@ -451,4 +451,7 @@ module.exports = {
   AnimeOwl: {
     match: ['*://animeowl.net/*'],
   },
+  AnimeLab: {
+    match: ['*://www.animelab.com/*'],
+  },
 };
