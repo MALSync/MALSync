@@ -22,7 +22,7 @@ export const bato: pageInterface = {
       return utils.absoluteLink(j.$('h3.nav-title > a').attr('href'), bato.domain);
     },
     getEpisode(url) {
-      const selectedOptionText = j.$('div.nav-chap > select > optgroup > option:selected').text();
+      const selectedOptionText = j.$('div.nav-epis > select > optgroup > option:selected').text();
 
       if (!selectedOptionText) return NaN;
 
@@ -64,7 +64,7 @@ export const bato: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.chapter-list > div.main > div.item');
+        return j.$('div.episode-list > div.main > div.item');
       },
       elementUrl(selector) {
         return utils.absoluteLink(
