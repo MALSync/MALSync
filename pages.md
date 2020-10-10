@@ -118,13 +118,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.animelab.com"><img src="https://www.google.com/s2/favicons?domain=https://www.animelab.com"> AnimeLab</a></td>
-    <td>English</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
     <td>Polish</td>
     <td>:heavy_check_mark:</td>

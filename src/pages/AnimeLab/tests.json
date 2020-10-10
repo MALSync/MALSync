@@ -1,6 +1,6 @@
 {
   "title": "AnimeLab",
-  "enabled": true,
+  "enabled": false,
   "url": "https://www.animelab.com/",
   "testCases": [
     {

@@ -1,13 +1,15 @@
+import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
 
-// Just as a sanity check when sending messages:
-const uniqueId = window.crypto.getRandomValues(new Uint32Array(10)).toString();
+// Define the variable proxy element:
+const proxy = new ScriptProxy();
+proxy.addCaptureVariable('videos', 'return videos');
 
-// Function that, given a metadata extractor, will pull information from the page
+// Function that, given a working proxy, will pull information from the page
 function extractMetadata() {
-  const videos = JSON.parse(j.$('#malSyncContainer').attr('data-videos') || '[]');
+  const videos = proxy.getCaptureVariable('videos');
 
-  if (videos.length === 0) {
+  if (!(videos instanceof Array)) {
     throw new Error('Invalid metadata');
   }
 
@@ -31,30 +33,6 @@ function extractMetadata() {
     videos,
     playlistPosition,
   };
-}
-
-// Adds a metadata extractor intermediary
-function addMetaExtractor() {
-  // Clean-up after a previous attempt
-  const elementToRemove = document.getElementById('malSyncContainer');
-  if (elementToRemove !== null) {
-    elementToRemove.remove();
-  }
-
-  // Extract the "video" attribute, if available
-  const scriptElement = document.createElement('script');
-  const scriptContents = document.createTextNode(`
-    if (window.hasOwnProperty("videos")) {
-      const element = document.getElementById('malSyncContainer');
-      element.setAttribute("data-videos", JSON.stringify(videos));
-
-      window.postMessage({"uniqueId": "${uniqueId}"}, "*");
-    }
-  `);
-
-  scriptElement.id = 'malSyncContainer';
-  scriptElement.appendChild(scriptContents);
-  document.body.append(scriptElement);
 }
 
 export const AnimeLab: pageInterface = {
@@ -114,29 +92,18 @@ export const AnimeLab: pageInterface = {
   },
   // Overview not available as shows inconsistently use multiple seasons,
   init(page) {
-    window.addEventListener(
-      'message',
-      event => {
-        if (!(event instanceof MessageEvent)) {
-          return;
-        }
-
-        const eventData: MessageEvent = event;
-
-        if (eventData.data.uniqueId.valueOf() !== uniqueId.valueOf()) return;
-
-        page.handlePage();
-      },
-      false,
-    );
+    const callback = (caller: ScriptProxy) => {
+      page.handlePage();
+    };
 
     j.$(document).ready(() => {
-      addMetaExtractor();
+      proxy.addProxy(callback);
 
       // If the video changes on the same page (i.e video is queued), we
       // don't get sent to a new page. The metadata, however, does update:
       j.$('#video-component').on('loadstart', () => {
-        addMetaExtractor();
+        // Update the proxy:
+        proxy.addProxy(callback);
       });
     });
   },

@@ -518,10 +518,5 @@
     "domain": "https://bs.to",
     "type": "anime",
     "name": "bs.to"
-  },
-  {
-    "domain": "https://www.animelab.com",
-    "type": "anime",
-    "name": "AnimeLab"
   }
 ]

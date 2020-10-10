@@ -276,10 +276,6 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://bs.to"><img src="https://www.google.com/s2/favicons?domain=https://bs.to"> bs.to</a></td>
                 <td></td>
                 <td></td>
-              </tr><tr>
-                <td><a href="https://www.animelab.com"><img src="https://www.google.com/s2/favicons?domain=https://www.animelab.com"> AnimeLab</a></td>
-                <td></td>
-                <td></td>
               </tr>
     </tbody>
   </table>
