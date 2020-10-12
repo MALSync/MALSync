@@ -169,14 +169,14 @@ export class Single extends SingleAbstract {
         }
         throw e;
       })
-      .then(res => {
-        this.animeInfo = res;
+      .then(async res => {
+        const tempAnimeInfo = res;
 
         this._onList = true;
 
-        if (!this.animeInfo.data.length) {
+        if (!res.data.length) {
           this._onList = false;
-          this.animeInfo.data[0] = {
+          tempAnimeInfo.data[0] = {
             attributes: {
               notes: '',
               progress: 0,
@@ -188,11 +188,16 @@ export class Single extends SingleAbstract {
             },
           };
           if (typeof kitsuRes !== 'undefined') {
-            this.animeInfo.included = kitsuRes.included;
+            tempAnimeInfo.included = kitsuRes.included;
+          } else if (kitsuSlugRes) {
+            tempAnimeInfo.included = kitsuSlugRes.res.data;
           } else {
-            this.animeInfo.included = kitsuSlugRes.res.data;
+            kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
+            tempAnimeInfo.included = kitsuRes.included;
           }
         }
+
+        this.animeInfo = tempAnimeInfo;
 
         try {
           this.animeI();
