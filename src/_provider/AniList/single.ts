@@ -133,6 +133,7 @@ export class Single extends SingleAbstract {
           userPreferred
         }
         mediaListEntry {
+          id
           status
           progress
           progressVolumes
@@ -306,5 +307,20 @@ export class Single extends SingleAbstract {
       default:
         super.handleScoreCheckbox(value);
     }
+  }
+
+  delete() {
+    const query = `
+      mutation ($mediaId: Int) {
+        DeleteMediaListEntry(id: $mediaId) {
+          deleted
+        }
+      }
+    `;
+    const variables = {
+      mediaId: this.animeInfo.mediaListEntry.id,
+    };
+
+    return this.apiCall(query, variables);
   }
 }

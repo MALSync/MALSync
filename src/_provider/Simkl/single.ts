@@ -381,4 +381,21 @@ export class Single extends SingleAbstract {
       };
     }
   }
+
+  delete() {
+    return this.call(
+      'https://api.simkl.com/sync/history/remove',
+      JSON.stringify({
+        shows: [
+          {
+            ids: {
+              simkl: this.ids.simkl,
+            },
+          },
+        ],
+      }),
+      false,
+      'POST',
+    );
+  }
 }
