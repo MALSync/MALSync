@@ -120,17 +120,19 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private characters() {
-    this.animeInfo.included.forEach(i => {
-      if (i.type === 'characters' && this.meta.characters.length < 10) {
-        const { name } = i.attributes;
+    if (this.animeInfo.included && this.animeInfo.included.length) {
+      this.animeInfo.included.forEach(i => {
+        if (i.type === 'characters' && this.meta.characters.length < 10) {
+          const { name } = i.attributes;
 
-        this.meta.characters.push({
-          img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
-          name,
-          url: `https://myanimelist.net/character/${i.attributes.malId}`,
-        });
-      }
-    });
+          this.meta.characters.push({
+            img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
+            name,
+            url: `https://myanimelist.net/character/${i.attributes.malId}`,
+          });
+        }
+      });
+    }
   }
 
   private statistics() {
@@ -210,14 +212,16 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
 
     const genres: any[] = [];
-    this.animeInfo.included.forEach(i => {
-      if (i.type === 'categories' && genres.length < 6) {
-        genres.push({
-          text: i.attributes.title,
-          url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
-        });
-      }
-    });
+    if (this.animeInfo.included && this.animeInfo.included.length) {
+      this.animeInfo.included.forEach(i => {
+        if (i.type === 'categories' && genres.length < 6) {
+          genres.push({
+            text: i.attributes.title,
+            url: `https://kitsu.io/${this.type}?categories=${i.attributes.slug}`,
+          });
+        }
+      });
+    }
     if (genres.length)
       this.meta.info.push({
         title: 'Genres:',
@@ -240,31 +244,33 @@ export class MetaOverview extends MetaOverviewAbstract {
   private related() {
     const links: any = {};
     const an: any[] = [];
-    this.animeInfo.included.forEach(function(i) {
-      if (i.type === 'manga' || i.type === 'anime') {
-        an[i.id] = {
-          url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
-          title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
-          statusTag: '',
-        };
-      }
-    });
-
-    this.animeInfo.included.forEach(function(i) {
-      if (i.type === 'mediaRelationships') {
-        if (typeof links[i.attributes.role] === 'undefined') {
-          let title = i.attributes.role.toLowerCase().replace('_', ' ');
-          title = title.charAt(0).toUpperCase() + title.slice(1);
-
-          links[i.attributes.role] = {
-            type: title,
-            links: [],
+    if (this.animeInfo.included && this.animeInfo.included.length) {
+      this.animeInfo.included.forEach(function(i) {
+        if (i.type === 'manga' || i.type === 'anime') {
+          an[i.id] = {
+            url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
+            title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
+            statusTag: '',
           };
         }
-        const tempEl = an[i.relationships.destination.data.id];
-        links[i.attributes.role].links.push(tempEl);
-      }
-    });
+      });
+
+      this.animeInfo.included.forEach(function(i) {
+        if (i.type === 'mediaRelationships') {
+          if (typeof links[i.attributes.role] === 'undefined') {
+            let title = i.attributes.role.toLowerCase().replace('_', ' ');
+            title = title.charAt(0).toUpperCase() + title.slice(1);
+
+            links[i.attributes.role] = {
+              type: title,
+              links: [],
+            };
+          }
+          const tempEl = an[i.relationships.destination.data.id];
+          links[i.attributes.role].links.push(tempEl);
+        }
+      });
+    }
     this.meta.related = Object.keys(links).map(key => links[key]);
   }
 
