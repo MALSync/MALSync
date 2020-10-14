@@ -304,15 +304,15 @@ export class myanimelistClass {
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function() {
-        $('.h1 span > span')
+        $('.breadcrumb')
           .first()
-          .after(
+          .append(
             j.html(`
-        <div class="data title progress" id="mal-sync-stream-div" style="display: inline-block; position: relative; top: 2px;">
+        <div class="data title progress" id="mal-sync-stream-div" style="padding-left: 5px; display: inline-block; position: relative; top: -12px; height: 0px;">
           <a class="mal-sync-stream" title="${
             streamUrl ? streamUrl.split('/')[2] : ''
-          }" target="_blank" style="margin: 0 0;" href="${streamUrl}">
-            <img src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
+          }" target="_blank" style="margin: 0 0; display: inline-block; height: 0;" href="${streamUrl}">
+            <img style="display: block;" src="${utils.favicon(streamUrl ? streamUrl.split('/')[2] : '')}">
           </a>
         </div>`),
           );
@@ -325,8 +325,12 @@ export class myanimelistClass {
             j.html(
               `<a class="nextStream" title="${api.storage.lang(
                 `overview_Continue_${malObj.getType()}`,
-              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
-              <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA; display: inline-block; height: 0;" href="${
+                continueUrlObj.url
+              }">
+              <img style="display: block;" src="${api.storage.assetUrl(
+                'double-arrow-16px.png',
+              )}" width="16" height="16">
             </a>`,
             ),
           );
@@ -335,8 +339,10 @@ export class myanimelistClass {
             j.html(
               `<a class="resumeStream" title="${api.storage.lang(
                 `overview_Resume_Episode_${malObj.getType()}`,
-              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
-              <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA; display: inline-block; height: 0;" href="${
+                resumeUrlObj.url
+              }">
+              <img style="display: block;" src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
             ),
           );
