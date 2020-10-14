@@ -106,6 +106,7 @@ export const AnimeLab: pageInterface = {
   },
   // Overview not available as shows inconsistently use multiple seasons,
   init(page) {
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     const callback = (caller: ScriptProxy) => {
       page.handlePage();
     };
