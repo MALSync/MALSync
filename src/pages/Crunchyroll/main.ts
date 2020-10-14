@@ -21,7 +21,10 @@ export const Crunchyroll: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return Crunchyroll.sync.getIdentifier(urlHandling(url));
+      return Crunchyroll.sync
+        .getIdentifier(urlHandling(url))
+        .replace(/\(\d+-\d+\)/, '')
+        .trim();
     },
     getIdentifier(url) {
       return `${temp.id}`;
@@ -55,7 +58,9 @@ export const Crunchyroll: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return Crunchyroll.overview!.getIdentifier(urlHandling(url));
+      return Crunchyroll.overview!.getIdentifier(urlHandling(url))
+        .replace(/\(\d+-\d+\)/, '')
+        .trim();
     },
     getIdentifier(url) {
       if (j.$('.season-dropdown').length > 1) {
