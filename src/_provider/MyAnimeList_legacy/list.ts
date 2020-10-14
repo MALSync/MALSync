@@ -9,8 +9,7 @@ export class userlist extends ListAbstract {
     const url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
     const response = await api.request.xhr('GET', url);
     const usernameMatches = response.responseText.match(/USER_NAME = "(.*?)"/);
-
-    if (!usernameMatches || usernameMatches.length < 2)
+    if (!usernameMatches || usernameMatches.length < 2 || !usernameMatches[1])
       throw {
         code: 400,
         message: 'Not Authenticated',
