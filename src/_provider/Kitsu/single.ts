@@ -97,7 +97,12 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+    try {
+      return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+    } catch (e) {
+      console.error('title', e);
+      return 'Failed';
+    }
   }
 
   _getTotalEpisodes() {
