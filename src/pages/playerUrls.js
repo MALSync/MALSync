@@ -298,4 +298,7 @@ module.exports = {
   googleDrive: {
     match: ['*://ani.googledrive.stream/vidstreaming/*'],
   },
+  AnimeLab: {
+    match: ['*://www.animelab.com/*'],
+  },
 };
