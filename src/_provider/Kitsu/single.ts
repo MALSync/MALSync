@@ -293,6 +293,8 @@ export class Single extends SingleAbstract {
                 malId = mapping.attributes.externalId;
                 res.included.splice(k, 1);
                 break;
+              } else if (mapping.attributes.externalSite === `anilist/${type}`) {
+                this.ids.ani = mapping.attributes.externalId;
               }
             }
           }
