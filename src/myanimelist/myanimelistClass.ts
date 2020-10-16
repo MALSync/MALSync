@@ -301,6 +301,8 @@ export class myanimelistClass {
 
     await malObj.update();
 
+    this.pageRelation(malObj);
+
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
       $(document).ready(async function() {
@@ -357,6 +359,22 @@ export class myanimelistClass {
     setInterval(() => {
       this.setEpPrediction(malObj.getProgress());
     }, 1000 * 60);
+  }
+
+  async pageRelation(malObj) {
+    await malObj.fillRelations();
+
+    malObj.getPageRelations().forEach(page => {
+      $('#horiznav_nav > ul').append(
+        j.html(`
+          <li style="position: relative; width: 24px; display: inline-block;">
+            <a href="${page.link}" target="_blank" title="${page.name}" class="link" style="position: absolute; bottom: -3px; width: 16px; text-align: center;">
+              <img src="${page.icon}" width="16" width="16">
+            </a>
+          </li>
+        `),
+      );
+    });
   }
 
   bookmarks() {

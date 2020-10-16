@@ -86,6 +86,7 @@ export class simklClass {
       this.streamingUI();
       this.malToKiss();
       this.siteSearch();
+      this.pageRelation();
       return;
     }
 
@@ -231,6 +232,11 @@ export class simklClass {
 
       this.malkiss.pageSearch = newSearch;
     });
+  }
+
+  async pageRelation() {
+    await this.page.malObj.fillRelations();
+    this.malkiss.pageRelation = this.page.malObj.getPageRelations();
   }
 
   bookmarksProfile() {

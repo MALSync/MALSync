@@ -251,8 +251,10 @@ export class anilistClass {
   async streamingUI() {
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
+    $('.malsync-rel-link').remove();
     const malObj = new anilistSingle(this.url);
     await malObj.update();
+    this.pageRelation(malObj);
 
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
@@ -297,6 +299,26 @@ export class anilistClass {
         }
       });
     }
+  }
+
+  async pageRelation(malObj) {
+    await malObj.fillRelations();
+
+    $('.malsync-rel-link').remove();
+    $('h1')
+      .first()
+      .append(j.html(`<div class="malsync-rel-link" style="float: right;"></div>`));
+
+    malObj.getPageRelations().forEach(page => {
+      $('.malsync-rel-link').append(
+        j.html(`
+          <a href="${page.link}" target="_blank" title="${page.name}" class="link">
+            <img src="${page.icon}" width="16" width="16">
+          </a>
+
+        `),
+      );
+    });
   }
 
   private tempAnimelist: any = null;

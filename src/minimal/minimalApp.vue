@@ -142,7 +142,9 @@
                     <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
                     <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
                     <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
-                    <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{ lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`) }}</option>
+                    <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{
+                      lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`)
+                    }}</option>
                   </select>
                   <div
                     v-if="tabs.bookmarks.state === 6"
