@@ -317,7 +317,7 @@ export class kitsuClass {
     this.page.malObj.getPageRelations().forEach(page => {
       $('.malsync-rel-link').append(
         j.html(`
-          <a href="${page.link}" title="${page.name}" class="link">
+          <a href="${page.link}" target="_blank" title="${page.name}" class="link">
             <img src="${page.icon}" width="16" height="16">
           </a>
 

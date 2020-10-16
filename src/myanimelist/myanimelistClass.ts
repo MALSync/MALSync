@@ -368,7 +368,7 @@ export class myanimelistClass {
       $('#horiznav_nav > ul').append(
         j.html(`
           <li style="position: relative; width: 24px; display: inline-block;">
-            <a href="${page.link}" title="${page.name}" class="link" style="position: absolute; bottom: -3px; width: 16px; text-align: center;">
+            <a href="${page.link}" target="_blank" title="${page.name}" class="link" style="position: absolute; bottom: -3px; width: 16px; text-align: center;">
               <img src="${page.icon}" width="16" width="16">
             </a>
           </li>
