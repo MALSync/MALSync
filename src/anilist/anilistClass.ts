@@ -303,6 +303,8 @@ export class anilistClass {
 
   async pageRelation(malObj) {
     await malObj.fillRelations();
+
+    $('.malsync-rel-link').remove();
     $('h1')
       .first()
       .append(j.html(`<div class="malsync-rel-link" style="float: right;"></div>`));
