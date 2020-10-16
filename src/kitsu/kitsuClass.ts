@@ -318,7 +318,7 @@ export class kitsuClass {
       $('.malsync-rel-link').append(
         j.html(`
           <a href="${page.link}" title="${page.name}" class="link">
-            <img src="${page.icon}" width="16" width="16">
+            <img src="${page.icon}" width="16" height="16">
           </a>
 
         `),
