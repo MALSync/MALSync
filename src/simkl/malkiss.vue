@@ -1,7 +1,7 @@
 <template>
   <div id="malkiss" class="simkltvdetailonline" :class="{ Minimized: classes.minimized, Search: classes.search }">
     <div class="malsync-page-relation">
-      <a :href="page.link" :title="page.name" v-for="page in pageRelation" :key="page.title">
+      <a v-for="page in pageRelation" :key="page.title" :href="page.link" :title="page.name">
         <img :src="page.icon" width="16" height="16" />
       </a>
     </div>

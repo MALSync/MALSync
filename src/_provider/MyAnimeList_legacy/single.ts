@@ -1,7 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import { errorCode } from '../definitions';
-import { malToAnilist } from "../AniList/helper";
-import { Cache } from "../../utils/Cache";
+import { malToAnilist } from '../AniList/helper';
+import { Cache } from '../../utils/Cache';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
