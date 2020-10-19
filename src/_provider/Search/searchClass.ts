@@ -415,10 +415,7 @@ export class searchClass {
         if (this.page.isSyncPage(this.syncPage.url)) {
           kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
           if (this.page.database === 'Crunchyroll') {
-            kissurl = `${this.syncPage.url}?..${encodeURIComponent(this.identifier.toLowerCase().split('#')[0]).replace(
-              /\./g,
-              '%2E',
-            )}`;
+            kissurl = `${this.syncPage.url}`;
           }
         } else {
           if (this.page.database === 'Crunchyroll') {

@@ -163,6 +163,7 @@ const generateManifest = () => {
       'https://vrv.co/',
       'https://discover.hulu.com/',
       'https://www.primevideo.com/',
+      'https://www.crunchyroll.com/',
       'https://api.malsync.moe/',
       'https://api.myanimelist.net/',
       'tabHide',

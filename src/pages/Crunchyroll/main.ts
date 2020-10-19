@@ -1,5 +1,10 @@
 import { pageInterface } from '../pageInterface';
 
+const temp: { id: any; media: any } = {
+  id: null,
+  media: null,
+};
+
 export const Crunchyroll: pageInterface = {
   name: 'Crunchyroll',
   domain: 'https://www.crunchyroll.com',
@@ -16,22 +21,19 @@ export const Crunchyroll: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return Crunchyroll.sync.getIdentifier(urlHandling(url));
+      return Crunchyroll.sync
+        .getIdentifier(urlHandling(url))
+        .replace(/\(\d+-\d+\)/, '')
+        .trim();
     },
     getIdentifier(url) {
-      const jsOn = JSON.parse(
-        j
-          .$('script[type="application/ld+json"]')
-          .first()
-          .html(),
-      );
-      return jsOn.partOfSeason.name;
+      return `${temp.id}`;
     },
     getOverviewUrl(url) {
       return `${urlHandling(url)
         .split('/')
         .slice(0, 4)
-        .join('/')}?season=${Crunchyroll.sync.getIdentifier(urlHandling(url))}`;
+        .join('/')}?media_id=${temp.media}`;
     },
     getEpisode(url) {
       return episodeHelper(
@@ -56,22 +58,15 @@ export const Crunchyroll: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return Crunchyroll.overview!.getIdentifier(urlHandling(url));
+      return Crunchyroll.overview!.getIdentifier(urlHandling(url))
+        .replace(/\(\d+-\d+\)/, '')
+        .trim();
     },
     getIdentifier(url) {
       if (j.$('.season-dropdown').length > 1) {
         throw new Error('MAL-Sync does not support multiple seasons');
       } else {
-        if (j.$('.season-dropdown').length) {
-          return j
-            .$('.season-dropdown')
-            .first()
-            .text();
-        }
-        return j
-          .$('#showview-content-header h1 span')
-          .first()
-          .text();
+        return `${temp.id}`;
       }
     },
     uiSelector(selector) {
@@ -132,35 +127,77 @@ export const Crunchyroll: pageInterface = {
                   .attr('src', String(j.$(this).attr('data-thumbnailUrl')));
             });
           j.$('.exclusivMal').remove();
-          page.handlePage();
+
+          const epUrl = utils.absoluteLink(
+            $('.list-of-seasons a.episode')
+              .first()
+              .attr('href'),
+            Crunchyroll.domain,
+          );
+          handle(epUrl, page);
         });
-        let season = new RegExp('[?&]season=([^&#]*)').exec(page.url);
+        let season = new RegExp('[?&]media_id=([^&#]*)').exec(page.url);
         if (season !== null) {
           // @ts-ignore
           season = season[1] || null;
           if (season !== null) {
             // @ts-ignore
-            season = decodeURIComponent(decodeURI(season));
-            j.$(`.season-dropdown[title="${season}" i] .exclusivMal`)
+            season = parseInt(season);
+            j.$(`#showview_videos_media_${season}`)
+              .first()
+              .parent()
+              .parent()
+              .find('.exclusivMal')
               .first()
               .click();
           }
         }
       } else if (
-        (j.$('.header-navigation ul .state-selected').length &&
-          !j
-            .$('.header-navigation ul .state-selected')
-            .first()
-            .index()) ||
-        j.$('#showmedia_video').length
+        j.$('.header-navigation ul .state-selected').length &&
+        !j
+          .$('.header-navigation ul .state-selected')
+          .first()
+          .index()
       ) {
-        page.handlePage();
+        const epUrl = utils.absoluteLink(
+          $('.list-of-seasons a.episode')
+            .first()
+            .attr('href'),
+          Crunchyroll.domain,
+        );
+        handle(epUrl, page);
+      } else if (j.$('#showmedia_video').length) {
+        handle(page.url, page);
       } else {
         con.info('No anime page');
       }
     });
   },
 };
+
+function handle(epUrl, page) {
+  const mediaUrl = epUrl.split('?')[0].split('#')[0];
+  const mediaId = parseInt(mediaUrl.split('-').pop());
+  if (!mediaId) throw 'Media Id not found';
+  temp.media = mediaId;
+  api.request
+    .xhr(
+      'GET',
+      `https://www.crunchyroll.com/en-gb/xml?req=RpcApiVideoPlayer_GetStandardConfig&media_id=${mediaId}&video_format=108&video_quality=80&current_page=${mediaUrl}`,
+    )
+    .then(response => {
+      con.log(response);
+      const xmlDoc = $.parseXML(response.responseText);
+      const $xml = $(xmlDoc);
+      const title = $xml
+        .find('series_title')
+        .first()
+        .text();
+      con.m('title').log(title);
+      temp.id = title;
+      page.handlePage();
+    });
+}
 
 function urlHandling(url) {
   const langslug = j
