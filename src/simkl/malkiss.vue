@@ -1,5 +1,10 @@
 <template>
   <div id="malkiss" class="simkltvdetailonline" :class="{ Minimized: classes.minimized, Search: classes.search }">
+    <div class="malsync-page-relation">
+      <a v-for="page in pageRelation" :key="page.title" :href="page.link" target="_blank" :title="page.name">
+        <img :src="page.icon" width="16" height="16" />
+      </a>
+    </div>
     <div class="simkltvdetailonlinehead">
       <div class="simkltvdetailonlineheadleft">
         <div class="simkltvdetailonlineheadtitle">Stream online:</div>
@@ -97,6 +102,7 @@ export default {
     resumeUrl: null,
     links: null,
     pageSearch: null,
+    pageRelation: null,
     classes: {
       minimized: true,
       search: false,
@@ -163,5 +169,17 @@ export default {
 .simkltvdetailonlineheadbuttonstream {
   width: auto;
   min-width: auto;
+}
+#malkiss {
+  position: relative;
+}
+.malsync-page-relation {
+  display: flex;
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  & > a {
+    margin-left: 5px;
+  }
 }
 </style>

@@ -1,6 +1,8 @@
 import { SingleAbstract } from '../singleAbstract';
 import { errorCode } from '../definitions';
 import * as helper from './helper';
+import { malToAnilist } from '../AniList/helper';
+import { Cache } from '../../utils/Cache';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -241,6 +243,33 @@ export class Single extends SingleAbstract {
       dataObj: sentData,
     }).then(res => {
       this.logger.m('Sync').log('res', res);
+    });
+  }
+
+  delete() {
+    return this.apiCall({
+      type: 'DELETE',
+      path: `${this.type}/${this.ids.mal}/my_list_status`,
+    });
+  }
+
+  public async fillRelations(): Promise<void> {
+    const cacheObj = new Cache(`fillRelations/${this.ids.mal}/${this.getType()}`, 7 * 24 * 60 * 60 * 1000);
+
+    return cacheObj.hasValueAndIsNotEmpty().then(exists => {
+      if (!exists) {
+        return malToAnilist(this.ids.mal, this.getType()!).then(el => {
+          if (el && parseInt(el)) {
+            this.ids.ani = parseInt(el);
+          }
+          return cacheObj.setValue({ da: el });
+        });
+      }
+      return cacheObj.getValue().then(res => {
+        if (res && res.da && parseInt(res.da)) {
+          this.ids.ani = parseInt(res.da);
+        }
+      });
     });
   }
 

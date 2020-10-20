@@ -210,6 +210,49 @@ export abstract class SingleAbstract {
     }
   }
 
+  public getPageRelations(): { name: string; icon: string; link: string }[] {
+    const name = this.shortName;
+    const res: { name: string; icon: string; link: string }[] = [];
+
+    if (this.ids.mal && name !== 'MAL') {
+      res.push({
+        name: 'MAL',
+        icon: 'https://cdn.myanimelist.net/images/favicon.ico',
+        link: `https://myanimelist.net/${this.type}/${this.ids.mal}`,
+      });
+    }
+
+    if (this.ids.ani && name !== 'AniList') {
+      res.push({
+        name: 'AniList',
+        icon: 'https://anilist.co/img/icons/favicon-32x32.png',
+        link: `https://anilist.co/${this.type}/${this.ids.ani}`,
+      });
+    }
+
+    if (this.ids.kitsu.id && name !== 'Kitsu') {
+      res.push({
+        name: 'Kitsu',
+        icon: 'https://kitsu.io/favicon-32x32-3e0ecb6fc5a6ae681e65dcbc2bdf1f17.png',
+        link: `https://kitsu.io/${this.type}/${this.ids.kitsu.id}`,
+      });
+    }
+
+    if (this.ids.simkl && name !== 'Simkl') {
+      res.push({
+        name: 'Simkl',
+        icon: 'https://eu.simkl.in/img_favicon/v2/favicon-32x32.png',
+        link: `https://simkl.com/${this.type}/${this.ids.simkl}`,
+      });
+    }
+
+    return res;
+  }
+
+  public fillRelations(): Promise<void> {
+    return Promise.resolve();
+  }
+
   abstract _update(): Promise<void>;
 
   public update(): Promise<void> {

@@ -6,7 +6,7 @@ export const apiDomain = 'https://api.myanimelist.net/v2/';
 export const authenticationUrl = 'https://malsync.moe/mal/oauth';
 
 export async function apiCall(options: {
-  type: 'GET' | 'PUT';
+  type: 'GET' | 'PUT' | 'DELETE' | 'POST';
   path: string;
   fields?: string[];
   dataObj?: { [key: string]: string };

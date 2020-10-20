@@ -1,5 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import { errorCode } from '../definitions';
+import { malToAnilist } from '../AniList/helper';
+import { Cache } from '../../utils/Cache';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -518,5 +520,34 @@ export class Single extends SingleAbstract {
     } else {
       this.logger.info('Start date already set');
     }
+  }
+
+  delete() {
+    const url = `https://myanimelist.net/ownlist/${this.type}/${this.ids.mal}/delete`;
+    return this.apiCall('POST', {
+      url,
+      data: `csrf_token=${this.animeInfo['.csrf_token']}`,
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    });
+  }
+
+  public async fillRelations(): Promise<void> {
+    const cacheObj = new Cache(`fillRelations/${this.ids.mal}/${this.getType()}`, 7 * 24 * 60 * 60 * 1000);
+
+    return cacheObj.hasValueAndIsNotEmpty().then(exists => {
+      if (!exists) {
+        return malToAnilist(this.ids.mal, this.getType()!).then(el => {
+          if (el && parseInt(el)) {
+            this.ids.ani = parseInt(el);
+          }
+          return cacheObj.setValue({ da: el });
+        });
+      }
+      return cacheObj.getValue().then(res => {
+        if (res && res.da && parseInt(res.da)) {
+          this.ids.ani = parseInt(res.da);
+        }
+      });
+    });
   }
 }

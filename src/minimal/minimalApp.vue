@@ -115,6 +115,7 @@
               v-if="currentTab == tabs.bookmarks.title"
               :state="tabs.bookmarks.state"
               :list-type="tabs.bookmarks.type"
+              @rewatch="tabs.bookmarks.supportsRewatch = $event"
             >
               <div id="malList" class="mdl-grid" style="justify-content: space-around;">
                 <select
@@ -141,6 +142,9 @@
                     <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
                     <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
                     <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
+                    <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{
+                      lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`)
+                    }}</option>
                   </select>
                   <div
                     v-if="tabs.bookmarks.state === 6"
@@ -277,6 +281,7 @@ export default {
         scroll: 0,
         state: 1,
         type: 'anime',
+        supportsRewatch: false,
       },
       search: {
         title: 'search',

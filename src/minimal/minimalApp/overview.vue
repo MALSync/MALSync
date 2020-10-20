@@ -763,8 +763,9 @@ export default {
     },
     malSync() {
       this.renderObj.sync().then(
-        function() {
+        () => {
           utils.flashm('Updated');
+          if (!this.renderObj.isOnList()) this.renderObj.update();
         },
         e => {
           this.renderObj.flashmError(e);

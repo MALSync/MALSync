@@ -38,6 +38,8 @@ export abstract class ListAbstract {
 
   protected logger;
 
+  public seperateRewatching = false;
+
   // Modes
   modes = {
     sortAiring: false,

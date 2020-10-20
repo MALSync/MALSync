@@ -92,6 +92,10 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
         throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
       }
 
+      if (response.status === 204) {
+        return {};
+      }
+
       const res = JSON.parse(response.responseText);
 
       if (typeof res.errors !== 'undefined' && res.errors.length) {

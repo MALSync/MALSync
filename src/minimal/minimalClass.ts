@@ -4,7 +4,7 @@ import * as VueClazyLoad from 'vue-clazy-load';
 import minimalApp from './minimalApp.vue';
 
 Vue.use(VueClazyLoad);
-Vue.use(VueDOMPurifyHTML);
+Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
 export class minimal {
   private history: string[] = [];

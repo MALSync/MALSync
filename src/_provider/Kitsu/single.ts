@@ -97,7 +97,12 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+    try {
+      return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+    } catch (e) {
+      console.error('title', e);
+      return 'Failed';
+    }
   }
 
   _getTotalEpisodes() {
@@ -169,14 +174,14 @@ export class Single extends SingleAbstract {
         }
         throw e;
       })
-      .then(res => {
-        this.animeInfo = res;
+      .then(async res => {
+        const tempAnimeInfo = res;
 
         this._onList = true;
 
-        if (!this.animeInfo.data.length) {
+        if (!res.data.length) {
           this._onList = false;
-          this.animeInfo.data[0] = {
+          tempAnimeInfo.data[0] = {
             attributes: {
               notes: '',
               progress: 0,
@@ -188,11 +193,16 @@ export class Single extends SingleAbstract {
             },
           };
           if (typeof kitsuRes !== 'undefined') {
-            this.animeInfo.included = kitsuRes.included;
+            tempAnimeInfo.included = kitsuRes.included;
+          } else if (kitsuSlugRes) {
+            tempAnimeInfo.included = kitsuSlugRes.res.data;
           } else {
-            this.animeInfo.included = kitsuSlugRes.res.data;
+            kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
+            tempAnimeInfo.included = kitsuRes.included;
           }
         }
+
+        this.animeInfo = tempAnimeInfo;
 
         try {
           this.animeI();
@@ -283,6 +293,8 @@ export class Single extends SingleAbstract {
                 malId = mapping.attributes.externalId;
                 res.included.splice(k, 1);
                 break;
+              } else if (mapping.attributes.externalSite === `anilist/${type}`) {
+                this.ids.ani = mapping.attributes.externalId;
               }
             }
           }
@@ -405,5 +417,9 @@ export class Single extends SingleAbstract {
       default:
         super.handleScoreCheckbox(value);
     }
+  }
+
+  delete() {
+    return this.apiCall('DELETE', `https://kitsu.io/api/edge/library-entries/${this.listI().id}`);
   }
 }

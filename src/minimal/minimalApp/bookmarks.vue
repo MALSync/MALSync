@@ -145,6 +145,8 @@ export default {
       cb = undefined;
       const listProvider = await getList(this.state, this.listType);
 
+      this.$emit('rewatch', listProvider.seperateRewatching);
+
       const listError = e => {
         con.error(e);
         this.errorText = listProvider.errorMessage(e);

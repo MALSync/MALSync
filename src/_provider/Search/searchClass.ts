@@ -415,10 +415,7 @@ export class searchClass {
         if (this.page.isSyncPage(this.syncPage.url)) {
           kissurl = this.page.sync.getOverviewUrl(this.syncPage.url);
           if (this.page.database === 'Crunchyroll') {
-            kissurl = `${this.syncPage.url}?..${encodeURIComponent(this.identifier.toLowerCase().split('#')[0]).replace(
-              /\./g,
-              '%2E',
-            )}`;
+            kissurl = `${this.syncPage.url}`;
           }
         } else {
           if (this.page.database === 'Crunchyroll') {
@@ -429,25 +426,38 @@ export class searchClass {
         }
       }
       const param: {
-        Kiss: string;
-        Mal: string;
-        newCorrection?: boolean;
-        similarity?: any;
-      } = { Kiss: kissurl, Mal: this.state.url };
+        pageUrl: string;
+        malUrl: string;
+        correction: boolean;
+        page: string;
+      } = {
+        pageUrl: kissurl,
+        malUrl: this.state.url,
+        correction: false,
+        page: this.page.database,
+      };
       if (this.state.provider === 'user') {
         /* eslint-disable-next-line */
         if (!confirm(api.storage.lang('correction_DBRequest'))) return;
-        param.newCorrection = true;
+        param.correction = true;
       }
-      param.similarity = this.state.similarity;
-      const url = `https://kissanimelist.firebaseio.com/Data2/Request/${this.page.database}Request.json`;
-      api.request.xhr('POST', { url, data: JSON.stringify(param) }).then(response => {
-        if (response.responseText !== 'null' && !(response.responseText.indexOf('error') > -1)) {
-          logger.log('Send to database:', param);
-        } else {
-          logger.error('Send to database:', response.responseText);
-        }
-      });
+
+      const url = 'https://api.malsync.moe/corrections';
+      api.request
+        .xhr('POST', {
+          url,
+          data: JSON.stringify(param),
+          headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => {
+          try {
+            const res = JSON.parse(response.responseText);
+            if (res.error) throw res;
+            logger.log('Send to database:', res);
+          } catch (e) {
+            logger.error('Send to database:', e);
+          }
+        });
     }
   }
 

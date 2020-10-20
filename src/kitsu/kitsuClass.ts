@@ -77,6 +77,7 @@ export class kitsuClass {
         this.streamingUI();
         this.siteSearch();
         this.malToKiss();
+        this.pageRelation();
         return;
       }
       const malObj = new kitsuSingle(this.url);
@@ -93,6 +94,7 @@ export class kitsuClass {
       this.streamingUI();
       this.siteSearch();
       this.malToKiss();
+      this.pageRelation();
     }
 
     const urlpart4 = utils.urlPart(this.url, 5);
@@ -298,6 +300,29 @@ export class kitsuClass {
           window.location.reload();
         });
       });
+    });
+  }
+
+  async pageRelation() {
+    $('.malsync-rel-link').remove();
+    await this.page.malObj.fillRelations();
+    $('.media-summary h5')
+      .first()
+      .append(
+        j.html(
+          `<div class="malsync-rel-link" style="display: inline-block; margin: 0 5px; vertical-align: bottom;"></div>`,
+        ),
+      );
+
+    this.page.malObj.getPageRelations().forEach(page => {
+      $('.malsync-rel-link').append(
+        j.html(`
+          <a href="${page.link}" target="_blank" title="${page.name}" class="link">
+            <img src="${page.icon}" width="16" height="16">
+          </a>
+
+        `),
+      );
     });
   }
 

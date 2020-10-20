@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 import main from '../installPage/main.vue';
 
-Vue.use(VueDOMPurifyHTML);
+Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
 declare let componentHandler: any;
 

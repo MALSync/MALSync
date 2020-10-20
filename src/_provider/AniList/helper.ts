@@ -58,6 +58,40 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
     });
 }
 
+export function malToAnilist(malId: number, type: 'anime' | 'manga') {
+  const query = `
+  query ($id: Int, $type: MediaType) {
+    Media (idMal: $id, type: $type) {
+      id
+      idMal
+    }
+  }
+  `;
+
+  const variables = {
+    id: malId,
+    type: type.toUpperCase(),
+  };
+
+  return api.request
+    .xhr('POST', {
+      url: 'https://graphql.anilist.co',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      data: JSON.stringify({
+        query,
+        variables,
+      }),
+    })
+    .then(response => {
+      const res = JSON.parse(response.responseText);
+      con.log(res);
+      return res.data.Media.id;
+    });
+}
+
 export function getCacheKey(id, kitsuId) {
   if (Number.isNaN(id) || !id) {
     return `anilist:${kitsuId}`;

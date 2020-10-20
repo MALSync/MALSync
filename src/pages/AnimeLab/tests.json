@@ -1,0 +1,52 @@
+{
+  "title": "AnimeLab",
+  "enabled": false,
+  "url": "https://www.animelab.com/",
+  "testCases": [
+    {
+      "url": "https://www.animelab.com/player/rail-romanesque-episode-2",
+      "expected": {
+        "sync": true,
+        "title": "Rail Romanesque",
+        "identifier": "Rail Romanesque",
+        "overviewUrl": "https://www.animelab.com/show/rail-romanesque",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.animelab.com/player/a-certain-scientific-railgun-episode-51",
+      "expected": {
+        "sync": true,
+        "title": "A Certain Scientific Railgun T",
+        "identifier": "A Certain Scientific Railgun T",
+        "overviewUrl": "https://www.animelab.com/shows/certain-scientific-railgun",
+        "nextEpUrl": "https://www.animelab.com/player/a-certain-scientific-railgun-episode-52",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.animelab.com/player/sword-art-online-episode-99",
+      "expected": {
+        "sync": true,
+        "title": "Sword Art Online Alicization",
+        "identifier": "Sword Art Online Alicization",
+        "episode": 45,
+        "overviewUrl": "https://www.animelab.com/shows/sword-art-online",
+        "nextEpUrl": "https://www.animelab.com/player/sword-art-online-episode-100"
+      }
+    },
+    {
+      "url": "https://www.animelab.com/player/kaguya-sama-love-is-war-episode-14",
+      "expected": {
+        "sync": true,
+        "title": "Kaguya-Sama: Love is War Season 2",
+        "identifier": "Kaguya-Sama: Love is War Season 2",
+        "episode": 2,
+        "overviewUrl": "https://www.animelab.com/shows/kaguya-sama-love-is-war",
+        "nextEpUrl": "https://www.animelab.com/player/kaguya-sama-love-is-war-episode-15"
+      }
+    }
+  ]
+}

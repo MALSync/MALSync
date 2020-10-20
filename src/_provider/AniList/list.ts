@@ -6,6 +6,8 @@ export class userlist extends ListAbstract {
 
   public compact = false;
 
+  public seperateRewatching = true;
+
   authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   getUsername() {
@@ -132,7 +134,7 @@ export class userlist extends ListAbstract {
       page: this.offset,
       userName: this.username,
       type: this.listType.toUpperCase(),
-      status: helper.translateList(parseInt(this.status.toString()), parseInt(this.status.toString())),
+      status: helper.statusTranslate[parseInt(this.status.toString())],
       sort: 'UPDATED_TIME_DESC',
     };
 
