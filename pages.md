@@ -118,6 +118,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://www.animelab.com"><img src="https://www.google.com/s2/favicons?domain=https://www.animelab.com"> AnimeLab</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
     <td>Polish</td>
     <td>:heavy_check_mark:</td>
@@ -131,6 +138,13 @@
     <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://animeowl.net"><img src="https://www.google.com/s2/favicons?domain=https://animeowl.net"> AnimeOwl</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://animepahe.com"><img src="https://www.google.com/s2/favicons?domain=https://animepahe.com"> animepahe</a></td>
     <td>English</td>
@@ -195,7 +209,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://animevibe.tv"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.tv"> Animevibe</a></td>
+    <td><a href="https://animevibe.wtf"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.wtf"> Animevibe</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -269,6 +283,13 @@
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://fastani.net"><img src="https://www.google.com/s2/favicons?domain=https://fastani.net"> Fastani</a></td>
+    <td>English</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
@@ -377,6 +398,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://pantsubase.tv"><img src="https://www.google.com/s2/favicons?domain=https://pantsubase.tv"> Pantsubase</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"> Plex</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
@@ -419,7 +447,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.tranimeizle.com/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.com/"> TRanimeizle</a></td>
+    <td><a href="https://www.tranimeizle.net/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.net/"> TRanimeizle</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

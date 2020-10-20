@@ -105,6 +105,11 @@
     "name": "Animefreak"
   },
   {
+    "domain": "https://www.animelab.com",
+    "type": "anime",
+    "name": "AnimeLab"
+  },
+  {
     "domain": "https://animedaisuki.moe",
     "type": "anime",
     "name": "AnimeDaisuki"
@@ -320,7 +325,7 @@
     "name": "mangatx"
   },
   {
-    "domain": "https://www.tranimeizle.com/",
+    "domain": "https://www.tranimeizle.net/",
     "type": "anime",
     "name": "TRanimeizle"
   },
@@ -395,7 +400,7 @@
     "name": "Simplyaweeb"
   },
   {
-    "domain": "https://animevibe.tv",
+    "domain": "https://animevibe.wtf",
     "type": "anime",
     "name": "Animevibe"
   },
@@ -518,5 +523,20 @@
     "domain": "https://bs.to",
     "type": "anime",
     "name": "bs.to"
+  },
+  {
+    "domain": "https://pantsubase.tv",
+    "type": "anime",
+    "name": "Pantsubase"
+  },
+  {
+    "domain": "https://fastani.net",
+    "type": "anime",
+    "name": "Fastani"
+  },
+  {
+    "domain": "https://animeowl.net",
+    "type": "anime",
+    "name": "AnimeOwl"
   }
 ]
