@@ -1,12 +1,19 @@
 import { pageInterface } from '../pageInterface';
 
-function GetOverviewAnchor(): HTMLAnchorElement | null {
-  return document.querySelector(`a[href^="/anime"]`);
+function GetOverviewAnchor() {
+  const anchor = document.querySelector(`a[href^="/anime"]`) as HTMLAnchorElement;
+
+  if (!anchor) {
+    throw Error("Can't find overview anchor element");
+  }
+
+  return anchor;
 }
 
-function RemoveUnrelatedTurkishWordIzle(title: string) {
-  // "izle" is the translation of the word "watch"
-  return title.replace(/(?: |-)izle.*/i, '').replace(/(?: |-)İzle.*/i, '');
+function RemoveTurkishPhrases(title: string) {
+  // "izle" or "İzle" is the translation of the word "watch" or "Watch"
+  // Regexp can be test it out in here https://regex101.com/r/gULQnv/1
+  return title.replace(/(?: |-)[İi]zle.*/i, '');
 }
 
 function IsOverviewUrl(url: string) {
@@ -24,66 +31,77 @@ export const TRanimeizle: pageInterface = {
   type: 'anime',
   isSyncPage(_url: string) {
     const url = new URL(_url);
-    const pathnameParts = url.pathname.split('/');
-
-    if (!pathnameParts || pathnameParts.length <= 1) return false;
+    const [, path] = url.pathname.split('/');
 
     // "bolum" is the translation of the word "episode"
-    return pathnameParts[1].includes('-bolum-');
+    return path?.toLowerCase().includes('-bolum-');
   },
   sync: {
     getTitle: () => {
-      const overviewLinkElement = GetOverviewAnchor();
+      const overviewAnchor = GetOverviewAnchor();
 
-      if (!overviewLinkElement) return '';
-
-      return RemoveUnrelatedTurkishWordIzle(overviewLinkElement.innerText);
+      return RemoveTurkishPhrases(overviewAnchor.innerText);
     },
     getOverviewUrl: () => {
-      const overviewLinkElement = GetOverviewAnchor();
+      const overviewAnchor = GetOverviewAnchor();
 
-      if (!overviewLinkElement) return '';
-
-      return overviewLinkElement.href;
+      return overviewAnchor.href;
     },
     getIdentifier: () => {
       const overviewUrl = TRanimeizle.sync.getOverviewUrl('');
       const identifier = TRanimeizle.overview?.getIdentifier(overviewUrl);
 
-      if (!identifier) return '';
+      if (!identifier) {
+        throw Error("Can't find identifier");
+      }
 
       return identifier;
     },
     getEpisode: (url: string) => {
-      // plunderer-18-bolum-izle -> 18 is episode number
-      // ghost-22-1-bolum-izle -> 1 is episode number
-      // regexp returns episode number in group 1
-      return Number(url.replace(/.*-(\d{1,})-.*/, '$1'));
+      if (!url) return NaN;
+
+      // plunderer-18-bolum-izle -> "18" is the episode number
+      // ghost-22-1-bolum-izle -> "1" is the episode number
+      // regexp will return the episode number in group 1
+      // Regexp can be test it out in here https://regex101.com/r/VrbOgK/1
+      return Number(url.replace(/.*-(\d{1,})-.*/, '$1') || undefined);
     },
     nextEpUrl: () => {
-      const nextEpisodeAnchor: HTMLAnchorElement | null = document.querySelector(
-        `.youtube-wrapper .my-15 a:first-child`,
-      );
+      const nextEpisodeAnchor = document.querySelector(`.youtube-wrapper .my-15 a:first-child`) as HTMLAnchorElement;
 
-      if (!nextEpisodeAnchor || nextEpisodeAnchor.href.includes('#')) return '';
+      if (!nextEpisodeAnchor) {
+        throw Error("Can't find next episode anchor element");
+      }
+
+      if (!nextEpisodeAnchor.href.includes('izle') || !nextEpisodeAnchor.href.includes('bolum')) return undefined;
 
       return nextEpisodeAnchor.href;
     },
   },
   overview: {
     getTitle: () => {
-      const titleElement: HTMLHeadElement | null = document.querySelector('.playlist-title > h1');
+      const titleElement = document.querySelector('.playlist-title > h1') as HTMLHeadElement;
 
-      if (!titleElement) return '';
+      if (!titleElement) {
+        throw Error("Can't find title element");
+      }
 
-      return RemoveUnrelatedTurkishWordIzle(titleElement.innerText);
+      return RemoveTurkishPhrases(titleElement.innerText);
     },
-    uiSelector: selector => {
-      const animeDetailElement: HTMLDivElement | null = document.querySelector('.animeDetail');
+    uiSelector: HTML => {
+      const statusBarContainerElement = document.querySelector('div.animeDetail') as HTMLDivElement;
 
-      if (!animeDetailElement) return;
+      if (!statusBarContainerElement) {
+        throw Error("Can't find the element where the status bar will be placed");
+      }
 
-      animeDetailElement.prepend(j.html(selector));
+      const wrapper = document.createElement('div');
+
+      // No need satisfy the rule on this line because wrapper will have escaped HTML content
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+      statusBarContainerElement.prepend(wrapper);
+
+      wrapper.insertAdjacentHTML('beforebegin', j.html(HTML));
     },
     getIdentifier: (url: string) => {
       const identifier = utils.urlPart(url, 4);
@@ -109,9 +127,10 @@ export const TRanimeizle: pageInterface = {
     },
   },
   init(page) {
+    // eslint-disable-next-line import/no-unresolved, global-require
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    j.$(document).ready(function() {
+    j.$(() => {
       if (!TRanimeizle.isSyncPage(page.url) && !IsOverviewUrl(page.url)) return;
 
       page.handlePage();
