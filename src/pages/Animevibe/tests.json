@@ -1,19 +1,19 @@
 {
   "title": "Animevibe",
-  "url": "https://animevibe.tv/",
+  "url": "https://animevibe.wtf/",
   "testCases": [
     {
-      "url": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/4/",
+      "url": "https://animevibe.wtf/ani/mahouka-koukou-no-rettousei/4/",
       "expected": {
         "sync": true,
         "title": "Mahouka Koukou no Rettousei",
         "identifier": "mahouka-koukou-no-rettousei",
-        "overviewUrl": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/1/",
-        "nextEpUrl": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/5/",
+        "overviewUrl": "https://animevibe.wtf/ani/mahouka-koukou-no-rettousei/1/",
+        "nextEpUrl": "https://animevibe.wtf/ani/mahouka-koukou-no-rettousei/5/",
         "episode": 4,
         "uiSelector": true,
         "epList": {
-          "7": "https://animevibe.tv/ani/mahouka-koukou-no-rettousei/7/"
+          "7": "https://animevibe.wtf/ani/mahouka-koukou-no-rettousei/7/"
         }
       }
     }

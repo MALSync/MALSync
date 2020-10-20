@@ -264,7 +264,7 @@ module.exports = {
   },
   // animevibe
   animevibe: {
-    match: ['*://*.animevibe.tv/players/*.php*'],
+    match: ['*://*.animevibe.wtf/players/*.php*', '*://*.animemate.xyz/players/*.php*'],
   },
   // animixplay
   animixplay: {
@@ -300,5 +300,9 @@ module.exports = {
   },
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
+  },
+  // 9anime
+  vidstream: {
+    match: ['*://vidstream.pro/e/*'],
   },
 };

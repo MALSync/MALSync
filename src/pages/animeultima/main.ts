@@ -20,7 +20,7 @@ export const animeultima: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(url, 4).replace(/_\d+$/, '');
     },
     getOverviewUrl(url) {
       return `${animeultima.domain}/a/${animeultima.sync.getIdentifier(url)}`;
@@ -53,7 +53,7 @@ export const animeultima: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return animeultima.sync.getIdentifier(url);
     },
     uiSelector(selector) {
       j.$('div.tags.is-marginless')
