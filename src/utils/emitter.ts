@@ -1,7 +1,7 @@
 import { EventEmitter2 } from 'eventemitter2';
 
 /*
-  Events with 'global.*' will be triggered across the complete extension. Import second parameter has to be false
+  Events with 'global.*' will be triggered across the complete extension. Important second parameter has to be false
 */
 
 const scriptId = Math.floor(Math.random() * 1000000000);
@@ -11,7 +11,7 @@ export const emitter = new EventEmitter2({
 });
 
 if (api.type === 'webextension') {
-  emitter.on('global.*', function(ignore: boolean, ...params) {
+  emitter.on('global.**', function(ignore: boolean, ...params) {
     if (ignore) return;
     con
       .m('Global')
@@ -25,7 +25,6 @@ if (api.type === 'webextension') {
   });
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(message);
     if (message.name && message.name === 'emitter') {
       con
         .m('Global')

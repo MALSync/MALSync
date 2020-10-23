@@ -1,6 +1,7 @@
 import { Cache } from '../utils/Cache';
 import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
+import { emitter } from '../utils/emitter';
 
 export interface listElement {
   uid: number;
@@ -195,6 +196,16 @@ export abstract class ListAbstract {
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
     if (streamurl) item.options.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
+
+    emitter.on(`global.update.${item.cacheKey}`, (ignore, data) => {
+      con.log('update', data);
+      if (data.state){
+        item.watchedEp = data.state.episode;
+        item.score = data.state.score;
+        item.status = data.state.status;
+      }
+    });
+
     return item;
   }
 

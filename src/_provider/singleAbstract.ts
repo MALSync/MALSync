@@ -3,6 +3,8 @@ import * as definitions from './definitions';
 import { Progress } from '../utils/progress';
 import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
 
+import { emitter } from '../utils/emitter';
+
 export abstract class SingleAbstract {
   constructor(protected url: string) {
     this.handleUrl(url);
@@ -287,7 +289,25 @@ export abstract class SingleAbstract {
       .then(() => {
         this.undoState = this.persistanceState;
         if (this.updateProgress) this.initProgress();
+        this.emitUpdate();
       });
+  }
+
+  public emitUpdate() {
+    alert('emit');
+    emitter.emit(`global.update.${this.getCacheKey()}`, false, { state: this.getStateEl() });
+  }
+
+  protected registerEvent() {
+    // @ts-ignore
+    emitter.on(`global.update.${this.getCacheKey()}`, (...args) => this.updateEvent(...args));
+  }
+
+  protected updateEvent(ignore, data) {
+    console.log('update', data);
+    if (data && data.state) {
+      this.setStateEl(data.state);
+    }
   }
 
   public undo(): Promise<void> {
