@@ -49,6 +49,7 @@ export const settingsObj = {
     Proxermanga: true,
     Aniwatch: true,
     AnimeSimple: true,
+    animepahe: true,
 
     autofull: false,
     autoresume: false,

@@ -136,6 +136,7 @@
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
         <checkbox option="Aniwatch">Aniwatch</checkbox>
         <checkbox option="AnimeSimple">AnimeSimple</checkbox>
+        <checkbox option="animepahe">animepahe</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
