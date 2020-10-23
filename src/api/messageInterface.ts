@@ -41,6 +41,11 @@ export interface minimalWindow {
   left: number;
 }
 
-export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content;
+export interface emitter {
+  name: 'emitter';
+  item: any;
+}
+
+export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content | emitter;
 
 export type responseMessageI = xhrResponseI;
