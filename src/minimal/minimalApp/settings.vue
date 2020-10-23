@@ -138,6 +138,7 @@
         <checkbox option="AnimeSimple">AnimeSimple</checkbox>
         <checkbox option="animepahe">animepahe</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
+        <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
         <checkbox option="Proxermanga">Proxer (Manga)</checkbox>

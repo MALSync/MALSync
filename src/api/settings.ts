@@ -50,6 +50,7 @@ export const settingsObj = {
     Aniwatch: true,
     AnimeSimple: true,
     animepahe: true,
+    MangaFox: true,
 
     autofull: false,
     autoresume: false,
