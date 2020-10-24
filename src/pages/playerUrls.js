@@ -288,7 +288,7 @@ module.exports = {
   },
   // gogoanime
   gogostream: {
-    match: ['*://*.gogo-stream.com/streaming.php?*', '*://*.gogo-stream.com/load.php?*'],
+    match: ['*://*.gogo-stream.com/streaming.php?*', '*://*.gogo-stream.com/load.php?*', '*://*.gogo-stream.com/loadserver.php?*'],
   },
   // bs.to
   vivo: {
