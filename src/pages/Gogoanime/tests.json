@@ -6,7 +6,7 @@
       "url": "https://www.gogoanime.movie/category/no-game-no-life",
       "expected": {
         "sync": false,
-        "title": "no-game-no-life",
+        "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "uiSelector": true,
         "epList": {

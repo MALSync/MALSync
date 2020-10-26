@@ -45,7 +45,11 @@ export const Gogoanime: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return Gogoanime.overview!.getIdentifier(url);
+      return j
+        .$('.anime_info_body_bg > h1')
+        .first()
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
