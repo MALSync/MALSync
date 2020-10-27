@@ -58,8 +58,6 @@ export const NaniScans: pageInterface = {
         .first()
         .after(j.html(`<div class="ui hidden divider"></div><div id= "malthing"><h5>MALSync</h5>${selector}</div>`));
     },
-    /*
-    could not get working
     list: {
       offsetHandler: false,
       elementsSelector() {
@@ -77,18 +75,21 @@ export const NaniScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Number(
-          j
-            .$('div#chapters div.item')
-            .find('a')
-            .last()
-            .text()
-            .trim()
-            .match(/\d+/),
-        );
+        let temp = selector
+          .find('a')
+          .last()
+          .text()
+          .trim()
+          .match(/(ch\.|chapter)\D?\d+/i);
+        if (temp) {
+          temp = temp[0].match(/\d+/);
+          if (temp) {
+            return Number(temp[0]);
+          }
+        }
+        return NaN;
       },
     },
-    */
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
