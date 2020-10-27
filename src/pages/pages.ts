@@ -106,6 +106,7 @@ import { BSTO } from './BSTO/main';
 import { Pantsubase } from './Pantsubase/main';
 import { Fastani } from './Fastani/main';
 import { AnimeOwl } from './AnimeOwl/main';
+import { AsuraScans } from './AsuraScans/main';
 
 export const pages = {
   nineAnime,
@@ -216,4 +217,5 @@ export const pages = {
   Pantsubase,
   Fastani,
   AnimeOwl,
+  AsuraScans,
 };

@@ -454,4 +454,7 @@ module.exports = {
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
   },
+  AsuraScans: {
+    match: ['*://asurascans.com/*'],
+  },
 };
