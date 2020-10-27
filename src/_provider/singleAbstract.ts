@@ -294,7 +294,6 @@ export abstract class SingleAbstract {
   }
 
   public emitUpdate() {
-    alert('emit');
     emitter.emit(`global.update.${this.getCacheKey()}`, false, { state: this.getStateEl() });
   }
 
@@ -304,9 +303,14 @@ export abstract class SingleAbstract {
   }
 
   protected updateEvent(ignore, data) {
-    console.log('update', data);
+    if (JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl())) {
+      this.logger.log('Ignore event');
+      return;
+    }
+
     if (data && data.state) {
       this.setStateEl(data.state);
+      this.persistanceState = this.getStateEl();
     }
   }
 
