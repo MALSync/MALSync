@@ -457,4 +457,7 @@ module.exports = {
   AsuraScans: {
     match: ['*://asurascans.com/*'],
   },
+  NaniScans: {
+    match: ['*://naniscans.com/*'],
+  },
 };
