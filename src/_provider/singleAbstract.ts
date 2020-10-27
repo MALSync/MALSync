@@ -303,7 +303,9 @@ export abstract class SingleAbstract {
   protected registerEvent() {
     if (!this.globalUpdateEvent) {
       // @ts-ignore
-      this.globalUpdateEvent = emitter.on(`global.update.${this.getCacheKey()}`, (...args) => this.updateEvent(...args));
+      this.globalUpdateEvent = emitter.on(`global.update.${this.getCacheKey()}`, (...args) =>
+        this.updateEvent(...args),
+      );
     }
   }
 

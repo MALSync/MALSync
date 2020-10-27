@@ -199,7 +199,7 @@ export abstract class ListAbstract {
 
     emitter.on(`global.update.${item.cacheKey}`, (ignore, data) => {
       con.log('update', data);
-      if (data.state){
+      if (data.state) {
         item.watchedEp = data.state.episode;
         item.score = data.state.score;
         item.status = data.state.status;
