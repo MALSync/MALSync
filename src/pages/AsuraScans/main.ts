@@ -19,11 +19,7 @@ export const AsuraScans: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      const identifierPart = utils.urlPart(url, 3);
-
-      const identifier = identifierPart.split('-chapter')[0];
-
-      return identifier;
+      return utils.urlPart(AsuraScans.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
       return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
