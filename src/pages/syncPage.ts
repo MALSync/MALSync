@@ -4,6 +4,7 @@ import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { getPlayerTime } from '../utils/player';
 import { searchClass } from '../_provider/Search/vueSearchClass';
+import { emitter } from '../utils/emitter';
 
 declare let browser: any;
 
@@ -34,6 +35,7 @@ export class syncPage {
     if (this.page === null) {
       throw new Error('Page could not be recognized');
     }
+    emitter.on('syncPage_fillUi', () => this.fillUI());
   }
 
   init() {

@@ -311,6 +311,7 @@ export abstract class SingleAbstract {
     if (data && data.state) {
       this.setStateEl(data.state);
       this.persistanceState = this.getStateEl();
+      emitter.emit('syncPage_fillUi');
     }
   }
 
