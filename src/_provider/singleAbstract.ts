@@ -272,6 +272,7 @@ export abstract class SingleAbstract {
       })
       .then(options => {
         this.options = options;
+        this.registerEvent();
       });
   }
 
@@ -297,9 +298,13 @@ export abstract class SingleAbstract {
     emitter.emit(`global.update.${this.getCacheKey()}`, false, { state: this.getStateEl() });
   }
 
+  protected globalUpdateEvent;
+
   protected registerEvent() {
-    // @ts-ignore
-    emitter.on(`global.update.${this.getCacheKey()}`, (...args) => this.updateEvent(...args));
+    if (!this.globalUpdateEvent) {
+      // @ts-ignore
+      this.globalUpdateEvent = emitter.on(`global.update.${this.getCacheKey()}`, (...args) => this.updateEvent(...args));
+    }
   }
 
   protected updateEvent(ignore, data) {
