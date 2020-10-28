@@ -10,7 +10,7 @@ export const emitter = new EventEmitter2({
   wildcard: true,
 });
 
-if (api.type === 'webextension') {
+if (typeof api !== 'undefined' && api && api.type === 'webextension') {
   emitter.on('global.**', function(ignore: boolean, ...params) {
     if (ignore) return;
     con
