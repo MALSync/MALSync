@@ -113,8 +113,7 @@ export const animepahe: pageInterface = {
         return typeof getId() !== 'undefined';
       },
       function() {
-        page.url = getUrl(getId(), false);
-        page.handlePage();
+        page.handlePage(getUrl(getId(), false));
       },
     );
   },
