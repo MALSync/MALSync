@@ -101,16 +101,12 @@ export const NaniScans: pageInterface = {
         page.handlePage();
       }
       if (page.url.split('/')[3] === 'titles' && page.url.split('/')[4] !== undefined) {
-        const currentList = j.$('div#chapters div.item').length;
-        utils.waitUntilTrue(
-          function() {
-            if (currentList < j.$('div#chapters div.item').length) {
-              return true;
-            }
-            return false;
-          },
-          function() {
+        utils.changeDetect(
+          () => {
             page.handleList();
+          },
+          () => {
+            return j.$('div#chapters div.item').length;
           },
         );
       }
