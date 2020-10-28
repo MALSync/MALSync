@@ -108,6 +108,7 @@ import { Fastani } from './Fastani/main';
 import { AnimeOwl } from './AnimeOwl/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
+import { MerakiScans } from './MerakiScans/main';
 
 export const pages = {
   nineAnime,
@@ -220,4 +221,5 @@ export const pages = {
   AnimeOwl,
   AsuraScans,
   NaniScans,
+  MerakiScans,
 };

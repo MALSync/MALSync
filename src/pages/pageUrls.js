@@ -460,4 +460,7 @@ module.exports = {
   NaniScans: {
     match: ['*://naniscans.com/*'],
   },
+  MerakiScans: {
+    match: ['*://merakiscans.com/*'],
+  },
 };
