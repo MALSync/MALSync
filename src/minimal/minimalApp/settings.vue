@@ -130,7 +130,6 @@
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
-        <checkbox option="Netflix">Netflix</checkbox>
         <checkbox option="Gogoanime">Gogoanime</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
@@ -140,8 +139,6 @@
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
-        <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
-        <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
