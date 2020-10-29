@@ -9,6 +9,7 @@ export function getInter(): pageInterface {
     name: 'MangaHere',
     domain: 'http://www.mangahere.cc',
     languages: ['English'],
+    database: 'MangaFox',
     type: 'manga',
     isSyncPage(url) {
       if (url.split('/')[5] !== undefined && url.split('/')[5].length) {
