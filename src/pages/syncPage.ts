@@ -705,11 +705,10 @@ export class syncPage {
         );
         if (typeof this.page.overview.list.handleListHook !== 'undefined')
           this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
-        const curEp = epList[parseInt(this.singleObj.getEpisode())];
+        const curEp = epList[parseInt(this.singleObj.getEpisode() || 1)];
         if (
           typeof curEp === 'undefined' &&
           !curEp &&
-          this.singleObj.getEpisode() &&
           searchCurrent &&
           reTry < 10 &&
           typeof this.page.overview.list.paginationNext !== 'undefined'
