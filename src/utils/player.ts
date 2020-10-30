@@ -113,6 +113,56 @@ async function setFullscreen(player) {
   }
 }
 
+export function fullscreenNotification(text: string) {
+  if (api.settings.get('floatButtonStealth')) return;
+  const fullscreenElement =
+    document.fullscreenElement ||
+    // @ts-ignore
+    document.mozFullScreenElement ||
+    // @ts-ignore
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement;
+
+  if (fullscreenElement) {
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+    const flashmEl = j
+      .$(
+        j.html(`
+        <div style="
+          all: initial;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          color: white;
+          display: none;
+          z-index: 20000;
+        ">
+          <div style="
+            background: rgba(50, 50, 50, 0.6);
+            color: white;
+            padding: 10px 15px 10px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 60%;
+            display: table;
+            font-family: Helvetica,Arial,sans-serif;
+            text-align: center;
+          ">${text}</div>
+        </div>
+        `),
+      )
+      .appendTo(j.$(fullscreenElement));
+
+    flashmEl
+      .slideDown(400)
+      .delay(2000)
+      .slideUp(400, () => {
+        flashmEl.remove();
+      });
+  }
+}
+
 /* eslint-disable */
 // https://stackoverflow.com/questions/5203407/how-to-detect-if-multiple-keys-are-pressed-at-once-using-javascript
 let init = false;
