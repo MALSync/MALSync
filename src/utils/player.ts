@@ -113,11 +113,8 @@ async function setFullscreen(player) {
   }
 }
 
-setInterval(() => {
-  fullscreenNotification('Episode updated');
-}, 6000);
-
 export function fullscreenNotification(text: string) {
+  if (api.settings.get('floatButtonStealth')) return;
   const fullscreenElement =
     document.fullscreenElement ||
     // @ts-ignore
@@ -150,6 +147,7 @@ export function fullscreenNotification(text: string) {
             max-width: 60%;
             display: table;
             font-family: Helvetica,Arial,sans-serif;
+            text-align: center;
           ">${text}</div>
         </div>
         `),

@@ -1,4 +1,4 @@
-import { getPlayerTime, shortcutListener } from './utils/player';
+import { fullscreenNotification, getPlayerTime, shortcutListener } from './utils/player';
 
 let tempPlayer: any;
 
@@ -23,6 +23,13 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     if (typeof msg.timeAdd !== 'undefined') {
       tempPlayer.play();
       tempPlayer.currentTime += msg.timeAdd;
+    }
+  } else if (msg.action === 'content') {
+    switch (msg.item.action) {
+      case 'fullscreenNotification':
+        fullscreenNotification(msg.item.text);
+        break;
+      default:
     }
   }
 });
