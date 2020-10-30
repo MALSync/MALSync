@@ -73,6 +73,18 @@ export const MerakiScans: pageInterface = {
       elementEp(selector) {
         return Number(MerakiScans.overview!.list!.elementUrl(selector).split('/')[5]);
       },
+      paginationNext(updateCheck) {
+        con.log('updatecheck', updateCheck);
+        if (updateCheck) {
+          return false;
+        }
+        const el = j.$('#chapter_table_paginate > span > a.paginate_button.current').next('a');
+        if (typeof el[0] === 'undefined') {
+          return false;
+        }
+        el[0].click();
+        return true;
+      },
     },
   },
   init(page) {
@@ -83,19 +95,6 @@ export const MerakiScans: pageInterface = {
         (page.url.split('/').length === 6 || page.url.split('/').length === 7)
       ) {
         page.handlePage();
-      }
-      if (page.url.split('/')[3] === 'manga' && page.url.split('/').length === 6) {
-        utils.changeDetect(
-          () => {
-            page.handleList();
-          },
-          () => {
-            return j
-              .$('a.paginate_button.current')
-              .text()
-              .trim();
-          },
-        );
       }
     });
   },
