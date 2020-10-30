@@ -134,7 +134,7 @@ export default {
     this.destroyTimer = setTimeout(() => {
       this.items = [];
       this.reload = true;
-    }, 30 * 1000);
+    }, 10 * 60 * 1000);
   },
   methods: {
     lang: api.storage.lang,
