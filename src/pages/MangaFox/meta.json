@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*.fanfox.net/manga/*", "*://*.mangafox.la/manga/*"]
+  }
+}

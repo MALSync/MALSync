@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://shinden.pl/episode/*", "*://shinden.pl/series/*"]
+  }
+}

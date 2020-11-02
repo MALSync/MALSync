@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://yayanimes.net/*"]
+  }
+}

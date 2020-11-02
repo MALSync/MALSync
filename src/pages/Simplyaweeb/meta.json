@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://simplyaweeb.com/series/*", "*://simplyaweeb.com/manga/*"]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*.mangasee123.com/manga*", "*://*.mangasee123.com/read-online*"]
+  }
+}

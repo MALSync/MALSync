@@ -1,0 +1,17 @@
+{
+  "urls": {
+    "match": [
+      "*://*.9anime.to/watch/*",
+      "*://*.9anime.ru/watch/*",
+      "*://*.9anime.live/watch/*",
+      "*://*.9anime.one/watch/*",
+      "*://*.9anime.page/watch/*",
+      "*://*.9anime.video/watch/*",
+      "*://*.9anime.life/watch/*",
+      "*://*.9anime.love/watch/*",
+      "*://*.9anime.tv/watch/*",
+      "*://*.9anime.app/watch/*",
+      "*://*.9anime.at/watch/*"
+    ]
+  }
+}
