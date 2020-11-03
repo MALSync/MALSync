@@ -65,6 +65,7 @@ export class syncPage {
   }
 
   private getPage(url) {
+    if (this.pages.type) return this.pages;
     for (const key in this.pages) {
       const page = this.pages[key];
       if (j.$.isArray(page.domain)) {
