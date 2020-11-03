@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const pages = require('./utils/pages')();
+const pages = require('./utils/pages').pages();
 
 let entry = {
   'content-script': path.join(
