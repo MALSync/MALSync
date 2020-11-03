@@ -166,7 +166,7 @@ const generateManifest = () => {
       'https://api.myanimelist.net/',
       'tabHide',
     ],
-    optional_permissions: ['cookies'].concat(generateMatchExcludes(pageUrls).match),
+    optional_permissions: ['cookies'].concat(generateMatchExcludes(backgroundUrls).match),
   };
 
   if (mode === 'travis') {
