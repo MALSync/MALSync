@@ -139,6 +139,7 @@
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
+        <checkbox option="MangaSee">MangaSee</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
