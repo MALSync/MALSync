@@ -8,6 +8,7 @@ export const webextension: storageInterface = {
     obj[key] = value;
     return new Promise((resolve, reject) => {
       getStorage(key).set(obj, function() {
+        if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
         resolve();
       });
     });
@@ -16,6 +17,7 @@ export const webextension: storageInterface = {
   async get(key: string): Promise<any> {
     return new Promise((resolve, reject) => {
       getStorage(key).get(key, function(results) {
+        if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
         resolve(results[key]);
       });
     });
@@ -24,6 +26,7 @@ export const webextension: storageInterface = {
   async remove(key: string): Promise<any> {
     return new Promise((resolve, reject) => {
       getStorage(key).remove(key, function() {
+        if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
         resolve();
       });
     });
