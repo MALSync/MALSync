@@ -22,7 +22,7 @@ export async function importData(newData: {}) {
         if (e.message) {
           if (e.message.includes('MAX_WRITE_OPERATIONS_PER_MINUTE')) {
             utils.flashm(
-              'Max write operations per minute hit. Import stoped for 1 Minute. Just keep this window open.',
+              'Max write operations per minute hit. Import stopped for 1 minute. Just keep this window open.',
             );
             return new Promise(resolve => {
               setTimeout(() => {
@@ -40,9 +40,9 @@ export async function importData(newData: {}) {
   for (const k in newData) {
     con.log('Set', k, newData[k]);
     await api.storage.set(k, newData[k]).catch(e => {
-      if (e.message){
+      if (e.message) {
         if (e.message.includes('MAX_WRITE_OPERATIONS_PER_MINUTE')) {
-          utils.flashm('Max write operations per minute hit. Import stoped for 1 Minute. Just keep this window open.');
+          utils.flashm('Max write operations per minute hit. Import stopped for 1 minute. Just keep this window open.');
           return new Promise(resolve => {
             setTimeout(() => {
               resolve(api.storage.set(k, newData[k]));
