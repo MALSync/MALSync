@@ -646,6 +646,12 @@ export default {
 
         importData(iData).then(() => {
           utils.flashm('File imported');
+          alert('File imported');
+        }).catch(e => {
+          if (e.message) {
+            alert(e.message);
+          }
+          throw e;
         });
       } catch (e) {
         alert('File has wrong formating');
