@@ -26,7 +26,7 @@ export async function importData(newData: {}) {
             );
             return new Promise(resolve => {
               setTimeout(() => {
-                resolve('');
+                resolve(api.storage.remove(key));
               }, 60 * 1000);
             });
           }
@@ -45,7 +45,7 @@ export async function importData(newData: {}) {
           utils.flashm('Max write operations per minute hit. Import stoped for 1 Minute. Just keep this window open.');
           return new Promise(resolve => {
             setTimeout(() => {
-              resolve('');
+              resolve(api.storage.set(k, newData[k]));
             }, 60 * 1000);
           });
         }
