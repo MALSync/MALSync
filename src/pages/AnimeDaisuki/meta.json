@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://animedaisuki.moe/watch/*", "*://animedaisuki.moe/anime/*"]
+  }
+}

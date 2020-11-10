@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://animeshouse.net/episodio/*", "*://animeshouse.net/filme/*"]
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://animevibe.wtf/ani/*", "*://animemate.xyz/ani/*"]
+  }
+}

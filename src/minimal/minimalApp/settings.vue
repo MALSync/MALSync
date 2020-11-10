@@ -645,9 +645,17 @@ export default {
         if (!firstData.hasOwnProperty('status')) throw 'No status';
         if (!firstData.hasOwnProperty('tags')) throw 'No tags';
 
-        importData(iData).then(() => {
-          utils.flashm('File imported');
-        });
+        importData(iData)
+          .then(() => {
+            utils.flashm('File imported');
+            alert('File imported');
+          })
+          .catch(e => {
+            if (e.message) {
+              alert(e.message);
+            }
+            throw e;
+          });
       } catch (e) {
         alert('File has wrong formating');
         con.error('File has wrong formating:', e);

@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://mangaplus.shueisha.co.jp/*"]
+  }
+}

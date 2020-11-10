@@ -1,0 +1,30 @@
+{
+  "urls": {
+    "match": [
+      "*://*.gogoanime.tv/*",
+      "*://*.gogoanime.io/*",
+      "*://*.gogoanime.in/*",
+      "*://*.gogoanime.se/*",
+      "*://*.gogoanime.sh/*",
+      "*://*.gogoanime.video/*",
+      "*://*.gogoanime.movie/*",
+      "*://*.gogoanime.so/*",
+      "*://*.gogoanimes.co/*",
+      "*://*.animego.to/*"
+    ],
+    "exclude": [
+      "*gogoanime*.*/",
+      "*gogoanime*.*/*.html*",
+      "*gogoanime*.*/anime-List*",
+      "*gogoanime*.*/user*",
+      "*gogoanime*.*/genre/*",
+      "*gogoanime*.*/sub-category/*",
+      "*animego*.*/",
+      "*animego*.*/*.html*",
+      "*animego*.*/anime-List*",
+      "*animego*.*/user*",
+      "*animego*.*/genre/*",
+      "*animego*.*/sub-category/*"
+    ]
+  }
+}

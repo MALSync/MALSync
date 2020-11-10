@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://myanimelist.net/anime/*/*/episode/*"]
+  }
+}

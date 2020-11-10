@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://tioanime.com/anime/*", "*://tioanime.com/ver/*"]
+  }
+}

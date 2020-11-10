@@ -4,10 +4,12 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const download = require('download-file');
 const playerUrls = require('../src/pages/playerUrls');
-const pageUrls = require('../src/pages/pageUrls');
+const pageUrls = require('./utils/pageUrls');
 const packageJson = require('../package.json');
 const resourcesJson = require('./resources');
 const i18n = require('./utils/i18n');
+const pagesUtils = require('./utils/pages');
+const pages = pagesUtils.pages();
 
 const mode = process.env.MODE || 'default';
 console.log('Mode', mode);
@@ -43,6 +45,63 @@ const backgroundMatch = matches => {
   return matches;
 };
 
+const backgroundUrls = pagesUtils.pagesUrls();
+
+var content_scripts = [
+  {
+    matches: generateMatchExcludes(malUrls).match,
+    exclude_globs: generateMatchExcludes(malUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/mal-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(malsyncUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(aniUrls).match,
+    exclude_globs: generateMatchExcludes(aniUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/anilist-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(kitsuUrls).match,
+    exclude_globs: generateMatchExcludes(kitsuUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/kitsu-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(simklUrls).match,
+    exclude_globs: generateMatchExcludes(simklUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/simkl-script.js'],
+    run_at: 'document_start',
+  },
+  {
+    matches: backgroundMatch(generateMatchExcludes(backgroundUrls).match),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/update-check.js'],
+    all_frames: true,
+    run_at: 'document_start',
+  },
+  {
+    matches: generateMatchExcludes(playerUrls).match,
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/iframe.js'],
+    all_frames: true,
+    run_at: 'document_start',
+  },
+];
+
+pages.forEach(el => {
+  const cUrls = pagesUtils.urls(el);
+  content_scripts.push({
+    matches: generateMatchExcludes({urls: cUrls }).match,
+    exclude_globs: generateMatchExcludes({urls: cUrls}).exclude.concat(['*mal-sync-background=*']),
+    js: ['vendor/jquery.min.js', 'i18n.js', 'content/page_'+el+'.js', 'content/content-script.js'],
+    run_at: 'document_start',
+  });
+})
+
 const generateManifest = () => {
   const mani = {
     manifest_version: 2,
@@ -76,68 +135,7 @@ const generateManifest = () => {
         },
       },
     },
-    content_scripts: [
-      {
-        matches: generateMatchExcludes(contentUrls).match,
-        exclude_globs: generateMatchExcludes(contentUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'content-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(malUrls).match,
-        exclude_globs: generateMatchExcludes(malUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'mal-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(malsyncUrls).match,
-        exclude_globs: generateMatchExcludes(malsyncUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'oauth-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(aniUrls).match,
-        exclude_globs: generateMatchExcludes(aniUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'anilist-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(kitsuUrls).match,
-        exclude_globs: generateMatchExcludes(kitsuUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'kitsu-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(simklUrls).match,
-        exclude_globs: generateMatchExcludes(simklUrls).exclude.concat([
-          '*mal-sync-background=*',
-        ]),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'simkl-script.js'],
-        run_at: 'document_start',
-      },
-      {
-        matches: backgroundMatch(generateMatchExcludes(pageUrls).match),
-        js: ['vendor/jquery.min.js', 'i18n.js', 'update-check.js'],
-        all_frames: true,
-        run_at: 'document_start',
-      },
-      {
-        matches: generateMatchExcludes(playerUrls).match,
-        js: ['vendor/jquery.min.js', 'i18n.js', 'iframe.js'],
-        all_frames: true,
-        run_at: 'document_start',
-      },
-    ],
+    content_scripts: content_scripts,
     icons: {
       '16': 'icons/icon16.png',
       '32': 'icons/icon32.png',
@@ -168,9 +166,7 @@ const generateManifest = () => {
       'https://api.myanimelist.net/',
       'tabHide',
     ],
-    optional_permissions: ['cookies'].concat(
-      generateMatchExcludes(pageUrls).match,
-    ),
+    optional_permissions: ['cookies'].concat(generateMatchExcludes(backgroundUrls).match),
   };
 
   if (mode === 'travis') {

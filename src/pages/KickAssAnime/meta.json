@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*.kickassanime.io/anime/*", "*://*.kickassanime.ru/anime/*", "*://*.kickassanime.rs/anime/*"]
+  }
+}
