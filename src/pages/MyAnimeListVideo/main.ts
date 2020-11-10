@@ -10,7 +10,7 @@ export const MyAnimeListVideo: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils.getBaseText(j.$('h1 > span.h1-title > span')).trim();
+      return utils.getBaseText(j.$('div.h1-title > div > h1')).trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
