@@ -130,16 +130,16 @@
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
-        <checkbox option="Netflix">Netflix</checkbox>
         <checkbox option="Gogoanime">Gogoanime</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
         <checkbox option="Aniwatch">Aniwatch</checkbox>
         <checkbox option="AnimeSimple">AnimeSimple</checkbox>
+        <checkbox option="animepahe">animepahe</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
+        <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
-        <checkbox option="Proxeranime">Proxer (Anime)</checkbox>
-        <checkbox option="Proxermanga">Proxer (Manga)</checkbox>
+        <checkbox option="MangaSee">MangaSee</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -645,9 +645,17 @@ export default {
         if (!firstData.hasOwnProperty('status')) throw 'No status';
         if (!firstData.hasOwnProperty('tags')) throw 'No tags';
 
-        importData(iData).then(() => {
-          utils.flashm('File imported');
-        });
+        importData(iData)
+          .then(() => {
+            utils.flashm('File imported');
+            alert('File imported');
+          })
+          .catch(e => {
+            if (e.message) {
+              alert(e.message);
+            }
+            throw e;
+          });
       } catch (e) {
         alert('File has wrong formating');
         con.error('File has wrong formating:', e);

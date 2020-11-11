@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://www.okanime.com/animes/*", "*://www.okanime.com/movies/*"]
+  }
+}

@@ -5,6 +5,7 @@ export const manga4life: pageInterface = {
   domain: 'https://manga4life.com',
   languages: ['English'],
   type: 'manga',
+  database: 'MangaSee',
   isSyncPage(url) {
     if (url.split('/')[3] === 'read-online') {
       return true;

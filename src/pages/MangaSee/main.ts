@@ -5,6 +5,7 @@ export const MangaSee: pageInterface = {
   domain: 'https://mangasee123.com',
   languages: ['English'],
   type: 'manga',
+  database: 'MangaSee',
   isSyncPage(url) {
     if (url.split('/')[3] === 'read-online') {
       return true;

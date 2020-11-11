@@ -3,11 +3,15 @@ import { storageInterface } from './storageInterface';
 declare let i18n: string[];
 
 export const webextension: storageInterface = {
-  async set(key: string, value: string): Promise<any> {
+  async set(key: string, value: string): Promise<void> {
     const obj = {} as any;
     obj[key] = value;
     return new Promise((resolve, reject) => {
       getStorage(key).set(obj, function() {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+          return;
+        }
         resolve();
       });
     });
@@ -16,14 +20,22 @@ export const webextension: storageInterface = {
   async get(key: string): Promise<any> {
     return new Promise((resolve, reject) => {
       getStorage(key).get(key, function(results) {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+          return;
+        }
         resolve(results[key]);
       });
     });
   },
 
-  async remove(key: string): Promise<any> {
+  async remove(key: string): Promise<void> {
     return new Promise((resolve, reject) => {
       getStorage(key).remove(key, function() {
+        if (chrome.runtime.lastError) {
+          reject(chrome.runtime.lastError);
+          return;
+        }
         resolve();
       });
     });

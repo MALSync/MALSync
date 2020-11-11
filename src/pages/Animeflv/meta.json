@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*.animeflv.net/anime/*", "*://*.animeflv.net/ver/*"]
+  }
+}

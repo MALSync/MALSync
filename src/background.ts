@@ -166,6 +166,15 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
       });
       return true;
     }
+    case 'emitter': {
+      chrome.runtime.sendMessage(message);
+      chrome.tabs.query({}, tabs => {
+        tabs.forEach(tab => {
+          // @ts-ignore
+          chrome.tabs.sendMessage(tab.id, message);
+        });
+      });
+    }
     default:
   }
   return undefined;

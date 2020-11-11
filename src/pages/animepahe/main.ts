@@ -5,6 +5,7 @@ export const animepahe: pageInterface = {
   name: 'animepahe',
   domain: 'https://animepahe.com',
   languages: ['English'],
+  database: 'animepahe',
   type: 'anime',
   isSyncPage(url) {
     if (window.location.href.split('/')[3] !== 'play') {
@@ -53,26 +54,26 @@ export const animepahe: pageInterface = {
     },
     getMalUrl(provider) {
       let url = j
-        .$('a[href^="https://myanimelist.net/anime/"]')
+        .$('a[href^="//myanimelist.net/anime/"]')
         .not('#malRating')
         .first()
         .attr('href');
-      if (url) return url;
+      if (url) return url.replace(/^\/\//, 'https://');
       if (provider === 'ANILIST') {
         url = j
-          .$('a[href^="https://anilist.co/anime/"]')
+          .$('a[href^="//anilist.co/anime/"]')
           .not('#malRating')
           .first()
           .attr('href');
-        if (url) return url;
+        if (url) return url.replace(/^\/\//, 'https://');
       }
       if (provider === 'KITSU') {
         url = j
-          .$('a[href^="https://kitsu.io/anime/"]')
+          .$('a[href^="//kitsu.io/anime/"]')
           .not('#malRating')
           .first()
           .attr('href');
-        if (url) return url;
+        if (url) return url.replace(/^\/\//, 'https://');
       }
       return false;
     },
@@ -112,8 +113,7 @@ export const animepahe: pageInterface = {
         return typeof getId() !== 'undefined';
       },
       function() {
-        page.url = getUrl(getId(), false);
-        page.handlePage();
+        page.handlePage(getUrl(getId(), false));
       },
     );
   },

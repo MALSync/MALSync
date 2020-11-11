@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://*.anime4you.one/show/1/aid/*"]
+  }
+}

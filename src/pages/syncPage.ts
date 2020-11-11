@@ -2,8 +2,9 @@ import { pageInterface, pageState } from './pageInterface';
 import { getSingle } from '../_provider/singleFactory';
 import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
-import { getPlayerTime } from '../utils/player';
+import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { searchClass } from '../_provider/Search/vueSearchClass';
+import { emitter } from '../utils/emitter';
 
 declare let browser: any;
 
@@ -34,6 +35,7 @@ export class syncPage {
     if (this.page === null) {
       throw new Error('Page could not be recognized');
     }
+    emitter.on('syncPage_fillUi', () => this.fillUI());
   }
 
   init() {
@@ -63,6 +65,7 @@ export class syncPage {
   }
 
   private getPage(url) {
+    if (this.pages.type) return this.pages;
     for (const key in this.pages) {
       const page = this.pages[key];
       if (j.$.isArray(page.domain)) {
@@ -555,6 +558,8 @@ export class syncPage {
                 });
             } */
 
+          this.fullNotification(message);
+
           message += `
             <br>
             <button class="undoButton" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">
@@ -589,6 +594,20 @@ export class syncPage {
         this.singleObj.flashmError(e);
         throw e;
       });
+  }
+
+  fullNotification(text) {
+    try {
+      fullscreenNotification(text);
+      if (api.type === 'webextension') {
+        chrome.runtime.sendMessage({
+          name: 'content',
+          item: { action: 'fullscreenNotification', text },
+        });
+      }
+    } catch (e) {
+      logger.error(e);
+    }
   }
 
   fillUI() {

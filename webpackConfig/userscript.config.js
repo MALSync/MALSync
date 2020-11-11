@@ -2,12 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const wrapper = require('wrapper-webpack-plugin');
 const package = require('../package.json');
-const pageUrls = require('../src/pages/pageUrls');
+const generalUrls = require('./utils/pageUrls');
+const pages = require('./utils/pages').pagesUrls();
 const playerUrls = require('../src/pages/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
+
+const pageUrls = { ...generalUrls, ...pages };
 
 const generateMatchExcludes = urls => {
   let match = [];
