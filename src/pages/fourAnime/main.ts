@@ -22,7 +22,7 @@ export const fourAnime: pageInterface = {
       return utils.urlPart(fourAnime.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return j.$('span.singletitletop a').attr('href');
+      return j.$('span.singletitletop a').attr('href') || '';
     },
     getEpisode(url) {
       return Number(
