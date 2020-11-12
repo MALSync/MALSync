@@ -1,0 +1,31 @@
+{
+  "title": "NaniScans",
+  "url": "https://naniscans.com/",
+  "testCases": [
+    {
+      "url": "https://naniscans.com/chapters/08d7df22-a4e3-4e0a-8461-c4cecaea6c78/read",
+      "expected": {
+        "sync": true,
+        "title": "Asmodeus wa Akiramenai",
+        "identifier": "08d7de82-f3e9-40b8-86a8-01feef493ab9",
+        "overviewUrl": "https://naniscans.com/titles/08d7de82-f3e9-40b8-86a8-01feef493ab9",
+        "nextEpUrl": "https://naniscans.com/chapters/08d7df22-c00c-417e-8439-83a9e6103e15/read",
+        "episode": 32,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://naniscans.com/titles/08d7de82-f3e9-40b8-86a8-01feef493ab9",
+      "expected": {
+        "sync": false,
+        "title": "Asmodeus wa Akiramenai",
+        "identifier": "08d7de82-f3e9-40b8-86a8-01feef493ab9",
+        "uiSelector": true,
+        "epList": {
+          "32": "https://naniscans.com/chapters/08d7df22-a4e3-4e0a-8461-c4cecaea6c78/read",
+          "39": "https://naniscans.com/chapters/08d8280e-bde6-46b9-8f63-d13342e5486d/read"
+        }
+      }
+    }
+  ]
+}

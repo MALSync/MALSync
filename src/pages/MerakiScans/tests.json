@@ -1,0 +1,31 @@
+{
+  "title": "MerakiScans",
+  "url": "https://merakiscans.com/",
+  "testCases": [
+    {
+      "url": "https://merakiscans.com/manga/hunter-age/228/",
+      "expected": {
+        "sync": true,
+        "title": "Hunter Age",
+        "identifier": "hunter-age",
+        "overviewUrl": "https://merakiscans.com/manga/hunter-age",
+        "nextEpUrl": "https://merakiscans.com/manga/hunter-age/229/",
+        "episode": 228,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://merakiscans.com/manga/hunter-age/",
+      "expected": {
+        "sync": false,
+        "title": "Hunter Age",
+        "identifier": "hunter-age",
+        "uiSelector": true,
+        "epList": {
+          "210": "https://merakiscans.com/manga/hunter-age/210/",
+          "233": "https://merakiscans.com/manga/hunter-age/233/"
+        }
+      }
+    }
+  ]
+}
