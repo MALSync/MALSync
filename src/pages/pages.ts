@@ -10,7 +10,7 @@ import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
 import { Netflix } from './Netflix/main';
 import { animepahe } from './animepahe/main';
-import { animeflv } from './Animeflv/main';
+import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
@@ -119,7 +119,7 @@ export const pages = {
   Turkanime,
   animepahe,
   Netflix,
-  animeflv,
+  Animeflv,
   Jkanime,
   Proxer,
   Wakanim,

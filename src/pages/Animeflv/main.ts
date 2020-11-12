@@ -1,8 +1,8 @@
 /* By kaiserdj */
 import { pageInterface } from '../pageInterface';
 
-export const animeflv: pageInterface = {
-  name: 'animeflv',
+export const Animeflv: pageInterface = {
+  name: 'Animeflv',
   domain: 'https://animeflv.net',
   languages: ['Spanish'],
   type: 'anime',
@@ -25,10 +25,10 @@ export const animeflv: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(`${animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
+      return utils.urlPart(`${Animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
     },
     getOverviewUrl(url) {
-      return animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
+      return Animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
     },
     getEpisode(url) {
       return parseInt(
@@ -42,7 +42,7 @@ export const animeflv: pageInterface = {
     nextEpUrl(url) {
       const nextEp = j.$('.fa-chevron-right').attr('href');
       if (!nextEp) return nextEp;
-      return animeflv.domain + nextEp;
+      return Animeflv.domain + nextEp;
     },
     uiSelector(selector) {
       j.$('.CapOptns').after(j.html(selector));
@@ -82,7 +82,7 @@ export const animeflv: pageInterface = {
               // @ts-ignore
               eps.forEach(element => {
                 if (idMALSync !== null) {
-                  const Url = `${animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element
+                  const Url = `${Animeflv.domain}/ver/${utils.urlPart(url, 4)}-${element
                     .split(',')[0]
                     .replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
@@ -95,7 +95,7 @@ export const animeflv: pageInterface = {
         return j.$('.MALSync a');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), animeflv.domain);
+        return utils.absoluteLink(selector.attr('href'), Animeflv.domain);
       },
       elementEp(selector) {
         return selector.attr('epi');
