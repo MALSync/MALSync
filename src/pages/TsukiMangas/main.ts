@@ -83,7 +83,11 @@ export const TsukiMangas: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     let interval;
-    let oldJson = '';
+    let oldJsonString = '';
+    let oldJson = {
+      currentChapter: null,
+      mangaName: null,
+    };
 
     utils.fullUrlChangeDetect(function() {
       page.reset();
@@ -96,8 +100,14 @@ export const TsukiMangas: pageInterface = {
         function() {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
-            if (jsonData.mangaName && JSON.stringify(jsonData) !== oldJson) {
-              oldJson = JSON.stringify(jsonData);
+            const newJsonString = JSON.stringify(jsonData);
+            if (
+              jsonData.mangaName &&
+              newJsonString !== oldJsonString &&
+              (oldJson.mangaName !== jsonData.mangaName || oldJson.currentChapter !== jsonData.currentChapter)
+            ) {
+              oldJson = jsonData;
+              oldJsonString = newJsonString;
               return true;
             }
           }
