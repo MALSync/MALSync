@@ -30,14 +30,18 @@ export const AnimeOwl: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3);
+      return utils.urlPart(AnimeOwl.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
       return j.$('a.back-tv-show').attr('href') || '';
     },
     getEpisode(url) {
       if (!utils.urlParam(url, 'ep')) {
-        return 1;
+        url =
+          j
+            .$('#episodes button.active')
+            .closest('a')
+            .attr('href') || '';
       }
       // @ts-ignore
       return parseInt(utils.urlParam(url, 'ep'));
