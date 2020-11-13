@@ -82,11 +82,6 @@ export const MangaSee: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(document).ready(function() {
-      check();
-      checkupdate();
-    });
-
-    function check() {
       utils.waitUntilTrue(
         function() {
           if (MangaSee.isSyncPage(page.url)) {
@@ -101,36 +96,38 @@ export const MangaSee: pageInterface = {
           return false;
         },
         function() {
-          page.handlePage();
+          if (MangaSee.isOverviewPage!(page.url)) {
+            page.handlePage();
+          }
+          if (MangaSee.isSyncPage(page.url)) {
+            changeDetectBlank(
+              () => {
+                page.handlePage();
+              },
+              () => {
+                return j
+                  .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
+                  .first()
+                  .text()
+                  .trim();
+              },
+            );
+          }
         },
       );
-    }
-    function checkupdate() {
-      if (MangaSee.isSyncPage(page.url)) {
-        utils.waitUntilTrue(
-          function() {
-            if (
-              j
-                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
-                .first()
-                .text()
-                .trim() !== 'undefined'
-            ) {
-              return true;
-            }
-            return false;
-          },
-          function() {
-            utils.changeDetect(check, () => {
-              return j
-                .$('div.Column.col-lg-2.col-6 button.btn.btn-sm.btn-outline-secondary.ng-binding')
-                .first()
-                .text()
-                .trim();
-            });
-          },
-        );
-      }
+    });
+
+    function changeDetectBlank(callback, func) {
+      let currentPage = '';
+      const intervalId = setInterval(function() {
+        const temp = func();
+        if (typeof temp !== 'undefined' && currentPage !== temp) {
+          currentPage = func();
+          callback();
+        }
+      }, 500);
+
+      return Number(intervalId);
     }
   },
 };
