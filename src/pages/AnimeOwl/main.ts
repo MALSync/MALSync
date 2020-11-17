@@ -37,11 +37,7 @@ export const AnimeOwl: pageInterface = {
     },
     getEpisode(url) {
       if (!utils.urlParam(url, 'ep')) {
-        url =
-          j
-            .$('#episodes button.active')
-            .closest('a')
-            .attr('href') || '';
+        url = getCurrentUrl();
       }
       // @ts-ignore
       return parseInt(utils.urlParam(url, 'ep'));
@@ -53,6 +49,13 @@ export const AnimeOwl: pageInterface = {
         .next()
         .find('a')
         .attr('href');
+    },
+    getMalUrl(provider) {
+      const malid = j.$('[data-mal-id]').attr('data-mal-id');
+      if (malid) {
+        return `https://myanimelist.net/anime/${malid}`;
+      }
+      return false;
     },
   },
   overview: {
@@ -72,6 +75,9 @@ export const AnimeOwl: pageInterface = {
         .first()
         .after(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
     },
+    getMalUrl(provider) {
+      return AnimeOwl.sync.getMalUrl!(provider);
+    },
     list: {
       offsetHandler: false,
       elementsSelector() {
@@ -88,7 +94,20 @@ export const AnimeOwl: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (AnimeOwl.isSyncPage(page.url)) {
+        page.handlePage(getCurrentUrl());
+        return;
+      }
       page.handlePage();
     });
   },
 };
+
+function getCurrentUrl() {
+  return (
+    j
+      .$('#episodes button.active')
+      .closest('a')
+      .attr('href') || ''
+  );
+}
