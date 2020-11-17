@@ -95,6 +95,7 @@ export const Mangadex: pageInterface = {
       return j
         .$('.card-header')
         .first()
+        .find('.mx-1')
         .text()
         .trim();
     },
