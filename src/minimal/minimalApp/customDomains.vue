@@ -47,7 +47,7 @@
       </li>
     </div>
 
-    <div v-if="JSON.stringify(option) !== JSON.stringify(permissions)">
+    <div v-if="!hasPermissions || JSON.stringify(option) !== JSON.stringify(permissions)">
       <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
         <input
           type="button"
@@ -72,6 +72,7 @@ export default {
     return {
       pages,
       permissions: [],
+      hasPermissions: null,
     };
   },
   computed: {
@@ -83,10 +84,20 @@ export default {
         api.settings.set('customDomains', value);
       },
     },
+    browserPermissions() {
+      const origins = this.permissions.map(perm => `${new URL(perm.domain).origin}/`);
+      return {
+        permissions: ['webNavigation'],
+        origins,
+      };
+    },
   },
   watch: {
     option(value) {
       this.permissions = JSON.parse(JSON.stringify(value));
+    },
+    browserPermissions(perms) {
+      this.checkPermissions();
     },
   },
   activated() {
@@ -114,12 +125,25 @@ export default {
         return;
       }
       this.option = JSON.parse(JSON.stringify(this.permissions));
+      this.requestPermissions();
     },
     pageCheck(page) {
       return page ? true : false;
     },
     domainCheck(domain) {
-      return /^https?:\/\/(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+)/.test(domain);
+      return /^https?:\/\/(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+)/.test(domain) && new URL(domain).origin;
+    },
+    checkPermissions() {
+      chrome.permissions.contains(this.browserPermissions, result => {
+        this.hasPermissions = result;
+      });
+    },
+    requestPermissions() {
+      con.m('Request Permissions').log(this.browserPermissions);
+      chrome.permissions.request(this.browserPermissions, granted => {
+        if (!granted) utils.flashm('Requesting the permissions failed', { error: true });
+        this.checkPermissions();
+      });
     },
   },
 };
