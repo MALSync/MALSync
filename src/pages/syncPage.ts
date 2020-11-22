@@ -35,6 +35,7 @@ export class syncPage {
     if (this.page === null) {
       throw new Error('Page could not be recognized');
     }
+    this.domainSet();
     logger.log('Page', this.page.name);
     emitter.on('syncPage_fillUi', () => this.fillUI());
   }
@@ -100,6 +101,10 @@ export class syncPage {
       }
     }
     return null;
+  }
+
+  private domainSet() {
+    this.page.domain = new URL(window.location.href).origin;
   }
 
   public openNextEp() {
