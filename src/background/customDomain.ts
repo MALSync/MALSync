@@ -2,7 +2,7 @@ const logger = con.m('Custom Domain');
 
 type domainType = { domain: string; page: string };
 
-export async function initCustomDomain(){
+export async function initCustomDomain() {
   await setListener();
   updateListener();
   logger.log('Initialed');

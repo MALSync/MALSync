@@ -129,7 +129,7 @@ export default {
       this.requestPermissions();
     },
     pageCheck(page) {
-      return page ? true : false;
+      return !!page;
     },
     domainCheck(domain) {
       return /^https?:\/\/(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+)/.test(domain) && new URL(domain).origin;
