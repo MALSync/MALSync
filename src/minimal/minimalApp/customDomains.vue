@@ -104,6 +104,7 @@ export default {
     this.permissions = JSON.parse(JSON.stringify(this.option));
   },
   mounted() {
+    this.permissions = JSON.parse(JSON.stringify(this.option));
     this.$root.updateDom();
   },
   methods: {
