@@ -4,7 +4,19 @@ type domainType = { domain: string; page: string };
 
 export async function initCustomDomain(){
   await setListener();
+  updateListener();
   logger.log('Initialed');
+}
+
+function updateListener() {
+  chrome.permissions.onAdded.addListener(setListener);
+  chrome.permissions.onRemoved.addListener(setListener);
+  api.storage.storageOnChanged((changes, namespace) => {
+    if (namespace === 'sync' && changes['settings/customDomains']) {
+      logger.log('settings/customDomains changed');
+      setListener();
+    }
+  });
 }
 
 async function setListener() {
@@ -68,5 +80,8 @@ function singleListener(domainConfig: domainType) {
   chrome.webNavigation.onCompleted.addListener(callback, {
     url: [{ originAndPathMatches: domainConfig.domain }],
   });
-  logger.m('registred').log(domainConfig.domain);
+  logger
+    .m('registred')
+    .m(domainConfig.page)
+    .log(domainConfig.domain);
 }
