@@ -94,6 +94,10 @@ var content_scripts = [
 
 pages.forEach(el => {
   const cUrls = pagesUtils.urls(el);
+  if (!cUrls.match.length) {
+    console.error(`${el} has no urls`);
+    return;
+  }
   content_scripts.push({
     matches: generateMatchExcludes({urls: cUrls }).match,
     exclude_globs: generateMatchExcludes({urls: cUrls}).exclude.concat(['*mal-sync-background=*']),
