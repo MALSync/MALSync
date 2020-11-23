@@ -95,6 +95,7 @@
             type="button"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
             style="margin-left: 15px;"
+            v-if="isExtension()"
           >
             Custom domains
           </button>
