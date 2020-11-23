@@ -454,4 +454,7 @@ module.exports = {
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
   },
+  Komga: {
+    match: ['*://demo.komga.org/*'],
+  },
 };
