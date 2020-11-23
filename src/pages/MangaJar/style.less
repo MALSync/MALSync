@@ -1,10 +1,25 @@
 @import './../pages';
 
-#malp select,
-input {
-  color: white !important;
+@activeEp: #3498db !important;
+
+body:not(.dark) #malp {
+  * {
+    color: black !important;
+  }
+  option {
+    background-color: white !important;
+  }
+}
+
+body.dark #malp {
+  * {
+    color: white !important;
+  }
+  input {
+    background-color: black !important;
+  }
 }
 
 .mal-sync-active {
-  background-color: #002966 !important;
+  background-color: @activeEp !important;
 }
