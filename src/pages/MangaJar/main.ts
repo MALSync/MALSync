@@ -19,14 +19,14 @@ export const MangaJar: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('div.container-fluid.chapter-container > div > h1.h4 > a').text();
+      return j.$('div.container-fluid.chapter-container > div > h1 > a').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j.$('div.container-fluid.chapter-container > div > h1.h4 > a').attr('href'),
+        j.$('div.container-fluid.chapter-container > div > h1 > a').attr('href'),
         MangaJar.domain,
       );
     },
@@ -35,7 +35,7 @@ export const MangaJar: pageInterface = {
     },
     getVolume(url) {
       let temp = utils
-        .getBaseText(j.$('div.container-fluid.chapter-container > div > h1.h4'))
+        .getBaseText(j.$('div.container-fluid.chapter-container > div > h1'))
         .match(/(vol\.|volume)\D?\d+/i);
       if (temp) {
         temp = temp[0].match(/\d+/);
