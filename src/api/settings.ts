@@ -68,6 +68,8 @@ export const settingsObj = {
 
     bookMarksList: false,
 
+    customDomains: [],
+
     anilistToken: '',
     anilistOptions: {
       displayAdultContent: true,

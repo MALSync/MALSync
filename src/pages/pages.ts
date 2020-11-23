@@ -109,6 +109,7 @@ import { AnimeOwl } from './AnimeOwl/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
+import { Jellyfin } from './Jellyfin/main';
 
 export const pages = {
   nineAnime,
@@ -222,4 +223,5 @@ export const pages = {
   AsuraScans,
   NaniScans,
   MerakiScans,
+  Jellyfin,
 };
