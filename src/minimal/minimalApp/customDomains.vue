@@ -132,7 +132,7 @@ export default {
       return !!page;
     },
     domainCheck(domain) {
-      return /^https?:\/\/(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+)/.test(domain) && new URL(domain).origin;
+      return /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) && new URL(domain).origin;
     },
     checkPermissions() {
       chrome.permissions.contains(this.browserPermissions, result => {
