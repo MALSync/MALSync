@@ -1,40 +1,43 @@
 import { pageInterface } from '../pageInterface';
 
+async function apiCall(url: string) {
+  url = window.location.origin + url;
+  con.log('Api Call', url);
+  return api.request.xhr('GET', url);
+}
+
+const chapter = {
+  pid: '',
+  name: '',
+  chapter: '',
+}
+
 export const Komga: pageInterface = {
   name: 'Komga',
-  domain: 'https://demo.komga.org',
-  database: 'Komga',
+  domain: 'https://komga.org',
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
-    return url.split('/')[5] === 'read';
+    return utils.urlPart(url, 5) === 'read';
+  },
+  isOverviewPage(url) {
+    return utils.urlPart(url, 3) === 'series' && utils.urlPart(url, 5) !== 'read';
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.v-toolbar__title > span:nth-child(1)')
-        .text()
-        .trim();
+      if (!chapter.name) throw 'No name';
+      return chapter.name;
     },
     getIdentifier(url) {
-      return utils.urlPart(Komga.sync.getOverviewUrl(url), 4);
+      if (!chapter.pid) throw 'No pid';
+      return chapter.pid;
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('a.manga-link, a.manga_title')
-          .first()
-          .attr('href'),
-        Komga.domain,
-      );
+      return `${window.location.origin}/series/${chapter.pid}`;
     },
     getEpisode(url) {
-      const numberFromPage = j
-        .$('title')
-        .text()
-        .split(' - ')[2]
-        .trim();
-      return Number(numberFromPage);
+      if (!chapter.chapter || !parseInt(chapter.chapter)) throw 'No chapter number';
+      return parseInt(chapter.chapter);
     },
   },
   overview: {
@@ -80,8 +83,46 @@ export const Komga: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function () {
-      page.handlePage();
+    let checker;
+
+    loaded();
+    utils.changeDetect(loaded, () => {
+      return window.location.href.split('?')[0].split('#')[0];
     });
+
+    function loaded() {
+      chapter.chapter = '';
+      chapter.name = '';
+      chapter.pid = '';
+      clearInterval(checker);
+      if (Komga.isOverviewPage!(window.location.href)) {
+        checker = utils.waitUntilTrue(
+          () => Komga.overview!.getTitle(window.location.href),
+          () => {
+            con.log('pagehandle');
+            page.reset();
+            page.handlePage();
+          },
+        );
+      } else if (Komga.isSyncPage!(window.location.href)) {
+        apiCall(`/api/v1/books/${utils.urlPart(window.location.href, 4)}`)
+          .then(res => {
+            const jn = JSON.parse(res.responseText);
+            if (!jn.seriesId) throw 'No seriesId found';
+            con.m('Book').log(jn);
+            chapter.chapter = jn.number;
+            chapter.pid = jn.seriesId;
+            return apiCall(`/api/v1/series/${jn.seriesId}`);
+          }).then(res => {
+            const jn = JSON.parse(res.responseText);
+            con.m('Series').log(jn);
+            chapter.name = jn.name;
+            page.reset();
+            page.handlePage();
+          });
+      } else {
+        page.reset();
+      }
+    }
   },
 };
