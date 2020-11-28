@@ -666,7 +666,7 @@ export default {
       con.log('Export', exportObj);
 
       const filecontent = `data:text/csv;charset=utf-8,${JSON.stringify(exportObj)}`;
-      const encodedUri = encodeURI(filecontent);
+      const encodedUri = encodeURI(filecontent).replaceAll('#', '%23');
       try {
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
