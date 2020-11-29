@@ -23,7 +23,7 @@ export const An1me: pageInterface = {
       return utils.urlPart(url, 4).toString();
     },
     getOverviewUrl(url) {
-      return j.$('ol.breadcrumb > li:nth-child(2) > a',).attr('href') || '';
+      return j.$('ol.breadcrumb > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -94,9 +94,7 @@ export const An1me: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'b' && page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0)
-      {
         page.handlePage();
-      }
     });
   },
 };
