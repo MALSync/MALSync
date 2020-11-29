@@ -82,7 +82,7 @@ export const An1me: pageInterface = {
             .find('a')
             .first()
             .attr('href'),
-            An1me.domain,
+          An1me.domain,
         );
       },
       elementEp(selector) {
