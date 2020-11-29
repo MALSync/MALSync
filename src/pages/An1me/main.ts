@@ -2,15 +2,15 @@ import { pageInterface } from '../pageInterface';
 
 export const An1me: pageInterface = {
   name: 'An1me',
-  domain: 'https://an1me.nl/',
+  domain: 'https://an1me.nl',
   database: 'An1me',
   languages: ['Greek'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[5].split('-')[0] !== 'episode') {
-      return false;
+    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+      return true;
     }
-    return true;
+    return false;
   },
   sync: {
     getTitle(url) {
@@ -36,15 +36,18 @@ export const An1me: pageInterface = {
 
       const temp = episodePart.match(/episode-\d+/gim);
 
-      if (!temp || temp.length === 0) return NaN;
+      if (!temp || temp.length === 0) return 1;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j.$('div.select-pagination > div.nav-links > div.nav-next > a.next_page').attr('href');
-    },
-    uiSelector(selector) {
-      j.$('div.entry-content').after(j.html(`<section>${selector}</section>`));
+      const href = j.$('div.select-pagination > div > div.nav-next > a').attr('href');
+      if (href) {
+        if (An1me.sync.getEpisode(url) < An1me.sync.getEpisode(href)) {
+          return href;
+        }
+      }
+      return '';
     },
   },
   overview: {
