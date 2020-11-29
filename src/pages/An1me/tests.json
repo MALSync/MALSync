@@ -11,8 +11,20 @@
         "uiSelector": true,
         "epList": {
           "210": "https://an1me.nl/b/one-piece/episode-210/",
-		      "312":"https://an1me.nl/b/one-piece/episode-312/"
+          "312": "https://an1me.nl/b/one-piece/episode-312/"
         }
+      }
+    },
+    {
+      "url": "https://an1me.nl/b/one-piece/episode-312/",
+      "expected": {
+        "sync": true,
+        "title": "One Piece",
+        "identifier": "one-piece",
+        "overviewUrl": "https://an1me.nl/b/one-piece/",
+        "nextEpUrl": "https://an1me.nl/b/one-piece/episode-313/",
+        "episode": 312,
+        "uiSelector": false
       }
     }
   ]
