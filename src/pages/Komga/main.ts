@@ -11,7 +11,7 @@ const chapter = {
   name: '',
   chapter: '',
   mode: 'chapter',
-}
+};
 
 export const Komga: pageInterface = {
   name: 'Komga',
@@ -82,7 +82,8 @@ export const Komga: pageInterface = {
           .find('div:nth-child(1) > a:nth-child(2) > div:nth-child(1)')
           .first()
           .text()
-          .split(' - ')[0].replace(/( |#)/g, '');
+          .split(' - ')[0]
+          .replace(/( |#)/g, '');
 
         return Number(chapterAsText);
       },
@@ -122,7 +123,8 @@ export const Komga: pageInterface = {
             chapter.chapter = jn.number;
             chapter.pid = jn.seriesId;
             return apiCall(`/api/v1/series/${jn.seriesId}`);
-          }).then(res => {
+          })
+          .then(res => {
             const jn = JSON.parse(res.responseText);
             con.m('Series').log(jn);
             chapter.name = jn.name;

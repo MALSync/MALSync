@@ -410,7 +410,7 @@ export class syncPage {
         }
 
         if (await this.singleObj.checkSync(state.episode, state.volume, this.novel, this.strongVolumes)) {
-          if (!( this.strongVolumes && !state.episode)) this.singleObj.setEpisode(state.episode);
+          if (!(this.strongVolumes && !state.episode)) this.singleObj.setEpisode(state.episode);
           this.singleObj.setStreamingUrl(this.page.sync.getOverviewUrl(this.url));
 
           if (typeof state.volume !== 'undefined' && state.volume > this.singleObj.getVolume())
