@@ -10,6 +10,7 @@ const chapter = {
   pid: '',
   name: '',
   chapter: '',
+  mode: 'chapter',
 }
 
 export const Komga: pageInterface = {
@@ -36,7 +37,13 @@ export const Komga: pageInterface = {
       return `${window.location.origin}/series/${chapter.pid}`;
     },
     getEpisode(url) {
+      if (chapter.mode !== 'chapter') return 0;
       if (!chapter.chapter || !parseInt(chapter.chapter)) throw 'No chapter number';
+      return parseInt(chapter.chapter);
+    },
+    getVolume(url) {
+      if (chapter.mode !== 'volume') return 0;
+      if (!chapter.chapter || !parseInt(chapter.chapter)) throw 'No volume number';
       return parseInt(chapter.chapter);
     },
   },
@@ -94,6 +101,8 @@ export const Komga: pageInterface = {
       chapter.chapter = '';
       chapter.name = '';
       chapter.pid = '';
+      chapter.mode = 'chapter';
+      page.strongVolumes = false;
       clearInterval(checker);
       if (Komga.isOverviewPage!(window.location.href)) {
         checker = utils.waitUntilTrue(
@@ -117,6 +126,14 @@ export const Komga: pageInterface = {
             const jn = JSON.parse(res.responseText);
             con.m('Series').log(jn);
             chapter.name = jn.name;
+            if (jn.metadata && jn.metadata.tags && jn.metadata.tags.length) {
+              const lowerArray = jn.metadata.tags.map(el => el.toLowerCase());
+              if (lowerArray.includes('volume') || lowerArray.includes('volumes')) {
+                chapter.mode = 'volume';
+                page.strongVolumes = true;
+              }
+            }
+            con.m('Object').log(chapter);
             page.reset();
             page.handlePage();
           });
