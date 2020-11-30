@@ -52,7 +52,7 @@ export const Komga: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.v-toolbar__title')
+      j.$('.text-h5')
         .first()
         .after(j.html(selector));
     },
