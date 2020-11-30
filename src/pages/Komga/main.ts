@@ -82,7 +82,7 @@ export const Komga: pageInterface = {
           .find('div:nth-child(1) > a:nth-child(2) > div:nth-child(1)')
           .first()
           .text()
-          .split(' - ')[1];
+          .split(' - ')[0].replace(/( |#)/g, '');
 
         return Number(chapterAsText);
       },
