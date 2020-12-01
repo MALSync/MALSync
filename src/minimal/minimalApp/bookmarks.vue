@@ -179,6 +179,7 @@ export default {
             this.cache = false;
             this.items = list;
             if (!listProvider.isDone()) {
+              // eslint-disable-next-line consistent-return
               return new Promise(resolve => {
                 cb = () => {
                   resolve();
