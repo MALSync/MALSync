@@ -1,6 +1,7 @@
 {
   "title": "aniflix",
   "url": "https://www2.aniflix.tv/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www2.aniflix.tv/show/assassination-classroom/ger-sub/season/1/episode/12",
