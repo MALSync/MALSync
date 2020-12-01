@@ -478,9 +478,7 @@ export class syncPage {
   }
 
   public generateLocalUrl(page, state) {
-    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(
-      state.title,
-    )}`
+    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(state.title)}`;
   }
 
   // eslint-disable-next-line consistent-return
