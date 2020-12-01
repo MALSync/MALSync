@@ -240,7 +240,7 @@ module.exports = {
   },
   // 9anime
   streamtape: {
-    match: ['*://streamtape.com/*', '*://streamtape.net/*'],
+    match: ['*://streamtape.com/*', '*://streamtape.net/*', '*://streamtape.xyz/*'],
   },
   // monoschinos
   monoschinos: {
@@ -308,5 +308,13 @@ module.exports = {
   // 9anime
   vidstream: {
     match: ['*://vidstream.pro/e/*'],
+  },
+  // gogo
+  streamsb: {
+    match: ['*://streamsb.net/*', '*://streamsb.com/*'],
+  },
+  // gogo
+  dood: {
+    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*'],
   },
 };
