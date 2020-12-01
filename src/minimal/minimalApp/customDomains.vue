@@ -5,7 +5,7 @@
         <h2 class="mdl-card__title-text">Custom Domains</h2>
       </div>
       <div class="mdl-card__supporting-text">
-        Please only use if you know what you are doing!<br>
+        Please only use if you know what you are doing!<br />
         More info <a href="https://github.com/MALSync/MALSync/wiki/Custom-Domains">here</a>
       </div>
     </div>
@@ -140,7 +140,10 @@ export default {
       return !!page;
     },
     domainCheck(domain) {
-      return /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) && new URL(domain).origin;
+      return (
+        /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) &&
+        new URL(domain).origin
+      );
     },
     checkPermissions() {
       chrome.permissions.contains(this.browserPermissions, result => {
