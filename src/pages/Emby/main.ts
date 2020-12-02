@@ -1,4 +1,18 @@
+import { ScriptProxy } from '../../utils/scriptProxy';
 import { pageInterface } from '../pageInterface';
+
+// Define the variable proxy element:
+const proxy = new ScriptProxy();
+proxy.addCaptureVariable(
+  'ApiClient',
+  `
+    if (window.hasOwnProperty("ApiClient")) {
+      return ApiClient;
+    } else {
+      return undefined;
+    }
+  `,
+);
 
 let item: any;
 
@@ -174,7 +188,7 @@ async function waitForBase() {
   });
 }
 
-async function testApi() {
+async function testApi(retry = 0) {
   let base = await getBase();
   if (typeof base === 'undefined' || base === '') {
     con.info('No base');
@@ -183,14 +197,49 @@ async function testApi() {
 
   setBase(base);
 
-  return apiCall('/System/Info', null, base).then(response => {
+  return apiCall('/System/Info', null, base).then(async response => {
     if (response.status !== 200) {
       con.error('Not Authenticated');
       setBase('');
+
+      if (retry < 1) {
+        try {
+          const apiC = await checkApiClient();
+          retry++;
+          if (apiC) return testApi(retry);
+        } catch (e) {
+          con.error('Could not get ApiClient', e);
+        }
+      }
+
       throw 'Not Authenticated [Emby]';
       return false;
     }
     return true;
+  });
+}
+
+async function checkApiClient() {
+  return new Promise((resolve, reject) => {
+    proxy.addProxy(async (caller: ScriptProxy) => {
+      const apiClient: any = proxy.getCaptureVariable('ApiClient');
+      con.m('apiClient').log(apiClient);
+      if (
+        apiClient &&
+        apiClient._serverInfo &&
+        apiClient._serverInfo.RemoteAddress &&
+        apiClient._serverInfo.AccessToken
+      ) {
+        const base = await getBase();
+        if (typeof base === 'undefined' || base === '') {
+          setBase(`${apiClient._serverInfo.RemoteAddress}/emby`);
+        }
+        setApiKey(apiClient._serverInfo.AccessToken);
+        resolve(true);
+        return;
+      }
+      reject();
+    });
   });
 }
 

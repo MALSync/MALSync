@@ -199,6 +199,7 @@
           </listSyncVue>
           <cleanTagsVue v-if="currentTab == tabs.cleanTags.title" />
           <allSitesVue v-if="currentTab == tabs.allSites.title" />
+          <customDomainsVue v-if="currentTab == tabs.customDomains.title" />
         </section>
         <section
           id="fixed-tab-5"
@@ -225,6 +226,7 @@ import listSyncVue from './minimalApp/listSync/listSync.vue';
 import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
+import customDomainsVue from './minimalApp/customDomains.vue';
 import { getSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
 
@@ -256,6 +258,7 @@ export default {
     listSyncVue,
     cleanTagsVue,
     allSitesVue,
+    customDomainsVue,
     settingsVue,
   },
   data: () => ({
@@ -304,6 +307,10 @@ export default {
       },
       allSites: {
         title: 'allSites',
+        scroll: 0,
+      },
+      customDomains: {
+        title: 'customDomains',
         scroll: 0,
       },
     },
@@ -372,6 +379,9 @@ export default {
         return true;
       }
       if (this.currentTab === this.tabs.allSites.title) {
+        return true;
+      }
+      if (this.currentTab === this.tabs.customDomains.title) {
         return true;
       }
       return false;
@@ -448,6 +458,9 @@ export default {
           this.history.push(this.getCurrent(oldtab));
         }
         if (this.currentTab === this.tabs.allSites.title) {
+          this.history.push(this.getCurrent(oldtab));
+        }
+        if (this.currentTab === this.tabs.customDomains.title) {
           this.history.push(this.getCurrent(oldtab));
         }
       }
