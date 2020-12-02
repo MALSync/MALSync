@@ -120,7 +120,7 @@ export const Komga: pageInterface = {
             const jn = JSON.parse(res.responseText);
             if (!jn.seriesId) throw 'No seriesId found';
             con.m('Book').log(jn);
-            chapter.chapter = jn.number;
+            chapter.chapter = jn.metadata.number;
             chapter.pid = jn.seriesId;
             return apiCall(`/api/v1/series/${jn.seriesId}`);
           })
