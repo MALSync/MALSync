@@ -111,6 +111,7 @@ import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
+import { MangaJar } from './MangaJar/main';
 
 export const pages = {
   nineAnime,
@@ -226,4 +227,5 @@ export const pages = {
   MerakiScans,
   Jellyfin,
   An1me,
+  MangaJar,
 };
