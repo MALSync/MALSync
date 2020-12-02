@@ -138,6 +138,7 @@ function readMe() {
   const medias = [
     '<a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
     '<a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="https://jellyfin.org/"><img src="https://www.google.com/s2/favicons?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
   ];
 
   for (var page in pageList) {
@@ -147,7 +148,7 @@ function readMe() {
 
     const str = `<a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a>`;
 
-    if (page.name === 'Emby' || page.name === 'Plex') {
+    if (page.name === 'Emby' || page.name === 'Plex' || page.name === 'Jellyfin') {
       continue;
     }
 

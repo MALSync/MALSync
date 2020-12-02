@@ -301,6 +301,10 @@ export class minimal {
       this.minimalVue.$children[0].selectTab('allSites');
     });
 
+    this.minimal.find('#customDomainsUi').click(() => {
+      this.minimalVue.$children[0].selectTab('customDomains');
+    });
+
     try {
       if (api.type === 'webextension') {
         chrome.permissions.contains(

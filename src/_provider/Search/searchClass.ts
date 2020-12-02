@@ -5,12 +5,13 @@
 import { compareTwoStrings } from 'string-similarity';
 
 import { search as pageSearch } from '../searchFactory';
+import { Single as localSingle } from '../Local/single';
 
 interface searchResult {
   id?: number;
   url: string;
   offset: number;
-  provider: 'firebase' | 'mal' | 'page' | 'user' | 'sync';
+  provider: 'firebase' | 'mal' | 'page' | 'user' | 'sync' | 'local';
   cache?: boolean;
   similarity: {
     same: boolean;
@@ -24,6 +25,8 @@ export class searchClass {
   private page;
 
   private syncPage;
+
+  private localUrl = '';
 
   protected state: searchResult | false = false;
 
@@ -39,6 +42,10 @@ export class searchClass {
 
   setPage(page) {
     this.page = page;
+  }
+
+  setLocalUrl(url: string) {
+    this.localUrl = url;
   }
 
   setSyncPage(syncPage) {
@@ -134,10 +141,14 @@ export class searchClass {
     this.state = await this.getCache();
 
     if (!this.state) {
+      this.state = await this.searchLocal();
+    }
+
+    if (!this.state) {
       this.state = await this.searchForIt();
     }
 
-    if (!this.state || (this.state && !['user', 'firebase', 'sync'].includes(this.state.provider))) {
+    if (!this.state || (this.state && !['user', 'firebase', 'sync', 'local'].includes(this.state.provider))) {
       const tempRes = await this.onsiteSearch();
       if (tempRes) this.state = tempRes;
     }
@@ -182,6 +193,23 @@ export class searchClass {
     return {
       same: found,
       value: simi,
+    };
+  }
+
+  public async searchLocal(): Promise<searchResult | false> {
+    if (!this.localUrl) return false;
+    const local = new localSingle(this.localUrl);
+    await local.update();
+    if (!local.isOnList()) return false;
+    this.logger.m('Local').log('On List');
+    return {
+      url: '',
+      offset: 0,
+      provider: 'local',
+      similarity: {
+        same: true,
+        value: 1,
+      },
     };
   }
 
@@ -409,6 +437,7 @@ export class searchClass {
       if (this.state.cache) return;
       if (this.state.provider === 'user' && !this.changed) return;
       if (this.state.provider === 'firebase') return;
+      if (this.state.provider === 'local') return;
 
       let kissurl;
       if (!kissurl) {
