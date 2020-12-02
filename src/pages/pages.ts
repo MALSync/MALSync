@@ -112,6 +112,7 @@ import { MerakiScans } from './MerakiScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
+import { AnimeDao } from './AnimeDao/main';
 
 export const pages = {
   nineAnime,
@@ -228,4 +229,5 @@ export const pages = {
   Jellyfin,
   An1me,
   MangaJar,
+  AnimeDao,
 };
