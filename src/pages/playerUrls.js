@@ -208,7 +208,7 @@ module.exports = {
   },
   // gogoanime
   mixdrop: {
-    match: ['*://*.mixdrop.co/e/*'],
+    match: ['*://*.mixdrop.co/e/*', '*://*.mixdrop.to/e/*'],
   },
   // animexin
   gdriveplayer: {
@@ -308,5 +308,9 @@ module.exports = {
   // 9anime
   vidstream: {
     match: ['*://vidstream.pro/e/*'],
+  },
+  // animedao.to
+  vcdn: {
+    match: ['*://vcdn.space/v/*'],
   },
 };
