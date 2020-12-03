@@ -1,0 +1,48 @@
+{
+  "title": "AnimeWho",
+  "url": "https://animewho.com/",
+  "testCases": [
+    {
+      "url": "https://animewho.com/ceviriler/anime/mahouka-koukou-no-rettousei-raihousha-hen/izle/bolum3",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
+        "identifier": "anime-mahouka-koukou-no-rettousei-raihousha-hen",
+        "overviewUrl": "https://animewho.com/ceviriler/anime/mahouka-koukou-no-rettousei-raihousha-hen",
+        "nextEpUrl": "https://animewho.com/ceviriler/anime/mahouka-koukou-no-rettousei-raihousha-hen/izle/bolum4",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animewho.com/ceviriler/anime/mahouka-koukou-no-rettousei-raihousha-hen",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei: Raihousha-hen",
+        "identifier": "anime-mahouka-koukou-no-rettousei-raihousha-hen",
+        "uiSelector": true,
+      }
+    },
+    {
+      "url": "https://animewho.com/ceviriler/manga/tate-no-yuusha-no-nariagari/oku/3/1",
+      "expected": {
+        "sync": true,
+        "title": "Tate no Yuusha no Nariagari",
+        "identifier": "manga-tate-no-yuusha-no-nariagari",
+        "overviewUrl": "https://animewho.com/ceviriler/manga/tate-no-yuusha-no-nariagari",
+        "nextEpUrl": "https://animewho.com/ceviriler/manga/tate-no-yuusha-no-nariagari/oku/4/1",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animewho.com/ceviriler/manga/tate-no-yuusha-no-nariagari",
+      "expected": {
+        "sync": false,
+        "title": "Tate no Yuusha no Nariagari",
+        "identifier": "manga-tate-no-yuusha-no-nariagari",
+        "uiSelector": true,
+      }
+    }
+  ]
+}
