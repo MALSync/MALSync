@@ -52,6 +52,7 @@ export const AnimeWho: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     let interval;
+    let oldHtml = '';
 
     utils.fullUrlChangeDetect(function() {
       page.reset();
@@ -62,7 +63,8 @@ export const AnimeWho: pageInterface = {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
         function() {
-          if (j.$('#malsync-data').length) {
+          if (j.$('#malsync-data').length && j.$('#malsync-data').prop('outerHTML')! !== oldHtml) {
+            oldHtml = j.$('#malsync-data').prop('outerHTML');
             return true;
           }
           return false;
