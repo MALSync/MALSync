@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const Otakustv: pageInterface = {
-  name: 'Otakuztv',
+  name: 'Otakustv',
   domain: 'https://www.otakustv.com',
   languages: ['Spanish'],
   type: 'anime',
