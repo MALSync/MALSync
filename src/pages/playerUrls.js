@@ -62,6 +62,7 @@ module.exports = {
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
       '*://*.vaplayer.xyz/v/*',
+      '*://*.femax20.com/v/*',
     ],
   },
   youpload: {
@@ -312,5 +313,9 @@ module.exports = {
   // animedao.to
   vcdn: {
     match: ['*://vcdn.space/v/*'],
+  },
+  // otakustv.com
+  youtubeEmbed: {
+    match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
   },
 };
