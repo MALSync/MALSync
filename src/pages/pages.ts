@@ -113,6 +113,7 @@ import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
 import { AnimeDao } from './AnimeDao/main';
+import { Otakustv } from './Otakustv/main';
 
 export const pages = {
   nineAnime,
@@ -230,4 +231,5 @@ export const pages = {
   An1me,
   MangaJar,
   AnimeDao,
+  Otakustv,
 };
