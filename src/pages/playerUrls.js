@@ -294,6 +294,8 @@ module.exports = {
       '*://*.gogo-stream.com/load.php?*',
       '*://*.gogo-stream.com/loadserver.php?*',
       '*://*.gogo-play.net/streaming.php?*',
+      '*://*.gogo-play.net/load.php?*',
+      '*://*.gogo-play.net/loadserver.php?*',
     ],
   },
   // bs.to
