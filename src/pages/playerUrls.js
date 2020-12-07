@@ -293,6 +293,7 @@ module.exports = {
       '*://*.gogo-stream.com/streaming.php?*',
       '*://*.gogo-stream.com/load.php?*',
       '*://*.gogo-stream.com/loadserver.php?*',
+      '*://*.gogo-play.net/streaming.php?*',
     ],
   },
   // bs.to
