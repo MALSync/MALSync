@@ -19,7 +19,11 @@
         "sync": false,
         "title": "Solo Leveling",
         "identifier": "Solo-Leveling",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "5": "https://manga4life.com/read-online/Solo-Leveling-chapter-5-page-1.html",
+          "126": "https://manga4life.com/read-online/Solo-Leveling-chapter-126-page-1.html"
+        }
       }
     }
   ]

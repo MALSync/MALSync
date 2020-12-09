@@ -6,7 +6,7 @@ export const fourAnime: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (j.$('.singletitletop')[0] && j.$('.episodes')[0]) {
+    if (j.$('.singletitletop').length && j.$('.episodes').length) {
       return true;
     }
     return false;
@@ -19,14 +19,10 @@ export const fourAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      const urlPart3 = utils.urlPart(url, 3);
-
-      if (!urlPart3) return '';
-
-      return urlPart3.replace(/-episode[^]*$/g, '');
+      return utils.urlPart(fourAnime.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return `${fourAnime.domain}/anime/${fourAnime.sync.getIdentifier(url)}`;
+      return j.$('span.singletitletop a').attr('href') || '';
     },
     getEpisode(url) {
       return Number(
@@ -55,11 +51,7 @@ export const fourAnime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      const urlPart4 = utils.urlPart(url, 4);
-
-      if (!urlPart4) return '';
-
-      return urlPart4.replace(/-episode[^]*$/g, '');
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('p.description-mobile')
@@ -82,7 +74,7 @@ export const fourAnime: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if ((j.$('.singletitletop')[0] && j.$('.episodes')[0]) || page.url.split('/')[3] === 'anime') {
+      if ((j.$('.singletitletop').length && j.$('.episodes').length) || page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
     });

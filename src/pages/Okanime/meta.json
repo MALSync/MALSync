@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://www.okanime.com/animes/*", "*://www.okanime.com/movies/*"]
+    "match": ["*://*.okanime.com/animes/*", "*://*.okanime.com/movies/*", "*://*.okanime.tv/animes/*", "*://*.okanime.tv/movies/*"]
   }
 }

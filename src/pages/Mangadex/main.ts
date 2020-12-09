@@ -42,7 +42,12 @@ export const Mangadex: pageInterface = {
         if (temp !== null) {
           return EpisodePartToEpisode(temp[0]);
         }
-        if (curOption.text().indexOf('oneshot') !== -1 || curOption.text().indexOf('Oneshot') !== -1) {
+        if (
+          curOption
+            .text()
+            .toLowerCase()
+            .indexOf('oneshot') !== -1
+        ) {
           return 1;
         }
       }
@@ -95,6 +100,7 @@ export const Mangadex: pageInterface = {
       return j
         .$('.card-header')
         .first()
+        .find('.mx-1')
         .text()
         .trim();
     },
