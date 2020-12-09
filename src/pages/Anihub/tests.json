@@ -1,7 +1,7 @@
 {
   "title": "Anihub",
   "url": "https://anihub.tv/",
-  "offline": true,
+  "enabled": false,
   "testCases": [
     {
       "url": "https://anihub.tv/videos/mahouka-koukou-no-rettousei/10",

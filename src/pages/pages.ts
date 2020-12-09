@@ -48,7 +48,6 @@ import { Hulu } from './Hulu/main';
 import { Aniwatch } from './Aniwatch/main';
 import { Hidive } from './Hidive/main';
 import { FallenAngels } from './FallenAngels/main';
-import { animestrue } from './animestrue/main';
 import { PrimeVideo } from './PrimeVideo/main';
 import { MangaKatana } from './MangaKatana/main';
 import { manga4life } from './manga4life/main';
@@ -110,6 +109,10 @@ import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
 import { Jellyfin } from './Jellyfin/main';
+import { An1me } from './An1me/main';
+import { MangaJar } from './MangaJar/main';
+import { AnimeDao } from './AnimeDao/main';
+import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 
 export const pages = {
@@ -163,7 +166,6 @@ export const pages = {
   Aniwatch,
   Hidive,
   FallenAngels,
-  animestrue,
   PrimeVideo,
   MangaKatana,
   manga4life,
@@ -225,5 +227,9 @@ export const pages = {
   NaniScans,
   MerakiScans,
   Jellyfin,
+  An1me,
+  MangaJar,
+  AnimeDao,
+  Otakustv,
   Komga,
 };

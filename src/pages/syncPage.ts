@@ -276,6 +276,7 @@ export class syncPage {
       this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
+      this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
 
@@ -325,6 +326,7 @@ export class syncPage {
       this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
+      this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
 
@@ -335,9 +337,7 @@ export class syncPage {
 
     let malUrl = this.searchObj.getUrl();
 
-    const localUrl = `local://${this.page.name}/${this.page.type}/${state.identifier}/${encodeURIComponent(
-      state.title,
-    )}`;
+    const localUrl = this.generateLocalUrl(this.page, state);
 
     if ((malUrl === null || !malUrl) && api.settings.get('localSync')) {
       logger.log('Local Fallback');
@@ -477,6 +477,10 @@ export class syncPage {
         }
       }
     }
+  }
+
+  public generateLocalUrl(page, state) {
+    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(state.title)}`;
   }
 
   // eslint-disable-next-line consistent-return

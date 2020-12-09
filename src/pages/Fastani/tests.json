@@ -1,6 +1,7 @@
 {
   "title": "Fastani",
   "url": "https://fastani.net/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://fastani.net/watch/5f6d791c7dc312c67d2fbfcc/2/11",

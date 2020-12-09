@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Okanime: pageInterface = {
   name: 'Okanime',
-  domain: 'https://www.okanime.com',
+  domain: 'https://okanime.tv',
   type: 'anime',
   languages: ['Arabic'],
 
