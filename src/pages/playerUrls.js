@@ -62,6 +62,7 @@ module.exports = {
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
       '*://*.vaplayer.xyz/v/*',
+      '*://*.femax20.com/v/*',
     ],
   },
   youpload: {
@@ -208,7 +209,7 @@ module.exports = {
   },
   // gogoanime
   mixdrop: {
-    match: ['*://*.mixdrop.co/e/*'],
+    match: ['*://*.mixdrop.co/e/*', '*://*.mixdrop.to/e/*'],
   },
   // animexin
   gdriveplayer: {
@@ -292,6 +293,9 @@ module.exports = {
       '*://*.gogo-stream.com/streaming.php?*',
       '*://*.gogo-stream.com/load.php?*',
       '*://*.gogo-stream.com/loadserver.php?*',
+      '*://*.gogo-play.net/streaming.php?*',
+      '*://*.gogo-play.net/load.php?*',
+      '*://*.gogo-play.net/loadserver.php?*',
     ],
   },
   // bs.to
@@ -316,5 +320,13 @@ module.exports = {
   // gogo
   dood: {
     match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*'],
+  },
+  // animedao.to
+  vcdn: {
+    match: ['*://vcdn.space/v/*'],
+  },
+  // otakustv.com
+  youtubeEmbed: {
+    match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
   },
 };

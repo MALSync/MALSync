@@ -1,0 +1,25 @@
+@import './../pages';
+
+@activeEp: #3498db !important;
+
+body:not(.dark) #malp {
+  * {
+    color: black !important;
+  }
+  option {
+    background-color: white !important;
+  }
+}
+
+body.dark #malp {
+  * {
+    color: white !important;
+  }
+  input {
+    background-color: black !important;
+  }
+}
+
+.mal-sync-active {
+  background-color: @activeEp !important;
+}

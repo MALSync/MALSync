@@ -90,6 +90,15 @@
           <button id="allSitesUi" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
             Websites
           </button>
+          <button
+            v-if="isExtension()"
+            id="customDomainsUi"
+            type="button"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+            style="margin-left: 15px;"
+          >
+            Custom domains
+          </button>
         </li>
 
         <shortcut option="correctionShort">{{ lang('settings_Shortcuts_Correction') }}</shortcut>
