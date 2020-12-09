@@ -3,13 +3,13 @@
   "url": "https://mangaplus.shueisha.co.jp/",
   "testCases": [
     {
-      "url": "https://mangaplus.shueisha.co.jp/viewer/1000393",
+      "url": "https://mangaplus.shueisha.co.jp/viewer/1000391",
       "expected": {
         "sync": true,
         "title": "My Hero Academia",
         "identifier": "100017",
         "overviewUrl": "https://mangaplus.shueisha.co.jp/titles/100017",
-        "episode": 4,
+        "episode": 2,
         "uiSelector": false
       }
     },

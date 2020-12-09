@@ -1,6 +1,7 @@
 {
   "title": "animestrue",
   "url": "https://www.animestrue.site/",
+  "enabled": false,
   "testCases": [
     {
       // season 1 syncpage
