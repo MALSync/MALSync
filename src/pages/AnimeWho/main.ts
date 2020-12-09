@@ -60,6 +60,9 @@ export const AnimeWho: pageInterface = {
     });
 
     function check() {
+      if (!j.$('#malsync-data').length) {
+        oldHtml = '';
+      }
       clearInterval(interval);
       interval = utils.waitUntilTrue(
         function() {
