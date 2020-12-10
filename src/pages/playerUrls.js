@@ -223,9 +223,9 @@ module.exports = {
   streamz: {
     match: ['*://streamz.cc/*'],
   },
-  // OtakuFR
+  // OtakuFR/animewho
   vidbm: {
-    match: ['*://*.vidbm.com/embed-*'],
+    match: ['*://*.vidbm.com/embed-*', '*://*.vidbem.com/embed-*'],
   },
   // OtakuFR
   cloudhost: {
@@ -328,5 +328,69 @@ module.exports = {
   // otakustv.com
   youtubeEmbed: {
     match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
+  },
+  // animewho
+  hdvid: {
+    match: ['*://hdvid.tv/*'],
+  },
+  // animewho
+  vidfast: {
+    match: ['*://vidfast.co/*'],
+  },
+  // animewho
+  supervideo: {
+    match: ['*://supervideo.tv/*'],
+  },
+  // animewho
+  jetload: {
+    match: ['*://jetload.net/*'],
+  },
+  // animewho
+  saruch: {
+    match: ['*://saruch.co/*'],
+  },
+  // animewho
+  vidmoly: {
+    match: ['*://vidmoly.me/*'],
+  },
+  // animewho
+  upstream: {
+    match: ['*://upstream.to/*'],
+  },
+  // animewho
+  abcvideo: {
+    match: ['*://abcvideo.cc/*'],
+  },
+  // animewho
+  aparat: {
+    match: ['*://aparat.cam/*'],
+  },
+  // animewho
+  vudeo: {
+    match: ['*://vudeo.net/*'],
+  },
+  // animewho
+  voe: {
+    match: ['*://voe.sx/*'],
+  },
+  // animewho
+  vidoo: {
+    match: ['*://vidoo.tv/*'],
+  },
+  // animewho
+  nxload: {
+    match: ['*://nxload.com/*'],
+  },
+  // animewho
+  videobin: {
+    match: ['*://videobin.co/*'],
+  },
+  // animewho
+  uqload: {
+    match: ['*://uqload.com/*'],
+  },
+  // animewho
+  evoload: {
+    match: ['*://evoload.io/*'],
   },
 };

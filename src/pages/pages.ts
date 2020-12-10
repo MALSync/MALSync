@@ -114,6 +114,7 @@ import { MangaJar } from './MangaJar/main';
 import { AnimeDao } from './AnimeDao/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
+import { AnimeWho } from './AnimeWho/main';
 
 export const pages = {
   nineAnime,
@@ -232,4 +233,5 @@ export const pages = {
   AnimeDao,
   Otakustv,
   Komga,
+  AnimeWho,
 };
