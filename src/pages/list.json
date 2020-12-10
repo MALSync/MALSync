@@ -57,7 +57,7 @@
   {
     "domain": "https://animeflv.net",
     "type": "anime",
-    "name": "animeflv"
+    "name": "Animeflv"
   },
   {
     "domain": "https://jkanime.net/",
@@ -248,11 +248,6 @@
     "domain": "https://manga.fascans.com/",
     "type": "manga",
     "name": "FallenAngels"
-  },
-  {
-    "domain": "https://animestrue.site",
-    "type": "anime",
-    "name": "animestrue"
   },
   {
     "domain": "https://www.primevideo.com",
@@ -515,7 +510,7 @@
     "name": "AnimeTribes"
   },
   {
-    "domain": "https://www.okanime.com",
+    "domain": "https://okanime.tv",
     "type": "anime",
     "name": "Okanime"
   },
@@ -538,5 +533,55 @@
     "domain": "https://animeowl.net",
     "type": "anime",
     "name": "AnimeOwl"
+  },
+  {
+    "domain": "https://asurascans.com",
+    "type": "manga",
+    "name": "AsuraScans"
+  },
+  {
+    "domain": "https://naniscans.com",
+    "type": "manga",
+    "name": "NaniScans"
+  },
+  {
+    "domain": "https://merakiscans.com",
+    "type": "manga",
+    "name": "MerakiScans"
+  },
+  {
+    "domain": "https://jellyfin.org/",
+    "type": "anime",
+    "name": "Jellyfin"
+  },
+  {
+    "domain": "https://an1me.nl",
+    "type": "anime",
+    "name": "An1me"
+  },
+  {
+    "domain": "https://mangajar.com",
+    "type": "manga",
+    "name": "MangaJar"
+  },
+  {
+    "domain": "https://animedao.to",
+    "type": "anime",
+    "name": "AnimeDao"
+  },
+  {
+    "domain": "https://www.otakustv.com",
+    "type": "anime",
+    "name": "Otakustv"
+  },
+  {
+    "domain": "https://komga.org",
+    "type": "manga",
+    "name": "Komga"
+  },
+  {
+    "domain": "https://animewho.com",
+    "type": "anime",
+    "name": "AnimeWho"
   }
 ]
