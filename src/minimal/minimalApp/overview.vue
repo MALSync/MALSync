@@ -199,9 +199,7 @@
                     renderObj.getTotalEpisodes()
                   }}</span
                   ><span v-else>?</span>
-                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
-                    <i class="fa fa-plus-circle ml4"> </i>
-                  </a>
+                  <span class="material-icons ep-increment" @click="increaseEP()">add</span>
                 </span>
               </span>
             </li>
@@ -492,6 +490,8 @@ import { getSingle } from '../../_provider/singleFactory';
 import { getOverview } from '../../_provider/metaDataFactory';
 
 import progressP from './components/overviewProgress.vue';
+
+let nextEpBounce;
 
 export default {
   components: {
@@ -789,6 +789,18 @@ export default {
     reload() {
       utils.flashm('Loading');
       this.renderObj.update();
+    },
+    increaseEP() {
+      let nextEp = 1;
+      if (this.renderObj.getEpisode()) nextEp = this.renderObj.getEpisode() + 1;
+      if (this.renderObj.getTotalEpisodes() && nextEp > this.renderObj.getTotalEpisodes())
+        nextEp = this.renderObj.getTotalEpisodes();
+
+      this.renderObj.setEpisode(nextEp);
+      clearTimeout(nextEpBounce);
+      nextEpBounce = setTimeout(() => {
+        this.malSync();
+      }, 1000);
     },
     getMal2KissFavicon(streams) {
       try {
