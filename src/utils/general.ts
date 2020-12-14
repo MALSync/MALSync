@@ -663,9 +663,16 @@ export async function flashConfirm(
   cancelCall = () => {
     /* Placeholder */
   },
+  yesNo = false,
 ): Promise<boolean> {
   return new Promise(function(resolve, reject) {
-    message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">OK</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">CANCEL</button></div>`;
+    let yesText = api.storage.lang('Ok');
+    let noText = api.storage.lang('Cancel');
+    if (yesNo) {
+      yesText = api.storage.lang('Yes');
+      noText = api.storage.lang('No');
+    }
+    message = `<div style="text-align: center;">${message}</div><div style="display: flex; justify-content: space-around;"><button class="Yes" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">${yesText}</button><button class="Cancel" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px; cursor:pointer;">${noText}</button></div>`;
     const flasmessage = flashm(message, {
       permanent: true,
       position: 'top',
