@@ -1,5 +1,8 @@
 {
   "urls": {
-    "match": ["*://monoschinos.com/*"]
+    "match": [
+      "*://monoschinos.com/*",
+      "*://monoschinos2.com/*"
+    ]
   }
 }
