@@ -481,7 +481,7 @@ export class minimal {
           margin-top: -2px;
           margin-right: -24px;
           margin-bottom: -5px;
-        ">close</i>
+        ">${api.storage.lang('close')}</i>
       </div>
     `;
 

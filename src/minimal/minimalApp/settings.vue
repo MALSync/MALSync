@@ -88,7 +88,7 @@
 
         <li class="mdl-list__item">
           <button id="allSitesUi" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            Websites
+            {{ lang('settings_website_button') }}
           </button>
           <button
             v-if="isExtension()"
@@ -97,7 +97,7 @@
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
             style="margin-left: 15px;"
           >
-            Custom domains
+            {{ lang('settings_custom_domains_button') }}
           </button>
         </li>
 
@@ -199,7 +199,7 @@
         </div>
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            Theme
+            {{ lang('settings_miniMAL_theme') }}
           </span>
           <span class="mdl-list__item-secondary-action">
             <select id="theme" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
@@ -386,7 +386,7 @@
             href="https://github.com/MALSync/MALSync/wiki/Discord-Rich-Presence"
             target="_blank"
           >
-            More Info</a
+            {{ lang('settings_more_info') }}</a
           >
         </div>
         <checkbox option="rpc">{{ lang('settings_enabled') }}</checkbox>
@@ -440,7 +440,7 @@
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
             style="margin-left: 20px;"
           >
-            Clean Tags
+            {{ lang('settings_clean_tags_button') }}
           </button>
         </li>
       </div>
@@ -481,7 +481,7 @@
               </i>
             </div>
           </div>
-          <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord">
+          <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord" style="min-height: 160px">
             <div
               style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #fff 0%,#738bd7 74%);"
             ></div>

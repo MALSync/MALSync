@@ -15,6 +15,10 @@
     "message": "Update",
     "description": "Update"
   },
+  "Add": {
+    "message": "Add",
+    "description": "Button to add an anime/manga to user list"
+  },
   "Reset": {
     "message": "Reset",
     "description": "Reset"
@@ -70,6 +74,14 @@
   "All": {
     "message": "All",
     "description": "All"
+  },
+  "Anime": {
+    "message": "Anime",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Manga",
+    "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
     "message": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
@@ -421,6 +433,10 @@
       }
     }
   },
+  "prediction_incomplete": {
+    "message": "Incomplete",
+    "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+  },
   "prediction_Airing": {
     "message": "Airing in $time$",
     "description": "Text for airing estimation",
@@ -691,6 +707,10 @@
     "message": "Display to the",
     "description": "Display to the"
   },
+  "settings_miniMAL_theme": {
+    "message": "Theme",
+    "description": "Label for the theme switch dropdown (light/dark theme)"
+  },
   "settings_miniMAL_window": {
     "message": "Open in separate window",
     "description": "Open miniMAL in separate window checkbox"
@@ -869,6 +889,22 @@
   "settings_progress_default": {
     "message": "Default",
     "description": "Dropdown option to use the default in the estimation for an anime/manga"
+  },
+  "settings_website_button": {
+    "message": "Websites",
+    "description": "Button that leads to the config page where individual pages can be disabled"
+  },
+  "settings_custom_domains_button": {
+    "message": "Custom domains",
+    "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_clean_tags_button": {
+    "message": "Clean Tags",
+    "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+  },
+  "settings_more_info": {
+    "message": "More Info",
+    "description": "Link button which links to more informations"
   },
   "updateCheck_Refresh": {
     "message": "Refresh",
