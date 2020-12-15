@@ -20,8 +20,6 @@ git commit -a -m "Update locales.json for lolamtisch/MALSync"
 echo Deploy changes.
 git config user.name "lolamtisch"
 git config user.email "${LOLMAIL}"
-git remote set-url upstream "https://${OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git"
-git remote set-url origin "https://${OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git"
 git push "https://${OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
 
 exit 0
