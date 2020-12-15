@@ -34,7 +34,7 @@
           />
 
           <template v-if="item.item.top.state && item.item.top.state !== 'ongoing'">
-            <span style="color: red; padding-right: 5px;">Incomplete</span>
+            <span style="color: red; padding-right: 5px;">{{ lang('prediction_incomplete') }}</span>
           </template>
 
           <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
@@ -133,6 +133,7 @@ export default {
     },
   },
   methods: {
+    lang: api.storage.lang,
     releaseTime(ms) {
       return timestampToShortTime(ms);
     },

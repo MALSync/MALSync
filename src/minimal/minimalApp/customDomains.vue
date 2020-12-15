@@ -2,7 +2,7 @@
   <div>
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
       <div class="mdl-card__title mdl-card--border">
-        <h2 class="mdl-card__title-text">Custom Domains</h2>
+        <h2 class="mdl-card__title-text">{{ lang('settings_custom_domains_button') }}</h2>
       </div>
       <div class="mdl-card__supporting-text">
         Please only use if you know what you are doing!<br />

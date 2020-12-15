@@ -125,8 +125,8 @@
                   class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
                   style="outline: none; background-color: white; border: none;"
                 >
-                  <option value="anime">Anime</option>
-                  <option value="manga">Manga</option>
+                  <option value="anime">{{ lang('Anime') }}</option>
+                  <option value="manga">{{ lang('Manga') }}</option>
                 </select>
                 <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
                   <select
@@ -180,8 +180,8 @@
                 class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
                 style="outline: none; background-color: white; border: none;"
               >
-                <option value="anime">Anime</option>
-                <option value="manga">Manga</option>
+                <option value="anime">{{ lang('Anime') }}</option>
+                <option value="manga">{{ lang('Manga') }}</option>
               </select>
             </div>
           </searchVue>
@@ -193,8 +193,8 @@
               class="typeSelect-updateCheck"
               @change="rebuildListSync()"
             >
-              <option value="anime">Anime</option>
-              <option value="manga">Manga</option>
+              <option value="anime">{{ lang('Anime') }}</option>
+              <option value="manga">{{ lang('Manga') }}</option>
             </select>
           </listSyncVue>
           <cleanTagsVue v-if="currentTab == tabs.cleanTags.title" />

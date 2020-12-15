@@ -291,7 +291,7 @@
                 v-if="renderObj && !renderObj.isOnList()"
                 type="button"
                 name="myinfo_submit"
-                value="Add"
+                :value="lang('Add')"
                 class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
                 style="margin-right: 5px;"
                 data-upgraded=",MaterialButton"
