@@ -1,4 +1,4 @@
-name: Update Translations
+name: Tests Master
 on:
   push:
     branches:

@@ -18,7 +18,7 @@ git commit -a -m "Update locales.json for lolamtisch/MALSync"
 echo Deploy changes.
 git config user.name "Travis CI"
 git config user.email "travis@travis-ci.org"
-git push "https://${OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
+git push "https://${GITHUB_OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
 
 exit 0
 
