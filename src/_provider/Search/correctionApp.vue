@@ -7,7 +7,7 @@
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
-      <input-button v-if="!syncMode" label="Url" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
+      <input-button v-if="!syncMode" label="URL" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
 
       <input-button
         v-if="!syncMode"
