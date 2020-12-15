@@ -35,9 +35,17 @@
     "message": "Yes",
     "description": "Yes"
   },
+  "Ok": {
+    "message": "Ok",
+    "description": "Ok"
+  },
   "No": {
     "message": "No",
     "description": "No"
+  },
+  "Cancel": {
+    "message": "Cancel",
+    "description": "Cancel"
   },
   "NothingFound": {
     "message": "Nothing Found",

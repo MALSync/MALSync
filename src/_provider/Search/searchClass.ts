@@ -431,7 +431,7 @@ export class searchClass {
     return false;
   }
 
-  public databaseRequest() {
+  public async databaseRequest() {
     const logger = this.logger.m('DB Request');
     if (this.page && this.page.database && this.syncPage && this.state) {
       if (this.state.cache) return;
@@ -466,8 +466,16 @@ export class searchClass {
         page: this.page.database,
       };
       if (this.state.provider === 'user') {
-        /* eslint-disable-next-line */
-        if (!confirm(api.storage.lang('correction_DBRequest'))) return;
+        if (
+          !(await utils.flashConfirm(
+            api.storage.lang('correction_DBRequest'),
+            'dbrequest',
+            () => undefined,
+            () => undefined,
+            true,
+          ))
+        )
+          return;
         param.correction = true;
       }
 
