@@ -2,8 +2,8 @@
 
 cd $(dirname $0)/../..
 rm -fr dist/local
-git config --global user.name "Travis CI"
-git config --global user.email "travis@travis-ci.org"
+git config --global user.name "lolamtisch"
+git config --global user.email "${LOLMAIL}"
 echo Clone localization repo https://github.com/lolamtisch/MALSync-localization.git.
 git clone --depth 1 "https://github.com/lolamtisch/MALSync-localization.git" dist/local
 
@@ -18,8 +18,8 @@ fi
 git commit -a -m "Update locales.json for lolamtisch/MALSync"
 
 echo Deploy changes.
-git config user.name "Travis CI"
-git config user.email "travis@travis-ci.org"
+git config user.name "lolamtisch"
+git config user.email "${LOLMAIL}"
 git push "https://${OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
 
 exit 0
