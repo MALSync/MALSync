@@ -47,7 +47,7 @@
         @clicked="setPage($event.url, $event.id)"
       ></search>
     </div>
-    <a v-if="!(syncMode && minimized)" class="close" @click="close()">CLOSE</a>
+    <a v-if="!(syncMode && minimized)" class="close" @click="close()">{{ lang('close') }}</a>
   </div>
 </template>
 
