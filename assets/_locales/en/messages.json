@@ -455,6 +455,14 @@
     "message": "Incomplete",
     "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
   },
+  "prediction_ongoing": {
+    "message": "Ongoing",
+    "description": "Header for the ongoing section in the translation/airing progress section"
+  },
+  "prediction_complete": {
+    "message": "Complete",
+    "description": "Header for the complete translation/airing section"
+  },
   "prediction_Airing": {
     "message": "Airing in $time$",
     "description": "Text for airing estimation",

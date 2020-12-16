@@ -5,7 +5,7 @@
     style="padding: 8px;"
   >
     <template v-if="completed && completed.length">
-      <div>Complete</div>
+      <div>{{ lang('prediction_complete') }}</div>
       <span v-for="(item, index) in completed" :key="index">
         <span v-if="item.item.top" class="list-content">
           <country-flag
@@ -18,7 +18,7 @@
     </template>
 
     <template v-if="ongoing && ongoing.length">
-      <div>Ongoing</div>
+      <div>{{ lang('prediction_ongoing') }}</div>
 
       <div class="mdl-grid mdl-grid--no-spacing">
         <div
