@@ -241,7 +241,9 @@ export class myanimelistClass {
       });
       $('h2:contains("Information")').before(
         j.html(
-          '<h2 id="mal-sync-search-links" class="mal_links">Search</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />',
+          `<h2 id="mal-sync-search-links" class="mal_links">${api.storage.lang(
+            'Search',
+          )}</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />`,
         ),
       );
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
