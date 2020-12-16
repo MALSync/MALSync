@@ -725,6 +725,10 @@
     "message": "Display to the",
     "description": "Display to the"
   },
+  "settings_miniMAL_popup": {
+    "message": "Extension Popup",
+    "description": "Header of the settings section for the extension popup"
+  },
   "settings_miniMAL_theme": {
     "message": "Theme",
     "description": "Label for the theme switch dropdown (light/dark theme)"
