@@ -764,7 +764,7 @@ export default {
     malSync() {
       this.renderObj.sync().then(
         () => {
-          utils.flashm('Updated');
+          utils.flashm(api.storage.lang('updated'));
           if (!this.renderObj.isOnList()) this.renderObj.update();
         },
         e => {
@@ -776,7 +776,7 @@ export default {
     remove() {
       this.renderObj.delete().then(
         () => {
-          utils.flashm('Removed');
+          utils.flashm(api.storage.lang('removed'));
           this.renderObj.update();
         },
         e => {
@@ -787,7 +787,7 @@ export default {
       );
     },
     reload() {
-      utils.flashm('Loading');
+      utils.flashm(api.storage.lang('loading'));
       this.renderObj.update();
     },
     increaseEP() {
