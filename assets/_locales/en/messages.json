@@ -433,6 +433,16 @@
       }
     }
   },
+  "prediction_next": {
+    "message": "Next in $time$",
+    "description": "Short Form Text for next episode/episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
   "prediction_incomplete": {
     "message": "Incomplete",
     "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"

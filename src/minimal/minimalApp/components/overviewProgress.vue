@@ -50,8 +50,7 @@
               ({{ releaseTime(item.item.top.lastEp.timestamp) }})
             </template>
             <template v-if="item.item.top.predicition">
-              [next in
-              {{ releaseTime(item.item.top.predicition.timestamp).trim() }}]
+              [{{ lang('prediction_next', [releaseTime(item.item.top.predicition.timestamp).trim()]) }}]
             </template>
           </template>
         </div>
