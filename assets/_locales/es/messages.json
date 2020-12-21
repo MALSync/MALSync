@@ -928,7 +928,7 @@
     "description": "Button that leads to the custom domain configuration page"
   },
   "settings_clean_tags_button": {
-    "message": "Etiquetas limpias",
+    "message": "Limpiar etiquetas",
     "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
   },
   "settings_more_info": {
