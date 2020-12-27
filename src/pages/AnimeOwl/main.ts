@@ -17,7 +17,7 @@ export const AnimeOwl: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'tv-show' && url.split('/')[3] !== undefined && url.split('/')[3].length > 0) {
+    if (url.split('/')[3] === 'watch' && url.split('/')[3] !== undefined && url.split('/')[3].length > 0) {
       return true;
     }
     return false;
@@ -61,7 +61,7 @@ export const AnimeOwl: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('div.post-info > div:nth-child(2) > div.row:nth-child(1) > div > h4')
+        .$('div.post-inner.thin > h4')
         .html()
         .split('<br>')[0]
         .replace(/-\s*$/, '')
