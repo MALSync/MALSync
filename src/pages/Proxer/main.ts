@@ -29,7 +29,7 @@ export const Proxer: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return `https://proxer.me/info/${Proxer.sync.getIdentifier(url)}/list`;
+      return `${Proxer.domain}/info/${Proxer.sync.getIdentifier(url)}/list`;
     },
     getEpisode(url) {
       if (url.indexOf('watch') !== -1) {

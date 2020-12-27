@@ -96,7 +96,7 @@ module.exports = {
     match: ['*://*.novelplanet.me/*'],
   },
   proxer: {
-    match: ['*://*.stream.proxer.me/*'],
+    match: ['*://*.stream.proxer.me/*', '*://*.stream.proxer.net/*'],
   },
   Verystream: {
     match: ['*://verystream.com/*'],
