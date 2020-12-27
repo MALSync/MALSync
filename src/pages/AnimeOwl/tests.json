@@ -3,7 +3,7 @@
   "url": "https://animeowl.net/",
   "testCases": [
     {
-      "url": "https://animeowl.net/tv-show/mahouka-koukou-no-rettousei/",
+      "url": "https://animeowl.net/watch/mahouka-koukou-no-rettousei/",
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei",
