@@ -11,7 +11,10 @@ export const Voiranime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.breadcrumb > li:nth-child(2) > a:nth-child(1)').text().trim();
+      return j
+        .$('.breadcrumb > li:nth-child(2) > a:nth-child(1)')
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       const urlPart3 = utils.urlPart(url, 3);
@@ -24,10 +27,15 @@ export const Voiranime: pageInterface = {
       return `${Voiranime.domain}/${Voiranime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(j.$('div.select-view:nth-child(2) > div:nth-child(2) > label:nth-child(1) > select >option:selected').text());
+      return Number(
+        j.$('div.select-view:nth-child(2) > div:nth-child(2) > label:nth-child(1) > select >option:selected').text(),
+      );
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('div.select-pagination:nth-child(3) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)').attr('href'), Voiranime.domain);
+      return utils.absoluteLink(
+        j.$('div.select-pagination:nth-child(3) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)').attr('href'),
+        Voiranime.domain,
+      );
     },
   },
   overview: {
@@ -59,7 +67,8 @@ export const Voiranime: pageInterface = {
             .find('a')
             .first()
             .text()
-            .split("-").pop(),
+            .split('-')
+            .pop(),
         );
       },
     },
@@ -67,7 +76,11 @@ export const Voiranime: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if ($('.chapter-video-frame').length || $('body > div.wrap > div > div.site-content > div > div.profile-manga > div > div > div > div.tab-summary').length) {
+      if (
+        $('.chapter-video-frame').length ||
+        $('body > div.wrap > div > div.site-content > div > div.profile-manga > div > div > div > div.tab-summary')
+          .length
+      ) {
         page.handlePage();
       }
     });
