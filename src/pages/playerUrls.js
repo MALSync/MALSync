@@ -61,8 +61,11 @@ module.exports = {
       '*://*.feurl.com/*',
       '*://*.embedsito.com/v/*',
       '*://*.fcdn.stream/v/*',
+      '*://*.fcdn.stream/e/*',
       '*://*.vaplayer.xyz/v/*',
+      '*://*.vaplayer.xyz/e/*',
       '*://*.femax20.com/v/*',
+      '*://*.femax20.com/e/*',
     ],
   },
   youpload: {
@@ -392,5 +395,9 @@ module.exports = {
   // animewho
   evoload: {
     match: ['*://evoload.io/*'],
+  },
+  // yugenanime
+  yugenanime: {
+    match: ['*://yugenani.me/e/*'],
   },
 };
