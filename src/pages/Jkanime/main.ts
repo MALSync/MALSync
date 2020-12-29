@@ -5,7 +5,7 @@ let check = false;
 
 export const Jkanime: pageInterface = {
   name: 'Jkanime',
-  domain: 'https://jkanime.net/',
+  domain: 'https://jkanime.net',
   languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
