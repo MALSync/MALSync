@@ -75,7 +75,7 @@ export const TsukiMangas: pageInterface = {
               .attr('href'),
             TsukiMangas.domain,
           )
-          .split('/')[5];
+          .split('/')[7];
       },
     },
   },
