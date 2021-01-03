@@ -1,7 +1,7 @@
 {
   "Search": {
-    "message": "Buscar",
-    "description": "Search"
+    "message": "Buscar en el sitio",
+    "description": "Button to open the site search links on mal, anilist ..."
   },
   "Show": {
     "message": "Mostrar",
@@ -14,6 +14,10 @@
   "Update": {
     "message": "Actualizar",
     "description": "Update"
+  },
+  "Add": {
+    "message": "Añadir",
+    "description": "Button to add an anime/manga to user list"
   },
   "Reset": {
     "message": "Reiniciar",
@@ -35,9 +39,25 @@
     "message": "Si",
     "description": "Yes"
   },
+  "Ok": {
+    "message": "Aceptar",
+    "description": "Ok"
+  },
   "No": {
     "message": "No",
     "description": "No"
+  },
+  "Cancel": {
+    "message": "Cancelar",
+    "description": "Cancel"
+  },
+  "updated": {
+    "message": "Actualizado",
+    "description": "Flash message that shows up after updating an anime/manga entry"
+  },
+  "removed": {
+    "message": "removido",
+    "description": "Flash message that shows up after removing an anime/manga entry from user list"
   },
   "NothingFound": {
     "message": "Nada encontrado",
@@ -62,6 +82,14 @@
   "All": {
     "message": "Todo",
     "description": "All"
+  },
+  "Anime": {
+    "message": "Anime",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Manga",
+    "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
     "message": "Integra MyAnimeList/AniList/Kitsu/Simkl con varios sitios, incluye seguimiento automático de episodios.",
@@ -413,6 +441,28 @@
       }
     }
   },
+  "prediction_next": {
+    "message": "Próximo en $time$",
+    "description": "Short Form Text for next episode/episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_incomplete": {
+    "message": "Incompleto",
+    "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+  },
+  "prediction_ongoing": {
+    "message": "En emisión",
+    "description": "Header for the ongoing section in the translation/airing progress section"
+  },
+  "prediction_complete": {
+    "message": "Completado",
+    "description": "Header for the complete translation/airing section"
+  },
   "prediction_Airing": {
     "message": "Se emitirá en $time$",
     "description": "Text for airing estimation",
@@ -683,6 +733,14 @@
     "message": "Mostrar panel a la",
     "description": "Display to the"
   },
+  "settings_miniMAL_popup": {
+    "message": "Ventana emergente de la extensión",
+    "description": "Header of the settings section for the extension popup"
+  },
+  "settings_miniMAL_theme": {
+    "message": "Tema",
+    "description": "Label for the theme switch dropdown (light/dark theme)"
+  },
   "settings_miniMAL_window": {
     "message": "Abrir en una ventana separada",
     "description": "Open miniMAL in separate window checkbox"
@@ -714,6 +772,10 @@
   "settings_miniMAL_NotSet": {
     "message": "No establecido",
     "description": "miniMAL Not Set"
+  },
+  "settings_loadPTWForProgress": {
+    "message": "Cargar PTW/PTR para la evaluación del progreso",
+    "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
   },
   "settings_Video_Player": {
     "message": "Reproductor de vídeos",
@@ -837,6 +899,10 @@
     "message": "Mostrar ícono de MAL-Sync en lugar del icono de la página",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
+  "settings_enabled": {
+    "message": "Activada",
+    "description": "Checkbox if feature is enabled"
+  },
   "settings_shortcut_tooltip": {
     "message": "No se recomienda establecer los atajos a una sola tecla",
     "description": "Shows this message if the users has only a single key set as shortcut"
@@ -852,6 +918,22 @@
   "settings_progress_default": {
     "message": "Predeterminada",
     "description": "Dropdown option to use the default in the estimation for an anime/manga"
+  },
+  "settings_website_button": {
+    "message": "Sitios web",
+    "description": "Button that leads to the config page where individual pages can be disabled"
+  },
+  "settings_custom_domains_button": {
+    "message": "Dominios personalizados",
+    "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_clean_tags_button": {
+    "message": "Limpiar etiquetas",
+    "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+  },
+  "settings_more_info": {
+    "message": "Más info",
+    "description": "Link button which links to more informations"
   },
   "updateCheck_Refresh": {
     "message": "Refrescar",
