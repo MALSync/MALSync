@@ -115,6 +115,7 @@ import { AnimeDao } from './AnimeDao/main';
 import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
+import { AnimeSuge } from './AnimeSuge/main';
 
 export const pages = {
   nineAnime,
@@ -234,4 +235,5 @@ export const pages = {
   Otakustv,
   Komga,
   AnimeWho,
+  AnimeSuge,
 };

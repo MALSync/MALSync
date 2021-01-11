@@ -1,0 +1,21 @@
+{
+  "title": "AnimeSuge",
+  "url": "https://animesuge.io/",
+  "testCases": [
+    {
+      "url": "https://animesuge.io/anime/no-game-no-life-4qkm/ep-4",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "4qkm",
+        "overviewUrl": "https://animesuge.io/anime/no-game-no-life-4qkm/ep-1",
+        "nextEpUrl": "https://animesuge.io/anime/no-game-no-life-4qkm/ep-5",
+        "episode": 4,
+        "uiSelector": true,
+        "epList": {
+          "5": "https://animesuge.io/anime/no-game-no-life-4qkm/ep-5"
+        }
+      }
+    }
+  ]
+}
