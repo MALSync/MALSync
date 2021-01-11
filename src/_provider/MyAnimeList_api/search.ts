@@ -44,7 +44,7 @@ export async function search(keyword, type: 'anime' | 'manga', options = {}, syn
           media_type: item.node.media_type
             ? (item.node.media_type.charAt(0) + item.node.media_type.slice(1).toLowerCase()).replace('_', ' ')
             : '',
-          isNovel: item.node.media_type === 'novel',
+          isNovel: item.node.media_type.toLowerCase().includes('novel'),
           score: item.node.mean,
           year: item.node.start_date,
         });

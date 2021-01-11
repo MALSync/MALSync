@@ -23,7 +23,7 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
     },
     image: item.image_url,
     media_type: item.payload.media_type,
-    isNovel: item.payload.media_type === 'Novel',
+    isNovel: item.payload.media_type.toLowerCase().includes('novel'),
     score: item.payload.score,
     year: item.payload.start_year,
   }));
