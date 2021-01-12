@@ -20,7 +20,7 @@ export const Pantsubase: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('div.breadcrumb a[href^="/anime"] > span')
+        .$('div.breadcrumb a[href*="/anime/"] > span')
         .text()
         .trim();
     },
@@ -28,7 +28,7 @@ export const Pantsubase: pageInterface = {
       return utils.urlPart(Pantsubase.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('div.breadcrumb a[href^="/anime"]').attr('href'), Pantsubase.domain);
+      return utils.absoluteLink(j.$('div.breadcrumb a[href*="/anime/"]').attr('href'), Pantsubase.domain);
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
