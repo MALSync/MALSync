@@ -1,6 +1,6 @@
 {
   "Search": {
-    "message": "Buscar",
+    "message": "Buscar en el sitio",
     "description": "Button to open the site search links on mal, anilist ..."
   },
   "Show": {
@@ -56,7 +56,7 @@
     "description": "Flash message that shows up after updating an anime/manga entry"
   },
   "removed": {
-    "message": "Eliminado",
+    "message": "removido",
     "description": "Flash message that shows up after removing an anime/manga entry from user list"
   },
   "NothingFound": {
@@ -774,7 +774,7 @@
     "description": "miniMAL Not Set"
   },
   "settings_loadPTWForProgress": {
-    "message": "Cargar PTW/PTR para evaluación del progreso",
+    "message": "Cargar PTW/PTR para la evaluación del progreso",
     "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
   },
   "settings_Video_Player": {
