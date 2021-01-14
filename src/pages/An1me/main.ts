@@ -3,7 +3,6 @@ import { pageInterface } from '../pageInterface';
 export const An1me: pageInterface = {
   name: 'An1me',
   domain: 'https://an1me.nl',
-  database: 'An1me',
   languages: ['Greek'],
   type: 'anime',
   isSyncPage(url) {
@@ -64,7 +63,7 @@ export const An1me: pageInterface = {
           j.html(
             `<div id="malthing">
               <div id= "MALSyncheading" class="c-blog__heading style-2 font-heading">
-                <h2 class="h4"> 
+                <h2 class="h4">
                   <i class="icon ion-ios-star"></i>
                   MAL-Sync
                 </h2>
@@ -96,7 +95,7 @@ export const An1me: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'b' && page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0)
+      if (page.url.split('/')[3] === 'c' && page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0)
         page.handlePage();
     });
   },

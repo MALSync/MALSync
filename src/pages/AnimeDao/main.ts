@@ -25,7 +25,7 @@ export const AnimeDao: pageInterface = {
       return utils.urlPart(AnimeDao.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return j.$('ol.breadcrumb > li > a[href*="/anime/"]').attr('href') || '';
+      return utils.absoluteLink(j.$('ol.breadcrumb > li > a[href*="/anime/"]').attr('href') || '', AnimeDao.domain);
     },
     getEpisode(url) {
       const text = j

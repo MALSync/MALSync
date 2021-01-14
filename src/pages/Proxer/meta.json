@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://proxer.me/*"]
+    "match": ["*://proxer.me/*", "*://proxer.net/*"]
   }
 }

@@ -667,7 +667,8 @@ export class syncPage {
         ),
       );
       const This = this;
-      j.$('#AddMal').click(async function() {
+      j.$('#AddMal').click(async function(event) {
+        event.preventDefault();
         if (!This.page.isSyncPage(This.url)) {
           This.singleObj.setStreamingUrl(This.url);
         }

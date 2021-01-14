@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const FallenAngels: pageInterface = {
   name: 'FallenAngels',
-  domain: 'https://manga.fascans.com/',
+  domain: 'https://manga.fascans.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
