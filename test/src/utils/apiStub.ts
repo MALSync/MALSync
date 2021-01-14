@@ -43,5 +43,6 @@ export function getStub( options:{
 }
 
 export function setStub(stub) {
+  //@ts-ignore
   global.api = stub;
 }
