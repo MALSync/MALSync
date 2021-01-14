@@ -7,6 +7,7 @@ import { userlist as malList } from '../../../_provider/MyAnimeList_legacy/list'
 import { userlist as anilistList } from '../../../_provider/AniList/list';
 import { userlist as kitsuList } from '../../../_provider/Kitsu/list';
 import { userlist as simklList } from '../../../_provider/Simkl/list';
+import { getSyncMode } from '../../../_provider/helper';
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing) {
   mapToArray(masterList, list, true);
@@ -202,7 +203,7 @@ export async function retriveLists(
   const typeArray: any = [];
 
   // @ts-ignore
-  const masterMode = apiTemp.settings.get('syncMode');
+  const masterMode = getSyncMode(type);
   if (masterMode === 'MALAPI') throw 'Sync with the mal api is not yet supported';
 
   const listP: any = [];
