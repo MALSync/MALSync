@@ -2,80 +2,60 @@ import { pageInterface } from '../pageInterface';
 
 export const Voiranime: pageInterface = {
   name: 'Voiranime',
-  domain: 'http://voiranime.com',
+  domain: 'https://voiranime.com',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    if ($('.video-series-wrap').length) return true;
+    if ($('.chapter-video-frame').length) return true;
     return false;
   },
   sync: {
     getTitle(url) {
-      return $('h1')
-        .first()
+      return j
+        .$('.breadcrumb > li:nth-child(2) > a:nth-child(1)')
         .text()
-        .trim()
-        .split(' – ')[0];
+        .trim();
     },
     getIdentifier(url) {
-      const urlPart3 = utils.urlPart(url, 3);
-
-      if (!urlPart3 || urlPart3.length === 0) return '';
-
-      return urlPart3.replace(/(-saison-[^-]*)?-[^-]*-[^-]*$/i, '');
+      return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return `${Voiranime.domain}/${Voiranime.sync.getIdentifier(url)}`;
+      return `${Voiranime.domain}/anime/${Voiranime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return parseInt(
-        $('.series-current')
-          .first()
-          .text()
-          .trim(),
+      return Number(
+        j.$('div.select-view:nth-child(2) > div:nth-child(2) > label:nth-child(1) > select >option:selected').text(),
       );
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('.series-current')
-          .first()
-          .closest('li')
-          .next()
-          .find('a')
-          .attr('href'),
+        j.$('div.select-pagination:nth-child(3) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)').attr('href'),
         Voiranime.domain,
       );
     },
   },
   overview: {
     getTitle(url) {
-      return $('h1')
+      return $('.post-title > h1:nth-child(1)')
         .first()
         .text()
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3) || '';
+      return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('h1')
+      j.$('.post-title > h1:nth-child(1)')
         .first()
         .after(j.html(selector));
     },
     list: {
-      offsetHandler: false,
+      offsetHandler: true,
       elementsSelector() {
-        return j.$('ul.video-series-list > li:not(.series-title)');
+        return j.$('li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Voiranime.domain,
-        );
+        return utils.absoluteLink(selector.find('a').attr('href'), Voiranime.domain);
       },
       elementEp(selector) {
         return Number(
@@ -83,7 +63,8 @@ export const Voiranime: pageInterface = {
             .find('a')
             .first()
             .text()
-            .replace(/\D+/, ''),
+            .split('-')
+            .pop(),
         );
       },
     },
@@ -91,7 +72,11 @@ export const Voiranime: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if ($('.video-series-wrap').length || $('.category-anime-serie').length) {
+      if (
+        $('.chapter-video-frame').length ||
+        $('body > div.wrap > div > div.site-content > div > div.profile-manga > div > div > div > div.tab-summary')
+          .length
+      ) {
         page.handlePage();
       }
     });
