@@ -900,7 +900,7 @@
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
   "settings_enabled": {
-    "message": "Activada",
+    "message": "Activado",
     "description": "Checkbox if feature is enabled"
   },
   "settings_shortcut_tooltip": {
