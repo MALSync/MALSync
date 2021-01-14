@@ -199,7 +199,16 @@
                     renderObj.getTotalEpisodes()
                   }}</span
                   ><span v-else>?</span>
-                  <span class="material-icons ep-increment" @click="increaseEP()">add</span>
+                  <span
+                    v-if="
+                      !renderObj.getTotalEpisodes() ||
+                        !renderObj.getEpisode() ||
+                        renderObj.getEpisode() < renderObj.getTotalEpisodes()
+                    "
+                    class="material-icons ep-increment"
+                    @click="increaseEP()"
+                    >add</span
+                  >
                 </span>
               </span>
             </li>
