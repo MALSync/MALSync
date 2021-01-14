@@ -17,14 +17,10 @@ export const Voiranime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      const urlPart3 = utils.urlPart(url, 3);
-
-      if (!urlPart3 || urlPart3.length === 0) return '';
-
-      return urlPart3.replace(/(-saison-[^-]*)?-[^-]*-[^-]*$/i, '');
+      return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return `${Voiranime.domain}/${Voiranime.sync.getIdentifier(url)}`;
+      return `${Voiranime.domain}/anime/${Voiranime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return Number(

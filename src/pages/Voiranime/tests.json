@@ -3,37 +3,31 @@
   "url": "http://voiranime.com",
   "testCases": [
     {
-      "url": "http://voiranime.com/no-game-no-life-06-vostfr/",
+      "url": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "overviewUrl": "http://voiranime.com/no-game-no-life",
-        "nextEpUrl": "http://voiranime.com/no-game-no-life-07-vostfr/",
+        "overviewUrl": "https://voiranime.com/anime/no-game-no-life",
+        "nextEpUrl": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-07-vostfr/",
         "episode": 6,
-        "uiSelector": false,
-        "epList": {
-          "5": "http://voiranime.com/no-game-no-life-05-vostfr/"
-        }
+        "uiSelector": false
       }
     },
     {
-      "url": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-04-vf/",
+      "url": "https://voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-04-vostfr/",
       "expected": {
         "sync": true,
-        "title": "Boku no Hero Academia (My Hero Academia) (Saison 2)",
-        "identifier": "boku-no-hero-academia-my-hero-academia",
-        "overviewUrl": "http://voiranime.com/boku-no-hero-academia-my-hero-academia",
-        "nextEpUrl": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/",
+        "title": "Boku no Hero Academia 2",
+        "identifier": "boku-no-hero-academia-2",
+        "overviewUrl": "https://voiranime.com/anime/boku-no-hero-academia-2",
+        "nextEpUrl": "https://voiranime.com/anime/boku-no-hero-academia-2/boku-no-hero-academia-my-hero-academia-saison-2-05-vostfr/",
         "episode": 4,
-        "uiSelector": false,
-        "epList": {
-          "5": "http://voiranime.com/boku-no-hero-academia-my-hero-academia-saison-2-05-vf/"
-        }
+        "uiSelector": false
       }
     },
     {
-      "url": "http://voiranime.com/no-game-no-life/",
+      "url": "https://voiranime.com/anime/no-game-no-life/",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
