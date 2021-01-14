@@ -203,6 +203,7 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             <select id="theme" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+              <option value="auto">Auto</option>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
               <option value="serial">Serial</option>

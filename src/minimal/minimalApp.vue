@@ -1,5 +1,5 @@
 <template>
-  <div id="material" style="height: 100%;" :class="{ 'pop-over': !navigation, [options.theme]: true }">
+  <div id="material" style="height: 100%;" :class="{ 'pop-over': !navigation, [getTheme(options)]: true }">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp">
       <header class="mdl-layout__header" style="min-height: 0;">
         <button
@@ -520,6 +520,15 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
+    getTheme(options) {
+      if (options.theme === 'auto') {
+        if (!window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      }
+      return options.theme;
+    },
     selectTab(selectedTab) {
       if (
         this.onlySettings &&

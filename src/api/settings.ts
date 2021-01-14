@@ -19,7 +19,7 @@ export const settingsObj = {
     usedPage: true,
     epPredictions: true,
 
-    theme: 'light',
+    theme: 'auto',
     minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,
