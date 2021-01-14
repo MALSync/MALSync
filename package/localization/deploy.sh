@@ -13,12 +13,13 @@ if [ -z "$(git diff --cached)" ]; then
   exit 0
 fi
 
-git commit -a -m "Update locales.json for lolamtisch/MALSync"
-
 echo Deploy changes.
-git config user.name "Travis CI"
-git config user.email "travis@travis-ci.org"
-git push "https://${GITHUB_OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
+
+git config --local user.email "action@github.com"
+git config --local user.name "GitHub Action"
+git commit -a -m "Update locales.json for MALSync/MALSync"
+
+#git push "https://${GITHUB_OAUTH_TOKEN}@github.com/lolamtisch/MALSync-localization.git" master
 
 exit 0
 
