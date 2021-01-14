@@ -1,7 +1,7 @@
 {
   "Search": {
-    "message": "Поиск",
-    "description": "Search"
+    "message": "Поиск по сайтам",
+    "description": "Button to open the site search links on mal, anilist ..."
   },
   "Show": {
     "message": "Показать",
@@ -14,6 +14,10 @@
   "Update": {
     "message": "Обновить",
     "description": "Update"
+  },
+  "Add": {
+    "message": "Добавить",
+    "description": "Button to add an anime/manga to user list"
   },
   "Reset": {
     "message": "Сбросить",
@@ -35,9 +39,25 @@
     "message": "Да",
     "description": "Yes"
   },
+  "Ok": {
+    "message": "ОК",
+    "description": "Ok"
+  },
   "No": {
     "message": "Нет",
     "description": "No"
+  },
+  "Cancel": {
+    "message": "Отмена",
+    "description": "Cancel"
+  },
+  "updated": {
+    "message": "Обновлено",
+    "description": "Flash message that shows up after updating an anime/manga entry"
+  },
+  "removed": {
+    "message": "Удалено",
+    "description": "Flash message that shows up after removing an anime/manga entry from user list"
   },
   "NothingFound": {
     "message": "Ничего не найдено",
@@ -63,8 +83,16 @@
     "message": "Все",
     "description": "All"
   },
+  "Anime": {
+    "message": "Аниме",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Манга",
+    "description": "General translation of manga for places like drop downs"
+  },
   "Package_Description": {
-    "message": "Добавляет MyAnimeList/AniList/Kitsu/Simkl на различные сайты, а также автообновление просмотренных эпизодов.",
+    "message": "Добавляет MyAnimeList (и подобные) на различные сайты, а также автообновление просмотренных серий.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -178,7 +206,7 @@
     }
   },
   "syncPage_flashm_sync_anime": {
-    "message": "Обновить $page$ до $epNr$ эпизода",
+    "message": "Обновить $page$ до $epNr$ серии",
     "description": "Update MAL to episode 3",
     "placeholders": {
       "page": {
@@ -210,7 +238,7 @@
     "description": "Undo button on 'synced' message"
   },
   "syncPage_flashm_sync_undefined_wrong": {
-    "message": "Не вышло?",
+    "message": "Ошибка?",
     "description": "Wrong/correction button on 'synced' message"
   },
   "syncPage_flashm_failded": {
@@ -266,7 +294,7 @@
     }
   },
   "syncPage_malObj_nextEp_anime": {
-    "message": "Эпизод $episode$",
+    "message": "Серия $episode$",
     "description": "Next episode message on streaming overview pages",
     "placeholders": {
       "episode": {
@@ -280,6 +308,16 @@
     "description": "Next chapter message on streaming overview pages",
     "placeholders": {
       "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "Было замечено смещение серий. Всё верно?",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
         "content": "$1",
         "example": "6"
       }
@@ -310,7 +348,7 @@
     "description": "Credentials wrong"
   },
   "bookmarksItem_Years": {
-    "message": "Года/лет",
+    "message": "года/лет",
     "description": "Years"
   },
   "bookmarksItem_Year": {
@@ -403,6 +441,28 @@
       }
     }
   },
+  "prediction_next": {
+    "message": "Доступно через $time$",
+    "description": "Short Form Text for next episode/episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_incomplete": {
+    "message": "Незакончено",
+    "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+  },
+  "prediction_ongoing": {
+    "message": "Онгоинг",
+    "description": "Header for the ongoing section in the translation/airing progress section"
+  },
+  "prediction_complete": {
+    "message": "Закончено",
+    "description": "Header for the complete translation/airing section"
+  },
   "prediction_Airing": {
     "message": "Трансляция через $time$",
     "description": "Text for airing estimation",
@@ -418,19 +478,19 @@
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Введите смещение серий, если у аниме 12 серий, но использует цифры от 0 до 11 вместе 1-12, то просто введите «+1» в смещение серий.",
+    "message": "Если у аниме 12 серий, но использует цифры от 0 до 11 вместо 1–12, то просто введите «+1» в смещение серий.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "Меняйте этот URL только если оно ведёт на неверную страницу аниме на MAL.",
+    "message": "Меняйте этот URL только если оно ведёт на неверную страницу тайтла на MAL.",
     "description": "URL is Wrong"
   },
   "correction_Search": {
-    "message": "Исправить Поиск",
+    "message": "Поиск нужного тайтла",
     "description": "Correction Search"
   },
   "correction_Search_text": {
-    "message": "Это поле предназначено для аниме, когда вам надо исправить «MyAnimeList URL» указанный выше.<br>Чтобы начать поиск, просто напросто начните вводить название аниме, и лист с результами автоматически появится при наборе.",
+    "message": "Это поле предназначено для аниме, когда вам надо исправить «MyAnimeList URL» указанный выше.<br>Чтобы начать поиск, просто напросто начните вводить название тайтла и лист с результами автоматически появится при наборе.",
     "description": "Search text"
   },
   "correction_NoMal": {
@@ -456,7 +516,7 @@
     "description": "Offset reset"
   },
   "correction_NewUrl": {
-    "message": "Новый URL '$malUrl$' установлено.",
+    "message": "Новый URL '$malUrl$' установлен.",
     "description": "New URL",
     "placeholders": {
       "malUrl": {
@@ -470,7 +530,7 @@
     "description": "URL reset"
   },
   "correction_DBRequest": {
-    "message": "Подтвердить запрос на исправление базы данных?",
+    "message": "Подтвердить запрос на исправление трекинга?",
     "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
@@ -482,11 +542,11 @@
     "description": "Continue reading"
   },
   "overview_Next_Episode_anime": {
-    "message": "Следующая Серия",
+    "message": "Следующая серия",
     "description": "Next Episode"
   },
   "overview_Next_Episode_manga": {
-    "message": "Следующая Глава",
+    "message": "Следующая глава",
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
@@ -498,7 +558,7 @@
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
-    "message": "Редактировать Детали",
+    "message": "Редактировать детали",
     "description": "Edit Details"
   },
   "overview_Characters": {
@@ -530,7 +590,7 @@
     "description": "General"
   },
   "settings_Mode": {
-    "message": "Сервис для трекинга",
+    "message": "Сайт для трекинга",
     "description": "Mode"
   },
   "settings_Authenticate": {
@@ -590,23 +650,23 @@
     }
   },
   "settings_StreamingSite": {
-    "message": "Ссылки на стриминговые сайты",
+    "message": "Ссылки на сайты с аниме/мангой",
     "description": "Streaming Site Links"
   },
   "settings_StreamingSite_text": {
-    "message": "Если отключено, то стриминговый сайт более не будет появляться в панели аниме на MyAnimeList/AniList/Kitsu/Simkl.",
+    "message": "Если отключена ссылка, то сайт более не будет появляться на панели на MyAnimeList и прочих.",
     "description": "Streaming Site Links - Text"
   },
   "settings_Thumbnails": {
-    "message": "Превью",
+    "message": "Превью изображений",
     "description": "Thumbnails"
   },
   "settings_Thumbnails_text": {
-    "message": "Данная опция для изменения размера превью на MyAnimeList, т.е. превью персонажей, людей, рекоммендаций и т.д.",
+    "message": "Данная опция для изменения размера превью на MyAnimeList, т.е. изображения персонажей, людей, рекоммендаций и т.д.",
     "description": "Thumbnails - Text"
   },
   "settings_Thumbnails_Large": {
-    "message": "Большое",
+    "message": "Большие",
     "description": "Thumbnails Large"
   },
   "settings_Thumbnails_Medium": {
@@ -614,11 +674,11 @@
     "description": "Thumbnails Medium"
   },
   "settings_Thumbnails_Small": {
-    "message": "Маленькое",
+    "message": "Маленькие",
     "description": "Thumbnails Small"
   },
   "settings_Thumbnails_Default": {
-    "message": "Стандарт MAL",
+    "message": "По умолчанию MAL",
     "description": "Thumbnails MAL Default"
   },
   "settings_FriendScore": {
@@ -634,19 +694,19 @@
     "description": "Use Tags/Notes"
   },
   "settings_malTags_Text": {
-    "message": "Если включено: стриминговая страница, которую вы использовали в прошлый раз, будет сохранена навсегда (во всех браузерах) в секции тэгов/заметок в вашем списке. Сохранённая строка в секции тэгов выглядит не лучшим образом, поэтому рекомендуется так делать только если вы не используете секцию тэгов/заметок.",
+    "message": "Если включено: сайт с аниме/мангой, который вы использовали в прошлый раз, будет сохранен навсегда (во всех браузерах) в списке тэгов/заметок. Сохранённая строка в секции тэгов выглядит не лучшим образом, поэтому рекомендуется так делать только если вы не используете список тэгов/заметок на MyAnimeList.",
     "description": "Use Tags/Notes - Text"
   },
   "settings_malContinue": {
-    "message": "Продолжить просмотр ссылок",
+    "message": "Кнопка «Следующая серия»",
     "description": "Continue watching links"
   },
   "settings_malResume": {
-    "message": "Возобновить просмотр ссылок",
+    "message": "Кнопка «Возобновить просмотр»",
     "description": "Resume watching links"
   },
   "settings_usedPage": {
-    "message": "Последние использованные ссылки страниц",
+    "message": "Включение кнопок выше",
     "description": "Last used page links"
   },
   "settings_miniMAL_floatButtonStealth": {
@@ -658,19 +718,31 @@
     "description": "Shows an 'action required' popup hidding big popups"
   },
   "settings_miniMAL_floatButtonCorrection": {
-    "message": "Переназначит плавающие кнопки, чтобы скорректировать интерфейс",
+    "message": "Переназначить кнопку–гамбургер на исправление трекинга",
     "description": "Remap floating button to the correction UI"
   },
   "settings_miniMAL_floatButtonHide": {
-    "message": "Спрятать кнопку меню miniMAL",
+    "message": "Спрятать кнопку–гамбургер",
     "description": "Hide miniMAL floating menu button"
   },
   "settings_miniMAL_autoCloseMinimal": {
     "message": "Нажатие снаружи закроет miniMAL",
     "description": "Clicking outside closes miniMAL"
   },
+  "settings_miniMAL_Display": {
+    "message": "Отображать",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_popup": {
+    "message": "Всплывающее окно расширения",
+    "description": "Header of the settings section for the extension popup"
+  },
+  "settings_miniMAL_theme": {
+    "message": "Тема",
+    "description": "Label for the theme switch dropdown (light/dark theme)"
+  },
   "settings_miniMAL_window": {
-    "message": "Открыть ",
+    "message": "Открывать расширение в отдельном окне",
     "description": "Open miniMAL in separate window checkbox"
   },
   "settings_miniMAL_Display_Left": {
@@ -701,6 +773,10 @@
     "message": "Не установлен",
     "description": "miniMAL Not Set"
   },
+  "settings_loadPTWForProgress": {
+    "message": "Загружать «Посмотреть/прочитать позже» для оценки прогресса",
+    "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
+  },
   "settings_Video_Player": {
     "message": "Видеоплеер",
     "description": "Video settings header"
@@ -718,7 +794,7 @@
     "description": "Autoplays the next episode after the video ends"
   },
   "settings_Shortcuts_Correction": {
-    "message": "Открыть аниме",
+    "message": "Открыть окно исправления трекинга",
     "description": "Text for the correction ui shortcut"
   },
   "settings_Shortcuts_Sync": {
@@ -726,7 +802,7 @@
     "description": "Text for the sync ui shortcut"
   },
   "settings_Shortcuts_Next_Episode": {
-    "message": "Открыть ярлык следующей серии",
+    "message": "Открыть следующую серию",
     "description": "Description for the next episode shortcut option"
   },
   "settings_Shortcuts_Skip_Forward": {
@@ -738,7 +814,7 @@
     "description": "Description for the the opening skip shortcut"
   },
   "settings_Shortcuts_Click": {
-    "message": "Введите текст",
+    "message": "Введите комбинацию клавиш",
     "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
@@ -768,11 +844,11 @@
     "description": "Interval - Off"
   },
   "settings_Interval_Default_Anime": {
-    "message": "Аниме по–умолчанию",
+    "message": "Язык по умолчанию (аниме)",
     "description": "Dropdown label for selecting the global progress anime source"
   },
   "settings_Interval_Default_Manga": {
-    "message": "Манга по–умолчанию",
+    "message": "Язык по умолчанию (манга)",
     "description": "Dropdown label for selecting the global progress manga source"
   },
   "settings_ProgressCheck": {
@@ -787,6 +863,10 @@
     "message": "Дебаггинг",
     "description": "Debugging"
   },
+  "settings_ETC": {
+    "message": "Разное",
+    "description": "ETC"
+  },
   "settings_Userscriptmode": {
     "message": "Режим пользовательских скриптов",
     "description": "Userscript mode"
@@ -796,7 +876,7 @@
     "description": "Userscript mode - Text"
   },
   "settings_StrictCookies": {
-    "message": "Ограничить cookie–файлы",
+    "message": "Ограничить cookie-файлы",
     "description": "Strict Cookies"
   },
   "settings_StrictCookies_Text": {
@@ -816,11 +896,15 @@
     "description": "Clear Cache"
   },
   "settings_presenceHidePage": {
-    "message": "Показать иконку MAL–Sync вместе иконки страницы",
+    "message": "Показать иконку MAL-Sync вместе иконки страницы",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
+  "settings_enabled": {
+    "message": "Включено",
+    "description": "Checkbox if feature is enabled"
+  },
   "settings_shortcut_tooltip": {
-    "message": "Не рекомендуется устанавливать ярлыки на одну клавишу",
+    "message": "Не рекомендуется устанавливать действия на одну клавишу",
     "description": "Shows this message if the users has only a single key set as shortcut"
   },
   "settings_progress_dropdown": {
@@ -832,8 +916,24 @@
     "description": "Dropdown option to disable the estimation for an anime/manga"
   },
   "settings_progress_default": {
-    "message": "По–умолчанию",
+    "message": "По умолчанию",
     "description": "Dropdown option to use the default in the estimation for an anime/manga"
+  },
+  "settings_website_button": {
+    "message": "Сайты",
+    "description": "Button that leads to the config page where individual pages can be disabled"
+  },
+  "settings_custom_domains_button": {
+    "message": "Пользовательские домены",
+    "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_clean_tags_button": {
+    "message": "Очистить тэги",
+    "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+  },
+  "settings_more_info": {
+    "message": "Больше информации",
+    "description": "Link button which links to more informations"
   },
   "updateCheck_Refresh": {
     "message": "Обновить",
@@ -876,11 +976,11 @@
     "description": "Settings"
   },
   "minimalClass_Popup": {
-    "message": "Пожалуйста разрешите всплывающие окна на этом сайте",
+    "message": "Пожалуйста, разрешите всплывающие окна на этом сайте",
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Обновились до версии $Version$ $Link$CHANGELOG$LinkEnd$",
+    "message": "Обновились до версии $Version$ — $Link$Список изменений$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
@@ -898,7 +998,7 @@
     }
   },
   "minimalClass_versionMsg_Text_1": {
-    "message": "Спасибо за установку MAL–Sync",
+    "message": "Спасибо за установку MAL-Sync",
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
@@ -910,11 +1010,11 @@
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
-    "message": "Пользователи uBlock, пожалуйста, подпишитесь на этот список фильтров! Оно исправляет некоторые проблемы вроде «битых» изображений",
+    "message": "Пользователям uBlock рекомендуется подписаться на этот список фильтров! Данная подписка исправляет некоторые проблемы, которые могут возникнуть во время просмотра аниме или чтения манги (например «битые» изображения).",
     "description": "Update version - Text 4"
   },
   "installPage_Mode": {
-    "message": "Пожалуйста выберите какую базу данных аниме вы хотите использовать:",
+    "message": "Пожалуйста выберите какой сайт для трекинга вы хотите использовать:",
     "description": "Header for the MAL-sync provider dropdown"
   },
   "installPage_Howto": {
@@ -922,7 +1022,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "Просто откройте серию или главу на любом из $Link1$supporteedpages$LinkEnd1$. Синхронизация происходит после того как просмотрели 85% видео. У манги же синхронизация происходит при загрузке страницы. Это может быть изменено в $Link2$settings$LinkEnd2$.",
+    "message": "Просто откройте серию или главу на любой из $Link1$поддерживаемых страниц$LinkEnd1$. Синхронизация происходит после того как просмотрели 85% (процент можно изменить) серии/фильма. У манги же синхронизация происходит при загрузке страницы. Поменять как работает синхронизация можно в $Link2$настройках$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -944,15 +1044,15 @@
     }
   },
   "installPage_Wrong": {
-    "message": "Синхронизируется неправильная запись MAL?",
+    "message": "В синхронизации произошла ошибка?",
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "Вы можете легко изменить отношения как, например, на гифке показанной ниже. Смещение серий также может быть установлено на той странице.",
+    "message": "Вы можете легко исправлять ошибки в трекинге как, например, на гифке показанной ниже. Смещение серий также может быть установлено на любой странице где вы смотрите аниме.",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
-    "message": "Пожалуйста авторизуйте $Link1$Here$Link2$",
+    "message": "Пожалуйста авторизуйте $Link1$здесь$Link2$",
     "description": "Update version - Text 3",
     "placeholders": {
       "Link1": {
