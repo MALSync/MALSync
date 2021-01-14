@@ -83,13 +83,7 @@ var content_scripts = [
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/update-check.js'],
     all_frames: true,
     run_at: 'document_start',
-  },
-  {
-    matches: generateMatchExcludes(playerUrls).match,
-    js: ['vendor/jquery.min.js', 'i18n.js', 'content/iframe.js'],
-    all_frames: true,
-    run_at: 'document_start',
-  },
+  }
 ];
 
 pages.forEach(el => {
@@ -105,6 +99,13 @@ pages.forEach(el => {
     run_at: 'document_start',
   });
 })
+
+content_scripts.push({
+  matches: generateMatchExcludes(playerUrls).match,
+  js: ['vendor/jquery.min.js', 'i18n.js', 'content/iframe.js'],
+  all_frames: true,
+  run_at: 'document_start',
+});
 
 const generateManifest = () => {
   const mani = {
