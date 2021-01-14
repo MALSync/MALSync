@@ -521,12 +521,11 @@ export default {
   methods: {
     lang: api.storage.lang,
     getTheme(options) {
-      if(options.theme === 'auto') {
-        if(!window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          return 'dark'
-        } else {
-          return 'light';
+      if (options.theme === 'auto') {
+        if (!window.matchMedia || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
         }
+        return 'light';
       }
       return options.theme;
     },
