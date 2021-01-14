@@ -215,7 +215,7 @@ export default {
       simkl: this.listProvider.simkl,
     });
 
-    const listOptions = await sync.retriveLists(providerList, type, api, sync.getList);
+    const listOptions = await sync.retriveLists(providerList, type, sync.getList);
 
     sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
     this.list = { ...this.list };

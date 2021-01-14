@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as sync from '../../../../src/minimal/minimalApp/listSync/syncHandler';
+import * as Api from '../../utils/apiStub';
 
 const helper = {
   getItem() {
@@ -296,19 +297,17 @@ describe('Sync Handling', function() {
     };
 
     it('MAL Master', async function() {
-      const api = {
+      const stub = Api.getStub({
         settings: {
-          get: () => {
-            return 'MAL';
-          },
-        },
-      };
+          syncMode: 'MAL'
+        }
+      });
+      Api.setStub(stub);
 
       const providerList = getProviderListList();
       const res = await sync.retriveLists(
         providerList,
         'anime',
-        api,
         getListStub,
       );
 
@@ -319,18 +318,17 @@ describe('Sync Handling', function() {
     });
 
     it('ANILIST Master', async function() {
-      const api = {
+      const stub = Api.getStub({
         settings: {
-          get: () => {
-            return 'ANILIST';
-          },
+          syncMode: 'ANILIST',
         },
-      };
+      });
+      Api.setStub(stub);
+
       const providerList = getProviderListList();
       const res = await sync.retriveLists(
         providerList,
         'anime',
-        api,
         getListStub,
       );
 
@@ -340,18 +338,16 @@ describe('Sync Handling', function() {
     });
 
     it('KITSU Master', async function() {
-      const api = {
+      const stub = Api.getStub({
         settings: {
-          get: () => {
-            return 'KITSU';
-          },
+          syncMode: 'KITSU',
         },
-      };
+      });
+      Api.setStub(stub);
       const providerList = getProviderListList();
       const res = await sync.retriveLists(
         providerList,
         'anime',
-        api,
         getListStub,
       );
 
@@ -361,25 +357,40 @@ describe('Sync Handling', function() {
     });
 
     it('SIMKL Master', async function() {
-      const api = {
+      const stub = Api.getStub({
         settings: {
-          get: () => {
-            return 'SIMKL';
-          },
+          syncMode: 'SIMKL',
         },
-      };
+      });
+      Api.setStub(stub);
 
       const providerList = getProviderListList();
       const res = await sync.retriveLists(
         providerList,
         'anime',
-        api,
         getListStub,
       );
 
       expect(res.master).equal('SIMKL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
       expect(res.slaves).to.not.include('SIMKL');
+    });
+
+    it('SIMKL MAL Master', async function() {
+      const stub = Api.getStub({
+        settings: {
+          syncMode: 'SIMKL',
+          syncModeSimkl: 'MAL'
+        },
+      });
+      Api.setStub(stub);
+
+      const providerList = getProviderListList();
+      const res = await sync.retriveLists(providerList, 'manga', getListStub);
+
+      expect(res.master).equal('MAL');
+      expect(res.slaves).to.have.length(res.typeArray.length - 1);
+      expect(res.slaves).to.not.include('MAL');
     });
 
     it('typeArray', async function() {
@@ -393,19 +404,17 @@ describe('Sync Handling', function() {
         });
       };
 
-      const api = {
+      const stub = Api.getStub({
         settings: {
-          get: () => {
-            return 'MAL';
-          },
+          syncMode: 'MAL',
         },
-      };
+      });
+      Api.setStub(stub);
 
       const providerList = getProviderListList();
       const res = await sync.retriveLists(
         providerList,
         'anime',
-        api,
         getListStub,
       );
 

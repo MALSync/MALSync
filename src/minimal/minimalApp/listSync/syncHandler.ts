@@ -197,7 +197,6 @@ export async function retriveLists(
     listProvider: any;
   }[],
   type,
-  apiTemp,
   getListF,
 ) {
   const typeArray: any = [];
@@ -347,7 +346,7 @@ export const background = {
         },
       });
 
-      const listOptions: any = await retriveLists(providerList, type, api, getList);
+      const listOptions: any = await retriveLists(providerList, type, getList);
 
       generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
       con.log('Start syncing', list, missing);
