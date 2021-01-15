@@ -400,4 +400,8 @@ module.exports = {
   yugenanime: {
     match: ['*://yugenani.me/e/*'],
   },
+  // kickassanime
+  kaaplay: {
+    match: ['*://kaa-play.com/*'],
+  },
 };
