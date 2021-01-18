@@ -89,7 +89,7 @@
                 class="stream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
                 :title="renderObj.getStreamingUrl().split('/')[2]"
                 target="_blank"
-                style="margin: 0 5px; color: white;"
+                style="margin: 10px 5px 0 0; color: white;"
                 :href="renderObj.getStreamingUrl()"
               >
                 <img
@@ -104,7 +104,7 @@
                 class="nextStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
                 :title="lang(`overview_Next_Episode_${renderObj.getType()}`)"
                 target="_blank"
-                style="margin: 0 5px 0 0; color: white;"
+                style="margin: 10px 5px 0 0; color: white;"
                 :href="mal.continueUrl.url"
               >
                 <img
@@ -120,7 +120,7 @@
                 class="resumeStream mdl-button mdl-button--colored mdl-js-button mdl-button--raised"
                 :title="lang(`overview_Resume_Episode_${renderObj.getType()}`)"
                 target="_blank"
-                style="margin: 0 5px 0 0; color: white;"
+                style="margin: 10px 5px 0 0; color: white;"
                 :href="mal.resumeUrl.url"
               >
                 <img
