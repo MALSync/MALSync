@@ -467,7 +467,7 @@ export abstract class SingleAbstract {
     if (
       curEpisode >= episode &&
       // Novel Volume
-      !(curVolume && typeof volume !== 'undefined' && volume > curVolume)
+      !((curVolume || volume > 1 || !episode) && typeof volume !== 'undefined' && volume > curVolume)
     ) {
       return false;
     }
