@@ -69,12 +69,11 @@ export class MetaOverview extends MetaOverviewAbstract {
         throw this.errorObj(errorCode.EntryNotFound, e.message);
       }
     }
-
     return this.apiCall(
       'GET',
-      `https://kitsu.io/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&`,
+      `https://kitsu.io/api/edge/${this.type}?filter[slug]=${this.kitsuSlug}&include=characters.character,mediaRelationships.destination,categories&fields[categories]=slug,title&nsfw=true`,
       {},
-      false,
+      true,
     ).then(res => {
       try {
         res.data = res.data[0];
