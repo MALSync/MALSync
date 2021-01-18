@@ -298,7 +298,9 @@ export class Single extends SingleAbstract {
       this.additionalInfo.name = data
         .split('<a href="')[1]
         .split('">')[1]
-        .split('<')[0];
+        .split('<')[0]
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'");
       anime['.anime_id'] = parseInt(
         data
           .split('name="anime_id"')[1]
@@ -389,7 +391,9 @@ export class Single extends SingleAbstract {
       this.additionalInfo.name = data
         .split('<a href="')[1]
         .split('">')[1]
-        .split('<')[0];
+        .split('<')[0]
+        .replace(/&quot;/g, '"')
+        .replace(/&#039;/g, "'");
       anime['.entry_id'] = parseInt(
         data
           .split('name="entry_id"')[1]
