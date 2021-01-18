@@ -452,7 +452,7 @@ export abstract class SingleAbstract {
     return undefined;
   }
 
-  public async checkSync(episode: number, volume?: number, isNovel = false, isStrongVolume = false): Promise<boolean> {
+  public async checkSync(episode: number, volume?: number): Promise<boolean> {
     const curEpisode = this.getEpisode();
     const curStatus = this.getStatus();
     const curVolume = this.getVolume();
@@ -467,9 +467,7 @@ export abstract class SingleAbstract {
     if (
       curEpisode >= episode &&
       // Novel Volume
-      !(isNovel && typeof volume !== 'undefined' && volume > curVolume) &&
-      // Strong Volumes
-      !(isStrongVolume && typeof volume !== 'undefined' && volume > curVolume)
+      !(curVolume && typeof volume !== 'undefined' && volume > curVolume)
     ) {
       return false;
     }

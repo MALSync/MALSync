@@ -113,7 +113,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 2,
           curVol: 4,
-          novel: false,
           curStatus: def.status.Watching,
           result: true,
         },
@@ -123,7 +122,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 2,
           curVol: 4,
-          novel: false,
           curStatus: def.status.Watching,
           result: false,
         },
@@ -133,7 +131,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 4,
           curVol: 1,
-          novel: true,
           curStatus: def.status.Watching,
           result: true,
         },
@@ -143,7 +140,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 4,
           curVol: 2,
-          novel: true,
           curStatus: def.status.Watching,
           result: false,
         },
@@ -153,7 +149,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: undefined,
           curEp: 4,
           curVol: 2,
-          novel: true,
           curStatus: def.status.Watching,
           result: false,
         },
@@ -163,9 +158,17 @@ export function generalSingleTests(Single, setGlobals) {
           vol: undefined,
           curEp: 4,
           curVol: 2,
-          novel: true,
           curStatus: def.status.Watching,
           result: true,
+        },
+        {
+          name: 'Only update Volume if defined',
+          ep: 2,
+          vol: 2,
+          curEp: 4,
+          curVol: 0,
+          curStatus: def.status.Watching,
+          result: false,
         },
         {
           name: 'Completed',
@@ -173,7 +176,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 2,
           curVol: 4,
-          novel: false,
           curStatus: def.status.Completed,
           result: false,
         },
@@ -183,7 +185,6 @@ export function generalSingleTests(Single, setGlobals) {
           vol: 2,
           curEp: 2,
           curVol: 4,
-          novel: false,
           curStatus: def.status.Completed,
           result: true,
         },
@@ -196,9 +197,7 @@ export function generalSingleTests(Single, setGlobals) {
           singleEntry.setEpisode(el.curEp);
           singleEntry.setStatus(el.curStatus);
           singleEntry.setVolume(el.curVol);
-          expect(await singleEntry.checkSync(el.ep, el.vol, el.novel)).equal(
-            el.result,
-          );
+          expect(await singleEntry.checkSync(el.ep, el.vol)).equal(el.result);
         });
       });
     });

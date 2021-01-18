@@ -47,6 +47,15 @@ export const MangaSee: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
+    getVolume(url) {
+      const volPart = utils.urlPart(url, 4);
+
+      const temp = volPart.match(/index-\d+/gim);
+
+      if (!temp || !temp.length) return 0;
+
+      return Number(temp[0].replace(/\D+/g, ''));
+    },
   },
   overview: {
     getTitle(url) {
