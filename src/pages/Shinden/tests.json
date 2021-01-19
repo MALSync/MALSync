@@ -9,18 +9,22 @@
         "sync": true,
         "title": "Mahouka Koukou no Rettousei",
         "identifier": "16238-mahouka-koukou-no-rettousei",
-        "overviewUrl": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei",
+        "overviewUrl": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei/episodes",
+        "nextEpUrl": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117042",
         "episode": 14,
         "uiSelector": false
       }
     },
     {
-      "url": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei",
+      "url": "https://shinden.pl/series/16238-mahouka-koukou-no-rettousei/episodes",
       "expected": {
         "sync": false,
         "title": "Mahouka Koukou no Rettousei",
         "identifier": "16238-mahouka-koukou-no-rettousei",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "7": "https://shinden.pl/episode/16238-mahouka-koukou-no-rettousei/view/117034"
+        }
       }
     }
   ]

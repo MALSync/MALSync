@@ -1,5 +1,6 @@
 @import './../pages';
 
+@borderColor: #428bca !important;
 #malp span,
 select,
 input,
@@ -13,10 +14,13 @@ a {
 }
 
 #malp {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 4px 10px;
+  border: 2px solid @borderColor !important;
   .info {
     background-color: transparent;
     border: none;
   }
+}
+.mal-sync-active {
+  background-color: #428bca !important;
 }

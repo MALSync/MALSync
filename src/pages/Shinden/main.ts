@@ -22,7 +22,7 @@ export const Shinden: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('h1.page-title > a').attr('href') || '';
+      return utils.absoluteLink(j.$('.player-navigator > li:nth-child(2) > a').attr('href'), Shinden.domain);
     },
     getEpisode(url) {
       const episodeText = j.$('dl.info-aside-list:nth-child(1) > dd:nth-child(2)').text();
@@ -30,6 +30,9 @@ export const Shinden: pageInterface = {
       if (!episodeText) return NaN;
 
       return Number(episodeText.replace(/\D+/g, ''));
+    },
+    nextEpUrl(url) {
+      return utils.absoluteLink(j.$('.player-navigator > li:nth-child(3) > a').attr('href'), Shinden.domain);
     },
   },
   overview: {
@@ -47,6 +50,27 @@ export const Shinden: pageInterface = {
       j.$('.title-other')
         .first()
         .after(j.html(selector));
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('.list-episode-checkboxes > tr:has(.fa-check)');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+          Shinden.domain,
+        );
+      },
+      elementEp(selector) {
+        return selector
+          .find('td')
+          .first()
+          .text();
+      },
     },
   },
   init(page) {
