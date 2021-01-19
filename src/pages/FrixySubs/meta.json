@@ -1,0 +1,5 @@
+{
+  "urls": {
+    "match": ["*://frixysubs.pl/index.php?anime=*", "*://frixysubs.pl/?anime=*"]
+  }
+}

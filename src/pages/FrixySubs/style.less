@@ -1,0 +1,30 @@
+@import './../pages';
+
+@borderColor: #cc5400 !important;
+@borderactivecolor: #428bca !important;
+
+#malp span,
+select,
+input,
+a {
+  color: white !important;
+}
+
+#malp select option {
+  color: white !important;
+  background-color: black !important;
+}
+
+#malp {
+  padding: 4px 10px;
+  border: 2px solid @borderColor !important;
+  background-color: rgba(128, 51, 0, 0.5);
+  .info {
+    background-color: transparent;
+    border: none;
+  }
+}
+.mal-sync-active {
+  border: 2px solid @borderactivecolor !important;
+  background: none !important;
+}

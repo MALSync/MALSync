@@ -1,0 +1,30 @@
+{
+  "title": "Shinden",
+  "url": "https://frixysubs.pl",
+  "testCases": [
+    {
+      "url": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=2",
+      "expected": {
+        "sync": true,
+        "title": "Darwins Game",
+        "identifier": "Darwins%20Game",
+        "overviewUrl": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=0&odcinek=0",
+        "nextEpUrl": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=3",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=0&odcinek=0",
+      "expected": {
+        "sync": false,
+        "title": "Darwins Game",
+        "identifier": "Darwins%20Game",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=6"
+        }
+      }
+    }
+  ]
+}
