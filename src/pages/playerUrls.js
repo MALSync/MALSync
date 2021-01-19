@@ -182,6 +182,10 @@ module.exports = {
   vshare: {
     match: ['*://*.vshare.io/v/*'],
   },
+  // anime-odcinki shinden animezone
+  cda: {
+    match: ['*://*.cda.pl/*'],
+  },
   // kissanime/9anime/gogoanime
   hydrax: {
     match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*', '*://*.hydracdn.network/*'],
