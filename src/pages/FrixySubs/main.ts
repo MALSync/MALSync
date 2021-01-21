@@ -27,7 +27,7 @@ export const FrixySubs: pageInterface = {
     },
     getIdentifier(url) {
       const title = utils.urlParam(url, 'anime') || '';
-      return encodeURI(title);
+      return encodeURIComponent(title);
     },
     getOverviewUrl(url) {
       const overviewUrl = j
@@ -37,11 +37,7 @@ export const FrixySubs: pageInterface = {
       return utils.absoluteLink(overviewUrl, FrixySubs.domain);
     },
     getEpisode(url) {
-      const episodeText = utils.urlParam(url, 'odcinek');
-
-      if (!episodeText) return NaN;
-
-      return Number(episodeText);
+      return getEpNumber(url);
     },
     nextEpUrl(url) {
       const nextEpUrl = j
@@ -79,7 +75,7 @@ export const FrixySubs: pageInterface = {
         );
       },
       elementEp(selector) {
-        return getEpNumber(selector.find('.mbr-gallery-title').text());
+        return getEpNumber(FrixySubs.overview!.list!.elementUrl(selector));
       },
     },
   },
@@ -93,9 +89,8 @@ export const FrixySubs: pageInterface = {
   },
 };
 
-function getEpNumber(title) {
-  const pattern = /#([0-9]*)\s-/;
-  const epNumber = title.match(pattern);
-  if (!epNumber[1]) return NaN;
-  return Number(epNumber[1]);
+function getEpNumber(url) {
+  const ep = parseInt(utils.urlParam(url, 'odcinek') || '');
+  if (!ep) return 1;
+  return ep;
 }
