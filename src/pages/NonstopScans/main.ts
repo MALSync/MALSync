@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const NonstopScans: pageInterface = {
   name: 'NonstopScans',
-  domain: 'https://www.nonstopscans.com/',
+  domain: 'https://www.nonstopscans.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
