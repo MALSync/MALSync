@@ -77,7 +77,10 @@ export const NonstopScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (j.$('div#content.readercontent').length || (page.url.split('/')[3] === 'manga' && page.url.split('/')[4] !== '')) {
+      if (
+        j.$('div#content.readercontent').length ||
+        (page.url.split('/')[3] === 'manga' && page.url.split('/')[4] !== '')
+      ) {
         page.handlePage();
       }
     });
