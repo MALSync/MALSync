@@ -116,6 +116,7 @@ import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
 import { AnimeSuge } from './AnimeSuge/main';
+import { NonstopScans } from './NonstopScans/main';
 
 export const pages = {
   nineAnime,
@@ -236,4 +237,5 @@ export const pages = {
   Komga,
   AnimeWho,
   AnimeSuge,
+  NonstopScans,
 };
