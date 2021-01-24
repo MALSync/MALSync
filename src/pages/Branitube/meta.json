@@ -1,6 +1,6 @@
 {
   "urls": {
-    "match": ["*://*.branitube.net/watch/*", "*://*.branitube.net/animes/*"],
-    "exclude": ["*://*.branitube.net/animes/filter/*", "*://*.branitube.net/animes/pagina/*"]
+    "match": ["*://*.branitube.net/video/*", "*://*.branitube.net/lista/*"],
+    "exclude": ["*://*.branitube.net/lista/filter/*", "*://*.branitube.net/lista/pagina/*"]
   }
 }
