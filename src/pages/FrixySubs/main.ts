@@ -56,7 +56,7 @@ export const FrixySubs: pageInterface = {
       return FrixySubs.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.container')
+      j.$('.container > div')
         .first()
         .before(j.html(selector));
     },
