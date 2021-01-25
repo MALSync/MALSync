@@ -28,7 +28,6 @@ export const OtakuFR: pageInterface = {
         .$('#app-otaku > section > div > div > div.col-md-8 > div > div.title.h1.mt-4.wp-dark-mode-ignore')
         .text();
 
-      console.log(`Data ${selectedOptionText.split(' ').slice(-2)[0]}`);
       return Number(selectedOptionText.split(' ').slice(-2)[0]);
     },
     nextEpUrl(url) {
@@ -38,7 +37,7 @@ export const OtakuFR: pageInterface = {
 
   overview: {
     getTitle(url) {
-      return j.$('.list > div:nth-child(1)').text();
+      return j.$('.list > div').text();
     },
     getIdentifier(url) {
       return OtakuFR.sync.getIdentifier(url);
