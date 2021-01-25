@@ -79,7 +79,7 @@ export const AsuraScans: pageInterface = {
     j.$(document).ready(function() {
       if (
         page.url.split('/')[3].indexOf('chapter') >= 0 ||
-        (page.url.split('/')[3] === 'manga' && page.url.split('/')[4] !== '')
+        (page.url.split('/')[3] === 'comics' && page.url.split('/')[4] !== '')
       ) {
         page.handlePage();
       }
