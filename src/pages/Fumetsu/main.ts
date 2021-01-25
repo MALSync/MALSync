@@ -16,7 +16,13 @@ export const Fumetsu: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.text-center > a').first().attr('href'), Fumetsu.domain);
+      return utils.absoluteLink(
+        j
+          .$('.text-center > a')
+          .first()
+          .attr('href'),
+        Fumetsu.domain,
+      );
     },
     getEpisode(url) {
       return getEpNumber(j.$('.text-center > h5').text());
@@ -29,13 +35,18 @@ export const Fumetsu: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('.ep-info h2').first().text();
+      return j
+        .$('.ep-info h2')
+        .first()
+        .text();
     },
     getIdentifier(url) {
       return Fumetsu.sync!.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.newsy.container > .row').first().before(j.html(selector));
+      j.$('.newsy.container > .row')
+        .first()
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -43,16 +54,27 @@ export const Fumetsu: pageInterface = {
         return j.$('.episodes');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(j.$(selector).parent().attr('href'), Fumetsu.domain);
+        return utils.absoluteLink(
+          j
+            .$(selector)
+            .parent()
+            .attr('href'),
+          Fumetsu.domain,
+        );
       },
       elementEp(selector) {
-        return getEpNumber(j.$(selector).find('.float-left').text());
+        return getEpNumber(
+          j
+            .$(selector)
+            .find('.float-left')
+            .text(),
+        );
       },
     },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function () {
+    j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }
