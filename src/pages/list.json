@@ -583,10 +583,5 @@
     "domain": "https://animewho.com",
     "type": "anime",
     "name": "AnimeWho"
-  },
-  {
-    "domain": "https://fumetsu.pl",
-    "type": "anime",
-    "name": "Fumetsu"
   }
 ]
