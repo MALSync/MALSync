@@ -408,4 +408,8 @@ module.exports = {
   animeshouse: {
     match: ['*://animeshouse.net/gcloud/*'],
   },
+  // animixplay
+  animato: {
+    match: ['*://animato.me/embed/*'],
+  },
 };
