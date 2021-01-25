@@ -1,6 +1,8 @@
 @import './../pages';
 
 @borderColor: #428bca !important;
+@bgColor: rgba(0, 41, 102, 0.8);
+
 #malp span,
 select,
 input,
@@ -10,11 +12,13 @@ a {
 
 #malp select option {
   color: white !important;
-  background-color: black !important;
+  background-color: @bgColor !important;
 }
 
 #malp {
+  margin: 10px;
   padding: 4px 10px;
+  background-color: @bgColor;
   border: 2px solid @borderColor !important;
   .info {
     background-color: transparent;
