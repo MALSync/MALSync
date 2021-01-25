@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://*.otakufr.com/*"]
+    "match": ["*://otakufr.co/*"]
   }
 }

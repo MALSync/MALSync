@@ -1,25 +1,25 @@
 {
   "title": "OtakuFR",
-  "url": "https://www.otakufr.com/",
+  "url": "https://otakufr.co",
   "testCases": [
     {
-      "url": "https://www.otakufr.com/Ahiru-no-Sora-Vostfr/21/",
+      "url": "https://otakufr.co/episode/ahiru-no-sora-21-vostfr/",
       "expected": {
         "sync": true,
         "title": "Ahiru no Sora",
-        "identifier": "Ahiru-no-Sora-Vostfr",
-        "overviewUrl": "https://www.otakufr.com/Ahiru-no-Sora-Vostfr/",
-        "nextEpUrl": "https://www.otakufr.com/Ahiru-no-Sora-Vostfr/22/",
+        "identifier": "ahiru-no-sora",
+        "overviewUrl": "https://otakufr.co/anime/ahiru-no-sora/",
+        "nextEpUrl": "https://otakufr.co/episode/ahiru-no-sora-21-vostfr/",
         "episode": 21,
         "uiSelector": false
       }
     },
     {
-      "url": "https://www.otakufr.com/Ahiru-no-Sora-Vostfr/",
+      "url": "https://otakufr.co/anime/ahiru-no-sora/",
       "expected": {
         "sync": false,
         "title": "Ahiru no Sora",
-        "identifier": "Ahiru-no-Sora-Vostfr",
+        "identifier": "ahiru-no-sora",
         "uiSelector": true
       }
     }
