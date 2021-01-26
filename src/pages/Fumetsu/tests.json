@@ -1,0 +1,30 @@
+{
+  "title": "Fumetsu",
+  "url": "https://fumetsu.pl",
+  "testCases": [
+    {
+      "url": "https://fumetsu.pl/anime/Beastars2ndSeason/2/",
+      "expected": {
+        "sync": true,
+        "title": "Beastars 2nd Season",
+        "identifier": "Beastars2ndSeason",
+        "overviewUrl": "https://fumetsu.pl/anime/Beastars2ndSeason/",
+        "nextEpUrl": "https://fumetsu.pl/anime/Beastars2ndSeason/3/",
+        "episode": 2,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://fumetsu.pl/anime/Beastars2ndSeason/",
+      "expected": {
+        "sync": false,
+        "title": "Beastars 2nd Season",
+        "identifier": "Beastars2ndSeason",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://fumetsu.pl/anime/Beastars2ndSeason/1/"
+        }
+      }
+    }
+  ]
+}
