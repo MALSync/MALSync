@@ -1,0 +1,31 @@
+{
+  "title": "NonstopScans",
+  "url": "https://www.nonstopscans.com/",
+  "testCases": [
+    {
+      "url": "https://www.nonstopscans.com/75-immortal-swordsman-in-the-reverse-world/",
+      "expected": {
+        "sync": true,
+        "title": "Immortal Swordsman In The Reverse World",
+        "identifier": "immortal-swordsman-in-the-reverse-world",
+        "overviewUrl": "https://www.nonstopscans.com/manga/immortal-swordsman-in-the-reverse-world/",
+        "nextEpUrl": "https://www.nonstopscans.com/76-immortal-swordsman-in-the-reverse-world/",
+        "episode": 75,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.nonstopscans.com/manga/immortal-swordsman-in-the-reverse-world/",
+      "expected": {
+        "sync": false,
+        "title": "Immortal Swordsman In The Reverse World",
+        "identifier": "immortal-swordsman-in-the-reverse-world",
+        "uiSelector": true,
+        "epList": {
+          "30": "https://www.nonstopscans.com/30-immortal-swordsman-in-the-reverse-world/",
+          "92": "https://www.nonstopscans.com/92-immortal-swordsman-in-the-reverse-world/"
+        }
+      }
+    }
+  ]
+}

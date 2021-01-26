@@ -118,6 +118,7 @@ import { AnimeWho } from './AnimeWho/main';
 import { AnimeSuge } from './AnimeSuge/main';
 import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
+import { NonstopScans } from './NonstopScans/main';
 
 export const pages = {
   nineAnime,
@@ -240,4 +241,5 @@ export const pages = {
   AnimeSuge,
   Toonily,
   Fumetsu,
+  NonstopScans,
 };
