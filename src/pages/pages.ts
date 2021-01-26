@@ -117,6 +117,7 @@ import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
 import { AnimeSuge } from './AnimeSuge/main';
 import { Toonily } from './Toonily/main';
+import { Fumetsu } from './Fumetsu/main';
 
 export const pages = {
   nineAnime,
@@ -238,4 +239,5 @@ export const pages = {
   AnimeWho,
   AnimeSuge,
   Toonily,
+  Fumetsu,
 };
