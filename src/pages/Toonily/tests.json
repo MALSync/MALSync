@@ -1,0 +1,26 @@
+{
+  "title": "Toonily",
+  "url": "https://toonily.net/",
+  "testCases": [
+    {
+      "url": "https://toonily.net/manga/above-all-gods/chapter-173-5/",
+      "expected": {
+        "sync": true,
+        "title": "Above All Gods",
+        "identifier": "above-all-gods",
+        "overviewUrl": "https://toonily.net/manga/above-all-gods/",
+        "episode": 173,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://toonily.net/manga/above-all-gods/",
+      "expected": {
+        "sync": false,
+        "title": "Above All Gods",
+        "identifier": "above-all-gods",
+        "uiSelector": true
+      }
+    }
+  ]
+}
