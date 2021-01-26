@@ -184,7 +184,7 @@ module.exports = {
   },
   // anime-odcinki shinden animezone
   cda: {
-    match: ['*://*.cda.pl/*'],
+    match: ['*://ebd.cda.pl/*'],
   },
   // kissanime/9anime/gogoanime
   hydrax: {
