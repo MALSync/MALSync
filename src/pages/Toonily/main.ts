@@ -11,7 +11,7 @@ export const Toonily: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('.wp-manga-nav .breadcrumb li:nth-child(2) a')
+        .$('.breadcrumb li > a[href*="/manga/"]')
         .text()
         .trim();
     },
@@ -19,10 +19,16 @@ export const Toonily: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('.wp-manga-nav .breadcrumb li:nth-child(2) a').attr('href') || '';
+      return utils.absoluteLink(j.$('.breadcrumb li > a[href*="/manga/"]').attr('href'), Toonily.domain) || '';
     },
     getEpisode(url) {
-      return parseInt(url.split('/')[5].split('-')[1]);
+      const episodePart = utils.urlPart(url, 5);
+
+      const temp = episodePart.match(/chapter-\d+/gim);
+
+      if (!temp || temp.length === 0) return NaN;
+
+      return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
       return j.$('.nav-links .nav-next a:not([class^="back"])')!.attr('href');
@@ -30,17 +36,10 @@ export const Toonily: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.post-title h1')
-        .contents()
-        .filter(function() {
-          return this.nodeType === 3;
-        })
-        .text()
-        .trim();
+      return Toonily.sync.getTitle(url);
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('.tab-summary')
@@ -50,6 +49,18 @@ export const Toonily: pageInterface = {
             `<div id="MALSyncheading" class="post-content_item"> <h6 class="text-highlight">MAL-Sync</h6></div><div id="malthing" class="post-content_item">${selector}</div>`,
           ),
         );
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('div.listing-chapters_wrap > ul > li.wp-manga-chapter > a');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), Toonily.domain);
+      },
+      elementEp(selector) {
+        return Toonily.sync.getEpisode(Toonily.overview!.list!.elementUrl(selector));
+      },
     },
   },
   init(page) {
