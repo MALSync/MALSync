@@ -83,7 +83,7 @@ export const Fumetsu: pageInterface = {
 };
 
 function getEpNumber(text) {
-  const pattern = /Odcinek:?\s?([0-9]*)/;
+  const pattern = /Odcinek:?\s?([0-9]+)/;
   const ep = text.trim().match(pattern);
   if (!ep) return ep;
   return Number(ep[1]);
