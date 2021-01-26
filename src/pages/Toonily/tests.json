@@ -19,7 +19,11 @@
         "sync": false,
         "title": "Above All Gods",
         "identifier": "above-all-gods",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "20": "https://toonily.net/manga/yuan-zun/chapter-20/",
+          "279": "https://toonily.net/manga/yuan-zun/chapter-279/"
+        }
       }
     }
   ]
