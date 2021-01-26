@@ -31,7 +31,11 @@ export const Toonily: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('.breadcrumb li:nth-child(3) a')
+        .$('.post-title h1')
+        .contents()
+        .filter(function() {
+          return this.nodeType === 3;
+        })
         .text()
         .trim();
     },
