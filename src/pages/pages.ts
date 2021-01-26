@@ -116,6 +116,7 @@ import { Otakustv } from './Otakustv/main';
 import { Komga } from './Komga/main';
 import { AnimeWho } from './AnimeWho/main';
 import { AnimeSuge } from './AnimeSuge/main';
+import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 
 export const pages = {
@@ -237,5 +238,6 @@ export const pages = {
   Komga,
   AnimeWho,
   AnimeSuge,
+  Toonily,
   Fumetsu,
 };
