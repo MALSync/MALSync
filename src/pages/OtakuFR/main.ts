@@ -6,41 +6,42 @@ export const OtakuFR: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    if (j.$('#player-0 > iframe').length) {
+    if (url.split('/')[3] === 'episode' && url.split('/')[4].length > 0) {
+      return true;
+    }
+    return false;
+  },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'anime' && url.split('/')[4].length > 0) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j.$('#app-otaku > section > div > div > div.col-md-8 > div > nav > ol > li:nth-child(2) > a').text();
+      return j.$('.single-episode > nav li > a[href*="/anime/"]').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(OtakuFR.sync.getOverviewUrl(url), 4) || '';
     },
     getOverviewUrl(url) {
-      return (
-        j.$('#app-otaku > section > div > div > div.col-md-8 > div > nav > ol > li:nth-child(2) > a').attr('href') || ''
-      );
+      return j.$('.single-episode > nav li > a[href*="/anime/"]').attr('href') || '';
     },
     getEpisode(url) {
-      const selectedOptionText = j
-        .$('#app-otaku > section > div > div > div.col-md-8 > div > div.title.h1.mt-4.wp-dark-mode-ignore')
-        .text();
-
-      return Number(selectedOptionText.split(' ').slice(-2)[0]);
+      return getEp(utils.urlPart(url, 4));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('.players > div > div:nth-child(3) > a').attr('href'), OtakuFR.domain);
+      const nextEp = j.$('.players > div > div:nth-child(3) > a').attr('href');
+      if (!nextEp || nextEp.includes('javascript')) return '';
+      return utils.absoluteLink(nextEp, OtakuFR.domain);
     },
   },
-
   overview: {
     getTitle(url) {
       return j.$('.list > div').text();
     },
     getIdentifier(url) {
-      return OtakuFR.sync.getIdentifier(url);
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('.card')
@@ -50,33 +51,26 @@ export const OtakuFR: pageInterface = {
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$(
-          '#app-otaku > section > div > div > div.col-md-8.order-1 > div > article > div > div:nth-child(2) > div > div.list-episodes.list-group > a',
-        );
+        return j.$('div.list-episodes.list-group > a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), OtakuFR.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .first()
-            .text()
-            .match(/(\d+) (?:Vostfr|VF)/)[1],
-        );
+        return getEp(utils.urlPart(OtakuFR.overview!.list!.elementUrl(selector), 4));
       },
     },
   },
-
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        $('#player-0 > iframe').length ||
-        $('.card-body > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)').length
-      ) {
-        page.handlePage();
-      }
+      page.handlePage();
     });
   },
 };
+
+function getEp(urlPath) {
+  const ep = urlPath.match(/(\d+-(vostfr|vf))|((vostfr|vf)-\d+)/i);
+  if (!ep || !ep.length) return 1;
+  return Number(ep[0].match(/\d+/)[0]);
+}
