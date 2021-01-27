@@ -20,7 +20,10 @@
         "sync": false,
         "title": "Ahiru no Sora",
         "identifier": "ahiru-no-sora",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "38": "https://otakufr.co/episode/ahiru-no-sora-38-vostfr/"
+        }
       }
     }
   ]
