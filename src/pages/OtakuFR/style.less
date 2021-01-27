@@ -1,8 +1,5 @@
 @import './../pages';
 
-@textColor: black;
-@activeEp: #b2d1ff !important;
-
 #malp {
   a:hover {
     color: #e3474b;
@@ -23,13 +20,22 @@
   display: inline-block !important;
 }
 
-#flash-div-top, #flashinfo-div {
+#flash-div-top,
+#flashinfo-div {
   background-color: inherit !important;
   * {
     background-color: inherit !important;
   }
 
-  .flash > *{
+  .flash > * {
     background: #323232 !important;
   }
+}
+
+#malSyncProgress .ms-progress {
+  background-color: rgb(41, 128, 185) !important;
+}
+
+.mal-sync-active {
+  box-shadow: 0 0 0 1px red !important;
 }
