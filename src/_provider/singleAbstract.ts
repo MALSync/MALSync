@@ -371,9 +371,13 @@ export abstract class SingleAbstract {
 
   public getMalUrl(): string | null {
     if (!Number.isNaN(this.ids.mal)) {
-      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(
-        this.getTitle().replace(/\//, '_'),
-      )}`;
+      let title;
+      try {
+        title = this.getTitle().replace(/\//, '_');
+      } catch (e) {
+        con.error('no title found');
+      }
+      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(title)}`;
     }
     return null;
   }

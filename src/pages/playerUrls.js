@@ -408,4 +408,12 @@ module.exports = {
   kaaplay: {
     match: ['*://kaa-play.com/*'],
   },
+  // animeshouse
+  animeshouse: {
+    match: ['*://animeshouse.net/gcloud/*'],
+  },
+  // animixplay
+  animato: {
+    match: ['*://animato.me/embed/*'],
+  },
 };

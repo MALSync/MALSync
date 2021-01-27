@@ -3,19 +3,19 @@
   "url": "https://asurascans.com/",
   "testCases": [
     {
-      "url": "https://asurascans.com/shenwu-tianzun-chapter-198/",
+      "url": "https://asurascans.com/2547-shenwu-tianzun-chapter-198/",
       "expected": {
         "sync": true,
         "title": "Shenwu Tianzun",
         "identifier": "shenwu-tianzun",
-        "overviewUrl": "https://asurascans.com/manga/shenwu-tianzun/",
-        "nextEpUrl": "https://asurascans.com/shenwu-tianzun-chapter-199/",
+        "overviewUrl": "https://asurascans.com/comics/shenwu-tianzun/",
+        "nextEpUrl": "https://asurascans.com/2547-shenwu-tianzun-chapter-199/",
         "episode": 198,
         "uiSelector": false
       }
     },
     {
-      "url": "https://asurascans.com/manga/shenwu-tianzun/",
+      "url": "https://asurascans.com/comics/shenwu-tianzun/",
       "expected": {
         "sync": false,
         "title": "Shenwu Tianzun",
