@@ -53,10 +53,10 @@ export const Toonily: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.listing-chapters_wrap > ul > li.wp-manga-chapter > a');
+        return j.$('div.listing-chapters_wrap > ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), Toonily.domain);
+        return utils.absoluteLink(selector.find('a').attr('href'), Toonily.domain);
       },
       elementEp(selector) {
         return Toonily.sync.getEpisode(Toonily.overview!.list!.elementUrl(selector));
