@@ -326,6 +326,15 @@ export abstract class SingleAbstract {
   public undo(): Promise<void> {
     this.logger.log('[SINGLE]', 'Undo', this.undoState);
     if (!this.undoState) throw new Error('No undo state found');
+    if (!this.undoState.onList) {
+      // @ts-ignore
+      if (typeof this.delete === 'undefined') throw new Error('Deleting an entry is not supported');
+      // @ts-ignore
+      return this.delete().then(() => {
+        this.setStateEl(this.undoState);
+        this.undoState = null;
+      });
+    }
     this.setStateEl(this.undoState);
     return this.sync().then(() => {
       this.undoState = null;
@@ -429,6 +438,7 @@ export abstract class SingleAbstract {
 
   getStateEl() {
     return {
+      onList: this.isOnList(),
       episode: this.getEpisode(),
       volume: this.getVolume(),
       status: this.getStatus(),
@@ -437,6 +447,7 @@ export abstract class SingleAbstract {
   }
 
   setStateEl(state) {
+    this._onList = state.onList;
     this.setEpisode(state.episode);
     this.setVolume(state.volume);
     this.setStatus(state.status);

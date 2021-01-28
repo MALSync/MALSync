@@ -514,13 +514,16 @@ export class syncPage {
 
         if (!diffState)
           diffState = {
+            onList: this.singleObj.isOnList(),
             episode: this.singleObj.getEpisode(),
             volume: this.singleObj.getVolume(),
             status: this.singleObj.getStatus(),
             score: this.singleObj.getScore(),
           };
 
-        if (diffState.status) {
+        if (typeof diffState.onList === 'undefined') diffState.onList = true;
+
+        if (diffState.onList && diffState.status) {
           let statusString = '';
           switch (parseInt(diffState.status)) {
             case 1:
@@ -546,18 +549,23 @@ export class syncPage {
           message += split + statusString;
           split = ' | ';
         }
-        if (this.page.type === 'manga' && diffState.volume) {
+        if (!diffState.onList) {
+          message += split + api.storage.lang('removed');
+          split = ' | ';
+        }
+        if (diffState.onList && this.page.type === 'manga' && diffState.volume) {
           message += `${split + api.storage.lang('UI_Volume')} ${diffState.volume}/${totalVol}`;
           split = ' | ';
         }
-        if (diffState.episode) {
+        if (diffState.onList && diffState.episode) {
           message += `${split + utils.episode(this.page.type)} ${diffState.episode}/${totalEp}`;
           split = ' | ';
         }
-        if (diffState.score) {
+        if (diffState.onList && diffState.score) {
           message += `${split + api.storage.lang('UI_Score')} ${diffState.score}`;
           split = ' | ';
         }
+
         if (hoverInfo) {
           /* if(episodeInfoBox){//TODO
                 episodeInfo(change['.add_anime[num_watched_episodes]'], actual['malurl'], message, function(){
