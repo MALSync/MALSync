@@ -48,6 +48,7 @@ export const settingsObj = {
     animepahe: true,
     MangaFox: true,
     MangaSee: true,
+    YugenAnime: true,
 
     autofull: false,
     autoresume: false,

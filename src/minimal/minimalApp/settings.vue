@@ -138,17 +138,18 @@
         </div>
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
         <checkbox option="9anime">9anime</checkbox>
+        <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
+        <checkbox option="animepahe">animepahe</checkbox>
+        <checkbox option="AnimeSimple">AnimeSimple</checkbox>
+        <checkbox option="Aniwatch">Aniwatch</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
         <checkbox option="Gogoanime">Gogoanime</checkbox>
-        <checkbox option="Twistmoe">twist.moe</checkbox>
-        <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
-        <checkbox option="Aniwatch">Aniwatch</checkbox>
-        <checkbox option="AnimeSimple">AnimeSimple</checkbox>
-        <checkbox option="animepahe">animepahe</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNelo">MangaNelo</checkbox>
         <checkbox option="MangaSee">MangaSee</checkbox>
+        <checkbox option="Twistmoe">twist.moe</checkbox>
+        <checkbox option="YugenAnime">YugenAnime</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
