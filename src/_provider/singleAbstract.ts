@@ -290,6 +290,7 @@ export abstract class SingleAbstract {
       .then(() => {
         this.undoState = this.persistanceState;
         if (this.updateProgress) this.initProgress();
+        this._onList = true;
         this.emitUpdate();
       });
   }
