@@ -175,7 +175,7 @@ export abstract class SingleAbstract {
 
   public getProgressOptions() {
     const op: { value: string; key: string }[] = [];
-    if (this.progressXhr) {
+    if (this.progressXhr && Object.keys(this.progressXhr).length) {
       this.progressXhr.forEach(el => {
         if (el.state === 'complete') return;
         let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
