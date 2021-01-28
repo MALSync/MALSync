@@ -1,6 +1,7 @@
 {
   "title": "anime4you",
   "url": "https://www.anime4you.one/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.anime4you.one/show/1/aid/781/",

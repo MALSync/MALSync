@@ -138,7 +138,6 @@
         </div>
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
         <checkbox option="9anime">9anime</checkbox>
-        <checkbox option="Anime4you">Anime4You (Ger)</checkbox>
         <checkbox option="animepahe">animepahe</checkbox>
         <checkbox option="AnimeSimple">AnimeSimple</checkbox>
         <checkbox option="Aniwatch">Aniwatch</checkbox>

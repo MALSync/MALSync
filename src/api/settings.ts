@@ -40,7 +40,6 @@ export const settingsObj = {
     Crunchyroll: true,
     Gogoanime: true,
     Twistmoe: true,
-    Anime4you: true,
     Mangadex: true,
     MangaNelo: true,
     Aniwatch: true,
