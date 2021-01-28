@@ -11,7 +11,10 @@
       "*://*.9anime.love/watch/*",
       "*://*.9anime.tv/watch/*",
       "*://*.9anime.app/watch/*",
-      "*://*.9anime.at/watch/*"
+      "*://*.9anime.at/watch/*",
+      "*://*.9anime.bar/watch/*",
+      "*://*.9anime.pw/watch/*",
+      "*://*.9anime.cz/watch/*"
     ]
   }
 }
