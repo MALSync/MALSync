@@ -6,7 +6,7 @@ export const Branitube: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'watch') {
+    if (url.split('/')[3] === 'video') {
       return true;
     }
     return false;
@@ -53,7 +53,7 @@ export const Branitube: pageInterface = {
         j.$('.cplPl').attr('data-npltype') &&
         j.$('.cplPl').attr('data-cpl') === j.$('.cplPl').attr('data-npltype')
       ) {
-        return `${Branitube.domain}/watch/${j.$('.cplPl').attr('data-npl')}/${url.split('/')[5]}`;
+        return `${Branitube.domain}/video/${j.$('.cplPl').attr('data-npl')}/${url.split('/')[5]}`;
       }
       return '';
     },
@@ -139,7 +139,7 @@ export const Branitube: pageInterface = {
 
 function getType() {
   let epInfo;
-  if (window.location.href.split('/')[3] === 'watch') {
+  if (window.location.href.split('/')[3] === 'video') {
     epInfo = j
       .$('.epInfo')
       .text()
