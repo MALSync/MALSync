@@ -2,107 +2,75 @@ import { pageInterface } from '../pageInterface';
 
 export const OtakuFR: pageInterface = {
   name: 'OtakuFR',
-  domain: 'https://www.otakufr.com',
+  domain: 'https://otakufr.co',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    if (j.$('.vdo_wrp > iframe').length) {
+    if (url.split('/')[3] === 'episode' && url.split('/')[4].length > 0) {
+      return true;
+    }
+    return false;
+  },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'anime' && url.split('/')[4].length > 0) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j.$('#sct_content > div > ul > li:nth-child(2) > a').text();
+      return j.$('.single-episode > nav li > a[href*="/anime/"]').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3) || '';
+      return utils.urlPart(OtakuFR.sync.getOverviewUrl(url), 4) || '';
     },
     getOverviewUrl(url) {
-      return j.$('.breadcrumb > li:nth-child(2) > a').attr('href') || '';
+      return j.$('.single-episode > nav li > a[href*="/anime/"]').attr('href') || '';
     },
     getEpisode(url) {
-      const selectedOptionText = j
-        .$('#sct_content > div > div.wpa_pag.anm_pyr > div > ul.nav_eps > li:nth-child(2) > select > option:selected')
-        .text();
-
-      if (!selectedOptionText && selectedOptionText.length < 2) return NaN;
-
-      return Number(selectedOptionText.split(' ')[1]);
+      return getEp(utils.urlPart(url, 4));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('div.wpa_nav > ul:nth-child(2) > li > a').attr('href'), OtakuFR.domain);
+      const nextEp = j.$('.players > div > div:nth-child(3) > a').attr('href');
+      if (!nextEp || nextEp.includes('javascript')) return '';
+      return utils.absoluteLink(nextEp, OtakuFR.domain);
     },
   },
-
   overview: {
     getTitle(url) {
-      return utils.getBaseText($('h1.ttl'));
+      return j.$('.list > div').text();
     },
     getIdentifier(url) {
-      return OtakuFR.sync.getIdentifier(url);
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#sct_content > div.wpa_pag.anm_det > h1')
+      j.$('.card')
         .first()
-        .after(j.html(selector));
+        .before(j.html(selector));
     },
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$('#sct_content > div.wpa_pag.anm_det > ul > li');
+        return j.$('div.list-episodes.list-group > a');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          OtakuFR.domain,
-        );
+        return utils.absoluteLink(selector.attr('href'), OtakuFR.domain);
       },
       elementEp(selector) {
-        const url = OtakuFR.overview!.list!.elementUrl(selector);
-        return episodeHelper(
-          urlHandling(url),
-          selector
-            .find('a')
-            .text()
-            .trim(),
-        );
+        return getEp(utils.urlPart(OtakuFR.overview!.list!.elementUrl(selector), 4));
       },
     },
   },
-
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if ($('.vdo_wrp > iframe').length || $('#sct_content > div.wpa_pag.anm_det > ul').length) {
-        page.handlePage();
-      }
+      page.handlePage();
     });
   },
 };
 
-function urlHandling(url) {
-  const langslug = j
-    .$('#sct_banner_head > div > a')
-    .first()
-    .attr('href');
-  if (langslug === '/') {
-    return url;
-  }
-  return url.replace(langslug, '');
-}
-
-function episodeHelper(url: string, episodeText: string) {
-  const episodePart = utils.urlPart(urlHandling(url), 1);
-
-  if (!episodePart) return NaN;
-
-  const episodeNumberMatches = episodeText.match(/\d+\.\d+/);
-
-  if (!episodeNumberMatches || episodeNumberMatches.length === 0) return NaN;
-
-  return Number(episodeNumberMatches[0]);
+function getEp(urlPath) {
+  const ep = urlPath.match(/(\d+-(vostfr|vf))|((vostfr|vf)-\d+)/i);
+  if (!ep || !ep.length) return 1;
+  return Number(ep[0].match(/\d+/)[0]);
 }
