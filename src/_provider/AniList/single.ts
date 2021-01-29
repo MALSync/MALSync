@@ -220,7 +220,12 @@ export class Single extends SingleAbstract {
       variables.volumes = this.animeInfo.mediaListEntry.progressVolumes;
     }
 
-    return this.apiCall(query, variables);
+    return this.apiCall(query, variables).then(json => {
+      if (json && json.data && json.data.SaveMediaListEntry && json.data.SaveMediaListEntry.id) {
+        this.animeInfo.mediaListEntry.id = json.data.SaveMediaListEntry.id;
+      }
+      return json;
+    });
   }
 
   protected apiCall = helper.apiCall;

@@ -260,7 +260,12 @@ export class Single extends SingleAbstract {
 
     this.logger.log(post, variables);
 
-    return this.apiCall(post, updateUrl, variables);
+    return this.apiCall(post, updateUrl, variables).then(res => {
+      if (res && res.data && res.data.id) {
+        this.listI().id = res.data.id;
+      }
+      return res;
+    });
   }
 
   protected apiCall = helper.apiCall;
