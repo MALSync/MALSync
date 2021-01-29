@@ -391,11 +391,25 @@ export function getProgress(res, mode, type) {
     if (mainTemp) top = mainTemp;
   }
 
-  if (config.fallbackPrediction && top && !top.predicition) {
+  if (config.fallbackPrediction && top && !top.predicition && top.lastEp.timestamp) {
     const predTemp = res.find(el => el.id === config.fallbackPrediction);
-    if (predTemp && predTemp.predicition && top.lastEp.total === predTemp.lastEp.total) {
-      top.predicition = predTemp.predicition;
-      top.predicition.probability = 'medium';
+    const predTime = top.lastEp.timestamp + 7 * 24 * 60 * 60 * 1000;
+    if (predTime && predTemp && predTemp.predicition) {
+      if (top.lastEp.total === predTemp.lastEp.total) {
+        if (Math.abs(predTime - predTemp.predicition.timestamp) < 30 * 60 * 60 * 1000) {
+          top.predicition = {
+            timestamp: predTime,
+            probability: 'medium',
+          };
+        }
+      } else if (predTemp.lastEp.total && top.lastEp.total === predTemp.lastEp.total - 1) {
+        if (Math.abs(predTime - (predTemp.predicition.timestamp - 7 * 24 * 60 * 60 * 1000)) < 30 * 60 * 60 * 1000) {
+          top.predicition = {
+            timestamp: predTime,
+            probability: 'medium',
+          };
+        }
+      }
     }
   }
 
