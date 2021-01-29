@@ -206,7 +206,7 @@
                         renderObj.getEpisode() < renderObj.getTotalEpisodes()
                     "
                     class="material-icons ep-increment"
-                    @click="increaseEP()"
+                    @click="increaseEP('episode')"
                     >add</span
                   >
                 </span>
@@ -236,9 +236,16 @@
                     renderObj.getTotalVolumes()
                   }}</span
                   ><span v-else>?</span>
-                  <a href="javascript:void(0)" class="js-anime-increment-episode-button" target="_blank">
-                    <i class="fa fa-plus-circle ml4"> </i>
-                  </a>
+                  <span
+                    v-if="
+                      !renderObj.getTotalVolumes() ||
+                        !renderObj.getVolume() ||
+                        renderObj.getVolume() < renderObj.getTotalVolumes()
+                    "
+                    class="material-icons ep-increment"
+                    @click="increaseEP('volume')"
+                    >add</span
+                  >
                 </span>
               </span>
             </li>
@@ -799,13 +806,22 @@ export default {
       utils.flashm(api.storage.lang('loading'));
       this.renderObj.update();
     },
-    increaseEP() {
+    increaseEP(type) {
       let nextEp = 1;
-      if (this.renderObj.getEpisode()) nextEp = this.renderObj.getEpisode() + 1;
-      if (this.renderObj.getTotalEpisodes() && nextEp > this.renderObj.getTotalEpisodes())
-        nextEp = this.renderObj.getTotalEpisodes();
+      if (type === 'episode') {
+        if (this.renderObj.getEpisode()) nextEp = this.renderObj.getEpisode() + 1;
+        if (this.renderObj.getTotalEpisodes() && nextEp > this.renderObj.getTotalEpisodes())
+          nextEp = this.renderObj.getTotalEpisodes();
 
-      this.renderObj.setEpisode(nextEp);
+        this.renderObj.setEpisode(nextEp);
+      } else {
+        if (this.renderObj.getVolume()) nextEp = this.renderObj.getVolume() + 1;
+        if (this.renderObj.getTotalVolumes() && nextEp > this.renderObj.getTotalVolumes())
+          nextEp = this.renderObj.getTotalVolumes();
+
+        this.renderObj.setVolume(nextEp);
+      }
+
       clearTimeout(nextEpBounce);
       nextEpBounce = setTimeout(() => {
         this.malSync();
