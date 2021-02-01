@@ -46,8 +46,8 @@ export const AnimeStreamingFR: pageInterface = {
     function checkPage() {
       page.reset();
       if (
-        page.url.split('/')[3] === 'anime' &&
         page.url.split('/').length > 3 &&
+        page.url.split('/')[3] === 'anime' &&
         typeof page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0
       ) {
