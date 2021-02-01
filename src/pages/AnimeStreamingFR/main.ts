@@ -43,17 +43,29 @@ export const AnimeStreamingFR: pageInterface = {
     },
   },
   init(page) {
+    function checkPage() {
+      page.reset();
+      if (
+        page.url.split('/')[3] === 'anime' &&
+        page.url.split('/').length > 3 &&
+        typeof page.url.split('/')[4] !== undefined &&
+        page.url.split('/')[4].length > 0
+      ) {
+        utils.waitUntilTrue(
+          function() {
+            return j.$('#syncData').length;
+          },
+          function() {
+            jsonData = JSON.parse(j.$('#syncData').text());
+            page.handlePage();
+          },
+        );
+      }
+    }
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      utils.waitUntilTrue(
-        function() {
-          return j.$('#syncData').length;
-        },
-        function() {
-          jsonData = JSON.parse(j.$('#syncData').text());
-          page.handlePage();
-        },
-      );
+    checkPage();
+    utils.urlChangeDetect(function() {
+      checkPage();
     });
   },
 };
