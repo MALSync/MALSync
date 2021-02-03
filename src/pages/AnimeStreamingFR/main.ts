@@ -39,7 +39,7 @@ export const AnimeStreamingFR: pageInterface = {
     uiSelector(selector) {
       j.$(jsonData.selector_position)
         .first()
-        .after(j.html(selector));
+        .append(j.html(selector));
     },
   },
   init(page) {
