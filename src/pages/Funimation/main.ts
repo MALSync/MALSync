@@ -116,7 +116,7 @@ export const Funimation: pageInterface = {
 
             j.$(document).on('change', '#seasonSelect', () => {
               page.reset();
-              window.clearTimeout(wait);
+              window.clearInterval(wait);
 
               wait = utils.waitUntilTrue(
                 function() {
