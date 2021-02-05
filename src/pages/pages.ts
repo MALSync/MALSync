@@ -119,6 +119,7 @@ import { Toonily } from './Toonily/main';
 import { Fumetsu } from './Fumetsu/main';
 import { NonstopScans } from './NonstopScans/main';
 import { FrixySubs } from './FrixySubs/main';
+import { Guya } from './Guya/main';
 
 export const pages = {
   nineAnime,
@@ -242,4 +243,5 @@ export const pages = {
   Fumetsu,
   NonstopScans,
   FrixySubs,
+  Guya,
 };

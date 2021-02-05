@@ -1,0 +1,30 @@
+{
+  "title": "Guya",
+  "url": "https://guya.moe",
+  "testCases": [
+    {
+      "url": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/",
+      "expected": {
+        "sync": false,
+        "title": "Kaguya-sama: Love is War",
+        "identifier": "Kaguya-Wants-To-Be-Confessed-To",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/6/1/",
+          "215": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/215/1/"
+        }
+      }
+    },
+    {
+      "url": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/210/1/",
+      "expected": {
+        "sync": true,
+        "title": "Kaguya-sama: Love is War",
+        "identifier": "Kaguya-Wants-To-Be-Confessed-To",
+        "overviewUrl": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/",
+        "episode": 210,
+        "uiSelector": false,
+      }
+    }
+  ]
+}
