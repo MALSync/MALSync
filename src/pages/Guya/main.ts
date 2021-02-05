@@ -74,8 +74,16 @@ export const Guya: pageInterface = {
           return false;
         },
         function() {
-          if (window.location.href.split('/').slice(0, 7).join('/') !== urlWithoutPage) {
-            urlWithoutPage = window.location.href.split('/').slice(0, 7).join('/');
+          if (
+            window.location.href
+              .split('/')
+              .slice(0, 7)
+              .join('/') !== urlWithoutPage
+          ) {
+            urlWithoutPage = window.location.href
+              .split('/')
+              .slice(0, 7)
+              .join('/');
             page.handlePage();
           }
         },
