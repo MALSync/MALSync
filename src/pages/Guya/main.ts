@@ -48,7 +48,7 @@ export const Guya: pageInterface = {
           .$('div#detailedView, div#compactView')
           .not('.d-none')
           .first()
-          .find('a');
+          .find('a[href*="/read/manga/');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href') || '', Guya.domain);
