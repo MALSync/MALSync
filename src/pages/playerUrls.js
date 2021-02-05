@@ -416,4 +416,8 @@ module.exports = {
   animato: {
     match: ['*://animato.me/embed/*'],
   },
+  // animeshd
+  animeshd: {
+    match: ['*://animeshd.org/*/*id=*'],
+  },
 };
