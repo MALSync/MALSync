@@ -6,10 +6,18 @@ export const An1me: pageInterface = {
   languages: ['Greek'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+    const breadcrumbElement = j.$('#manga-reading-nav-head > div > div.entry-header_wrap > div > div.c-breadcrumb');
+    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0 && breadcrumbElement.length !== 0) {
       return true;
     }
     return false;
+  },
+  isOverviewPage(url) {
+    const titleElement = j.$('div.site-content > div > div.profile-manga > div > div > div > div.post-title > h1');
+
+    if (!url.split('/')[4] || titleElement.length === 0) return false;
+
+    return true;
   },
   sync: {
     getTitle(url) {
@@ -95,7 +103,7 @@ export const An1me: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'c' && page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0)
+      if (page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0)
         page.handlePage();
     });
   },
