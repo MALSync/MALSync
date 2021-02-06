@@ -120,6 +120,7 @@ import { Fumetsu } from './Fumetsu/main';
 import { NonstopScans } from './NonstopScans/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
+import { AnimesHD } from './AnimesHD/main';
 
 export const pages = {
   nineAnime,
@@ -244,4 +245,5 @@ export const pages = {
   NonstopScans,
   FrixySubs,
   Guya,
+  AnimesHD,
 };
