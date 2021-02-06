@@ -17,9 +17,4 @@ declare global {
     mozFullScreen: any;
     msFullscreenElement: any;
   }
-
-  interface EventTarget {
-    nodeName: any;
-    shadowRoot: any;
-  }
 }

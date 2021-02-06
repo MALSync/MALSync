@@ -170,6 +170,7 @@ let init = false;
 let currCallback;
 
 const shortcutOptions = [
+  //
   'introSkipFwd',
   'introSkipBwd',
   'nextEpShort',
@@ -184,21 +185,18 @@ export function shortcutListener(callback) {
 
   function initShortcuts() {
     init = true;
-    let keyMap = {};
+    let keyMap: { [key: string]: boolean } = {};
     onkeydown = onkeyup = function(e) {
       e = e || event;
       const key = e.which || e.keyCode;
-      // @ts-ignore
       keyMap[key] = e.type === 'keydown';
 
       for (let i = 0; i < shortcutOptions.length; i++) {
         const option = shortcutOptions[i];
         if (checkShortcut(option)) {
-          // @ts-ignore
           if (
-            e.target &&
-            (/textarea|input|select/i.test(e.target.nodeName) ||
-              e.target.shadowRoot)
+            e.target instanceof Node &&
+            (/textarea|input|select/i.test(e.target.nodeName) || (e.target instanceof Element && e.target.shadowRoot))
           ) {
             con.info('Input field. Shortcut suppressed.');
           } else {
@@ -216,7 +214,7 @@ export function shortcutListener(callback) {
 
     window.addEventListener(
       'focus',
-      function(event) {
+      function() {
         keyMap = {};
       },
       false,
@@ -231,11 +229,7 @@ export function shortcutListener(callback) {
           shortcutTrue = false;
         }
       });
-      if (
-        shortcutTrue &&
-        Object.values(keyMap).filter(c => c).length !== keys.length
-      )
-        shortcutTrue = false;
+      if (shortcutTrue && Object.values(keyMap).filter(c => c).length !== keys.length) shortcutTrue = false;
       return shortcutTrue;
     }
   }
