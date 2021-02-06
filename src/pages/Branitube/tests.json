@@ -5,14 +5,14 @@
   "testCases": [
     {
       // anime overview
-      "url": "https://www.branitube.net/lista/197/nogamenolife",
+      "url": "https://www.branitube.net/lista/197/no-game-no-life",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
         "identifier": "197?anime",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.branitube.net/video/1818/nogamenolife"
+          "5": "https://www.branitube.net/video/1818/no-game-no-life"
         }
       }
     },
@@ -44,13 +44,13 @@
     },
     {
       // anime watch
-      "url": "https://www.branitube.net/video/1820/nogamenolife",
+      "url": "https://www.branitube.net/video/1820/no-game-no-life",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "197?anime",
-        "overviewUrl": "https://www.branitube.net/lista/197/nogamenolife",
-        "nextEpUrl": "https://www.branitube.net/video/1821/nogamenolife",
+        "overviewUrl": "https://www.branitube.net/lista/197/no-game-no-life",
+        "nextEpUrl": "https://www.branitube.net/video/1821/no-game-no-life",
         "episode": 7,
         "uiSelector": false
       }
