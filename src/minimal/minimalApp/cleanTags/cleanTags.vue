@@ -26,6 +26,32 @@
 import { getSingle } from '../../../_provider/singleFactory';
 import { getOnlyList } from '../../../_provider/listFactory';
 
+async function cleanTags(url) {
+  const entryClass = getSingle(url);
+  return entryClass
+    .update()
+    .then(() => {
+      entryClass.cleanTags();
+      return entryClass.sync();
+    })
+    .catch(e => {
+      con.error(e);
+    });
+}
+
+function getList(type) {
+  const listProvider = getOnlyList(7, type);
+  return listProvider
+    .get()
+    .then(list => {
+      return list;
+    })
+    .catch(e => {
+      con.error(e);
+      throw listProvider.errorMessage(e);
+    });
+}
+
 export default {
   props: {},
   data() {
@@ -78,30 +104,4 @@ export default {
     },
   },
 };
-
-async function cleanTags(url) {
-  const entryClass = getSingle(url);
-  return entryClass
-    .update()
-    .then(() => {
-      entryClass.cleanTags();
-      return entryClass.sync();
-    })
-    .catch(e => {
-      con.error(e);
-    });
-}
-
-function getList(type) {
-  const listProvider = getOnlyList(7, type);
-  return listProvider
-    .get()
-    .then(list => {
-      return list;
-    })
-    .catch(e => {
-      con.error(e);
-      throw listProvider.errorMessage(e);
-    });
-}
 </script>
