@@ -973,8 +973,14 @@ export class syncPage {
         .text();
       const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
       const width = aux.width() || 0;
+
       if (width) {
-        j.$('#malp').append(j.html(aux));
+        j.$('#malp').append(
+          // @ts-expect-error
+          // TODO --fix this line doesn't make sense
+          // .html will return [object Object] 'cause aux is JQuery<HTMLElement>
+          j.html(aux),
+        );
         j.$(selector).width(width + 5);
         aux.remove();
       }
