@@ -6,10 +6,14 @@ export const AnimesHD: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return (url.split('/')[3] === 'filmes' || url.split('/')[3] === 'episodio') && url.split('/').length >= 4;
+    return (
+      (url.split('/')[3] === 'filmes' || url.split('/')[3] === 'episodio') &&
+      url.split('/').length >= 4 &&
+      url.split('/')[4].length > 0
+    );
   },
   isOverviewPage(url) {
-    return url.split('/')[3] === 'animes' && url.split('/').length >= 4;
+    return url.split('/')[3] === 'animes' && url.split('/').length >= 4 && url.split('/')[4].length > 0;
   },
   sync: {
     getTitle(url) {
