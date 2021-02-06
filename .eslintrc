@@ -158,7 +158,6 @@
     "no-fallthrough": "off",
     "import/no-extraneous-dependencies": "off",
     "no-script-url": "warn",
-    "no-inner-declarations": "off", //TODO
     "new-cap": "warn", //TODO
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO

@@ -68,6 +68,50 @@
 </template>
 
 <script type="text/javascript">
+function getBaseText(element) {
+  let text = element.text();
+  element.children().each(function() {
+    text = text.replace(j.$(this).text(), '');
+  });
+  return text;
+}
+
+function getUserRec(value) {
+  const text = getBaseText(
+    j
+      .$(value)
+      .find('.detail-user-recs-text')
+      .first(),
+  ).trim();
+
+  const username = j
+    .$(value)
+    .find('.detail-user-recs-text')
+    .next()
+    .find('a')
+    .last()
+    .text();
+
+  const userHref = `https://myanimelist.net${j
+    .$(value)
+    .find('.detail-user-recs-text')
+    .next()
+    .find('a')
+    .last()
+    .attr('href')}`;
+
+  let readmore = '';
+  if (j.$(value).find('.detail-user-recs-text > span[id^=recommend]').length) {
+    readmore = j
+      .$(value)
+      .find('.detail-user-recs-text > span[id^=recommend]')
+      .text()
+      .trim();
+  }
+
+  return { text, username, userHref, readmore };
+}
+
 export default {
   props: {
     url: {
@@ -95,50 +139,6 @@ export default {
           .split('</h2>')[1]
           .split('<div class="mauto')[0];
         const htmlT = j.$.parseHTML(recommendationsBlock);
-
-        function getBaseText(element) {
-          let text = element.text();
-          element.children().each(function() {
-            text = text.replace(j.$(this).text(), '');
-          });
-          return text;
-        }
-
-        function getUserRec(value) {
-          const text = getBaseText(
-            j
-              .$(value)
-              .find('.detail-user-recs-text')
-              .first(),
-          ).trim();
-
-          const username = j
-            .$(value)
-            .find('.detail-user-recs-text')
-            .next()
-            .find('a')
-            .last()
-            .text();
-
-          const userHref = `https://myanimelist.net${j
-            .$(value)
-            .find('.detail-user-recs-text')
-            .next()
-            .find('a')
-            .last()
-            .attr('href')}`;
-
-          let readmore = '';
-          if (j.$(value).find('.detail-user-recs-text > span[id^=recommend]').length) {
-            readmore = j
-              .$(value)
-              .find('.detail-user-recs-text > span[id^=recommend]')
-              .text()
-              .trim();
-          }
-
-          return { text, username, userHref, readmore };
-        }
 
         j.$.each(j.$(htmlT).filter('.borderClass'), (index, value) => {
           const imageBlock = j.$(value).find('.picSurround');
