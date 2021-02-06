@@ -856,7 +856,7 @@ export default {
               async function() {
                 const malObj = getSingle(url);
                 await malObj.update();
-                await new Promise((resolve, reject) => {
+                await new Promise(resolve => {
                   setTimeout(resolve, 2000);
                 });
                 return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);

@@ -57,7 +57,7 @@ export default {
       get() {
         return api.settings.get(this.option);
       },
-      set(value) {},
+      set() {},
     },
     pageName() {
       if (this.listObj) return this.listObj.name;

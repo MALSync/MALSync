@@ -177,7 +177,7 @@ export default {
     },
   },
   watch: {
-    async url(url) {
+    async url() {
       this.xhr = '';
       if (this.state) {
         api.request.xhr('GET', `${this.url}/userrecs`).then(response => {

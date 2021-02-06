@@ -104,7 +104,7 @@ export default {
     option(value) {
       this.permissions = JSON.parse(JSON.stringify(value));
     },
-    browserPermissions(perms) {
+    browserPermissions() {
       this.checkPermissions();
     },
   },

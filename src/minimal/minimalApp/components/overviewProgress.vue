@@ -114,7 +114,7 @@ export default {
   watch: {
     malId: {
       immediate: true,
-      handler(newVal, oldVal) {
+      handler(newVal) {
         this.xhr = '';
         const cur = `${newVal}s`;
         return api.request

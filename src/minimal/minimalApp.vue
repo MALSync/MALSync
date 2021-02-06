@@ -417,7 +417,7 @@ export default {
     },
   },
   watch: {
-    renderUrl(url, oldUrl) {
+    renderUrl(url) {
       this.renderObj = null;
       const tempRenderObj = new getSingle(url);
       tempRenderObj
