@@ -276,7 +276,7 @@ async function askForApiKey() {
       j.$(evt.target)
         .parentsUntil('.flash')
         .remove();
-      reject(false);
+      reject();
     });
   });
 }
@@ -341,7 +341,7 @@ export const Emby: pageInterface = {
     testApi()
       .catch(() => {
         con.info('Not Authenticated');
-        return askForApiKey();
+        askForApiKey();
       })
       .then(() => {
         con.info('Authenticated');
