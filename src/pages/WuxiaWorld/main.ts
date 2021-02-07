@@ -53,7 +53,7 @@ export const WuxiaWorld: pageInterface = {
   overview: {
     getTitle(url) {
       return utils
-        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h3'))
+        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1'))
         .replace(/(comics|comic)\s*$/i, '')
         .trim();
     },
