@@ -178,6 +178,11 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   const remoteUpdateList: listElement[] = [];
   await asyncForEach(Array, async el => {
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
+
+    if (releaseItem && releaseItem.value) {
+      el.fn.progress = releaseItem.value;
+    }
+
     let mode = el.options!.p;
     if (!mode) mode = 'default';
     logger
@@ -236,9 +241,9 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
       .m('Save')
       .log(progressValue);
     if (elRef.cacheKey) {
-      await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
-        timestamp: Date.now(),
-        value: progressValue,
+      if (elRef && elRef.fn && elRef.fn.progress) {
+        notificationCheck(elRef, elRef.fn.progress, progressValue, type);
+      }
         mode,
         finished,
       } as releaseItemInterface);
@@ -247,7 +252,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 }
 
 export async function single(
-  el: { uid: number; malId: number | null; title: string; cacheKey: string; xhr?: object },
+  el: { uid: number; malId: number | null; title: string; cacheKey: string; watchedEp: number; xhr?: object },
   type,
   mode = 'default',
   logger = con.m('release'),
@@ -325,6 +330,9 @@ export async function single(
   if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
 
   logger.m('Save').log(progressValue);
+  if (releaseItem && releaseItem.value) {
+    notificationCheck(el, releaseItem.value, progressValue, type);
+  }
 
   await api.storage.set(`release/${type}/${el.cacheKey}`, {
     timestamp: Date.now(),
@@ -434,6 +442,38 @@ export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ ke
   }
   con.log('PageSearch Cached');
   return cacheObj.getValue();
+}
+
+function notificationCheck(el, cProgress, nProgress, type) {
+  try {
+    if (el && nProgress && nProgress) {
+      con.log('####', el, cProgress, nProgress);
+      if (
+        cProgress.lastEp &&
+        typeof cProgress.lastEp.total !== 'undefined' &&
+        nProgress.lastEp &&
+        nProgress.lastEp.total &&
+        cProgress.lang === nProgress.lang &&
+        cProgress.type === nProgress.type
+      ) {
+        if (cProgress.lastEp.total < nProgress.lastEp.total) {
+          // Check if new ep is one higher than the watched one
+          if (el.watchedEp + 1 === nProgress.lastEp.total) {
+            console.log('############################################');
+            sendNotification({
+              title: el.title,
+              text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
+              sticky: true,
+              image: el.image,
+              url: el.options && el.options.u ? el.options.u : el.url,
+            });
+          }
+        }
+      }
+    }
+  } catch (e) {
+    con.error('Could not check notification Progress', e);
+  }
 }
 
 function setBadgeText(text: string) {
