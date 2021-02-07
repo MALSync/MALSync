@@ -1,4 +1,4 @@
-const defaultImg = 'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png'
+const defaultImg = 'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png';
 
 // Only works on the background Page
 export async function sendNotification(options: {

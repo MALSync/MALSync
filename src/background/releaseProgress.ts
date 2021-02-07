@@ -2,6 +2,7 @@ import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
 import { listElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
+import { sendNotification } from '../utils/notifications';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -244,6 +245,9 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
       if (elRef && elRef.fn && elRef.fn.progress) {
         notificationCheck(elRef, elRef.fn.progress, progressValue, type);
       }
+      await api.storage.set(`release/${type}/${elRef.cacheKey}`, {
+        timestamp: Date.now(),
+        value: progressValue,
         mode,
         finished,
       } as releaseItemInterface);
