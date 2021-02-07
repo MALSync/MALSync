@@ -61,7 +61,7 @@ export const WuxiaWorld: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.profile-manga > div > div > div > div.post-title > h3')
+      j.$('div.profile-manga > div > div > div > div.post-title > h1')
         .first()
         .after(j.html(selector));
     },
