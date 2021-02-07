@@ -17,7 +17,7 @@
     },
     {
       // check for movie
-      "url": "https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie-english-dub",
+      "url": "https://ww5.dubbedanime.net/episode/182304-a-silent-voice-movie_271385-english-dub",
       "expected": {
         "sync": true,
         "title": "A Silent Voice MOVIE",
