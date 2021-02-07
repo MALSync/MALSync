@@ -3,7 +3,6 @@ import { pageInterface } from '../pageInterface';
 export const AnimeSuge: pageInterface = {
   name: 'AnimeSuge',
   domain: 'https://animesuge.io',
-  database: '9anime',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
@@ -68,6 +67,7 @@ export const AnimeSuge: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    AnimeSuge.database = '9anime';
     utils.waitUntilTrue(
       function() {
         return j.$('ul.episodes > li').length;
