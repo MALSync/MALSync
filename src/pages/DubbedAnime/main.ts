@@ -23,16 +23,10 @@ export const DubbedAnime: pageInterface = {
       return DubbedAnime.overview!.getIdentifier(DubbedAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('a.w-100.btn.btn-success').attr('href'), DubbedAnime.domain);
+      return utils.absoluteLink(j.$('div.video-info a[href*="/anime/"]').attr('href'), DubbedAnime.domain);
     },
     getEpisode(url) {
-      const urlParts = url.split('/');
-
-      if (!urlParts || urlParts.length === 0) return NaN;
-
-      const episodePart = urlParts[4];
-
-      if (episodePart.length === 0) return NaN;
+      const episodePart = utils.urlPart(url, 4);
 
       const temp = episodePart.match(/-(episode|ova)-\d+-/gim);
 
@@ -43,8 +37,8 @@ export const DubbedAnime: pageInterface = {
     nextEpUrl(url) {
       return utils.absoluteLink(
         j
-          .$('body > div.container > div > div > a:contains("Next")')
-          .first()
+          .$('div.video-info i.fa-forward')
+          .closest('a')
           .attr('href'),
         DubbedAnime.domain,
       );
@@ -98,8 +92,7 @@ export const DubbedAnime: pageInterface = {
         $('div.col-4.px-0 > button.subdub')
           .unbind('click')
           .click(function() {
-            page.reset();
-            page.handlePage();
+            page.handleList();
           });
       }
     });

@@ -9,6 +9,7 @@
         "title": "Above All Gods",
         "identifier": "above-all-gods",
         "overviewUrl": "https://toonily.net/manga/above-all-gods/",
+        "nextEpUrl": "https://toonily.net/manga/above-all-gods/chapter-174/",
         "episode": 173,
         "uiSelector": false
       }
@@ -21,8 +22,8 @@
         "identifier": "above-all-gods",
         "uiSelector": true,
         "epList": {
-          "20": "https://toonily.net/manga/yuan-zun/chapter-20/",
-          "279": "https://toonily.net/manga/yuan-zun/chapter-279/"
+          "20": "https://toonily.net/manga/above-all-gods/chapter-20/",
+          "177": "https://toonily.net/manga/above-all-gods/chapter-177/"
         }
       }
     }

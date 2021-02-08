@@ -20,7 +20,7 @@ export const AnimeIndo: pageInterface = {
 
       if (!anchorHref) return '';
 
-      return anchorHref.split('/')[4];
+      return utils.urlPart(anchorHref, 4);
     },
     getOverviewUrl(url) {
       return j.$('#sct_content > div > div.ep_nav.fr > span.nav.all > a').attr('href') || '';
@@ -61,7 +61,7 @@ export const AnimeIndo: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('#sct_content > h1')

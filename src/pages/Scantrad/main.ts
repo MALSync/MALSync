@@ -49,6 +49,18 @@ export const Scantrad: pageInterface = {
     uiSelector(selector) {
       j.$('.info').append(j.html(selector));
     },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('#chap-top > div.chapitre');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.find('a[href*="/mangas/"]').attr('href') || '', Scantrad.domain);
+      },
+      elementEp(selector) {
+        return Scantrad.sync.getEpisode(Scantrad.overview!.list!.elementUrl(selector));
+      },
+    },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
