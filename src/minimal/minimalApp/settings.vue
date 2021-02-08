@@ -327,6 +327,7 @@
         >
           <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
         </dropdown>
+        <checkbox option="progressNotifications">{{ lang('settings_Notifications') }}</checkbox>
         <checkbox option="loadPTWForProgress">{{ lang('settings_loadPTWForProgress') }}</checkbox>
       </div>
 

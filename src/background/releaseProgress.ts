@@ -450,6 +450,7 @@ export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ ke
 
 function notificationCheck(el, cProgress, nProgress, type) {
   try {
+    if (!api.settings.get('progressNotifications')) return;
     if (el && nProgress && nProgress) {
       con.log('####', el, cProgress, nProgress);
       if (
