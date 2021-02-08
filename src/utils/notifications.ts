@@ -11,15 +11,22 @@ export async function sendNotification(options: {
   if (!options.image) options.image = defaultImg;
 
   const imgBlob = await getImageBlob(options.image);
-
-  chrome.notifications.create(options.url, {
+  const messageArray = {
     type: 'basic',
     title: options.title,
     message: options.text,
     iconUrl: imgBlob,
     requireInteraction: options.sticky ?? false,
     eventTime: Date.now(),
-  });
+  };
+  try {
+    chrome.notifications.create(options.url, messageArray);
+  } catch (e) {
+    con.error(e);
+    // @ts-ignore
+    delete messageArray.requireInteraction;
+    chrome.notifications.create(options.url, messageArray);
+  }
 }
 
 function getImageBlob(url, fallback = false): Promise<string> {
