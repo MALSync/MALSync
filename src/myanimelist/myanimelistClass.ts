@@ -2,7 +2,7 @@ import { Single as LegacySingle } from '../_provider/MyAnimeList_legacy/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
 import { Single as ApiSingle } from '../_provider/MyAnimeList_api/single';
-import { userlist as ApiList } from '../_provider/MyAnimeList_api/list';
+import { UserList as ApiList } from '../_provider/MyAnimeList_api/list';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
