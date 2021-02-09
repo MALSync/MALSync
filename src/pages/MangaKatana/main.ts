@@ -38,19 +38,12 @@ export const MangaKatana: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl(url) {
-      if (
-        j
-          .$('a.nav_button.next')
-          .first()
-          .attr('href') !== 'javascript:;'
-      ) {
-        return j
-          .$('a.nav_button.next')
-          .first()
-          .attr('href');
-      }
-      return '';
+    nextEpUrl() {
+      const nextEpisodeAnchor = document.querySelector('a.nav_button.next') as HTMLAnchorElement;
+
+      if (nextEpisodeAnchor?.href.startsWith('javascript')) return '';
+
+      return nextEpisodeAnchor.href;
     },
   },
   overview: {
