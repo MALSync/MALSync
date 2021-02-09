@@ -98,7 +98,7 @@ export const Animeflv: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), Animeflv.domain);
       },
       elementEp(selector) {
-        return selector.attr('epi');
+        return Number(selector.attr('epi'));
       },
       handleListHook(epi, epilist) {
         epi++;

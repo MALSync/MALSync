@@ -121,17 +121,21 @@ export const MangaKatana: pageInterface = {
       elementEp(selector) {
         if (!obfusList) {
           return MangaKatana.sync.getEpisode(
-            selector
-              .find('td > div.chapter > a')
-              .first()
-              .attr('href'),
+            String(
+              selector
+                .find('td > div.chapter > a')
+                .first()
+                .attr('href'),
+            ),
           );
         }
         return MangaKatana.sync.getEpisode(
-          selector
-            .find('div > div > a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('div > div > a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

@@ -66,10 +66,12 @@ export const Shinden: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('td')
-          .first()
-          .text();
+        return Number(
+          selector
+            .find('td')
+            .first()
+            .text(),
+        );
       },
     },
   },

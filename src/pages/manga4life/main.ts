@@ -65,11 +65,13 @@ export const manga4life: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), manga4life.domain);
       },
       elementEp(selector) {
-        return selector
-          .find('span')
-          .first()
-          .text()
-          .match(/\d+/gim);
+        return Number(
+          selector
+            .find('span')
+            .first()
+            .text()
+            .match(/\d+/gim),
+        );
       },
     },
   },

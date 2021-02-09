@@ -112,10 +112,12 @@ export const AnimeKisa: pageInterface = {
           .attr('href')}`;
       },
       elementEp(selector) {
-        return selector
-          .find('div.infoept2r > div, div.infoept2 > div')
-          .first()
-          .text();
+        return Number(
+          selector
+            .find('div.infoept2r > div, div.infoept2 > div')
+            .first()
+            .text(),
+        );
       },
     },
   },

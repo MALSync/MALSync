@@ -28,7 +28,7 @@ export interface pageInterface {
       offsetHandler: boolean;
       elementsSelector: () => JQuery<HTMLElement>;
       elementUrl: (selector: JQuery<HTMLElement>) => string;
-      elementEp: (selector) => number;
+      elementEp: (selector: JQuery<HTMLElement>) => number;
       paginationNext?: (updateCheck: boolean) => boolean;
       handleListHook?: (ep: number, epList: JQuery<HTMLElement>[]) => void;
       getTotal?: () => number | undefined;

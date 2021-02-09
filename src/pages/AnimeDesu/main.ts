@@ -70,10 +70,12 @@ export const AnimeDesu: pageInterface = {
       },
       elementEp(selector) {
         return AnimeDesu.sync.getEpisode(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

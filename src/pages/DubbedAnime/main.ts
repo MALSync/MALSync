@@ -80,11 +80,13 @@ export const DubbedAnime: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('div.da-video-tbl > span.ep-num')
-          .first()
-          .text()
-          .replace(/\D+/, '');
+        return Number(
+          selector
+            .find('div.da-video-tbl > span.ep-num')
+            .first()
+            .text()
+            .replace(/\D+/, ''),
+        );
       },
     },
   },

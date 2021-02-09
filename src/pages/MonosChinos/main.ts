@@ -78,7 +78,7 @@ export const MonosChinos: pageInterface = {
         return selector.attr('href') || '';
       },
       elementEp(selector) {
-        return MonosChinos.sync.getEpisode(selector.attr('href'));
+        return MonosChinos.sync.getEpisode(String(selector.attr('href')));
       },
     },
   },
