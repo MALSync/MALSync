@@ -3,7 +3,7 @@ import { Single as AniListSingle } from '../../../_provider/AniList/single';
 import { Single as KitsuSingle } from '../../../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../../../_provider/Simkl/single';
 
-import { userlist as MalList } from '../../../_provider/MyAnimeList_legacy/list';
+import { UserList as MalList } from '../../../_provider/MyAnimeList_legacy/list';
 import { UserList as AnilistList } from '../../../_provider/AniList/list';
 import { UserList as KitsuList } from '../../../_provider/Kitsu/list';
 import { UserList as SimklList } from '../../../_provider/Simkl/list';

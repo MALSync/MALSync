@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-export function generalListTests(userlist, elements, responses, options = {}) {
+export function generalListTests(userlist, elements, responses, options: ObjectAnyType = {}) {
   it('Get List', function() {
     const list = new userlist(7, 'anime');
 
@@ -53,7 +53,7 @@ export function generalListTests(userlist, elements, responses, options = {}) {
 
   it('continueCall', async function() {
     if (options.noContinueCall) return;
-    const testArray = [];
+    const testArray: number[] = [];
     const list = new userlist(7, 'anime', {
       continueCall(list) {
         list = removeFn(list, false);
@@ -70,7 +70,7 @@ export function generalListTests(userlist, elements, responses, options = {}) {
 
           setTimeout(function() {
             testArray.push(2);
-            resolve();
+            resolve(undefined);
           }, 200);
         });
       },
@@ -88,15 +88,11 @@ export function generalListTests(userlist, elements, responses, options = {}) {
     });
 
     it('400', async function() {
-      expect(
-        list.errorMessage({ code: 400, message: 'Invalid token' }),
-      ).to.equal('lang');
+      expect(list.errorMessage({ code: 400, message: 'Invalid token' })).to.equal('lang');
     });
 
     it('999', async function() {
-      expect(
-        list.errorMessage({ code: 999, message: 'Invalid token' }),
-      ).to.equal('Invalid token');
+      expect(list.errorMessage({ code: 999, message: 'Invalid token' })).to.equal('Invalid token');
     });
   });
 }

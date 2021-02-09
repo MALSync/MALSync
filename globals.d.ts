@@ -24,4 +24,8 @@ declare global {
     mozFullScreen: boolean;
     msFullscreenElement: Element;
   }
+
+  type ObjectAnyType = {
+    [x in string | number]: any;
+  };
 }

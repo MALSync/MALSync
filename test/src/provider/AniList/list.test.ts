@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { userlist } from '../../../../src/_provider/AniList/list';
+import { UserList } from '../../../../src/_provider/AniList/list';
 import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
@@ -61,7 +61,7 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('AniList userlist', function() {
+describe('AniList UserList', function() {
   before(function() {
     global.api = {
       request: {
@@ -103,5 +103,5 @@ describe('AniList userlist', function() {
     };
   });
 
-  generalListTests(userlist, elements, responses);
+  generalListTests(UserList, elements, responses);
 });

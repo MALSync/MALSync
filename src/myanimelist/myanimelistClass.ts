@@ -1,5 +1,5 @@
 import { Single as LegacySingle } from '../_provider/MyAnimeList_legacy/single';
-import { userlist as LegacyList } from '../_provider/MyAnimeList_legacy/list';
+import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
 import { Single as ApiSingle } from '../_provider/MyAnimeList_api/single';
 import { userlist as ApiList } from '../_provider/MyAnimeList_api/list';

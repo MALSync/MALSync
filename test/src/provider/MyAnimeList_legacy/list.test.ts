@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { userlist } from '../../../../src/_provider/MyAnimeList_legacy/list';
+import { UserList } from '../../../../src/_provider/MyAnimeList_legacy/list';
 import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
@@ -63,7 +63,7 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('MyAnimeList userlist', function() {
+describe('MyAnimeList UserList', function() {
   before(function() {
     global.api = {
       request: {
@@ -107,5 +107,5 @@ describe('MyAnimeList userlist', function() {
     };
   });
 
-  generalListTests(userlist, elements, responses);
+  generalListTests(UserList, elements, responses);
 });
