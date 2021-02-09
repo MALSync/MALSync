@@ -1,4 +1,4 @@
-import { minimal } from './minimal/minimalClass';
+import { Minimal } from './minimal/minimalClass';
 import { openMinimal } from './floatbutton/extension';
 
 declare let componentHandler: any;
@@ -15,7 +15,7 @@ document.getElementsByTagName('head')[0].onclick = function(e) {
 };
 
 api.settings.init().then(() => {
-  const minimalObj = new minimal($('html'));
+  const minimalObj = new Minimal($('html'));
 
   checkFill(minimalObj);
 

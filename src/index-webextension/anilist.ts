@@ -1,11 +1,11 @@
-import { anilistClass } from '../anilist/anilistClass';
+import { AnilistClass } from '../anilist/anilistClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
 let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const anilist = new anilistClass(window.location.href);
+  const anilist = new AnilistClass(window.location.href);
   messageAniListListener(anilist);
   firebaseNotification();
 

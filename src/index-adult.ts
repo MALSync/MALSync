@@ -1,7 +1,7 @@
-import { syncPage } from './pages/syncPage';
-import { anilistClass } from './anilist/anilistClass';
-import { kitsuClass } from './kitsu/kitsuClass';
-import { simklClass } from './simkl/simklClass';
+import { SyncPage } from './pages/syncPage';
+import { AnilistClass } from './anilist/anilistClass';
+import { KitsuClass } from './kitsu/kitsuClass';
+import { SimklClass } from './simkl/simklClass';
 import { getPlayerTime } from './utils/player';
 import { pages } from './pages-adult/pages';
 import { floatClick } from './floatbutton/userscript';
@@ -11,18 +11,18 @@ function main() {
     // Do nothing
   } else if (window.location.href.indexOf('anilist.co') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const anilist = new anilistClass(window.location.href);
+    const anilist = new AnilistClass(window.location.href);
   } else if (window.location.href.indexOf('kitsu.io') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const kitsu = new kitsuClass(window.location.href);
+    const kitsu = new KitsuClass(window.location.href);
   } else if (window.location.href.indexOf('simkl.com') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const simkl = new simklClass(window.location.href);
+    const simkl = new SimklClass(window.location.href);
   } else {
     let page;
     try {
       if (inIframe()) throw 'iframe';
-      page = new syncPage(window.location.href, pages, floatClick);
+      page = new SyncPage(window.location.href, pages, floatClick);
     } catch (e) {
       con.info(e);
       iframe();

@@ -5,9 +5,9 @@
 import { compareTwoStrings } from 'string-similarity';
 
 import { search as pageSearch } from '../searchFactory';
-import { Single as localSingle } from '../Local/single';
+import { Single as LocalSingle } from '../Local/single';
 
-interface searchResult {
+interface SearchResult {
   id?: number;
   url: string;
   offset: number;
@@ -19,7 +19,7 @@ interface searchResult {
   };
 }
 
-export class searchClass {
+export class SearchClass {
   private sanitizedTitel;
 
   private page;
@@ -28,7 +28,7 @@ export class searchClass {
 
   private localUrl = '';
 
-  protected state: searchResult | false = false;
+  protected state: SearchResult | false = false;
 
   protected logger;
 
@@ -196,9 +196,9 @@ export class searchClass {
     };
   }
 
-  public async searchLocal(): Promise<searchResult | false> {
+  public async searchLocal(): Promise<SearchResult | false> {
     if (!this.localUrl) return false;
-    const local = new localSingle(this.localUrl);
+    const local = new LocalSingle(this.localUrl);
     await local.update();
     if (!local.isOnList()) return false;
     this.logger.m('Local').log('On List');
@@ -213,8 +213,8 @@ export class searchClass {
     };
   }
 
-  public async searchForIt(): Promise<searchResult | false> {
-    let result: searchResult | false = false;
+  public async searchForIt(): Promise<SearchResult | false> {
+    let result: SearchResult | false = false;
 
     try {
       result = searchCompare(result, await this.malSync());
@@ -250,7 +250,7 @@ export class searchClass {
     }
   }
 
-  public async firebase(): Promise<searchResult | false> {
+  public async firebase(): Promise<SearchResult | false> {
     if (!this.page || !this.page.database) return false;
 
     const logger = this.logger.m('Firebase');
@@ -292,7 +292,7 @@ export class searchClass {
     };
   }
 
-  public async malSync(): Promise<searchResult | false> {
+  public async malSync(): Promise<SearchResult | false> {
     const logger = this.logger.m('API');
 
     if (!this.page) return false;
@@ -323,7 +323,7 @@ export class searchClass {
     };
   }
 
-  public async malSearch(): Promise<searchResult | false> {
+  public async malSearch(): Promise<SearchResult | false> {
     const logger = this.logger.m('MAL');
 
     let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(this.sanitizedTitel)}`;
@@ -347,7 +347,7 @@ export class searchClass {
           }
 
           const malTitel = getTitle(response, link);
-          sim = searchClass.similarity(malTitel, This.sanitizedTitel);
+          sim = SearchClass.similarity(malTitel, This.sanitizedTitel);
           id = parseInt(link.split('/')[4]);
         } catch (e) {
           logger.error(e);
@@ -399,12 +399,12 @@ export class searchClass {
     return handleResult(response, 1, this);
   }
 
-  public async pageSearch(): Promise<searchResult | false> {
+  public async pageSearch(): Promise<SearchResult | false> {
     const searchResult = await pageSearch(this.sanitizedTitel, this.getNormalizedType());
     let best: any = null;
     for (let i = 0; i < searchResult.length && i < 5; i++) {
       const el = searchResult[i];
-      const sim = searchClass.similarity(el.name, this.sanitizedTitel, el.altNames);
+      const sim = SearchClass.similarity(el.name, this.sanitizedTitel, el.altNames);
       const tempBest = {
         index: i,
         similarity: sim,
@@ -498,7 +498,7 @@ export class searchClass {
     }
   }
 
-  public async onsiteSearch(): Promise<false | searchResult> {
+  public async onsiteSearch(): Promise<false | SearchResult> {
     if (this.page && this.syncPage && this.syncPage.curState && this.syncPage.curState.on) {
       let result: false | string = false;
       if (this.syncPage.curState.on === 'OVERVIEW') {

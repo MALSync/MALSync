@@ -1,4 +1,4 @@
-import { syncPage } from './syncPage';
+import { SyncPage } from './syncPage';
 
 export interface pageInterface {
   domain: string | string[];
@@ -35,7 +35,7 @@ export interface pageInterface {
     };
   };
   database?: string; // ignore, only for first party implementations
-  init: (page: syncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
+  init: (page: SyncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
 }
 
 export interface pageState {

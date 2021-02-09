@@ -3,7 +3,7 @@ import { getSingle } from '../_provider/singleFactory';
 import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, getPlayerTime } from '../utils/player';
-import { searchClass } from '../_provider/Search/vueSearchClass';
+import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 
 declare let browser: any;
@@ -15,7 +15,7 @@ if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
 
 const logger = con.m('Sync', '#348fff');
 
-export class syncPage {
+export class SyncPage {
   page: pageInterface;
 
   searchObj;
@@ -273,7 +273,7 @@ export class syncPage {
         identifier: this.page.sync.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
@@ -323,7 +323,7 @@ export class syncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));

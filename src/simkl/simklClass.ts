@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import { Single as simklSingle } from '../_provider/Simkl/single';
-import { userlist } from '../_provider/Simkl/list';
+import { Single as SimklSingle } from '../_provider/Simkl/single';
+import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 
@@ -17,7 +17,7 @@ interface bookmarks {
   type: 'anime' | 'manga';
 }
 
-export class simklClass {
+export class SimklClass {
   page: any = null;
 
   private interval;
@@ -63,7 +63,7 @@ export class simklClass {
     const url2part = utils.urlPart(this.url, 4);
 
     if ((urlpart === 'anime' || urlpart === 'manga') && !Number.isNaN(Number(url2part))) {
-      const malObj = new simklSingle(this.url);
+      const malObj = new SimklSingle(this.url);
       await malObj.update();
 
       this.page = {
@@ -240,7 +240,7 @@ export class simklClass {
   }
 
   bookmarksProfile() {
-    const listProvider: userlist = new userlist(1, this.page!.type);
+    const listProvider: UserList = new UserList(1, this.page!.type);
 
     listProvider
       .get()
@@ -301,7 +301,7 @@ export class simklClass {
   }
 
   bookmarksAnime() {
-    const listProvider: userlist = new userlist(1, this.page!.type);
+    const listProvider: UserList = new UserList(1, this.page!.type);
 
     listProvider
       .get()

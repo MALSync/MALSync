@@ -1,8 +1,8 @@
-import { syncPage } from './pages/syncPage';
-import { myanimelistClass } from './myanimelist/myanimelistClass';
-import { anilistClass } from './anilist/anilistClass';
-import { kitsuClass } from './kitsu/kitsuClass';
-import { simklClass } from './simkl/simklClass';
+import { SyncPage } from './pages/syncPage';
+import { MyAnimeListClass } from './myanimelist/myanimelistClass';
+import { AnilistClass } from './anilist/anilistClass';
+import { KitsuClass } from './kitsu/kitsuClass';
+import { SimklClass } from './simkl/simklClass';
 import { firebaseNotification } from './utils/firebaseNotification';
 import { getPlayerTime, shortcutListener } from './utils/player';
 import { pages } from './pages/pages';
@@ -14,20 +14,20 @@ let page;
 
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
-    const mal = new myanimelistClass(window.location.href);
+    const mal = new MyAnimeListClass(window.location.href);
     mal.init();
     if (window.location.href.indexOf('episode') > -1) {
       runPage();
     }
   } else if (window.location.href.indexOf('anilist.co') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const anilist = new anilistClass(window.location.href);
+    const anilist = new AnilistClass(window.location.href);
   } else if (window.location.href.indexOf('kitsu.io') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const kitsu = new kitsuClass(window.location.href);
+    const kitsu = new KitsuClass(window.location.href);
   } else if (window.location.href.indexOf('simkl.com') > -1) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const simkl = new simklClass(window.location.href);
+    const simkl = new SimklClass(window.location.href);
   } else if (window.location.href.indexOf('malsync.moe/mal/oauth') > -1) {
     oauth();
   } else {
@@ -63,7 +63,7 @@ api.settings.init().then(() => {
 function runPage() {
   try {
     if (inIframe()) throw 'iframe';
-    page = new syncPage(window.location.href, pages, floatClick);
+    page = new SyncPage(window.location.href, pages, floatClick);
   } catch (e) {
     con.info(e);
     iframe();

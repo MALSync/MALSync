@@ -157,7 +157,6 @@
     "no-continue": "off",
     "no-fallthrough": "off",
     "import/no-extraneous-dependencies": "off",
-    "new-cap": "warn", //TODO
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO
     "prettier/prettier": [

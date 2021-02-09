@@ -227,7 +227,7 @@ import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
 import customDomainsVue from './minimalApp/customDomains.vue';
-import { getSingle } from '../_provider/singleFactory';
+import { getSingle as GetSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
 
 let timer;
@@ -419,7 +419,7 @@ export default {
   watch: {
     renderUrl(url) {
       this.renderObj = null;
-      const tempRenderObj = new getSingle(url);
+      const tempRenderObj = new GetSingle(url);
       tempRenderObj
         .update()
         .then(() => {
