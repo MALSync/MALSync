@@ -106,7 +106,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       const elCache = await api.storage.get(`updateCheck/${type}/${el.cacheKey}`);
       con.log('cached', elCache);
       if ((typeof elCache !== 'undefined' && elCache.finished) || !isSupported(el.options.u)) {
-        resolve();
+        resolve(undefined);
         return;
       }
 
@@ -123,14 +123,14 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           retryNum++;
           await updateElement(el, type, retryNum);
         }
-        resolve();
+        resolve(undefined);
       }, 60000);
       continueCheck[id] = async function(list, len, error) {
         clearTimeout(timeout);
 
-        if (typeof error !== undefined && error) {
+        if (typeof error !== 'undefined' && error) {
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, error));
-          resolve();
+          resolve(undefined);
           return;
         }
 
@@ -197,10 +197,10 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty');
         }
-        resolve();
+        resolve(undefined);
       };
     } else {
-      resolve();
+      resolve(undefined);
     }
   });
 }

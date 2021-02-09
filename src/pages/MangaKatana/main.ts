@@ -77,7 +77,7 @@ export const MangaKatana: pageInterface = {
             .$('#single_book > script')
             .prev()
             .children()
-            .children() !== undefined &&
+            .children() !== 'undefined' &&
           j
             .$('#single_book > script')
             .prev()

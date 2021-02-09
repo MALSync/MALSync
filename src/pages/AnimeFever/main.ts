@@ -71,7 +71,7 @@ export const AnimeFever: pageInterface = {
       page.reset();
       if (
         page.url.split('/')[3] === 'series' &&
-        typeof page.url.split('/')[4] !== undefined &&
+        typeof page.url.split('/')[4] !== 'undefined' &&
         page.url.split('/')[4].length > 0
       ) {
         utils.waitUntilTrue(
