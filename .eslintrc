@@ -1,10 +1,13 @@
+// TODO Convert ESLint config file to JS and use benefits of spreading common rules between overrides
+
 {
   "env": {
     "es6": true,
     "greasemonkey": true,
     "jquery": true,
     "shared-node-browser": true,
-    "webextensions": true
+    "webextensions": true,
+    "browser": true
   },
   "extends": ["airbnb-base"],
   "globals": {
@@ -28,14 +31,40 @@
     {
       "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
+        "airbnb-base",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "prettier/@typescript-eslint"
       ],
       "files": ["*.ts"],
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint", "jquery-unsafe-malsync", "no-unsanitized"],
       "rules": {
+        "block-scoped-var": "warn", //TODO
+        "vars-on-top": "off",
+        "import/no-self-import": "warn",
+        "import/no-extraneous-dependencies": "off",
+        "import/no-webpack-loader-syntax": "off",
+        "no-await-in-loop": "warn", // TODO
+        "import/no-cycle": "warn", // TODO
+        "prefer-destructuring": "warn", // TODO
+        "no-unreachable": "warn",
+        "no-continue": "off",
+        "no-throw-literal": "off",
+        "guard-for-in": "off",
+        "no-param-reassign": "warn",
+        "no-underscore-dangle": "off",
+        "class-methods-use-this": "off",
+        "import/extensions": [
+          "error",
+          "ignorePackages",
+          {
+            "js": "never",
+            "ts": "never"
+          }
+        ],
+        "import/prefer-default-export": "off",
+        "no-plusplus": 0,
         "no-unsanitized/method": [
           "error",
           {
@@ -86,6 +115,14 @@
             "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
           }
         ]
+      },
+      "settings": {
+        "import/extensions": [".js", ".ts"],
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".ts", ".vue"]
+          }
+        }
       }
     },
     {
@@ -139,6 +176,7 @@
   },
   "root": true,
   "rules": {
+    "prettier/prettier": ["error", { "singleQuote": true }],
     "eqeqeq": ["error", "always"],
     "no-extend-native": "off",
     "prefer-template": "error",
@@ -148,7 +186,6 @@
     "guard-for-in": "off",
     "no-underscore-dangle": "off",
     "radix": ["error", "as-needed"],
-    "vars-on-top": "off",
     "class-methods-use-this": "off",
     "no-throw-literal": "off",
     "no-await-in-loop": "off",
@@ -159,12 +196,6 @@
     "import/no-extraneous-dependencies": "off",
     "block-scoped-var": "warn", //TODO
     "import/prefer-default-export": "off", //TODO
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true
-      }
-    ],
     "import/extensions": [
       "error",
       "ignorePackages",
