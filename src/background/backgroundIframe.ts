@@ -90,7 +90,7 @@ async function startCheck(type = 'anime') {
 
 async function updateElement(el, type = 'anime', retryNum = 0) {
   // eslint-disable-next-line no-async-promise-executor
-  return new Promise(async (resolve, reject) => {
+  return new Promise<void>(async (resolve, reject) => {
     const anime_num_episodes = el.totalEp;
     const anime_image_path = el.image;
     const anime_title = el.title;
@@ -106,7 +106,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       const elCache = await api.storage.get(`updateCheck/${type}/${el.cacheKey}`);
       con.log('cached', elCache);
       if ((typeof elCache !== 'undefined' && elCache.finished) || !isSupported(el.options.u)) {
-        resolve(undefined);
+        resolve();
         return;
       }
 
@@ -123,14 +123,14 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           retryNum++;
           await updateElement(el, type, retryNum);
         }
-        resolve(undefined);
+        resolve();
       }, 60000);
       continueCheck[id] = async function(list, len, error) {
         clearTimeout(timeout);
 
         if (typeof error !== 'undefined' && error) {
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, error));
-          resolve(undefined);
+          resolve();
           return;
         }
 
@@ -197,10 +197,10 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, 'Episode list empty'));
           con.error('Episode list empty');
         }
-        resolve(undefined);
+        resolve();
       };
     } else {
-      resolve(undefined);
+      resolve();
     }
   });
 }
