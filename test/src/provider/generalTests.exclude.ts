@@ -57,7 +57,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
     const list = new userlist(7, 'anime', {
       continueCall(list) {
         list = removeFn(list, false);
-        return new Promise(function(resolve, reject) {
+        return new Promise<void>(function(resolve, reject) {
           testArray.push(1);
 
           expect(list).to.deep.include(elements[0]);
@@ -70,7 +70,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
 
           setTimeout(function() {
             testArray.push(2);
-            resolve(undefined);
+            resolve();
           }, 200);
         });
       },
