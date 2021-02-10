@@ -25,7 +25,7 @@ export const Goyabu: pageInterface = {
       return Goyabu.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('div.kanra-controls > a[href*="assistir"]').attr('href') || '';
+      return j.$('div.kanra-controls > a[href*="/assistir/"]').attr('href') || '';
     },
     getEpisode(url) {
       return getEpisode(j.$('#main > div > div.left-single > h1').text());
