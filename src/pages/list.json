@@ -30,11 +30,6 @@
     "name": "Twistmoe"
   },
   {
-    "domain": "https://www.anime4you.one",
-    "type": "anime",
-    "name": "Anime4you"
-  },
-  {
     "domain": "https://www.branitube.net",
     "type": "anime",
     "name": "Branitube"
@@ -60,7 +55,7 @@
     "name": "Animeflv"
   },
   {
-    "domain": "https://jkanime.net/",
+    "domain": "https://jkanime.net",
     "type": "anime",
     "name": "Jkanime"
   },
@@ -110,11 +105,6 @@
     "name": "AnimeLab"
   },
   {
-    "domain": "https://animedaisuki.moe",
-    "type": "anime",
-    "name": "AnimeDaisuki"
-  },
-  {
     "domain": "https://www.kickassanime.rs",
     "type": "anime",
     "name": "KickAssAnime"
@@ -140,7 +130,7 @@
     "name": "Funimation"
   },
   {
-    "domain": "http://voiranime.com",
+    "domain": "https://voiranime.com",
     "type": "anime",
     "name": "Voiranime"
   },
@@ -245,7 +235,7 @@
     "name": "Hidive"
   },
   {
-    "domain": "https://manga.fascans.com/",
+    "domain": "https://manga.fascans.com",
     "type": "manga",
     "name": "FallenAngels"
   },
@@ -270,7 +260,7 @@
     "name": "bato"
   },
   {
-    "domain": "https://dreamsub.stream",
+    "domain": "https://dreamsub.cc",
     "type": "anime",
     "name": "DreamSub"
   },
@@ -290,7 +280,7 @@
     "name": "AnimeXin"
   },
   {
-    "domain": "https://monoschinos.com",
+    "domain": "https://monoschinos2.com",
     "type": "anime",
     "name": "MonosChinos"
   },
@@ -300,7 +290,7 @@
     "name": "AnimeFire"
   },
   {
-    "domain": "https://www.otakufr.com",
+    "domain": "https://otakufr.co",
     "type": "anime",
     "name": "OtakuFR"
   },
@@ -495,7 +485,7 @@
     "name": "tioanime"
   },
   {
-    "domain": "https://yugenani.me/",
+    "domain": "https://yugenani.me",
     "type": "anime",
     "name": "YugenAnime"
   },
@@ -583,5 +573,40 @@
     "domain": "https://animewho.com",
     "type": "anime",
     "name": "AnimeWho"
+  },
+  {
+    "domain": "https://animesuge.io",
+    "type": "anime",
+    "name": "AnimeSuge"
+  },
+  {
+    "domain": "https://toonily.net",
+    "type": "manga",
+    "name": "Toonily"
+  },
+  {
+    "domain": "https://fumetsu.pl",
+    "type": "anime",
+    "name": "Fumetsu"
+  },
+  {
+    "domain": "https://www.nonstopscans.com",
+    "type": "manga",
+    "name": "NonstopScans"
+  },
+  {
+    "domain": "https://frixysubs.pl",
+    "type": "anime",
+    "name": "FrixySubs"
+  },
+  {
+    "domain": "https://guya.moe",
+    "type": "manga",
+    "name": "Guya"
+  },
+  {
+    "domain": "https://animeshd.org",
+    "type": "anime",
+    "name": "AnimesHD"
   }
 ]
