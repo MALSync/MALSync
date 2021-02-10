@@ -124,7 +124,7 @@ async function urlChange(page) {
 }
 
 async function returnPlayingItemId() {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       resolve();
     }, 10000);
@@ -341,7 +341,7 @@ export const Emby: pageInterface = {
     testApi()
       .catch(() => {
         con.info('Not Authenticated');
-        askForApiKey();
+        return askForApiKey();
       })
       .then(() => {
         con.info('Authenticated');
