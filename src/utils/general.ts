@@ -138,7 +138,7 @@ type WaitUntilTrueCallbackType = (intervalId: number) => void;
 export function waitUntilTrue(condition: Function, interval?: number): Promise<number>;
 export function waitUntilTrue(condition: Function, callback: WaitUntilTrueCallbackType, interval?: number): number;
 export function waitUntilTrue(condition: Function, callback?: WaitUntilTrueCallbackType | number, interval = 100) {
-  if (typeof callback === 'undefined' || typeof callback === 'number')
+  if (typeof callback === 'number' || !callback)
     return new Promise<number>(resolve => {
       waitUntilTrue(condition, resolve, callback);
     });
