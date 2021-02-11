@@ -1,71 +1,120 @@
 import { pageInterface } from '../pageInterface';
+import { ScriptProxy } from '../../utils/scriptProxy';
 
-let ident: any;
-let ses: any;
+let seasonData: any;
+let episodeData: any;
+let nextEpisodeData: any;
+let titleName: any;
+let titleId: any;
 
 const genres = [
-  '2797624',
-  '7424',
-  '67614',
-  '2653',
-  '587',
-  '625',
-  '79307',
-  '9302',
-  '79488',
-  '452',
-  '79448',
-  '11146',
-  '79440',
-  '3063',
-  '79543',
-  '79427',
-  '10695',
-  '2729',
-  '79329',
-  '79572',
-  '64256',
-  '2951909',
+  2797624,
+  7424,
+  67614,
+  2653,
+  587,
+  625,
+  79307,
+  9302,
+  79488,
+  452,
+  79448,
+  11146,
+  79440,
+  3063,
+  79543,
+  79427,
+  10695,
+  2729,
+  79329,
+  79572,
+  64256,
 ];
 
-function getSeries(page) {
-  const videoId = utils.urlPart(window.location.href, 4);
-  const reqUrl = `${Netflix.domain}/title/${videoId}`;
-  api.request.xhr('GET', reqUrl).then(response => {
-    con.log(response);
-    let anime = false;
-    genres.forEach(function(genre) {
-      if (response.responseText.indexOf(`"genres","${genre}"`) !== -1) {
-        anime = true;
-      }
-    });
-    if (!anime) {
-      con.info('No Anime');
-      return;
+// Define the variable proxy element:
+const proxy = new ScriptProxy();
+proxy.addCaptureVariable(
+  'netflix',
+  `
+    if (window.hasOwnProperty("netflix")) {
+      return netflix.reactContext;
+    } else {
+      return undefined;
     }
-    ses = getSeason();
-    ident = utils.urlPart(response.finalUrl, 4) + ses;
-    page.handlePage();
-    $('html').removeClass('miniMAL-hide');
-  });
+  `,
+);
 
-  function getSeason() {
-    const sesText = j
-      .$('.ellipsize-text span')
-      .first()
-      .text()
-      .trim();
-    let temp = sesText.match(/^(S|St. )\d+/);
-    if (temp !== null) {
-      return `?s=${temp[0].replace(/^\D*/, '').trim()}`;
-    }
+function extractMetadata() {
+  const meta: any = proxy.getCaptureVariable('netflix');
 
-    temp = sesText.match(/\d+/);
-    if (temp !== null) {
-      return `?s=${temp[0]}`;
-    }
-    throw 'No Season found';
+  if (!(meta instanceof Object)) {
+    throw new Error('Invalid metadata');
   }
+
+  return meta;
+}
+
+function getSeries(page) {
+  const meta = extractMetadata();
+  const videoId = utils.urlPart(window.location.href, 4);
+  api.request
+    .xhr('GET', `${meta.models.playerModel.data.config.ui.initParams.apiUrl}/metadata?movieid=${videoId}`)
+    .then(response => {
+      const data = JSON.parse(response.responseText);
+
+      titleId = data.video.id;
+      titleName = data.video.title;
+
+      const reqUrl = `${Netflix.domain}/title/${titleId}`;
+      api.request.xhr('GET', reqUrl).then(response2 => {
+        con.log(response2);
+        let anime = false;
+        const genresRaw = response2.responseText.match(/"genres":\s*\[.*?\]/i);
+        if (genresRaw && genresRaw.length) {
+          const genresParsed = JSON.parse(`{${genresRaw[0].replace(/\\/gm, '\\\\')}}`);
+          // eslint-disable-next-line no-restricted-syntax
+          for (const genre of genresParsed.genres) {
+            if (genres.includes(genre.id)) {
+              anime = true;
+              break;
+            }
+          }
+        }
+        if (!anime) {
+          con.info('No Anime');
+          return;
+        }
+        if (data.video.type !== 'movie') {
+          seasonData = data.video.seasons.find(season => {
+            episodeData = season.episodes.find(episode => {
+              return episode.id === data.video.currentEpisode;
+            });
+            return episodeData;
+          });
+          try {
+            nextEpisodeData =
+              seasonData.episodes[
+                seasonData.episodes.findIndex(episode => {
+                  return episode.id === episodeData.id;
+                }) + 1
+              ];
+          } catch (e) {
+            nextEpisodeData = undefined;
+          }
+        } else {
+          seasonData = {
+            longName: titleName,
+            title: titleName,
+            seq: 1,
+          };
+          episodeData = {
+            seq: 1,
+          };
+        }
+        page.handlePage();
+        $('html').removeClass('miniMAL-hide');
+      });
+    });
 }
 
 export const Netflix: pageInterface = {
@@ -78,28 +127,28 @@ export const Netflix: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return `${j
-        .$('.ellipsize-text h4')
-        .text()
-        .trim()} Season ${ses.replace('?s=', '')}`;
+      if (seasonData.longName !== seasonData.title) {
+        return seasonData.title;
+      }
+      if (seasonData.seq > 1) {
+        return `${titleName} season ${seasonData.seq}`;
+      }
+      return titleName;
     },
     getIdentifier(url) {
-      return ident;
+      return `${titleId}?s=${seasonData.seq}`;
     },
     getOverviewUrl(url) {
-      return `${Netflix.domain}/title/${Netflix.sync.getIdentifier(url)}`;
+      return `${Netflix.domain}/title/${titleId}`;
     },
     getEpisode(url) {
-      const epText = j
-        .$('.ellipsize-text span')
-        .first()
-        .text()
-        .trim();
-      const temp = epText.match(/\d+$/);
-      if (temp !== null) {
-        return parseInt(temp[0]);
+      return episodeData.seq;
+    },
+    nextEpUrl(url) {
+      if (nextEpisodeData) {
+        return `${Netflix.domain}/watch/${nextEpisodeData.id}`;
       }
-      return 1;
+      return '';
     },
   },
   init(page) {
@@ -120,7 +169,9 @@ export const Netflix: pageInterface = {
             return j.$('.ellipsize-text').length;
           },
           function() {
-            getSeries(page);
+            proxy.addProxy(async (caller: ScriptProxy) => {
+              getSeries(page);
+            });
           },
         );
       }
