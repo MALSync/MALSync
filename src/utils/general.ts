@@ -134,13 +134,21 @@ export function changeDetect(callback, func) {
   return Number(intervalId);
 }
 
-export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
-  const intervalId = setInterval(function() {
-    if (condition()) {
-      clearInterval(intervalId);
-      callback();
-    }
-  }, interval);
+type WaitUntilTrueCallbackType = (intervalId: number) => void;
+export function waitUntilTrue(condition: Function, interval?: number): Promise<number>;
+export function waitUntilTrue(condition: Function, callback: WaitUntilTrueCallbackType, interval?: number): number;
+export function waitUntilTrue(condition: Function, callback?: WaitUntilTrueCallbackType | number, interval = 100) {
+  if (typeof callback === 'undefined' || typeof callback === 'number')
+    return new Promise<number>(resolve => {
+      waitUntilTrue(condition, resolve, callback);
+    });
+
+  const intervalId = (setInterval(() => {
+    if (!condition()) return;
+
+    clearInterval(intervalId);
+    callback(intervalId);
+  }, interval) as unknown) as number;
 
   return intervalId;
 }
