@@ -110,6 +110,7 @@ function getSeries(page) {
           episodeData = {
             seq: 1,
           };
+          nextEpisodeData = undefined;
         }
         page.handlePage();
         $('html').removeClass('miniMAL-hide');
