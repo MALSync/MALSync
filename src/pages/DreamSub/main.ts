@@ -4,7 +4,7 @@ let jsonData;
 
 export const DreamSub: pageInterface = {
   name: 'DreamSub',
-  domain: 'https://dreamsub.stream',
+  domain: 'https://dreamsub.cc',
   languages: ['Italian'],
   type: 'anime',
   isSyncPage(url) {

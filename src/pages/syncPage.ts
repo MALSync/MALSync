@@ -192,9 +192,12 @@ export class syncPage {
         let resumeTimeString = '';
 
         if (api.settings.get('autoresume')) {
-          timeCb(resumeTime);
-          This.curState.videoChecked = 2;
-          return;
+          // Dont autoresume if near the end of the video
+          if (item.duration - resumeTime > item.duration * 0.1) {
+            timeCb(resumeTime);
+            This.curState.videoChecked = 2;
+            return;
+          }
         }
         let delta = resumeTime;
         const minutes = Math.floor(delta / 60);

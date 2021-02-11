@@ -3,27 +3,26 @@
   "url": "https://asurascans.com/",
   "testCases": [
     {
-      "url": "https://asurascans.com/2547-shenwu-tianzun-chapter-198/",
+      "url": "https://asurascans.com/sss-class-suicide-hunter-chapter-18/",
       "expected": {
         "sync": true,
-        "title": "Shenwu Tianzun",
-        "identifier": "shenwu-tianzun",
-        "overviewUrl": "https://asurascans.com/comics/shenwu-tianzun/",
-        "nextEpUrl": "https://asurascans.com/2547-shenwu-tianzun-chapter-199/",
-        "episode": 198,
+        "title": "SSS-Class Suicide Hunter",
+        "identifier": "sss-class-suicide-hunter",
+        "overviewUrl": "https://asurascans.com/comics/sss-class-suicide-hunter/",
+        "nextEpUrl": "https://asurascans.com/8517-sss-class-suicide-hunter-chapter-19/",
+        "episode": 18,
         "uiSelector": false
       }
     },
     {
-      "url": "https://asurascans.com/comics/shenwu-tianzun/",
+      "url": "https://asurascans.com/comics/sss-class-suicide-hunter/",
       "expected": {
         "sync": false,
-        "title": "Shenwu Tianzun",
-        "identifier": "shenwu-tianzun",
+        "title": "SSS-Class Suicide Hunter",
+        "identifier": "sss-class-suicide-hunter",
         "uiSelector": true,
         "epList": {
-          "27": "https://asurascans.com/shenwu-tianzun-chapter-27/",
-          "171": "https://asurascans.com/shenwu-tianzun-chapter-171/"
+          "25": "https://asurascans.com/sss-class-suicide-hunter-chapter-25/"
         }
       }
     }

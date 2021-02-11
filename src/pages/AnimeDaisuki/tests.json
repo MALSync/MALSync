@@ -1,6 +1,7 @@
 {
   "title": "animedaisuki",
   "url": "https://animedaisuki.moe/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://animedaisuki.moe/watch/6380/initial-d-first-stage-5",

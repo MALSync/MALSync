@@ -1,33 +1,33 @@
 {
   "title": "DreamSub",
-  "url": "https://dreamsub.stream/",
+  "url": "https://dreamsub.cc/",
   "testCases": [
     {
-      "url": "https://dreamsub.stream/anime/one-piece/59",
+      "url": "https://dreamsub.cc/anime/one-piece/59",
       "expected": {
         "sync": true,
         "title": "One Piece",
         "identifier": "one-piece",
-        "overviewUrl": "https://dreamsub.stream/anime/one-piece",
-        "nextEpUrl": "https://dreamsub.stream/anime/one-piece/60",
+        "overviewUrl": "https://dreamsub.cc/anime/one-piece",
+        "nextEpUrl": "https://dreamsub.cc/anime/one-piece/60",
         "episode": 59,
         "uiSelector": false,
         "epList": {
-          "5": "https://dreamsub.stream/anime/one-piece/5",
-          "914": "https://dreamsub.stream/anime/one-piece/914"
+          "5": "https://dreamsub.cc/anime/one-piece/5",
+          "914": "https://dreamsub.cc/anime/one-piece/914"
         }
       }
     },
     {
-      "url": "https://dreamsub.stream/anime/one-piece",
+      "url": "https://dreamsub.cc/anime/one-piece",
       "expected": {
         "sync": false,
         "title": "One Piece",
         "identifier": "one-piece",
         "uiSelector": true,
         "epList": {
-          "5": "https://dreamsub.stream/anime/one-piece/5",
-          "914": "https://dreamsub.stream/anime/one-piece/914"
+          "5": "https://dreamsub.cc/anime/one-piece/5",
+          "914": "https://dreamsub.cc/anime/one-piece/914"
         }
       }
     }

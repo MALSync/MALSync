@@ -1,6 +1,7 @@
 {
   "title": "an1me",
   "url": "https://an1me.nl/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://an1me.nl/c/one-piece/",

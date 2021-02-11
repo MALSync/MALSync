@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://www.funimation.com/shows/*"]
+    "match": ["*://www.funimation.com/shows/*", "*://www.funimation.com/*/shows/*"]
   }
 }
