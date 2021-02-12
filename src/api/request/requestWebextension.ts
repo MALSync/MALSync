@@ -16,4 +16,11 @@ export const requestApi: requestInterface = {
       });
     });
   },
+
+  notification(options) {
+    this.sendMessage({
+      name: 'notification',
+      options,
+    });
+  },
 };

@@ -4,6 +4,7 @@ import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
 import { initProgressScheduler } from './background/releaseProgress';
 import { initCustomDomain } from './background/customDomain';
+import { sendNotification } from './background/notifications';
 
 try {
   initSyncTags();
@@ -181,6 +182,11 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
           chrome.tabs.sendMessage(tab.id, message);
         });
       });
+      return undefined;
+    }
+    case 'notification': {
+      sendNotification(message.options);
+      return undefined;
     }
     default:
   }

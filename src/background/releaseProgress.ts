@@ -2,7 +2,6 @@ import { Cache } from '../utils/Cache';
 import { getList } from '../_provider/listFactory';
 import { listElement } from '../_provider/listAbstract';
 import { xhrResponseI } from '../api/messageInterface';
-import { sendNotification } from '../utils/notifications';
 
 export interface releaseItemInterface {
   timestamp: number;
@@ -465,7 +464,7 @@ function notificationCheck(el, cProgress, nProgress, type) {
           // Check if new ep is one higher than the watched one
           if (el.watchedEp + 1 === nProgress.lastEp.total) {
             console.log('############################################');
-            sendNotification({
+            api.request.notification({
               title: el.title,
               text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
               sticky: true,
