@@ -161,6 +161,7 @@ export abstract class SingleAbstract {
         cacheKey: this.getCacheKey(),
         progressMode: this.getProgressMode(),
         watchedEp: this.getEpisode(),
+        single: this,
         xhr,
       })
       .then(progress => {

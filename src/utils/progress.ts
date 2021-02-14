@@ -86,6 +86,7 @@ export class Progress {
           cacheKey: string;
           progressMode: string;
           watchedEp: number;
+          single: any;
           xhr?: object;
         }
       | false = false,

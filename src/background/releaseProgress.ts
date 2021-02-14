@@ -83,6 +83,7 @@ export async function main() {
   return false;
 }
 
+/*
 export async function listUpdate(state, type) {
   const logger = con.m('release').m(type);
   logger.log('Start', type, state);
@@ -104,6 +105,7 @@ export async function listUpdate(state, type) {
       logger.error(e);
     });
 }
+*/
 
 export async function listUpdateWithPOST(state, type) {
   const logger = con.m('release').m(type);
@@ -255,7 +257,15 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 }
 
 export async function single(
-  el: { uid: number; malId: number | null; title: string; cacheKey: string; watchedEp: number; xhr?: object },
+  el: {
+    uid: number;
+    malId: number | null;
+    title: string;
+    cacheKey: string;
+    watchedEp: number;
+    single: any;
+    xhr?: object;
+  },
   type,
   mode = 'default',
   logger = con.m('release'),
@@ -447,7 +457,7 @@ export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ ke
   return cacheObj.getValue();
 }
 
-function notificationCheck(el, cProgress, nProgress, type) {
+async function notificationCheck(el, cProgress, nProgress, type) {
   try {
     if (!api.settings.get('progressNotifications')) return;
     if (el && nProgress && nProgress) {
@@ -464,13 +474,28 @@ function notificationCheck(el, cProgress, nProgress, type) {
           // Check if new ep is one higher than the watched one
           if (el.watchedEp + 1 === nProgress.lastEp.total) {
             console.log('############################################');
-            api.request.notification({
-              title: el.title,
-              text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
-              sticky: true,
-              image: el.image,
-              url: el.options && el.options.u ? el.options.u : el.url,
-            });
+
+            let noti;
+
+            if (el.single) {
+              noti = {
+                title: el.title,
+                text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
+                sticky: true,
+                image: await el.single.getImage(),
+                url: el.single.getStreamingUrl() ? el.single.getStreamingUrl() : el.single.getUrl(),
+              };
+            } else {
+              noti = {
+                title: el.title,
+                text: api.storage.lang(`syncPage_malObj_nextEp_${type}`, [nProgress.lastEp.total]),
+                sticky: true,
+                image: el.image,
+                url: el.options && el.options.u ? el.options.u : el.url,
+              };
+            }
+
+            api.request.notification(noti);
           }
         }
       }
