@@ -10,7 +10,7 @@ export async function sendNotification(options: {
 }) {
   if (!options.image) options.image = defaultImg;
 
-  con.m('Notification').log(options)
+  con.m('Notification').log(options);
 
   const imgBlob = await getImageBlob(options.image);
   const messageArray = {

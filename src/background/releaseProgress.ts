@@ -461,7 +461,6 @@ async function notificationCheck(el, cProgress, nProgress, type) {
   try {
     if (!api.settings.get('progressNotifications')) return;
     if (el && nProgress && nProgress) {
-      con.log('####', el, cProgress, nProgress);
       if (
         cProgress.lastEp &&
         typeof cProgress.lastEp.total !== 'undefined' &&
@@ -473,10 +472,7 @@ async function notificationCheck(el, cProgress, nProgress, type) {
         if (cProgress.lastEp.total < nProgress.lastEp.total) {
           // Check if new ep is one higher than the watched one
           if (el.watchedEp + 1 === nProgress.lastEp.total) {
-            console.log('############################################');
-
             let noti;
-
             if (el.single) {
               noti = {
                 title: el.title,
@@ -494,7 +490,6 @@ async function notificationCheck(el, cProgress, nProgress, type) {
                 url: el.options && el.options.u ? el.options.u : el.url,
               };
             }
-
             api.request.notification(noti);
           }
         }
