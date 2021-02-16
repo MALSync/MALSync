@@ -1,9 +1,5 @@
 import { pageInterface } from '../pageInterface';
 
-function IsOverviewUrl(url: string) {
-  return /\/anime\//.test(url);
-}
-
 export const Turkanime: pageInterface = {
   name: 'Turkanime',
   domain: 'https://www.turkanime.net',
@@ -46,9 +42,9 @@ export const Turkanime: pageInterface = {
       // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
 
       const animeNameSlug = Turkanime.overview!.getIdentifier(
-        IsOverviewUrl(window.location.href) //
-          ? window.location.href
-          : Turkanime.sync.getOverviewUrl(''),
+        Turkanime.isSyncPage(window.location.href) //
+          ? Turkanime.sync.getOverviewUrl('')
+          : window.location.href,
       );
       // Expected output: shingeki-no-kyojin
 
@@ -113,8 +109,6 @@ export const Turkanime: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-
-    if (!Turkanime.isSyncPage(page.url) && !IsOverviewUrl(page.url)) return;
 
     j.$(() => {
       utils.waitUntilTrue(
