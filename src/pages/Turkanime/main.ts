@@ -10,7 +10,7 @@ export const Turkanime: pageInterface = {
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {
-    return url.split('/')[3] !== 'video';
+    return url.split('/')[3] === 'video';
   },
   sync: {
     getTitle() {
