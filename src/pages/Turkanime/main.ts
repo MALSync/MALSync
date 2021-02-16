@@ -4,54 +4,16 @@ function IsOverviewUrl(url: string) {
   return /\/anime\//.test(url);
 }
 
-// Some translations:
-// "bolum" = "episode"
-// "bolum-final" = "final/last episode"
-
-// Valid inputs:
-// https://www.turkanime.net/video/shingeki-no-kyojin-24-bolum
-// https://www.turkanime.net/video/shingeki-no-kyojin-25-bolum-final
-
-// Invalid inputs
-// https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
-// https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
-function extractEpisodeNumber(episodeURL: string): number {
-  const animeNameSlug = Turkanime.overview!.getIdentifier(
-    IsOverviewUrl(window.location.href) //
-      ? window.location.href
-      : Turkanime.sync.getOverviewUrl(''),
-  );
-  // Expected output: shingeki-no-kyojin
-
-  const animeNameWithEpisodeSlug = Turkanime.overview!.getIdentifier(episodeURL);
-
-  const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
-  // Expected valid output: "24-bolum" | "25-bolum-final"
-  // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
-
-  const episodeNumberMatches = episodeSlug.match(
-    // https://regex101.com/r/yBcQgN/1
-    /(?<!-)(?<episodeNumber>\d+)-bolum(?:-final)?/i,
-  );
-
-  if (!episodeNumberMatches?.groups) return NaN;
-
-  return Number(episodeNumberMatches.groups.episodeNumber);
-}
-
 export const Turkanime: pageInterface = {
   name: 'Turkanime',
   domain: 'https://www.turkanime.net',
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] !== 'video') {
-      return false;
-    }
-    return true;
+    return url.split('/')[3] !== 'video';
   },
   sync: {
-    getTitle(url) {
+    getTitle() {
       return j
         .$('.breadcrumb a')
         .first()
@@ -70,15 +32,49 @@ export const Turkanime: pageInterface = {
         Turkanime.domain,
       );
     },
-    getEpisode: extractEpisodeNumber,
-    nextEpUrl(url) {
+    getEpisode(episodeURL: string) {
+      // Some translations:
+      // "bolum" = "episode"
+      // "bolum-final" = "final/last episode"
+
+      // Valid inputs:
+      // https://www.turkanime.net/video/shingeki-no-kyojin-24-bolum
+      // https://www.turkanime.net/video/shingeki-no-kyojin-25-bolum-final
+
+      // Invalid inputs
+      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
+      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
+
+      const animeNameSlug = Turkanime.overview!.getIdentifier(
+        IsOverviewUrl(window.location.href) //
+          ? window.location.href
+          : Turkanime.sync.getOverviewUrl(''),
+      );
+      // Expected output: shingeki-no-kyojin
+
+      const animeNameWithEpisodeSlug = Turkanime.overview!.getIdentifier(episodeURL);
+
+      const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
+      // Expected valid output: "24-bolum" | "25-bolum-final"
+      // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
+
+      const episodeNumberMatches = episodeSlug.match(
+        // https://regex101.com/r/yBcQgN/1
+        /(?<!-)(?<episodeNumber>\d+)-bolum(?:-final)?/i,
+      );
+
+      if (!episodeNumberMatches?.groups) return NaN;
+
+      return Number(episodeNumberMatches.groups.episodeNumber);
+    },
+    nextEpUrl() {
       const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
       if (href) return utils.absoluteLink(href, Turkanime.domain);
       return '';
     },
   },
   overview: {
-    getTitle(url) {
+    getTitle() {
       return j
         .$('#detayPaylas .panel-title')
         .first()
@@ -111,7 +107,7 @@ export const Turkanime: pageInterface = {
       elementEp(selector) {
         const episodeURL = Turkanime.overview!.list!.elementUrl(selector);
 
-        return extractEpisodeNumber(episodeURL);
+        return Turkanime.sync.getEpisode(episodeURL);
       },
     },
   },
