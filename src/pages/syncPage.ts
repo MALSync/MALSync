@@ -479,6 +479,8 @@ export class syncPage {
           logger.log('Nothing to Sync');
         }
       }
+
+      this.imageFallback();
     }
   }
 
@@ -828,6 +830,13 @@ export class syncPage {
         }
         return;
       }
+    }
+  }
+
+  imageFallback() {
+    if (this.singleObj && typeof this.singleObj.setImage !== 'undefined' && this.page.getImage) {
+      const image = this.page.getImage();
+      if (image) this.singleObj.setImage(image);
     }
   }
 

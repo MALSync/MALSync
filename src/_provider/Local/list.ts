@@ -31,7 +31,7 @@ export class userlist extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
                 malId: 0,
                 tags: el.tags,
                 title: el.name,
@@ -52,7 +52,7 @@ export class userlist extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
                 malId: 0,
                 tags: el.tags,
                 title: el.name,

@@ -409,6 +409,8 @@ export abstract class SingleAbstract {
     return this._getImage();
   }
 
+  public setImage?(url: string): void;
+
   abstract _getRating(): Promise<string>;
 
   public getRating(): Promise<string> {

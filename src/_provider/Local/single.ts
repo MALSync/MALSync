@@ -104,7 +104,13 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
+    if (this.animeInfo && this.animeInfo.image) return Promise.resolve(this.animeInfo.image);
     return Promise.resolve(api.storage.assetUrl('questionmark.gif'));
+  }
+
+  setImage(url: string) {
+    this.animeInfo.image = url;
+    if (this._onList) this.sync();
   }
 
   _getRating() {
@@ -124,6 +130,7 @@ export class Single extends SingleAbstract {
         name: this.title,
         tags: '',
         sUrl: '',
+        image: '',
         progress: 0,
         volumeprogress: 0,
         score: 0,
