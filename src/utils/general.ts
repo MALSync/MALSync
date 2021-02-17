@@ -846,8 +846,6 @@ export function elementInViewport(el, horizontalOffset = 0) {
   );
 }
 
-export function wait(ms: number): Promise<void>;
-export function wait<T>(ms: number, param: T): Promise<T>;
-export function wait<T>(ms: number, param?: T) {
-  return new Promise(resolve => setTimeout(() => resolve(param), ms));
+export function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
