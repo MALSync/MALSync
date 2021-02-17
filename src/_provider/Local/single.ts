@@ -88,7 +88,7 @@ export class Single extends SingleAbstract {
   }
 
   _getTitle() {
-    return this.animeInfo.name;
+    return `[L] ${this.animeInfo.name}`;
   }
 
   _getTotalEpisodes() {
