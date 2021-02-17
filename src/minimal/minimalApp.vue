@@ -227,7 +227,7 @@ import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
 import customDomainsVue from './minimalApp/customDomains.vue';
-import { getSingle as GetSingle } from '../_provider/singleFactory';
+import { getSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
 
 let timer;
@@ -419,7 +419,8 @@ export default {
   watch: {
     renderUrl(url) {
       this.renderObj = null;
-      const tempRenderObj = new GetSingle(url);
+      const tempRenderObj = getSingle(url);
+
       tempRenderObj
         .update()
         .then(() => {
@@ -529,13 +530,17 @@ export default {
       }
       return options.theme;
     },
-    selectTab(selectedTab) {
+    selectTab(_selectedTab) {
+      let selectedTab = _selectedTab;
+
       if (
         this.onlySettings &&
         (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')
       )
         selectedTab = 'settings';
+
       con.log('Tab Changed', selectedTab);
+
       this.currentTab = selectedTab;
     },
     registerScroll(key, fn) {
@@ -594,7 +599,9 @@ export default {
       }
       return false;
     },
-    urlClick(url) {
+    urlClick(_url) {
+      let url = _url;
+
       if (!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       if (!this.fill(url)) {
