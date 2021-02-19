@@ -25,7 +25,7 @@ export const AnimeOwl: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('a.back-tv-show > h5')
+        .$('a.back-tv-show > h1')
         .text()
         .trim();
     },
@@ -36,11 +36,12 @@ export const AnimeOwl: pageInterface = {
       return j.$('a.back-tv-show').attr('href') || '';
     },
     getEpisode(url) {
-      if (!utils.urlParam(url, 'ep')) {
-        url = getCurrentUrl();
-      }
-      // @ts-ignore
-      return parseInt(utils.urlParam(url, 'ep'));
+      return parseInt(
+        j
+          .$('#episodes button.active')
+          .closest('a')
+          .text(),
+      );
     },
     nextEpUrl(url) {
       return j
@@ -61,7 +62,7 @@ export const AnimeOwl: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('div.post-inner.thin > h4')
+        .$('div.post-inner > h1.anime-title')
         .html()
         .split('<br>')[0]
         .replace(/-\s*$/, '')
@@ -87,7 +88,7 @@ export const AnimeOwl: pageInterface = {
         return selector.find('a').attr('href') || '';
       },
       elementEp(selector) {
-        return AnimeOwl.sync.getEpisode(AnimeOwl.overview!.list!.elementUrl(selector));
+        return parseInt(selector.find('a').text());
       },
     },
   },
