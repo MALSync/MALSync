@@ -1,6 +1,7 @@
 {
   "title": "HelveticaScans",
   "url": "https://helveticascans.com/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://helveticascans.com/r/read/mousou-telepathy/en/0/315/",
