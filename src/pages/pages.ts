@@ -80,7 +80,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
-import { KKJScans } from './KKJScans/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { MethodScans } from './MethodScans/main';
 import { NonamesScans } from './NonamesScans/main';
@@ -204,7 +203,6 @@ export const pages = {
   AnimeOnDemand,
   EdelgardeScans,
   HatigarmScanz,
-  KKJScans,
   LeviatanScans,
   MethodScans,
   NonamesScans,
