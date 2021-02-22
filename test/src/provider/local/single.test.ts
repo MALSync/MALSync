@@ -103,10 +103,12 @@ function setGlobals() {
 }
 
 describe('Local single', function() {
+  const titlePrefix = '[L] ';
+
   before(function() {
     setGlobals();
   });
-  generalSingleTests(Single, setGlobals);
+  generalSingleTests(Single, setGlobals, titlePrefix);
 
   describe('title', function() {
     [
@@ -121,7 +123,7 @@ describe('Local single', function() {
         );
         await singleEntry.update();
         if (!el) el = 'Unknown';
-        expect(singleEntry.getTitle()).equal(el);
+        expect(singleEntry.getTitle()).equal(titlePrefix + el);
       });
     });
   });
