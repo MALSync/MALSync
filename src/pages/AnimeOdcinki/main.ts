@@ -51,12 +51,14 @@ export const AnimeOdcinki: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('a')
-          .first()
-          .attr('href')
-          .split('/')[5]
-          .match(/\d+/gim);
+        return Number(
+          selector
+            .find('a')
+            .first()
+            .attr('href')
+            ?.split('/')?.[5]
+            ?.match(/\d+/gim),
+        );
       },
     },
   },

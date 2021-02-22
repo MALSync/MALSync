@@ -87,12 +87,14 @@ export const JapScan: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('a')
-          .first()
-          .attr('href')
-          .split('/')[3]
-          .match(/\d+/gim);
+        return Number(
+          selector
+            .find('a')
+            .first()
+            .attr('href')
+            ?.split('/')?.[3]
+            ?.match(/\d+/gim),
+        );
       },
     },
   },

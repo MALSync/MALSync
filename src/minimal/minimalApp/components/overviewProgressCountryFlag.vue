@@ -28,7 +28,7 @@ export default {
   watch: {
     country: {
       immediate: true,
-      async handler(newVal, oldVal) {
+      async handler(newVal) {
         const cache = new Cache(`flag/${newVal}`, 48 * 60 * 60 * 1000);
         if (await cache.hasValue()) {
           // eslint-disable-next-line no-return-assign

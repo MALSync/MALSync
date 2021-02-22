@@ -17,7 +17,7 @@ async function checkNotifications() {
   const last = parseInt(await api.storage.get('firebaseNotification'));
   const next = last + 1;
 
-  if (typeof last === undefined || Number.isNaN(last)) {
+  if (typeof last === 'undefined' || Number.isNaN(last)) {
     api.storage.set('firebaseNotification', current);
     return;
   }

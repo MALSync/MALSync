@@ -1,4 +1,4 @@
-import { syncPage } from '../pages/syncPage';
+import { SyncPage } from '../pages/syncPage';
 import { firebaseNotification } from '../utils/firebaseNotification';
 import { shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
@@ -18,7 +18,7 @@ global.doubleLoad = true;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const page = new syncPage(window.location.href, _Page, floatClick);
+  const page = new SyncPage(window.location.href, _Page, floatClick);
   messagePageListener(page);
   page.init();
   firebaseNotification();

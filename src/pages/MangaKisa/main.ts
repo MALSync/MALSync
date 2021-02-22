@@ -88,12 +88,14 @@ export const MangaKisa: pageInterface = {
           .attr('href')}`;
       },
       elementEp(selector) {
-        return selector
-          .find('div.infoept1 > div')
-          .first()
-          .text()
-          .match(/(?:chapter |Ch.)+\d+/gi)[0]
-          .replace(/\D+/g, '');
+        return Number(
+          selector
+            .find('div.infoept1 > div')
+            .first()
+            .text()
+            .match(/(?:chapter |Ch.)+\d+/gi)?.[0]
+            .replace(/\D+/g, ''),
+        );
       },
     },
   },

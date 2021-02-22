@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as request from 'request';
-import { searchClass } from '../../../src/_provider/Search/searchClass';
+import { SearchClass } from '../../../src/_provider/Search/searchClass';
 
 describe('Sanitized Titel', function() {
   const titles = {
@@ -22,7 +22,7 @@ describe('Sanitized Titel', function() {
     const title = key;
     const resTitle = titles[key];
     it(title, function() {
-      const searchObj = new searchClass(title, 'anime');
+      const searchObj = new SearchClass(title, 'anime');
       expect(searchObj.getSanitizedTitel()).to.equal(resTitle);
     });
   });
@@ -68,7 +68,7 @@ describe('Titel Similarity', function() {
 
   titles.forEach(function(res) {
     it(res.title, function() {
-      expect(searchClass.similarity(res.extTitle, res.title).same).to.equal(
+      expect(SearchClass.similarity(res.extTitle, res.title).same).to.equal(
         res.result,
       );
     });
@@ -99,7 +99,7 @@ describe('Firebase', function() {
   });
 
   it('Crunchyroll', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'anime',
       'No Game No Life',
@@ -120,7 +120,7 @@ describe('Firebase', function() {
   });
 
   it('Kissanime', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'anime',
       'No-Game-No-Life-Dub',
@@ -141,7 +141,7 @@ describe('Firebase', function() {
   });
 
   it('Novelplanet', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'novel',
       'No-Game-No-Life',
@@ -162,7 +162,7 @@ describe('Firebase', function() {
   });
 
   it('Not Found', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Avatar: The Last Airbender Season 1',
       'anime',
       'Avatar-The-Last-Airbender-Season-1',
@@ -183,7 +183,7 @@ describe('Firebase', function() {
   });
 
   it('Not Existing', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Something',
       'anime',
       'Something-that-does-not-exist',
@@ -196,7 +196,7 @@ describe('Firebase', function() {
   });
 
   it('No database', async function() {
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Something',
       'anime',
       'Something-that-does-not-exist',
@@ -232,7 +232,7 @@ describe('Mal Search', function() {
 
   it('Novelplanet', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Shuumatsu Nani Shitemasu ka? Isogashii desu ka? Sukutte Moratte Ii desu ka?',
       'novel',
       'Shuumatsu-Nani-Shitemasu-ka-Isogashii-desu-ka-Sukutte-Moratte-Ii-desu-ka',
@@ -256,7 +256,7 @@ describe('Mal Search', function() {
 
   it('Kissanime', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Fate/kaleid liner PRISMA ILLYA',
       'anime',
       'Fate-kaleid-liner-Prisma-Illya',
@@ -308,7 +308,7 @@ describe('Page Search', function() {
 
   it('Novelplanet', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'novel',
       'No Game No Life',
@@ -331,7 +331,7 @@ describe('Page Search', function() {
 
   it('Kissmanga', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'manga',
       'No Game No Life',
@@ -354,7 +354,7 @@ describe('Page Search', function() {
 
   it('Kissanime', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Fate/kaleid liner PRISMA ILLYA',
       'anime',
       'Fate-kaleid-liner-Prisma-Illya',
@@ -408,7 +408,7 @@ describe('Full Search', function() {
     // TODO: Readd when new novel page is supported
     return;
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'novel',
       'No-Game-No-Life',
@@ -423,7 +423,7 @@ describe('Full Search', function() {
 
   it('Not Existing', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'No Game No Life',
       'anime',
       'Something-that-does-not-exist',
@@ -438,7 +438,7 @@ describe('Full Search', function() {
 
   it('Not Found', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'Avatar: The Last Airbender',
       'anime',
       'k1n4',
@@ -453,7 +453,7 @@ describe('Full Search', function() {
 
   it('Page Search', async function() {
     this.timeout(10000);
-    const searchObj = new searchClass(
+    const searchObj = new SearchClass(
       'tales of demons and gods',
       'manga',
       'tales of demons and gods',

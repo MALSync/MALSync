@@ -1,11 +1,11 @@
-import { myanimelistClass } from '../myanimelist/myanimelistClass';
+import { MyAnimeListClass } from '../myanimelist/myanimelistClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
 let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const mal = new myanimelistClass(window.location.href);
+  const mal = new MyAnimeListClass(window.location.href);
   messageMalListener(mal);
   mal.init();
   firebaseNotification();

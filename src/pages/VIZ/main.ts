@@ -81,7 +81,7 @@ export const VIZ: pageInterface = {
           .first()
           .attr('href');
 
-        if (!anchorHref || anchorHref !== "javascript:void('join to read');") return NaN;
+        if (!anchorHref || anchorHref.match(/javascript:void\('join to read'\);/)) return NaN;
 
         let episodePart = selector.find('td > div.disp-id.mar-r-sm').text();
 

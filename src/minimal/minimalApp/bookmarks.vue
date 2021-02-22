@@ -103,10 +103,10 @@ export default {
     },
   },
   watch: {
-    listType(type) {
+    listType() {
       this.load();
     },
-    state(state) {
+    state() {
       this.load();
     },
   },

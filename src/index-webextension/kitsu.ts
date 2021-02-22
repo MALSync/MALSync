@@ -1,11 +1,11 @@
-import { kitsuClass } from '../kitsu/kitsuClass';
+import { KitsuClass } from '../kitsu/kitsuClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
 
 let lastFocus;
 
 function main() {
   if (api.settings.get('userscriptModeButton')) throw 'Userscript mode';
-  const kitsu = new kitsuClass(window.location.href);
+  const kitsu = new KitsuClass(window.location.href);
   messageKitsuListener(kitsu);
   firebaseNotification();
 

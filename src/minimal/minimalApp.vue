@@ -417,9 +417,10 @@ export default {
     },
   },
   watch: {
-    renderUrl(url, oldUrl) {
+    renderUrl(url) {
       this.renderObj = null;
-      const tempRenderObj = new getSingle(url);
+      const tempRenderObj = getSingle(url);
+
       tempRenderObj
         .update()
         .then(() => {
@@ -529,13 +530,17 @@ export default {
       }
       return options.theme;
     },
-    selectTab(selectedTab) {
+    selectTab(_selectedTab) {
+      let selectedTab = _selectedTab;
+
       if (
         this.onlySettings &&
         (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')
       )
         selectedTab = 'settings';
+
       con.log('Tab Changed', selectedTab);
+
       this.currentTab = selectedTab;
     },
     registerScroll(key, fn) {
@@ -594,7 +599,9 @@ export default {
       }
       return false;
     },
-    urlClick(url) {
+    urlClick(_url) {
+      let url = _url;
+
       if (!/^local:\/\//i.test(url)) url = utils.absoluteLink(url, 'https://myanimelist.net');
 
       if (!this.fill(url)) {

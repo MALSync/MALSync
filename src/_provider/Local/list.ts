@@ -1,7 +1,7 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
-export class userlist extends ListAbstract {
+export class UserList extends ListAbstract {
   name = 'local';
 
   authenticationUrl = '';

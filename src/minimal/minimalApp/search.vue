@@ -56,10 +56,10 @@ export default {
     };
   },
   watch: {
-    keyword(type) {
+    keyword() {
       this.load();
     },
-    type(type) {
+    type() {
       this.load();
     },
   },

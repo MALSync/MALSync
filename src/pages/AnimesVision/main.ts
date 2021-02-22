@@ -64,12 +64,14 @@ export const AnimesVision: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('a')
-          .first()
-          .attr('href')
-          .split('/')[5]
-          .replace(/\D+/, '');
+        return Number(
+          selector
+            .find('a')
+            .first()
+            .attr('href')
+            ?.split('/')?.[5]
+            ?.replace(/\D+/, ''),
+        );
       },
     },
   },

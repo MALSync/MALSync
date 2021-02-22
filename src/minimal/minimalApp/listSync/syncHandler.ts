@@ -1,12 +1,12 @@
-import { Single as malSingle } from '../../../_provider/MyAnimeList_legacy/single';
-import { Single as anilistSingle } from '../../../_provider/AniList/single';
-import { Single as kitsuSingle } from '../../../_provider/Kitsu/single';
-import { Single as simklSingle } from '../../../_provider/Simkl/single';
+import { Single as MalSingle } from '../../../_provider/MyAnimeList_legacy/single';
+import { Single as AniListSingle } from '../../../_provider/AniList/single';
+import { Single as KitsuSingle } from '../../../_provider/Kitsu/single';
+import { Single as SimklSingle } from '../../../_provider/Simkl/single';
 
-import { userlist as malList } from '../../../_provider/MyAnimeList_legacy/list';
-import { userlist as anilistList } from '../../../_provider/AniList/list';
-import { userlist as kitsuList } from '../../../_provider/Kitsu/list';
-import { userlist as simklList } from '../../../_provider/Simkl/list';
+import { UserList as MalList } from '../../../_provider/MyAnimeList_legacy/list';
+import { UserList as AnilistList } from '../../../_provider/AniList/list';
+import { UserList as KitsuList } from '../../../_provider/Kitsu/list';
+import { UserList as SimklList } from '../../../_provider/Simkl/list';
 import { getSyncMode } from '../../../_provider/helper';
 
 export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing) {
@@ -161,13 +161,13 @@ export function syncItem(slave, pageType) {
   if (Object.keys(slave.diff).length !== 0) {
     let singleClass: any;
     if (pageType === 'MAL') {
-      singleClass = new malSingle(slave.url);
+      singleClass = new MalSingle(slave.url);
     } else if (pageType === 'ANILIST') {
-      singleClass = new anilistSingle(slave.url);
+      singleClass = new AniListSingle(slave.url);
     } else if (pageType === 'KITSU') {
-      singleClass = new kitsuSingle(slave.url);
+      singleClass = new KitsuSingle(slave.url);
     } else if (pageType === 'SIMKL') {
-      singleClass = new simklSingle(slave.url);
+      singleClass = new SimklSingle(slave.url);
     } else {
       throw 'No sync type';
     }
@@ -247,28 +247,28 @@ export function getListProvider(providerSettingList) {
     {
       providerType: 'MAL',
       providerSettings: providerSettingList.mal,
-      listProvider: malList,
+      listProvider: MalList,
     },
     {
       providerType: 'ANILIST',
       providerSettings: providerSettingList.anilist,
-      listProvider: anilistList,
+      listProvider: AnilistList,
     },
     {
       providerType: 'KITSU',
       providerSettings: providerSettingList.kitsu,
-      listProvider: kitsuList,
+      listProvider: KitsuList,
     },
     {
       providerType: 'SIMKL',
       providerSettings: providerSettingList.simkl,
-      listProvider: simklList,
+      listProvider: SimklList,
     },
   ];
 }
 
-export function getList(prov, type) {
-  const listProvider = new prov(7, type);
+export function getList(Prov, type) {
+  const listProvider = new Prov(7, type);
 
   return listProvider
     .get()

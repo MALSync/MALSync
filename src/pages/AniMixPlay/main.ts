@@ -69,7 +69,7 @@ export const AniMixPlay: pageInterface = {
         return `${url}/ep${episode}`;
       },
       elementEp(selector) {
-        return selector.text().replace(/\D+/g, '');
+        return Number(selector.text().replace(/\D+/g, ''));
       },
     },
   },

@@ -1,5 +1,5 @@
-import { Single as kitsuSingle } from '../_provider/Kitsu/single';
-import { userlist } from '../_provider/Kitsu/list';
+import { Single as KitsuSingle } from '../_provider/Kitsu/single';
+import { UserList } from '../_provider/Kitsu/list';
 
 interface detail {
   page: 'detail';
@@ -14,7 +14,7 @@ interface bookmarks {
   type: 'anime' | 'manga';
 }
 
-export class kitsuClass {
+export class KitsuClass {
   page: any = null;
 
   same = false;
@@ -80,7 +80,7 @@ export class kitsuClass {
         this.pageRelation();
         return;
       }
-      const malObj = new kitsuSingle(this.url);
+      const malObj = new KitsuSingle(this.url);
       await malObj.update();
 
       this.page = {
@@ -417,7 +417,7 @@ export class kitsuClass {
         return;
       }
 
-      const listProvider: userlist = new userlist(1, this.page.type);
+      const listProvider: UserList = new UserList(1, this.page.type);
 
       listProvider
         .get()

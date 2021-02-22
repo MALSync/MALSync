@@ -162,7 +162,7 @@ export const Mangadex: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector.attr('data-chapter');
+        return Number(selector.attr('data-chapter'));
       },
     },
   },

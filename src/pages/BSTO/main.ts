@@ -94,8 +94,9 @@ export const BSTO: pageInterface = {
           .find('a')
           .first()
           .text();
-        if (!anchorNb) return '';
-        return anchorNb;
+        if (!anchorNb) return NaN;
+
+        return Number(anchorNb);
       },
     },
   },

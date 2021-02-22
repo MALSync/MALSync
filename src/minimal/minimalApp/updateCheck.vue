@@ -76,7 +76,7 @@ export default {
     };
   },
   watch: {
-    listType(type) {
+    listType() {
       this.load();
     },
   },

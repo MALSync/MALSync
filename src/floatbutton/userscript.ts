@@ -1,4 +1,4 @@
-import { minimal } from '../minimal/minimalClass';
+import { Minimal } from '../minimal/minimalClass';
 
 let minimalObj;
 
@@ -19,7 +19,7 @@ function createIframe(page) {
     api.storage.injectCssResource('materialFont.css', head);
 
     setTimeout(function() {
-      minimalObj = new minimal(
+      minimalObj = new Minimal(
         j
           .$('#info-iframe')
           .contents()

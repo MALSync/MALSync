@@ -72,10 +72,12 @@ export const MangaNelo: pageInterface = {
       },
       elementEp(selector) {
         return MangaNelo.sync.getEpisode(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

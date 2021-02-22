@@ -38,19 +38,12 @@ export const MangaKatana: pageInterface = {
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
-    nextEpUrl(url) {
-      if (
-        j
-          .$('a.nav_button.next')
-          .first()
-          .attr('href') !== 'javascript:;'
-      ) {
-        return j
-          .$('a.nav_button.next')
-          .first()
-          .attr('href');
-      }
-      return '';
+    nextEpUrl() {
+      const nextEpisodeAnchor = document.querySelector('a.nav_button.next') as HTMLAnchorElement;
+
+      if (nextEpisodeAnchor?.href.startsWith('javascript')) return '';
+
+      return nextEpisodeAnchor.href;
     },
   },
   overview: {
@@ -84,7 +77,7 @@ export const MangaKatana: pageInterface = {
             .$('#single_book > script')
             .prev()
             .children()
-            .children() !== undefined &&
+            .children() !== 'undefined' &&
           j
             .$('#single_book > script')
             .prev()
@@ -121,17 +114,21 @@ export const MangaKatana: pageInterface = {
       elementEp(selector) {
         if (!obfusList) {
           return MangaKatana.sync.getEpisode(
-            selector
-              .find('td > div.chapter > a')
-              .first()
-              .attr('href'),
+            String(
+              selector
+                .find('td > div.chapter > a')
+                .first()
+                .attr('href'),
+            ),
           );
         }
         return MangaKatana.sync.getEpisode(
-          selector
-            .find('div > div > a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('div > div > a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

@@ -1,10 +1,10 @@
-import { Single as legacySingle } from '../_provider/MyAnimeList_legacy/single';
-import { userlist as legacyList } from '../_provider/MyAnimeList_legacy/list';
+import { Single as LegacySingle } from '../_provider/MyAnimeList_legacy/single';
+import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
-import { Single as apiSingle } from '../_provider/MyAnimeList_api/single';
-import { userlist as apiList } from '../_provider/MyAnimeList_api/list';
+import { Single as ApiSingle } from '../_provider/MyAnimeList_api/single';
+import { UserList as ApiList } from '../_provider/MyAnimeList_api/list';
 
-export class myanimelistClass {
+export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
 
   // detail
@@ -296,9 +296,9 @@ export class myanimelistClass {
     con.log('Streaming UI');
     let malObj;
     if (api.settings.get('syncMode') === 'MALAPI') {
-      malObj = new apiSingle(this.url);
+      malObj = new ApiSingle(this.url);
     } else {
-      malObj = new legacySingle(this.url);
+      malObj = new LegacySingle(this.url);
     }
 
     await malObj.update();
@@ -386,10 +386,10 @@ export class myanimelistClass {
     let listProvider;
     let dataProvider;
     if (api.settings.get('syncMode') === 'MALAPI') {
-      listProvider = new apiList(7, this.type!);
-      dataProvider = new legacyList(7, this.type!, {}, this.username);
+      listProvider = new ApiList(7, this.type!);
+      dataProvider = new LegacyList(7, this.type!, {}, this.username);
     } else {
-      listProvider = new legacyList(7, this.type!, {}, this.username);
+      listProvider = new LegacyList(7, this.type!, {}, this.username);
       dataProvider = listProvider;
     }
 
@@ -580,9 +580,9 @@ export class myanimelistClass {
               async function() {
                 let malObj;
                 if (api.settings.get('syncMode') === 'MALAPI') {
-                  malObj = new apiSingle(url);
+                  malObj = new ApiSingle(url);
                 } else {
-                  malObj = new legacySingle(url);
+                  malObj = new LegacySingle(url);
                 }
 
                 await malObj.update();
