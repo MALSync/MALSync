@@ -6,13 +6,10 @@ export const Turkanime: pageInterface = {
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] !== 'video') {
-      return false;
-    }
-    return true;
+    return url.split('/')[3] === 'video';
   },
   sync: {
-    getTitle(url) {
+    getTitle() {
       return j
         .$('.breadcrumb a')
         .first()
@@ -22,7 +19,7 @@ export const Turkanime: pageInterface = {
     getIdentifier(url) {
       return Turkanime.overview!.getIdentifier(Turkanime.sync.getOverviewUrl(url));
     },
-    getOverviewUrl(url) {
+    getOverviewUrl() {
       return utils.absoluteLink(
         j
           .$('.breadcrumb a')
@@ -31,17 +28,49 @@ export const Turkanime: pageInterface = {
         Turkanime.domain,
       );
     },
-    getEpisode(url) {
-      return getEpisode(Turkanime.sync.getIdentifier(url), Turkanime.overview!.getIdentifier(url));
+    getEpisode(episodeURL: string) {
+      // Some translations:
+      // "bolum" = "episode"
+      // "bolum-final" = "final/last episode"
+
+      // Valid inputs:
+      // https://www.turkanime.net/video/shingeki-no-kyojin-24-bolum
+      // https://www.turkanime.net/video/shingeki-no-kyojin-25-bolum-final
+
+      // Invalid inputs
+      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
+      // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
+
+      const animeNameSlug = Turkanime.overview!.getIdentifier(
+        Turkanime.isSyncPage(window.location.href) //
+          ? Turkanime.sync.getOverviewUrl('')
+          : window.location.href,
+      );
+      // Expected output: shingeki-no-kyojin
+
+      const animeNameWithEpisodeSlug = Turkanime.overview!.getIdentifier(episodeURL);
+
+      const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
+      // Expected valid output: "24-bolum" | "25-bolum-final"
+      // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
+
+      const episodeNumberMatches = episodeSlug.match(
+        // https://regex101.com/r/yBcQgN/1
+        /(?<!-)(?<episodeNumber>\d+)-bolum(?:-final)?/i,
+      );
+
+      if (!episodeNumberMatches?.groups) return NaN;
+
+      return Number(episodeNumberMatches.groups.episodeNumber);
     },
-    nextEpUrl(url) {
+    nextEpUrl() {
       const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
       if (href) return utils.absoluteLink(href, Turkanime.domain);
       return '';
     },
   },
   overview: {
-    getTitle(url) {
+    getTitle() {
       return j
         .$('#detayPaylas .panel-title')
         .first()
@@ -72,40 +101,20 @@ export const Turkanime: pageInterface = {
         return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), Turkanime.domain);
       },
       elementEp(selector) {
-        const url = Turkanime.overview!.list!.elementUrl(selector);
-        return getEpisode(
-          Turkanime.overview!.getIdentifier(window.location.href),
-          Turkanime.overview!.getIdentifier(url),
-        );
-        return Turkanime.sync!.getEpisode(Turkanime.overview!.list!.elementUrl(selector));
+        const episodeURL = Turkanime.overview!.list!.elementUrl(selector);
+
+        return Turkanime.sync.getEpisode(episodeURL);
       },
     },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if (Turkanime.isSyncPage(page.url)) {
-        page.handlePage();
-      } else {
-        utils.waitUntilTrue(
-          function() {
-            return j.$('.list.menum').length;
-          },
-          function() {
-            page.handlePage();
-          },
-        );
-      }
+
+    j.$(() => {
+      utils.waitUntilTrue(
+        () => document.querySelector('.list.menum'),
+        () => page.handlePage(),
+      );
     });
   },
 };
-
-function getEpisode(selector, episodeSelector) {
-  const diff = episodeSelector.replace(selector, '').replace(/-/g, ':');
-  con.log('getEpisode', selector, episodeSelector, diff);
-  const temp = diff.match(/\d+/);
-  if (temp === null) {
-    return 0;
-  }
-  return parseInt(temp[0]);
-}
