@@ -12,6 +12,9 @@ export const MangaNelo: pageInterface = {
     }
     return false;
   },
+  getImage() {
+    return $('div.story-info-left > span.info-image > img').attr('src');
+  },
   sync: {
     getTitle(url) {
       return j.$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)').text();

@@ -54,8 +54,8 @@
           class="mdl-card__media mdl-cell mdl-cell--2-col"
           style="background-color: transparent; float:left; padding-right: 16px;"
         >
-          <clazy-load :src="image" class="malImage malClear" style="width: 100%; height: auto;">
-            <img :src="image" style="height: auto; width: 100%;" />
+          <clazy-load :src="image" class="malImage malClear" style="width: 100%;height: auto;" @error="setQuestionmark">
+            <img :src="image" style="height: auto; width: 100%;" @error="setQuestionmark" />
           </clazy-load>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
@@ -870,6 +870,9 @@ export default {
           }
         }
       }
+    },
+    setQuestionmark(e) {
+      e.target.src = api.storage.assetUrl('questionmark.gif');
     },
   },
 };
