@@ -849,3 +849,18 @@ export function elementInViewport(el, horizontalOffset = 0) {
 export function wait(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+export function pageUrl(page: 'mal' | 'anilist' | 'kitsu' | 'simkl', type: 'anime' | 'manga', id: string | number) {
+  switch (page) {
+    case 'mal':
+      return `https://myanimelist.net/${type}/${id}`;
+    case 'anilist':
+      return `https://anilist.co/${type}/${id}`;
+    case 'kitsu':
+      return `https://kitsu.io/${type}/${id}`;
+    case 'simkl':
+      return `https://simkl.com/${type}/${id}`;
+    default:
+      throw `${page} not a valid page`;
+  }
+}
