@@ -266,7 +266,7 @@
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "Anime herzien?",
+    "message": "Anime opnieuw bekijken?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
