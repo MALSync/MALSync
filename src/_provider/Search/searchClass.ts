@@ -541,7 +541,7 @@ export class SearchClass {
   }
 
   // Rules
-  protected rules: RulesClass | undefined;
+  rules: RulesClass | undefined;
 
   async initRules() {
     const logger = con.m('Rules');

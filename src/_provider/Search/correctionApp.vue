@@ -7,6 +7,8 @@
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
+      <rules :obj="rulesClass"></rules>
+
       <input-button v-if="!syncMode" label="URL" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
 
       <input-button
@@ -55,12 +57,14 @@
 import search from './components/search.vue';
 import inputButton from './components/inputButton.vue';
 import entry from './components/entry.vue';
+import rules from './components/rules.vue';
 
 export default {
   components: {
     entry,
     inputButton,
     search,
+    rules,
   },
   data: () => ({
     inputOffset: 0,
@@ -72,6 +76,9 @@ export default {
     },
     syncPage() {
       return this.$parent.searchClass.getSyncPage();
+    },
+    rulesClass() {
+      return this.searchClass.rules;
     },
     currentStateEp() {
       if (this.syncPage && this.syncPage.curState && this.syncPage.curState.episode) {

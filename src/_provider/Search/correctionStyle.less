@@ -106,6 +106,35 @@
     }
   }
 
+  .rules {
+    .rule {
+      margin-bottom: 15px;
+      background-color: @cardColor;
+      max-width: 400px;
+
+      .header {
+        padding: 5px 10px;
+        border-bottom: 1px solid white;
+      }
+
+      .content {
+        padding: 5px 10px;
+      }
+
+      .hover {
+        display: none;
+      }
+      &:hover {
+        .hover {
+          display: block;
+        }
+        .noHover {
+          display: none;
+        }
+      }
+    }
+  }
+
   //Input Button
   .inputButton {
     display: flex;
