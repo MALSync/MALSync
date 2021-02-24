@@ -39,6 +39,7 @@ export class RulesClass {
     if (this.state) {
       await this.setCache(this.state);
     }
+    return this;
   }
 
   public getRules() {
@@ -104,5 +105,40 @@ export class RulesClass {
   protected setCache(cache: rules) {
     cache = JSON.parse(JSON.stringify(cache));
     return api.storage.set(`${this.type}/${this.cacheKey}/Rules`, cache);
+  }
+
+  public applyRules(currentEpisode: number, rules?): { url: string; offset: number } | undefined {
+    const logger = this.logger.m('apply');
+    if (!rules) rules = this.getRules();
+    logger.log(currentEpisode, rules);
+    const rule = rules.find(el => el.from.start <= currentEpisode && el.from.end >= currentEpisode);
+
+    if (rule) {
+      logger.log('Rule found', rule);
+      return {
+        url: rule.to.url,
+        offset: rule.to.start - rule.from.start,
+      };
+    }
+
+    // If continuous counting and seasons are merged (Crunchyroll: Re:ZERO Season 2)
+    if (rules.length > 1) {
+      const selfRule = rules.find(el => el.from.url === el.to.url && currentEpisode > el.from.end);
+      if (selfRule) {
+        const offset = selfRule.to.start - selfRule.from.start;
+        const newEp = currentEpisode + offset;
+        logger.log('Self Rule', selfRule, newEp, offset);
+        const res = this.applyRules(
+          newEp,
+          rules.filter(el => el.from.url !== el.to.url),
+        );
+        if (res) {
+          res.offset += offset;
+          return res;
+        }
+      }
+    }
+
+    return undefined;
   }
 }
