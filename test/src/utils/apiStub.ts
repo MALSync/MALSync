@@ -60,9 +60,14 @@ export function setStub(stub) {
 }
 
 export function setGlobals() {
+  //@ts-ignore
   global.con = require('../../../src/utils/console');
+  //@ts-ignore
   global.utils = require('../../../src/utils/general');
+  //@ts-ignore
   global.con.log = function() {};
+  //@ts-ignore
   global.con.error = function() {};
+  //@ts-ignore
   global.con.info = function() {};
 }

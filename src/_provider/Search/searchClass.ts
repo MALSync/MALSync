@@ -6,6 +6,8 @@ import { compareTwoStrings } from 'string-similarity';
 
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
+import { getCacheKey } from '../singleFactory';
+import { RulesClass } from './rulesClass';
 
 interface SearchResult {
   id?: number;
@@ -536,5 +538,37 @@ export class SearchClass {
       .toLowerCase()
       .split('#')[0]
       .replace(/\./g, '%2E');
+  }
+
+  // Rules
+  protected rules: RulesClass | undefined;
+
+  async initRules() {
+    const logger = con.m('Rules');
+    const url = this.getUrl();
+    logger.log('Url', url);
+    if (url) {
+      const cacheKeyObj = await getCacheKey(url);
+      logger.log('Cachekey', cacheKeyObj);
+      this.rules = await new RulesClass(cacheKeyObj.cacheKey, this.getNormalizedType()).init();
+      return cacheKeyObj.singleObj;
+    }
+    return undefined;
+  }
+
+  getRuledOffset(episode: number): number {
+    if (this.rules) {
+      const res = this.rules.applyRules(episode);
+      if (res) return res.offset;
+    }
+    return this.getOffset();
+  }
+
+  getRuledUrl(episode: number): string | null {
+    if (this.rules) {
+      const res = this.rules.applyRules(episode);
+      if (res) return res.url;
+    }
+    return this.getUrl();
   }
 }
