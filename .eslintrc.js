@@ -2,9 +2,13 @@
  * @type {import("eslint").Linter.RulesRecord}
  */
 const COMMON_RULES = {
-  'block-scoped-var': 'warn', //TODO
+  // Import rules
   'import/no-extraneous-dependencies': 'off',
   'import/no-webpack-loader-syntax': 'off',
+  'import/prefer-default-export': 'off',
+  'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
+  // General rules
+  'block-scoped-var': 'warn', //TODO
   'no-await-in-loop': 'warn', // TODO
   'prefer-destructuring': 'warn', // TODO
   'no-continue': 'off',
@@ -14,15 +18,6 @@ const COMMON_RULES = {
   'no-underscore-dangle': 'off',
   'class-methods-use-this': 'off',
   'no-fallthrough': 'off',
-  'import/extensions': [
-    'error',
-    'ignorePackages',
-    {
-      js: 'never',
-      ts: 'never',
-    },
-  ],
-  'import/prefer-default-export': 'off',
   'no-plusplus': 0,
   'no-restricted-syntax': [
     'error',
@@ -91,9 +86,24 @@ module.exports = {
       plugins: ['@typescript-eslint', 'jquery-unsafe-malsync', 'no-unsanitized'],
       rules: {
         ...COMMON_RULES,
-        'vars-on-top': 'off',
-        'import/no-self-import': 'warn',
+        // Import rules
         'import/no-cycle': 'warn', // TODO
+        'import/no-unresolved': 'warn',
+        'import/no-self-import': 'warn',
+        // TS rules
+        '@typescript-eslint/ban-ts-ignore': 'warn',
+        '@typescript-eslint/camelcase': 'warn',
+        '@typescript-eslint/class-name-casing': 'warn',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-this-alias': 'warn',
+        '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
+        // General rules
+        'vars-on-top': 'off',
+        'global-require': 'warn',
+        'no-inner-declarations': 'warn', // TODO
         'no-unreachable': 'warn',
         'no-unsanitized/method': [
           'error',
@@ -111,19 +121,8 @@ module.exports = {
             },
           },
         ],
+        // Custom rules
         'jquery-unsafe-malsync/no-xss-jquery': 2,
-        '@typescript-eslint/ban-ts-ignore': 'warn',
-        '@typescript-eslint/camelcase': 'warn',
-        '@typescript-eslint/class-name-casing': 'warn',
-        '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/no-non-null-assertion': 'off',
-        '@typescript-eslint/no-this-alias': 'warn',
-        '@typescript-eslint/no-use-before-define': 'off',
-        '@typescript-eslint/no-var-requires': 'off',
-        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
-        'global-require': 'warn',
-        'import/no-unresolved': 'warn',
-        'no-inner-declarations': 'warn', // TODO
       },
       settings: {
         'import/extensions': ['.js', '.ts'],
@@ -167,6 +166,7 @@ module.exports = {
   root: true,
   rules: {
     'prettier/prettier': ['error', { singleQuote: true }],
+    ...COMMON_RULES,
     eqeqeq: ['error', 'always'],
     'no-extend-native': 'off',
     'prefer-template': 'error',
