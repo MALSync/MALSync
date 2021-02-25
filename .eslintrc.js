@@ -3,7 +3,6 @@
  */
 const COMMON_RULES = {
   // Import rules
-  'import/no-extraneous-dependencies': 'off',
   'import/no-webpack-loader-syntax': 'off',
   'import/prefer-default-export': 'off',
   'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
