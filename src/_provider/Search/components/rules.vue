@@ -1,6 +1,6 @@
 <template>
   <div v-if="rules && rules.length" class="rules">
-    <div v-for="(rule, index) in rules" :key="index" class="rule">
+    <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
         <template v-if="rule.to.title">
           <span class="noHover">
@@ -48,6 +48,11 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
+    activeRule(rule) {
+      return {
+        active: this.obj ? rule === this.obj.activeRule : false,
+      }
+    },
   },
 };
 </script>

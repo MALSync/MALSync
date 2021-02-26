@@ -107,14 +107,18 @@ export class RulesClass {
     return api.storage.set(`${this.type}/${this.cacheKey}/Rules`, cache);
   }
 
+  public activeRule: any | undefined;
+
   public applyRules(currentEpisode: number, rules?): { url: string; offset: number } | undefined {
     const logger = this.logger.m('apply');
+    this.activeRule = undefined;
     if (!rules) rules = this.getRules();
     logger.log(currentEpisode, rules);
     const rule = rules.find(el => el.from.start <= currentEpisode && el.from.end >= currentEpisode);
 
     if (rule) {
       logger.log('Rule found', rule);
+      this.activeRule = rule;
       return {
         url: rule.to.url,
         offset: rule.to.start - rule.from.start,
