@@ -556,19 +556,23 @@ export class SearchClass {
     return undefined;
   }
 
-  getRuledOffset(episode: number): number {
+  applyRules(episode: number) {
     if (this.rules) {
-      const res = this.rules.applyRules(episode);
-      if (res) return res.offset;
+      const userOffset = this.getOffset() || 0;
+      const res = this.rules.applyRules(Number(episode) + Number(userOffset));
+      if (res) res.offset = Number(res.offset) + Number(userOffset);
+      return res;
     }
-    return this.getOffset();
+    return undefined;
+  }
+
+  getRuledOffset(episode: number): number {
+    const res = this.applyRules(episode);
+    return res ? res.offset : this.getOffset();
   }
 
   getRuledUrl(episode: number): string | null {
-    if (this.rules) {
-      const res = this.rules.applyRules(episode);
-      if (res) return res.url;
-    }
-    return this.getUrl();
+    const res = this.applyRules(episode);
+    return res ? res.url : this.getUrl();
   }
 }
