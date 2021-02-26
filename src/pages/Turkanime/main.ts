@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
-export const Turkanime: pageInterface = {
-  name: 'Turkanime',
+export const TurkAnime: pageInterface = {
+  name: 'TurkAnime',
   domain: 'https://www.turkanime.net',
   languages: ['Turkish'],
   type: 'anime',
@@ -17,7 +17,7 @@ export const Turkanime: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return Turkanime.overview!.getIdentifier(Turkanime.sync.getOverviewUrl(url));
+      return TurkAnime.overview!.getIdentifier(TurkAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl() {
       return utils.absoluteLink(
@@ -25,7 +25,7 @@ export const Turkanime: pageInterface = {
           .$('.breadcrumb a')
           .first()
           .attr('href'),
-        Turkanime.domain,
+        TurkAnime.domain,
       );
     },
     getEpisode(episodeURL: string) {
@@ -41,14 +41,14 @@ export const Turkanime: pageInterface = {
       // https://www.turkanime.net/video/shingeki-no-kyojin-ova-3-bolum
       // https://www.turkanime.net/video/shingeki-no-kyojin-ova-5-bolum-part-2-pismanlik-yok
 
-      const animeNameSlug = Turkanime.overview!.getIdentifier(
-        Turkanime.isSyncPage(window.location.href) //
-          ? Turkanime.sync.getOverviewUrl('')
+      const animeNameSlug = TurkAnime.overview!.getIdentifier(
+        TurkAnime.isSyncPage(window.location.href) //
+          ? TurkAnime.sync.getOverviewUrl('')
           : window.location.href,
       );
       // Expected output: shingeki-no-kyojin
 
-      const animeNameWithEpisodeSlug = Turkanime.overview!.getIdentifier(episodeURL);
+      const animeNameWithEpisodeSlug = TurkAnime.overview!.getIdentifier(episodeURL);
 
       const episodeSlug = animeNameWithEpisodeSlug.replace(`${animeNameSlug}-`, '');
       // Expected valid output: "24-bolum" | "25-bolum-final"
@@ -65,7 +65,7 @@ export const Turkanime: pageInterface = {
     },
     nextEpUrl() {
       const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
-      if (href) return utils.absoluteLink(href, Turkanime.domain);
+      if (href) return utils.absoluteLink(href, TurkAnime.domain);
       return '';
     },
   },
@@ -98,12 +98,12 @@ export const Turkanime: pageInterface = {
 
         if (!anchorHref) return '';
 
-        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), Turkanime.domain);
+        return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), TurkAnime.domain);
       },
       elementEp(selector) {
-        const episodeURL = Turkanime.overview!.list!.elementUrl(selector);
+        const episodeURL = TurkAnime.overview!.list!.elementUrl(selector);
 
-        return Turkanime.sync.getEpisode(episodeURL);
+        return TurkAnime.sync.getEpisode(episodeURL);
       },
     },
   },
