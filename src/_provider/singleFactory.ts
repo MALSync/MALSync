@@ -32,6 +32,12 @@ export function getSingle(url: string) {
 }
 
 export async function getCacheKey(url: string): Promise<{ cacheKey: string; singleObj? }> {
+  if (/^https:\/\/myanimelist.net\/(anime|manga)\/\d+(\/|$)/.test(url)) {
+    return {
+      cacheKey: url.split('/')[4],
+    };
+  }
+
   const cacheObj = new Cache(`cacheKey/${url}`, 7 * 24 * 60 * 60 * 1000);
 
   if (await cacheObj.hasValue()) {
