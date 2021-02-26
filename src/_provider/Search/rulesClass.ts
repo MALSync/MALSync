@@ -32,7 +32,15 @@ export class RulesClass {
   public async init() {
     this.state = await this.getCache();
 
-    if (!this.state) this.state = await this.api();
+    if (
+      !this.state ||
+      (this.state.provider === 'firebase' &&
+        this.state.updated &&
+        this.state.updated + 7 * 24 * 60 * 60 * 1000 < new Date().getTime())
+    ) {
+      const tempState = await this.api();
+      if (tempState) this.state = tempState;
+    }
 
     this.logger.m('Result').log(this.state);
 
