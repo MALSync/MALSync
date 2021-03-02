@@ -1,0 +1,31 @@
+{
+  "title": "MangaHub",
+  "url": "https://mangahub.io/",
+  "testCases": [
+    {
+      "url": "https://mangahub.io/chapter/iron-ladies/chapter-167",
+      "expected": {
+        "sync": true,
+        "title": "Iron Ladies",
+        "identifier": "iron-ladies",
+        "overviewUrl": "https://mangahub.io/manga/iron-ladies",
+        "nextEpUrl": "https://mangahub.io/chapter/iron-ladies/chapter-168",
+        "episode": 167,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangahub.io/manga/iron-ladies",
+      "expected": {
+        "sync": false,
+        "title": "Iron Ladies",
+        "identifier": "iron-ladies",
+        "uiSelector": true,
+        "epList": {
+          "66": "https://mangahub.io/chapter/iron-ladies/chapter-66",
+          "247": "https://mangahub.io/chapter/iron-ladies/chapter-247"
+        }
+      }
+    }
+  ]
+}
