@@ -496,7 +496,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.turkanime.net"><img src="https://www.google.com/s2/favicons?domain=https://www.turkanime.net"> Turkanime</a></td>
+    <td><a href="https://www.turkanime.net"><img src="https://www.google.com/s2/favicons?domain=https://www.turkanime.net"> TurkAnime</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
