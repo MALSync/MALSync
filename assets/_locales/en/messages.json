@@ -936,6 +936,10 @@
     "message": "More Info",
     "description": "Link button which links to more informations"
   },
+  "settings_presenceShowButtons": {
+    "message": "Show button to view the anime/manga on MAL or another provider",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
   "updateCheck_Refresh": {
     "message": "Refresh",
     "description": "Refresh"
@@ -1103,6 +1107,14 @@
         "example": "Mangadex"
       }
     }
+  },
+  "discord_rpc_view_anime": {
+    "message": "View Anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "View Manga",
+    "description": "Discord view manga button"
   },
   "nextEpShort_no_support": {
     "message": "This page doesn't support opening the next episode",
