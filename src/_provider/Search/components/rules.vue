@@ -1,5 +1,6 @@
 <template>
   <div v-if="rules && rules.length" class="rules">
+    <div class="title">{{ lang('UI_Rules') }}</div>
     <div v-for="(rule, index) in rules" :key="index" class="rule" :class="activeRule(rule)">
       <div class="header">
         <template v-if="rule.to.title">

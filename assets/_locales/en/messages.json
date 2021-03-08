@@ -195,6 +195,10 @@
     "message": "(1) Appalling",
     "description": "Appalling - Score"
   },
+  "UI_Rules": {
+    "message": "Rules",
+    "description": "Rules text for the correction UI"
+  },
   "syncPage_flashm_resumeMsg": {
     "message": "Resume at $time$",
     "description": "Video resume message",
