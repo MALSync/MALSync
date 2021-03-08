@@ -149,7 +149,7 @@ async function testApi(retry = 0) {
     return testApi(retry);
   }
 
-  return apiCall('/System/Info').then(async response => {
+  return apiCall('/System/Info').then(response => {
     if (response.status !== 200) {
       con.error('Not Authenticated');
       setBase('');
@@ -158,7 +158,23 @@ async function testApi(retry = 0) {
       retry++;
       return testApi(retry);
     }
-    return true;
+    // Calls users to check if userId is correct
+    return apiCall('', true)
+      .catch(e => {
+        con.error('User wrong', e);
+        setUser('');
+        retry++;
+        return testApi(retry);
+      })
+      .then(response => {
+        if (response.status !== 200) {
+          con.error('User wrong');
+          setUser('');
+          retry++;
+          return testApi(retry);
+        }
+        return true;
+      });
   });
 }
 
