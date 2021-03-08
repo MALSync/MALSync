@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as def from '../../../src/_provider/definitions';
 
-export function generalSingleTests(Single, setGlobals) {
+export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
   describe('Url', function() {
     describe('Constructor', function() {
       global.testData.urlTest.forEach(el => {
@@ -249,7 +249,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix + tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
@@ -268,7 +268,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(false);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);
@@ -282,7 +282,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(null);
@@ -297,7 +297,7 @@ export function generalSingleTests(Single, setGlobals) {
         expect(singleEntry.getDisplayUrl()).equal(tData.displayUrl);
         expect(singleEntry.isOnList()).equal(true);
         expect(singleEntry.isAuthenticated()).equal(true);
-        expect(singleEntry.getTitle()).equal(tData.title);
+        expect(singleEntry.getTitle()).equal(titlePrefix+tData.title);
         expect(singleEntry.getTotalEpisodes()).equal(tData.eps);
         expect(singleEntry.getTotalVolumes()).equal(tData.vol);
         expect(singleEntry.getMalUrl()).equal(tData.malUrl);

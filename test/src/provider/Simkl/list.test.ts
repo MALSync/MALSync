@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { userlist } from '../../../../src/_provider/Simkl/list';
+import { UserList } from '../../../../src/_provider/Simkl/list';
 import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
@@ -56,7 +56,7 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Simkl userlist', function() {
+describe('Simkl UserList', function() {
   before(function() {
     global.api = {
       request: {
@@ -94,5 +94,5 @@ describe('Simkl userlist', function() {
     };
   });
 
-  generalListTests(userlist, elements, responses, { noContinueCall: true });
+  generalListTests(UserList, elements, responses, { noContinueCall: true });
 });

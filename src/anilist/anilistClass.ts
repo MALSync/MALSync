@@ -1,6 +1,6 @@
 import * as helper from '../provider/AniList/helper';
-import { Single as anilistSingle } from '../_provider/AniList/single';
-import { userlist } from '../_provider/AniList/list';
+import { Single as AniListSingle } from '../_provider/AniList/single';
+import { UserList } from '../_provider/AniList/list';
 
 interface detail {
   page: 'detail';
@@ -14,7 +14,7 @@ interface bookmarks {
   type: 'anime' | 'manga';
 }
 
-export class anilistClass {
+export class AnilistClass {
   page: any = null;
 
   constructor(public url: string) {
@@ -252,7 +252,7 @@ export class anilistClass {
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
     $('.malsync-rel-link').remove();
-    const malObj = new anilistSingle(this.url);
+    const malObj = new AniListSingle(this.url);
     await malObj.update();
     this.pageRelation(malObj);
 
@@ -363,7 +363,7 @@ export class anilistClass {
         return;
       }
 
-      const listProvider: userlist = new userlist(1, this.page!.type);
+      const listProvider: UserList = new UserList(1, this.page!.type);
 
       listProvider
         .get()

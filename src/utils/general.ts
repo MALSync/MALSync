@@ -845,3 +845,7 @@ export function elementInViewport(el, horizontalOffset = 0) {
     rect.top - horizontalOffset <= (window.innerHeight || document.documentElement.clientHeight)
   );
 }
+
+export function wait(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

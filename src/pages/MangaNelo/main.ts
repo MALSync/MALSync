@@ -12,6 +12,9 @@ export const MangaNelo: pageInterface = {
     }
     return false;
   },
+  getImage() {
+    return $('div.story-info-left > span.info-image > img').attr('src');
+  },
   sync: {
     getTitle(url) {
       return j.$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)').text();
@@ -69,10 +72,12 @@ export const MangaNelo: pageInterface = {
       },
       elementEp(selector) {
         return MangaNelo.sync.getEpisode(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

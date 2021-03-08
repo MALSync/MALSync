@@ -85,7 +85,7 @@ export const AnimeId: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeId.domain);
       },
       elementEp(selector) {
-        return selector.attr('epi');
+        return Number(selector.attr('epi'));
       },
       handleListHook(epi, epilist) {
         epi++;

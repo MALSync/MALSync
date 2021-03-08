@@ -90,7 +90,7 @@ async function startCheck(type = 'anime') {
 
 async function updateElement(el, type = 'anime', retryNum = 0) {
   // eslint-disable-next-line no-async-promise-executor
-  return new Promise(async (resolve, reject) => {
+  return new Promise<void>(async (resolve, reject) => {
     const anime_num_episodes = el.totalEp;
     const anime_image_path = el.image;
     const anime_title = el.title;
@@ -128,7 +128,7 @@ async function updateElement(el, type = 'anime', retryNum = 0) {
       continueCheck[id] = async function(list, len, error) {
         clearTimeout(timeout);
 
-        if (typeof error !== undefined && error) {
+        if (typeof error !== 'undefined' && error) {
           api.storage.set(`updateCheck/${type}/${el.cacheKey}`, checkError(elCache, error));
           resolve();
           return;

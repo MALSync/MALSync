@@ -9,18 +9,17 @@
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/jquery": "^3.5.1",
+    "@types/mocha": "^8.2.0",
     "@types/node": "^14.11.2",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "archiver": "^3.1.1",
-    "async-mutex": "^0.1.4",
     "bl": ">=2.2.1",
     "chai": "^4.2.0",
     "chrome-webstore-upload": "^0.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^1.0.0",
-    "dompurify": "^2.1.1",
     "dot-prop": "^5.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
@@ -43,7 +42,6 @@
     "puppeteer-extra-plugin-stealth": "^2.6.2",
     "serialize-javascript": "^5.0.1",
     "sinon": "^7.5.0",
-    "string-similarity": "^4.0.2",
     "stylelint": "^13.7.2",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
@@ -54,9 +52,6 @@
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
-    "vue": "^2.6.12",
-    "vue-clazy-load": "^0.4.2",
-    "vue-dompurify-html": "^2.3.0",
     "vue-loader": "^15.9.3",
     "vue-template-compiler": "^2.6.12",
     "web-ext": "^4.3.0",
@@ -103,8 +98,14 @@
   },
   "dependencies": {
     "@types/chrome": "0.0.112",
+    "async-mutex": "^0.1.4",
+    "dompurify": "^2.1.1",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.3",
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "string-similarity": "^4.0.2",
+    "vue": "^2.6.12",
+    "vue-clazy-load": "^0.4.2",
+    "vue-dompurify-html": "^2.3.0"
   }
 }

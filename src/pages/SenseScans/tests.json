@@ -1,0 +1,31 @@
+{
+  "title": "SenseScans",
+  "url": "https://sensescans.com/",
+  "testCases": [
+    {
+      "url": "https://sensescans.com/reader/read/kingdom/en/57/618/page/1",
+      "expected": {
+        "sync": true,
+        "title": "Kingdom",
+        "identifier": "kingdom",
+        "overviewUrl": "https://sensescans.com/reader/series/kingdom/",
+        "nextEpUrl": "https://sensescans.com/reader/read/kingdom/en/57/619/",
+        "episode": 618,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://sensescans.com/reader/series/kingdom/",
+      "expected": {
+        "sync": false,
+        "title": "Kingdom",
+        "identifier": "kingdom",
+        "uiSelector": true,
+        "epList": {
+          "605": "https://sensescans.com/reader/read/kingdom/en/56/605/",
+          "651": "https://sensescans.com/reader/read/kingdom/en/60/651/"
+        }
+      }
+    }
+  ]
+}

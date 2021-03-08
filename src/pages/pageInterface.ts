@@ -1,4 +1,4 @@
-import { syncPage } from './syncPage';
+import { SyncPage } from './syncPage';
 
 export interface pageInterface {
   domain: string | string[];
@@ -7,6 +7,7 @@ export interface pageInterface {
   type: 'anime' | 'manga';
   isSyncPage: (url: string) => boolean; // Return true if the current page is the sync page (Chapter/episode page)
   isOverviewPage?: (url: string) => boolean; // Return true if the current page is the Overview page
+  getImage?: () => string | undefined; // Return an image for the entry for local sync
   sync: {
     // Definitions for the sync page
     getTitle: (url: string) => string; // Returns the title of the anime, used for the search on mal
@@ -28,14 +29,14 @@ export interface pageInterface {
       offsetHandler: boolean;
       elementsSelector: () => JQuery<HTMLElement>;
       elementUrl: (selector: JQuery<HTMLElement>) => string;
-      elementEp: (selector) => number;
+      elementEp: (selector: JQuery<HTMLElement>) => number;
       paginationNext?: (updateCheck: boolean) => boolean;
       handleListHook?: (ep: number, epList: JQuery<HTMLElement>[]) => void;
       getTotal?: () => number | undefined;
     };
   };
   database?: string; // ignore, only for first party implementations
-  init: (page: syncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
+  init: (page: SyncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
 }
 
 export interface pageState {

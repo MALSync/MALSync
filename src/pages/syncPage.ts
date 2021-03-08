@@ -3,7 +3,7 @@ import { getSingle } from '../_provider/singleFactory';
 import { initFloatButton } from '../floatbutton/init';
 import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, getPlayerTime } from '../utils/player';
-import { searchClass } from '../_provider/Search/vueSearchClass';
+import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 
 declare let browser: any;
@@ -15,7 +15,7 @@ if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
 
 const logger = con.m('Sync', '#348fff');
 
-export class syncPage {
+export class SyncPage {
   page: pageInterface;
 
   searchObj;
@@ -276,7 +276,7 @@ export class syncPage {
         identifier: this.page.sync.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
@@ -326,7 +326,7 @@ export class syncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new searchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
@@ -479,6 +479,8 @@ export class syncPage {
           logger.log('Nothing to Sync');
         }
       }
+
+      this.imageFallback();
     }
   }
 
@@ -831,6 +833,13 @@ export class syncPage {
     }
   }
 
+  imageFallback() {
+    if (this.singleObj && typeof this.singleObj.setImage !== 'undefined' && this.page.getImage) {
+      const image = this.page.getImage();
+      if (image) this.singleObj.setImage(image);
+    }
+  }
+
   testForCloudflare() {
     if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
       return true;
@@ -976,8 +985,14 @@ export class syncPage {
         .text();
       const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
       const width = aux.width() || 0;
+
       if (width) {
-        j.$('#malp').append(j.html(aux));
+        j.$('#malp').append(
+          // @ts-expect-error
+          // TODO --fix this line doesn't make sense
+          // .html will return [object Object] 'cause aux is JQuery<HTMLElement>
+          j.html(aux),
+        );
         j.$(selector).width(width + 5);
         aux.remove();
       }

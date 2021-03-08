@@ -1,9 +1,9 @@
 import Vue from 'vue';
-import { searchClass as searchClassExtend } from './searchClass';
+import { SearchClass as SearchClassExtend } from './searchClass';
 
 import correctionApp from './correctionApp.vue';
 
-export class searchClass extends searchClassExtend {
+export class SearchClass extends SearchClassExtend {
   reloadSync = false;
 
   protected vueInstance;

@@ -76,10 +76,12 @@ export const AnimeXin: pageInterface = {
       },
       elementEp(selector) {
         return AnimeXin.sync.getEpisode(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
+          String(
+            selector
+              .find('a')
+              .first()
+              .attr('href'),
+          ),
         );
       },
     },

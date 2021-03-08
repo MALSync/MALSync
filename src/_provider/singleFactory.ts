@@ -1,31 +1,31 @@
 import * as helper from './helper';
 
-import { Single as malSingle } from './MyAnimeList_legacy/single';
-import { Single as malApiSingle } from './MyAnimeList_api/single';
-import { Single as anilistSingle } from './AniList/single';
-import { Single as kitsuSingle } from './Kitsu/single';
-import { Single as simklSingle } from './Simkl/single';
-import { Single as localSingle } from './Local/single';
+import { Single as MalSingle } from './MyAnimeList_legacy/single';
+import { Single as MalApiSingle } from './MyAnimeList_api/single';
+import { Single as SnilistSingle } from './AniList/single';
+import { Single as SitsuSingle } from './Kitsu/single';
+import { Single as SimklSingle } from './Simkl/single';
+import { Single as LocalSingle } from './Local/single';
 
 export function getSingle(url: string) {
   if (/^local:\/\//i.test(url)) {
-    return new localSingle(url);
+    return new LocalSingle(url);
   }
   const syncMode = helper.getSyncMode(url);
   if (syncMode === 'MAL') {
-    return new malSingle(url);
+    return new MalSingle(url);
   }
   if (syncMode === 'MALAPI') {
-    return new malApiSingle(url);
+    return new MalApiSingle(url);
   }
   if (syncMode === 'ANILIST') {
-    return new anilistSingle(url);
+    return new SnilistSingle(url);
   }
   if (syncMode === 'KITSU') {
-    return new kitsuSingle(url);
+    return new SitsuSingle(url);
   }
   if (syncMode === 'SIMKL') {
-    return new simklSingle(url);
+    return new SimklSingle(url);
   }
   throw 'Unknown sync mode';
 }

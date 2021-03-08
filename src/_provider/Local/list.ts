@@ -1,7 +1,7 @@
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
-export class userlist extends ListAbstract {
+export class UserList extends ListAbstract {
   name = 'local';
 
   authenticationUrl = '';
@@ -31,10 +31,10 @@ export class userlist extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
                 malId: 0,
                 tags: el.tags,
-                title: el.name,
+                title: `[L] ${el.name}`,
                 totalEp: 0,
                 status: el.status,
                 score: el.score,
@@ -52,10 +52,10 @@ export class userlist extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
                 malId: 0,
                 tags: el.tags,
-                title: el.name,
+                title: `[L] ${el.name}`,
                 totalEp: 0,
                 status: el.status,
                 score: el.score,

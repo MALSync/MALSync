@@ -124,7 +124,7 @@ async function urlChange(page) {
 }
 
 async function returnPlayingItemId() {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       resolve();
     }, 10000);
@@ -276,7 +276,7 @@ async function askForApiKey() {
       j.$(evt.target)
         .parentsUntil('.flash')
         .remove();
-      reject(false);
+      reject();
     });
   });
 }

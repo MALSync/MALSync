@@ -19,17 +19,21 @@ export const AnimeDao: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('ol.breadcrumb > li > a[href*="/anime/"]').text();
+      return j
+        .$('h2.page_title')
+        .text()
+        .replace(/episode.*/i, '')
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(AnimeDao.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('ol.breadcrumb > li > a[href*="/anime/"]').attr('href') || '', AnimeDao.domain);
+      return utils.absoluteLink(j.$('#videocontent a[href*="/anime/"]').attr('href') || '', AnimeDao.domain);
     },
     getEpisode(url) {
       const text = j
-        .$('ol.breadcrumb > li.active')
+        .$('h2.page_title')
         .text()
         .toLowerCase();
       if (text.includes('special') || text.includes('ova') || text.includes('movie')) {

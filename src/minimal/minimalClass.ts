@@ -6,7 +6,7 @@ import minimalApp from './minimalApp.vue';
 Vue.use(VueClazyLoad);
 Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
-export class minimal {
+export class Minimal {
   private history: string[] = [];
 
   private minimalVue;

@@ -3,7 +3,7 @@ import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
 import { Branitube } from './Branitube/main';
-import { Turkanime } from './Turkanime/main';
+import { TurkAnime } from './TurkAnime/main';
 import { Twistmoe } from './Twistmoe/main';
 import { Emby } from './Emby/main';
 import { Plex } from './Plex/main';
@@ -80,7 +80,6 @@ import { WuxiaWorld } from './WuxiaWorld/main';
 import { AnimeOnDemand } from './AnimeOnDemand/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
-import { KKJScans } from './KKJScans/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { MethodScans } from './MethodScans/main';
 import { NonamesScans } from './NonamesScans/main';
@@ -89,7 +88,6 @@ import { SecretScans } from './SecretScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
-import { HelveticaScans } from './HelveticaScans/main';
 import { KireiCake } from './KireiCake/main';
 import { SenseScans } from './SenseScans/main';
 import { ManhuaPlus } from './ManhuaPlus/main';
@@ -129,7 +127,7 @@ export const pages = {
   Gogoanime,
   Twistmoe,
   Branitube,
-  Turkanime,
+  TurkAnime,
   animepahe,
   Netflix,
   Animeflv,
@@ -204,7 +202,6 @@ export const pages = {
   AnimeOnDemand,
   EdelgardeScans,
   HatigarmScanz,
-  KKJScans,
   LeviatanScans,
   MethodScans,
   NonamesScans,
@@ -213,7 +210,6 @@ export const pages = {
   SKScans,
   ZeroScans,
   DeathTollScans,
-  HelveticaScans,
   KireiCake,
   SenseScans,
   ManhuaPlus,

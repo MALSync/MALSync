@@ -18,6 +18,9 @@ export const MangaSee: pageInterface = {
     }
     return false;
   },
+  getImage() {
+    return $('div.container.MainContainer div.row > div > img.img-fluid').attr('src');
+  },
   sync: {
     getTitle(url) {
       return j

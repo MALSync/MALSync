@@ -55,12 +55,14 @@ export const AnimeZone: pageInterface = {
         return utils.absoluteLink(anchorHref.replace(/^../gm, ''), AnimeZone.domain);
       },
       elementEp(selector) {
-        return selector
-          .find('td:nth-child(6) > a')
-          .first()
-          .attr('href')
-          .split('/')[3]
-          .replace(/\D+/, '');
+        return Number(
+          selector
+            .find('td:nth-child(6) > a')
+            .first()
+            .attr('href')
+            ?.split('/')?.[3]
+            ?.replace(/\D+/, ''),
+        );
       },
     },
   },

@@ -12,6 +12,9 @@ export const Mangadex: pageInterface = {
     }
     return true;
   },
+  getImage() {
+    return $('#content a img').attr('src');
+  },
   sync: {
     getTitle(url) {
       return j
@@ -159,7 +162,7 @@ export const Mangadex: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector.attr('data-chapter');
+        return Number(selector.attr('data-chapter'));
       },
     },
   },

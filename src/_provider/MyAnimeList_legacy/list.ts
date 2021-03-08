@@ -1,6 +1,6 @@
 import { ListAbstract, listElement } from '../listAbstract';
 
-export class userlist extends ListAbstract {
+export class UserList extends ListAbstract {
   name = 'MyAnimeList';
 
   authenticationUrl = 'https://myanimelist.net/login.php';

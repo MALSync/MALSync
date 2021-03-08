@@ -70,12 +70,16 @@ export const Mangakakalot: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('span:nth-child(1) > a')
-          .first()
-          .attr('href')
-          .split('/')[5]
-          .match(/\d+/gim);
+        return Number(
+          String(
+            selector
+              .find('span:nth-child(1) > a')
+              .first()
+              .attr('href'),
+          )
+            .split('/')[5]
+            .match(/\d+/gim),
+        );
       },
     },
   },

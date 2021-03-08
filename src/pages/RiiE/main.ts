@@ -82,11 +82,13 @@ export const RiiE: pageInterface = {
         );
       },
       elementEp(selector) {
-        return selector
-          .find('span.leftoff > a')
-          .first()
-          .text()
-          .replace(/\D+/, '');
+        return Number(
+          selector
+            .find('span.leftoff > a')
+            .first()
+            .text()
+            .replace(/\D+/, ''),
+        );
       },
     },
   },

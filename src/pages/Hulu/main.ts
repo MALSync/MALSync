@@ -47,7 +47,7 @@ export const Hulu: pageInterface = {
         .text()
         .replace(/\D+/g, '');
 
-      if (typeof currentSeason !== undefined && Number(currentSeason) > 1) return `${name} season ${currentSeason}`;
+      if (typeof currentSeason !== 'undefined' && Number(currentSeason) > 1) return `${name} season ${currentSeason}`;
 
       return name;
     },
@@ -160,7 +160,7 @@ async function checkPage(): Promise<boolean> {
         episode = episode - json2.items[0].number + 1;
         name = `${name} season ${season}`;
       }
-      if (typeof json2.items[episode + 1] !== undefined) {
+      if (typeof json2.items[episode + 1] !== 'undefined') {
         nextEp = `${Hulu.domain}/watch/${json2.items[episode + 1].id}`;
       } else {
         nextEp = undefined;

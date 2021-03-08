@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { userlist } from '../../../../src/_provider/Kitsu/list';
+import { UserList } from '../../../../src/_provider/Kitsu/list';
 import { generalListTests } from '../generalTests.exclude';
 
 global.con = require('../../../../src/utils/console');
@@ -63,7 +63,7 @@ function getResponse(key) {
   return responses[key].data;
 }
 
-describe('Kitsu userlist', function() {
+describe('Kitsu UserList', function() {
   before(function() {
     global.api = {
       request: {
@@ -107,5 +107,5 @@ describe('Kitsu userlist', function() {
     };
   });
 
-  generalListTests(userlist, elements, responses);
+  generalListTests(UserList, elements, responses);
 });

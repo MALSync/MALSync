@@ -1,6 +1,6 @@
-import { syncPage } from './pages/syncPage';
+import { SyncPage } from './pages/syncPage';
 import { pages } from './pages/pages';
-import { searchClass } from './_provider/Search/vueSearchClass';
+import { SearchClass } from './_provider/Search/vueSearchClass';
 
 con.log('updateCheck.ts');
 
@@ -10,7 +10,7 @@ api.settings.init().then(() => {
   con.log(id);
   const episodeList: any[] = [];
 
-  const page = new syncPage(window.location.href, pages);
+  const page = new SyncPage(window.location.href, pages);
   page.cdn = function() {
     api.request.sendMessage!({ name: 'iframeDone', id: 'retry', epList: [] });
   };
@@ -23,7 +23,7 @@ api.settings.init().then(() => {
           identifier: this.page.sync.getIdentifier(this.url),
         };
 
-        this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
+        this.searchObj = new SearchClass('state.title', this.page.type, state.identifier);
         this.searchObj.setPage(this.page);
         this.searchObj.setSyncPage(this);
         await this.searchObj.getCachedOffset();
@@ -32,7 +32,7 @@ api.settings.init().then(() => {
           identifier: this.page.overview!.getIdentifier(this.url),
         };
 
-        this.searchObj = new searchClass('state.title', this.page.type, state.identifier);
+        this.searchObj = new SearchClass('state.title', this.page.type, state.identifier);
         this.searchObj.setPage(this.page);
         this.searchObj.setSyncPage(this);
         await this.searchObj.getCachedOffset();
