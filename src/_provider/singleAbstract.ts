@@ -160,6 +160,8 @@ export abstract class SingleAbstract {
         title: this.getTitle(),
         cacheKey: this.getCacheKey(),
         progressMode: this.getProgressMode(),
+        watchedEp: this.getEpisode(),
+        single: this,
         xhr,
       })
       .then(progress => {

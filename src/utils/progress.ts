@@ -79,7 +79,16 @@ export class Progress {
   // General
   async init(
     live:
-      | { uid: number; malId: number | null; title: string; cacheKey: string; progressMode: string; xhr?: object }
+      | {
+          uid: number;
+          malId: number | null;
+          title: string;
+          cacheKey: string;
+          progressMode: string;
+          watchedEp: number;
+          single: any;
+          xhr?: object;
+        }
       | false = false,
   ) {
     await Promise.all([this.initReleaseProgress(live), this.initUpdateCheck()]);

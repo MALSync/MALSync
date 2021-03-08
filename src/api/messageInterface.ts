@@ -46,6 +46,27 @@ export interface emitter {
   item: any;
 }
 
-export type sendMessageI = xhrI | iframeDone | videoTime | videoTimeSet | minimalWindow | content | emitter;
+export interface notification {
+  url: string;
+  title: string;
+  text: string;
+  image?: string;
+  sticky?: boolean;
+}
+
+export interface notificationMessage {
+  name: 'notification';
+  options: notification;
+}
+
+export type sendMessageI =
+  | xhrI
+  | iframeDone
+  | videoTime
+  | videoTimeSet
+  | minimalWindow
+  | content
+  | emitter
+  | notificationMessage;
 
 export type responseMessageI = xhrResponseI;

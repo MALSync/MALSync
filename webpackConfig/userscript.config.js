@@ -53,6 +53,7 @@ const metadata = {
     'GM_listValues',
     'GM_addStyle',
     'GM_getResourceText',
+    'GM_notification',
     'GM.xmlHttpRequest',
     'GM.getValue',
     'GM.setValue',

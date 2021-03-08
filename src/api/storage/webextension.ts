@@ -70,7 +70,7 @@ export const webextension: storageInterface = {
   },
 
   lang(selector, args) {
-    if (api.settings.get('forceEn')) {
+    if (api.settings.get('forceEn') && typeof i18n !== 'undefined') {
       let message = i18n[selector];
       if (typeof args !== 'undefined') {
         for (let argIndex = 0; argIndex < args.length; argIndex++) {

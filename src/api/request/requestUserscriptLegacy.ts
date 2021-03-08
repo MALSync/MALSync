@@ -1,7 +1,15 @@
 import { requestInterface } from './requestInterface';
 import { xhrResponseI } from '../messageInterface';
+import { defaultImg } from '../../background/notifications';
 
 declare let GM_xmlhttpRequest: any;
+declare let GM_notification: (details: {
+  title: string;
+  text: string;
+  image: string;
+  timeout: number;
+  onclick: () => void;
+}) => void;
 
 export const requestUserscriptLegacy: requestInterface = {
   async xhr(method, url): Promise<any> {
@@ -28,6 +36,17 @@ export const requestUserscriptLegacy: requestInterface = {
         request.data = url.data;
       }
       GM_xmlhttpRequest(request);
+    });
+  },
+  notification(options) {
+    GM_notification({
+      title: options.title,
+      text: options.text,
+      image: options.image ?? defaultImg,
+      timeout: options.sticky ? 0 : 10,
+      onclick: () => {
+        window.open(options.url, '_blank');
+      },
     });
   },
 };

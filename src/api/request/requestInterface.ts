@@ -1,4 +1,4 @@
-import { xhrResponseI, sendMessageI } from '../messageInterface';
+import { xhrResponseI, sendMessageI, notification } from '../messageInterface';
 
 export interface requestInterface {
   xhr(
@@ -7,4 +7,6 @@ export interface requestInterface {
   ): Promise<xhrResponseI>;
 
   sendMessage?(message: sendMessageI): Promise<any>;
+
+  notification(options: notification): void;
 }
