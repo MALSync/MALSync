@@ -19,10 +19,14 @@
       <div class="content">
         {{ lang('UI_Episode') }}
         {{ rule.from.start }}
-        <template v-if="rule.from.start !== rule.from.end"> - {{ rule.from.end }}</template>
+        <template v-if="rule.from.start !== rule.from.end">
+          - {{ Number.MAX_SAFE_INTEGER === rule.from.end ? '∞' : rule.from.end }}</template
+        >
         ➞
-        {{ rule.to.start }}
-        <template v-if="rule.to.start !== rule.to.end"> - {{ rule.to.end }}</template>
+        {{ Number.MAX_SAFE_INTEGER === rule.to.start ? '∞' : rule.to.start }}
+        <template v-if="rule.to.start !== rule.to.end">
+          - {{ Number.MAX_SAFE_INTEGER === rule.to.end ? '∞' : rule.to.end }}</template
+        >
       </div>
     </div>
   </div>
@@ -52,7 +56,7 @@ export default {
     activeRule(rule) {
       return {
         active: this.obj ? rule === this.obj.activeRule : false,
-      }
+      };
     },
   },
 };
