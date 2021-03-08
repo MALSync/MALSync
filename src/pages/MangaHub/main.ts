@@ -11,10 +11,16 @@ export const MangaHub: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (j.$('#mangadetail').length) {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j
-        .$('div._3_X6m.container-fluid h3 a')
+        .$('#mangareader .container-fluid h3 a')
         .text()
         .trim();
     },
@@ -22,7 +28,7 @@ export const MangaHub: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$('div._3_X6m.container-fluid h3 a').attr('href') || '';
+      return j.$('#mangareader .container-fluid h3 a').attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -34,7 +40,8 @@ export const MangaHub: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return $('ul.dropdown-menu li.active')
+      return j
+        .$('#mangareader ul.dropdown-menu li.active')
         .next()
         .find('a')
         .attr('href');
@@ -43,7 +50,7 @@ export const MangaHub: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('div._3QCtP.col-md-9.col-sm-8.col-xs-6 h1')
+        .$('#mangadetail h1')
         .clone()
         .children()
         .remove()
@@ -54,16 +61,16 @@ export const MangaHub: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('section._2fecr').after(
+      j.$('#mangadetail section._2fecr').after(
         j.html(
-          `<section class="_2fecr"><div style="background-color: inherit;" class="container-fluid"><div class="row" style="background-color: inherit;"><div class="col-md-1"><span style="font-weight: 700;">MALSync:</span></div><div class="col-md-11" style="background-color: inherit;">${selector}</div></div></div></section>`,
+          `<section id="malthing" class="_2fecr"><div style="background-color: inherit;" class="container-fluid"><div class="row" style="background-color: inherit;"><div class="col-md-1"><span style="font-weight: 700;">MALSync:</span></div><div class="col-md-11" style="background-color: inherit;">${selector}</div></div></div></section>`,
         ),
       );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#noanim-content-tab div').find('li');
+        return j.$('#noanim-content-tab div li');
       },
       elementUrl(selector) {
         return (
@@ -80,44 +87,29 @@ export const MangaHub: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+
+    let Interval;
+
     j.$(document).ready(function() {
-      utils.urlChangeDetect(() => {
-        utils.waitUntilTrue(
-          function() {
-            return !j.$('html.no-js.nprogress-busy').length;
-          },
-          function() {
-            page.reset();
-            if (j.$('#mangareader').length) {
-              utils.waitUntilTrue(
-                function() {
-                  return j.$('ul.dropdown-menu li.active').length;
-                },
-                function() {
-                  page.handlePage();
-                },
-              );
-            }
-            if (j.$('#mangadetail').length) {
-              utils.waitUntilTrue(
-                function() {
-                  if (j.$('div.ads-container').length > 0) {
-                    return true;
-                  }
-                  return false;
-                },
-                function() {
-                  page.handlePage();
-                },
-              );
-            }
-          },
-        );
-      });
+      start();
+
+      utils.changeDetect(
+        () => {
+          page.reset();
+          start();
+        },
+        () => {
+          return j.$('head > title').text();
+        },
+      );
+    });
+
+    function start() {
       if (j.$('#mangareader').length) {
-        utils.waitUntilTrue(
+        clearInterval(Interval);
+        Interval = utils.waitUntilTrue(
           function() {
-            return j.$('ul.dropdown-menu li.active').length;
+            return j.$('#mangareader ul.dropdown-menu li.active').length;
           },
           function() {
             page.handlePage();
@@ -125,9 +117,13 @@ export const MangaHub: pageInterface = {
         );
       }
       if (j.$('#mangadetail').length) {
-        utils.waitUntilTrue(
+        if (j.$('#malthing').length) {
+          j.$('#malthing').remove();
+        }
+        clearInterval(Interval);
+        Interval = utils.waitUntilTrue(
           function() {
-            if (j.$('div.ads-container').length > 0) {
+            if (j.$('#mangadetail div.ads-container').length > 0) {
               return true;
             }
             return false;
@@ -137,6 +133,6 @@ export const MangaHub: pageInterface = {
           },
         );
       }
-    });
+    }
   },
 };
