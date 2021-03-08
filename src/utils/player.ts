@@ -185,8 +185,13 @@ export function shortcutListener(callback) {
 
   function initShortcuts() {
     init = true;
-    let keyMap: { [key: string]: boolean } = {};
-    onkeydown = onkeyup = function(e) {
+    let keyMap = {};
+
+    document.addEventListener('keydown', keyEvent);
+    document.addEventListener('keyup', keyEvent);
+
+    function keyEvent(e) {
+
       e = e || event;
       const key = e.which || e.keyCode;
       keyMap[key] = e.type === 'keydown';
