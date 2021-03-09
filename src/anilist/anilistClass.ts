@@ -208,7 +208,10 @@ export class AnilistClass {
       );
       api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
       $('.MALSync-search').one('click', () => {
-        const title = $('meta[property="og:title"]').attr('content');
+        const title = $('h1')
+          .first()
+          .text()
+          .trim();
         const titleEncoded = encodeURI(title!);
         let html = '';
         const imgStyle = 'position: relative; top: 0px;';
