@@ -6,6 +6,7 @@ export const settingsObj = {
     forceEn: false,
     rpc: true,
     presenceHidePage: false,
+    presenceShowButtons: true,
     userscriptModeButton: false,
     strictCookies: false,
     syncMode: 'MAL',

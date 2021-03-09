@@ -393,6 +393,7 @@
         </div>
         <checkbox option="rpc">{{ lang('settings_enabled') }}</checkbox>
         <checkbox option="presenceHidePage">{{ lang('settings_presenceHidePage') }}</checkbox>
+        <checkbox option="presenceShowButtons">{{ lang('settings_presenceShowButtons') }}</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">

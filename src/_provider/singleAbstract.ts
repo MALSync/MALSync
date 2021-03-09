@@ -343,10 +343,10 @@ export abstract class SingleAbstract {
     });
   }
 
-  abstract _getTitle(): string;
+  abstract _getTitle(raw: boolean): string;
 
-  public getTitle() {
-    return this._getTitle();
+  public getTitle(raw = false) {
+    return this._getTitle(raw);
   }
 
   abstract _getTotalEpisodes(): number;

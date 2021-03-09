@@ -87,7 +87,8 @@ export class Single extends SingleAbstract {
     this.animeInfo.tags = tags;
   }
 
-  _getTitle() {
+  _getTitle(raw = false) {
+    if (raw) return this.animeInfo.name;
     return `[L] ${this.animeInfo.name}`;
   }
 

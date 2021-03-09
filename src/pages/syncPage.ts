@@ -1056,13 +1056,26 @@ export class SyncPage {
           const pres: any = {
             clientId: '606504719212478504',
             presence: {
-              details: this.singleObj.getTitle() || this.curState.title,
+              details: this.singleObj.getTitle(true) || this.curState.title,
               largeImageKey: largeImageKeyTemp,
               largeImageText: largeImageTextTemp,
               instance: true,
             },
           };
 
+          if (api.settings.get('presenceShowButtons')) {
+            let url = this.singleObj.getMalUrl();
+            if (!url && this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            if (!url && !api.settings.get('presenceHidePage')) url = this.singleObj.getStreamingUrl();
+            if (url) {
+              pres.presence.buttons = [
+                {
+                  label: api.storage.lang(`discord_rpc_view_${this.singleObj.getType()}`),
+                  url,
+                },
+              ];
+            }
+          }
           if (typeof this.curState.episode !== 'undefined') {
             const ep = this.curState.episode;
             let totalEp = this.singleObj.getTotalEpisodes();
