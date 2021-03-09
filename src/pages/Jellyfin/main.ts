@@ -166,8 +166,8 @@ async function testApi(retry = 0) {
         retry++;
         return testApi(retry);
       })
-      .then(response => {
-        if (response.status !== 200) {
+      .then(response2 => {
+        if (response2.status !== 200) {
           con.error('User wrong');
           setUser('');
           retry++;
