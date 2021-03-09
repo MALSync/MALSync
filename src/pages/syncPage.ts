@@ -1055,12 +1055,12 @@ export class SyncPage {
 
           if (api.settings.get('presenceShowButtons')) {
             let url = this.singleObj.getMalUrl();
-            if (!url && this.singleObj.shortname !== 'Local') url = this.singleObj.getDisplayUrl();
+            if (!url && this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
             if (!url && !api.settings.get('presenceHidePage')) url = this.singleObj.getStreamingUrl();
             if (url) {
               pres.presence.buttons = [
                 {
-                  label: api.storage.lang(`Discord_rpc_view_${this.singleObj.getType()}`),
+                  label: api.storage.lang(`discord_rpc_view_${this.singleObj.getType()}`),
                   url,
                 },
               ];
