@@ -44,5 +44,6 @@ export interface pageState {
   title: string;
   identifier: string;
   episode?: number;
+  detectedEpisode?: number;
   volume?: number;
 }

@@ -1,4 +1,5 @@
 import * as helper from './helper';
+import { Cache } from '../utils/Cache';
 
 import { Single as MalSingle } from './MyAnimeList_legacy/single';
 import { Single as MalApiSingle } from './MyAnimeList_api/single';
@@ -28,4 +29,30 @@ export function getSingle(url: string) {
     return new SimklSingle(url);
   }
   throw 'Unknown sync mode';
+}
+
+export async function getCacheKey(url: string): Promise<{ cacheKey: string; singleObj? }> {
+  if (/^https:\/\/myanimelist.net\/(anime|manga)\/\d+(\/|$)/.test(url)) {
+    return {
+      cacheKey: url.split('/')[4],
+    };
+  }
+
+  const cacheObj = new Cache(`cacheKey/${url}`, 7 * 24 * 60 * 60 * 1000);
+
+  if (await cacheObj.hasValue()) {
+    return cacheObj.getValue().then(res => {
+      return {
+        cacheKey: res,
+      };
+    });
+  }
+
+  const singleObj = getSingle(url);
+  await singleObj.update();
+  cacheObj.setValue(singleObj.getCacheKey());
+  return {
+    cacheKey: singleObj.getCacheKey(),
+    singleObj,
+  };
 }

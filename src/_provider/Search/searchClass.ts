@@ -6,6 +6,8 @@ import { compareTwoStrings } from 'string-similarity';
 
 import { search as pageSearch } from '../searchFactory';
 import { Single as LocalSingle } from '../Local/single';
+import { getCacheKey } from '../singleFactory';
+import { RulesClass } from './rulesClass';
 
 interface SearchResult {
   id?: number;
@@ -536,5 +538,41 @@ export class SearchClass {
       .toLowerCase()
       .split('#')[0]
       .replace(/\./g, '%2E');
+  }
+
+  // Rules
+  rules: RulesClass | undefined;
+
+  async initRules() {
+    const logger = con.m('Rules');
+    const url = this.getUrl();
+    logger.log('Url', url);
+    if (url) {
+      const cacheKeyObj = await getCacheKey(url);
+      logger.log('Cachekey', cacheKeyObj);
+      this.rules = await new RulesClass(cacheKeyObj.cacheKey, this.getNormalizedType()).init();
+      return cacheKeyObj.singleObj;
+    }
+    return undefined;
+  }
+
+  applyRules(episode: number) {
+    if (this.rules) {
+      const userOffset = this.getOffset() || 0;
+      const res = this.rules.applyRules(Number(episode) + Number(userOffset));
+      if (res) res.offset = Number(res.offset) + Number(userOffset);
+      return res;
+    }
+    return undefined;
+  }
+
+  getRuledOffset(episode: number): number {
+    const res = this.applyRules(episode);
+    return res ? res.offset : this.getOffset();
+  }
+
+  getRuledUrl(episode: number): string | null {
+    const res = this.applyRules(episode);
+    return res ? res.url : this.getUrl();
   }
 }

@@ -267,6 +267,7 @@ export class SyncPage {
     const This = this;
     this.url = curUrl;
     this.browsingtime = Date.now();
+    let tempSingle;
 
     if (this.page.isSyncPage(this.url)) {
       this.loadUI();
@@ -274,6 +275,7 @@ export class SyncPage {
         on: 'SYNC',
         title: this.page.sync.getTitle(this.url),
         identifier: this.page.sync.getIdentifier(this.url),
+        detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
       this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
@@ -282,15 +284,18 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
+      tempSingle = await this.searchObj.initRules();
 
-      state.episode = +parseInt(`${this.page.sync.getEpisode(this.url)}`) + parseInt(this.getOffset());
-      if (!state.episode && state.episode !== 0) {
+      if (!state.detectedEpisode && state.detectedEpisode !== 0) {
         if (this.page.type === 'anime') {
           state.episode = 1;
         } else {
           state.episode = 0;
         }
+      } else {
+        state.episode = state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
       }
+
       if (typeof this.page.sync.getVolume !== 'undefined') {
         state.volume = this.page.sync.getVolume(this.url);
       }
@@ -332,13 +337,14 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
+      tempSingle = await this.searchObj.initRules();
 
       logger.m('Overview', 'green').log(state);
     }
 
     this.curState = state;
 
-    let malUrl = this.searchObj.getUrl();
+    let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode);
 
     const localUrl = this.generateLocalUrl(this.page, state);
 
@@ -358,8 +364,12 @@ export class SyncPage {
     } else {
       logger.log('MyAnimeList', malUrl);
       try {
-        this.singleObj = getSingle(malUrl);
-        await this.singleObj.update();
+        if (tempSingle) {
+          this.singleObj = tempSingle;
+        } else {
+          this.singleObj = getSingle(malUrl);
+          await this.singleObj.update();
+        }
       } catch (e) {
         if (e.code === 901) {
           utils.flashm('Incorrect url provided', {

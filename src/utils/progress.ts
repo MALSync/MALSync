@@ -119,6 +119,7 @@ export class Progress {
     ) {
       return NaN;
     }
+    if (!this.getProgressPrediction() || new Date().getTime() > this.getProgressPrediction()) return NaN;
     return this.getProgressPrediction();
   }
 
