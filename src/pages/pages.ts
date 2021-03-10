@@ -84,7 +84,7 @@ import { LeviatanScans } from './LeviatanScans/main';
 import { MethodScans } from './MethodScans/main';
 import { NonamesScans } from './NonamesScans/main';
 import { ReaperScans } from './ReaperScans/main';
-import { SecretScans } from './SecretScans/main';
+import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
 import { ZeroScans } from './ZeroScans/main';
 import { DeathTollScans } from './DeathTollScans/main';
@@ -205,7 +205,7 @@ export const pages = {
   MethodScans,
   NonamesScans,
   ReaperScans,
-  SecretScans,
+  LynxScans,
   SKScans,
   ZeroScans,
   DeathTollScans,
