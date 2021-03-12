@@ -40,7 +40,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
         }
       });
     }
-    if (api.storage.version() === '0.8.6') {
+    if (api.storage.version() === '0.8.7') {
       // Disable updateCheck
       api.storage.set('updateCheckTime', 0);
     }
