@@ -117,6 +117,7 @@ import { NonstopScans } from './NonstopScans/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { AnimesHD } from './AnimesHD/main';
+import { MangaHub } from './MangaHub/main';
 
 export const pages = {
   nineAnime,
@@ -238,4 +239,5 @@ export const pages = {
   FrixySubs,
   Guya,
   AnimesHD,
+  MangaHub,
 };
