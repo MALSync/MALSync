@@ -5,6 +5,11 @@ export const MangaHub: pageInterface = {
   domain: 'https://mangahub.io',
   languages: ['English'],
   type: 'manga',
+  getImage() {
+    return $('#mangadetail img.manga-thumb')
+      .first()
+      .attr('src');
+  },
   isSyncPage(url) {
     if (j.$('#mangareader').length) {
       return true;
