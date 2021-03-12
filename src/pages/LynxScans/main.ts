@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 
 const clone = getInter();
 
-clone.name = 'SecretScans';
-clone.domain = 'https://secretscans.co';
+clone.name = 'LynxScans';
+clone.domain = 'https://lynxscans.com';
 
-export const SecretScans: pageInterface = clone;
+export const LynxScans: pageInterface = clone;
