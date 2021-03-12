@@ -40,6 +40,10 @@ chrome.runtime.onInstalled.addListener(function(details) {
         }
       });
     }
+    if (api.storage.version() === '0.8.6') {
+      // Disable updateCheck
+      api.storage.set('updateCheckTime', 0);
+    }
   }
   chrome.alarms.clearAll();
 });
