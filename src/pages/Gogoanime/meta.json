@@ -10,9 +10,9 @@
       "*://*.gogoanime.movie/*",
       "*://*.gogoanime.so/*",
       "*://*.gogoanime.ai/*",
+      "*://*.gogoanime.vc/*",
       "*://*.gogoanimes.co/*",
-      "*://*.animego.to/*",
-      "*://*.gogoanime.vc/*"
+      "*://*.animego.to/*"
     ],
     "exclude": [
       "*gogoanime*.*/",
