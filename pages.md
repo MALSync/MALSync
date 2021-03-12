@@ -300,13 +300,6 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://fastani.net"><img src="https://www.google.com/s2/favicons?domain=https://fastani.net"> Fastani</a></td>
-    <td>English</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://frixysubs.pl"><img src="https://www.google.com/s2/favicons?domain=https://frixysubs.pl"> FrixySubs</a></td>
     <td>Polish</td>
     <td>:heavy_check_mark:</td>
@@ -415,7 +408,7 @@
     <td><a href="https://www.netflix.com"><img src="https://www.google.com/s2/favicons?domain=https://www.netflix.com"> Netflix</a></td>
     <td>Many</td>
     <td>:x:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
@@ -610,13 +603,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://helveticascans.com"><img src="https://www.google.com/s2/favicons?domain=https://helveticascans.com"> HelveticaScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://www.japscan.se"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.se"> JapScan</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
@@ -631,13 +617,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://kkjscans.co"><img src="https://www.google.com/s2/favicons?domain=https://kkjscans.co"> KKJScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://komga.org"><img src="https://www.google.com/s2/favicons?domain=https://komga.org"> Komga</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
@@ -646,6 +625,13 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://leviatanscans.com"><img src="https://www.google.com/s2/favicons?domain=https://leviatanscans.com"> LeviatanScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://lynxscans.com"><img src="https://www.google.com/s2/favicons?domain=https://lynxscans.com"> LynxScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -685,6 +671,13 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://mangahub.io"><img src="https://www.google.com/s2/favicons?domain=https://mangahub.io"> MangaHub</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://mangajar.com"><img src="https://www.google.com/s2/favicons?domain=https://mangajar.com"> MangaJar</a></td>
@@ -801,13 +794,6 @@
   </tr><tr>
     <td><a href="https://scantrad.net"><img src="https://www.google.com/s2/favicons?domain=https://scantrad.net"> Scantrad</a></td>
     <td>French</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://secretscans.co"><img src="https://www.google.com/s2/favicons?domain=https://secretscans.co"> SecretScans</a></td>
-    <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>

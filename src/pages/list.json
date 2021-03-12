@@ -410,11 +410,6 @@
     "name": "HatigarmScanz"
   },
   {
-    "domain": "https://kkjscans.co",
-    "type": "manga",
-    "name": "KKJScans"
-  },
-  {
     "domain": "https://leviatanscans.com",
     "type": "manga",
     "name": "LeviatanScans"
@@ -435,9 +430,9 @@
     "name": "ReaperScans"
   },
   {
-    "domain": "https://secretscans.co",
+    "domain": "https://lynxscans.com",
     "type": "manga",
-    "name": "SecretScans"
+    "name": "LynxScans"
   },
   {
     "domain": "https://skscans.com",
@@ -453,11 +448,6 @@
     "domain": "https://reader.deathtollscans.net",
     "type": "manga",
     "name": "DeathTollScans"
-  },
-  {
-    "domain": "https://helveticascans.com",
-    "type": "manga",
-    "name": "HelveticaScans"
   },
   {
     "domain": "https://reader.kireicake.com",
@@ -513,11 +503,6 @@
     "domain": "https://pantsubase.tv",
     "type": "anime",
     "name": "Pantsubase"
-  },
-  {
-    "domain": "https://fastani.net",
-    "type": "anime",
-    "name": "Fastani"
   },
   {
     "domain": "https://animeowl.net",
@@ -608,5 +593,10 @@
     "domain": "https://animeshd.org",
     "type": "anime",
     "name": "AnimesHD"
+  },
+  {
+    "domain": "https://mangahub.io",
+    "type": "manga",
+    "name": "MangaHub"
   }
 ]
