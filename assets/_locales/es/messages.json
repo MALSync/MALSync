@@ -195,6 +195,10 @@
     "message": "(1) Pésimo",
     "description": "Appalling - Score"
   },
+  "UI_Rules": {
+    "message": "Reglas",
+    "description": "Rules text for the correction UI"
+  },
   "syncPage_flashm_resumeMsg": {
     "message": "Reanudar en $time$",
     "description": "Video resume message",
@@ -935,6 +939,10 @@
     "message": "Más info",
     "description": "Link button which links to more informations"
   },
+  "settings_presenceShowButtons": {
+    "message": "Mostrar botón para ver el anime/manga en MAL u otro proveedor",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
   "updateCheck_Refresh": {
     "message": "Refrescar",
     "description": "Refresh"
@@ -1102,6 +1110,14 @@
         "example": "Mangadex"
       }
     }
+  },
+  "discord_rpc_view_anime": {
+    "message": "Ver anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Ver manga",
+    "description": "Discord view manga button"
   },
   "nextEpShort_no_support": {
     "message": "Esta página no soporta la apertura del siguiente episodio",
