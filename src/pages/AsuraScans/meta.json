@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://asurascans.com/*"]
+    "match": ["*://*.asurascans.com/*"]
   }
 }
