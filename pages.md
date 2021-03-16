@@ -868,6 +868,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+      <td><a href="https://komikterbaru.xyz"><img src="https://www.google.com/s2/favicons?domain=https://komikterbaru.xyz">Komikterbaru</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr>
     </tbody>
   </table>
