@@ -1060,7 +1060,7 @@ export class SyncPage {
         let largeImageTextTemp;
         if (!api.settings.get('presenceHidePage')) {
           largeImageKeyTemp = this.page.name.toLowerCase();
-          largeImageTextTemp = this.page.name;
+          largeImageTextTemp = `${this.page.name} • MAL-Sync`;
         } else {
           largeImageKeyTemp = 'malsync';
           largeImageTextTemp = 'MAL-Sync';
@@ -1100,18 +1100,18 @@ export class SyncPage {
             if (typeof this.curState.lastVideoTime !== 'undefined') {
               if (this.curState.lastVideoTime.paused) {
                 pres.presence.smallImageKey = 'pause';
-                pres.presence.smallImageText = 'MAL-Sync';
+                pres.presence.smallImageText = 'Paused';
               } else {
                 const timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
-                pres.presence.smallImageText = 'MAL-Sync';
+                pres.presence.smallImageText = 'Playing';
               }
             } else {
               pres.presence.startTimestamp = this.browsingtime;
               if (this.page.type !== 'anime') {
                 pres.presence.smallImageKey = 'reading';
-                pres.presence.smallImageText = 'MAL-Sync';
+                pres.presence.smallImageText = 'Reading';
               }
             }
           } else {
@@ -1123,11 +1123,6 @@ export class SyncPage {
             }
             pres.presence.startTimestamp = this.browsingtime;
             pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
-          }
-
-          if (!api.settings.get('presenceHidePage') && !pres.presence.smallImageKey) {
-            pres.presence.smallImageKey = 'malsync';
-            pres.presence.smallImageText = 'MAL-Sync';
           }
 
           sendResponse(pres);
