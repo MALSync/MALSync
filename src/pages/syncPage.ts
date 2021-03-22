@@ -15,6 +15,8 @@ if (typeof browser !== 'undefined' && typeof chrome !== 'undefined') {
 
 const logger = con.m('Sync', '#348fff');
 
+let browsingTimeout;
+
 export class SyncPage {
   page: pageInterface;
 
@@ -1035,12 +1037,24 @@ export class SyncPage {
       });
   }
 
-  private browsingtime = Date.now();
+  private browsingtime: number | undefined = Date.now();
 
   private presence(info, sender, sendResponse) {
     try {
       if (info.action === 'presence') {
         console.log('Presence requested', info, this.curState);
+
+        // Reset browsingTime if not in focus for more than 5 min
+        clearTimeout(browsingTimeout);
+        browsingTimeout = setTimeout(() => {
+          this.browsingtime = undefined;
+        }, 5 * 60 * 1000);
+        if (!this.browsingtime) this.browsingtime = Date.now();
+
+        let clientId = '823563096747802695';
+        if (this.page.type !== 'anime') {
+          clientId = '823563138669608980';
+        }
 
         let largeImageKeyTemp;
         let largeImageTextTemp;
@@ -1054,7 +1068,7 @@ export class SyncPage {
 
         if (this.curState) {
           const pres: any = {
-            clientId: '606504719212478504',
+            clientId,
             presence: {
               details: this.singleObj.getTitle(true) || this.curState.title,
               largeImageKey: largeImageKeyTemp,
@@ -1086,31 +1100,36 @@ export class SyncPage {
             if (typeof this.curState.lastVideoTime !== 'undefined') {
               if (this.curState.lastVideoTime.paused) {
                 pres.presence.smallImageKey = 'pause';
-                pres.presence.smallImageText = 'pause';
+                pres.presence.smallImageText = 'MAL-Sync';
               } else {
                 const timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
-                pres.presence.smallImageText = 'playing';
+                pres.presence.smallImageText = 'MAL-Sync';
               }
             } else {
-              if (typeof this.curState.startTime === 'undefined') {
-                this.curState.startTime = Date.now();
+              pres.presence.startTimestamp = this.browsingtime;
+              if (this.page.type !== 'anime') {
+                pres.presence.smallImageKey = 'reading';
+                pres.presence.smallImageText = 'MAL-Sync';
               }
-              pres.presence.startTimestamp = this.curState.startTime;
             }
-            sendResponse(pres);
-            return;
+          } else {
+            let browsingTemp;
+            if (!api.settings.get('presenceHidePage')) {
+              browsingTemp = this.page.name;
+            } else {
+              browsingTemp = this.page.type.toString();
+            }
+            pres.presence.startTimestamp = this.browsingtime;
+            pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
           }
 
-          let browsingTemp;
-          if (!api.settings.get('presenceHidePage')) {
-            browsingTemp = this.page.name;
-          } else {
-            browsingTemp = this.page.type.toString();
+          if (!api.settings.get('presenceHidePage') && !pres.presence.smallImageKey) {
+            pres.presence.smallImageKey = 'malsync';
+            pres.presence.smallImageText = 'MAL-Sync';
           }
-          pres.presence.startTimestamp = this.browsingtime;
-          pres.presence.state = api.storage.lang('Discord_rpc_browsing', [browsingTemp]);
+
           sendResponse(pres);
           return;
         }

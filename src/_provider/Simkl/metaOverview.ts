@@ -67,7 +67,7 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title(data) {
-    const title = data.title;
+    const { title } = data;
     if (title) this.meta.title = title;
   }
 
