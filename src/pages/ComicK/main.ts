@@ -45,7 +45,7 @@ export const ComicK: pageInterface = {
     uiSelector(selector) {
       j.$(jsonData.selector_position)
         .first()
-        .after(j.html(selector));
+        .append(j.html(selector));
     },
     getMalUrl(provider) {
       if (jsonData.links) {
