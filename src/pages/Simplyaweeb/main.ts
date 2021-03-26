@@ -2,6 +2,8 @@ import { pageInterface } from '../pageInterface';
 
 let jsonData;
 
+let loadedTimeout;
+
 export const Simplyaweeb: pageInterface = {
   name: 'Simplyaweeb',
   domain: 'https://simplyaweeb.com',
@@ -40,17 +42,25 @@ export const Simplyaweeb: pageInterface = {
     function loaded() {
       const text = j.$('#syncData').text();
       if (text) {
-        const data = JSON.parse(text);
-        if (data && data.length) {
-          jsonData = data[0];
-          if (jsonData.type === 'anime') {
-            Simplyaweeb.type = 'anime';
-            Simplyaweeb.database = 'Gogoanime';
-          } else {
-            Simplyaweeb.type = 'manga';
-          }
-          page.handlePage();
-        }
+        clearTimeout(loadedTimeout);
+        loadedTimeout = utils.waitUntilTrue(
+          () => {
+            return !$('.preloader-load.changed-indicate').length;
+          },
+          () => {
+            const data = JSON.parse(text);
+            if (data && data.length) {
+              jsonData = data[0];
+              if (jsonData.type === 'anime') {
+                Simplyaweeb.type = 'anime';
+                Simplyaweeb.database = 'Gogoanime';
+              } else {
+                Simplyaweeb.type = 'manga';
+              }
+              page.handlePage();
+            }
+          },
+        );
       }
     }
   },
