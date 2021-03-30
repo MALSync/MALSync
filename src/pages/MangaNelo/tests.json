@@ -3,14 +3,14 @@
   "url": "https://manganelo.com/",
   "testCases": [
     {
-      "url": "https://manganelo.com/chapter/dr_stone/chapter_114",
+      "url": "https://manganelo.com/chapter/dr_stone/chapter_152",
       "expected": {
         "sync": true,
         "title": "Dr. Stone",
         "identifier": "dr_stone",
         "overviewUrl": "https://manganelo.com/manga/dr_stone",
-        "nextEpUrl": "https://manganelo.com/chapter/dr_stone/chapter_115",
-        "episode": 114,
+        "nextEpUrl": "https://manganelo.com/chapter/dr_stone/chapter_153",
+        "episode": 152,
         "uiSelector": false
       }
     },
