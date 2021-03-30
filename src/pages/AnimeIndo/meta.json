@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://animeindo.moe/*"]
+    "match": ["*://animeindo.net/*", "*://animeindo.moe/*"]
   }
 }

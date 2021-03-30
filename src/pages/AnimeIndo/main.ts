@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeIndo: pageInterface = {
   name: 'AnimeIndo',
-  domain: 'http://animeindo.moe',
+  domain: 'https://animeindo.net',
   languages: ['Indonesian'],
   type: 'anime',
   isSyncPage(url) {
