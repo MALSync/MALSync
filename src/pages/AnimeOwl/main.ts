@@ -72,9 +72,9 @@ export const AnimeOwl: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.post-info > div:nth-child(2) > div.row:nth-child(1)')
+      j.$('div.post-info')
         .first()
-        .after(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
+        .before(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
     },
     getMalUrl(provider) {
       return AnimeOwl.sync.getMalUrl!(provider);
