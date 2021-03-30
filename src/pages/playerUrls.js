@@ -406,7 +406,7 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*'],
+    match: ['*://kaa-play.com/*', '*://kaa-play.me/*'],
   },
   // animeshouse
   animeshouse: {
