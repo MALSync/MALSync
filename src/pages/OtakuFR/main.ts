@@ -19,7 +19,10 @@ export const OtakuFR: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('.single-episode > nav li > a[href*="/anime/"]').text();
+      return j
+        .$('.single-episode > nav li > a[href*="/anime/"]')
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(OtakuFR.sync.getOverviewUrl(url), 4) || '';
@@ -38,7 +41,10 @@ export const OtakuFR: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('.list > div').text();
+      return j
+        .$('.list > div')
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
