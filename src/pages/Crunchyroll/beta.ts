@@ -156,13 +156,13 @@ export const beta: pageInterface = {
     let placeholderInterval;
 
     j.$(document).ready(function() {
-      check();
+      check(true);
     });
 
     utils.urlChangeDetect(() => {
       check();
     });
-    async function check() {
+    async function check(firstCall = false) {
       status.episode = null;
       await auth()
       //.then(async () => {
@@ -188,6 +188,7 @@ export const beta: pageInterface = {
                 if (!epUrl) throw 'No Episode found on the page';
                 status.episode = await episode(getIdFromUrl(epUrl));
                 page.handlePage();
+                if (firstCall) firstCallFunction(beta.overview!.getIdentifier(page.url));
 
                 //const epUrl = $('.episode-list .c-playable-card a')
                 //  .first()
@@ -347,4 +348,35 @@ function getIdFromUrl(url) {
   const res = url.match(/(series|watch)\/([^/]+)/i);
   if (!res[2]) throw `Could not find id in ${url}`;
   return res[2];
+}
+
+async function firstCallFunction(id: string) {
+  const logger = con.m('Season Selecter');
+  if (!window.location.href.includes('season')) {
+    logger.log('Nothing to do');
+    return;
+  }
+  const tempUrl = window.location.href.replace('#', '?');
+  const selectId = utils.urlParam(tempUrl, 'season');
+  logger.log(selectId, id);
+  if (selectId === id) {
+    logger.log('Correct Season');
+    return;
+  }
+
+  const ses = await seasons(getIdFromUrl(tempUrl));
+  const index = ses.findIndex(se => se.id === selectId);
+
+  if (index === -1) {
+    logger.log('Not available here');
+    return;
+  }
+
+  if (!$('.seasons-select .c-dropdown-content').length) {
+    $('.seasons-select [role="button"].trigger').click();
+  }
+
+  $('.seasons-select .c-dropdown-content [role="button"]')
+    .eq(index)
+    .click();
 }
