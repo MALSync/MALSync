@@ -82,7 +82,10 @@ export const beta: pageInterface = {
       check();
     });
     function check() {
-      auth().then(() => episode('GR4G22K3Y'));
+      auth().then(async () => {
+        await episode('GR4G22K3Y');
+        seasons('GYZJ43JMR');
+      });
 
       return;
       clearInterval(placeholderInterval);
@@ -159,8 +162,10 @@ async function getAuthToken() {
 }
 
 async function episode(id: string) {
+  const logger = con.m('Episode').m(String(id));
+  logger.log('start');
   const response = await apiCall(`/objects/${id}`, 'GET', { cms: true });
-  console.log(response);
+  logger.log(response.finalUrl);
   const data = JSON.parse(response.responseText) as {
     items: {
       id: string;
@@ -199,7 +204,49 @@ async function episode(id: string) {
       linked_resource_key: string;
     }[];
   };
-  console.log(data);
+  if (!data || !data.items.length) throw 'No Episode data found';
+  const ep = data.items[0];
+  if (ep.type !== 'episode') throw 'Not an Episode';
+
+  logger.log(ep);
+  return ep;
+}
+
+async function seasons(id: string) {
+  const logger = con.m('Seasons').m(String(id));
+  logger.log('start');
+  const response = await apiCall(`/seasons?series_id=${id}`, 'GET', { cms: true });
+  logger.log(response.finalUrl);
+  const data = JSON.parse(response.responseText) as {
+    items: {
+      __class__: string;
+      __href__: string;
+      __resource_key__: string;
+      id: string;
+      channel_id: string;
+      title: string;
+      series_id: string;
+      season_number: number;
+      is_complete: boolean;
+      description: string;
+      keywords: string[];
+      season_tags: string[];
+      is_mature: boolean;
+      mature_blocked: boolean;
+      is_subbed: boolean;
+      is_dubbed: boolean;
+      is_simulcast: boolean;
+      seo_title: string;
+      seo_description: string;
+      availability_notes: string;
+    }[];
+  };
+  if (!data || !data.items.length) throw 'No Season Data found';
+
+  if (data.items[0].__class__ !== 'season') throw 'Are not seasons';
+
+  logger.log(data.items);
+  return data.items;
 }
 
 async function getAuthPolicy() {
@@ -250,7 +297,11 @@ async function apiCall(
 
   if (mode.cms) {
     const b = authObj.bucket;
-    options.url = `${authObj.domain}/cms/v2${b.path}${path}?Signature=${b.signature}&Policy=${b.policy}&Key-Pair-Id=${b.keyPairId}`;
+    let pre = '?';
+    if (path.indexOf('?') !== -1) {
+      pre = '&';
+    }
+    options.url = `${authObj.domain}/cms/v2${b.path}${path}${pre}Signature=${b.signature}&Policy=${b.policy}&Key-Pair-Id=${b.keyPairId}`;
   }
 
   return api.request.xhr(type, options);
