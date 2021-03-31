@@ -137,4 +137,12 @@ export class ScriptProxy {
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     j.$('body').append(scriptElement);
   }
+
+  async getProxyVariable(name: string): Promise<object | undefined> {
+    return new Promise((resolve, reject) => {
+      this.addProxy(async (caller: ScriptProxy) => {
+        resolve(this.getCaptureVariable(name));
+      });
+    });
+  }
 }

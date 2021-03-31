@@ -1,4 +1,5 @@
 import { pageInterface } from '../pageInterface';
+import { beta } from './beta';
 
 const temp: { id: any; media: any } = {
   id: null,
@@ -98,6 +99,15 @@ export const Crunchyroll: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     j.$(document).ready(function() {
+      if ($('#content').length) {
+        Crunchyroll.isSyncPage = beta.isSyncPage;
+        Crunchyroll.isOverviewPage = beta.isOverviewPage;
+        Crunchyroll.sync = beta.sync;
+        Crunchyroll.overview = beta.overview;
+        beta.init(page);
+        return;
+      }
+
       if (j.$('.season-dropdown').length > 1) {
         j.$('.season-dropdown').append(
           j.html(
@@ -197,6 +207,10 @@ function handle(epUrl, page) {
       temp.id = title;
       page.handlePage();
     });
+}
+
+export function getTemp() {
+  return temp;
 }
 
 function urlHandling(url) {
