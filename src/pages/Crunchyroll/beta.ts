@@ -1,6 +1,5 @@
 import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
-import { handle } from './main';
 
 const proxy = new ScriptProxy();
 
@@ -97,19 +96,33 @@ export const beta: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return '123';
+      return beta.overview!.getTitle(url);
     },
     getIdentifier(url) {
-      return '123';
+      return beta.overview!.getIdentifier(url);
     },
     getOverviewUrl(url) {
-      return '123';
+      const meta = status.episode!.episode_metadata;
+      return utils.absoluteLink(`/series/${meta.series_id}/#season=${meta.season_id}`, beta.domain);
     },
     getEpisode(url) {
-      return 123;
+      return Number(status.episode!.episode_metadata.episode_number);
     },
     nextEpUrl(url) {
-      return '123';
+      if (
+        $('.up-next-title').length &&
+        $('.up-next-title')
+          .first()
+          .attr('href')
+      ) {
+        return utils.absoluteLink(
+          $('.up-next-title')
+            .first()
+            .attr('href'),
+          beta.domain,
+        );
+      }
+      return '';
     },
   },
   overview: {
@@ -161,7 +174,7 @@ export const beta: pageInterface = {
       clearInterval(placeholderInterval);
       placeholderInterval = utils.waitUntilTrue(
         () => beta.isSyncPage(page.url) || beta.isOverviewPage!(page.url),
-        () => {
+        async () => {
           // Overview
           if (beta.isOverviewPage!(page.url)) {
             console.log('Waiting for page to load');
@@ -184,8 +197,8 @@ export const beta: pageInterface = {
             );
             return;
           }
-          alert('noonon');
-          //page.handlePage();
+          status.episode = await episode(getIdFromUrl(page.url));
+          page.handlePage();
         },
       );
     }
