@@ -96,10 +96,9 @@ export const Crunchyroll: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-
     j.$(document).ready(function() {
       if ($('#content').length) {
+        Crunchyroll.database = beta.database;
         Crunchyroll.isSyncPage = beta.isSyncPage;
         Crunchyroll.isOverviewPage = beta.isOverviewPage;
         Crunchyroll.sync = beta.sync;
@@ -107,6 +106,8 @@ export const Crunchyroll: pageInterface = {
         beta.init(page);
         return;
       }
+
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
       if (j.$('.season-dropdown').length > 1) {
         j.$('.season-dropdown').append(

@@ -15,10 +15,78 @@ proxy.addCaptureVariable(
   `,
 );
 
+interface SeasonType {
+  __class__: string;
+  __href__: string;
+  __resource_key__: string;
+  id: string;
+  channel_id: string;
+  title: string;
+  series_id: string;
+  season_number: number;
+  is_complete: boolean;
+  description: string;
+  keywords: string[];
+  season_tags: string[];
+  is_mature: boolean;
+  mature_blocked: boolean;
+  is_subbed: boolean;
+  is_dubbed: boolean;
+  is_simulcast: boolean;
+  seo_title: string;
+  seo_description: string;
+  availability_notes: string;
+}
+
+interface EpisodeType {
+  id: string;
+  external_id: string;
+  channel_id: string;
+  title: string;
+  description: string;
+  promo_title: string;
+  promo_description: string;
+  type: string;
+  slug: string;
+  episode_metadata: {
+    series_id: string;
+    series_title: string;
+    season_id: string;
+    season_title: string;
+    season_number: number;
+    episode_number: number;
+    episode: string;
+    sequence_number: number;
+    duration_ms: number;
+    episode_air_date: Date;
+    is_premium_only: boolean;
+    is_mature: boolean;
+    mature_blocked: boolean;
+    is_subbed: boolean;
+    is_dubbed: boolean;
+    is_clip: boolean;
+    available_offline: boolean;
+    tenant_categories: string[];
+    maturity_ratings: string[];
+    subtitle_locales: string[];
+    availability_notes: string;
+  };
+  playback: string;
+  linked_resource_key: string;
+}
+
+const status: {
+  episode: EpisodeType | null;
+} = {
+  episode: null,
+};
+
+let authenticated = false;
+
 export const beta: pageInterface = {
   name: 'BetaCrunchyroll',
   domain: 'https://beta.crunchyroll.com',
-  database: 'Crunchyroll',
+  database: 'CrunchyrollBeta',
   languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
@@ -46,13 +114,13 @@ export const beta: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return '123';
+      return status.episode!.episode_metadata.season_title;
     },
     getIdentifier(url) {
-      return '123';
+      return status.episode!.episode_metadata.season_id;
     },
     uiSelector(selector) {
-      j.$('#tabs')
+      j.$('.top-controls')
         .first()
         .before(j.html(selector));
     },
@@ -70,7 +138,7 @@ export const beta: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./styleBeta.less').toString());
 
     let placeholderInterval;
 
@@ -81,28 +149,37 @@ export const beta: pageInterface = {
     utils.urlChangeDetect(() => {
       check();
     });
-    function check() {
-      auth().then(async () => {
-        await episode('GR4G22K3Y');
-        seasons('GYZJ43JMR');
-      });
+    async function check() {
+      status.episode = null;
+      await auth()
+      //.then(async () => {
+      //  await episode('GR4G22K3Y');
+      //  seasons('GYZJ43JMR');
+      //});
 
-      return;
+      //return;
       clearInterval(placeholderInterval);
       placeholderInterval = utils.waitUntilTrue(
         () => beta.isSyncPage(page.url) || beta.isOverviewPage!(page.url),
         () => {
           // Overview
           if (beta.isOverviewPage!(page.url)) {
-            console.log('Waiting for episodes to load');
+            console.log('Waiting for page to load');
             clearInterval(placeholderInterval);
             placeholderInterval = utils.waitUntilTrue(
               () => Boolean($('.episode-list .c-playable-card a').length),
-              () => {
+              async () => {
                 const epUrl = $('.episode-list .c-playable-card a')
                   .first()
                   .attr('href');
-                handle(epUrl, page);
+                if (!epUrl) throw 'No Episode found on the page';
+                status.episode = await episode(getIdFromUrl(epUrl));
+                page.handlePage();
+
+                //const epUrl = $('.episode-list .c-playable-card a')
+                //  .first()
+                //  .attr('href');
+                //handle(epUrl, page);
               },
             );
             return;
@@ -130,9 +207,11 @@ const authObj = {
 };
 
 async function auth() {
+  if (authenticated) return;
   await getAuthData();
   await getAuthToken();
   await getAuthPolicy();
+  authenticated = true;
 }
 
 async function getAuthData() {
@@ -167,42 +246,7 @@ async function episode(id: string) {
   const response = await apiCall(`/objects/${id}`, 'GET', { cms: true });
   logger.log(response.finalUrl);
   const data = JSON.parse(response.responseText) as {
-    items: {
-      id: string;
-      external_id: string;
-      channel_id: string;
-      title: string;
-      description: string;
-      promo_title: string;
-      promo_description: string;
-      type: string;
-      slug: string;
-      episode_metadata: {
-        series_id: string;
-        series_title: string;
-        season_id: string;
-        season_title: string;
-        season_number: number;
-        episode_number: number;
-        episode: string;
-        sequence_number: number;
-        duration_ms: number;
-        episode_air_date: Date;
-        is_premium_only: boolean;
-        is_mature: boolean;
-        mature_blocked: boolean;
-        is_subbed: boolean;
-        is_dubbed: boolean;
-        is_clip: boolean;
-        available_offline: boolean;
-        tenant_categories: string[];
-        maturity_ratings: string[];
-        subtitle_locales: string[];
-        availability_notes: string;
-      };
-      playback: string;
-      linked_resource_key: string;
-    }[];
+    items: EpisodeType[];
   };
   if (!data || !data.items.length) throw 'No Episode data found';
   const ep = data.items[0];
@@ -218,28 +262,7 @@ async function seasons(id: string) {
   const response = await apiCall(`/seasons?series_id=${id}`, 'GET', { cms: true });
   logger.log(response.finalUrl);
   const data = JSON.parse(response.responseText) as {
-    items: {
-      __class__: string;
-      __href__: string;
-      __resource_key__: string;
-      id: string;
-      channel_id: string;
-      title: string;
-      series_id: string;
-      season_number: number;
-      is_complete: boolean;
-      description: string;
-      keywords: string[];
-      season_tags: string[];
-      is_mature: boolean;
-      mature_blocked: boolean;
-      is_subbed: boolean;
-      is_dubbed: boolean;
-      is_simulcast: boolean;
-      seo_title: string;
-      seo_description: string;
-      availability_notes: string;
-    }[];
+    items: SeasonType[];
   };
   if (!data || !data.items.length) throw 'No Season Data found';
 
@@ -305,4 +328,10 @@ async function apiCall(
   }
 
   return api.request.xhr(type, options);
+}
+
+function getIdFromUrl(url) {
+  const res = url.match(/(series|watch)\/([^/]+)/i);
+  if (!res[2]) throw `Could not find id in ${url}`;
+  return res[2];
 }
