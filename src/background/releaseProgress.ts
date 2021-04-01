@@ -434,6 +434,15 @@ export function getProgress(res, mode, type) {
     }
   }
 
+  // Fallback to jp if no other language found and episode 0 -> Before release
+  if (config.fallbackPrediction && !top) {
+    const predSoon = res.find(el => el.id === config.fallbackPrediction);
+    if (predSoon && predSoon.lastEp && predSoon.predicition && predSoon.lastEp.total === 0) {
+      top = predSoon;
+      top.predicition.probability = 'medium';
+    }
+  }
+
   if (!top) return null;
 
   return top;
