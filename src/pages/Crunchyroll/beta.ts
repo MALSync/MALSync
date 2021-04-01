@@ -85,7 +85,6 @@ let authenticated = false;
 export const beta: pageInterface = {
   name: 'BetaCrunchyroll',
   domain: 'https://beta.crunchyroll.com',
-  database: 'CrunchyrollBeta',
   languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
   type: 'anime',
   isSyncPage(url) {
@@ -140,13 +139,30 @@ export const beta: pageInterface = {
     list: {
       offsetHandler: true,
       elementsSelector() {
-        return j.$('#showview_content_videos .list-of-seasons .group-item a');
+        return j.$('.episode-list .c-playable-card');
       },
       elementUrl(selector) {
-        return '123';
+        return utils.absoluteLink(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+          beta.domain,
+        );
       },
       elementEp(selector) {
-        return 123;
+        const text = selector
+          .find('.c-playable-card__title')
+          .first()
+          .text();
+
+        const matches = text.match(/E(\d+)/);
+
+        if (matches) {
+          return Number(matches[1]);
+        }
+
+        return NaN;
       },
     },
   },
@@ -155,10 +171,21 @@ export const beta: pageInterface = {
 
     let placeholderInterval;
 
+    // Episode list update
+    utils.changeDetect(
+      () => {
+        if (beta.overview!.list!.elementsSelector().length) {
+          page.handleList();
+        }
+      },
+      () => {
+        return beta.overview!.list!.elementsSelector().length;
+      },
+    );
+
     j.$(document).ready(function() {
       check(true);
     });
-
     utils.urlChangeDetect(() => {
       check();
     });

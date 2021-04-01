@@ -103,6 +103,7 @@ export const Crunchyroll: pageInterface = {
         Crunchyroll.isOverviewPage = beta.isOverviewPage;
         Crunchyroll.sync = beta.sync;
         Crunchyroll.overview = beta.overview;
+        Crunchyroll.name = beta.name;
         beta.init(page);
         return;
       }
