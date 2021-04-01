@@ -167,6 +167,7 @@ const generateManifest = () => {
       'https://discover.hulu.com/',
       'https://www.primevideo.com/',
       'https://www.crunchyroll.com/',
+      'https://beta-api.crunchyroll.com/',
       'https://api.malsync.moe/',
       'https://api.myanimelist.net/',
       'tabHide',

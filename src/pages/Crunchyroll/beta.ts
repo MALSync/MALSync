@@ -186,18 +186,23 @@ export const beta: pageInterface = {
     j.$(document).ready(function() {
       check(true);
     });
-    utils.urlChangeDetect(() => {
-      check();
-    });
-    async function check(firstCall = false) {
-      status.episode = null;
-      await auth()
-      //.then(async () => {
-      //  await episode('GR4G22K3Y');
-      //  seasons('GYZJ43JMR');
-      //});
 
-      //return;
+    utils.changeDetect(
+      () => check(),
+      () => {
+        const sesInfo = $('.season-info .c-text')
+          .first()
+          .text();
+        if (sesInfo) return sesInfo;
+        return window.location.href;
+      },
+    );
+
+    async function check(firstCall = false) {
+      page.reset();
+      status.episode = null;
+      await auth();
+
       clearInterval(placeholderInterval);
       placeholderInterval = utils.waitUntilTrue(
         () => beta.isSyncPage(page.url) || beta.isOverviewPage!(page.url),
@@ -217,10 +222,6 @@ export const beta: pageInterface = {
                 page.handlePage();
                 if (firstCall) firstCallFunction(beta.overview!.getIdentifier(page.url));
 
-                //const epUrl = $('.episode-list .c-playable-card a')
-                //  .first()
-                //  .attr('href');
-                //handle(epUrl, page);
               },
             );
             return;
