@@ -56,7 +56,6 @@ export abstract class ListAbstract {
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
     public callbacks: {
-      singleCallback?: (el: listElement) => void;
       continueCall?;
     } = {},
     protected templist: listElement[] = [],
@@ -81,15 +80,6 @@ export abstract class ListAbstract {
     let retList: listElement[] = [];
     do {
       retList = await this.getPart();
-
-      if (typeof this.callbacks.singleCallback !== 'undefined') {
-        // @ts-ignore
-        if (!retList.length) this.callbacks.singleCallback(false, 0, 0);
-        for (let i = 0; i < retList.length; i++) {
-          // @ts-ignore
-          this.callbacks.singleCallback(retList[i]);
-        }
-      }
 
       this.templist = this.templist.concat(retList);
 
