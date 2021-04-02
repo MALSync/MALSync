@@ -142,7 +142,7 @@ async function authenticate() {
         reject(e);
       }
     });
-  })
+  });
 }
 
 export const Plex: pageInterface = {
