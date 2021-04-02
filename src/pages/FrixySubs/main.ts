@@ -34,7 +34,7 @@ export const FrixySubs: pageInterface = {
     },
     getEpisode(url) {
       const text = j.$('#watch-title').text();
-      return getEpNumber(text, /\|\#(\d+)/);
+      return getEpNumber(text, /\|#(\d+)/);
     },
     nextEpUrl(url) {
       const id = j.$('.watch-player-button:contains("Następny")').attr('idd');
