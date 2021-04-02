@@ -13,7 +13,7 @@ export async function getList(...args) {
     const [status, callbacks, templist] = args;
     const localListEl = new LocalList(status, callbacks, templist);
     localListEl.modes.initProgress = true;
-    tempList = await localListEl.get();
+    tempList = await localListEl.getCompleteList();
   }
 
   const list = getListObj(args);

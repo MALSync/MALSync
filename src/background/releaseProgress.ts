@@ -112,7 +112,7 @@ export async function listUpdateWithPOST(state, type) {
   logger.log('Start', type, state);
   const listProvider = await getList(state, type);
   return listProvider
-    .get()
+    .getCompleteList()
     .then(async list => {
       if (list.length > 0) {
         try {

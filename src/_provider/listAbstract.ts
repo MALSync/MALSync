@@ -76,27 +76,32 @@ export abstract class ListAbstract {
     return this.done;
   }
 
-  async get(): Promise<listElement[]> {
-    let retList: listElement[] = [];
+  async getCompleteList(): Promise<listElement[]> {
     do {
-      retList = await this.getPart();
-
-      this.templist = this.templist.concat(retList);
-
-      if (typeof this.callbacks.continueCall !== 'undefined') {
-        if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
-        // @ts-ignore
-        await this.callbacks.continueCall(this.templist);
-      }
+      // eslint-disable-next-line no-await-in-loop
+      await this.getNext();
     } while (!this.done);
 
     if (this.modes.sortAiring) await this.sortAiringList();
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
-    if (typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
+    return this.templist;
+  }
+
+  async getNextPage(): Promise<listElement[]> {
+    if (this.done) return this.templist;
+
+    await this.getNext();
+
+    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
     return this.templist;
+  }
+
+  private async getNext() {
+    const retList = await this.getPart();
+    this.templist = this.templist.concat(retList);
   }
 
   async getCached(): Promise<listElement[]> {
