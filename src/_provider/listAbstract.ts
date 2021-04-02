@@ -48,6 +48,10 @@ export abstract class ListAbstract {
     cached: false,
   };
 
+  protected username = '';
+
+  protected offset = 0;
+
   constructor(
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
@@ -55,8 +59,6 @@ export abstract class ListAbstract {
       singleCallback?: (el: listElement) => void;
       continueCall?;
     } = {},
-    protected username: string = '',
-    protected offset = 0,
     protected templist: listElement[] = [],
   ) {
     this.status = Number(this.status);
