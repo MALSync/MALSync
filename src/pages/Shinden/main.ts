@@ -6,9 +6,8 @@ export const Shinden: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'episode') {
-      return true;
-    }
+    const urlPart = url.split('/')[3];
+    if (urlPart === 'episode' || urlPart === 'epek') return true;
     return false;
   },
   sync: {
@@ -78,7 +77,8 @@ export const Shinden: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'episode') {
+      const urlPart = page.url.split('/')[3];
+      if (urlPart === 'series' || urlPart === 'episode' || urlPart === 'titles' || urlPart === 'epek') {
         page.handlePage();
       }
     });
