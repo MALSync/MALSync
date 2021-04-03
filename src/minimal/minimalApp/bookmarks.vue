@@ -65,8 +65,6 @@
 import { getList } from '../../_provider/listFactory';
 import bookmarksItem from './bookmarksItem.vue';
 
-let cb;
-
 export default {
   components: {
     bookmarksItem,
@@ -83,11 +81,9 @@ export default {
   },
   data() {
     return {
-      items: [],
-      rand: 0,
-      loading: true,
+      listProvider: undefined,
       errorText: null,
-      cache: false,
+      cache: [],
       destroyTimer: undefined,
       reload: false,
     };
@@ -101,6 +97,18 @@ export default {
         api.settings.set('bookMarksList', value);
       },
     },
+    loading() {
+      if (this.listProvider) {
+        return this.listProvider.isLoading();
+      }
+      return true;
+    },
+    items() {
+      if (this.listProvider && this.listProvider.isFirstLoaded()) {
+        return this.listProvider.getTemplist();
+      }
+      return this.cache;
+    }
   },
   watch: {
     listType() {
@@ -140,78 +148,41 @@ export default {
   methods: {
     lang: api.storage.lang,
     async load() {
-      const randNr = Math.floor(Math.random() * 100000) + 1;
-      this.rand = randNr;
-      this.loading = true;
-      this.cache = true;
+      this.cache = [];
       this.errorText = null;
-      cb = undefined;
-      const listProvider = await getList(this.state, this.listType);
+      this.listProvider = await getList(this.state, this.listType);
 
-      this.$emit('rewatch', listProvider.seperateRewatching);
+      this.$emit('rewatch', this.listProvider.seperateRewatching);
 
-      const listError = e => {
-        con.error(e);
-        this.errorText = listProvider.errorMessage(e);
-        this.loading = false;
-      };
+      this.listProvider.modes.cached = true;
 
-      listProvider.modes.cached = true;
-
-      listProvider.getCached().then(list => {
-        if (randNr !== this.rand) {
-          con.log('Id different. Drop list items');
-          return;
-        }
-        this.items = list;
+      this.listProvider.getCached().then(list => {
+        this.cache = list;
       });
 
-      listProvider.modes.initProgress = true;
+      this.listProvider.modes.initProgress = true;
       if (this.state !== 1 && this.state !== '1') {
-        listProvider.callbacks = {
-          // eslint-disable-next-line consistent-return
-          continueCall: list => {
-            if (randNr !== this.rand) {
-              con.log('Id different. Drop list items');
-              return;
-            }
-            this.loading = false;
-            this.cache = false;
-            this.items = list;
-            if (!listProvider.isDone()) {
-              // eslint-disable-next-line consistent-return
-              return new Promise(resolve => {
-                cb = () => {
-                  resolve();
-                };
-              });
-            }
-          },
-        };
-        listProvider.get().catch(listError);
+        this.loadNext();
       } else {
-        listProvider.modes.sortAiring = true;
-        listProvider
-          .get()
-          .then(list => {
-            if (randNr !== this.rand) {
-              con.log('Id different. Drop list items');
-              return;
-            }
-            this.loading = false;
-            this.cache = false;
-            this.items = list;
-          })
-          .catch(listError);
+        this.listProvider.modes.sortAiring = true;
+        this.listProvider.getCompleteList().catch(this.listError);
       }
+    },
+    listError(e) {
+      con.error(e);
+      this.errorText = this.listProvider.errorMessage(e);
+    },
+    loadNext() {
+      if (this.listProvider) {
+        if (!this.listProvider.isLoading()) {
+          return this.listProvider.getNextPage().catch(this.listError);
+        }
+      }
+      return Promise.resolve();
     },
     handleScroll(pos) {
       if (pos.pos + pos.elHeight + 1000 > pos.height) {
-        if (typeof cb !== 'undefined') {
-          this.loading = true;
-          cb();
-          cb = undefined;
-        }
+        this.loadNext();
       }
     },
   },

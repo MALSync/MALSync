@@ -33,6 +33,10 @@ export interface listElement {
 export abstract class ListAbstract {
   protected done = false;
 
+  protected loading = false;
+
+  protected firstLoaded = false;
+
   protected abstract authenticationUrl: string;
 
   abstract readonly name;
@@ -72,8 +76,20 @@ export abstract class ListAbstract {
     return this;
   }
 
+  public getTemplist() {
+    return this.templist;
+  }
+
   isDone() {
     return this.done;
+  }
+
+  isLoading() {
+    return this.loading;
+  }
+
+  isFirstLoaded() {
+    return this.firstLoaded;
   }
 
   async getCompleteList(): Promise<listElement[]> {
@@ -86,6 +102,8 @@ export abstract class ListAbstract {
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
+    this.firstLoaded = true;
+
     return this.templist;
   }
 
@@ -96,12 +114,16 @@ export abstract class ListAbstract {
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
+    this.firstLoaded = true;
+
     return this.templist;
   }
 
   private async getNext() {
+    this.loading = true;
     const retList = await this.getPart();
     this.templist = this.templist.concat(retList);
+    this.loading = false;
   }
 
   async getCached(): Promise<listElement[]> {
