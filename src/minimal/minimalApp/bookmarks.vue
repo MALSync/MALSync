@@ -161,6 +161,7 @@ export default {
       });
 
       this.listProvider.modes.initProgress = true;
+      this.listProvider.modes.frontend = true;
       if (this.state !== 1 && this.state !== '1') {
         this.loadNext();
       } else {
