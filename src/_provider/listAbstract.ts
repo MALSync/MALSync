@@ -47,6 +47,7 @@ export abstract class ListAbstract {
 
   // Modes
   modes = {
+    frontend: false,
     sortAiring: false,
     initProgress: false,
     cached: false,
@@ -59,9 +60,6 @@ export abstract class ListAbstract {
   constructor(
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
-    public callbacks: {
-      continueCall?;
-    } = {},
     protected templist: listElement[] = [],
   ) {
     this.status = Number(this.status);

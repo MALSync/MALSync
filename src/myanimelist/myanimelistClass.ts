@@ -387,9 +387,9 @@ export class MyAnimeListClass {
     let dataProvider;
     if (api.settings.get('syncMode') === 'MALAPI') {
       listProvider = new ApiList(7, this.type!);
-      dataProvider = new LegacyList(7, this.type!, {}, this.username);
+      dataProvider = new LegacyList(7, this.type!);
     } else {
-      listProvider = new LegacyList(7, this.type!, {}, this.username);
+      listProvider = new LegacyList(7, this.type!);
       dataProvider = listProvider;
     }
 
