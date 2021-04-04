@@ -1,6 +1,4 @@
-import {
-  pageInterface
-} from '../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const Japanread: pageInterface = {
   name: 'Japanread',
@@ -12,7 +10,7 @@ export const Japanread: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      var title = ".reader-controls-title > div > a"
+      const title = '.reader-controls-title > div > a';
       return j
         .$(title)
         .text()
@@ -22,7 +20,7 @@ export const Japanread: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      var overview = url.substr(0, url.lastIndexOf("/"))
+      const overview = url.substr(0, url.lastIndexOf('/'));
       return overview;
     },
     getEpisode(url) {
@@ -59,9 +57,9 @@ export const Japanread: pageInterface = {
       elementUrl(selector) {
         return utils.absoluteLink(
           selector
-          .find('a')
-          .first()
-          .attr('href'),
+            .find('a')
+            .first()
+            .attr('href'),
           Japanread.domain,
         );
       },
@@ -72,10 +70,8 @@ export const Japanread: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function () {
-      if (
-        (typeof page.url.split('/')[3] !== 'undefined')
-      ) {
+    j.$(document).ready(function() {
+      if (typeof page.url.split('/')[3] !== 'undefined') {
         page.handlePage();
       }
     });

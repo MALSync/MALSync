@@ -1,6 +1,4 @@
-import {
-  pageInterface
-} from '../pageInterface';
+import { pageInterface } from '../pageInterface';
 
 export const KangaryuTeam: pageInterface = {
   name: 'KangaryuTeam',
@@ -14,15 +12,16 @@ export const KangaryuTeam: pageInterface = {
     getTitle() {
       return j
         .$('#navbar-collapse-1 > ul > li:nth-child(1) > a')
-        .text().replace('Manga', '')
+        .text()
+        .replace('Manga', '')
         .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      var overview = KangaryuTeam.domain + '/manga/' + utils.urlPart(url, 4);
-      
+      const overview = `${KangaryuTeam.domain}/manga/${utils.urlPart(url, 4)}`;
+
       return overview;
     },
     getEpisode(url) {
@@ -59,10 +58,8 @@ export const KangaryuTeam: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function () {
-      if (
-        (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined')
-      ) {
+    j.$(document).ready(function() {
+      if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
         page.handlePage();
       }
     });
