@@ -3,6 +3,8 @@ import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
 import { emitter } from '../utils/emitter';
 
+Object.seal(emitter);
+
 export interface listElement {
   uid: number;
   malId: number;
@@ -33,6 +35,10 @@ export interface listElement {
 export abstract class ListAbstract {
   protected done = false;
 
+  protected loading = false;
+
+  protected firstLoaded = false;
+
   protected abstract authenticationUrl: string;
 
   abstract readonly name;
@@ -43,6 +49,7 @@ export abstract class ListAbstract {
 
   // Modes
   modes = {
+    frontend: false,
     sortAiring: false,
     initProgress: false,
     cached: false,
@@ -55,9 +62,6 @@ export abstract class ListAbstract {
   constructor(
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
-    public callbacks: {
-      continueCall?;
-    } = {},
     protected templist: listElement[] = [],
   ) {
     this.status = Number(this.status);
@@ -72,31 +76,54 @@ export abstract class ListAbstract {
     return this;
   }
 
+  public getTemplist() {
+    return this.templist;
+  }
+
   isDone() {
     return this.done;
   }
 
-  async get(): Promise<listElement[]> {
-    let retList: listElement[] = [];
+  isLoading() {
+    return this.loading;
+  }
+
+  isFirstLoaded() {
+    return this.firstLoaded;
+  }
+
+  async getCompleteList(): Promise<listElement[]> {
     do {
-      retList = await this.getPart();
-
-      this.templist = this.templist.concat(retList);
-
-      if (typeof this.callbacks.continueCall !== 'undefined') {
-        if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
-        // @ts-ignore
-        await this.callbacks.continueCall(this.templist);
-      }
+      // eslint-disable-next-line no-await-in-loop
+      await this.getNext();
     } while (!this.done);
 
     if (this.modes.sortAiring) await this.sortAiringList();
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
 
-    if (typeof this.callbacks.continueCall !== 'undefined') this.callbacks.continueCall(this.templist);
+    this.firstLoaded = true;
 
     return this.templist;
+  }
+
+  async getNextPage(): Promise<listElement[]> {
+    if (this.done) return this.templist;
+
+    await this.getNext();
+
+    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
+
+    this.firstLoaded = true;
+
+    return this.templist;
+  }
+
+  private async getNext() {
+    this.loading = true;
+    const retList = await this.getPart();
+    this.templist = this.templist.concat(retList);
+    this.loading = false;
   }
 
   async getCached(): Promise<listElement[]> {
@@ -110,6 +137,34 @@ export abstract class ListAbstract {
       return cachelist;
     }
     return [];
+  }
+
+  protected updateListener;
+
+  public initFrontendMode() {
+    this.modes.frontend = true;
+    this.updateListener = emitter.on(
+      'global.update.*',
+      (ignore, data) => {
+        con.log('update', data);
+        if (data.cacheKey) {
+          const item = this.templist.find(el => el.cacheKey === data.cacheKey);
+          con.log(item);
+          if (item && data.state) {
+            item.watchedEp = data.state.episode;
+            item.score = data.state.score;
+            item.status = data.state.status;
+          }
+        }
+      },
+      { objectify: true },
+    );
+  }
+
+  public destroy() {
+    if (this.updateListener) {
+      this.updateListener.off();
+    }
   }
 
   abstract getUsername(): Promise<string> | string;
@@ -188,15 +243,6 @@ export abstract class ListAbstract {
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
     if (streamurl) item.options.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
-
-    emitter.on(`global.update.${item.cacheKey}`, (ignore, data) => {
-      con.log('update', data);
-      if (data.state) {
-        item.watchedEp = data.state.episode;
-        item.score = data.state.score;
-        item.status = data.state.status;
-      }
-    });
 
     return item;
   }

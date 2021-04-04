@@ -271,7 +271,7 @@ export function getList(Prov, type) {
   const listProvider = new Prov(7, type);
 
   return listProvider
-    .get()
+    .getCompleteList()
     .then(list => {
       return list;
     })
