@@ -6,7 +6,7 @@ export const KangaryuTeam: pageInterface = {
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
-    return url.split('/')[5] !== undefined;
+    return typeof url.split('/')[5] !== 'undefined' && url.split('/')[5].length > 0;
   },
   sync: {
     getTitle() {
@@ -37,7 +37,7 @@ export const KangaryuTeam: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('body > div.wrapper > div > div:nth-child(1) > div > div.bg > div:nth-child(3)')
+      j.$('div.bg > div:nth-child(3)')
         .first()
         .before(j.html(`<div class="bg-list rounded">${selector}</div>`));
     },
