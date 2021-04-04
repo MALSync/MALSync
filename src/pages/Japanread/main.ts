@@ -9,10 +9,9 @@ export const Japanread: pageInterface = {
     return url.split('/')[5] !== undefined;
   },
   sync: {
-    getTitle(url) {
-      const title = '.reader-controls-title > div > a';
+    getTitle() {
       return j
-        .$(title)
+        .$('.reader-controls-title > div > a')
         .text()
         .trim();
     },
@@ -20,8 +19,7 @@ export const Japanread: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      const overview = url.substr(0, url.lastIndexOf('/'));
-      return overview;
+      return url.substr(0, url.lastIndexOf('/'));
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));

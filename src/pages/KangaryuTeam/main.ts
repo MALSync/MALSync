@@ -20,9 +20,7 @@ export const KangaryuTeam: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      const overview = `${KangaryuTeam.domain}/manga/${utils.urlPart(url, 4)}`;
-
-      return overview;
+      return `${KangaryuTeam.domain}/manga/${utils.urlPart(url, 4)}`;
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
