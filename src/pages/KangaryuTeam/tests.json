@@ -8,7 +8,11 @@
         "sync": false,
         "title": "Grand blue",
         "identifier": "grand-blue",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "26": "https://kangaryu-team.fr/manga/grand-blue/26",
+          "52": "https://kangaryu-team.fr/manga/grand-blue/52"
+        }
       }
     },
     {
