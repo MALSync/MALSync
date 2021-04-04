@@ -118,6 +118,8 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { AnimesHD } from './AnimesHD/main';
 import { MangaHub } from './MangaHub/main';
+import { KangaryuTeam } from './KangaryuTeam/main';
+import { Japanread } from './Japanread/main';
 
 export const pages = {
   nineAnime,
@@ -240,4 +242,6 @@ export const pages = {
   Guya,
   AnimesHD,
   MangaHub,
+  KangaryuTeam,
+  Japanread,
 };

@@ -1,0 +1,26 @@
+{
+  "title": "Japanread",
+  "url": "https://www.japanread.cc/",
+  "testCases": [
+    {
+      "url": "https://www.japanread.cc/manga/solo-leveling",
+      "expected": {
+        "sync": false,
+        "title": "Solo leveling",
+        "identifier": "solo-leveling",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://www.japanread.cc/manga/solo-leveling/145",
+      "expected": {
+        "sync": true,
+        "title": "Solo leveling",
+        "identifier": "solo-leveling",
+        "overviewUrl": "https://www.japanread.cc/manga/solo-leveling",
+        "episode": 145,
+        "uiSelector": false
+      }
+    }
+  ]
+}

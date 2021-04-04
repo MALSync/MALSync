@@ -598,5 +598,15 @@
     "domain": "https://mangahub.io",
     "type": "manga",
     "name": "MangaHub"
+  },
+    {
+    "domain": "https://kangaryu-team.fr",
+    "type": "manga",
+    "name": "KangaryuTeam"
+  },
+  {
+    "domain": "https://www.japanread.cc/",
+    "type": "manga",
+    "name": "Japanread"
   }
 ]
