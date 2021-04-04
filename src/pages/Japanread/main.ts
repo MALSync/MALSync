@@ -6,7 +6,7 @@ export const Japanread: pageInterface = {
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
-    return url.split('/')[5] !== undefined;
+    return typeof url.split('/')[5] !== 'undefined' && url.split('/')[5].length > 0;
   },
   sync: {
     getTitle() {
@@ -36,7 +36,7 @@ export const Japanread: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.container .row .col-12 .card.card-manga.mb-3 .card-body.p-0 .row.edit .col-xl-9.col-lg-8.col-md-7.pt-2')
+      j.$('.card.card-manga .card-body .row.edit .col-md-7')
         .first()
         .append(
           j.html(
@@ -69,7 +69,7 @@ export const Japanread: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (typeof page.url.split('/')[3] !== 'undefined') {
+      if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
         page.handlePage();
       }
     });
