@@ -4,7 +4,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
   it('Get List', function() {
     const list = new userlist(7, 'anime');
 
-    return list.get().then(list => {
+    return list.getCompleteList().then(list => {
       list = removeFn(list);
       expect(list).to.deep.include(elements[0]);
       expect(list).to.deep.include(elements[1]);
@@ -18,7 +18,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
         const temp = responses[index].data;
         responses[index].data = '';
         try {
-          await new userlist(7, 'anime').get();
+          await new userlist(7, 'anime').getCompleteList();
         } catch (error) {
           responses[index].data = temp;
           let errorRes = 444;
@@ -38,7 +38,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
         const temp = responses[index].data;
         responses[index].data = 'This is not valid json';
         try {
-          await new userlist(7, 'anime').get();
+          await new userlist(7, 'anime').getCompleteList();
         } catch (error) {
           responses[index].data = temp;
           let errorRes = 406;
@@ -76,7 +76,7 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
       },
     });
 
-    return list.get().then(list => {
+    return list.getCompleteList().then(list => {
       expect(testArray).to.deep.equal([1, 2, 1, 2, 1]);
     });
   });

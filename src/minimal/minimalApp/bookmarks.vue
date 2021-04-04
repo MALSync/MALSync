@@ -108,7 +108,7 @@ export default {
         return this.listProvider.getTemplist();
       }
       return this.cache;
-    }
+    },
   },
   watch: {
     listType() {
