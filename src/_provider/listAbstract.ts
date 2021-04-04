@@ -3,6 +3,8 @@ import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
 import { emitter } from '../utils/emitter';
 
+Object.seal(emitter);
+
 export interface listElement {
   uid: number;
   malId: number;
@@ -137,6 +139,34 @@ export abstract class ListAbstract {
     return [];
   }
 
+  protected updateListener;
+
+  public initFrontendMode() {
+    this.modes.frontend = true;
+    this.updateListener = emitter.on(
+      'global.update.*',
+      (ignore, data) => {
+        con.log('update', data);
+        if (data.cacheKey) {
+          const item = this.templist.find(el => el.cacheKey === data.cacheKey);
+          con.log(item);
+          if (item && data.state) {
+            item.watchedEp = data.state.episode;
+            item.score = data.state.score;
+            item.status = data.state.status;
+          }
+        }
+      },
+      { objectify: true },
+    );
+  }
+
+  public destroy() {
+    if (this.updateListener) {
+      this.updateListener.off();
+    }
+  }
+
   abstract getUsername(): Promise<string> | string;
 
   abstract getPart(): Promise<listElement[]>;
@@ -213,15 +243,6 @@ export abstract class ListAbstract {
     item.options = await utils.getEntrySettings(item.type, item.cacheKey, item.tags);
     if (streamurl) item.options.u = streamurl;
     if (this.modes.sortAiring || this.modes.initProgress) await item.fn.initProgress();
-
-    emitter.on(`global.update.${item.cacheKey}`, (ignore, data) => {
-      con.log('update', data);
-      if (data.state) {
-        item.watchedEp = data.state.episode;
-        item.score = data.state.score;
-        item.status = data.state.status;
-      }
-    });
 
     return item;
   }

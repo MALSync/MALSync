@@ -150,6 +150,7 @@ export default {
     async load() {
       this.cache = [];
       this.errorText = null;
+      if (this.listProvider) this.listProvider.destroy();
       this.listProvider = await getList(this.state, this.listType);
 
       this.$emit('rewatch', this.listProvider.seperateRewatching);
@@ -161,7 +162,7 @@ export default {
       });
 
       this.listProvider.modes.initProgress = true;
-      this.listProvider.modes.frontend = true;
+      this.listProvider.initFrontendMode();
       if (this.state !== 1 && this.state !== '1') {
         this.loadNext();
       } else {
