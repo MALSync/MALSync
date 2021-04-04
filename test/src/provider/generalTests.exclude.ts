@@ -51,36 +51,6 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
     });
   });
 
-  it('continueCall', async function() {
-    if (options.noContinueCall) return;
-    const testArray: number[] = [];
-    const list = new userlist(7, 'anime', {
-      continueCall(list) {
-        list = removeFn(list, false);
-        return new Promise<void>(function(resolve, reject) {
-          testArray.push(1);
-
-          expect(list).to.deep.include(elements[0]);
-
-          if (testArray.length > 1) {
-            expect(list).to.deep.include(elements[1]);
-          } else {
-            expect(list).to.not.deep.include(elements[1]);
-          }
-
-          setTimeout(function() {
-            testArray.push(2);
-            resolve();
-          }, 200);
-        });
-      },
-    });
-
-    return list.getCompleteList().then(list => {
-      expect(testArray).to.deep.equal([1, 2, 1, 2, 1]);
-    });
-  });
-
   describe('errorHandling', async function() {
     const list = new userlist();
     it('js', async function() {
