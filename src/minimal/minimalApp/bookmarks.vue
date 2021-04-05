@@ -10,7 +10,7 @@
       <div class="bufferbar bar bar2" style="width: 100%;"></div>
       <div class="auxbar bar bar3" style="width: 0%;"></div>
     </div>
-    <slot></slot>
+    <slot :sorting="listProvider ? listProvider.getSortingOptions() : []"></slot>
     <span
       v-if="!loading && !items.length && !errorText"
       class="mdl-chip"
@@ -78,6 +78,10 @@ export default {
       type: Number,
       default: 1,
     },
+    sort: {
+      type: String,
+      default: 'default',
+    },
   },
   data() {
     return {
@@ -117,6 +121,9 @@ export default {
     state() {
       this.load();
     },
+    sort(value) {
+      localStorage.setItem(`sort/${this.listType}/${this.state}`, value.value);
+    }
   },
   mounted() {
     this.load();
@@ -155,6 +162,10 @@ export default {
 
       this.$emit('rewatch', this.listProvider.seperateRewatching);
 
+      const sortOptions = this.listProvider.getSortingOptions();
+
+      this.initSort(sortOptions);
+
       this.listProvider.modes.cached = true;
 
       this.listProvider.getCached().then(list => {
@@ -169,6 +180,16 @@ export default {
         this.listProvider.modes.sortAiring = true;
         this.listProvider.getCompleteList().catch(this.listError);
       }
+    },
+    initSort(sortOptions) {
+      const curSort = localStorage.getItem(`sort/${this.listType}/${this.state}`);
+      const s = sortOptions.find(el => el.value === curSort);
+      if (!s) {
+        const sor = sortOptions.find(el => el.value === 'default');
+        this.$emit('sort', sor);
+        return;
+      }
+      this.$emit('sort', s);
     },
     listError(e) {
       con.error(e);

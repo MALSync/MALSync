@@ -115,55 +115,89 @@
               v-if="currentTab == tabs.bookmarks.title"
               :state="tabs.bookmarks.state"
               :list-type="tabs.bookmarks.type"
+              :sort="tabs.bookmarks.sort"
               @rewatch="tabs.bookmarks.supportsRewatch = $event"
+              @sort="tabs.bookmarks.sort = $event"
             >
-              <div id="malList" class="mdl-grid" style="justify-content: space-around;">
-                <select
-                  id="userListType"
-                  v-model="tabs.bookmarks.type"
-                  name="myinfo_score"
-                  class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
-                  style="outline: none; background-color: white; border: none;"
-                >
-                  <option value="anime">{{ lang('Anime') }}</option>
-                  <option value="manga">{{ lang('Manga') }}</option>
-                </select>
-                <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+              <template #default="{sorting}">
+                <div id="malList" class="mdl-grid" style="justify-content: space-around;">
                   <select
-                    id="userListState"
-                    v-model="tabs.bookmarks.state"
+                    id="userListType"
+                    v-model="tabs.bookmarks.type"
                     name="myinfo_score"
-                    class="inputtext mdl-textfield__input"
-                    style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
+                    class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
+                    style="outline: none; background-color: white; border: none;"
                   >
-                    <option :value="7">{{ lang('All') }}</option>
-                    <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
-                    <option :value="2">{{ lang('UI_Status_Completed') }}</option>
-                    <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
-                    <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
-                    <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
-                    <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{
-                      lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`)
-                    }}</option>
+                    <option value="anime">{{ lang('Anime') }}</option>
+                    <option value="manga">{{ lang('Manga') }}</option>
                   </select>
-                  <div
-                    v-if="tabs.bookmarks.state === 6"
-                    style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
-                    class="bg-cell"
-                    @click="openRandom(6, tabs.bookmarks.type)"
-                  >
-                    <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
-                  </div>
-                  <div
-                    style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
-                    class="bg-cell"
-                    @click="listView = !listView"
-                  >
-                    <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
-                    <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
+                  <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+                    <select
+                      id="userListState"
+                      v-model="tabs.bookmarks.state"
+                      name="myinfo_score"
+                      class="inputtext mdl-textfield__input"
+                      style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
+                    >
+                      <option :value="7">{{ lang('All') }}</option>
+                      <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
+                      <option :value="2">{{ lang('UI_Status_Completed') }}</option>
+                      <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
+                      <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
+                      <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
+                      <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{
+                        lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`)
+                      }}</option>
+                    </select>
+                    <div
+                      v-if="tabs.bookmarks.state === 6"
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      class="bg-cell"
+                      @click="openRandom(6, tabs.bookmarks.type)"
+                    >
+                      <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
+                    </div>
+                    <div
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      class="bg-cell"
+                      @click="listView = !listView"
+                    >
+                      <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
+                      <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
+                    </div>
+
+                    <template v-show="sorting && sorting.length">
+                      <div
+                        id="demo-menu-lower-left"
+                        style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                        class="bg-cell"
+                      >
+                        <i v-if="tabs.bookmarks.sort" class="material-icons">{{ tabs.bookmarks.sort.icon }}</i>
+                      </div>
+                      <div>
+                        <ul
+                          v-if="tabs.bookmarks.sort"
+                          class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                          for="demo-menu-lower-left"
+                        >
+                          <li
+                            v-for="sort in sorting"
+                            :key="sort.value"
+                            class="mdl-menu__item"
+                            :class="{ active: sort.value === tabs.bookmarks.sort.value }"
+                            @click="tabs.bookmarks.sort = sort"
+                          >
+                            <i class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
+                              sort.icon
+                            }}</i>
+                            {{ sort.title }}
+                          </li>
+                        </ul>
+                      </div>
+                    </template>
                   </div>
                 </div>
-              </div>
+              </template>
             </bookmarksVue>
           </keepAlive>
           <searchVue
@@ -284,6 +318,7 @@ export default {
         scroll: 0,
         state: 1,
         type: 'anime',
+        sort: null,
         supportsRewatch: false,
       },
       search: {

@@ -70,6 +70,16 @@ export class UserList extends ListAbstract {
     return api.settings.get('kitsuToken');
   }
 
+  getSortingOptions() {
+    return [
+      {
+        icon: 'filter_list',
+        title: 'Default',
+        value: 'default',
+      },
+    ];
+  }
+
   async getPart() {
     const userid = await this.getUserId();
 

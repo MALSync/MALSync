@@ -10,6 +10,16 @@ export class UserList extends ListAbstract {
     return 'local';
   }
 
+  getSortingOptions() {
+    return [
+      {
+        icon: 'filter_list',
+        title: 'Default',
+        value: 'default',
+      },
+    ];
+  }
+
   async getPart() {
     con.log('[UserList][Local]', `status: ${this.status}`);
     this.done = true;

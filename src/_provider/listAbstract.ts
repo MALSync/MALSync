@@ -169,6 +169,8 @@ export abstract class ListAbstract {
 
   abstract getUsername(): Promise<string> | string;
 
+  abstract getSortingOptions(): { icon: string; title: string; value: string }[];
+
   abstract getPart(): Promise<listElement[]>;
 
   jsonParse(response) {

@@ -71,6 +71,16 @@ export class UserList extends ListAbstract {
     return this.api.settings.get('anilistToken');
   }
 
+  getSortingOptions() {
+    return [
+      {
+        icon: 'filter_list',
+        title: 'Default',
+        value: 'default',
+      },
+    ];
+  }
+
   async getPart(): Promise<any> {
     if (this.offset < 1) this.offset = 1;
     con.log('[UserList][AniList]', `username: ${this.username}`, `status: ${this.status}`, `offset: ${this.offset}`);

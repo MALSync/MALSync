@@ -28,6 +28,21 @@ export class UserList extends ListAbstract {
     }
   }
 
+  getSortingOptions() {
+    return [
+      {
+        icon: 'filter_list',
+        title: 'Default',
+        value: 'default',
+      },
+      {
+        icon: 'sort_by_alpha',
+        title: 'Alphabetic',
+        value: 'alph',
+      },
+    ];
+  }
+
   async getPart() {
     if (!this.username) {
       this.username = await this.getUsername();
