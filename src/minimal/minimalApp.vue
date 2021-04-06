@@ -166,62 +166,60 @@
                       <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
                     </div>
 
-                    <template v-show="sorting && sorting.length">
-                      <div
-                        id="demo-menu-lower-left"
-                        style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
-                        class="bg-cell"
+                    <div
+                      v-show="sorting && sorting.length && sorting.length > 1"
+                      id="demo-menu-lower-left"
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      class="bg-cell"
+                    >
+                      <i v-if="tabs.bookmarks.sort" class="material-icons">{{ tabs.bookmarks.sort.icon }}</i>
+                    </div>
+                    <div>
+                      <ul
+                        v-if="tabs.bookmarks.sort"
+                        class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                        for="demo-menu-lower-left"
                       >
-                        <i v-if="tabs.bookmarks.sort" class="material-icons">{{ tabs.bookmarks.sort.icon }}</i>
-                      </div>
-                      <div>
-                        <ul
-                          v-if="tabs.bookmarks.sort"
-                          class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                          for="demo-menu-lower-left"
+                        <li
+                          v-for="sort in sorting"
+                          :key="sort.value"
+                          class="mdl-menu__item"
+                          :class="{
+                            active:
+                              sort.value === tabs.bookmarks.sort.value ||
+                              (sort.child && sort.child.value === tabs.bookmarks.sort.value),
+                          }"
+                          @click="
+                            sort.child && sort.value === tabs.bookmarks.sort.value
+                              ? (tabs.bookmarks.sort = sort.child)
+                              : (tabs.bookmarks.sort = sort)
+                          "
                         >
-                          <li
-                            v-for="sort in sorting"
-                            :key="sort.value"
-                            class="mdl-menu__item"
-                            :class="{
-                              active:
-                                sort.value === tabs.bookmarks.sort.value ||
-                                (sort.child && sort.child.value === tabs.bookmarks.sort.value),
-                            }"
-                            @click="
-                              sort.child && sort.value === tabs.bookmarks.sort.value
-                                ? (tabs.bookmarks.sort = sort.child)
-                                : (tabs.bookmarks.sort = sort)
+                          <template
+                            v-if="
+                              sort.child &&
+                                (sort.value === tabs.bookmarks.sort.value ||
+                                  sort.child.value === tabs.bookmarks.sort.value)
                             "
                           >
-                            <template
-                              v-if="
-                                sort.child &&
-                                  (sort.value === tabs.bookmarks.sort.value ||
-                                    sort.child.value === tabs.bookmarks.sort.value)
-                              "
+                            <i
+                              v-if="sort.value === tabs.bookmarks.sort.value"
+                              class="material-icons"
+                              style="vertical-align: sub; margin-right: 10px;"
+                              >arrow_downward</i
                             >
-                              <i
-                                v-if="sort.value === tabs.bookmarks.sort.value"
-                                class="material-icons"
-                                style="vertical-align: sub; margin-right: 10px;"
-                                >arrow_downward</i
-                              >
-                              <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;"
-                                >arrow_upward</i
-                              >
-                            </template>
-                            <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
-                              sort.icon
-                            }}</i>
+                            <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;"
+                              >arrow_upward</i
+                            >
+                          </template>
+                          <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
+                            sort.icon
+                          }}</i>
 
-                            {{ sort.title }}
-
-                          </li>
-                        </ul>
-                      </div>
-                    </template>
+                          {{ sort.title }}
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </template>
