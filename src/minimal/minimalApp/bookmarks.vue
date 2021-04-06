@@ -79,8 +79,8 @@ export default {
       default: 1,
     },
     sort: {
-      type: String,
-      default: 'default',
+      type: Object,
+      default: null,
     },
   },
   data() {
@@ -121,9 +121,12 @@ export default {
     state() {
       this.load();
     },
-    sort(value) {
-      localStorage.setItem(`sort/${this.listType}/${this.state}`, value.value);
-    }
+    sort(value, old) {
+      if (value.value !== old.value) {
+        localStorage.setItem(`sort/${this.listType}/${this.state}`, value.value);
+        this.load();
+      }
+    },
   },
   mounted() {
     this.load();
@@ -164,7 +167,11 @@ export default {
 
       const sortOptions = this.listProvider.getSortingOptions();
 
-      this.initSort(sortOptions);
+      if (this.initSort(sortOptions)) return;
+
+      alert(this.sort.value);
+
+      this.listProvider.setSort(this.sort.value);
 
       this.listProvider.modes.cached = true;
 
@@ -183,13 +190,17 @@ export default {
     },
     initSort(sortOptions) {
       const curSort = localStorage.getItem(`sort/${this.listType}/${this.state}`);
-      const s = sortOptions.find(el => el.value === curSort);
+      let s = sortOptions.find(el => el.value === curSort);
       if (!s) {
-        const sor = sortOptions.find(el => el.value === 'default');
-        this.$emit('sort', sor);
-        return;
+        s = sortOptions.find(el => el.value === 'default');
+        this.$emit('sort', s);
+        return false;
       }
-      this.$emit('sort', s);
+      if (s.value !== this.sort.value) {
+        this.$emit('sort', s);
+        return true;
+      }
+      return false;
     },
     listError(e) {
       con.error(e);
