@@ -127,6 +127,7 @@ export function apiCall(query, variables, authentication = true) {
         switch (error.status) {
           case 400:
             if (error.message === 'validation') throw this.errorObj(error.status, 'Wrong request format');
+            if (error.message.includes('invalid')) throw this.errorObj(error.status, 'Wrong request format');
             throw this.errorObj(errorCode.NotAutenticated, error.message);
             break;
           case 404:
