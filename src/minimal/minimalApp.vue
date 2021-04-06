@@ -184,13 +184,40 @@
                             v-for="sort in sorting"
                             :key="sort.value"
                             class="mdl-menu__item"
-                            :class="{ active: sort.value === tabs.bookmarks.sort.value }"
-                            @click="tabs.bookmarks.sort = sort"
+                            :class="{
+                              active:
+                                sort.value === tabs.bookmarks.sort.value ||
+                                (sort.child && sort.child.value === tabs.bookmarks.sort.value),
+                            }"
+                            @click="
+                              sort.child && sort.value === tabs.bookmarks.sort.value
+                                ? (tabs.bookmarks.sort = sort.child)
+                                : (tabs.bookmarks.sort = sort)
+                            "
                           >
-                            <i class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
+                            <template
+                              v-if="
+                                sort.child &&
+                                  (sort.value === tabs.bookmarks.sort.value ||
+                                    sort.child.value === tabs.bookmarks.sort.value)
+                              "
+                            >
+                              <i
+                                v-if="sort.value === tabs.bookmarks.sort.value"
+                                class="material-icons"
+                                style="vertical-align: sub; margin-right: 10px;"
+                                >arrow_downward</i
+                              >
+                              <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;"
+                                >arrow_upward</i
+                              >
+                            </template>
+                            <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
                               sort.icon
                             }}</i>
+
                             {{ sort.title }}
+
                           </li>
                         </ul>
                       </div>

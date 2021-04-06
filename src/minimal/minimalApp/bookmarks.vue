@@ -10,7 +10,7 @@
       <div class="bufferbar bar bar2" style="width: 100%;"></div>
       <div class="auxbar bar bar3" style="width: 0%;"></div>
     </div>
-    <slot :sorting="listProvider ? listProvider.getSortingOptions() : []"></slot>
+    <slot :sorting="listProvider ? listProvider.getSortingOptions(true) : []"></slot>
     <span
       v-if="!loading && !items.length && !errorText"
       class="mdl-chip"
@@ -168,8 +168,6 @@ export default {
       const sortOptions = this.listProvider.getSortingOptions();
 
       if (this.initSort(sortOptions)) return;
-
-      alert(this.sort.value);
 
       this.listProvider.setSort(this.sort.value);
 

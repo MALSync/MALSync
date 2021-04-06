@@ -71,14 +71,8 @@ export class UserList extends ListAbstract {
     return this.api.settings.get('anilistToken');
   }
 
-  getSortingOptions() {
-    return [
-      {
-        icon: 'filter_list',
-        title: 'Default',
-        value: 'default',
-      },
-    ];
+  _getSortingOptions() {
+    return [];
   }
 
   async getPart(): Promise<any> {

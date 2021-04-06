@@ -25,14 +25,8 @@ export class UserList extends ListAbstract {
     }
   }
 
-  getSortingOptions() {
-    return [
-      {
-        icon: 'filter_list',
-        title: 'Default',
-        value: 'default',
-      },
-    ];
+  _getSortingOptions() {
+    return [];
   }
 
   private limit = 100;

@@ -28,28 +28,58 @@ export class UserList extends ListAbstract {
     }
   }
 
-  getSortingOptions() {
+  _getSortingOptions() {
     return [
-      {
-        icon: 'filter_list',
-        title: 'Default',
-        value: 'default',
-      },
       {
         icon: 'sort_by_alpha',
         title: 'Alphabetic',
-        value: 'alph',
+        value: 'alpha',
+        asc: true,
+      },
+      {
+        icon: 'history',
+        title: 'Last Updated',
+        value: 'updated',
+        asc: true,
+      },
+      {
+        icon: 'score',
+        title: 'Score',
+        value: 'score',
+        asc: true,
       },
     ];
+  }
+
+  getOrder(sort) {
+    let pre = '';
+
+    if (sort.endsWith('_asc')) pre = '-';
+
+    const sortString = sort.replace('_asc', '');
+    switch (sortString) {
+      case 'alpha':
+        return pre + 1;
+      case 'updated':
+        return pre + 5;
+      case 'score':
+        return pre + 4;
+      default:
+        if (this.status === 1) return this.getOrder('updated');
+        if (this.status === 6) return this.getOrder('updated');
+        return this.getOrder('alpha');
+    }
   }
 
   async getPart() {
     if (!this.username) {
       this.username = await this.getUsername();
     }
+
+    const order = this.getOrder(this.sort);
     let sorting = '';
-    if (this.status === 1) {
-      sorting = '&order=5';
+    if (order) {
+      sorting = `&order=${order}`;
     }
     con.log(
       '[UserList][MAL]',
