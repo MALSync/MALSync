@@ -26,7 +26,38 @@ export class UserList extends ListAbstract {
   }
 
   _getSortingOptions() {
-    return [];
+    return [
+      {
+        icon: 'sort_by_alpha',
+        title: 'Alphabetic',
+        value: 'alpha',
+      },
+      {
+        icon: 'history',
+        title: 'Last Updated',
+        value: 'updated',
+      },
+      {
+        icon: 'score',
+        title: 'Score',
+        value: 'score',
+      },
+    ];
+  }
+
+  getOrder(sort) {
+    switch (sort) {
+      case 'alpha':
+        return 'anime_title';
+      case 'updated':
+        return 'list_updated_at';
+      case 'score':
+        return 'list_score';
+      default:
+        if (this.status === 1) return this.getOrder('updated');
+        if (this.status === 6) return this.getOrder('updated');
+        return this.getOrder('alpha');
+    }
   }
 
   private limit = 100;
@@ -37,9 +68,10 @@ export class UserList extends ListAbstract {
       this.limit = 24;
     }
 
+    const order = this.getOrder(this.sort);
     let sorting = '';
-    if (this.status === 1) {
-      sorting = '&sort=list_updated_at';
+    if (order) {
+      sorting = `&sort=${order}`;
     }
 
     con.log(
