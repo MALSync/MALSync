@@ -48,7 +48,7 @@ export class UserList extends ListAbstract {
   getOrder(sort) {
     switch (sort) {
       case 'alpha':
-        return 'anime_title';
+        return `${this.listType}_title`;
       case 'updated':
         return 'list_updated_at';
       case 'score':
