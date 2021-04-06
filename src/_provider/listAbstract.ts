@@ -117,6 +117,11 @@ export abstract class ListAbstract {
   async getNextPage(): Promise<listElement[]> {
     if (this.done) return this.templist;
 
+    if (this.modes.frontend && this.status === 1 && this.sort === 'default') {
+      this.modes.sortAiring = true;
+      return this.getCompleteList();
+    }
+
     await this.getNext();
 
     if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));

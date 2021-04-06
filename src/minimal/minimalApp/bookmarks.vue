@@ -179,12 +179,7 @@ export default {
 
       this.listProvider.modes.initProgress = true;
       this.listProvider.initFrontendMode();
-      if (this.state !== 1 && this.state !== '1') {
-        this.loadNext();
-      } else {
-        this.listProvider.modes.sortAiring = true;
-        this.listProvider.getCompleteList().catch(this.listError);
-      }
+      this.loadNext();
     },
     initSort(sortOptions) {
       const curSort = localStorage.getItem(`sort/${this.listType}/${this.state}`);
