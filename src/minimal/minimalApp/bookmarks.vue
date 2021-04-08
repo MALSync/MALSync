@@ -189,7 +189,7 @@ export default {
         this.$emit('sort', s);
         return false;
       }
-      if (s.value !== this.sort.value) {
+      if (!this.sort || s.value !== this.sort.value) {
         this.$emit('sort', s);
         return true;
       }
