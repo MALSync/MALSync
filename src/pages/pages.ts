@@ -118,6 +118,7 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { AnimesHD } from './AnimesHD/main';
 import { MangaHub } from './MangaHub/main';
+import { CatManga } from './CatManga/main';
 
 export const pages = {
   nineAnime,
@@ -240,4 +241,5 @@ export const pages = {
   Guya,
   AnimesHD,
   MangaHub,
+  CatManga,
 };
