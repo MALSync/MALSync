@@ -57,7 +57,7 @@ export const CatManga: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div[class^="series_grid"] > a[class^="chaptertile_element"]');
+        return j.$('a[class^="chaptertile_element"]');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href') || '', CatManga.domain);

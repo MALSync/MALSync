@@ -11,7 +11,10 @@
         "overviewUrl": "https://catmanga.org/series/gksfd",
         "nextEpUrl": "https://catmanga.org/series/gksfd/62",
         "episode": 61,
-        "uiSelector": false
+        "uiSelector": false,
+        "epList": {
+          "58": "https://catmanga.org/series/gksfd/58"
+        }
       }
     },
     {
