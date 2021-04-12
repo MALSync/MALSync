@@ -75,7 +75,7 @@ export const CatManga: pageInterface = {
     utils.fullUrlChangeDetect(function() {
       page.reset();
       check();
-    });
+    }, true);
 
     function check() {
       clearInterval(Interval);
