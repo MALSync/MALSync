@@ -50,9 +50,9 @@ export const CatManga: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h1[class^="series_seriesTitle"]')
+      j.$('[class^="series_grid"]')
         .first()
-        .before(j.html(selector));
+        .prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
