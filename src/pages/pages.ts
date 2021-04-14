@@ -119,6 +119,7 @@ import { Guya } from './Guya/main';
 import { AnimesHD } from './AnimesHD/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
+import { AnimeShitai } from './AnimeShitai/main';
 
 export const pages = {
   nineAnime,
@@ -242,4 +243,5 @@ export const pages = {
   AnimesHD,
   MangaHub,
   ComicK,
+  AnimeShitai,
 };
