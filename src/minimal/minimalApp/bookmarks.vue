@@ -122,7 +122,7 @@ export default {
       this.load();
     },
     sort(value, old) {
-      if (value.value !== old.value) {
+      if (!old || value.value !== old.value) {
         localStorage.setItem(`sort/${this.listType}/${this.state}`, value.value);
         this.load();
       }
@@ -151,7 +151,7 @@ export default {
     this.$parent.unregisterScroll('books');
     clearTimeout(this.destroyTimer);
     this.destroyTimer = setTimeout(() => {
-      this.items = [];
+      this.listProvider.destroy();
       this.reload = true;
     }, 10 * 60 * 1000);
   },
