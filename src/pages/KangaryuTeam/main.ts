@@ -29,7 +29,7 @@ export const KangaryuTeam: pageInterface = {
   overview: {
     getTitle() {
       return j
-        .$('.col-sm-12 >.ac-title')
+        .$('.titre-projets')
         .text()
         .trim();
     },
@@ -44,7 +44,7 @@ export const KangaryuTeam: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.bg-list > ul.chapters > li');
+        return j.$('.chapters > li');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a[href*="/manga/"]').attr('href') || '', KangaryuTeam.domain);
