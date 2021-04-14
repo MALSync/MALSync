@@ -120,6 +120,8 @@ import { AnimesHD } from './AnimesHD/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
+import { KangaryuTeam } from './KangaryuTeam/main';
+import { Japanread } from './Japanread/main';
 
 export const pages = {
   nineAnime,
@@ -244,4 +246,6 @@ export const pages = {
   MangaHub,
   ComicK,
   AnimeShitai,
+  KangaryuTeam,
+  Japanread,
 };
