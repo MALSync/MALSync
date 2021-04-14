@@ -298,7 +298,10 @@ export abstract class SingleAbstract {
   }
 
   public emitUpdate() {
-    emitter.emit(`global.update.${this.getCacheKey()}`, false, { state: this.getStateEl() });
+    emitter.emit(`global.update.${this.getCacheKey()}`, false, {
+      cacheKey: this.getCacheKey(),
+      state: this.getStateEl(),
+    });
   }
 
   protected globalUpdateEvent;

@@ -1,7 +1,7 @@
 {
   "Search": {
     "message": "Wyszukaj",
-    "description": "Search"
+    "description": "Button to open the site search links on mal, anilist ..."
   },
   "Show": {
     "message": "Pokaż",
@@ -38,6 +38,10 @@
   "Yes": {
     "message": "Tak",
     "description": "Yes"
+  },
+  "Ok": {
+    "message": "Ok",
+    "description": "Ok"
   },
   "No": {
     "message": "Nie",
@@ -78,6 +82,14 @@
   "All": {
     "message": "Wszystko",
     "description": "All"
+  },
+  "Anime": {
+    "message": "Anime",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Manga",
+    "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
     "message": "Integruje MyAnimeList/AniList/Kitsu/Simkl z różnymi stronami, z automatycznym śledzeniem epizodów.",
@@ -182,6 +194,10 @@
   "UI_Score_Appalling": {
     "message": "(1) Przerażające",
     "description": "Appalling - Score"
+  },
+  "UI_Rules": {
+    "message": "Zasady",
+    "description": "Rules text for the correction UI"
   },
   "syncPage_flashm_resumeMsg": {
     "message": "Kontynuuj w $time$",
@@ -395,7 +411,7 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -457,7 +473,7 @@
     "placeholders": {
       "time": {
         "content": "$1",
-        "example": "2d 1h 32m"
+        "example": "2 days 1 hour"
       }
     }
   },
@@ -923,6 +939,10 @@
     "message": "Informacje",
     "description": "Link button which links to more informations"
   },
+  "settings_presenceShowButtons": {
+    "message": "Pokaż przyciski \"Zobacz Anime/Mangę\"",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
   "updateCheck_Refresh": {
     "message": "Odśwież",
     "description": "Refresh"
@@ -1090,6 +1110,14 @@
         "example": "Mangadex"
       }
     }
+  },
+  "discord_rpc_view_anime": {
+    "message": "Zobacz Anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Zobacz Mangę",
+    "description": "Discord view manga button"
   },
   "nextEpShort_no_support": {
     "message": "Ta strona nie wspiera otwierania następnego odcinka",

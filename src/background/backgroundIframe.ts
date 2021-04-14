@@ -68,7 +68,7 @@ async function startCheck(type = 'anime') {
 
   const listProvider = await getList(1, type);
   listProvider
-    .get()
+    .getCompleteList()
     .then(async list => {
       con.log('list', list);
       for (let i = 0; i < list.length; i++) {

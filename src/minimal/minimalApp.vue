@@ -691,7 +691,7 @@ export default {
         utils.flashm('Loading');
         const listProvider = await getList(status, type);
         await listProvider
-          .get()
+          .getCompleteList()
           .then(async list => {
             randomListCache[type] = list;
           })

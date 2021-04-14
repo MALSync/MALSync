@@ -1,0 +1,29 @@
+{
+  "title": "Japanread",
+  "url": "https://www.japanread.cc/",
+  "testCases": [{
+      "url": "https://www.japanread.cc/manga/dr-stone",
+      "expected": {
+        "sync": false,
+        "title": "Dr. Stone",
+        "identifier": "dr-stone",
+        "uiSelector": true,
+        "epList": {
+          "146": "https://www.japanread.cc/manga/dr-stone/146",
+          "165": "https://www.japanread.cc/manga/dr-stone/165"
+        }
+      }
+    },
+    {
+      "url": "https://www.japanread.cc/manga/dr-stone/190",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "dr-stone",
+        "overviewUrl": "https://www.japanread.cc/manga/dr-stone",
+        "episode": 190,
+        "uiSelector": false
+      }
+    }
+  ]
+}
