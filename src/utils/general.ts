@@ -12,6 +12,10 @@ export function urlPart(url: string, part: number) {
   return urlParts[part].replace(/[#?].*/, '');
 }
 
+export function urlStrip(url: string) {
+  return url.replace(/[#?].*/, '');
+}
+
 export function urlParam(url, name) {
   const results = new RegExp(`[?&]${name}=([^&#]*)`).exec(url);
   if (results === null) {
@@ -109,11 +113,12 @@ export function urlChangeDetect(callback) {
   }, 100);
 }
 
-export function fullUrlChangeDetect(callback) {
+export function fullUrlChangeDetect(callback, strip = false) {
   let currentPage = '';
   const intervalId = setInterval(function() {
-    if (currentPage !== window.location.href) {
-      currentPage = window.location.href;
+    const url = strip ? urlStrip(window.location.href) : window.location.href;
+    if (currentPage !== url) {
+      currentPage = url;
       callback();
     }
   }, 100);

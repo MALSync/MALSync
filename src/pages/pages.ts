@@ -122,6 +122,7 @@ import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
+import { CatManga } from './CatManga/main';
 
 export const pages = {
   nineAnime,
@@ -248,4 +249,5 @@ export const pages = {
   AnimeShitai,
   KangaryuTeam,
   Japanread,
+  CatManga,
 };
