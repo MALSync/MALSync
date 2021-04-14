@@ -221,7 +221,6 @@ export const beta: pageInterface = {
                 status.episode = await episode(getIdFromUrl(epUrl));
                 page.handlePage();
                 if (firstCall) firstCallFunction(beta.overview!.getIdentifier(page.url));
-
               },
             );
             return;
@@ -245,7 +244,7 @@ const authObj = {
     keyPairId: '',
     policy: '',
     signature: '',
-  }
+  },
 };
 
 async function auth() {
@@ -326,7 +325,7 @@ async function getAuthPolicy() {
       signature: string;
       key_pair_id: string;
       expires: Date;
-    }
+    };
   };
 
   authObj.bucket.path = data.cms.bucket;
