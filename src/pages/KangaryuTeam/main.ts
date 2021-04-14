@@ -39,7 +39,7 @@ export const KangaryuTeam: pageInterface = {
     uiSelector(selector) {
       j.$('div.bg > div:nth-child(3)')
         .first()
-        .before(j.html(`<div class="bg-list rounded">${selector}</div>`));
+        .before(j.html(`<div class="col-lg-12"><div class="well2">${selector}</div></div>`));
     },
     list: {
       offsetHandler: false,

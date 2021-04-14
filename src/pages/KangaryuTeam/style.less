@@ -2,84 +2,36 @@
 
 @textColor: inherit;
 
-// Darkmode
-
-body.darkmode--activated {
-  .rounded {
-    border: 1px solid #63658f;
-  }
-
-  #malp {
-    .MalLogin {
-      span,
-      select {
-        &:last-child {
-          color: #9dadcf;
-        }
+#malp {
+  .MalLogin {
+    span,
+    select {
+      &:last-child {
+        color: white;
       }
     }
-  }
-
-  #MalData {
-    .info {
-      color: white;
-    }
-
-    select option {
-      background-color: #253754 !important;
-    }
-  }
-
-  .mal-sync-active {
-    background-color: #1f2a43;
-  }
-
-  #malStatus,
-  #malUserRating,
-  #malRating,
-  #AddMal {
-    color: #9dadcf;
   }
 }
 
-// Lightmode
-
-body {
-  .rounded {
-    border: 1px solid #e5e7ec;
+#MalData {
+  .info {
+    color: white;
   }
 
-  #malp {
-    .MalLogin {
-      span,
-      select {
-        &:last-child {
-          color: black;
-        }
-      }
-    }
+  select option {
+    background-color: #121420 !important;
   }
+}
 
-  #MalData {
-    .info {
-      color: black;
-    }
+.mal-sync-active {
+  background-color: #cc2a52 !important;
+}
 
-    select option {
-      background-color: white !important;
-    }
-  }
-
-  .mal-sync-active {
-    background-color: #f7ce46;
-  }
-
-  #malStatus,
-  #malUserRating,
-  #malRating,
-  #AddMal {
-    color: #696b6e;
-  }
+#malStatus,
+#malUserRating,
+#malRating,
+#AddMal {
+  color: white;
 }
 
 // Style
@@ -106,7 +58,6 @@ body {
   #MalData {
     flex-flow: column;
     flex-direction: row !important;
-    padding: 1rem 19px;
 
     .info {
       font-weight: bold;
