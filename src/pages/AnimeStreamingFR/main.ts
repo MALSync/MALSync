@@ -56,7 +56,13 @@ export const AnimeStreamingFR: pageInterface = {
             return j.$('#syncData').length;
           },
           function() {
-            jsonData = JSON.parse(j.$('#syncData').text());
+            const jsonText = j
+              .$('#syncData')
+              .text()
+              .replace(/&quot;/g, '"');
+            con.m('json').log(jsonText);
+            jsonData = JSON.parse(jsonText);
+
             page.handlePage();
           },
         );
