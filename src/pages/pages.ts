@@ -116,7 +116,6 @@ import { Fumetsu } from './Fumetsu/main';
 import { NonstopScans } from './NonstopScans/main';
 import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
-import { AnimesHD } from './AnimesHD/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
@@ -243,7 +242,6 @@ export const pages = {
   NonstopScans,
   FrixySubs,
   Guya,
-  AnimesHD,
   MangaHub,
   ComicK,
   AnimeShitai,
