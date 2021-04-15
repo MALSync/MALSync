@@ -105,7 +105,7 @@ export const beta: pageInterface = {
       return utils.absoluteLink(`/series/${meta.series_id}/#season=${meta.season_id}`, beta.domain);
     },
     getEpisode(url) {
-      return Number(status.episode!.episode_metadata.episode_number);
+      return Number(status.episode!.episode_metadata.episode_number) || 1;
     },
     nextEpUrl(url) {
       if (
