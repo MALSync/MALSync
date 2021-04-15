@@ -1,6 +1,6 @@
 import * as helper from './helper';
 import { listElement } from './listAbstract';
-import { UserList as MalList } from './MyAnimeList_legacy/list';
+import { UserList as MalList } from './MyAnimeList_hybrid/list';
 import { UserList as MalApiList } from './MyAnimeList_api/list';
 import { UserList as AnilistList } from './AniList/list';
 import { UserList as KitsuList } from './Kitsu/list';

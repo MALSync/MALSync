@@ -1,7 +1,7 @@
 import * as helper from './helper';
 import { Cache } from '../utils/Cache';
 
-import { Single as MalSingle } from './MyAnimeList_legacy/single';
+import { Single as MalSingle } from './MyAnimeList_hybrid/single';
 import { Single as MalApiSingle } from './MyAnimeList_api/single';
 import { Single as SnilistSingle } from './AniList/single';
 import { Single as SitsuSingle } from './Kitsu/single';
