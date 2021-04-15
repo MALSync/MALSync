@@ -803,7 +803,7 @@ export default {
       );
     },
     reload() {
-      utils.flashm(api.storage.lang('loading'));
+      utils.flashm(api.storage.lang('Loading'));
       this.renderObj.update();
     },
     increaseEP(type) {

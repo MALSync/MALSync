@@ -1,0 +1,79 @@
+@import './../pages';
+
+@textColor: inherit;
+
+#malp {
+  .MalLogin {
+    span,
+    select {
+      &:last-child {
+        color: white;
+      }
+    }
+  }
+}
+
+#MalData {
+  .info {
+    color: white;
+  }
+
+  select option {
+    background-color: #121420 !important;
+  }
+}
+
+.mal-sync-active {
+  background-color: #cc2a52 !important;
+}
+
+#malStatus,
+#malUserRating,
+#malRating,
+#AddMal {
+  color: white;
+}
+
+// Style
+.rounded {
+  border-radius: 4px;
+}
+
+#malp {
+  margin: 0;
+
+  .MalLogin {
+    span,
+    select {
+      &:last-child {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  select > * {
+    background-color: white !important;
+  }
+
+  #MalData {
+    flex-flow: column;
+    flex-direction: row !important;
+
+    .info {
+      font-weight: bold;
+      float: left;
+      clear: left;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #malStatus,
+    #malUserRating,
+    #malRating {
+      width: initial !important;
+      margin-left: 2rem;
+    }
+  }
+}

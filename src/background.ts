@@ -44,6 +44,14 @@ chrome.runtime.onInstalled.addListener(function(details) {
       // Disable updateCheck
       api.storage.set('updateCheckTime', 0);
     }
+    if (api.storage.version() === '0.8.8') {
+      // Reset to normal Mal api
+      api.storage.get('settings/syncMode').then(res => {
+        if (res === 'MALAPI') {
+          api.storage.set('settings/syncMode', 'MAL');
+        }
+      });
+    }
   }
   chrome.alarms.clearAll();
 });

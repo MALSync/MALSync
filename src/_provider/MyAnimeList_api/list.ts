@@ -25,6 +25,10 @@ export class UserList extends ListAbstract {
     }
   }
 
+  deauth() {
+    return api.settings.set('malToken', '').then(() => api.settings.set('malRefresh', ''));
+  }
+
   _getSortingOptions() {
     return [
       {
@@ -128,7 +132,7 @@ export class UserList extends ListAbstract {
             totalEp: el.node.num_episodes,
             status: parseInt(helper.animeStatus[el.list_status.status]),
             score: el.list_status.score,
-            image: el.node.main_picture.medium,
+            image: el.node.main_picture?.medium ?? '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
             airingState: el.anime_airing_status,
           }),
@@ -146,7 +150,7 @@ export class UserList extends ListAbstract {
             totalEp: el.node.num_chapters,
             status: parseInt(helper.mangaStatus[el.list_status.status]),
             score: el.list_status.score,
-            image: el.node.main_picture.medium,
+            image: el.node.main_picture?.medium ?? '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
             airingState: el.anime_airing_status,
           }),

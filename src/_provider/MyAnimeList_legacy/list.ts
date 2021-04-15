@@ -6,6 +6,9 @@ export class UserList extends ListAbstract {
   authenticationUrl = 'https://myanimelist.net/login.php';
 
   async getUsername() {
+    throw 'no';
+    return Promise.resolve('');
+    /*
     const url = 'https://myanimelist.net/panel.php?go=export&hideLayout';
     const response = await api.request.xhr('GET', url);
     const usernameMatches = response.responseText.match(/USER_NAME = "(.*?)"/);
@@ -16,6 +19,7 @@ export class UserList extends ListAbstract {
       };
 
     return usernameMatches[1];
+    */
   }
 
   errorHandling(res) {
@@ -73,6 +77,9 @@ export class UserList extends ListAbstract {
   }
 
   async getPart() {
+    throw 'no';
+    return [];
+    /*
     if (!this.username) {
       this.username = await this.getUsername();
     }
@@ -100,6 +107,7 @@ export class UserList extends ListAbstract {
       }
       return data;
     });
+    */
   }
 
   public async prepareData(data): Promise<listElement[]> {

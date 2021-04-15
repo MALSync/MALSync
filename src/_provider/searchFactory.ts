@@ -1,5 +1,5 @@
 import * as helper from './helper';
-import { search as malSearch } from './MyAnimeList_legacy/search';
+import { search as malSearch } from './MyAnimeList_hybrid/search';
 import { search as malApiSearch } from './MyAnimeList_api/search';
 import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
