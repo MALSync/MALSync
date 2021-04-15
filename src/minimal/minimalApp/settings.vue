@@ -20,11 +20,11 @@
           </span>
           <span class="mdl-list__item-secondary-action">
             <select id="syncMode" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
-              <option value="MAL">MyAnimeList</option>
+              <option value="MAL">MyAnimeList API (Hybrid)</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
               <option value="SIMKL">Simkl</option>
-              <option value="MALAPI">MyAnimeList API (BETA)</option>
+              <option value="MALAPI">MyAnimeList API (Full) (BETA)</option>
             </select>
           </span>
         </li>
