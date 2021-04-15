@@ -126,7 +126,7 @@ export const beta: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return status.episode!.episode_metadata.season_title.replace(/\(.+[ds]ub\)/i, '');
+      return status.episode!.episode_metadata.season_title.replace(/\(.+[ds]ub\)/i, '').trim();
     },
     getIdentifier(url) {
       return status.episode!.episode_metadata.season_id;
