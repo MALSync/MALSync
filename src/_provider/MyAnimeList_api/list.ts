@@ -29,7 +29,7 @@ export class UserList extends ListAbstract {
 
   async getPart() {
     this.limit = 100;
-    if (typeof this.callbacks.continueCall !== 'undefined') {
+    if (this.modes.frontend) {
       this.limit = 24;
     }
 

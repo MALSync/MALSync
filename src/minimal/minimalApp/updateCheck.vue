@@ -94,7 +94,7 @@ export default {
     async load() {
       const listProvider = await getList(1, this.listType);
       listProvider
-        .get()
+        .getCompleteList()
         .then(async list => {
           for (let i = 0; i < list.length; i++) {
             const el = list[i];
