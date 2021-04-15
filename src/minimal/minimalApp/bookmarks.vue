@@ -10,7 +10,7 @@
       <div class="bufferbar bar bar2" style="width: 100%;"></div>
       <div class="auxbar bar bar3" style="width: 0%;"></div>
     </div>
-    <slot></slot>
+    <slot :sorting="listProvider ? listProvider.getSortingOptions(true) : []"></slot>
     <span
       v-if="!loading && !items.length && !errorText"
       class="mdl-chip"
@@ -78,6 +78,10 @@ export default {
       type: Number,
       default: 1,
     },
+    sort: {
+      type: Object,
+      default: null,
+    },
   },
   data() {
     return {
@@ -117,6 +121,12 @@ export default {
     state() {
       this.load();
     },
+    sort(value, old) {
+      if (!old || value.value !== old.value) {
+        localStorage.setItem(`sort/${this.listType}/${this.state}`, value.value);
+        this.load();
+      }
+    },
   },
   mounted() {
     this.load();
@@ -141,7 +151,7 @@ export default {
     this.$parent.unregisterScroll('books');
     clearTimeout(this.destroyTimer);
     this.destroyTimer = setTimeout(() => {
-      this.items = [];
+      this.listProvider.destroy();
       this.reload = true;
     }, 10 * 60 * 1000);
   },
@@ -155,6 +165,12 @@ export default {
 
       this.$emit('rewatch', this.listProvider.seperateRewatching);
 
+      const sortOptions = this.listProvider.getSortingOptions();
+
+      if (this.initSort(sortOptions)) return;
+
+      this.listProvider.setSort(this.sort.value);
+
       this.listProvider.modes.cached = true;
 
       this.listProvider.getCached().then(list => {
@@ -163,12 +179,21 @@ export default {
 
       this.listProvider.modes.initProgress = true;
       this.listProvider.initFrontendMode();
-      if (this.state !== 1 && this.state !== '1') {
-        this.loadNext();
-      } else {
-        this.listProvider.modes.sortAiring = true;
-        this.listProvider.getCompleteList().catch(this.listError);
+      this.loadNext();
+    },
+    initSort(sortOptions) {
+      const curSort = localStorage.getItem(`sort/${this.listType}/${this.state}`);
+      let s = sortOptions.find(el => el.value === curSort);
+      if (!s) {
+        s = sortOptions.find(el => el.value === 'default');
+        this.$emit('sort', s);
+        return false;
       }
+      if (!this.sort || s.value !== this.sort.value) {
+        this.$emit('sort', s);
+        return true;
+      }
+      return false;
     },
     listError(e) {
       con.error(e);

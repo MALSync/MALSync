@@ -10,6 +10,10 @@ export class UserList extends ListAbstract {
     return 'local';
   }
 
+  _getSortingOptions() {
+    return [];
+  }
+
   async getPart() {
     con.log('[UserList][Local]', `status: ${this.status}`);
     this.done = true;

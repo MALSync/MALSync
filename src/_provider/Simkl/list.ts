@@ -47,6 +47,10 @@ export class UserList extends ListAbstract {
     }
   }
 
+  _getSortingOptions() {
+    return [];
+  }
+
   async getPart() {
     con.log('[UserList][Simkl]', `status: ${this.status}`);
     if (this.listType === 'manga') throw { code: 415, message: 'Does not support manga' };

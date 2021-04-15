@@ -59,10 +59,12 @@ export abstract class ListAbstract {
 
   protected offset = 0;
 
+  protected templist: listElement[] = [];
+
   constructor(
     protected status: number = 1,
     protected listType: 'anime' | 'manga' = 'anime',
-    protected templist: listElement[] = [],
+    protected sort: string = 'default',
   ) {
     this.status = Number(this.status);
     this.logger = con.m('[S]', '#348fff');
@@ -78,6 +80,11 @@ export abstract class ListAbstract {
 
   public getTemplist() {
     return this.templist;
+  }
+
+  public setSort(sort) {
+    if (this.firstLoaded || this.loading) throw 'To late to change sort';
+    this.sort = sort;
   }
 
   isDone() {
@@ -109,6 +116,11 @@ export abstract class ListAbstract {
 
   async getNextPage(): Promise<listElement[]> {
     if (this.done) return this.templist;
+
+    if (this.modes.frontend && this.status === 1 && this.sort === 'default') {
+      this.modes.sortAiring = true;
+      return this.getCompleteList();
+    }
 
     await this.getNext();
 
@@ -168,6 +180,37 @@ export abstract class ListAbstract {
   }
 
   abstract getUsername(): Promise<string> | string;
+
+  abstract _getSortingOptions(): { icon: string; title: string; value: string; asc?: boolean }[];
+
+  getSortingOptions(tree = false): { icon: string; title: string; value: string; child?: any }[] {
+    const res = [
+      {
+        icon: 'filter_list',
+        title: 'Default',
+        value: 'default',
+      },
+    ];
+
+    const options = this._getSortingOptions();
+    options.forEach(el => {
+      if (el.asc) {
+        const asc = { ...el };
+        delete asc.asc;
+        asc.value += '_asc';
+        asc.title += ' Ascending';
+        if (tree) {
+          // @ts-ignore
+          el.child = asc;
+        } else {
+          res.push(asc);
+        }
+      }
+      delete el.asc;
+      res.push(el);
+    });
+    return res;
+  }
 
   abstract getPart(): Promise<listElement[]>;
 
@@ -294,7 +337,7 @@ export abstract class ListAbstract {
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
-    this.cacheObj = new Cache(`list/${this.name}/${this.listType}/${this.status}`, 48 * 60 * 60 * 1000);
+    this.cacheObj = new Cache(`list/${this.name}/${this.listType}/${this.status}/${this.sort}`, 48 * 60 * 60 * 1000);
     return this.cacheObj;
   }
 }
