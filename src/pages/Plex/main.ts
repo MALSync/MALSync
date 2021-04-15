@@ -62,6 +62,26 @@ async function urlChange(page) {
     switch (item.type) {
       case 'show':
         con.log('Show', data);
+
+        if (!item.skipChildren) {
+          con.log('Series overview. Dont do anything');
+          item = undefined;
+          return;
+        }
+
+        loadInterval = utils.waitUntilTrue(
+          function() {
+            return j.$('[data-qa-id="preplay-mainTitle"]').length;
+          },
+          function() {
+            page.UILoaded = false;
+            page.handlePage(curUrl);
+            $('html').removeClass('miniMAL-hide');
+          },
+        );
+        break;
+      case 'season':
+        con.log('Season', data);
         loadInterval = utils.waitUntilTrue(
           function() {
             return j.$('[data-qa-id="preplay-mainTitle"]').length;
@@ -203,6 +223,7 @@ export const Plex: pageInterface = {
   },
   overview: {
     getTitle(url) {
+      if (item.parentTitle) return item.parentTitle;
       return item.title;
     },
     getIdentifier(url) {
