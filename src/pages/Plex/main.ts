@@ -18,7 +18,11 @@ proxy.addCaptureVariable(
   `,
 );
 
-const auth = {
+const auth: {
+  apiKey: null | string;
+  serverApiKey: null | string;
+  base: null | string;
+} = {
   apiKey: null,
   serverApiKey: null,
   base: null,
@@ -118,11 +122,26 @@ async function authenticate() {
       try {
         const tempAuth: any = proxy.getCaptureVariable('auth');
         if (!tempAuth) throw 'authInfo not found';
-        if (!tempAuth.apiKey) throw 'apiKey not found';
-        auth.apiKey = tempAuth.apiKey;
-        if (!tempAuth.users) throw 'users not found';
 
+        if (!tempAuth.users) throw 'users not found';
         const users = JSON.parse(tempAuth.users);
+
+        if (!tempAuth.apiKey) {
+          if (users && users.users && users.users.length && !users.users[0].servers.length) {
+            logger.log('Switching to no account mode');
+
+            auth.apiKey = null;
+            auth.serverApiKey = null;
+            auth.base = window.location.origin;
+
+            resolve('');
+            return;
+          }
+
+          throw 'apiKey not found';
+        }
+        auth.apiKey = tempAuth.apiKey;
+
         const user = users.users.find(el => el.authToken === auth.apiKey);
         if (!user) throw 'User not found';
         logger.log('User found', user.id);
@@ -151,7 +170,7 @@ export const Plex: pageInterface = {
   languages: ['Many'],
   type: 'anime',
   isSyncPage(url) {
-    if (item.type === 'episode') {
+    if (item && item.type === 'episode') {
       return true;
     }
     return false;
