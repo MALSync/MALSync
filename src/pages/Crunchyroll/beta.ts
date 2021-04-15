@@ -171,7 +171,7 @@ export const beta: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./styleBeta.less').toString());
-
+    let firstCall = true;
     let placeholderInterval;
 
     // Episode list update
@@ -187,7 +187,7 @@ export const beta: pageInterface = {
     );
 
     j.$(document).ready(function() {
-      check(true);
+      check();
     });
 
     utils.changeDetect(
@@ -201,7 +201,7 @@ export const beta: pageInterface = {
       },
     );
 
-    async function check(firstCall = false) {
+    async function check() {
       page.reset();
       status.episode = null;
       await auth();
@@ -224,12 +224,14 @@ export const beta: pageInterface = {
                 status.episode = await episode(getIdFromUrl(epUrl));
                 page.handlePage();
                 if (firstCall) firstCallFunction(beta.overview!.getIdentifier(page.url));
+                firstCall = false;
               },
             );
             return;
           }
           status.episode = await episode(getIdFromUrl(page.url));
           page.handlePage();
+          firstCall = false;
         },
       );
     }
