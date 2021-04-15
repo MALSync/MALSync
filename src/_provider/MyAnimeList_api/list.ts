@@ -25,6 +25,10 @@ export class UserList extends ListAbstract {
     }
   }
 
+  deauth() {
+    return api.settings.set('malToken', '').then(() => api.settings.set('malRefresh', ''));
+  }
+
   private limit = 100;
 
   async getPart() {
