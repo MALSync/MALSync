@@ -127,7 +127,12 @@ async function authenticate() {
         const users = JSON.parse(tempAuth.users);
 
         if (!tempAuth.apiKey) {
-          if (users && users.users && users.users.length && !users.users[0].servers.length) {
+          if (
+            users &&
+            users.users &&
+            users.users.length &&
+            (!users.users[0].servers.length || typeof users.users[0].servers[0].accessToken === 'undefined')
+          ) {
             logger.log('Switching to no account mode');
 
             auth.apiKey = null;
