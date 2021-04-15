@@ -109,4 +109,3 @@ export class UserList extends ListAbstract {
     return newData;
   }
 }
-
