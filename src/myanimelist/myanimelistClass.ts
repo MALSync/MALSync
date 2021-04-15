@@ -1,8 +1,12 @@
-import { Single as LegacySingle } from '../_provider/MyAnimeList_legacy/single';
+// Double import is needed or the code will break. No idea why
+
+// eslint-disable-next-line import/no-duplicates
+import { Single as LegacySingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
-import { Single as ApiSingle } from '../_provider/MyAnimeList_api/single';
-import { UserList as ApiList } from '../_provider/MyAnimeList_api/list';
+// eslint-disable-next-line import/no-duplicates
+import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
+import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
@@ -294,12 +298,7 @@ export class MyAnimeListClass {
 
   async streamingUI() {
     con.log('Streaming UI');
-    let malObj;
-    if (api.settings.get('syncMode') === 'MALAPI') {
-      malObj = new ApiSingle(this.url);
-    } else {
-      malObj = new LegacySingle(this.url);
-    }
+    const malObj = new ApiSingle(this.url);
 
     await malObj.update();
 
@@ -383,15 +382,8 @@ export class MyAnimeListClass {
     con.log(`Bookmarks [${this.username}][${this.page}]`);
     const This = this;
 
-    let listProvider;
-    let dataProvider;
-    if (api.settings.get('syncMode') === 'MALAPI') {
-      listProvider = new ApiList(7, this.type!);
-      dataProvider = new LegacyList(7, this.type!, {}, this.username);
-    } else {
-      listProvider = new LegacyList(7, this.type!, {}, this.username);
-      dataProvider = listProvider;
-    }
+    const listProvider = new ApiList(7, this.type!);
+    const dataProvider = new LegacyList(7, this.type!);
 
     let book;
     if (this.page === 'modern') {
@@ -471,7 +463,7 @@ export class MyAnimeListClass {
       book = {
         bookReady(callback) {
           listProvider
-            .get()
+            .getCompleteList()
             .then(list => {
               callback(list);
             })
@@ -578,12 +570,7 @@ export class MyAnimeListClass {
             .timeCache(
               `MALTAG/${url}`,
               async function() {
-                let malObj;
-                if (api.settings.get('syncMode') === 'MALAPI') {
-                  malObj = new ApiSingle(url);
-                } else {
-                  malObj = new LegacySingle(url);
-                }
+                const malObj = new LegacySingle(url);
 
                 await malObj.update();
                 return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());

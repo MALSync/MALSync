@@ -1,0 +1,30 @@
+{
+  "title": "KangaryuTeam",
+  "url": "https://kangaryu-team.fr/",
+  "testCases": [
+    {
+      "url": "https://kangaryu-team.fr/manga/grand-blue",
+      "expected": {
+        "sync": false,
+        "title": "Grand blue",
+        "identifier": "grand-blue",
+        "uiSelector": true,
+        "epList": {
+          "26": "https://kangaryu-team.fr/manga/grand-blue/26",
+          "52": "https://kangaryu-team.fr/manga/grand-blue/52"
+        }
+      }
+    },
+    {
+      "url": "https://kangaryu-team.fr/manga/grand-blue/66",
+      "expected": {
+        "sync": true,
+        "title": "Grand blue",
+        "identifier": "grand-blue",
+        "overviewUrl": "https://kangaryu-team.fr/manga/grand-blue",
+        "episode": 66,
+        "uiSelector": false
+      }
+    }
+  ]
+}

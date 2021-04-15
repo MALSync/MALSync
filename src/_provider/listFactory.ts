@@ -1,6 +1,6 @@
 import * as helper from './helper';
 import { listElement } from './listAbstract';
-import { UserList as MalList } from './MyAnimeList_legacy/list';
+import { UserList as MalList } from './MyAnimeList_hybrid/list';
 import { UserList as MalApiList } from './MyAnimeList_api/list';
 import { UserList as AnilistList } from './AniList/list';
 import { UserList as KitsuList } from './Kitsu/list';
@@ -10,10 +10,10 @@ import { UserList as LocalList } from './Local/list';
 export async function getList(...args) {
   let tempList: listElement[] = [];
   if (api.settings.get('localSync')) {
-    const [status, callbacks, username, offset, templist] = args;
-    const localListEl = new LocalList(status, callbacks, username, offset, templist);
+    const [status, listType] = args;
+    const localListEl = new LocalList(status, listType);
     localListEl.modes.initProgress = true;
-    tempList = await localListEl.get();
+    tempList = await localListEl.getCompleteList();
   }
 
   const list = getListObj(args);
@@ -34,22 +34,22 @@ function getListObj(args, syncMode = '') {
     syncMode = helper.getSyncMode(args[1] ? args[1] : 'anime');
   }
 
-  const [status, callbacks, username, offset, templist] = args;
+  const [status, listType, sorting] = args;
 
   if (syncMode === 'MAL') {
-    return new MalList(status, callbacks, username, offset, templist);
+    return new MalList(status, listType, sorting);
   }
   if (syncMode === 'MALAPI') {
-    return new MalApiList(status, callbacks, username, offset, templist);
+    return new MalApiList(status, listType, sorting);
   }
   if (syncMode === 'ANILIST') {
-    return new AnilistList(status, callbacks, username, offset, templist);
+    return new AnilistList(status, listType, sorting);
   }
   if (syncMode === 'KITSU') {
-    return new KitsuList(status, callbacks, username, offset, templist);
+    return new KitsuList(status, listType, sorting);
   }
   if (syncMode === 'SIMKL') {
-    return new SimklList(status, callbacks, username, offset, templist);
+    return new SimklList(status, listType, sorting);
   }
   throw 'Unknown sync mode';
 }

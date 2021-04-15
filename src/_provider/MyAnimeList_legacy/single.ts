@@ -1,3 +1,4 @@
+/*
 import { SingleAbstract } from '../singleAbstract';
 import { errorCode } from '../definitions';
 import { malToAnilist } from '../AniList/helper';
@@ -27,7 +28,7 @@ export class Single extends SingleAbstract {
   authenticationUrl = 'https://myanimelist.net/login.php';
 
   protected handleUrl(url) {
-    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*/i)) {
+    if (url.match(/myanimelist\.net\/(anime|manga)\/\d*\/i)) {
       this.type = utils.urlPart(url, 3) === 'anime' ? 'anime' : 'manga';
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
@@ -555,3 +556,4 @@ export class Single extends SingleAbstract {
     });
   }
 }
+*/

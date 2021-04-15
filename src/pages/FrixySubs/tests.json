@@ -3,26 +3,26 @@
   "url": "https://frixysubs.pl",
   "testCases": [
     {
-      "url": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=2",
+      "url": "https://frixysubs.pl/ogladaj.html?id=665",
       "expected": {
         "sync": true,
-        "title": "Darwins Game",
-        "identifier": "Darwins%20Game",
-        "overviewUrl": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=0&odcinek=0",
-        "nextEpUrl": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=3",
-        "episode": 2,
+        "title": "5-Toubun no Hanayome ∬",
+        "identifier": "1",
+        "overviewUrl": "https://frixysubs.pl/odcinki.html?id=1",
+        "nextEpUrl": "https://frixysubs.pl/ogladaj.html?id=681",
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=0&odcinek=0",
+      "url": "https://frixysubs.pl/odcinki.html?id=1",
       "expected": {
         "sync": false,
-        "title": "Darwins Game",
-        "identifier": "Darwins%20Game",
+        "title": "5-Toubun no Hanayome ∬",
+        "identifier": "1",
         "uiSelector": true,
         "epList": {
-          "6": "https://frixysubs.pl/index.php?anime=Darwins%20Game&sezon=1&odcinek=6"
+          "1": "https://frixysubs.pl/ogladaj.html?id=665"
         }
       }
     }

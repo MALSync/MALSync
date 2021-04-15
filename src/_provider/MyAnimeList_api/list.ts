@@ -25,17 +25,57 @@ export class UserList extends ListAbstract {
     }
   }
 
+  deauth() {
+    return api.settings.set('malToken', '').then(() => api.settings.set('malRefresh', ''));
+  }
+
+  _getSortingOptions() {
+    return [
+      {
+        icon: 'sort_by_alpha',
+        title: 'Alphabetic',
+        value: 'alpha',
+      },
+      {
+        icon: 'history',
+        title: 'Last Updated',
+        value: 'updated',
+      },
+      {
+        icon: 'score',
+        title: 'Score',
+        value: 'score',
+      },
+    ];
+  }
+
+  getOrder(sort) {
+    switch (sort) {
+      case 'alpha':
+        return `${this.listType}_title`;
+      case 'updated':
+        return 'list_updated_at';
+      case 'score':
+        return 'list_score';
+      default:
+        if (this.status === 1) return this.getOrder('updated');
+        if (this.status === 6) return this.getOrder('updated');
+        return this.getOrder('alpha');
+    }
+  }
+
   private limit = 100;
 
   async getPart() {
     this.limit = 100;
-    if (typeof this.callbacks.continueCall !== 'undefined') {
+    if (this.modes.frontend) {
       this.limit = 24;
     }
 
+    const order = this.getOrder(this.sort);
     let sorting = '';
-    if (this.status === 1) {
-      sorting = '&sort=list_updated_at';
+    if (order) {
+      sorting = `&sort=${order}`;
     }
 
     con.log(
@@ -92,7 +132,7 @@ export class UserList extends ListAbstract {
             totalEp: el.node.num_episodes,
             status: parseInt(helper.animeStatus[el.list_status.status]),
             score: el.list_status.score,
-            image: el.node.main_picture.medium,
+            image: el.node.main_picture?.medium ?? '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
             airingState: el.anime_airing_status,
           }),
@@ -110,7 +150,7 @@ export class UserList extends ListAbstract {
             totalEp: el.node.num_chapters,
             status: parseInt(helper.mangaStatus[el.list_status.status]),
             score: el.list_status.score,
-            image: el.node.main_picture.medium,
+            image: el.node.main_picture?.medium ?? '',
             tags: el.list_status.tags.length ? el.list_status.tags.join(',') : '',
             airingState: el.anime_airing_status,
           }),

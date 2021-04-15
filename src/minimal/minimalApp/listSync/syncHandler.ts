@@ -1,9 +1,9 @@
-import { Single as MalSingle } from '../../../_provider/MyAnimeList_legacy/single';
+import { Single as MalSingle } from '../../../_provider/MyAnimeList_hybrid/single';
 import { Single as AniListSingle } from '../../../_provider/AniList/single';
 import { Single as KitsuSingle } from '../../../_provider/Kitsu/single';
 import { Single as SimklSingle } from '../../../_provider/Simkl/single';
 
-import { UserList as MalList } from '../../../_provider/MyAnimeList_legacy/list';
+import { UserList as MalList } from '../../../_provider/MyAnimeList_hybrid/list';
 import { UserList as AnilistList } from '../../../_provider/AniList/list';
 import { UserList as KitsuList } from '../../../_provider/Kitsu/list';
 import { UserList as SimklList } from '../../../_provider/Simkl/list';
@@ -271,7 +271,7 @@ export function getList(Prov, type) {
   const listProvider = new Prov(7, type);
 
   return listProvider
-    .get()
+    .getCompleteList()
     .then(list => {
       return list;
     })

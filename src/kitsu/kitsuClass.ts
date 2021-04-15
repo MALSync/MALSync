@@ -420,7 +420,7 @@ export class KitsuClass {
       const listProvider: UserList = new UserList(1, this.page.type);
 
       listProvider
-        .get()
+        .getCompleteList()
         .then(list => {
           if (this.page!.type === 'anime') {
             this.tempAnimelist = list;

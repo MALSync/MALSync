@@ -838,6 +838,7 @@ export class SyncPage {
             () => {
               this.setOffset(0);
             },
+            true,
           );
         }
         return;

@@ -71,6 +71,47 @@ export class UserList extends ListAbstract {
     return this.api.settings.get('anilistToken');
   }
 
+  _getSortingOptions() {
+    return [
+      {
+        icon: 'sort_by_alpha',
+        title: 'Alphabetic',
+        value: 'alpha',
+      },
+      {
+        icon: 'history',
+        title: 'Last Updated',
+        value: 'updated',
+        asc: true,
+      },
+      {
+        icon: 'score',
+        title: 'Score',
+        value: 'score',
+        asc: true,
+      },
+    ];
+  }
+
+  getOrder(sort) {
+    switch (sort) {
+      case 'alpha':
+        return 'MEDIA_TITLE_ENGLISH';
+      case 'updated':
+        return 'UPDATED_TIME_DESC';
+      case 'updated_asc':
+        return 'UPDATED_TIME';
+      case 'score':
+        return 'SCORE_DESC';
+      case 'score_asc':
+        return 'SCORE';
+      default:
+        if (this.status === 1) return this.getOrder('updated');
+        if (this.status === 6) return this.getOrder('updated');
+        return this.getOrder('alpha');
+    }
+  }
+
   async getPart(): Promise<any> {
     if (this.offset < 1) this.offset = 1;
     con.log('[UserList][AniList]', `username: ${this.username}`, `status: ${this.status}`, `offset: ${this.offset}`);
@@ -135,12 +176,14 @@ export class UserList extends ListAbstract {
       userName: this.username,
       type: this.listType.toUpperCase(),
       status: helper.statusTranslate[parseInt(this.status.toString())],
-      sort: 'UPDATED_TIME_DESC',
+      sort: null,
     };
 
-    if (this.status !== 1) {
+    const order = this.getOrder(this.sort);
+
+    if (order) {
       // @ts-ignore
-      variables.sort = null;
+      variables.sort = order;
     }
 
     return this.api.request

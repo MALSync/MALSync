@@ -243,7 +243,7 @@ export class SimklClass {
     const listProvider: UserList = new UserList(1, this.page!.type);
 
     listProvider
-      .get()
+      .getCompleteList()
       .then(list => {
         $.each(list, async (index, en) => {
           con.log('en', en);
@@ -304,7 +304,7 @@ export class SimklClass {
     const listProvider: UserList = new UserList(1, this.page!.type);
 
     listProvider
-      .get()
+      .getCompleteList()
       .then(list => {
         exec();
 

@@ -42,7 +42,7 @@ async function cleanTags(url) {
 function getList(type) {
   const listProvider = getOnlyList(7, type);
   return listProvider
-    .get()
+    .getCompleteList()
     .then(list => {
       return list;
     })
