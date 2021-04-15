@@ -1,3 +1,4 @@
+/*
 import { searchInterface } from '../definitions';
 
 export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
@@ -28,3 +29,4 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
     year: item.payload.start_year,
   }));
 };
+*/
