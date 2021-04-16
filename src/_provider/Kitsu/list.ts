@@ -102,7 +102,7 @@ export class UserList extends ListAbstract {
     switch (sortString) {
       case 'alpha':
         pre = pre ? '' : '-';
-        return `${pre}${this.listType}s.titles.en`;
+        return `${pre}${this.listType}.titles.en`;
       case 'updated':
         return `${pre}progressed_at`;
       case 'score':
