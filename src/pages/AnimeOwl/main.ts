@@ -6,6 +6,7 @@ export const AnimeOwl: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
+    if (!url) throw `No url passed`;
     if (
       AnimeOwl.sync.getTitle(url) &&
       j.$('div.player-wrapper').length &&
@@ -25,7 +26,7 @@ export const AnimeOwl: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('a.back-tv-show > h1')
+        .$('a.back-tv-show')
         .text()
         .trim();
     },
@@ -38,14 +39,14 @@ export const AnimeOwl: pageInterface = {
     getEpisode(url) {
       return parseInt(
         j
-          .$('#episodes button.active')
+          .$('.episodes-list button.active')
           .closest('a')
           .text(),
       );
     },
     nextEpUrl(url) {
       return j
-        .$('#episodes > div > a > button.active')
+        .$('.episodes-list button.active')
         .parents('div')
         .next()
         .find('a')
@@ -62,7 +63,7 @@ export const AnimeOwl: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('div.post-inner > h1.anime-title')
+        .$('div.post-inner > .anime-title')
         .html()
         .split('<br>')[0]
         .replace(/-\s*$/, '')
@@ -72,9 +73,9 @@ export const AnimeOwl: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.post-info > div:nth-child(2) > div.row:nth-child(1)')
+      j.$('div.post-info')
         .first()
-        .after(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
+        .before(j.html(`<div class="row"><div class="col-12">${selector}</div></div>`));
     },
     getMalUrl(provider) {
       return AnimeOwl.sync.getMalUrl!(provider);
@@ -107,7 +108,7 @@ export const AnimeOwl: pageInterface = {
 function getCurrentUrl() {
   return (
     j
-      .$('#episodes button.active')
+      .$('.episodes-list button.active')
       .closest('a')
       .attr('href') || ''
   );

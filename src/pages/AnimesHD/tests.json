@@ -1,6 +1,7 @@
 {
   "title": "AnimesHD",
   "url": "https://animeshd.org/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://animeshd.org/episodio/mahouka-koukou-no-rettousei-2-episodio-5/",

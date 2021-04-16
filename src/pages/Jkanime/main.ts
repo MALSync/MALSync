@@ -1,23 +1,28 @@
 /* By kaiserdj */
 import { pageInterface } from '../pageInterface';
 
-let check = false;
-
 export const Jkanime: pageInterface = {
   name: 'Jkanime',
   domain: 'https://jkanime.net',
   languages: ['Spanish'],
   type: 'anime',
   isSyncPage(url) {
-    if (Number.isNaN(parseInt(utils.urlPart(url, 4)))) {
-      return false;
+    if (
+      !Number.isNaN(parseInt(utils.urlPart(url, 4))) ||
+      (utils.urlPart(url, 4) === 'pelicula' && Jkanime.sync.getTitle(url).length)
+    ) {
+      return true;
     }
-    return true;
+    return false;
+  },
+  isOverviewPage(url) {
+    return Jkanime.overview!.getTitle(url).length > 0;
   },
   sync: {
     getTitle(url) {
       return j
-        .$('.video-header h1')
+        .$('div.breadcrumb-option > div > div > div> div.breadcrumb__links > h1')
+        .first()
         .text()
         .split(' - ')[0];
     },
@@ -25,109 +30,81 @@ export const Jkanime: pageInterface = {
       return utils.urlPart(url, 3);
     },
     getOverviewUrl(url) {
-      return j.$('.vnav-list').attr('href') || '';
+      return `${Jkanime.domain}/${Jkanime.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('.video-header h1')
-          .text()
-          .split(' - ')[1],
-      );
+      return parseInt(utils.urlPart(url, 4)) || 1;
     },
     nextEpUrl(url) {
-      const nextUrl = j.$('.vnav-right').attr('href');
-      if (nextUrl === '#') return undefined;
-      return nextUrl;
-    },
-    uiSelector(selector) {
-      j.$('.server-box').after(j.html(selector));
+      return j
+        .$('div:contains("Proximo Episodio")')
+        .parent('a')
+        .attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('.sinopsis-box h2').text();
+      return j.$('div.anime__details__title > h3').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      j.$('.sinopsis-links').after(j.html(selector));
+      j.$('section.contenido.spad > div > div.row').before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        if (!utils.urlPart(window.location.href, 4).length) {
-          document.body.insertAdjacentHTML(
-            'afterbegin',
-            '<div id="MALSync" class="MALSync" style="display: none;"><ul id="MALSyncUl" class="MALSyncUl"></ul></div>',
-          );
-          const idMALSync = document.getElementById('MALSyncUl');
-          const lastEps = j
-            .$('.navigation a')
-            .last()
-            .text()
-            .split('-')[1]
-            .trim();
-          for (let i = 1; i <= Number(lastEps); i++) {
-            if (idMALSync !== null) {
-              idMALSync.innerHTML += j.html(`<li><a href="${document.URL}${i}" epi="${i}"></a> </li>`);
-            }
-          }
-          return j.$('.MALSync a');
-        }
-        return j.$('.nowaythisexists123');
+        return j.$('div.epcontent > div.anime__item a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Jkanime.domain);
       },
       elementEp(selector) {
-        return Number(selector.attr('epi'));
+        return Jkanime.sync.getEpisode(Jkanime.overview?.list?.elementUrl(selector) || '');
       },
-      handleListHook(epi, epilist) {
-        epi++;
-        if (epilist.length >= epi) {
-          if (!check) {
-            const buttons = j.$('.navigation a');
-
-            buttons.each((i, button) => {
-              const episodeNumbers = button.innerText.split('-');
-              const episodeStart = Number(episodeNumbers[0]);
-              const episodeEnd = Number(episodeNumbers[1]);
-
-              if (episodeStart <= epi || episodeEnd >= epi) button.click();
-            });
-
-            check = true;
+      paginationNext(updateCheck) {
+        con.log('updatecheck', updateCheck);
+        let el;
+        if (updateCheck) {
+          el = j.$('div.anime__pagination > a').last();
+          if (typeof el[0] === 'undefined' || el.hasClass('pagination-active')) {
+            return false;
           }
-          setTimeout(function() {
-            j.$('#episodes-content .cap-post').each(function(i, obj) {
-              if (Number(obj.innerText.split(' ')[1]) === epi) {
-                j.$('#episodes-content .cap-post')
-                  .eq(i)
-                  .addClass('mal-sync-active');
-                if (!check) {
-                  j.$(`#episodes-content .cap-post:eq(${i})`)
-                    .find('i')
-                    .first()
-                    .remove();
-                }
-              }
-            });
-          }, 500);
+          el[0].click();
+          return true;
         }
+        el = j.$('div.anime__pagination > a.pagination-active').next('a');
+        if (typeof el[0] === 'undefined') {
+          return false;
+        }
+        el[0].click();
+        return true;
       },
     },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      $('div.anime__pagination > a')
+        .first()
+        .addClass('pagination-active');
       page.handlePage();
     });
-    j.$('.navigation a').click(function() {
-      if (check) {
+    utils.changeDetect(
+      () => {
         page.handleList();
-      }
+      },
+      () => {
+        return j
+          .$('div.epcontent > div.anime__item a')
+          .first()
+          .attr('href');
+      },
+    );
+    $('div.anime__pagination > a').click(function() {
+      $('div.anime__pagination > a').removeClass('pagination-active');
+      $(this).addClass('pagination-active');
     });
   },
 };

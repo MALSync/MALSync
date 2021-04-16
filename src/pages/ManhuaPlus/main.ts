@@ -14,7 +14,7 @@ export const ManhuaPlus: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2])
+        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1])
         .text()
         .trim();
     },
@@ -22,7 +22,7 @@ export const ManhuaPlus: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).attr('href') || '';
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -42,7 +42,7 @@ export const ManhuaPlus: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(j.$('ol.breadcrumb li a')[3])
+        .$(j.$('ol.breadcrumb li a')[2])
         .text()
         .trim();
     },
