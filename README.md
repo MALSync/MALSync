@@ -1,9 +1,10 @@
 [![img](https://img.shields.io/github/checks-status/MALSync/MALSync/master.svg?style=flat-square&logo=github)](https://github.com/MALSync/MALSync/actions)
-[![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discordapp.com/invite/cTH4yaw)
+[![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discord.com/invite/cTH4yaw)
 [![img](https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/MALSync/MALSync/issues)
 [![CodeFactor](https://www.codefactor.io/repository/github/MALSync/MALSync/badge)](https://www.codefactor.io/repository/github/MALSync/MALSync)
 
 # MAL-Sync
+
 **MAL-Sync** is a powerful extension and userscript, which enables automatic episode tracking between MyAnimeList/Anilist/Kitsu/Simkl and multiple anime streaming websites.
 
 Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as a centralized bookmarks system for all supported pages.
@@ -316,34 +317,41 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
 [List of supported features by page](pages.md)
 
 #### **Download**
+
 [![Chrome](https://img.shields.io/chrome-web-store/users/kekjfbackdeiabghhcdklcdoekaanoel.svg?style=flat-square&label=Chrome&logo=google%20chrome&logoColor=white)](https://chrome.google.com/webstore/detail/mal-sync/kekjfbackdeiabghhcdklcdoekaanoel?hl=en)
 [![Firefox](https://img.shields.io/amo/users/mal-sync.svg?style=flat-square&label=Firefox&logo=mozilla%20firefox&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/mal-sync)
 [![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/de/scripts/372847-mal-sync)
+
 #### **Complementary Adult Userscript**
+
 [Here](src/pages-adult/README.md)
 
 ## What more can it do?
 
 MyAnimeList
-  - Direct links to the supported websites
-  - Links to the next episode
-  - Enlarge thumbnails in many places
-  - Adds missing watching status tags like in the related anime section
-  - Estimated time to next episode and estimated current episode number (JP release time)
+
+- Direct links to the supported websites
+- Links to the next episode
+- Enlarge thumbnails in many places
+- Adds missing watching status tags like in the related anime section
+- Estimated time to next episode and estimated current episode number (JP release time)
 
 miniMAL (Extension Popup)
-  - Allows to browse, search and edit MyAnimeList anime/manga everywhere
-  - Access MAL Bookmarks everywhere
-  - MAL-Sync's Settings
+
+- Allows to browse, search and edit MyAnimeList anime/manga everywhere
+- Access MAL Bookmarks everywhere
+- MAL-Sync's Settings
 
 Update Check [BETA]
-  - Checks for new episodes/chapter in the background and sends out a notification
-  - Updates the links to the next episode
-  - Makes current episode estimation more accurate
-!This feature is disabled by default. You will need to enable it in the miniMAL popup!
+
+- Checks for new episodes/chapter in the background and sends out a notification
+- Updates the links to the next episode
+- Makes current episode estimation more accurate
+  !This feature is disabled by default. You will need to enable it in the miniMAL popup!
 
 ## Want to Contribute?
-Then let me know on [Discord](https://discordapp.com/invite/cTH4yaw).
+
+Then let me know on [Discord](https://discord.com/invite/cTH4yaw).
 
 How to build? [Wiki](https://github.com/MALSync/MALSync/wiki/Build)
 

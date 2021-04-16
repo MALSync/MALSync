@@ -140,7 +140,7 @@
               <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square" />
             </a>
             <h4>{{ lang('minimalClass_versionMsg_Text_2') }}</h4>
-            <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
+            <a target="_blank" href="https://discord.com/invite/cTH4yaw">
               <img
                 alt="Discord"
                 src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA"
