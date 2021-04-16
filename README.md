@@ -342,13 +342,6 @@ miniMAL (Extension Popup)
 - Access MAL Bookmarks everywhere
 - MAL-Sync's Settings
 
-Update Check [BETA]
-
-- Checks for new episodes/chapter in the background and sends out a notification
-- Updates the links to the next episode
-- Makes current episode estimation more accurate
-  !This feature is disabled by default. You will need to enable it in the miniMAL popup!
-
 ## Want to Contribute?
 
 Then let me know on [Discord](https://discord.com/invite/cTH4yaw).
