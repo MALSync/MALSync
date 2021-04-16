@@ -71,7 +71,6 @@ export class UserList extends ListAbstract {
       default:
         if (this.status === 1) return this.getOrder('updated');
         if (this.status === 6) return this.getOrder('updated');
-        return this.getOrder('updated'); // TODO: remove when fixed in anilist
         return this.getOrder('alpha');
     }
   }
