@@ -53,7 +53,7 @@
                 <option value="SIMKL">Simkl</option>
               </select>
             </span>
-            <div v-if="options.syncMode !== 'MAL'" class="syncExtended">
+            <div v-if="options.syncMode !== ''" class="syncExtended">
               <li v-if="options.syncMode == 'SIMKL'" class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
                   Simkl
@@ -71,7 +71,17 @@
                 <option value="ANILIST">AniList</option>
                 <option value="KITSU">Kitsu</option>
               </dropdown>
-
+              <li
+                v-if="options.syncMode == 'MAL' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'MAL')"
+                class="mdl-list__item"
+              >
+                <span class="mdl-list__item-primary-content">
+                  MyAnimeList
+                </span>
+                <span class="mdl-list__item-secondary-action">
+                  <a target="_blank" href="https://malsync.moe/mal/oauth">{{ lang('settings_Authenticate') }}</a>
+                </span>
+              </li>
               <li
                 v-if="
                   options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')
