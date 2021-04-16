@@ -97,7 +97,7 @@ export class UserList extends ListAbstract {
 
     return this.apiCall({
       type: 'GET',
-      path: `users/@me/${this.listType}list?limit=${this.limit}&offset=${this.offset}${curSt}${sorting}`,
+      path: `users/@me/${this.listType}list?nsfw=true&limit=${this.limit}&offset=${this.offset}${curSt}${sorting}`,
       fields: [
         'list_status{tags,is_rewatching,is_rereading,start_date,finish_date}',
         'num_episodes',
