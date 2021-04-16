@@ -484,17 +484,17 @@
               </i>
             </div>
           </div>
-          <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw" class="discord" style="min-height: 160px">
+          <a rel="noreferrer" href="https://discordapp.com/invite/cTH4yaw" class="discord" style="min-height: 160px">
             <div
               style="height: 20px; margin: -15px; margin-top: 15px; background: -webkit-linear-gradient(top, #fff 0%,#738bd7 74%);"
             ></div>
             <clazy-load
-              src="https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3"
+              src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3"
               style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin-left: -15px; margin-right: -15px; margin-bottom: -15px; margin-top: 15px;"
             >
               <img
                 style="margin: auto; display: block;"
-                src="https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3"
+                src="https://discordapp.com/api/guilds/358599430502481920/widget.png?style=banner3"
               />
             </clazy-load>
           </a>
@@ -515,7 +515,7 @@
             <clazy-load
               tag="a"
               rel="noreferrer"
-              href="https://discord.com/invite/cTH4yaw"
+              href="https://discordapp.com/invite/cTH4yaw"
               src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"
             >
               <img
