@@ -3,6 +3,7 @@ import { errorCode } from '../definitions';
 import * as helper from './helper';
 import { malToAnilist } from '../AniList/helper';
 import { Cache } from '../../utils/Cache';
+import { returnYYYYMMDD } from '../../utils/general';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -214,6 +215,22 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
+    if (
+      typeof this.animeInfo.my_list_status.start_date === 'undefined' &&
+      this._getStatus() === 1 &&
+      this._getEpisode() > 0
+    ) {
+      this.animeInfo.my_list_status.start_date = returnYYYYMMDD();
+    }
+
+    if (typeof this.animeInfo.my_list_status.finish_date === 'undefined' && this._getStatus() === 2) {
+      this.animeInfo.my_list_status.finish_date = returnYYYYMMDD();
+
+      if (typeof this.animeInfo.my_list_status.start_date === 'undefined') {
+        this.animeInfo.my_list_status.start_date = returnYYYYMMDD();
+      }
+    }
+
     const sentData = {};
     for (const property in this.animeInfo.my_list_status) {
       switch (property) {
@@ -231,6 +248,8 @@ export class Single extends SingleAbstract {
         case 'tags':
         case 'comments':
         case 'status':
+        case 'start_date':
+        case 'finish_date':
           sentData[property] = this.animeInfo.my_list_status[property];
           break;
         default:

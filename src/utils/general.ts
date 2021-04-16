@@ -875,3 +875,11 @@ export function pageUrl(page: 'mal' | 'anilist' | 'kitsu' | 'simkl', type: 'anim
       throw `${page} not a valid page`;
   }
 }
+
+export function returnYYYYMMDD(numFromToday = 0) {
+  let d = new Date();
+  d.setDate(d.getDate() + numFromToday);
+  const month = d.getMonth() < 9 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1;
+  const day = d.getDate() < 10 ? '0' + d.getDate() : d.getDate();
+  return `${d.getFullYear()}-${month}-${day}`;
+}
