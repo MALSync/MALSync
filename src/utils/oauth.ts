@@ -1,20 +1,22 @@
 export const clientId = '10093a3f9f0174b6b5577c40e9accdae';
 
-export async function oauth() {
-  if (window.location.href.includes('code=')) {
-    try {
-      await getRefreshToken();
-    } catch (e) {
-      console.error(e);
-      $('.card-text')
-        .first()
-        .text(`Error: ${e}`);
-      $('body').removeClass();
-      $('body').addClass('noExtension');
+export function oauth() {
+  $(document).ready(async function() {
+    if (window.location.href.includes('code=')) {
+      try {
+        await getRefreshToken();
+      } catch (e) {
+        console.error(e);
+        $('.card-text')
+          .first()
+          .text(`Error: ${e}`);
+        $('body').removeClass();
+        $('body').addClass('noExtension');
+      }
+      return;
     }
-    return;
-  }
-  generateUrl();
+    generateUrl();
+  });
 }
 
 function generateUrl() {
