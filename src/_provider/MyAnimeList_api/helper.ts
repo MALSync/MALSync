@@ -41,14 +41,6 @@ export async function apiCall(options: {
         throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
       }
 
-      switch (response.status) {
-        case 400:
-          throw this.errorObj(errorCode.GenericError, 'Invalid Parameters');
-          break;
-        case 403:
-        default:
-      }
-
       const res = JSON.parse(response.responseText);
       if (res && res.error) {
         switch (res.error) {
@@ -71,6 +63,14 @@ export async function apiCall(options: {
           default:
             throw this.errorObj(res.error, res.message ?? res.error);
         }
+      }
+
+      switch (response.status) {
+        case 400:
+          throw this.errorObj(errorCode.GenericError, 'Invalid Parameters');
+          break;
+        case 403:
+        default:
       }
 
       return res;
