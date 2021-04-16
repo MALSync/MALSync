@@ -237,9 +237,15 @@ export async function setEntrySettings(type, id, options, tags = '') {
       // No TAG mode
       await api.storage.set(`tagSettings/${type}/${id}`, JSON.stringify(tempOptions));
     }
-  } else {
-    tags = setUrlInTags('', tags);
   }
+
+  if (!Object.values(tempOptions).find(el => Boolean(el))) {
+    tags = setUrlInTags('', tags);
+    if (!api.settings.get('malTags')) {
+      await api.storage.remove(`tagSettings/${type}/${id}`);
+    }
+  }
+
   return tags;
 }
 
