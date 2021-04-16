@@ -243,6 +243,7 @@ export abstract class ListAbstract {
     }
 
     switch (error.code) {
+      case definitions.errorCode.NotAutenticated:
       case 400:
       case 401:
         return api.storage.lang('Error_Authenticate', [this.authenticationUrl]);

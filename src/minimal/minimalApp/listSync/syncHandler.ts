@@ -276,7 +276,7 @@ export function getList(Prov, type) {
       return list;
     })
     .catch(e => {
-      con.error(e);
+      con.m(listProvider.name).error(e);
       throw listProvider.errorMessage(e);
     });
 }
