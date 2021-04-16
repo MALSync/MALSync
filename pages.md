@@ -104,7 +104,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="http://animeindo.moe"><img src="https://www.google.com/s2/favicons?domain=http://animeindo.moe"> AnimeIndo</a></td>
+    <td><a href="https://animeindo.net"><img src="https://www.google.com/s2/favicons?domain=https://animeindo.net"> AnimeIndo</a></td>
     <td>Indonesian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -153,8 +153,8 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://animeshd.org"><img src="https://www.google.com/s2/favicons?domain=https://animeshd.org"> AnimesHD</a></td>
-    <td>Portuguese</td>
+    <td><a href="https://www.anime-shitai.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
+    <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -568,6 +568,20 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://catmanga.org"><img src="https://www.google.com/s2/favicons?domain=https://catmanga.org"> CatManga</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://comick.fun"><img src="https://www.google.com/s2/favicons?domain=https://comick.fun"> ComicK</a></td>
+    <td>Many</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://reader.deathtollscans.net"><img src="https://www.google.com/s2/favicons?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -603,10 +617,24 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://www.japanread.cc/"><img src="https://www.google.com/s2/favicons?domain=https://www.japanread.cc/"> Japanread</a></td>
+    <td>French</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www.japscan.se"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.se"> JapScan</a></td>
     <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://kangaryu-team.fr"><img src="https://www.google.com/s2/favicons?domain=https://kangaryu-team.fr"> KangaryuTeam</a></td>
+    <td>French</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>

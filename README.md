@@ -101,7 +101,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="http://www.mangahere.cc"><img src="https://www.google.com/s2/favicons?domain=http://www.mangahere.cc"> MangaHere</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="http://animeindo.moe"><img src="https://www.google.com/s2/favicons?domain=http://animeindo.moe"> AnimeIndo</a></td>
+                <td><a href="https://animeindo.net"><img src="https://www.google.com/s2/favicons?domain=https://animeindo.net"> AnimeIndo</a></td>
                 <td><a href="http://fanfox.net"><img src="https://www.google.com/s2/favicons?domain=http://fanfox.net"> MangaFox</a></td>
                 <td></td>
               </tr><tr>
@@ -202,19 +202,19 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animestreamingfr.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.animestreamingfr.fr"> AnimeStreamingFR</a></td>
-                <td></td>
+                <td><a href="https://comick.fun"><img src="https://www.google.com/s2/favicons?domain=https://comick.fun"> ComicK</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.animeid.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv"> AnimeId</a></td>
-                <td></td>
+                <td><a href="https://kangaryu-team.fr"><img src="https://www.google.com/s2/favicons?domain=https://kangaryu-team.fr"> KangaryuTeam</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animixplay.to"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.to"> AniMixPlay</a></td>
-                <td></td>
+                <td><a href="https://www.japanread.cc/"><img src="https://www.google.com/s2/favicons?domain=https://www.japanread.cc/"> Japanread</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://myanimelist.net"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net"> MyAnimeList</a></td>
-                <td></td>
+                <td><a href="https://catmanga.org"><img src="https://www.google.com/s2/favicons?domain=https://catmanga.org"> CatManga</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://ww1.animesimple.com"><img src="https://www.google.com/s2/favicons?domain=https://ww1.animesimple.com"> AnimeSimple</a></td>
@@ -305,7 +305,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeshd.org"><img src="https://www.google.com/s2/favicons?domain=https://animeshd.org"> AnimesHD</a></td>
+                <td><a href="https://www.anime-shitai.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
                 <td></td>
                 <td></td>
               </tr>

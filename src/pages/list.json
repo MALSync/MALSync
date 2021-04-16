@@ -115,7 +115,7 @@
     "name": "AnimeKisa"
   },
   {
-    "domain": "http://animeindo.moe",
+    "domain": "https://animeindo.net",
     "type": "anime",
     "name": "AnimeIndo"
   },
@@ -590,13 +590,33 @@
     "name": "Guya"
   },
   {
-    "domain": "https://animeshd.org",
-    "type": "anime",
-    "name": "AnimesHD"
-  },
-  {
     "domain": "https://mangahub.io",
     "type": "manga",
     "name": "MangaHub"
+  },
+  {
+    "domain": "https://comick.fun",
+    "type": "manga",
+    "name": "ComicK"
+  },
+  {
+    "domain": "https://www.anime-shitai.com",
+    "type": "anime",
+    "name": "AnimeShitai"
+  },
+  {
+    "domain": "https://kangaryu-team.fr",
+    "type": "manga",
+    "name": "KangaryuTeam"
+  },
+  {
+    "domain": "https://www.japanread.cc/",
+    "type": "manga",
+    "name": "Japanread"
+  },
+  {
+    "domain": "https://catmanga.org",
+    "type": "manga",
+    "name": "CatManga"
   }
 ]
