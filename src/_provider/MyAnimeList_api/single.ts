@@ -150,7 +150,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(this.animeInfo.main_picture.medium);
+    return Promise.resolve(this.animeInfo.main_picture?.medium ?? '');
   }
 
   _getRating() {
