@@ -172,7 +172,7 @@ const generateManifest = () => {
       'https://api.myanimelist.net/',
       'tabHide',
     ],
-    optional_permissions: ['cookies', 'webNavigation', 'http://*/*', 'https://*/*'].concat(
+    optional_permissions: ['webNavigation', 'http://*/*', 'https://*/*'].concat(
       generateMatchExcludes(backgroundUrls).match,
     ),
   };

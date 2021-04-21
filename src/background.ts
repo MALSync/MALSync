@@ -90,15 +90,10 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
         for (const key in message.url.headers) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
-        getCookies(message.url.url, sender, xhr, () => {
-          // @ts-ignore
-          xhr.send(message.url.data);
-        });
+        xhr.send(message.url.data);
       } else {
         xhr.open(message.method, message.url, true);
-        getCookies(message.url, sender, xhr, function() {
-          xhr.send();
-        });
+        xhr.send();
       }
       return true;
     }
@@ -205,72 +200,6 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
   return undefined;
 }
 
-function getCookies(url, sender, xhr, callback) {
-  chrome.permissions.contains(
-    {
-      permissions: ['cookies'],
-    },
-    function(result) {
-      // @ts-ignore
-      if (!result || typeof browser === 'undefined' || !browser) {
-        callback();
-        return;
-      }
-
-      let cookieId = '';
-      if (
-        typeof sender !== 'undefined' &&
-        sender &&
-        typeof sender.tab !== 'undefined' &&
-        typeof sender.tab.cookieStoreId !== 'undefined'
-      ) {
-        cookieId = sender.tab.cookieStoreId;
-      }
-
-      if (
-        typeof sender !== 'undefined' &&
-        sender &&
-        typeof sender.envType !== 'undefined' &&
-        sender.envType === 'addon_child'
-      ) {
-        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-          // @ts-ignore
-          if (tabs[0] && typeof tabs[0].cookieStoreId !== 'undefined') {
-            // @ts-ignore
-            cookieId = tabs[0].cookieStoreId;
-          }
-          t(cookieId);
-        });
-      } else {
-        t(cookieId);
-      }
-
-      function t(cookieIdT) {
-        if (cookieIdT !== '') {
-          // @ts-ignore
-          browser.cookies.getAll({ storeId: cookieIdT, url }).then(function(cookies) {
-            con.log('Cookie Store', cookieIdT, cookies);
-            let cookiesText = '';
-            for (const key in cookies) {
-              const cookie = cookies[key];
-              cookiesText += `${cookie.name}=${cookie.value}; `;
-            }
-            if (cookiesText !== '') {
-              xhr.setRequestHeader('CookieTemp', cookiesText);
-              xhr.withCredentials = 'true';
-            }
-
-            callback();
-          });
-          return;
-        }
-
-        callback();
-      }
-    },
-  );
-}
-
 chrome.alarms.get('updateCheck', async function(a) {
   if (typeof a === 'undefined') {
     const updateCheckTime = await api.storage.get('updateCheckTime');
@@ -340,45 +269,6 @@ function webRequestListener() {
           },
           ['blocking', 'responseHeaders'],
         );
-      }
-    },
-  );
-
-  chrome.permissions.contains(
-    {
-      permissions: ['webRequest', 'cookies'],
-    },
-    function(result) {
-      if (result) {
-        con.log('Cookie permissions found');
-        chrome.webRequest.onBeforeSendHeaders.addListener(
-          function(details) {
-            let tempCookies = '';
-            details.requestHeaders!.forEach(function(requestHeader) {
-              if (requestHeader.name === 'CookieTemp') {
-                tempCookies = requestHeader!.value!;
-              }
-            });
-
-            if (tempCookies !== '') {
-              con.log('Replace Cookies', tempCookies);
-              details.requestHeaders!.forEach(function(requestHeader) {
-                if (requestHeader.name.toLowerCase() === 'cookie') {
-                  requestHeader.value = tempCookies;
-                }
-              });
-            }
-            return {
-              requestHeaders: details.requestHeaders,
-            };
-          },
-          {
-            urls: ['*://myanimelist.net/*'],
-          },
-          ['blocking', 'requestHeaders'],
-        );
-      } else {
-        con.log('No webRequest permissions');
       }
     },
   );

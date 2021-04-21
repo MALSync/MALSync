@@ -267,7 +267,7 @@ export class Minimal {
               {
                 permissions: ['webRequest', 'webRequestBlocking'],
                 origins: chrome.runtime.getManifest().optional_permissions!.filter(permission => {
-                  return permission !== 'webRequest' && permission !== 'webRequestBlocking' && permission !== 'cookies';
+                  return permission !== 'webRequest' && permission !== 'webRequestBlocking';
                 }),
               },
               function(granted) {
@@ -304,50 +304,6 @@ export class Minimal {
     this.minimal.find('#customDomainsUi').click(() => {
       this.minimalVue.$children[0].selectTab('customDomains');
     });
-
-    try {
-      if (api.type === 'webextension') {
-        chrome.permissions.contains(
-          {
-            permissions: ['cookies'],
-          },
-          result => {
-            if (result) {
-              if (!this.minimal.find('#strictCookies')[0].checked) {
-                this.minimal.find('#strictCookies').trigger('click');
-              }
-            }
-            this.minimal.find('#strictCookies').change(() => {
-              if (this.minimal.find('#strictCookies')[0].checked) {
-                con.log('strictCookies checked');
-                chrome.permissions.request(
-                  {
-                    permissions: ['cookies'],
-                    origins: [],
-                  },
-                  function(granted) {
-                    con.log('optional_permissions', granted);
-                  },
-                );
-              } else {
-                con.log('strictCookies not checked');
-                chrome.permissions.remove(
-                  {
-                    permissions: ['cookies'],
-                    origins: [],
-                  },
-                  function(remove) {
-                    con.log('optional_permissions_remove', remove);
-                  },
-                );
-              }
-            });
-          },
-        );
-      }
-    } catch (e) {
-      con.error(e);
-    }
 
     api.storage.get('tempVersion').then(version => {
       let versionMsg = '';
