@@ -1160,7 +1160,9 @@ export class SyncPage {
                 () => {
                   this.openNextEp();
                 },
-                () => {},
+                () => {
+                  // do nothing.
+                },
                 true,
               );
             }
