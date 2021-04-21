@@ -433,6 +433,11 @@ export class SyncPage {
 
           logger.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
 
+          //filler
+          if (this.singleObj.getMalId() && this.singleObj.getType() === 'anime' && api.settings.get('checkForFiller')) {
+            this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
+          }
+
           if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
             setTimeout(() => {
               sync();
@@ -1134,5 +1139,33 @@ export class SyncPage {
       logger.error(e);
     }
     sendResponse({});
+  }
+
+  private checkForFiller(malid: number, episode: number) {
+    const page = parseInt(`${episode / 100}`) + 1;
+    api.request
+      .xhr('GET', {
+        url: `https://api.jikan.moe/v3/anime/${malid}/episodes/${page}`,
+      })
+      .then(response => {
+        if (response && response.status === 200) {
+          const data = JSON.parse(response.responseText);
+          if (data.episodes && data.episodes.length) {
+            const episodeData = data.episodes.find(e => e.episode_id === episode);
+            if (episodeData && (episodeData.filler || episodeData.recap)) {
+              const type = episodeData.filler ? 'filler' : 'recap';
+              utils.flashConfirm(
+                api.storage.lang(`filler_${type}_confirm`),
+                'filler',
+                () => {
+                  this.openNextEp();
+                },
+                () => {},
+                true,
+              );
+            }
+          }
+        }
+      });
   }
 }

@@ -1127,5 +1127,21 @@
   "nextEpShort_no_nextEp": {
     "message": "Couldn't find the next episode",
     "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "Check for filler/recap episodes",
+    "description": "Option to enable filler checking"
+  },
+  "settings_filler_text": {
+    "message": "This will check if the episode is marked as a filler/recap on MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "This episode has been marked as a filler on MyAnimeList, do you want to skip?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "This episode has been marked as a recap on MyAnimeList, do you want to skip?",
+    "description": "Question if the user wants to skip the recap"
   }
 }

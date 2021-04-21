@@ -418,6 +418,11 @@
             }}<tooltip>{{ lang('settings_highlightAllEp_Text') }}</tooltip></checkbox
           ></span
         >
+        <span class="option-extension" style="display: none;"
+          ><checkbox option="checkForFiller"
+            >{{ lang('settings_filler') }}<tooltip>{{ lang('settings_filler_text') }}</tooltip></checkbox
+          ></span
+        >
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             List Sync

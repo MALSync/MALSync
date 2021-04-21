@@ -54,6 +54,7 @@ export const settingsObj = {
     autoresume: false,
     autoNextEp: false,
     highlightAllEp: false,
+    checkForFiller: true,
 
     introSkip: 85,
     introSkipFwd: [17, 39],
