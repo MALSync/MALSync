@@ -382,7 +382,7 @@ export class Minimal {
 
 
               ${api.storage.lang('minimalClass_versionMsg_Text_2')}<br>
-              <a target="_blank" href="https://discordapp.com/invite/cTH4yaw">
+              <a target="_blank" href="https://discord.com/invite/cTH4yaw">
                 <img alt="Discord" src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&amp;logo=discord&amp;label=Discord&amp;colorB=7289DA">
               </a><br>
               <a target="_blank" href="https://github.com/MALSync/MALSync/issues">

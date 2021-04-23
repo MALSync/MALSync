@@ -10,18 +10,18 @@ export const Scantrad: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.tl-titre')
-        .text()
-        .trim();
+      return utils
+        .urlPart(url, 4)
+        .replace(/-/g, ' ')
+        .replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl(url) {
+    getOverviewUrl() {
       return utils.absoluteLink(
         j
-          .$('.tl-titre')
+          .$('.logo_box')
           .first()
           .attr('href'),
         Scantrad.domain,
@@ -30,29 +30,33 @@ export const Scantrad: pageInterface = {
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
     },
-    nextEpUrl(url) {
+    nextEpUrl() {
       const href = j.$('a.next_chapitre').attr('href');
       if (href && !href.endsWith('end')) return utils.absoluteLink(href, Scantrad.domain);
       return '';
     },
   },
   overview: {
-    getTitle(url) {
-      return j
-        .$('.titre')
-        .text()
-        .trim();
+    getTitle() {
+      const titleElement = document.querySelector('div.titre') as HTMLHeadElement;
+
+      if (!titleElement) {
+        throw Error("Can't find title element");
+      }
+      return String(titleElement.childNodes[0].textContent);
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      j.$('.info').append(j.html(selector));
+      j.$('.ct-top').after(
+        j.html(`<h3 class="home-titre" style="margin-top: 31px;">MAL-Sync</h3><div class="new-main">${selector}</div>`),
+      );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#chap-top > div.chapitre');
+        return j.$('#chapitres > div.chapitre ');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a[href*="/mangas/"]').attr('href') || '', Scantrad.domain);
@@ -67,7 +71,8 @@ export const Scantrad: pageInterface = {
     j.$(document).ready(function() {
       if (
         (page.url.split('/')[3] === 'mangas' && typeof page.url.split('/')[4] !== 'undefined') ||
-        (j.$('body > div.main-fiche > div.mf-info > div.titre').length && j.$('#chap-top').length)
+        (j.$('body > div.main-fiche > div.mf-chapitre > div.ct-top > div.info > div.titre').length &&
+          j.$('#chap-top').length)
       ) {
         page.handlePage();
       }
