@@ -880,14 +880,6 @@
     "message": "Disables the content script. This makes it possible to have the extension and userscript enabled at the same time.",
     "description": "Userscript mode - Text"
   },
-  "settings_StrictCookies": {
-    "message": "Strict Cookies",
-    "description": "Strict Cookies"
-  },
-  "settings_StrictCookies_Text": {
-    "message": "This option adds Firefox Multi-Account Containers support. Make sure to restart the browser after enabling this option",
-    "description": "Strict Cookies - Text"
-  },
   "settings_highlightAllEp": {
     "message": "Highlight all Episodes/Chapters",
     "description": "Highlight all Episodes/Chapters"
