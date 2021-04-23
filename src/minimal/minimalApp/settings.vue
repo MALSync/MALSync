@@ -332,52 +332,53 @@
       </div>
 
       <div
-        id="updateCheck"
-        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-        style="display: none;"
+        v-show="legacy"
+        class="updateCheckEnable mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
       >
-        <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">
-            {{ lang('settings_UpdateCheck') }}
-          </h2>
-          <tooltip>
-            {{ lang('settings_UpdateCheck_Text') }}
-          </tooltip>
-          <div id="updateCheckAgo" style="margin-left: auto;"></div>
-        </div>
+        <div id="updateCheck" style="display: none; border: 1px solid red">
+          <div class="mdl-card__title mdl-card--border">
+            <h2 class="mdl-card__title-text">
+              {{ lang('settings_UpdateCheck') }}
+            </h2>
+            <tooltip>
+              {{ lang('settings_UpdateCheck_Text') }}
+            </tooltip>
+            <div id="updateCheckAgo" style="margin-left: auto;"></div>
+          </div>
 
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            {{ lang('settings_Interval') }}
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              {{ lang('settings_Interval') }}
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <select
+                id="updateCheckTime"
+                name="updateCheckTime"
+                class="inputtext mdl-textfield__input"
+                style="outline: none;"
+              >
+                <option value="0">{{ lang('settings_Interval_Off') }}</option>
+                <option value="60">1h</option>
+                <option value="240">4h</option>
+                <option value="720">12h</option>
+                <option value="1440">24h</option>
+                <option value="2880">48h</option>
+              </select>
+            </span>
+          </li>
+          <span class="updateCheckEnable" style="display: none;">
+            <checkbox option="updateCheckNotifications">{{ lang('settings_Notifications') }}</checkbox>
           </span>
-          <span class="mdl-list__item-secondary-action">
-            <select
-              id="updateCheckTime"
-              name="updateCheckTime"
-              class="inputtext mdl-textfield__input"
-              style="outline: none;"
+          <li class="mdl-list__item updateCheckEnable" style="display: none;">
+            <button
+              id="updateCheckUi"
+              type="button"
+              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
             >
-              <option value="0">{{ lang('settings_Interval_Off') }}</option>
-              <option value="60">1h</option>
-              <option value="240">4h</option>
-              <option value="720">12h</option>
-              <option value="1440">24h</option>
-              <option value="2880">48h</option>
-            </select>
-          </span>
-        </li>
-        <span class="updateCheckEnable" style="display: none;">
-          <checkbox option="updateCheckNotifications">{{ lang('settings_Notifications') }}</checkbox>
-        </span>
-        <li class="mdl-list__item updateCheckEnable" style="display: none;">
-          <button
-            id="updateCheckUi"
-            type="button"
-            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-          >
-            {{ lang('settings_Debugging') }}
-          </button>
-        </li>
+              {{ lang('settings_Debugging') }}
+            </button>
+          </li>
+        </div>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -418,6 +419,20 @@
             >{{ lang('settings_filler') }}<tooltip>{{ lang('settings_filler_text') }}</tooltip></checkbox
           ></span
         >
+
+        <span class="option-legacy">
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Legacy options
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="legacy">
+                <input id="legacy" v-model="legacy" type="checkbox" class="mdl-switch__input" />
+              </label>
+            </span>
+          </li>
+        </span>
+
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
             List Sync
@@ -608,6 +623,7 @@ export default {
         link: `https://malsync.moe/changelog#${api.storage.version()}`,
         img: `https://img.shields.io/badge/Changelog-${api.storage.version()}-green.svg?style=flat-square&logo=data:image/png;base64,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`,
       },
+      legacy: false,
     };
   },
   mounted() {
