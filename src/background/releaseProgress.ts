@@ -146,7 +146,7 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
       data: JSON.stringify({ malids: tempArray }),
       headers: { 'Content-Type': 'application/json' },
     };
-    await waitFor(1000);
+    await waitFor(5000);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
     i += 50;
