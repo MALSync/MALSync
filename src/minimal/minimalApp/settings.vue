@@ -331,11 +331,11 @@
         <checkbox option="loadPTWForProgress">{{ lang('settings_loadPTWForProgress') }}</checkbox>
       </div>
 
-      <div v-show="legacy" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
-        <div
-          id="updateCheck"
-          style="display: none; border: 1px solid red"
-        >
+      <div
+        v-show="legacy"
+        class="updateCheckEnable mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
+      >
+        <div id="updateCheck" style="display: none; border: 1px solid red">
           <div class="mdl-card__title mdl-card--border">
             <h2 class="mdl-card__title-text">
               {{ lang('settings_UpdateCheck') }}
