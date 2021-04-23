@@ -5,6 +5,7 @@ import { providerTemplates } from '../provider/templates';
 import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
+import { Cache } from '../utils/Cache';
 
 declare let browser: any;
 
@@ -432,6 +433,11 @@ export class SyncPage {
             this.singleObj.setVolume(state.volume);
 
           logger.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
+
+          // filler
+          if (this.singleObj.getMalId() && this.singleObj.getType() === 'anime' && api.settings.get('checkForFiller')) {
+            this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
+          }
 
           if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'instant') {
             setTimeout(() => {
@@ -1134,5 +1140,52 @@ export class SyncPage {
       logger.error(e);
     }
     sendResponse({});
+  }
+
+  private async checkForFiller(malid: number, episode: number) {
+    const page = Math.ceil(episode / 100);
+
+    const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
+
+    if (!(await cacheObj.hasValueAndIsNotEmpty())) {
+      const url = `https://api.jikan.moe/v3/anime/${malid}/episodes/${page}`;
+      const request = await api.request.xhr('GET', url).then(async response => {
+        if (response.status === 200 && response.responseText) {
+          const data = JSON.parse(response.responseText);
+          if (data.episodes && data.episodes.length) {
+            try {
+              return data.episodes.map(e => ({
+                filler: e.filler,
+                recap: e.recap,
+                episode_id: e.episode_id,
+              }));
+            } catch (e) {
+              // do nothing.
+            }
+          }
+        }
+        return [];
+      });
+      await cacheObj.setValue(request);
+    }
+    const episodes = await cacheObj.getValue();
+
+    if (episodes && episodes.length) {
+      const episodeData = episodes.find(e => e.episode_id === episode);
+      if (episodeData && (episodeData.filler || episodeData.recap)) {
+        const type = episodeData.filler ? 'filler' : 'recap';
+        utils.flashConfirm(
+          api.storage.lang(`filler_${type}_confirm`),
+          'filler',
+          () => {
+            this.openNextEp();
+          },
+          () => {
+            // do nothing.
+          },
+          true,
+        );
+      }
+    }
   }
 }
