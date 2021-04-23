@@ -42,6 +42,15 @@ export class SyncPage {
     }
     this.domainSet();
     logger.log('Page', this.page.name);
+    if (
+      !(
+        typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
+        api.settings.get('enablePages')[this.page.name]
+      )
+    ) {
+      logger.info('Sync is disabled for this page', this.page.name);
+      throw 'Stop Script';
+    }
     emitter.on('syncPage_fillUi', () => this.fillUI());
   }
 
@@ -407,16 +416,6 @@ export class SyncPage {
 
       // sync
       if (this.page.isSyncPage(this.url)) {
-        if (
-          !(
-            typeof api.settings.get('enablePages')[this.page.name] === 'undefined' ||
-            api.settings.get('enablePages')[this.page.name]
-          )
-        ) {
-          logger.info('Sync is disabled for this page', this.page.name);
-          return;
-        }
-
         const rerun = await this.searchObj.openCorrectionCheck();
 
         if (rerun) {
