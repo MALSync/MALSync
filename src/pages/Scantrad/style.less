@@ -4,7 +4,6 @@
 @activeEp: #cee1ff;
 
 #malp {
-  margin: 20px 0;
   span {
     color: @textColor;
   }
@@ -12,7 +11,8 @@
     background-color: white !important;
   }
   #MalData {
-    flex-flow: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     .info {
       font-weight: bold;
     }
@@ -23,7 +23,7 @@
   }
 }
 
-@media only screen and (max-width: 1440px) {
+@media only screen and (max-width: 850px) {
   #malp {
     .MalLogin {
       width: 100%;
@@ -33,7 +33,7 @@
 
 #MalData {
   select option {
-    background-color: black !important;
+    background-color: rgba(20, 25, 31, 0.98) !important;
   }
 }
 .mal-sync-active {
