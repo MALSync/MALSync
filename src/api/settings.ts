@@ -42,7 +42,6 @@ export const settingsObj = {
     Twistmoe: true,
     Mangadex: true,
     MangaNelo: true,
-    Aniwatch: true,
     AnimeSimple: true,
     animepahe: true,
     MangaFox: true,

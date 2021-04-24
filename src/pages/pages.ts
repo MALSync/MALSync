@@ -43,7 +43,6 @@ import { JapScan } from './JapScan/main';
 import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
-import { Aniwatch } from './Aniwatch/main';
 import { Hidive } from './Hidive/main';
 import { FallenAngels } from './FallenAngels/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -169,7 +168,6 @@ export const pages = {
   Goyabu,
   AnimesVision,
   Hulu,
-  Aniwatch,
   Hidive,
   FallenAngels,
   PrimeVideo,
