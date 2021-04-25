@@ -72,7 +72,7 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
-import { AnimeDesu } from './AnimeDesu/main';
+import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
@@ -197,7 +197,7 @@ export const pages = {
   MangaFox,
   JustAnime,
   YayAnimes,
-  AnimeDesu,
+  DesuOnline,
   Simplyaweeb,
   Animevibe,
   WuxiaWorld,

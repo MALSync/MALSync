@@ -1,0 +1,30 @@
+{
+  "title": "DesuOnline",
+  "url": "https://desu-online.pl/",
+  "testCases": [
+    {
+      "url": "https://desu-online.pl/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-odcinek-3/",
+      "expected": {
+        "sync": true,
+        "title": "Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e",
+        "identifier": "maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e",
+        "overviewUrl": "https://desu-online.pl/anime/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e/",
+        "nextEpUrl": "https://desu-online.pl/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-odcinek-4/",
+        "episode": 3,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://desu-online.pl/anime/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e/",
+      "expected": {
+        "sync": false,
+        "title": "Maou Gakuin no Futekigousha: Shijou Saikyou no Maou no Shiso, Tensei shite Shison-tachi no Gakkou e",
+        "identifier": "maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e",
+        "uiSelector": true,
+        "epList": {
+          "3": "https://desu-online.pl/maou-gakuin-no-futekigousha-shijou-saikyou-no-maou-no-shiso-tensei-shite-shison-tachi-no-gakkou-e-odcinek-3/"
+        }
+      }
+    }
+  ]
+}
