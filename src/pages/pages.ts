@@ -42,7 +42,6 @@ import { JapScan } from './JapScan/main';
 import { Goyabu } from './Goyabu/main';
 import { AnimesVision } from './AnimesVision/main';
 import { Hulu } from './Hulu/main';
-import { Aniwatch } from './Aniwatch/main';
 import { Hidive } from './Hidive/main';
 import { FallenAngels } from './FallenAngels/main';
 import { PrimeVideo } from './PrimeVideo/main';
@@ -72,7 +71,7 @@ import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
 import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
-import { AnimeDesu } from './AnimeDesu/main';
+import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
@@ -167,7 +166,6 @@ export const pages = {
   Goyabu,
   AnimesVision,
   Hulu,
-  Aniwatch,
   Hidive,
   FallenAngels,
   PrimeVideo,
@@ -197,7 +195,7 @@ export const pages = {
   MangaFox,
   JustAnime,
   YayAnimes,
-  AnimeDesu,
+  DesuOnline,
   Simplyaweeb,
   Animevibe,
   WuxiaWorld,

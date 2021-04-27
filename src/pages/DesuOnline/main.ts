@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const AnimeDesu: pageInterface = {
-  name: 'AnimeDesu',
-  domain: 'https://animedesu.pl',
+export const DesuOnline: pageInterface = {
+  name: 'DesuOnline',
+  domain: 'https://desu-online.pl',
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
@@ -16,7 +16,7 @@ export const AnimeDesu: pageInterface = {
       return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
     },
     getIdentifier(url) {
-      return AnimeDesu.sync.getOverviewUrl(url).split('/')[4];
+      return DesuOnline.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
       return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href') || '';
@@ -36,7 +36,7 @@ export const AnimeDesu: pageInterface = {
         .first()
         .attr('href');
       if (href) {
-        if (AnimeDesu.sync.getEpisode(url) < AnimeDesu.sync.getEpisode(href)) {
+        if (DesuOnline.sync.getEpisode(url) < DesuOnline.sync.getEpisode(href)) {
           return href;
         }
       }
@@ -69,7 +69,7 @@ export const AnimeDesu: pageInterface = {
         );
       },
       elementEp(selector) {
-        return AnimeDesu.sync.getEpisode(
+        return DesuOnline.sync.getEpisode(
           String(
             selector
               .find('a')
