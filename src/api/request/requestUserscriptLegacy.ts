@@ -22,6 +22,15 @@ export const requestUserscriptLegacy: requestInterface = {
         data: null,
         onload(response) {
           console.log(response);
+          if (response.status === 429) {
+            con.error('RATE LIMIT');
+            api.storage.set('rateLimit', true);
+            setTimeout(() => {
+              api.storage.set('rateLimit', false);
+              resolve(requestUserscriptLegacy.xhr(method, url));
+            }, 10000);
+            return;
+          }
           const responseObj: xhrResponseI = {
             finalUrl: response.finalUrl,
             responseText: response.responseText,
