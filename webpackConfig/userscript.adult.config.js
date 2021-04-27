@@ -58,7 +58,7 @@ const metadata = {
     generateMatchExcludes(playerUrls).match,
   ),
   exclude: generateMatchExcludes(pageUrls).exclude,
-  'require ': 'http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js',
+  'require ': 'http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
   resource: generateResources(),
   'run-at': 'document_start',
   connect: [
