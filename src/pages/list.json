@@ -125,11 +125,6 @@
     "name": "Shinden"
   },
   {
-    "domain": "https://www.funimation.com",
-    "type": "anime",
-    "name": "Funimation"
-  },
-  {
     "domain": "https://voiranime.com",
     "type": "anime",
     "name": "Voiranime"
@@ -223,11 +218,6 @@
     "domain": "https://www.hulu.com",
     "type": "anime",
     "name": "Hulu"
-  },
-  {
-    "domain": "https://aniwatch.me",
-    "type": "anime",
-    "name": "Aniwatch"
   },
   {
     "domain": "https://www.hidive.com",
@@ -375,9 +365,9 @@
     "name": "YayAnimes"
   },
   {
-    "domain": "https://animedesu.pl",
+    "domain": "https://desu-online.pl",
     "type": "anime",
-    "name": "AnimeDesu"
+    "name": "DesuOnline"
   },
   {
     "domain": "https://simplyaweeb.com",

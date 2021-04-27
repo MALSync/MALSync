@@ -110,120 +110,112 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://wuxiaworld.site"><img src="https://www.google.com/s2/favicons?domain=https://wuxiaworld.site"> WuxiaWorld</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.funimation.com"><img src="https://www.google.com/s2/favicons?domain=https://www.funimation.com"> Funimation</a></td>
+                <td><a href="https://voiranime.com"><img src="https://www.google.com/s2/favicons?domain=https://voiranime.com"> Voiranime</a></td>
                 <td><a href="https://edelgardescans.com"><img src="https://www.google.com/s2/favicons?domain=https://edelgardescans.com"> EdelgardeScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://voiranime.com"><img src="https://www.google.com/s2/favicons?domain=https://voiranime.com"> Voiranime</a></td>
+                <td><a href="https://ww5.dubbedanime.net"><img src="https://www.google.com/s2/favicons?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
                 <td><a href="https://hatigarmscanz.net"><img src="https://www.google.com/s2/favicons?domain=https://hatigarmscanz.net"> HatigarmScanz</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://ww5.dubbedanime.net"><img src="https://www.google.com/s2/favicons?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
+                <td><a href="https://www.neko-sama.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.neko-sama.fr"> NekoSama</a></td>
                 <td><a href="https://leviatanscans.com"><img src="https://www.google.com/s2/favicons?domain=https://leviatanscans.com"> LeviatanScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.neko-sama.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.neko-sama.fr"> NekoSama</a></td>
+                <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
                 <td><a href="https://methodscans.com"><img src="https://www.google.com/s2/favicons?domain=https://methodscans.com"> MethodScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://anime-odcinki.pl"><img src="https://www.google.com/s2/favicons?domain=https://anime-odcinki.pl"> AnimeOdcinki</a></td>
+                <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
                 <td><a href="https://the-nonames.com"><img src="https://www.google.com/s2/favicons?domain=https://the-nonames.com"> NonamesScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animezone.pl"><img src="https://www.google.com/s2/favicons?domain=https://www.animezone.pl"> AnimeZone</a></td>
+                <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
                 <td><a href="https://reaperscans.com"><img src="https://www.google.com/s2/favicons?domain=https://reaperscans.com"> ReaperScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeflix.io"><img src="https://www.google.com/s2/favicons?domain=https://animeflix.io"> Animeflix</a></td>
+                <td><a href="https://moeclip.com"><img src="https://www.google.com/s2/favicons?domain=https://moeclip.com"> moeclip</a></td>
                 <td><a href="https://lynxscans.com"><img src="https://www.google.com/s2/favicons?domain=https://lynxscans.com"> LynxScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://moeclip.com"><img src="https://www.google.com/s2/favicons?domain=https://moeclip.com"> moeclip</a></td>
+                <td><a href="https://goyabu.com"><img src="https://www.google.com/s2/favicons?domain=https://goyabu.com"> Goyabu</a></td>
                 <td><a href="https://skscans.com"><img src="https://www.google.com/s2/favicons?domain=https://skscans.com"> SKScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://goyabu.com"><img src="https://www.google.com/s2/favicons?domain=https://goyabu.com"> Goyabu</a></td>
+                <td><a href="https://animesvision.biz"><img src="https://www.google.com/s2/favicons?domain=https://animesvision.biz"> AnimesVision</a></td>
                 <td><a href="https://zeroscans.com"><img src="https://www.google.com/s2/favicons?domain=https://zeroscans.com"> ZeroScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animesvision.biz"><img src="https://www.google.com/s2/favicons?domain=https://animesvision.biz"> AnimesVision</a></td>
+                <td><a href="https://www.hulu.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hulu.com"> Hulu</a></td>
                 <td><a href="https://reader.deathtollscans.net"><img src="https://www.google.com/s2/favicons?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.hulu.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hulu.com"> Hulu</a></td>
+                <td><a href="https://www.hidive.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hidive.com"> Hidive</a></td>
                 <td><a href="https://reader.kireicake.com"><img src="https://www.google.com/s2/favicons?domain=https://reader.kireicake.com"> KireiCake</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://aniwatch.me"><img src="https://www.google.com/s2/favicons?domain=https://aniwatch.me"> Aniwatch</a></td>
+                <td><a href="https://www.primevideo.com"><img src="https://www.google.com/s2/favicons?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
                 <td><a href="https://sensescans.com"><img src="https://www.google.com/s2/favicons?domain=https://sensescans.com"> SenseScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.hidive.com"><img src="https://www.google.com/s2/favicons?domain=https://www.hidive.com"> Hidive</a></td>
+                <td><a href="https://dreamsub.cc"><img src="https://www.google.com/s2/favicons?domain=https://dreamsub.cc"> DreamSub</a></td>
                 <td><a href="https://manhuaplus.com"><img src="https://www.google.com/s2/favicons?domain=https://manhuaplus.com"> ManhuaPlus</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.primevideo.com"><img src="https://www.google.com/s2/favicons?domain=https://www.primevideo.com"> Amazon Prime Video</a></td>
+                <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
                 <td><a href="https://readm.org"><img src="https://www.google.com/s2/favicons?domain=https://readm.org"> Readm</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://dreamsub.cc"><img src="https://www.google.com/s2/favicons?domain=https://dreamsub.cc"> DreamSub</a></td>
+                <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
                 <td><a href="https://mangasee123.com"><img src="https://www.google.com/s2/favicons?domain=https://mangasee123.com"> MangaSee</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animeshouse.net"><img src="https://www.google.com/s2/favicons?domain=https://animeshouse.net"> AnimesHouse</a></td>
+                <td><a href="https://monoschinos2.com"><img src="https://www.google.com/s2/favicons?domain=https://monoschinos2.com"> MonosChinos</a></td>
                 <td><a href="https://asurascans.com"><img src="https://www.google.com/s2/favicons?domain=https://asurascans.com"> AsuraScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animexin.xyz"><img src="https://www.google.com/s2/favicons?domain=https://animexin.xyz"> AnimeXin</a></td>
+                <td><a href="https://animefire.net"><img src="https://www.google.com/s2/favicons?domain=https://animefire.net"> AnimeFire</a></td>
                 <td><a href="https://naniscans.com"><img src="https://www.google.com/s2/favicons?domain=https://naniscans.com"> NaniScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://monoschinos2.com"><img src="https://www.google.com/s2/favicons?domain=https://monoschinos2.com"> MonosChinos</a></td>
+                <td><a href="https://otakufr.co"><img src="https://www.google.com/s2/favicons?domain=https://otakufr.co"> OtakuFR</a></td>
                 <td><a href="https://merakiscans.com"><img src="https://www.google.com/s2/favicons?domain=https://merakiscans.com"> MerakiScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animefire.net"><img src="https://www.google.com/s2/favicons?domain=https://animefire.net"> AnimeFire</a></td>
+                <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
                 <td><a href="https://mangajar.com"><img src="https://www.google.com/s2/favicons?domain=https://mangajar.com"> MangaJar</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://otakufr.co"><img src="https://www.google.com/s2/favicons?domain=https://otakufr.co"> OtakuFR</a></td>
+                <td><a href="https://www.tranimeizle.net/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.net/"> TRanimeizle</a></td>
                 <td><a href="https://toonily.net"><img src="https://www.google.com/s2/favicons?domain=https://toonily.net"> Toonily</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://samehadaku.vip"><img src="https://www.google.com/s2/favicons?domain=https://samehadaku.vip"> Samehadaku</a></td>
+                <td><a href="https://anihub.tv"><img src="https://www.google.com/s2/favicons?domain=https://anihub.tv"> Anihub</a></td>
                 <td><a href="https://www.nonstopscans.com"><img src="https://www.google.com/s2/favicons?domain=https://www.nonstopscans.com"> NonstopScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.tranimeizle.net/"><img src="https://www.google.com/s2/favicons?domain=https://www.tranimeizle.net/"> TRanimeizle</a></td>
+                <td><a href="https://www.animestreamingfr.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.animestreamingfr.fr"> AnimeStreamingFR</a></td>
                 <td><a href="https://guya.moe"><img src="https://www.google.com/s2/favicons?domain=https://guya.moe"> Guya</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://anihub.tv"><img src="https://www.google.com/s2/favicons?domain=https://anihub.tv"> Anihub</a></td>
+                <td><a href="https://www.animeid.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv"> AnimeId</a></td>
                 <td><a href="https://mangahub.io"><img src="https://www.google.com/s2/favicons?domain=https://mangahub.io"> MangaHub</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animestreamingfr.fr"><img src="https://www.google.com/s2/favicons?domain=https://www.animestreamingfr.fr"> AnimeStreamingFR</a></td>
+                <td><a href="https://animixplay.to"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.to"> AniMixPlay</a></td>
                 <td><a href="https://comick.fun"><img src="https://www.google.com/s2/favicons?domain=https://comick.fun"> ComicK</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://www.animeid.tv"><img src="https://www.google.com/s2/favicons?domain=https://www.animeid.tv"> AnimeId</a></td>
+                <td><a href="https://myanimelist.net"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net"> MyAnimeList</a></td>
                 <td><a href="https://kangaryu-team.fr"><img src="https://www.google.com/s2/favicons?domain=https://kangaryu-team.fr"> KangaryuTeam</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animixplay.to"><img src="https://www.google.com/s2/favicons?domain=https://animixplay.to"> AniMixPlay</a></td>
+                <td><a href="https://ww1.animesimple.com"><img src="https://www.google.com/s2/favicons?domain=https://ww1.animesimple.com"> AnimeSimple</a></td>
                 <td><a href="https://www.japanread.cc/"><img src="https://www.google.com/s2/favicons?domain=https://www.japanread.cc/"> Japanread</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://myanimelist.net"><img src="https://www.google.com/s2/favicons?domain=https://myanimelist.net"> MyAnimeList</a></td>
-                <td><a href="https://catmanga.org"><img src="https://www.google.com/s2/favicons?domain=https://catmanga.org"> CatManga</a></td>
-                <td></td>
-              </tr><tr>
-                <td><a href="https://ww1.animesimple.com"><img src="https://www.google.com/s2/favicons?domain=https://ww1.animesimple.com"> AnimeSimple</a></td>
-                <td></td>
-                <td></td>
-              </tr><tr>
                 <td><a href="https://animeunity.it"><img src="https://www.google.com/s2/favicons?domain=https://animeunity.it"> AnimeUnity</a></td>
-                <td></td>
+                <td><a href="https://catmanga.org"><img src="https://www.google.com/s2/favicons?domain=https://catmanga.org"> CatManga</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://justanime.app"><img src="https://www.google.com/s2/favicons?domain=https://justanime.app"> JustAnime</a></td>
@@ -234,7 +226,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animedesu.pl"><img src="https://www.google.com/s2/favicons?domain=https://animedesu.pl"> AnimeDesu</a></td>
+                <td><a href="https://desu-online.pl"><img src="https://www.google.com/s2/favicons?domain=https://desu-online.pl"> DesuOnline</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>
