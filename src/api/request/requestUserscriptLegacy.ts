@@ -18,7 +18,7 @@ export const requestUserscriptLegacy: requestInterface = {
         method,
         url,
         synchronous: false,
-        headers: [],
+        headers: {},
         data: null,
         onload(response) {
           console.log(response);
@@ -43,6 +43,13 @@ export const requestUserscriptLegacy: requestInterface = {
         request.url = url.url;
         request.headers = url.headers;
         request.data = url.data;
+      }
+      // @ts-ignore
+      if (request.url.includes('malsync.moe')) {
+        // @ts-ignore
+        request.headers.version = api.storage.version();
+        // @ts-ignore
+        request.headers.type = 'userscript';
       }
       GM_xmlhttpRequest(request);
     });
