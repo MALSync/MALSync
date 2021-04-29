@@ -31,7 +31,6 @@ export const MangaPark: pageInterface = {
       return utils.absoluteLink(j.$('h3.nav-title > a').attr('href'), MangaPark.domain);
     },
     getEpisode(url) {
-      console.log(j.$('#select-chapters option:selected').text());
       let string: any = j.$('#select-chapters option:selected').text();
       let temp = string.match(/(ch\.|chapter)\D?\d+/i);
       if (temp !== null) {
