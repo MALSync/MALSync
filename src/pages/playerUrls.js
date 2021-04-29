@@ -311,7 +311,7 @@ module.exports = {
   },
   // pantsubase.tv
   googleDrive: {
-    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*',],
+    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*'],
   },
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
