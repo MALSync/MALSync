@@ -8,6 +8,9 @@ module.exports = {
   simkl: {
     match: ['*://simkl.com/apps/chrome/mal-sync/connected*'],
   },
+  malsync: {
+    match: ['*://malsync.moe/mal/oauth*'],
+  },
   hanime: {
     match: ['*://*.hanime.tv/*'],
   },
