@@ -3,23 +3,35 @@
   "url": "https://mangapark.net/",
   "testCases": [
     {
-      "url": "https://mangapark.net/manga/grand-blue-inoue-kenji/i2086171/v5/c20/1",
+      "url": "https://mangapark.net/comic/87224/her-summon/chapter/en/83",
       "expected": {
         "sync": true,
-        "title": "Grand Blue",
-        "identifier": "grand-blue-inoue-kenji",
-        "overviewUrl": "https://mangapark.net/manga/grand-blue-inoue-kenji",
-        "nextEpUrl": "https://mangapark.net/manga/grand-blue-inoue-kenji/i2086169/v5/c21/1",
-        "episode": 20,
+        "title": "Her Summon",
+        "identifier": "87224",
+        "overviewUrl": "https://mangapark.net/comic/87224/her-summon",
+        "nextEpUrl": "https://mangapark.net/comic/87224/her-summon/chapter/en/84",
+        "episode": 83,
         "uiSelector": false
       }
     },
     {
-      "url": "https://mangapark.net/manga/grand-blue-inoue-kenji",
+      "url": "https://mangapark.net/chapter/3389700",
+      "expected": {
+        "sync": true,
+        "title": "Tiger Books",
+        "identifier": "38239",
+        "overviewUrl": "https://mangapark.net/comic/38239/tiger-books",
+        "nextEpUrl": "https://mangapark.net/chapter/3389701",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangapark.net/comic/87224/her-summon",
       "expected": {
         "sync": false,
-        "title": "Grand Blue",
-        "identifier": "grand-blue-inoue-kenji",
+        "title": "Her Summon",
+        "identifier": "87224",
         "uiSelector": true
       }
     }
