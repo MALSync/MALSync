@@ -311,7 +311,7 @@ module.exports = {
   },
   // pantsubase.tv
   googleDrive: {
-    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*',],
+    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*'],
   },
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
@@ -418,7 +418,7 @@ module.exports = {
   },
   // animixplay
   animato: {
-    match: ['*://animato.me/embed/*', '*://kimanime.ru/AnimeIframe/*'],
+    match: ['*://animato.me/embed/*', '*://kimanime.ru/AnimeIframe/*', '*://akaneshinjou.github.io/play/player.html*'],
   },
   // animeshd
   animeshd: {
