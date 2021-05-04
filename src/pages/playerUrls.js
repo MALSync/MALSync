@@ -418,10 +418,18 @@ module.exports = {
   },
   // animixplay
   animato: {
-    match: ['*://animato.me/embed/*', '*://kimanime.ru/AnimeIframe/*', '*://akaneshinjou.github.io/play/player.html*'],
+    match: ['*://animato.me/embed/*'],
   },
   // animeshd
   animeshd: {
     match: ['*://animeshd.org/*/*id=*'],
+  },
+  // animixplay
+  kimanime: {
+    match: ['*://kimanime.ru/AnimeIframe/*'],
+  },
+  // animixplay
+  github: {
+    match: ['*://akaneshinjou.github.io/play/player.html*'],
   },
 };
