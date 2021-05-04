@@ -418,7 +418,7 @@ module.exports = {
   },
   // animixplay
   animato: {
-    match: ['*://animato.me/embed/*'],
+    match: ['*://animato.me/embed/*', '*://kimanime.ru/AnimeIframe/*'],
   },
   // animeshd
   animeshd: {
