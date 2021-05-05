@@ -11,6 +11,12 @@ export const LeviatanScans: pageInterface = {
     }
     return false;
   },
+  isOverviewPage(url) {
+    if (j.$('ul > li.wp-manga-chapter').length > 0) {
+      return true;
+    }
+    return false;
+  },
   sync: {
     getTitle(url) {
       return j
@@ -25,7 +31,11 @@ export const LeviatanScans: pageInterface = {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).attr('href') || '';
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 6));
+      const episodePart = utils.urlPart(url, 6);
+      if (episodePart.match(/season-\d+/gim)) {
+        return Number(utils.urlPart(url, 7));
+      }
+      return Number(episodePart);
     },
     nextEpUrl(url) {
       return j
