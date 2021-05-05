@@ -1,0 +1,31 @@
+{
+  "title": "LeviatanScans",
+  "url": "https://leviatanscans.com/",
+  "testCases": [
+    {
+      "url": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/season-1/49/",
+      "expected": {
+        "sync": true,
+        "title": "Survival Story of a Sword King in a Fantasy World",
+        "identifier": "survivor-story-of-a-sword-king-in-a-fantasy-world",
+        "overviewUrl": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/",
+        "nextEpUrl": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/season-1/50/",
+        "episode": 49,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/",
+      "expected": {
+        "sync": false,
+        "title": "Survival Story of a Sword King in a Fantasy World",
+        "identifier": "survivor-story-of-a-sword-king-in-a-fantasy-world",
+        "uiSelector": true,
+        "epList": {
+          "19": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/season-1/19/",
+          "75": "https://leviatanscans.com/comicss/manga/survivor-story-of-a-sword-king-in-a-fantasy-world/season-2/75/"
+        }
+      }
+    }
+  ]
+}
