@@ -123,6 +123,7 @@ import { CatManga } from './CatManga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
+import { TritiniaScans } from './TritiniaScans/main';
 
 export const pages = {
   nineAnime,
@@ -250,4 +251,5 @@ export const pages = {
   MangaSushi,
   ArangScans,
   HunlightScans,
+  TritiniaScans,
 };
