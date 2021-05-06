@@ -121,6 +121,7 @@ import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
 import { CatManga } from './CatManga/main';
 import { MangaSushi } from './MangaSushi/main';
+import { ArangScans } from './ArangScans/main';
 
 export const pages = {
   nineAnime,
@@ -246,4 +247,5 @@ export const pages = {
   Japanread,
   CatManga,
   MangaSushi,
+  ArangScans,
 };
