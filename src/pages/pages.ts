@@ -126,6 +126,7 @@ import { HunlightScans } from './HunlightScans/main';
 import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
+import { ImmortalUpdates } from './ImmortalUpdates/main';
 
 export const pages = {
   nineAnime,
@@ -256,4 +257,5 @@ export const pages = {
   TritiniaScans,
   ReadManhua,
   FlameScans,
+  ImmortalUpdates,
 };

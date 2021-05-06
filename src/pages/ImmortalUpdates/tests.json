@@ -1,0 +1,31 @@
+{
+  "title": "ImmortalUpdates",
+  "url": "https://immortalupdates.com/",
+  "testCases": [
+    {
+      "url": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/chapter-108/",
+      "expected": {
+        "sync": true,
+        "title": "The emperor is afraid that the princess will have the world",
+        "identifier": "the-emperor-is-afraid-that-the-princess-will-have-the-world",
+        "overviewUrl": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/",
+        "nextEpUrl": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/chapter-109/",
+        "episode": 108,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/",
+      "expected": {
+        "sync": false,
+        "title": "The emperor is afraid that the princess will have the world",
+        "identifier": "the-emperor-is-afraid-that-the-princess-will-have-the-world",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/chapter-5/",
+          "125": "https://immortalupdates.com/manga/the-emperor-is-afraid-that-the-princess-will-have-the-world/chapter-125/"
+        }
+      }
+    }
+  ]
+}
