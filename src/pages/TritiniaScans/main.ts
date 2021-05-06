@@ -7,7 +7,8 @@ export const TritiniaScans: pageInterface = {
   type: 'manga',
   isSyncPage(url) {
     if (
-      $('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length > 0
+      j.$('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length >
+      0
     ) {
       return true;
     }
