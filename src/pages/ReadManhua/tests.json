@@ -1,0 +1,31 @@
+{
+  "title": "ReadManhua",
+  "url": "https://readmanhua.net/",
+  "testCases": [
+    {
+      "url": "https://readmanhua.net/manga/the-ghostly-doctor/chapter-271/",
+      "expected": {
+        "sync": true,
+        "title": "The Ghostly Doctor",
+        "identifier": "the-ghostly-doctor",
+        "overviewUrl": "https://readmanhua.net/manga/the-ghostly-doctor/",
+        "nextEpUrl": "https://readmanhua.net/manga/the-ghostly-doctor/chapter-272/",
+        "episode": 271,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://readmanhua.net/manga/the-ghostly-doctor/",
+      "expected": {
+        "sync": false,
+        "title": "The Ghostly Doctor",
+        "identifier": "the-ghostly-doctor",
+        "uiSelector": true,
+        "epList": {
+          "71": "https://readmanhua.net/manga/the-ghostly-doctor/chapter-71/",
+          "334": "https://readmanhua.net/manga/the-ghostly-doctor/chapter-334/"
+        }
+      }
+    }
+  ]
+}
