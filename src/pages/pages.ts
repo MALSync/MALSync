@@ -122,6 +122,7 @@ import { Japanread } from './Japanread/main';
 import { CatManga } from './CatManga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
+import { HunlightScans } from './HunlightScans/main';
 
 export const pages = {
   nineAnime,
@@ -248,4 +249,5 @@ export const pages = {
   CatManga,
   MangaSushi,
   ArangScans,
+  HunlightScans,
 };
