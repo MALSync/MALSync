@@ -6,7 +6,9 @@ export const TritiniaScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if ($('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length > 0) {
+    if (
+      $('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length > 0
+    ) {
       return true;
     }
     return false;
@@ -89,7 +91,11 @@ export const TritiniaScans: pageInterface = {
       ) {
         utils.waitUntilTrue(
           function() {
-            if (j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length) {
+            if (
+              j.$('ul > li.wp-manga-chapter').length ||
+              j.$('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]')
+                .length
+            ) {
               return true;
             }
             return false;
