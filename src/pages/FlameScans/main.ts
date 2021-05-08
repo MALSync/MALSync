@@ -6,7 +6,7 @@ export const FlameScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3].indexOf('chapter') >= 0) {
+    if (j.$('div#content.readercontent').length) {
       return true;
     }
     return false;
@@ -25,11 +25,14 @@ export const FlameScans: pageInterface = {
       return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 3);
+      const elementEpN = j
+        .$('select#chapter option[selected="selected"]')
+        .first()
+        .text();
 
-      const temp = episodePart.match(/chapter-\d+/gim);
+      const temp = elementEpN.match(/chapter \d+/gim);
 
-      if (!temp || temp.length === 0) return 1;
+      if (!temp || temp.length === 0) return 0;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
@@ -62,26 +65,40 @@ export const FlameScans: pageInterface = {
         return j.$('div#chapterlist li div.chbox');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.parent().attr('href') || '';
       },
       elementEp(selector) {
-        return FlameScans.sync.getEpisode(FlameScans.overview!.list!.elementUrl(selector));
+        const elementEpN = selector
+          .find('span')
+          .first()
+          .text();
+
+        const temp = elementEpN.match(/chapter \d+/gim);
+
+        if (!temp || temp.length === 0) return 0;
+
+        return Number(temp[0].replace(/\D+/g, ''));
       },
     },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3].indexOf('chapter') >= 0 ||
-        (page.url.split('/')[3] === 'series' && page.url.split('/')[4] !== '')
-      ) {
+      if (page.url.split('/')[3] === 'series' && page.url.split('/')[4] !== '') {
         page.handlePage();
+      }
+      if (j.$('div#content.readercontent').length) {
+        utils.waitUntilTrue(
+          function() {
+            if (j.$('select#chapter option[selected="selected"]').first().length) {
+              return true;
+            }
+            return false;
+          },
+          function() {
+            page.handlePage();
+          },
+        );
       }
     });
   },
