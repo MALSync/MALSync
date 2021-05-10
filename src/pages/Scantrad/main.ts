@@ -32,18 +32,22 @@ export const Scantrad: pageInterface = {
     },
     nextEpUrl() {
       const href = j.$('a.next_chapitre').attr('href');
-      if (href && !href.endsWith('end')) return utils.absoluteLink(href, Scantrad.domain);
-      return '';
+
+      if (href && href.split('/')[3] === 'forum') {
+        return '';
+      }
+      return utils.absoluteLink(href, Scantrad.domain);
     },
   },
   overview: {
     getTitle() {
-      const titleElement = document.querySelector('div.titre') as HTMLHeadElement;
-
-      if (!titleElement) {
-        throw Error("Can't find title element");
-      }
-      return String(titleElement.childNodes[0].textContent);
+      return j
+        .$('div.titre')
+        .clone()
+        .children()
+        .remove()
+        .end()
+        .text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);

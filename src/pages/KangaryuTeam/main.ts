@@ -25,6 +25,13 @@ export const KangaryuTeam: pageInterface = {
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
     },
+    nextEpUrl() {
+      return j
+        .$('#chapter-list .dropdown-menu li.active')
+        .prev()
+        .find('a')
+        .attr('href');
+    },
   },
   overview: {
     getTitle() {
