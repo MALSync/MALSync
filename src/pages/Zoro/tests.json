@@ -1,0 +1,57 @@
+{
+  "title": "Zoro",
+  "url": "https://zoro.to/",
+  "testCases": [
+    {
+      "url": "https://zoro.to/no-game-no-life-261",
+      "expected": {
+        "sync": false,
+        "title": "No Game, No Life",
+        "identifier": "no-game-no-life-261",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://zoro.to/watch/no-game-no-life-261?ep=5334",
+      "expected": {
+        "sync": true,
+        "title": "No Game, No Life",
+        "identifier": "no-game-no-life-261",
+        "overviewUrl": "https://zoro.to/no-game-no-life-261",
+        "nextEpUrl": "https://zoro.to/watch/no-game-no-life-261?ep=5335",
+        "episode": 7,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://zoro.to/demon-slayer-the-hashira-meeting-arc-17859",
+      "expected": {
+        "sync": false,
+        "title": "Demon Slayer: The Hashira Meeting Arc",
+        "identifier": "demon-slayer-the-hashira-meeting-arc-17859",
+        "uiSelector": true
+      }
+    },
+    {
+      "url": "https://zoro.to/watch/demon-slayer-the-hashira-meeting-arc-17859?ep=68500",
+      "expected": {
+        "sync": true,
+        "title": "Demon Slayer: The Hashira Meeting Arc",
+        "identifier": "demon-slayer-the-hashira-meeting-arc-17859",
+        "overviewUrl": "https://zoro.to/demon-slayer-the-hashira-meeting-arc-17859",
+        "nextEpUrl": "",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://zoro.to/is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-iii-ova-17388",
+      "expected": {
+        "sync": false,
+        "title": "Is It Wrong to Try to Pick Up Girls in a Dungeon? III OVA",
+        "identifier": "is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-iii-ova-17388",
+        "uiSelector": true
+      }
+    },
+  ]
+}
