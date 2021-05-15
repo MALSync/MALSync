@@ -120,6 +120,7 @@ import { AnimeShitai } from './AnimeShitai/main';
 import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
 import { CatManga } from './CatManga/main';
+import { Zoro } from './Zoro/main'
 
 export const pages = {
   nineAnime,
@@ -244,4 +245,5 @@ export const pages = {
   KangaryuTeam,
   Japanread,
   CatManga,
+  Zoro,
 };
