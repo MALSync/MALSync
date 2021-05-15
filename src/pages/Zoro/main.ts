@@ -72,7 +72,7 @@ export const Zoro: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (Zoro.isOverviewPage!(page.url)){
+      if (Zoro.isOverviewPage!(page.url)) {
         page.handlePage();
       } else if (Zoro.isSyncPage!(page.url)) {
         utils.waitUntilTrue(
