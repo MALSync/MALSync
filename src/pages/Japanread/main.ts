@@ -50,9 +50,18 @@ export const Japanread: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.chapter-container > .row:not(:first-of-type) .chapter-row');
+        return j.$('.chapter-container > .row:not(:first-of-type) > .col > .chapter-row');
       },
       elementUrl(selector) {
+        if (j.$('#navbar-guest').length === 0) {
+          return utils.absoluteLink(
+            selector
+              .find('a')
+              .eq(1)
+              .attr('href'),
+            Japanread.domain,
+          );
+        }
         return utils.absoluteLink(
           selector
             .find('a')
