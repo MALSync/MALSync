@@ -432,4 +432,8 @@ module.exports = {
   github: {
     match: ['*://akaneshinjou.github.io/play/player.html*'],
   },
+  // zoro
+  vidcloud: {
+    match: ['*://vidcloud.spb.ru/*'],
+  },
 };
