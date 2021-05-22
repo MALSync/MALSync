@@ -56,7 +56,7 @@
         "overviewUrl": "https://animixplay.to/v1/thunderbolt-fantasy-sword-seekers-3",
         "nextEpUrl": "https://animixplay.to/v1/thunderbolt-fantasy-sword-seekers-3/ep8",
         "episode": 7,
-        "uiSelector": false,
+        "uiSelector": true,
         "epList": {
           "5": "https://animixplay.to/v1/thunderbolt-fantasy-sword-seekers-3/ep5"
         }
