@@ -344,7 +344,19 @@ export async function getMalToKissApi(type, id) {
           continue;
         }
       }
-      if (data && data.Sites) return data.Sites;
+      if (data && data.Sites) {
+          data.Sites['AniMixPlay'][id] = {
+            identifier: id,
+            type: 'anime',
+            page: 'AniMixPlay',
+            title: data.title,
+            url: 'https://animixplay.to/anime/' + id,
+            image: data.image,
+            malId: id,
+            aniId: id
+          }
+          return data.Sites;
+        }
       return {};
     }
     throw new Error('malsync offline');
