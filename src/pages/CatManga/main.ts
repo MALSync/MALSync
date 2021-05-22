@@ -91,43 +91,32 @@ export const CatManga: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    let Interval;
-
     utils.fullUrlChangeDetect(function() {
       page.reset();
       check();
     }, true);
 
     function check() {
-      clearInterval(Interval);
-      Interval = utils.waitUntilTrue(
-        function() {
-          if (CatManga.isOverviewPage!(window.location.href) || CatManga.isSyncPage(window.location.href)) {
-            return true;
-          }
-          return false;
-        },
-        async function() {
-          proxy.addProxy(async (caller: ScriptProxy) => {
-            const nextData = extractMetadata();
-            const { buildId } = nextData;
-            const seriesId = utils.urlPart(window.location.href, 4);
+      if (CatManga.isOverviewPage!(window.location.href) || CatManga.isSyncPage(window.location.href)) {
+        proxy.addProxy(async (caller: ScriptProxy) => {
+          const nextData = extractMetadata();
+          const { buildId } = nextData;
+          const seriesId = utils.urlPart(window.location.href, 4);
 
-            const xhr = new XMLHttpRequest();
+          const xhr = new XMLHttpRequest();
 
-            xhr.onload = () => {
-              if (xhr.status === 200) {
-                pageData = JSON.parse(xhr.responseText).pageProps.series;
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              pageData = JSON.parse(xhr.responseText).pageProps.series;
 
-                page.handlePage();
-              }
-            };
+              page.handlePage();
+            }
+          };
 
-            xhr.open('GET', `https://catmanga.org/_next/data/${buildId}/series/${seriesId}.json`);
-            xhr.send();
-          });
-        },
-      );
+          xhr.open('GET', `https://catmanga.org/_next/data/${buildId}/series/${seriesId}.json`);
+          xhr.send();
+        });
+      }
     }
   },
 };
