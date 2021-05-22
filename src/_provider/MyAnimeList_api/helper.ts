@@ -41,7 +41,19 @@ export async function apiCall(options: {
         throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
       }
 
-      const res = JSON.parse(response.responseText);
+      let res;
+      try {
+        res = JSON.parse(response.responseText);
+      } catch (e) {
+        if (response.responseText.includes('Request blocked')) {
+          throw this.errorObj(
+            errorCode.GenericError,
+            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+          );
+        }
+        throw e;
+      }
+
       if (res && res.error) {
         switch (res.error) {
           case 'forbidden':

@@ -18,6 +18,8 @@ const logger = con.m('Sync', '#348fff');
 
 let browsingTimeout;
 
+let playerTimeout;
+
 export class SyncPage {
   page: pageInterface;
 
@@ -143,6 +145,7 @@ export class SyncPage {
   }
 
   public setVideoTime(item, timeCb) {
+    this.resetPlayerError();
     const syncDuration = api.settings.get('videoDuration');
     const progress = (item.current / (item.duration * (syncDuration / 100))) * 100;
     if (j.$('#malSyncProgress').length) {
@@ -273,6 +276,7 @@ export class SyncPage {
   }
 
   async handlePage(curUrl = window.location.href) {
+    this.resetPlayerError();
     let state: pageState;
     this.curState = undefined;
     this.searchObj = undefined;
@@ -459,6 +463,9 @@ export class SyncPage {
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
                 </div>
+                <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
+                  ${api.storage.lang('syncPage_flash_player_error')}
+                </div>
               ${message}`;
               options = {
                 hoverInfo: true,
@@ -471,10 +478,17 @@ export class SyncPage {
             utils
               .flashm(message, options)
               .find('.sync')
-              .on('click', function() {
+              .on('click', () => {
                 j.$('.flashinfo').remove();
                 sync();
+                this.resetPlayerError();
               });
+
+            // Show error if no player gets detected for 5 minutes
+            playerTimeout = setTimeout(() => {
+              j.$('#flashinfo-div').addClass('player-error');
+            }, 5 * 60 * 1000);
+
             // Debugging
             logger.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));
             if (typeof This.page.sync.nextEpUrl !== 'undefined') {
@@ -498,6 +512,14 @@ export class SyncPage {
       }
 
       this.imageFallback();
+    }
+  }
+
+  public resetPlayerError() {
+    if (playerTimeout) {
+      clearTimeout(playerTimeout);
+      playerTimeout = undefined;
+      j.$('#flashinfo-div').removeClass('player-error');
     }
   }
 

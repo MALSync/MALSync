@@ -579,7 +579,7 @@ export class MyAnimeListClass {
             )
             .then(function(tag: any) {
               if (tag) {
-                el.after(j.html(tag));
+                el.append(j.html(tag));
               }
             });
         }

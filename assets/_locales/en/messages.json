@@ -287,6 +287,10 @@
       }
     }
   },
+  "syncPage_flash_player_error": {
+    "message": "Player not detected. Please manually update it here.",
+    "description": "Message if the video player could not be recognized"
+  },
   "syncPage_malObj_addAnime": {
     "message": "Add to $page$",
     "description": "add anime",

@@ -747,6 +747,13 @@ function initflashm() {
                  #flashinfo-div:hover, #flashinfo-div.hover{
                   z-index: 2147483647;
                  }
+                 #flashinfo-div.player-error .type-update{
+                  overflow: visible !important;
+                  opacity: 1 !important;
+                 }
+                 #flashinfo-div.player-error .player-error{
+                  display: block !important
+                 }
 
                  #flash-div-top, #flash-div-bottom, #flashinfo-div{
                     font-family: "Helvetica","Arial",sans-serif;

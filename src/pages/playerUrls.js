@@ -424,4 +424,16 @@ module.exports = {
   animeshd: {
     match: ['*://animeshd.org/*/*id=*'],
   },
+  // animixplay
+  kimanime: {
+    match: ['*://kimanime.ru/AnimeIframe/*'],
+  },
+  // animixplay
+  github: {
+    match: ['*://akaneshinjou.github.io/play/player.html*'],
+  },
+  // zoro
+  vidcloud: {
+    match: ['*://vidcloud.spb.ru/*'],
+  },
 };
