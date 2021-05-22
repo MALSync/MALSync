@@ -303,6 +303,9 @@ module.exports = {
       '*://*.gogo-play.net/streaming.php?*',
       '*://*.gogo-play.net/load.php?*',
       '*://*.gogo-play.net/loadserver.php?*',
+      '*://*.streamani.net/streaming.php?*',
+      '*://*.streamani.net/load.php?*',
+      '*://*.streamani.net/loadserver.php?*',
     ],
   },
   // bs.to
@@ -322,7 +325,7 @@ module.exports = {
   },
   // gogo
   streamsb: {
-    match: ['*://streamsb.net/*', '*://streamsb.com/*'],
+    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*'],
   },
   // gogo
   dood: {
@@ -435,5 +438,9 @@ module.exports = {
   // zoro
   vidcloud: {
     match: ['*://vidcloud.spb.ru/*'],
+  },
+  // gogoanime
+  streamhd: {
+    match: ['*://*.streamhd.cc/*'],
   },
 };
