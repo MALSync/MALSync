@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://animixplay.to/v*", "*://animixplay.com/v*"]
+    "match": ["*://animixplay.to/v*", "*://animixplay.to/anime/*"]
   }
 }
