@@ -39,7 +39,8 @@ export const SKScans: pageInterface = {
     },
     nextEpUrl(url) {
       return j
-        .$('div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page')
+        .$('.nav-links .next_page')
+        .first()
         .attr('href');
     },
   },
