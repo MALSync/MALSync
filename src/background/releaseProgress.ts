@@ -127,9 +127,9 @@ export async function listUpdateWithPOST(state, type) {
     });
 }
 
-export async function predictionXhrGET(type: string, malId: number | null) {
-  if (!malId) return {};
-  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${malId}/pr`);
+export async function predictionXhrGET(type: string, apiCacheKey: number | string | null) {
+  if (!apiCacheKey) return {};
+  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${apiCacheKey}/pr`);
   return JSON.parse(response.responseText);
 }
 
@@ -259,7 +259,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 export async function single(
   el: {
     uid: number;
-    malId: number | null;
+    apiCacheKey: number | string | null;
     title: string;
     cacheKey: string;
     watchedEp: number;
@@ -272,9 +272,9 @@ export async function single(
 ) {
   if (!mode) mode = 'default';
   logger = logger.m(el.uid.toString());
-  logger.log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
-  if (!el.malId) {
-    logger.log('No MAL Id');
+  logger.log(el.title, el.cacheKey, el.apiCacheKey, `Mode: ${mode}`);
+  if (!el.apiCacheKey) {
+    logger.log('No Api Cache Id');
     return;
   }
   if (!api.settings.get('epPredictions')) {
@@ -327,7 +327,7 @@ export async function single(
   if (typeof el.xhr !== 'undefined') {
     xhr = el.xhr;
   } else {
-    xhr = await predictionXhrGET(type, el.malId);
+    xhr = await predictionXhrGET(type, el.apiCacheKey);
     await new Promise(resolve => setTimeout(() => resolve(), 500));
   }
   logger.log(xhr);

@@ -163,12 +163,12 @@ export abstract class SingleAbstract {
   protected prList: { key: string; label: string }[] = [];
 
   public async initProgress() {
-    const xhr = await predictionXhrGET(this.getType()!, this.getMalId());
+    const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
     this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
-        malId: this.getMalId(),
+        apiCacheKey: this.getApiCacheKey(),
         title: this.getTitle(),
         cacheKey: this.getCacheKey(),
         progressMode: this.getProgressMode(),
