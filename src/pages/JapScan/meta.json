@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://*.japscan.se/*"]
+    "match": ["*://*.japscan.ws/*"]
   }
 }

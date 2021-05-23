@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const JapScan: pageInterface = {
   name: 'JapScan',
-  domain: 'https://www.japscan.se',
+  domain: 'https://www.japscan.ws',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
