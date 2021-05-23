@@ -496,7 +496,11 @@
         </div>
       </div>
 
-      <progressP :api-cache-key="renderObj.getApiCacheKey()" :type="renderObj.type" :total-eps="renderObj.getTotalEpisodes()" />
+      <progressP
+        :api-cache-key="renderObj.getApiCacheKey()"
+        :type="renderObj.type"
+        :total-eps="renderObj.getTotalEpisodes()"
+      />
     </div>
   </div>
 </template>
