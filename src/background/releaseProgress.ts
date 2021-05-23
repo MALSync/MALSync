@@ -136,7 +136,7 @@ export async function predictionXhrGET(type: string, apiCacheKey: number | strin
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
   if (malDATA === null) return [{}];
   if (malDATA.length <= 0) return [{}];
-  const malDATAID = malDATA.map(el => el.malId);
+  const malDATAID = malDATA.map(el => el.apiCacheKey);
   const waitFor = ms => new Promise(r => setTimeout(r, ms));
   const returnArray: xhrResponseI[] = [];
   for (let i = 0; i <= malDATAID.length; ) {
@@ -162,7 +162,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     Array.forEach(el => {
       let mode = el.options!.p;
       if (!mode) mode = 'default';
-      logger.m(el.malId).log(el.title, el.cacheKey, el.malId, `Mode: ${mode}`);
+      logger.m(el.apiCacheKey).log(el.title, el.cacheKey, el.apiCacheKey, `Mode: ${mode}`);
     });
   }
 
@@ -179,7 +179,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 
   const remoteUpdateList: listElement[] = [];
   await asyncForEach(Array, async el => {
-    if (!el.malId) return;
+    if (!el.apiCacheKey) return;
 
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
@@ -190,28 +190,28 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     let mode = el.options!.p;
     if (!mode) mode = 'default';
     logger
-      .m(el.malId)
+      .m(el.apiCacheKey)
       .m('Load')
       .log(releaseItem);
 
     if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
       remoteUpdateList.push(el);
     } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
-      logger.m(el.malId).log('Up to date');
+      logger.m(el.apiCacheKey).log('Up to date');
     } else if (
       releaseItem &&
       releaseItem.finished &&
       releaseItem.timestamp &&
       Date.now() - releaseItem.timestamp < 7 * 24 * 60 * 60 * 1000
     ) {
-      logger.m(el.malId).log('Fininshed');
+      logger.m(el.apiCacheKey).log('Fininshed');
     } else if (
       releaseItem &&
       !releaseItem.value &&
       releaseItem.timestamp &&
       Date.now() - releaseItem.timestamp < 1 * 24 * 60 * 60 * 1000
     ) {
-      logger.m(el.malId).log('Nulled');
+      logger.m(el.apiCacheKey).log('Nulled');
     } else {
       remoteUpdateList.push(el);
     }
@@ -224,7 +224,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   }
 
   xhrArray.forEach(async xhr => {
-    const elRef = remoteUpdateList.find(el => xhr.malid === el.malId);
+    const elRef = remoteUpdateList.find(el => xhr.malid === el.apiCacheKey);
     if (!elRef) {
       return;
     }
