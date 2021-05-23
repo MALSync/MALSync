@@ -3,19 +3,38 @@ import { pageInterface } from '../pageInterface';
 export const AniMixPlay: pageInterface = {
   name: 'AniMixPlay',
   domain: 'https://animixplay.to',
+  database: 'AniMixPlay',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    return true;
+    if (url.split('/')[3].startsWith('v')) {
+      return true;
+    }
+    return false;
+  },
+  isOverviewPage(url) {
+    if (url.split('/')[3] === 'anime') {
+      return true;
+    }
+    return false;
   },
   sync: {
     getTitle(url) {
       return j.$('span.animetitle').text();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      if (hasMalOverview()) {
+        return j
+          .$('#animebtn')!
+          .attr('href')!
+          .split('/')[2];
+      }
+      return `nomal_${utils.urlPart(url, 4)}`;
     },
     getOverviewUrl(url) {
+      if (hasMalOverview()) {
+        return `${AniMixPlay.domain}/anime/${AniMixPlay.sync.getIdentifier(url)}`;
+      }
       return url.replace(/ep\d+$/i, '').replace(/\/$/, '');
     },
     getEpisode(url) {
@@ -28,9 +47,11 @@ export const AniMixPlay: pageInterface = {
       );
     },
     uiSelector(selector) {
-      j.$('button#followbtn')
-        .first()
-        .after(j.html(selector));
+      if (!hasMalOverview()) {
+        j.$('button#followbtn')
+          .first()
+          .after(j.html(selector));
+      }
     },
     nextEpUrl(url) {
       const nextEpisodeButton = j
@@ -45,13 +66,13 @@ export const AniMixPlay: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return '';
+      return j.$('#animepagetitle').text();
     },
     getIdentifier(url) {
-      return '';
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      // no Ui
+      j.$('#animepagetitle').after(j.html(`${selector}<br>`));
     },
     list: {
       offsetHandler: false,
@@ -87,7 +108,7 @@ export const AniMixPlay: pageInterface = {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
         function() {
-          return AniMixPlay.sync.getEpisode(page.url);
+          return AniMixPlay.sync.getEpisode(page.url) || AniMixPlay.isOverviewPage!(window.location.href);
         },
         function() {
           page.handlePage();
@@ -96,3 +117,7 @@ export const AniMixPlay: pageInterface = {
     }
   },
 };
+
+function hasMalOverview() {
+  return j.$('#animebtn[href]').length > 0;
+}
