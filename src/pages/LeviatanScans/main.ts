@@ -38,9 +38,7 @@ export const LeviatanScans: pageInterface = {
       return Number(episodePart);
     },
     nextEpUrl(url) {
-      return j
-        .$('div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page')
-        .attr('href');
+      return j.$('.nav-links .next_page').attr('href');
     },
   },
   overview: {
