@@ -61,6 +61,18 @@ export abstract class SingleAbstract {
 
   public abstract getCacheKey();
 
+  public getApiCacheKey(): string | number {
+    if (this.ids.mal) {
+      return this.ids.mal;
+    }
+
+    if (this.ids.ani) {
+      return `anilist:${this.ids.ani}`;
+    }
+
+    return '';
+  }
+
   abstract _setStatus(status: definitions.status): void;
 
   public setStatus(status: definitions.status): SingleAbstract {

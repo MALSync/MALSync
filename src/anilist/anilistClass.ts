@@ -5,7 +5,7 @@ import { UserList } from '../_provider/AniList/list';
 interface detail {
   page: 'detail';
   id: number;
-  malid: number;
+  apiCacheKey: number | string;
   type: 'anime' | 'manga';
 }
 
@@ -64,13 +64,17 @@ export class AnilistClass {
       this.page = {
         page: 'detail',
         id: utils.urlPart(this.url, 4),
-        malid: NaN,
+        apiCacheKey: NaN,
         type: urlpart,
       };
       this.siteSearch();
       this.streamingUI();
       helper.aniListToMal(this.page.id, this.page.type).then(malid => {
-        this.page!.malid = malid;
+        if (malid) {
+          this.page!.apiCacheKey = malid;
+        } else {
+          this.page!.apiCacheKey = `anilist:${this.page!.id}`;
+        }
         con.log('page', this.page);
         this.malToKiss();
       });
@@ -130,7 +134,7 @@ export class AnilistClass {
   malToKiss() {
     con.log('malToKiss');
     $('.mal_links').remove();
-    utils.getMalToKissArray(this.page!.type, this.page!.malid).then(links => {
+    utils.getMalToKissArray(this.page!.type, this.page!.apiCacheKey).then(links => {
       let html = '';
       for (const pageKey in links) {
         const page = links[pageKey];

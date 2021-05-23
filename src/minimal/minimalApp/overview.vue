@@ -756,14 +756,12 @@ export default {
         if (renderObj.isAuthenticated()) {
           this.updateStatusTags();
         }
-
-        if (renderObj.getMalUrl().split('').length > 3) {
-          utils.getMalToKissArray(renderObj.getType(), renderObj.getMalId()).then(links => {
-            if (!this.renderObj || stateTest !== this.renderObj.url) return;
-            this.kiss2mal = links;
-          });
-        }
       }
+
+      utils.getMalToKissArray(renderObj.getType(), renderObj.getApiCacheKey()).then(links => {
+        if (!this.renderObj || stateTest !== this.renderObj.url) return;
+        this.kiss2mal = links;
+      });
 
       if (this.renderObj.shortName !== 'MAL') {
         const tempi = await this.renderObj.getImage();

@@ -5,6 +5,7 @@ interface detail {
   page: 'detail';
   id: number;
   malid: number;
+  apiCacheKey: string | number;
   type: 'anime' | 'manga';
   malObj: undefined;
 }
@@ -87,6 +88,7 @@ export class KitsuClass {
         page: 'detail',
         id: malObj.getIds().kitsu.id,
         malid: malObj.getIds().mal,
+        apiCacheKey: malObj.getApiCacheKey(),
         type: urlpart,
         malObj,
       };
@@ -249,7 +251,7 @@ export class KitsuClass {
   malToKiss() {
     con.log('malToKiss');
     $('.mal_links').remove();
-    utils.getMalToKissArray(this.page!.type, this.page!.malid).then(links => {
+    utils.getMalToKissArray(this.page!.type, this.page!.apiCacheKey).then(links => {
       let html = '';
       for (const pageKey in links) {
         const page = links[pageKey];
