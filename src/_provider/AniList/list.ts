@@ -223,6 +223,7 @@ export class UserList extends ListAbstract {
         tempData = await this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
+          apiCacheKey: el.media.idMal ?? `anilist:${el.media.id}`,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
           type: listType,
           title: el.media.title.userPreferred,
@@ -239,6 +240,7 @@ export class UserList extends ListAbstract {
         tempData = await this.fn({
           uid: el.media.id,
           malId: el.media.idMal,
+          apiCacheKey: el.media.idMal ?? `anilist:${el.media.id}`,
           cacheKey: helper.getCacheKey(el.media.idMal, el.media.id),
           type: listType,
           title: el.media.title.userPreferred,

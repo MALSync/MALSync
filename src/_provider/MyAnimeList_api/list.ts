@@ -124,6 +124,7 @@ export class UserList extends ListAbstract {
           await this.fn({
             uid: el.node.id,
             malId: el.node.id,
+            apiCacheKey: el.node.id,
             cacheKey: el.node.id,
             type: this.listType,
             title: el.node.title,
@@ -142,6 +143,7 @@ export class UserList extends ListAbstract {
           await this.fn({
             uid: el.node.id,
             malId: el.node.id,
+            apiCacheKey: el.node.id,
             cacheKey: el.node.id,
             type: this.listType,
             title: el.node.title,
