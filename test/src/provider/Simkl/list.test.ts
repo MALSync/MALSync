@@ -21,6 +21,7 @@ const elements = [
   {
     malId: '8937',
     uid: 38165,
+    apiCacheKey: '8937',
     cacheKey: '8937',
     type: 'anime',
     title: 'Toaru Majutsu no Index II',
@@ -36,6 +37,7 @@ const elements = [
   {
     malId: '5667',
     uid: 38020,
+    apiCacheKey: '5667',
     cacheKey: '5667',
     type: 'anime',
     title: 'To Love-Ru: Trouble',
