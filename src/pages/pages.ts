@@ -127,6 +127,7 @@ import { TritiniaScans } from './TritiniaScans/main';
 import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
+import { Zoro } from './Zoro/main';
 
 export const pages = {
   nineAnime,
@@ -258,4 +259,5 @@ export const pages = {
   ReadManhua,
   FlameScans,
   ImmortalUpdates,
+  Zoro,
 };

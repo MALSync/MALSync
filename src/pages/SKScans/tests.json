@@ -1,0 +1,31 @@
+{
+  "title": "SKScans",
+  "url": "https://skscans.com/",
+  "testCases": [
+    {
+      "url": "https://skscans.com/manga/a-returners-magic-should-be-special/season-2/128/",
+      "expected": {
+        "sync": true,
+        "title": "A Returner's Magic Should Be Special",
+        "identifier": "a-returners-magic-should-be-special",
+        "overviewUrl": "https://skscans.com/manga/a-returners-magic-should-be-special/",
+        "nextEpUrl": "https://skscans.com/manga/a-returners-magic-should-be-special/season-2/129/",
+        "episode": 128,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://skscans.com/manga/a-returners-magic-should-be-special/",
+      "expected": {
+        "sync": false,
+        "title": "A Returner's Magic Should Be Special",
+        "identifier": "a-returners-magic-should-be-special",
+        "uiSelector": true,
+        "epList": {
+          "111": "https://skscans.com/manga/a-returners-magic-should-be-special/season-1/111/",
+          "140": "https://skscans.com/manga/a-returners-magic-should-be-special/season-2/140/"
+        }
+      }
+    }
+  ]
+}
