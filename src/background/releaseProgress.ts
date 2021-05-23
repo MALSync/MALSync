@@ -179,6 +179,8 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 
   const remoteUpdateList: listElement[] = [];
   await asyncForEach(Array, async el => {
+    if (!el.malId) return;
+
     const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
 
     if (releaseItem && releaseItem.value) {
