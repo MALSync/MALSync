@@ -1,0 +1,30 @@
+{
+  "title": "FlameScans",
+  "url": "https://flamescans.org/",
+  "testCases": [
+    {
+      "url": "https://flamescans.org/1781-solo-leveling-chapter-145/",
+      "expected": {
+        "sync": true,
+        "title": "Solo Leveling",
+        "identifier": "1234-solo-leveling",
+        "overviewUrl": "https://flamescans.org/series/1234-solo-leveling/",
+        "nextEpUrl": "https://flamescans.org/solo-leveling-chapter-146/",
+        "episode": 145,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://flamescans.org/series/1234-solo-leveling/",
+      "expected": {
+        "sync": false,
+        "title": "Solo Leveling",
+        "identifier": "1234-solo-leveling",
+        "uiSelector": true,
+        "epList": {
+          "115": "https://flamescans.org/solo-leveling-chapter-115/"
+        }
+      }
+    }
+  ]
+}

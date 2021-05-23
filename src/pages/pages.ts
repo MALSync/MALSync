@@ -120,6 +120,13 @@ import { AnimeShitai } from './AnimeShitai/main';
 import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
 import { CatManga } from './CatManga/main';
+import { MangaSushi } from './MangaSushi/main';
+import { ArangScans } from './ArangScans/main';
+import { HunlightScans } from './HunlightScans/main';
+import { TritiniaScans } from './TritiniaScans/main';
+import { ReadManhua } from './ReadManhua/main';
+import { FlameScans } from './FlameScans/main';
+import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 
 export const pages = {
@@ -245,5 +252,12 @@ export const pages = {
   KangaryuTeam,
   Japanread,
   CatManga,
+  MangaSushi,
+  ArangScans,
+  HunlightScans,
+  TritiniaScans,
+  ReadManhua,
+  FlameScans,
+  ImmortalUpdates,
   Zoro,
 };

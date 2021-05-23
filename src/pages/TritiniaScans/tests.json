@@ -1,0 +1,31 @@
+{
+  "title": "TritiniaScans",
+  "url": "https://tritinia.com/",
+  "testCases": [
+    {
+      "url": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/ch-98/",
+      "expected": {
+        "sync": true,
+        "title": "It’s Too Hard to Chase the Tsundere Prince",
+        "identifier": "its-too-hard-to-chase-the-tsundere-prince",
+        "overviewUrl": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/",
+        "nextEpUrl": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/ch-99/",
+        "episode": 98,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/",
+      "expected": {
+        "sync": false,
+        "title": "It’s Too Hard to Chase the Tsundere Prince",
+        "identifier": "its-too-hard-to-chase-the-tsundere-prince",
+        "uiSelector": true,
+        "epList": {
+          "17": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/ch-17/",
+          "206": "https://tritinia.com/manga/its-too-hard-to-chase-the-tsundere-prince/ch-206/"
+        }
+      }
+    }
+  ]
+}
