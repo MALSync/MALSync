@@ -33,7 +33,7 @@ export const Crunchyroll: pageInterface = {
           .first()
           .attr('href') ?? '',
         Crunchyroll.domain,
-      )
+      );
     },
     getEpisode(url) {
       return episodeHelper(
