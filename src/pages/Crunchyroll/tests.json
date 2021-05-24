@@ -1,20 +1,8 @@
 {
   "title": "Crunchyroll",
-  "enabled": false,
+  "enabled": true,
   "url": "https://www.crunchyroll.com/",
   "testCases": [
-    {
-      "url": "https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe",
-      "expected": {
-        "sync": false,
-        "title": "Ai-Mai-Mi Mousou Catastrophe",
-        "identifier": "Ai-Mai-Mi Mousou Catastrophe",
-        "uiSelector": true,
-        "epList": {
-          "5": "https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-5-untitled-658393"
-        }
-      }
-    },
     {
       "url":
         "https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-3-untitled-658389",
@@ -23,7 +11,7 @@
         "title": "Ai-Mai-Mi Mousou Catastrophe",
         "identifier": "Ai-Mai-Mi Mousou Catastrophe",
         "overviewUrl":
-          "https://www.crunchyroll.com/ai-mai-mi-mousou-catastrophe?media_id=658389",
+          "https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe",
         "nextEpUrl":
           "https://www.crunchyroll.com/de/ai-mai-mi-mousou-catastrophe/episode-4-untitled-658391",
         "episode": 3,
@@ -39,7 +27,7 @@
         "identifier": "(OmU) Katana Maidens ~ Toji No Miko",
         "episode": 12,
         "overviewUrl":
-          "https://www.crunchyroll.com/katana-maidens-toji-no-miko?media_id=758955",
+          "https://www.crunchyroll.com/de/katana-maidens-toji-no-miko",
         "nextEpUrl":
           "https://www.crunchyroll.com/de/katana-maidens-toji-no-miko/episode-13-hero-of-the-next-generation-768501"
       }
