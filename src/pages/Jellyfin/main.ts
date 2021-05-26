@@ -71,6 +71,9 @@ async function checkItemId(page, id, curUrl = '', video = false) {
   let reqUrl = `/Items?ids=${id}`;
   apiCall(reqUrl, true).then(response => {
     const data = JSON.parse(response.responseText);
+    if (!data.Items.length) {
+      return checkIfAuthIsUpToDate();
+    }
     switch (data.Items[0].Type) {
       case 'Episode':
       case 'Season':
@@ -248,6 +251,28 @@ async function getDeviceId(): Promise<string> {
       }
       reject();
     });
+  });
+}
+
+function checkIfAuthIsUpToDate() {
+  proxy.addProxy(async (caller: ScriptProxy) => {
+    const apiClient: any = proxy.getCaptureVariable('ApiClient');
+    con.m('apiClient').log(apiClient);
+    const curKey = getApiKey();
+
+    if (
+      apiClient &&
+      apiClient._serverInfo &&
+      apiClient._serverInfo.AccessToken &&
+      curKey === apiClient._serverInfo.AccessToken
+    ) {
+      return;
+    }
+    con.error('Reset Authentication');
+    await setBase('');
+    await setApiKey('');
+    await setUser('');
+    await checkApiClient();
   });
 }
 
