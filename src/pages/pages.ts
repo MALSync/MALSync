@@ -128,6 +128,7 @@ import { ReadManhua } from './ReadManhua/main';
 import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
+import { Funimation } from './Funimation/main';
 
 export const pages = {
   nineAnime,
@@ -260,4 +261,5 @@ export const pages = {
   FlameScans,
   ImmortalUpdates,
   Zoro,
+  Funimation,
 };
