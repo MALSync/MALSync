@@ -210,7 +210,16 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     getOverviewUrl(url) {
-      const base = window.location.href.split('?')[0];
+      let base = window.location.href.split('?')[0];
+      if (!base.includes('server/')) {
+        const href =
+          window.location.href.split('#')[0] +
+          j
+            .$('[href^="#!/server"]')
+            .first()
+            .attr('href');
+        base = href.split('?')[0];
+      }
       return `${base}?key=/library/metadata/${Plex.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
