@@ -193,6 +193,8 @@ async function checkApiClient() {
         }
         if (apiClient._currentUser && apiClient._currentUser.Id) {
           setUser(apiClient._currentUser.Id);
+        } else if (apiClient._serverInfo && apiClient._serverInfo.UserId) {
+          setUser(apiClient._serverInfo.UserId);
         }
         resolve(true);
         return;
