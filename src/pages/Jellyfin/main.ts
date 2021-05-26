@@ -69,6 +69,7 @@ async function urlChange(page) {
 
 async function checkItemId(page, id, curUrl = '', video = false) {
   let reqUrl = `/Items?ids=${id}`;
+  // eslint-disable-next-line consistent-return
   apiCall(reqUrl, true).then(response => {
     const data = JSON.parse(response.responseText);
     if (!data.Items.length) {
@@ -79,6 +80,7 @@ async function checkItemId(page, id, curUrl = '', video = false) {
       case 'Season':
         if (data.Items[0].Type === 'Episode' && !video) {
           con.log('Execute Episode only on video');
+          // eslint-disable-next-line consistent-return
           return;
         }
 
