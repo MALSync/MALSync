@@ -11,6 +11,19 @@ proxy.addCaptureVariable(
     if (window.hasOwnProperty("TITLE_DATA")) {
       return TITLE_DATA;
     } else {
+      var bodyh = document.body.innerHTML;
+      if (bodyh.includes('TITLE_DATA')) {
+        var bomatch = bodyh.match(/TITLE_DATA *= *({[^}]*})/);
+
+        if (bomatch) {
+          return {
+            seasonNum: parseInt(bomatch[1].match(/seasonNum *: *(\\d+|null),/)[1]),
+            episodeNum: parseInt(bomatch[1].match(/episodeNum *: *(\\d+|null),/)[1]),
+            alpha: bomatch[1].includes('extras') ? 'extras' : 'something',
+          }
+        }
+      }
+
       return undefined;
     }
   `,
@@ -65,83 +78,20 @@ export const Funimation: pageInterface = {
       return meta.episodeNum || 1;
     },
   },
-  overview: {
-    getTitle(url) {
-      const title = j.$('h1.heroTitle').text() || '';
-      if (getSeasonFromOverview() > 1) {
-        return `${title} season ${getSeasonFromOverview()}`;
-      }
-      return title;
-    },
-    getIdentifier(url) {
-      return `${url.split('/')[idPosition]}?s=${getSeasonFromOverview()}`;
-    },
-    uiSelector(selector) {
-      j.$('div.gradient-bg')
-        .first()
-        .before(j.html(`<div class="container"> ${selector}</div>`));
-    },
-    list: {
-      offsetHandler: true,
-      elementsSelector() {
-        return j.$('#quadSection > div > div > div.row > div.details-episode-wrap a.trackVideo.episodeDesc');
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), Funimation.domain);
-      },
-      elementEp(selector) {
-        return parseInt(selector.text().replace(/\D+/, '')) || 1;
-      },
-    },
-  },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       utils.waitUntilTrue(
         function() {
-          return (
-            j.$('h1.show-headline.video-title').length ||
-            (j.$('h1.heroTitle').text().length &&
-              j.$('#seasonSelect').length &&
-              Funimation.overview!.list!.elementsSelector().length)
-          );
+          return j.$('h1.show-headline.video-title').length;
         },
         function() {
           proxy.addProxy(async (caller: ScriptProxy) => {
             idPosition = window.location.href.split('/').indexOf('shows') + 1;
             page.handlePage();
-
-            let wait;
-            let oldElements = $('#quadSection > div > div > div.row > div.details-episode-wrap').html();
-
-            j.$(document).on('change', '#seasonSelect', () => {
-              page.reset();
-              window.clearInterval(wait);
-
-              wait = utils.waitUntilTrue(
-                function() {
-                  return (
-                    Funimation.overview!.list!.elementsSelector().length &&
-                    oldElements !== $('#quadSection > div > div > div.row > div.details-episode-wrap').html()
-                  );
-                },
-                function() {
-                  oldElements = $('#quadSection > div > div > div.row > div.details-episode-wrap').html();
-                  page.handlePage();
-                },
-              );
-            });
           });
         },
       );
     });
   },
 };
-
-function getSeasonFromOverview(): number {
-  const select = $('#seasonSelect option:selected').val();
-  if (select) {
-    return parseInt(select.toString().replace(/\D+/, '')) || 1;
-  }
-  return 1;
-}
