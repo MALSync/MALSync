@@ -210,12 +210,8 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     getOverviewUrl(url) {
-      return (
-        Plex.domain +
-        $('[class^="AudioVideoPlayerView"] [class*="MetadataPosterTitle"][data-qa-id="metadataTitleLink"]')
-          .first()
-          .attr('href')!
-      );
+      const base = window.location.href.split('?')[0];
+      return `${base}?key=/library/metadata/${Plex.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return item.index;
