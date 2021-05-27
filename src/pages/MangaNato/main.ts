@@ -1,16 +1,25 @@
 import { pageInterface } from '../pageInterface';
 
-export const MangaNelo: pageInterface = {
-  name: 'MangaNelo',
-  domain: 'https://manganelo.com',
-  database: 'MangaNelo',
+export const MangaNato: pageInterface = {
+  name: 'MangaNato',
+  domain: ['https://manganato.com', 'https://readmanganato.com'],
+  database: 'MangaNato',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'chapter') {
-      return true;
-    }
-    return false;
+    return (
+      typeof url.split('/')[3] !== 'undefined' &&
+      url.split('/')[3].startsWith('manga-') &&
+      typeof url.split('/')[4] !== 'undefined' &&
+      url.split('/')[4].length > 0
+    );
+  },
+  isOverviewPage(url) {
+    return (
+      typeof url.split('/')[3] !== 'undefined' &&
+      url.split('/')[3].startsWith('manga-') &&
+      typeof url.split('/')[4] === 'undefined'
+    );
   },
   getImage() {
     return $('div.story-info-left > span.info-image > img').attr('src');
@@ -20,15 +29,15 @@ export const MangaNelo: pageInterface = {
       return j.$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 3);
     },
     getOverviewUrl(url) {
       return j.$('div.body-site > div > div.panel-breadcrumb > a:nth-child(3)').attr('href') || '';
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 5);
+      const episodePart = utils.urlPart(url, 4);
 
-      const temp = episodePart.match(/chapter_\d+/gi);
+      const temp = episodePart.match(/chapter[_-]\d+/gi);
 
       if (!temp || !temp.length) return 0;
 
@@ -46,7 +55,7 @@ export const MangaNelo: pageInterface = {
       return j.$('div.panel-story-info > div.story-info-right > h1').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
       j.$('div.panel-story-chapter-list')
@@ -71,7 +80,7 @@ export const MangaNelo: pageInterface = {
         );
       },
       elementEp(selector) {
-        return MangaNelo.sync.getEpisode(
+        return MangaNato.sync.getEpisode(
           String(
             selector
               .find('a')
@@ -84,10 +93,8 @@ export const MangaNelo: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'manga') {
-        page.handlePage();
-      }
+    j.$(() => {
+      page.handlePage();
     });
   },
 };

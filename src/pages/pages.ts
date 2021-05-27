@@ -26,7 +26,7 @@ import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
 import { DubbedAnime } from './DubbedAnime/main';
 import { VIZ } from './VIZ/main';
-import { MangaNelo } from './MangaNelo/main';
+import { MangaNato } from './MangaNato/main';
 import { NekoSama } from './NekoSama/main';
 import { AnimeZone } from './AnimeZone/main';
 import { AnimeOdcinki } from './AnimeOdcinki/main';
@@ -158,7 +158,7 @@ export const pages = {
   Shinden,
   Voiranime,
   DubbedAnime,
-  MangaNelo,
+  MangaNato,
   VIZ,
   NekoSama,
   AnimeOdcinki,
