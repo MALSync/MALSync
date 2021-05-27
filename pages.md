@@ -523,13 +523,6 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-  </tr><tr>
-    <td><a href="https://beta.kitsune.tv"><img src="https://beta.kitsune.tv/icons/favicon-16x16.png"> Kitsune</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-    <td>:x:</td>
   </tr>
     </tbody>
   </table>

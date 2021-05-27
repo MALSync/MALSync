@@ -48,7 +48,6 @@ export const settingsObj = {
     MangaSee: true,
     YugenAnime: true,
     AniMixPlay: true,
-    Kitsune: true,
 
     autofull: false,
     autoresume: false,
