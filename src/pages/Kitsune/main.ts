@@ -21,9 +21,9 @@ export const Kitsune: pageInterface = {
   isSyncPage(url) {
     return jsonData.page === 'episode/watch';
   },
-  isOverviewPage(url) {
-    return jsonData.page === 'series/overview';
-  },
+  // isOverviewPage(url) {
+  //   return jsonData.page === 'series/overview';
+  // },
   sync: {
     getTitle(url) {
       return jsonData.name;
@@ -52,16 +52,13 @@ export const Kitsune: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return Kitsune.sync.getTitle(url);
+      return '';
     },
     getIdentifier(url) {
-      return Kitsune.sync.getIdentifier(url);
+      return '';
     },
     uiSelector(selector) {
-      j.$('#mal-sync');
-    },
-    getMalUrl(provider) {
-      return Kitsune.sync.getMalUrl!(provider);
+      // No UI
     },
     list: {
       offsetHandler: false,
