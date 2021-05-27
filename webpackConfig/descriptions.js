@@ -153,7 +153,7 @@ function readMe() {
       continue;
     }
 
-    if (page.name === 'MangaNelo') {
+    if (page.name === 'MangaNato') {
       mangas.push(
         '<a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a>',
       );
@@ -219,8 +219,8 @@ function createJson() {
     res.push({
       domain: page.domain,
       type: page.type,
-      name: page.name
-    })
+      name: page.name,
+    });
   }
 
   const descFile = path.join(__dirname, '../src/pages/list.json');

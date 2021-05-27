@@ -145,7 +145,7 @@
         <checkbox option="Gogoanime">Gogoanime</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaFox">MangaFox</checkbox>
-        <checkbox option="MangaNelo">MangaNelo</checkbox>
+        <checkbox option="MangaNato">MangaNato</checkbox>
         <checkbox option="MangaSee">MangaSee</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="YugenAnime">YugenAnime</checkbox>
