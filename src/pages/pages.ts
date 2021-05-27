@@ -129,6 +129,7 @@ import { FlameScans } from './FlameScans/main';
 import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Funimation } from './Funimation/main';
+import { Kitsune } from './Kitsune/main';
 
 export const pages = {
   nineAnime,
@@ -262,4 +263,5 @@ export const pages = {
   ImmortalUpdates,
   Zoro,
   Funimation,
+  Kitsune,
 };

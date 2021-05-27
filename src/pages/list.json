@@ -608,5 +608,10 @@
     "domain": "https://catmanga.org",
     "type": "manga",
     "name": "CatManga"
+  },
+  {
+    "domain": "https://beta.kitsune.tv",
+    "type": "anime",
+    "name": "Kitsune"
   }
 ]
