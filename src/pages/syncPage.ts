@@ -465,6 +465,7 @@ export class SyncPage {
                 </div>
                 <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
                   ${api.storage.lang('syncPage_flash_player_error')}
+                  <a href="https://discord.com/invite/cTH4yaw" style="display: block; padding: 10px">Help</a>
                 </div>
               ${message}`;
               options = {

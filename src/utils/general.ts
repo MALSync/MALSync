@@ -747,6 +747,9 @@ function initflashm() {
                  #flashinfo-div:hover, #flashinfo-div.hover{
                   z-index: 2147483647;
                  }
+                 #flashinfo-div.player-error {
+                   z-index: 2147483647;
+                 }
                  #flashinfo-div.player-error .type-update{
                   overflow: visible !important;
                   opacity: 1 !important;
