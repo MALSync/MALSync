@@ -73,6 +73,7 @@ export const AniMixPlay: pageInterface = {
     },
     uiSelector(selector) {
       j.$('#animepagetitle').after(j.html(`${selector}`));
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       j.$('#malp').append('<br>');
     },
     list: {
