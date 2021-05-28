@@ -88,15 +88,22 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
           sendResponse(responseObj);
         }
       };
-
       if (typeof message.url === 'object') {
         xhr.open(message.method, message.url.url, true);
         for (const key in message.url.headers) {
           xhr.setRequestHeader(key, message.url.headers[key]);
         }
+        if (message.url.url.includes('malsync.moe')) {
+          xhr.setRequestHeader('version', api.storage.version());
+          xhr.setRequestHeader('type', 'addon');
+        }
         xhr.send(message.url.data);
       } else {
         xhr.open(message.method, message.url, true);
+        if (message.url.includes('malsync.moe')) {
+          xhr.setRequestHeader('version', api.storage.version());
+          xhr.setRequestHeader('type', 'addon');
+        }
         xhr.send();
       }
       return true;
