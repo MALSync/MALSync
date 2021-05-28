@@ -118,6 +118,7 @@ export class UserList extends ListAbstract {
           await this.fn({
             uid: el.anime_id,
             malId: el.anime_id,
+            apiCacheKey: el.anime_id,
             cacheKey: el.anime_id,
             type: this.listType,
             title: el.anime_title,
@@ -136,6 +137,7 @@ export class UserList extends ListAbstract {
           await this.fn({
             uid: el.manga_id,
             malId: el.manga_id,
+            apiCacheKey: el.manga_id,
             cacheKey: el.manga_id,
             type: this.listType,
             title: el.manga_title,

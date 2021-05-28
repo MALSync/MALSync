@@ -8,6 +8,7 @@ Object.seal(emitter);
 export interface listElement {
   uid: number;
   malId: number;
+  apiCacheKey: number | string;
   cacheKey: any;
   type: 'anime' | 'manga';
   title: string;

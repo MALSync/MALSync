@@ -24,6 +24,7 @@ const elements = [
   {
     uid: 9624,
     malId: 9624,
+    apiCacheKey: 9624,
     cacheKey: 9624,
     type: 'anime',
     title: '30-sai no Hoken Taiiku',
@@ -40,6 +41,7 @@ const elements = [
   {
     uid: 112124,
     malId: 40454,
+    apiCacheKey:  40454,
     cacheKey: 40454,
     type: 'anime',
     title: 'Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka III',

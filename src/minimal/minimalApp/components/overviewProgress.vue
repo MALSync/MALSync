@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="malId && elements && elements.length"
+    v-if="apiCacheKey && elements && elements.length"
     class="mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp"
     style="padding: 8px;"
   >
@@ -68,7 +68,7 @@ export default {
     CountryFlag,
   },
   props: {
-    malId: {
+    apiCacheKey: {
       type: Number,
     },
     type: {
@@ -112,7 +112,7 @@ export default {
     },
   },
   watch: {
-    malId: {
+    apiCacheKey: {
       immediate: true,
       handler(newVal) {
         this.xhr = '';
@@ -120,7 +120,7 @@ export default {
         return api.request
           .xhr('GET', `https://api.malsync.moe/nc/mal/${this.type}/${newVal}/progress`)
           .then(response => {
-            if (cur === `${this.malId}s`) {
+            if (cur === `${this.apiCacheKey}s`) {
               try {
                 this.xhr = JSON.parse(response.responseText);
               } catch (e) {

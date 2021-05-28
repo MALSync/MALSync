@@ -81,7 +81,7 @@ export class Progress {
     live:
       | {
           uid: number;
-          malId: number | null;
+          apiCacheKey: number | string | null;
           title: string;
           cacheKey: string;
           progressMode: string;

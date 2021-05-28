@@ -188,6 +188,7 @@ export class UserList extends ListAbstract {
       if (listType === 'anime') {
         tempData = await this.fn({
           malId,
+          apiCacheKey: malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,
@@ -205,6 +206,7 @@ export class UserList extends ListAbstract {
       } else {
         tempData = await this.fn({
           malId,
+          apiCacheKey: malId,
           uid: el.id,
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,

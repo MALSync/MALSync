@@ -61,6 +61,18 @@ export abstract class SingleAbstract {
 
   public abstract getCacheKey();
 
+  public getApiCacheKey(): string | number {
+    if (this.ids.mal) {
+      return this.ids.mal;
+    }
+
+    if (this.ids.ani) {
+      return `anilist:${this.ids.ani}`;
+    }
+
+    return '';
+  }
+
   abstract _setStatus(status: definitions.status): void;
 
   public setStatus(status: definitions.status): SingleAbstract {
@@ -151,12 +163,12 @@ export abstract class SingleAbstract {
   protected prList: { key: string; label: string }[] = [];
 
   public async initProgress() {
-    const xhr = await predictionXhrGET(this.getType()!, this.getMalId());
+    const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
     this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
-        malId: this.getMalId(),
+        apiCacheKey: this.getApiCacheKey(),
         title: this.getTitle(),
         cacheKey: this.getCacheKey(),
         progressMode: this.getProgressMode(),

@@ -77,6 +77,7 @@ export class UserList extends ListAbstract {
       if (listType === 'anime') {
         const tempData = await this.fn({
           malId: el.show.ids.mal,
+          apiCacheKey: el.show.ids.mal,
           uid: el.show.ids.simkl,
           cacheKey: this.getCacheKey(el.show.ids.mal, el.show.ids.simkl),
           type: listType,
