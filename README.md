@@ -31,7 +31,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://vrv.co"><img src="https://www.google.com/s2/favicons?domain=https://vrv.co"> Vrv</a></td>
-                <td><a href="https://manganelo.com"><img src="https://www.google.com/s2/favicons?domain=https://manganelo.com"> MangaNelo</a></td>
+                <td><a href="https://manganato.com"><img src="https://www.google.com/s2/favicons?domain=https://manganato.com"> MangaNato</a></td>
                 <td><a href="https://jellyfin.org/"><img src="https://www.google.com/s2/favicons?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a></td>
               </tr><tr>
                 <td><a href="https://gogoanimes.co"><img src="https://www.google.com/s2/favicons?domain=https://gogoanimes.co"> Gogoanime</a></td>
@@ -63,7 +63,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://jkanime.net"><img src="https://www.google.com/s2/favicons?domain=https://jkanime.net"> Jkanime</a></td>
-                <td><a href="https://www.japscan.se"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.se"> JapScan</a></td>
+                <td><a href="https://www.japscan.ws"><img src="https://www.google.com/s2/favicons?domain=https://www.japscan.ws"> JapScan</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a></td>
@@ -219,31 +219,31 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://justanime.app"><img src="https://www.google.com/s2/favicons?domain=https://justanime.app"> JustAnime</a></td>
-                <td></td>
+                <td><a href="https://mangasushi.net"><img src="https://www.google.com/s2/favicons?domain=https://mangasushi.net"> MangaSushi</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://yayanimes.net"><img src="https://www.google.com/s2/favicons?domain=https://yayanimes.net"> YayAnimes</a></td>
-                <td></td>
+                <td><a href="https://arangscans.com"><img src="https://www.google.com/s2/favicons?domain=https://arangscans.com"> ArangScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://desu-online.pl"><img src="https://www.google.com/s2/favicons?domain=https://desu-online.pl"> DesuOnline</a></td>
-                <td></td>
+                <td><a href="https://hunlight-scans.info/"><img src="https://www.google.com/s2/favicons?domain=https://hunlight-scans.info/"> HunlightScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://simplyaweeb.com"><img src="https://www.google.com/s2/favicons?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
-                <td></td>
+                <td><a href="https://tritinia.com"><img src="https://www.google.com/s2/favicons?domain=https://tritinia.com"> TritiniaScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animevibe.wtf"><img src="https://www.google.com/s2/favicons?domain=https://animevibe.wtf"> Animevibe</a></td>
-                <td></td>
+                <td><a href="https://readmanhua.net"><img src="https://www.google.com/s2/favicons?domain=https://readmanhua.net"> ReadManhua</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime-on-demand.de"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-on-demand.de"> AnimeOnDemand</a></td>
-                <td></td>
+                <td><a href="https://flamescans.org"><img src="https://www.google.com/s2/favicons?domain=https://flamescans.org"> FlameScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://tioanime.com"><img src="https://www.google.com/s2/favicons?domain=https://tioanime.com"> tioanime</a></td>
-                <td></td>
+                <td><a href="https://immortalupdates.com"><img src="https://www.google.com/s2/favicons?domain=https://immortalupdates.com"> ImmortalUpdates</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://yugenani.me"><img src="https://www.google.com/s2/favicons?domain=https://yugenani.me"> YugenAnime</a></td>
@@ -299,6 +299,18 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.anime-shitai.com"><img src="https://www.google.com/s2/favicons?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://zoro.to"><img src="https://www.google.com/s2/favicons?domain=https://zoro.to"> Zoro</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://www.funimation.com"><img src="https://www.google.com/s2/favicons?domain=https://www.funimation.com"> Funimation</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://beta.kitsune.tv"><img src="https://www.google.com/s2/favicons?domain=https://beta.kitsune.tv"> Kitsune</a></td>
                 <td></td>
                 <td></td>
               </tr>

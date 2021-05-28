@@ -135,9 +135,9 @@
     "name": "DubbedAnime"
   },
   {
-    "domain": "https://manganelo.com",
+    "domain": "https://manganato.com",
     "type": "manga",
-    "name": "MangaNelo"
+    "name": "MangaNato"
   },
   {
     "domain": "https://www.viz.com",
@@ -200,7 +200,7 @@
     "name": "MangaPlus"
   },
   {
-    "domain": "https://www.japscan.se",
+    "domain": "https://www.japscan.ws",
     "type": "manga",
     "name": "JapScan"
   },
@@ -608,5 +608,55 @@
     "domain": "https://catmanga.org",
     "type": "manga",
     "name": "CatManga"
+  },
+  {
+    "domain": "https://mangasushi.net",
+    "type": "manga",
+    "name": "MangaSushi"
+  },
+  {
+    "domain": "https://arangscans.com",
+    "type": "manga",
+    "name": "ArangScans"
+  },
+  {
+    "domain": "https://hunlight-scans.info/",
+    "type": "manga",
+    "name": "HunlightScans"
+  },
+  {
+    "domain": "https://tritinia.com",
+    "type": "manga",
+    "name": "TritiniaScans"
+  },
+  {
+    "domain": "https://readmanhua.net",
+    "type": "manga",
+    "name": "ReadManhua"
+  },
+  {
+    "domain": "https://flamescans.org",
+    "type": "manga",
+    "name": "FlameScans"
+  },
+  {
+    "domain": "https://immortalupdates.com",
+    "type": "manga",
+    "name": "ImmortalUpdates"
+  },
+  {
+    "domain": "https://zoro.to",
+    "type": "anime",
+    "name": "Zoro"
+  },
+  {
+    "domain": "https://www.funimation.com",
+    "type": "anime",
+    "name": "Funimation"
+  },
+  {
+    "domain": "https://beta.kitsune.tv",
+    "type": "anime",
+    "name": "Kitsune"
   }
 ]
