@@ -41,7 +41,7 @@ export const settingsObj = {
     Gogoanime: true,
     Twistmoe: true,
     Mangadex: true,
-    MangaNelo: true,
+    MangaNato: true,
     AnimeSimple: true,
     animepahe: true,
     MangaFox: true,

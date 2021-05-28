@@ -1,0 +1,44 @@
+{
+  "title": "manganato",
+  "url": "https://manganato.com/",
+  "testCases": [
+    {
+      "url": "https://readmanganato.com/manga-yz975382/chapter-190",
+      "expected": {
+        "sync": true,
+        "title": "Dr. Stone",
+        "identifier": "manga-yz975382",
+        "overviewUrl": "https://readmanganato.com/manga-yz975382",
+        "nextEpUrl": "https://readmanganato.com/manga-yz975382/chapter-191",
+        "episode": 190,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manganato.com/manga-zp951872",
+      "expected": {
+        "sync": false,
+        "title": "Baby Steps",
+        "identifier": "manga-zp951872",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://readmanganato.com/manga-zp951872/chapter-5",
+          "194": "https://readmanganato.com/manga-zp951872/chapter-194"
+        }
+      }
+    },
+    {
+      "url": "https://readmanganato.com/manga-yz975382",
+      "expected": {
+        "sync": false,
+        "title": "Dr. Stone",
+        "identifier": "manga-yz975382",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://readmanganato.com/manga-yz975382/chapter-5",
+          "194": "https://readmanganato.com/manga-yz975382/chapter-194"
+        }
+      }
+    }
+  ]
+}
