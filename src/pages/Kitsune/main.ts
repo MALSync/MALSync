@@ -1,4 +1,5 @@
 import { pageInterface } from '../pageInterface';
+import { aniListToMal } from '../../_provider/AniList/helper';
 
 // WATCH_SYNC contents
 type KitsuneWatchSyncData = {
@@ -45,7 +46,13 @@ export const Kitsune: pageInterface = {
         .find('a')
         .attr('href');
     },
-    getMalUrl(provider) {
+    async getMalUrl(provider) {
+      try {
+        const malId = await aniListToMal(jsonData.anilistId, 'anime');
+        return `https://myanimelist.net/anime/${malId}`;
+      } catch (e) {
+        // do nothing
+      }
       if (provider === 'ANILIST') return `https://anilist.co/anime/${jsonData.anilistId}`;
       return false;
     },
