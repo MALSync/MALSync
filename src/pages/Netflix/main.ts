@@ -31,6 +31,8 @@ const genres = [
   64256,
   2951909,
   6721,
+  2867325,
+  1522234,
 ];
 
 // Define the variable proxy element:
