@@ -18,6 +18,7 @@ export const Zoro: pageInterface = {
   domain: 'https://zoro.to',
   languages: ['English'],
   type: 'anime',
+  database: 'Zoro',
   isSyncPage(url) {
     return jsonData.page === 'episode';
   },

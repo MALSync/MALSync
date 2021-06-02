@@ -48,6 +48,7 @@ export const settingsObj = {
     MangaSee: true,
     YugenAnime: true,
     AniMixPlay: true,
+    Zoro: true,
 
     autofull: false,
     autoresume: false,
