@@ -82,6 +82,7 @@ export const Zoro: pageInterface = {
     });
 
     let interval;
+    let _debounce;
     function check() {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
@@ -93,8 +94,10 @@ export const Zoro: pageInterface = {
           return false;
         },
         function() {
-          console.log(jsonData);
-          page.handlePage();
+          clearTimeout(_debounce);
+          _debounce = setTimeout(() => {
+            page.handlePage();
+          }, 500);
         },
       );
     }
