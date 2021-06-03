@@ -62,6 +62,7 @@ import { TRanimeizle } from './TRanimeizle/main';
 import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
 import { Scantrad } from './Scantrad/main';
+import { Furyosquad } from './Furyosquad/main';
 import { AnimeId } from './AnimeId/main';
 import { AniMixPlay } from './AniMixPlay/main';
 import { MyAnimeListVideo } from './MyAnimeListVideo/main';
@@ -196,6 +197,7 @@ export const pages = {
   Anihub,
   AnimeStreamingFR,
   Scantrad,
+  Furyosquad,
   AnimeId,
   AniMixPlay,
   MyAnimeListVideo,

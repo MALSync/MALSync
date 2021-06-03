@@ -1,0 +1,31 @@
+{
+  "title": "Furyosquad",
+  "url": "https://furyosquad.com/",
+  "testCases": [
+    {
+      "url": "https://furyosquad.com/read/crows/fr/26/94/",
+      "expected": {
+        "sync": true,
+        "title": "CROWS",
+        "identifier": "crows",
+        "overviewUrl": "https://furyosquad.com/series/crows/",
+        "nextEpUrl": "https://furyosquad.com/read/crows/fr/26/95/",
+        "episode": 94,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://furyosquad.com/series/crows/",
+      "expected": {
+        "sync": false,
+        "title": "CROWS",
+        "identifier": "crows",
+        "uiSelector": true,
+        "epList": {
+          "26": "https://furyosquad.com/read/crows/fr/8/26/",
+          "51": "https://furyosquad.com/read/crows/fr/15/51/"
+        }
+      }
+    }
+  ]
+}
