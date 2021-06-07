@@ -1,5 +1,23 @@
 import { pageInterface } from '../pageInterface';
 
+let mangaData = {
+  id: '',
+  title: '',
+  coverId: '',
+  links: {
+    mal: '',
+    kt: '',
+    al: '',
+  },
+};
+
+let chapterData = {
+  id: '',
+  chapter: '',
+  volume: '',
+  translatedLanguage: '',
+};
+
 export const Mangadex: pageInterface = {
   name: 'Mangadex',
   domain: 'https://www.mangadex.org',
@@ -7,226 +25,117 @@ export const Mangadex: pageInterface = {
   languages: ['Many'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] !== 'chapter') {
-      return false;
-    }
-    return true;
+    return (
+      typeof url.split('/')[3] !== 'undefined' &&
+      url.split('/')[3] === 'chapter' &&
+      typeof url.split('/')[4] !== 'undefined' &&
+      url.split('/')[4].length > 0
+    );
   },
-  getImage() {
-    return $('#content a img').attr('src');
+  isOverviewPage(url) {
+    return (
+      typeof url.split('/')[3] !== 'undefined' &&
+      url.split('/')[3] === 'title' &&
+      typeof url.split('/')[4] !== 'undefined' &&
+      url.split('/')[4].length > 0
+    );
+  },
+  async getImage() {
+    if (!mangaData.coverId) return undefined;
+    try {
+      const coverResponse = await request(`cover/${mangaData.coverId}`);
+      const cover = JSON.parse(coverResponse.responseText);
+      return `https://uploads.mangadex.org/covers/${mangaData.id}/${cover.data.attributes.fileName}`;
+    } catch (e) {
+      // do nothing
+    }
+    return undefined;
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.manga-link, a.manga_title')
-        .text()
-        .trim();
+      return mangaData.title;
     },
     getIdentifier(url) {
-      return utils.urlPart(Mangadex.sync.getOverviewUrl(url), 4);
+      return mangaData.id;
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('a.manga-link, a.manga_title')
-          .first()
-          .attr('href'),
-        Mangadex.domain,
-      );
+      return utils.absoluteLink(`/title/${mangaData.id}`, Mangadex.domain);
     },
     getEpisode(url) {
-      const chapterId = url.split('/')[4];
-      const curOption = j.$(`#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`);
-      if (curOption.length) {
-        const temp = curOption
-          .text()
-          .trim()
-          .match(/(ch\.|chapter)\D?\d+/i);
-        if (temp !== null) {
-          return EpisodePartToEpisode(temp[0]);
-        }
-        if (
-          curOption
-            .text()
-            .toLowerCase()
-            .indexOf('oneshot') !== -1
-        ) {
-          return 1;
-        }
-      }
-      return NaN;
+      return parseInt(chapterData.chapter) || 1;
     },
     getVolume(url) {
-      const chapterId = url.split('/')[4];
-      const curOption = j.$(`#jump-chapter option[value="${chapterId}"], #jump_chapter option[value="${chapterId}"]`);
-      if (curOption.length) {
-        let temp = curOption
-          .text()
-          .trim()
-          .match(/(vol\.|volume)\D?\d+/i);
-        if (temp !== null) {
-          temp = temp[0].match(/\d+/);
-          if (temp !== null) {
-            return parseInt(temp[0]);
-          }
-        }
-      }
-      return 0;
+      return parseInt(chapterData.volume);
     },
-    nextEpUrl(url) {
-      let linkDirection = 'left';
-
-      if (j.$('#content').attr('data-direction') === 'ltr') linkDirection = 'right';
-
-      const chapterAnchorHref = j
-        .$(`a.chapter-link-${linkDirection}.col-auto.arrow-link`)
-        .first()
-        .attr('href');
-
-      if (!chapterAnchorHref) return '';
-
-      const chapterHrefParts = chapterAnchorHref.split('/');
-
-      if (chapterHrefParts.length < 2 || chapterHrefParts[1] !== 'chapter') return '';
-
-      return (
-        Mangadex.domain +
-        (j
-          .$(`a.chapter-link-${linkDirection}.col-auto.arrow-link`)
-          .first()
-          .attr('href') || '')
-      );
+    getMalUrl(provider) {
+      if (mangaData.links.mal) return `https://myanimelist.net/manga/${mangaData.links.mal}`;
+      if (provider === 'ANILIST' && mangaData.links.al) return `https://anilist.co/manga/${mangaData.links.al}`;
+      if (provider === 'KITSU' && mangaData.links.kt) return `https://kitsu.io/manga/${mangaData.links.kt}`;
+      return false;
     },
   },
   overview: {
-    getTitle() {
-      return j
-        .$('.card-header')
-        .first()
-        .find('.mx-1')
-        .text()
-        .trim();
+    getTitle(url) {
+      return mangaData.title;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return mangaData.id;
     },
     uiSelector(selector) {
-      j.$('.container .card .edit.row > * > .row')
+      j.$('div.title__desktop')
         .first()
-        .after(
-          j.html(
-            '<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MAL-Sync:</div><div class="col-lg-9 col-xl-10 kal-ui"></div></div>',
-          ),
-        );
-      j.$('.container .card .kal-ui')
-        .first()
-        .append(j.html(selector));
+        .after(j.html(selector));
     },
     getMalUrl(provider) {
-      let url = j
-        .$('a[href^="https://myanimelist.net/manga/"]')
-        .not('#malRating')
-        .first()
-        .attr('href');
-      if (url) return url;
-      if (provider === 'ANILIST') {
-        url = j
-          .$('a[href^="https://anilist.co/manga/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
-        if (url) return url;
-      }
-      if (provider === 'KITSU') {
-        url = j
-          .$('a[href^="https://kitsu.io/manga/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
-        if (url) return url;
-      }
-      return false;
-    },
-    list: {
-      offsetHandler: false,
-      elementsSelector() {
-        return j.$('.chapter-container > .row:not(:first-of-type) .chapter-row');
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Mangadex.domain,
-        );
-      },
-      elementEp(selector) {
-        return Number(selector.attr('data-chapter'));
-      },
+      return Mangadex.sync.getMalUrl!(provider);
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    if (j.$('.card-header').length) {
-      if (/chapter\/\d+\/comments/i.test(window.location.href)) {
-        con.info('Comments');
-        return;
+    utils.fullUrlChangeDetect(function() {
+      page.reset();
+      check();
+    }, true);
+
+    async function check() {
+      if (!Mangadex.isSyncPage(window.location.href) && !Mangadex.isOverviewPage!(window.location.href)) return;
+
+      if (Mangadex.isSyncPage(window.location.href)) {
+        chapterData.id = utils.urlPart(window.location.href, 4);
+        const chapterResponse = await request(`chapter/${chapterData.id}`);
+        const chapter = JSON.parse(chapterResponse.responseText);
+        chapterData.chapter = chapter.data.attributes.chapter;
+        chapterData.volume = chapter.data.attributes.volume;
+        chapterData.translatedLanguage = chapter.data.attributes.translatedLanguage;
+        mangaData.id = chapter.relationships.find(relation => relation.type === 'manga').id;
       }
-      j.$(document).ready(function() {
-        page.handlePage();
-      });
-    } else {
-      con.info('Waiting');
-      utils.waitUntilTrue(
-        function() {
-          return Mangadex.sync.getOverviewUrl('');
-        },
-        function() {
-          con.info('Start');
-          page.handlePage();
-          let tempChapterId = utils.urlPart(window.location.href, 4);
-          utils.urlChangeDetect(function() {
-            const newTempChapterId = utils.urlPart(window.location.href, 4);
-            if (tempChapterId !== newTempChapterId) {
-              tempChapterId = newTempChapterId;
-              con.info('Check');
-              page.handlePage();
-            } else {
-              con.info('Nothing to do');
-            }
-          });
-        },
-      );
+      if (Mangadex.isOverviewPage!(window.location.href)) {
+        mangaData.id = utils.urlPart(window.location.href, 4);
+      }
+
+      const mangaResponse = await request(`manga/${mangaData.id}`);
+      const manga = JSON.parse(mangaResponse.responseText);
+      const titleData = manga.data.attributes.title;
+      mangaData.title =
+        titleData.en ?? titleData[manga.data.attributes.originalLanguage] ?? titleData[Object.keys(titleData)[0]];
+      mangaData.links = manga.data.attributes.links;
+      mangaData.coverId = manga.relationships.find(relation => relation.type === 'cover_art')?.id;
+
+      page.handlePage();
     }
-    j.$(document).ready(function() {
-      switch ($('#theme_id').val()) {
-        case '2':
-        case '4':
-        case '6':
-        case '7':
-          $('body').addClass('MALSyncDark');
-          break;
-        default:
-      }
-    });
   },
 };
 
-function EpisodePartToEpisode(string) {
-  if (!string) return '';
-  if (!Number.isNaN(parseInt(string))) {
-    return string;
-  }
-  let temp = [];
-  temp = string.match(/(ch\.|chapter)\D?\d+/i);
-  console.log(temp);
-  if (temp !== null) {
-    string = temp[0];
-    temp = string.match(/\d+/);
-    if (temp !== null) {
-      return temp[0];
-    }
-  }
-  return '';
+function request(path): Promise<XMLHttpRequest> {
+  return new Promise(function(resolve, reject) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `https://api.mangadex.org/${path}`);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        resolve(xhr);
+      } else {
+        reject(xhr);
+      }
+    };
+    xhr.send();
+  });
 }
