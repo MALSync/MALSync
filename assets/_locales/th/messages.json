@@ -1,0 +1,1142 @@
+{
+  "Search": {
+    "message": "ค้นหาไซต์",
+    "description": "Button to open the site search links on mal, anilist ..."
+  },
+  "Show": {
+    "message": "แสดง",
+    "description": "Show"
+  },
+  "Help": {
+    "message": "ตัวช่วย",
+    "description": "Help"
+  },
+  "Update": {
+    "message": "อัปเดต",
+    "description": "Update"
+  },
+  "Add": {
+    "message": "เพิ่ม",
+    "description": "Button to add an anime/manga to user list"
+  },
+  "Reset": {
+    "message": "รีเซ็ต",
+    "description": "Reset"
+  },
+  "Remove": {
+    "message": "ลบ",
+    "description": "Button for removing entry from MAL..."
+  },
+  "Loading": {
+    "message": "กำลังโหลด",
+    "description": "Loading"
+  },
+  "Select": {
+    "message": "เลือก",
+    "description": "Select"
+  },
+  "Yes": {
+    "message": "ใช่",
+    "description": "Yes"
+  },
+  "Ok": {
+    "message": "ตกลง",
+    "description": "Ok"
+  },
+  "No": {
+    "message": "ไม่",
+    "description": "No"
+  },
+  "Cancel": {
+    "message": "ยกเลิก",
+    "description": "Cancel"
+  },
+  "updated": {
+    "message": "อัปเดต",
+    "description": "Flash message that shows up after updating an anime/manga entry"
+  },
+  "removed": {
+    "message": "ลบออก",
+    "description": "Flash message that shows up after removing an anime/manga entry from user list"
+  },
+  "NothingFound": {
+    "message": "ไม่พบอะไรเลย",
+    "description": "Nothing Found"
+  },
+  "Not_Found": {
+    "message": "ไม่พบ!",
+    "description": "Anime/Manga Not Found"
+  },
+  "NoEntries": {
+    "message": "ไม่มีรายการ",
+    "description": "No Entries"
+  },
+  "fullscreen": {
+    "message": "เต็มจอ",
+    "description": "fullscreen"
+  },
+  "close": {
+    "message": "ปิด",
+    "description": "close"
+  },
+  "All": {
+    "message": "ทั้งหมด",
+    "description": "All"
+  },
+  "Anime": {
+    "message": "อะนิเมะ",
+    "description": "General translation of anime for places like drop downs"
+  },
+  "Manga": {
+    "message": "Manga",
+    "description": "General translation of manga for places like drop downs"
+  },
+  "Package_Description": {
+    "message": "ผสาน MyAnimeList/AniList/Kitsu/Simkl เข้าสู่เว็บไซต์ต่างๆ ด้วยการติดตามตอนอัตโนมัติ.",
+    "description": "Description MALSync"
+  },
+  "UI_Status": {
+    "message": "สถานะ:",
+    "description": "Status"
+  },
+  "UI_Status_watching_anime": {
+    "message": "กำลังดู",
+    "description": "Watching"
+  },
+  "UI_Status_watching_manga": {
+    "message": "กำลังอ่าน",
+    "description": "Reading"
+  },
+  "UI_Status_Completed": {
+    "message": "Completed",
+    "description": "Completed"
+  },
+  "UI_Status_OnHold": {
+    "message": "On-Hold",
+    "description": "On-Hold"
+  },
+  "UI_Status_Dropped": {
+    "message": "Dropped",
+    "description": "Dropped"
+  },
+  "UI_Status_planTo_anime": {
+    "message": "Plan to Watch",
+    "description": "Plan to Watch"
+  },
+  "UI_Status_planTo_manga": {
+    "message": "Plan to Read",
+    "description": "Plan to Read"
+  },
+  "UI_Status_Rewatching_anime": {
+    "message": "Rewatching",
+    "description": "Status to rewatch anime"
+  },
+  "UI_Status_Rewatching_manga": {
+    "message": "Rereading",
+    "description": "Status to reread manga"
+  },
+  "UI_Episode": {
+    "message": "ตอน:",
+    "description": "Episode"
+  },
+  "UI_Volume": {
+    "message": "ระดับเสียง:",
+    "description": "Volume"
+  },
+  "UI_Chapter": {
+    "message": "Chapter:",
+    "description": "Chapter"
+  },
+  "UI_Score": {
+    "message": "คะแนนของคุณ:",
+    "description": "Score"
+  },
+  "UI_Score_Not_Rated": {
+    "message": "ไม่ได้รับการให้คะแนน",
+    "description": "Text if nothing is selected in the rating dropdown"
+  },
+  "UI_Score_Masterpiece": {
+    "message": "(10) ผลงานชิ้นเอก",
+    "description": "Masterpiece - Score"
+  },
+  "UI_Score_Great": {
+    "message": "(9) ยอดเยี่ยม",
+    "description": "Great - Score"
+  },
+  "UI_Score_VeryGood": {
+    "message": "(8) ดีมาก",
+    "description": "Very Good - Score"
+  },
+  "UI_Score_Good": {
+    "message": "(7) ดี",
+    "description": "Good - Score"
+  },
+  "UI_Score_Fine": {
+    "message": "(6) ปานกลาง",
+    "description": "Fine - Score"
+  },
+  "UI_Score_Average": {
+    "message": "(5) เฉลี่ย",
+    "description": "Average - Score"
+  },
+  "UI_Score_Bad": {
+    "message": "(4) ไม่ดี",
+    "description": "Bad - Score"
+  },
+  "UI_Score_VeryBad": {
+    "message": "(3) ที่เลวร้ายมาก",
+    "description": "Very Bad - Score"
+  },
+  "UI_Score_Horrible": {
+    "message": "(2) น่ากลัว",
+    "description": "Horrible - Score"
+  },
+  "UI_Score_Appalling": {
+    "message": "(1) น่ากลัว",
+    "description": "Appalling - Score"
+  },
+  "UI_Rules": {
+    "message": "กฎเกณฑ์",
+    "description": "Rules text for the correction UI"
+  },
+  "syncPage_flashm_resumeMsg": {
+    "message": "ดำเนินการต่อที่ $time$",
+    "description": "Video resume message",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "13:37"
+      }
+    }
+  },
+  "syncPage_flashm_sync_anime": {
+    "message": "อัปเดต $page$ ไปที่ตอน $epNr$",
+    "description": "Update MAL to episode 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga": {
+    "message": "อัปเดต $page$ ถึงบท $epNr$",
+    "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_undefined_undo": {
+    "message": "เลิกทำ",
+    "description": "Undo button on 'synced' message"
+  },
+  "syncPage_flashm_sync_undefined_wrong": {
+    "message": "ไม่ถูกต้อง?",
+    "description": "Wrong/correction button on 'synced' message"
+  },
+  "syncPage_flashm_failded": {
+    "message": "Update failed",
+    "description": "When update to MAL failes"
+  },
+  "syncPage_flashConfirm_complete": {
+    "message": "ตั้งค่าเสร็จสมบูรณ์?",
+    "description": "Question when last episode is synced"
+  },
+  "syncPage_flashConfirm_start_anime": {
+    "message": "เริ่มดู?",
+    "description": "Start watching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_anime": {
+    "message": "เสร็จสิ้นการ rewatching?",
+    "description": "Finish rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_finish_manga": {
+    "message": "เสร็จสิ้นการอ่านใหม่?",
+    "description": "Finish rereading manga message"
+  },
+  "syncPage_flashConfirm_start_manga": {
+    "message": "เริ่มอ่าน?",
+    "description": "Start reading manga message"
+  },
+  "syncPage_flashConfirm_rewatch_start_anime": {
+    "message": "Rewatch อะนิเมะ?",
+    "description": "Start rewatching anime message"
+  },
+  "syncPage_flashConfirm_rewatch_start_manga": {
+    "message": "มังงะ runaed?",
+    "description": "Start rereading manga message"
+  },
+  "syncPage_flashConfirm_Anime_Correct": {
+    "message": "คือ \"$anime$\" แก้ไข?",
+    "description": "Is anime correct",
+    "placeholders": {
+      "anime": {
+        "content": "$1",
+        "example": "No Game No Life"
+      }
+    }
+  },
+  "syncPage_flash_player_error": {
+    "message": "ไม่พบผู้เล่น โปรดอัปเดตด้วยตนเองที่นี่.",
+    "description": "Message if the video player could not be recognized"
+  },
+  "syncPage_malObj_addAnime": {
+    "message": "เพิ่ม $page$",
+    "description": "add anime",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "AniList"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_anime": {
+    "message": "ตอน $episode$",
+    "description": "Next episode message on streaming overview pages",
+    "placeholders": {
+      "episode": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "syncPage_malObj_nextEp_manga": {
+    "message": "บท $chapter$",
+    "description": "Next chapter message on streaming overview pages",
+    "placeholders": {
+      "chapter": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "syncPage_flashConfirm_offsetHandler_1": {
+    "message": "ตรวจพบตอนที่เป็นไปได้ของ $ calcoffseted $ ถูกตรวจพบ ถูกต้องแล้ว? ",
+    "description": "offsetHandler Episode",
+    "placeholders": {
+      "calcOffset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "anilistClass_authentication": {
+    "message": "โทเค็นบันทึกคุณสามารถปิดหน้านี้ได้ทันที",
+    "description": "The token has been obtained and saved"
+  },
+  "kitsuClass_authentication_text": {
+    "message": "หากต้องการเข้าสู่ระบบด้วย KITSU คุณต้องป้อนอีเมลและรหัสผ่านของบัญชีของคุณ <br> ข้อมูลประจำตัวของคุณจะไม่ถูกเก็บไว้ในคอมพิวเตอร์ของคุณหรือที่อื่น.<br>พวกเขาถูกส่งไปยัง Kitsu โดยตรง ประหยัดโทเค็นการเข้าถึงที่ส่งคืนเท่านั้น.<br>",
+    "description": "Authentication text in Kitsu"
+  },
+  "kitsuClass_authentication_Password": {
+    "message": "รหัสผ่าน",
+    "description": "Password"
+  },
+  "kitsuClass_authentication_Login": {
+    "message": "เข้าสู่ระบบ",
+    "description": "Login"
+  },
+  "kitsuClass_authentication_Success": {
+    "message": "โทเค็นบันทึกคุณสามารถปิดหน้านี้ได้ทันที",
+    "description": "Authentication success"
+  },
+  "kitsuClass_authentication_Wrong": {
+    "message": "ข้อมูลประจำตัวผิด",
+    "description": "Credentials wrong"
+  },
+  "bookmarksItem_Years": {
+    "message": "ปี",
+    "description": "Years"
+  },
+  "bookmarksItem_Year": {
+    "message": "ปี",
+    "description": "Year"
+  },
+  "bookmarksItem_Days": {
+    "message": "วัน",
+    "description": "Days"
+  },
+  "bookmarksItem_Day": {
+    "message": "วัน",
+    "description": "Day"
+  },
+  "bookmarksItem_Hours": {
+    "message": "ชั่วโมง",
+    "description": "Hours"
+  },
+  "bookmarksItem_Hour": {
+    "message": "ชั่วโมง",
+    "description": "Hour"
+  },
+  "bookmarksItem_mins": {
+    "message": "นาที",
+    "description": "mins"
+  },
+  "bookmarksItem_min": {
+    "message": "นาที",
+    "description": "min"
+  },
+  "bookmarksItem_secs": {
+    "message": "วินาที",
+    "description": "seconds"
+  },
+  "bookmarksItem_sec": {
+    "message": "วินาที",
+    "description": "second"
+  },
+  "bookmarksItem_now": {
+    "message": "ตอนนี้",
+    "description": "Now"
+  },
+  "bookmarksItem_ago": {
+    "message": "$time$ ที่ผ่านมา",
+    "description": "Text for time in the past",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Episode_anime": {
+    "message": "ตอนต่อไปประมาณใน $time$",
+    "description": "Text for next episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_anime": {
+    "message": "ตอนสุดท้ายเปิดตัว $time$ ที่ผ่านมา",
+    "description": "Text for last episode release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Episode_manga": {
+    "message": "บทต่อไปประมาณใน $time$",
+    "description": "Text for next chapter estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_Last_manga": {
+    "message": "บทสุดท้ายเปิดตัว $time$ ที่ผ่านมา",
+    "description": "Text for last chapter release time",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_next": {
+    "message": "Next in $time$",
+    "description": "Short Form Text for next episode/episode estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "prediction_incomplete": {
+    "message": "Incomplete",
+    "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
+  },
+  "prediction_ongoing": {
+    "message": "Ongoing",
+    "description": "Header for the ongoing section in the translation/airing progress section"
+  },
+  "prediction_complete": {
+    "message": "Complete",
+    "description": "Header for the complete translation/airing section"
+  },
+  "prediction_Airing": {
+    "message": "การออกอากาศ $time$",
+    "description": "Text for airing estimation",
+    "placeholders": {
+      "time": {
+        "content": "$1",
+        "example": "2 days 1 hour"
+      }
+    }
+  },
+  "correction_Offset": {
+    "message": "ตอนที่ออฟเซ็ตตอน",
+    "description": "Episode Offset"
+  },
+  "correction_Offset_text": {
+    "message": "ป้อนตอนที่ออฟเซ็ตตอนที่อะนิเมะมี 12 ตอน แต่ใช้ตัวเลข 0-11 แทนที่จะเป็น 1-12 คุณเพียงแค่พิมพ์ \" +1 \" ในตอนที่ชดเชย.",
+    "description": "Episode Offset - Text"
+  },
+  "correction_WrongUrl": {
+    "message": "เปลี่ยน URL นี้หากชี้ไปที่หน้าอะนิเมะที่ไม่ถูกต้องใน Mal.",
+    "description": "URL is Wrong"
+  },
+  "correction_Search": {
+    "message": "ค้นหาการแก้ไข",
+    "description": "Correction Search"
+  },
+  "correction_Search_text": {
+    "message": "ฟิลด์นี้สำหรับการค้นหาอะนิเมะเมื่อคุณต้องการแก้ไข \"MyAnimeList URL\" แสดงข้างต้น.<br>ในการค้นหาเพียงแค่เริ่มพิมพ์ชื่อของอะนิเมะและรายการที่มีผลลัพธ์จะปรากฏขึ้นโดยอัตโนมัติเมื่อคุณพิมพ์.",
+    "description": "Search text"
+  },
+  "correction_NoMal": {
+    "message": "หากไม่พบอะนิเมะ / มังงะ MAL",
+    "description": "Anime/Manga not found in MAL"
+  },
+  "correction_NoEntry": {
+    "message": "ไม่มีรายการใน MyAnimelist",
+    "description": "No entry on MyAnimeList"
+  },
+  "correction_NewOffset": {
+    "message": "ใหม่ชดเชย ($offset$) ตั้ง.",
+    "description": "New Offset",
+    "placeholders": {
+      "offset": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "correction_OffsetReset": {
+    "message": "การรีเซ็ตชดเชย",
+    "description": "Offset reset"
+  },
+  "correction_NewUrl": {
+    "message": "URL ใหม่ '$malUrl$' ตั้ง.",
+    "description": "New URL",
+    "placeholders": {
+      "malUrl": {
+        "content": "$1",
+        "example": "https://myanimelist.net/anime/19815/No_Game_No_Life"
+      }
+    }
+  },
+  "correction_NewUrlReset": {
+    "message": "การรีเซ็ต URL ของ MyAnielist",
+    "description": "URL reset"
+  },
+  "correction_DBRequest": {
+    "message": "ส่งคำขอแก้ไขฐานข้อมูล?",
+    "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
+  },
+  "overview_Continue_anime": {
+    "message": "ดำเนินการต่อ watching",
+    "description": "Continue watching"
+  },
+  "overview_Continue_manga": {
+    "message": "ดำเนินการต่อ reading",
+    "description": "Continue reading"
+  },
+  "overview_Next_Episode_anime": {
+    "message": "ตอนต่อไป",
+    "description": "Next Episode"
+  },
+  "overview_Next_Episode_manga": {
+    "message": "บทต่อไป",
+    "description": "Next Chapter"
+  },
+  "overview_Resume_Episode_anime": {
+    "message": "ตอนต่อไป",
+    "description": "Resume Episode"
+  },
+  "overview_Resume_Episode_manga": {
+    "message": "เรซูเม่บท",
+    "description": "Resume Chapter"
+  },
+  "overview_EditDetails": {
+    "message": "แก้ไขรายละเอียด",
+    "description": "Edit Details"
+  },
+  "overview_Characters": {
+    "message": "ตัวละคร",
+    "description": "Characters"
+  },
+  "overview_OpeningTheme": {
+    "message": "Opening ธีม:",
+    "description": "Opening Theme"
+  },
+  "overview_EndingTheme": {
+    "message": "Ending ธีม:",
+    "description": "Ending Theme"
+  },
+  "search_Type": {
+    "message": "ประเภท:",
+    "description": "Type"
+  },
+  "search_Score": {
+    "message": "คะแนน:",
+    "description": "Score"
+  },
+  "search_Year": {
+    "message": "ปี:",
+    "description": "Year"
+  },
+  "settings_General": {
+    "message": "ทั่วไป",
+    "description": "General"
+  },
+  "settings_Mode": {
+    "message": "โหมด",
+    "description": "Mode"
+  },
+  "settings_Authenticate": {
+    "message": "รับรองความถูกต้อง",
+    "description": "Authenticate"
+  },
+  "settings_LocalSync": {
+    "message": "การเก็บรักษาในพื้นที่",
+    "description": "Option to activate the local storage fallback sync"
+  },
+  "settings_LocalSync_Import": {
+    "message": "นำเข้า",
+    "description": "Button to import local storage fallback data"
+  },
+  "settings_LocalSync_Export": {
+    "message": "ส่งออก",
+    "description": "Button to Export Local storage fallback data"
+  },
+  "settings_Animesync": {
+    "message": "อะนิเมะซิงค์",
+    "description": "Anime sync"
+  },
+  "settings_Animesync_Video": {
+    "message": "วิดีโอ",
+    "description": "Video"
+  },
+  "settings_Animesync_Instant": {
+    "message": "ทันที",
+    "description": "Instant"
+  },
+  "settings_Animesync_Manual": {
+    "message": "คู่มือ",
+    "description": "Manual"
+  },
+  "settings_Mangasync": {
+    "message": "Manga ซิงค์",
+    "description": "Manga sync"
+  },
+  "settings_AutoTracking_Video": {
+    "message": "อัปเดต $videoDuration$% ของความคืบหน้าของวิดีโอ",
+    "description": "Update Episode of video progress",
+    "placeholders": {
+      "videoDuration": {
+        "content": "$1",
+        "example": "85"
+      }
+    }
+  },
+  "settings_AutoTracking_Instant": {
+    "message": "ล่าช้าอัตโนมัติอัตโนมัติโดย $delay$ วินาที",
+    "description": "Delay instant autotracking",
+    "placeholders": {
+      "delay": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
+  "settings_StreamingSite": {
+    "message": "การเชื่อมโยงเว็บไซต์สตรีมมิ่ง",
+    "description": "Streaming Site Links"
+  },
+  "settings_StreamingSite_text": {
+    "message": "หากปิดใช้งานไซต์สตรีมมิ่งจะไม่ปรากฏในแถบด้านข้างของอะนิเมะ MyAnimeList/AniList/Kitsu/Simkl.",
+    "description": "Streaming Site Links - Text"
+  },
+  "settings_Thumbnails": {
+    "message": "ภาพขนาดย่อ",
+    "description": "Thumbnails"
+  },
+  "settings_Thumbnails_text": {
+    "message": "ตัวเลือกนี้ใช้สำหรับปรับขนาดรูปขนาดย่อของ MyAnimelist เช่น รูปขนาดย่อสำหรับตัวละครผู้คนแนะนำ ฯลฯ.",
+    "description": "Thumbnails - Text"
+  },
+  "settings_Thumbnails_Large": {
+    "message": "ใหญ่",
+    "description": "Thumbnails Large"
+  },
+  "settings_Thumbnails_Medium": {
+    "message": "ปานกลาง",
+    "description": "Thumbnails Medium"
+  },
+  "settings_Thumbnails_Small": {
+    "message": "เล็ก",
+    "description": "Thumbnails Small"
+  },
+  "settings_Thumbnails_Default": {
+    "message": "MAL เริ่มต้น",
+    "description": "Thumbnails MAL Default"
+  },
+  "settings_FriendScore": {
+    "message": "คะแนนเพื่อนในหน้ารายละเอียด",
+    "description": "Friend scores on detail page"
+  },
+  "settings_epPredictions": {
+    "message": "ประเมินหมายเลขตอน",
+    "description": "Estimate episode number"
+  },
+  "settings_malTags": {
+    "message": "ใช้แท็ก / หมายเหตุ ",
+    "description": "Use Tags/Notes"
+  },
+  "settings_malTags_Text": {
+    "message": "หากเปิดใช้งาน: หน้าการสตรีมที่คุณใช้ล่าสุดจะถูกบันทึกไว้อย่างถาวร (ข้ามเบราว์เซอร์) ในส่วนแท็ก / หมายเหตุในรายการของคุณ สตริงที่บันทึกไว้ในส่วนแท็กนั้นน่าเกลียดแนะนำจริงๆหากคุณไม่ใช้ส่วนแท็ก / หมายเหตุ",
+    "description": "Use Tags/Notes - Text"
+  },
+  "settings_malContinue": {
+    "message": "ดูลิงค์ต่อไป",
+    "description": "Continue watching links"
+  },
+  "settings_malResume": {
+    "message": "เรซูเม่ดูลิงค์",
+    "description": "Resume watching links"
+  },
+  "settings_usedPage": {
+    "message": "ลิงค์หน้าสุดท้ายที่ใช้",
+    "description": "Last used page links"
+  },
+  "settings_miniMAL_floatButtonStealth": {
+    "message": "StealTach I Model",
+    "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
+  },
+  "settings_miniMAL_minimizeBigPopup": {
+    "message": "ย่อเล็กสุดป๊อปอัพขนาดใหญ่",
+    "description": "Shows an 'action required' popup hidding big popups"
+  },
+  "settings_miniMAL_floatButtonCorrection": {
+    "message": "การตกแต่งปุ่มลอยไปที่ UI การแก้ไข",
+    "description": "Remap floating button to the correction UI"
+  },
+  "settings_miniMAL_floatButtonHide": {
+    "message": "ซ่อนปุ่มเมนูลอยน้อยที่สุด",
+    "description": "Hide miniMAL floating menu button"
+  },
+  "settings_miniMAL_autoCloseMinimal": {
+    "message": "คลิกนอกปิดน้อยที่สุด",
+    "description": "Clicking outside closes miniMAL"
+  },
+  "settings_miniMAL_Display": {
+    "message": "แสดง",
+    "description": "Display to the"
+  },
+  "settings_miniMAL_popup": {
+    "message": "ป๊อปอัปขยาย",
+    "description": "Header of the settings section for the extension popup"
+  },
+  "settings_miniMAL_theme": {
+    "message": "ธีม",
+    "description": "Label for the theme switch dropdown (light/dark theme)"
+  },
+  "settings_miniMAL_window": {
+    "message": "เปิดในหน้าต่างแยกต่างหาก",
+    "description": "Open miniMAL in separate window checkbox"
+  },
+  "settings_miniMAL_Display_Left": {
+    "message": "ซ้าย",
+    "description": "miniMAL Display Left"
+  },
+  "settings_miniMAL_Display_Right": {
+    "message": "ขวา",
+    "description": "miniMAL Display Right"
+  },
+  "settings_miniMAL_Height": {
+    "message": "ความสูง (px / %)",
+    "description": "miniMAL Height"
+  },
+  "settings_miniMAL_Width": {
+    "message": "ความกว้าง (px / %)",
+    "description": "miniMAL Width"
+  },
+  "settings_Shortcuts": {
+    "message": "Shortcuts",
+    "description": "Shortcuts"
+  },
+  "settings_miniMAL_Open": {
+    "message": "เปิด miniMAL",
+    "description": "miniMAL Open"
+  },
+  "settings_miniMAL_NotSet": {
+    "message": "ไม่ได้ตั้งค่า",
+    "description": "miniMAL Not Set"
+  },
+  "settings_loadPTWForProgress": {
+    "message": "โหลด PTW / PTR เพื่อประเมินความคืบหน้า",
+    "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
+  },
+  "settings_Video_Player": {
+    "message": "เครื่องเล่นวีดีโอ",
+    "description": "Video settings header"
+  },
+  "settings_Video_Fullscreen": {
+    "message": "เต็มหน้าจออัตโนมัติ",
+    "description": "Auto fullscreen toggle"
+  },
+  "settings_Video_Resume": {
+    "message": "Auto resume",
+    "description": "Auto resume video where you left off toggle"
+  },
+  "settings_autoNextEp": {
+    "message": "AutoPlay ตอนต่อไป",
+    "description": "Autoplays the next episode after the video ends"
+  },
+  "settings_Shortcuts_Correction": {
+    "message": "ป๊อปอัปการแก้ไขความสัมพันธ์แบบอะนิเมะ",
+    "description": "Text for the correction ui shortcut"
+  },
+  "settings_Shortcuts_Sync": {
+    "message": "ตั้งค่าตอน/บทเป็นอ่าน",
+    "description": "Text for the sync ui shortcut"
+  },
+  "settings_Shortcuts_Next_Episode": {
+    "message": "เปิดทางลัดตอนต่อไป",
+    "description": "Description for the next episode shortcut option"
+  },
+  "settings_Shortcuts_Skip_Forward": {
+    "message": "ข้ามการเปิด",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Skip_Backward": {
+    "message": "กระโดดกลับไปที่จุดเริ่มต้นของการเปิด",
+    "description": "Description for the the opening skip shortcut"
+  },
+  "settings_Shortcuts_Click": {
+    "message": "คลิกเพื่อเข้าสู่ทางลัด",
+    "description": "Shown if no shortcut is set for an option"
+  },
+  "settings_introSkip": {
+    "message": "ชุดเปิดความยาวข้าม ($Seconds$ วินาที)",
+    "description": "Skips video seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_UpdateCheck": {
+    "message": "อัปเดตตรวจสอบ",
+    "description": "Update Check"
+  },
+  "settings_UpdateCheck_Text": {
+    "message": "ตรวจสอบตอนใหม่ในพื้นหลัง",
+    "description": "Update Check - Text"
+  },
+  "settings_Interval": {
+    "message": "ช่วง",
+    "description": "Interval"
+  },
+  "settings_Interval_Off": {
+    "message": "ปิด",
+    "description": "Interval - Off"
+  },
+  "settings_Interval_Default_Anime": {
+    "message": "อนิเมะเริ่มต้น",
+    "description": "Dropdown label for selecting the global progress anime source"
+  },
+  "settings_Interval_Default_Manga": {
+    "message": "มังงะเริ่มต้น",
+    "description": "Dropdown label for selecting the global progress manga source"
+  },
+  "settings_ProgressCheck": {
+    "message": "ตรวจสอบความคืบหน้า",
+    "description": "Header for the progress section in the settings"
+  },
+  "settings_Notifications": {
+    "message": "การแจ้งเตือน",
+    "description": "Notifications"
+  },
+  "settings_Debugging": {
+    "message": "การแก้จุดบกพร่อง",
+    "description": "Debugging"
+  },
+  "settings_ETC": {
+    "message": "ETC",
+    "description": "ETC"
+  },
+  "settings_Userscriptmode": {
+    "message": "โหมด userscript",
+    "description": "Userscript mode"
+  },
+  "settings_Userscriptmode_Text": {
+    "message": "ปิดใช้งานสคริปต์เนื้อหา สิ่งนี้ทำให้สามารถมีส่วนขยายและเปิดใช้งานผู้ใช้งานได้ในเวลาเดียวกัน",
+    "description": "Userscript mode - Text"
+  },
+  "settings_highlightAllEp": {
+    "message": "ไฮไลต์ทุกตอน / บท",
+    "description": "Highlight all Episodes/Chapters"
+  },
+  "settings_highlightAllEp_Text": {
+    "message": "ตัวเลือกนี้จะเน้นทุกบทที่ดู / ตอนในรายการคุณสามารถค้นหาได้ในเว็บไซต์อะนิเมะ / มังงะ",
+    "description": "Highlight all Episodes/Chapters - Text"
+  },
+  "settings_ClearCache": {
+    "message": "Clear Cache",
+    "description": "Clear Cache"
+  },
+  "settings_presenceHidePage": {
+    "message": "แสดงไอคอน Mal-Sync แทนไอคอนหน้า",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  },
+  "settings_enabled": {
+    "message": "เปิดใช้งาน",
+    "description": "Checkbox if feature is enabled"
+  },
+  "settings_shortcut_tooltip": {
+    "message": "ไม่แนะนำให้ตั้งค่าทางลัดเป็นปุ่มเดียว",
+    "description": "Shows this message if the users has only a single key set as shortcut"
+  },
+  "settings_progress_dropdown": {
+    "message": "แหล่งที่มาการประมาณ:",
+    "description": "Text over the dropdown to select the Episode estimation/prediction source"
+  },
+  "settings_progress_disabled": {
+    "message": "ปิดการใช้งาน",
+    "description": "Dropdown option to disable the estimation for an anime/manga"
+  },
+  "settings_progress_default": {
+    "message": "Default",
+    "description": "Dropdown option to use the default in the estimation for an anime/manga"
+  },
+  "settings_website_button": {
+    "message": "เว็บไซต์",
+    "description": "Button that leads to the config page where individual pages can be disabled"
+  },
+  "settings_custom_domains_button": {
+    "message": "โดเมนที่กำหนดเอง",
+    "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_clean_tags_button": {
+    "message": "แท็กสะอาด",
+    "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
+  },
+  "settings_more_info": {
+    "message": "ข้อมูลเพิ่มเติม",
+    "description": "Link button which links to more informations"
+  },
+  "settings_presenceShowButtons": {
+    "message": "ปุ่มแสดงเพื่อดูอะนิเมะ / มังงะบน Mal หรือผู้ให้บริการอื่น",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
+  "updateCheck_Refresh": {
+    "message": "รีเฟรช",
+    "description": "Refresh"
+  },
+  "updateCheck_StartCheck": {
+    "message": "เริ่มตรวจสอบ",
+    "description": "Start Check"
+  },
+  "updateCheck_NotificationCheck": {
+    "message": "ตรวจสอบการแจ้งเตือน",
+    "description": "Notification Check"
+  },
+  "updateCheck_Episode": {
+    "message": "ตอน",
+    "description": "Episode"
+  },
+  "updateCheck_Message": {
+    "message": "ข้อความ",
+    "description": "Message"
+  },
+  "updateCheck_NotificationHistory": {
+    "message": "ประวัติการแจ้งเตือน",
+    "description": "Notification History"
+  },
+  "minimalApp_Overview": {
+    "message": "ภาพรวม",
+    "description": "Overview"
+  },
+  "minimalApp_Reviews": {
+    "message": "ความคิดเห็น",
+    "description": "Reviews"
+  },
+  "minimalApp_Recommendations": {
+    "message": "คำแนะนำ",
+    "description": "Recommendations"
+  },
+  "minimalApp_Settings": {
+    "message": "การตั้งค่า",
+    "description": "Settings"
+  },
+  "minimalClass_Popup": {
+    "message": "โปรดอนุญาตป๊อปอัปสำหรับเว็บไซต์นี้",
+    "description": "Please allow pop-ups for this website"
+  },
+  "minimalClass_versionMsg": {
+    "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
+    "description": "Update version",
+    "placeholders": {
+      "Version": {
+        "content": "$1",
+        "example": "0.1.4"
+      },
+      "Link": {
+        "content": "$2",
+        "example": "[<a>"
+      },
+      "LinkEnd": {
+        "content": "</a>]",
+        "example": "</a>]"
+      }
+    }
+  },
+  "minimalClass_versionMsg_Text_1": {
+    "message": "Thank you for installing MAL-Sync",
+    "description": "Update version - Text 1"
+  },
+  "minimalClass_versionMsg_Text_2": {
+    "message": "Having Questions?",
+    "description": "Update version - Text 2"
+  },
+  "minimalClass_versionMsg_Text_3": {
+    "message": "Open Source Code:",
+    "description": "Update version - Text 3"
+  },
+  "minimalClass_versionMsg_Text_4": {
+    "message": "ผู้ใช้ Ublock โปรดสมัครสมาชิกรายการตัวกรองนี้! การแก้ไขปัญหาบางอย่างเช่นภาพที่เสียหาย",
+    "description": "Update version - Text 4"
+  },
+  "installPage_Mode": {
+    "message": "โปรดเลือกฐานข้อมูลอะนิเมะที่คุณต้องการใช้:",
+    "description": "Header for the MAL-sync provider dropdown"
+  },
+  "installPage_Howto": {
+    "message": "วิธีใช้?",
+    "description": "Header for how to use section"
+  },
+  "installPage_Howto_Description": {
+    "message": "เพียงแค่เปิดตอนหรือบทที่ใด ๆ $Link1$supported pages$LinkEnd1$. การซิงค์รอจนถึง 85% ของวิดีโอที่มีการดู สำหรับการซิงค์ Mangas ในการโหลดหน้าเว็บ สิ่งนี้สามารถเปลี่ยนแปลงได้ใน $Link2$settings$LinkEnd2$.",
+    "description": "How to use description text",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://github.com/MALSync/MALSync#supported-pages-\">",
+        "example": "<a>"
+      },
+      "LinkEnd1": {
+        "content": "</a>",
+        "example": "</a>"
+      },
+      "Link2": {
+        "content": "<a class=\"open-settings\" href=\"#\">",
+        "example": "<a>"
+      },
+      "LinkEnd2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "installPage_Wrong": {
+    "message": "มันซิงค์กับรายการ MAL ที่ผิด?",
+    "description": "Header of the wrong section on the install page"
+  },
+  "installPage_Wrong_Description": {
+    "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ Offset สามารถตั้งค่าได้ในหน้านั้นด้วย",
+    "description": "Description of the wrong section on the install page"
+  },
+  "Anilist_Authenticate": {
+    "message": "กรุณารับรองความถูกต้อง $Link1$Here$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Emby_Authenticate": {
+    "message": "MAL-Sync ต้องการกุญแจ Emby API ในการทำงาน Infos เพิ่มเติม $Link1$Here$Link2$",
+    "description": "Emby Authentication",
+    "placeholders": {
+      "Link1": {
+        "content": "<a href=\"https://github.com/MediaBrowser/Emby/wiki/Api-Key-Authentication#creating-an-api-key\" target=\"_blank\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Error_Authenticate": {
+    "message": "กรุณารับรองความถูกต้อง $Link1$Here$Link2$",
+    "description": "Update version - Text 3",
+    "placeholders": {
+      "Link1": {
+        "content": "<a target=\"_blank\" href=\"$1\">",
+        "example": "<a>"
+      },
+      "Link2": {
+        "content": "</a>",
+        "example": "</a>"
+      }
+    }
+  },
+  "Discord_rpc_browsing": {
+    "message": "การเรียกดู $Page$",
+    "description": "Discord rich Presence text if on overview page",
+    "placeholders": {
+      "Page": {
+        "content": "$1",
+        "example": "Mangadex"
+      }
+    }
+  },
+  "discord_rpc_view_anime": {
+    "message": "ดูอะนิเมะ",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "ดูมังงะ",
+    "description": "Discord view manga button"
+  },
+  "nextEpShort_no_support": {
+    "message": "หน้านี้ไม่รองรับการเปิดตอนต่อไป",
+    "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
+  },
+  "nextEpShort_no_nextEp": {
+    "message": "ไม่พบตอนต่อไป",
+    "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "ตรวจสอบ Filler / Recap ตอน",
+    "description": "Option to enable filler checking"
+  },
+  "settings_filler_text": {
+    "message": "สิ่งนี้จะตรวจสอบว่าตอนที่ทำเครื่องหมายเป็นฟิลเลอร์ / สรุป MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "ตอนนี้มีการทำเครื่องหมายว่าเป็นฟิลเลอร์ MyAnimeList, คุณต้องการที่จะข้าม?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "ตอนนี้ได้รับการทำเครื่องหมายว่าเป็นการสรุปที่ MyAnimelist คุณต้องการข้าม?",
+    "description": "Question if the user wants to skip the recap"
+  }
+}

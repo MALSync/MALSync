@@ -31,6 +31,12 @@ const genres = [
   64256,
   2951909,
   6721,
+  2867325,
+  1522234,
+  1623841,
+  81216565,
+  3073, // anime from the 1970s
+  3095, // anime from the 1980s
 ];
 
 // Define the variable proxy element:
