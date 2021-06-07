@@ -130,6 +130,7 @@ import { ImmortalUpdates } from './ImmortalUpdates/main';
 import { Zoro } from './Zoro/main';
 import { Funimation } from './Funimation/main';
 import { Kitsune } from './Kitsune/main';
+import { LHTranslation } from './LHTranslation/main';
 
 export const pages = {
   nineAnime,
@@ -264,4 +265,5 @@ export const pages = {
   Zoro,
   Funimation,
   Kitsune,
+  LHTranslation,
 };

@@ -1,0 +1,30 @@
+{
+  "title": "LHTranslation",
+  "url": "https://lhtranslation.net/",
+  "testCases": [
+    {
+      "url": "https://lhtranslation.net/manga-the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin.html",
+      "expected": {
+        "sync": false,
+        "title": "THE GUILD OFFICIAL WITH THE OUT-OF-THE-WAY SKILL “SHADOWY” IS, IN FACT, THE LEGENDARY ASSASSIN",
+        "identifier": "the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin",
+        "uiSelector": true,
+        "epList": {
+          "5": "https://lhtranslation.net/read-the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin-chapter-5.html"
+        }
+      }
+    },
+    {
+      "url": "https://lhtranslation.net/read-the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin-chapter-8.html",
+      "expected": {
+        "sync": true,
+        "title": "THE GUILD OFFICIAL WITH THE OUT-OF-THE-WAY SKILL “SHADOWY” IS, IN FACT, THE LEGENDARY ASSASSIN",
+        "identifier": "the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin",
+        "overviewUrl": "https://lhtranslation.net/manga-the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin.html",
+        "nextEpUrl": "https://lhtranslation.net/read-the-guild-official-with-the-out-of-the-way-skill-shadowy-is-in-fact-the-legendary-assassin-chapter-9.html",
+        "episode": 8,
+        "uiSelector": false
+      }
+    }
+  ]
+}
