@@ -85,3 +85,35 @@ function singleListener(domainConfig: domainType) {
     .m(domainConfig.page)
     .log(domainConfig.domain);
 }
+
+export async function cleanupCustomDomains() {
+  const manifest = chrome.runtime.getManifest();
+  const iframeScript = manifest.content_scripts!.find(content_script => {
+    return content_script.js && content_script.js.includes('content/iframe.js');
+  });
+
+  if (!iframeScript) throw 'No iframe content script found';
+
+  const contentOrigins = iframeScript.matches!.map(origin => getComparableDomains(origin)).filter(el => el);
+
+  const customDomains = await api.settings.getAsync('customDomains');
+
+  if (customDomains) {
+    api.settings.set(
+      'customDomains',
+      customDomains.filter(customDomain => {
+        const domain = getComparableDomains(customDomain.domain);
+        if (!domain) return true;
+        return !contentOrigins.includes(domain);
+      }),
+    );
+  }
+}
+
+function getComparableDomains(domainOrigin) {
+  const scriptDomain = domainOrigin.match(/^.+:\/\/?(.+)/);
+  if (scriptDomain && scriptDomain.length > 1) {
+    return scriptDomain[1].replace('*.', '').replace(/(\/|\/?\*)$/, '');
+  }
+  return '';
+}
