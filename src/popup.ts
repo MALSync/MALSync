@@ -46,7 +46,8 @@ function isFirefox() {
 
 function checkFill(minimalObj) {
   con.log('CheckFill');
-  chrome.tabs.query({ active: true, windowType: 'normal' }, function(tabs) {
+  chrome.tabs.query({ active: true }, function(tabs) {
+    con.m('tabs').log(tabs);
     tabs.forEach(el => {
       chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function(response) {
         setTimeout(() => {
