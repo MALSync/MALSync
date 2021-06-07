@@ -68,9 +68,9 @@ export const Mangadex: pageInterface = {
       return parseInt(chapterData.volume);
     },
     getMalUrl(provider) {
-      if (mangaData.links.mal) return `https://myanimelist.net/manga/${mangaData.links.mal}`;
-      if (provider === 'ANILIST' && mangaData.links.al) return `https://anilist.co/manga/${mangaData.links.al}`;
-      if (provider === 'KITSU' && mangaData.links.kt) return `https://kitsu.io/manga/${mangaData.links.kt}`;
+      if (mangaData.links?.mal) return `https://myanimelist.net/manga/${mangaData.links.mal}`;
+      if (provider === 'ANILIST' && mangaData.links?.al) return `https://anilist.co/manga/${mangaData.links.al}`;
+      if (provider === 'KITSU' && mangaData.links?.kt) return `https://kitsu.io/manga/${mangaData.links.kt}`;
       return false;
     },
   },
