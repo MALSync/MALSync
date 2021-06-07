@@ -427,8 +427,8 @@ module.exports = {
     match: ['*://animato.me/embed/*'],
   },
   // animeshd
-  animeshd: {
-    match: ['*://animeshd.org/*/*id=*'],
+  AnimesOnline: {
+    match: ['*://animesonline.org/*/*id=*'],
   },
   // animixplay
   kimanime: {
