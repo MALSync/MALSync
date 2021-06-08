@@ -9,7 +9,7 @@ export const LHTranslation: pageInterface = {
     return (
       typeof url.split('/')[3] !== 'undefined' &&
       url.split('/')[3].startsWith('read-') &&
-      !/page-[2-9]|1\d+/.test(url.split('/')[3])
+      !/page-([2-9]|1\d+)/.test(url.split('/')[3])
     );
   },
   isOverviewPage(url) {
