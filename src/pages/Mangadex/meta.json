@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://mangadex.org/title/*", "*://mangadex.org/chapter/*"]
+    "match": ["*://mangadex.org/*"]
   }
 }
