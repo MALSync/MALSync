@@ -1,6 +1,6 @@
 import { pageInterface } from '../pageInterface';
 
-let mangaData = {
+const mangaData = {
   id: '',
   title: '',
   coverId: '',
@@ -11,7 +11,7 @@ let mangaData = {
   },
 };
 
-let chapterData = {
+const chapterData = {
   id: '',
   chapter: '',
   volume: '',
