@@ -1,5 +1,9 @@
 import { pageInterface } from '../pageInterface';
 
+const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitUntilTrue(
+  () => j.$('.title__desktop').length,
+);
+
 const mangaData = {
   id: '',
   title: '',
@@ -98,6 +102,7 @@ export const Mangadex: pageInterface = {
     }, true);
 
     async function check() {
+      resetAwaitUi();
       if (!Mangadex.isSyncPage(window.location.href) && !Mangadex.isOverviewPage!(window.location.href)) return;
 
       if (Mangadex.isSyncPage(window.location.href)) {
@@ -111,6 +116,7 @@ export const Mangadex: pageInterface = {
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
         mangaData.id = utils.urlPart(window.location.href, 4);
+        await awaitUi();
       }
 
       const mangaResponse = await request(`manga/${mangaData.id}`);

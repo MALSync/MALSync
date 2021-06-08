@@ -150,6 +150,26 @@ export function waitUntilTrue(condition: Function, callback: Function, interval 
   return intervalId;
 }
 
+export function getAsyncWaitUntilTrue(condition: Function, interval = 100) {
+  let intervalId;
+  let rejectThis;
+  const reset = () => {
+    clearTimeout(intervalId);
+    if (rejectThis) rejectThis('AsyncWait stopped');
+  };
+
+  return {
+    asyncWaitUntilTrue: () => {
+      reset();
+      return new Promise<void>((resolve, reject) => {
+        rejectThis = reject;
+        intervalId = waitUntilTrue(condition, () => resolve(), interval);
+      });
+    },
+    reset,
+  };
+}
+
 const doubleId = Math.random();
 export function checkDoubleExecution() {
   if ($('.mal-sync-double-detect').length) {
