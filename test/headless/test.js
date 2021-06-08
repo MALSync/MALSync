@@ -15,7 +15,6 @@ let browser;
 let browserFull;
 const debugging = false;
 let buildFailed = false;
-// var caseTitle = 'Proxer';
 const mode = {
   quiet: false,
   parallel: true,
@@ -92,7 +91,7 @@ function logC(block, text, indetion = 0, color = 'blue') {
 
 function printLogBlock(block) {
   if (mode.blockLog && logBlocks[block]) {
-    logBlocks[block].forEach((el) => {
+    logBlocks[block].forEach(el => {
       console.log(el);
     });
   }
@@ -138,7 +137,10 @@ async function onlineTest(url, page) {
 
 async function singleCase(block, test, page, retry = 0) {
   try {
-    const [response] = await Promise.all([page.goto(test.url, { timeout: 0 }), page.waitForNavigation({ timeout: 30000 })]);
+    const [response] = await Promise.all([
+      page.goto(test.url, { timeout: 0 }),
+      page.waitForNavigation({ timeout: 30000 }),
+    ]);
   } catch (e) {
     log(block, 'Page loads too long', 2);
     await page.evaluate(() => window.stop());
@@ -175,8 +177,10 @@ async function singleCase(block, test, page, retry = 0) {
   expect(text.identifier, 'Identifier').to.equal(test.expected.identifier);
   if (text.sync) {
     expect(text.episode, 'Episode').to.equal(test.expected.episode);
-    var textOverview = typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
-    var testOverview = typeof test.expected.overviewUrl !== 'undefined'
+    var textOverview =
+      typeof text.overviewUrl !== 'undefined' ? text.overviewUrl.replace(/www[^.]*\./, '') : text.overviewUrl;
+    var testOverview =
+      typeof test.expected.overviewUrl !== 'undefined'
         ? test.expected.overviewUrl.replace(/www[^.]*\./, '')
         : test.expected.overviewUrl;
     expect(textOverview, 'Overview Url').to.equal(test.expected.overviewUrl.replace(/www[^.]*\./, ''));
@@ -348,7 +352,7 @@ async function main() {
   }
 
   await closeBrowser();
-  if (buildFailed) console.error('BUILD FAILED')
+  if (buildFailed) console.error('BUILD FAILED');
   //if (buildFailed) process.exit(1);
   process.exit();
 }
