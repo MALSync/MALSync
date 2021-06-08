@@ -132,17 +132,6 @@ export const Mangadex: pageInterface = {
   },
 };
 
-function request(path): Promise<XMLHttpRequest> {
-  return new Promise(function(resolve, reject) {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://api.mangadex.org/${path}`);
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        resolve(xhr);
-      } else {
-        reject(xhr);
-      }
-    };
-    xhr.send();
-  });
+function request(path) {
+  return api.request.xhr('GET', `https://api.mangadex.org/${path}`);
 }
