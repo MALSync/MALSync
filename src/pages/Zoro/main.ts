@@ -1,60 +1,65 @@
 import { pageInterface } from '../pageInterface';
 
+type ZoroSyncData = {
+  page: 'episode' | 'anime';
+  name: string;
+  anime_id: string;
+  mal_id: string;
+  series_url: string;
+  selector_position?: string;
+  episode?: string;
+  next_episode_url?: string;
+};
+
+let jsonData: ZoroSyncData;
+
 export const Zoro: pageInterface = {
   name: 'Zoro',
   domain: 'https://zoro.to',
   languages: ['English'],
   type: 'anime',
+  database: 'Zoro',
   isSyncPage(url) {
-    return utils.urlPart(url, 3) === 'watch';
+    return jsonData.page === 'episode';
   },
   isOverviewPage(url) {
-    return Boolean(j.$('#ani_detail').length && j.$('[data-page="detail"]').length);
+    return jsonData.page === 'anime';
   },
   sync: {
     getTitle(url) {
-      return Zoro.overview!.getTitle(url);
+      return jsonData.name;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return jsonData.anime_id;
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.anisc-detail .film-name a').attr('href'), Zoro.domain);
+      return jsonData.series_url;
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('.ss-list > a.active')
-          .first()
-          .attr('data-number'),
-      );
+      return parseInt(jsonData.episode!);
     },
     nextEpUrl(url) {
-      const num = $('.ss-list')
-        .find('a.active')
-        .next()
-        .attr('href');
-
-      if (!num) return '';
-
-      return utils.absoluteLink(num, Zoro.domain);
+      return jsonData.next_episode_url;
+    },
+    getMalUrl(provider) {
+      if (jsonData.mal_id) {
+        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
+      }
+      return false;
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.anisc-detail .film-name')
-        .first()
-        .text()
-        .trim();
+      return jsonData.name;
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3);
+      return jsonData.anime_id;
     },
     uiSelector(selector) {
-      j.$('.film-name')
-        .first()
-        .after(j.html(selector));
+      j.$(jsonData.selector_position!).append(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return Zoro.sync.getMalUrl!(provider);
     },
     list: {
       offsetHandler: false,
@@ -71,28 +76,31 @@ export const Zoro: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if (Zoro.isOverviewPage!(page.url)) {
-        page.handlePage();
-      } else if (Zoro.isSyncPage!(page.url)) {
-        utils.waitUntilTrue(
-          () => !$('#episodes-content .loading-box').length,
-          () => {
-            page.handlePage();
-            let _debounce;
-            utils.changeDetect(
-              () => {
-                clearTimeout(_debounce);
-                _debounce = setTimeout(() => {
-                  page.reset();
-                  page.handlePage();
-                }, 500);
-              },
-              () => Zoro.sync.getEpisode(page.url),
-            );
-          },
-        );
-      }
+
+    utils.fullUrlChangeDetect(function() {
+      page.reset();
+      check();
     });
+
+    let interval;
+    let _debounce;
+    function check() {
+      clearInterval(interval);
+      interval = utils.waitUntilTrue(
+        function() {
+          if (j.$('#syncData').length) {
+            jsonData = JSON.parse(j.$('#syncData').text());
+            return true;
+          }
+          return false;
+        },
+        function() {
+          clearTimeout(_debounce);
+          _debounce = setTimeout(() => {
+            page.handlePage();
+          }, 500);
+        },
+      );
+    }
   },
 };

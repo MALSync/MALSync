@@ -324,7 +324,7 @@ module.exports = {
   },
   // 9anime
   vidstream: {
-    match: ['*://vidstream.pro/e/*', '*://vidstreamz.online/embed/*'],
+    match: ['*://vidstream.pro/e/*', '*://vidstreamz.online/embed/*', '*://vidstream.pro/embed/*'],
   },
   // gogo
   streamsb: {
@@ -427,8 +427,8 @@ module.exports = {
     match: ['*://animato.me/embed/*'],
   },
   // animeshd
-  animeshd: {
-    match: ['*://animeshd.org/*/*id=*'],
+  AnimesOnline: {
+    match: ['*://animesonline.org/*/*id=*'],
   },
   // animixplay
   kimanime: {

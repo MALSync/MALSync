@@ -149,6 +149,7 @@
         <checkbox option="MangaSee">MangaSee</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="YugenAnime">YugenAnime</checkbox>
+        <checkbox option="Zoro">Zoro</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">

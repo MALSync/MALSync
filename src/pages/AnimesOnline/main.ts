@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const AnimesHD: pageInterface = {
-  name: 'AnimesHD',
-  domain: 'https://animeshd.org',
+export const AnimesOnline: pageInterface = {
+  name: 'AnimesOnline',
+  domain: 'https://animesonline.org',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
@@ -12,24 +12,22 @@ export const AnimesHD: pageInterface = {
       url.split('/')[4].length > 0
     );
   },
-  isOverviewPage(url) {
-    return url.split('/')[3] === 'animes' && url.split('/').length >= 4 && url.split('/')[4].length > 0;
-  },
   sync: {
     getTitle(url) {
       return j
         .$('#info > h1, #single > div.content > div.sheader > div.data > h1')
         .first()
-        .text();
+        .text()
+        .replace(/\s+-\s+episódio\s+\d+/i, '');
     },
     getIdentifier(url) {
-      return utils.urlPart(AnimesHD.sync.getOverviewUrl(url), 4);
+      return utils.urlPart(url, 4).replace(/-episodio-\d+/, '');
     },
     getOverviewUrl(url) {
       return (
         utils.absoluteLink(
           j.$('#single > div.content > div.pag_episodes > div:nth-child(2) > a').attr('href'),
-          AnimesHD.domain,
+          AnimesOnline.domain,
         ) || url
       );
     },
@@ -44,43 +42,11 @@ export const AnimesHD: pageInterface = {
     nextEpUrl(url) {
       const nextUrl = j.$('#single > div.content > div.pag_episodes > div:nth-child(3) > a').attr('href');
       if (nextUrl && nextUrl !== '#') {
-        return utils.absoluteLink(nextUrl, AnimesHD.domain);
+        return utils.absoluteLink(nextUrl, AnimesOnline.domain);
       }
       return '';
     },
   },
-  overview: {
-    getTitle(url) {
-      return j.$('#single > div > div.to-center > div.data.pdin > h1').text();
-    },
-    getIdentifier(url) {
-      return utils.urlPart(url, 4);
-    },
-    uiSelector(selector) {
-      j.$('#serie_contenido')
-        .first()
-        .before(j.html(selector));
-    },
-    list: {
-      offsetHandler: false,
-      elementsSelector() {
-        return j.$('ul.episodios > li');
-      },
-      elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href') || '',
-          AnimesHD.domain,
-        );
-      },
-      elementEp(selector) {
-        return AnimesHD.sync.getEpisode(AnimesHD.overview!.list!.elementUrl(selector));
-      },
-    },
-  },
-
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {

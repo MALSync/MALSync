@@ -7,7 +7,7 @@
       "expected": {
         "sync": false,
         "title": "No Game, No Life",
-        "identifier": "no-game-no-life-261",
+        "identifier": "261",
         "uiSelector": true
       }
     },
@@ -16,7 +16,7 @@
       "expected": {
         "sync": true,
         "title": "No Game, No Life",
-        "identifier": "no-game-no-life-261",
+        "identifier": "261",
         "overviewUrl": "https://zoro.to/no-game-no-life-261",
         "nextEpUrl": "https://zoro.to/watch/no-game-no-life-261?ep=5335",
         "episode": 7,
@@ -28,7 +28,7 @@
       "expected": {
         "sync": false,
         "title": "Demon Slayer: The Hashira Meeting Arc",
-        "identifier": "demon-slayer-the-hashira-meeting-arc-17859",
+        "identifier": "17859",
         "uiSelector": true
       }
     },
@@ -37,7 +37,7 @@
       "expected": {
         "sync": true,
         "title": "Demon Slayer: The Hashira Meeting Arc",
-        "identifier": "demon-slayer-the-hashira-meeting-arc-17859",
+        "identifier": "17859",
         "overviewUrl": "https://zoro.to/demon-slayer-the-hashira-meeting-arc-17859",
         "nextEpUrl": "",
         "episode": 1,
@@ -49,9 +49,9 @@
       "expected": {
         "sync": false,
         "title": "Is It Wrong to Try to Pick Up Girls in a Dungeon? III OVA",
-        "identifier": "is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-iii-ova-17388",
+        "identifier": "17388",
         "uiSelector": true
       }
-    },
+    }
   ]
 }

@@ -1,0 +1,43 @@
+{
+  "title": "AnimesOnline",
+  "url": "https://animesonline.org/",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://animesonline.org/episodio/overlord-episodio-5/",
+      "expected": {
+        "sync": true,
+        "title": "Overlord",
+        "identifier": "overlord",
+        "overviewUrl": "https://animesonline.org/animes/overlord/",
+        "nextEpUrl": "https://animesonline.org/episodio/overlord-episodio-6/",
+        "episode": 5,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesonline.org/filmes/violet-evergarden-movie/",
+      "expected": {
+        "sync": true,
+        "title": "Tenki no Ko",
+        "identifier": "violet-evergarden-movie",
+        "overviewUrl": "https://animesonline.org/filmes/violet-evergarden-movie/",
+        "nextEpUrl": "",
+        "episode": 1,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://animesonline.org/episodio/overlord-3-episodio-8/",
+      "expected": {
+        "sync": true,
+        "title": "Overlord 3",
+        "identifier": "overlord-3",
+        "overviewUrl": "https://animesonline.org/animes/overlord/",
+        "nextEpUrl": "https://animesonline.org/episodio/overlord-3-episodio-9/",
+        "episode": 8,
+        "uiSelector": false
+      }
+    }
+  ]
+}
