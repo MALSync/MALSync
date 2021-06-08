@@ -24,7 +24,7 @@ describe('Custom Domain', function() {
           customDomains: [
             'https://vidstreamz.online/embed/*',
             'https://vidstreamz.online/embed/',
-            'https://vidstreamz.online/embed',
+            'https://*.vidstreamz.online/embed',
             'http://vidstreamz.online/embed',
             'https://streamani.net/streaming.php?*',
             'https://streamani.net/load.php?*',
@@ -44,7 +44,7 @@ describe('Custom Domain', function() {
       });
       Api.setStub(stub);
     })
-    it('test123', async function() {
+    it('Cleanup', async function() {
       await cleanupCustomDomains();
       //@ts-ignore
       expect(api.settings.get('customDomains')).to.deep.equal(
