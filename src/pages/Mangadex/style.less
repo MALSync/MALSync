@@ -1,1 +1,51 @@
+#malp {
+  all: initial;
+  font-size: inherit;
+  font-family: inherit;
+  margin-bottom: 4px;
+  min-height: 50px;
+  display: block;
+  .info {
+    all: initial !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+  }
+  select {
+    appearance: auto;
+  }
+}
+
 @import './../pages';
+
+@inputBackground: white;
+
+#MalData {
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 10px;
+
+  select,
+  & > * > *:last-child,
+  & > * > a {
+    background-color: #f5f6f7 !important;
+    border-radius: 4px;
+    padding: 4px 8px !important;
+  }
+
+  & > * > span {
+    display: block !important;
+  }
+  .info {
+    display: block !important;
+    font-size: 12px !important;
+  }
+
+  #AddMalDiv {
+    margin-left: 10px;
+    display: inline-block !important;
+    font-size: 0;
+    #AddMal {
+      font-size: 16px;
+    }
+  }
+}

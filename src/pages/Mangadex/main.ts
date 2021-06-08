@@ -91,6 +91,7 @@ export const Mangadex: pageInterface = {
     },
   },
   init(page) {
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     utils.fullUrlChangeDetect(function() {
       page.reset();
       check();
