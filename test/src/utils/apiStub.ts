@@ -29,6 +29,9 @@ export function getStub( options:{
       set(key, value) {
         init.settings[key] = value;
       },
+      getAsync(key) {
+        return Promise.resolve(api.settings.get(key));
+      },
     },
     storage: {
       lang() {

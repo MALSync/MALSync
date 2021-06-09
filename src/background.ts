@@ -3,7 +3,7 @@ import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
 import { initProgressScheduler } from './background/releaseProgress';
-import { initCustomDomain } from './background/customDomain';
+import { initCustomDomain, cleanupCustomDomains } from './background/customDomain';
 import { sendNotification } from './background/notifications';
 
 try {
@@ -56,6 +56,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       // Disable updateCheck
       api.storage.set('updateCheckTime', 0);
     }
+    cleanupCustomDomains();
   }
   chrome.alarms.clearAll();
 });
