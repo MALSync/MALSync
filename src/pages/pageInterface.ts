@@ -7,7 +7,7 @@ export interface pageInterface {
   type: 'anime' | 'manga';
   isSyncPage: (url: string) => boolean; // Return true if the current page is the sync page (Chapter/episode page)
   isOverviewPage?: (url: string) => boolean; // Return true if the current page is the Overview page
-  getImage?: () => string | undefined; // Return an image for the entry for local sync
+  getImage?: () => Promise<string | undefined> | string | undefined; // Return an image for the entry for local sync
   sync: {
     // Definitions for the sync page
     getTitle: (url: string) => string; // Returns the title of the anime, used for the search on mal

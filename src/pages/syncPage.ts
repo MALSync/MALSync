@@ -512,7 +512,7 @@ export class SyncPage {
         }
       }
 
-      this.imageFallback();
+      await this.imageFallback();
     }
   }
 
@@ -874,9 +874,9 @@ export class SyncPage {
     }
   }
 
-  imageFallback() {
+  async imageFallback() {
     if (this.singleObj && typeof this.singleObj.setImage !== 'undefined' && this.page.getImage) {
-      const image = this.page.getImage();
+      const image = await this.page.getImage();
       if (image) this.singleObj.setImage(image);
     }
   }
