@@ -7,7 +7,7 @@ const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitU
 const mangaData = {
   id: '',
   title: '',
-  coverId: '',
+  coverFilename: '',
   links: {
     mal: '',
     kt: '',
@@ -45,15 +45,8 @@ export const Mangadex: pageInterface = {
     );
   },
   async getImage() {
-    if (!mangaData.coverId) return undefined;
-    try {
-      const coverResponse = await request(`cover/${mangaData.coverId}`);
-      const cover = JSON.parse(coverResponse.responseText);
-      return `https://uploads.mangadex.org/covers/${mangaData.id}/${cover.data.attributes.fileName}`;
-    } catch (e) {
-      // do nothing
-    }
-    return undefined;
+    if (!mangaData.coverFilename) return undefined;
+    return `https://uploads.mangadex.org/covers/${mangaData.id}/${mangaData.coverFilename}`;
   },
   sync: {
     getTitle(url) {
@@ -105,27 +98,30 @@ export const Mangadex: pageInterface = {
       resetAwaitUi();
       if (!Mangadex.isSyncPage(window.location.href) && !Mangadex.isOverviewPage!(window.location.href)) return;
 
+      let manga: any = {};
+
       if (Mangadex.isSyncPage(window.location.href)) {
-        chapterData.id = utils.urlPart(window.location.href, 4);
-        const chapterResponse = await request(`chapter/${chapterData.id}`);
+        const chapterResponse = await request(`chapter/${utils.urlPart(window.location.href, 4)}?includes[]=manga`);
         const chapter = JSON.parse(chapterResponse.responseText);
         chapterData.chapter = chapter.data.attributes.chapter;
         chapterData.volume = chapter.data.attributes.volume;
         chapterData.translatedLanguage = chapter.data.attributes.translatedLanguage;
-        mangaData.id = chapter.relationships.find(relation => relation.type === 'manga').id;
+        manga.data = chapter.relationships.find(relation => relation.type === 'manga');
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
-        mangaData.id = utils.urlPart(window.location.href, 4);
+        const mangaResponse = await request(`manga/${utils.urlPart(window.location.href, 4)}?includes[]=cover_art`);
+        manga = JSON.parse(mangaResponse.responseText);
         await awaitUi();
       }
 
-      const mangaResponse = await request(`manga/${mangaData.id}`);
-      const manga = JSON.parse(mangaResponse.responseText);
+      mangaData.id = manga.data.id;
       const titleData = manga.data.attributes.title;
       mangaData.title =
         titleData.en ?? titleData[manga.data.attributes.originalLanguage] ?? titleData[Object.keys(titleData)[0]];
       mangaData.links = manga.data.attributes.links;
-      mangaData.coverId = manga.relationships.find(relation => relation.type === 'cover_art')?.id;
+      mangaData.coverFilename = manga.relationships?.find(
+        relation => relation.type === 'cover_art',
+      )?.attributes?.fileName;
 
       page.handlePage();
     }
