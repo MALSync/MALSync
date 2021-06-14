@@ -24,6 +24,39 @@ export const Japanread: pageInterface = {
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
     },
+    getVolume() {
+      const currentChapter = j.$('#jump-chapter option:selected');
+      if (currentChapter.length) {
+        let temp = currentChapter
+          .text()
+          .trim()
+          .match(/(vol\.|volume)\D?\d+/i);
+        if (temp !== null) {
+          temp = temp[0].match(/\d+/);
+          if (temp !== null) {
+            return parseInt(temp[0]);
+          }
+        }
+      }
+      return 0;
+    },
+    nextEpUrl(url) {
+      const nextChapter = j.$('#jump-chapter option:selected').prev();
+
+      if (nextChapter && typeof nextChapter !== 'undefined') {
+        let temp = nextChapter
+          .text()
+          .trim()
+          .match(/(ch\.|chapitre)\D?\d+/i);
+        if (temp !== null) {
+          temp = temp[0].replace('.', '-').match(/\d+/);
+          if (temp !== null) {
+            return utils.absoluteLink(temp[0], Japanread.sync.getOverviewUrl(url));
+          }
+        }
+      }
+      return '';
+    },
   },
   overview: {
     getTitle() {
@@ -50,7 +83,7 @@ export const Japanread: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.chapter-container > .row:not(:first-of-type) > .col > .chapter-row');
+        return j.$('[data-row=chapter]');
       },
       elementUrl(selector) {
         if (j.$('#navbar-guest').length === 0) {
@@ -79,7 +112,16 @@ export const Japanread: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
-        page.handlePage();
+        con.info('Waiting');
+        utils.waitUntilTrue(
+          () => {
+            return j.$('#jump-chapter option:selected').text() !== '' || j.$('[data-row=chapter]').length;
+          },
+          () => {
+            con.info('Start');
+            page.handlePage();
+          },
+        );
       }
     });
   },
