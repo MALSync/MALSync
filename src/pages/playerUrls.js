@@ -440,7 +440,7 @@ module.exports = {
   },
   // zoro
   vidcloud: {
-    match: ['*://vidcloud.spb.ru/*'],
+    match: ['*://vidcloud.spb.ru/*', '*://vidcloud.one/*'],
   },
   // gogoanime
   streamhd: {
