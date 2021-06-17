@@ -139,25 +139,25 @@
         <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
         <checkbox option="9anime">9anime</checkbox>
         <checkbox option="animepahe">animepahe</checkbox>
+        <checkbox option="AnimeLab">AnimeLab</checkbox>
         <checkbox option="AnimeSimple">AnimeSimple</checkbox>
         <checkbox option="AniMixPlay">AniMixPlay</checkbox>
         <checkbox option="Crunchyroll">Crunchyroll</checkbox>
+        <checkbox option="Funimation">Funimation</checkbox>
         <checkbox option="Gogoanime">Gogoanime</checkbox>
+        <checkbox option="Hidive">Hidive</checkbox>
+        <checkbox option="Hulu">Hulu</checkbox>
         <checkbox option="Mangadex">MangaDex</checkbox>
         <checkbox option="MangaFox">MangaFox</checkbox>
         <checkbox option="MangaNato">MangaNato</checkbox>
+        <checkbox option="MangaPlus">MangaPlus</checkbox>
         <checkbox option="MangaSee">MangaSee</checkbox>
+        <checkbox option="Netflix">Netflix</checkbox>
         <checkbox option="Twistmoe">twist.moe</checkbox>
+        <checkbox option="VIZ">VIZ</checkbox>
+        <checkbox option="Vrv">Vrv</checkbox>
         <checkbox option="YugenAnime">YugenAnime</checkbox>
         <checkbox option="Zoro">Zoro</checkbox>
-        <checkbox option="Funimation">Funimation</checkbox>
-        <checkbox option="Hulu">Hulu</checkbox>
-        <checkbox option="Netflix">Netflix</checkbox>
-        <checkbox option="AnimeLab">AnimeLab</checkbox>
-        <checkbox option="Hidive">Hidive</checkbox>
-        <checkbox option="Vrv">Vrv</checkbox>
-        <checkbox option="VIZ">VIZ</checkbox>
-        <checkbox option="MangaPlus">MangaPlus</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
