@@ -150,6 +150,14 @@
         <checkbox option="Twistmoe">twist.moe</checkbox>
         <checkbox option="YugenAnime">YugenAnime</checkbox>
         <checkbox option="Zoro">Zoro</checkbox>
+        <checkbox option="Funimation">Funimation</checkbox>
+        <checkbox option="Hulu">Hulu</checkbox>
+        <checkbox option="Netflix">Netflix</checkbox>
+        <checkbox option="AnimeLab">AnimeLab</checkbox>
+        <checkbox option="Hidive">Hidive</checkbox>
+        <checkbox option="Vrv">Vrv</checkbox>
+        <checkbox option="VIZ">VIZ</checkbox>
+        <checkbox option="MangaPlus">MangaPlus</checkbox>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
