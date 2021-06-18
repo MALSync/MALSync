@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://guya.moe/*"]
+    "match": ["*://guya.moe/*", "*://cubari.moe/*"]
   }
 }
