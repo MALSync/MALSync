@@ -248,7 +248,13 @@ module.exports = {
   },
   // 9anime
   streamtape: {
-    match: ['*://streamtape.com/*', '*://streamtape.net/*', '*://streamtape.xyz/*', '*://streamtape.to/*'],
+    match: [
+      '*://streamtape.com/*',
+      '*://streamtape.net/*',
+      '*://streamtape.xyz/*',
+      '*://streamtape.to/*',
+      '*://strcloud.in/*',
+    ],
   },
   // monoschinos
   monoschinos: {
