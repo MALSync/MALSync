@@ -35,6 +35,11 @@ let entry = {
     '..',
     'src/index-webextension/oauth.ts',
   ),
+  'pwa-script': path.join(
+    __dirname,
+    '..',
+    'src/index-webextension/pwa.ts',
+  ),
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
   install: path.join(__dirname, '..', 'src/index-webextension/install.ts'),

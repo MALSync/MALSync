@@ -9,6 +9,7 @@ import { pages } from './pages/pages';
 import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
 import { initUserProgressScheduler } from './background/releaseProgress';
+import { pwa } from './floatbutton/userscriptPwa';
 
 let page;
 
@@ -30,6 +31,8 @@ function main() {
     const simkl = new SimklClass(window.location.href);
   } else if (window.location.href.indexOf('malsync.moe/mal/oauth') > -1) {
     oauth();
+  } else if (window.location.href.indexOf('malsync.moe/pwa') > -1) {
+    pwa();
   } else {
     runPage();
   }

@@ -19,6 +19,7 @@ const aniUrls = { anilist: pageUrls.anilist };
 const kitsuUrls = { anilist: pageUrls.kitsu };
 const simklUrls = { anilist: pageUrls.simkl };
 const malsyncUrls = { anilist: pageUrls.malsync };
+const malsyncPwaUrls = { anilist: pageUrls.malsyncPwa };
 
 const contentUrls = pageUrls;
 delete contentUrls.anilist;
@@ -26,6 +27,7 @@ delete contentUrls.myanimelist;
 delete contentUrls.kitsu;
 delete contentUrls.simkl;
 delete contentUrls.malsync;
+delete contentUrls.malsyncPwa;
 
 const generateMatchExcludes = urls => {
   let match = [];
@@ -79,11 +81,17 @@ var content_scripts = [
     run_at: 'document_start',
   },
   {
+    matches: generateMatchExcludes(malsyncPwaUrls).match,
+    exclude_globs: generateMatchExcludes(malsyncPwaUrls).exclude.concat(['*mal-sync-background=*']),
+    js: ['content/pwa-script.js'],
+    run_at: 'document_start',
+  },
+  {
     matches: backgroundMatch(generateMatchExcludes(backgroundUrls).match),
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/update-check.js'],
     all_frames: true,
     run_at: 'document_start',
-  }
+  },
 ];
 
 pages.forEach(el => {
@@ -147,7 +155,7 @@ const generateManifest = () => {
       '48': 'icons/icon48.png',
       '128': 'icons/icon128.png',
     },
-    web_accessible_resources: ['vendor/*', 'assets/*', 'icons/*'],
+    web_accessible_resources: ['vendor/*', 'assets/*', 'icons/*', 'window.html'],
     permissions: [
       'storage',
       'alarms',
