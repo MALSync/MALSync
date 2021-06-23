@@ -60,6 +60,7 @@
 </template>
 
 <script type="text/javascript">
+// eslint-disable-next-line import/no-unresolved
 import quicklinks from '../../../utils/quicklinks.json';
 
 export default {
