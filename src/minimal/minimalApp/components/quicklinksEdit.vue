@@ -1,7 +1,8 @@
 <template>
   <div id="quicklinkedit">
-    <quicklinksOverview />
-    edit
+    <div style="margin-bottom: 20px;">
+      <input v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
+    </div>
     <div class="quicklinks">
       <div
         v-for="link in linksWithState"
@@ -23,16 +24,13 @@
 </template>
 
 <script type="text/javascript">
-import quicklinksOverview from './quicklinksOverview.vue';
 import quicklinks from '../../../utils/quicklinks.json';
 
 export default {
-  components: {
-    quicklinksOverview,
-  },
   data() {
     return {
       quicklinks,
+      search: '',
       active: [
         'Zoro',
         {
@@ -47,6 +45,10 @@ export default {
   computed: {
     linksWithState() {
       return this.quicklinks
+        .filter(el => {
+          if (!this.search) return true;
+          return el.name.toLowerCase().includes(this.search.toLowerCase());
+        })
         .map(el => {
           el.active = this.active.includes(el.name);
           return el;
