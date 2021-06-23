@@ -27,7 +27,7 @@
         <span class="mdl-list__item-primary-content">
           <span>Name: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_name" type="text" class="mdl-textfield__input" style="outline: none;"/>
+            <input v-model="custom_name" type="text" class="mdl-textfield__input" style="outline: none;" />
           </span>
         </span>
       </li>
@@ -35,7 +35,7 @@
         <span class="mdl-list__item-primary-content">
           <span>Anime Search Url: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_anime" type="text" class="mdl-textfield__input" style="outline: none;"/>
+            <input v-model="custom_anime" type="text" class="mdl-textfield__input" style="outline: none;" />
           </span>
         </span>
       </li>
@@ -43,17 +43,17 @@
         <span class="mdl-list__item-primary-content">
           <span>Manga Search Url: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_manga" type="text" class="mdl-textfield__input" style="outline: none;"/>
+            <input v-model="custom_manga" type="text" class="mdl-textfield__input" style="outline: none;" />
           </span>
         </span>
       </li>
 
       <input
-        @click="addCustom"
         :disabled="!this.custom_name"
         type="button"
         value="Add"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+        @click="addCustom"
       />
     </div>
   </div>
@@ -113,7 +113,7 @@ export default {
           this.value = this.value.filter(el => {
             if (typeof el === 'object' && el.name === link.name) return false;
             return true;
-          })
+          });
         } else {
           this.value.splice(this.value.indexOf(link.name), 1);
         }
@@ -143,7 +143,7 @@ export default {
       }
 
       if (!domain) {
-        utils.flashm('Something is wrong', {error: true});
+        utils.flashm('Something is wrong', { error: true });
         return;
       }
 
@@ -154,7 +154,7 @@ export default {
         search: {
           anime: this.custom_anime ? this.custom_anime : null,
           manga: this.custom_manga ? this.custom_manga : null,
-        }
+        },
       };
 
       this.value = [...this.value, res];
