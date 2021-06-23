@@ -1,4 +1,6 @@
 {
+  "search": "https://www.crunchyroll.com/search?q={searchterm}",
+  "searchDatabase": "Crunchyroll",
   "urls": {
     "match": ["*://*.crunchyroll.com/*"],
     "exclude": [

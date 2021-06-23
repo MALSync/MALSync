@@ -13,10 +13,18 @@ const res = pagesMain.completePages().map(page => {
     search[page.main.type] = page.meta.search;
   }
 
+  let database = null;
+
+  if (typeof page.meta.searchDatabase !== 'undefined') {
+    if(page.meta.searchDatabase) database = page.meta.searchDatabase;
+  } else if (page.main.database) {
+    database = page.main.database;
+  }
+
   return {
     name: page.main.name,
     domain,
-    database: page.main.database ?? null,
+    database,
     search,
   };
 });
