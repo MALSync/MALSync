@@ -3,8 +3,8 @@ import semverGt from 'semver/functions/gt';
 
 export async function upgradewWizzards(lastVersion) {
   if (!lastVersion) throw 'No last Version';
-
-  con.m('Wizzard').log('Last version', lastVersion);
+  const logger = con.m('Wizzard');
+  logger.log('Last version', lastVersion);
 
   const wizards = [
     {
@@ -37,10 +37,16 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
-      version: '0.8.9',
-      name: 'Disable updateCheck',
+      version: '0.8.12',
+      name: 'Clean up sync storage',
       action: () => {
-        return api.storage.set('updateCheckTime', 0);
+        return api.storage.list('sync').then(elements => {
+          const garbage = Object.keys(elements).filter(el => !utils.syncRegex.test(el));
+          logger.log('Delete', garbage);
+          if (garbage.length) {
+            chrome.storage.sync.remove(garbage);
+          }
+        });
       },
     },
   ];
@@ -48,18 +54,12 @@ export async function upgradewWizzards(lastVersion) {
   for (let i = 0; i < wizards.length; i++) {
     const wizard = wizards[i];
     if (semverGt(wizard.version, lastVersion)) {
-      con
-        .m('Wizzard')
-        .m(wizard.version)
-        .log(wizard.name);
+      logger.m(wizard.version).log(wizard.name);
 
       try {
         await wizard.action();
       } catch (error) {
-        con
-          .m('Wizzard')
-          .m(wizard.name)
-          .error(error);
+        logger.m(wizard.name).error(error);
       }
     }
   }
