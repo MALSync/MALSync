@@ -10,6 +10,7 @@
         class="mdl-chip quicklink"
         :class="{
           active: link.active,
+          custom: link.custom,
           database: link.database,
           search: link.search,
           home: !link.search && !link.database,
@@ -73,13 +74,13 @@ export default {
   },
   computed: {
     linksWithState() {
-      return this.quicklinks
+      return [...this.quicklinks, ...this.value.filter(el => typeof el === 'object' && el)]
         .filter(el => {
           if (!this.search) return true;
           return el.name.toLowerCase().includes(this.search.toLowerCase());
         })
         .map(el => {
-          el.active = this.value.includes(el.name);
+          el.active = this.value.includes(el.name) || el.custom;
           return el;
         })
         .sort((a, b) => a.name.localeCompare(b.name))
@@ -108,15 +109,23 @@ export default {
     },
     toggleLink(link) {
       if (link.active) {
-        this.value.splice(this.value.indexOf(link.name), 1);
+        if (link.custom) {
+          this.value = this.value.filter(el => {
+            if (typeof el === 'object' && el.name === link.name) return false;
+            return true;
+          })
+        } else {
+          this.value.splice(this.value.indexOf(link.name), 1);
+        }
       } else {
         this.value.push(link.name);
       }
       this.value = [...this.value];
     },
     stateNumber(link) {
-      if (link.database) return 0;
-      if (link.search) return 1;
+      if (link.custom) return 0;
+      if (link.database) return 1;
+      if (link.search) return 2;
       return 10;
     },
     addCustom() {
