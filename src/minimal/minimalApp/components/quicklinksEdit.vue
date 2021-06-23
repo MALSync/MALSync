@@ -20,6 +20,41 @@
         {{ link.name }}
       </div>
     </div>
+    <div class="custom">
+      <h3>Custom Search</h3>
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+        <span class="mdl-list__item-primary-content">
+          <span>Name: </span>
+          <span class="mdl-list__item-text-body">
+            <input v-model="custom_name" type="text" class="mdl-textfield__input" style="outline: none;"/>
+          </span>
+        </span>
+      </li>
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+        <span class="mdl-list__item-primary-content">
+          <span>Anime Search Url: </span>
+          <span class="mdl-list__item-text-body">
+            <input v-model="custom_anime" type="text" class="mdl-textfield__input" style="outline: none;"/>
+          </span>
+        </span>
+      </li>
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+        <span class="mdl-list__item-primary-content">
+          <span>Manga Search Url: </span>
+          <span class="mdl-list__item-text-body">
+            <input v-model="custom_manga" type="text" class="mdl-textfield__input" style="outline: none;"/>
+          </span>
+        </span>
+      </li>
+
+      <input
+        @click="addCustom"
+        :disabled="!this.custom_name"
+        type="button"
+        value="Add"
+        class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+      />
+    </div>
   </div>
 </template>
 
@@ -31,6 +66,9 @@ export default {
     return {
       quicklinks,
       search: '',
+      custom_name: '',
+      custom_anime: '',
+      custom_manga: '',
     };
   },
   computed: {
@@ -80,7 +118,41 @@ export default {
       if (link.database) return 0;
       if (link.search) return 1;
       return 10;
-    }
+    },
+    addCustom() {
+      let domain = '';
+      if (this.custom_anime || this.custom_manga) {
+        let domainParts;
+        if (this.custom_anime) {
+          domainParts = this.custom_anime.split('/');
+        } else {
+          domainParts = this.custom_manga.split('/');
+        }
+        if (domainParts.length > 2) {
+          domain = `${domainParts[0]}//${domainParts[2]}/`;
+        }
+      }
+
+      if (!domain) {
+        utils.flashm('Something is wrong', {error: true});
+        return;
+      }
+
+      const res = {
+        name: this.custom_name,
+        custom: true,
+        domain,
+        search: {
+          anime: this.custom_anime ? this.custom_anime : null,
+          manga: this.custom_manga ? this.custom_manga : null,
+        }
+      };
+
+      this.value = [...this.value, res];
+      this.custom_name = '';
+      this.custom_anime = '';
+      this.custom_manga = '';
+    },
   },
 };
 </script>
