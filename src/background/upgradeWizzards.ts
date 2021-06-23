@@ -1,17 +1,17 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import semverGt from 'semver/functions/gt';
 
-export function upgradewWizzards(lastVersion) {
+export async function upgradewWizzards(lastVersion) {
   if (!lastVersion) throw 'No last Version';
 
   con.m('Wizzard').log('Last version', lastVersion);
 
-  const wizzards = [
+  const wizards = [
     {
       version: '0.7.8',
       name: 'Set existing users to tags on',
       action: () => {
-        api.storage.get('settings/malTags').then(res => {
+        return api.storage.get('settings/malTags').then(res => {
           if (typeof res === 'undefined') {
             api.storage.set('settings/malTags', true);
           }
@@ -22,14 +22,14 @@ export function upgradewWizzards(lastVersion) {
       version: '0.8.7',
       name: 'Disable updateCheck',
       action: () => {
-        api.storage.set('updateCheckTime', 0);
+        return api.storage.set('updateCheckTime', 0);
       },
     },
     {
       version: '0.8.8',
       name: 'Reset to normal Mal api',
       action: () => {
-        api.storage.get('settings/syncMode').then(res => {
+        return api.storage.get('settings/syncMode').then(res => {
           if (res === 'MALAPI') {
             api.storage.set('settings/syncMode', 'MAL');
           }
@@ -40,12 +40,13 @@ export function upgradewWizzards(lastVersion) {
       version: '0.8.9',
       name: 'Disable updateCheck',
       action: () => {
-        api.storage.set('updateCheckTime', 0);
+        return api.storage.set('updateCheckTime', 0);
       },
     },
   ];
 
-  wizzards.forEach(wizard => {
+  for (let i = 0; i < wizards.length; i++) {
+    const wizard = wizards[i];
     if (semverGt(wizard.version, lastVersion)) {
       con
         .m('Wizzard')
@@ -53,7 +54,7 @@ export function upgradewWizzards(lastVersion) {
         .log(wizard.name);
 
       try {
-        wizard.action();
+        await wizard.action();
       } catch (error) {
         con
           .m('Wizzard')
@@ -61,5 +62,5 @@ export function upgradewWizzards(lastVersion) {
           .error(error);
       }
     }
-  })
+  }
 }
