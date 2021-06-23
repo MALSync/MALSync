@@ -7,18 +7,18 @@
         v-for="link in linksWithState"
         :key="link.name"
         class="mdl-chip quicklink"
-        @click="toggleLink(link)"
         :class="{
           active: link.active,
           database: link.database,
           search: link.search,
-          home: !link.search && !link.database
+          home: !link.search && !link.database,
         }"
+        @click="toggleLink(link)"
       >
-        <img style="padding-bottom: 3px; margin-right: 5px;" :src="favicon(link.domain)" height="16" width="16" /> {{link.name}}
+        <img style="padding-bottom: 3px; margin-right: 5px;" :src="favicon(link.domain)" height="16" width="16" />
+        {{ link.name }}
       </div>
     </div>
-
   </div>
 </template>
 
@@ -28,7 +28,7 @@ import quicklinks from '../../../utils/quicklinks.json';
 
 export default {
   components: {
-    quicklinksOverview
+    quicklinksOverview,
   },
   data() {
     return {
@@ -40,8 +40,8 @@ export default {
           name: 'custom',
           type: 'anime',
           search: 'https://google.de/{searchterm}',
-        }
-      ]
+        },
+      ],
     };
   },
   computed: {
@@ -52,7 +52,7 @@ export default {
           return el;
         })
         .sort((a, b) => a.name.localeCompare(b.name));
-    }
+    },
   },
   methods: {
     favicon(url) {
@@ -69,7 +69,7 @@ export default {
       } else {
         this.active.push(link.name);
       }
-    }
-  }
+    },
+  },
 };
 </script>
