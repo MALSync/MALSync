@@ -37,6 +37,13 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
+      version: '0.8.9',
+      name: 'Disable updateCheck',
+      action: () => {
+        return api.storage.set('updateCheckTime', 0);
+      },
+    },
+    {
       version: '0.8.12',
       name: 'Clean up sync storage',
       action: () => {
