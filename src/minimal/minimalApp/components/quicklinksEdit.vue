@@ -31,15 +31,6 @@ export default {
     return {
       quicklinks,
       search: '',
-      active: [
-        'Zoro',
-        {
-          active: 'true',
-          name: 'custom',
-          type: 'anime',
-          search: 'https://google.de/{searchterm}',
-        },
-      ],
     };
   },
   computed: {
@@ -50,13 +41,22 @@ export default {
           return el.name.toLowerCase().includes(this.search.toLowerCase());
         })
         .map(el => {
-          el.active = this.active.includes(el.name);
+          el.active = this.value.includes(el.name);
           return el;
         })
         .sort((a, b) => a.name.localeCompare(b.name))
         .sort((a, b) => {
           return this.stateNumber(a) - this.stateNumber(b);
         });
+    },
+    value: {
+      get() {
+        return api.settings.get('quicklinks');
+      },
+      set(value) {
+        api.settings.set('quicklinks', value);
+        this.$emit('changed', value);
+      },
     },
   },
   methods: {
@@ -70,10 +70,11 @@ export default {
     },
     toggleLink(link) {
       if (link.active) {
-        this.active.splice(this.active.indexOf(link.name), 1);
+        this.value.splice(this.value.indexOf(link.name), 1);
       } else {
-        this.active.push(link.name);
+        this.value.push(link.name);
       }
+      this.value = [...this.value];
     },
     stateNumber(link) {
       if (link.database) return 0;
