@@ -2,7 +2,6 @@
   <div id="quicklinkedit">
     <quicklinksOverview />
     edit
-    {{linksWithState}}
     <div class="quicklinks">
       <div
         v-for="link in linksWithState"
@@ -25,7 +24,7 @@
 
 <script type="text/javascript">
 import quicklinksOverview from './quicklinksOverview.vue';
-import quicklinks from './quicklinksArray.json';
+import quicklinks from '../../../utils/quicklinks.json';
 
 export default {
   components: {
