@@ -1,13 +1,9 @@
 const path = require('path');
 const extra = require('fs-extra');
 const fs = require('fs');
+const pagesMain = require('./utils/pagesMain');
 
-require('ts-node').register({
-  project: './tsconfig.node.json',
-  files: './globals.d.ts',
-});
-
-const pages = Object.values(require('../src/pages/pages.ts').pages);
+const pages = Object.values(pagesMain.pages());
 
 pages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
@@ -15,7 +11,7 @@ pages.sort(function(a, b) {
   return textA < textB ? -1 : textA > textB ? 1 : 0;
 });
 
-const hpages = Object.values(require('../src/pages-adult/pages.ts').pages);
+const hpages = Object.values(pagesMain.pages('../../src/pages-adult/pages.ts'));
 
 hpages.sort(function(a, b) {
   const textA = a.name.toUpperCase();
@@ -131,7 +127,7 @@ function adultDep() {
 
 readMe();
 function readMe() {
-  const pageList = Object.values(require('../src/pages/pages.ts').pages);
+  const pageList = Object.values(pagesMain.pages());
 
   const animes = [];
   const mangas = [];
@@ -210,7 +206,7 @@ function readMe() {
 
 createJson();
 function createJson() {
-  const pageList = Object.values(require('../src/pages/pages.ts').pages);
+  const pageList = Object.values(pagesMain.pages());
   const res = [];
   for (var page in pageList) {
     page = pageList[page];

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./src/",
     "noImplicitAny": false,
+    "noImplicitThis": false,
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",
