@@ -453,4 +453,30 @@ table#malList {
   padding-right: 5px;
 }
 
+#quicklinkedit {
+  .quicklinks {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    .quicklink {
+      opacity: 0.5;
+      font-size: 13px;
+      cursor: pointer;
+      &.active {
+        opacity: 1;
+      }
+      &.home {
+        background-color: #ff6767;
+      }
+      &.search {
+        background-color: #eeee9c;
+      }
+      &.database {
+        background-color: #90e963;
+      }
+    }
+  }
+}
+
 @import './themes/dark.less';
