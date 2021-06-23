@@ -51,7 +51,10 @@ export default {
           el.active = this.active.includes(el.name);
           return el;
         })
-        .sort((a, b) => a.name.localeCompare(b.name));
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .sort((a, b) => {
+          return this.stateNumber(a) - this.stateNumber(b);
+        });
     },
   },
   methods: {
@@ -70,6 +73,11 @@ export default {
         this.active.push(link.name);
       }
     },
+    stateNumber(link) {
+      if (link.database) return 0;
+      if (link.search) return 1;
+      return 10;
+    }
   },
 };
 </script>
