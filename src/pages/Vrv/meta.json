@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "Vrv",
   "urls": {
     "match": ["*://vrv.co/*"]
   }

@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "Hidive",
   "urls": {
     "match": ["*://www.hidive.com/*"]
   }

@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "",
   "urls": {
     "match": ["*://*.manga4life.com/*"]
   }

@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "MangaPlus",
   "urls": {
     "match": ["*://mangaplus.shueisha.co.jp/*"]
   }

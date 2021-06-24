@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "AnimeLab",
   "urls": {
     "match": ["*://www.animelab.com/*"]
   }

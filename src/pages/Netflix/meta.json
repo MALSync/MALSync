@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "Netflix",
   "urls": {
     "match": ["*://www.netflix.com/*"]
   }

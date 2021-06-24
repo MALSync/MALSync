@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "Funimation",
   "urls": {
     "match": ["*://www.funimation.com/shows/*", "*://www.funimation.com/*/shows/*"]
   }

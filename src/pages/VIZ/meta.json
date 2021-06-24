@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "VIZ",
   "urls": {
     "match": ["*://www.viz.com/*"]
   }
