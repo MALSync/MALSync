@@ -6,7 +6,7 @@ const res = pagesMain.completePages().map(page => {
   const domain = Array.isArray(page.main.domain) ? page.main.domain[0] : page.main.domain;
   let search = { anime: null, manga: null };
   if (!page.meta.search) {
-    search = null;
+    search[page.main.type] = 'home';
   } else if (typeof page.meta.search === 'object') {
     search = page.meta.search;
   } else {

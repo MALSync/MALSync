@@ -12,8 +12,8 @@
           active: link.active,
           custom: link.custom,
           database: link.database,
-          search: link.search,
-          home: !link.search && !link.database,
+          search: link.search && !(link.search.anime === 'home' || link.search.manga === 'home'),
+          home: link.search && (link.search.anime === 'home' || link.search.manga === 'home'),
         }"
         @click="toggleLink(link)"
       >
@@ -126,7 +126,7 @@ export default {
     stateNumber(link) {
       if (link.custom) return 0;
       if (link.database) return 1;
-      if (link.search) return 2;
+      if (link.search && !(link.search.anime === 'home' || link.search.manga === 'home')) return 2;
       return 10;
     },
     addCustom() {
