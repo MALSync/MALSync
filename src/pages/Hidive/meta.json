@@ -1,4 +1,5 @@
 {
+  "search": "https://www.hidive.com/search?q={searchtermPlus}",
   "searchDatabase": "Hidive",
   "urls": {
     "match": ["*://www.hidive.com/*"]

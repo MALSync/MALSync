@@ -1,4 +1,5 @@
 {
+  "search": "https://www.anime-on-demand.de/animes/?term={searchtermPlus}",
   "urls": {
     "match": ["*://www.anime-on-demand.de/anime/*"]
   }

@@ -1,4 +1,5 @@
 {
+  "search": "https://bato.to/search?word={searchtermPlus}",
   "urls": {
     "match": ["*://bato.to/*"]
   }

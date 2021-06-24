@@ -1,4 +1,8 @@
 {
+  "search": {
+    "anime": "https://myanimelist.net/anime.php?q={searchterm}",
+    "manga": "https://myanimelist.net/manga.php?q={searchterm}"
+  },
   "urls": {
     "match": ["*://myanimelist.net/anime/*/*/episode/*"]
   }

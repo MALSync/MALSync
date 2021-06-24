@@ -1,4 +1,5 @@
 {
+  "searchterm": "https://www1.gogoanime.ai/search.html?keyword={searchterm}",
   "urls": {
     "match": [
       "*://*.gogoanime.tv/*",

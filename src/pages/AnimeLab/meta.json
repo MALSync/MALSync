@@ -1,4 +1,5 @@
 {
+  "search": "https://www.animelab.com/shows/search?searchTerms={searchtermPlus}",
   "searchDatabase": "AnimeLab",
   "urls": {
     "match": ["*://www.animelab.com/*"]

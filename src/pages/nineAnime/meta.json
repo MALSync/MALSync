@@ -1,4 +1,5 @@
 {
+  "search": "https://9anime.to/search?keyword={searchtermPlus}",
   "urls": {
     "match": [
       "*://*.9anime.to/watch/*",

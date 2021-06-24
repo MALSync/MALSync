@@ -1,4 +1,5 @@
 {
+  "search": "https://animesuge.io/search?keyword={searchtermPlus}",
   "urls": {
     "match": ["*://animesuge.io/anime/*"]
   }

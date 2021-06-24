@@ -1,4 +1,5 @@
 {
+  "search": "https://mangahub.io/search?q={searchterm}",
   "urls": {
     "match": ["*://mangahub.io/*"]
   }
