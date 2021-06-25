@@ -26,7 +26,7 @@ function titleSearch(url, title) {
 }
 
 async function fillFromApi(combined, type, id) {
-  const mal = await utils.getMalToKissApi(type, id);
+  const mal = await getMalToKissApi(type, id);
 
   return combined.map(el => {
     if (el.database && mal[el.database]) {
@@ -67,6 +67,22 @@ function simplifyObject(combined, type, searchterm): Quicklink[] {
         links,
       };
     });
+}
+
+export async function getMalToKissApi(type, id) {
+  const url = `https://api.malsync.moe/mal/${type}/${id}`;
+  return api.request.xhr('GET', url).then(async response => {
+    con.log('malSync response', response);
+    if (response.status === 400) {
+      return {};
+    }
+    if (response.status === 200) {
+      const data = JSON.parse(response.responseText);
+      if (data && data.Sites) return data.Sites;
+      return {};
+    }
+    throw new Error('malsync offline');
+  });
 }
 
 export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
