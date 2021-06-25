@@ -334,7 +334,7 @@ module.exports = {
   },
   // gogo
   streamsb: {
-    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*'],
+    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*', '*://sbplay.org/*'],
   },
   // gogo
   dood: {
