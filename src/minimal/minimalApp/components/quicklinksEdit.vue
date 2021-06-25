@@ -68,10 +68,9 @@
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
 
-
 export default {
   components: {
-    backbutton
+    backbutton,
   },
   data() {
     return {

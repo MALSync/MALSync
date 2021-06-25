@@ -10,8 +10,8 @@ export default {
   methods: {
     lang: api.storage.lang,
     click() {
-      this.$root.$children[0].selectTab('settings')
-    }
-  }
+      this.$root.$children[0].selectTab('settings');
+    },
+  },
 };
 </script>
