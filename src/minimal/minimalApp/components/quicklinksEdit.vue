@@ -136,6 +136,11 @@ export default {
     toggleLink(link) {
       if (link.active) {
         if (link.custom) {
+
+          this.custom_name = link.name;
+          this.custom_anime = link.search.anime;
+          this.custom_manga = link.search.manga;
+
           this.value = this.value.filter(el => {
             if (typeof el === 'object' && el.name === link.name) return false;
             return true;
