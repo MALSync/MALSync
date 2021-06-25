@@ -16,13 +16,15 @@ export interface Quicklink {
   {searchterm} => 'no%20game%20no%20life'
   {searchtermPlus} => 'no+game+no+life'
   {searchtermRaw} => 'no game no life'
+  {cacheId} => '143'
 */
 
-function titleSearch(url, title) {
+function titleSearch(url, title, id) {
   return url
     .replace('{searchterm}', encodeURIComponent(title.trim().toLowerCase()))
     .replace('{searchtermPlus}', encodeURIComponent(title.trim().toLowerCase()).replace(/%20/g, '+'))
-    .replace('{searchtermRaw}', title);
+    .replace('{searchtermRaw}', title.replace(/\//g, ' '))
+    .replace('{cacheId}', id);
 }
 
 async function fillFromApi(combined, type, id) {
@@ -36,7 +38,7 @@ async function fillFromApi(combined, type, id) {
   });
 }
 
-function simplifyObject(combined, type, searchterm): Quicklink[] {
+function simplifyObject(combined, type, searchterm, id): Quicklink[] {
   return combined
     .filter(el => el.search && el.search[type])
     .map(el => {
@@ -57,7 +59,7 @@ function simplifyObject(combined, type, searchterm): Quicklink[] {
       } else {
         links.push({
           name: 'Quicksearch',
-          url: titleSearch(el.search[type], searchterm),
+          url: titleSearch(el.search[type], searchterm, id),
         });
       }
 
@@ -97,5 +99,5 @@ export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: 
     combined = await fillFromApi(combined, type, id);
   }
 
-  return simplifyObject(combined, type, searchterm);
+  return simplifyObject(combined, type, searchterm, id);
 }

@@ -24,8 +24,24 @@
     </div>
     <div class="custom mdl-cell bg-cell mdl-cell--12-col">
       <div class="mdl-card__title mdl-card--border">
-        <h2 class="mdl-card__title-text">{{ lang('settings_General') }}</h2>
+        <h2 class="mdl-card__title-text">Custom Searchlinks</h2>
       </div>
+      <li class="mdl-list__item">
+        <table>
+          <tr>
+            <td><span class="darkbox">{searchterm}</span></td>
+            <td>=> <span class="darkbox">no%20game%20no%20life</span></td>
+          </tr>
+          <tr>
+            <td><span class="darkbox">{searchtermPlus}</span></td>
+            <td>=> <span class="darkbox">no+game+no+life</span></td>
+          </tr>
+          <tr>
+            <td><span class="darkbox">{searchtermRaw}</span></td>
+            <td>=> <span class="darkbox">no game no life</span></td>
+          </tr>
+        </table>
+      </li>
       <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
         <span class="mdl-list__item-primary-content">
           <span>Name: </span>
