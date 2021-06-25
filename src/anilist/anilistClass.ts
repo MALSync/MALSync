@@ -1,6 +1,7 @@
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
+import { activeLinks } from '../utils/quicklinksBuilder';
 
 interface detail {
   page: 'detail';
@@ -67,7 +68,6 @@ export class AnilistClass {
         apiCacheKey: NaN,
         type: urlpart,
       };
-      this.siteSearch();
       this.streamingUI();
       helper.aniListToMal(this.page.id, this.page.type).then(malid => {
         if (malid) {
@@ -132,43 +132,45 @@ export class AnilistClass {
   }
 
   malToKiss() {
-    con.log('malToKiss');
-    $('.mal_links').remove();
-    utils.getMalToKissArray(this.page!.type, this.page!.apiCacheKey).then(links => {
-      let html = '';
-      for (const pageKey in links) {
-        const page = links[pageKey];
+    $(document).ready(() => {
+      con.log('malToKiss');
+      $('.mal_links').remove();
+      const title = $('h1')
+        .first()
+        .text()
+        .trim();
 
-        let tempHtml = '';
-        let tempUrl = '';
-        for (const streamKey in page) {
-          const stream = page[streamKey];
-          tempHtml += `
-          <div class="mal_links" style="margin-top: 5px;">
-            <a target="_blank" href="${stream.url}">
-              ${stream.title}
-            </a>
-          </div>`;
-          tempUrl = stream.url;
-        }
-        html += `
-          <div id="${pageKey}Links" class="mal_links" style="
-            background: rgb(var(--color-foreground));
-            border-radius: 3px;
-            display: block;
-            padding: 8px 12px;
-            width: 100%;
-            margin-bottom: 16px;
-            font-size: 1.2rem;
+      activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
+        let html = '';
 
-          ">
-            <img src="${utils.favicon(tempUrl.split('/')[2])}">
-            <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${pageKey}</span>
-            <span title="${pageKey}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
-            ${tempHtml}
-          </div>`;
-      }
-      $(document).ready(function() {
+        links.forEach(page => {
+          let tempHtml = '';
+          page.links.forEach(stream => {
+            tempHtml += `
+              <div class="mal_links" style="margin-top: 5px;">
+                <a target="_blank" href="${stream.url}">
+                  ${stream.name}
+                </a>
+              </div>`;
+          });
+          html += `
+            <div id="${page.name}Links" class="mal_links" style="
+              background: rgb(var(--color-foreground));
+              border-radius: 3px;
+              display: block;
+              padding: 8px 12px;
+              width: 100%;
+              margin-bottom: 16px;
+              font-size: 1.2rem;
+
+            ">
+              <img src="${utils.favicon(page.domain)}">
+              <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
+              <span title="${page.name}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
+              ${tempHtml}
+            </div>`;
+        });
+
         $('.mal_links').remove();
         $('.sidebar .data').before(j.html(html));
         $('.remove-mal-sync').click(function() {
@@ -176,81 +178,6 @@ export class AnilistClass {
           api.settings.set(String(key), false);
           window.location.reload();
         });
-      });
-    });
-  }
-
-  siteSearch() {
-    if (!api.settings.get('SiteSearch')) return;
-    const This = this;
-    $(document).ready(function() {
-      con.log('Site Search');
-      let pageSearch = {};
-      utils.getPageSearch().then(pages => {
-        pageSearch = pages;
-      });
-      $('#mal-sync-search-links').remove();
-      $('.sidebar .data').before(
-        j.html(
-          `
-        <div id="mal-sync-search-links" style="
-            background: rgb(var(--color-foreground));
-            border-radius: 3px;
-            display: block;
-            padding: 8px 12px;
-            width: 100%;
-            margin-bottom: 16px;
-            font-size: 1.2rem;
-        ">
-          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${api.storage.lang(
-            'Search',
-          )}</span>
-          <div class="MALSync-search"><a>[${api.storage.lang('Show')}]</a></div><br class="mal_links" />
-        </div>
-      `,
-        ),
-      );
-      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
-      $('.MALSync-search').one('click', () => {
-        const title = $('h1')
-          .first()
-          .text()
-          .trim();
-        const titleEncoded = encodeURI(title!);
-        let html = '';
-        const imgStyle = 'position: relative; top: 0px;';
-
-        for (const key in pageSearch) {
-          const page = pageSearch[key];
-          if (page.type !== This.page!.type) continue;
-
-          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
-
-          let link;
-          if (typeof page.completeSearchTag === 'undefined') {
-            link = `<a target="_blank" href="${page.searchUrl.replace('##searchkey##', titleEncoded)}">
-              ${linkContent}
-            </a>`;
-          } else {
-            link = page.completeSearchTag(title, linkContent);
-          }
-
-          let googleSeach = '';
-          if (typeof page.googleSearchDomain !== 'undefined') {
-            googleSeach = `<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${
-              page.googleSearchDomain
-            }">
-              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
-            </a>`;
-          }
-
-          html += `<div class="mal_links" id="${key}" style="padding: 1px 0;">
-              ${link}
-              ${googleSeach}
-          </div>`;
-        }
-
-        $('.MALSync-search').html(j.html(html));
       });
     });
   }

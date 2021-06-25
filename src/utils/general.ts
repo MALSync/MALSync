@@ -1,5 +1,3 @@
-import { Cache } from './Cache';
-
 declare let browser: any;
 
 export function urlPart(url: string, part: number) {

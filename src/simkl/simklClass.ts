@@ -3,6 +3,7 @@ import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
+import { activeLinks } from '../utils/quicklinksBuilder';
 
 interface detail {
   page: 'detail';
@@ -85,7 +86,6 @@ export class SimklClass {
 
       this.streamingUI();
       this.malToKiss();
-      this.siteSearch();
       this.pageRelation();
       return;
     }
@@ -191,46 +191,14 @@ export class SimklClass {
 
   malToKiss() {
     con.log('malToKiss');
-    utils.getMalToKissArray(this.page!.type, this.page!.malid).then(links => {
+
+    const title = $('h1')
+      .first()
+      .text()
+      .trim();
+
+    activeLinks(this.page!.type, this.page!.malid, title).then(links => {
       this.malkiss.links = links;
-    });
-  }
-
-  siteSearch() {
-    if (!api.settings.get('SiteSearch')) return;
-    con.log('PageSearch');
-    utils.getPageSearch().then(pageSearch => {
-      const newSearch: any = [];
-
-      const title = $('h1')
-        .first()
-        .text()
-        .trim();
-      const titleEncoded = encodeURI(title!);
-
-      for (const key in pageSearch) {
-        const page = pageSearch[key];
-
-        if (page.type !== this.page!.type) continue;
-
-        const tempAdd = {
-          favicon: utils.favicon(page.domain),
-          name: page.name,
-          search: '',
-          googleSeach: '',
-        };
-
-        if (typeof page.completeSearchTag === 'undefined') {
-          tempAdd.search = page.searchUrl.replace('##searchkey##', titleEncoded);
-        }
-
-        if (typeof page.googleSearchDomain !== 'undefined') {
-          tempAdd.googleSeach = `https://www.google.com/search?q=${titleEncoded}+site:${page.googleSearchDomain}`;
-        }
-        newSearch.push(tempAdd);
-      }
-
-      this.malkiss.pageSearch = newSearch;
     });
   }
 
