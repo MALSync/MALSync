@@ -119,13 +119,7 @@
 
             <h4>{{ lang('installPage_Wrong') }}</h4>
             <p>{{ lang('installPage_Wrong_Description') }}</p>
-            <button
-              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-              @click="show = !show"
-            >
-              {{ lang('Show') }}
-            </button>
-            <p v-if="show" class="correctionGif">
+            <p  class="correctionGif">
               <img
                 id="hiddenimage"
                 height="338"
@@ -134,6 +128,9 @@
                 alt="Wrong recognition"
               />
             </p>
+
+            <h4>Quicklinks</h4>
+            <quicklinksEdit />
 
             <h4>{{ lang('minimalClass_versionMsg_Text_4') }}</h4>
             <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
@@ -243,14 +240,59 @@ p {
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-top: none;
 }
+
+#quicklinkedit {
+  background-color: #f9f9f9;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+
+  .backbutton-settings, .custom {
+    display: none;
+  }
+  .quicklinks {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    .quicklink {
+      opacity: 0.5;
+      font-size: 13px;
+      cursor: pointer;
+      &.active {
+        opacity: 1;
+      }
+      &.home {
+        background-color: #ff6767;
+      }
+      &.search {
+        background-color: #e4e461;
+      }
+      &.database {
+        background-color: #90e963;
+      }
+      &.custom {
+        background-color: white;
+      }
+    }
+  }
+  .darkbox {
+    background-color: #0000002b;
+    padding: 5px;
+  }
+  td {
+    padding: 7px 2px;
+  }
+}
+
 </style>
 
 <script type="text/javascript">
+import quicklinksEdit from '../minimal/minimalApp/components/quicklinksEdit.vue';
 import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
 
 export default {
   components: {
     dropdown,
+    quicklinksEdit,
   },
   data: () => ({
     options: api.settings.options,
