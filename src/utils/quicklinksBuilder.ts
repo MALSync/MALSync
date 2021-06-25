@@ -85,13 +85,13 @@ export async function getMalToKissApi(type, id) {
   });
 }
 
-export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
+export function combinedLinks() {
   const links = api.settings.get('quicklinks');
+  return [...links.filter(el => typeof el === 'object' && el), ...quicklinks.filter(el => links.includes(el.name))];
+}
 
-  let combined = [
-    ...links.filter(el => typeof el === 'object' && el),
-    ...quicklinks.filter(el => links.includes(el.name)),
-  ];
+export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
+  let combined = combinedLinks();
 
   if (id) {
     combined = await fillFromApi(combined, type, id);

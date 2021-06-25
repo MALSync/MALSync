@@ -1,9 +1,9 @@
 <template>
   <div id="quicklinkedit">
-    <div style="margin-bottom: 20px;">
+    <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 0 15px;">
       <input v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
     </div>
-    <div class="quicklinks">
+    <div class="quicklinks mdl-cell bg-cell mdl-cell--12-col" style="padding: 15px;">
       <div
         v-for="link in linksWithState"
         :key="link.name"
@@ -21,8 +21,10 @@
         {{ link.name }}
       </div>
     </div>
-    <div class="custom">
-      <h3>Custom Search</h3>
+    <div class="custom mdl-cell bg-cell mdl-cell--12-col">
+      <div class="mdl-card__title mdl-card--border">
+        <h2 class="mdl-card__title-text">{{ lang('settings_General') }}</h2>
+      </div>
       <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
         <span class="mdl-list__item-primary-content">
           <span>Name: </span>
@@ -53,6 +55,7 @@
         type="button"
         value="Add"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+        style="margin: 15px;"
         @click="addCustom"
       />
     </div>
@@ -100,6 +103,7 @@ export default {
     },
   },
   methods: {
+    lang: api.storage.lang,
     favicon(url) {
       try {
         return utils.favicon(url);
