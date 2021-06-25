@@ -1,6 +1,7 @@
 <template>
   <div id="quicklinkedit">
-    <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 0 15px;">
+    <backbutton />
+    <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 10px 15px;">
       <input v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
     </div>
     <div class="quicklinks mdl-cell bg-cell mdl-cell--12-col" style="padding: 15px;">
@@ -65,8 +66,13 @@
 <script type="text/javascript">
 // eslint-disable-next-line import/no-unresolved
 import quicklinks from '../../../utils/quicklinks.json';
+import backbutton from './backbutton.vue';
+
 
 export default {
+  components: {
+    backbutton
+  },
   data() {
     return {
       quicklinks,
