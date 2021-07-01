@@ -119,7 +119,7 @@
 
             <h4>{{ lang('installPage_Wrong') }}</h4>
             <p>{{ lang('installPage_Wrong_Description') }}</p>
-            <p  class="correctionGif">
+            <p class="correctionGif">
               <img
                 id="hiddenimage"
                 height="338"
@@ -245,7 +245,8 @@ p {
   background-color: #f9f9f9;
   border: 1px solid rgba(0, 0, 0, 0.12);
 
-  .backbutton-settings, .custom {
+  .backbutton-settings,
+  .custom {
     display: none;
   }
   .quicklinks {
@@ -282,7 +283,6 @@ p {
     padding: 7px 2px;
   }
 }
-
 </style>
 
 <script type="text/javascript">

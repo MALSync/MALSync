@@ -83,7 +83,7 @@
 // eslint-disable-next-line import/no-unresolved
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
-import { removeOptionKey } from "../../../utils/quicklinksBuilder";
+import { removeOptionKey } from '../../../utils/quicklinksBuilder';
 
 export default {
   components: {
