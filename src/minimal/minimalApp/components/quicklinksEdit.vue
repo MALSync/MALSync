@@ -83,6 +83,7 @@
 // eslint-disable-next-line import/no-unresolved
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
+import { removeOptionKey } from "../../../utils/quicklinksBuilder";
 
 export default {
   components: {
@@ -136,18 +137,11 @@ export default {
     toggleLink(link) {
       if (link.active) {
         if (link.custom) {
-
           this.custom_name = link.name;
           this.custom_anime = link.search.anime;
           this.custom_manga = link.search.manga;
-
-          this.value = this.value.filter(el => {
-            if (typeof el === 'object' && el.name === link.name) return false;
-            return true;
-          });
-        } else {
-          this.value.splice(this.value.indexOf(link.name), 1);
         }
+        this.value = removeOptionKey(this.value, link.name);
       } else {
         this.value.push(link.name);
       }

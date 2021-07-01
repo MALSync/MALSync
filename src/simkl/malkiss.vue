@@ -94,6 +94,8 @@
 </template>
 
 <script type="text/javascript">
+import { removeFromOptions } from '../utils/quicklinksBuilder';
+
 const STORAGE_KEY = 'SIMKL-MAL-SYNC';
 export default {
   data: () => ({
@@ -152,8 +154,8 @@ export default {
       this.saveClasses();
     },
     removeSource(key) {
-      api.settings.set(key, false);
-      this.$delete(this.links, key);
+      removeFromOptions(String(key.name));
+      window.location.reload();
     },
     saveClasses() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.classes));

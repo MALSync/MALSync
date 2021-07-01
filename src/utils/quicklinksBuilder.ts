@@ -105,3 +105,16 @@ export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: 
 
   return simplifyObject(combined, type, searchterm, id);
 }
+
+export function removeOptionKey(options, key) {
+  if (!key) return options;
+  return options.filter(el => {
+    if (el === key || (typeof el === 'object' && el.name === key)) return false;
+    return true;
+  });
+}
+
+export function removeFromOptions(key) {
+  const options = api.settings.get('quicklinks');
+  api.settings.set('quicklinks', removeOptionKey(options, key));
+};

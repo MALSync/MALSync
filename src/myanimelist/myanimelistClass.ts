@@ -7,7 +7,7 @@ import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 // eslint-disable-next-line import/no-duplicates
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
-import { activeLinks } from '../utils/quicklinksBuilder';
+import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
@@ -234,7 +234,7 @@ export class MyAnimeListClass {
         $('h2:contains("Information")').before(j.html(html));
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
-          api.settings.set(String(key), false);
+          removeFromOptions(String(key));
           window.location.reload();
         });
       });

@@ -1,7 +1,7 @@
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
-import { activeLinks } from '../utils/quicklinksBuilder';
+import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
 interface detail {
   page: 'detail';
@@ -175,7 +175,7 @@ export class AnilistClass {
         $('.sidebar .data').before(j.html(html));
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
-          api.settings.set(String(key), false);
+          removeFromOptions(String(key));
           window.location.reload();
         });
       });

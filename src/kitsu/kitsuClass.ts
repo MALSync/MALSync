@@ -1,6 +1,6 @@
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
-import { activeLinks } from '../utils/quicklinksBuilder';
+import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
 interface detail {
   page: 'detail';
@@ -295,7 +295,7 @@ export class KitsuClass {
 
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
-          api.settings.set(String(key), false);
+          removeFromOptions(String(key));
           window.location.reload();
         });
       });
