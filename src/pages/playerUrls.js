@@ -254,6 +254,9 @@ module.exports = {
       '*://streamtape.xyz/*',
       '*://streamtape.to/*',
       '*://strcloud.in/*',
+      '*://strcloud.link/*',
+      '*://streamta.pe/*',
+      '*://strtape.tech/*',
     ],
   },
   // monoschinos
