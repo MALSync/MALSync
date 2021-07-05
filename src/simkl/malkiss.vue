@@ -70,22 +70,22 @@
     <div class="simkltvdetailonlineitems Links">
       <div v-if="links === null">Loading</div>
 
-      <div v-for="(streams, page) in links" :key="page" class="simkltvdetailonlineitem">
+      <div v-for="page in links" :key="page.name" class="simkltvdetailonlineitem">
         <div class="simkltvdetailonlineitemtop">
           <div class="simkltvdetailonlineitemico">
-            <img :src="getMal2KissFavicon(streams)" alt="" />
+            <img :src="getMal2KissFavicon(page.domain)" alt="" />
           </div>
-          <div class="simkltvdetailonlineitemname">{{ page }}</div>
+          <div class="simkltvdetailonlineitemname">{{ page.name }}</div>
           <div class="simkltvdetailonlineitemclose" @click="removeSource(page)"></div>
         </div>
         <div class="simkltvdetailonlineitemlinks">
           <a
-            v-for="stream in streams"
+            v-for="stream in page.links"
             :key="stream.url"
             target="_blank"
             :href="stream.url"
             class="simkltvdetailonlineitemhref"
-            >{{ stream.title }}</a
+            >{{ stream.name }}</a
           >
         </div>
       </div>
@@ -94,6 +94,8 @@
 </template>
 
 <script type="text/javascript">
+import { removeFromOptions } from '../utils/quicklinksBuilder';
+
 const STORAGE_KEY = 'SIMKL-MAL-SYNC';
 export default {
   data: () => ({
@@ -126,9 +128,9 @@ export default {
     lang: api.storage.lang,
     favicon: utils.favicon,
     assetUrl: api.storage.assetUrl,
-    getMal2KissFavicon(streams) {
+    getMal2KissFavicon(url) {
       try {
-        return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+        return utils.favicon(url);
       } catch (e) {
         con.error(e);
         return '';
@@ -152,8 +154,8 @@ export default {
       this.saveClasses();
     },
     removeSource(key) {
-      api.settings.set(key, false);
-      this.$delete(this.links, key);
+      removeFromOptions(String(key.name));
+      window.location.reload();
     },
     saveClasses() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(this.classes));

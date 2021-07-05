@@ -1,4 +1,5 @@
 {
+  "search": "https://flamescans.org/?s={searchtermPlus}",
   "urls": {
     "match": ["*://flamescans.org/*"]
   }

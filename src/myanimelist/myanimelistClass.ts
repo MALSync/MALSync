@@ -7,6 +7,7 @@ import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 // eslint-disable-next-line import/no-duplicates
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
+import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
@@ -63,7 +64,6 @@ export class MyAnimeListClass {
         this.thumbnails();
         this.streamingUI();
         this.malToKiss();
-        this.siteSearch();
         this.related();
         this.friendScore();
         this.relatedTag();
@@ -204,94 +204,39 @@ export class MyAnimeListClass {
   }
 
   async malToKiss() {
-    con.log('malToKiss');
-    utils.getMalToKissArray(this.type, this.id).then(links => {
-      let html = '';
-      for (const pageKey in links) {
-        const page = links[pageKey];
+    $(document).ready(() => {
+      con.log('malToKiss');
 
-        let tempHtml = '';
-        let tempUrl = '';
-        for (const streamKey in page) {
-          const stream = page[streamKey];
-          tempHtml += `<div class="mal_links"><a target="_blank" href="${stream.url}">${stream.title}</a></div>`;
-          tempUrl = stream.url;
-        }
-        html += `<h2 id="${pageKey}Links" class="mal_links"><img src="${utils.favicon(
-          tempUrl.split('/')[2],
-        )}"> ${pageKey}<span title="${pageKey}" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>`;
-        html += tempHtml;
-        html += '<br class="mal_links" />';
-      }
-      $(document).ready(function() {
+      const title = $('meta[property="og:title"]')
+        .first()
+        .attr('content')!
+        .trim();
+
+      activeLinks(this.type!, this.id, title).then(links => {
+        let html = '';
+
+        links.forEach(page => {
+          let tempHtml = '';
+
+          page.links.forEach(stream => {
+            tempHtml += `<div class="mal_links"><a target="_blank" href="${stream.url}">${stream.name}</a></div>`;
+          });
+
+          html += `<h2 id="${page.name}Links" class="mal_links"><img src="${utils.favicon(page.domain)}"> ${
+            page.name
+          }<span title="${
+            page.name
+          }" class="remove-mal-sync" style="float: right; font-weight: 100; line-height: 2; cursor: pointer; color: grey;">x</span></h2>`;
+          html += tempHtml;
+          html += '<br class="mal_links" />';
+        });
+
         $('h2:contains("Information")').before(j.html(html));
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
-          api.settings.set(String(key), false);
+          removeFromOptions(String(key));
           window.location.reload();
         });
-      });
-    });
-  }
-
-  siteSearch() {
-    if (!api.settings.get('SiteSearch')) return;
-    const This = this;
-    $(document).ready(function() {
-      con.log('Site Search');
-      let pageSearch = {};
-      utils.getPageSearch().then(pages => {
-        pageSearch = pages;
-      });
-      $('h2:contains("Information")').before(
-        j.html(
-          `<h2 id="mal-sync-search-links" class="mal_links">${api.storage.lang(
-            'Search',
-          )}</h2><div class="MALSync-search"><a>[Show]</a></div><br class="mal_links" />`,
-        ),
-      );
-      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
-      $('.MALSync-search').one('click', () => {
-        $('.MALSync-search').remove();
-        const title = $('meta[property="og:title"]')
-          .first()
-          .attr('content')!
-          .trim();
-        const titleEncoded = encodeURI(title);
-        let html = '';
-        const imgStyle = 'position: relative; top: 4px;';
-
-        for (const key in pageSearch) {
-          const page = pageSearch[key];
-          if (page.type !== This.type) continue;
-
-          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
-
-          let link;
-          if (typeof page.completeSearchTag === 'undefined') {
-            link = `<a target="_blank" href="${page.searchUrl.replace('##searchkey##', titleEncoded)}">
-              ${linkContent}
-            </a>`;
-          } else {
-            link = page.completeSearchTag(title, linkContent);
-          }
-
-          let googleSeach = '';
-          if (typeof page.googleSearchDomain !== 'undefined') {
-            googleSeach = `<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${
-              page.googleSearchDomain
-            }">
-              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
-            </a>`;
-          }
-
-          html += `<div class="mal_links" id="${key}" style="padding: 1px 0;">
-              ${link}
-              ${googleSeach}
-          </div>`;
-        }
-
-        $('#mal-sync-search-links').after(j.html(html));
       });
     });
   }

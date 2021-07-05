@@ -1,4 +1,5 @@
 {
+  "search": "https://okanime.tv/search?search={searchtermPlus}",
   "urls": {
     "match": ["*://*.okanime.com/animes/*", "*://*.okanime.com/movies/*", "*://*.okanime.tv/animes/*", "*://*.okanime.tv/movies/*"]
   }

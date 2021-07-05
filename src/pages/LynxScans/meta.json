@@ -1,4 +1,5 @@
 {
+  "search": "https://lynxscans.com/comics?query={searchtermPlus}",
   "urls": {
     "match": ["*://lynxscans.com/*"]
   }

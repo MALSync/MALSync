@@ -136,20 +136,9 @@
           </h2>
           <tooltip>{{ lang('settings_StreamingSite_text') }}</tooltip>
         </div>
-        <checkbox option="SiteSearch">{{ lang('Search') }}</checkbox>
-        <checkbox option="9anime">9anime</checkbox>
-        <checkbox option="animepahe">animepahe</checkbox>
-        <checkbox option="AnimeSimple">AnimeSimple</checkbox>
-        <checkbox option="AniMixPlay">AniMixPlay</checkbox>
-        <checkbox option="Crunchyroll">Crunchyroll</checkbox>
-        <checkbox option="Gogoanime">Gogoanime</checkbox>
-        <checkbox option="Mangadex">MangaDex</checkbox>
-        <checkbox option="MangaFox">MangaFox</checkbox>
-        <checkbox option="MangaNato">MangaNato</checkbox>
-        <checkbox option="MangaSee">MangaSee</checkbox>
-        <checkbox option="Twistmoe">twist.moe</checkbox>
-        <checkbox option="YugenAnime">YugenAnime</checkbox>
-        <checkbox option="Zoro">Zoro</checkbox>
+        <li class="mdl-list__item">
+          <quicklinksOverview />
+        </li>
       </div>
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -591,6 +580,7 @@ import shortcut from './components/settingsShortcut.vue';
 import login from './components/settingsLogin.vue';
 import tooltip from './components/tooltip.vue';
 import correction from './correction.vue';
+import quicklinksOverview from './components/quicklinksOverview.vue';
 
 import { exportData, importData } from '../../_provider/Local/import';
 import { getProgressTypeList } from '../../background/releaseProgress';
@@ -605,6 +595,7 @@ export default {
     fileUpload,
     shortcut,
     login,
+    quicklinksOverview,
   },
   props: {
     page: {

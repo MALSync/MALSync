@@ -86,24 +86,22 @@ async function checkItemId(page, id, curUrl = '', video = false) {
 
         con.log('Season', data);
         item = data.Items[0];
-        reqUrl = `/Genres?Ids=${item.SeriesId}`;
-        apiCall(reqUrl).then(response2 => {
+        reqUrl = `/Items/${item.SeriesId}`;
+        apiCall(reqUrl, true).then(response2 => {
           const genres: any = JSON.parse(response2.responseText);
           con.log('genres', genres);
-          for (let i = 0; i < genres.Items.length; i++) {
-            const genre = genres.Items[i];
-            if (genre.Name === 'Anime') {
-              con.info('Anime detected');
-              if (curUrl) {
-                page.url = curUrl;
-                page.handlePage(page.url);
-              } else {
-                page.handlePage();
-              }
-
-              $('html').removeClass('miniMAL-hide');
-              break;
+          if (genres.Path.includes('Anime') || genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime')) {
+            con.info('Anime detected');
+            if (curUrl) {
+              page.url = curUrl;
+              page.handlePage(page.url);
+            } else {
+              page.handlePage();
             }
+
+            $('html').removeClass('miniMAL-hide');
+          } else {
+            con.error('Not an Anime');
           }
         });
         break;

@@ -1,4 +1,5 @@
 {
+  "search": "https://animesonline.org/?s={searchtermPlus}",
   "urls": {
     "match": ["*://animesonline.org/*"]
   }

@@ -305,6 +305,10 @@ export class Minimal {
       this.minimalVue.$children[0].selectTab('customDomains');
     });
 
+    this.minimal.find('#quicklinkoverview').click(() => {
+      this.minimalVue.$children[0].selectTab('quicklinks');
+    });
+
     api.storage.get('tempVersion').then(version => {
       let versionMsg = '';
 

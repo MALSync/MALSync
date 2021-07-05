@@ -248,7 +248,16 @@ module.exports = {
   },
   // 9anime
   streamtape: {
-    match: ['*://streamtape.com/*', '*://streamtape.net/*', '*://streamtape.xyz/*', '*://streamtape.to/*'],
+    match: [
+      '*://streamtape.com/*',
+      '*://streamtape.net/*',
+      '*://streamtape.xyz/*',
+      '*://streamtape.to/*',
+      '*://strcloud.in/*',
+      '*://strcloud.link/*',
+      '*://streamta.pe/*',
+      '*://strtape.tech/*',
+    ],
   },
   // monoschinos
   monoschinos: {
@@ -328,7 +337,7 @@ module.exports = {
   },
   // gogo
   streamsb: {
-    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*'],
+    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*', '*://sbplay.org/*'],
   },
   // gogo
   dood: {
@@ -436,11 +445,11 @@ module.exports = {
   },
   // animixplay
   github: {
-    match: ['*://akaneshinjou.github.io/play/player.html*'],
+    match: ['*://akaneshinjou.github.io/*', '*://akane-shinjou.github.io/*', '*://andhaetg.github.io/*'],
   },
   // zoro
   vidcloud: {
-    match: ['*://vidcloud.spb.ru/*'],
+    match: ['*://vidcloud.spb.ru/*', '*://vidcloud.one/*'],
   },
   // gogoanime
   streamhd: {

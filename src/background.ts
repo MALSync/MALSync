@@ -5,6 +5,7 @@ import { initSyncTags } from './background/syncTags';
 import { initProgressScheduler } from './background/releaseProgress';
 import { initCustomDomain, cleanupCustomDomains } from './background/customDomain';
 import { sendNotification } from './background/notifications';
+import { upgradewWizzards } from './background/upgradeWizzards';
 
 try {
   initSyncTags();
@@ -32,30 +33,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
-    if (api.storage.version() === '0.7.8') {
-      // Set existing users to tags on.
-      api.storage.get('settings/malTags').then(res => {
-        if (typeof res === 'undefined') {
-          api.storage.set('settings/malTags', true);
-        }
-      });
-    }
-    if (api.storage.version() === '0.8.7') {
-      // Disable updateCheck
-      api.storage.set('updateCheckTime', 0);
-    }
-    if (api.storage.version() === '0.8.8') {
-      // Reset to normal Mal api
-      api.storage.get('settings/syncMode').then(res => {
-        if (res === 'MALAPI') {
-          api.storage.set('settings/syncMode', 'MAL');
-        }
-      });
-    }
-    if (api.storage.version() === '0.8.9') {
-      // Disable updateCheck
-      api.storage.set('updateCheckTime', 0);
-    }
+    upgradewWizzards(details.previousVersion);
     cleanupCustomDomains();
   }
   chrome.alarms.clearAll();

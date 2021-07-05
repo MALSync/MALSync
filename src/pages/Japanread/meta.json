@@ -1,4 +1,5 @@
 {
+  "search": "https://www.japanread.cc/manga-list?q={searchterm}",
   "urls": {
     "match": ["*://www.japanread.cc/*"]
   }

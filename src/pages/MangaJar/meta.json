@@ -1,4 +1,5 @@
 {
+  "search": "https://mangajar.com/search?q={searchtermPlus}",
   "urls": {
     "match": ["*://mangajar.com/manga/*"]
   }

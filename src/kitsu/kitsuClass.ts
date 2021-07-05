@@ -1,5 +1,6 @@
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
+import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
 interface detail {
   page: 'detail';
@@ -76,7 +77,6 @@ export class KitsuClass {
     if (urlpart === 'anime' || urlpart === 'manga') {
       if (this.same && typeof this.page !== 'undefined' && this.page.malObj !== 'undefined') {
         this.streamingUI();
-        this.siteSearch();
         this.malToKiss();
         this.pageRelation();
         return;
@@ -94,7 +94,6 @@ export class KitsuClass {
       };
       con.log('page', this.page);
       this.streamingUI();
-      this.siteSearch();
       this.malToKiss();
       this.pageRelation();
     }
@@ -249,43 +248,41 @@ export class KitsuClass {
   }
 
   malToKiss() {
-    con.log('malToKiss');
-    $('.mal_links').remove();
-    utils.getMalToKissArray(this.page!.type, this.page!.apiCacheKey).then(links => {
-      let html = '';
-      for (const pageKey in links) {
-        const page = links[pageKey];
+    $(document).ready(() => {
+      con.log('malToKiss');
+      $('.mal_links').remove();
+      const title = $('meta[property="og:title"]').attr('content')!;
 
-        let tempHtml = '';
-        let tempUrl = '';
-        for (const streamKey in page) {
-          const stream = page[streamKey];
-          tempHtml += `
-          <div class="mal_links" style="margin-top: 5px;">
-            <a target="_blank" href="${stream.url}">
-              ${stream.title}
-            </a>
-          </div>`;
-          tempUrl = stream.url;
-        }
-        html += `
-          <div id="${pageKey}Links" class="mal_links library-state with-header" style="
-            background: white;
-            margin-bottom: 15px;
-            border-radius: 3px;
-            display: block;
-            padding: 8px 12px;
-            width: 100%;
-            font-size: 12px;
+      activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
+        let html = '';
+        links.forEach(page => {
+          let tempHtml = '';
+          page.links.forEach(stream => {
+            tempHtml += `
+              <div class="mal_links" style="margin-top: 5px;">
+                <a target="_blank" href="${stream.url}">
+                  ${stream.name}
+                </a>
+              </div>`;
+          });
+          html += `
+            <div id="${page.name}Links" class="mal_links library-state with-header" style="
+              background: white;
+              margin-bottom: 15px;
+              border-radius: 3px;
+              display: block;
+              padding: 8px 12px;
+              width: 100%;
+              font-size: 12px;
 
-          ">
-            <img src="${utils.favicon(tempUrl.split('/')[2])}">
-            <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${pageKey}</span>
-            <span title="${pageKey}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
-            ${tempHtml}
-          </div>`;
-      }
-      $(document).ready(function() {
+            ">
+              <img src="${utils.favicon(page.domain)}">
+              <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
+              <span title="${page.name}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
+              ${tempHtml}
+            </div>`;
+        });
+
         if ($('#mal-sync-search-links').length) {
           $('#mal-sync-search-links')
             .first()
@@ -298,7 +295,7 @@ export class KitsuClass {
 
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
-          api.settings.set(String(key), false);
+          removeFromOptions(String(key));
           window.location.reload();
         });
       });
@@ -325,80 +322,6 @@ export class KitsuClass {
 
         `),
       );
-    });
-  }
-
-  siteSearch() {
-    if (!api.settings.get('SiteSearch')) return;
-    const This = this;
-    $(document).ready(function() {
-      con.log('Site Search');
-      let pageSearch = {};
-      utils.getPageSearch().then(pages => {
-        pageSearch = pages;
-      });
-      $('#mal-sync-search-links').remove();
-      $('.media-summary')
-        .first()
-        .after(
-          j.html(
-            `
-        <div id="mal-sync-search-links" style="
-            background: white;
-            margin-bottom: 15px;
-            border-radius: 3px;
-            display: block;
-            padding: 8px 12px;
-            width: 100%;
-            font-size: 12px;
-        " class="library-state with-header">
-          <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${api.storage.lang(
-            'Search',
-          )}</span>
-          <div class="MALSync-search"><a>[${api.storage.lang('Show')}]</a></div>
-        </div>
-      `,
-          ),
-        );
-      api.storage.addStyle('#AniList.mal_links img{background-color: #898989;}');
-      $('.MALSync-search').one('click', () => {
-        const title = $('meta[property="og:title"]').attr('content');
-        const titleEncoded = encodeURI(title!);
-        let html = '';
-        const imgStyle = 'position: relative; top: 0px;';
-
-        for (const key in pageSearch) {
-          const page = pageSearch[key];
-          if (page.type !== This.page!.type) continue;
-
-          const linkContent = `<img style="${imgStyle}" src="${utils.favicon(page.domain)}"> ${page.name}`;
-
-          let link;
-          if (typeof page.completeSearchTag === 'undefined') {
-            link = `<a target="_blank" href="${page.searchUrl.replace('##searchkey##', titleEncoded)}">
-              ${linkContent}
-            </a>`;
-          } else {
-            link = page.completeSearchTag(title, linkContent);
-          }
-
-          let googleSeach = '';
-          if (typeof page.googleSearchDomain !== 'undefined') {
-            googleSeach = `<a target="_blank" href="https://www.google.com/search?q=${titleEncoded}+site:${
-              page.googleSearchDomain
-            }">
-              <img style="${imgStyle}" src="${utils.favicon('google.com')}">
-            </a>`;
-          }
-
-          html += `<div class="mal_links" id="${key}" style="padding: 1px 0;">
-              ${link}
-              ${googleSeach}
-          </div>`;
-        }
-
-        $('.MALSync-search').html(j.html(html));
-      });
     });
   }
 

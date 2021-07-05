@@ -1,4 +1,5 @@
 {
+  "search": "https://mangadex.org/titles#{searchterm}",
   "urls": {
     "match": ["*://mangadex.org/*"]
   }

@@ -1,4 +1,8 @@
 {
+  "search": {
+    "anime": "https://proxer.me/search?s=search&name={searchterm}&typ=all-anime&tags=&notags=#top",
+    "manga": "https://proxer.me/search?s=search&name={searchterm}&typ=all-manga&tags=&notags=#top"
+  },
   "urls": {
     "match": ["*://proxer.me/*", "*://proxer.net/*"]
   }

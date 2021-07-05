@@ -1,4 +1,5 @@
 {
+  "search": "https://arangscans.com/?s={searchtermPlus}",
   "urls": {
     "match": ["*://arangscans.com/manga*"]
   }

@@ -1,4 +1,5 @@
 {
+  "search": "https://animeindo.net/?s={searchterm}&post_type=anime",
   "urls": {
     "match": ["*://animeindo.net/*", "*://animeindo.moe/*"]
   }

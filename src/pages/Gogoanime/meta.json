@@ -1,4 +1,5 @@
 {
+  "search": "https://www1.gogoanime.ai/search.html?keyword={searchterm}",
   "urls": {
     "match": [
       "*://*.gogoanime.tv/*",
@@ -11,6 +12,7 @@
       "*://*.gogoanime.so/*",
       "*://*.gogoanime.ai/*",
       "*://*.gogoanime.vc/*",
+      "*://*.gogoanime.pe/*",
       "*://*.gogoanimes.co/*",
       "*://*.animego.to/*"
     ],

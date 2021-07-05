@@ -1,5 +1,6 @@
 <template>
   <div>
+    <backbutton />
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
       <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text">{{ lang('settings_custom_domains_button') }}</h2>
@@ -73,9 +74,12 @@
 
 <script type="text/javascript">
 import { pages } from '../../pages/pages';
+import backbutton from './components/backbutton.vue';
 
 export default {
-  components: {},
+  components: {
+    backbutton,
+  },
   data() {
     return {
       pages,

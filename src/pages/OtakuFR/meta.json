@@ -1,4 +1,5 @@
 {
+  "search": "https://otakufr.co/toute-la-liste-affiches/?q={searchtermPlus}",
   "urls": {
     "match": ["*://otakufr.co/*"]
   }
