@@ -7,12 +7,7 @@
           <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
             <span class="mdl-list__item-primary-content">
               <a :href="getDomain(page)">
-                <img
-                  :src="'https://www.google.com/s2/favicons?domain=' + getDomain(page)"
-                  height="16"
-                  width="16"
-                  style="margin-right: 5px;"
-                />
+                <img :src="favicon(getDomain(page))" height="16" width="16" style="margin-right: 5px;" />
                 {{ page.name }}
               </a>
             </span>
@@ -58,6 +53,7 @@ export default {
     this.$root.updateDom();
   },
   methods: {
+    favicon: utils.favicon,
     lang: api.storage.lang,
     getDomain(page) {
       let domain;

@@ -30,7 +30,7 @@ function createTable() {
     if (typeof page.domain === 'object') page.domain = page.domain[0];
 
     const htmlContent = `<tr>
-    <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${
+    <td><a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${
       page.name
     }</a></td>
     <td>${page.languages.join(', ')}</td>
@@ -104,7 +104,7 @@ function adultDep() {
     if (typeof page.domain === 'object') page.domain = page.domain[0];
 
     html += `<tr>
-              <td><a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a></td>
+              <td><a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${page.name}</a></td>
             </tr>`;
   }
   html += `
@@ -132,10 +132,10 @@ function readMe() {
   const animes = [];
   const mangas = [];
   const medias = [
-    '<a href="http://app.emby.media"><img src="https://www.google.com/s2/favicons?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="http://app.plex.tv"><img src="https://www.google.com/s2/favicons?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="https://jellyfin.org/"><img src="https://www.google.com/s2/favicons?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
-    '<a href="https://komga.org/"><img src="https://www.google.com/s2/favicons?domain=https://komga.org/"></a> <a href="https://komga.org/">Komga</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="http://app.emby.media"><img src="https://favicon.malsync.moe/?domain=app.emby.media"></a> <a href="http://app.emby.media">Emby</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="http://app.plex.tv"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv"></a> <a href="http://app.plex.tv">Plex</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="https://jellyfin.org/"><img src="https://favicon.malsync.moe/?domain=https://jellyfin.org/"></a> <a href="https://jellyfin.org/">Jellyfin</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
+    '<a href="https://komga.org/"><img src="https://favicon.malsync.moe/?domain=https://komga.org/"></a> <a href="https://komga.org/">Komga</a> <a href="https://github.com/MALSync/MALSync/wiki/Emby-Plex">[Wiki]</a>',
   ];
 
   for (var page in pageList) {
@@ -143,7 +143,7 @@ function readMe() {
 
     if (typeof page.domain === 'object') page.domain = page.domain[0];
 
-    const str = `<a href="${page.domain}"><img src="https://www.google.com/s2/favicons?domain=${page.domain}"> ${page.name}</a>`;
+    const str = `<a href="${page.domain}"><img src="https://favicon.malsync.moe/?domain=${page.domain}"> ${page.name}</a>`;
 
     if (page.name === 'Emby' || page.name === 'Plex' || page.name === 'Jellyfin' || page.name === 'Komga') {
       continue;
@@ -151,7 +151,7 @@ function readMe() {
 
     if (page.name === 'MangaNato') {
       mangas.push(
-        '<a href="https://proxer.me"><img src="https://www.google.com/s2/favicons?domain=https://proxer.me"> Proxer</a>',
+        '<a href="https://proxer.me"><img src="https://favicon.malsync.moe/?domain=https://proxer.me"> Proxer</a>',
       );
     }
 
