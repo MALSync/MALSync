@@ -137,6 +137,10 @@ export class AnilistClass {
       $('.mal_links').remove();
       const title = $('h1')
         .first()
+        .clone()
+        .children()
+        .remove()
+        .end()
         .text()
         .trim();
 
