@@ -42,6 +42,11 @@ export function generateUniqueID(arraySize = 10): string {
 
 export function favicon(domain) {
   if (domain.indexOf('pahe.win') !== -1) return `https://www.google.com/s2/favicons?domain=animepahe.com`;
+
+  const res = domain.match(/^(https?:\/\/)?[^/]+/);
+
+  if (res) domain = res[0];
+
   return `https://favicon.malsync.moe/?domain=${domain}`;
 }
 
