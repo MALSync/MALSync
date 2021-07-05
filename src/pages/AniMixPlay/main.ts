@@ -104,7 +104,7 @@ export const AniMixPlay: pageInterface = {
     utils.fullUrlChangeDetect(function() {
       page.reset();
       check();
-    });
+    }, true);
 
     function check() {
       clearInterval(interval);
