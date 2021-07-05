@@ -1,4 +1,5 @@
 {
+  "search": "https://zeroscans.com/comics?query={searchtermPlus}",
   "urls": {
     "match": ["*://zeroscans.com/*"]
   }

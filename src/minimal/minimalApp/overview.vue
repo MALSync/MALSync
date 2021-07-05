@@ -365,19 +365,19 @@
         </ul>
       </div>
       <div
-        v-show="kiss2mal && Object.keys(kiss2mal).length"
+        v-show="kiss2mal && kiss2mal.length"
         class="mdl-grid mdl-grid--no-spacing bg-cell mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid alternative-list stream-block malClear"
       >
         <ul class="mdl-list stream-block-inner">
-          <li v-for="(streams, page) in kiss2mal" :key="page" class="mdl-list__item mdl-list__item--three-line">
+          <li v-for="page in kiss2mal" :key="page.name" class="mdl-list__item mdl-list__item--three-line">
             <span class="mdl-list__item-primary-content">
               <span>
-                <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(streams)" />
-                {{ page }}
+                <img style="padding-bottom: 3px;" :src="getMal2KissFavicon(page.domain)" />
+                {{ page.name }}
               </span>
               <span id="KissAnimeLinks" class="mdl-list__item-text-body">
-                <div v-for="stream in streams" :key="stream.url" class="mal_links">
-                  <a target="_blank" :href="stream.url">{{ stream.title }}</a>
+                <div v-for="stream in page.links" :key="stream.url" class="mal_links">
+                  <a target="_blank" :href="stream.url">{{ stream.name }}</a>
                 </div>
               </span>
             </span>
@@ -508,6 +508,7 @@
 <script type="text/javascript">
 import { getSingle } from '../../_provider/singleFactory';
 import { getOverview } from '../../_provider/metaDataFactory';
+import { activeLinks } from '../../utils/quicklinksBuilder';
 
 import progressP from './components/overviewProgress.vue';
 
@@ -532,7 +533,7 @@ export default {
         resumeUrl: null,
         continueUrl: null,
       },
-      kiss2mal: {},
+      kiss2mal: [],
       related: [],
       utils,
     };
@@ -727,7 +728,7 @@ export default {
 
       this.mal.resumeUrl = null;
       this.mal.continueUrl = null;
-      this.kiss2mal = {};
+      this.kiss2mal = [];
       this.related = [];
       this.imageTemp = null;
 
@@ -762,7 +763,7 @@ export default {
         }
       }
 
-      utils.getMalToKissArray(renderObj.getType(), renderObj.getApiCacheKey()).then(links => {
+      activeLinks(renderObj.getType(), renderObj.getApiCacheKey(), renderObj.getTitle()).then(links => {
         if (!this.renderObj || stateTest !== this.renderObj.url) return;
         this.kiss2mal = links;
       });
@@ -829,9 +830,9 @@ export default {
         this.malSync();
       }, 1000);
     },
-    getMal2KissFavicon(streams) {
+    getMal2KissFavicon(url) {
       try {
-        return utils.favicon(streams[Object.keys(streams)[0]].url.split('/')[2]);
+        return utils.favicon(url);
       } catch (e) {
         con.error(e);
         return '';

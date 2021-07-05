@@ -1,4 +1,5 @@
 {
+  "search": "https://jkanime.net/buscar/{searchterm}",
   "urls": {
     "match": ["*://jkanime.net/*"],
     "exclude": [

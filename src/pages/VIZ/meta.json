@@ -1,4 +1,6 @@
 {
+  "search": "https://www.viz.com/search?search={searchtermPlus}",
+  "searchDatabase": "VIZ",
   "urls": {
     "match": ["*://www.viz.com/*"]
   }

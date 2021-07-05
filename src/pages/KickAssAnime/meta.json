@@ -1,4 +1,5 @@
 {
+  "search": "https://www2.kickassanime.ro/search?q={searchterm}",
   "urls": {
     "match": [
       "*://*.kickassanime.io/anime/*",

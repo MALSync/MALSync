@@ -1,4 +1,5 @@
 {
+  "search": "https://www.branitube.net/buscar/{searchterm}",
   "urls": {
     "match": ["*://*.branitube.net/video/*", "*://*.branitube.net/lista/*"],
     "exclude": ["*://*.branitube.net/lista/filter/*", "*://*.branitube.net/lista/pagina/*"]

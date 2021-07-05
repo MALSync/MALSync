@@ -1,4 +1,5 @@
 {
+  "search": "https://www.animestreamingfr.fr/anime?page=1&query={searchtermPlus}",
   "urls": {
     "match": ["*://www.animestreamingfr.fr/anime/*"]
   }

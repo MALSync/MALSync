@@ -1,4 +1,5 @@
 {
+  "search": "https://pantsubase.tv/search?name={searchtermPlus}",
   "urls": {
     "match": ["*://pantsubase.tv/anime/*", "*://pantsubase.tv/watch/*"]
   }

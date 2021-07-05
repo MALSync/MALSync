@@ -1,4 +1,5 @@
 {
+  "search": "https://zoro.to/search?keyword={searchtermPlus}",
   "urls": {
     "match": ["*://zoro.to/*"]
   }

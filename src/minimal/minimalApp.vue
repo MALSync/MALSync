@@ -259,6 +259,7 @@
           <cleanTagsVue v-if="currentTab == tabs.cleanTags.title" />
           <allSitesVue v-if="currentTab == tabs.allSites.title" />
           <customDomainsVue v-if="currentTab == tabs.customDomains.title" />
+          <quicklinksEdit v-if="currentTab == tabs.quicklinks.title" />
         </section>
         <section
           id="fixed-tab-5"
@@ -286,6 +287,7 @@ import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
 import reviewsVue from './minimalApp/reviews.vue';
 import customDomainsVue from './minimalApp/customDomains.vue';
+import quicklinksEdit from './minimalApp/components/quicklinksEdit.vue';
 import { getSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
 
@@ -318,6 +320,7 @@ export default {
     cleanTagsVue,
     allSitesVue,
     customDomainsVue,
+    quicklinksEdit,
     settingsVue,
   },
   data: () => ({
@@ -371,6 +374,10 @@ export default {
       },
       customDomains: {
         title: 'customDomains',
+        scroll: 0,
+      },
+      quicklinks: {
+        title: 'quicklinks',
         scroll: 0,
       },
     },
@@ -442,6 +449,9 @@ export default {
         return true;
       }
       if (this.currentTab === this.tabs.customDomains.title) {
+        return true;
+      }
+      if (this.currentTab === this.tabs.quicklinks.title) {
         return true;
       }
       return false;
@@ -522,6 +532,9 @@ export default {
           this.history.push(this.getCurrent(oldtab));
         }
         if (this.currentTab === this.tabs.customDomains.title) {
+          this.history.push(this.getCurrent(oldtab));
+        }
+        if (this.currentTab === this.tabs.quicklinks.title) {
           this.history.push(this.getCurrent(oldtab));
         }
       }

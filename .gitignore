@@ -43,3 +43,5 @@ config.json
 bwd/
 
 dist/
+
+src/utils/quicklinks.json

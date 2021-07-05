@@ -1,31 +1,29 @@
 <template>
-  <div class="mdl-grid" style="display: block;">
-    <div class="mdl-cell bg-cell mdl-cell--12-col">
-      <div v-for="page in pages" :key="page.name">
-        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
-          <span class="mdl-list__item-primary-content">
-            <a :href="getDomain(page)">
-              <img
-                :src="'https://www.google.com/s2/favicons?domain=' + getDomain(page)"
-                height="16"
-                width="16"
-                style="margin-right: 5px;"
-              />
-              {{ page.name }}
-            </a>
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="page.name">
-              <input
-                :id="page.name"
-                type="checkbox"
-                class="mdl-switch__input"
-                :checked="getPageState(page)"
-                @change="setPageState(page, $event.target.checked)"
-              />
-            </label>
-          </span>
-        </li>
+  <div>
+    <backbutton />
+    <div class="mdl-grid" style="display: block;">
+      <div class="mdl-cell bg-cell mdl-cell--12-col">
+        <div v-for="page in pages" :key="page.name">
+          <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
+            <span class="mdl-list__item-primary-content">
+              <a :href="getDomain(page)">
+                <img :src="favicon(getDomain(page))" height="16" width="16" style="margin-right: 5px;" />
+                {{ page.name }}
+              </a>
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="page.name">
+                <input
+                  :id="page.name"
+                  type="checkbox"
+                  class="mdl-switch__input"
+                  :checked="getPageState(page)"
+                  @change="setPageState(page, $event.target.checked)"
+                />
+              </label>
+            </span>
+          </li>
+        </div>
       </div>
     </div>
   </div>
@@ -33,8 +31,12 @@
 
 <script type="text/javascript">
 import { pages } from '../../pages/pages';
+import backbutton from './components/backbutton.vue';
 
 export default {
+  components: {
+    backbutton,
+  },
   props: {},
   data() {
     return {
@@ -51,6 +53,7 @@ export default {
     this.$root.updateDom();
   },
   methods: {
+    favicon: utils.favicon,
     lang: api.storage.lang,
     getDomain(page) {
       let domain;

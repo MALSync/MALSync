@@ -1,4 +1,5 @@
 {
+  "search": "https://www.wakanim.tv/de/v2/catalogue/search?search={searchterm}",
   "urls": {
     "match": ["*://*.wakanim.tv/*"]
   }
