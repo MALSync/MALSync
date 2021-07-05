@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const KickAssAnime: pageInterface = {
   name: 'KickAssAnime',
-  domain: 'https://www.kickassanime.rs',
+  domain: 'https://www.kickassanime.ro',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
