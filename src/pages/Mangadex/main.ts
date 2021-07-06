@@ -99,7 +99,7 @@ export const Mangadex: pageInterface = {
         if (part === 'chapter') {
           return `${utils.urlPart(window.location.href, 3)}/${utils.urlPart(window.location.href, 4)}`;
         }
-        return utils.urlStrip(window.location.href)
+        return utils.urlStrip(window.location.href);
       },
     );
     check();
@@ -120,7 +120,7 @@ export const Mangadex: pageInterface = {
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
         const id = utils.urlPart(window.location.href, 4);
-        if (id.toLowerCase() === 'random') throw 'The random page not supported';
+        if (id.toLowerCase() === 'random') throw 'The random page is not supported';
         const mangaResponse = await request(`manga/${id}?includes[]=cover_art`);
         manga = JSON.parse(mangaResponse.responseText);
         await awaitUi();
