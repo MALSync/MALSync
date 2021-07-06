@@ -177,7 +177,36 @@ async function authenticate() {
         auth.serverApiKey = server.accessToken;
         logger.log('Connections', server.connections);
         if (!server.connections.length) throw 'No connection found';
-        const connection = server.connections[0];
+
+        // We try to get one working connection uri
+        let connection = server.connections[0];
+        if (server.connections.length > 1) {
+          for (let i = 0; i < server.connections.length; i += 1) {
+            const url = server.connections[i].uri;
+            logger.log(`Trying ${url}`);
+
+            try {
+              // eslint-disable-next-line no-await-in-loop
+              const data = await api.request.xhr('GET', {
+                url: `${url}/library/sections?X-Plex-Token=${auth.apiKey}`,
+                headers: {
+                  Accept: 'application/json',
+                },
+              });
+
+              if (data.status !== 200) {
+                throw 'Not reached';
+              }
+
+              logger.log(`Reached ${url}`);
+              connection = server.connections[i];
+              break;
+            } catch (e) {
+              logger.log(`Ignoring unreachable server url ${url}`);
+            }
+          }
+        }
+
         auth.base = connection.uri;
         logger.log('Done', auth);
         resolve('');
