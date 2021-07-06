@@ -89,10 +89,20 @@ export const Mangadex: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    utils.fullUrlChangeDetect(function() {
-      page.reset();
-      check();
-    }, true);
+    utils.changeDetect(
+      () => {
+        page.reset();
+        check();
+      },
+      () => {
+        const part = utils.urlPart(window.location.href, 3).toLowerCase();
+        if (part === 'chapter') {
+          return `${utils.urlPart(window.location.href, 3)}/${utils.urlPart(window.location.href, 4)}`;
+        }
+        return utils.urlStrip(window.location.href)
+      },
+    );
+    check();
 
     async function check() {
       resetAwaitUi();
