@@ -119,7 +119,9 @@ export const Mangadex: pageInterface = {
         manga.data = chapter.relationships.find(relation => relation.type === 'manga');
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
-        const mangaResponse = await request(`manga/${utils.urlPart(window.location.href, 4)}?includes[]=cover_art`);
+        const id = utils.urlPart(window.location.href, 4);
+        if (id.toLowerCase() === 'random') throw 'The random page not supported';
+        const mangaResponse = await request(`manga/${id}?includes[]=cover_art`);
         manga = JSON.parse(mangaResponse.responseText);
         await awaitUi();
       }
