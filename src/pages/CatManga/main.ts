@@ -57,8 +57,10 @@ export const CatManga: pageInterface = {
       return parseInt(utils.urlPart(url, 5)) || 1;
     },
     nextEpUrl(url) {
-      if (typeof pageData.chapters[CatManga.sync.getEpisode(url) + 1] !== 'undefined') {
-        return `${CatManga.sync.getOverviewUrl(url)}/${CatManga.sync.getEpisode(url) + 1}`;
+      const nextEpNr = CatManga.sync.getEpisode(url) + 1;
+      const cur = pageData.chapters.find(el => el.number === nextEpNr);
+      if (cur && nextEpNr) {
+        return `${CatManga.sync.getOverviewUrl(url)}/${nextEpNr}`;
       }
       return '';
     },

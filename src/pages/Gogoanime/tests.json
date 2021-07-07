@@ -1,31 +1,31 @@
 {
   "title": "Gogoanime",
-  "url": "https://www.gogoanime.movie",
+  "url": "https://gogoanime.vc",
   "testCases": [
     {
-      "url": "https://www.gogoanime.movie/category/no-game-no-life",
+      "url": "https://gogoanime.vc/category/no-game-no-life",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "uiSelector": true,
         "epList": {
-          "6": "https://www.gogoanime.movie/no-game-no-life-episode-6"
+          "6": "https://gogoanime.vc/no-game-no-life-episode-6"
         }
       }
     },
     {
-      "url": "https://www.gogoanime.movie/no-game-no-life-episode-5",
+      "url": "https://gogoanime.vc/no-game-no-life-episode-5",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "overviewUrl": "https://www.gogoanime.movie/category/no-game-no-life",
-        "nextEpUrl": "https://www.gogoanime.movie/no-game-no-life-episode-6",
+        "overviewUrl": "https://gogoanime.vc/category/no-game-no-life",
+        "nextEpUrl": "https://gogoanime.vc/no-game-no-life-episode-6",
         "episode": 5,
         "uiSelector": false,
         "epList": {
-          "6": "https://www.gogoanime.movie/no-game-no-life-episode-6"
+          "6": "https://gogoanime.vc/no-game-no-life-episode-6"
         }
       }
     }
