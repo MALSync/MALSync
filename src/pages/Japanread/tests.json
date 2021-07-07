@@ -2,26 +2,27 @@
   "title": "Japanread",
   "url": "https://www.japanread.cc/",
   "testCases": [{
-      "url": "https://www.japanread.cc/manga/dr-stone",
+      "url": "https://www.japanread.cc/manga/oshi-no-ko",
       "expected": {
         "sync": false,
-        "title": "Dr. Stone",
-        "identifier": "dr-stone",
+        "title": "Oshi no Ko",
+        "identifier": "oshi-no-ko",
         "uiSelector": true,
         "epList": {
-          "146": "https://www.japanread.cc/manga/dr-stone/146",
-          "165": "https://www.japanread.cc/manga/dr-stone/165"
+          "32": "https://www.japanread.cc/manga/oshi-no-ko/32",
+          "46": "https://www.japanread.cc/manga/oshi-no-ko/46"
         }
       }
     },
     {
-      "url": "https://www.japanread.cc/manga/dr-stone/190",
+      "url": "https://www.japanread.cc/manga/oshi-no-ko/45",
       "expected": {
         "sync": true,
-        "title": "Dr. Stone",
-        "identifier": "dr-stone",
-        "overviewUrl": "https://www.japanread.cc/manga/dr-stone",
-        "episode": 190,
+        "title": "Oshi no Ko",
+        "identifier": "oshi-no-ko",
+        "overviewUrl": "https://www.japanread.cc/manga/oshi-no-ko",
+        "nextEpUrl": "https://www.japanread.cc/manga/oshi-no-ko/46",
+        "episode": 45,
         "uiSelector": false
       }
     }
