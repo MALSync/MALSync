@@ -20,7 +20,7 @@
     "name": "Mangadex"
   },
   {
-    "domain": "https://gogoanimes.co",
+    "domain": "https://gogoanime.tv",
     "type": "anime",
     "name": "Gogoanime"
   },
@@ -105,7 +105,7 @@
     "name": "AnimeLab"
   },
   {
-    "domain": "https://www.kickassanime.rs",
+    "domain": "https://www.kickassanime.ro",
     "type": "anime",
     "name": "KickAssAnime"
   },
@@ -318,6 +318,11 @@
     "domain": "https://scantrad.net",
     "type": "manga",
     "name": "Scantrad"
+  },
+  {
+    "domain": "https://furyosquad.com/",
+    "type": "manga",
+    "name": "Furyosquad"
   },
   {
     "domain": "https://www.animeid.tv",
@@ -577,7 +582,7 @@
   {
     "domain": "https://guya.moe",
     "type": "manga",
-    "name": "Guya"
+    "name": "Guya & Cubari"
   },
   {
     "domain": "https://mangahub.io",
@@ -658,5 +663,15 @@
     "domain": "https://beta.kitsune.tv",
     "type": "anime",
     "name": "Kitsune"
+  },
+  {
+    "domain": "https://animesonline.org",
+    "type": "anime",
+    "name": "AnimesOnline"
+  },
+  {
+    "domain": "https://lhtranslation.net",
+    "type": "manga",
+    "name": "LHTranslation"
   }
 ]

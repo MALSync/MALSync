@@ -9,17 +9,17 @@ This is an complementary script for <a href="https://github.com/MALSync/MALSync"
   <table>
     <tbody>
       <tr>
-              <td><a href="https://hanime.tv"><img src="https://www.google.com/s2/favicons?domain=https://hanime.tv"> hanime</a></td>
+              <td><a href="https://hanime.tv"><img src="https://favicon.malsync.moe/?domain=https://hanime.tv"> hanime</a></td>
             </tr><tr>
-              <td><a href="http://hentaigasm.com"><img src="https://www.google.com/s2/favicons?domain=http://hentaigasm.com"> Hentaigasm</a></td>
+              <td><a href="http://hentaigasm.com"><img src="https://favicon.malsync.moe/?domain=http://hentaigasm.com"> Hentaigasm</a></td>
             </tr><tr>
-              <td><a href="https://hentaihaven.org"><img src="https://www.google.com/s2/favicons?domain=https://hentaihaven.org"> HentaiHaven</a></td>
+              <td><a href="https://hentaihaven.org"><img src="https://favicon.malsync.moe/?domain=https://hentaihaven.org"> HentaiHaven</a></td>
             </tr><tr>
-              <td><a href="http://kisshentai.net"><img src="https://www.google.com/s2/favicons?domain=http://kisshentai.net"> KissHentai</a></td>
+              <td><a href="http://kisshentai.net"><img src="https://favicon.malsync.moe/?domain=http://kisshentai.net"> KissHentai</a></td>
             </tr><tr>
-              <td><a href="https://nhentai.net"><img src="https://www.google.com/s2/favicons?domain=https://nhentai.net"> Nhentai</a></td>
+              <td><a href="https://nhentai.net"><img src="https://favicon.malsync.moe/?domain=https://nhentai.net"> Nhentai</a></td>
             </tr><tr>
-              <td><a href="https://www.underhentai.net"><img src="https://www.google.com/s2/favicons?domain=https://www.underhentai.net"> UnderHentai</a></td>
+              <td><a href="https://www.underhentai.net"><img src="https://favicon.malsync.moe/?domain=https://www.underhentai.net"> UnderHentai</a></td>
             </tr>
     </tbody>
   </table>
