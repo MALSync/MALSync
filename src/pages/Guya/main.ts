@@ -53,7 +53,7 @@ export const Guya: pageInterface = {
           .$('div#detailedView, div#compactView, tbody#chapterTable')
           .not('.d-none')
           .first()
-          .find(`a[href*="/read/${utils.urlPart(window.location.href, 3)}`);
+          .find(`a[href*="/read/${utils.urlPart(window.location.href, 4)}"]`);
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href') || '', Guya.domain);
