@@ -30,5 +30,8 @@ module.exports = {
   },
   malsync: {
     match: ['*://malsync.moe/mal/oauth*'],
-  }
+  },
+  malsyncPwa: {
+    match: ['*://malsync.moe/pwa*'],
+  },
 };
