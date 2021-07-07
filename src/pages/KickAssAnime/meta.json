@@ -5,7 +5,8 @@
       "*://*.kickassanime.io/anime/*",
       "*://*.kickassanime.ru/anime/*",
       "*://*.kickassanime.rs/anime/*",
-      "*://*.kickassanime.lol/anime/*"
+      "*://*.kickassanime.lol/anime/*",
+      "*://*.kickassanime.ro/anime/*"
     ]
   }
 }

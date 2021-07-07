@@ -23,7 +23,31 @@
         "identifier": "Kaguya-Wants-To-Be-Confessed-To",
         "overviewUrl": "https://guya.moe/read/manga/Kaguya-Wants-To-Be-Confessed-To/",
         "episode": 210,
-        "uiSelector": false,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://cubari.moe/read/mangadex/dcdcc8c7-932e-4f60-a900-5f19934eb6cf/",
+      "expected": {
+        "sync": false,
+        "title": "Dungeon Reset",
+        "identifier": "dcdcc8c7-932e-4f60-a900-5f19934eb6cf",
+        "uiSelector": true,
+        "epList": {
+          "6": "https://cubari.moe/read/mangadex/dcdcc8c7-932e-4f60-a900-5f19934eb6cf/6/1/",
+          "74": "https://cubari.moe/read/mangadex/dcdcc8c7-932e-4f60-a900-5f19934eb6cf/74/1/"
+        }
+      }
+    },
+    {
+      "url": "https://cubari.moe/read/mangadex/dcdcc8c7-932e-4f60-a900-5f19934eb6cf/65/1/",
+      "expected": {
+        "sync": true,
+        "title": "Dungeon Reset",
+        "identifier": "dcdcc8c7-932e-4f60-a900-5f19934eb6cf",
+        "overviewUrl": "https://cubari.moe/read/mangadex/dcdcc8c7-932e-4f60-a900-5f19934eb6cf/",
+        "episode": 65,
+        "uiSelector": false
       }
     }
   ]

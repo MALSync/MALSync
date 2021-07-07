@@ -73,8 +73,6 @@ export const AniMixPlay: pageInterface = {
     },
     uiSelector(selector) {
       j.$('#animepagetitle').after(j.html(`${selector}`));
-      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-      j.$('#malp').append('<br>');
     },
     list: {
       offsetHandler: false,
@@ -104,7 +102,7 @@ export const AniMixPlay: pageInterface = {
     utils.fullUrlChangeDetect(function() {
       page.reset();
       check();
-    });
+    }, true);
 
     function check() {
       clearInterval(interval);

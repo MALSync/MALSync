@@ -35,7 +35,7 @@ export interface pageInterface {
       getTotal?: () => number | undefined;
     };
   };
-  database?: string; // ignore, only for first party implementations
+  database?: string | undefined; // ignore, only for first party implementations
   init: (page: SyncPage) => void; // This is the most important function. It controls when to start the check. Every time page.handlePage() is called it will check the overview/sync page.
 }
 

@@ -1,18 +1,20 @@
 import { pageInterface } from '../pageInterface';
 
+const excluded = ['gist', 'imgur'];
+
 export const Guya: pageInterface = {
-  name: 'Guya',
-  domain: 'https://guya.moe',
+  name: 'Guya & Cubari',
+  domain: ['https://guya.moe', 'https://cubari.moe'],
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'read' && url.split('/')[4] === 'manga' && url.split('/').length >= 8) {
+    if (url.split('/')[3] === 'read' && !excluded.includes(url.split('/')[4]) && url.split('/').length >= 8) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'read' && url.split('/')[4] === 'manga' && url.split('/').length >= 6) {
+    if (url.split('/')[3] === 'read' && !excluded.includes(url.split('/')[4]) && url.split('/').length >= 6) {
       return true;
     }
     return false;
@@ -33,7 +35,10 @@ export const Guya: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('div.series-content > article > h1').text();
+      return j
+        .$('div.series-content > article > h1, article content > h1')
+        .first()
+        .text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 5);
@@ -45,10 +50,10 @@ export const Guya: pageInterface = {
       offsetHandler: false,
       elementsSelector() {
         return j
-          .$('div#detailedView, div#compactView')
+          .$('div#detailedView, div#compactView, tbody#chapterTable')
           .not('.d-none')
           .first()
-          .find('a[href*="/read/manga/');
+          .find(`a[href*="/read/${utils.urlPart(window.location.href, 4)}"]`);
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href') || '', Guya.domain);
@@ -63,6 +68,7 @@ export const Guya: pageInterface = {
     let interval;
 
     let urlWithoutPage = '';
+
     utils.fullUrlChangeDetect(function() {
       page.reset();
       clearInterval(interval);
@@ -84,6 +90,18 @@ export const Guya: pageInterface = {
               .split('/')
               .slice(0, 7)
               .join('/');
+
+            switch (window.location.href.split('/')[4]) {
+              case 'mangadex':
+                Guya.database = 'Mangadex';
+                break;
+              case 'mangasee':
+                Guya.database = 'MangaSee';
+                break;
+              default:
+                Guya.database = undefined;
+                break;
+            }
             page.handlePage();
           }
         },

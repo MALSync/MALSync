@@ -6,10 +6,13 @@ export const AsuraScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3].indexOf('chapter') >= 0) {
+    if (/cha?p?t?e?r?-\d+/i.test(url.split('/')[3])) {
       return true;
     }
     return false;
+  },
+  isOverviewPage(url) {
+    return url.split('/')[3] === 'comics' && url.split('/')[4] !== '';
   },
   sync: {
     getTitle(url) {
@@ -27,7 +30,7 @@ export const AsuraScans: pageInterface = {
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 3);
 
-      const temp = episodePart.match(/chapter-\d+/gim);
+      const temp = episodePart.match(/cha?p?t?e?r?-\d+/i);
 
       if (!temp || temp.length === 0) return 1;
 
@@ -77,12 +80,7 @@ export const AsuraScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3].indexOf('chapter') >= 0 ||
-        (page.url.split('/')[3] === 'comics' && page.url.split('/')[4] !== '')
-      ) {
-        page.handlePage();
-      }
+      page.handlePage();
     });
   },
 };
