@@ -445,7 +445,12 @@ module.exports = {
   },
   // animixplay
   github: {
-    match: ['*://akaneshinjou.github.io/*', '*://akane-shinjou.github.io/*', '*://andhaetg.github.io/*'],
+    match: [
+      '*://akaneshinjou.github.io/*',
+      '*://akane-shinjou.github.io/*',
+      '*://andhaetg.github.io/*',
+      '*://akaneshinjou.netlify.app/*',
+    ],
   },
   // zoro
   vidcloud: {
