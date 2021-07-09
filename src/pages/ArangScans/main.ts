@@ -6,7 +6,7 @@ export const ArangScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if ($('div.wp-manga-nav').length > 0) {
+    if (url.split('/')[3] === 'chapters') {
       return true;
     }
     return false;
@@ -14,35 +14,39 @@ export const ArangScans: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1])
+        .$('a.section')
         .text()
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(ArangScans.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).attr('href') || '';
+      return utils.absoluteLink(j.$('a.section').attr('href'), ArangScans.domain);
     },
     getEpisode(url) {
-      let episodePartAS = utils.urlPart(url, 5);
-
-      if (episodePartAS.match(/volume-\d+/gim)) {
-        episodePartAS = utils.urlPart(url, 6);
-      }
-
-      const temp = episodePartAS.match(/chapter-\d+/gim);
-
-      if (!temp || temp.length === 0) return 1;
-
-      return Number(temp[0].replace(/\D+/g, ''));
+      return Number(
+        j
+          .$('div#chapter-selector div.text')
+          .text()
+          .trim()
+          .replace('Chapter ', ''),
+      );
+    },
+    nextEpUrl(url) {
+      return utils.absoluteLink(
+        j
+          .$('i.chevron.right.icon')
+          .parent()
+          .attr('href'),
+        ArangScans.domain,
+      );
     },
   },
   overview: {
     getTitle(url) {
       return j
-        .$('ol.breadcrumb li a')
-        .last()
+        .$('h1.ui.centered.header')
         .text()
         .trim();
     },
@@ -50,29 +54,40 @@ export const ArangScans: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.c-page__content div.c-blog__heading')
+      j.$('div.content div.description')
         .first()
-        .before(
-          j.html(
-            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
-          ),
-        );
+        .after(j.html(`<div class="ui hidden divider"></div><div id= "malthing"><h5>MALSync</h5>${selector}</div>`));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul > li.wp-manga-chapter');
+        return j.$('div#chapters div.item');
       },
       elementUrl(selector) {
         return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
+          utils.absoluteLink(
+            selector
+              .find('a')
+              .last()
+              .attr('href'),
+            ArangScans.domain,
+          ) || ''
         );
       },
       elementEp(selector) {
-        return ArangScans.sync.getEpisode(ArangScans.overview!.list!.elementUrl(selector));
+        let temp = selector
+          .find('a')
+          .last()
+          .text()
+          .trim()
+          .match(/(ch\.|chapter)\D?\d+/i);
+        if (temp) {
+          temp = temp[0].match(/\d+/);
+          if (temp) {
+            return Number(temp[0]);
+          }
+        }
+        return NaN;
       },
     },
   },
@@ -80,19 +95,18 @@ export const ArangScans: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
-        page.url.split('/')[3] === 'manga' &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
+        page.url.split('/')[3] === 'chapters' ||
+        (page.url.split('/')[3] === 'titles' && page.url.split('/')[4] !== undefined)
       ) {
-        utils.waitUntilTrue(
-          function() {
-            if (j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length) {
-              return true;
-            }
-            return false;
+        page.handlePage();
+      }
+      if (page.url.split('/')[3] === 'titles' && page.url.split('/')[4] !== undefined) {
+        utils.changeDetect(
+          () => {
+            page.handleList();
           },
-          function() {
-            page.handlePage();
+          () => {
+            return j.$('div#chapters div.item').length;
           },
         );
       }
