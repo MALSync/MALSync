@@ -53,7 +53,7 @@ module.exports = {
     webextensions: true,
     browser: true,
   },
-  extends: ['airbnb-base'],
+  extends: ['airbnb-base', 'plugin:es/restrict-to-es2018'],
   globals: {
     api: 'readonly',
     con: 'readonly',
@@ -120,6 +120,9 @@ module.exports = {
             },
           },
         ],
+        // `eslint-plugin-es, rules
+        'es/no-nullish-coalescing-operators': 'off',
+        'es/no-regexp-lookbehind-assertions': 'error',
         // Custom rules
         'jquery-unsafe-malsync/no-xss-jquery': 2,
       },

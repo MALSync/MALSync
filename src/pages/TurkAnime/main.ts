@@ -55,8 +55,8 @@ export const TurkAnime: pageInterface = {
       // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
 
       const episodeNumberMatches = episodeSlug.match(
-        // https://regex101.com/r/yBcQgN/1
-        /(?<!-)(?<episodeNumber>\d+)-bolum(?:-final)?/i,
+        // https://regex101.com/r/1DEx05/1
+        /^(?<episodeNumber>\d+)-bolum(?:-final)?$/i,
       );
 
       if (!episodeNumberMatches?.groups) return NaN;
