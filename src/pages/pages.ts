@@ -271,5 +271,5 @@ export const pages = {
   Kitsune,
   AnimesOnline,
   LHTranslation,
-  MangasOrigines
+  MangasOrigines,
 };
