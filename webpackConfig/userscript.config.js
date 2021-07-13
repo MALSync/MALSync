@@ -43,6 +43,8 @@ const metadata = {
     'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
   downloadURL:
     'https://github.com/MALSync/MALSync/releases/latest/download/malsync.user.js',
+  updateURL:
+    'https://github.com/MALSync/MALSync/releases/latest/download/malsync.user.js',
   grant: [
     'GM_xmlhttpRequest',
     'GM_getValue',
