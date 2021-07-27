@@ -88,7 +88,7 @@
     "description": "General translation of anime for places like drop downs"
   },
   "Manga": {
-    "message": "Manga",
+    "message": "มังงะ",
     "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
@@ -144,7 +144,7 @@
     "description": "Volume"
   },
   "UI_Chapter": {
-    "message": "Chapter:",
+    "message": "บท:",
     "description": "Chapter"
   },
   "UI_Score": {
@@ -172,19 +172,19 @@
     "description": "Good - Score"
   },
   "UI_Score_Fine": {
-    "message": "(6) ปานกลาง",
+    "message": "(6) ค่อนข้างดี",
     "description": "Fine - Score"
   },
   "UI_Score_Average": {
-    "message": "(5) เฉลี่ย",
+    "message": "(5) ปานกลาง",
     "description": "Average - Score"
   },
   "UI_Score_Bad": {
-    "message": "(4) ไม่ดี",
+    "message": "(4) แย่",
     "description": "Bad - Score"
   },
   "UI_Score_VeryBad": {
-    "message": "(3) ที่เลวร้ายมาก",
+    "message": "(3) แย่มาก",
     "description": "Very Bad - Score"
   },
   "UI_Score_Horrible": {
@@ -192,7 +192,7 @@
     "description": "Horrible - Score"
   },
   "UI_Score_Appalling": {
-    "message": "(1) น่ากลัว",
+    "message": "(1) น่าเกลียดน่ากลัว",
     "description": "Appalling - Score"
   },
   "UI_Rules": {
@@ -246,7 +246,7 @@
     "description": "Wrong/correction button on 'synced' message"
   },
   "syncPage_flashm_failded": {
-    "message": "Update failed",
+    "message": "การอัพเดทล้มเหลว",
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
@@ -270,11 +270,11 @@
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "Rewatch อะนิเมะ?",
+    "message": "ดูอะนิเมะซ้ำ ?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
-    "message": "มังงะ runaed?",
+    "message": "อ่านมังงะซ้ำ ?",
     "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
@@ -288,7 +288,7 @@
     }
   },
   "syncPage_flash_player_error": {
-    "message": "ไม่พบผู้เล่น โปรดอัปเดตด้วยตนเองที่นี่.",
+    "message": "ไม่พบเครื่องเล่นวีดีโอ โปรดอัปเดตด้วยตนเองที่นี่.",
     "description": "Message if the video player could not be recognized"
   },
   "syncPage_malObj_addAnime": {
@@ -450,7 +450,7 @@
     }
   },
   "prediction_next": {
-    "message": "Next in $time$",
+    "message": "ถัดไปใน $time$",
     "description": "Short Form Text for next episode/episode estimation",
     "placeholders": {
       "time": {
@@ -460,19 +460,19 @@
     }
   },
   "prediction_incomplete": {
-    "message": "Incomplete",
+    "message": "ไม่สมบูรณ์",
     "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
   },
   "prediction_ongoing": {
-    "message": "Ongoing",
+    "message": "ต่อเนื่อง",
     "description": "Header for the ongoing section in the translation/airing progress section"
   },
   "prediction_complete": {
-    "message": "Complete",
+    "message": "สมบูรณ์",
     "description": "Header for the complete translation/airing section"
   },
   "prediction_Airing": {
-    "message": "การออกอากาศ $time$",
+    "message": "ออกอากาศใน $time$",
     "description": "Text for airing estimation",
     "placeholders": {
       "time": {
@@ -542,11 +542,11 @@
     "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
-    "message": "ดำเนินการต่อ watching",
+    "message": "ดูต่อ",
     "description": "Continue watching"
   },
   "overview_Continue_manga": {
-    "message": "ดำเนินการต่อ reading",
+    "message": "อ่านต่อ",
     "description": "Continue reading"
   },
   "overview_Next_Episode_anime": {
@@ -574,11 +574,11 @@
     "description": "Characters"
   },
   "overview_OpeningTheme": {
-    "message": "Opening ธีม:",
+    "message": "เพลงตอนเปิด:",
     "description": "Opening Theme"
   },
   "overview_EndingTheme": {
-    "message": "Ending ธีม:",
+    "message": "เพลงตอนจบ :",
     "description": "Ending Theme"
   },
   "search_Type": {
@@ -770,7 +770,7 @@
     "description": "miniMAL Width"
   },
   "settings_Shortcuts": {
-    "message": "Shortcuts",
+    "message": "ทางลัด",
     "description": "Shortcuts"
   },
   "settings_miniMAL_Open": {
@@ -794,11 +794,11 @@
     "description": "Auto fullscreen toggle"
   },
   "settings_Video_Resume": {
-    "message": "Auto resume",
+    "message": "เล่นวิดีโอต่อโดยอัตโนมัติ",
     "description": "Auto resume video where you left off toggle"
   },
   "settings_autoNextEp": {
-    "message": "AutoPlay ตอนต่อไป",
+    "message": "เล่นตอนต่อไปอัตโนมัติ",
     "description": "Autoplays the next episode after the video ends"
   },
   "settings_Shortcuts_Correction": {
@@ -876,7 +876,7 @@
     "description": "ETC"
   },
   "settings_Userscriptmode": {
-    "message": "โหมด userscript",
+    "message": "โหมด สคริปต์ผู้ใช้",
     "description": "Userscript mode"
   },
   "settings_Userscriptmode_Text": {
@@ -892,7 +892,7 @@
     "description": "Highlight all Episodes/Chapters - Text"
   },
   "settings_ClearCache": {
-    "message": "Clear Cache",
+    "message": "ล้างแคช",
     "description": "Clear Cache"
   },
   "settings_presenceHidePage": {
@@ -916,7 +916,7 @@
     "description": "Dropdown option to disable the estimation for an anime/manga"
   },
   "settings_progress_default": {
-    "message": "Default",
+    "message": "ค่าเริ่มต้น",
     "description": "Dropdown option to use the default in the estimation for an anime/manga"
   },
   "settings_website_button": {
@@ -984,7 +984,7 @@
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
+    "message": "อัปเดตเป็นเวอร์ชัน $Version$ $Link$CHANGELOG$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
@@ -1002,15 +1002,15 @@
     }
   },
   "minimalClass_versionMsg_Text_1": {
-    "message": "Thank you for installing MAL-Sync",
+    "message": "ขอบคุณสำหรับการติดตั้ง  MAL-Sync",
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
-    "message": "Having Questions?",
+    "message": "มีคำถาม?",
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
-    "message": "Open Source Code:",
+    "message": "โอเพ่นซอร์สโค้ด:",
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
