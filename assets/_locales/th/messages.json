@@ -100,39 +100,39 @@
     "description": "Status"
   },
   "UI_Status_watching_anime": {
-    "message": "กำลังดู",
+    "message": "กำลังดู (Watching)",
     "description": "Watching"
   },
   "UI_Status_watching_manga": {
-    "message": "กำลังอ่าน",
+    "message": "กำลังอ่าน (Reading)",
     "description": "Reading"
   },
   "UI_Status_Completed": {
-    "message": "Completed",
+    "message": "สมบูรณ์ (Completed)",
     "description": "Completed"
   },
   "UI_Status_OnHold": {
-    "message": "On-Hold",
+    "message": "หยุดไว้ชั่วคราว (On-Hold)",
     "description": "On-Hold"
   },
   "UI_Status_Dropped": {
-    "message": "Dropped",
+    "message": "แย่ (Dropped)",
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "Plan to Watch",
+    "message": "วางแผนที่จะดู (Plan to Watch)",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Plan to Read",
+    "message": "วางแผนที่จะอ่าน (Plan to Read)",
     "description": "Plan to Read"
   },
   "UI_Status_Rewatching_anime": {
-    "message": "Rewatching",
+    "message": "กำลังดูซ้ำ (Rewatching)",
     "description": "Status to rewatch anime"
   },
   "UI_Status_Rewatching_manga": {
-    "message": "Rereading",
+    "message": "กำลังอ่านซ้ำ (Rereading)",
     "description": "Status to reread manga"
   },
   "UI_Episode": {
@@ -254,27 +254,27 @@
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
-    "message": "เริ่มดู?",
+    "message": "เริ่มดูอนิเมะ ?",
     "description": "Start watching anime message"
   },
   "syncPage_flashConfirm_rewatch_finish_anime": {
-    "message": "เสร็จสิ้นการ rewatching?",
+    "message": "เสร็จสิ้นการอ่านซ้ำ ?",
     "description": "Finish rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_finish_manga": {
-    "message": "เสร็จสิ้นการอ่านใหม่?",
+    "message": "เสร็จสิ้นการอ่านใหม่ ?",
     "description": "Finish rereading manga message"
   },
   "syncPage_flashConfirm_start_manga": {
-    "message": "เริ่มอ่าน?",
+    "message": "เริ่มอ่านมังงะ ?",
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "ดูอะนิเมะซ้ำ ?",
+    "message": "เริ่มดูอะนิเมะซ้ำ ?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
-    "message": "อ่านมังงะซ้ำ ?",
+    "message": "เริ่มอ่านมังงะซ้ำ ?",
     "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
@@ -482,7 +482,7 @@
     }
   },
   "correction_Offset": {
-    "message": "ตอนที่ออฟเซ็ตตอน",
+    "message": "ออฟเซ็ตตอน",
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
@@ -490,7 +490,7 @@
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "เปลี่ยน URL นี้หากชี้ไปที่หน้าอะนิเมะที่ไม่ถูกต้องใน Mal.",
+    "message": "ลิ้งค์ม่ถูกต้อง",
     "description": "URL is Wrong"
   },
   "correction_Search": {
@@ -558,11 +558,11 @@
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
-    "message": "ตอนต่อไป",
+    "message": "ดำเนินตอนต่อไปใหม่",
     "description": "Resume Episode"
   },
   "overview_Resume_Episode_manga": {
-    "message": "เรซูเม่บท",
+    "message": "ดำเนินบทต่อไปใหม่",
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
@@ -578,7 +578,7 @@
     "description": "Opening Theme"
   },
   "overview_EndingTheme": {
-    "message": "เพลงตอนจบ :",
+    "message": "เพลงตอนจบ:",
     "description": "Ending Theme"
   },
   "search_Type": {
@@ -634,7 +634,7 @@
     "description": "Manual"
   },
   "settings_Mangasync": {
-    "message": "Manga ซิงค์",
+    "message": "มังงะซิงค์",
     "description": "Manga sync"
   },
   "settings_AutoTracking_Video": {
@@ -844,7 +844,7 @@
     "description": "Update Check - Text"
   },
   "settings_Interval": {
-    "message": "ช่วง",
+    "message": "ช่วงเวลา",
     "description": "Interval"
   },
   "settings_Interval_Off": {
@@ -1026,7 +1026,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "เพียงแค่เปิดตอนหรือบทที่ใด ๆ $Link1$supported pages$LinkEnd1$. การซิงค์รอจนถึง 85% ของวิดีโอที่มีการดู สำหรับการซิงค์ Mangas ในการโหลดหน้าเว็บ สิ่งนี้สามารถเปลี่ยนแปลงได้ใน $Link2$settings$LinkEnd2$.",
+    "message": "เพียงแค่เปิดตอนหรือบทที่ใดๆ $Link1$supported pages$LinkEnd1$. การซิงค์รอจนถึง 85% ของวิดีโอที่มีการดู สำหรับการซิงค์ มังงะ ในการโหลดหน้าเว็บสิ่งนี้สามารถเปลี่ยนแปลงได้ใน $Link2$settings$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -1052,7 +1052,7 @@
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ Offset สามารถตั้งค่าได้ในหน้านั้นด้วย",
+    "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ ออฟเซ็ต สามารถตั้งค่าได้ในหน้านั้นด้วย",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
@@ -1070,7 +1070,7 @@
     }
   },
   "Emby_Authenticate": {
-    "message": "MAL-Sync ต้องการกุญแจ Emby API ในการทำงาน Infos เพิ่มเติม $Link1$Here$Link2$",
+    "message": "MAL-Sync ต้องการการตรวจสอบสิทธิ์ในการทำงาน ข้อมูลเพิ่มเติม $Link1$Here$Link2$",
     "description": "Emby Authentication",
     "placeholders": {
       "Link1": {
