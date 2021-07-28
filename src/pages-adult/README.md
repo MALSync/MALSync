@@ -5,6 +5,7 @@
 This is an complementary script for <a href="https://github.com/MALSync/MALSync">MAL-Sync</a>. You need to have both installed. Keep in mind that the settings are independent and need to be set in both manually. For initial authentication it is possibly needed to disable the extension temporary.
 
 #### **Supported Pages** <a id="anchor-link"></a>
+
 <!--pages-->
   <table>
     <tbody>
@@ -27,10 +28,8 @@ This is an complementary script for <a href="https://github.com/MALSync/MALSync"
 
 #### **Download**
 
-[![Userscript](https://img.shields.io/badge/Userscript-Direct_Download_(No_Login_Needed)-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/scripts/387981-mal-sync-adult-fatexxxblood-edition/code/MAL-Sync%20Adult%20%5BFateXXXBlood%20Edition%5D.user.js)
+[![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://github.com/MALSync/MALSync/releases/latest/download/malsync-adult.user.js)
 
+#### **Tutorial**
 
-[![Userscript](https://img.shields.io/badge/Userscript-Download-brightgreen.svg?style=flat-square&label=Userscript&logo=javascript&logoColor=white)](https://greasyfork.org/scripts/387981)
-
-#### **Tutorial**  
-[How to install user scripts](https://greasyfork.org/en/help/installing-user-scripts)  
+[How to install user scripts](https://greasyfork.org/en/help/installing-user-scripts)
