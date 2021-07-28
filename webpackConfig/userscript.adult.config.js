@@ -36,12 +36,9 @@ const metadata = {
   version: '0.2.9',
   author: package['author'],
   license: 'GPL-3.0',
-  iconURL:
-    'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
-  downloadURL:
-    'https://greasyfork.org/scripts/387981-mal-sync-adult-fatexxxblood-edition/code/MAL-Sync%20Adult%20%5BFateXXXBlood%20Edition%5D.user.js',
-  updateURL:
-    'https://greasyfork.org/scripts/387981-mal-sync-adult-fatexxxblood-edition/code/MAL-Sync%20Adult%20%5BFateXXXBlood%20Edition%5D.meta.js',
+  iconURL: 'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
+  downloadURL: 'https://github.com/MALSync/MALSync/releases/latest/download/malsync-adult.user.js',
+  updateURL: 'https://github.com/MALSync/MALSync/releases/latest/download/malsync-adult.user.js',
   grant: [
     'GM_xmlhttpRequest',
     'GM_getValue',
@@ -54,9 +51,7 @@ const metadata = {
     'GM.getValue',
     'GM.setValue',
   ],
-  match: generateMatchExcludes(pageUrls).match.concat(
-    generateMatchExcludes(playerUrls).match,
-  ),
+  match: generateMatchExcludes(pageUrls).match.concat(generateMatchExcludes(playerUrls).match),
   exclude: generateMatchExcludes(pageUrls).exclude,
   'require ': 'http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js',
   resource: generateResources(),
@@ -90,10 +85,7 @@ const generateMetadataBlock = metadata => {
     }
   }
 
-  return (
-    `// ==UserScript==\n${block}// ==/UserScript==\n\n` +
-    `var i18n = ${JSON.stringify(i18n())}\n`
-  );
+  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())}\n`;
 };
 
 module.exports = {
@@ -113,11 +105,7 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          { loader: 'to-string-loader' },
-          { loader: 'css-loader' },
-          { loader: 'less-loader' },
-        ],
+        use: [{ loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
       },
       {
         test: /\.vue$/,
