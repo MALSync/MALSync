@@ -460,4 +460,8 @@ module.exports = {
   streamhd: {
     match: ['*://*.streamhd.cc/*'],
   },
+  // zoro
+  rapidstream: {
+    match: ['*://*.rapid-cloud.ru/*'],
+  }
 };

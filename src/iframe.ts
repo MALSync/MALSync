@@ -76,3 +76,7 @@ api.settings.init().then(() => {
     }
   });
 });
+
+const css =
+  'font-size: 20px; padding-bottom: 3px; color: white; text-shadow: -1px -1px #2e51a2, 1px -1px #2e51a2, -1px 1px #2e51a2, 1px 1px #2e51a2, 2px 2px #2e51a2, 3px 3px #2e51a2;';
+console.log('%cIframe', css, window.location.host);
