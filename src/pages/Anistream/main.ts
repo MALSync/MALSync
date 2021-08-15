@@ -56,16 +56,28 @@ export const Anistream: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      utils.waitUntilTrue(
-        function() {
-          return j.$('#syncData').length;
-        },
-        function() {
-          jsonData = JSON.parse(j.$('#syncData').text());
-          page.handlePage();
-        },
-      );
+
+    let oldJson;
+
+    j.$(document).ready(function () {
+      setInterval(function () {
+        utils.waitUntilTrue(
+          function () {
+            if (j.$('#syncData').length) {
+              jsonData = JSON.parse(j.$('#syncData').text());
+              if (JSON.stringify(jsonData) !== oldJson) {
+                oldJson = JSON.stringify(jsonData);
+                page.reset();
+                return true;
+              }
+            }
+            return false;
+          },
+          function () {
+            page.handlePage();
+          },
+        );
+      }, 1000);
     });
   },
 };
