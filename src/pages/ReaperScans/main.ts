@@ -6,7 +6,7 @@ export const ReaperScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if ($('.wp-manga-nav').length) {
+    if (j.$('.wp-manga-nav').length) {
       return true;
     }
     return false;
@@ -53,9 +53,8 @@ export const ReaperScans: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('.breadcrumb li')
-        .last()
-        .text()
+        .$('.post-title h1')
+        .prop('innerText')
         .trim();
     },
     getIdentifier(url) {
@@ -66,7 +65,7 @@ export const ReaperScans: pageInterface = {
         .first()
         .before(
           j.html(
-            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
+            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> MAL-Sync</h2></div>${selector}</div>`,
           ),
         );
     },
