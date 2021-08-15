@@ -1,4 +1,5 @@
 import { nineAnime } from './nineAnime/main';
+import { Anistream } from './Anistream/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
