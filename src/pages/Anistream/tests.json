@@ -8,7 +8,7 @@
         "sync": false,
         "title": "The Rising of the Shield Hero",
         "identifier": "the-rising-of-the-shield-hero-8",
-        "uiSelector": true,
+        "uiSelector": true
       }
     },
     {
@@ -20,7 +20,7 @@
         "overviewUrl": "https://anistream.de/serie/the-rising-of-the-shield-hero-8",
         "nextEpUrl": "https://anistream.de/serie/the-rising-of-the-shield-hero-8-1-season-2-episode",
         "episode": 11,
-        "uiSelector": true,
+        "uiSelector": true
       }
     }
   ]
