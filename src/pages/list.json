@@ -60,6 +60,11 @@
     "name": "Jkanime"
   },
   {
+    "domain": "https://anistream.de",
+    "type": "anime",
+    "name": "Anistream"
+  },
+  {
     "domain": "https://proxer.me",
     "type": "anime",
     "name": "Proxer"
