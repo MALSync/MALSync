@@ -1,5 +1,5 @@
 {
   "material.css": "https://code.getmdl.io/1.3.0/material.indigo-pink.min.css",
   "materialFont.css": "https://fonts.googleapis.com/icon?family=Material+Icons",
-  "material.js": "https://greasyfork.org/scripts/377924-material-design-lite-mal-sync/code/material-design-lite%20MAL-Sync.js?version=671593"
+  "material.js": "https://raw.githubusercontent.com/MALSync/MALSync/master/package/materialDesignLite.js"
 }
