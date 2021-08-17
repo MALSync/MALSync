@@ -13,13 +13,6 @@
     </thead>
     <tbody>
       <tr>
-    <td><a href="https://anistream.de"><img src="https://favicon.malsync.moe/?domain=https://anistream.de"> Anistream</a></td>
-    <td>German</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://4anime.to"><img src="https://favicon.malsync.moe/?domain=https://4anime.to"> 4Anime</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>

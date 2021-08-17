@@ -1,13 +1,13 @@
 import { pageInterface } from '../pageInterface';
 
 let jsonData;
+let loadedTimeout;
 
 export const Anistream: pageInterface = {
   name: 'Anistream',
   domain: 'https://Anistream.de',
   languages: ['German'],
   type: 'anime',
-  database: 'Anistream',
   isSyncPage(url) {
     return jsonData.page && jsonData.page === 'episode';
   },
@@ -57,27 +57,25 @@ export const Anistream: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    let oldJson;
-
-    j.$(document).ready(function () {
-      setInterval(function () {
-        utils.waitUntilTrue(
-          function () {
-            if (j.$('#syncData').length) {
-              jsonData = JSON.parse(j.$('#syncData').text());
-              if (JSON.stringify(jsonData) !== oldJson) {
-                oldJson = JSON.stringify(jsonData);
-                page.reset();
-                return true;
-              }
-            }
-            return false;
-          },
-          function () {
-            page.handlePage();
-          },
-        );
-      }, 1000);
+    utils.changeDetect(loaded, () => {
+      const data = j.$('#syncData').text();
+      if (!data) page.reset();
+      return data;
     });
-  },
+
+    function loaded() {
+      const text = j.$('#syncData').text();
+      if (text) {
+        clearTimeout(loadedTimeout);
+        loadedTimeout = utils.waitUntilTrue(
+          () => {
+            return;
+          },
+          () => {
+              page.handlePage();
+            }
+        )
+      }
+    }
+  }
 };
