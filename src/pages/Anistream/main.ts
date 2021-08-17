@@ -1,7 +1,6 @@
 import { pageInterface } from '../pageInterface';
 
 let jsonData;
-let loadedTimeout;
 
 export const Anistream: pageInterface = {
   name: 'Anistream',
@@ -64,8 +63,7 @@ export const Anistream: pageInterface = {
     let oldJson;
 
     function loaded() {
-      clearTimeout(loadedTimeout);
-      loadedTimeout = utils.waitUntilTrue(
+      utils.waitUntilTrue(
         () => {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
