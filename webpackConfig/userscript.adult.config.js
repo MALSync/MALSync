@@ -33,7 +33,7 @@ const metadata = {
   name: `${package['productName']} Adult [FateXXXBlood Edition]`,
   namespace: 'https://greasyfork.org/users/92233',
   description: package['description'],
-  version: '0.2.9',
+  version: '0.2.10',
   author: package['author'],
   license: 'GPL-3.0',
   iconURL: 'https://raw.githubusercontent.com/MALSync/MALSync/master/assets/icons/icon128.png',
