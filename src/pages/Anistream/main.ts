@@ -64,18 +64,19 @@ export const Anistream: pageInterface = {
     });
 
     function loaded() {
-      const text = j.$('#syncData').text();
-      if (text) {
-        clearTimeout(loadedTimeout);
-        loadedTimeout = utils.waitUntilTrue(
-          () => {
-            return;
-          },
-          () => {
-              page.handlePage();
-            }
-        )
-      }
+      clearTimeout(loadedTimeout);
+      loadedTimeout = utils.waitUntilTrue(
+        () => {
+          if (j.$('#syncData').length) {
+            jsonData = JSON.parse(j.$('#syncData').text());
+            return true;
+          }
+          return false;
+        },
+        () => {
+            page.handlePage();
+          }
+      )
     }
   }
 };
