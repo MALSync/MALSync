@@ -326,7 +326,7 @@ module.exports = {
   },
   // pantsubase.tv
   googleDrive: {
-    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*'],
+    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/*'],
   },
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
@@ -463,5 +463,5 @@ module.exports = {
   // zoro
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*'],
-  }
+  },
 };
