@@ -58,10 +58,10 @@ export const Anistream: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     utils.changeDetect(loaded, () => {
-      const data = j.$('#syncData').text();
-      if (!data) page.reset();
-      return data;
+      return;
     });
+
+    let oldJson;
 
     function loaded() {
       clearTimeout(loadedTimeout);
@@ -69,13 +69,17 @@ export const Anistream: pageInterface = {
         () => {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
-            return true;
+            if (JSON.stringify(jsonData) !== oldJson) {
+              oldJson = JSON.stringify(jsonData);
+              page.reset();
+              return true;
+            }
           }
           return false;
         },
         () => {
-            page.handlePage();
-          }
+          page.handlePage();
+        },
       )
     }
   }
