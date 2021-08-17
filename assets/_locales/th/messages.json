@@ -88,7 +88,7 @@
     "description": "General translation of anime for places like drop downs"
   },
   "Manga": {
-    "message": "Manga",
+    "message": "มังงะ",
     "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
@@ -100,39 +100,39 @@
     "description": "Status"
   },
   "UI_Status_watching_anime": {
-    "message": "กำลังดู",
+    "message": "กำลังดู (Watching)",
     "description": "Watching"
   },
   "UI_Status_watching_manga": {
-    "message": "กำลังอ่าน",
+    "message": "กำลังอ่าน (Reading)",
     "description": "Reading"
   },
   "UI_Status_Completed": {
-    "message": "Completed",
+    "message": "สมบูรณ์ (Completed)",
     "description": "Completed"
   },
   "UI_Status_OnHold": {
-    "message": "On-Hold",
+    "message": "หยุดไว้ชั่วคราว (On-Hold)",
     "description": "On-Hold"
   },
   "UI_Status_Dropped": {
-    "message": "Dropped",
+    "message": "แย่ (Dropped)",
     "description": "Dropped"
   },
   "UI_Status_planTo_anime": {
-    "message": "Plan to Watch",
+    "message": "วางแผนที่จะดู (Plan to Watch)",
     "description": "Plan to Watch"
   },
   "UI_Status_planTo_manga": {
-    "message": "Plan to Read",
+    "message": "วางแผนที่จะอ่าน (Plan to Read)",
     "description": "Plan to Read"
   },
   "UI_Status_Rewatching_anime": {
-    "message": "Rewatching",
+    "message": "กำลังดูซ้ำ (Rewatching)",
     "description": "Status to rewatch anime"
   },
   "UI_Status_Rewatching_manga": {
-    "message": "Rereading",
+    "message": "กำลังอ่านซ้ำ (Rereading)",
     "description": "Status to reread manga"
   },
   "UI_Episode": {
@@ -144,7 +144,7 @@
     "description": "Volume"
   },
   "UI_Chapter": {
-    "message": "Chapter:",
+    "message": "บท:",
     "description": "Chapter"
   },
   "UI_Score": {
@@ -172,19 +172,19 @@
     "description": "Good - Score"
   },
   "UI_Score_Fine": {
-    "message": "(6) ปานกลาง",
+    "message": "(6) ค่อนข้างดี",
     "description": "Fine - Score"
   },
   "UI_Score_Average": {
-    "message": "(5) เฉลี่ย",
+    "message": "(5) ปานกลาง",
     "description": "Average - Score"
   },
   "UI_Score_Bad": {
-    "message": "(4) ไม่ดี",
+    "message": "(4) แย่",
     "description": "Bad - Score"
   },
   "UI_Score_VeryBad": {
-    "message": "(3) ที่เลวร้ายมาก",
+    "message": "(3) แย่มาก",
     "description": "Very Bad - Score"
   },
   "UI_Score_Horrible": {
@@ -192,7 +192,7 @@
     "description": "Horrible - Score"
   },
   "UI_Score_Appalling": {
-    "message": "(1) น่ากลัว",
+    "message": "(1) น่าเกลียดน่ากลัว",
     "description": "Appalling - Score"
   },
   "UI_Rules": {
@@ -246,7 +246,7 @@
     "description": "Wrong/correction button on 'synced' message"
   },
   "syncPage_flashm_failded": {
-    "message": "Update failed",
+    "message": "การอัพเดทล้มเหลว",
     "description": "When update to MAL failes"
   },
   "syncPage_flashConfirm_complete": {
@@ -254,27 +254,27 @@
     "description": "Question when last episode is synced"
   },
   "syncPage_flashConfirm_start_anime": {
-    "message": "เริ่มดู?",
+    "message": "เริ่มดูอนิเมะ ?",
     "description": "Start watching anime message"
   },
   "syncPage_flashConfirm_rewatch_finish_anime": {
-    "message": "เสร็จสิ้นการ rewatching?",
+    "message": "เสร็จสิ้นการอ่านซ้ำ ?",
     "description": "Finish rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_finish_manga": {
-    "message": "เสร็จสิ้นการอ่านใหม่?",
+    "message": "เสร็จสิ้นการอ่านใหม่ ?",
     "description": "Finish rereading manga message"
   },
   "syncPage_flashConfirm_start_manga": {
-    "message": "เริ่มอ่าน?",
+    "message": "เริ่มอ่านมังงะ ?",
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "Rewatch อะนิเมะ?",
+    "message": "เริ่มดูอะนิเมะซ้ำ ?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
-    "message": "มังงะ runaed?",
+    "message": "เริ่มอ่านมังงะซ้ำ ?",
     "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
@@ -288,7 +288,7 @@
     }
   },
   "syncPage_flash_player_error": {
-    "message": "ไม่พบผู้เล่น โปรดอัปเดตด้วยตนเองที่นี่.",
+    "message": "ไม่พบเครื่องเล่นวีดีโอ โปรดอัปเดตด้วยตนเองที่นี่.",
     "description": "Message if the video player could not be recognized"
   },
   "syncPage_malObj_addAnime": {
@@ -450,7 +450,7 @@
     }
   },
   "prediction_next": {
-    "message": "Next in $time$",
+    "message": "ถัดไปใน $time$",
     "description": "Short Form Text for next episode/episode estimation",
     "placeholders": {
       "time": {
@@ -460,19 +460,19 @@
     }
   },
   "prediction_incomplete": {
-    "message": "Incomplete",
+    "message": "ไม่สมบูรณ์",
     "description": "Text if an dub/sub wont be completed by the translation team. Discontinued translations"
   },
   "prediction_ongoing": {
-    "message": "Ongoing",
+    "message": "ต่อเนื่อง",
     "description": "Header for the ongoing section in the translation/airing progress section"
   },
   "prediction_complete": {
-    "message": "Complete",
+    "message": "สมบูรณ์",
     "description": "Header for the complete translation/airing section"
   },
   "prediction_Airing": {
-    "message": "การออกอากาศ $time$",
+    "message": "ออกอากาศใน $time$",
     "description": "Text for airing estimation",
     "placeholders": {
       "time": {
@@ -482,7 +482,7 @@
     }
   },
   "correction_Offset": {
-    "message": "ตอนที่ออฟเซ็ตตอน",
+    "message": "ออฟเซ็ตตอน",
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
@@ -490,7 +490,7 @@
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
-    "message": "เปลี่ยน URL นี้หากชี้ไปที่หน้าอะนิเมะที่ไม่ถูกต้องใน Mal.",
+    "message": "ลิ้งค์ม่ถูกต้อง",
     "description": "URL is Wrong"
   },
   "correction_Search": {
@@ -542,11 +542,11 @@
     "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
-    "message": "ดำเนินการต่อ watching",
+    "message": "ดูต่อ",
     "description": "Continue watching"
   },
   "overview_Continue_manga": {
-    "message": "ดำเนินการต่อ reading",
+    "message": "อ่านต่อ",
     "description": "Continue reading"
   },
   "overview_Next_Episode_anime": {
@@ -558,11 +558,11 @@
     "description": "Next Chapter"
   },
   "overview_Resume_Episode_anime": {
-    "message": "ตอนต่อไป",
+    "message": "ดำเนินตอนต่อไปใหม่",
     "description": "Resume Episode"
   },
   "overview_Resume_Episode_manga": {
-    "message": "เรซูเม่บท",
+    "message": "ดำเนินบทต่อไปใหม่",
     "description": "Resume Chapter"
   },
   "overview_EditDetails": {
@@ -574,11 +574,11 @@
     "description": "Characters"
   },
   "overview_OpeningTheme": {
-    "message": "Opening ธีม:",
+    "message": "เพลงตอนเปิด:",
     "description": "Opening Theme"
   },
   "overview_EndingTheme": {
-    "message": "Ending ธีม:",
+    "message": "เพลงตอนจบ:",
     "description": "Ending Theme"
   },
   "search_Type": {
@@ -634,7 +634,7 @@
     "description": "Manual"
   },
   "settings_Mangasync": {
-    "message": "Manga ซิงค์",
+    "message": "มังงะซิงค์",
     "description": "Manga sync"
   },
   "settings_AutoTracking_Video": {
@@ -770,7 +770,7 @@
     "description": "miniMAL Width"
   },
   "settings_Shortcuts": {
-    "message": "Shortcuts",
+    "message": "ทางลัด",
     "description": "Shortcuts"
   },
   "settings_miniMAL_Open": {
@@ -794,11 +794,11 @@
     "description": "Auto fullscreen toggle"
   },
   "settings_Video_Resume": {
-    "message": "Auto resume",
+    "message": "เล่นวิดีโอต่อโดยอัตโนมัติ",
     "description": "Auto resume video where you left off toggle"
   },
   "settings_autoNextEp": {
-    "message": "AutoPlay ตอนต่อไป",
+    "message": "เล่นตอนต่อไปอัตโนมัติ",
     "description": "Autoplays the next episode after the video ends"
   },
   "settings_Shortcuts_Correction": {
@@ -844,7 +844,7 @@
     "description": "Update Check - Text"
   },
   "settings_Interval": {
-    "message": "ช่วง",
+    "message": "ช่วงเวลา",
     "description": "Interval"
   },
   "settings_Interval_Off": {
@@ -876,7 +876,7 @@
     "description": "ETC"
   },
   "settings_Userscriptmode": {
-    "message": "โหมด userscript",
+    "message": "โหมด สคริปต์ผู้ใช้",
     "description": "Userscript mode"
   },
   "settings_Userscriptmode_Text": {
@@ -892,7 +892,7 @@
     "description": "Highlight all Episodes/Chapters - Text"
   },
   "settings_ClearCache": {
-    "message": "Clear Cache",
+    "message": "ล้างแคช",
     "description": "Clear Cache"
   },
   "settings_presenceHidePage": {
@@ -916,7 +916,7 @@
     "description": "Dropdown option to disable the estimation for an anime/manga"
   },
   "settings_progress_default": {
-    "message": "Default",
+    "message": "ค่าเริ่มต้น",
     "description": "Dropdown option to use the default in the estimation for an anime/manga"
   },
   "settings_website_button": {
@@ -984,7 +984,7 @@
     "description": "Please allow pop-ups for this website"
   },
   "minimalClass_versionMsg": {
-    "message": "Updated to version $Version$ $Link$CHANGELOG$LinkEnd$",
+    "message": "อัปเดตเป็นเวอร์ชัน $Version$ $Link$CHANGELOG$LinkEnd$",
     "description": "Update version",
     "placeholders": {
       "Version": {
@@ -1002,15 +1002,15 @@
     }
   },
   "minimalClass_versionMsg_Text_1": {
-    "message": "Thank you for installing MAL-Sync",
+    "message": "ขอบคุณสำหรับการติดตั้ง  MAL-Sync",
     "description": "Update version - Text 1"
   },
   "minimalClass_versionMsg_Text_2": {
-    "message": "Having Questions?",
+    "message": "มีคำถาม?",
     "description": "Update version - Text 2"
   },
   "minimalClass_versionMsg_Text_3": {
-    "message": "Open Source Code:",
+    "message": "โอเพ่นซอร์สโค้ด:",
     "description": "Update version - Text 3"
   },
   "minimalClass_versionMsg_Text_4": {
@@ -1026,7 +1026,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "เพียงแค่เปิดตอนหรือบทที่ใด ๆ $Link1$supported pages$LinkEnd1$. การซิงค์รอจนถึง 85% ของวิดีโอที่มีการดู สำหรับการซิงค์ Mangas ในการโหลดหน้าเว็บ สิ่งนี้สามารถเปลี่ยนแปลงได้ใน $Link2$settings$LinkEnd2$.",
+    "message": "เพียงแค่เปิดตอนหรือบทที่ใดๆ $Link1$supported pages$LinkEnd1$. การซิงค์รอจนถึง 85% ของวิดีโอที่มีการดู สำหรับการซิงค์ มังงะ ในการโหลดหน้าเว็บสิ่งนี้สามารถเปลี่ยนแปลงได้ใน $Link2$settings$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -1052,7 +1052,7 @@
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ Offset สามารถตั้งค่าได้ในหน้านั้นด้วย",
+    "message": "คุณสามารถเปลี่ยนความสัมพันธ์ที่แสดงใน GIF ด้านล่างได้อย่างง่ายดาย ตอนที่ ออฟเซ็ต สามารถตั้งค่าได้ในหน้านั้นด้วย",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
@@ -1070,7 +1070,7 @@
     }
   },
   "Emby_Authenticate": {
-    "message": "MAL-Sync ต้องการกุญแจ Emby API ในการทำงาน Infos เพิ่มเติม $Link1$Here$Link2$",
+    "message": "MAL-Sync ต้องการการตรวจสอบสิทธิ์ในการทำงาน ข้อมูลเพิ่มเติม $Link1$Here$Link2$",
     "description": "Emby Authentication",
     "placeholders": {
       "Link1": {
