@@ -252,7 +252,7 @@ async function testPageCase(block, testPage, page) {
 }
 
 async function loopEl(testPage, headless = true) {
-  //if(testPage.title !== 'Anistream') return;
+  // if(testPage.title !== 'Kissmanga') return;
   if (!testPage.enabled && typeof testPage.enabled !== 'undefined') return;
   const b = await getBrowser(headless);
   const page = await b.newPage();
