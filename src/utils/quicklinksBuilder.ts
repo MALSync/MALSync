@@ -61,7 +61,7 @@ export function searchSyntax(url, title) {
 
   if (options.includes('noSpecial')) {
     resTitle = resTitle
-      .replace(/[^a-zA-Z ]/g, '')
+      .replace(/[^a-zA-Z\d ]/g, '')
       .replace(/ +/g, ' ')
       .trim();
   }

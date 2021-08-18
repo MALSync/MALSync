@@ -40,12 +40,12 @@ describe('quicklinksBuilder', function() {
       {
         title: 'No Special Characters',
         search: '{searchterm( )[noSpecial]}',
-        result: 'no gameno life',
+        result: 'no gameno life4 1',
       },
       {
         title: 'All',
         search: '{searchterm(_)[noSpecial,noLowercase,noEncode]}',
-        result: 'No_gameno_Life',
+        result: 'No_gameno_Life4_1',
       },
     ].forEach(el => {
       it(el.title, function() {
@@ -69,7 +69,7 @@ describe('quicklinksBuilder', function() {
       },
       {
         title: 'Underscore',
-        search: '+{searchterm_}+',
+        search: '+{searchtermUnderscore}+',
         result: '+no_game_no_life%C2%B34_1_!+',
       },
       {
