@@ -37,6 +37,10 @@
             <td>=> <span class="darkbox">no+game+no+life</span></td>
           </tr>
           <tr>
+            <td><span class="darkbox">{searchterm_}</span></td>
+            <td>=> <span class="darkbox">no_game_no_life</span></td>
+          </tr>
+          <tr>
             <td><span class="darkbox">{searchtermRaw}</span></td>
             <td>=> <span class="darkbox">no game no life</span></td>
           </tr>

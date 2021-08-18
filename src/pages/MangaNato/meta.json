@@ -1,5 +1,5 @@
 {
-  "search": "https://manganato.com/search/story/{searchterm}",
+  "search": "https://manganato.com/search/story/{searchterm_}",
   "urls": {
     "match": ["*://manganato.com/*", "*://readmanganato.com/*"]
   }
