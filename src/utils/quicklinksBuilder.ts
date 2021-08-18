@@ -15,7 +15,7 @@ export interface Quicklink {
 /*
   {searchterm} => 'no%20game%20no%20life'
   {searchtermPlus} => 'no+game+no+life'
-  {searchterm_} => 'no_game_no_life'
+  {searchtermUnderscore} => 'no_game_no_life'
   {searchtermRaw} => 'no game no life'
   {cacheId} => '143'
 */
@@ -24,7 +24,7 @@ export function titleSearch(url, title, id) {
   return searchSyntax(
     url
       .replace('{searchtermPlus}', '{searchterm(+)}')
-      .replace('{searchterm_}', '{searchterm(_)}')
+      .replace('{searchtermUnderscore}', '{searchterm(_)}')
       .replace('{searchtermRaw}', '{searchterm[noEncode,noLowercase]}')
       .replace('{cacheId}', id),
     title,
