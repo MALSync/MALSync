@@ -56,29 +56,20 @@ export const Anistream: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    utils.changeDetect(loaded, () => {
-      return;
-    });
+    utils.changeDetect(loaded, () => j.$('#syncData').text());
 
-    let oldJson;
+    loaded();
 
     function loaded() {
-      utils.waitUntilTrue(
-        () => {
-          if (j.$('#syncData').length) {
-            jsonData = JSON.parse(j.$('#syncData').text());
-            if (JSON.stringify(jsonData) !== oldJson) {
-              oldJson = JSON.stringify(jsonData);
-              page.reset();
-              return true;
-            }
-          }
-          return false;
-        },
-        () => {
-          page.handlePage();
-        },
-      )
+      const data = j.$('#syncData').text();
+      if (!data) {
+        con.error('Empty json');
+        page.reset();
+        return;
+      }
+      jsonData = JSON.parse(data);
+      con.log('JSON', jsonData);
+      page.handlePage();
     }
   }
 };
