@@ -308,12 +308,26 @@ export abstract class ListAbstract {
     let watchedItems: listElement[] = [];
     this.templist.forEach(item => {
       const prediction = item.fn.progress;
-      if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
-        if (item.watchedEp < prediction.getCurrentEpisode()) {
-          preItems.push(item);
+      if (this.listType === 'anime') {
+        if (prediction && prediction.isAiring() && prediction.getPredictionTimestamp()) {
+          if (item.watchedEp < prediction.getCurrentEpisode()) {
+            preItems.push(item);
+          } else {
+            watchedItems.push(item);
+          }
         } else {
-          watchedItems.push(item);
+          normalItems.push(item);
         }
+      } else if (
+        // Manga only if less than 5 chapters to read
+        prediction &&
+        prediction.isAiring() &&
+        prediction.getCurrentEpisode() &&
+        item.watchedEp &&
+        item.watchedEp < prediction.getCurrentEpisode() &&
+        item.watchedEp + 6 > prediction.getCurrentEpisode()
+      ) {
+        preItems.push(item);
       } else {
         normalItems.push(item);
       }
