@@ -464,4 +464,8 @@ module.exports = {
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*'],
   },
+  // tenshi
+  tenshi: {
+    match: ['*://tenshi.moe/embed?v=*'],
+  },
 };

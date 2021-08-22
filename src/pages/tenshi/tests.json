@@ -1,0 +1,30 @@
+{
+  "title": "tenshi",
+  "url": "https://tenshi.moe/",
+  "testCases": [
+    {
+      "url": "https://tenshi.moe/anime/jtch7eba",
+      "expected": {
+        "sync": false,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "jtch7eba",
+        "uiSelector": true,
+        "epList": {
+          "16": "https://tenshi.moe/anime/jtch7eba/16"
+        }
+      }
+    },
+    {
+      "url": "https://tenshi.moe/anime/jtch7eba/25",
+      "expected": {
+        "sync": true,
+        "title": "Mahouka Koukou no Rettousei",
+        "identifier": "jtch7eba",
+        "episode": 25,
+        "overviewUrl": "https://tenshi.moe/anime/jtch7eba",
+        "nextEpUrl": "https://tenshi.moe/anime/jtch7eba/26",
+        "uiSelector": false
+      }
+    }
+  ]
+}
