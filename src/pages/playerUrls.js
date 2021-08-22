@@ -465,7 +465,9 @@ module.exports = {
     match: ['*://*.rapid-cloud.ru/*'],
   },
   // Mavanimes
-  mavPlay: {
-    match: ['*://mavplay.xyz/*']
-  }
+  mavplay: {
+    match: ['*://mavplay.xyz/*', '*://www.mavanimes.co/*']
+  },
+
+
 };

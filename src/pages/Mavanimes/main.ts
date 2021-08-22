@@ -6,25 +6,20 @@ export const Mavanimes: pageInterface = {
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    console.log('test length' + j.$('select').length);
     if (j.$('select').length) {
       return true;
     }
     return false;
   },
-  isOverviewPage(url) {
-    return false;
-  },
+  
 
   sync: {
     getTitle(url) {
       var title = j.$('meta[property="article:section"]').attr('content');
       if (!title) {
-        console.log('No title');
         return '';
       }
 
-      console.log(title.slice(0, -7));
 
       return title.slice(0, -7);
     },
@@ -42,14 +37,12 @@ export const Mavanimes: pageInterface = {
         .text()
         .split(' ');
 
-      console.log('episode = ' + title[title.length - 2]);
 
       return Number(title[title.length - 2]);
     },
   },
 
   init(page) {
-    console.log('salut');
 
       utils.waitUntilTrue(
         function() {
