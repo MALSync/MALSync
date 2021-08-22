@@ -13,7 +13,6 @@ import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
-import { fourAnime } from './fourAnime/main';
 import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
 import { AnimeLab } from './AnimeLab/main';
@@ -151,7 +150,6 @@ export const pages = {
   Wakanim,
   Emby,
   Plex,
-  fourAnime,
   animeultima,
   Aniflix,
   AnimeLab,
