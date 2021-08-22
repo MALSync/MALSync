@@ -673,5 +673,10 @@
     "domain": "https://lhtranslation.net",
     "type": "manga",
     "name": "LHTranslation"
+  },
+  {
+    "domain": "http://www.mavanimes.co/",
+    "type": "anime",
+    "name": "Mavanimes"
   }
 ]

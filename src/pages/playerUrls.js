@@ -464,4 +464,8 @@ module.exports = {
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*'],
   },
+  // Mavanimes
+  mavPlay: {
+    match: ['*://mavplay.xyz/*']
+  }
 };
