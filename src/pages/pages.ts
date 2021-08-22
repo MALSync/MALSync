@@ -16,7 +16,6 @@ import { Proxer } from './Proxer/main';
 import { fourAnime } from './fourAnime/main';
 import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
-import { Animefreak } from './Animefreak/main';
 import { AnimeLab } from './AnimeLab/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { AnimeKisa } from './AnimeKisa/main';
@@ -155,7 +154,6 @@ export const pages = {
   fourAnime,
   animeultima,
   Aniflix,
-  Animefreak,
   AnimeLab,
   KickAssAnime,
   AnimeKisa,
