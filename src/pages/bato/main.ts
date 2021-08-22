@@ -32,6 +32,17 @@ export const bato: pageInterface = {
 
       return Number(chapterTextMatches[0].match(/\d+/));
     },
+    getVolume(url) {
+      const selectedOptionText = j.$('div.nav-epis > select > optgroup > option:selected').text();
+
+      if (!selectedOptionText) return NaN;
+
+      const chapterTextMatches = selectedOptionText.match(/(vol\.|volume)\D?\d+/i);
+
+      if (!chapterTextMatches || chapterTextMatches.length === 0) return NaN;
+
+      return Number(chapterTextMatches[0].match(/\d+/));
+    },
     nextEpUrl(url) {
       const href = utils.absoluteLink(
         j
