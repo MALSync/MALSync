@@ -285,7 +285,7 @@ module.exports = {
   },
   // animixplay
   animixplay: {
-    match: ['*://*.animixplay.to/api/live*'],
+    match: ['*://*.animixplay.to/api/live*', '*://jzscuqezoqkcpvy.win/*'],
   },
   // animekisa
   animekisa: {
