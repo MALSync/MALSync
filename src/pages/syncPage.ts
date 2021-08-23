@@ -166,7 +166,7 @@ export class SyncPage {
   autoNextEpRun = false;
 
   public autoNextEp(item) {
-    if (api.settings.get('autoNextEp') && !this.autoNextEpRun && item.current === item.duration) {
+    if (api.settings.get('autoNextEp') && !this.autoNextEpRun && item.current + 1 > item.duration) {
       this.autoNextEpRun = true;
       this.openNextEp();
     }
