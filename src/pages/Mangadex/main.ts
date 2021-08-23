@@ -1,6 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitUntilTrue(() => j.$('.min-w-0').length);
+const uiSelec = '[style*="synopsis"]';
+
+const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitUntilTrue(() => j.$(uiSelec).length);
 
 const mangaData = {
   id: '',
@@ -77,7 +79,7 @@ export const Mangadex: pageInterface = {
       return mangaData.id;
     },
     uiSelector(selector) {
-      j.$('[style*="synopsis"]')
+      j.$(uiSelec)
         .first()
         .prepend(j.html(selector));
     },
