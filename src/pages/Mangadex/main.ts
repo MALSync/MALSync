@@ -77,9 +77,9 @@ export const Mangadex: pageInterface = {
       return mangaData.id;
     },
     uiSelector(selector) {
-      j.$('div.min-w-0')
+      j.$('[style*="synopsis"]')
         .first()
-        .after(j.html(selector));
+        .prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return Mangadex.sync.getMalUrl!(provider);
