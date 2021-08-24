@@ -1,6 +1,0 @@
-{
-  "search": "https://shiro.is/anime?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://shiro.is/anime/*"]
-  }
-}
