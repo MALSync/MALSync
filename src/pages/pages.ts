@@ -134,6 +134,7 @@ import { Kitsune } from './Kitsune/main';
 import { AnimesOnline } from './AnimesOnline/main';
 import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
+import { tenshi } from './tenshi/main';
 
 export const pages = {
   nineAnime,
@@ -272,4 +273,5 @@ export const pages = {
   AnimesOnline,
   LHTranslation,
   MangasOrigines,
+  tenshi,
 };
