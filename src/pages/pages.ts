@@ -275,4 +275,5 @@ export const pages = {
   LHTranslation,
   MangasOrigines,
   tenshi,
+  shiro,
 };
