@@ -480,4 +480,8 @@ module.exports = {
   tenshi: {
     match: ['*://tenshi.moe/embed?v=*'],
   },
+  // Shiro
+  Shiro: {
+    match: ['*://shiro.is/e/*'],
+  },
 };
