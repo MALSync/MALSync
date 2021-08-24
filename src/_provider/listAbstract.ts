@@ -118,7 +118,7 @@ export abstract class ListAbstract {
   async getNextPage(): Promise<listElement[]> {
     if (this.done) return this.templist;
 
-    if (this.modes.frontend && this.status === 1 && this.sort === 'default') {
+    if (this.modes.frontend && this.status === 1 && (this.sort === 'default' || this.sort === 'unread')) {
       this.modes.sortAiring = true;
       return this.getCompleteList();
     }
@@ -192,6 +192,14 @@ export abstract class ListAbstract {
         value: 'default',
       },
     ];
+
+    if (this.status === 1 && this.listType === 'manga') {
+      res.push({
+        icon: 'adjust',
+        title: 'Unread',
+        value: 'unread',
+      });
+    }
 
     const options = this._getSortingOptions();
     options.forEach(el => {
@@ -303,6 +311,11 @@ export abstract class ListAbstract {
   }
 
   async sortAiringList() {
+    if (this.sort === 'unread') {
+      this.sortUnread();
+      return;
+    }
+
     const normalItems: listElement[] = [];
     let preItems: listElement[] = [];
     let watchedItems: listElement[] = [];
@@ -347,6 +360,24 @@ export abstract class ListAbstract {
 
       return valA - valB;
     }
+  }
+
+  sortUnread() {
+    this.templist = this.templist.sort(function(a, b) {
+      let valA = 10000;
+      let valB = 10000;
+
+      if (a.fn.progress && a.fn.progress.getCurrentEpisode()) {
+        const tempA = a.fn.progress.getCurrentEpisode() - a.watchedEp;
+        if (tempA > 0) valA = tempA;
+      }
+      if (b.fn.progress && b.fn.progress.getCurrentEpisode()) {
+        const tempB = b.fn.progress.getCurrentEpisode() - b.watchedEp;
+        if (tempB > 0) valB = tempB;
+      }
+
+      return valA - valB;
+    });
   }
 
   cacheObj: any = undefined;
