@@ -91,11 +91,13 @@ export async function getMalToKissApi(type, id) {
 
 export function combinedLinks() {
   const links = api.settings.get('quicklinks');
-  const comb = [
-    ...links.filter(el => typeof el === 'object' && el),
-    ...quicklinks.filter(el => links.includes(el.name)),
-  ];
+  const comb = links.map(el => optionToCombined(el));
   return JSON.parse(JSON.stringify(comb));
+}
+
+export function optionToCombined(link) {
+  if (link.custom) return link;
+  return quicklinks.find(el => el.name === link);
 }
 
 export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
