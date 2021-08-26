@@ -564,6 +564,7 @@ export default {
       get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           if (this.renderObj.addAnime) return null;
+          if (Number.isNaN(this.renderObj.getEpisode())) return '';
           return this.renderObj.getEpisode();
         }
         return null;
@@ -578,6 +579,7 @@ export default {
       get() {
         if (this.renderObj && this.renderObj.isAuthenticated()) {
           if (this.renderObj.addAnime) return null;
+          if (Number.isNaN(this.renderObj.getVolume())) return '';
           return this.renderObj.getVolume();
         }
         return null;

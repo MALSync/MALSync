@@ -4,7 +4,7 @@
   "author": "lolamtisch@gmail.com",
   "license": "GPL-3.0-only",
   "repository": "github:MALSync/MALSync",
-  "version": "0.8.12",
+  "version": "0.8.13",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "devDependencies": {
     "@types/chai": "^4.2.12",
@@ -26,7 +26,7 @@
     "eslint-plugin-es": "^4.1.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jquery-unsafe-malsync": "file:eslint",
-    "eslint-plugin-no-unsanitized": "github:mozilla/eslint-plugin-no-unsanitized#master",
+    "eslint-plugin-no-unsanitized": "^3.1.5",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.0",
     "expose-loader": "^1.0.1",

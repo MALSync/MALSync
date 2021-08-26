@@ -77,30 +77,21 @@ export const Zoro: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
-    utils.fullUrlChangeDetect(function() {
-      page.reset();
-      check();
-    });
-
-    let interval;
     let _debounce;
+
+    utils.changeDetect(check, () => j.$('#syncData').text());
+    check();
+
     function check() {
-      clearInterval(interval);
-      interval = utils.waitUntilTrue(
-        function() {
-          if (j.$('#syncData').length) {
-            jsonData = JSON.parse(j.$('#syncData').text());
-            return true;
-          }
-          return false;
-        },
-        function() {
-          clearTimeout(_debounce);
-          _debounce = setTimeout(() => {
-            page.handlePage();
-          }, 500);
-        },
-      );
+      page.reset();
+      if (j.$('#syncData').length) {
+        jsonData = JSON.parse(j.$('#syncData').text());
+
+        clearTimeout(_debounce);
+        _debounce = setTimeout(() => {
+          page.handlePage();
+        }, 500);
+      }
     }
   },
 };

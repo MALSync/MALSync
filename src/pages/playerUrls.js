@@ -260,6 +260,7 @@ module.exports = {
       '*://strcloud.link/*',
       '*://streamta.pe/*',
       '*://strtape.tech/*',
+      '*://strtapeadblock.club/*',
     ],
   },
   // monoschinos
@@ -312,15 +313,19 @@ module.exports = {
       '*://*.gogo-stream.com/streaming.php?*',
       '*://*.gogo-stream.com/load.php?*',
       '*://*.gogo-stream.com/loadserver.php?*',
+      '*://*.gogo-stream.com/embedplus*',
       '*://*.gogo-play.net/streaming.php?*',
       '*://*.gogo-play.net/load.php?*',
       '*://*.gogo-play.net/loadserver.php?*',
+      '*://*.gogo-play.net/embedplus*',
       '*://*.gogo-play.tv/streaming.php?*',
       '*://*.gogo-play.tv/load.php?*',
       '*://*.gogo-play.tv/loadserver.php?*',
+      '*://*.gogo-play.tv/embedplus*',
       '*://*.streamani.net/streaming.php?*',
       '*://*.streamani.net/load.php?*',
       '*://*.streamani.net/loadserver.php?*',
+      '*://*.streamani.net/embedplus*',
     ],
   },
   // bs.to
@@ -329,7 +334,7 @@ module.exports = {
   },
   // pantsubase.tv
   googleDrive: {
-    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/anime/*'],
+    match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/*'],
   },
   AnimeLab: {
     match: ['*://www.animelab.com/*'],
@@ -340,11 +345,19 @@ module.exports = {
   },
   // gogo
   streamsb: {
-    match: ['*://streamsb.net/*', '*://streamsb.com/*', '*://sbembed.com/*', '*://sbvideo.net/*', '*://sbplay.org/*'],
+    match: [
+      '*://streamsb.net/*',
+      '*://streamsb.com/*',
+      '*://sbembed.com/*',
+      '*://sbembed1.com/*',
+      '*://sbvideo.net/*',
+      '*://sbplay.org/*',
+      '*://sbplay.one/*',
+    ],
   },
   // gogo
   dood: {
-    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*'],
+    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*', '*://dood.la/*'],
   },
   // animedao.to
   vcdn: {
@@ -466,5 +479,13 @@ module.exports = {
   // zoro
   rapidstream: {
     match: ['*://*.rapid-cloud.ru/*'],
-  }
+  },
+  // tenshi
+  tenshi: {
+    match: ['*://tenshi.moe/embed?v=*'],
+  },
+  // shiro
+  shiro: {
+    match: ['*://shiro.is/e/*'],
+  },
 };

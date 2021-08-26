@@ -47,7 +47,7 @@ export const MangaPlus: pageInterface = {
 
       if (!episodeText) return NaN;
 
-      return Number(episodeText.replace(/\D+/g, ''));
+      return Number(episodeText.replace(/[^\d.]+/g, ''));
     },
   },
   overview: {

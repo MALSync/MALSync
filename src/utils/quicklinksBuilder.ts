@@ -15,6 +15,7 @@ export interface Quicklink {
 /*
   {searchterm} => 'no%20game%20no%20life'
   {searchtermPlus} => 'no+game+no+life'
+  {searchtermBar} => 'no_game_no_life'
   {searchtermRaw} => 'no game no life'
   {cacheId} => '143'
 */
@@ -23,6 +24,7 @@ function titleSearch(url, title, id) {
   return url
     .replace('{searchterm}', encodeURIComponent(title.trim().toLowerCase()))
     .replace('{searchtermPlus}', encodeURIComponent(title.trim().toLowerCase()).replace(/%20/g, '+'))
+    .replace('{searchterm_}', encodeURIComponent(title.trim().toLowerCase()).replace(/%20/g, '_'))
     .replace('{searchtermRaw}', title.replace(/\//g, ' '))
     .replace('{cacheId}', id);
 }
