@@ -71,5 +71,5 @@ export const Anistream: pageInterface = {
       con.log('JSON', jsonData);
       page.handlePage();
     }
-  }
+  },
 };

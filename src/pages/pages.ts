@@ -1,5 +1,4 @@
 import { nineAnime } from './nineAnime/main';
-import { Anistream } from './Anistream/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
@@ -137,6 +136,7 @@ import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
+import { Anistream } from './Anistream/main';
 
 export const pages = {
   nineAnime,
@@ -277,4 +277,5 @@ export const pages = {
   MangasOrigines,
   tenshi,
   shiro,
+  Anistream
 };
