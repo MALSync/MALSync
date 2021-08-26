@@ -277,5 +277,5 @@ export const pages = {
   MangasOrigines,
   tenshi,
   shiro,
-  Anistream
+  Anistream,
 };
