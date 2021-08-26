@@ -1,4 +1,5 @@
 {
+  "search": "https://shiro.is/browse/?title={searchterm}",
   "urls": {
     "match": ["*://shiro.is/anime/*"]
   }
