@@ -7,7 +7,6 @@ export const shiro: pageInterface = {
   domain: 'https://shiro.is',
   languages: ['English'],
   type: 'anime',
-  database: 'shiro',
   isSyncPage(url) {
     return jsonData.page && jsonData.page === 'episode';
   },
