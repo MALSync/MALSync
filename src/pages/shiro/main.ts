@@ -47,7 +47,7 @@ export const shiro: pageInterface = {
     uiSelector(selector) {
       j.$(jsonData.selector_position)
         .first()
-        .after(j.html(selector));
+        .prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return shiro.sync.getMalUrl!(provider);
