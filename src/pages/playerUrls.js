@@ -257,6 +257,7 @@ module.exports = {
       '*://strcloud.link/*',
       '*://streamta.pe/*',
       '*://strtape.tech/*',
+      '*://strtapeadblock.club/*',
     ],
   },
   // monoschinos
@@ -479,5 +480,9 @@ module.exports = {
   // tenshi
   tenshi: {
     match: ['*://tenshi.moe/embed?v=*'],
+  },
+  // shiro
+  shiro: {
+    match: ['*://shiro.is/e/*'],
   },
 };
