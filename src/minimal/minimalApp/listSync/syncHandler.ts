@@ -201,9 +201,8 @@ export async function retriveLists(
 ) {
   const typeArray: any = [];
 
-  // @ts-ignore
-  const masterMode = getSyncMode(type);
-  if (masterMode === 'MALAPI') throw 'Sync with the mal api is not yet supported';
+  const tempMode = getSyncMode(type);
+  const masterMode = tempMode === 'MALAPI' ? 'MAL' : tempMode;
 
   const listP: any = [];
 
