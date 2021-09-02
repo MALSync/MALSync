@@ -1,7 +1,7 @@
 import { pageInterface } from '../pageInterface';
 
 export const Branitube: pageInterface = {
-  name: 'Branitube',
+  name: 'Aniyan',
   domain: 'https://aniyan.net',
   languages: ['Portuguese'],
   type: 'anime',
