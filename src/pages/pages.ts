@@ -136,6 +136,7 @@ import { LHTranslation } from './LHTranslation/main';
 import { MangasOrigines } from './MangasOrigines/main';
 import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
+import { BlueSolo } from './BlueSolo/main';
 
 export const pages = {
   nineAnime,
@@ -276,4 +277,5 @@ export const pages = {
   MangasOrigines,
   tenshi,
   shiro,
+  BlueSolo,
 };
