@@ -1,7 +1,7 @@
 {
-  "search": "https://www.branitube.net/buscar/{searchterm}",
+  "search": "https://aniyan.net/buscar/{searchterm}",
   "urls": {
-    "match": ["*://*.branitube.net/video/*", "*://*.branitube.net/lista/*"],
-    "exclude": ["*://*.branitube.net/lista/filter/*", "*://*.branitube.net/lista/pagina/*"]
+    "match": ["*://*.aniyan.net/video/*", "*://*.aniyan.net/lista/*"],
+    "exclude": ["*://*.aniyan.net/lista/filter/*", "*://*.aniyan.net/lista/pagina/*"]
   }
 }
