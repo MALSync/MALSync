@@ -3,6 +3,10 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 
 let item: any;
 
+const overviewSelector = '[data-qa-id="preplay-mainTitle"], [class^="PrePlayPrimaryTitle-primaryTitle"]';
+const syncSelector =
+  '[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"], [class*="MetadataPosterTitle-isSecondary"] [data-testid="metadataTitleLink"]';
+
 const proxy = new ScriptProxy();
 proxy.addCaptureVariable(
   'auth',
@@ -35,8 +39,8 @@ async function urlChange(page) {
   page.reset();
   $('html').addClass('miniMAL-hide');
   let curUrl: string = window.location.href;
-  if ($('[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"]').attr('href')) {
-    curUrl = $('[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"]').attr('href')!;
+  if ($(syncSelector).attr('href')) {
+    curUrl = $(syncSelector).attr('href')!;
   }
 
   const path = String(utils.urlParam(curUrl, 'key'));
@@ -71,7 +75,7 @@ async function urlChange(page) {
 
         loadInterval = utils.waitUntilTrue(
           function() {
-            return j.$('[data-qa-id="preplay-mainTitle"]').length;
+            return j.$(overviewSelector).length;
           },
           function() {
             page.UILoaded = false;
@@ -84,7 +88,7 @@ async function urlChange(page) {
         con.log('Season', data);
         loadInterval = utils.waitUntilTrue(
           function() {
-            return j.$('[data-qa-id="preplay-mainTitle"]').length;
+            return j.$(overviewSelector).length;
           },
           function() {
             page.UILoaded = false;
@@ -264,7 +268,7 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     uiSelector(selector) {
-      j.$('[data-qa-id="preplay-mainTitle"]')
+      j.$(overviewSelector)
         .first()
         .after(j.html(selector));
     },
@@ -279,7 +283,9 @@ export const Plex: pageInterface = {
     utils.changeDetect(
       () => urlChange(page),
       () => {
-        const epUrl = $('[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"]').attr('href');
+        const epUrl = $(syncSelector)
+          .first()
+          .attr('href');
         if (epUrl) return epUrl;
         return String(utils.urlParam(window.location.href, 'key'));
       },

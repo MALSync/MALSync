@@ -102,7 +102,11 @@ export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: 
   let combined = combinedLinks();
 
   if (id) {
-    combined = await fillFromApi(combined, type, id);
+    try {
+      combined = await fillFromApi(combined, type, id);
+    } catch (e) {
+      con.m('API Problem').error(e);
+    }
   }
 
   return simplifyObject(combined, type, searchterm, id);

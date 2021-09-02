@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
 export const Branitube: pageInterface = {
-  name: 'Branitube',
-  domain: 'https://www.branitube.net',
+  name: 'Aniyan',
+  domain: 'https://aniyan.net',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {

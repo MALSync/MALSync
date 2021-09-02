@@ -1,6 +1,7 @@
 {
   "title": "animefreak",
   "url": "https://www.animefreak.tv/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://www.animefreak.tv/watch/mahouka-koukou-no-rettousei/episode/episode-23",
