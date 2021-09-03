@@ -116,7 +116,7 @@ export const Mangadex: pageInterface = {
         chapterData.chapter = chapter.data.attributes.chapter;
         chapterData.volume = chapter.data.attributes.volume;
         chapterData.translatedLanguage = chapter.data.attributes.translatedLanguage;
-        manga.data = chapter.relationships.find(relation => relation.type === 'manga');
+        manga.data = chapter.data.relationships.find(relation => relation.type === 'manga');
       }
       if (Mangadex.isOverviewPage!(window.location.href)) {
         const id = utils.urlPart(window.location.href, 4);
@@ -131,7 +131,7 @@ export const Mangadex: pageInterface = {
       mangaData.title =
         titleData.en ?? titleData[manga.data.attributes.originalLanguage] ?? titleData[Object.keys(titleData)[0]];
       mangaData.links = manga.data.attributes.links;
-      mangaData.coverFilename = manga.relationships?.find(
+      mangaData.coverFilename = manga.data.relationships?.find(
         relation => relation.type === 'cover_art',
       )?.attributes?.fileName;
 
