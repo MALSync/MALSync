@@ -30,9 +30,9 @@
     "name": "Twistmoe"
   },
   {
-    "domain": "https://www.branitube.net",
+    "domain": "https://aniyan.net",
     "type": "anime",
-    "name": "Branitube"
+    "name": "Aniyan"
   },
   {
     "domain": "https://www.turkanime.net",
@@ -80,11 +80,6 @@
     "name": "Plex"
   },
   {
-    "domain": "https://4anime.to",
-    "type": "anime",
-    "name": "4Anime"
-  },
-  {
     "domain": "https://animeultima.to",
     "type": "anime",
     "name": "animeultima"
@@ -93,11 +88,6 @@
     "domain": "https://www1.aniflix.tv",
     "type": "anime",
     "name": "Aniflix"
-  },
-  {
-    "domain": "https://www.animefreak.tv",
-    "type": "anime",
-    "name": "Animefreak"
   },
   {
     "domain": "https://www.animelab.com",
@@ -673,5 +663,25 @@
     "domain": "https://lhtranslation.net",
     "type": "manga",
     "name": "LHTranslation"
+  },
+  {
+    "domain": "https://mangas-origines.fr/",
+    "type": "manga",
+    "name": "MangasOrigines"
+  },
+  {
+    "domain": "https://tenshi.moe",
+    "type": "anime",
+    "name": "tenshi"
+  },
+  {
+    "domain": "https://shiro.is",
+    "type": "anime",
+    "name": "shiro"
+  },
+  {
+    "domain": "https://www.bluesolo.org",
+    "type": "manga",
+    "name": "BlueSolo"
   }
 ]
