@@ -35,7 +35,7 @@
 </template>
 
 <script type="text/javascript">
-import { search } from '../../_provider/searchFactory';
+import { miniMALSearch } from '../../utils/Search';
 
 export default {
   components: {},
@@ -79,7 +79,7 @@ export default {
     load() {
       this.loading = true;
 
-      search(this.keyword, this.type).then(items => {
+      miniMALSearch(this.keyword, this.type).then(items => {
         this.loading = false;
         this.items = items;
       });
