@@ -130,8 +130,20 @@ a {
 }
 
 .searchItem {
+  position: relative;
   text-decoration: none !important;
   color: black;
+  &.onList::before {
+    content: '';
+    top: 0;
+    right: 0;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent #f43b7a transparent transparent;
+  }
 }
 
 #material {

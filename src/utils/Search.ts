@@ -42,6 +42,11 @@ async function localSearch(searchterm: string, type: 'anime' | 'manga'): Promise
       isNovel: false,
       score: '',
       year: '',
+      list: {
+        status: el.item.status,
+        score: el.item.score,
+        episode: el.item.watchedEp,
+      },
     };
   });
 }

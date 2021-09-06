@@ -54,6 +54,11 @@ export type searchResult = {
   isNovel: boolean;
   score: string;
   year: string;
+  list?: {
+    status: status;
+    score: score;
+    episode: number;
+  };
 };
 
 export type searchInterface = (
