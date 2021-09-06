@@ -6,7 +6,7 @@ import { searchResult } from '../_provider/definitions';
 import { listElement } from '../_provider/listAbstract';
 
 export async function miniMALSearch(searchterm: string, type: 'anime' | 'manga') {
-  return [...(await localSearch(searchterm, type)), ...(await search(searchterm, type))];
+  return [...(await localSearch(searchterm, type)).slice(0, 8), ...(await search(searchterm, type))];
 }
 
 const searchFuse: {
@@ -22,6 +22,8 @@ async function localSearch(searchterm: string, type: 'anime' | 'manga'): Promise
     const localListEl = new LocalList(7, type);
     const tempList = await localListEl.getCompleteList();
     searchFuse[type] = new Fuse(tempList, {
+      minMatchCharLength: 3,
+      threshold: 0.4,
       keys: ['title'],
     });
   }
