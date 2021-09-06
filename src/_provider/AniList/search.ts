@@ -1,6 +1,6 @@
 import { searchInterface } from '../definitions';
 
-export async function search(keyword, type: 'anime' | 'manga', options = {}, sync = false): Promise<searchInterface> {
+export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   const query = `
     query ($search: String) {
       ${type}: Page (perPage: 10) {
@@ -71,4 +71,4 @@ export async function search(keyword, type: 'anime' | 'manga', options = {}, syn
   });
 
   return resItems;
-}
+};

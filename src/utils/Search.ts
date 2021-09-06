@@ -40,6 +40,6 @@ async function localSearch(searchterm: string, type: 'anime' | 'manga'): Promise
       isNovel: false,
       score: '',
       year: '',
-    }
+    };
   });
 }
