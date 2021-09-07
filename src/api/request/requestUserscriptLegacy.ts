@@ -65,4 +65,7 @@ export const requestUserscriptLegacy: requestInterface = {
       },
     });
   },
+  database(call, param) {
+    return Promise.resolve(undefined);
+  },
 };

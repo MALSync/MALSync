@@ -19,7 +19,7 @@ export async function initDatabase() {
 }
 
 async function importList(type: 'anime' | 'manga') {
-  logger.log(`Import ${type} database`)
+  logger.log(`Import ${type} database`);
   await api.settings.init();
   const listProvider = await getList(7, type);
   const list = await listProvider.getCompleteList();
@@ -69,4 +69,13 @@ async function importEntries(type: 'anime' | 'manga', entries: Entry[]) {
   const table = type === 'anime' ? db.table('anime') : db.table('manga');
   await table.clear();
   return table.bulkPut(entries);
+}
+
+export async function databaseRequest(call: string, param: any) {
+  switch (call) {
+    case 'entry':
+      return getEntry(param.type, param.id);
+    default:
+      throw `Unknown call "${call}"`;
+  }
 }

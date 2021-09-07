@@ -6,7 +6,7 @@ import { searchResult } from '../_provider/definitions';
 import { listElement } from '../_provider/listAbstract';
 
 export async function miniMALSearch(searchterm: string, type: 'anime' | 'manga') {
-  return [...(await localSearch(searchterm, type)).slice(0, 8), ...(await search(searchterm, type))];
+  return [...(await localSearch(searchterm, type)).slice(0, 8), ...(await normalSearch(searchterm, type))];
 }
 
 const searchFuse: {
@@ -16,6 +16,24 @@ const searchFuse: {
   anime: null,
   manga: null,
 };
+
+async function normalSearch(searchterm: string, type: 'anime' | 'manga'): Promise<searchResult[]> {
+  return search(searchterm, type).then(res =>
+    Promise.all(
+      res.map(async el => {
+        const dbEntry = await api.request.database('entry', { id: el.id, type });
+        if (dbEntry) {
+          el.list = {
+            status: dbEntry.status,
+            score: dbEntry.score,
+            episode: dbEntry.watchedEp,
+          };
+        }
+        return el;
+      }),
+    ),
+  );
+}
 
 async function localSearch(searchterm: string, type: 'anime' | 'manga'): Promise<searchResult[]> {
   if (!searchFuse[type]) {

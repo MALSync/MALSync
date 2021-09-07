@@ -9,4 +9,6 @@ export interface requestInterface {
   sendMessage?(message: sendMessageI): Promise<any>;
 
   notification(options: notification): void;
+
+  database(call: string, param: object): Promise<any>;
 }
