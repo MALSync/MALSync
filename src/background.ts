@@ -19,6 +19,12 @@ try {
   con.error(e);
 }
 
+try {
+  initDatabase();
+} catch (e) {
+  con.error(e);
+}
+
 api.request.sendMessage = function(message: sendMessageI) {
   return new Promise((resolve, reject) => {
     messageHandler(message, null, function(response: responseMessageI) {
