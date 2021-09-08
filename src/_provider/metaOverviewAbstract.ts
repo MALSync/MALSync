@@ -31,6 +31,8 @@ export interface Overview {
     links: {
       url: string;
       title: string;
+      type: 'anime' | 'manga';
+      id: number | string;
       statusTag: string;
     }[];
   }[];

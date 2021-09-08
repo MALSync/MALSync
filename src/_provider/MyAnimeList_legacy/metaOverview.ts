@@ -341,17 +341,22 @@ export class MetaOverview extends MetaOverviewAbstract {
           .filter('table')
           .find('tr'),
         function(index, value) {
-          const links: { url: string; title: string; statusTag: string }[] = [];
+          const links: { url: string; title: string; statusTag: string; type: string, id: number }[] = [];
           j.$(value)
             .find('.borderClass')
             .last()
             .find('a')
             .each(function(indexB, valueB) {
-              links.push({
-                url: j.$(valueB).attr('href') || '',
-                title: j.$(valueB).text(),
-                statusTag: '',
-              });
+              const url = utils.absoluteLink(j.$(valueB).attr('href'), 'https://myanimelist.net') || '';
+              if (url) {
+                links.push({
+                  url,
+                  title: j.$(valueB).text(),
+                  type: utils.urlPart(url, 3),
+                  id: Number(utils.urlPart(url, 4)),
+                  statusTag: '',
+                });
+              }
             });
           el.push({
             type: j
