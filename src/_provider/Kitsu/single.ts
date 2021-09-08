@@ -41,6 +41,10 @@ export class Single extends SingleAbstract {
     return helper.getCacheKey(this.ids.mal, this.ids.kitsu.id);
   }
 
+  getPageId() {
+    return this.ids.kitsu.id;
+  }
+
   _getStatus() {
     if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current') return 23;
     return parseInt(helper.translateList(this.listI().attributes.status));

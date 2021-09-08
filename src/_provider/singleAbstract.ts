@@ -63,6 +63,8 @@ export abstract class SingleAbstract {
 
   public abstract getCacheKey();
 
+  public abstract getPageId();
+
   public getApiCacheKey(): string | number {
     if (this.ids.mal) {
       return this.ids.mal;
@@ -313,6 +315,8 @@ export abstract class SingleAbstract {
 
   public emitUpdate() {
     globalEmit(`update.${this.getCacheKey()}`, {
+      id: this.getPageId(),
+      type: this.getType(),
       cacheKey: this.getCacheKey(),
       state: this.getStateEl(),
     });

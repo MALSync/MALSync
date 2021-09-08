@@ -35,6 +35,10 @@ export class Single extends SingleAbstract {
     return this.ids.mal;
   }
 
+  getPageId() {
+    return this.ids.mal;
+  }
+
   _getStatus() {
     let curSt;
     if (this.type === 'manga') {

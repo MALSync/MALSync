@@ -35,6 +35,10 @@ export class Single extends SingleAbstract {
     return helper.getCacheKey(this.ids.mal, this.ids.ani);
   }
 
+  getPageId() {
+    return this.ids.ani;
+  }
+
   _getStatus() {
     return parseInt(helper.statusTranslate[this.animeInfo.mediaListEntry.status]);
   }

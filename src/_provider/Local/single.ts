@@ -45,6 +45,10 @@ export class Single extends SingleAbstract {
     return `local:${this.id}:${this.page}`;
   }
 
+  getPageId() {
+    return this.getCacheKey();
+  }
+
   _getStatus() {
     return this.animeInfo.status;
   }
