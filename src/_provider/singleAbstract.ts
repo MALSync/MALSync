@@ -3,7 +3,9 @@ import * as definitions from './definitions';
 import { Progress } from '../utils/progress';
 import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
 
-import { emitter } from '../utils/emitter';
+import { emitter, globalEmit } from '../utils/emitter';
+
+Object.seal(emitter);
 
 export abstract class SingleAbstract {
   constructor(protected url: string) {
@@ -310,7 +312,7 @@ export abstract class SingleAbstract {
   }
 
   public emitUpdate() {
-    emitter.emit(`global.update.${this.getCacheKey()}`, false, {
+    globalEmit(`update.${this.getCacheKey()}`, {
       cacheKey: this.getCacheKey(),
       state: this.getStateEl(),
     });
@@ -320,14 +322,11 @@ export abstract class SingleAbstract {
 
   protected registerEvent() {
     if (!this.globalUpdateEvent) {
-      // @ts-ignore
-      this.globalUpdateEvent = emitter.on(`global.update.${this.getCacheKey()}`, (ignore, data) =>
-        this.updateEvent(ignore, data),
-      );
+      this.globalUpdateEvent = emitter.on(`update.${this.getCacheKey()}`, data => this.updateEvent(data));
     }
   }
 
-  protected updateEvent(ignore, data) {
+  protected updateEvent(data) {
     if (JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl())) {
       this.logger.log('Ignore event');
       return;
