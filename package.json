@@ -105,7 +105,7 @@
     "dexie": "^3.0.3",
     "dompurify": "^2.1.1",
     "download-file": "^0.1.5",
-    "eventemitter2": "^6.4.3",
+    "eventemitter2": "^6.4.4",
     "fuse.js": "^6.4.6",
     "jquery": "^3.5.1",
     "string-similarity": "^4.0.2",
