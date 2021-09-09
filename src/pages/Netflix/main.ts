@@ -175,7 +175,7 @@ export const Netflix: pageInterface = {
       if (utils.urlPart(window.location.href, 3) === 'watch') {
         utils.waitUntilTrue(
           function() {
-            return j.$('.ellipsize-text').length;
+            return j.$('[data-uia=video-canvas]').length;
           },
           function() {
             proxy.addProxy(async (caller: ScriptProxy) => {
