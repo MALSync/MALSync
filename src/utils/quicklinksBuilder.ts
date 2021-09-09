@@ -143,7 +143,7 @@ export async function getMalToKissApi(type, id) {
 
 export function combinedLinks() {
   const links = api.settings.get('quicklinks');
-  const comb = links.map(el => optionToCombined(el));
+  const comb = links.map(el => optionToCombined(el)).filter(el => el);
   return JSON.parse(JSON.stringify(comb));
 }
 
