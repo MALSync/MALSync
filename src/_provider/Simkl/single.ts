@@ -386,7 +386,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  delete() {
+  _delete() {
     return this.call(
       'https://api.simkl.com/sync/history/remove',
       JSON.stringify({

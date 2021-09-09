@@ -322,6 +322,18 @@ export abstract class SingleAbstract {
     });
   }
 
+  abstract _delete(): Promise<void>;
+
+  public async delete(): Promise<void> {
+    return this._delete().then(() => {
+      globalEmit(`delete.${this.getCacheKey()}`, {
+        id: this.getPageId(),
+        type: this.getType(),
+        cacheKey: this.getCacheKey()
+      });
+    });
+  }
+
   protected globalUpdateEvent;
 
   protected registerEvent() {

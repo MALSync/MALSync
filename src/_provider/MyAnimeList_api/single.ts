@@ -269,7 +269,7 @@ export class Single extends SingleAbstract {
     });
   }
 
-  delete() {
+  _delete() {
     return this.apiCall({
       type: 'DELETE',
       path: `${this.type}/${this.ids.mal}/my_list_status`,

@@ -428,7 +428,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  delete() {
+  _delete() {
     return this.apiCall('DELETE', `https://kitsu.io/api/edge/library-entries/${this.listI().id}`);
   }
 }

@@ -148,7 +148,7 @@ export class Single extends SingleAbstract {
     return api.storage.set(this.key, this.animeInfo);
   }
 
-  delete() {
+  _delete() {
     return api.storage.remove(this.key);
   }
 

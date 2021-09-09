@@ -318,7 +318,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  delete() {
+  _delete() {
     const query = `
       mutation ($mediaId: Int) {
         DeleteMediaListEntry(id: $mediaId) {
