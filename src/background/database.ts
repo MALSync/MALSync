@@ -1,4 +1,5 @@
 import Dexie from 'dexie';
+import { emitter } from '../utils/emitter';
 import { getList } from '../_provider/listFactory';
 
 const logger = con.m('Database');
@@ -16,6 +17,38 @@ export async function initDatabase() {
   if (!(await db.table('manga').count())) {
     await importList('manga');
   }
+
+  emitter.on(
+    'update.*',
+    async data => {
+      con.log('update', data);
+      if (data.id && data.state.onList) {
+        addEntry({
+          uid: data.id,
+          type: data.type,
+          title: data.meta.title,
+          malId: data.meta.malId,
+          cacheKey: data.cacheKey,
+          image: data.meta.image,
+          score: data.state.score,
+          status: data.state.status,
+          watchedEp: data.meta.watchedEp,
+          totalEp: data.meta.totalEp,
+          url: data.meta.url,
+        });
+      }
+    },
+    { objectify: true },
+  );
+
+  emitter.on(
+    'delete.*',
+    async data => {
+      con.log('delete', data);
+      removeEntry(data.type, data.id);
+    },
+    { objectify: true },
+  );
 }
 
 async function importList(type: 'anime' | 'manga') {
@@ -63,6 +96,14 @@ export async function addEntry(entry: Entry) {
 export async function getEntry(type: 'anime' | 'manga', uid: number | string): Promise<undefined | Entry> {
   const table = type === 'anime' ? db.table('anime') : db.table('manga');
   return table.get(uid);
+}
+
+export async function removeEntry(type: 'anime' | 'manga', uid: number | string) {
+  const table = type === 'anime' ? db.table('anime') : db.table('manga');
+  return table
+    .where('uid')
+    .equals(uid)
+    .delete();
 }
 
 async function importEntries(type: 'anime' | 'manga', entries: Entry[]) {

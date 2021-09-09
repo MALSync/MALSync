@@ -319,6 +319,13 @@ export abstract class SingleAbstract {
       type: this.getType(),
       cacheKey: this.getCacheKey(),
       state: this.getStateEl(),
+      meta: {
+        title: this.getTitle(),
+        image: this.getImage(),
+        malId: this.getMalId(),
+        totalEp: this.getTotalEpisodes(),
+        url: this.getUrl(),
+      }
     });
   }
 
