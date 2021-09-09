@@ -109,8 +109,8 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    if (this.animeInfo && this.animeInfo.image) return Promise.resolve(this.animeInfo.image);
-    return Promise.resolve(api.storage.assetUrl('questionmark.gif'));
+    if (this.animeInfo && this.animeInfo.image) return this.animeInfo.image;
+    return api.storage.assetUrl('questionmark.gif');
   }
 
   setImage(url: string) {

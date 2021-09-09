@@ -128,7 +128,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(this.animeI().attributes.posterImage.large);
+    return this.animeI().attributes.posterImage.large;
   }
 
   _getRating() {

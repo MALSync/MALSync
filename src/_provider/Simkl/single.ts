@@ -122,7 +122,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(`https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`);
+    return `https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`;
   }
 
   async _getRating() {

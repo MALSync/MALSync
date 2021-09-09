@@ -326,10 +326,11 @@ export abstract class SingleAbstract {
 
   public async delete(): Promise<void> {
     return this._delete().then(() => {
+      this._onList = false;
       globalEmit(`delete.${this.getCacheKey()}`, {
         id: this.getPageId(),
         type: this.getType(),
-        cacheKey: this.getCacheKey()
+        cacheKey: this.getCacheKey(),
       });
     });
   }
@@ -435,9 +436,9 @@ export abstract class SingleAbstract {
     return this.ids;
   }
 
-  abstract _getImage(): Promise<string>;
+  abstract _getImage(): string;
 
-  public getImage(): Promise<string> {
+  public getImage(): string {
     return this._getImage();
   }
 
