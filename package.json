@@ -100,6 +100,7 @@
     "lint:ci": "npm run lint:less:ci && npm run lint:script:ci"
   },
   "dependencies": {
+    "@sentry/browser": "^6.12.0",
     "@types/chrome": "0.0.112",
     "async-mutex": "^0.1.4",
     "dompurify": "^2.1.1",
