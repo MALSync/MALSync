@@ -177,6 +177,7 @@ const generateManifest = () => {
       'https://www.crunchyroll.com/',
       'https://beta-api.crunchyroll.com/',
       'https://api.malsync.moe/',
+      'https://shark.malsync.moe/',
       'https://api.myanimelist.net/',
       'https://api.mangadex.org/',
       'tabHide',

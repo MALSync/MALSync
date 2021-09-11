@@ -10,6 +10,9 @@ import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
 import { initUserProgressScheduler } from './background/releaseProgress';
 import { pwa } from './floatbutton/userscriptPwa';
+import { initShark } from './utils/shark';
+
+initShark();
 
 let page;
 

@@ -67,6 +67,7 @@ const metadata = {
     'media.kitsu.io',
     'api.simkl.com',
     'api.malsync.moe',
+    'shark.malsync.moe',
     '*',
   ],
 };

@@ -6,6 +6,9 @@ import { initProgressScheduler } from './background/releaseProgress';
 import { initCustomDomain, cleanupCustomDomains } from './background/customDomain';
 import { sendNotification } from './background/notifications';
 import { upgradewWizzards } from './background/upgradeWizzards';
+import { initShark } from './utils/shark';
+
+initShark();
 
 try {
   initSyncTags();

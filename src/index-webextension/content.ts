@@ -3,6 +3,9 @@ import { firebaseNotification } from '../utils/firebaseNotification';
 import { shortcutListener } from '../utils/player';
 import { floatClick } from '../floatbutton/extension';
 import { pageInterface } from '../pages/pageInterface';
+import { initShark } from '../utils/shark';
+
+initShark();
 
 let lastFocus;
 
