@@ -20,5 +20,6 @@ export function initShark() {
   Sentry.init({
     dsn: '',
     transport: FakeFetchTransport,
+    release: `malsync.${api.type}@${api.storage.version()}`,
   });
 }
