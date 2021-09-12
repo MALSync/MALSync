@@ -6,6 +6,8 @@ import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
+import { Shark } from '../utils/shark';
+import { MissingPlayerError } from '../utils/Errors';
 
 declare let browser: any;
 
@@ -488,6 +490,15 @@ export class SyncPage {
             // Show error if no player gets detected for 5 minutes
             playerTimeout = setTimeout(() => {
               j.$('#flashinfo-div').addClass('player-error');
+
+              const iframes = $('iframe')
+                .toArray()
+                .map(el => $(el).attr('src'))
+                .filter(el => el);
+
+              con.log('No Player found', iframes);
+
+              iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
             }, 5 * 60 * 1000);
 
             // Debugging

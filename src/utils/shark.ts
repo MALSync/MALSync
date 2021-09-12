@@ -23,3 +23,5 @@ export function initShark() {
     release: `malsync.${api.type}@${api.storage.version()}`,
   });
 }
+
+export const Shark = Sentry;
