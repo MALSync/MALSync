@@ -6,7 +6,7 @@ import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
-import { Shark } from '../utils/shark';
+import { bloodTrail, Shark } from '../utils/shark';
 import { MissingPlayerError } from '../utils/Errors';
 
 declare let browser: any;
@@ -333,6 +333,11 @@ export class SyncPage {
         });
       }
       logger.m('Sync', 'green').log(state);
+      bloodTrail({
+        category: 'info',
+        message: 'Sync',
+        data: state,
+      });
     } else {
       if (typeof this.page.overview === 'undefined') {
         logger.log('No overview definition');
@@ -358,6 +363,11 @@ export class SyncPage {
       tempSingle = await this.searchObj.initRules();
 
       logger.m('Overview', 'green').log(state);
+      bloodTrail({
+        category: 'info',
+        message: 'Overview',
+        data: state,
+      });
     }
 
     this.curState = state;

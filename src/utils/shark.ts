@@ -21,7 +21,16 @@ export function initShark() {
     dsn: '',
     transport: FakeFetchTransport,
     release: `malsync.${api.type}@${api.storage.version()}`,
+    integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
   });
 }
 
 export const Shark = Sentry;
+
+export function bloodTrail(options: Sentry.Breadcrumb) {
+  try {
+    Shark.addBreadcrumb(options);
+  } catch (e) {
+    console.error(e);
+  }
+}
