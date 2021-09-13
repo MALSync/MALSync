@@ -447,7 +447,11 @@ module.exports = {
   },
   // animeshouse
   animeshouse: {
-    match: ['*://animeshouse.net/gcloud/*'],
+    match: ['*://*.animeshouse.net/gcloud/*', '*://*.animeshouse.net/playerBlue/*', '*://*.animeshouse.net/mp4/*'],
+  },
+  // animeshouse
+  nezuko: {
+    match: ['*://nezuko-ah.nl/*'],
   },
   // animixplay
   animato: {
