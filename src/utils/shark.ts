@@ -18,7 +18,8 @@ export class FakeFetchTransport extends Sentry.Transports.FetchTransport {
 
 export function initShark() {
   Sentry.init({
-    dsn: '',
+    dsn: 'https://blood@shark.malsync.moe/1337',
+    tunnel: 'https://api.malsync.moe/shark',
     transport: FakeFetchTransport,
     release: `malsync.${api.type}@${api.storage.version()}`,
     integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
