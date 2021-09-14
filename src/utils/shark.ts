@@ -16,7 +16,12 @@ export class FakeFetchTransport extends Sentry.Transports.FetchTransport {
   }
 }
 
-export function initShark() {
+export async function initShark() {
+  if (!(await api.settings.getAsync('crashReport'))) {
+    con.info('Crash reports disabled');
+    return;
+  }
+
   Sentry.init({
     dsn: 'https://blood@shark.malsync.moe/1337',
     tunnel: 'https://api.malsync.moe/shark',

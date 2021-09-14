@@ -410,6 +410,12 @@
           ></span
         >
 
+        <span class="option-extension" style="display: none;">
+          <checkbox option="crashReport">
+            {{ lang('settings_crash_report') }}
+          </checkbox>
+        </span>
+
         <span class="option-legacy">
           <li class="mdl-list__item">
             <span class="mdl-list__item-primary-content">

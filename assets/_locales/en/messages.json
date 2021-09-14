@@ -1128,6 +1128,10 @@
     "message": "Check for filler/recap episodes",
     "description": "Option to enable filler checking"
   },
+  "settings_crash_report": {
+    "message": "Send crash reports",
+    "description": "If to send crash reports"
+  },
   "settings_filler_text": {
     "message": "This will check if the episode is marked as a filler/recap on MyAnimeList",
     "description": "filler tooltip"
