@@ -1,5 +1,8 @@
 import { Minimal } from './minimal/minimalClass';
 import { openMinimal } from './floatbutton/extension';
+import { initShark } from './utils/shark';
+
+initShark();
 
 declare let componentHandler: any;
 

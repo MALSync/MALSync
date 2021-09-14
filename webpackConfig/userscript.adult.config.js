@@ -131,6 +131,11 @@ module.exports = {
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/userscript'),
     }),
+    new webpack.DefinePlugin({
+      env: JSON.stringify({
+        CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
+      }),
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),

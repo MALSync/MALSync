@@ -15,6 +15,9 @@ declare global {
     html: (content: string) => string;
   };
   let api: WebExtensionType;
+  let env: {
+    CONTEXT: 'production' | 'development';
+  };
 
   interface Window {
     /**
