@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/browser';
 
 const normalizeUrl = url => {
-  return url.replace(/(webpack_require__@)?(moz|chrome)-extension:\/\/[^\/]+\//, '~/');
+  return url.replace(/(webpack_require__@)?(moz|chrome)-extension:\/\/[^/]+\//, '~/');
 };
 
 declare type FetchImpl = typeof fetch;
@@ -32,6 +32,7 @@ export async function initShark() {
     transport: FakeFetchTransport,
     release: `malsync@${api.storage.version()}`,
     integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
+    // eslint-disable-next-line no-undef
     environment: env.CONTEXT,
     autoSessionTracking: false,
   });
