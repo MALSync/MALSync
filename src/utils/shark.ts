@@ -33,6 +33,7 @@ export async function initShark() {
     release: `malsync@${api.storage.version()}`,
     integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
     environment: env.CONTEXT,
+    autoSessionTracking: false,
   });
 
   Sentry.configureScope(scope => {
