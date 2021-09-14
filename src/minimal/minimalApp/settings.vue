@@ -412,7 +412,7 @@
 
         <span class="option-extension" style="display: none;">
           <checkbox option="crashReport">
-            {{ lang('settings_crash_report') }}
+            {{ lang('settings_crash_report') }}<tooltip>{{ lang('settings_crash_report_text') }}</tooltip>
           </checkbox>
         </span>
 

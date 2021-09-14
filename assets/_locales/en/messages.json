@@ -1136,6 +1136,10 @@
     "message": "This will check if the episode is marked as a filler/recap on MyAnimeList",
     "description": "filler tooltip"
   },
+  "settings_crash_report_text": {
+    "message": "Helps fix any bugs. No sensitive data will be sent",
+    "description": "Crash report tooltip"
+  },
   "filler_filler_confirm": {
     "message": "This episode has been marked as a filler on MyAnimeList, do you want to skip?",
     "description": "Question if the user wants to skip the filler"

@@ -7,7 +7,7 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { bloodTrail, Shark } from '../utils/shark';
-import { MissingPlayerError } from '../utils/Errors';
+import { MissingPlayerError } from '../utils/errors';
 
 declare let browser: any;
 
