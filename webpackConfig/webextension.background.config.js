@@ -1,6 +1,41 @@
 const webpack = require('webpack');
 const path = require('path');
 const appTarget = process.env.APP_TARGET || 'general';
+const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+const packageJson = require('../package.json');
+
+plugins = [
+  new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
+    resource.request = resource.request.replace(/-general/, `-${appTarget}`);
+  }),
+  new webpack.ProvidePlugin({
+    con: path.resolve(__dirname, './../src/utils/consoleBG'),
+    utils: path.resolve(__dirname, './../src/utils/general'),
+    api: path.resolve(__dirname, './../src/api/webextension'),
+    j: path.resolve(__dirname, './../src/utils/j'),
+  }),
+  new webpack.DefinePlugin({
+    env: JSON.stringify({
+      CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
+    }),
+  }),
+]
+
+if (process.env.SENTRY_AUTH_TOKEN) {
+  plugins.push(
+    new SentryWebpackPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: 'lolamtisch',
+      project: 'malsync',
+      release: `malsync@${packageJson.version}`,
+      include: 'dist/webextension',
+      ignore: ['node_modules', 'webpack.config.js'],
+      setCommits: {
+        auto: true,
+      },
+    }),
+  );
+}
 
 module.exports = {
   entry: {
@@ -24,20 +59,5 @@ module.exports = {
     filename: 'background.js',
     path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
-  plugins: [
-    new webpack.NormalModuleReplacementPlugin(/(.*)-general/, function(resource) {
-      resource.request = resource.request.replace(/-general/, `-${appTarget}`);
-    }),
-    new webpack.ProvidePlugin({
-      con: path.resolve(__dirname, './../src/utils/consoleBG'),
-      utils: path.resolve(__dirname, './../src/utils/general'),
-      api: path.resolve(__dirname, './../src/api/webextension'),
-      j: path.resolve(__dirname, './../src/utils/j'),
-    }),
-    new webpack.DefinePlugin({
-      env: JSON.stringify({
-        CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
-      }),
-    }),
-  ],
+  plugins: plugins,
 };

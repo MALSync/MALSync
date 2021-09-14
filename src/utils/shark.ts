@@ -1,8 +1,12 @@
 import * as Sentry from '@sentry/browser';
 
+const normalizeUrl = url => {
+  return url.replace(/(webpack_require__@)?(moz|chrome)-extension:\/\/[^\/]+\//, '~/');
+};
+
 declare type FetchImpl = typeof fetch;
 
-export class FakeFetchTransport extends Sentry.Transports.FetchTransport {
+class FakeFetchTransport extends Sentry.Transports.FetchTransport {
   constructor(options, fetchImpl?: FetchImpl) {
     const fakeFetch = function(url, opt) {
       return api.request.xhr(opt.method ?? 'GET', {
@@ -26,9 +30,26 @@ export async function initShark() {
     dsn: 'https://blood@shark.malsync.moe/1337',
     tunnel: 'https://api.malsync.moe/shark',
     transport: FakeFetchTransport,
-    release: `malsync.${api.type}@${api.storage.version()}`,
+    release: `malsync@${api.storage.version()}`,
     integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
     environment: env.CONTEXT,
+  });
+
+  Sentry.configureScope(scope => {
+    scope.addEventProcessor(async (event: any) => {
+      if (event.culprit) {
+        event.culprit = normalizeUrl(event.culprit);
+      }
+
+      if (event.exception) {
+        event.exception.values[0].stacktrace.frames = event.exception.values[0].stacktrace.frames.map(frame => {
+          frame.filename = normalizeUrl(frame.filename);
+          return frame;
+        });
+      }
+
+      return event;
+    });
   });
 }
 
