@@ -28,6 +28,7 @@ export async function initShark() {
     transport: FakeFetchTransport,
     release: `malsync.${api.type}@${api.storage.version()}`,
     integrations: [new Sentry.Integrations.Breadcrumbs({ console: false, dom: false })],
+    environment: env.CONTEXT,
   });
 }
 
