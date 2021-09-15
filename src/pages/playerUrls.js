@@ -324,6 +324,10 @@ module.exports = {
       '*://*.streamani.net/load.php?*',
       '*://*.streamani.net/loadserver.php?*',
       '*://*.streamani.net/embedplus*',
+      '*://*.streamani.io/streaming.php?*',
+      '*://*.streamani.io/load.php?*',
+      '*://*.streamani.io/loadserver.php?*',
+      '*://*.streamani.io/embedplus*',
     ],
   },
   // bs.to
@@ -443,7 +447,11 @@ module.exports = {
   },
   // animeshouse
   animeshouse: {
-    match: ['*://animeshouse.net/gcloud/*'],
+    match: ['*://*.animeshouse.net/gcloud/*', '*://*.animeshouse.net/playerBlue/*', '*://*.animeshouse.net/mp4/*'],
+  },
+  // animeshouse
+  nezuko: {
+    match: ['*://nezuko-ah.nl/*'],
   },
   // animixplay
   animato: {

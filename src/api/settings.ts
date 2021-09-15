@@ -64,6 +64,7 @@ export const settingsObj = {
     autoNextEp: false,
     highlightAllEp: false,
     checkForFiller: true,
+    crashReport: true,
 
     introSkip: 85,
     introSkipFwd: [17, 39],

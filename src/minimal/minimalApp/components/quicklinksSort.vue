@@ -29,7 +29,7 @@ export default {
   computed: {
     value: {
       get() {
-        return api.settings.get('quicklinks');
+        return api.settings.get('quicklinks').filter(el => this.optionToCombined(el));
       },
       set(value) {
         api.settings.set('quicklinks', value);

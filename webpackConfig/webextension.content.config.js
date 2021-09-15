@@ -68,12 +68,7 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          'vue-style-loader',
-          { loader: 'to-string-loader' },
-          { loader: 'css-loader' },
-          { loader: 'less-loader' },
-        ],
+        use: ['vue-style-loader', { loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
       },
       {
         test: /\.vue$/,
@@ -104,6 +99,11 @@ module.exports = {
       utils: path.resolve(__dirname, './../src/utils/general'),
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/webextension'),
+    }),
+    new webpack.DefinePlugin({
+      env: JSON.stringify({
+        CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
+      }),
     }),
   ],
 };
