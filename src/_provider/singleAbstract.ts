@@ -305,8 +305,6 @@ export abstract class SingleAbstract {
       })
       .then(() => {
         this.persistanceState = this.getStateEl();
-        this.setStateEl(this.persistanceState);
-        console.log(this.persistanceState);
 
         return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
       })
