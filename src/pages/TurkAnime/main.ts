@@ -55,7 +55,7 @@ export const TurkAnime: pageInterface = {
       // Expected invalid output: "ova-3-bolum" | "5-bolum-part-2-pismanlik-yok"
 
       const episodeNumberMatches = episodeSlug.match(
-        // https://regex101.com/r/1DEx05/1
+        // https://regex101.com/r/1DEx05/2
         /^(?<episodeNumber>\d+)-bolum(?:-final)?$/i,
       );
 
@@ -65,7 +65,9 @@ export const TurkAnime: pageInterface = {
     },
     nextEpUrl() {
       const href = j.$("div.panel-footer a[href^='video']:nth-child(2)").attr('href');
+
       if (href) return utils.absoluteLink(href, TurkAnime.domain);
+
       return '';
     },
   },
