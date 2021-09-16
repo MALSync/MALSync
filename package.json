@@ -101,7 +101,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^6.12.0",
-    "@types/chrome": "0.0.112",
+    "@types/chrome": "0.0.157",
     "async-mutex": "^0.1.4",
     "dompurify": "^2.3.2",
     "download-file": "^0.1.5",
