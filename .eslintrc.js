@@ -7,7 +7,7 @@ const COMMON_RULES = {
   'import/prefer-default-export': 'off',
   'import/extensions': ['error', 'ignorePackages', { js: 'never', ts: 'never' }],
   // General rules
-  'block-scoped-var': 'warn', //TODO
+  'block-scoped-var': 'warn', // TODO
   'no-await-in-loop': 'warn', // TODO
   'prefer-destructuring': 'warn', // TODO
   'no-continue': 'off',
@@ -21,10 +21,10 @@ const COMMON_RULES = {
   'no-restricted-syntax': [
     'error',
     // TODO: Reenable rule
-    //{
+    // {
     //  "selector": "ForInStatement",
     //  "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
-    //},
+    // },
     {
       selector: 'ForOfStatement',
       message:
@@ -68,8 +68,8 @@ module.exports = {
     'docs/',
     'package/',
     'eslint/',
-    'test/', //TODO
-    'webpackConfig/', //TODO
+    'test/', // TODO
+    'webpackConfig/', // TODO
   ],
   overrides: [
     {
