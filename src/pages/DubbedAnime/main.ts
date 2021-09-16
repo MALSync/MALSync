@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
 export const DubbedAnime: pageInterface = {
-  name: 'DubbedAnime',
-  domain: 'https://ww5.dubbedanime.net',
+  name: '1Anime',
+  domain: 'https://1anime.to',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
