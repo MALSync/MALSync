@@ -6,73 +6,73 @@ export const LHTranslation: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return (
-      typeof url.split('/')[3] !== 'undefined' &&
-      url.split('/')[3].startsWith('read-') &&
-      !/page-([2-9]|1\d+)/.test(url.split('/')[3])
-    );
+    return url.split('/')[3] === 'manga' && url.split('/')[5].startsWith('chapter-');
   },
   isOverviewPage(url) {
-    return typeof url.split('/')[3] !== 'undefined' && url.split('/')[3].startsWith('manga-');
+    return url.split('/')[3] === 'manga' && url.split('/')[5] === '';
   },
   getImage() {
-    return $('.info-cover > img.thumbnail').attr('src');
+    return j.$('div.summary_image img').attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('a.manga-name').text();
+      return j
+        .$(j.$('.c-breadcrumb-wrapper .breadcrumb li')[1])
+        .text()
+        .trim();
     },
     getIdentifier(url) {
-      return LHTranslation.overview!.getIdentifier(LHTranslation.sync.getOverviewUrl(url));
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('a.manga-name').attr('href') || '', LHTranslation.domain);
+      return j.$(j.$('.c-breadcrumb-wrapper .breadcrumb li a')[1]).attr('href') || '';
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 3);
+      const episodePart = utils.urlPart(url, 5);
 
-      const temp = episodePart.match(/chapter[_-]\d+/gi);
+      const temp = episodePart.match(/chapter-\d+/gim);
 
       if (!temp || !temp.length) return 0;
 
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const next = j
-        .$('ul.chapter_select option:selected')
-        .prev()
-        .val();
-
-      if (next) {
-        return utils.absoluteLink(next, LHTranslation.domain);
-      }
-      return '';
+      return j
+        .$('.nav-links .next_page')
+        .first()
+        .attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('ul.manga-info > h1').text();
+      return j
+        .$('.post-title h1')
+        .prop('innerText')
+        .trim();
     },
     getIdentifier(url) {
-      const part = utils.urlPart(url, 3);
-      // remove manga- and .html
-      return part.substring(part.indexOf('-') + 1, part.lastIndexOf('.') > -1 ? part.lastIndexOf('.') : part.length);
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#listchapter').before(j.html(selector));
+      j.$('div.c-page__content div.c-blog__heading')
+        .first()
+        .before(
+          j.html(
+            `<div id="malthing"><div id= "MALSyncheading" class="c-blog__heading style-2 font-heading"><h2 class="h4"> <i class="icon ion-ios-star"></i> MAL-Sync</h2></div>${selector}</div>`,
+          ),
+        );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#list-chapters .titleLink');
+        return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
+        return (
           selector
             .find('a')
             .first()
-            .attr('href') || '',
-          LHTranslation.domain,
+            .attr('href') || ''
         );
       },
       elementEp(selector) {
@@ -83,7 +83,19 @@ export const LHTranslation: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(() => {
-      page.handlePage();
+      if (LHTranslation.isSyncPage(page.url)) {
+        page.handlePage();
+      }
+      if (LHTranslation.isOverviewPage!(page.url)) {
+        utils.waitUntilTrue(
+          function() {
+            return j.$('.wp-manga-chapter').length > 0;
+          },
+          function() {
+            page.handlePage();
+          },
+        );
+      }
     });
   },
 };
