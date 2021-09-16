@@ -74,6 +74,14 @@ export class Single extends SingleAbstract {
     this.listI().attributes.ratingTwenty = score * 2;
   }
 
+  _getAbsoluteScore() {
+    return Number(this.listI().attributes.ratingTwenty);
+  }
+
+  _setAbsoluteScore(score) {
+    this.listI().attributes.ratingTwenty = Number(score);
+  }
+
   _getEpisode() {
     return this.listI().attributes.progress;
   }

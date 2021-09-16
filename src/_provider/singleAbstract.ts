@@ -109,6 +109,26 @@ export abstract class SingleAbstract {
     return score;
   }
 
+  protected _setAbsoluteScore(score: number): void {
+    this.setScore(score);
+  }
+
+  public setAbsoluteScore(score: number): SingleAbstract {
+    score = parseInt(`${score}`);
+    this._setAbsoluteScore(score);
+    return this;
+  }
+
+  protected _getAbsoluteScore(): number {
+    return this.getScore();
+  }
+
+  public getAbsoluteScore(): number {
+    const score = this._getAbsoluteScore();
+    if (!score) return 0;
+    return score;
+  }
+
   abstract _setEpisode(episode: number): void;
 
   public setEpisode(episode: number): SingleAbstract {
@@ -285,6 +305,8 @@ export abstract class SingleAbstract {
       })
       .then(() => {
         this.persistanceState = this.getStateEl();
+        this.setStateEl(this.persistanceState);
+        console.log(this.persistanceState);
 
         return utils.getEntrySettings(this.type, this.getCacheKey(), this._getTags());
       })
@@ -485,6 +507,7 @@ export abstract class SingleAbstract {
       volume: this.getVolume(),
       status: this.getStatus(),
       score: this.getScore(),
+      absoluteScore: this.getAbsoluteScore(),
     };
   }
 
@@ -494,6 +517,7 @@ export abstract class SingleAbstract {
     this.setVolume(state.volume);
     this.setStatus(state.status);
     this.setScore(state.score);
+    if (state.absoluteScore) this.setAbsoluteScore(state.absoluteScore);
   }
 
   getStateDiff() {

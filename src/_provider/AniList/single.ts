@@ -48,14 +48,22 @@ export class Single extends SingleAbstract {
   }
 
   _getScore() {
-    if (this.animeInfo.mediaListEntry.score === 0) return 0;
-    const score = Math.round(this.animeInfo.mediaListEntry.score / 10);
+    if (Number(this.animeInfo.mediaListEntry.score) === 0) return 0;
+    const score = Math.round(Number(this.animeInfo.mediaListEntry.score) / 10);
     if (score === 0) return 1;
     return score;
   }
 
   _setScore(score) {
     this.animeInfo.mediaListEntry.score = score * 10;
+  }
+
+  _getAbsoluteScore() {
+    return Number(this.animeInfo.mediaListEntry.score);
+  }
+
+  _setAbsoluteScore(score) {
+    this.animeInfo.mediaListEntry.score = Number(score);
   }
 
   _getEpisode() {
@@ -280,7 +288,7 @@ export class Single extends SingleAbstract {
   }
 
   public getScoreCheckboxValue() {
-    const curScore = this.animeInfo.mediaListEntry.score;
+    const curScore = Number(this.animeInfo.mediaListEntry.score);
     switch (this.getScoreMode()) {
       case 'POINT_3':
         if (!curScore) return 0;
@@ -311,7 +319,7 @@ export class Single extends SingleAbstract {
       case 'POINT_5':
       case 'POINT_10_DECIMAL':
       case 'POINT_100':
-        this.animeInfo.mediaListEntry.score = value;
+        this.animeInfo.mediaListEntry.score = Number(value);
         break;
       default:
         super.handleScoreCheckbox(value);
