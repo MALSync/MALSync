@@ -435,7 +435,7 @@ module.exports = {
   },
   // yugenanime
   yugenanime: {
-    match: ['*://yugenani.me/e/*'],
+    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*'],
   },
   // kickassanime
   kaaplay: {
