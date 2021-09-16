@@ -18,7 +18,7 @@
     "archiver": "^5.3.0",
     "bl": "^5.0.0",
     "chai": "^4.3.4",
-    "chrome-webstore-upload": "^0.2.2",
+    "chrome-webstore-upload": "^0.4.0",
     "cross-env": "^7.0.3",
     "css-loader": "^1.0.0",
     "dot-prop": "^5.3.0",
