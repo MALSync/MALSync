@@ -20,7 +20,7 @@
     "chai": "^4.3.4",
     "chrome-webstore-upload": "^0.4.0",
     "cross-env": "^7.0.3",
-    "css-loader": "^1.0.0",
+    "css-loader": "^6.0.0",
     "dot-prop": "^6.0.0",
     "eslint": "^7.0.0",
     "eslint-config-airbnb-base": "^14.2.1",
