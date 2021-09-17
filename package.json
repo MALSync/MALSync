@@ -48,7 +48,7 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-prettier": "^1.2.0",
-    "terser-webpack-plugin": "^2.3.8",
+    "terser-webpack-plugin": "^5.0.0",
     "to-string-loader": "^1.1.6",
     "ts-loader": "^6.2.2",
     "ts-mocha": "^6.0.0",
