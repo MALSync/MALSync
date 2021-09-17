@@ -43,7 +43,7 @@
     "puppeteer-extra-plugin-adblocker": "^2.11.11",
     "puppeteer-extra-plugin-stealth": "^2.7.8",
     "semver": "^7.3.5",
-    "serialize-javascript": "^5.0.1",
+    "serialize-javascript": "^6.0.0",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
