@@ -5,6 +5,25 @@ import { getList } from '../_provider/listFactory';
 const logger = con.m('Database');
 const db = new Dexie('malsync');
 
+async function updateEntry(data) {
+  con.log('update', data);
+  if (data.id && data.state.onList) {
+    addEntry({
+      uid: data.id,
+      type: data.type,
+      title: data.meta.title,
+      malId: data.meta.malId,
+      cacheKey: data.cacheKey,
+      image: data.meta.image,
+      score: data.state.score,
+      status: data.state.status,
+      watchedEp: data.meta.watchedEp,
+      totalEp: data.meta.totalEp,
+      url: data.meta.url,
+    });
+  }
+}
+
 export async function initDatabase() {
   logger.log('Starting');
   db.version(1).stores({
@@ -18,28 +37,8 @@ export async function initDatabase() {
     await importList('manga');
   }
 
-  emitter.on(
-    'update.*',
-    async data => {
-      con.log('update', data);
-      if (data.id && data.state.onList) {
-        addEntry({
-          uid: data.id,
-          type: data.type,
-          title: data.meta.title,
-          malId: data.meta.malId,
-          cacheKey: data.cacheKey,
-          image: data.meta.image,
-          score: data.state.score,
-          status: data.state.status,
-          watchedEp: data.meta.watchedEp,
-          totalEp: data.meta.totalEp,
-          url: data.meta.url,
-        });
-      }
-    },
-    { objectify: true },
-  );
+  emitter.on('update.*', async data => updateEntry(data), { objectify: true });
+  emitter.on('state.*', async data => updateEntry(data), { objectify: true });
 
   emitter.on(
     'delete.*',

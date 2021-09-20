@@ -311,6 +311,7 @@ export abstract class SingleAbstract {
       .then(options => {
         this.options = options;
         this.registerEvent();
+        this.emitUpdate('state');
       });
   }
 
@@ -333,8 +334,8 @@ export abstract class SingleAbstract {
       });
   }
 
-  public emitUpdate() {
-    globalEmit(`update.${this.getCacheKey()}`, {
+  public emitUpdate(action: 'update' | 'state' = 'update') {
+    globalEmit(`${action}.${this.getCacheKey()}`, {
       id: this.getPageId(),
       type: this.getType(),
       cacheKey: this.getCacheKey(),
@@ -345,7 +346,7 @@ export abstract class SingleAbstract {
         malId: this.getMalId(),
         totalEp: this.getTotalEpisodes(),
         url: this.getUrl(),
-      }
+      },
     });
   }
 
