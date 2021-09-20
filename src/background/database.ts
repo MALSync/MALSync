@@ -17,7 +17,7 @@ async function updateEntry(data) {
       image: data.meta.image,
       score: data.state.score,
       status: data.state.status,
-      watchedEp: data.meta.watchedEp,
+      watchedEp: data.state.episode,
       totalEp: data.meta.totalEp,
       url: data.meta.url,
     });

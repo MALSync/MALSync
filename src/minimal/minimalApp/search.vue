@@ -31,6 +31,9 @@
             <p v-if="item.list.score" style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">
               {{ lang('UI_Score') }} {{ item.list.score }}
             </p>
+            <p v-else-if="item.list.status === 1" style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">
+              {{ episodeText(type) }} {{ item.list.episode }}
+            </p>
           </template>
           <template v-else>
             <p style="margin-bottom: 0; line-height: 20px; padding-top: 3px;">
@@ -92,6 +95,7 @@ export default {
   methods: {
     lang: api.storage.lang,
     getStatusText: utils.getStatusText,
+    episodeText: utils.episode,
     load() {
       this.loading = true;
 
