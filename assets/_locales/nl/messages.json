@@ -266,11 +266,11 @@
     "description": "Start reading manga message"
   },
   "syncPage_flashConfirm_rewatch_start_anime": {
-    "message": "Anime opnieuw bekijken?",
+    "message": "Anime herzien?",
     "description": "Start rewatching anime message"
   },
   "syncPage_flashConfirm_rewatch_start_manga": {
-    "message": "Anime herlezen?",
+    "message": "Manga herlezen?",
     "description": "Start rereading manga message"
   },
   "syncPage_flashConfirm_Anime_Correct": {
@@ -348,7 +348,7 @@
     "description": "Credentials wrong"
   },
   "bookmarksItem_Years": {
-    "message": "Jaren",
+    "message": "Jaar",
     "description": "Years"
   },
   "bookmarksItem_Year": {
@@ -530,7 +530,7 @@
     "description": "URL reset"
   },
   "correction_DBRequest": {
-    "message": "Database aanvraag indienen?",
+    "message": "Database correctie aanvraag indienen?",
     "description": "Popup that shows up when the user corrects an anime and asks if this change should be sent to the dabase for correction"
   },
   "overview_Continue_anime": {
@@ -1104,7 +1104,7 @@
     }
   },
   "nextEpShort_no_support": {
-    "message": "Deze pagina ondersteunt te volgende aflevering niet",
+    "message": "Deze pagina ondersteund de volgende aflevering niet",
     "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
   },
   "nextEpShort_no_nextEp": {
