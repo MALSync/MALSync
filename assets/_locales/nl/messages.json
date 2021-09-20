@@ -195,6 +195,10 @@
     "message": "(1) Verschrikkelijk",
     "description": "Appalling - Score"
   },
+  "UI_Rules": {
+    "message": "Regels",
+    "description": "Rules text for the correction UI"
+  },
   "syncPage_flashm_resumeMsg": {
     "message": "Hervatten op $time$",
     "description": "Video resume message",
@@ -282,6 +286,10 @@
         "example": "No Game No Life"
       }
     }
+  },
+  "syncPage_flash_player_error": {
+    "message": "Speler niet gedetecteerd. Zelf handmatig bijwerken alstublieft.",
+    "description": "Message if the video player could not be recognized"
   },
   "syncPage_malObj_addAnime": {
     "message": "Voeg toe aan $page$",
@@ -875,14 +883,6 @@
     "message": "Doet het content script uit. Dit maakt het mogelijk om de extensie en de gebruikersscript aan te hebben tegelijkertijd.",
     "description": "Userscript mode - Text"
   },
-  "settings_StrictCookies": {
-    "message": "Strikte Cookies",
-    "description": "Strict Cookies"
-  },
-  "settings_StrictCookies_Text": {
-    "message": "Deze optie voegt Firefox Multi-Account Containers support. Zorg ervoor dat je browser opnieuw opstart na het aan doen van deze optie",
-    "description": "Strict Cookies - Text"
-  },
   "settings_highlightAllEp": {
     "message": "Markeer alle Afleveringen/Hoofdstukken",
     "description": "Highlight all Episodes/Chapters"
@@ -934,6 +934,10 @@
   "settings_more_info": {
     "message": "Meer Info",
     "description": "Link button which links to more informations"
+  },
+  "settings_presenceShowButtons": {
+    "message": "Weergeef de knop om de anime/manga te zien op MAL of andere provider",
+    "description": "Show button to view the anime/manga on MAL or another provider"
   },
   "updateCheck_Refresh": {
     "message": "Ververs",
@@ -1103,6 +1107,14 @@
       }
     }
   },
+  "discord_rpc_view_anime": {
+    "message": "Weergeef Anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Weergeef Manga",
+    "description": "Discord view manga button"
+  },
   "nextEpShort_no_support": {
     "message": "Deze pagina ondersteund de volgende aflevering niet",
     "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
@@ -1110,5 +1122,29 @@
   "nextEpShort_no_nextEp": {
     "message": "Kon de volgende aflevering niet vinden",
     "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "Check voor filler/samenvatting afleveringen",
+    "description": "Option to enable filler checking"
+  },
+  "settings_crash_report": {
+    "message": "Verzend crash rapportages",
+    "description": "If to send crash reports"
+  },
+  "settings_filler_text": {
+    "message": "Dit zal controleren of de aflevering is gemarkeerd voor filler/samenvatting op MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "settings_crash_report_text": {
+    "message": "Helpt om bugs te corrigeren. Geen gevoelige informatie zal worden verzonden.",
+    "description": "Crash report tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "Deze aflevering is gemarkeerd als filler op MyAnimeList, wil je het overslaan?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "Deze aflevering is gemarkeerd als samenvatting op MyAnimeList, wil je het overslaan?",
+    "description": "Question if the user wants to skip the recap"
   }
 }
