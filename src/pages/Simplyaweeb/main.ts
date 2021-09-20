@@ -6,7 +6,7 @@ let loadedTimeout;
 
 export const Simplyaweeb: pageInterface = {
   name: 'Simplyaweeb',
-  domain: 'https://simplyaweeb.com',
+  domain: 'https://simplyaweeb.to',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
