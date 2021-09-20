@@ -1,7 +1,7 @@
 <template>
   <div v-if="obj" class="entry">
     <a class="result" :href="obj.getDisplayUrl()" target="_blank" style="cursor: pointer;">
-      <div class="image"><img v-if="image" :src="image" /></div>
+      <div class="image"><img v-if="obj.getImage()" :src="obj.getImage()" /></div>
       <div class="right">
         <span class="title">{{ obj.getTitle() }}</span>
         <p v-if="obj.isOnList()">{{ lang('UI_Status') }} {{ statusText(status) }}</p>
@@ -25,9 +25,7 @@ export default {
     },
   },
   data() {
-    return {
-      image: '',
-    };
+    return {};
   },
   computed: {
     status: {
@@ -81,23 +79,6 @@ export default {
       set(value) {
         if (this.obj && this.obj.isAuthenticated()) {
           this.obj.setScore(value);
-        }
-      },
-    },
-  },
-  watch: {
-    obj: {
-      deep: true,
-      immediate: true,
-      handler(val, oldVal) {
-        if (!val) return;
-        if (!oldVal || oldVal.getUrl() !== val.getUrl()) {
-          const tempUrl = val.getUrl();
-          val.getImage().then(img => {
-            if (this.obj && this.obj.getUrl() === tempUrl) {
-              this.image = img;
-            }
-          });
         }
       },
     },

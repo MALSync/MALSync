@@ -17,7 +17,7 @@ const searchFuse: {
   manga: null,
 };
 
-async function normalSearch(searchterm: string, type: 'anime' | 'manga'): Promise<searchResult[]> {
+export async function normalSearch(searchterm: string, type: 'anime' | 'manga'): Promise<searchResult[]> {
   return search(searchterm, type).then(res =>
     Promise.all(
       res.map(async el => {
