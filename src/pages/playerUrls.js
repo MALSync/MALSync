@@ -328,6 +328,10 @@ module.exports = {
       '*://*.streamani.io/load.php?*',
       '*://*.streamani.io/loadserver.php?*',
       '*://*.streamani.io/embedplus*',
+      '*://*.goload.one/streaming.php?*',
+      '*://*.goload.one/load.php?*',
+      '*://*.goload.one/loadserver.php?*',
+      '*://*.goload.one/embedplus*',
     ],
   },
   // bs.to
