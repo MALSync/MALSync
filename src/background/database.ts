@@ -52,11 +52,13 @@ export async function initDatabase() {
 
 export async function indexUpdate() {
   const types = ['anime', 'manga'];
+  const globalMode = await api.settings.getAsync('syncMode');
   for (let i = 0; i < types.length; i++) {
     const type = types[i] as 'anime' | 'manga';
     const state = await getKey(`update_${type}`);
+    const mode = await getKey(`update_mode_${type}`);
 
-    if (!state || state < Date.now() - UPDATE_INTERVAL) {
+    if (!state || state < Date.now() - UPDATE_INTERVAL || mode !== globalMode) {
       await importList(type);
     }
   }
@@ -113,6 +115,7 @@ async function importList(type: 'anime' | 'manga'): Promise<void> {
     ).then(() => {
       blocked[type] = false;
       setKey(`update_${type}`, Date.now());
+      setKey(`update_mode_${type}`, api.settings.get('syncMode'));
     });
   } catch (e) {
     blocked[type] = false;
