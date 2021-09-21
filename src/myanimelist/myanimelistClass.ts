@@ -1,5 +1,3 @@
-// Double import is needed or the code will break. No idea why
-
 import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
