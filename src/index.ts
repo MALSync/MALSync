@@ -10,11 +10,13 @@ import { oauth } from './utils/oauth';
 import { floatClick } from './floatbutton/userscript';
 import { initUserProgressScheduler } from './background/releaseProgress';
 import { pwa } from './floatbutton/userscriptPwa';
+import { databaseRequest, initDatabase } from './background/database';
 
 let page;
 
 function main() {
   if (window.location.href.indexOf('myanimelist.net') > -1) {
+    injectDb();
     const mal = new MyAnimeListClass(window.location.href);
     mal.init();
     if (window.location.href.indexOf('episode') > -1) {
@@ -32,6 +34,7 @@ function main() {
   } else if (window.location.href.indexOf('malsync.moe/mal/oauth') > -1) {
     oauth();
   } else if (window.location.href.indexOf('malsync.moe/pwa') > -1) {
+    injectDb();
     pwa();
   } else {
     runPage();
@@ -97,4 +100,15 @@ function inIframe() {
   } catch (e) {
     return true;
   }
+}
+
+let dbActive = false;
+function injectDb() {
+  api.request.database = async (call, param) => {
+    if (!dbActive) {
+      await initDatabase();
+      dbActive = true;
+    }
+    return databaseRequest(call, param);
+  };
 }
