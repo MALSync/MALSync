@@ -379,6 +379,8 @@ export class MetaOverview extends MetaOverviewAbstract {
         links[el.relation_type].links.push({
           url: `https://myanimelist.net/anime/${el.node.id}`,
           title: el.node.title,
+          id: el.node.id,
+          type: 'anime',
           statusTag: '',
         });
       });
@@ -396,6 +398,8 @@ export class MetaOverview extends MetaOverviewAbstract {
         links[el.relation_type].links.push({
           url: `https://myanimelist.net/manga/${el.node.id}`,
           title: el.node.title,
+          id: el.node.id,
+          type: 'manga',
           statusTag: '',
         });
       });

@@ -157,8 +157,8 @@ export abstract class ListAbstract {
   public initFrontendMode() {
     this.modes.frontend = true;
     this.updateListener = emitter.on(
-      'global.update.*',
-      (ignore, data) => {
+      'update.*',
+      data => {
         con.log('update', data);
         if (data.cacheKey) {
           const item = this.templist.find(el => el.cacheKey === data.cacheKey);

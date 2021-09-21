@@ -6,6 +6,7 @@ import { initProgressScheduler } from './background/releaseProgress';
 import { initCustomDomain, cleanupCustomDomains } from './background/customDomain';
 import { sendNotification } from './background/notifications';
 import { upgradewWizzards } from './background/upgradeWizzards';
+import { initDatabase, databaseRequest } from './background/database';
 import { initShark } from './utils/shark';
 
 initShark();
@@ -18,6 +19,12 @@ try {
 
 try {
   initCustomDomain();
+} catch (e) {
+  con.error(e);
+}
+
+try {
+  initDatabase();
 } catch (e) {
   con.error(e);
 }
@@ -187,6 +194,10 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     case 'notification': {
       sendNotification(message.options);
       return undefined;
+    }
+    case 'database': {
+      databaseRequest(message.options.call, message.options.param).then(res => sendResponse(res));
+      return true;
     }
     default:
   }

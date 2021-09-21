@@ -13,7 +13,7 @@ const tempObj = {
   type: 'anime',
 };
 
-export async function search(keyword, type: 'anime' | 'manga', options = {}, sync = false): Promise<searchInterface> {
+export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   tempObj.type = type;
 
   keyword = keyword.trim();
@@ -59,4 +59,4 @@ export async function search(keyword, type: 'anime' | 'manga', options = {}, syn
       tempObj.logger.log(resItems);
       return resItems;
     });
-}
+};

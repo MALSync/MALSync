@@ -59,6 +59,14 @@ export interface notificationMessage {
   options: notification;
 }
 
+export interface databaseMessage {
+  name: 'database';
+  options: {
+    call: string;
+    param: object;
+  };
+}
+
 export type sendMessageI =
   | xhrI
   | iframeDone
@@ -67,6 +75,7 @@ export type sendMessageI =
   | minimalWindow
   | content
   | emitter
-  | notificationMessage;
+  | notificationMessage
+  | databaseMessage;
 
 export type responseMessageI = xhrResponseI;

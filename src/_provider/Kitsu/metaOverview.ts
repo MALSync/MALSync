@@ -249,6 +249,8 @@ export class MetaOverview extends MetaOverviewAbstract {
           an[i.id] = {
             url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
+            id: i.id,
+            type: i.type,
             statusTag: '',
           };
         }

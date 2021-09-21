@@ -1,11 +1,6 @@
-// Double import is needed or the code will break. No idea why
-
-// eslint-disable-next-line import/no-duplicates
-import { Single as LegacySingle } from '../_provider/MyAnimeList_hybrid/single';
+import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
-// eslint-disable-next-line import/no-duplicates
-import { Single as ApiSingle } from '../_provider/MyAnimeList_hybrid/single';
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
@@ -66,7 +61,6 @@ export class MyAnimeListClass {
         this.malToKiss();
         this.related();
         this.friendScore();
-        this.relatedTag();
         break;
       case 'bookmarks':
         $(document).ready(() => {
@@ -86,7 +80,6 @@ export class MyAnimeListClass {
         break;
       case 'character':
       case 'people':
-        this.relatedTag();
       case 'search':
         this.thumbnails();
         break;
@@ -511,50 +504,14 @@ export class MyAnimeListClass {
         const el = $(this);
         const url = utils.absoluteLink(el.attr('href'), 'https://myanimelist.net');
         if (typeof url !== 'undefined') {
-          utils
-            .timeCache(
-              `MALTAG/${url}`,
-              async function() {
-                const malObj = new LegacySingle(url);
-
-                await malObj.update();
-                return utils.statusTag(malObj.getStatus(), malObj.getType(), malObj.getMalId());
-              },
-              2 * 24 * 60 * 60 * 1000,
-            )
-            .then(function(tag: any) {
-              if (tag) {
-                el.append(j.html(tag));
+          api.request
+            .database('entry', { id: Number(utils.urlPart(url, 4)), type: utils.urlPart(url, 3) })
+            .then(dbEntry => {
+              if (dbEntry) {
+                const tag = utils.statusTag(dbEntry.status, dbEntry.type, dbEntry.uid);
+                if (tag) el.append(j.html(tag));
               }
             });
-        }
-      });
-    });
-  }
-
-  relatedTag() {
-    const This = this;
-    $(document).ready(function() {
-      $('a.button_edit').each(function() {
-        const el = $(this);
-        const href = $(this).attr('href') || '';
-        const type = utils.urlPart(href, 4);
-        const id = utils.urlPart(href, 5);
-        const state = el.attr('title');
-        if (typeof state !== 'undefined' && state) {
-          const tag = String(utils.statusTag(state, type, id));
-          if (This.page === 'detail') {
-            el.parent()
-              .find('> a')
-              .first()
-              .after(j.html(tag));
-          } else {
-            el.parent()
-              .parent()
-              .find('> a')
-              .after(j.html(tag));
-          }
-          el.remove();
         }
       });
     });

@@ -43,22 +43,27 @@ export interface error {
   message: string;
 }
 
+export type searchResult = {
+  id: number;
+  name: string;
+  altNames: string[];
+  url: string;
+  malUrl: () => Promise<string | null>;
+  image: string;
+  media_type: string;
+  isNovel: boolean;
+  score: string;
+  year: string;
+  list?: {
+    status: status;
+    score: score;
+    episode: number;
+  };
+};
+
 export type searchInterface = (
   keyword: string,
   type: 'anime' | 'manga',
   options?: {},
   sync?: boolean,
-) => Promise<
-  {
-    id: number;
-    name: string;
-    altNames: string[];
-    url: string;
-    malUrl: () => Promise<string | null>;
-    image: string;
-    media_type: string;
-    isNovel: boolean;
-    score: string;
-    year: string;
-  }[]
->;
+) => Promise<searchResult[]>;

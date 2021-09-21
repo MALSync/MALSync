@@ -439,6 +439,25 @@ export function statusTag(status, type, id) {
   return false;
 }
 
+export function getStatusText(type: 'anime' | 'manga', state) {
+  switch (state) {
+    case 1:
+      return api.storage.lang(`UI_Status_watching_${type}`);
+    case 2:
+      return api.storage.lang('UI_Status_Completed');
+    case 3:
+      return api.storage.lang('UI_Status_OnHold');
+    case 4:
+      return api.storage.lang('UI_Status_Dropped');
+    case 6:
+      return api.storage.lang(`UI_Status_planTo_${type}`);
+    case 23:
+      return api.storage.lang(`UI_Status_Rewatching_${type}`);
+    default:
+      return '';
+  }
+}
+
 // eslint-disable-next-line consistent-return
 export function notifications(url: string, title: string, message: string, iconUrl = '') {
   const messageObj = {

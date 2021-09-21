@@ -85,7 +85,7 @@
       </li>
 
       <input
-        :disabled="!this.custom_name"
+        :disabled="!custom_name"
         type="button"
         value="Add"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
