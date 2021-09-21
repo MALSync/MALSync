@@ -2,6 +2,8 @@ import Dexie from 'dexie';
 import { emitter } from '../utils/emitter';
 import { getList } from '../_provider/listFactory';
 
+const UPDATE_INTERVAL = 7 * 24 * 60 * 60 * 1000;
+
 const logger = con.m('Database');
 const db = new Dexie('malsync');
 
@@ -29,13 +31,8 @@ export async function initDatabase() {
   db.version(1).stores({
     anime: '&uid, malId, cacheKey, title',
     manga: '&uid, malId, cacheKey, title',
+    storage: '&key, value',
   });
-  if (!(await db.table('anime').count())) {
-    await importList('anime');
-  }
-  if (!(await db.table('manga').count())) {
-    await importList('manga');
-  }
 
   emitter.on('update.*', async data => updateEntry(data), { objectify: true });
   emitter.on('state.*', async data => updateEntry(data), { objectify: true });
@@ -48,29 +45,79 @@ export async function initDatabase() {
     },
     { objectify: true },
   );
+
+  await indexUpdate();
+  logger.log('Ready');
 }
 
-async function importList(type: 'anime' | 'manga') {
+export async function indexUpdate() {
+  const types = ['anime', 'manga'];
+  for (let i = 0; i < types.length; i++) {
+    const type = types[i] as 'anime' | 'manga';
+    const state = await getKey(`update_${type}`);
+
+    if (!state || state < Date.now() - UPDATE_INTERVAL) {
+      await importList(type);
+    }
+  }
+}
+
+export async function getKey(key: string): Promise<string | number | undefined> {
+  return db
+    .table('storage')
+    .get(key)
+    .then(res => {
+      if (typeof res === 'undefined') return res;
+      return res.value;
+    });
+}
+
+export async function setKey(key: string, value: string | number) {
+  return db.table('storage').put({
+    key,
+    value,
+  });
+}
+
+const blocked = {
+  anime: false,
+  manga: false,
+}
+
+async function importList(type: 'anime' | 'manga'): Promise<void> {
+  if (blocked[type]) {
+    logger.log('Import already running');
+    return;
+  }
+  blocked[type] = true;
   logger.log(`Import ${type} database`);
-  await api.settings.init();
-  const listProvider = await getList(7, type);
-  const list = await listProvider.getCompleteList();
-  return importEntries(
-    type,
-    list.map(el => ({
-      uid: el.uid,
-      type: el.type,
-      title: el.title,
-      malId: el.malId,
-      cacheKey: el.cacheKey,
-      image: el.image,
-      score: el.score,
-      status: el.status,
-      watchedEp: el.watchedEp,
-      totalEp: el.totalEp,
-      url: el.url,
-    })),
-  );
+  try {
+    await api.settings.init();
+    const listProvider = await getList(7, type);
+    const list = await listProvider.getCompleteList();
+    await importEntries(
+      type,
+      list.map(el => ({
+        uid: el.uid,
+        type: el.type,
+        title: el.title,
+        malId: el.malId,
+        cacheKey: el.cacheKey,
+        image: el.image,
+        score: el.score,
+        status: el.status,
+        watchedEp: el.watchedEp,
+        totalEp: el.totalEp,
+        url: el.url,
+      })),
+    ).then(() => {
+      blocked[type] = false;
+      setKey(`update_${type}`, Date.now());
+    });
+  } catch (e) {
+    blocked[type] = false;
+    throw e;
+  }
 }
 
 export interface Entry {
@@ -114,6 +161,7 @@ async function importEntries(type: 'anime' | 'manga', entries: Entry[]) {
 export async function databaseRequest(call: string, param: any) {
   switch (call) {
     case 'entry':
+      indexUpdate();
       return getEntry(param.type, param.id);
     default:
       throw `Unknown call "${call}"`;
