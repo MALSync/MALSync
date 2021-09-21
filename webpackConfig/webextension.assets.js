@@ -199,7 +199,7 @@ const generateManifest = () => {
 
   return JSON.stringify(mani, null, 2);
 };
-mkdirp(path.join(__dirname, '../dist/webextension'), err => {
+mkdirp(path.join(__dirname, '../dist/webextension')).then(err => {
   fs.writeFile(
     path.join(__dirname, '../dist/webextension/manifest.json'),
     generateManifest(),

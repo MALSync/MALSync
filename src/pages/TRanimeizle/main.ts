@@ -117,7 +117,7 @@ export const TRanimeizle: pageInterface = {
         // episodeSlug: plunderer-1-bolum-izle
         const episodeSlug: string = selector.data('slug');
 
-        return TRanimeizle.domain + episodeSlug;
+        return `${TRanimeizle.domain}/${episodeSlug}`;
       },
       elementEp: (episodeElement: JQuery<HTMLElement>) => {
         const episodeMeta = $(`meta[itemprop="episodeNumber"]`, episodeElement);
