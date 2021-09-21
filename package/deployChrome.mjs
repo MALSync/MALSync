@@ -1,4 +1,5 @@
-const fs = require('fs');
+import fs from 'fs';
+import chromeWebstoreUpload from 'chrome-webstore-upload';
 
 const zipName = 'dist/webextension.zip';
 
@@ -8,7 +9,7 @@ const EXTENSION_ID = process.env.EXTENSION_ID || $EXTENSION_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET || $CLIENT_SECRET;
 const CLIENT_ID = process.env.CLIENT_ID || $CLIENT_ID;
 
-const webStore = require('chrome-webstore-upload')({
+const webStore = chromeWebstoreUpload({
   extensionId: EXTENSION_ID,
   clientId: CLIENT_ID,
   clientSecret: CLIENT_SECRET,
