@@ -84,7 +84,7 @@ export async function setKey(key: string, value: string | number) {
 const blocked = {
   anime: false,
   manga: false,
-}
+};
 
 async function importList(type: 'anime' | 'manga'): Promise<void> {
   if (blocked[type]) {

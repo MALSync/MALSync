@@ -341,7 +341,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           .filter('table')
           .find('tr'),
         function(index, value) {
-          const links: { url: string; title: string; statusTag: string; type: string, id: number }[] = [];
+          const links: { url: string; title: string; statusTag: string; type: string; id: number }[] = [];
           j.$(value)
             .find('.borderClass')
             .last()

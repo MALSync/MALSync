@@ -157,7 +157,7 @@
                   <select
                     id="myinfo_status"
                     v-model="malStatus"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     name="myinfo_status"
                     class="inputtext js-anime-status-dropdown mdl-textfield__input"
                     style="outline: none;"
@@ -176,7 +176,7 @@
                   <input
                     id="myinfo_watchedeps"
                     v-model="malEpisode"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_watchedeps"
                     size="3"
@@ -223,7 +223,7 @@
                   <input
                     id="myinfo_volumes"
                     v-model="malVolume"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_volumes"
                     size="3"
@@ -256,7 +256,7 @@
                   <select
                     id="myinfo_score"
                     v-model="malScore"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     name="myinfo_score"
                     class="inputtext mdl-textfield__input"
                     style="outline: none;"
@@ -506,7 +506,6 @@
 </template>
 
 <script type="text/javascript">
-import { getSingle } from '../../_provider/singleFactory';
 import { getOverview } from '../../_provider/metaDataFactory';
 import { activeLinks } from '../../utils/quicklinksBuilder';
 
