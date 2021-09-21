@@ -10,7 +10,7 @@ export function globalEmit(eventName: string, ...params) {
   con
     .m('Global')
     .m('Emit')
-    .log(eventName, ...params);
+    .info(eventName, ...params);
 
   emitter.emit(`${eventName}`, ...params);
 
@@ -28,7 +28,7 @@ if (typeof api !== 'undefined' && api && api.type === 'webextension') {
       con
         .m('Global')
         .m('Event')
-        .log(message.item.id, message.item.event, message.item.params);
+        .info(message.item.id, message.item.event, message.item.params);
 
       if (message.item.id !== scriptId) {
         emitter.emit(message.item.event, ...message.item.params);
