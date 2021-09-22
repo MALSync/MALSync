@@ -135,6 +135,7 @@ import { MangasOrigines } from './MangasOrigines/main';
 import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
 import { BlueSolo } from './BlueSolo/main';
+import { DisasterScans } from './DisasterScans/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   tenshi,
   shiro,
   BlueSolo,
+  DisasterScans,
 };

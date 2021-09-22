@@ -1,0 +1,31 @@
+{
+    "title": "DisasterScans",
+    "url": "https://disasterscans.com/",
+    "testCases": [
+      {
+        "url": "https://disasterscans.com/manga/martial-peak/",
+        "expected": {
+          "sync": false,
+          "title": "Martial Peak",
+          "identifier": "martial-peak",
+          "uiSelector": true,
+          "epList": {
+            "1000": "https://disasterscans.com/manga/martial-peak/chapter-1000/",
+            "1201": "https://disasterscans.com/manga/martial-peak/chapter-1201/"
+          }
+        }
+      },
+      {
+        "url": "https://disasterscans.com/manga/martial-peak/chapter-1504/",
+        "expected": {
+          "sync": true,
+          "title": "Martial Peak",
+          "identifier": "martial-peak",
+          "overviewUrl": "https://disasterscans.com/manga/martial-peak/",
+          "nextEpUrl": "https://disasterscans.com/manga/martial-peak/chapter-1505/",
+          "episode": 1504,
+          "uiSelector": false
+        }
+      }
+    ]
+  }
