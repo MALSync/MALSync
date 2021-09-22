@@ -52,7 +52,7 @@
     "to-string-loader": "github:gajus/to-string-loader",
     "ts-loader": "^9.2.6",
     "ts-mocha": "^8.0.0",
-    "ts-node": "^8.10.2",
+    "ts-node": "^10.0.0",
     "typescript": "^3.9.10",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.14",
