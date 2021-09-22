@@ -48,7 +48,7 @@ let entry = {
 
 pages.forEach(page => {
   entry['page_' + page] =
-    'expose-loader?exposes[]=_Page|' + page + '!' + path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
+    'expose-loader?exposes=_Page|' + page + '!' + path.join(__dirname, '..', 'src/pages/', page, 'main.ts');
 })
 
 console.log(entry);

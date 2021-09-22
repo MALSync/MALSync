@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const wrapper = require('wrapper-webpack-plugin');
+const wrapper = require('./utils/WrapperPlugin');
 const package = require('../package.json');
 const generalUrls = require('./utils/pageUrls');
 const pages = require('./utils/pages').pagesUrls();
@@ -89,7 +89,7 @@ const generateMetadataBlock = metadata => {
     }
   }
 
-  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())}\n`;
+  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
 module.exports = {
@@ -109,12 +109,15 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{ loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: ['vue-style-loader', { loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
         loader: 'vue-loader',
+        options: {
+          shadowMode: true,
+        },
       },
     ],
   },
@@ -129,6 +132,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),
@@ -143,23 +147,24 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
-    new VueLoaderPlugin(),
-    new TerserPlugin({
-      terserOptions: {
-        output: {
-          beautify: true,
-          comments: false,
-        },
-        mangle: false,
-        compress: true,
-      },
-    }),
     new wrapper({
       test: /\.js$/,
       header: generateMetadataBlock(metadata),
     }),
   ],
   optimization: {
-    minimize: false,
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            beautify: true,
+            comments: false,
+          },
+          mangle: false,
+          compress: true,
+        },
+      }),
+    ],
   },
 };
