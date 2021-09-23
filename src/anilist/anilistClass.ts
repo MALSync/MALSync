@@ -3,18 +3,6 @@ import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
-interface detail {
-  page: 'detail';
-  id: number;
-  apiCacheKey: number | string;
-  type: 'anime' | 'manga';
-}
-
-interface bookmarks {
-  page: 'bookmarks';
-  type: 'anime' | 'manga';
-}
-
 export class AnilistClass {
   page: any = null;
 

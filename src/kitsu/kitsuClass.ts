@@ -2,20 +2,6 @@ import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 
-interface detail {
-  page: 'detail';
-  id: number;
-  malid: number;
-  apiCacheKey: string | number;
-  type: 'anime' | 'manga';
-  malObj: undefined;
-}
-
-interface bookmarks {
-  page: 'bookmarks';
-  type: 'anime' | 'manga';
-}
-
 export class KitsuClass {
   page: any = null;
 
