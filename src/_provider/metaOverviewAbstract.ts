@@ -64,7 +64,7 @@ export abstract class MetaOverviewAbstract {
     return this;
   }
 
-  protected abstract async _init();
+  protected abstract _init();
 
   protected logger;
 
