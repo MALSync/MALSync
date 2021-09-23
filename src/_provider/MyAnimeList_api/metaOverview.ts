@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
 import { errorCode } from '../definitions';
 import * as helper from './helper';

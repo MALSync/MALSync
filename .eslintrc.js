@@ -90,20 +90,31 @@ module.exports = {
         'import/no-unresolved': 'warn',
         'import/no-self-import': 'warn',
         // TS rules
-        '@typescript-eslint/ban-ts-ignore': 'warn',
-        '@typescript-eslint/camelcase': 'warn',
-        '@typescript-eslint/class-name-casing': 'warn',
+        '@typescript-eslint/ban-ts-comment': 'warn',
+        '@typescript-eslint/ban-types': [
+          'off',
+          {
+            types: {
+              // add a custom message to help explain why not to use it
+              Object: '',
+              '{}': '',
+              object: '',
+            },
+            extendDefaults: true,
+          },
+        ],
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-this-alias': 'warn',
-        '@typescript-eslint/no-use-before-define': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
         // General rules
+        camelcase: ['error', { allow: ['_'] }],
         'vars-on-top': 'off',
         'global-require': 'warn',
         'no-inner-declarations': 'warn', // TODO
         'no-unreachable': 'warn',
+        'no-use-before-define': 'off',
         'no-unsanitized/method': [
           'error',
           {
@@ -122,6 +133,7 @@ module.exports = {
         ],
         // `eslint-plugin-es, rules
         'es/no-nullish-coalescing-operators': 'off',
+        'es/no-optional-chaining': 'warn',
         'es/no-regexp-lookbehind-assertions': 'error',
         // Custom rules
         'jquery-unsafe-malsync/no-xss-jquery': 2,

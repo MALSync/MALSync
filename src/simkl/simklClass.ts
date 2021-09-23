@@ -5,19 +5,6 @@ import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
 
-interface detail {
-  page: 'detail';
-  id: number;
-  malid: number;
-  type: 'anime' | 'manga';
-  malObj: undefined;
-}
-
-interface bookmarks {
-  page: 'bookmarks';
-  type: 'anime' | 'manga';
-}
-
 export class SimklClass {
   page: any = null;
 

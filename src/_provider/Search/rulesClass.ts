@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 interface rules {
   provider: 'firebase' | 'user';
   cache?: boolean;

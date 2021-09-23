@@ -2,7 +2,6 @@ import { Mutex } from 'async-mutex';
 import { getList } from '../_provider/listFactory';
 import { openInvisiblePage } from './exclusive/iframeOpen-general';
 
-declare let browser: any;
 export function checkInit() {
   chrome.alarms.get('updateCheck', function(a) {
     if (typeof a !== 'undefined') {
