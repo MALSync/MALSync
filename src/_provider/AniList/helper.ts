@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { status, errorCode } from '../definitions';
 
 export function translateList(aniStatus, malStatus: null | number = null) {

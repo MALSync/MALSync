@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import { errorCode, status } from '../definitions';
 import { clientId } from '../../utils/oauth';
 
