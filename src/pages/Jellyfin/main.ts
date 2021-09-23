@@ -119,7 +119,7 @@ async function returnPlayingItemId() {
   const userId = await getUser();
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve();
+      resolve('');
     }, 10000);
   }).then(async () => {
     return getSession(deviceId, userId).then(sess => {

@@ -220,7 +220,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   let xhrArray;
   if (remoteUpdateList.length > 0) {
     xhrArray = await predictionXhrPOST(type, remoteUpdateList);
-    await new Promise(resolve => setTimeout(() => resolve(), 500));
+    await new Promise(resolve => setTimeout(() => resolve(''), 500));
   }
 
   xhrArray.forEach(async xhr => {
@@ -330,7 +330,7 @@ export async function single(
     xhr = el.xhr;
   } else {
     xhr = await predictionXhrGET(type, el.apiCacheKey);
-    await new Promise(resolve => setTimeout(() => resolve(), 500));
+    await new Promise(resolve => setTimeout(() => resolve(''), 500));
   }
   logger.log(xhr);
 
