@@ -7,7 +7,7 @@ export const MangaPark: pageInterface = {
   type: 'manga',
   isSyncPage(url) {
     if (
-      (url.split('/')[3] === 'comic' && url.split('/')[6] !== undefined && url.split('/')[6] === 'chapter') ||
+      (url.split('/')[3] === 'comic' && url.split('/')[6] !== undefined && /^(c\d+)/.test(url.split('/')[6])) ||
       (url.split('/')[3] === 'chapter' && url.split('/')[4] !== undefined && url.split('/')[4])
     ) {
       return true;
@@ -31,7 +31,7 @@ export const MangaPark: pageInterface = {
       return utils.absoluteLink(j.$('h3.nav-title > a').attr('href'), MangaPark.domain);
     },
     getEpisode(url) {
-      let string: any = j.$('#select-chapters option:selected').text();
+      let string: any = j.$('#select-episodes option:selected').text();
       let temp = string.match(/(ch\.|chapter)\D?\d+/i);
       if (temp !== null) {
         string = temp[0];
@@ -43,7 +43,7 @@ export const MangaPark: pageInterface = {
       return NaN;
     },
     getVolume(url) {
-      let string: any = j.$('#select-chapters option:selected').text();
+      let string: any = j.$('#select-episodes option:selected').text();
       let temp = string.match(/(vol\.|volume)\D?\d+/i);
       if (temp !== null) {
         string = temp[0];
