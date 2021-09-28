@@ -74,6 +74,10 @@ export const CatManga: pageInterface = {
     },
     uiSelector(selector) {
       j.$('p:contains("Chapter")')
+        .parent()
+        .css('flex-wrap', 'wrap');
+
+      j.$('p:contains("Chapter")')
         .first()
         .after(j.html(selector));
     },
