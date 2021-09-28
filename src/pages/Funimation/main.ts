@@ -43,6 +43,71 @@ function extractMetadata() {
   return meta;
 }
 
+const seasonSelector = '[data-test="meta-overlay__data-block--episode-details"]';
+const getSeason = () => {
+  const text = j
+    .$(seasonSelector)
+    .text()
+    .replace(/\n/g, '')
+    .replace(/ +/g, ' ')
+    .trim();
+  const found = text.match(/season\D?(\d+)/i);
+  if (!found) return 1;
+  return Number(found[1]);
+}
+const newPlayer = {
+  init: (page: any) => {
+    utils.waitUntilTrue(
+      () => {
+        return j.$(seasonSelector).length;
+      },
+      () => {
+        page.handlePage();
+      },
+    );
+  },
+  isSyncPage: () => {
+    return Boolean(j.$(seasonSelector).length);
+  },
+  sync: {
+    getTitle(url) {
+      const title = j
+        .$('[data-test="meta-overlay__data-block--title"]')
+        .first()
+        .text()
+        .trim();
+      const seasonNumber = getSeason();
+      let season = '';
+      if (seasonNumber > 1) season = ` Season ${seasonNumber}`;
+
+      return title + season;
+    },
+    getIdentifier(url) {
+      return `${utils.urlPart(url, 4)}?s=${getSeason()}`;
+    },
+    getOverviewUrl(url) {
+      return utils.absoluteLink(
+        j
+          .$('a[aria-label="Back"]')
+          .first()
+          .attr('href') || '',
+        Funimation.domain,
+      );
+    },
+    getEpisode(url) {
+      const text = j
+        .$(seasonSelector)
+        .text()
+        .replace(/\n/g, '')
+        .replace(/ +/g, ' ')
+        .trim();
+      const found = text.match(/episode\D?(\d+)/i);
+      if (!found) throw 'No episode';
+      return Number(found[1]);
+    },
+  },
+};
+
 export const Funimation: pageInterface = {
   name: 'Funimation',
   domain: 'https://www.funimation.com',
@@ -58,7 +123,7 @@ export const Funimation: pageInterface = {
     getTitle(url) {
       const meta = extractMetadata();
       let season = '';
-      if (meta.seasonNum > 1) season = ` season ${meta.seasonNum}`;
+      if (meta.seasonNum > 1) season = ` Season ${meta.seasonNum}`;
       return (
         j
           .$('h1.show-headline.video-title a')
@@ -81,17 +146,24 @@ export const Funimation: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      utils.waitUntilTrue(
-        function() {
-          return j.$('h1.show-headline.video-title').length;
-        },
-        function() {
-          proxy.addProxy(async (caller: ScriptProxy) => {
-            idPosition = window.location.href.split('/').indexOf('shows') + 1;
-            page.handlePage();
-          });
-        },
-      );
+      if (utils.urlPart(page.url, 3) === 'v') {
+        Funimation.isSyncPage = newPlayer.isSyncPage;
+        Funimation.sync = newPlayer.sync;
+        newPlayer.init(page);
+      } else {
+        // old Player
+        utils.waitUntilTrue(
+          function() {
+            return j.$('h1.show-headline.video-title').length;
+          },
+          function() {
+            proxy.addProxy(async (caller: ScriptProxy) => {
+              idPosition = window.location.href.split('/').indexOf('shows') + 1;
+              page.handlePage();
+            });
+          },
+        );
+      }
     });
   },
 };

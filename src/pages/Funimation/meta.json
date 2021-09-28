@@ -2,6 +2,6 @@
   "search": "https://www.funimation.com/search/?q={searchterm}",
   "searchDatabase": "Funimation",
   "urls": {
-    "match": ["*://www.funimation.com/shows/*", "*://www.funimation.com/*/shows/*"]
+    "match": ["*://www.funimation.com/shows/*", "*://www.funimation.com/*/shows/*", "*://www.funimation.com/v/*"]
   }
 }
