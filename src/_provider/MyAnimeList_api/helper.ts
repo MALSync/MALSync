@@ -46,7 +46,7 @@ export async function apiCall(options: {
       try {
         res = JSON.parse(response.responseText);
       } catch (e) {
-        if (response.responseText.includes('Request blocked')) {
+        if (checkIfBanned(response.responseText)) {
           throw this.errorObj(
             errorCode.GenericError,
             `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
@@ -103,7 +103,19 @@ async function refreshToken(logger) {
       },
       data: `client_id=${clientId}&grant_type=refresh_token&refresh_token=${rToken}`,
     })
-    .then(res => JSON.parse(res.responseText))
+    .then(res => {
+      try {
+        return JSON.parse(res.responseText);
+      } catch (e) {
+        if (checkIfBanned(res.responseText)) {
+          throw {
+            code: errorCode.GenericError,
+            message: `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+          };
+        }
+        throw e;
+      }
+    })
     .then(json => {
       if (json && json.refresh_token && json.access_token) {
         api.settings.set('malToken', json.access_token);
@@ -118,6 +130,10 @@ async function refreshToken(logger) {
       l.error('Something went wrong');
       return false;
     });
+}
+
+function checkIfBanned(text: string) {
+  return Boolean(text.includes('Request blocked') || text.includes('your IP has been banned'))
 }
 
 export enum animeStatus {
