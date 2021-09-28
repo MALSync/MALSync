@@ -6,7 +6,7 @@ export const AsuraScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (/cha?p?t?e?r?-\d+/i.test(url.split('/')[3])) {
+    if (j.$('#readerarea').length) {
       return true;
     }
     return false;
@@ -28,13 +28,13 @@ export const AsuraScans: pageInterface = {
       return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 3);
+      const episodePart = j.$('#chapter > option:selected').text();
 
-      const temp = episodePart.match(/cha?p?t?e?r?-\d+/i);
+      const temp = episodePart.match(/cha?p?t?e?r?\s*(\d+)/i);
 
-      if (!temp || temp.length === 0) return 1;
+      if (!temp || temp.length < 2) return 1;
 
-      return Number(temp[0].replace(/\D+/g, ''));
+      return Number(temp[1]);
     },
     nextEpUrl(url) {
       const next = j.$('a.ch-next-btn').attr('href');
@@ -80,7 +80,18 @@ export const AsuraScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      page.handlePage();
+      if (AsuraScans.isSyncPage(window.location.href)) {
+        utils.waitUntilTrue(
+          function() {
+            return j.$('#chapter > option:selected').length;
+          },
+          function() {
+            page.handlePage();
+          },
+        );
+      } else {
+        page.handlePage();
+      }
     });
   },
 };
