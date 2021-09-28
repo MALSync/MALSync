@@ -136,6 +136,7 @@ import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
 import { Anistream } from './Anistream/main';
 import { BlueSolo } from './BlueSolo/main';
+import { DisasterScans } from './DisasterScans/main';
 
 export const pages = {
   nineAnime,
@@ -276,4 +277,5 @@ export const pages = {
   shiro,
   Anistream,
   BlueSolo,
+  DisasterScans,
 };
