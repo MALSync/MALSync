@@ -35,6 +35,10 @@ export class Single extends SingleAbstract {
     return this.ids.mal;
   }
 
+  getPageId() {
+    return this.ids.mal;
+  }
+
   _getStatus() {
     let curSt;
     if (this.type === 'manga') {
@@ -150,7 +154,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(this.animeInfo.main_picture?.medium ?? '');
+    return this.animeInfo.main_picture?.medium ?? '';
   }
 
   _getRating() {
@@ -265,7 +269,7 @@ export class Single extends SingleAbstract {
     });
   }
 
-  delete() {
+  _delete() {
     return this.apiCall({
       type: 'DELETE',
       path: `${this.type}/${this.ids.mal}/my_list_status`,

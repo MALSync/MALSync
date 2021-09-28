@@ -1,4 +1,7 @@
 import { fullscreenNotification, getPlayerTime, shortcutListener } from './utils/player';
+import { initShark } from './utils/shark';
+
+initShark();
 
 let tempPlayer: any;
 

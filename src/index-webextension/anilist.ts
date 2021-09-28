@@ -1,5 +1,8 @@
 import { AnilistClass } from '../anilist/anilistClass';
 import { firebaseNotification } from '../utils/firebaseNotification';
+import { initShark } from '../utils/shark';
+
+initShark();
 
 let lastFocus;
 

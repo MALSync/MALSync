@@ -4,7 +4,7 @@ let jsonData;
 
 export const YugenAnime: pageInterface = {
   name: 'YugenAnime',
-  domain: 'https://yugenani.me',
+  domain: 'https://yugen.to',
   languages: ['English'],
   type: 'anime',
   database: 'YugenAnime',

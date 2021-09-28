@@ -13,10 +13,8 @@ import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
-import { fourAnime } from './fourAnime/main';
 import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
-import { Animefreak } from './Animefreak/main';
 import { AnimeLab } from './AnimeLab/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { AnimeKisa } from './AnimeKisa/main';
@@ -137,6 +135,7 @@ import { MangasOrigines } from './MangasOrigines/main';
 import { tenshi } from './tenshi/main';
 import { shiro } from './shiro/main';
 import { Anistream } from './Anistream/main';
+import { BlueSolo } from './BlueSolo/main';
 
 export const pages = {
   nineAnime,
@@ -155,10 +154,8 @@ export const pages = {
   Wakanim,
   Emby,
   Plex,
-  fourAnime,
   animeultima,
   Aniflix,
-  Animefreak,
   AnimeLab,
   KickAssAnime,
   AnimeKisa,
@@ -278,4 +275,5 @@ export const pages = {
   tenshi,
   shiro,
   Anistream,
+  BlueSolo,
 };

@@ -1,6 +1,7 @@
 {
   "title": "4anime",
   "url": "https://4anime.to/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://4anime.to/no-game-no-life-episode-04?id=10620",

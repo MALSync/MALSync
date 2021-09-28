@@ -2,11 +2,20 @@
   <div id="quicklinkedit">
     <backbutton />
     <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 10px 15px;">
-      <input v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
+      <input v-if="!sortMode" v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
+      <input
+        type="button"
+        :value="sortMode ? 'Remove and add' : 'Change Order'"
+        class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+        style="margin: 15px;"
+        @click="sortMode = !sortMode"
+      />
     </div>
     <div class="quicklinks mdl-cell bg-cell mdl-cell--12-col" style="padding: 15px;">
+      <quicklinks-sort v-if="sortMode" />
       <div
         v-for="link in linksWithState"
+        v-else
         :key="link.name"
         class="mdl-chip quicklink"
         :class="{
@@ -22,7 +31,7 @@
         {{ link.name }}
       </div>
     </div>
-    <div class="custom mdl-cell bg-cell mdl-cell--12-col">
+    <div v-if="!sortMode" class="custom mdl-cell bg-cell mdl-cell--12-col">
       <div class="mdl-card__title mdl-card--border">
         <h2 class="mdl-card__title-text">Custom Searchlinks</h2>
       </div>
@@ -37,7 +46,11 @@
             <td>=> <span class="darkbox">no+game+no+life</span></td>
           </tr>
           <tr>
-            <td><span class="darkbox">{searchterm_}</span></td>
+            <td><span class="darkbox">{searchtermMinus}</span></td>
+            <td>=> <span class="darkbox">no-game-no-life</span></td>
+          </tr>
+          <tr>
+            <td><span class="darkbox">{searchtermUnderscore}</span></td>
             <td>=> <span class="darkbox">no_game_no_life</span></td>
           </tr>
           <tr>
@@ -72,7 +85,7 @@
       </li>
 
       <input
-        :disabled="!this.custom_name"
+        :disabled="!custom_name"
         type="button"
         value="Add"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
@@ -88,14 +101,17 @@
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
 import { removeOptionKey } from '../../../utils/quicklinksBuilder';
+import QuicklinksSort from './quicklinksSort.vue';
 
 export default {
   components: {
     backbutton,
+    QuicklinksSort,
   },
   data() {
     return {
       quicklinks,
+      sortMode: false,
       search: '',
       custom_name: '',
       custom_anime: '',

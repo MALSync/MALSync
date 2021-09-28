@@ -31,6 +31,8 @@ export interface Overview {
     links: {
       url: string;
       title: string;
+      type: 'anime' | 'manga';
+      id: number | string;
       statusTag: string;
     }[];
   }[];
@@ -62,7 +64,7 @@ export abstract class MetaOverviewAbstract {
     return this;
   }
 
-  protected abstract async _init();
+  protected abstract _init();
 
   protected logger;
 

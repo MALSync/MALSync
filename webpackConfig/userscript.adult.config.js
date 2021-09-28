@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const wrapper = require('wrapper-webpack-plugin');
+const wrapper = require('./utils/WrapperPlugin');
 const package = require('../package.json');
 const pageUrls = require('../src/pages-adult/pageUrls');
 const playerUrls = require('../src/pages-adult/playerUrls');
@@ -85,7 +85,7 @@ const generateMetadataBlock = metadata => {
     }
   }
 
-  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())}\n`;
+  return `// ==UserScript==\n${block}// ==/UserScript==\n\n` + `var i18n = ${JSON.stringify(i18n())};\n`;
 };
 
 module.exports = {
@@ -105,12 +105,15 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{ loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: ['vue-style-loader', { loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
         loader: 'vue-loader',
+        options: {
+          shadowMode: true,
+        },
       },
     ],
   },
@@ -125,25 +128,20 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist'),
   },
   plugins: [
+    new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
       utils: path.resolve(__dirname, './../src/utils/general'),
       j: path.resolve(__dirname, './../src/utils/j'),
       api: path.resolve(__dirname, './../src/api/userscript'),
     }),
+    new webpack.DefinePlugin({
+      env: JSON.stringify({
+        CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
+      }),
+    }),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
-    }),
-    new VueLoaderPlugin(),
-    new TerserPlugin({
-      terserOptions: {
-        output: {
-          beautify: true,
-          comments: false,
-        },
-        mangle: false,
-        compress: true,
-      },
     }),
     new wrapper({
       test: /\.js$/,
@@ -151,6 +149,18 @@ module.exports = {
     }),
   ],
   optimization: {
-    minimize: false,
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            beautify: true,
+            comments: false,
+          },
+          mangle: false,
+          compress: true,
+        },
+      }),
+    ],
   },
 };

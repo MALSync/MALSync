@@ -261,6 +261,7 @@ module.exports = {
       '*://streamta.pe/*',
       '*://strtape.tech/*',
       '*://strtapeadblock.club/*',
+      '*://strtapeadblock.me/*',
     ],
   },
   // monoschinos
@@ -289,7 +290,7 @@ module.exports = {
   },
   // animixplay
   animixplay: {
-    match: ['*://*.animixplay.to/api/live*'],
+    match: ['*://*.animixplay.to/api/live*', '*://jzscuqezoqkcpvy.win/*'],
   },
   // animekisa
   animekisa: {
@@ -326,6 +327,14 @@ module.exports = {
       '*://*.streamani.net/load.php?*',
       '*://*.streamani.net/loadserver.php?*',
       '*://*.streamani.net/embedplus*',
+      '*://*.streamani.io/streaming.php?*',
+      '*://*.streamani.io/load.php?*',
+      '*://*.streamani.io/loadserver.php?*',
+      '*://*.streamani.io/embedplus*',
+      '*://*.goload.one/streaming.php?*',
+      '*://*.goload.one/load.php?*',
+      '*://*.goload.one/loadserver.php?*',
+      '*://*.goload.one/embedplus*',
     ],
   },
   // bs.to
@@ -433,7 +442,7 @@ module.exports = {
   },
   // yugenanime
   yugenanime: {
-    match: ['*://yugenani.me/e/*'],
+    match: ['*://yugenani.me/e/*', '*://yugen.to/e/*'],
   },
   // kickassanime
   kaaplay: {
@@ -445,7 +454,11 @@ module.exports = {
   },
   // animeshouse
   animeshouse: {
-    match: ['*://animeshouse.net/gcloud/*'],
+    match: ['*://*.animeshouse.net/gcloud/*', '*://*.animeshouse.net/playerBlue/*', '*://*.animeshouse.net/mp4/*'],
+  },
+  // animeshouse
+  nezuko: {
+    match: ['*://nezuko-ah.nl/*'],
   },
   // animixplay
   animato: {

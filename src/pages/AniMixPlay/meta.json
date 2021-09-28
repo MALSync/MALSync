@@ -1,4 +1,5 @@
 {
+  "search": "https://animixplay.to/list?q={searchterm}",
   "urls": {
     "match": ["*://animixplay.to/v*", "*://animixplay.to/anime/*"]
   }

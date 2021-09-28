@@ -6,6 +6,8 @@ import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
+import { bloodTrail, Shark } from '../utils/shark';
+import { MissingPlayerError } from '../utils/errors';
 
 declare let browser: any;
 
@@ -331,6 +333,11 @@ export class SyncPage {
         });
       }
       logger.m('Sync', 'green').log(state);
+      bloodTrail({
+        category: 'info',
+        message: 'Sync',
+        data: state,
+      });
     } else {
       if (typeof this.page.overview === 'undefined') {
         logger.log('No overview definition');
@@ -356,6 +363,11 @@ export class SyncPage {
       tempSingle = await this.searchObj.initRules();
 
       logger.m('Overview', 'green').log(state);
+      bloodTrail({
+        category: 'info',
+        message: 'Overview',
+        data: state,
+      });
     }
 
     this.curState = state;
@@ -488,6 +500,15 @@ export class SyncPage {
             // Show error if no player gets detected for 5 minutes
             playerTimeout = setTimeout(() => {
               j.$('#flashinfo-div').addClass('player-error');
+
+              const iframes = $('iframe')
+                .toArray()
+                .map(el => $(el).attr('src'))
+                .filter(el => el);
+
+              con.log('No Player found', iframes);
+
+              iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
             }, 5 * 60 * 1000);
 
             // Debugging

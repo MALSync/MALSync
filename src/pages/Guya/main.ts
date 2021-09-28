@@ -1,6 +1,6 @@
 import { pageInterface } from '../pageInterface';
 
-const excluded = ['gist', 'imgur'];
+const excluded = ['imgur'];
 
 export const Guya: pageInterface = {
   name: 'Guya & Cubari',

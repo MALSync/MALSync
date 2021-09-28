@@ -15,7 +15,8 @@
       "*://*.9anime.at/watch/*",
       "*://*.9anime.bar/watch/*",
       "*://*.9anime.pw/watch/*",
-      "*://*.9anime.cz/watch/*"
+      "*://*.9anime.cz/watch/*",
+      "*://*.9anime.ws/watch/*"
     ]
   }
 }

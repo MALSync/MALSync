@@ -190,6 +190,8 @@ export class MetaOverview extends MetaOverviewAbstract {
       links[i.relation_type].links.push({
         url: `https://simkl.com/anime/${i.ids.simkl}/${i.ids.slug}`,
         title: i.title,
+        type: 'anime',
+        id: i.ids.simkl,
         statusTag: '',
       });
     });

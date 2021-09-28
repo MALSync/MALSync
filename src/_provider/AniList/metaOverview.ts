@@ -109,6 +109,7 @@ export class MetaOverview extends MetaOverviewAbstract {
                 relationType (version: 2)
                 node {
                     id
+                    type
                     siteUrl
                     title {
                         userPreferred
@@ -362,6 +363,8 @@ export class MetaOverview extends MetaOverviewAbstract {
       links[i.relationType].links.push({
         url: i.node.siteUrl,
         title: i.node.title.userPreferred,
+        id: i.node.id,
+        type: i.node.type.toLowerCase(),
         statusTag: '',
       });
     });

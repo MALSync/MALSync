@@ -15,18 +15,70 @@ export interface Quicklink {
 /*
   {searchterm} => 'no%20game%20no%20life'
   {searchtermPlus} => 'no+game+no+life'
-  {searchtermBar} => 'no_game_no_life'
+  {searchtermMinus} => 'no-game-no-life'
+  {searchtermUnderscore} => 'no_game_no_life'
   {searchtermRaw} => 'no game no life'
   {cacheId} => '143'
 */
 
-function titleSearch(url, title, id) {
-  return url
-    .replace('{searchterm}', encodeURIComponent(title.trim().toLowerCase()))
-    .replace('{searchtermPlus}', encodeURIComponent(title.trim().toLowerCase()).replace(/%20/g, '+'))
-    .replace('{searchterm_}', encodeURIComponent(title.trim().toLowerCase()).replace(/%20/g, '_'))
-    .replace('{searchtermRaw}', title.replace(/\//g, ' '))
-    .replace('{cacheId}', id);
+export function titleSearch(url, title, id) {
+  return searchSyntax(
+    url
+      .replace('{searchtermPlus}', '{searchterm(+)}')
+      .replace('{searchtermMinus}', '{searchterm(-)}')
+      .replace('{searchtermUnderscore}', '{searchterm(_)}')
+      .replace('{searchtermRaw}', '{searchterm[noEncode,noLowercase]}')
+      .replace('{cacheId}', id),
+    title,
+  );
+}
+
+/*
+  {searchterm(<whitespaceReplacement>)[<options>]}
+  Options:
+    noEncode -> Dont encode characters
+    noSpecial -> Remove special characters
+    noLowercase -> Dont lowercase everything
+*/
+
+type option = 'noEncode' | 'noSpecial' | 'noLowercase';
+
+export function searchSyntax(url, title) {
+  let resTitle = title.trim();
+  let options: option[] = [];
+
+  const found = url.match(/{searchterm(\(.\))?(\[[^[\]]*\])?}/);
+
+  if (!found) return url;
+
+  const [res, space, tempOptions] = found;
+
+  if (tempOptions) {
+    options = tempOptions.substring(1, tempOptions.length - 1).split(',');
+  }
+
+  if (!options.includes('noLowercase')) {
+    resTitle = resTitle.toLowerCase();
+  }
+
+  if (options.includes('noSpecial')) {
+    resTitle = resTitle
+      .replace(/[^a-zA-Z\d ]/g, '')
+      .replace(/ +/g, ' ')
+      .trim();
+  }
+
+  if (!options.includes('noEncode')) {
+    resTitle = encodeURIComponent(resTitle);
+  } else {
+    resTitle = resTitle.replace(/\//g, ' ');
+  }
+
+  if (space) {
+    resTitle = resTitle.replace(/(%20| )/g, space[1]);
+  }
+
+  return url.replace(res, resTitle);
 }
 
 async function fillFromApi(combined, type, id) {
@@ -91,18 +143,24 @@ export async function getMalToKissApi(type, id) {
 
 export function combinedLinks() {
   const links = api.settings.get('quicklinks');
-  const comb = [
-    ...links.filter(el => typeof el === 'object' && el),
-    ...quicklinks.filter(el => links.includes(el.name)),
-  ];
+  const comb = links.map(el => optionToCombined(el)).filter(el => el);
   return JSON.parse(JSON.stringify(comb));
+}
+
+export function optionToCombined(link) {
+  if (link.custom) return link;
+  return quicklinks.find(el => el.name === link);
 }
 
 export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
   let combined = combinedLinks();
 
   if (id) {
-    combined = await fillFromApi(combined, type, id);
+    try {
+      combined = await fillFromApi(combined, type, id);
+    } catch (e) {
+      con.m('API Problem').error(e);
+    }
   }
 
   return simplifyObject(combined, type, searchterm, id);

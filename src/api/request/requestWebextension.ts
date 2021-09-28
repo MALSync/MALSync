@@ -23,4 +23,13 @@ export const requestApi: requestInterface = {
       options,
     });
   },
+  database(call, param) {
+    return this.sendMessage({
+      name: 'database',
+      options: {
+        call,
+        param,
+      },
+    });
+  },
 };

@@ -287,6 +287,10 @@
       }
     }
   },
+  "syncPage_flash_player_error": {
+    "message": "Reproductor no detectado. Por favor, actualizalo de forma manual aquí.",
+    "description": "Message if the video player could not be recognized"
+  },
   "syncPage_malObj_addAnime": {
     "message": "Añadir a $page$",
     "description": "add anime",
@@ -879,14 +883,6 @@
     "message": "Desactiva el script de contenido. Esto hace posible que la extensión y el Userscript estén habilitados al mismo tiempo.",
     "description": "Userscript mode - Text"
   },
-  "settings_StrictCookies": {
-    "message": "Cookies estrictas",
-    "description": "Strict Cookies"
-  },
-  "settings_StrictCookies_Text": {
-    "message": "Esta opción agrega compatibilidad con los contenedores multi-cuenta de Firefox. Asegúrate de reiniciar el navegador después de habilitar esta opción",
-    "description": "Strict Cookies - Text"
-  },
   "settings_highlightAllEp": {
     "message": "Destacar todos los episodios/capítulos",
     "description": "Highlight all Episodes/Chapters"
@@ -1126,5 +1122,21 @@
   "nextEpShort_no_nextEp": {
     "message": "No se pudo encontrar el próximo episodio",
     "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "Revisar por episodios de relleno/recapitulación",
+    "description": "Option to enable filler checking"
+  },
+  "settings_filler_text": {
+    "message": "Esto revisará si el episodio está marcado como de relleno o recapitulación en MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "Este episodio ha sido marcado como de relleno en MyAnimeList, ¿te gustaría saltártelo?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "Este episodio ha sido marcado como de recapitulación en MyAnimeList, ¿te gustaría saltártelo?",
+    "description": "Question if the user wants to skip the recap"
   }
 }
