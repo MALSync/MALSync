@@ -35,6 +35,19 @@ export async function initShark() {
     // eslint-disable-next-line no-undef
     environment: env.CONTEXT,
     autoSessionTracking: false,
+    beforeSend(event) {
+      if (
+        event.exception?.values &&
+        event.exception.values[0] &&
+        event.exception.values[0].stacktrace?.frames &&
+        event.exception.values[0].stacktrace.frames[0] &&
+        event.exception.values[0].stacktrace.frames[0].filename === '~/vendor/material.js'
+      ) {
+        return null;
+      }
+
+      return event;
+    },
   });
 
   Sentry.configureScope(scope => {
