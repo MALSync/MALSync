@@ -290,7 +290,7 @@ module.exports = {
   },
   // animixplay
   animixplay: {
-    match: ['*://*.animixplay.to/api/live*', '*://jzscuqezoqkcpvy.win/*'],
+    match: ['*://*.animixplay.to/api/live*', '*://jzscuqezoqkcpvy.win/*', '*://v.cdnmix.org/*', '*://v.cachecow.eu/*'],
   },
   // animekisa
   animekisa: {
