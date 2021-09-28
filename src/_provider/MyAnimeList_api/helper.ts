@@ -133,7 +133,7 @@ async function refreshToken(logger) {
 }
 
 function checkIfBanned(text: string) {
-  return Boolean(text.includes('Request blocked') || text.includes('your IP has been banned'))
+  return Boolean(text.includes('Request blocked') || text.includes('your IP has been banned'));
 }
 
 export enum animeStatus {

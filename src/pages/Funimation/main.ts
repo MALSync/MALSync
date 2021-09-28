@@ -54,7 +54,7 @@ const getSeason = () => {
   const found = text.match(/season\D?(\d+)/i);
   if (!found) return 1;
   return Number(found[1]);
-}
+};
 const newPlayer = {
   init: (page: any) => {
     utils.waitUntilTrue(
