@@ -48,6 +48,10 @@ export class Single extends SingleAbstract {
     return helper.getCacheKey(this.ids.mal, this.ids.simkl);
   }
 
+  getPageId() {
+    return this.ids.simkl;
+  }
+
   _getStatus() {
     return parseInt(helper.translateList(this.animeInfo.status));
   }
@@ -118,7 +122,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(`https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`);
+    return `https://simkl.in/posters/${this.animeInfo.show.poster}_ca.jpg`;
   }
 
   async _getRating() {
@@ -382,7 +386,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  delete() {
+  _delete() {
     return this.call(
       'https://api.simkl.com/sync/history/remove',
       JSON.stringify({

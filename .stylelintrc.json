@@ -6,6 +6,7 @@
     "prettier/prettier": true,
     "no-empty-source": null,
     "no-duplicate-selectors": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "no-invalid-position-at-import-rule": null
   }
 }

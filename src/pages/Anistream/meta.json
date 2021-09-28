@@ -1,0 +1,6 @@
+{
+  "search": "https://anistream.de/search/{searchterm}",
+  "urls": {
+    "match": ["*://anistream.de/*"]
+  }
+}

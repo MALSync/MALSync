@@ -41,6 +41,10 @@ export class Single extends SingleAbstract {
     return helper.getCacheKey(this.ids.mal, this.ids.kitsu.id);
   }
 
+  getPageId() {
+    return this.ids.kitsu.id;
+  }
+
   _getStatus() {
     if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current') return 23;
     return parseInt(helper.translateList(this.listI().attributes.status));
@@ -68,6 +72,14 @@ export class Single extends SingleAbstract {
       return;
     }
     this.listI().attributes.ratingTwenty = score * 2;
+  }
+
+  _getAbsoluteScore() {
+    return Number(this.listI().attributes.ratingTwenty);
+  }
+
+  _setAbsoluteScore(score) {
+    this.listI().attributes.ratingTwenty = Number(score);
   }
 
   _getEpisode() {
@@ -124,7 +136,7 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return Promise.resolve(this.animeI().attributes.posterImage.large);
+    return this.animeI().attributes.posterImage.large;
   }
 
   _getRating() {
@@ -424,7 +436,7 @@ export class Single extends SingleAbstract {
     }
   }
 
-  delete() {
+  _delete() {
     return this.apiCall('DELETE', `https://kitsu.io/api/edge/library-entries/${this.listI().id}`);
   }
 }

@@ -1,7 +1,7 @@
 import { searchInterface } from '../definitions';
 import * as helper from './helper';
 
-export function search(keyword, type: 'anime' | 'manga', options = {}, sync = false): Promise<searchInterface> {
+export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   return call(`https://api.simkl.com/search/${type}`, { q: keyword }, true).then(res => {
     const resItems: any = [];
     con.log('search', res);
@@ -24,7 +24,7 @@ export function search(keyword, type: 'anime' | 'manga', options = {}, sync = fa
     });
     return resItems;
   });
-}
+};
 
 async function call(url, sData = {}, asParameter = false, methode: 'GET' | 'POST' = 'GET', login = true) {
   if (asParameter) {

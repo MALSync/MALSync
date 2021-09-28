@@ -3,7 +3,9 @@ import * as definitions from './definitions';
 import { Progress } from '../utils/progress';
 import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
 
-import { emitter } from '../utils/emitter';
+import { emitter, globalEmit } from '../utils/emitter';
+
+Object.seal(emitter);
 
 export abstract class SingleAbstract {
   constructor(protected url: string) {
@@ -61,6 +63,8 @@ export abstract class SingleAbstract {
 
   public abstract getCacheKey();
 
+  public abstract getPageId();
+
   public getApiCacheKey(): string | number {
     if (this.ids.mal) {
       return this.ids.mal;
@@ -101,6 +105,26 @@ export abstract class SingleAbstract {
 
   public getScore(): definitions.score {
     const score = this._getScore();
+    if (!score) return 0;
+    return score;
+  }
+
+  protected _setAbsoluteScore(score: number): void {
+    this.setScore(score);
+  }
+
+  public setAbsoluteScore(score: number): SingleAbstract {
+    score = parseInt(`${score}`);
+    this._setAbsoluteScore(score);
+    return this;
+  }
+
+  protected _getAbsoluteScore(): number {
+    return this.getScore();
+  }
+
+  public getAbsoluteScore(): number {
+    const score = this._getAbsoluteScore();
     if (!score) return 0;
     return score;
   }
@@ -287,6 +311,7 @@ export abstract class SingleAbstract {
       .then(options => {
         this.options = options;
         this.registerEvent();
+        this.emitUpdate('state');
       });
   }
 
@@ -309,10 +334,32 @@ export abstract class SingleAbstract {
       });
   }
 
-  public emitUpdate() {
-    emitter.emit(`global.update.${this.getCacheKey()}`, false, {
+  public emitUpdate(action: 'update' | 'state' = 'update') {
+    globalEmit(`${action}.${this.getCacheKey()}`, {
+      id: this.getPageId(),
+      type: this.getType(),
       cacheKey: this.getCacheKey(),
       state: this.getStateEl(),
+      meta: {
+        title: this.getTitle(),
+        image: this.getImage(),
+        malId: this.getMalId(),
+        totalEp: this.getTotalEpisodes(),
+        url: this.getUrl(),
+      },
+    });
+  }
+
+  abstract _delete(): Promise<void>;
+
+  public async delete(): Promise<void> {
+    return this._delete().then(() => {
+      this._onList = false;
+      globalEmit(`delete.${this.getCacheKey()}`, {
+        id: this.getPageId(),
+        type: this.getType(),
+        cacheKey: this.getCacheKey(),
+      });
     });
   }
 
@@ -320,14 +367,11 @@ export abstract class SingleAbstract {
 
   protected registerEvent() {
     if (!this.globalUpdateEvent) {
-      // @ts-ignore
-      this.globalUpdateEvent = emitter.on(`global.update.${this.getCacheKey()}`, (ignore, data) =>
-        this.updateEvent(ignore, data),
-      );
+      this.globalUpdateEvent = emitter.on(`update.${this.getCacheKey()}`, data => this.updateEvent(data));
     }
   }
 
-  protected updateEvent(ignore, data) {
+  protected updateEvent(data) {
     if (JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl())) {
       this.logger.log('Ignore event');
       return;
@@ -420,9 +464,9 @@ export abstract class SingleAbstract {
     return this.ids;
   }
 
-  abstract _getImage(): Promise<string>;
+  abstract _getImage(): string;
 
-  public getImage(): Promise<string> {
+  public getImage(): string {
     return this._getImage();
   }
 
@@ -462,6 +506,7 @@ export abstract class SingleAbstract {
       volume: this.getVolume(),
       status: this.getStatus(),
       score: this.getScore(),
+      absoluteScore: this.getAbsoluteScore(),
     };
   }
 
@@ -471,6 +516,7 @@ export abstract class SingleAbstract {
     this.setVolume(state.volume);
     this.setStatus(state.status);
     this.setScore(state.score);
+    if (state.absoluteScore) this.setAbsoluteScore(state.absoluteScore);
   }
 
   getStateDiff() {

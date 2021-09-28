@@ -157,7 +157,7 @@
                   <select
                     id="myinfo_status"
                     v-model="malStatus"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     name="myinfo_status"
                     class="inputtext js-anime-status-dropdown mdl-textfield__input"
                     style="outline: none;"
@@ -176,7 +176,7 @@
                   <input
                     id="myinfo_watchedeps"
                     v-model="malEpisode"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_watchedeps"
                     size="3"
@@ -223,7 +223,7 @@
                   <input
                     id="myinfo_volumes"
                     v-model="malVolume"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     type="text"
                     name="myinfo_volumes"
                     size="3"
@@ -256,7 +256,7 @@
                   <select
                     id="myinfo_score"
                     v-model="malScore"
-                    :disabled="!this.renderObj || !this.renderObj.isAuthenticated()"
+                    :disabled="!renderObj || !renderObj.isAuthenticated()"
                     name="myinfo_score"
                     class="inputtext mdl-textfield__input"
                     style="outline: none;"
@@ -506,7 +506,6 @@
 </template>
 
 <script type="text/javascript">
-import { getSingle } from '../../_provider/singleFactory';
 import { getOverview } from '../../_provider/metaDataFactory';
 import { activeLinks } from '../../utils/quicklinksBuilder';
 
@@ -852,23 +851,17 @@ export default {
     async updateStatusTags() {
       for (const relatedKey in this.related) {
         const relate = this.related[relatedKey];
+
         for (const linkKey in relate.links) {
           const link = relate.links[linkKey];
-          const url = utils.absoluteLink(link.url, 'https://myanimelist.net');
-          if (typeof url !== 'undefined') {
-            const tag = await utils.timeCache(
-              `MALTAG/${url}`,
-              async function() {
-                const malObj = getSingle(url);
-                await malObj.update();
-                await utils.wait(2000);
-                return utils.statusTag(malObj.getStatus(), malObj.type, malObj.id);
-              },
-              2 * 24 * 60 * 60 * 1000,
-            );
-
-            if (tag) {
-              this.related[relatedKey].links[linkKey].statusTag = tag;
+          if (link.id) {
+            const dbEntry = await api.request.database('entry', { id: link.id, type: link.type });
+            if (dbEntry) {
+              this.related[relatedKey].links[linkKey].statusTag = utils.statusTag(
+                dbEntry.status,
+                dbEntry.type,
+                dbEntry.uid,
+              );
             }
           }
         }

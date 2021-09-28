@@ -1,6 +1,6 @@
 @import './../pages';
 
-@textColor: #888 !important;
+@textColor: white !important;
 @activeEp: #0e1d35;
 
 #malthing {
@@ -8,9 +8,12 @@
 }
 
 #malp {
+  .info {
+    all: initial;
+  }
   * {
-    float: left;
-    margin-right: 5px;
+    all: initial;
+    color: @textColor;
   }
   #MalInfo {
     float: none;
@@ -19,8 +22,11 @@
   #MalData {
     float: none;
   }
+  select {
+    margin-left: 5px !important;
+  }
   select option {
-    background-color: #fff !important;
+    background-color: #343a40 !important;
   }
   #malStatus,
   #malUserRating,

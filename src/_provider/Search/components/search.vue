@@ -29,15 +29,22 @@
         :key="item.id"
         class="result"
         :href="item.url"
-        :class="{ active: currentId === item.id }"
+        :class="{ active: currentId === item.id, onList: item.list }"
         @click="clickItem($event, item)"
       >
         <div class="image"><img :src="item.image" /></div>
         <div class="right">
           <span class="title">{{ item.name }}</span>
-          <p>{{ lang('search_Type') }} {{ item.media_type }}</p>
-          <p>{{ lang('search_Score') }} {{ item.score }}</p>
-          <p>{{ lang('search_Year') }} {{ item.year }}</p>
+          <template v-if="item.list">
+            <p>{{ lang('UI_Status') }} {{ getStatusText(type, item.list.status) }}</p>
+            <p v-if="item.list.score">{{ lang('UI_Score') }} {{ item.list.score }}</p>
+            <p v-else-if="item.list.status === 1">{{ episodeText(type) }} {{ item.list.episode }}</p>
+          </template>
+          <template v-else>
+            <p v-if="item.media_type">{{ lang('search_Type') }} {{ item.media_type }}</p>
+            <p v-if="item.score">{{ lang('search_Score') }} {{ item.score }}</p>
+            <p v-if="item.year">{{ lang('search_Year') }} {{ item.year }}</p>
+          </template>
         </div>
       </a>
     </div>
@@ -45,7 +52,7 @@
 </template>
 
 <script type="text/javascript">
-import { search } from '../../searchFactory';
+import { normalSearch } from '../../../utils/Search';
 
 let searchTimeout;
 export default {
@@ -98,11 +105,13 @@ export default {
   },
   methods: {
     lang: api.storage.lang,
+    getStatusText: utils.getStatusText,
+    episodeText: utils.episode,
     load() {
       if (this.searchKeyword) {
         this.loading = true;
 
-        search(this.searchKeyword, this.type).then(items => {
+        normalSearch(this.searchKeyword, this.type).then(items => {
           this.loading = false;
           this.items = items;
           this.$nextTick(() => {

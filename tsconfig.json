@@ -11,6 +11,7 @@
     "allowJs": true,
     "sourceMap": true,
     "strict": true,
+    "useUnknownInCatchVariables": false,
   },
   "exclude": [
     "dist",
