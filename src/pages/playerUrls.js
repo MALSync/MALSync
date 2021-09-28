@@ -53,6 +53,9 @@ module.exports = {
   cloudvideo: {
     match: ['*://*.cloudvideo.tv/*'],
   },
+  zerostream: {
+    match: ['*://player.zerostream.de/v/*'],
+  },
   fembed: {
     match: [
       '*://*.fembed.net/*',
