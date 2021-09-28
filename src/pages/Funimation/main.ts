@@ -51,9 +51,9 @@ const getSeason = () => {
     .replace(/\n/g, '')
     .replace(/ +/g, ' ')
     .trim();
-  const found = text.match(/season\D?(\d+)/i);
+  const found = text.match(/(season|temporada)\D?(\d+)/i);
   if (!found) return 1;
-  return Number(found[1]);
+  return Number(found[2]);
 };
 const newPlayer = {
   init: (page: any) => {
@@ -101,9 +101,9 @@ const newPlayer = {
         .replace(/\n/g, '')
         .replace(/ +/g, ' ')
         .trim();
-      const found = text.match(/episode\D?(\d+)/i);
+      const found = text.match(/(episode|episódio|episodio)\D?(\d+)/i);
       if (!found) throw 'No episode';
-      return Number(found[1]);
+      return Number(found[2]);
     },
   },
 };
