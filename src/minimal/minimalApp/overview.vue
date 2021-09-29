@@ -439,7 +439,7 @@
             <span class="mdl-list__item-text-body" style="height: auto;">
               <span
                 v-for="(openingSong, index) in openingSongs"
-                :key="openingSong"
+                :key="index"
                 :title="openingSong.episode"
                 style="display: block; color: rgb(255,64,129);"
               >
@@ -463,7 +463,7 @@
             <span class="mdl-list__item-text-body" style="height: auto;">
               <span
                 v-for="(endingSong, index) in endingSongs"
-                :key="endingSong"
+                :key="index"
                 :title="endingSong.episode"
                 style="display: block; color: rgb(255,64,129);"
               >

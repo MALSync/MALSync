@@ -322,11 +322,18 @@ export class MetaOverview extends MetaOverviewAbstract {
               .trim();
           }
 
-          const url = $(el)
+          let url = $(el)
             .find('[id^="youtube_url_"]')
             .first()
             .attr('value')
             ?.replace('music.', '');
+
+          if (!url) {
+            url = $(el)
+              .find('[id^="spotify_url_"]')
+              .first()
+              .attr('value');
+          }
 
           openingSongs.push({
             title: title.replace(/(^"|"$)/g, ''),
@@ -384,11 +391,18 @@ export class MetaOverview extends MetaOverviewAbstract {
               .trim();
           }
 
-          const url = $(el)
+          let url = $(el)
             .find('[id^="youtube_url_"]')
             .first()
             .attr('value')
             ?.replace('music.', '');
+
+          if (!url) {
+            url = $(el)
+              .find('[id^="spotify_url_"]')
+              .first()
+              .attr('value');
+          }
 
           endingSongs.push({
             title: title.replace(/(^"|"$)/g, ''),
