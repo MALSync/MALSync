@@ -24,8 +24,18 @@ export interface Overview {
       subtext?: string;
     }[];
   }[];
-  openingSongs: string[];
-  endingSongs: string[];
+  openingSongs: {
+    title: string;
+    author: string;
+    episode: string;
+    url?: string;
+  }[];
+  endingSongs: {
+    title: string;
+    author: string;
+    episode: string;
+    url?: string;
+  }[];
   related: {
     type: string;
     links: {
@@ -89,7 +99,7 @@ export abstract class MetaOverviewAbstract {
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
-    this.cacheObj = new Cache(this.url, 5 * 24 * 60 * 60 * 1000);
+    this.cacheObj = new Cache(`v2/${this.url}`, 5 * 24 * 60 * 60 * 1000);
     return this.cacheObj;
   }
 

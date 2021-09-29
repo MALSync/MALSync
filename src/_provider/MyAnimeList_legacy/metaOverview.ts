@@ -223,7 +223,7 @@ export class MetaOverview extends MetaOverviewAbstract {
                 .$(el)
                 .text()
                 .trim(),
-              url: j.$(el).attr('href'),
+              url: utils.absoluteLink(j.$(el).attr('href'), 'https://myanimelist.net'),
             };
           });
 
@@ -290,17 +290,66 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   openingSongs(data) {
-    const openingSongs: string[] = [];
+    const openingSongs: {
+      title: string;
+      author: string;
+      episode: string;
+      url?: string;
+    }[] = [];
 
     try {
-      const openingBlock = `<div>${data.split('opnening">')[1].split('</div>')[0]}</div>`;
-      const openingData = j.$.parseHTML(openingBlock);
+      const openingBlock = `<table border${
+        data
+          .split('opnening">')[1]
+          .split('<table border')[1]
+          .split('</table>')[0]
+      }</table>`;
+      const openingData = j.$(j.$.parseHTML(openingBlock));
+      if (openingData.find('td').length > 1) {
+        openingData.find('tr').each((_, el) => {
+          let title = $(el)
+            .find('.theme-song-title')
+            .text()
+            .trim();
 
-      j.$(openingData)
-        .find('.theme-song')
-        .each((_, el) => {
-          openingSongs.push($(el).text());
+          if (!title) {
+            title = utils
+              .getBaseText(
+                $(el)
+                  .find('[id^="youtube_url_"]')
+                  .parent(),
+              )
+              .trim();
+          }
+
+          let url = $(el)
+            .find('[id^="youtube_url_"]')
+            .first()
+            .attr('value')
+            ?.replace('music.', '');
+
+          if (!url) {
+            url = $(el)
+              .find('[id^="spotify_url_"]')
+              .first()
+              .attr('value');
+          }
+
+          openingSongs.push({
+            title: title.replace(/(^"|"$)/g, ''),
+            author: $(el)
+              .find('.theme-song-artist')
+              .text()
+              .trim(),
+            episode: $(el)
+              .find('.theme-song-episode')
+              .text()
+              .trim()
+              .replace(/(^\(|\)$)/g, ''),
+            url,
+          });
         });
+      }
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
@@ -309,17 +358,67 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   endingSongs(data) {
-    const endingSongs: string[] = [];
+    const endingSongs: {
+      title: string;
+      author: string;
+      episode: string;
+      url?: string;
+    }[] = [];
 
     try {
-      const endingBlock = `<div>${data.split(' ending">')[1].split('</div>')[0]}</div>`;
-      const endingData = j.$.parseHTML(endingBlock);
+      const endingBlock = `<table border${
+        data
+          .split(' ending">')[1]
+          .split('<table border')[1]
+          .split('</table>')[0]
+      }</table>`;
 
-      j.$(endingData)
-        .find('.theme-song')
-        .each((_, el) => {
-          endingSongs.push($(el).text());
+      const endingData = j.$(j.$.parseHTML(endingBlock));
+      if (endingData.find('td').length > 1) {
+        endingData.find('tr').each((_, el) => {
+          let title = $(el)
+            .find('.theme-song-title')
+            .text()
+            .trim();
+
+          if (!title) {
+            title = utils
+              .getBaseText(
+                $(el)
+                  .find('[id^="youtube_url_"]')
+                  .parent(),
+              )
+              .trim();
+          }
+
+          let url = $(el)
+            .find('[id^="youtube_url_"]')
+            .first()
+            .attr('value')
+            ?.replace('music.', '');
+
+          if (!url) {
+            url = $(el)
+              .find('[id^="spotify_url_"]')
+              .first()
+              .attr('value');
+          }
+
+          endingSongs.push({
+            title: title.replace(/(^"|"$)/g, ''),
+            author: $(el)
+              .find('.theme-song-artist')
+              .text()
+              .trim(),
+            episode: $(el)
+              .find('.theme-song-episode')
+              .text()
+              .trim()
+              .replace(/(^\(|\)$)/g, ''),
+            url,
+          });
         });
+      }
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
