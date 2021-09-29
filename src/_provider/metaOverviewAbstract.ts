@@ -24,8 +24,18 @@ export interface Overview {
       subtext?: string;
     }[];
   }[];
-  openingSongs: string[];
-  endingSongs: string[];
+  openingSongs: {
+    title: string;
+    author: string;
+    episode: string;
+    url?: string;
+  }[];
+  endingSongs: {
+    title: string;
+    author: string;
+    episode: string;
+    url?: string;
+  }[];
   related: {
     type: string;
     links: {

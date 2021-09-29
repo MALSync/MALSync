@@ -438,11 +438,17 @@
             <span>{{ lang('overview_OpeningTheme') }}</span>
             <span class="mdl-list__item-text-body" style="height: auto;">
               <span
-                v-for="openingSong in openingSongs"
+                v-for="(openingSong, index) in openingSongs"
                 :key="openingSong"
+                :title="openingSong.episode"
                 style="display: block; color: rgb(255,64,129);"
               >
-                {{ openingSong }}
+                {{ index + 1 }}:
+                <template v-if="openingSong.url">
+                  <a :href="openingSong.url">"{{ openingSong.title }}"</a>
+                </template>
+                <template v-else> "{{ openingSong.title }}" </template>
+                <span style="font-size: 12px;">{{ openingSong.author }}</span>
               </span>
             </span>
           </span>
@@ -455,8 +461,18 @@
           <span class="mdl-list__item-primary-content" style="height: auto;">
             <span>{{ lang('overview_EndingTheme') }}</span>
             <span class="mdl-list__item-text-body" style="height: auto;">
-              <span v-for="endingSong in endingSongs" :key="endingSong" style="display: block; color: rgb(255,64,129);">
-                {{ endingSong }}
+              <span
+                v-for="(endingSong, index) in endingSongs"
+                :key="endingSong"
+                :title="endingSong.episode"
+                style="display: block; color: rgb(255,64,129);"
+              >
+                {{ index + 1 }}:
+                <template v-if="endingSong.url">
+                  <a :href="endingSong.url">"{{ endingSong.title }}"</a>
+                </template>
+                <template v-else> "{{ endingSong.title }}" </template>
+                <span style="font-size: 12px;">{{ endingSong.author }}</span>
               </span>
             </span>
           </span>
