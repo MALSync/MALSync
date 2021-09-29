@@ -27,7 +27,7 @@ export const Zoro: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return jsonData.name;
+      return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
       return jsonData.anime_id;
