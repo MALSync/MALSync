@@ -50,7 +50,7 @@ export const Zoro: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return jsonData.name;
+      return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
       return jsonData.anime_id;
