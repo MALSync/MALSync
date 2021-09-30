@@ -189,9 +189,15 @@ module.exports = {
   cda: {
     match: ['*://ebd.cda.pl/*'],
   },
-  // kissanime/9anime/gogoanime
+  // kissanime/9anime/gogoanime/animekisa
   hydrax: {
-    match: ['*://*.replay.watch/*', '*://*.playhydrax.com/*', '*://hydrax.net/*', '*://*.hydracdn.network/*'],
+    match: [
+      '*://*.replay.watch/*',
+      '*://*.playhydrax.com/*',
+      '*://hydrax.net/*',
+      '*://*.hydracdn.network/*',
+      '*://*.geoip.redirect-ads.com/*',
+    ],
   },
   // animeflv
   streamium: {
@@ -506,5 +512,9 @@ module.exports = {
   // shiro
   shiro: {
     match: ['*://shiro.is/e/*'],
+  },
+  // 9anime
+  videovard: {
+    match: ['*://videovard.sx/*'],
   },
 };
