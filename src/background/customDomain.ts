@@ -97,7 +97,7 @@ export async function cleanupCustomDomains() {
   const iframeOrigins = iframeScript.matches!.map(origin => getComparableDomains(origin)).filter(el => el);
 
   const pageScripts = manifest.content_scripts!.filter(content_script => {
-    return content_script.js && content_script.js.some(e => /content\/page_/.test(e));
+    return content_script.js && content_script.js.some(e => /^content\/page_/.test(e));
   });
 
   let pageOrigins: string[] = [];
