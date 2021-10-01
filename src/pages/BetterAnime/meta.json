@@ -1,0 +1,6 @@
+{
+  "urls": {
+    "match": ["*://betteranime.net/anime/legendado/*"]
+  }
+}
+
