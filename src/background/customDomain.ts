@@ -94,7 +94,16 @@ export async function cleanupCustomDomains() {
 
   if (!iframeScript) throw 'No iframe content script found';
 
-  const contentOrigins = iframeScript.matches!.map(origin => getComparableDomains(origin)).filter(el => el);
+  const iframeOrigins = iframeScript.matches!.map(origin => getComparableDomains(origin)).filter(el => el);
+
+  const pageScripts = manifest.content_scripts!.filter(content_script => {
+    return content_script.js && content_script.js.some(e => /content\/page_/.test(e));
+  });
+
+  let pageOrigins: string[] = [];
+  pageScripts.forEach((item: any) => {
+    pageOrigins = pageOrigins.concat(item.matches.map(origin => getComparableDomains(origin)).filter(el => el));
+  });
 
   const customDomains = await api.settings.getAsync('customDomains');
 
@@ -104,7 +113,7 @@ export async function cleanupCustomDomains() {
       customDomains.filter(customDomain => {
         const domain = getComparableDomains(customDomain.domain);
         if (!domain) return true;
-        return !contentOrigins.includes(domain);
+        return !iframeOrigins.includes(domain) && !pageOrigins.some(e => e.startsWith(domain));
       }),
     );
   }
