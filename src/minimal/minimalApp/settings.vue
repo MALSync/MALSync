@@ -383,6 +383,7 @@
           >
         </div>
         <checkbox option="rpc">{{ lang('settings_enabled') }}</checkbox>
+        <checkbox option="presenceShowMalsync">{{ lang('settings_presenceShowMalsync') }}</checkbox>
         <checkbox option="presenceHidePage">{{ lang('settings_presenceHidePage') }}</checkbox>
         <checkbox option="presenceShowButtons">{{ lang('settings_presenceShowButtons') }}</checkbox>
       </div>
