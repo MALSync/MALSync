@@ -822,3 +822,9 @@ export function returnYYYYMMDD(numFromToday = 0) {
   const day = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate();
   return `${d.getFullYear()}-${month}-${day}`;
 }
+
+export function htmlDecode(text) {
+  return $('<textarea/>')
+    .html(j.html(text))
+    .text();
+}
