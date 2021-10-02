@@ -501,4 +501,7 @@ module.exports = {
   shiro: {
     match: ['*://shiro.is/e/*'],
   },
+  streamlare: {
+    match: ['*://streamlare.com/e/*'],
+  },
 };
