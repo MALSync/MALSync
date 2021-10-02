@@ -1101,9 +1101,14 @@ export class SyncPage {
         }, 5 * 60 * 1000);
         if (!this.browsingtime) this.browsingtime = Date.now();
 
-        let clientId = '823563096747802695';
-        if (this.page.type !== 'anime') {
-          clientId = '823563138669608980';
+        let clientId = '606504719212478504';
+
+        if (!api.settings.get('presenceShowMalsync')) {
+          if (this.page.type !== 'anime') {
+            clientId = '823563138669608980';
+          } else {
+            clientId = '823563096747802695';
+          }
         }
 
         let largeImageKeyTemp;
