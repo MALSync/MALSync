@@ -137,6 +137,7 @@ import { shiro } from './shiro/main';
 import { Anistream } from './Anistream/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
+import { DynastyScans } from './DynastyScans/main';
 
 export const pages = {
   nineAnime,
@@ -278,4 +279,5 @@ export const pages = {
   Anistream,
   BlueSolo,
   DisasterScans,
+  DynastyScans,
 };
