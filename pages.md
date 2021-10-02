@@ -13,6 +13,13 @@
     </thead>
     <tbody>
       <tr>
+    <td><a href="https://1anime.to"><img src="https://favicon.malsync.moe/?domain=https://1anime.to"> 1Anime</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://9anime.to"><img src="https://favicon.malsync.moe/?domain=https://9anime.to"> 9anime</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -237,6 +244,13 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://Anistream.de"><img src="https://favicon.malsync.moe/?domain=https://Anistream.de"> Anistream</a></td>
+    <td>German</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+  </tr><tr>
     <td><a href="https://aniyan.net"><img src="https://favicon.malsync.moe/?domain=https://aniyan.net"> Aniyan</a></td>
     <td>Portuguese</td>
     <td>:heavy_check_mark:</td>
@@ -267,13 +281,6 @@
   </tr><tr>
     <td><a href="https://dreamsub.cc"><img src="https://favicon.malsync.moe/?domain=https://dreamsub.cc"> DreamSub</a></td>
     <td>Italian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://ww5.dubbedanime.net"><img src="https://favicon.malsync.moe/?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
-    <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -468,7 +475,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://simplyaweeb.com"><img src="https://favicon.malsync.moe/?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
+    <td><a href="https://simplyaweeb.to"><img src="https://favicon.malsync.moe/?domain=https://simplyaweeb.to"> Simplyaweeb</a></td>
     <td>English</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
@@ -538,7 +545,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://yugenani.me"><img src="https://favicon.malsync.moe/?domain=https://yugenani.me"> YugenAnime</a></td>
+    <td><a href="https://yugen.to"><img src="https://favicon.malsync.moe/?domain=https://yugen.to"> YugenAnime</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -611,6 +618,20 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://reader.deathtollscans.net"><img src="https://favicon.malsync.moe/?domain=https://reader.deathtollscans.net"> DeathTollScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://disasterscans.com"><img src="https://favicon.malsync.moe/?domain=https://disasterscans.com"> DisasterScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

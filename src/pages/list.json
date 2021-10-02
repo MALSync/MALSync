@@ -120,9 +120,9 @@
     "name": "Voiranime"
   },
   {
-    "domain": "https://ww5.dubbedanime.net",
+    "domain": "https://1anime.to",
     "type": "anime",
-    "name": "DubbedAnime"
+    "name": "1Anime"
   },
   {
     "domain": "https://manganato.com",
@@ -365,7 +365,7 @@
     "name": "DesuOnline"
   },
   {
-    "domain": "https://simplyaweeb.com",
+    "domain": "https://simplyaweeb.to",
     "type": "anime",
     "name": "Simplyaweeb"
   },
@@ -460,7 +460,7 @@
     "name": "tioanime"
   },
   {
-    "domain": "https://yugenani.me",
+    "domain": "https://yugen.to",
     "type": "anime",
     "name": "YugenAnime"
   },
@@ -680,8 +680,23 @@
     "name": "shiro"
   },
   {
+    "domain": "https://Anistream.de",
+    "type": "anime",
+    "name": "Anistream"
+  },
+  {
     "domain": "https://www.bluesolo.org",
     "type": "manga",
     "name": "BlueSolo"
+  },
+  {
+    "domain": "https://disasterscans.com",
+    "type": "manga",
+    "name": "DisasterScans"
+  },
+  {
+    "domain": "https://dynasty-scans.com",
+    "type": "manga",
+    "name": "DynastyScans"
   }
 ]

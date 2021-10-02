@@ -106,7 +106,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="http://www.mangahere.cc"><img src="https://favicon.malsync.moe/?domain=http://www.mangahere.cc"> MangaHere</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://ww5.dubbedanime.net"><img src="https://favicon.malsync.moe/?domain=https://ww5.dubbedanime.net"> DubbedAnime</a></td>
+                <td><a href="https://1anime.to"><img src="https://favicon.malsync.moe/?domain=https://1anime.to"> 1Anime</a></td>
                 <td><a href="http://fanfox.net"><img src="https://favicon.malsync.moe/?domain=http://fanfox.net"> MangaFox</a></td>
                 <td></td>
               </tr><tr>
@@ -222,7 +222,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://catmanga.org"><img src="https://favicon.malsync.moe/?domain=https://catmanga.org"> CatManga</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://simplyaweeb.com"><img src="https://favicon.malsync.moe/?domain=https://simplyaweeb.com"> Simplyaweeb</a></td>
+                <td><a href="https://simplyaweeb.to"><img src="https://favicon.malsync.moe/?domain=https://simplyaweeb.to"> Simplyaweeb</a></td>
                 <td><a href="https://mangasushi.net"><img src="https://favicon.malsync.moe/?domain=https://mangasushi.net"> MangaSushi</a></td>
                 <td></td>
               </tr><tr>
@@ -238,7 +238,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://tritinia.com"><img src="https://favicon.malsync.moe/?domain=https://tritinia.com"> TritiniaScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://yugenani.me"><img src="https://favicon.malsync.moe/?domain=https://yugenani.me"> YugenAnime</a></td>
+                <td><a href="https://yugen.to"><img src="https://favicon.malsync.moe/?domain=https://yugen.to"> YugenAnime</a></td>
                 <td><a href="https://readmanhua.net"><img src="https://favicon.malsync.moe/?domain=https://readmanhua.net"> ReadManhua</a></td>
                 <td></td>
               </tr><tr>
@@ -263,11 +263,11 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://an1me.nl"><img src="https://favicon.malsync.moe/?domain=https://an1me.nl"> An1me</a></td>
-                <td></td>
+                <td><a href="https://disasterscans.com"><img src="https://favicon.malsync.moe/?domain=https://disasterscans.com"> DisasterScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://animedao.to"><img src="https://favicon.malsync.moe/?domain=https://animedao.to"> AnimeDao</a></td>
-                <td></td>
+                <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
                 <td></td>
               </tr><tr>
                 <td><a href="https://www.otakustv.com"><img src="https://favicon.malsync.moe/?domain=https://www.otakustv.com"> Otakustv</a></td>
@@ -315,6 +315,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td></td>
               </tr><tr>
                 <td><a href="https://shiro.is"><img src="https://favicon.malsync.moe/?domain=https://shiro.is"> shiro</a></td>
+                <td></td>
+                <td></td>
+              </tr><tr>
+                <td><a href="https://Anistream.de"><img src="https://favicon.malsync.moe/?domain=https://Anistream.de"> Anistream</a></td>
                 <td></td>
                 <td></td>
               </tr>
