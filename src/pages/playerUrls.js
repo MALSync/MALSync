@@ -517,4 +517,8 @@ module.exports = {
   videovard: {
     match: ['*://videovard.sx/*'],
   },
+  // Streamlare
+  streamlare: {
+    match: ['*://streamlare.com/e/*'],
+  },
 };
