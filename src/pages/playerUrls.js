@@ -517,4 +517,8 @@ module.exports = {
   videovard: {
     match: ['*://videovard.sx/*'],
   },
+  // kickassanime
+  beststremo: {
+    match: ['*://beststremo.xyz/*'],
+  },
 };
