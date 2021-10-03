@@ -1,3 +1,5 @@
+import { isIframeUrl } from '../utils/manifest';
+
 const logger = con.m('Custom Domain');
 
 type domainType = { domain: string; page: string };
@@ -88,13 +90,6 @@ function singleListener(domainConfig: domainType) {
 
 export async function cleanupCustomDomains() {
   const manifest = chrome.runtime.getManifest();
-  const iframeScript = manifest.content_scripts!.find(content_script => {
-    return content_script.js && content_script.js.includes('content/iframe.js');
-  });
-
-  if (!iframeScript) throw 'No iframe content script found';
-
-  const iframeOrigins = iframeScript.matches!.map(origin => getComparableDomains(origin)).filter(el => el);
 
   const pageScripts = manifest.content_scripts!.filter(content_script => {
     return content_script.js && content_script.js.some(e => /^content\/page_/.test(e));
@@ -113,7 +108,7 @@ export async function cleanupCustomDomains() {
       customDomains.filter(customDomain => {
         const domain = getComparableDomains(customDomain.domain);
         if (!domain) return true;
-        return !iframeOrigins.includes(domain) && !pageOrigins.some(e => e.startsWith(domain));
+        return !isIframeUrl(customDomain.domain) && !pageOrigins.some(e => e.startsWith(domain));
       }),
     );
   }
