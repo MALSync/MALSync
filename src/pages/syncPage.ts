@@ -392,12 +392,11 @@ export class SyncPage {
     } else {
       logger.log('MyAnimeList', malUrl);
       try {
-        if (tempSingle) {
-          this.singleObj = tempSingle;
-        } else {
-          this.singleObj = getSingle(malUrl);
-          await this.singleObj.update();
+        if (!tempSingle) {
+          tempSingle = getSingle(malUrl);
+          await tempSingle.update();
         }
+        this.singleObj = tempSingle;
       } catch (e) {
         if (e.code === 901) {
           utils.flashm('Incorrect url provided', {
@@ -407,8 +406,9 @@ export class SyncPage {
           throw e;
         } else if (e.code === 904 && api.settings.get('localSync')) {
           logger.log('Local Fallback');
-          this.singleObj = getSingle(localUrl);
-          await this.singleObj.update();
+          tempSingle = getSingle(localUrl);
+          await tempSingle.update();
+          this.singleObj = tempSingle;
         } else {
           this.singleObj.flashmError(e);
           this.fillUI();
