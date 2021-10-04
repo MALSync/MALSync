@@ -794,6 +794,7 @@ export class SyncPage {
   }
 
   handleList(searchCurrent = false, reTry = 0) {
+    if (!this.singleObj) return; // Object not ready yet
     j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
       const epList = this.getEpList();
