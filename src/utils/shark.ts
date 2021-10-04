@@ -37,9 +37,11 @@ export async function initShark() {
     autoSessionTracking: false,
     beforeSend(event) {
       if (
-        event.exception?.values &&
+        event.exception &&
+        event.exception.values &&
         event.exception.values[0] &&
-        event.exception.values[0].stacktrace?.frames &&
+        event.exception.values[0].stacktrace &&
+        event.exception.values[0].stacktrace.frames &&
         event.exception.values[0].stacktrace.frames[0] &&
         event.exception.values[0].stacktrace.frames[0].filename === '~/vendor/material.js'
       ) {
@@ -56,7 +58,13 @@ export async function initShark() {
         event.culprit = normalizeUrl(event.culprit);
       }
 
-      if (event.exception) {
+      if (
+        event.exception &&
+        event.exception.values &&
+        event.exception.values[0] &&
+        event.exception.values[0].stacktrace &&
+        event.exception.values[0].stacktrace.frames
+      ) {
         event.exception.values[0].stacktrace.frames = event.exception.values[0].stacktrace.frames.map(frame => {
           frame.filename = normalizeUrl(frame.filename);
           return frame;
