@@ -111,8 +111,6 @@ function getSeries(page) {
           }
         } else {
           seasonData = {
-            longName: titleName,
-            title: titleName,
             seq: 1,
           };
           episodeData = {
@@ -136,9 +134,6 @@ export const Netflix: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      if (seasonData.longName !== seasonData.title) {
-        return seasonData.title;
-      }
       if (seasonData.seq > 1) {
         return `${titleName} season ${seasonData.seq}`;
       }
