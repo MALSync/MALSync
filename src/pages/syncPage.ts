@@ -193,7 +193,7 @@ export class SyncPage {
         localStorage.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
         setTimeout(() => {
-          this.curState.videoChecked = 2;
+          if (this.curState) this.curState.videoChecked = 2;
         }, 10000);
       }
     } else {
