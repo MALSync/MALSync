@@ -92,7 +92,7 @@ function getSeries(page) {
           con.info('No Anime');
           return;
         }
-        if (data.video.type !== 'movie') {
+        if (data.video.type !== 'movie' && data.video.seasons) {
           seasonData = data.video.seasons.find(season => {
             episodeData = season.episodes.find(episode => {
               return episode.id === data.video.currentEpisode;
