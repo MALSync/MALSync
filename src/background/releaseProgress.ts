@@ -414,7 +414,7 @@ export function getProgress(res, mode, type) {
     if (mainTemp) top = mainTemp;
   }
 
-  if (config.fallbackPrediction && top && !top.predicition && top.lastEp.timestamp) {
+  if (config.fallbackPrediction && top && !top.predicition && top.lastEp && top.lastEp.timestamp) {
     const predTemp = res.find(el => el.id === config.fallbackPrediction);
     const predTime = top.lastEp.timestamp + 7 * 24 * 60 * 60 * 1000;
     if (predTime && predTemp && predTemp.predicition) {
