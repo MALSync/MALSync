@@ -169,7 +169,7 @@ export default {
 
       if (this.initSort(sortOptions)) return;
 
-      this.listProvider.setSort(this.sort.value);
+      if (this.sort) this.listProvider.setSort(this.sort.value);
 
       this.listProvider.modes.cached = true;
 
