@@ -222,7 +222,7 @@ export class Minimal {
       this.minimal.find('.option-extension-popup').show();
     }
 
-    if (api.type === 'webextension' && this.isPopup()) {
+    if (api.type === 'webextension' && this.isPopup() && chrome.alarms) {
       chrome.alarms.get('updateCheck', (a: any) => {
         con.log(a);
         let interval = 0;
