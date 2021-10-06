@@ -6,10 +6,12 @@ export const DisasterScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) && utils.urlPart(url, 5).startsWith('chapter-');
+    return Boolean(
+      utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) && utils.urlPart(url, 5).startsWith('chapter-'),
+    );
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) === '';
+    return Boolean(utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) === '');
   },
   getImage() {
     return j.$('div.summary_image img').attr('src');
