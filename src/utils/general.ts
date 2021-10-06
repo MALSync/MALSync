@@ -41,6 +41,7 @@ export function generateUniqueID(arraySize = 10): string {
 }
 
 export function favicon(domain) {
+  if (!domain) return '';
   const res = domain.match(/^(https?:\/\/)?[^/]+/);
 
   if (res) domain = res[0];
