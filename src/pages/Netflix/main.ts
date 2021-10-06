@@ -1,5 +1,6 @@
 import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
+import { SafeError } from '../../utils/errors';
 
 let seasonData: any;
 let episodeData: any;
@@ -69,6 +70,10 @@ function getSeries(page) {
     .xhr('GET', `${meta.models.playerModel.data.config.ui.initParams.apiUrl}/metadata?movieid=${videoId}`)
     .then(response => {
       const data = JSON.parse(response.responseText);
+
+      if (!data || !data.video) {
+        throw new SafeError('no data found');
+      }
 
       titleId = data.video.id;
       titleName = data.video.title;

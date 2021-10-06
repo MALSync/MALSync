@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 export class MissingPlayerError extends Error {
   public url;
 
@@ -8,5 +9,12 @@ export class MissingPlayerError extends Error {
     super(domain);
     this.url = url;
     this.name = 'MissingPlayerError';
+  }
+}
+
+export class SafeError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'SafeError';
   }
 }
