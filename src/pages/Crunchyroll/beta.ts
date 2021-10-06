@@ -292,9 +292,9 @@ async function episode(id: string) {
   const response = await apiCall(`/objects/${id}`, 'GET', { cms: true });
   logger.log(response.finalUrl);
   const data = JSON.parse(response.responseText) as {
-    items: EpisodeType[];
+    items?: EpisodeType[];
   };
-  if (!data || !data.items.length) throw 'No Episode data found';
+  if (!data || !data.items || !data.items.length) throw 'No Episode data found';
   const ep = data.items[0];
   if (ep.type !== 'episode') throw 'Not an Episode';
 
