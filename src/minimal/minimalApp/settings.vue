@@ -639,7 +639,7 @@ export default {
       }
       con.log('Contributer', this.contributer);
     });
-    if (api.type === 'webextension' && j.$('#Mal-Sync-Popup').length) {
+    if (api.type === 'webextension' && j.$('#Mal-Sync-Popup').length && chrome.commands) {
       chrome.commands.getAll(commands => {
         con.info('Commands', commands);
 

@@ -49,6 +49,10 @@ function isFirefox() {
 
 function checkFill(minimalObj) {
   con.log('CheckFill');
+  if (!chrome.tabs) {
+    con.error('Can not check for tabs')
+    return;
+  }
   chrome.tabs.query({ active: true }, function(tabs) {
     con.m('tabs').log(tabs);
     tabs.forEach(el => {
