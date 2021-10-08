@@ -1,5 +1,6 @@
 import { pageInterface } from '../pageInterface';
 import { ScriptProxy } from '../../utils/scriptProxy';
+import { SafeError } from '../../utils/errors';
 
 let seasonData: any;
 let episodeData: any;
@@ -70,6 +71,10 @@ function getSeries(page) {
     .then(response => {
       const data = JSON.parse(response.responseText);
 
+      if (!data || !data.video) {
+        throw new SafeError('no data found');
+      }
+
       titleId = data.video.id;
       titleName = data.video.title;
 
@@ -92,7 +97,7 @@ function getSeries(page) {
           con.info('No Anime');
           return;
         }
-        if (data.video.type !== 'movie') {
+        if (data.video.type !== 'movie' && data.video.seasons) {
           seasonData = data.video.seasons.find(season => {
             episodeData = season.episodes.find(episode => {
               return episode.id === data.video.currentEpisode;
