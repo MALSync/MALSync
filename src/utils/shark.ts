@@ -35,6 +35,7 @@ export async function initShark() {
     // eslint-disable-next-line no-undef
     environment: env.CONTEXT,
     autoSessionTracking: false,
+    ignoreErrors: ['SafeError'],
     beforeSend(event) {
       if (
         event.exception &&
