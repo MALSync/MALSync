@@ -13,7 +13,6 @@ import { Animeflv } from './Animeflv/main';
 import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
-import { animeultima } from './animeultima/main';
 import { Aniflix } from './Aniflix/main';
 import { AnimeLab } from './AnimeLab/main';
 import { KickAssAnime } from './KickAssAnime/main';
@@ -28,7 +27,6 @@ import { MangaNato } from './MangaNato/main';
 import { NekoSama } from './NekoSama/main';
 import { AnimeZone } from './AnimeZone/main';
 import { AnimeOdcinki } from './AnimeOdcinki/main';
-import { Animeflix } from './Animeflix/main';
 import { serimanga } from './serimanga/main';
 import { mangadenizi } from './mangadenizi/main';
 import { moeclip } from './moeclip/main';
@@ -156,7 +154,6 @@ export const pages = {
   Wakanim,
   Emby,
   Plex,
-  animeultima,
   Aniflix,
   AnimeLab,
   KickAssAnime,
@@ -170,7 +167,6 @@ export const pages = {
   NekoSama,
   AnimeOdcinki,
   AnimeZone,
-  Animeflix,
   serimanga,
   mangadenizi,
   moeclip,
