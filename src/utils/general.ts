@@ -839,3 +839,7 @@ export function htmlDecode(text) {
     .html(j.html(text))
     .text();
 }
+
+export function isFirefox(): boolean {
+  return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
+}
