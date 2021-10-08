@@ -7,7 +7,7 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { bloodTrail, Shark } from '../utils/shark';
-import { MissingPlayerError } from '../utils/errors';
+import { MissingDataError, MissingPlayerError } from '../utils/errors';
 
 declare let browser: any;
 
@@ -368,6 +368,10 @@ export class SyncPage {
         message: 'Overview',
         data: state,
       });
+    }
+
+    if (!state.identifier || !state.title) {
+      Shark.captureException(new MissingDataError(this.page.name));
     }
 
     this.curState = state;
