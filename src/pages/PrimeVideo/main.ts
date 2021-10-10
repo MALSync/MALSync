@@ -108,7 +108,7 @@ export const PrimeVideo: pageInterface = {
       epId = undefined;
       page.reset();
       $('html').addClass('miniMAL-hide');
-      if (utils.urlPart(window.location.href, 3) === 'detail') {
+      if (utils.urlPart(window.location.href, 3) === 'detail' || utils.urlPart(window.location.href, 5) === 'detail') {
         const tempData = await getApi(window.location.href);
         if (!tempData.genres.includes('av_genre_anime')) {
           con.error('Not an Anime');
@@ -161,7 +161,7 @@ function getApi(url, epId = 0) {
           detail = Object.values(e.props.state.detail.detail)[0];
         }
 
-        if (detail && (detail.titleType === 'season' || detail.titleType === 'movie')) {
+        if (detail && (detail.titleType.toLowerCase() === 'season' || detail.titleType.toLowerCase() === 'movie')) {
           if (detail.title) data.title = detail.title;
         }
         if (detail) {
