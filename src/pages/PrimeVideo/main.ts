@@ -145,20 +145,26 @@ function getApi(url, epId = 0) {
     },
     // title, genres
     function(e) {
-      if (
-        e &&
-        e.props &&
-        e.props.state &&
-        e.props.state.detail &&
-        e.props.state.detail.detail &&
-        Object.keys(e.props.state.detail.detail).length
-      ) {
+      if (data.gti && e && e.props && e.props.state && e.props.state.detail) {
         // Parent
         let detail;
-        if (data.gti && Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.gti)) {
+
+        if (
+          e.props.state.detail.headerDetail &&
+          Object.keys(e.props.state.detail.headerDetail).length &&
+          Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.gti)
+        ) {
+          con.log('headerDetail', headerDetail);
+          detail = e.props.state.detail.headerDetail[data.gti];
+        } else if (
+          e.props.state.detail.detail &&
+          Object.keys(e.props.state.detail.detail).length &&
+          Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.gti)
+        ) {
+          con.log('detail', detail);
           detail = e.props.state.detail.detail[data.gti];
         } else {
-          detail = Object.values(e.props.state.detail.detail)[0];
+          return;
         }
 
         if (detail && (detail.titleType.toLowerCase() === 'season' || detail.titleType.toLowerCase() === 'movie')) {
