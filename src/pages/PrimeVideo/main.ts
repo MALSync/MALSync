@@ -2,6 +2,8 @@ import { pageInterface } from '../pageInterface';
 
 let thisData: any = null;
 
+const EPISODETEXT = '.dv-player-fullscreen .webPlayerSDKContainer .atvwebplayersdk-subtitle-text';
+
 export const PrimeVideo: pageInterface = {
   name: 'Amazon Prime Video',
   domain: 'https://www.primevideo.com',
@@ -68,15 +70,13 @@ export const PrimeVideo: pageInterface = {
         thisData = null;
         page.reset();
         $('html').addClass('miniMAL-hide');
-        const tempData = await getApi(utils.absoluteLink(epId.vidUrl, PrimeVideo.domain), epId.internalId);
+        const tempData = await getApi(utils.absoluteLink(epId.vidUrl, PrimeVideo.domain));
         if (!tempData.genres.includes('av_genre_anime')) {
           con.error('Not an Anime');
           return;
         }
 
-        tempData.ep = null;
-
-        const episodeText = j.$('.dv-player-fullscreen .webPlayer .subtitle').text();
+        const episodeText = j.$(EPISODETEXT).text();
         if (episodeText.length) {
           const temp = episodeText.match(/ep..\d*/gim);
           if (temp !== null) {
@@ -89,12 +89,15 @@ export const PrimeVideo: pageInterface = {
         page.handlePage();
       },
       () => {
-        const tempT = j.$('.dv-player-fullscreen .webPlayer .subtitle').text();
+        const tempT = j
+          .$(EPISODETEXT)
+          .parent()
+          .text();
         if (!tempT) return undefined;
         return tempT;
       },
     );
-    $('html').on('click', 'a[data-video-type]', async function(e) {
+    $('html').on('click', 'a', async function(e) {
       const vidUrl = j.$(this).attr('href');
       const internalId = j.$(this).attr('data-title-id');
       epId = {
@@ -108,7 +111,7 @@ export const PrimeVideo: pageInterface = {
       epId = undefined;
       page.reset();
       $('html').addClass('miniMAL-hide');
-      if (utils.urlPart(window.location.href, 3) === 'detail') {
+      if (utils.urlPart(window.location.href, 3) === 'detail' || utils.urlPart(window.location.href, 5) === 'detail') {
         const tempData = await getApi(window.location.href);
         if (!tempData.genres.includes('av_genre_anime')) {
           con.error('Not an Anime');
@@ -123,58 +126,103 @@ export const PrimeVideo: pageInterface = {
   },
 };
 
-function getApi(url, epId = 0) {
-  con.log('Request Info', url, epId);
+function getApi(url) {
+  con.log('Request Info', url);
   const data: any = {
     id: undefined,
+    gti: undefined,
     title: undefined,
     genres: [],
     ep: null,
-    gti: undefined,
+    epMeta: {
+      id: undefined,
+      gti: undefined,
+    },
   };
   const fns: any[] = [
     // id
     function(e) {
       if (e && e.props && e.props.state && e.props.state.self && Object.keys(e.props.state.self).length) {
-        const self: any = Object.values(e.props.state.self)[0];
-        if (self && (self.titleType === 'season' || self.titleType === 'movie') && self.compactGTI && self.gti) {
-          data.id = self.compactGTI;
-          data.gti = self.gti;
+        const current: any = Object.values(e.props.state.self).find((el: any) => {
+          return Boolean(el.compactGTI && url.toLowerCase().includes(el.compactGTI.toLowerCase()));
+        });
+        if (!current) return;
+
+        con.m('Self').log(current);
+        if (current.titleType === 'season') {
+          data.id = current.compactGTI;
+          data.gti = current.gti;
+        } else if (current.titleType === 'movie') {
+          data.id = current.compactGTI;
+          data.gti = current.gti;
+          if (j.$(EPISODETEXT).length) {
+            data.epMeta.id = current.compactGTI;
+            data.epMeta.gti = current.gti;
+          }
+        } else if (current.titleType === 'episode') {
+          data.epMeta.id = current.compactGTI;
+          data.epMeta.gti = current.gti;
+          const parent: any = Object.values(e.props.state.self).find((el: any) =>
+            Boolean(el.titleType === 'season' || el.titleType === 'movie'),
+          );
+          if (parent) {
+            con
+              .m('Self')
+              .m('Parent')
+              .log(parent);
+            data.id = parent.compactGTI;
+            data.gti = parent.gti;
+          }
         }
       }
     },
     // title, genres
     function(e) {
-      if (
-        e &&
-        e.props &&
-        e.props.state &&
-        e.props.state.detail &&
-        e.props.state.detail.detail &&
-        Object.keys(e.props.state.detail.detail).length
-      ) {
+      if (data.gti && e && e.props && e.props.state && e.props.state.detail) {
         // Parent
         let detail;
-        if (data.gti && Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.gti)) {
-          detail = e.props.state.detail.detail[data.gti];
-        } else {
-          detail = Object.values(e.props.state.detail.detail)[0];
+
+        // Episode
+        if (
+          data.epMeta.gti &&
+          (Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.epMeta.gti) ||
+            Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.epMeta.gti))
+        ) {
+          let epDetail;
+          if (Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.epMeta.gti)) {
+            epDetail = e.props.state.detail.headerDetail[data.epMeta.gti];
+          } else {
+            epDetail = e.props.state.detail.detail[data.epMeta.gti];
+          }
+          con.log('Ep Details', epDetail);
+          if (epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
+          if (epDetail.entityType === 'Movie') data.ep = 1;
         }
 
-        if (detail && (detail.titleType === 'season' || detail.titleType === 'movie')) {
+        if (
+          e.props.state.detail.headerDetail &&
+          Object.keys(e.props.state.detail.headerDetail).length &&
+          Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.gti)
+        ) {
+          detail = e.props.state.detail.headerDetail[data.gti];
+          con.log('headerDetail', detail);
+        } else if (
+          e.props.state.detail.detail &&
+          Object.keys(e.props.state.detail.detail).length &&
+          Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.gti)
+        ) {
+          detail = e.props.state.detail.detail[data.gti];
+          con.log('detail', detail);
+        } else {
+          return;
+        }
+
+        if (detail && (detail.titleType.toLowerCase() === 'season' || detail.titleType.toLowerCase() === 'movie')) {
           if (detail.title) data.title = detail.title;
         }
         if (detail) {
           if (!data.genres.length && detail.genres && detail.genres.length)
             data.genres = detail.genres.map(e2 => e2.id);
-        }
-        // Episode
-        if (epId && Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, epId)) {
-          const epDetail = e.props.state.detail.detail[epId];
-          if (epDetail.episodeNumber) data.ep = epDetail.episodeNumber;
-          if (epDetail.entityType === 'Movie') data.ep = 1;
-          if (!data.genres.length && epDetail.genres && epDetail.genres.length)
-            data.genres = epDetail.genres.map(e3 => e3.id);
         }
       }
     },
