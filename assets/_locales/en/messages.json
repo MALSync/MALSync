@@ -1151,5 +1151,9 @@
   "filler_recap_confirm": {
     "message": "This episode has been marked as a recap on MyAnimeList, do you want to skip?",
     "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Position",
+    "description": "Position of the quicklinks"
   }
 }

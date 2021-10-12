@@ -153,6 +153,7 @@ export class AnilistClass {
               padding: 8px 12px;
               width: 100%;
               margin-bottom: 16px;
+              margin-top: 16px;
               font-size: 1.2rem;
 
             ">
@@ -164,7 +165,11 @@ export class AnilistClass {
         });
 
         $('.mal_links').remove();
-        $('.sidebar .data').before(j.html(html));
+        if (api.settings.get('quicklinksPosition') === 'below') {
+          $('.sidebar .data').after(j.html(html));
+        } else {
+          $('.sidebar .data').before(j.html(html));
+        }
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           removeFromOptions(String(key));
