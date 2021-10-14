@@ -1,6 +1,16 @@
 <template>
   <div id="quicklinkedit">
     <backbutton />
+    <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <dropdown
+        v-if="options.syncMode === 'ANILIST' || options.syncMode === 'MAL'"
+        option="quicklinksPosition"
+        :text="lang('settings_custom_domains_position')"
+      >
+        <option value="default">Default</option>
+        <option value="below">Below Information</option>
+      </dropdown>
+    </div>
     <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 10px 15px;">
       <input v-if="!sortMode" v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
       <input
@@ -102,11 +112,13 @@ import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
 import { removeOptionKey } from '../../../utils/quicklinksBuilder';
 import QuicklinksSort from './quicklinksSort.vue';
+import dropdown from './settingsDropdown.vue';
 
 export default {
   components: {
     backbutton,
     QuicklinksSort,
+    dropdown,
   },
   data() {
     return {
@@ -116,6 +128,7 @@ export default {
       custom_name: '',
       custom_anime: '',
       custom_manga: '',
+      options: api.settings.options,
     };
   },
   computed: {

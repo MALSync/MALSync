@@ -59,6 +59,7 @@ export const settingsObj = {
       'VIZ',
       'MangaPlus',
     ],
+    quicklinksPosition: 'default',
 
     autofull: false,
     autoresume: false,
