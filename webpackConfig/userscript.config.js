@@ -6,6 +6,7 @@ const generalUrls = require('./utils/pageUrls');
 const pages = require('./utils/pages').pagesUrls();
 const playerUrls = require('../src/pages/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
+const httpPermissionsJson = require('./httpPermissions.json');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
@@ -61,12 +62,7 @@ const metadata = {
   resource: generateResources(),
   'run-at': 'document_start',
   connect: [
-    'myanimelist.net',
-    'kissanimelist.firebaseio.com',
-    'graphql.anilist.co',
-    'media.kitsu.io',
-    'api.simkl.com',
-    'api.malsync.moe',
+    ...httpPermissionsJson.map(url => url.replace(/(^https?:\/\/|\/+$|\*\.)/gi, '')),
     '*',
   ],
 };

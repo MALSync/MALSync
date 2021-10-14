@@ -7,6 +7,7 @@ const playerUrls = require('../src/pages/playerUrls');
 const pageUrls = require('./utils/pageUrls');
 const packageJson = require('../package.json');
 const resourcesJson = require('./resources');
+const httpPermissionsJson = require('./httpPermissions.json');
 const i18n = require('./utils/i18n');
 const pagesUtils = require('./utils/pages');
 const pages = pagesUtils.pages();
@@ -161,24 +162,8 @@ const generateManifest = () => {
       'alarms',
       'webRequest',
       'webRequestBlocking',
-      'https://myanimelist.net/',
+      ...httpPermissionsJson,
       'notifications',
-      'https://myanimelist.cdn-dena.com/',
-      'https://cdn.myanimelist.net/',
-      'https://*.anilist.co/',
-      'https://graphql.anilist.co/',
-      'https://kitsu.io/',
-      'https://media.kitsu.io/',
-      'https://api.simkl.com/',
-      'https://www.netflix.com/',
-      'https://vrv.co/',
-      'https://discover.hulu.com/',
-      'https://www.primevideo.com/',
-      'https://www.crunchyroll.com/',
-      'https://beta-api.crunchyroll.com/',
-      'https://api.malsync.moe/',
-      'https://api.myanimelist.net/',
-      'https://api.mangadex.org/',
       'tabHide',
     ],
     optional_permissions: ['webNavigation', 'http://*/*', 'https://*/*'].concat(
