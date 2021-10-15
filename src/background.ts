@@ -60,7 +60,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           console.log(xhr);
-          if (xhr.status === 429 && retry < 4) {
+          if (xhr.status === 429 && retry < 4 && !utils.rateLimitExclude.test(xhr.responseURL)) {
             con.error('RATE LIMIT');
             setTimeout(() => {
               messageHandler(message, sender, sendResponse, retry + 1);
