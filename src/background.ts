@@ -53,19 +53,19 @@ chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendRespons
   return messageHandler(message, sender, sendResponse);
 });
 
-function messageHandler(message: sendMessageI, sender, sendResponse) {
+function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) {
   switch (message.name) {
     case 'xhr': {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           console.log(xhr);
-          if (xhr.status === 429) {
+          if (xhr.status === 429 && retry < 4) {
             con.error('RATE LIMIT');
             setTimeout(() => {
-              messageHandler(message, sender, sendResponse);
+              messageHandler(message, sender, sendResponse, retry + 1);
               api.storage.set('rateLimit', false);
-            }, 10000);
+            }, 30000);
             api.storage.set('rateLimit', true);
             return;
           }

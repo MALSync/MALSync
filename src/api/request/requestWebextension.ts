@@ -4,7 +4,10 @@ import { requestInterface } from './requestInterface';
 export const requestApi: requestInterface = {
   async xhr(method, url) {
     if (typeof requestApi.sendMessage !== 'undefined') {
-      return requestApi.sendMessage({ name: 'xhr', method, url });
+      return requestApi.sendMessage({ name: 'xhr', method, url }).then(xhr => {
+        if (xhr.status === 429) throw 'Rate limit Timeout';
+        return xhr;
+      });
     }
     throw 'Could not send xhr';
   },
