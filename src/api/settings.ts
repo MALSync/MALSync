@@ -44,7 +44,6 @@ export const settingsObj = {
       'Mangadex',
       'MangaNato',
       'AnimeSimple',
-      'animepahe',
       'MangaFox',
       'MangaSee',
       'YugenAnime',
