@@ -459,7 +459,7 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*', '*://kaa-play.me/*'],
+    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*'],
   },
   // kickassanime
   betaplayer: {
@@ -520,7 +520,7 @@ module.exports = {
   },
   // kickassanime
   beststremo: {
-    match: ['*://beststremo.xyz/*'],
+    match: ['*://beststremo.xyz/*', '*://beststremo.com/*'],
   },
   // Streamlare
   streamlare: {
