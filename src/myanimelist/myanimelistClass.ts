@@ -223,8 +223,19 @@ export class MyAnimeListClass {
           html += tempHtml;
           html += '<br class="mal_links" />';
         });
-
-        $('h2:contains("Information")').before(j.html(html));
+        if (api.settings.get('quicklinksPosition') === 'below') {
+          if ($('h2:contains("External Links")').length) {
+            $('h2:contains("External Links")').before(j.html(html));
+          } else {
+            $('h2:contains("Information")')
+              .parent()
+              .find('div.mt16')
+              .last()
+              .before(j.html(html));
+          }
+        } else {
+          $('h2:contains("Information")').before(j.html(html));
+        }
         $('.remove-mal-sync').click(function() {
           const key = $(this).attr('title');
           removeFromOptions(String(key));
