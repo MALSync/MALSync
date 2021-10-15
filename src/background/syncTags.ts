@@ -6,6 +6,7 @@ function saveInList(key, el) {
   return api.storage.get('list-tagSettings').then(list => {
     try {
       list = JSON.parse(list);
+      if (!Array.isArray(list)) throw 'Not an array';
     } catch (e) {
       list = [];
     }

@@ -12,7 +12,7 @@ declare let GM_notification: (details: {
 }) => void;
 
 export const requestUserscriptLegacy: requestInterface = {
-  async xhr(method, url): Promise<any> {
+  async xhr(method, url, retry = 0): Promise<any> {
     return new Promise((resolve, reject) => {
       const request = {
         method,
@@ -23,12 +23,13 @@ export const requestUserscriptLegacy: requestInterface = {
         onload(response) {
           console.log(response);
           if (response.status === 429) {
+            if (retry > 3 || utils.rateLimitExclude.test(response.finalUrl)) throw 'Rate limit Timeout';
             con.error('RATE LIMIT');
             api.storage.set('rateLimit', true);
             setTimeout(() => {
               api.storage.set('rateLimit', false);
-              resolve(requestUserscriptLegacy.xhr(method, url));
-            }, 10000);
+              resolve(requestUserscriptLegacy.xhr(method, url, retry + 1));
+            }, 30000);
             return;
           }
           const responseObj: xhrResponseI = {

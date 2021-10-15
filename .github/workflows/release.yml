@@ -19,6 +19,7 @@ jobs:
         npm run build
       env:
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        SENTRY_AUTH_URL: ${{ secrets.SENTRY_AUTH_URL }}
         MODE: travis
     - name: Pack
       run: |

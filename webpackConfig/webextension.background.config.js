@@ -24,8 +24,9 @@ plugins = [
 if (process.env.SENTRY_AUTH_TOKEN) {
   plugins.push(
     new SentryWebpackPlugin({
+      url: process.env.SENTRY_AUTH_URL,
       authToken: process.env.SENTRY_AUTH_TOKEN,
-      org: 'lolamtisch',
+      org: 'shark',
       project: 'malsync',
       release: `malsync@${packageJson.version}`,
       include: 'dist/webextension',

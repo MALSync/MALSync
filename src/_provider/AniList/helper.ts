@@ -87,6 +87,7 @@ export function malToAnilist(malId: number, type: 'anime' | 'manga') {
       }),
     })
     .then(response => {
+      if (response.status === 404) return NaN;
       const res = JSON.parse(response.responseText);
       con.log(res);
       return res.data.Media.id;

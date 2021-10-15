@@ -7,7 +7,7 @@ import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
 import { bloodTrail, Shark } from '../utils/shark';
-import { MissingPlayerError } from '../utils/errors';
+import { MissingDataError, MissingPlayerError } from '../utils/errors';
 
 declare let browser: any;
 
@@ -193,7 +193,7 @@ export class SyncPage {
         localStorage.setItem(localSelector, item.current);
         this.curState.videoChecked = true;
         setTimeout(() => {
-          this.curState.videoChecked = 2;
+          if (this.curState) this.curState.videoChecked = 2;
         }, 10000);
       }
     } else {
@@ -370,6 +370,10 @@ export class SyncPage {
       });
     }
 
+    if (!state.identifier || !state.title) {
+      Shark.captureException(new MissingDataError(this.page.name));
+    }
+
     this.curState = state;
 
     let malUrl = this.searchObj.getRuledUrl(state.detectedEpisode);
@@ -392,12 +396,11 @@ export class SyncPage {
     } else {
       logger.log('MyAnimeList', malUrl);
       try {
-        if (tempSingle) {
-          this.singleObj = tempSingle;
-        } else {
-          this.singleObj = getSingle(malUrl);
-          await this.singleObj.update();
+        if (!tempSingle) {
+          tempSingle = getSingle(malUrl);
+          await tempSingle.update();
         }
+        this.singleObj = tempSingle;
       } catch (e) {
         if (e.code === 901) {
           utils.flashm('Incorrect url provided', {
@@ -407,8 +410,9 @@ export class SyncPage {
           throw e;
         } else if (e.code === 904 && api.settings.get('localSync')) {
           logger.log('Local Fallback');
-          this.singleObj = getSingle(localUrl);
-          await this.singleObj.update();
+          tempSingle = getSingle(localUrl);
+          await tempSingle.update();
+          this.singleObj = tempSingle;
         } else {
           this.singleObj.flashmError(e);
           this.fillUI();
@@ -794,6 +798,7 @@ export class SyncPage {
   }
 
   handleList(searchCurrent = false, reTry = 0) {
+    if (!this.singleObj) return; // Object not ready yet
     j.$('.mal-sync-active').removeClass('mal-sync-active');
     if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
       const epList = this.getEpList();

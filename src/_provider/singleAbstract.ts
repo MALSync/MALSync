@@ -4,6 +4,7 @@ import { Progress } from '../utils/progress';
 import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
 
 import { emitter, globalEmit } from '../utils/emitter';
+import { SafeError } from '../utils/errors';
 
 Object.seal(emitter);
 
@@ -386,7 +387,7 @@ export abstract class SingleAbstract {
 
   public undo(): Promise<void> {
     this.logger.log('[SINGLE]', 'Undo', this.undoState);
-    if (!this.undoState) throw new Error('No undo state found');
+    if (!this.undoState) throw new SafeError('No undo state found');
     if (!this.undoState.onList) {
       // @ts-ignore
       if (typeof this.delete === 'undefined') throw new Error('Deleting an entry is not supported');

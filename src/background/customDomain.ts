@@ -22,7 +22,7 @@ function updateListener() {
 async function setListener() {
   const domains: domainType[] = await api.settings.getAsync('customDomains');
   clearListener();
-  domains.forEach(d => singleListener(d));
+  if (domains) domains.forEach(d => singleListener(d));
 }
 
 let listenerArray: any[] = [];

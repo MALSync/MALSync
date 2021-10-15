@@ -522,4 +522,8 @@ module.exports = {
   beststremo: {
     match: ['*://beststremo.xyz/*'],
   },
+  // Streamlare
+  streamlare: {
+    match: ['*://streamlare.com/e/*'],
+  },
 };

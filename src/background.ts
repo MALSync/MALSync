@@ -53,19 +53,19 @@ chrome.runtime.onMessage.addListener((message: sendMessageI, sender, sendRespons
   return messageHandler(message, sender, sendResponse);
 });
 
-function messageHandler(message: sendMessageI, sender, sendResponse) {
+function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) {
   switch (message.name) {
     case 'xhr': {
       const xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
           console.log(xhr);
-          if (xhr.status === 429) {
+          if (xhr.status === 429 && retry < 4 && !utils.rateLimitExclude.test(xhr.responseURL)) {
             con.error('RATE LIMIT');
             setTimeout(() => {
-              messageHandler(message, sender, sendResponse);
+              messageHandler(message, sender, sendResponse, retry + 1);
               api.storage.set('rateLimit', false);
-            }, 10000);
+            }, 30000);
             api.storage.set('rateLimit', true);
             return;
           }
@@ -137,7 +137,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse) {
     case 'minimalWindow': {
       api.storage.get('windowId').then(winId => {
         if (typeof winId === 'undefined') winId = 22;
-        if (chrome.windows.update && chrome.windows.create) {
+        if (chrome.windows && chrome.windows.update && chrome.windows.create) {
           chrome.windows.update(winId, { focused: true }, function() {
             if (chrome.runtime.lastError) {
               const config: any = {
@@ -233,7 +233,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
     headers!.forEach(function(header, i) {
       if (header.name.toLowerCase() === 'user-agent') {
         header.value =
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36';
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36';
       }
     });
     return { requestHeaders: headers };

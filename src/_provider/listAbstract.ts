@@ -140,7 +140,7 @@ export abstract class ListAbstract {
   }
 
   async getCached(): Promise<listElement[]> {
-    if (this.getCache().hasValue()) {
+    if (await this.getCache().hasValue()) {
       const cachelist = await this.getCache().getValue();
       cachelist.forEach(item => {
         item = this.fn(item);
