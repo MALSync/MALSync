@@ -65,6 +65,8 @@ export function episode(type: 'anime' | 'manga') {
 
 export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/|^list-tagSettings$)/;
 
+export const rateLimitExclude = /^https:\/\/api.malsync.moe\/(mal\/|nc\/mal\/.*\/progress$)/i;
+
 // eslint-disable-next-line no-shadow
 export enum status {
   // eslint-disable-next-line no-shadow

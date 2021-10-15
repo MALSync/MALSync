@@ -111,6 +111,8 @@ export const settingsObj = {
     }
     con.log('Settings', this.options);
 
+    let rateDebounce;
+
     api.storage.storageOnChanged((changes, namespace) => {
       if (namespace === 'sync') {
         for (const key in changes) {
@@ -123,16 +125,21 @@ export const settingsObj = {
       }
       if (namespace === 'local' && changes.rateLimit) {
         try {
+          clearTimeout(rateDebounce);
           if (changes.rateLimit.newValue) {
             con.log('Rate limited');
-            utils.flashm('Rate limited. Retrying in a moment', {
-              error: true,
-              type: 'rate',
-              permanent: true,
-            });
+            if (!$('.type-rate').length) {
+              utils.flashm('Rate limited. Retrying in a moment', {
+                error: true,
+                type: 'rate',
+                permanent: true,
+              });
+            }
           } else {
-            con.log('No Rate limited');
-            $('.type-rate').remove();
+            rateDebounce = setTimeout(() => {
+              con.log('No Rate limited');
+              $('.type-rate').remove();
+            }, 5000);
           }
         } catch (e) {
           con.error(e);
