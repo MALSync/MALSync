@@ -128,7 +128,7 @@ export const settingsObj = {
           clearTimeout(rateDebounce);
           if (changes.rateLimit.newValue) {
             con.log('Rate limited');
-            if (!$('.type-rate').length){
+            if (!$('.type-rate').length) {
               utils.flashm('Rate limited. Retrying in a moment', {
                 error: true,
                 type: 'rate',
