@@ -41,6 +41,7 @@ export function generateUniqueID(arraySize = 10): string {
 }
 
 export function favicon(domain) {
+  if (!domain) return '';
   const res = domain.match(/^(https?:\/\/)?[^/]+/);
 
   if (res) domain = res[0];
@@ -378,54 +379,64 @@ export function statusTag(status, type, id) {
       1: {
         class: 'watching',
         text: 'CW',
-        title: 'Watching',
+        title: api.storage.lang(`UI_Status_watching_${type}`),
       },
       2: {
         class: 'completed',
         text: 'CMPL',
-        title: 'Completed',
+        title: api.storage.lang('UI_Status_Completed'),
       },
       3: {
         class: 'on-hold',
-        text: ' HOLD',
-        title: 'On-Hold',
+        text: 'HOLD',
+        title: api.storage.lang('UI_Status_OnHold'),
       },
       4: {
         class: 'dropped',
         text: 'DROP',
-        title: 'Dropped',
+        title: api.storage.lang('UI_Status_Dropped'),
       },
       6: {
         class: 'plantowatch',
         text: 'PTW',
-        title: 'Plan to Watch',
+        title: api.storage.lang(`UI_Status_planTo_${type}`),
+      },
+      23: {
+        class: 'rewatching',
+        text: 'RE',
+        title: api.storage.lang(`UI_Status_Rewatching_${type}`),
       },
     },
     manga: {
       1: {
         class: 'reading',
         text: 'CR',
-        title: 'Reading',
+        title: api.storage.lang(`UI_Status_watching_${type}`),
       },
       2: {
         class: 'completed',
         text: 'CMPL',
-        title: 'Completed',
+        title: api.storage.lang('UI_Status_Completed'),
       },
       3: {
         class: 'on-hold',
-        text: ' HOLD',
-        title: 'On-Hold',
+        text: 'HOLD',
+        title: api.storage.lang('UI_Status_OnHold'),
       },
       4: {
         class: 'dropped',
         text: 'DROP',
-        title: 'Dropped',
+        title: api.storage.lang('UI_Status_Dropped'),
       },
       6: {
         class: 'plantoread',
         text: 'PTR',
-        title: 'Plan to Read',
+        title: api.storage.lang(`UI_Status_planTo_${type}`),
+      },
+      23: {
+        class: 'rewatching',
+        text: 'RE',
+        title: api.storage.lang(`UI_Status_Rewatching_${type}`),
       },
     },
   };
@@ -829,4 +840,8 @@ export function htmlDecode(text) {
   return $('<textarea/>')
     .html(j.html(text))
     .text();
+}
+
+export function isFirefox(): boolean {
+  return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
 }

@@ -290,6 +290,7 @@ import customDomainsVue from './minimalApp/customDomains.vue';
 import quicklinksEdit from './minimalApp/components/quicklinksEdit.vue';
 import { getSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
+import { bloodTrail } from '../utils/shark';
 
 let timer;
 let ignoreCurrentTab = true;
@@ -508,6 +509,15 @@ export default {
       this.tabs[oldtab].scroll = this.getScroll();
       this.$nextTick(() => {
         this.setScroll(this.tabs[tab].scroll);
+      });
+
+      bloodTrail({
+        category: 'info',
+        message: tab,
+        data: {
+          url: this.renderUrl,
+          tab: this.tabs[tab]
+        },
       });
 
       if (ignoreCurrentTab) {
