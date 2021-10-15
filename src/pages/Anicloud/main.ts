@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const Anicloud: pageInterface = {
   domain: 'https://anicloud.io',
-  languages: ['german'],
+  languages: ['German'],
   name: 'Anicloud',
   type: 'anime',
   isSyncPage(url: string): boolean {
@@ -82,16 +82,16 @@ export const Anicloud: pageInterface = {
 function getTitle(url: string): string {
   const urlParts = url.split('/');
 
+  if (typeof urlParts[6] === 'undefined' || urlParts[6].startsWith('staffel-1')) {
+    return j.$('div.series-title > h1 > span').text();
+  }
+
   if (urlParts[6] === 'filme') {
     return j
       .$('div.hosterSiteTitle > h2 > small.episodeEnglishTitle')
       .text()
       .replace(/\[[A-Za-z\0-9]+\]/gm, '')
       .trim();
-  }
-
-  if (urlParts[6].startsWith('staffel-1') || typeof urlParts[6] === 'undefined') {
-    return j.$('div.series-title > h1 > span').text();
   }
 
   return `${j.$('div.series-title > h1 > span').text()} season ${urlParts[6]
@@ -112,6 +112,6 @@ function getIdentifier(url: string): string {
       .toLowerCase()}`;
   }
 
-  const season = typeof urlParts[6] === 'undefined' ? 'staffel-1' : urlParts[6];
+  const season = typeof urlParts[6] === 'undefined' ? 'staffel-1' : urlParts[6].split('#')[0];
   return `${name}?s=${season}`;
 }

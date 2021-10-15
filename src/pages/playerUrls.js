@@ -378,7 +378,7 @@ module.exports = {
   },
   // gogo
   dood: {
-    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*', '*://dood.la/*'],
+    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*', '*://dood.la/*', '*://dood.ws/e/*'],
   },
   // animedao.to
   vcdn: {
