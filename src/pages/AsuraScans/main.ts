@@ -73,7 +73,16 @@ export const AsuraScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return AsuraScans.sync.getEpisode(AsuraScans.overview!.list!.elementUrl(selector));
+        const elementEpN = selector
+          .find('span')
+          .first()
+          .text();
+
+        const temp = elementEpN.match(/chapter \d+/gim);
+
+        if (!temp || temp.length === 0) return 0;
+
+        return Number(temp[0].replace(/\D+/g, ''));
       },
     },
   },
@@ -83,7 +92,12 @@ export const AsuraScans: pageInterface = {
       if (AsuraScans.isSyncPage(window.location.href)) {
         utils.waitUntilTrue(
           function() {
-            return j.$('#chapter > option:selected').length;
+            if (
+              j.$('#chapter > option:selected').length &&
+              j.$('#chapter > option:selected').text() !== 'Select Chapter'
+            )
+              return true;
+            return false;
           },
           function() {
             page.handlePage();
