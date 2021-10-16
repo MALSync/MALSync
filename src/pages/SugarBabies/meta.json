@@ -1,0 +1,6 @@
+{
+  "search": "https://sugarbscan.com/?s={searchtermPlus}&post_type=wp-manga",
+  "urls": {
+    "match": ["*://sugarbscan.com/series*"]
+  }
+}

@@ -138,6 +138,7 @@ import { Anistream } from './Anistream/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
+import { SugarBabies } from './SugarBabies/main';
 
 export const pages = {
   nineAnime,
@@ -280,4 +281,5 @@ export const pages = {
   BlueSolo,
   DisasterScans,
   DynastyScans,
+  SugarBabies,
 };

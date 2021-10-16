@@ -1,0 +1,31 @@
+{
+    "title": "SugarBabies",
+    "url": "https://sugarbscan.com/",
+    "testCases": [
+      {
+        "url": "https://sugarbscan.com/series/can-we-become-a-family/",
+        "expected": {
+          "sync": false,
+          "title": "Can We Become a Family?",
+          "identifier": "can-we-become-a-family",
+          "uiSelector": true,
+          "epList": {
+            "2": "https://sugarbscan.com/series/can-we-become-a-family/chapter-2/",
+            "7": "https://sugarbscan.com/series/can-we-become-a-family/chapter-7/"
+          }
+        }
+      },
+      {
+        "url": "https://sugarbscan.com/series/can-we-become-a-family/chapter-5/",
+        "expected": {
+          "sync": true,
+          "title": "Can We Become a Family?",
+          "identifier": "can-we-become-a-family",
+          "overviewUrl": "https://sugarbscan.com/series/can-we-become-a-family/",
+          "nextEpUrl": "https://sugarbscan.com/series/can-we-become-a-family/chapter-6/",
+          "episode": 5,
+          "uiSelector": false
+        }
+      }
+    ]
+  }
