@@ -12,7 +12,7 @@ export const ReaperScans: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if (j.$('.manga-title-badges').length) {
+    if (j.$('.manga-page .profile-manga').length) {
       return true;
     }
     return false;
