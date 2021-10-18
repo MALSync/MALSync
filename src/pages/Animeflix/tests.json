@@ -1,6 +1,7 @@
 {
   "title": "Animeflix",
   "url": "https://animeflix.io/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://animeflix.io/shows/bleach/episode-361-702777/sub",

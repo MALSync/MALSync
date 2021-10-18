@@ -302,6 +302,7 @@ module.exports = {
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
+      '*://v.vvid.cc/*',
     ],
   },
   // animekisa
@@ -458,7 +459,7 @@ module.exports = {
   },
   // kickassanime
   kaaplay: {
-    match: ['*://kaa-play.com/*', '*://kaa-play.me/*'],
+    match: ['*://kaa-play.com/*', '*://kaa-play.me/*', '*://kaaplayer.com/*'],
   },
   // kickassanime
   betaplayer: {
@@ -516,6 +517,10 @@ module.exports = {
   // 9anime
   videovard: {
     match: ['*://videovard.sx/*'],
+  },
+  // kickassanime
+  beststremo: {
+    match: ['*://beststremo.xyz/*', '*://beststremo.com/*'],
   },
   // Streamlare
   streamlare: {

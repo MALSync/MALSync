@@ -5,7 +5,6 @@ export const animepahe: pageInterface = {
   name: 'animepahe',
   domain: 'https://animepahe.com',
   languages: ['English'],
-  database: 'animepahe',
   type: 'anime',
   isSyncPage(url) {
     if (window.location.href.split('/')[3] !== 'play') {
