@@ -6,6 +6,7 @@ import { fullscreenNotification, getPlayerTime } from '../utils/player';
 import { SearchClass } from '../_provider/Search/vueSearchClass';
 import { emitter } from '../utils/emitter';
 import { Cache } from '../utils/Cache';
+import { isIframeUrl } from '../utils/manifest';
 import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
 
@@ -502,18 +503,21 @@ export class SyncPage {
               });
 
             // Show error if no player gets detected for 5 minutes
-            playerTimeout = setTimeout(() => {
-              j.$('#flashinfo-div').addClass('player-error');
+            if (this.singleObj.getType() === 'anime') {
+              playerTimeout = setTimeout(() => {
+                j.$('#flashinfo-div').addClass('player-error');
 
-              const iframes = $('iframe')
-                .toArray()
-                .map(el => $(el).attr('src'))
-                .filter(el => el);
+                const iframes = $('iframe')
+                  .toArray()
+                  .map(el => utils.absoluteLink($(el).attr('src'), window.location.origin))
+                  .filter(el => el)
+                  .filter(el => !isIframeUrl(el));
 
-              con.log('No Player found', iframes);
+                con.log('No Player found', iframes);
 
-              iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
-            }, 5 * 60 * 1000);
+                iframes.forEach(el => Shark.captureException(new MissingPlayerError(el!)));
+              }, 5 * 60 * 1000);
+            }
 
             // Debugging
             logger.log('overviewUrl', This.page.sync.getOverviewUrl(This.url));

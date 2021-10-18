@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const AsuraScans: pageInterface = {
-  name: 'AsuraScans',
-  domain: 'https://asurascans.com',
+export const AlphaScans: pageInterface = {
+  name: 'AlphaScans',
+  domain: 'https://Alpha-Scans.org',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
@@ -12,20 +12,20 @@ export const AsuraScans: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    return url.split('/')[3] === 'comics' && url.split('/')[4] !== '';
+    return url.split('/')[3] === 'manga' && url.split('/')[4] !== '';
   },
   sync: {
     getTitle(url) {
       return j
-        .$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1])
+        .$(j.$('#content.readercontent .ts-breadcrumb.bixbox span')[1])
         .text()
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(AsuraScans.sync.getOverviewUrl(url), 4);
+      return utils.urlPart(AlphaScans.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
+      return j.$(j.$('#content.readercontent .ts-breadcrumb.bixbox a')[1]).attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = j.$('#chapter > option:selected').text();
@@ -37,7 +37,7 @@ export const AsuraScans: pageInterface = {
       return Number(temp[1]);
     },
     nextEpUrl(url) {
-      const next = j.$('a.ch-next-btn').attr('href');
+      const next = j.$('.ch-next-btn').attr('href');
 
       if (next === '#/next/') return undefined;
 
@@ -47,7 +47,7 @@ export const AsuraScans: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('h1.entry-title')
+        .$('.entry-title')
         .text()
         .trim();
     },
@@ -55,14 +55,14 @@ export const AsuraScans: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.bixbox.animefull')
+      j.$('.info-desc.bixbox')
         .first()
         .after(j.html(`<div id= "malthing" class="bixbox animefull">${selector}</div>`));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div#chapterlist li div.chbox');
+        return j.$('#chapterlist li .chbox');
       },
       elementUrl(selector) {
         return (
@@ -89,7 +89,7 @@ export const AsuraScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (AsuraScans.isSyncPage(window.location.href)) {
+      if (AlphaScans.isSyncPage(window.location.href)) {
         utils.waitUntilTrue(
           function() {
             if (
