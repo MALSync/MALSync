@@ -41,6 +41,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://anicloud.io"><img src="https://favicon.malsync.moe/?domain=https://anicloud.io"> Anicloud</a></td>
+    <td>German</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://www1.aniflix.tv"><img src="https://favicon.malsync.moe/?domain=https://www1.aniflix.tv"> Aniflix</a></td>
     <td>German</td>
     <td>:heavy_check_mark:</td>
@@ -66,13 +73,6 @@
     <td>Portuguese</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
-    <td><a href="https://animeflix.io"><img src="https://favicon.malsync.moe/?domain=https://animeflix.io"> Animeflix</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
@@ -136,7 +136,7 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://www.anime-shitai.com"><img src="https://favicon.malsync.moe/?domain=https://www.anime-shitai.com"> AnimeShitai</a></td>
@@ -194,13 +194,6 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://animeultima.to"><img src="https://favicon.malsync.moe/?domain=https://animeultima.to"> animeultima</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:x:</td>
   </tr><tr>
     <td><a href="https://animeunity.it"><img src="https://favicon.malsync.moe/?domain=https://animeunity.it"> AnimeUnity</a></td>
     <td>Italian</td>
@@ -575,6 +568,13 @@
     </thead>
     <tbody>
       <tr>
+    <td><a href="https://Alpha-Scans.org"><img src="https://favicon.malsync.moe/?domain=https://Alpha-Scans.org"> AlphaScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://arangscans.com"><img src="https://favicon.malsync.moe/?domain=https://arangscans.com"> ArangScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -947,6 +947,13 @@
     <td>:x:</td>
   </tr><tr>
     <td><a href="https://skscans.com"><img src="https://favicon.malsync.moe/?domain=https://skscans.com"> SKScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://sugarbscan.com/"><img src="https://favicon.malsync.moe/?domain=https://sugarbscan.com/"> SugarBabies</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>

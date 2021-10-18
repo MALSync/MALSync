@@ -80,11 +80,6 @@
     "name": "Plex"
   },
   {
-    "domain": "https://animeultima.to",
-    "type": "anime",
-    "name": "animeultima"
-  },
-  {
     "domain": "https://www1.aniflix.tv",
     "type": "anime",
     "name": "Aniflix"
@@ -148,11 +143,6 @@
     "domain": "https://www.animezone.pl",
     "type": "anime",
     "name": "AnimeZone"
-  },
-  {
-    "domain": "https://animeflix.io",
-    "type": "anime",
-    "name": "Animeflix"
   },
   {
     "domain": "https://serimanga.com",
@@ -698,5 +688,20 @@
     "domain": "https://dynasty-scans.com",
     "type": "manga",
     "name": "DynastyScans"
+  },
+  {
+    "domain": "https://sugarbscan.com/",
+    "type": "manga",
+    "name": "SugarBabies"
+  },
+  {
+    "domain": "https://Alpha-Scans.org",
+    "type": "manga",
+    "name": "AlphaScans"
+  },
+  {
+    "domain": "https://anicloud.io",
+    "type": "anime",
+    "name": "Anicloud"
   }
 ]
