@@ -112,6 +112,7 @@
     "vue": "^2.6.14",
     "vue-clazy-load": "^0.4.2",
     "vue-dompurify-html": "^2.3.0",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "webext-patterns": "^1.1.1"
   }
 }
