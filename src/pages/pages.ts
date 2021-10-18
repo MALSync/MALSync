@@ -138,6 +138,7 @@ import { Anistream } from './Anistream/main';
 import { BlueSolo } from './BlueSolo/main';
 import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
+import { AlphaScans } from './AlphaScans/main';
 import { Anicloud } from './Anicloud/main';
 
 export const pages = {
@@ -281,5 +282,6 @@ export const pages = {
   BlueSolo,
   DisasterScans,
   DynastyScans,
+  AlphaScans,
   Anicloud,
 };
