@@ -480,7 +480,12 @@ module.exports = {
   },
   // animeshouse
   animeshouse: {
-    match: ['*://*.animeshouse.net/gcloud/*', '*://*.animeshouse.net/playerBlue/*', '*://*.animeshouse.net/mp4/*'],
+    match: [
+      '*://*.animeshouse.net/gcloud/*',
+      '*://*.animeshouse.net/playerBlue/*',
+      '*://*.animeshouse.net/mp4/*',
+      '*://*.animeshouse.net/ah-clp-new/*',
+    ],
   },
   // animeshouse
   nezuko: {
