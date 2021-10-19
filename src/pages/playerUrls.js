@@ -383,6 +383,7 @@ module.exports = {
       '*://sbplay.org/*',
       '*://sbplay.one/*',
       '*://sbplay1.com/*',
+      '*://embedsb.com/*',
     ],
   },
   // gogo
