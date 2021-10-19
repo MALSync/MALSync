@@ -71,6 +71,7 @@ module.exports = {
       '*://*.femax20.com/v/*',
       '*://*.femax20.com/e/*',
       '*://*.fplayer.info/*',
+      '*://*.dutrag.com/*',
     ],
   },
   youpload: {
