@@ -348,6 +348,10 @@ module.exports = {
       '*://*.goload.one/load.php?*',
       '*://*.goload.one/loadserver.php?*',
       '*://*.goload.one/embedplus*',
+      '*://*.gogoplay1.com/streaming.php?*',
+      '*://*.gogoplay1.com/load.php?*',
+      '*://*.gogoplay1.com/loadserver.php?*',
+      '*://*.gogoplay1.com/embedplus*',
     ],
   },
   // bs.to
@@ -375,6 +379,7 @@ module.exports = {
       '*://sbvideo.net/*',
       '*://sbplay.org/*',
       '*://sbplay.one/*',
+      '*://sbplay1.com/*',
     ],
   },
   // gogo
