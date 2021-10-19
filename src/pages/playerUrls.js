@@ -56,6 +56,7 @@ module.exports = {
   zerostream: {
     match: ['*://player.zerostream.de/v/*'],
   },
+  // gogoanime.to
   fembed: {
     match: [
       '*://*.fembed.net/*',
@@ -69,6 +70,7 @@ module.exports = {
       '*://*.vaplayer.xyz/e/*',
       '*://*.femax20.com/v/*',
       '*://*.femax20.com/e/*',
+      '*://*.fplayer.info/*',
     ],
   },
   youpload: {
