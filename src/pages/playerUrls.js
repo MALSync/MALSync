@@ -390,6 +390,10 @@ module.exports = {
   vcdn: {
     match: ['*://vcdn.space/v/*'],
   },
+  // animedao.to
+  pd: {
+    match: ['*://playdrive.xyz/*'],
+  },
   // otakustv.com
   youtubeEmbed: {
     match: ['*://youtube.googleapis.com/embed/*drive.google.com*'],
