@@ -492,7 +492,7 @@ module.exports = {
   },
   // animeshd
   AnimesOnline: {
-    match: ['*://animesonline.org/*/*id=*', '*://player.animeshd.org/koplay/*'],
+    match: ['*://animesonline.org/*/*id=*', '*://player.animeshd.org/koplay/*', '*://oppais.org/*'],
   },
   // animixplay
   kimanime: {
