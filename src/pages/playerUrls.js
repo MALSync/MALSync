@@ -544,4 +544,8 @@ module.exports = {
   streamlare: {
     match: ['*://streamlare.com/e/*'],
   },
+  // Dreamsub
+  dreamsub: {
+    match: ['*://cdn2.dreamsub.cc/*'],
+  },
 };
