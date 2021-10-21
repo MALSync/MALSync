@@ -1,5 +1,5 @@
 /* eslint-disable no-shadow */
-import { errorCode, status } from '../definitions';
+import { status } from '../definitions';
 import { clientId } from '../../utils/oauth';
 import { NotFoundError, ServerOfflineError } from '../Errors';
 

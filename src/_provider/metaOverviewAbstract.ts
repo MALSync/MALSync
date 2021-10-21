@@ -102,11 +102,4 @@ export abstract class MetaOverviewAbstract {
     this.cacheObj = new Cache(`v2/${this.url}`, 5 * 24 * 60 * 60 * 1000);
     return this.cacheObj;
   }
-
-  protected errorObj(code: definitions.errorCode, message): definitions.error {
-    return {
-      code,
-      message,
-    };
-  }
 }

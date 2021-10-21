@@ -1,6 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from '../definitions';
 import { NotAutenticatedError, NotFoundError, UrlNotSuportedError } from '../Errors';
 
 export class Single extends SingleAbstract {

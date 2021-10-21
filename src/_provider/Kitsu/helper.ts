@@ -1,4 +1,3 @@
-import { errorCode } from '../definitions';
 import { NotFoundError, ServerOfflineError } from '../Errors';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
