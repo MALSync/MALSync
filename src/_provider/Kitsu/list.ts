@@ -1,3 +1,4 @@
+import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
@@ -20,7 +21,7 @@ export class UserList extends ListAbstract {
 
   async getUserId() {
     const userId = await api.storage.get('kitsuUserId');
-    if (typeof userId !== 'undefined') {
+    if (typeof userId !== 'undefined' && userId) {
       return userId;
     }
     const user = await this.userRequest();
@@ -29,27 +30,13 @@ export class UserList extends ListAbstract {
   }
 
   private userRequest() {
-    return api.request
-      .xhr('GET', {
-        url: 'https://kitsu.io/api/edge/users?filter[self]=true',
-        headers: {
-          Authorization: `Bearer ${this.accessToken()}`,
-          'Content-Type': 'application/vnd.api+json',
-          Accept: 'application/vnd.api+json',
-        },
-      })
-      .then(response => {
-        const res = this.jsonParse(response);
-        con.log(res);
-        this.errorHandling(res);
-        if (typeof res.data[0] === 'undefined') {
-          throw {
-            code: 400,
-            message: 'Not Authenticated',
-          };
-        }
-        return res.data[0];
-      });
+    return helper.apiCall('GET', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
+      con.log(res);
+      if (typeof res.data[0] === 'undefined') {
+        throw new NotAutenticatedError('Not Authenticated');
+      }
+      return res.data[0];
+    });
   }
 
   deauth() {
@@ -132,26 +119,19 @@ export class UserList extends ListAbstract {
 
     con.log('[UserList][Kitsu]', `user: ${userid}`, `status: ${this.status}`, `offset: ${this.offset}`);
 
-    return api.request
-      .xhr('GET', {
-        url: `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
+    return helper
+      .apiCall(
+        'GET',
+        `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
           this.listType
         }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${this.listType},${this.listType}.mappings,${
           this.listType
         }.mappings.item&fields[${this.listType}]=slug,titles,canonicalTitle,averageRating,posterImage,${
           this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
-        headers: {
-          Authorization: `Bearer ${this.accessToken()}`,
-          'Content-Type': 'application/vnd.api+json',
-          Accept: 'application/vnd.api+json',
-        },
-        data: {},
-      })
-      .then(response => {
-        const res = this.jsonParse(response);
+      )
+      .then(res => {
         con.log(res);
-        this.errorHandling(res);
 
         this.offset += 50;
 
