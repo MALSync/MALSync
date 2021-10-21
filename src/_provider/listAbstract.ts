@@ -2,6 +2,7 @@ import { Cache } from '../utils/Cache';
 import { Progress } from '../utils/progress';
 import * as definitions from './definitions';
 import { emitter } from '../utils/emitter';
+import { errorMessage as _errorMessage } from './Errors';
 
 Object.seal(emitter);
 
@@ -247,27 +248,7 @@ export abstract class ListAbstract {
   }
 
   errorMessage(error) {
-    if (typeof error.code === 'undefined') {
-      return error;
-    }
-
-    switch (error.code) {
-      case definitions.errorCode.NotAutenticated:
-      case 400:
-      case 401:
-        return api.storage.lang('Error_Authenticate', [this.authenticationUrl]);
-        break;
-      default:
-        return error.message;
-        break;
-    }
-  }
-
-  protected errorObj(code: definitions.errorCode, message): definitions.error {
-    return {
-      code,
-      message,
-    };
+    return _errorMessage(error);
   }
 
   // itemFunctions;

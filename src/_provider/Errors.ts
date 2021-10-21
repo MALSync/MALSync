@@ -30,3 +30,22 @@ export class NotFoundError extends Error {
   }
 }
 
+export function errorMessage(error) {
+  if (typeof error.code === 'undefined') {
+    return error;
+  }
+
+  if (error instanceof NotAutenticatedError) {
+    return api.storage.lang('Error_Authenticate', [error.authenticationUrl]);
+  }
+  if (error instanceof ServerOfflineError) {
+    return `[${this.shortName}] Server Offline`;
+  }
+  if (error instanceof UrlNotSuportedError) {
+    return `Incorrect url provided [${error.message}]`;
+  }
+  if (error instanceof NotFoundError) {
+    return `Could not find this entry`;
+  }
+  return error.message;
+}

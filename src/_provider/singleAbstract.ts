@@ -5,7 +5,7 @@ import { getProgressTypeList, predictionXhrGET } from '../background/releaseProg
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
-import { NotAutenticatedError, NotFoundError, ServerOfflineError, UrlNotSuportedError } from './Errors';
+import { errorMessage as _errorMessage, NotAutenticatedError } from './Errors';
 
 Object.seal(emitter);
 
@@ -703,22 +703,6 @@ export abstract class SingleAbstract {
   }
 
   errorMessage(error) {
-    if (typeof error.code === 'undefined') {
-      return error;
-    }
-
-    if (error instanceof NotAutenticatedError) {
-      return api.storage.lang('Error_Authenticate', [error.authenticationUrl]);
-    }
-    if (error instanceof ServerOfflineError) {
-      return `[${this.shortName}] Server Offline`;
-    }
-    if (error instanceof UrlNotSuportedError) {
-      return `Incorrect url provided [${error.message}]`;
-    }
-    if (error instanceof NotFoundError) {
-      return `Could not find this entry`;
-    }
-    return error.message;
+    return _errorMessage(error);
   }
 }
