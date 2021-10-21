@@ -56,7 +56,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private async getData() {
     if (!this.kitsuSlug) {
-      const kitsuRes = await this.malToKitsu(this.malId, this.type);
+      const kitsuRes = await helper.malToKitsu(this.malId, this.type);
       try {
         this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
         kitsuRes.included.forEach(el => {
@@ -276,6 +276,4 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   protected apiCall = helper.apiCall;
-
-  protected malToKitsu = helper.malToKitsu;
 }

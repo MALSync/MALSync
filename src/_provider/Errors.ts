@@ -2,7 +2,7 @@
 export class NotAutenticatedError extends Error {
   public authenticationUrl;
 
-  constructor(message: string, authenticationUrl: string) {
+  constructor(message: string, authenticationUrl = '') {
     super(message);
     this.name = 'NotAutenticatedError';
     this.authenticationUrl = authenticationUrl;

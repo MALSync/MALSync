@@ -280,7 +280,12 @@ export class Single extends SingleAbstract {
     });
   }
 
-  protected apiCall = helper.apiCall;
+  protected apiCall(mode, url, variables = {}, authentication = true) {
+    return helper.apiCall(mode, url, variables, authentication).catch(e => {
+      if (e instanceof NotAutenticatedError) throw this.notAutenticatedError(e.message);
+      throw e;
+    });
+  }
 
   protected kitsuSlugtoKitsu(kitsuSlug: string, type: any) {
     return this.apiCall(
