@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { UrlNotSuportedError } from '../Errors';
 
 export class MetaOverview extends MetaOverviewAbstract {
   constructor(url) {
@@ -10,7 +10,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.malId = Number(utils.urlPart(url, 4));
       return this;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   protected readonly type;
