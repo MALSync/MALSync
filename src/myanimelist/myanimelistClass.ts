@@ -249,7 +249,12 @@ export class MyAnimeListClass {
     con.log('Streaming UI');
     const malObj = new ApiSingle(this.url);
 
-    await malObj.update();
+    try {
+      await malObj.update();
+    } catch (e) {
+      con.error('Could not get Single', e);
+      return;
+    }
 
     this.pageRelation(malObj);
 
