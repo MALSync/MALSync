@@ -223,7 +223,7 @@ export class Single extends SingleAbstract {
           throw new NotFoundError('Not found');
         }
 
-        if (!this._authenticated) throw this.notAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
       });
   }
 
@@ -282,7 +282,7 @@ export class Single extends SingleAbstract {
 
   protected apiCall(mode, url, variables = {}, authentication = true) {
     return helper.apiCall(mode, url, variables, authentication).catch(e => {
-      if (e instanceof NotAutenticatedError) throw this.notAutenticatedError(e.message);
+      if (e instanceof NotAutenticatedError) throw new NotAutenticatedError(e.message);
       throw e;
     });
   }
@@ -355,7 +355,7 @@ export class Single extends SingleAbstract {
     }
     return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
       if (typeof res.data === 'undefined' || !res.data.length || typeof res.data[0] === 'undefined') {
-        throw this.notAutenticatedError('Not Authenticated');
+        throw new NotAutenticatedError('Not Authenticated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);
       return res.data[0].id;

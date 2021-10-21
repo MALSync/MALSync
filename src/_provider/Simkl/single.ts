@@ -208,7 +208,7 @@ export class Single extends SingleAbstract {
         }
         this.minWatchedEp = this.curWatchedEp + 1;
 
-        if (!this._authenticated) throw this.notAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
       });
   }
 

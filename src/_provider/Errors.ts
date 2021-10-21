@@ -1,11 +1,8 @@
 /* eslint-disable max-classes-per-file */
 export class NotAutenticatedError extends Error {
-  public authenticationUrl;
-
-  constructor(message: string, authenticationUrl = '') {
+  constructor(message: string) {
     super(message);
     this.name = 'NotAutenticatedError';
-    this.authenticationUrl = authenticationUrl;
   }
 }
 
@@ -30,13 +27,13 @@ export class NotFoundError extends Error {
   }
 }
 
-export function errorMessage(error) {
+export function errorMessage(error, authenticationUrl: string) {
   if (typeof error.code === 'undefined') {
     return error;
   }
 
   if (error instanceof NotAutenticatedError) {
-    return api.storage.lang('Error_Authenticate', [error.authenticationUrl]);
+    return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }
   if (error instanceof ServerOfflineError) {
     return `[${this.shortName}] Server Offline`;

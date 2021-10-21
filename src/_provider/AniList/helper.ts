@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { status } from '../definitions';
-import { NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -131,7 +131,7 @@ export function apiCall(query, variables, authentication = true) {
           case 400:
             if (error.message === 'validation') throw new Error('Wrong request format');
             if (error.message.includes('invalid')) throw new Error('Wrong request format');
-            throw this.notAutenticatedError(error.message);
+            throw new NotAutenticatedError(error.message);
           case 404:
             throw new NotFoundError(error.message);
           default:

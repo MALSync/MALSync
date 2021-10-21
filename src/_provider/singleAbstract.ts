@@ -686,10 +686,6 @@ export abstract class SingleAbstract {
     return this.getStatus();
   }
 
-  public notAutenticatedError(errorMessage: string) {
-    return new NotAutenticatedError(errorMessage, this.authenticationUrl);
-  }
-
   public getLastError() {
     return this.lastError;
   }

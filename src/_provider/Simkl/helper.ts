@@ -1,4 +1,4 @@
-import { ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, ServerOfflineError } from '../Errors';
 
 export const client_id = '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
 
@@ -172,7 +172,7 @@ export function errorHandling(res, code) {
     } else {
       switch (error) {
         case 'user_token_failed':
-          throw this.notAutenticatedError('user_token_failed');
+          throw new NotAutenticatedError('user_token_failed');
         default:
           throw error;
       }

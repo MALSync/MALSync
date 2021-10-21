@@ -195,7 +195,7 @@ export class Single extends SingleAbstract {
           };
         }
 
-        if (!this._authenticated) throw this.notAutenticatedError('Not Authenticated');
+        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
       });
   }
 
