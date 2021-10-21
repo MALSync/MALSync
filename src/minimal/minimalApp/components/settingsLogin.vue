@@ -38,6 +38,7 @@
 </style>
 
 <script type="text/javascript">
+import { NotAutenticatedError } from '../../../_provider/Errors';
 import { getListbyType } from '../../../_provider/listFactory';
 
 export default {
@@ -81,9 +82,17 @@ export default {
     init() {
       this.username = '';
       this.listObj = getListbyType(this.mode);
-      return this.listObj.getUsername().then(username => {
-        this.username = username;
-      });
+      return this.listObj
+        .getUsername()
+        .then(username => {
+          this.username = username;
+        })
+        .catch(e => {
+          if (e instanceof NotAutenticatedError) {
+            return;
+          }
+          throw e;
+        });
     },
     deauth() {
       this.listObj
