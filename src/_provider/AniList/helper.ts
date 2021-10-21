@@ -131,7 +131,7 @@ export function apiCall(query, variables, authentication = true) {
           case 400:
             if (error.message === 'validation') throw new Error('Wrong request format');
             if (error.message.includes('invalid')) throw new Error('Wrong request format');
-            throw this.throwNotAutenticatedError(error.message);
+            throw this.notAutenticatedError(error.message);
           case 404:
             throw new NotFoundError(error.message);
           default:

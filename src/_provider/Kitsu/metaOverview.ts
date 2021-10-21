@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { NotFoundError, UrlNotSuportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -19,7 +19,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.kitsuSlug = '';
       return this;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   protected readonly type;
@@ -66,7 +66,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
         if (!this.kitsuSlug) throw 'No slug';
       } catch (e) {
-        throw this.errorObj(errorCode.EntryNotFound, e.message);
+        throw new NotFoundError(e.message);
       }
     }
     return this.apiCall(
@@ -80,7 +80,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         // eslint-disable-next-line no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
-        throw this.errorObj(errorCode.EntryNotFound, e.message);
+        throw new NotFoundError(e.message);
       }
 
       this.animeInfo = res;

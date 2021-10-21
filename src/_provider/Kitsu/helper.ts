@@ -1,4 +1,5 @@
 import { errorCode } from '../definitions';
+import { NotFoundError, ServerOfflineError } from '../Errors';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -89,7 +90,7 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
     })
     .then(response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
 
       if (response.status === 204) {
@@ -104,13 +105,11 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
         switch (parseInt(error.status)) {
           case 401:
           case 403:
-            throw this.errorObj(errorCode.NotAutenticated, error.detail);
-            break;
+            throw this.notAutenticatedError(error.detail);
           case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.detail);
-            break;
+            throw new NotFoundError(error.detail);
           default:
-            throw this.errorObj(error.status, error.detail);
+            throw new Error(error.detail);
         }
       }
 
