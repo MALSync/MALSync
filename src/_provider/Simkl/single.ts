@@ -1,6 +1,7 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
 import { errorCode } from '../definitions';
+import { NotAutenticatedError, NotFoundError, UrlNotSuportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -41,7 +42,7 @@ export class Single extends SingleAbstract {
       if (this.type === 'manga') throw 'Simkl has no manga support';
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   getCacheKey() {
@@ -147,7 +148,7 @@ export class Single extends SingleAbstract {
 
     return this.getSingle(de)
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return '';
         }
@@ -169,10 +170,10 @@ export class Single extends SingleAbstract {
           let el;
           if (de.simkl) {
             el = await this.call(`https://api.simkl.com/anime/${de.simkl}`, { extended: 'full' }, true);
-            if (!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
+            if (!el) throw new NotFoundError('Anime not found');
           } else {
             el = await this.call('https://api.simkl.com/search/id', de, true);
-            if (!el) throw this.errorObj(errorCode.EntryNotFound, 'Anime not found');
+            if (!el) throw new NotFoundError('Anime not found');
             if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
               throw { code: 415, message: 'Is a special' };
             el = el[0];
@@ -208,7 +209,7 @@ export class Single extends SingleAbstract {
         }
         this.minWatchedEp = this.curWatchedEp + 1;
 
-        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.notAutenticatedError('Not Authenticated');
       });
   }
 

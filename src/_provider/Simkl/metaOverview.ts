@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { NotFoundError, UrlNotSuportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -22,7 +22,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       return this;
     }
 
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   protected readonly type;
@@ -59,7 +59,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (Number.isNaN(this.simklId)) {
       const el = await this.call('https://api.simkl.com/search/id', de, true);
-      if (!el) throw this.errorObj(errorCode.EntryNotFound, 'simklId');
+      if (!el) throw new NotFoundError(`simklId: ${this.simklId}`);
       this.simklId = el[0].ids.simkl;
     }
 

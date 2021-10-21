@@ -1,4 +1,4 @@
-import { errorCode } from '../definitions';
+import { ServerOfflineError } from '../Errors';
 
 export const client_id = '39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0';
 
@@ -158,7 +158,7 @@ export async function call(url, sData: any = {}, asParameter = false, method: 'G
 
 export function errorHandling(res, code) {
   if ((code > 499 && code < 600) || code === 0) {
-    throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${code}`);
+    throw new ServerOfflineError(`Server Offline status: ${code}`);
   }
 
   if (res && typeof res.error !== 'undefined') {
@@ -167,13 +167,12 @@ export function errorHandling(res, code) {
     if (error.code) {
       switch (error.code) {
         default:
-          throw this.errorObj(error.code, error.error);
+          throw new Error(error.error);
       }
     } else {
       switch (error) {
         case 'user_token_failed':
-          throw this.errorObj(errorCode.NotAutenticated, 'user_token_failed');
-          break;
+          throw this.notAutenticatedError('user_token_failed');
         default:
           throw error;
       }
