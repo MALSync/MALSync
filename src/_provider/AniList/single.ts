@@ -1,6 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from '../definitions';
+import { NotAutenticatedError, UrlNotSuportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -28,7 +28,7 @@ export class Single extends SingleAbstract {
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   getCacheKey() {
@@ -165,7 +165,7 @@ export class Single extends SingleAbstract {
 
     return this.apiCall(query, variables)
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return this.apiCall(query, variables, false);
         }
@@ -195,7 +195,7 @@ export class Single extends SingleAbstract {
           };
         }
 
-        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw this.notAutenticatedError('Not Authenticated');
       });
   }
 

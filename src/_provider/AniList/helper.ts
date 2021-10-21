@@ -1,5 +1,6 @@
 /* eslint-disable no-shadow */
-import { status, errorCode } from '../definitions';
+import { status } from '../definitions';
+import { NotFoundError, ServerOfflineError } from '../Errors';
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -118,7 +119,7 @@ export function apiCall(query, variables, authentication = true) {
     })
     .then(response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
 
       const res = JSON.parse(response.responseText);
@@ -128,15 +129,13 @@ export function apiCall(query, variables, authentication = true) {
         const error = res.errors[0];
         switch (error.status) {
           case 400:
-            if (error.message === 'validation') throw this.errorObj(error.status, 'Wrong request format');
-            if (error.message.includes('invalid')) throw this.errorObj(error.status, 'Wrong request format');
-            throw this.errorObj(errorCode.NotAutenticated, error.message);
-            break;
+            if (error.message === 'validation') throw new Error('Wrong request format');
+            if (error.message.includes('invalid')) throw new Error('Wrong request format');
+            throw this.throwNotAutenticatedError(error.message);
           case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.message);
-            break;
+            throw new NotFoundError(error.message);
           default:
-            throw this.errorObj(error.status, error.message);
+            throw new Error(error.message);
         }
       }
 
