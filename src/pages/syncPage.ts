@@ -416,6 +416,7 @@ export class SyncPage {
           await tempSingle.update();
           this.singleObj = tempSingle;
         } else {
+          if (tempSingle) this.singleObj = tempSingle;
           this.singleObj.flashmError(e);
           this.fillUI();
           throw e;
