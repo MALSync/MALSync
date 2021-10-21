@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { NotAutenticatedError, ServerOfflineError } from '../../../src/_provider/Errors';
 
 export function generalListTests(userlist, elements, responses, options: ObjectAnyType = {}) {
   it('Get List', function() {
@@ -21,9 +22,8 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
           await new userlist(7, 'anime').getCompleteList();
         } catch (error) {
           responses[index].data = temp;
-          let errorRes = 444;
-          if (responses[index].errorCode) errorRes = responses[index].errorCode;
-          expect(error.code).to.equal(errorRes);
+          let errorRes = 'UnexpectedResponseError';
+          expect(error.name).to.equal(errorRes);
         }
 
         responses[index].data = temp;
@@ -41,9 +41,8 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
           await new userlist(7, 'anime').getCompleteList();
         } catch (error) {
           responses[index].data = temp;
-          let errorRes = 406;
-          if (responses[index].errorCode) errorRes = responses[index].errorCode;
-          expect(error.code).to.equal(errorRes);
+          let errorRes = 'UnexpectedResponseError';
+          expect(error.name).to.equal(errorRes);
         }
 
         responses[index].data = temp;
@@ -54,15 +53,15 @@ export function generalListTests(userlist, elements, responses, options: ObjectA
   describe('errorHandling', async function() {
     const list = new userlist();
     it('js', async function() {
-      expect(list.errorMessage('This is a error')).to.equal('This is a error');
+      expect(list.errorMessage(new Error('This is a error'), 'url')).to.equal('This is a error');
     });
 
-    it('400', async function() {
-      expect(list.errorMessage({ code: 400, message: 'Invalid token' })).to.equal('lang');
+    it('Authentication', async function() {
+      expect(list.errorMessage(new NotAutenticatedError('No Authentication'), 'url')).to.equal('lang');
     });
 
-    it('999', async function() {
-      expect(list.errorMessage({ code: 999, message: 'Invalid token' })).to.equal('Invalid token');
+    it('Server offline', async function() {
+      expect(list.errorMessage(new ServerOfflineError('Offline'), 'url')).to.equal('Server Offline');
     });
   });
 }
