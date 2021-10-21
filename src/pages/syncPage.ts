@@ -9,6 +9,7 @@ import { Cache } from '../utils/Cache';
 import { isIframeUrl } from '../utils/manifest';
 import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
+import { NotFoundError, UrlNotSuportedError } from '../_provider/Errors';
 
 declare let browser: any;
 
@@ -403,13 +404,13 @@ export class SyncPage {
         }
         this.singleObj = tempSingle;
       } catch (e) {
-        if (e.code === 901) {
+        if (e instanceof UrlNotSuportedError) {
           utils.flashm('Incorrect url provided', {
             error: true,
             type: 'error',
           });
           throw e;
-        } else if (e.code === 904 && api.settings.get('localSync')) {
+        } else if (e instanceof NotFoundError && api.settings.get('localSync')) {
           logger.log('Local Fallback');
           tempSingle = getSingle(localUrl);
           await tempSingle.update();

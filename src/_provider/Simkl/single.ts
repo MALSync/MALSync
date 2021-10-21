@@ -173,8 +173,7 @@ export class Single extends SingleAbstract {
           } else {
             el = await this.call('https://api.simkl.com/search/id', de, true);
             if (!el) throw new NotFoundError('Anime not found');
-            if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
-              throw { code: 415, message: 'Is a special' };
+            if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special') throw new Error('Is a special');
             el = el[0];
           }
 
@@ -366,25 +365,6 @@ export class Single extends SingleAbstract {
   protected call = helper.call;
 
   protected errorHandling = helper.errorHandling;
-
-  jsonParse(response) {
-    if (response.responseText === '') {
-      throw {
-        code: 444,
-        message: 'No Response',
-      };
-    }
-
-    try {
-      return JSON.parse(response.responseText);
-    } catch (e) {
-      throw {
-        code: 406,
-        message: 'Not Acceptable',
-        error: e,
-      };
-    }
-  }
 
   _delete() {
     return this.call(

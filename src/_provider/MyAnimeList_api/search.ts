@@ -4,12 +4,6 @@ import * as helper from './helper';
 const tempObj = {
   apiCall: helper.apiCall,
   logger: con.m('MAL Search'),
-  errorObj: (code, message) => {
-    return {
-      code,
-      message,
-    };
-  },
   type: 'anime',
 };
 

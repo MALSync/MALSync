@@ -43,16 +43,6 @@ export class UserList extends ListAbstract {
     return api.settings.set('kitsuToken', '').then(() => api.storage.set('kitsuUserId', ''));
   }
 
-  errorHandling(res) {
-    if (typeof res.errors !== 'undefined') {
-      con.error(res.errors);
-      throw {
-        code: parseInt(res.errors[0].status),
-        message: res.errors[0].title,
-      };
-    }
-  }
-
   accessToken() {
     return api.settings.get('kitsuToken');
   }

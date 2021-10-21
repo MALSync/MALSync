@@ -1,3 +1,4 @@
+import { NotAutenticatedError } from '../Errors';
 import { ListAbstract, listElement } from '../listAbstract';
 import * as helper from './helper';
 
@@ -14,10 +15,7 @@ export class UserList extends ListAbstract {
         return res.user.name;
       }
 
-      throw {
-        code: 400,
-        message: 'Not Authenticated',
-      };
+      throw new NotAutenticatedError('Not Authenticated');
     });
   }
 
@@ -33,7 +31,7 @@ export class UserList extends ListAbstract {
 
   async getPart() {
     con.log('[UserList][Simkl]', `status: ${this.status}`);
-    if (this.listType === 'manga') throw { code: 415, message: 'Does not support manga' };
+    if (this.listType === 'manga') throw new Error('Does not support manga');
     return this.syncList().then(async list => {
       this.done = true;
       const data = await this.prepareData(Object.values(list), this.listType, this.status);
