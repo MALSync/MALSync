@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { NotFoundError, UrlNotSuportedError } from '../Errors';
+import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -19,7 +19,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.kitsuSlug = '';
       return this;
     }
-    throw new UrlNotSuportedError(url);
+    throw new UrlNotSupportedError(url);
   }
 
   protected readonly type;

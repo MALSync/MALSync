@@ -1,6 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { NotAutenticatedError, UrlNotSuportedError } from '../Errors';
+import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -28,7 +28,7 @@ export class Single extends SingleAbstract {
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
-    throw new UrlNotSuportedError(url);
+    throw new UrlNotSupportedError(url);
   }
 
   getCacheKey() {

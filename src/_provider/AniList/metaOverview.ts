@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { UrlNotSuportedError } from '../Errors';
+import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -18,7 +18,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.aniId = NaN;
       return this;
     }
-    throw new UrlNotSuportedError(url);
+    throw new UrlNotSupportedError(url);
   }
 
   protected readonly type;

@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { UrlNotSuportedError } from '../Errors';
+import { UrlNotSupportedError } from '../Errors';
 
 // local://crunchyroll/anime/nogamenolife
 
@@ -38,7 +38,7 @@ export class Single extends SingleAbstract {
       }
       return;
     }
-    throw new UrlNotSuportedError(url);
+    throw new UrlNotSupportedError(url);
   }
 
   getCacheKey() {

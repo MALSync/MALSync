@@ -9,7 +9,7 @@ import { Cache } from '../utils/Cache';
 import { isIframeUrl } from '../utils/manifest';
 import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
-import { NotFoundError, UrlNotSuportedError } from '../_provider/Errors';
+import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 
 declare let browser: any;
 
@@ -308,7 +308,7 @@ export class SyncPage {
       try {
         tempSingle = await this.searchObj.initRules();
       } catch (e) {
-        if (e instanceof UrlNotSuportedError) {
+        if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
         }
         throw e;
@@ -374,7 +374,7 @@ export class SyncPage {
       try {
         tempSingle = await this.searchObj.initRules();
       } catch (e) {
-        if (e instanceof UrlNotSuportedError) {
+        if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
         }
         throw e;
@@ -420,7 +420,7 @@ export class SyncPage {
         }
         this.singleObj = tempSingle;
       } catch (e) {
-        if (e instanceof UrlNotSuportedError) {
+        if (e instanceof UrlNotSupportedError) {
           this.incorrectUrl();
           throw e;
         } else if (e instanceof NotFoundError && api.settings.get('localSync')) {

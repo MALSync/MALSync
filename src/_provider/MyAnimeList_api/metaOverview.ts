@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { UrlNotSuportedError } from '../Errors';
+import { UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 import { msDiffToShortTimeString } from '../../utils/time';
 
@@ -66,7 +66,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.malId = Number(utils.urlPart(url, 4));
       return;
     }
-    throw new UrlNotSuportedError(url);
+    throw new UrlNotSupportedError(url);
   }
 
   protected readonly type;

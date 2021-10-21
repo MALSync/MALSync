@@ -6,10 +6,10 @@ export class NotAutenticatedError extends Error {
   }
 }
 
-export class UrlNotSuportedError extends Error {
+export class UrlNotSupportedError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'UrlNotSuportedError';
+    this.name = 'UrlNotSupportedError';
   }
 }
 
@@ -34,7 +34,7 @@ export function errorMessage(error, authenticationUrl: string) {
   if (error instanceof ServerOfflineError) {
     return `[${this.shortName}] Server Offline`;
   }
-  if (error instanceof UrlNotSuportedError) {
+  if (error instanceof UrlNotSupportedError) {
     return `Incorrect url provided [${error.message}]`;
   }
   if (error instanceof NotFoundError) {
