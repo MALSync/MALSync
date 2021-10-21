@@ -5,6 +5,7 @@ import { getProgressTypeList, predictionXhrGET } from '../background/releaseProg
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
+import { NotAutenticatedError, NotFoundError, ServerOfflineError, UrlNotSuportedError } from './Errors';
 
 Object.seal(emitter);
 
@@ -685,19 +686,16 @@ export abstract class SingleAbstract {
     return this.getStatus();
   }
 
+  public notAutenticatedError(errorMessage: string) {
+    return new NotAutenticatedError(errorMessage, this.authenticationUrl);
+  }
+
   public getLastError() {
     return this.lastError;
   }
 
   public getLastErrorMessage() {
     return this.errorMessage(this.getLastError());
-  }
-
-  protected errorObj(code: definitions.errorCode, message): definitions.error {
-    return {
-      code,
-      message,
-    };
   }
 
   flashmError(error) {
@@ -709,22 +707,18 @@ export abstract class SingleAbstract {
       return error;
     }
 
-    switch (error.code) {
-      case definitions.errorCode.NotAutenticated:
-        return api.storage.lang('Error_Authenticate', [this.authenticationUrl]);
-        break;
-      case definitions.errorCode.ServerOffline:
-        return `[${this.shortName}] Server Offline`;
-        break;
-      case definitions.errorCode.UrlNotSuported:
-        return 'Incorrect url provided';
-        break;
-      case definitions.errorCode.EntryNotFound:
-        return `Entry for this ${this.getType()} could not be found on ${this.shortName}`;
-        break;
-      default:
-        return error.message;
-        break;
+    if (error instanceof NotAutenticatedError) {
+      return api.storage.lang('Error_Authenticate', [error.authenticationUrl]);
     }
+    if (error instanceof ServerOfflineError) {
+      return `[${this.shortName}] Server Offline`;
+    }
+    if (error instanceof UrlNotSuportedError) {
+      return `Incorrect url provided [${error.message}]`;
+    }
+    if (error instanceof NotFoundError) {
+      return `Could not find this entry`;
+    }
+    return error.message;
   }
 }
