@@ -350,7 +350,7 @@ export class Single extends SingleAbstract {
 
   protected async userId() {
     const userId = await api.storage.get('kitsuUserId');
-    if (typeof userId !== 'undefined') {
+    if (typeof userId !== 'undefined' && userId) {
       return userId;
     }
     return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
