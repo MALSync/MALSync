@@ -240,7 +240,9 @@ export class Single extends SingleAbstract {
     });
   }
 
-  protected apiCall = helper.apiCall;
+  protected apiCall(query, variables, authentication = true) {
+    return helper.apiCall(query, variables, authentication);
+  };
 
   private getScoreMode() {
     return api.settings.get('anilistOptions').scoreFormat;

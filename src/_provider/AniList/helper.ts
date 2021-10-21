@@ -2,6 +2,8 @@
 import { status } from '../definitions';
 import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
 
+const logger = con.m('anilist', '#3db4f2');
+
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
     CURRENT: 1,
@@ -125,7 +127,7 @@ export function apiCall(query, variables, authentication = true) {
       const res = JSON.parse(response.responseText);
 
       if (typeof res.errors !== 'undefined' && res.errors.length) {
-        this.logger.error('[SINGLE]', 'Error', res.errors);
+        logger.error('[SINGLE]', 'Error', res.errors);
         const error = res.errors[0];
         switch (error.status) {
           case 400:
