@@ -1,4 +1,3 @@
-import * as definitions from './definitions';
 import { Cache } from '../utils/Cache';
 
 export interface Overview {

@@ -5,7 +5,7 @@ import { getProgressTypeList, predictionXhrGET } from '../background/releaseProg
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
-import { errorMessage as _errorMessage, NotAutenticatedError } from './Errors';
+import { errorMessage as _errorMessage } from './Errors';
 
 Object.seal(emitter);
 

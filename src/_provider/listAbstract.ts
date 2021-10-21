@@ -1,6 +1,5 @@
 import { Cache } from '../utils/Cache';
 import { Progress } from '../utils/progress';
-import * as definitions from './definitions';
 import { emitter } from '../utils/emitter';
 import { errorMessage as _errorMessage } from './Errors';
 
