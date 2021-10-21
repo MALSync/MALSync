@@ -28,10 +28,6 @@ export class NotFoundError extends Error {
 }
 
 export function errorMessage(error, authenticationUrl: string) {
-  if (typeof error.code === 'undefined') {
-    return error;
-  }
-
   if (error instanceof NotAutenticatedError) {
     return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }
