@@ -25,27 +25,7 @@ export class UserList extends ListAbstract {
     return api.settings.set('simklToken', '');
   }
 
-  errorHandling(res, code) {
-    if (typeof res.error !== 'undefined') {
-      con.error(res.error);
-      throw {
-        code,
-        message: res.error,
-      };
-    }
-    switch (code) {
-      case 200:
-      case 201:
-      case 204:
-      case 302:
-        break;
-      default:
-        throw {
-          code,
-          message: `Code: ${code}`,
-        };
-    }
-  }
+  errorHandling = helper.errorHandling;
 
   _getSortingOptions() {
     return [];

@@ -150,7 +150,7 @@ export async function call(url, sData: any = {}, asParameter = false, method: 'G
       data: sData,
     })
     .then(async response => {
-      const res = this.jsonParse(response);
+      const res = JSON.parse(response.responseText);
       this.errorHandling(res, response.status);
       return res;
     });

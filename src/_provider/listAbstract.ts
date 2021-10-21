@@ -223,25 +223,6 @@ export abstract class ListAbstract {
 
   abstract getPart(): Promise<listElement[]>;
 
-  jsonParse(response) {
-    if (response.responseText === '') {
-      throw {
-        code: 444,
-        message: 'No Response',
-      };
-    }
-
-    try {
-      return JSON.parse(response.responseText);
-    } catch (e) {
-      throw {
-        code: 406,
-        message: 'Not Acceptable',
-        error: e,
-      };
-    }
-  }
-
   flashmError(error) {
     utils.flashm(this.errorMessage(error), { error: true, type: 'error' });
   }
