@@ -248,7 +248,7 @@ export abstract class ListAbstract {
   }
 
   errorMessage(error) {
-    return _errorMessage(error);
+    return _errorMessage(error, this.authenticationUrl);
   }
 
   // itemFunctions;

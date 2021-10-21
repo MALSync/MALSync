@@ -699,6 +699,6 @@ export abstract class SingleAbstract {
   }
 
   errorMessage(error) {
-    return _errorMessage(error);
+    return _errorMessage(error, this.authenticationUrl);
   }
 }
