@@ -304,7 +304,15 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
-      tempSingle = await this.searchObj.initRules();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSuportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
 
       if (!state.detectedEpisode && state.detectedEpisode !== 0) {
         if (this.page.type === 'anime') {
@@ -362,7 +370,15 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
-      tempSingle = await this.searchObj.initRules();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSuportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
 
       logger.m('Overview', 'green').log(state);
       bloodTrail({
@@ -405,10 +421,7 @@ export class SyncPage {
         this.singleObj = tempSingle;
       } catch (e) {
         if (e instanceof UrlNotSuportedError) {
-          utils.flashm('Incorrect url provided', {
-            error: true,
-            type: 'error',
-          });
+          this.incorrectUrl();
           throw e;
         } else if (e instanceof NotFoundError && api.settings.get('localSync')) {
           logger.log('Local Fallback');
@@ -911,6 +924,14 @@ export class SyncPage {
       const image = await this.page.getImage();
       if (image) this.singleObj.setImage(image);
     }
+  }
+
+  incorrectUrl() {
+    utils.flashm('Incorrect url provided', {
+      error: true,
+      type: 'error',
+    });
+    this.openCorrectionUi();
   }
 
   testForCloudflare() {
