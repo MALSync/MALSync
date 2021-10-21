@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { UrlNotSuportedError } from '../Errors';
 import * as helper from './helper';
 import { msDiffToShortTimeString } from '../../utils/time';
 
@@ -66,7 +66,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.malId = Number(utils.urlPart(url, 4));
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   protected readonly type;

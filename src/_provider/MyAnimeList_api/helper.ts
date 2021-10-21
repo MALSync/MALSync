@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import { errorCode, status } from '../definitions';
 import { clientId } from '../../utils/oauth';
+import { NotFoundError, ServerOfflineError } from '../Errors';
 
 export const apiDomain = 'https://api.myanimelist.net/v2/';
 
@@ -39,7 +40,7 @@ export async function apiCall(options: {
     })
     .then(async response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
 
       let res;
@@ -47,10 +48,7 @@ export async function apiCall(options: {
         res = JSON.parse(response.responseText);
       } catch (e) {
         if (checkIfBanned(response.responseText)) {
-          throw this.errorObj(
-            errorCode.GenericError,
-            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
-          );
+          throw new Error(`Your IP has been banned on MAL, change your IP or wait for it to get unbanned`);
         }
         throw e;
       }
@@ -62,26 +60,19 @@ export async function apiCall(options: {
             if (await refreshToken(this.logger)) {
               return this.apiCall(options);
             }
-            throw this.errorObj(errorCode.NotAutenticated, res.message ?? res.error);
-            break;
+            throw this.notAutenticatedError(res.message ?? res.error);
           case 'not_found':
-            throw this.errorObj(errorCode.EntryNotFound, res.message ?? res.error);
-            break;
+            throw new NotFoundError(res.message ?? res.error);
           case 'invalid_content':
-            throw this.errorObj(
-              errorCode.GenericError,
-              `This ${this.type} is currently pending approval. It can´t be saved to mal for now`,
-            );
-            break;
+            throw new Error(`This Entry is currently pending approval. It can´t be saved to mal for now`);
           default:
-            throw this.errorObj(res.error, res.message ?? res.error);
+            throw new Error(res.message ?? res.error);
         }
       }
 
       switch (response.status) {
         case 400:
-          throw this.errorObj(errorCode.GenericError, 'Invalid Parameters');
-          break;
+          throw new Error('Invalid Parameters');
         case 403:
         default:
       }
@@ -108,10 +99,7 @@ async function refreshToken(logger) {
         return JSON.parse(res.responseText);
       } catch (e) {
         if (checkIfBanned(res.responseText)) {
-          throw {
-            code: errorCode.GenericError,
-            message: `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
-          };
+          throw new Error(`Your IP has been banned on MAL, change your IP or wait for it to get unbanned`);
         }
         throw e;
       }

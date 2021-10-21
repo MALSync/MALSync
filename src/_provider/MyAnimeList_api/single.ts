@@ -1,5 +1,5 @@
 import { SingleAbstract } from '../singleAbstract';
-import { errorCode } from '../definitions';
+import { NotAutenticatedError, UrlNotSuportedError } from '../Errors';
 import * as helper from './helper';
 import { malToAnilist } from '../AniList/helper';
 import { Cache } from '../../utils/Cache';
@@ -28,7 +28,7 @@ export class Single extends SingleAbstract {
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSuportedError(url);
   }
 
   getCacheKey() {
@@ -175,7 +175,7 @@ export class Single extends SingleAbstract {
       ],
     })
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
         }
         throw e;
