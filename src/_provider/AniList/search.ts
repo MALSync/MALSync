@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { parseJson } from '../Errors';
 
 export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
   const query = `
@@ -48,7 +49,7 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
     }),
   });
 
-  const res = JSON.parse(response.responseText);
+  const res = parseJson(response.responseText);
   con.log(res);
 
   const resItems: any = [];

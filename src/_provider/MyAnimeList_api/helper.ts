@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { status } from '../definitions';
 import { clientId } from '../../utils/oauth';
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 export const apiDomain = 'https://api.myanimelist.net/v2/';
 
@@ -96,7 +96,7 @@ async function refreshToken(logger) {
     })
     .then(res => {
       try {
-        return JSON.parse(res.responseText);
+        return parseJson(res.responseText);
       } catch (e) {
         if (checkIfBanned(res.responseText)) {
           throw new Error(`Your IP has been banned on MAL, change your IP or wait for it to get unbanned`);

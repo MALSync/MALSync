@@ -1,4 +1,5 @@
 import { searchInterface } from '../definitions';
+import { parseJson } from '../Errors';
 import * as helper from './helper';
 
 export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
@@ -76,18 +77,18 @@ async function call(url, sData = {}, asParameter = false, methode: 'GET' | 'POST
       }
 
       try {
-        return JSON.parse(response.responseText);
+        return parseJson(response.responseText);
       } catch (e) {
         con.error(response);
         throw e;
       }
 
       function getErrorText() {
-        return JSON.parse(response.responseText).error;
+        return parseJson(response.responseText).error;
       }
 
       function getThrowError() {
-        return { status: response.status, message: getErrorText() };
+        return new Error(getErrorText());
       }
     });
 }

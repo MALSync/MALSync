@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { status } from '../definitions';
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('anilist', '#3db4f2');
 
@@ -56,7 +56,7 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
       }),
     })
     .then(response => {
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
       con.log(res);
       return res.data.Media.idMal;
     });
@@ -91,7 +91,7 @@ export function malToAnilist(malId: number, type: 'anime' | 'manga') {
     })
     .then(response => {
       if (response.status === 404) return NaN;
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
       con.log(res);
       return res.data.Media.id;
     });
@@ -124,7 +124,7 @@ export function apiCall(query, variables, authentication = true) {
         throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
 
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
 
       if (typeof res.errors !== 'undefined' && res.errors.length) {
         logger.error('[SINGLE]', 'Error', res.errors);

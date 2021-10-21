@@ -27,12 +27,27 @@ export class NotFoundError extends Error {
   }
 }
 
+export class UnexpectedResponseError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'UnexpectedResponseError';
+  }
+}
+
+export function parseJson(json) {
+  try {
+    return JSON.parse(json);
+  } catch (e) {
+    throw new UnexpectedResponseError(e.message);
+  }
+}
+
 export function errorMessage(error, authenticationUrl: string) {
   if (error instanceof NotAutenticatedError) {
     return api.storage.lang('Error_Authenticate', [authenticationUrl]);
   }
   if (error instanceof ServerOfflineError) {
-    return `[${this.shortName}] Server Offline`;
+    return `Server Offline`;
   }
   if (error instanceof UrlNotSupportedError) {
     return `Incorrect url provided [${error.message}]`;

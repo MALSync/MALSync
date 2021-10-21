@@ -1,4 +1,4 @@
-import { NotAutenticatedError, NotFoundError, ServerOfflineError } from '../Errors';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
 
 const logger = con.m('kitsu', '#d65e43');
 
@@ -98,7 +98,7 @@ export function apiCall(mode, url, variables = {}, authentication = true) {
         return {};
       }
 
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
 
       if (typeof res.errors !== 'undefined' && res.errors.length) {
         logger.error('[SINGLE]', 'Error', res.errors);
