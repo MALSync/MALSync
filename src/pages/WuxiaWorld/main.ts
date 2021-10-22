@@ -6,16 +6,10 @@ export const WuxiaWorld: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
-      return true;
-    }
-    return false;
+    return Boolean(utils.urlPart(url, 5));
   },
   isOverviewPage(url) {
-    if (url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {
-      return true;
-    }
-    return false;
+    return Boolean(utils.urlPart(url, 4));
   },
   sync: {
     getTitle(url) {
