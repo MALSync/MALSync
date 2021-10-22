@@ -6,13 +6,13 @@ export const Readm: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0 && !j.$('#series-profile-wrapper').length) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {
+    if ((url.split('/')[4] !== undefined && url.split('/')[4].length > 0) || j.$('#series-profile-wrapper').length) {
       return true;
     }
     return false;
@@ -71,6 +71,10 @@ export const Readm: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('404 Not Found')) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },
