@@ -26,13 +26,13 @@ export const DynastyScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('#chapter-title > b > a').text();
+      return j.$('#chapter-title > b > a').text() || j.$('#chapter-title > b').text();
     },
     getIdentifier(url) {
       return utils.urlPart(utils.absoluteLink(DynastyScans.sync.getOverviewUrl(url), DynastyScans.domain), 4);
     },
     getOverviewUrl(url) {
-      return j.$('#chapter-title > b > a').attr('href') || '';
+      return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), url) || url;
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
