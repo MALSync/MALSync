@@ -84,7 +84,11 @@ export const FlameScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'series' && page.url.split('/')[4] !== '') {
+      if (document.title.includes('Page not found')) {
+        con.error('404');
+        return;
+      }
+      if (utils.urlPart(page.url, 3) === 'series' && utils.urlPart(page.url, 4) !== '') {
         page.handlePage();
       }
       if (j.$('div#content.readercontent').length) {
