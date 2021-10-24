@@ -11,7 +11,9 @@ export const Hidive: pageInterface = {
     }
     return false;
   },
-
+  isOverviewPage(url) {
+    return Boolean(j.$('#showInfoPage').length);
+  },
   sync: {
     getTitle(url) {
       return j.$('#TitleDetails').text();
