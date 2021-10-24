@@ -90,6 +90,10 @@ export const MerakiScans: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('Page Not Found')) {
+        con.error('404');
+        return;
+      }
       if (
         page.url.split('/')[3] === 'manga' &&
         (page.url.split('/').length === 6 || page.url.split('/').length === 7)
