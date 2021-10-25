@@ -104,6 +104,10 @@ export const KireiCake: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('Adult content notice')) {
+        con.error('Adult notice');
+        return;
+      }
       if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'read') {
         page.handlePage();
       }
