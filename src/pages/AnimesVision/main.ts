@@ -1,86 +1,102 @@
 import { pageInterface } from '../pageInterface';
 
+type VisionSyncData = {
+  page: 'episodio' | 'anime';
+  name: string;
+  anime_id: string;
+  mal_id: string;
+  series_url: string;
+  selector_position?: string;
+  episode?: string;
+  next_episode_url?: string;
+};
+
+let jsonData: VisionSyncData;
+
+function filterTitle(title: string) {
+  return title
+    .replace(/Dublado/gim, '')
+    .replace(/[\s-\s]*$/, '')
+    .trim();
+}
+
 export const AnimesVision: pageInterface = {
   name: 'AnimesVision',
   domain: 'https://animesvision.biz',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined) {
-      return true;
-    }
-    return false;
+    return jsonData.page === 'episodio';
+  },
+  isOverviewPage(url) {
+    return jsonData.page === 'anime';
   },
   sync: {
     getTitle(url) {
-      return utils
-        .getBaseText($('div.goblock.play-anime > div.gobread > ol > li.active > h1'))
-        .replace(/Dublado/gim, '')
-        .replace(/[\s-\s]*$/, '')
-        .trim();
+      return filterTitle(utils.htmlDecode(jsonData.name));
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return jsonData.anime_id;
     },
     getOverviewUrl(url) {
-      return j.$('#episodes-sv-1 > li > div.sli-name > a').attr('href') || '';
+      return jsonData.series_url;
     },
     getEpisode(url) {
-      const episodetemp = utils.urlPart(url, 5).replace(/\D+/, '');
-
-      if (!episodetemp) return 1;
-
-      return Number(episodetemp);
+      return parseInt(jsonData.episode!);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('#nextEp').attr('href'), AnimesVision.domain);
+      return jsonData.next_episode_url;
+    },
+    getMalUrl(provider) {
+      if (jsonData.mal_id) {
+        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
+      }
+      return false;
     },
   },
   overview: {
     getTitle(url) {
-      return utils
-        .getBaseText($('div.goblock.detail-anime > div.gobread > ol > li.active > span'))
-        .replace(/Dublado/gim, '')
-        .replace(/[\s-\s]*$/, '')
-        .trim();
+      return filterTitle(utils.htmlDecode(jsonData.name));
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return jsonData.anime_id;
     },
     uiSelector(selector) {
-      j.$('div.goblock.detail-anime > div.goblock-content.go-full > div.detail-content').after(j.html(selector));
+      j.$(jsonData.selector_position!).append(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return AnimesVision.sync.getMalUrl!(provider);
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#episodes-sv-1 > li.ep-item');
+        return j.$('.ss-list > a');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return utils.absoluteLink(selector.attr('href'), AnimesVision.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .attr('href')
-            ?.split('/')?.[5]
-            ?.replace(/\D+/, ''),
-        );
+        return Number(selector.attr('data-number'));
       },
     },
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if (page.url.split('/')[3] === 'animes' || page.url.split('/')[3] === 'filmes') {
-        page.handlePage();
+
+    let _debounce;
+
+    utils.changeDetect(check, () => j.$('#syncData').text());
+    check();
+
+    function check() {
+      page.reset();
+      if (j.$('#syncData').length) {
+        jsonData = JSON.parse(j.$('#syncData').text());
+        clearTimeout(_debounce);
+        _debounce = setTimeout(() => {
+          page.handlePage();
+        }, 500);
       }
-    });
+    }
   },
 };
