@@ -63,6 +63,10 @@ export const tenshi: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('Not Found')) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },
