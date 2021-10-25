@@ -87,6 +87,10 @@ export const DubbedAnime: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('410 Gone') || document.title.includes('Not Found')) {
+        con.error('Does not exist anymore');
+        return;
+      }
       if (page.url.split('/')[3] === 'episode') {
         page.handlePage();
       } else if (page.url.split('/')[3] === 'anime') {
