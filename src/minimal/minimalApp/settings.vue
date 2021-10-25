@@ -321,56 +321,6 @@
         <checkbox option="loadPTWForProgress">{{ lang('settings_loadPTWForProgress') }}</checkbox>
       </div>
 
-      <div
-        v-show="legacy"
-        class="updateCheckEnable mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-      >
-        <div id="updateCheck" style="display: none; border: 1px solid red">
-          <div class="mdl-card__title mdl-card--border">
-            <h2 class="mdl-card__title-text">
-              {{ lang('settings_UpdateCheck') }}
-            </h2>
-            <tooltip>
-              {{ lang('settings_UpdateCheck_Text') }}
-            </tooltip>
-            <div id="updateCheckAgo" style="margin-left: auto;"></div>
-          </div>
-
-          <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              {{ lang('settings_Interval') }}
-            </span>
-            <span class="mdl-list__item-secondary-action">
-              <select
-                id="updateCheckTime"
-                name="updateCheckTime"
-                class="inputtext mdl-textfield__input"
-                style="outline: none;"
-              >
-                <option value="0">{{ lang('settings_Interval_Off') }}</option>
-                <option value="60">1h</option>
-                <option value="240">4h</option>
-                <option value="720">12h</option>
-                <option value="1440">24h</option>
-                <option value="2880">48h</option>
-              </select>
-            </span>
-          </li>
-          <span class="updateCheckEnable" style="display: none;">
-            <checkbox option="updateCheckNotifications">{{ lang('settings_Notifications') }}</checkbox>
-          </span>
-          <li class="mdl-list__item updateCheckEnable" style="display: none;">
-            <button
-              id="updateCheckUi"
-              type="button"
-              class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            >
-              {{ lang('settings_Debugging') }}
-            </button>
-          </li>
-        </div>
-      </div>
-
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
@@ -417,6 +367,7 @@
           </checkbox>
         </span>
 
+        <!--
         <span class="option-legacy">
           <li class="mdl-list__item">
             <span class="mdl-list__item-primary-content">
@@ -429,6 +380,7 @@
             </span>
           </li>
         </span>
+        -->
 
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
