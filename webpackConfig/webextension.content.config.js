@@ -43,7 +43,6 @@ let entry = {
   iframe: path.join(__dirname, '..', 'src/iframe.ts'),
   popup: path.join(__dirname, '..', 'src/popup.ts'),
   install: path.join(__dirname, '..', 'src/index-webextension/install.ts'),
-  'update-check': path.join(__dirname, '..', 'src/updateCheck.ts'),
 }
 
 pages.forEach(page => {
