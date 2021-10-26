@@ -306,6 +306,7 @@ module.exports = {
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
       '*://v.vvid.cc/*',
+      '*://playdrive.xyz/*',
     ],
   },
   // animekisa
