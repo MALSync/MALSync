@@ -355,6 +355,10 @@ module.exports = {
       '*://*.gogoplay1.com/load.php?*',
       '*://*.gogoplay1.com/loadserver.php?*',
       '*://*.gogoplay1.com/embedplus*',
+      '*://*.gogoplay2.com/streaming.php?*',
+      '*://*.gogoplay2.com/load.php?*',
+      '*://*.gogoplay2.com/loadserver.php?*',
+      '*://*.gogoplay2.com/embedplus*',
     ],
   },
   // bs.to
