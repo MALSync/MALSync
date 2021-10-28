@@ -569,4 +569,8 @@ module.exports = {
   harajuku: {
     match: ['*://harajuku.pl/*'],
   },
+  // anime-shitai
+  vupload: {
+    match: ['*://vupload.com/*'],
+  },
 };
