@@ -139,7 +139,8 @@ export const MangaKatana: pageInterface = {
       if (
         page.url.split('/')[3] === 'manga' &&
         page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
+        page.url.split('/')[4].length > 0 &&
+        page.url.split('/')[4] !== 'page'
       ) {
         page.handlePage();
       }
