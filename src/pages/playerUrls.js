@@ -72,6 +72,7 @@ module.exports = {
       '*://*.femax20.com/e/*',
       '*://*.fplayer.info/*',
       '*://*.dutrag.com/*',
+      '*://*.diasfem.com/*',
     ],
   },
   youpload: {
@@ -572,5 +573,25 @@ module.exports = {
   // anime-shitai
   vupload: {
     match: ['*://vupload.com/*'],
+  },
+  // turkanime
+  turkanime: {
+    match: ['*://*.turkanime.net/player/*'],
+  },
+  // turkanime
+  cozyplayer: {
+    match: ['*://play.cozyplayer.com/*'],
+  },
+  // turkanime
+  odnoklassniki: {
+    match: ['*://odnoklassniki.ru/*'],
+  },
+  // turkanime
+  cloneplayer: {
+    match: ['*://cloneplayer.xyz/*'],
+  },
+  // turkanime
+  myalucard: {
+    match: ['*://myalucard.xyz/*'],
   },
 };
