@@ -514,6 +514,7 @@ module.exports = {
       '*://akane-shinjou.github.io/*',
       '*://andhaetg.github.io/*',
       '*://akaneshinjou.netlify.app/*',
+      '*://anfruete.github.io/*',
     ],
   },
   // zoro
@@ -551,5 +552,17 @@ module.exports = {
   // Dreamsub
   dreamsub: {
     match: ['*://cdn2.dreamsub.cc/*'],
+  },
+  // animixplay
+  streamzz: {
+    match: ['*://streamzz.to/*'],
+  },
+  // animixplay
+  protonvideo: {
+    match: ['*://protonvideo.to/iframe/*'],
+  },
+  // animixplay
+  ninjastream: {
+    match: ['*://ninjastream.to/watch/*'],
   },
 };
