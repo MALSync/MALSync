@@ -565,4 +565,8 @@ module.exports = {
   ninjastream: {
     match: ['*://ninjastream.to/watch/*'],
   },
+  // anime-odcinki
+  harajuku: {
+    match: ['*://harajuku.pl/*'],
+  },
 };
