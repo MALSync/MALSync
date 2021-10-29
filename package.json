@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^6.13.2",
-    "@types/chrome": "0.0.161",
+    "@types/chrome": "0.0.162",
     "async-mutex": "^0.3.0",
     "dexie": "^3.0.3",
     "dompurify": "^2.3.2",
