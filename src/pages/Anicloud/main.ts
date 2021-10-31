@@ -17,7 +17,8 @@ export const Anicloud: pageInterface = {
     return (
       typeof url.split('/')[4] !== 'undefined' &&
       url.split('/')[4] === 'stream' &&
-      typeof url.split('/')[7] === 'undefined'
+      typeof url.split('/')[7] === 'undefined' &&
+      url.split('/')[6] !== 'filme'
     );
   },
   sync: {
