@@ -136,7 +136,9 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.animeI().attributes.posterImage.large;
+    return this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
+      ? this.animeI().attributes.posterImage.large
+      : '';
   }
 
   _getRating() {

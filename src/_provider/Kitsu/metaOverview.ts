@@ -99,7 +99,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private image() {
-    this.meta.image = this.animeI().attributes.posterImage.large;
+    this.meta.image =
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
+        ? this.animeI().attributes.posterImage.large
+        : '';
   }
 
   private alternativeTitle() {
