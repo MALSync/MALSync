@@ -61,6 +61,7 @@ export class MyAnimeListClass {
         this.malToKiss();
         this.related();
         this.friendScore();
+        this.relatedTag();
         break;
       case 'bookmarks':
         $(document).ready(() => {
@@ -80,6 +81,7 @@ export class MyAnimeListClass {
         break;
       case 'character':
       case 'people':
+        this.relatedTag();
       case 'search':
         this.thumbnails();
         break;
@@ -528,6 +530,34 @@ export class MyAnimeListClass {
                 if (tag) el.append(j.html(tag));
               }
             });
+        }
+      });
+    });
+  }
+
+  relatedTag() {
+    const This = this;
+    $(document).ready(function() {
+      $('a.button_edit').each(function() {
+        const el = $(this);
+        const href = $(this).attr('href') || '';
+        const type = utils.urlPart(href, 4);
+        const id = utils.urlPart(href, 5);
+        const state = el.attr('title');
+        if (typeof state !== 'undefined' && state) {
+          const tag = String(utils.statusTag(state, type, id));
+          if (This.page === 'detail') {
+            el.parent()
+              .find('> a')
+              .first()
+              .after(j.html(tag));
+          } else {
+            el.parent()
+              .parent()
+              .find('> a')
+              .after(j.html(tag));
+          }
+          el.remove();
         }
       });
     });
