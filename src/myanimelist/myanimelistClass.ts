@@ -80,8 +80,8 @@ export class MyAnimeListClass {
         this.bookmarks();
         break;
       case 'character':
-      case 'people':
         this.relatedTag();
+      case 'people':
       case 'search':
         this.thumbnails();
         break;
