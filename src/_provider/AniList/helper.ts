@@ -123,6 +123,9 @@ export function apiCall(query, variables, authentication = true) {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
         throw new ServerOfflineError(`Server Offline status: ${response.status}`);
       }
+      if (response.status === 403) {
+        throw new Error(`Your IP has been banned on ANILIST, change your IP or wait for it to get unbanned`);;
+      }
 
       const res = parseJson(response.responseText);
 
