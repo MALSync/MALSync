@@ -983,7 +983,6 @@ export class SyncPage {
     const This = this;
     if (this.UILoaded) return;
     this.UILoaded = true;
-    let wrapStart = '<span style="display: inline-block;">';
     const wrapEnd = '</span>';
 
     let ui = '<p id="malp">';
@@ -991,52 +990,57 @@ export class SyncPage {
 
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('search_Score')} </span>`;
-    ui += '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+    ui += '<span style="display: inline-block;" class="malp-group malp-group-rating">';
+    ui += `<span class="info malp-group-label">${api.storage.lang('search_Score')} </span>`;
+    ui +=
+      '<a id="malRating" class="malp-group-field" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 
     // ui += '<span id="MalLogin">';
-    wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
+    const wrapStart = (section: string) =>
+      `<span style="display: inline-block; display: none;" class="MalLogin malp-group malp-group-${section}">`;
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('UI_Status')} </span>`;
-    ui += '<select id="malStatus">';
+    ui += wrapStart('status');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Status')} </span>`;
+    ui += '<select id="malStatus" class="malp-group-field malp-group-select">';
     ui += '</select>';
     ui += wrapEnd;
 
     let middle = '';
     if (this.page.type === 'anime') {
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotal">0</span>';
+      middle += wrapStart('episode');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Episode')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotal" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
     } else {
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Volume')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotalVol">0</span>';
+      middle += wrapStart('volume');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Volume')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malVolumes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalVol" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
 
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Chapter')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotalCha">0</span>';
+      middle += wrapStart('chapter');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Chapter')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalCha" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
     }
 
     ui += middle;
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('UI_Score')}</span>`;
-    ui += '<select id="malUserRating">';
+    ui += wrapStart('score');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Score')}</span>`;
+    ui += '<select id="malUserRating" class="malp-group-field malp-group-select">';
     ui += '</select>';
     ui += wrapEnd;
 
