@@ -89,8 +89,12 @@ export function getInter(): pageInterface {
     },
     init(page) {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+      if (window.location.host.startsWith('m.')) {
+        con.error('Mobile version not supported');
+        return;
+      }
       j.$(document).ready(function() {
-        if (document.title === '404') {
+        if (document.title === '404' || document.title.includes('The resource cannot be found')) {
           con.error('404');
           return;
         }
