@@ -85,6 +85,10 @@ export function getInter(): pageInterface {
     init(page) {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       j.$(document).ready(function() {
+        if (document.title.includes('Not Found')) {
+          con.error('404');
+          return;
+        }
         if (
           page.url.split('/')[3] === 'comics' &&
           (page.url.split('/').length === 5 || page.url.split('/').length === 7)

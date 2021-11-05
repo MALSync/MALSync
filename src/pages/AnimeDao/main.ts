@@ -1,3 +1,4 @@
+import { SafeError } from '../../utils/errors';
 import { pageInterface } from '../pageInterface';
 
 export const AnimeDao: pageInterface = {
@@ -37,10 +38,10 @@ export const AnimeDao: pageInterface = {
         .text()
         .toLowerCase();
       if (text.includes('special') || text.includes('ova') || text.includes('movie')) {
-        throw new Error('specials are not supported');
+        throw new SafeError('specials are not supported');
       }
       if (!text.includes('episode')) {
-        throw new Error('episode is missing');
+        throw new SafeError('episode is missing');
       }
       return episodePartToEpisode(text);
     },
@@ -88,6 +89,10 @@ export const AnimeDao: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('Not Found')) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },

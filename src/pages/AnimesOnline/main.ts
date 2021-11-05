@@ -9,7 +9,8 @@ export const AnimesOnline: pageInterface = {
     return (
       (url.split('/')[3] === 'filmes' || url.split('/')[3] === 'episodio') &&
       url.split('/').length >= 4 &&
-      url.split('/')[4].length > 0
+      url.split('/')[4].length > 0 &&
+      url.split('/')[4] !== 'page'
     );
   },
   sync: {

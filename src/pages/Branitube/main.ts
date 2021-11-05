@@ -122,6 +122,10 @@ export const Branitube: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('o encontrado')) {
+        con.error('404');
+        return;
+      }
       if (
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0 &&

@@ -8,6 +8,9 @@ export const AnimeOdcinki: pageInterface = {
   isSyncPage(url) {
     return url.split('/')[5] !== undefined;
   },
+  isOverviewPage(url) {
+    return Boolean(utils.urlPart(url, 4));
+  },
   sync: {
     getTitle(url) {
       return j.$('.field-name-field-tytul-anime a').text();

@@ -13,10 +13,7 @@ export const AniMixPlay: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'anime') {
-      return true;
-    }
-    return false;
+    return Boolean(utils.urlPart(url, 3) === 'anime' && AniMixPlay.overview!.getTitle(url));
   },
   sync: {
     getTitle(url) {

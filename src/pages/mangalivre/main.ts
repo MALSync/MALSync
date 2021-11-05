@@ -62,6 +62,10 @@ export const mangalivre: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      if (document.title.includes('404!')) {
+        con.error('404');
+        return;
+      }
       if (
         (page.url.split('/')[3] === 'manga' || page.url.split('/')[3] === 'ler') &&
         page.url.split('/')[4] !== undefined &&

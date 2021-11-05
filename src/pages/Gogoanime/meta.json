@@ -13,6 +13,7 @@
       "*://*.gogoanime.ai/*",
       "*://*.gogoanime.vc/*",
       "*://*.gogoanime.pe/*",
+      "*://*.gogoanime.wiki/*",
       "*://*.gogoanimes.co/*",
       "*://*.animego.to/*"
     ],
@@ -20,12 +21,14 @@
       "*gogoanime*.*/",
       "*gogoanime*.*/*.html*",
       "*gogoanime*.*/anime-List*",
+      "*gogoanime*.*/anime-list*",
       "*gogoanime*.*/user*",
       "*gogoanime*.*/genre/*",
       "*gogoanime*.*/sub-category/*",
       "*animego*.*/",
       "*animego*.*/*.html*",
       "*animego*.*/anime-List*",
+      "*animego*.*/anime-list*",
       "*animego*.*/user*",
       "*animego*.*/genre/*",
       "*animego*.*/sub-category/*"

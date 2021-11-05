@@ -67,9 +67,9 @@ export const Toonily: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
       if (
-        page.url.split('/')[3] === 'manga' &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
+        utils.urlPart(page.url, 3) === 'manga' &&
+        utils.urlPart(page.url, 4) !== undefined &&
+        utils.urlPart(page.url, 4).length > 0
       ) {
         page.handlePage();
       }

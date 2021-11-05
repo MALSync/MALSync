@@ -12,7 +12,7 @@ export const AlphaScans: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    return url.split('/')[3] === 'manga' && url.split('/')[4] !== '';
+    return utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 4) !== '';
   },
   sync: {
     getTitle(url) {

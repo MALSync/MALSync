@@ -151,6 +151,13 @@ export const Proxer: pageInterface = {
         Proxer.type = 'manga';
       }
       j.$(document).ready(function() {
+        if (
+          j.$('h3:contains(Bitte logge dich ein!), img[alt*="Diese Seite wurde nicht gefunden oder wurde verschoben"]')
+            .length
+        ) {
+          con.error('404');
+          return;
+        }
         page.handlePage();
       });
     }

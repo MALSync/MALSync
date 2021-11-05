@@ -6,10 +6,7 @@ export const KickAssAnime: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (typeof url.split('/')[5] === 'undefined') {
-      return false;
-    }
-    return true;
+    return Boolean(utils.urlPart(url, 5));
   },
   sync: {
     getTitle(url) {
