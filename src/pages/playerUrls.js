@@ -594,4 +594,8 @@ module.exports = {
   myalucard: {
     match: ['*://myalucard.xyz/*'],
   },
+  // animexin
+  mobi: {
+    match: ['*://uploads.mobi/*'],
+  },
 };
