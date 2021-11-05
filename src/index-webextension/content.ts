@@ -58,11 +58,9 @@ function messagePageListener(page) {
         });
       });
       timeAddCb = async function(forward) {
-        let time = parseInt(await api.settings.getAsync('introSkip'));
-        if (!forward) time = 0 - time;
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
-          timeAdd: time,
+          timeAdd: forward,
           sender: msg.sender,
         });
       };
@@ -135,7 +133,13 @@ function messagePageListener(page) {
       }
       let time = parseInt(await api.settings.getAsync('introSkip'));
       if (!forward) time = 0 - time;
-      page.tempPlayer.currentTime += time;
+
+      const totalTime = page.tempPlayer.currentTime + time;
+      if (page.tempPlayer.duration && page.tempPlayer.duration > 15 && totalTime > page.tempPlayer.duration - 3) {
+        page.tempPlayer.currentTime = page.tempPlayer.duration - 3;
+        return;
+      }
+      page.tempPlayer.currentTime = totalTime;
     }
   });
 }

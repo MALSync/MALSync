@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }
     if (typeof msg.timeAdd !== 'undefined') {
       tempPlayer.play();
-      tempPlayer.currentTime += msg.timeAdd;
+      addVideoTime(msg.timeAdd);
     }
   } else if (msg.action === 'content') {
     switch (msg.item.action) {
@@ -67,18 +67,23 @@ api.settings.init().then(() => {
         break;
       default:
     }
-
-    async function addVideoTime(forward: boolean) {
-      if (typeof tempPlayer === 'undefined') {
-        con.error('[Iframe] No player Found');
-        return;
-      }
-      let time = parseInt(await api.settings.getAsync('introSkip'));
-      if (!forward) time = 0 - time;
-      tempPlayer.currentTime += time;
-    }
   });
 });
+
+async function addVideoTime(forward: boolean) {
+  if (typeof tempPlayer === 'undefined') {
+    con.error('[Iframe] No player Found');
+    return;
+  }
+  let time = parseInt(await api.settings.getAsync('introSkip'));
+  if (!forward) time = 0 - time;
+  const totalTime = tempPlayer.currentTime + time;
+  if (tempPlayer.duration && tempPlayer.duration > 15 && totalTime > tempPlayer.duration - 3) {
+    tempPlayer.currentTime = tempPlayer.duration - 3;
+    return;
+  }
+  tempPlayer.currentTime = totalTime;
+}
 
 const css =
   'font-size: 20px; padding-bottom: 3px; color: white; text-shadow: -1px -1px #2e51a2, 1px -1px #2e51a2, -1px 1px #2e51a2, 1px 1px #2e51a2, 2px 2px #2e51a2, 3px 3px #2e51a2;';
