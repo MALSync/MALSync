@@ -65,7 +65,7 @@ export const LeviatanScans: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$(j.$('.breadcrumb li a')[2])
+        .$(j.$('.post-title h1'))
         .text()
         .trim();
     },
