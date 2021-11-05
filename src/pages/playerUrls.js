@@ -550,6 +550,9 @@ module.exports = {
   streamlare: {
     match: ['*://streamlare.com/e/*'],
   },
+  BetterAnime: {
+    match: ['*://betteranime.net/player*'],
+  },
   // Dreamsub
   dreamsub: {
     match: ['*://cdn2.dreamsub.cc/*'],

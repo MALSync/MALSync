@@ -26,6 +26,11 @@ export async function initShark() {
     return;
   }
 
+  if (window.location.host.includes('wakanim.tv') && utils.isFirefox()) {
+    con.info('Crash reports disabled for wakanim.tv');
+    return;
+  }
+
   Sentry.init({
     dsn: 'https://blood@shark.malsync.moe/1337',
     tunnel: 'https://api.malsync.moe/shark',

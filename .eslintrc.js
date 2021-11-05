@@ -18,6 +18,7 @@ const COMMON_RULES = {
   'class-methods-use-this': 'off',
   'no-fallthrough': 'off',
   'no-plusplus': 0,
+  'vue/no-useless-template-attributes': 'off',
   'no-restricted-syntax': [
     'error',
     // TODO: Reenable rule
