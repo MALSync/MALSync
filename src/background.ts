@@ -1,5 +1,4 @@
 import { xhrResponseI, sendMessageI, responseMessageI } from './api/messageInterface';
-import { checkInit, checkContinue } from './background/backgroundIframe';
 import { listSyncInit } from './background/listSync';
 import { initSyncTags } from './background/syncTags';
 import { initProgressScheduler } from './background/releaseProgress';
@@ -96,10 +95,6 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
         xhr.send();
       }
       return true;
-    }
-    case 'iframeDone': {
-      checkContinue(message);
-      return undefined;
     }
     case 'videoTime': {
       // @ts-ignore
@@ -204,26 +199,6 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
   return undefined;
 }
 
-chrome.alarms.get('updateCheck', async function(a) {
-  if (typeof a === 'undefined') {
-    const updateCheckTime = await api.storage.get('updateCheckTime');
-    if (typeof updateCheckTime !== 'undefined' && updateCheckTime && updateCheckTime !== '0') {
-      let updateCheck = await api.storage.get('updateCheck');
-      if (typeof updateCheck === 'undefined' || !parseInt(updateCheck) || parseInt(updateCheck) < Date.now()) {
-        updateCheck = Date.now() + 1000;
-      }
-      con.log('Create updateCheck Alarm', `${updateCheckTime}m`, updateCheck);
-      chrome.alarms.create('updateCheck', {
-        periodInMinutes: parseInt(updateCheckTime),
-        when: parseInt(updateCheck),
-      });
-    }
-  } else {
-    con.log(a);
-  }
-});
-
-checkInit();
 listSyncInit();
 initProgressScheduler();
 
@@ -245,52 +220,9 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   ['blocking', 'requestHeaders'],
 );
 
-function webRequestListener() {
-  chrome.permissions.contains(
-    {
-      permissions: ['webRequest'],
-    },
-    function(result) {
-      if (result) {
-        con.log('webRequest permissions found');
-        chrome.webRequest.onHeadersReceived.addListener(
-          // eslint-disable-next-line consistent-return
-          function(details) {
-            if (details.initiator!.indexOf(chrome.runtime.id) !== -1) {
-              con.log('Remove x-frame-options');
-              for (let i = 0; i < details.responseHeaders!.length; ++i) {
-                if (details.responseHeaders![i].name.toLowerCase() === 'x-frame-options') {
-                  details.responseHeaders!.splice(i, 1);
-                  return {
-                    responseHeaders: details.responseHeaders,
-                  };
-                }
-              }
-            }
-          },
-          {
-            urls: ['*://*/*mal-sync-background=*'],
-          },
-          ['blocking', 'responseHeaders'],
-        );
-      }
-    },
-  );
-}
-
-webRequestListener();
-
 chrome.notifications.onClicked.addListener(function(notificationId) {
   chrome.tabs.create({ url: notificationId });
 });
-
-try {
-  chrome.permissions.onAdded.addListener(function() {
-    webRequestListener();
-  });
-} catch (e) {
-  con.info('Permission on change', e);
-}
 
 chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
   chrome.tabs.sendMessage(request.tab, { action: 'presence', data: request.info }, function(response) {

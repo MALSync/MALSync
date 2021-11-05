@@ -244,7 +244,6 @@
               </select>
             </div>
           </searchVue>
-          <updateCheckVue v-if="currentTab == tabs.updateCheck.title" />
           <listSyncVue v-if="currentTab == tabs.listSync.title" :list-type="tabs.listSync.type">
             <select
               v-model="tabs.listSync.type"
@@ -281,7 +280,6 @@ import overviewVue from './minimalApp/overview.vue';
 import recommendationsVue from './minimalApp/recommendations.vue';
 import bookmarksVue from './minimalApp/bookmarks.vue';
 import searchVue from './minimalApp/search.vue';
-import updateCheckVue from './minimalApp/updateCheck.vue';
 import listSyncVue from './minimalApp/listSync/listSync.vue';
 import cleanTagsVue from './minimalApp/cleanTags/cleanTags.vue';
 import allSitesVue from './minimalApp/allSites.vue';
@@ -316,7 +314,6 @@ export default {
     reviewsVue,
     bookmarksVue,
     searchVue,
-    updateCheckVue,
     listSyncVue,
     cleanTagsVue,
     allSitesVue,
@@ -355,10 +352,6 @@ export default {
         scroll: 0,
         type: 'anime',
         keyword: '',
-      },
-      updateCheck: {
-        title: 'updateCheck',
-        scroll: 0,
       },
       listSync: {
         title: 'listSync',
@@ -435,9 +428,6 @@ export default {
         return true;
       }
       if (this.currentTab === this.tabs.search.title) {
-        return true;
-      }
-      if (this.currentTab === this.tabs.updateCheck.title) {
         return true;
       }
       if (this.currentTab === this.tabs.listSync.title) {
@@ -527,9 +517,6 @@ export default {
           this.history.push(this.getCurrent(oldtab));
         }
         if (this.currentTab === this.tabs.search.title) {
-          this.history.push(this.getCurrent(oldtab));
-        }
-        if (this.currentTab === this.tabs.updateCheck.title) {
           this.history.push(this.getCurrent(oldtab));
         }
         if (this.currentTab === this.tabs.listSync.title) {

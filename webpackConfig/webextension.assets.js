@@ -41,56 +41,41 @@ const generateMatchExcludes = urls => {
   return { match, exclude };
 };
 
-const backgroundMatch = matches => {
-  for (let i = 0; i < matches.length; i++) {
-    matches[i] = `${matches[i]}*mal-sync-background=*`;
-  }
-  return matches;
-};
-
-const backgroundUrls = pagesUtils.pagesUrls();
-
 var content_scripts = [
   {
     matches: generateMatchExcludes(malUrls).match,
-    exclude_globs: generateMatchExcludes(malUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(malUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/mal-script.js'],
     run_at: 'document_start',
   },
   {
     matches: generateMatchExcludes(malsyncUrls).match,
-    exclude_globs: generateMatchExcludes(malsyncUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(malsyncUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/oauth-script.js'],
     run_at: 'document_start',
   },
   {
     matches: generateMatchExcludes(aniUrls).match,
-    exclude_globs: generateMatchExcludes(aniUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(aniUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/anilist-script.js'],
     run_at: 'document_start',
   },
   {
     matches: generateMatchExcludes(kitsuUrls).match,
-    exclude_globs: generateMatchExcludes(kitsuUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(kitsuUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/kitsu-script.js'],
     run_at: 'document_start',
   },
   {
     matches: generateMatchExcludes(simklUrls).match,
-    exclude_globs: generateMatchExcludes(simklUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(simklUrls).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/simkl-script.js'],
     run_at: 'document_start',
   },
   {
     matches: generateMatchExcludes(malsyncPwaUrls).match,
-    exclude_globs: generateMatchExcludes(malsyncPwaUrls).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes(malsyncPwaUrls).exclude,
     js: ['content/pwa-script.js'],
-    run_at: 'document_start',
-  },
-  {
-    matches: backgroundMatch(generateMatchExcludes(backgroundUrls).match),
-    js: ['vendor/jquery.min.js', 'i18n.js', 'content/update-check.js'],
-    all_frames: true,
     run_at: 'document_start',
   },
 ];
@@ -103,7 +88,7 @@ pages.forEach(el => {
   }
   content_scripts.push({
     matches: generateMatchExcludes({urls: cUrls }).match,
-    exclude_globs: generateMatchExcludes({urls: cUrls}).exclude.concat(['*mal-sync-background=*']),
+    exclude_globs: generateMatchExcludes({urls: cUrls}).exclude,
     js: ['vendor/jquery.min.js', 'i18n.js', 'content/page_'+el+'.js', 'content/content-script.js'],
     run_at: 'document_start',
   });
@@ -164,11 +149,8 @@ const generateManifest = () => {
       'webRequestBlocking',
       ...httpPermissionsJson,
       'notifications',
-      'tabHide',
     ],
-    optional_permissions: ['webNavigation', 'http://*/*', 'https://*/*'].concat(
-      generateMatchExcludes(backgroundUrls).match,
-    ),
+    optional_permissions: ['webNavigation', 'http://*/*', 'https://*/*'],
   };
 
   if (mode === 'travis') {
