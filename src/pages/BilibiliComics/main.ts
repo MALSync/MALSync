@@ -3,7 +3,7 @@ import { pageInterface } from '../pageInterface';
 
 export const BilibiliComics: pageInterface = {
   name: 'BilibiliComics',
-  domain: 'https://www.bilibilicomics.com/',
+  domain: 'https://www.bilibilicomics.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {

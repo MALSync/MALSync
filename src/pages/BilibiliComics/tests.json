@@ -1,0 +1,26 @@
+{
+  "title": "BilibiliComics",
+  "url": "https://www.bilibilicomics.com/",
+  "testCases": [
+    {
+      "url": "https://www.bilibilicomics.com/mc56/995?from=manga_detail",
+      "expected": {
+        "sync": true,
+        "title": "Busted! Darklord",
+        "identifier": "mc56",
+        "overviewUrl": "https://www.bilibilicomics.com/detail/mc56",
+        "episode": 26,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://www.bilibilicomics.com/detail/mc56",
+      "expected": {
+        "sync": false,
+        "title": "Busted! Darklord",
+        "identifier": "mc56",
+        "uiSelector": true
+      }
+    }
+  ]
+}
