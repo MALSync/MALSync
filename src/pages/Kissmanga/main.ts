@@ -119,7 +119,7 @@ export const Kissmanga: pageInterface = {
         );
       },
       elementEp(selector) {
-        const url = Kissmanga.overview!.list!.elementUrl(selector);
+        const url = Kissmanga.overview!.list!.elementUrl!(selector);
         if (/_ED/.test(url)) return NaN;
         return Kissmanga.sync.getEpisode(url);
       },

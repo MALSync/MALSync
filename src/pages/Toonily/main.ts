@@ -59,7 +59,7 @@ export const Toonily: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), Toonily.domain);
       },
       elementEp(selector) {
-        return Toonily.sync.getEpisode(Toonily.overview!.list!.elementUrl(selector));
+        return Toonily.sync.getEpisode(Toonily.overview!.list!.elementUrl!(selector));
       },
     },
   },

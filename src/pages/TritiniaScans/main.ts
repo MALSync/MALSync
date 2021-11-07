@@ -78,7 +78,7 @@ export const TritiniaScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return TritiniaScans.sync.getEpisode(TritiniaScans.overview!.list!.elementUrl(selector));
+        return TritiniaScans.sync.getEpisode(TritiniaScans.overview!.list!.elementUrl!(selector));
       },
     },
   },

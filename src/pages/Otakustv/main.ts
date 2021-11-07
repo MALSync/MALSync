@@ -94,7 +94,7 @@ export const Otakustv: pageInterface = {
         );
       },
       elementEp(selector) {
-        return getEpisode(Otakustv.overview!.list!.elementUrl(selector));
+        return getEpisode(Otakustv.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -72,7 +72,7 @@ export const ManhuaPlus: pageInterface = {
         );
       },
       elementEp(selector) {
-        return ManhuaPlus.sync.getEpisode(ManhuaPlus.overview!.list!.elementUrl(selector));
+        return ManhuaPlus.sync.getEpisode(ManhuaPlus.overview!.list!.elementUrl!(selector));
       },
     },
   },

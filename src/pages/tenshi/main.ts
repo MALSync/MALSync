@@ -56,7 +56,7 @@ export const tenshi: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), tenshi.domain);
       },
       elementEp(selector) {
-        return tenshi.sync.getEpisode(tenshi.overview!.list!.elementUrl(selector));
+        return tenshi.sync.getEpisode(tenshi.overview!.list!.elementUrl!(selector));
       },
     },
   },

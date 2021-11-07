@@ -73,7 +73,7 @@ export const ReadManhua: pageInterface = {
         );
       },
       elementEp(selector) {
-        return ReadManhua.sync.getEpisode(ReadManhua.overview!.list!.elementUrl(selector));
+        return ReadManhua.sync.getEpisode(ReadManhua.overview!.list!.elementUrl!(selector));
       },
     },
   },

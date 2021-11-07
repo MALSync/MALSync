@@ -90,7 +90,7 @@ export const CatManga: pageInterface = {
         return utils.absoluteLink(selector.attr('href') || '', CatManga.domain);
       },
       elementEp(selector) {
-        return CatManga.sync.getEpisode(CatManga.overview?.list?.elementUrl(selector) || '');
+        return CatManga.sync.getEpisode(CatManga.overview!.list!.elementUrl!(selector) || '');
       },
     },
   },

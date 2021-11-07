@@ -81,7 +81,7 @@ export const JaiminisBox: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(JaiminisBox.overview!.list!.elementUrl(selector).split('/')[8]);
+        return parseInt(JaiminisBox.overview!.list!.elementUrl!(selector).split('/')[8]);
       },
     },
   },

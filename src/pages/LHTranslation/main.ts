@@ -78,7 +78,7 @@ export const LHTranslation: pageInterface = {
         );
       },
       elementEp(selector) {
-        return LHTranslation.sync.getEpisode(LHTranslation.overview!.list!.elementUrl(selector));
+        return LHTranslation.sync.getEpisode(LHTranslation.overview!.list!.elementUrl!(selector));
       },
     },
   },

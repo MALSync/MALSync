@@ -70,7 +70,7 @@ export const MangasOrigines: pageInterface = {
         );
       },
       elementEp(selector) {
-        return MangasOrigines.sync.getEpisode(MangasOrigines.overview!.list!.elementUrl(selector));
+        return MangasOrigines.sync.getEpisode(MangasOrigines.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -65,7 +65,7 @@ export const AnimeTribes: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeTribes.domain);
       },
       elementEp(selector) {
-        return AnimeTribes.sync.getEpisode(AnimeTribes.overview!.list!.elementUrl(selector));
+        return AnimeTribes.sync.getEpisode(AnimeTribes.overview!.list!.elementUrl!(selector));
       },
     },
   },

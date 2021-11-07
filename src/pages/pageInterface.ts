@@ -28,7 +28,7 @@ export interface pageInterface {
       // (optional) Used for recognizing the list of episodes/chapters on the overview page. Best is to ask for help on discord for this.
       offsetHandler: boolean;
       elementsSelector: () => JQuery<HTMLElement>;
-      elementUrl: (selector: JQuery<HTMLElement>) => string;
+      elementUrl?: (selector: JQuery<HTMLElement>) => string;
       elementEp: (selector: JQuery<HTMLElement>) => number;
       paginationNext?: (updateCheck: boolean) => boolean;
       handleListHook?: (ep: number, epList: JQuery<HTMLElement>[]) => void;

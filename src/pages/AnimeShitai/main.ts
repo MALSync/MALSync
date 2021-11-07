@@ -80,7 +80,7 @@ export const AnimeShitai: pageInterface = {
         );
       },
       elementEp(selector) {
-        return AnimeShitai.sync.getEpisode(AnimeShitai.overview!.list!.elementUrl(selector));
+        return AnimeShitai.sync.getEpisode(AnimeShitai.overview!.list!.elementUrl!(selector));
       },
     },
   },

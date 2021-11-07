@@ -63,7 +63,7 @@ export const Animeheaven: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), Animeheaven.domain);
       },
       elementEp(selector) {
-        const url = Animeheaven.overview!.list!.elementUrl(selector);
+        const url = Animeheaven.overview!.list!.elementUrl!(selector);
         return Animeheaven.sync.getEpisode(url);
       },
     },

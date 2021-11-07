@@ -86,7 +86,7 @@ export const MangaHub: pageInterface = {
         );
       },
       elementEp(selector) {
-        return MangaHub.sync.getEpisode(MangaHub.overview!.list!.elementUrl(selector));
+        return MangaHub.sync.getEpisode(MangaHub.overview!.list!.elementUrl!(selector));
       },
     },
   },

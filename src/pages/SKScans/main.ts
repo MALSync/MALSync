@@ -77,7 +77,7 @@ export const SKScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return SKScans.sync.getEpisode(SKScans.overview!.list!.elementUrl(selector));
+        return SKScans.sync.getEpisode(SKScans.overview!.list!.elementUrl!(selector));
       },
     },
   },

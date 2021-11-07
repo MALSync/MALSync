@@ -83,7 +83,7 @@ export const ReaperScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return ReaperScans.sync.getEpisode(ReaperScans.overview!.list!.elementUrl(selector));
+        return ReaperScans.sync.getEpisode(ReaperScans.overview!.list!.elementUrl!(selector));
       },
     },
   },

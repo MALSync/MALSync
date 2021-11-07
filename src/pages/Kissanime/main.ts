@@ -91,7 +91,7 @@ export const Kissanime: pageInterface = {
         );
       },
       elementEp(selector) {
-        const url = Kissanime.overview!.list!.elementUrl(selector);
+        const url = Kissanime.overview!.list!.elementUrl!(selector);
         if (
           /_ED|_OP|_Ending|_Opening|_Preview|_Trailer/i.test(
             selector

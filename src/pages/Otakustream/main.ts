@@ -90,7 +90,7 @@ export const Otakustream: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Otakustream.sync!.getEpisode(Otakustream.overview!.list!.elementUrl(selector));
+        return Otakustream.sync!.getEpisode(Otakustream.overview!.list!.elementUrl!(selector));
       },
     },
   },

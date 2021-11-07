@@ -64,7 +64,7 @@ export const Anime4you: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Anime4you.sync!.getEpisode(Anime4you.overview!.list!.elementUrl(selector));
+        return Anime4you.sync!.getEpisode(Anime4you.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -63,7 +63,7 @@ export const OtakuFR: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), OtakuFR.domain);
       },
       elementEp(selector) {
-        return getEp(utils.urlPart(OtakuFR.overview!.list!.elementUrl(selector), 4));
+        return getEp(utils.urlPart(OtakuFR.overview!.list!.elementUrl!(selector), 4));
       },
     },
   },
