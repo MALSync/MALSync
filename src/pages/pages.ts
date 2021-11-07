@@ -140,6 +140,7 @@ import { SugarBabies } from './SugarBabies/main';
 import { AlphaScans } from './AlphaScans/main';
 import { Anicloud } from './Anicloud/main';
 import { BetterAnime } from './BetterAnime/main';
+import { BilibiliComics } from './BilibiliComics/main';
 
 export const pages = {
   nineAnime,
@@ -284,4 +285,5 @@ export const pages = {
   AlphaScans,
   Anicloud,
   BetterAnime,
+  BilibiliComics,
 };
