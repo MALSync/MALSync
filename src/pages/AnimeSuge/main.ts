@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeSuge: pageInterface = {
   name: 'AnimeSuge',
-  domain: 'https://animesuge.io',
+  domain: 'https://animesuge.to',
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
