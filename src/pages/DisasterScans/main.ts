@@ -85,7 +85,7 @@ export const DisasterScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return DisasterScans.sync.getEpisode(DisasterScans.overview!.list!.elementUrl(selector));
+        return DisasterScans.sync.getEpisode(DisasterScans.overview!.list!.elementUrl!(selector));
       },
     },
   },

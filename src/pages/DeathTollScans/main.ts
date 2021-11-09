@@ -86,7 +86,7 @@ export const DeathTollScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(DeathTollScans.overview!.list!.elementUrl(selector).split('/')[7]);
+        return parseInt(DeathTollScans.overview!.list!.elementUrl!(selector).split('/')[7]);
       },
     },
   },

@@ -141,6 +141,7 @@ import { AlphaScans } from './AlphaScans/main';
 import { Anicloud } from './Anicloud/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
+import { BilibiliComics } from './BilibiliComics/main';
 
 export const pages = {
   nineAnime,
@@ -286,4 +287,5 @@ export const pages = {
   Anicloud,
   BetterAnime,
   AMAScan,
+  BilibiliComics,
 };

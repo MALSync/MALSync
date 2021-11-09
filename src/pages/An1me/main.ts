@@ -96,7 +96,7 @@ export const An1me: pageInterface = {
         );
       },
       elementEp(selector) {
-        return An1me.sync.getEpisode(An1me.overview!.list!.elementUrl(selector));
+        return An1me.sync.getEpisode(An1me.overview!.list!.elementUrl!(selector));
       },
     },
   },

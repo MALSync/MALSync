@@ -32,7 +32,7 @@ export const Okanime: pageInterface = {
           : j.$('.result-item.episode'),
       elementUrl: selector => utils.absoluteLink(selector.attr('href'), Okanime.domain),
       elementEp: selector => {
-        return Okanime.sync.getEpisode(Okanime.overview!.list!.elementUrl(selector));
+        return Okanime.sync.getEpisode(Okanime.overview!.list!.elementUrl!(selector));
       },
       getTotal: () =>
         isRealOverview(window.location.href)

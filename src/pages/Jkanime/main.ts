@@ -61,7 +61,7 @@ export const Jkanime: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), Jkanime.domain);
       },
       elementEp(selector) {
-        return Jkanime.sync.getEpisode(Jkanime.overview?.list?.elementUrl(selector) || '');
+        return Jkanime.sync.getEpisode(Jkanime.overview!.list!.elementUrl!(selector) || '');
       },
       paginationNext(updateCheck) {
         con.log('updatecheck', updateCheck);

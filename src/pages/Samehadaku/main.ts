@@ -65,7 +65,7 @@ export const Samehadaku: pageInterface = {
         return selector.find('div.epsright > span.eps > a').attr('href') || '';
       },
       elementEp(selector) {
-        return Samehadaku.sync.getEpisode(Samehadaku.overview!.list!.elementUrl(selector));
+        return Samehadaku.sync.getEpisode(Samehadaku.overview!.list!.elementUrl!(selector));
       },
     },
   },

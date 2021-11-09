@@ -72,7 +72,7 @@ export const Twistmoe: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Twistmoe.sync!.getEpisode(Twistmoe.overview!.list!.elementUrl(selector));
+        return Twistmoe.sync!.getEpisode(Twistmoe.overview!.list!.elementUrl!(selector));
       },
     },
   },

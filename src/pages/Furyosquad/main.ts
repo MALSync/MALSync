@@ -62,7 +62,7 @@ export const Furyosquad: pageInterface = {
         return utils.absoluteLink(selector.find('a[href*="/read/"]').attr('href') || '', Furyosquad.domain);
       },
       elementEp(selector) {
-        return Furyosquad.sync.getEpisode(Furyosquad.overview!.list!.elementUrl(selector));
+        return Furyosquad.sync.getEpisode(Furyosquad.overview!.list!.elementUrl!(selector));
       },
     },
   },

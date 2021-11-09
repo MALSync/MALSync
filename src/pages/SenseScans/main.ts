@@ -86,7 +86,7 @@ export const SenseScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(SenseScans.overview!.list!.elementUrl(selector).split('/')[8]);
+        return parseInt(SenseScans.overview!.list!.elementUrl!(selector).split('/')[8]);
       },
     },
   },

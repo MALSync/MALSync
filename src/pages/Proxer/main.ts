@@ -99,7 +99,7 @@ export const Proxer: pageInterface = {
             .first()
             .text()
             .trim(),
-          Proxer.overview!.list!.elementUrl(selector).split('/')[5],
+          Proxer.overview!.list!.elementUrl!(selector).split('/')[5],
         );
       },
       paginationNext(updateCheck) {

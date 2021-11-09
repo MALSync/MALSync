@@ -73,7 +73,7 @@ export const ImmortalUpdates: pageInterface = {
         );
       },
       elementEp(selector) {
-        return ImmortalUpdates.sync.getEpisode(ImmortalUpdates.overview!.list!.elementUrl(selector));
+        return ImmortalUpdates.sync.getEpisode(ImmortalUpdates.overview!.list!.elementUrl!(selector));
       },
     },
   },

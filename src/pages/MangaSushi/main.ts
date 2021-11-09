@@ -73,7 +73,7 @@ export const MangaSushi: pageInterface = {
         );
       },
       elementEp(selector) {
-        return MangaSushi.sync.getEpisode(MangaSushi.overview!.list!.elementUrl(selector));
+        return MangaSushi.sync.getEpisode(MangaSushi.overview!.list!.elementUrl!(selector));
       },
     },
   },

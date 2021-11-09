@@ -98,10 +98,10 @@ export const LeviatanScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        let episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl(selector), 6);
+        let episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 6);
 
         if (episodePart.match(/season-\d+/gim)) {
-          episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl(selector), 7);
+          episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 7);
         }
 
         const temp = episodePart.match(/\d+/i);

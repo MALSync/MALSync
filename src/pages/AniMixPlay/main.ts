@@ -56,7 +56,7 @@ export const AniMixPlay: pageInterface = {
         .last()
         .next();
       if (nextEpisodeButton && nextEpisodeButton.length) {
-        return AniMixPlay.overview!.list!.elementUrl(nextEpisodeButton);
+        return AniMixPlay.overview!.list!.elementUrl!(nextEpisodeButton);
       }
       return '';
     },

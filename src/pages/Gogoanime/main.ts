@@ -72,7 +72,7 @@ export const Gogoanime: pageInterface = {
         return utils.absoluteLink(anchorHref.replace(/^ /, ''), Gogoanime.domain);
       },
       elementEp(selector) {
-        const url = Gogoanime.overview!.list!.elementUrl(selector);
+        const url = Gogoanime.overview!.list!.elementUrl!(selector);
         return Gogoanime.sync.getEpisode(url);
       },
       paginationNext() {

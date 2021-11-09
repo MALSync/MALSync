@@ -71,7 +71,7 @@ export const MerakiScans: pageInterface = {
         return utils.absoluteLink(selector.attr('data-href'), MerakiScans.domain);
       },
       elementEp(selector) {
-        return Number(MerakiScans.overview!.list!.elementUrl(selector).split('/')[5]);
+        return Number(MerakiScans.overview!.list!.elementUrl!(selector).split('/')[5]);
       },
       paginationNext(updateCheck) {
         con.log('updatecheck', updateCheck);

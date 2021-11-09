@@ -66,7 +66,7 @@ export const Scantrad: pageInterface = {
         return utils.absoluteLink(selector.find('a[href*="/mangas/"]').attr('href') || '', Scantrad.domain);
       },
       elementEp(selector) {
-        return Scantrad.sync.getEpisode(Scantrad.overview!.list!.elementUrl(selector));
+        return Scantrad.sync.getEpisode(Scantrad.overview!.list!.elementUrl!(selector));
       },
     },
   },

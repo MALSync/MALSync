@@ -80,7 +80,7 @@ export const HelveticaScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(HelveticaScans.overview!.list!.elementUrl(selector).split('/')[8]);
+        return parseInt(HelveticaScans.overview!.list!.elementUrl!(selector).split('/')[8]);
       },
     },
   },

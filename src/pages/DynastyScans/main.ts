@@ -85,7 +85,7 @@ export const DynastyScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return DynastyScans.sync.getEpisode(DynastyScans.overview!.list!.elementUrl(selector));
+        return DynastyScans.sync.getEpisode(DynastyScans.overview!.list!.elementUrl!(selector));
       },
     },
   },
