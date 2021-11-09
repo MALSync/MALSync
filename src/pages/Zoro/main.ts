@@ -5,6 +5,7 @@ type ZoroSyncData = {
   name: string;
   anime_id: string;
   mal_id: string;
+  anilist_id: string;
   series_url: string;
   selector_position?: string;
   episode?: string;
@@ -42,9 +43,8 @@ export const Zoro: pageInterface = {
       return jsonData.next_episode_url;
     },
     getMalUrl(provider) {
-      if (jsonData.mal_id) {
-        return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-      }
+      if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
+      if (provider === 'ANILIST' && jsonData.anilist_id) return `https://anilist.co/anime/${jsonData.anilist_id}`;
       return false;
     },
   },
