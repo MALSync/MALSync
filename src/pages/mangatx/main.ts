@@ -82,7 +82,7 @@ export const mangatx: pageInterface = {
         );
       },
       elementEp(selector) {
-        return mangatx.sync.getEpisode(mangatx.overview!.list!.elementUrl(selector));
+        return mangatx.sync.getEpisode(mangatx.overview!.list!.elementUrl!(selector));
       },
     },
   },

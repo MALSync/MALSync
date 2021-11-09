@@ -89,7 +89,7 @@ export const SugarBabies: pageInterface = {
         );
       },
       elementEp(selector) {
-        return SugarBabies.sync.getEpisode(SugarBabies.overview!.list!.elementUrl(selector));
+        return SugarBabies.sync.getEpisode(SugarBabies.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -74,7 +74,7 @@ export const DreamSub: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(DreamSub!.overview!.list!.elementUrl(selector).split('/')[5]);
+        return parseInt(DreamSub!.overview!.list!.elementUrl!(selector).split!('/')[5]);
       },
     },
   },

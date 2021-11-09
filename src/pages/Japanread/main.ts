@@ -104,7 +104,7 @@ export const Japanread: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Japanread.sync.getEpisode(Japanread.overview!.list!.elementUrl(selector));
+        return Japanread.sync.getEpisode(Japanread.overview!.list!.elementUrl!(selector));
       },
     },
   },

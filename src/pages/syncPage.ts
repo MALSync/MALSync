@@ -808,46 +808,48 @@ export class SyncPage {
       const epList = this.getEpList();
       if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
-        const { elementUrl } = this.page.overview.list;
-        logger.log(
-          'Episode List',
-          j.$.map(epList, function(val, i) {
-            if (typeof val !== 'undefined') {
-              return elementUrl(val);
+        if (this.page.overview.list.elementUrl) {
+          const { elementUrl } = this.page.overview.list;
+          logger.log(
+            'Episode List',
+            j.$.map(epList, function(val, i) {
+              if (typeof val !== 'undefined') {
+                return elementUrl(val);
+              }
+              return '-';
+            }),
+          );
+          if (typeof this.page.overview.list.handleListHook !== 'undefined')
+            this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
+          const curEp = epList[parseInt(this.singleObj.getEpisode() || 1)];
+          if (
+            typeof curEp === 'undefined' &&
+            !curEp &&
+            searchCurrent &&
+            reTry < 10 &&
+            typeof this.page.overview.list.paginationNext !== 'undefined'
+          ) {
+            logger.log('Pagination next');
+            const This = this;
+            if (this.page.overview.list.paginationNext(false)) {
+              setTimeout(function() {
+                reTry++;
+                This.handleList(true, reTry);
+              }, 500);
             }
-            return '-';
-          }),
-        );
-        if (typeof this.page.overview.list.handleListHook !== 'undefined')
-          this.page.overview.list.handleListHook(this.singleObj.getEpisode(), epList);
-        const curEp = epList[parseInt(this.singleObj.getEpisode() || 1)];
-        if (
-          typeof curEp === 'undefined' &&
-          !curEp &&
-          searchCurrent &&
-          reTry < 10 &&
-          typeof this.page.overview.list.paginationNext !== 'undefined'
-        ) {
-          logger.log('Pagination next');
-          const This = this;
-          if (this.page.overview.list.paginationNext(false)) {
-            setTimeout(function() {
-              reTry++;
-              This.handleList(true, reTry);
-            }, 500);
           }
-        }
 
-        const nextEp = epList[this.singleObj.getEpisode() + 1];
-        if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
-          const message = `<a href="${elementUrl(
-            nextEp,
-          )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [this.singleObj.getEpisode() + 1])}</a>`;
-          utils.flashm(message, {
-            hoverInfo: true,
-            type: 'nextEp',
-            minimized: true,
-          });
+          const nextEp = epList[this.singleObj.getEpisode() + 1];
+          if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
+            const message = `<a href="${elementUrl(
+              nextEp,
+            )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [this.singleObj.getEpisode() + 1])}</a>`;
+            utils.flashm(message, {
+              hoverInfo: true,
+              type: 'nextEp',
+              minimized: true,
+            });
+          }
         }
       }
     }

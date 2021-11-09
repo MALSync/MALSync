@@ -56,10 +56,10 @@ window.MalSyncTest = async function() {
 
         if (
           typeof page.overview !== 'undefined' &&
-          typeof page.overview.list !== 'undefined'
+          typeof page.overview.list !== 'undefined' &&
+          typeof page.overview.list.elementUrl !== 'undefined'
         ) {
-          const { elementEp } = page.overview.list;
-          const { elementUrl } = page.overview.list;
+          const { elementEp, elementUrl } = page.overview.list;
           const elementArray = [] as JQuery<HTMLElement>[];
 
           page.overview.list.elementsSelector().each(function(index, el) {

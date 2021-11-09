@@ -74,7 +74,7 @@ export const WuxiaWorld: pageInterface = {
         );
       },
       elementEp(selector) {
-        return WuxiaWorld.sync.getEpisode(WuxiaWorld.overview!.list!.elementUrl(selector));
+        return WuxiaWorld.sync.getEpisode(WuxiaWorld.overview!.list!.elementUrl!(selector));
       },
     },
   },

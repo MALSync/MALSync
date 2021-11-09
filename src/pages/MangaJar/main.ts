@@ -82,7 +82,7 @@ export const MangaJar: pageInterface = {
         );
       },
       elementEp(selector) {
-        return MangaJar.sync.getEpisode(MangaJar.overview!.list!.elementUrl(selector));
+        return MangaJar.sync.getEpisode(MangaJar.overview!.list!.elementUrl!(selector));
       },
     },
   },

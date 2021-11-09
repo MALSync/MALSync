@@ -70,7 +70,7 @@ export const Wakanim: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), Wakanim.domain);
       },
       elementEp(selector) {
-        const url = Wakanim.overview!.list!.elementUrl(selector);
+        const url = Wakanim.overview!.list!.elementUrl!(selector);
         const anchorTitle = selector.find('a').attr('title');
 
         if (!anchorTitle) return NaN;

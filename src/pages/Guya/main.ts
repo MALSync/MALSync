@@ -59,7 +59,7 @@ export const Guya: pageInterface = {
         return utils.absoluteLink(selector.attr('href') || '', Guya.domain);
       },
       elementEp(selector) {
-        return Guya.sync.getEpisode(Guya.overview!.list!.elementUrl(selector));
+        return Guya.sync.getEpisode(Guya.overview!.list!.elementUrl!(selector));
       },
     },
   },

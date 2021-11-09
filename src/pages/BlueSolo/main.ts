@@ -70,7 +70,7 @@ export const BlueSolo: pageInterface = {
         return utils.absoluteLink(selector.find('a[href*="/manga/"]').attr('href') || '', BlueSolo.domain);
       },
       elementEp(selector) {
-        return BlueSolo.sync.getEpisode(BlueSolo.overview!.list!.elementUrl(selector));
+        return BlueSolo.sync.getEpisode(BlueSolo.overview!.list!.elementUrl!(selector));
       },
     },
   },

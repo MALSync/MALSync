@@ -64,7 +64,7 @@ export const tioanime: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), tioanime.domain);
       },
       elementEp(selector) {
-        return tioanime.sync.getEpisode(tioanime.overview!.list!.elementUrl(selector));
+        return tioanime.sync.getEpisode(tioanime.overview!.list!.elementUrl!(selector));
       },
     },
     getMalUrl(provider) {

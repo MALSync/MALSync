@@ -64,7 +64,7 @@ export const Readm: pageInterface = {
         return utils.absoluteLink(selector.find('h6 > a').attr('href'), Readm.domain);
       },
       elementEp(selector) {
-        return Readm.sync.getEpisode(Readm.overview!.list!.elementUrl(selector));
+        return Readm.sync.getEpisode(Readm.overview!.list!.elementUrl!(selector));
       },
     },
   },

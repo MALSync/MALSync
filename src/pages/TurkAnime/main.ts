@@ -103,7 +103,7 @@ export const TurkAnime: pageInterface = {
         return utils.absoluteLink(anchorHref.replace(/^\/\//, 'https://'), TurkAnime.domain);
       },
       elementEp(selector) {
-        const episodeURL = TurkAnime.overview!.list!.elementUrl(selector);
+        const episodeURL = TurkAnime.overview!.list!.elementUrl!(selector);
 
         return TurkAnime.sync.getEpisode(episodeURL);
       },

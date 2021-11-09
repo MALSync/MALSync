@@ -74,7 +74,7 @@ export const Masterani: pageInterface = {
         );
       },
       elementEp(selector) {
-        return Masterani.sync.getEpisode(Masterani.overview!.list!.elementUrl(selector));
+        return Masterani.sync.getEpisode(Masterani.overview!.list!.elementUrl!(selector));
       },
       paginationNext() {
         const el = j.$('.pagination .item').last();

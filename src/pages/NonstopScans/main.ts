@@ -70,7 +70,7 @@ export const NonstopScans: pageInterface = {
         );
       },
       elementEp(selector) {
-        return NonstopScans.sync.getEpisode(NonstopScans.overview!.list!.elementUrl(selector));
+        return NonstopScans.sync.getEpisode(NonstopScans.overview!.list!.elementUrl!(selector));
       },
     },
   },

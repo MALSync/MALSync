@@ -97,7 +97,7 @@ export const KireiCake: pageInterface = {
         );
       },
       elementEp(selector) {
-        return parseInt(KireiCake.overview!.list!.elementUrl(selector).split('/')[7]);
+        return parseInt(KireiCake.overview!.list!.elementUrl!(selector).split('/')[7]);
       },
     },
   },

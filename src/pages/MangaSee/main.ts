@@ -86,7 +86,7 @@ export const MangaSee: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), MangaSee.domain) || '';
       },
       elementEp(selector) {
-        return MangaSee.sync.getEpisode(MangaSee.overview!.list!.elementUrl(selector));
+        return MangaSee.sync.getEpisode(MangaSee.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -57,7 +57,7 @@ export const KangaryuTeam: pageInterface = {
         return utils.absoluteLink(selector.find('a[href*="/manga/"]').attr('href') || '', KangaryuTeam.domain);
       },
       elementEp(selector) {
-        return KangaryuTeam.sync.getEpisode(KangaryuTeam.overview!.list!.elementUrl(selector));
+        return KangaryuTeam.sync.getEpisode(KangaryuTeam.overview!.list!.elementUrl!(selector));
       },
     },
   },

@@ -68,7 +68,7 @@ export const Pantsubase: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), Pantsubase.domain);
       },
       elementEp(selector) {
-        return Pantsubase.sync.getEpisode(Pantsubase.overview!.list!.elementUrl(selector));
+        return Pantsubase.sync.getEpisode(Pantsubase.overview!.list!.elementUrl!(selector));
       },
     },
   },

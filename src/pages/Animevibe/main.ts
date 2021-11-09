@@ -55,7 +55,7 @@ export const Animevibe: pageInterface = {
         )}/${selector.text().trim()}/`;
       },
       elementEp(selector) {
-        return Animevibe.sync.getEpisode(Animevibe.overview!.list!.elementUrl(selector));
+        return Animevibe.sync.getEpisode(Animevibe.overview!.list!.elementUrl!(selector));
       },
     },
   },
