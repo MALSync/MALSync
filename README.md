@@ -270,7 +270,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://dynasty-scans.com"><img src="https://favicon.malsync.moe/?domain=https://dynasty-scans.com"> DynastyScans</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://animesuge.io"><img src="https://favicon.malsync.moe/?domain=https://animesuge.io"> AnimeSuge</a></td>
+                <td><a href="https://animesuge.to"><img src="https://favicon.malsync.moe/?domain=https://animesuge.to"> AnimeSuge</a></td>
                 <td><a href="https://sugarbscan.com/"><img src="https://favicon.malsync.moe/?domain=https://sugarbscan.com/"> SugarBabies</a></td>
                 <td></td>
               </tr><tr>

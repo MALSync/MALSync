@@ -1,4 +1,3 @@
-
   <h1>Anime</h1>
   <table>
     <thead>
@@ -174,7 +173,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://animesuge.io"><img src="https://favicon.malsync.moe/?domain=https://animesuge.io"> AnimeSuge</a></td>
+    <td><a href="https://animesuge.to"><img src="https://favicon.malsync.moe/?domain=https://animesuge.to"> AnimeSuge</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -1018,4 +1017,3 @@
   </tr>
     </tbody>
   </table>
-  
