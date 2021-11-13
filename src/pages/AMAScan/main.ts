@@ -29,10 +29,10 @@ export const AMAScan: pageInterface = {
   languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
-    return utils.urlPart(url, 2) === 'manga' && utils.urlPart(url, 5) !== '';
+    return utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) !== '';
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 2) === 'manga' && utils.urlPart(url, 5) === '';
+    return utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) === '';
   },
   sync: {
     getTitle(url) {
