@@ -74,7 +74,9 @@ export const AMAScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h2.widget-title').after(j.html(selector));
+      j.$('h2.widget-title')
+        .first()
+        .after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -90,7 +92,7 @@ export const AMAScan: pageInterface = {
         );
       },
       elementEp(selector) {
-        return AMAScan.sync.getEpisode(AMAScan.overview!.list!.elementUrl(selector));
+        return AMAScan.sync.getEpisode(AMAScan.overview!.list!.elementUrl!(selector));
       },
     },
   },
