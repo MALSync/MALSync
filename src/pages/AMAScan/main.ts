@@ -46,11 +46,12 @@ export const AMAScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
+      return utils.absoluteLink(
         j
           .$('div.navbar-collapse > ul.nav > li > a')
           .first()
-          .attr('href') || ''
+          .attr('href') || '',
+        AMAScan.domain,
       );
     },
     getEpisode(url) {
@@ -101,12 +102,12 @@ export const AMAScan: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    if (AMAScan.isSyncPage(window.location.href)) {
-      j.$(document).ready(function() {
+    j.$(document).ready(function() {
+      if (AMAScan.isSyncPage(window.location.href)) {
         proxy.addProxy(async (caller: ScriptProxy) => page.handlePage());
-      });
-    } else {
-      page.handlePage();
-    }
+      } else {
+        page.handlePage();
+      }
+    });
   },
 };
