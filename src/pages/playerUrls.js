@@ -42,7 +42,7 @@ module.exports = {
     match: ['*://*.sibnet.ru/*'],
   },
   tune: {
-    match: ['*://*.tune.pk/*'],
+    match: ['*://*.tune.pk/*', '*://*.tune.ke/*'],
   },
   vimple: {
     match: ['*://*.vimple.ru/*'],
