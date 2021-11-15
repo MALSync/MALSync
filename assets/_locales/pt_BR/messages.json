@@ -195,6 +195,10 @@
     "message": "(1) Horroroso",
     "description": "Appalling - Score"
   },
+  "UI_Rules": {
+    "message": "Regras",
+    "description": "Rules text for the correction UI"
+  },
   "syncPage_flashm_resumeMsg": {
     "message": "Retomar em $time$",
     "description": "Video resume message",
@@ -282,6 +286,10 @@
         "example": "No Game No Life"
       }
     }
+  },
+  "syncPage_flash_player_error": {
+    "message": "Player não detectado. Por favor, atualize manualmente aqui.",
+    "description": "Message if the video player could not be recognized"
   },
   "syncPage_malObj_addAnime": {
     "message": "Adicionar ao $page$",
@@ -875,14 +883,6 @@
     "message": "Desativa o script de conteúdo. Isso possibilita que a extensão e o userscript sejam ativados ao mesmo tempo.",
     "description": "Userscript mode - Text"
   },
-  "settings_StrictCookies": {
-    "message": "Cookies estritos",
-    "description": "Strict Cookies"
-  },
-  "settings_StrictCookies_Text": {
-    "message": "Esta opção adiciona suporte a contêineres de várias contas do Firefox. Certifique-se de reiniciar o navegador depois de ativar esta opção",
-    "description": "Strict Cookies - Text"
-  },
   "settings_highlightAllEp": {
     "message": "Destacar todos os Episódios/Capítulos",
     "description": "Highlight all Episodes/Chapters"
@@ -934,6 +934,14 @@
   "settings_more_info": {
     "message": "Mais informações",
     "description": "Link button which links to more informations"
+  },
+  "settings_presenceShowButtons": {
+    "message": "Mostrar botão para ver o anime/manga no MAL ou em outro provedor",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
+  "settings_presenceShowMalsync": {
+    "message": "Mostrar Mal-Sync no título da presence em vez do anime/manga",
+    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Atualizar",
@@ -1103,6 +1111,14 @@
       }
     }
   },
+  "discord_rpc_view_anime": {
+    "message": "Ver Anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Ver Manga",
+    "description": "Discord view manga button"
+  },
   "nextEpShort_no_support": {
     "message": "Essa pagina não suporta abrir o próximo episódio",
     "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
@@ -1110,5 +1126,33 @@
   "nextEpShort_no_nextEp": {
     "message": "Não consegui achar o próximo episódio",
     "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "Procurar por episódios filler/recap",
+    "description": "Option to enable filler checking"
+  },
+  "settings_crash_report": {
+    "message": "Enviar relatórios de erro",
+    "description": "If to send crash reports"
+  },
+  "settings_filler_text": {
+    "message": "Isso irá verificar se o episódio está marcado como filler/recap no MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "settings_crash_report_text": {
+    "message": "Ajuda a corrigir quaisquer bugs. Nenhum dado sensível será enviado.",
+    "description": "Crash report tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "Esse episódio foi marcado como filler no MyAnimeList, deseja pular?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "Esse episódio foi marcado como recap no MyAnimeList, deseja pular?",
+    "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Posição",
+    "description": "Position of the quicklinks"
   }
 }
