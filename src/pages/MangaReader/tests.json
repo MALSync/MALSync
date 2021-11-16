@@ -8,7 +8,11 @@
         "sync": false,
         "title": "Solo Leveling",
         "identifier": "21",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "4": "https://mangareader.to/read/solo-leveling-21/en/chapter-4",
+          "169": "https://mangareader.to/read/solo-leveling-21/en/chapter-169"
+        }
       }
     },
     {
