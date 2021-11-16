@@ -57,6 +57,7 @@ export const settingsObj = {
       'Vrv',
       'VIZ',
       'MangaPlus',
+      'MangaReader'
     ],
     quicklinksPosition: 'default',
 

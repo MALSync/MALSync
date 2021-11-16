@@ -11,6 +11,7 @@ type MangaReaderSyncData = {
   chapter?: string;
   volume?: string;
   next_chapter_url?: string;
+  next_volume_url?: string;
 };
 
 let jsonData: MangaReaderSyncData;
@@ -19,7 +20,7 @@ export const MangaReader: pageInterface = {
   name: 'MangaReader',
   domain: 'https://mangareader.to',
   languages: ['English', 'Japanese'],
-  type: 'anime',
+  type: 'manga',
   database: 'MangaReader',
   isSyncPage(url) {
     return jsonData.page === 'chapter';
@@ -40,8 +41,11 @@ export const MangaReader: pageInterface = {
     getEpisode(url) {
       return parseInt(jsonData.chapter!);
     },
+    getVolume(url) {
+      return parseInt(jsonData.volume!);
+    },
     nextEpUrl(url) {
-      return jsonData.next_chapter_url;
+      return jsonData.next_chapter_url || jsonData.next_volume_url;
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/manga/${jsonData.mal_id}`;
