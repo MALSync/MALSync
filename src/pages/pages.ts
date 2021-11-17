@@ -116,7 +116,6 @@ import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
-import { CatManga } from './CatManga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -262,7 +261,6 @@ export const pages = {
   AnimeShitai,
   KangaryuTeam,
   Japanread,
-  CatManga,
   MangaSushi,
   ArangScans,
   HunlightScans,
