@@ -142,6 +142,7 @@ import { Anicloud } from './Anicloud/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
+import { MangaReader } from './MangaReader/main';
 
 export const pages = {
   nineAnime,
@@ -288,4 +289,5 @@ export const pages = {
   BetterAnime,
   AMAScan,
   BilibiliComics,
+  MangaReader,
 };

@@ -1,50 +1,55 @@
 import { pageInterface } from '../pageInterface';
 
-type ZoroSyncData = {
-  page: 'episode' | 'anime';
+type MangaReaderSyncData = {
+  page: 'chapter' | 'manga';
   name: string;
-  anime_id: string;
+  manga_id: string;
   mal_id: string;
   anilist_id: string;
-  series_url: string;
+  manga_url: string;
   selector_position?: string;
-  episode?: string;
-  next_episode_url?: string;
+  chapter?: string;
+  volume?: string;
+  next_chapter_url?: string;
+  next_volume_url?: string;
 };
 
-let jsonData: ZoroSyncData;
+let jsonData: MangaReaderSyncData;
 
-export const Zoro: pageInterface = {
-  name: 'Zoro',
-  domain: 'https://zoro.to',
-  languages: ['English'],
-  type: 'anime',
-  database: 'Zoro',
+export const MangaReader: pageInterface = {
+  name: 'MangaReader',
+  domain: 'https://mangareader.to',
+  languages: ['English', 'Japanese'],
+  type: 'manga',
+  database: 'MangaReader',
   isSyncPage(url) {
-    return jsonData.page === 'episode';
+    return jsonData.page === 'chapter';
   },
   isOverviewPage(url) {
-    return jsonData.page === 'anime';
+    return jsonData.page === 'manga';
   },
   sync: {
     getTitle(url) {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return jsonData.anime_id;
+      return jsonData.manga_id;
     },
     getOverviewUrl(url) {
-      return jsonData.series_url;
+      return jsonData.manga_url;
     },
     getEpisode(url) {
-      return parseInt(jsonData.episode!);
+      return parseInt(jsonData.chapter!);
+    },
+    getVolume(url) {
+      return parseInt(jsonData.volume!);
     },
     nextEpUrl(url) {
-      return jsonData.next_episode_url;
+      return jsonData.next_chapter_url || jsonData.next_volume_url;
     },
     getMalUrl(provider) {
-      if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-      if (provider === 'ANILIST' && jsonData.anilist_id) return `https://anilist.co/anime/${jsonData.anilist_id}`;
+      if (jsonData.mal_id) return `https://myanimelist.net/manga/${jsonData.mal_id}`;
+      if (provider === 'ANILIST' && jsonData.anilist_id) return `https://anilist.co/manga/${jsonData.anilist_id}`;
       return false;
     },
   },
@@ -53,21 +58,21 @@ export const Zoro: pageInterface = {
       return utils.htmlDecode(jsonData.name);
     },
     getIdentifier(url) {
-      return jsonData.anime_id;
+      return jsonData.manga_id;
     },
     uiSelector(selector) {
       j.$(jsonData.selector_position!).append(j.html(selector));
     },
     getMalUrl(provider) {
-      return Zoro.sync.getMalUrl!(provider);
+      return MangaReader.sync.getMalUrl!(provider);
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.ss-list > a');
+        return j.$('ul.lang-chapters.active li.chapter-item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), Zoro.domain);
+        return utils.absoluteLink(selector.find('a').attr('href'), MangaReader.domain);
       },
       elementEp(selector) {
         return Number(selector.attr('data-number'));
@@ -81,6 +86,11 @@ export const Zoro: pageInterface = {
 
     utils.changeDetect(check, () => j.$('#syncData').text());
     check();
+
+    utils.changeDetect(
+      () => page.handleList(),
+      () => j.$('#c-selected-lang').text(),
+    );
 
     function check() {
       page.reset();
