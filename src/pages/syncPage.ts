@@ -464,9 +464,19 @@ export class SyncPage {
               sync();
             }, api.settings.get('delay') * 1000);
           } else {
+            const translationMsg = {
+              key: `syncPage_flashm_sync_${This.page.type}`,
+              value: String(state.episode),
+            };
+
+            if (This.page.type === 'manga' && !state.episode && state.volume) {
+              translationMsg.key = 'syncPage_flashm_sync_manga_volume';
+              translationMsg.value = String(state.volume);
+            }
+
             let message = `<button class="sync" style="margin-bottom: 8px; background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">${api.storage.lang(
-              `syncPage_flashm_sync_${This.page.type}`,
-              [providerTemplates(malUrl).shortName, String(state.episode)],
+              translationMsg.key,
+              [providerTemplates(malUrl).shortName, translationMsg.value],
             )}</button>`;
             let options = {
               hoverInfo: true,
