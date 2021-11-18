@@ -9,6 +9,7 @@ import { Cache } from '../utils/Cache';
 import { isIframeUrl } from '../utils/manifest';
 import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
+import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
 
 declare let browser: any;
 
@@ -303,7 +304,15 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
-      tempSingle = await this.searchObj.initRules();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
 
       if (!state.detectedEpisode && state.detectedEpisode !== 0) {
         if (this.page.type === 'anime') {
@@ -361,7 +370,15 @@ export class SyncPage {
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
       this.curState = state;
       await this.searchObj.search();
-      tempSingle = await this.searchObj.initRules();
+
+      try {
+        tempSingle = await this.searchObj.initRules();
+      } catch (e) {
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
+        }
+        throw e;
+      }
 
       logger.m('Overview', 'green').log(state);
       bloodTrail({
@@ -403,18 +420,16 @@ export class SyncPage {
         }
         this.singleObj = tempSingle;
       } catch (e) {
-        if (e.code === 901) {
-          utils.flashm('Incorrect url provided', {
-            error: true,
-            type: 'error',
-          });
+        if (e instanceof UrlNotSupportedError) {
+          this.incorrectUrl();
           throw e;
-        } else if (e.code === 904 && api.settings.get('localSync')) {
+        } else if (e instanceof NotFoundError && api.settings.get('localSync')) {
           logger.log('Local Fallback');
           tempSingle = getSingle(localUrl);
           await tempSingle.update();
           this.singleObj = tempSingle;
         } else {
+          if (tempSingle) this.singleObj = tempSingle;
           this.singleObj.flashmError(e);
           this.fillUI();
           throw e;
@@ -913,6 +928,14 @@ export class SyncPage {
     }
   }
 
+  incorrectUrl() {
+    utils.flashm('Incorrect url provided', {
+      error: true,
+      type: 'error',
+    });
+    this.openCorrectionUi();
+  }
+
   testForCloudflare() {
     if (document.title === 'Just a moment...' || document.title.indexOf('Cloudflare') !== -1) {
       return true;
@@ -962,7 +985,6 @@ export class SyncPage {
     const This = this;
     if (this.UILoaded) return;
     this.UILoaded = true;
-    let wrapStart = '<span style="display: inline-block;">';
     const wrapEnd = '</span>';
 
     let ui = '<p id="malp">';
@@ -970,52 +992,57 @@ export class SyncPage {
 
     ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('search_Score')} </span>`;
-    ui += '<a id="malRating" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
+    ui += '<span style="display: inline-block;" class="malp-group malp-group-rating">';
+    ui += `<span class="info malp-group-label">${api.storage.lang('search_Score')} </span>`;
+    ui +=
+      '<a id="malRating" class="malp-group-field" style="min-width: 30px;display: inline-block;" target="_blank" href="">____</a>';
     ui += wrapEnd;
 
     // ui += '<span id="MalLogin">';
-    wrapStart = '<span style="display: inline-block; display: none;" class="MalLogin">';
+    const wrapStart = (section: string) =>
+      `<span style="display: inline-block; display: none;" class="MalLogin malp-group malp-group-${section}">`;
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('UI_Status')} </span>`;
-    ui += '<select id="malStatus">';
+    ui += wrapStart('status');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Status')} </span>`;
+    ui += '<select id="malStatus" class="malp-group-field malp-group-select">';
     ui += '</select>';
     ui += wrapEnd;
 
     let middle = '';
     if (this.page.type === 'anime') {
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Episode')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotal">0</span>';
+      middle += wrapStart('episode');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Episode')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotal" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
     } else {
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Volume')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malVolumes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotalVol">0</span>';
+      middle += wrapStart('volume');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Volume')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malVolumes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalVol" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
 
-      middle += wrapStart;
-      middle += `<span class="info">${api.storage.lang('UI_Chapter')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;">';
-      middle += '<input id="malEpisodes" value="0" type="text" size="1" maxlength="4">';
-      middle += '/<span id="malTotalCha">0</span>';
+      middle += wrapStart('chapter');
+      middle += `<span class="info malp-group-label">${api.storage.lang('UI_Chapter')} </span>`;
+      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
+      middle += '/<span id="malTotalCha" class="malp-group-value">0</span>';
       middle += '</span>';
       middle += wrapEnd;
     }
 
     ui += middle;
 
-    ui += wrapStart;
-    ui += `<span class="info">${api.storage.lang('UI_Score')}</span>`;
-    ui += '<select id="malUserRating">';
+    ui += wrapStart('score');
+    ui += `<span class="info malp-group-label">${api.storage.lang('UI_Score')}</span>`;
+    ui += '<select id="malUserRating" class="malp-group-field malp-group-select">';
     ui += '</select>';
     ui += wrapEnd;
 

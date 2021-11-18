@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import * as def from '../../../src/_provider/definitions';
+import { UrlNotSupportedError } from '../../../src/_provider/Errors';
 
 export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
   describe('Url', function() {
@@ -12,8 +13,7 @@ export function generalSingleTests(Single, setGlobals, titlePrefix = '') {
             expect(single.getType()).equal(el.type);
           } else {
             expect(() => new Single(el.url))
-              .to.throw()
-              .to.include({ code: def.errorCode.UrlNotSuported });
+              .to.throw(UrlNotSupportedError);
           }
         });
       });

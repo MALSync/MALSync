@@ -1,4 +1,3 @@
-import * as definitions from './definitions';
 import { Cache } from '../utils/Cache';
 
 export interface Overview {
@@ -101,12 +100,5 @@ export abstract class MetaOverviewAbstract {
     if (this.cacheObj) return this.cacheObj;
     this.cacheObj = new Cache(`v2/${this.url}`, 5 * 24 * 60 * 60 * 1000);
     return this.cacheObj;
-  }
-
-  protected errorObj(code: definitions.errorCode, message): definitions.error {
-    return {
-      code,
-      message,
-    };
   }
 }

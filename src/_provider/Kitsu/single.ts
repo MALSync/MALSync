@@ -1,6 +1,6 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
-import { errorCode } from '../definitions';
+import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -34,7 +34,7 @@ export class Single extends SingleAbstract {
       this.ids.mal = Number(utils.urlPart(url, 4));
       return;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSupportedError(url);
   }
 
   getCacheKey() {
@@ -136,7 +136,9 @@ export class Single extends SingleAbstract {
   }
 
   _getImage() {
-    return this.animeI().attributes.posterImage.large;
+    return this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
+      ? this.animeI().attributes.posterImage.large
+      : '';
   }
 
   _getRating() {
@@ -153,7 +155,7 @@ export class Single extends SingleAbstract {
         this.ids.mal = kitsuSlugRes.malId;
       } catch (e) {
         this._authenticated = true;
-        throw this.errorObj(errorCode.EntryNotFound, 'Not found');
+        throw new NotFoundError('Not found');
       }
     }
     if (Number.isNaN(this.ids.kitsu.id)) {
@@ -163,7 +165,7 @@ export class Single extends SingleAbstract {
         this.ids.kitsu.id = kitsuRes.data[0].relationships.item.data.id;
       } catch (e) {
         this._authenticated = true;
-        throw this.errorObj(errorCode.EntryNotFound, 'Not found');
+        throw new NotFoundError('Not found');
       }
     }
 
@@ -180,7 +182,7 @@ export class Single extends SingleAbstract {
         );
       })
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return { data: [], included: [] };
         }
@@ -220,10 +222,10 @@ export class Single extends SingleAbstract {
           this.animeI();
         } catch (e) {
           this.logger.error(e);
-          throw this.errorObj(errorCode.EntryNotFound, 'Not found');
+          throw new NotFoundError('Not found');
         }
 
-        if (!this._authenticated) throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        if (!this._authenticated) throw new NotAutenticatedError('Not Authenticated');
       });
   }
 
@@ -280,7 +282,12 @@ export class Single extends SingleAbstract {
     });
   }
 
-  protected apiCall = helper.apiCall;
+  protected apiCall(mode, url, variables = {}, authentication = true) {
+    return helper.apiCall(mode, url, variables, authentication).catch(e => {
+      if (e instanceof NotAutenticatedError) throw new NotAutenticatedError(e.message);
+      throw e;
+    });
+  }
 
   protected kitsuSlugtoKitsu(kitsuSlug: string, type: any) {
     return this.apiCall(
@@ -289,7 +296,7 @@ export class Single extends SingleAbstract {
       {},
     )
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return this.apiCall(
             'Get',
@@ -327,7 +334,7 @@ export class Single extends SingleAbstract {
       {},
     )
       .catch(e => {
-        if (e.code === errorCode.NotAutenticated) {
+        if (e instanceof NotAutenticatedError) {
           this._authenticated = false;
           return this.apiCall(
             'Get',
@@ -345,12 +352,12 @@ export class Single extends SingleAbstract {
 
   protected async userId() {
     const userId = await api.storage.get('kitsuUserId');
-    if (typeof userId !== 'undefined') {
+    if (typeof userId !== 'undefined' && userId) {
       return userId;
     }
     return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
       if (typeof res.data === 'undefined' || !res.data.length || typeof res.data[0] === 'undefined') {
-        throw this.errorObj(errorCode.NotAutenticated, 'Not Authenticated');
+        throw new NotAutenticatedError('Not Authenticated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);
       return res.data[0].id;

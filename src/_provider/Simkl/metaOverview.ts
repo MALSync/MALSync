@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -22,7 +22,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       return this;
     }
 
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSupportedError(url);
   }
 
   protected readonly type;
@@ -59,7 +59,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (Number.isNaN(this.simklId)) {
       const el = await this.call('https://api.simkl.com/search/id', de, true);
-      if (!el) throw this.errorObj(errorCode.EntryNotFound, 'simklId');
+      if (!el) throw new NotFoundError(`simklId: ${this.simklId}`);
       this.simklId = el[0].ids.simkl;
     }
 
@@ -196,25 +196,6 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     });
     this.meta.related = Object.keys(links).map(key => links[key]);
-  }
-
-  jsonParse(response) {
-    if (response.responseText === '') {
-      throw {
-        code: 444,
-        message: 'No Response',
-      };
-    }
-
-    try {
-      return JSON.parse(response.responseText);
-    } catch (e) {
-      throw {
-        code: 406,
-        message: 'Not Acceptable',
-        error: e,
-      };
-    }
   }
 
   protected call = helper.call;

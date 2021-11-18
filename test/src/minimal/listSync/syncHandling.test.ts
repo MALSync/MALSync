@@ -1,6 +1,14 @@
+setGlobals();
 import { expect } from 'chai';
 import * as sync from '../../../../src/minimal/minimalApp/listSync/syncHandler';
 import * as Api from '../../utils/apiStub';
+
+function setGlobals() {
+  global.con = require('../../../../src/utils/console');
+  global.con.log = function() {};
+  global.con.error = function() {};
+  global.con.info = function() {};
+}
 
 const helper = {
   getItem() {
@@ -31,26 +39,21 @@ const helper = {
 };
 
 describe('Sync Handling', function() {
+  before(function() {
+    setGlobals();
+  });
   describe('getType', function() {
     it('Myanimelist', function() {
-      expect(
-        sync.getType('https://myanimelist.net/anime/19815/No_Game_No_Life'),
-      ).to.equal('MAL');
+      expect(sync.getType('https://myanimelist.net/anime/19815/No_Game_No_Life')).to.equal('MAL');
     });
     it('AniList', function() {
-      expect(
-        sync.getType('https://anilist.co/anime/19815/No-Game-No-Life/'),
-      ).to.equal('ANILIST');
+      expect(sync.getType('https://anilist.co/anime/19815/No-Game-No-Life/')).to.equal('ANILIST');
     });
     it('Kitsu', function() {
-      expect(sync.getType('https://kitsu.io/anime/no-game-no-life')).to.equal(
-        'KITSU',
-      );
+      expect(sync.getType('https://kitsu.io/anime/no-game-no-life')).to.equal('KITSU');
     });
     it('Simkl', function() {
-      expect(
-        sync.getType('https://simkl.com/anime/46128/no-game-no-life'),
-      ).to.equal('SIMKL');
+      expect(sync.getType('https://simkl.com/anime/46128/no-game-no-life')).to.equal('SIMKL');
     });
     it('Random', function() {
       expect(() => sync.getType('Random')).to.throw();
@@ -238,22 +241,12 @@ describe('Sync Handling', function() {
     });
     it('providerType', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerType).to.be.oneOf([
-          'MAL',
-          'ANILIST',
-          'KITSU',
-          'SIMKL',
-        ]);
+        expect(providerList[i].providerType).to.be.oneOf(['MAL', 'ANILIST', 'KITSU', 'SIMKL']);
       }
     });
     it('providerSettings', function() {
       for (const i in providerList) {
-        expect(providerList[i].providerSettings).to.be.oneOf([
-          'mal',
-          'anilist',
-          'kitsu',
-          'simkl',
-        ]);
+        expect(providerList[i].providerSettings).to.be.oneOf(['mal', 'anilist', 'kitsu', 'simkl']);
       }
     });
   });
@@ -299,17 +292,13 @@ describe('Sync Handling', function() {
     it('MAL Master', async function() {
       const stub = Api.getStub({
         settings: {
-          syncMode: 'MAL'
-        }
+          syncMode: 'MAL',
+        },
       });
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(
-        providerList,
-        'anime',
-        getListStub,
-      );
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('MAL');
       expect(res.slaves).to.not.include('MAL');
@@ -326,11 +315,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(
-        providerList,
-        'anime',
-        getListStub,
-      );
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('ANILIST');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -345,11 +330,7 @@ describe('Sync Handling', function() {
       });
       Api.setStub(stub);
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(
-        providerList,
-        'anime',
-        getListStub,
-      );
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('KITSU');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -365,11 +346,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(
-        providerList,
-        'anime',
-        getListStub,
-      );
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
       expect(res.master).equal('SIMKL');
       expect(res.slaves).to.have.length(res.typeArray.length - 1);
@@ -380,7 +357,7 @@ describe('Sync Handling', function() {
       const stub = Api.getStub({
         settings: {
           syncMode: 'SIMKL',
-          syncModeSimkl: 'MAL'
+          syncModeSimkl: 'MAL',
         },
       });
       Api.setStub(stub);
@@ -412,11 +389,7 @@ describe('Sync Handling', function() {
       Api.setStub(stub);
 
       const providerList = getProviderListList();
-      const res = await sync.retriveLists(
-        providerList,
-        'anime',
-        getListStub,
-      );
+      const res = await sync.retriveLists(providerList, 'anime', getListStub);
 
       expect(res.typeArray).to.deep.equal(['MAL', 'ANILIST', 'SIMKL']);
     });

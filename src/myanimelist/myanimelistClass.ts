@@ -61,6 +61,7 @@ export class MyAnimeListClass {
         this.malToKiss();
         this.related();
         this.friendScore();
+        this.relatedTag();
         break;
       case 'bookmarks':
         $(document).ready(() => {
@@ -79,6 +80,7 @@ export class MyAnimeListClass {
         this.bookmarks();
         break;
       case 'character':
+        this.relatedTag();
       case 'people':
       case 'search':
         this.thumbnails();
@@ -249,7 +251,12 @@ export class MyAnimeListClass {
     con.log('Streaming UI');
     const malObj = new ApiSingle(this.url);
 
-    await malObj.update();
+    try {
+      await malObj.update();
+    } catch (e) {
+      con.error('Could not get Single', e);
+      return;
+    }
 
     this.pageRelation(malObj);
 
@@ -523,6 +530,34 @@ export class MyAnimeListClass {
                 if (tag) el.append(j.html(tag));
               }
             });
+        }
+      });
+    });
+  }
+
+  relatedTag() {
+    const This = this;
+    $(document).ready(function() {
+      $('a.button_edit').each(function() {
+        const el = $(this);
+        const href = $(this).attr('href') || '';
+        const type = utils.urlPart(href, 4);
+        const id = utils.urlPart(href, 5);
+        const state = el.attr('title');
+        if (typeof state !== 'undefined' && state) {
+          const tag = String(utils.statusTag(state, type, id));
+          if (This.page === 'detail') {
+            el.parent()
+              .find('> a')
+              .first()
+              .after(j.html(tag));
+          } else {
+            el.parent()
+              .parent()
+              .find('> a')
+              .after(j.html(tag));
+          }
+          el.remove();
         }
       });
     });
