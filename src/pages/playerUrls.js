@@ -303,6 +303,7 @@ module.exports = {
     match: [
       '*://*.animixplay.to/api/live*',
       '*://*.animixplay.to/goplyr.html*',
+      '*://*.animixplay.to/player.html*',
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
