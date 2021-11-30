@@ -1,0 +1,7 @@
+{
+  "search": "https://animeonsen.xyz/search/{searchterm}",
+  "urls": {
+    "match": ["*://animeonsen.xyz/*"],
+    "exclude": ["*://*.animeonsen.xyz/*", "*://*.animeonsen.xyz/account/*", "*://*animeonsen*.*/*"]
+  }
+}
