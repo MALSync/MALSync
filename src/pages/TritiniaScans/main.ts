@@ -6,10 +6,13 @@ export const TritiniaScans: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      j.$('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]').length >
-      0
-    ) {
+    if (j.$('.reading-manga .chapter-type-manga').length) {
+      return true;
+    }
+    return false;
+  },
+  isOverviewPage(url) {
+    if (j.$('.manga-page .profile-manga').length) {
       return true;
     }
     return false;
@@ -28,7 +31,11 @@ export const TritiniaScans: pageInterface = {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).attr('href') || '';
     },
     getEpisode(url) {
-      const episodePart = utils.urlPart(url, 5);
+      let episodePart = utils.urlPart(url, 5);
+
+      if (episodePart.match(/(volume|season)-\d+/gim)) {
+        episodePart = utils.urlPart(url, 6);
+      }
 
       const temp = episodePart.match(/ch-\d+/gim);
 
@@ -84,22 +91,14 @@ export const TritiniaScans: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if (
-        page.url.split('/')[3] === 'manga' &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
-      ) {
+    j.$(() => {
+      if (TritiniaScans.isSyncPage(page.url)) {
+        page.handlePage();
+      }
+      if (TritiniaScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
           function() {
-            if (
-              j.$('ul > li.wp-manga-chapter').length ||
-              j.$('div.wp-manga-nav div.chapter-selection.chapters_selectbox_holder option.short[selected="selected"]')
-                .length
-            ) {
-              return true;
-            }
-            return false;
+            return j.$('.wp-manga-chapter').length > 0;
           },
           function() {
             page.handlePage();
