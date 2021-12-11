@@ -17,6 +17,7 @@ export const BetterAnime: pageInterface = {
         .$('.anime-title > h2')
         .first()
         .text()
+        .replace(/ (- )?Dublado/, '')
         .trim();
     },
     getIdentifier(url) {
