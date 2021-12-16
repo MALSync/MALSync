@@ -19,6 +19,7 @@ const COMMON_RULES = {
   'no-fallthrough': 'off',
   'no-plusplus': 0,
   'vue/no-useless-template-attributes': 'off',
+  'no-constructor-return': 'off',
   'no-restricted-syntax': [
     'error',
     // TODO: Reenable rule
