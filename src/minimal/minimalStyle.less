@@ -12,9 +12,9 @@ body::-webkit-scrollbar {
 #fixed-tab-1 {
   .loading,
   .loaded {
-    -o-transition: opacity 0.3s linear;
-    -moz-transition: opacity 0.3s linear;
-    -webkit-transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
+    transition: opacity 0.3s linear;
     transition: opacity 0.3s linear;
   }
 
@@ -150,7 +150,7 @@ a {
   .mdl-layout__drawer-button {
     background-color: transparent;
     &:hover {
-      background-color: rgba(158, 158, 158, 0.2);
+      background-color: rgb(158 158 158 / 20%);
     }
   }
   .mdl-layout__tab-bar {
@@ -212,11 +212,11 @@ a {
     margin: 0;
     opacity: 1;
     padding: 2px 4px;
-    -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
-    -webkit-transition-property: all;
+    transition-duration: 0.3s;
     transition-property: all;
-    -webkit-transition-timing-function: ease-in-out;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
     display: inline-block;
     font-family: Avenir, lucida grande, tahoma, verdana, arial, sans-serif;
@@ -281,8 +281,8 @@ a {
       font-weight: bold;
       color: #707070;
       opacity: 0;
-      -webkit-transition: 1s;
-      -o-transition: 1s;
+      transition: 1s;
+      transition: 1s;
       transition: 1s;
     }
 
@@ -402,7 +402,7 @@ table#malList {
   tr {
     .imageTd .loaded::after {
       content: '';
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.67) 100%);
+      background: linear-gradient(180deg, rgb(255 255 255 / 0%) 50%, rgb(0 0 0 / 67%) 100%);
       position: absolute;
       top: 0;
       left: 0;

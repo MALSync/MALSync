@@ -22,7 +22,7 @@
       <div
         v-if="item.fn.progress && item.fn.progress.isAiring()"
         class="mdl-shadow--2dp"
-        style=" position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.9); padding: 0 5px; margin: 5px 0; text-align: center;"
+        style=" position: absolute; top: 0; right: 0; background-color: rgb(255 255 255 / 90%); padding: 0 5px; margin: 5px 0; text-align: center;"
       >
         {{ item.fn.progress.getAuto() }}
       </div>
@@ -46,7 +46,7 @@
       <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
       <span
         class="mdl-shadow--2dp"
-        style="position: absolute; bottom: 0; display: block; background-color: rgba(255, 255, 255, 0.9); padding-top: 5px; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
+        style="position: absolute; bottom: 0; display: block; background-color: rgb(255 255 255 / 90%); padding-top: 5px; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
       >
         <a :href="item.url" style="color: black; text-decoration: none;">
           {{ item.title }}
@@ -127,7 +127,7 @@
     >
       <div
         v-if="item.fn.progress && item.fn.progress.isAiring()"
-        style="position: absolute; top: 0; left: 0; padding: 0 11px; margin: 0 0; text-align: center;     font-size: 10px;"
+        style="position: absolute; top: 0; left: 0; padding: 0 11px; margin: 0; text-align: center;     font-size: 10px;"
       >
         {{ item.fn.progress.getAuto() }}
       </div>
