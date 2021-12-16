@@ -137,7 +137,6 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
   if (malDATA === null) return [{}];
   if (malDATA.length <= 0) return [{}];
   const malDATAID = malDATA.map(el => el.apiCacheKey);
-  const waitFor = ms => new Promise(r => setTimeout(r, ms));
   const returnArray: xhrResponseI[] = [];
   for (let i = 0; i <= malDATAID.length; ) {
     const tempArray = malDATAID.slice(i, i + 49);
@@ -146,7 +145,7 @@ export async function predictionXhrPOST(type: string, malDATA: listElement[] | n
       data: JSON.stringify({ malids: tempArray }),
       headers: { 'Content-Type': 'application/json' },
     };
-    await waitFor(5000);
+    await utils.wait(5000);
     const response = await api.request.xhr('POST', Request);
     returnArray.push(JSON.parse(response.responseText));
     i += 50;
@@ -220,7 +219,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   let xhrArray;
   if (remoteUpdateList.length > 0) {
     xhrArray = await predictionXhrPOST(type, remoteUpdateList);
-    await new Promise(resolve => setTimeout(() => resolve(''), 500));
+    await utils.wait(500);
   }
 
   xhrArray.forEach(async xhr => {
@@ -330,7 +329,7 @@ export async function single(
     xhr = el.xhr;
   } else {
     xhr = await predictionXhrGET(type, el.apiCacheKey);
-    await new Promise(resolve => setTimeout(() => resolve(''), 500));
+    await utils.wait(500);
   }
   logger.log(xhr);
 
