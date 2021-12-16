@@ -67,7 +67,7 @@
             ><i class="material-icons">open_in_new</i></a
           >
           <h1 class="malTitle mdl-card__title-text malClear" style="padding-left: 0; overflow:visible;">{{ title }}</h1>
-          <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0 0; overflow:visible;">
+          <div class="malAltTitle mdl-card__supporting-text malClear" style="padding: 10px 0 0; overflow:visible;">
             <div v-for="altTitl in altTitle" :key="altTitl" class="mdl-chip" style="margin-right: 5px;">
               <span class="mdl-chip__text">{{ altTitl }}</span>
             </div>
@@ -441,7 +441,7 @@
                 v-for="(openingSong, index) in openingSongs"
                 :key="index"
                 :title="openingSong.episode"
-                style="display: block; color: rgb(255,64,129);"
+                style="display: block; color: rgb(255 64 129);"
               >
                 {{ index + 1 }}:
                 <template v-if="openingSong.url">
@@ -465,7 +465,7 @@
                 v-for="(endingSong, index) in endingSongs"
                 :key="index"
                 :title="endingSong.episode"
-                style="display: block; color: rgb(255,64,129);"
+                style="display: block; color: rgb(255 64 129);"
               >
                 {{ index + 1 }}:
                 <template v-if="endingSong.url">

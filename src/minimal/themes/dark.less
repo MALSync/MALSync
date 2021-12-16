@@ -114,7 +114,7 @@
   }
   .mdl-progress {
     .bufferbar {
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      background-image: linear-gradient(to right, rgb(0 0 0 / 70%), rgb(0 0 0 / 70%)),
         linear-gradient(to right, @blue, @blue);
     }
     .auxbar {
@@ -126,7 +126,7 @@
     background-color: @blue;
   }
   .mdl-switch.is-checked .mdl-switch__track {
-    background-color: rgb(110, 127, 221);
+    background-color: rgb(110 127 221);
   }
 
   .mdl-layout.is-upgraded .mdl-layout__tab.is-active::after {
@@ -161,7 +161,7 @@
 
   .discord {
     div:not(.loaded) {
-      background-image: -webkit-linear-gradient(top, @light 0%, rgb(115, 139, 215) 74%) !important;
+      background-image: linear-gradient(to bottom, @light 0%, rgb(115 139 215) 74%) !important;
     }
   }
   div .history {
