@@ -599,4 +599,8 @@ module.exports = {
   mobi: {
     match: ['*://uploads.mobi/*'],
   },
+  // anistream
+  bunny: {
+    match: ['*://iframe.mediadelivery.net/embed/*'],
+  },
 };
