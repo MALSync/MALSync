@@ -205,10 +205,6 @@ describe('AniList overview', function() {
             "url": "https://twitter.com/ngnl_anime"
           },
           {
-            "text": "AnimeLab",
-            "url": "https://www.animelab.com/shows/no-game-no-life"
-          },
-          {
             "text": "Hidive",
             "url": "https://www.hidive.com/tv/no-game-no-life"
           },
