@@ -450,7 +450,7 @@
           </div>
           <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw" class="discord" style="min-height: 160px">
             <div
-              style="height: 20px; margin: -15px; margin-top: 15px; background: linear-gradient(to top, #fff 0%,#738bd7 74%);"
+              style="height: 20px; margin: -15px; margin-top: 15px; background: linear-gradient(to bottom, #fff 0%,#738bd7 74%);"
             ></div>
             <clazy-load
               src="https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3"
