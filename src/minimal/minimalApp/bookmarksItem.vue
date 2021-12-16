@@ -46,7 +46,7 @@
       <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
       <span
         class="mdl-shadow--2dp"
-        style="position: absolute; bottom: 0; display: block; background-color: rgb(255 255 255 / 90%); padding-top: 5px; align-items: center; justify-content: space-between; left: 0; right: 0; padding-right: 8px; padding-left: 8px; padding-bottom: 8px;"
+        style="position: absolute; bottom: 0; display: block; background-color: rgb(255 255 255 / 90%); align-items: center; justify-content: space-between; left: 0; right: 0; padding: 5px 8px 8px;"
       >
         <a :href="item.url" style="color: black; text-decoration: none;">
           {{ item.title }}
