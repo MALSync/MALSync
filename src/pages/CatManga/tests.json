@@ -1,6 +1,7 @@
 {
   "title": "catmanga",
   "url": "https://catmanga.org/",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://catmanga.org/series/gksfd/61",

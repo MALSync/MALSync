@@ -237,6 +237,20 @@
       }
     }
   },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "Update $page$ to volume $epNr$",
+    "description": "Update MAL to volume 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
   "syncPage_flashm_sync_undefined_undo": {
     "message": "Undo",
     "description": "Undo button on 'synced' message"

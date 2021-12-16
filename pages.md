@@ -174,7 +174,7 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    <td><a href="https://animesuge.io"><img src="https://favicon.malsync.moe/?domain=https://animesuge.io"> AnimeSuge</a></td>
+    <td><a href="https://animesuge.to"><img src="https://favicon.malsync.moe/?domain=https://animesuge.to"> AnimeSuge</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -250,6 +250,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://betteranime.net"><img src="https://favicon.malsync.moe/?domain=https://betteranime.net"> BetterAnime</a></td>
+    <td>Portuguese</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://bs.to"><img src="https://favicon.malsync.moe/?domain=https://bs.to"> bs.to</a></td>
     <td>German</td>
@@ -575,6 +582,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://www.amascan.com"><img src="https://favicon.malsync.moe/?domain=https://www.amascan.com"> AMAScan</a></td>
+    <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://arangscans.com"><img src="https://favicon.malsync.moe/?domain=https://arangscans.com"> ArangScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -596,15 +610,15 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://www.bluesolo.org"><img src="https://favicon.malsync.moe/?domain=https://www.bluesolo.org"> BlueSolo</a></td>
-    <td>French</td>
+    <td><a href="https://www.bilibilicomics.com"><img src="https://favicon.malsync.moe/?domain=https://www.bilibilicomics.com"> BilibiliComics</a></td>
+    <td>English</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://catmanga.org"><img src="https://favicon.malsync.moe/?domain=https://catmanga.org"> CatManga</a></td>
-    <td>English</td>
+    <td><a href="https://www.bluesolo.org"><img src="https://favicon.malsync.moe/?domain=https://www.bluesolo.org"> BlueSolo</a></td>
+    <td>French</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -833,6 +847,13 @@
     <td>:x:</td>
     <td>:x:</td>
     <td>:x:</td>
+  </tr><tr>
+    <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
+    <td>English, Japanese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://mangasee123.com"><img src="https://favicon.malsync.moe/?domain=https://mangasee123.com"> MangaSee</a></td>
     <td>English</td>

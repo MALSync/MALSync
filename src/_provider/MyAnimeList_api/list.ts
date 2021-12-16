@@ -15,16 +15,6 @@ export class UserList extends ListAbstract {
     });
   }
 
-  errorHandling(res) {
-    if (typeof res.errors !== 'undefined') {
-      con.error(res.errors);
-      throw {
-        code: parseInt(res.errors[0].status),
-        message: res.errors[0].title,
-      };
-    }
-  }
-
   deauth() {
     return api.settings.set('malToken', '').then(() => api.settings.set('malRefresh', ''));
   }

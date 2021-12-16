@@ -22,7 +22,7 @@ export interface content {
 export interface videoTimeSet {
   name: 'videoTimeSet';
   time?: number;
-  timeAdd?: number;
+  timeAdd?: boolean;
   sender?: chrome.runtime.MessageSender;
 }
 

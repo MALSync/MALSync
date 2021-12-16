@@ -14,7 +14,6 @@ import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
-import { AnimeLab } from './AnimeLab/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { AnimeKisa } from './AnimeKisa/main';
 import { Wakanim } from './Wakanim/main';
@@ -116,7 +115,6 @@ import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
-import { CatManga } from './CatManga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -142,6 +140,7 @@ import { Anicloud } from './Anicloud/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
+import { MangaReader } from './MangaReader/main';
 
 export const pages = {
   nineAnime,
@@ -161,7 +160,6 @@ export const pages = {
   Emby,
   Plex,
   Aniflix,
-  AnimeLab,
   KickAssAnime,
   AnimeKisa,
   AnimeIndo,
@@ -262,7 +260,6 @@ export const pages = {
   AnimeShitai,
   KangaryuTeam,
   Japanread,
-  CatManga,
   MangaSushi,
   ArangScans,
   HunlightScans,
@@ -288,4 +285,5 @@ export const pages = {
   BetterAnime,
   AMAScan,
   BilibiliComics,
+  MangaReader,
 };

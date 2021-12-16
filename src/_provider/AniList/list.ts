@@ -26,45 +26,19 @@ export class UserList extends ListAbstract {
     }
     `;
 
-    return this.api.request
-      .xhr('POST', {
-        url: 'https://graphql.anilist.co',
-        headers: {
-          Authorization: `Bearer ${this.accessToken()}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        data: JSON.stringify({
-          query,
-          variables: [],
-        }),
-      })
-      .then(response => {
-        const res = this.jsonParse(response);
-        con.log(res);
-        this.errorHandling(res);
-        if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
-          const opt = api.settings.get('anilistOptions');
-          opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
-          opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
-          api.settings.set('anilistOptions', opt);
-        }
-        return res.data.Viewer.name;
-      });
+    return helper.apiCall(query, [], true).then(res => {
+      if (res.data.Viewer.options && res.data.Viewer.mediaListOptions) {
+        const opt = api.settings.get('anilistOptions');
+        opt.displayAdultContent = res.data.Viewer.options.displayAdultContent;
+        opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
+        api.settings.set('anilistOptions', opt);
+      }
+      return res.data.Viewer.name;
+    });
   }
 
   deauth() {
     return api.settings.set('anilistToken', '');
-  }
-
-  errorHandling(res) {
-    if (typeof res.errors !== 'undefined') {
-      con.error(res.errors);
-      throw {
-        code: res.errors[0].status,
-        message: res.errors[0].message,
-      };
-    }
   }
 
   accessToken() {
@@ -187,31 +161,16 @@ export class UserList extends ListAbstract {
       variables.sort = order;
     }
 
-    return this.api.request
-      .xhr('POST', {
-        url: 'https://graphql.anilist.co',
-        headers: {
-          Authorization: `Bearer ${this.accessToken()}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        data: JSON.stringify({
-          query,
-          variables,
-        }),
-      })
-      .then(response => {
-        const res = this.jsonParse(response);
-        con.log('res', res);
-        this.errorHandling(res);
-        const data = res.data.Page.mediaList;
-        this.offset += 1;
-        if (!res.data.Page.pageInfo.hasNextPage) {
-          this.done = true;
-        }
+    return helper.apiCall(query, variables, true).then(res => {
+      con.log('res', res);
+      const data = res.data.Page.mediaList;
+      this.offset += 1;
+      if (!res.data.Page.pageInfo.hasNextPage) {
+        this.done = true;
+      }
 
-        return this.prepareData(data, this.listType);
-      });
+      return this.prepareData(data, this.listType);
+    });
   }
 
   private async prepareData(data, listType): Promise<listElement[]> {

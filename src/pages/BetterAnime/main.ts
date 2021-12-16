@@ -6,10 +6,10 @@ export const BetterAnime: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return url.split('/')[6].startsWith('episodio-');
+    return Boolean(url.split('/')[6] && url.split('/')[6].startsWith('episodio-'));
   },
   isOverviewPage(url) {
-    return url.split('/')[6] === 'undefined';
+    return false;
   },
   sync: {
     getTitle(url) {
@@ -17,6 +17,7 @@ export const BetterAnime: pageInterface = {
         .$('.anime-title > h2')
         .first()
         .text()
+        .replace(/ (- )?Dublado/, '')
         .trim();
     },
     getIdentifier(url) {

@@ -85,11 +85,6 @@
     "name": "Aniflix"
   },
   {
-    "domain": "https://www.animelab.com",
-    "type": "anime",
-    "name": "AnimeLab"
-  },
-  {
     "domain": "https://www.kickassanime.ro",
     "type": "anime",
     "name": "KickAssAnime"
@@ -535,7 +530,7 @@
     "name": "AnimeWho"
   },
   {
-    "domain": "https://animesuge.io",
+    "domain": "https://animesuge.to",
     "type": "anime",
     "name": "AnimeSuge"
   },
@@ -588,11 +583,6 @@
     "domain": "https://www.japanread.cc/",
     "type": "manga",
     "name": "Japanread"
-  },
-  {
-    "domain": "https://catmanga.org",
-    "type": "manga",
-    "name": "CatManga"
   },
   {
     "domain": "https://mangasushi.net",
@@ -703,5 +693,25 @@
     "domain": "https://anicloud.io",
     "type": "anime",
     "name": "Anicloud"
+  },
+  {
+    "domain": "https://betteranime.net",
+    "type": "anime",
+    "name": "BetterAnime"
+  },
+  {
+    "domain": "https://www.amascan.com",
+    "type": "manga",
+    "name": "AMAScan"
+  },
+  {
+    "domain": "https://www.bilibilicomics.com",
+    "type": "manga",
+    "name": "BilibiliComics"
+  },
+  {
+    "domain": "https://mangareader.to",
+    "type": "manga",
+    "name": "MangaReader"
   }
 ]

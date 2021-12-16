@@ -237,6 +237,20 @@
       }
     }
   },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "Actualizar $page$ al volumen $epNr$",
+    "description": "Update MAL to volume 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
   "syncPage_flashm_sync_undefined_undo": {
     "message": "Deshacer",
     "description": "Undo button on 'synced' message"
@@ -939,6 +953,10 @@
     "message": "Mostrar botón para ver el anime/manga en MAL u otro proveedor",
     "description": "Show button to view the anime/manga on MAL or another provider"
   },
+  "settings_presenceShowMalsync": {
+    "message": "Mostrar Mal-Sync en el título de presencia en lugar de anime/manga",
+    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
+  },
   "updateCheck_Refresh": {
     "message": "Refrescar",
     "description": "Refresh"
@@ -1127,9 +1145,17 @@
     "message": "Revisar por episodios de relleno/recapitulación",
     "description": "Option to enable filler checking"
   },
+  "settings_crash_report": {
+    "message": "Enviar reportes de fallos",
+    "description": "If to send crash reports"
+  },
   "settings_filler_text": {
     "message": "Esto revisará si el episodio está marcado como de relleno o recapitulación en MyAnimeList",
     "description": "filler tooltip"
+  },
+  "settings_crash_report_text": {
+    "message": "Ayuda a reparar bugs. No se envían datos sensibles",
+    "description": "Crash report tooltip"
   },
   "filler_filler_confirm": {
     "message": "Este episodio ha sido marcado como de relleno en MyAnimeList, ¿te gustaría saltártelo?",
@@ -1138,5 +1164,9 @@
   "filler_recap_confirm": {
     "message": "Este episodio ha sido marcado como de recapitulación en MyAnimeList, ¿te gustaría saltártelo?",
     "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Posición",
+    "description": "Position of the quicklinks"
   }
 }

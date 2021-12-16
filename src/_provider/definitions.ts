@@ -31,19 +31,6 @@ export enum score {
   R10 = 10,
 }
 
-export enum errorCode {
-  UrlNotSuported = 901,
-  NotAutenticated = 902,
-  ServerOffline = 903,
-  EntryNotFound = 904,
-  GenericError = 905,
-}
-
-export interface error {
-  code: errorCode;
-  message: string;
-}
-
 export type searchResult = {
   id: number;
   name: string;

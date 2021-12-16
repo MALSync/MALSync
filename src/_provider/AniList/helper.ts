@@ -1,5 +1,8 @@
 /* eslint-disable no-shadow */
-import { status, errorCode } from '../definitions';
+import { status } from '../definitions';
+import { NotAutenticatedError, NotFoundError, parseJson, ServerOfflineError } from '../Errors';
+
+const logger = con.m('anilist', '#3db4f2');
 
 export function translateList(aniStatus, malStatus: null | number = null) {
   const list = {
@@ -53,7 +56,7 @@ export function aniListToMal(anilistId: number, type: 'anime' | 'manga') {
       }),
     })
     .then(response => {
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
       con.log(res);
       return res.data.Media.idMal;
     });
@@ -88,7 +91,7 @@ export function malToAnilist(malId: number, type: 'anime' | 'manga') {
     })
     .then(response => {
       if (response.status === 404) return NaN;
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
       con.log(res);
       return res.data.Media.id;
     });
@@ -118,25 +121,26 @@ export function apiCall(query, variables, authentication = true) {
     })
     .then(response => {
       if ((response.status > 499 && response.status < 600) || response.status === 0) {
-        throw this.errorObj(errorCode.ServerOffline, `Server Offline status: ${response.status}`);
+        throw new ServerOfflineError(`Server Offline status: ${response.status}`);
+      }
+      if (response.status === 403) {
+        throw new Error(`Your IP has been banned on ANILIST, change your IP or wait for it to get unbanned`);
       }
 
-      const res = JSON.parse(response.responseText);
+      const res = parseJson(response.responseText);
 
       if (typeof res.errors !== 'undefined' && res.errors.length) {
-        this.logger.error('[SINGLE]', 'Error', res.errors);
+        logger.error('[SINGLE]', 'Error', res.errors);
         const error = res.errors[0];
         switch (error.status) {
           case 400:
-            if (error.message === 'validation') throw this.errorObj(error.status, 'Wrong request format');
-            if (error.message.includes('invalid')) throw this.errorObj(error.status, 'Wrong request format');
-            throw this.errorObj(errorCode.NotAutenticated, error.message);
-            break;
+            if (error.message === 'validation') throw new Error('Wrong request format');
+            if (error.message.includes('invalid')) throw new Error('Wrong request format');
+            throw new NotAutenticatedError(error.message);
           case 404:
-            throw this.errorObj(errorCode.EntryNotFound, error.message);
-            break;
+            throw new NotFoundError(error.message);
           default:
-            throw this.errorObj(error.status, error.message);
+            throw new Error(error.message);
         }
       }
 

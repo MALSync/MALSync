@@ -1,5 +1,5 @@
 import { MetaOverviewAbstract } from '../metaOverviewAbstract';
-import { errorCode } from '../definitions';
+import { NotFoundError, UrlNotSupportedError } from '../Errors';
 import * as helper from './helper';
 
 export class MetaOverview extends MetaOverviewAbstract {
@@ -19,7 +19,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.kitsuSlug = '';
       return this;
     }
-    throw this.errorObj(errorCode.UrlNotSuported, 'Url not supported');
+    throw new UrlNotSupportedError(url);
   }
 
   protected readonly type;
@@ -56,7 +56,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private async getData() {
     if (!this.kitsuSlug) {
-      const kitsuRes = await this.malToKitsu(this.malId, this.type);
+      const kitsuRes = await helper.malToKitsu(this.malId, this.type);
       try {
         this.kitsuId = kitsuRes.data[0].relationships.item.data.id;
         kitsuRes.included.forEach(el => {
@@ -66,7 +66,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         });
         if (!this.kitsuSlug) throw 'No slug';
       } catch (e) {
-        throw this.errorObj(errorCode.EntryNotFound, e.message);
+        throw new NotFoundError(e.message);
       }
     }
     return this.apiCall(
@@ -80,7 +80,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         // eslint-disable-next-line no-unused-expressions
         res.data.attributes.slug;
       } catch (e) {
-        throw this.errorObj(errorCode.EntryNotFound, e.message);
+        throw new NotFoundError(e.message);
       }
 
       this.animeInfo = res;
@@ -99,7 +99,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private image() {
-    this.meta.image = this.animeI().attributes.posterImage.large;
+    this.meta.image =
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
+        ? this.animeI().attributes.posterImage.large
+        : '';
   }
 
   private alternativeTitle() {
@@ -276,6 +279,4 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   protected apiCall = helper.apiCall;
-
-  protected malToKitsu = helper.malToKitsu;
 }
