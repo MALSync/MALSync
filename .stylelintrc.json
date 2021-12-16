@@ -12,6 +12,7 @@
     "rule-empty-line-before": null,
     "selector-class-pattern": null,
     "selector-id-pattern": null,
-    "number-max-precision": null
+    "number-max-precision": null,
+    "custom-property-empty-line-before": "never"
   }
 }
