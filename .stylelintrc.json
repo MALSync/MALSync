@@ -1,6 +1,7 @@
 {
-  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+  "extends": ["stylelint-config-standard", "stylelint-prettier/recommended", "stylelint-config-recommended-vue"],
   "ignoreFiles": ["**/*.js"],
+  "customSyntax": "postcss-less",
   "plugins": ["stylelint-prettier"],
   "rules": {
     "prettier/prettier": true,
@@ -8,6 +9,9 @@
     "no-duplicate-selectors": null,
     "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
-    "rule-empty-line-before": null
+    "rule-empty-line-before": null,
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
+    "number-max-precision": null
   }
 }
