@@ -181,10 +181,10 @@ export function syncItem(slave, pageType) {
         return singleClass.sync();
       })
       .then(() => {
-        return new Promise(resolve => setTimeout(resolve, 3000));
+        return utils.wait(3000);
       })
       .catch(e => {
-        return new Promise((resolve, reject) => setTimeout(() => reject(e), 3000));
+        return utils.wait(3000);
       });
   }
 }

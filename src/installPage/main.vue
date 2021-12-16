@@ -237,13 +237,13 @@ p {
 
 .syncExtended {
   background-color: #f9f9f9;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
   border-top: none;
 }
 
 #quicklinkedit {
   background-color: #f9f9f9;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgb(0 0 0 / 12%);
 
   .backbutton-settings,
   .custom {

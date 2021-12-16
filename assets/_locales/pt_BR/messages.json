@@ -92,7 +92,7 @@
     "description": "General translation of manga for places like drop downs"
   },
   "Package_Description": {
-    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl em vários sites, com rastreamento de episódios automáticos.",
+    "message": "Integra MyAnimeList/AniList/Kitsu/Simkl com vários sites, com rastreamento automático de episódios.",
     "description": "Description MALSync"
   },
   "UI_Status": {
@@ -237,6 +237,20 @@
       }
     }
   },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "Atualizar $page$ para o volume $epNr$",
+    "description": "Update MAL to volume 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
   "syncPage_flashm_sync_undefined_undo": {
     "message": "Desfazer",
     "description": "Undo button on 'synced' message"
@@ -322,7 +336,7 @@
     }
   },
   "syncPage_flashConfirm_offsetHandler_1": {
-    "message": "Um possível episódio fora de ordem(offset) $calcOffset$ foi detectado. Ele está correto?",
+    "message": "Um possível deslocamento de $calcOffset$ episódios foi detectado. Isso está correto?",
     "description": "offsetHandler Episode",
     "placeholders": {
       "calcOffset": {
@@ -336,7 +350,7 @@
     "description": "The token has been obtained and saved"
   },
   "kitsuClass_authentication_text": {
-    "message": "Para fazer o login com o Kitsu, você precisa digitar o e-mail e a senha da sua conta.</br> Suas credenciais não são armazenadas no seu computador ou em qualquer outro lugar. </br> Eles são enviados diretamente para o kitsu. Apenas o token de acesso retornado é salvo.</br>",
+    "message": "Para fazer o login com o Kitsu, você precisa digitar o e-mail e a senha da sua conta.</br> Suas credenciais não são armazenadas no seu computador ou em qualquer outro lugar. </br> Eles são enviados diretamente para o Kitsu. Apenas o token de acesso retornado é salvo.</br>",
     "description": "Authentication text in Kitsu"
   },
   "kitsuClass_authentication_Password": {
@@ -482,11 +496,11 @@
     }
   },
   "correction_Offset": {
-    "message": "Episódio Offset (fora de ordem)",
+    "message": "Deslocamento de Episódio",
     "description": "Episode Offset"
   },
   "correction_Offset_text": {
-    "message": "Insira o episódio fora de ordem, se um anime tem 12 episódios, mas usa os números 0-11 em vez de 1-12, basta digitar  \"+ 1 \" no episódio offset.",
+    "message": "Insira o deslocamento de episódio, se um anime tem 12 episódios, mas usa os números 0-11 em vez de 1-12, basta digitar  \"+1\" no deslocamento de episódio.",
     "description": "Episode Offset - Text"
   },
   "correction_WrongUrl": {
@@ -510,7 +524,7 @@
     "description": "No entry on MyAnimeList"
   },
   "correction_NewOffset": {
-    "message": "Novo Offset ($offset$) adicionado.",
+    "message": "Novo Deslocamento ($offset$) adicionado.",
     "description": "New Offset",
     "placeholders": {
       "offset": {
@@ -520,7 +534,7 @@
     }
   },
   "correction_OffsetReset": {
-    "message": "Resetar Offset",
+    "message": "Resetar Deslocamento",
     "description": "Offset reset"
   },
   "correction_NewUrl": {
@@ -936,11 +950,11 @@
     "description": "Link button which links to more informations"
   },
   "settings_presenceShowButtons": {
-    "message": "Mostrar botão para ver o anime/manga no MAL ou em outro provedor",
+    "message": "Mostrar botão para ver o anime/mangá no MAL ou em outro provedor",
     "description": "Show button to view the anime/manga on MAL or another provider"
   },
   "settings_presenceShowMalsync": {
-    "message": "Mostrar Mal-Sync no título da presence em vez do anime/manga",
+    "message": "Mostrar Mal-Sync no título da presence em vez do anime/mangá",
     "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
@@ -1030,7 +1044,7 @@
     "description": "Header for how to use section"
   },
   "installPage_Howto_Description": {
-    "message": "Basta abrir um episódio ou capítulo em qualquer uma das $Link1$páginas suportadas$LinkEnd1$. A sincronização aguarda até 85% do vídeo ser assistido. Para mangás, sincroniza no carregamento da página. Isso pode ser alterado na $Link2$configurações$LinkEnd2$.",
+    "message": "Basta abrir um episódio ou capítulo em qualquer uma das $Link1$páginas suportadas$LinkEnd1$. A sincronização aguarda até 85% do vídeo ser assistido. Para mangás, sincroniza no carregamento da página. Isso pode ser alterado nas $Link2$configurações$LinkEnd2$.",
     "description": "How to use description text",
     "placeholders": {
       "Link1": {
@@ -1056,7 +1070,7 @@
     "description": "Header of the wrong section on the install page"
   },
   "installPage_Wrong_Description": {
-    "message": "Você pode facilmente mudar a relação como mostrado no gif abaixo. Um episódio fora de ordem também pode ser definido nessa página.",
+    "message": "Você pode facilmente mudar a relação como mostrado no gif abaixo. Um deslocamento de episódio também pode ser definido nessa página.",
     "description": "Description of the wrong section on the install page"
   },
   "Anilist_Authenticate": {
@@ -1116,7 +1130,7 @@
     "description": "Discord view anime button"
   },
   "discord_rpc_view_manga": {
-    "message": "Ver Manga",
+    "message": "Ver Mangá",
     "description": "Discord view manga button"
   },
   "nextEpShort_no_support": {
