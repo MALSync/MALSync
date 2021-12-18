@@ -713,10 +713,5 @@
     "domain": "https://mangareader.to",
     "type": "manga",
     "name": "MangaReader"
-  },
-  {
-    "domain": "https://animeonsen.xyz",
-    "type": "anime",
-    "name": "AnimeOnsen"
   }
 ]

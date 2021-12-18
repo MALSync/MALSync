@@ -6,14 +6,14 @@ export const AnimeOnsen: pageInterface = {
   database: 'AnimeOnsen',
   languages: ['English', 'Japanese'],
   type: 'anime',
+  isOverviewPage(url) {
+    // added from: https://github.com/MALSync/MALSync/pull/984#discussion_r770401087
+    return false;
+  },
   isSyncPage(url) {
     // check if current page is /watch page
-    const pageUrl = new URL(url);
-    const has = {
-      pathname: pageUrl.pathname.startsWith('/watch'),
-      videoId: pageUrl.searchParams.has('v'),
-    };
-    if (has.pathname && has.videoId) return true;
+    const { pathname, searchParams } = new URL(url);
+    if (pathname.startsWith('/watch') && searchParams.has('v')) return true;
     else return false;
   },
   sync: {
@@ -56,8 +56,7 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(url) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (url == 'MAL') resolve(j.$('meta[name="ao-api-malsync-mal-url"]').attr('value') || false);
-        else resolve(false);
+        resolve(url != 'MAL' ? false : j.$('meta[name="ao-api-malsync-mal-url"]').attr('value') || false);
       });
     },
   },
@@ -93,6 +92,7 @@ export const AnimeOnsen: pageInterface = {
     // wait until page has fully loaded by
     // checking if loading element exists
     // then executes start() function if true
-    utils.waitUntilTrue(checkCondition, start);
+    /* .ready() method is deprecated since jquery v3.0.0 */
+    j.$(document).ready(() => void utils.waitUntilTrue(checkCondition, start));
   },
 };
