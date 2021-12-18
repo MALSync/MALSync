@@ -119,7 +119,7 @@ async function getData(id, title, season, episode) {
       const res = await apiCall(query, variables, false);
 
       if (i !== season) {
-        await waitFor(500);
+        await utils.wait(500);
         let nextId;
         res.data.Media.relations.edges.forEach(relation => {
           if (relation.relationType === 'SEQUEL' && relation.node.format.startsWith('TV')) {
@@ -146,5 +146,3 @@ async function getData(id, title, season, episode) {
     data.title = `${title} season ${season}`;
   }
 }
-
-const waitFor = ms => new Promise(r => setTimeout(r, ms));

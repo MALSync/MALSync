@@ -32,7 +32,7 @@
         ></div>
       </div>
     </template>
-    <div v-else style="padding: 0 20px 20px 20px">
+    <div v-else style="padding: 0 20px 20px">
       <table
         v-if="!(cache && errorText)"
         id="malList"
@@ -50,7 +50,7 @@
     <span
       v-if="errorText"
       class="mdl-chip"
-      style="margin: 16px auto 70px auto; display: table; padding-right: 5px; border: 2px solid red;"
+      style="margin: 16px auto 70px; display: table; padding-right: 5px; border: 2px solid red;"
       @click="!loading ? load() : ''"
     >
       <span v-dompurify-html="errorText" class="mdl-chip__text"></span>

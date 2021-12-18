@@ -354,7 +354,7 @@ export class SearchClass {
     }
     logger.log(url);
 
-    function handleResult(response, i = 1, This) {
+    function handleResult(response, i, This) {
       const link = getLink(response, i);
       let id = 0;
       let sim = { same: false, value: 0 };

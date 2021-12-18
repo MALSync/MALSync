@@ -85,11 +85,6 @@
     "name": "Aniflix"
   },
   {
-    "domain": "https://www.animelab.com",
-    "type": "anime",
-    "name": "AnimeLab"
-  },
-  {
     "domain": "https://www.kickassanime.ro",
     "type": "anime",
     "name": "KickAssAnime"

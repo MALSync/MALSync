@@ -370,9 +370,6 @@ module.exports = {
   googleDrive: {
     match: ['*://ani.googledrive.stream/vidstreaming/*', '*://play.api-web.site/*'],
   },
-  AnimeLab: {
-    match: ['*://www.animelab.com/*'],
-  },
   // 9anime
   vidstream: {
     match: ['*://vidstream.pro/e/*', '*://vidstreamz.online/embed/*', '*://vidstream.pro/embed/*'],
