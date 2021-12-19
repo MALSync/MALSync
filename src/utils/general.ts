@@ -810,7 +810,9 @@ export function elementInViewport(el, horizontalOffset = 0) {
 }
 
 export function wait(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise(resolve => {
+    setTimeout(resolve, ms);
+  });
 }
 
 export function pageUrl(page: 'mal' | 'anilist' | 'kitsu' | 'simkl', type: 'anime' | 'manga', id: string | number) {

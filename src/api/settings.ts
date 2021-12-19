@@ -52,7 +52,6 @@ export const settingsObj = {
       'Funimation',
       'Hulu',
       'Netflix',
-      'AnimeLab',
       'Hidive',
       'Vrv',
       'VIZ',

@@ -1,0 +1,6 @@
+{
+  "search": "https://animeonsen.xyz/search/{searchterm}",
+  "urls": {
+    "match": ["*://animeonsen.xyz/*", "*://www.animeonsen.xyz/*"]
+  }
+}

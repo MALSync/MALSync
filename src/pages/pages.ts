@@ -14,7 +14,6 @@ import { Jkanime } from './Jkanime/main';
 import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
-import { AnimeLab } from './AnimeLab/main';
 import { KickAssAnime } from './KickAssAnime/main';
 import { AnimeKisa } from './AnimeKisa/main';
 import { Wakanim } from './Wakanim/main';
@@ -142,6 +141,7 @@ import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
+import { AnimeOnsen } from './AnimeOnsen/main';
 
 export const pages = {
   nineAnime,
@@ -161,7 +161,6 @@ export const pages = {
   Emby,
   Plex,
   Aniflix,
-  AnimeLab,
   KickAssAnime,
   AnimeKisa,
   AnimeIndo,
@@ -288,4 +287,5 @@ export const pages = {
   AMAScan,
   BilibiliComics,
   MangaReader,
+  AnimeOnsen,
 };
