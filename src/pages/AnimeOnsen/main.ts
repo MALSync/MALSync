@@ -14,7 +14,7 @@ export const AnimeOnsen: pageInterface = {
     // check if current page is /watch page
     const { pathname, searchParams } = new URL(url);
     if (pathname.startsWith('/watch') && searchParams.has('v')) return true;
-    else return false;
+    return false;
   },
   sync: {
     getTitle(url) {
@@ -23,14 +23,15 @@ export const AnimeOnsen: pageInterface = {
     },
     getIdentifier(url) {
       // get ao.id identifier for database
-      const urlParams = new URL(url).searchParams,
-        identifier = urlParams.get('v');
+      const urlParams = new URL(url).searchParams;
+      const identifier = urlParams.get('v');
       return identifier || '';
     },
     getOverviewUrl(url) {
       // generate ao.details url
-      const urlParams = new URL(url).searchParams,
-        overviewUrl = new URL(`https://animeonsen.xyz`);
+      const urlParams = new URL(url).searchParams;
+      const overviewUrl = new URL(`https://animeonsen.xyz`);
+      // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
       overviewUrl.searchParams.append('md', urlParams.get('v') || '0');
       return overviewUrl.href;
     },
@@ -41,22 +42,21 @@ export const AnimeOnsen: pageInterface = {
     },
     nextEpUrl(url) {
       // generate next episode url
-      const currentEpisode: number = Number(j.$('meta[name="ao-api-malsync-episode"]').attr('value')),
-        totalEpisodes: number = Number(j.$('meta[name="ao-api-malsync-episodes"]').attr('value')),
-        nextEpisode: number = currentEpisode + 1;
+      const currentEpisode = Number(j.$('meta[name="ao-api-malsync-episode"]').attr('value'));
+      const totalEpisodes = Number(j.$('meta[name="ao-api-malsync-episodes"]').attr('value'));
+      const nextEpisode: number = currentEpisode + 1;
 
-      if (nextEpisode > totalEpisodes) return;
-      else {
-        const nextEpisodeUrl = new URL(url);
-        nextEpisodeUrl.searchParams.set('ep', nextEpisode.toString());
+      if (nextEpisode > totalEpisodes) return undefined;
 
-        return nextEpisodeUrl.href;
-      }
+      const nextEpisodeUrl = new URL(url);
+      nextEpisodeUrl.searchParams.set('ep', nextEpisode.toString());
+
+      return nextEpisodeUrl.href;
     },
     getMalUrl(url) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        resolve(url != 'MAL' ? false : j.$('meta[name="ao-api-malsync-mal-url"]').attr('value') || false);
+        resolve(url !== 'MAL' ? false : j.$('meta[name="ao-api-malsync-mal-url"]').attr('value') || false);
       });
     },
   },
@@ -93,6 +93,6 @@ export const AnimeOnsen: pageInterface = {
     // checking if loading element exists
     // then executes start() function if true
     /* .ready() method is deprecated since jquery v3.0.0 */
-    j.$(document).ready(() => void utils.waitUntilTrue(checkCondition, start));
+    j.$(document).ready(() => utils.waitUntilTrue(checkCondition, start));
   },
 };
