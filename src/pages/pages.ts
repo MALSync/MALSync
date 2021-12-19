@@ -141,6 +141,7 @@ import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
+import { AnimeOnsen } from './AnimeOnsen/main';
 
 export const pages = {
   nineAnime,
@@ -286,4 +287,5 @@ export const pages = {
   AMAScan,
   BilibiliComics,
   MangaReader,
+  AnimeOnsen,
 };
