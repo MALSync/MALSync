@@ -13,7 +13,7 @@ export async function sendNotification(options: {
   con.m('Notification').log(options);
 
   const imgBlob = await getImageBlob(options.image);
-  const messageArray = {
+  const messageArray: chrome.notifications.NotificationOptions<true> = {
     type: 'basic',
     title: options.title,
     message: options.text,
