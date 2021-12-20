@@ -6,12 +6,13 @@
         {{ link.name }}
       </div>
     </div>
-    <div v-else>
+    <div>
       <input
         type="button"
         :value="lang('Add')"
-        class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+        class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
         data-upgraded=",MaterialButton"
+        style="width: 100%; margin-top: 20px;"
       />
     </div>
   </div>
