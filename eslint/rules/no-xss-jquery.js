@@ -17,13 +17,13 @@ const preUnsave = [
   'prependTo',
 ]
 
-module.exports = function(context) {
+module.exports = function (context) {
   return {
-    CallExpression: function(node) {
+    CallExpression: function (node) {
       if (node.callee.type !== 'MemberExpression') return
       if (node.callee.object.name === 'j') return
 
-      if(postUnsave.includes(node.callee.property.name)) {
+      if (postUnsave.includes(node.callee.property.name)) {
         if (node.arguments.length === 0 ) return
         if (
           node.arguments[0].callee &&
@@ -37,7 +37,7 @@ module.exports = function(context) {
             message: `$.${node.callee.property.name} is potentially dangerous. Use "$.${node.callee.property.name}(j.html(html))" instead`
           })
         }
-      }else if(preUnsave.includes(node.callee.property.name)){
+      } else if (preUnsave.includes(node.callee.property.name)){
         if (utils.isjQuery(node)) {
           context.report({
             node: node,
