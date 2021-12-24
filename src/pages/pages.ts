@@ -70,7 +70,6 @@ import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
 import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { AnimeOnDemand } from './AnimeOnDemand/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
 import { LeviatanScans } from './LeviatanScans/main';
@@ -215,7 +214,6 @@ export const pages = {
   Simplyaweeb,
   Animevibe,
   WuxiaWorld,
-  AnimeOnDemand,
   EdelgardeScans,
   HatigarmScanz,
   LeviatanScans,
