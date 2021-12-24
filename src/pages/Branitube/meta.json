@@ -1,7 +1,0 @@
-{
-  "search": "https://aniyan.net/buscar/{searchterm}",
-  "urls": {
-    "match": ["*://*.aniyan.net/video/*", "*://*.aniyan.net/lista/*"],
-    "exclude": ["*://*.aniyan.net/lista/filter/*", "*://*.aniyan.net/lista/pagina/*"]
-  }
-}

@@ -2,7 +2,6 @@ import { nineAnime } from './nineAnime/main';
 import { Crunchyroll } from './Crunchyroll/main';
 import { Mangadex } from './Mangadex/main';
 import { Gogoanime } from './Gogoanime/main';
-import { Branitube } from './Branitube/main';
 import { TurkAnime } from './TurkAnime/main';
 import { Twistmoe } from './Twistmoe/main';
 import { Emby } from './Emby/main';
@@ -150,7 +149,6 @@ export const pages = {
   Mangadex,
   Gogoanime,
   Twistmoe,
-  Branitube,
   TurkAnime,
   animepahe,
   Netflix,
