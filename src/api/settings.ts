@@ -101,13 +101,15 @@ export const settingsObj = {
   },
 
   async init() {
+    const tempSettings = [];
     for (const key in this.options) {
       const store = await api.storage.get(`settings/${key}`);
       if (typeof store !== 'undefined') {
         this.options[key] = store;
+        tempSettings[key] = /(token|refresh)/i.test(key) && store ? '********' : store;
       }
     }
-    con.log('Settings', this.options);
+    con.log('Settings', tempSettings);
 
     let rateDebounce;
 
