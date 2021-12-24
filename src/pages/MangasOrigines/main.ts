@@ -10,7 +10,10 @@ export const MangasOrigines: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2]).text().trim();
+      return j
+        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[2])
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -35,7 +38,11 @@ export const MangasOrigines: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('ol.breadcrumb li a').last().text().trim();
+      return j
+        .$('ol.breadcrumb li a')
+        .last()
+        .text()
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -55,7 +62,12 @@ export const MangasOrigines: pageInterface = {
         return j.$('ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return selector.find('a').first().attr('href') || '';
+        return (
+          selector
+            .find('a')
+            .first()
+            .attr('href') || ''
+        );
       },
       elementEp(selector) {
         return MangasOrigines.sync.getEpisode(MangasOrigines.overview!.list!.elementUrl!(selector));
@@ -64,17 +76,17 @@ export const MangasOrigines: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function () {
+    j.$(document).ready(function() {
       if (
         page.url.split('/')[3] === 'catalogue' &&
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0
       ) {
         utils.waitUntilTrue(
-          function () {
+          function() {
             return !!(j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length);
           },
-          function () {
+          function() {
             page.handlePage();
           },
         );
