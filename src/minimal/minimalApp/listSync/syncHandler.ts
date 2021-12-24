@@ -183,8 +183,9 @@ export function syncItem(slave, pageType) {
       .then(() => {
         return utils.wait(3000);
       })
-      .catch(e => {
-        return utils.wait(3000);
+      .catch(async e => {
+        await utils.wait(3000);
+        throw e;
       });
   }
 }
