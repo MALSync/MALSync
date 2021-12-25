@@ -8,6 +8,7 @@ export const settingsObj = {
     presenceHidePage: false,
     presenceShowButtons: true,
     presenceShowMalsync: false,
+    presenceShowCover: false,
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',

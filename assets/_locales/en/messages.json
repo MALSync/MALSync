@@ -914,6 +914,10 @@
     "message": "Show MAL-Sync icon instead of page icon",
     "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
   },
+  "settings_presenceShowCover": {
+    "message": "Show the anime/manga cover instead of page icon",
+    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the cover of the anime/manga"
+  },
   "settings_enabled": {
     "message": "Enabled",
     "description": "Checkbox if feature is enabled"

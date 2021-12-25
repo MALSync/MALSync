@@ -1169,6 +1169,10 @@ export class SyncPage {
           largeImageTextTemp = 'MAL-Sync';
         }
 
+        if(api.settings.get('presenceShowCover') && this.singleObj.getImage()) {
+          largeImageKeyTemp = this.singleObj.getImage();
+        }
+
         if (this.curState) {
           const pres: any = {
             clientId,
