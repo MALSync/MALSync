@@ -32,7 +32,7 @@ export const AnimeShitai: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('div.content > div.dish > a[href*="/info"]').attr('href'), AnimeShitai.domain);
+      return utils.absoluteLink(`/info/${AnimeShitai.sync.getIdentifier(url)}`, AnimeShitai.domain);
     },
     getEpisode(url) {
       const episodePart = url.split('/')[6];
@@ -57,8 +57,13 @@ export const AnimeShitai: pageInterface = {
     getTitle(url) {
       return j
         .$('div.title > animename')
+        .clone()
+        .children()
+        .remove()
+        .end()
         .text()
-        .replace(/staffel/gi, 'season');
+        .replace(/staffel/gi, 'season')
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
