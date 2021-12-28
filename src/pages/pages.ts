@@ -91,7 +91,6 @@ import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { Pantsubase } from './Pantsubase/main';
-import { AnimeOwl } from './AnimeOwl/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
@@ -235,7 +234,6 @@ export const pages = {
   Okanime,
   BSTO,
   Pantsubase,
-  AnimeOwl,
   AsuraScans,
   NaniScans,
   MerakiScans,

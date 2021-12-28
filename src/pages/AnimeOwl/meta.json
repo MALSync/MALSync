@@ -1,6 +1,0 @@
-{
-  "search": "https://animeowl.net/?s={searchtermPlus}",
-  "urls": {
-    "match": ["*://animeowl.net/*", "*://chill-game.com/*"]
-  }
-}
