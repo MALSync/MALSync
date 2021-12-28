@@ -68,7 +68,6 @@ import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
-import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
@@ -211,7 +210,6 @@ export const pages = {
   YayAnimes,
   DesuOnline,
   Simplyaweeb,
-  Animevibe,
   WuxiaWorld,
   EdelgardeScans,
   HatigarmScanz,
