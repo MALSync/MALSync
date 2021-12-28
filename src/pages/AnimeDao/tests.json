@@ -3,13 +3,13 @@
   "url": "https://animedao.to/",
   "testCases": [
     {
-      "url": "https://animedao.to/watch-online/one-piece-episode-946/",
+      "url": "https://animedao.to/view/1453160353/",
       "expected": {
         "sync": true,
         "title": "One Piece",
         "identifier": "one-piece",
         "overviewUrl": "https://animedao.to/anime/one-piece/",
-        "nextEpUrl": "https://animedao.to/watch-online/one-piece-episode-947/",
+        "nextEpUrl": "https://animedao.to/view/1453160354/",
         "episode": 946,
         "uiSelector": false
       }
@@ -22,8 +22,8 @@
         "identifier": "one-piece",
         "uiSelector": true,
         "epList": {
-          "3": "https://animedao.to/watch-online/one-piece-episode-003/",
-          "948": "https://animedao.to/watch-online/one-piece-episode-948/"
+          "3": "https://animedao.to/view/1453114507/",
+          "948": "https://animedao.to/view/1453160355/"
         }
       }
     }

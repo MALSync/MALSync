@@ -50,7 +50,7 @@ export const AnimeDao: pageInterface = {
         .$('div.btn-group > a > button > span.glyphicon-arrow-right')
         .closest('a')
         .attr('href');
-      if (href) return href;
+      if (href) return utils.absoluteLink(href, AnimeDao.domain);
       return '';
     },
   },
