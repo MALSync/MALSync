@@ -49,7 +49,7 @@ export const animepahe: pageInterface = {
       return getId();
     },
     uiSelector(selector) {
-      j.$('.anime-detail').after(j.html(selector));
+      j.$('.anime-content').prepend(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j
