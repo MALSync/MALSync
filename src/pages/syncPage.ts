@@ -1194,11 +1194,19 @@ export class SyncPage {
             }
           }
           if (typeof this.curState.episode !== 'undefined') {
-            const ep = this.curState.episode;
-            let totalEp = this.singleObj.getTotalEpisodes();
-            if (!totalEp) totalEp = '?';
-
-            pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
+            let totalEp;
+            if (this.curState.volume > 0){
+              const ep = this.curState.volume;
+              totalEp = this.singleObj.getTotalVolumes();
+              if (!totalEp) totalEp = '?';
+              pres.presence.state = `${api.storage.lang('UI_Volume')} ${ep} of ${totalEp}`;
+            }
+            else{
+              const ep = this.curState.episode;
+              totalEp = this.singleObj.getTotalEpisodes();
+              if (!totalEp) totalEp = '?';
+              pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
+            }
 
             if (typeof this.curState.lastVideoTime !== 'undefined') {
               if (this.curState.lastVideoTime.paused) {
