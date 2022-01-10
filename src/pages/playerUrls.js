@@ -9,7 +9,7 @@ module.exports = {
     match: ['*://*.mp4upload.com/*'],
   },
   mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*'],
+    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*'],
   },
   prettyfast: {
     match: ['*://*.prettyfast.to/*'],
