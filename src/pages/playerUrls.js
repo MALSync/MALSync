@@ -633,5 +633,9 @@ module.exports = {
   // animixplay
   yfvf: {
     match: ['*://*.yfvf.com/*'],
-  }
+  },
+  // voiranime
+  vaplayer: {
+    match: ['*://vaplayer.me/*'],
+  },
 };
