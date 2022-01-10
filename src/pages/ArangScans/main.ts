@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const ArangScans: pageInterface = {
   name: 'ArangScans',
-  domain: 'https://arangscans.com',
+  domain: 'https://arangscans.org',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
