@@ -275,6 +275,7 @@ module.exports = {
       '*://strtapeadblock.me/*',
       '*://streamta.site/*',
       '*://scloud.online/*',
+      '*://strtpe.link/*',
     ],
   },
   // monoschinos
