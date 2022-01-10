@@ -622,4 +622,12 @@ module.exports = {
   maverickki: {
     match: ['*://maverickki.com/*'],
   },
+  // animesonline
+  rustream: {
+    match: ['*://secvideo1.online/*'],
+  },
+  // animesonline
+  gdplayer: {
+    match: ['*://gdplayer.top/*'],
+  },
 };
