@@ -24,7 +24,7 @@ module.exports = {
     match: ['*://*.static.vrv.co/*'],
   },
   vidstreaming: {
-    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*'],
+    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*', '*://*.vidstreamingvw.xyz/*'],
   },
   xstreamcdn: {
     match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
