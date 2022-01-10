@@ -73,6 +73,7 @@ module.exports = {
       '*://*.fplayer.info/*',
       '*://*.dutrag.com/*',
       '*://*.diasfem.com/*',
+      '*://*.fembed-hd.com/*',
     ],
   },
   youpload: {
@@ -362,6 +363,10 @@ module.exports = {
       '*://*.gogoplay2.com/load.php?*',
       '*://*.gogoplay2.com/loadserver.php?*',
       '*://*.gogoplay2.com/embedplus*',
+      '*://*.gogoplay.io/streaming.php?*',
+      '*://*.gogoplay.io/load.php?*',
+      '*://*.gogoplay.io/loadserver.php?*',
+      '*://*.gogoplay.io/embedplus*',
     ],
   },
   // bs.to
@@ -387,6 +392,7 @@ module.exports = {
       '*://sbplay.org/*',
       '*://sbplay.one/*',
       '*://sbplay1.com/*',
+      '*://sbplay2.com/*',
       '*://embedsb.com/*',
       '*://watchsb.com/*',
     ],
