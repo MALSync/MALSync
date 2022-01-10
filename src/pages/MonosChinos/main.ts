@@ -14,7 +14,8 @@ export const MonosChinos: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('h1.Title-epi')
+        .$('.heromain_h1')
+        .first()
         .text()
         .replace(/(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
@@ -23,7 +24,13 @@ export const MonosChinos: pageInterface = {
       return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return j.$('a.btnWeb.green.Current').attr('href') || '';
+      return (
+        j
+          .$('.playlist')
+          .first()
+          .parent()
+          .attr('href') || ''
+      );
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -42,8 +49,9 @@ export const MonosChinos: pageInterface = {
     },
     nextEpUrl(url) {
       const href = j
-        .$('a.btnWeb:nth-child(3)')
+        .$('[src$="/public/img/playarrowright.png"]')
         .first()
+        .parent()
         .attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
@@ -56,7 +64,7 @@ export const MonosChinos: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('h1.Title')
+        .$('h1')
         .text()
         .replace(/(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
@@ -65,20 +73,25 @@ export const MonosChinos: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('h1.Title')
+      j.$('.heromain2')
         .first()
         .before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.SerieCaps > a.item');
+        return j.$('.allanimes .col-item');
       },
       elementUrl(selector) {
-        return selector.attr('href') || '';
+        return (
+          selector
+            .find('a')
+            .first()
+            .attr('href') || ''
+        );
       },
       elementEp(selector) {
-        return MonosChinos.sync.getEpisode(String(selector.attr('href')));
+        return MonosChinos.sync.getEpisode(MonosChinos.overview!.list!.elementUrl!(selector));
       },
     },
   },
