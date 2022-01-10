@@ -630,4 +630,8 @@ module.exports = {
   gdplayer: {
     match: ['*://gdplayer.top/*'],
   },
+  // animixplay
+  yfvf: {
+    match: ['*://*.yfvf.com/*'],
+  }
 };
