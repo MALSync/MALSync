@@ -72,6 +72,12 @@ export const BilibiliComics: pageInterface = {
   init(page) {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
     j.$(document).ready(function() {
+      start();
+    });
+
+    utils.urlChangeDetect(() => start());
+
+    function start() {
       if (BilibiliComics.isSyncPage(page.url)) {
         utils.waitUntilTrue(
           () =>
@@ -84,10 +90,13 @@ export const BilibiliComics: pageInterface = {
         );
       } else if (BilibiliComics.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          () => BilibiliComics.overview!.getTitle(page.url),
+          () => {
+            const title = BilibiliComics.overview!.getTitle(page.url);
+            return title && title !== '--';
+          },
           () => page.handlePage(),
         );
       }
-    });
+    }
   },
 };
