@@ -272,6 +272,7 @@ module.exports = {
       '*://strtape.tech/*',
       '*://strtapeadblock.club/*',
       '*://strtapeadblock.me/*',
+      '*://streamta.site/*',
     ],
   },
   // monoschinos
@@ -387,6 +388,7 @@ module.exports = {
       '*://sbplay.one/*',
       '*://sbplay1.com/*',
       '*://embedsb.com/*',
+      '*://watchsb.com/*',
     ],
   },
   // gogo
