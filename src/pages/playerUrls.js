@@ -160,7 +160,7 @@ module.exports = {
   },
   // voiranime
   vaplayer: {
-    match: ['*://www.vaplayer.xyz/v/*'],
+    match: ['*://www.vaplayer.xyz/v/*', '*://vaplayer.me/*'],
   },
   // dubbedanime
   mp4sh: {
@@ -634,9 +634,5 @@ module.exports = {
   // animixplay
   yfvf: {
     match: ['*://*.yfvf.com/*'],
-  },
-  // voiranime
-  vaplayer: {
-    match: ['*://vaplayer.me/*'],
   },
 };
