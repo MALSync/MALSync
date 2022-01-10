@@ -618,4 +618,8 @@ module.exports = {
   bunny: {
     match: ['*://iframe.mediadelivery.net/embed/*'],
   },
+  // kickassanime
+  maverickki: {
+    match: ['*://maverickki.com/*'],
+  },
 };
