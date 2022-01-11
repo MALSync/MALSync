@@ -1194,16 +1194,20 @@ export class SyncPage {
             }
           }
           if (typeof this.curState.episode !== 'undefined') {
-            let totalEp;
-            if (this.curState.volume > 0){
-              const ep = this.curState.volume;
-              totalEp = this.singleObj.getTotalVolumes();
-              if (!totalEp) totalEp = '?';
-              pres.presence.state = `${api.storage.lang('UI_Volume')} ${ep} of ${totalEp}`;
-            }
-            else{
+            if (this.curState.volume > 0) {
+              const vol = this.curState.volume;
+              let totalVol = this.singleObj.getTotalVolumes();
+              if (!totalVol) totalVol = '?';
+              if (this.curState.episode > 0) {
+                let totalEp = this.singleObj.getTotalEpisodes();
+                pres.presence.state = `${api.storage.lang('UI_Volume')} ${vol}/${totalVol}`;
+                pres.presence.state += ` | ${utils.episode(this.page.type)} ${this.curState.episode}/${totalEp}`;
+              } else {
+                pres.presence.state = `${api.storage.lang('UI_Volume')} ${vol} of ${totalVol}`;
+              }
+            } else {
               const ep = this.curState.episode;
-              totalEp = this.singleObj.getTotalEpisodes();
+              let totalEp = this.singleObj.getTotalEpisodes();
               if (!totalEp) totalEp = '?';
               pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
             }
