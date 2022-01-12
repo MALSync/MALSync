@@ -1201,8 +1201,8 @@ export class SyncPage {
               if (this.curState.episode > 0) {
                 let totalEp = this.singleObj.getTotalEpisodes();
                 if (!totalEp) totalEp = '?';
-                pres.presence.state = `${api.storage.lang('UI_Volume')} ${vol}/${totalVol}`;
-                pres.presence.state += ` | ${utils.episode(this.page.type)} ${this.curState.episode}/${totalEp}`;
+                pres.presence.state = `${utils.episode(this.page.type)} ${this.curState.episode}/${totalEp}`;
+                pres.presence.state += ` | ${api.storage.lang('UI_Volume')} ${vol}/${totalVol}`;
               } else {
                 pres.presence.state = `${api.storage.lang('UI_Volume')} ${vol} of ${totalVol}`;
               }
