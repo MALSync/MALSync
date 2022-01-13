@@ -556,7 +556,7 @@ module.exports = {
   },
   // 9anime
   videovard: {
-    match: ['*://videovard.sx/*'],
+    match: ['*://videovard.sx/*', '*://videovard.to/*'],
   },
   // kickassanime
   beststremo: {
