@@ -1194,24 +1194,22 @@ export class SyncPage {
             }
           }
           if (typeof this.curState.episode !== 'undefined') {
+            const stateParts: string[] = [];
+
+            if (this.curState.episode > 0) {
+              let totalEp = this.singleObj.getTotalEpisodes();
+              totalEp = totalEp ? `/${totalEp}` : '';
+              stateParts.push(`${utils.episode(this.page.type)} ${this.curState.episode}${totalEp}`);
+            }
+
             if (this.curState.volume > 0) {
               const vol = this.curState.volume;
               let totalVol = this.singleObj.getTotalVolumes();
-              if (!totalVol) totalVol = '?';
-              if (this.curState.episode > 0) {
-                let totalEp = this.singleObj.getTotalEpisodes();
-                if (!totalEp) totalEp = '?';
-                pres.presence.state = `${utils.episode(this.page.type)} ${this.curState.episode}/${totalEp}`;
-                pres.presence.state += ` | ${api.storage.lang('UI_Volume')} ${vol}/${totalVol}`;
-              } else {
-                pres.presence.state = `${api.storage.lang('UI_Volume')} ${vol} of ${totalVol}`;
-              }
-            } else {
-              const ep = this.curState.episode;
-              let totalEp = this.singleObj.getTotalEpisodes();
-              if (!totalEp) totalEp = '?';
-              pres.presence.state = `${utils.episode(this.page.type)} ${ep} of ${totalEp}`;
+              totalVol = totalVol ? `/${totalVol}` : '';
+              stateParts.push(`${api.storage.lang('UI_Volume')} ${vol}${totalVol}`);
             }
+
+            pres.presence.state = stateParts.join(' | ');
 
             if (typeof this.curState.lastVideoTime !== 'undefined') {
               if (this.curState.lastVideoTime.paused) {
