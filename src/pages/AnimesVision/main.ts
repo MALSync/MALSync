@@ -22,7 +22,7 @@ function filterTitle(title: string) {
 
 export const AnimesVision: pageInterface = {
   name: 'AnimesVision',
-  domain: 'https://animesvision.biz',
+  domain: 'https://animes.vision',
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
@@ -42,10 +42,16 @@ export const AnimesVision: pageInterface = {
       return jsonData.series_url;
     },
     getEpisode(url) {
-      return parseInt(jsonData.episode!);
+      const episodetemp = utils.urlPart(url, 5).replace(/\D+/, '');
+
+      if (!episodetemp) return 1;
+
+      return Number(episodetemp);
     },
     nextEpUrl(url) {
-      return jsonData.next_episode_url;
+      const next = j.$('.ss-list > .ep-item.active').next();
+      if (next) return utils.absoluteLink(next.attr('href'), AnimesVision.domain);
+      return undefined;
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) {
@@ -70,13 +76,19 @@ export const AnimesVision: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('.ss-list > a');
+        return j.$('.screen-items > .item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), AnimesVision.domain);
+        return utils.absoluteLink(
+          selector
+            .find('a')
+            .first()
+            .attr('href'),
+          AnimesVision.domain,
+        );
       },
       elementEp(selector) {
-        return Number(selector.attr('data-number'));
+        return AnimesVision.sync.getEpisode(AnimesVision.overview!.list!.elementUrl!(selector));
       },
     },
   },
