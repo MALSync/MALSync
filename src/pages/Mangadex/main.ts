@@ -129,7 +129,10 @@ export const Mangadex: pageInterface = {
       mangaData.id = manga.data.id;
       const titleData = manga.data.attributes.title;
       mangaData.title =
-        titleData.en ?? titleData[manga.data.attributes.originalLanguage] ?? titleData[Object.keys(titleData)[0]];
+        titleData[`${manga.data.attributes.originalLanguage}-ro`] ??
+        titleData.en ??
+        titleData[manga.data.attributes.originalLanguage] ??
+        titleData[Object.keys(titleData)[0]];
       mangaData.links = manga.data.attributes.links;
       mangaData.coverFilename = manga.data.relationships?.find(
         relation => relation.type === 'cover_art',
