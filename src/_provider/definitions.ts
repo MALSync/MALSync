@@ -31,6 +31,9 @@ export enum score {
   R10 = 10,
 }
 
+// score range 0 - 100
+export type score100 = number;
+
 export type searchResult = {
   id: number;
   name: string;
