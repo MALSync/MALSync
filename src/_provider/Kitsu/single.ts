@@ -1,6 +1,10 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
 import { NotAutenticatedError, NotFoundError, UrlNotSupportedError } from '../Errors';
+import { point10 } from '../ScoreMode/point10';
+import { point20decimal } from '../ScoreMode/point20decimal';
+import { smiley4 } from '../ScoreMode/smiley4';
+import { point10decimal } from '../ScoreMode/point10decimal';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -377,82 +381,16 @@ export class Single extends SingleAbstract {
     });
   }
 
-  private getScoreMode() {
-    return api.settings.get('kitsuOptions').ratingSystem;
-  }
-
-  public getScoreCheckbox() {
-    switch (this.getScoreMode()) {
+  protected getScoreMode() {
+    switch (api.settings.get('kitsuOptions').ratingSystem) {
       case 'simple':
-        return [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-          { value: '20', label: '😀' },
-          { value: '14', label: '🙂' },
-          { value: '8', label: '😐' },
-          { value: '2', label: '🙁' },
-        ];
-        break;
-      case 'regular': {
-        const regArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
-        for (let i = 1; i < 11; i++) {
-          regArr.push({
-            value: (i * 2).toString(),
-            label: (i / 2).toFixed(1).toString(),
-          });
-        }
-        return regArr;
-        break;
-      }
-      case 'advanced': {
-        const resArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
-        for (let i = 1; i < 21; i++) {
-          resArr.push({
-            value: i.toString(),
-            label: (i / 2).toFixed(1).toString(),
-          });
-        }
-        return resArr;
-        break;
-      }
-      default:
-        return super.getScoreCheckbox();
-    }
-  }
-
-  public getScoreCheckboxValue() {
-    let curScore = this.listI().attributes.ratingTwenty;
-    if (!curScore) curScore = 0;
-    switch (this.getScoreMode()) {
-      case 'simple':
-        if (!curScore) return 0;
-        if (curScore < 6) return 2;
-        if (curScore < 12) return 8;
-        if (curScore < 18) return 14;
-        return 20;
-        break;
+        return smiley4;
       case 'regular':
-        return Math.round(curScore / 2) * 2;
+        return point10decimal;
       case 'advanced':
-        return curScore;
-        break;
+        return point20decimal;
       default:
-        return super.getScoreCheckboxValue();
-    }
-  }
-
-  public handleScoreCheckbox(value) {
-    switch (this.getScoreMode()) {
-      case 'simple':
-      case 'regular':
-      case 'advanced':
-        if (value === 0) {
-          this.listI().attributes.ratingTwenty = null;
-          return;
-        }
-        this.listI().attributes.ratingTwenty = value;
-        break;
-      default:
-        super.handleScoreCheckbox(value);
+        return point10;
     }
   }
 

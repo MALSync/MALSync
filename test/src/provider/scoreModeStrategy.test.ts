@@ -4,6 +4,9 @@ import { point10 } from '../../../src/_provider/ScoreMode/point10';
 import { smiley3 } from '../../../src/_provider/ScoreMode/smiley3';
 import { stars5 } from '../../../src/_provider/ScoreMode/stars5';
 import { point100decimal } from '../../../src/_provider/ScoreMode/point100decimal';
+import { point20decimal } from '../../../src/_provider/ScoreMode/point20decimal';
+import { smiley4 } from '../../../src/_provider/ScoreMode/smiley4';
+import { point10decimal } from '../../../src/_provider/ScoreMode/point10decimal';
 
 describe('scoreModeStrategy', function() {
   const testArray = [
@@ -99,6 +102,66 @@ describe('scoreModeStrategy', function() {
         10: 10,
         '54': 54,
         55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '20 points decimal',
+      class: point20decimal,
+      optionNumber: 20,
+      valueToOptionValue: {
+        1: 10,
+        10: 10,
+        14: 15,
+        52: 50,
+        '54': 55,
+        55: 55,
+        100: 100,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '4 smilys',
+      class: smiley4,
+      optionNumber: 5,
+      valueToOptionValue: {
+        1: 10,
+        10: 10,
+        '54': 40,
+        55: 70,
+        84: 70,
+        85: 100,
+        100: 100,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '10 points decimal',
+      class: point10decimal,
+      optionNumber: 11,
+      valueToOptionValue: {
+        1: 10,
+        10: 10,
+        '54': 50,
+        55: 60,
+        100: 100,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '55': 55,
         100: 100,
       },
     },
