@@ -1,5 +1,5 @@
 import { Single as MalSingle } from '../../../src/_provider/MyAnimeList_api/single';
-import { Single as AnilistSingle } from '../../../src/_provider/Anilist/single';
+import { Single as AnilistSingle } from '../../../src/_provider/AniList/single';
 import { Single as KitsuSingle } from '../../../src/_provider/Kitsu/single';
 import { Single as SimklSingle } from '../../../src/_provider/Simkl/single';
 import { Single as LocalSingle } from '../../../src/_provider/Local/single';
