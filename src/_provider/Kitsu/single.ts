@@ -61,33 +61,33 @@ export class Single extends SingleAbstract {
   }
 
   _getScore() {
-    if (!this.listI().attributes.ratingTwenty) return 0;
-    const score = Math.round(this.listI().attributes.ratingTwenty / 2);
+    if (!this.listI().attributes.ratingHundred) return 0;
+    const score = Math.round(this.listI().attributes.ratingHundred / 10);
+    if (score === 0) return 1;
     return score;
   }
 
   _setScore(score) {
-    if (score === 0) {
-      this.listI().attributes.ratingTwenty = null;
+    if (!score) {
+      this.listI().attributes.ratingHundred = null;
       return;
     }
-    this.listI().attributes.ratingTwenty = score * 2;
+    this.listI().attributes.ratingHundred = score * 10;
   }
 
   _getAbsoluteScore() {
-    return Number(this.listI().attributes.ratingTwenty * 5);
+    return Number(this.listI().attributes.ratingHundred);
   }
 
   _setAbsoluteScore(score) {
-    if (!score) {
-      this.setScore(0);
-      return;
-    }
-    if (Number(score) < 5) {
-      this.listI().attributes.ratingTwenty = 1;
-      return;
-    }
-    this.listI().attributes.ratingTwenty = Math.round(Number(score) / 5);
+    this.listI().attributes.ratingHundred = Number(score);
+  }
+
+  _getTwentyScore() {
+    const score = this.listI().attributes.ratingHundred;
+    if (!score) return null;
+    if (score < 5) return 1;
+    return Math.round(score / 5);
   }
 
   _getEpisode() {
@@ -224,6 +224,12 @@ export class Single extends SingleAbstract {
           }
         }
 
+        if (tempAnimeInfo.data[0].attributes.ratingHundred) {
+          tempAnimeInfo.data[0].attributes.ratingHundred = 0;
+        } else {
+          tempAnimeInfo.data[0].attributes.ratingHundred = Number(tempAnimeInfo.data[0].attributes.ratingTwenty * 5);
+        }
+
         this.animeInfo = tempAnimeInfo;
 
         try {
@@ -238,7 +244,6 @@ export class Single extends SingleAbstract {
   }
 
   async _sync() {
-    if (this.listI().attributes.ratingTwenty < 2) this.listI().attributes.ratingTwenty = null;
     const variables: any = {
       data: {
         attributes: {
@@ -247,7 +252,7 @@ export class Single extends SingleAbstract {
           volumesOwned: this.listI().attributes.volumesOwned,
           reconsuming: this.listI().attributes.reconsuming,
           reconsumeCount: this.listI().attributes.reconsumeCount,
-          ratingTwenty: this.listI().attributes.ratingTwenty ? this.listI().attributes.ratingTwenty : null,
+          ratingTwenty: this._getTwentyScore(),
           status: this.listI().attributes.status,
         },
         type: 'library-entries',
