@@ -1,6 +1,9 @@
 import { expect } from 'chai';
 import { point100 } from '../../../src/_provider/ScoreMode/point100';
 import { point10 } from '../../../src/_provider/ScoreMode/point10';
+import { smiley3 } from '../../../src/_provider/ScoreMode/smiley3';
+import { stars5 } from '../../../src/_provider/ScoreMode/stars5';
+import { point100decimal } from '../../../src/_provider/ScoreMode/point100decimal';
 
 describe('scoreModeStrategy', function() {
   const testArray = [
@@ -25,6 +28,64 @@ describe('scoreModeStrategy', function() {
     {
       name: '100 points',
       class: point100,
+      optionNumber: 101,
+      valueToOptionValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '3 smilys',
+      class: smiley3,
+      optionNumber: 4,
+      valueToOptionValue: {
+        1: 35,
+        10: 35,
+        '54': 60,
+        55: 60,
+        100: 85,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '5 stars',
+      class: stars5,
+      optionNumber: 6,
+      valueToOptionValue: {
+        1: 10,
+        10: 10,
+        21: 30,
+        '54': 50,
+        55: 50,
+        100: 90,
+      },
+      optionValueToValue: {
+        1: 1,
+        10: 10,
+        '54': 54,
+        55: 55,
+        100: 100,
+      },
+    },
+    {
+      name: '100 points decimal',
+      class: point100decimal,
       optionNumber: 101,
       valueToOptionValue: {
         1: 1,
