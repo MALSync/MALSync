@@ -81,6 +81,7 @@ export abstract class SingleAbstract {
 
   abstract _setStatus(status: definitions.status): void;
 
+
   public setStatus(status: definitions.status): SingleAbstract {
     status = Number(status);
     this._setStatus(status);
@@ -96,6 +97,9 @@ export abstract class SingleAbstract {
 
   abstract _setScore(score: definitions.score): void;
 
+  /**
+   * @deprecated Use setAbsoluteScore instead
+   */
   public setScore(score: definitions.score): SingleAbstract {
     score = parseInt(`${score}`);
     if (!score) score = 0;
@@ -105,27 +109,26 @@ export abstract class SingleAbstract {
 
   abstract _getScore(): definitions.score;
 
+  /**
+   * @deprecated Use getAbsoluteScore instead
+   */
   public getScore(): definitions.score {
     const score = this._getScore();
     if (!score) return 0;
     return score;
   }
 
-  protected _setAbsoluteScore(score: number): void {
-    this.setScore(score);
-  }
+  abstract _setAbsoluteScore(score: definitions.score100): void;
 
-  public setAbsoluteScore(score: number): SingleAbstract {
+  public setAbsoluteScore(score: definitions.score100): SingleAbstract {
     score = parseInt(`${score}`);
     this._setAbsoluteScore(score);
     return this;
   }
 
-  protected _getAbsoluteScore(): number {
-    return this.getScore();
-  }
+  abstract _getAbsoluteScore(): definitions.score100;
 
-  public getAbsoluteScore(): number {
+  public getAbsoluteScore(): definitions.score100 {
     const score = this._getAbsoluteScore();
     if (!score) return 0;
     return score;

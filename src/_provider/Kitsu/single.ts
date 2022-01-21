@@ -75,11 +75,19 @@ export class Single extends SingleAbstract {
   }
 
   _getAbsoluteScore() {
-    return Number(this.listI().attributes.ratingTwenty);
+    return Number(this.listI().attributes.ratingTwenty * 5);
   }
 
   _setAbsoluteScore(score) {
-    this.listI().attributes.ratingTwenty = Number(score);
+    if (!score) {
+      this.setScore(0);
+      return;
+    }
+    if (Number(score) < 5) {
+      this.listI().attributes.ratingTwenty = 1;
+      return;
+    }
+    this.listI().attributes.ratingTwenty = Math.round(Number(score) / 5);
   }
 
   _getEpisode() {
