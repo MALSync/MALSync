@@ -5,7 +5,7 @@ import { point100 } from '../ScoreMode/point100';
 import { point10 } from '../ScoreMode/point10';
 import { smiley3 } from '../ScoreMode/smiley3';
 import { stars5 } from '../ScoreMode/stars5';
-import { point100decimal } from '../ScoreMode/point100Decimal';
+import { point100decimal } from '../ScoreMode/point100decimal';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
