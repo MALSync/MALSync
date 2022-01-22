@@ -52,7 +52,7 @@ export const FlameScans: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4).replace(/^\d+-/g, '');
     },
     uiSelector(selector) {
       j.$('.second-half .right-side .bixbox')
