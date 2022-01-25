@@ -50,10 +50,10 @@ export const AnimeStreamingFR: pageInterface = {
     },
   },
   init(page) {
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       page.handlePage();
-      utils.urlChangeDetect(function() {
+      utils.urlChangeDetect(function () {
         page.reset();
         if (utils.urlPart(page.url, 3) === 'episode' || utils.urlPart(page.url, 3) === 'anime') {
           page.handlePage();
