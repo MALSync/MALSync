@@ -1,77 +1,64 @@
 import { pageInterface } from '../pageInterface';
 
-let jsonData;
-
 export const AnimeStreamingFR: pageInterface = {
   name: 'AnimeStreamingFR',
-  domain: 'https://www.animestreamingfr.fr',
+  domain: 'https://beta.animestreamingfr.fr',
   languages: ['French'],
   type: 'anime',
   isSyncPage(url) {
-    return jsonData.isStreaming;
+    return utils.urlPart(url, 3) === 'episode';
   },
   sync: {
     getTitle(url) {
-      return jsonData.name;
+      return j.$('#animeTitle').text().trim();
     },
     getIdentifier(url) {
-      return jsonData.id;
+      const overviewUrl = `${j.$('#animeTitle').parent().attr('href')}`;
+      return `${utils.urlPart(overviewUrl, 3)}-${utils.urlPart(overviewUrl, 5)}`;
     },
     getOverviewUrl(url) {
-      return jsonData.main_url;
+      return utils.absoluteLink(`${j.$('#animeTitle').parent().attr('href')}`, AnimeStreamingFR.domain);
     },
     getEpisode(url) {
-      return jsonData.episode;
+      return Number(j.$('meta[itemprop="episodeNumber"]').attr('content'));
     },
     nextEpUrl(url) {
-      if (jsonData.nextEpisode) {
-        return jsonData.nextEpisode;
-      }
-      return '';
+      return utils.absoluteLink(j.$('#nextEpisode').parent().attr('href'), AnimeStreamingFR.domain);
     },
-    getMalUrl(provider) {
-      if (jsonData.mal_id) return `https://myanimelist.net/anime/${jsonData.mal_id}`;
-      if (provider === 'ANILIST') {
-        if (jsonData.anilist_id) return `https://anilist.co/anime/${jsonData.anilist_id}`;
-      }
-      return false;
+  },
+  overview: {
+    getTitle(url) {
+      return j.$('#season').text().trim();
+    },
+    getIdentifier(url) {
+      return `${utils.urlPart(url, 5)}-${utils.urlPart(url, 7)}`;
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position)
-        .first()
-        .append(j.html(selector));
+      j.$('#season').parent().parent().parent().after(j.html(selector));
+    },
+    list: {
+      offsetHandler: true,
+      elementsSelector() {
+        return j.$('[itemprop="episode"]').parent();
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(`${selector.attr('href')}`, AnimeStreamingFR.domain);
+      },
+      elementEp(selector) {
+        return Number(selector.find('[itemprop="episodeNumber"]').text());
+      },
     },
   },
   init(page) {
-    function checkPage() {
-      page.reset();
-      if (
-        page.url.split('/').length > 3 &&
-        page.url.split('/')[3] === 'anime' &&
-        typeof page.url.split('/')[4] !== 'undefined' &&
-        page.url.split('/')[4].length > 0
-      ) {
-        utils.waitUntilTrue(
-          function() {
-            return j.$('#syncData').length;
-          },
-          function() {
-            const jsonText = j
-              .$('#syncData')
-              .text()
-              .replace(/&quot;/g, '"');
-            con.m('json').log(jsonText);
-            jsonData = JSON.parse(jsonText);
-
-            page.handlePage();
-          },
-        );
-      }
-    }
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    checkPage();
-    utils.urlChangeDetect(function() {
-      checkPage();
+    j.$(document).ready(function() {
+      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+      page.handlePage();
+      utils.urlChangeDetect(function() {
+        page.reset();
+        if (utils.urlPart(page.url, 3) === 'episode' || utils.urlPart(page.url, 3) === 'anime') {
+          page.handlePage();
+        }
+      });
     });
   },
 };
