@@ -8,9 +8,12 @@ export const AnimeStreamingFR: pageInterface = {
   isSyncPage(url) {
     return utils.urlPart(url, 3) === 'episode';
   },
+  isOverviewPage(url) {
+    return utils.urlPart(url, 3) === 'anime';
+  },
   sync: {
     getTitle(url) {
-      return j.$('#animeTitle').text().trim();
+      return j.$('#animeTitle').text().trim().replace(' - Partie 1', '');
     },
     getIdentifier(url) {
       const overviewUrl = `${j.$('#animeTitle').parent().attr('href')}`;
@@ -28,7 +31,7 @@ export const AnimeStreamingFR: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('#season').text().trim();
+      return j.$('#season').text().trim().replace(' - Partie 1', '');
     },
     getIdentifier(url) {
       return `${utils.urlPart(url, 5)}-${utils.urlPart(url, 7)}`;
