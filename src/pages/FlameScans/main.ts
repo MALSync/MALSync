@@ -14,7 +14,7 @@ export const FlameScans: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1])
+        .$('.chapterbody .headpost a')
         .text()
         .trim();
     },
@@ -22,7 +22,7 @@ export const FlameScans: pageInterface = {
       return utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
+      return j.$('.chapterbody .headpost a').attr('href') || '';
     },
     getEpisode(url) {
       const elementEpN = j
@@ -52,12 +52,16 @@ export const FlameScans: pageInterface = {
         .trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4).replace(/^\d+-/g, '');
     },
     uiSelector(selector) {
-      j.$('div.info-desc.bixbox')
+      j.$('.second-half .right-side .bixbox')
         .first()
-        .after(j.html(`<div id= "malthing" class="bixbox animefull">${selector}</div>`));
+        .before(
+          j.html(
+            `<div id= "malthing" class="bixbox bxcl epcheck"><div class="releases"><h2>MAL-Sync</h2></div>${selector}</div>`,
+          ),
+        );
     },
     list: {
       offsetHandler: false,
@@ -68,12 +72,9 @@ export const FlameScans: pageInterface = {
         return selector.parent().attr('href') || '';
       },
       elementEp(selector) {
-        const elementEpN = selector
-          .find('span')
-          .first()
-          .text();
+        const elementEpN = selector.parents('li').attr('data-num') || '';
 
-        const temp = elementEpN.match(/chapter \d+/gim);
+        const temp = elementEpN.match(/\d+/gim);
 
         if (!temp || temp.length === 0) return 0;
 
