@@ -277,6 +277,7 @@ module.exports = {
       '*://scloud.online/*',
       '*://strtpe.link/*',
       '*://stape.me/*',
+      '*://stape.fun/*',
     ],
   },
   // monoschinos
