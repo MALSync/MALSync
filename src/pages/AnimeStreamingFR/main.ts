@@ -1,5 +1,9 @@
 import { pageInterface } from '../pageInterface';
 
+function cleanUpTitle(title: string) {
+  return title.replace(' - Partie 1', '').trim();
+}
+
 export const AnimeStreamingFR: pageInterface = {
   name: 'AnimeStreamingFR',
   domain: 'https://beta.animestreamingfr.fr',
@@ -13,31 +17,56 @@ export const AnimeStreamingFR: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('#animeTitle').text().trim().replace(' - Partie 1', '');
+      return cleanUpTitle(
+        j
+          .$('#animeTitle')
+          .text()
+          .trim(),
+      );
     },
     getIdentifier(url) {
-      const overviewUrl = `${j.$('#animeTitle').parent().attr('href')}`;
-      return `${utils.urlPart(overviewUrl, 3)}-${utils.urlPart(overviewUrl, 5)}`;
+      return AnimeStreamingFR.overview!.getIdentifier(AnimeStreamingFR.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(`${j.$('#animeTitle').parent().attr('href')}`, AnimeStreamingFR.domain);
+      return utils.absoluteLink(
+        `${j
+          .$('#animeTitle')
+          .parent()
+          .attr('href')}`,
+        AnimeStreamingFR.domain,
+      );
     },
     getEpisode(url) {
       return Number(j.$('meta[itemprop="episodeNumber"]').attr('content'));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(j.$('#nextEpisode').parent().attr('href'), AnimeStreamingFR.domain);
+      return utils.absoluteLink(
+        j
+          .$('#nextEpisode')
+          .parent()
+          .attr('href'),
+        AnimeStreamingFR.domain,
+      );
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('#season').text().trim().replace(' - Partie 1', '');
+      return cleanUpTitle(
+        j
+          .$('#season')
+          .text()
+          .trim(),
+      );
     },
     getIdentifier(url) {
       return `${utils.urlPart(url, 5)}-${utils.urlPart(url, 7)}`;
     },
     uiSelector(selector) {
-      j.$('#season').parent().parent().parent().after(j.html(selector));
+      j.$('#season')
+        .parent()
+        .parent()
+        .parent()
+        .after(j.html(`<div class="Grid-item" style="width: 100%; max-width: 800px;">${selector}</div>`));
     },
     list: {
       offsetHandler: true,
@@ -53,14 +82,12 @@ export const AnimeStreamingFR: pageInterface = {
     },
   },
   init(page) {
-    j.$(document).ready(function () {
+    j.$(document).ready(function() {
       api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
       page.handlePage();
-      utils.urlChangeDetect(function () {
+      utils.urlChangeDetect(function() {
         page.reset();
-        if (utils.urlPart(page.url, 3) === 'episode' || utils.urlPart(page.url, 3) === 'anime') {
-          page.handlePage();
-        }
+        page.handlePage();
       });
     });
   },
