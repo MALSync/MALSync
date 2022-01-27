@@ -1,10 +1,14 @@
+import Vue from 'vue';
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
+import updateUi from './updateUi.vue';
 
 export class AnilistClass {
   page: any = null;
+
+  private vueEl;
 
   constructor(public url: string) {
     let first = true;
@@ -185,6 +189,7 @@ export class AnilistClass {
     $('.malsync-rel-link').remove();
     const malObj = new AniListSingle(this.url);
     await malObj.update();
+    this.initVue(malObj);
     this.pageRelation(malObj);
 
     const streamUrl = malObj.getStreamingUrl();
@@ -383,5 +388,21 @@ export class AnilistClass {
         });
       }
     });
+  }
+
+  protected initVue(malObj) {
+    if (!$('#malsync-update-ui').length)
+      $('.sidebar')
+        .first()
+        .prepend(j.html('<div id="malsync-update-ui"></div>'));
+
+    if (this.vueEl) this.vueEl.$destroy();
+
+    [this.vueEl] = new Vue({
+      el: '#malsync-update-ui',
+      render: h => h(updateUi),
+    }).$children;
+
+    this.vueEl.malObj = malObj;
   }
 }
