@@ -21,7 +21,7 @@
     "chrome-webstore-upload": "^1.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.3.0",
-    "dot-prop": "^6.0.0",
+    "dot-prop": "^7.0.0",
     "eslint": "^8.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-es": "^4.1.0",
@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^6.13.2",
-    "@types/chrome": "0.0.176",
+    "@types/chrome": "0.0.177",
     "async-mutex": "^0.3.0",
     "dexie": "^3.0.3",
     "dompurify": "^2.3.2",
