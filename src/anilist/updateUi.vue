@@ -41,11 +41,37 @@ export default {
     lang: api.storage.lang,
     utils,
     malObj: null,
-    episode: 2,
-    score: 5,
-    volume: 1,
+    episode: null,
+    score: null,
+    volume: null,
   }),
-  watch: {},
+  watch: {
+    malObj: {
+      handler(newValue) {
+        if (newValue) {
+          this.episode = newValue.getEpisode();
+          this.score = newValue.getAbsoluteScore();
+          this.volume = newValue.getVolume();
+        }
+      },
+      immediate: true,
+    },
+    episode: {
+      handler(newValue) {
+        if (this.malObj) this.malObj.setEpisode(newValue);
+      },
+    },
+    score: {
+      handler(newValue) {
+        if (this.malObj) this.malObj.setAbsoluteScore(newValue);
+      },
+    },
+    volume: {
+      handler(newValue) {
+        if (this.malObj) this.malObj.setVolume(newValue);
+      },
+    },
+  },
   created() {},
   methods: {},
 };
