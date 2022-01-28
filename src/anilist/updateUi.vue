@@ -85,6 +85,22 @@ export default {
     }
   }
 
+  .el-select {
+    width: 100%;
+    .el-input__inner {
+      line-height: normal;
+    }
+    .el-input__suffix {
+      pointer-events: none;
+      right: 0px;
+      top: 6px;
+
+      * {
+        pointer-events: none !important;
+      }
+    }
+  }
+
   .ms-input-wrapper {
     display: flex;
     align-items: center;
