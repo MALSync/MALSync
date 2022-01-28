@@ -1,7 +1,12 @@
 <template>
   <div>
     <template v-if="scoreModeStrategy.ui.module === 'input'">
-      input
+      <inputNumber
+        :label="label"
+        :value="modelValue"
+        :pattern="scoreModeStrategy.ui.pattern"
+        @update:value="modelValue = $event"
+      />
     </template>
     <template v-else>
       <inputDropdown
@@ -16,10 +21,12 @@
 
 <script type="text/javascript">
 import inputDropdown from './input-dropdown.vue';
+import inputNumber from './input-number.vue';
 
 export default {
   components: {
     inputDropdown,
+    inputNumber,
   },
   props: {
     value: {
@@ -42,13 +49,13 @@ export default {
   watch: {
     value: {
       handler(newValue) {
-        if (this.modelValue !== newValue) this.modelValue = newValue;
+        if (this.modelValue !== newValue) this.modelValue = this.scoreModeStrategy.valueToOptionValue(newValue);
       },
       immediate: true,
     },
     modelValue: {
       handler(newValue) {
-        this.$emit('update:value', Number(newValue));
+        this.$emit('update:value', this.scoreModeStrategy.optionValueToValue(newValue));
       },
     },
   },
