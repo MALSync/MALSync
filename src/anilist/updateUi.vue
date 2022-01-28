@@ -1,29 +1,33 @@
 <template>
   <div v-if="malObj" id="malsync-update-ui">
     <div class="ms-data">
-      <scoreMode
-        :label="lang('UI_Score')"
-        :value="score"
-        :score-mode-strategy="malObj ? malObj.getScoreMode() : null"
-        @update:value="score = $event"
-      ></scoreMode>
+      <div class="ms-data-inner">
+        <scoreMode
+          :label="lang('UI_Score')"
+          :value="score"
+          :score-mode-strategy="malObj ? malObj.getScoreMode() : null"
+          @update:value="score = $event"
+        ></scoreMode>
 
-      <inputNumber
-        :label="utils.episode(malObj.getType())"
-        :total="malObj.getTotalEpisodes()"
-        :value="episode"
-        @update:value="episode = $event"
-      />
+        <inputNumber
+          :label="utils.episode(malObj.getType())"
+          :total="malObj.getTotalEpisodes()"
+          :value="episode"
+          @update:value="episode = $event"
+        />
 
-      <inputNumber
-        v-if="malObj && malObj.type === 'manga'"
-        :label="lang('UI_Volume')"
-        :total="malObj.getTotalVolumes()"
-        :value="volume"
-        @update:value="volume = $event"
-      />
+        <inputNumber
+          v-if="malObj && malObj.type === 'manga'"
+          :label="lang('UI_Volume')"
+          :total="malObj.getTotalVolumes()"
+          :value="volume"
+          @update:value="volume = $event"
+        />
 
-      <span class="powered-malsync">Provided by MAL-Sync</span>
+        <span class="powered-malsync">Provided by MAL-Sync</span>
+      </div>
+
+      <div class="malsync-save">{{ lang('Update') }}</div>
     </div>
   </div>
 </template>
@@ -83,11 +87,29 @@ export default {
     position: relative;
     background: rgb(var(--color-foreground));
     border-radius: 3px;
-    padding: 18px;
     margin-bottom: 16px;
-    gap: 15px;
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
+
+    .ms-data-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+      gap: 15px;
+    }
+
+    .malsync-save {
+      text-align: center;
+      background: rgb(var(--color-blue));;
+      height: 28px;
+      vertical-align: middle;
+      line-height: 28px;
+      color: rgb(var(--color-white));
+      text-transform: uppercase;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
     &:hover .powered-malsync {
       opacity: 0.3;
     }
