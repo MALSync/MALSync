@@ -1,5 +1,5 @@
 <template>
-  <div v-if="malObj" id="malsync-update-ui">
+  <div v-if="malObj" id="malsync-update-ui" :class="{ 'malsync-loading': loading }">
     <div class="ms-data">
       <div class="ms-data-inner">
         <scoreMode
@@ -27,7 +27,7 @@
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div v-if="malObj.isDirty()" class="malsync-save">{{ lang('Update') }}</div>
+      <div v-if="malObj.isDirty() && !loading" class="malsync-save" @click="update()">{{ lang('Update') }}</div>
     </div>
   </div>
 </template>
@@ -48,6 +48,7 @@ export default {
     episode: null,
     score: null,
     volume: null,
+    loading: false,
   }),
   watch: {
     malObj: {
@@ -77,12 +78,32 @@ export default {
     },
   },
   created() {},
-  methods: {},
+  methods: {
+    async update() {
+      if (this.malObj) {
+        this.loading = true;
+        try {
+          await this.malObj.sync();
+          await this.malObj.update();
+        } catch (e) {
+          con.error(e);
+        }
+        this.loading = false;
+      }
+    },
+  },
 };
 </script>
 
 <style lang="less">
 #malsync-update-ui {
+  &.malsync-loading {
+    pointer-events: none;
+    .ms-data-inner {
+      opacity: 0.4 !important;
+    }
+  }
+
   .ms-data {
     position: relative;
     background: rgb(var(--color-foreground));
@@ -91,11 +112,13 @@ export default {
     overflow: hidden;
 
     .ms-data-inner {
+      opacity: 1;
       position: relative;
       display: flex;
       flex-direction: column;
       padding: 18px;
       gap: 15px;
+      transition: opacity 0.1s ease-in-out;
     }
 
     .malsync-save {
