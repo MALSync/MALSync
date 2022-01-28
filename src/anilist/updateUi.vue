@@ -22,6 +22,8 @@
         :value="volume"
         @update:value="volume = $event"
       />
+
+      <span class="powered-malsync">Provided by MAL-Sync</span>
     </div>
   </div>
 </template>
@@ -52,6 +54,7 @@ export default {
 <style lang="less">
 #malsync-update-ui {
   .ms-data {
+    position: relative;
     background: rgb(var(--color-foreground));
     border-radius: 3px;
     padding: 18px;
@@ -59,6 +62,20 @@ export default {
     gap: 15px;
     display: flex;
     flex-direction: column;
+    &:hover .powered-malsync {
+      opacity: 0.3;
+    }
+    .powered-malsync {
+      transition: opacity 0.2s ease-in-out;
+      opacity: 0.1;
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 12px;
+      color: rgb(var(--color-text-secondary));
+    }
   }
   .el-input__inner,
   .star-score-wrap,
