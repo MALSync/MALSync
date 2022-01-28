@@ -1,6 +1,9 @@
 import { ScoreModeStrategy } from './ScoreModeStrategy';
 
 export const point100: ScoreModeStrategy = {
+  ui: {
+    module: 'input',
+  },
   getOptions() {
     const resArr = [{ value: 0, label: api.storage.lang('UI_Score_Not_Rated') }];
     for (let i = 1; i < 101; i++) {

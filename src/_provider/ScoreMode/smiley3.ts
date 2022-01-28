@@ -1,6 +1,9 @@
 import { ScoreModeStrategy } from './ScoreModeStrategy';
 
 export const smiley3: ScoreModeStrategy = {
+  ui: {
+    module: 'click',
+  },
   getOptions() {
     return [
       { value: 0, label: api.storage.lang('UI_Score_Not_Rated') },
