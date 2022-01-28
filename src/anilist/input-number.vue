@@ -14,7 +14,10 @@
           <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" :pattern="pattern"/>
         </div>
       </div>
-      <div v-if="total" class="ms-input-ep">/ {{ total }}</div>
+      <div v-if="additionalSlot || total" class="ms-input-ep">
+        <template v-if="total"> / <slot /> {{ total }} </template>
+        <template v-else> <slot /> </template>
+      </div>
     </div>
   </div>
 
@@ -38,6 +41,10 @@ export default {
     pattern: {
       default: '^[0-9]*$',
       type: String,
+    },
+    additionalSlot: {
+      default: false,
+      type: Boolean,
     },
   },
   emits: ['update:value'],

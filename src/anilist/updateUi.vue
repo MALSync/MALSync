@@ -13,8 +13,14 @@
           :label="utils.episode(malObj.getType())"
           :total="malObj.getTotalEpisodes()"
           :value="episode"
+          :additional-slot="Boolean(progress)"
           @update:value="episode = $event"
-        />
+        >
+          <span v-if="progress" class="mal-sync-ep" :title="progress.getAutoText()">
+            [<span :style="`border-bottom: 1px dotted ${progress.getColor()};`">{{ progress.getCurrentEpisode() }}</span
+            >]
+          </span>
+        </inputNumber>
 
         <inputNumber
           v-if="malObj && malObj.type === 'manga'"
@@ -60,8 +66,25 @@ export default {
     malObjVolume() {
       return this.malObj ? this.malObj.getVolume() : null;
     },
+    progress() {
+      if (
+        this.malObj &&
+        this.malObj.getProgress() &&
+        this.malObj.getProgress().isAiring() &&
+        this.malObj.getProgress().getCurrentEpisode()
+      ) {
+        return this.malObj.getProgress();
+      }
+      return '';
+    },
   },
   watch: {
+    malObj: {
+      handler(newVal) {
+        if (newVal)newVal.initProgress();
+      },
+      immediate: true,
+    },
     malObjEpisode: {
       immediate: true,
       handler(newVal) {
