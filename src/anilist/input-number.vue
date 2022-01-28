@@ -11,7 +11,7 @@
           <i class="el-icon-arrow-up"></i>
         </span>
         <div class="el-input">
-          <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" />
+          <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" :pattern="pattern"/>
         </div>
       </div>
       <div v-if="total" class="ms-input-ep">/ {{ total }}</div>
@@ -35,6 +35,10 @@ export default {
       default: '',
       type: String,
     },
+    pattern: {
+      default: '^[0-9]*$',
+      type: String,
+    },
   },
   emits: ['update:value'],
   data: () => ({
@@ -48,8 +52,12 @@ export default {
       immediate: true,
     },
     modelValue: {
-      handler(newValue) {
-        this.$emit('update:value', Number(newValue));
+      handler(newValue, oldValue) {
+        if (!newValue || String(newValue).match(new RegExp(this.pattern))) {
+          this.$emit('update:value', Number(newValue));
+        } else {
+          this.modelValue = oldValue;
+        }
       },
     },
   },
