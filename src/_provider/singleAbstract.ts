@@ -381,7 +381,7 @@ export abstract class SingleAbstract {
   }
 
   protected updateEvent(data) {
-    if (JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl())) {
+    if (this.isDirty()) {
       this.logger.log('Ignore event');
       return;
     }
@@ -391,6 +391,10 @@ export abstract class SingleAbstract {
       this.persistanceState = this.getStateEl();
       emitter.emit('syncPage_fillUi');
     }
+  }
+
+  public isDirty(): boolean {
+    return JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl());
   }
 
   public undo(): Promise<void> {

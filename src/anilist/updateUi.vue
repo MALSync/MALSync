@@ -27,7 +27,7 @@
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div class="malsync-save">{{ lang('Update') }}</div>
+      <div v-if="malObj.isDirty()" class="malsync-save">{{ lang('Update') }}</div>
     </div>
   </div>
 </template>
