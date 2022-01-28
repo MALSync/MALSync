@@ -381,7 +381,7 @@ export class Single extends SingleAbstract {
     });
   }
 
-  protected getScoreMode() {
+  public getScoreMode() {
     switch (api.settings.get('kitsuOptions').ratingSystem) {
       case 'simple':
         return smiley4;

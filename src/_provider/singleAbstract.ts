@@ -95,7 +95,7 @@ export abstract class SingleAbstract {
     return this._getStatus();
   }
 
-  protected getScoreMode() {
+  public getScoreMode() {
     return point10;
   }
 

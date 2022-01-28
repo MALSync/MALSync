@@ -249,7 +249,7 @@ export class Single extends SingleAbstract {
     return helper.apiCall(query, variables, authentication);
   }
 
-  protected getScoreMode() {
+  public getScoreMode() {
     switch (api.settings.get('anilistOptions').scoreFormat) {
       case 'POINT_100':
         return point100;

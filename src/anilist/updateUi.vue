@@ -1,8 +1,8 @@
 <template>
-  <div id="malsync-update-ui">
+  <div v-if="malObj" id="malsync-update-ui">
     <div class="ms-data">
       <div class="form score">
-        <div class="input-title">{{lang('UI_Score')}}</div>
+        <div class="input-title">{{ lang('UI_Score') }}</div>
         <div class="ms-input-wrapper">
           <div class="el-input-number is-controls-right">
             <span role="button" class="el-input-number__decrease ms-button">
@@ -21,16 +21,16 @@
       <inputNumber
         :label="utils.episode(malObj.getType())"
         :total="malObj.getTotalEpisodes()"
-        v-bind:value="episode"
-        v-on:update:value="episode = $event"
+        :value="episode"
+        @update:value="episode = $event"
       />
 
       <inputNumber
         v-if="malObj && malObj.type === 'manga'"
         :label="lang('UI_Volume')"
         :total="malObj.getTotalVolumes()"
-        v-bind:value="volume"
-        v-on:update:value="volume = $event"
+        :value="volume"
+        @update:value="volume = $event"
       />
     </div>
   </div>
@@ -38,15 +38,17 @@
 
 <script type="text/javascript">
 import inputNumber from './input-number.vue';
+import scoreMode from './score-mode.vue';
 
 export default {
   components: {
     inputNumber,
+    scoreMode,
   },
   data: () => ({
     lang: api.storage.lang,
     utils,
-    malObj: {},
+    malObj: null,
     episode: 2,
     score: 5,
     volume: 1,

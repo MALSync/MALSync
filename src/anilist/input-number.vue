@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     increase() {
-      if (this.modelValue < this.total) this.modelValue++;
+      if (!this.total || this.modelValue < this.total) this.modelValue++;
     },
     decrease() {
       if (this.modelValue > 0) this.modelValue--;
