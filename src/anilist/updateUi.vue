@@ -50,16 +50,35 @@ export default {
     volume: null,
     loading: false,
   }),
+  computed: {
+    malObjEpisode() {
+      return this.malObj ? this.malObj.getEpisode() : null;
+    },
+    malObjScore() {
+      return this.malObj ? this.malObj.getAbsoluteScore() : null;
+    },
+    malObjVolume() {
+      return this.malObj ? this.malObj.getVolume() : null;
+    },
+  },
   watch: {
-    malObj: {
-      handler(newValue) {
-        if (newValue) {
-          this.episode = newValue.getEpisode();
-          this.score = newValue.getAbsoluteScore();
-          this.volume = newValue.getVolume();
-        }
-      },
+    malObjEpisode: {
       immediate: true,
+      handler(newVal) {
+        this.episode = newVal;
+      },
+    },
+    malObjScore: {
+      immediate: true,
+      handler(newVal) {
+        this.score = newVal;
+      },
+    },
+    malObjVolume: {
+      immediate: true,
+      handler(newVal) {
+        this.volume = newVal;
+      },
     },
     episode: {
       handler(newValue) {

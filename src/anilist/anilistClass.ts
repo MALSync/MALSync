@@ -40,6 +40,12 @@ export class AnilistClass {
       },
     );
 
+    j.$(document).on('click', '.save-btn', () => {
+      setTimeout(() => {
+        if (this.vueEl && this.vueEl.malObj) this.vueEl.malObj.update();
+      }, 500);
+    });
+
     if (this.url.indexOf('access_token=') > -1) {
       this.init();
     }
@@ -187,6 +193,7 @@ export class AnilistClass {
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
     $('.malsync-rel-link').remove();
+    if (this.vueEl) this.vueEl.loading = true;
     const malObj = new AniListSingle(this.url);
     await malObj.update();
     this.initVue(malObj);
