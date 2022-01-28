@@ -18,6 +18,13 @@
         </div>
       </div>
 
+      <scoreMode
+        :label="lang('UI_Score')"
+        :value="score"
+        :score-mode-strategy="malObj ? malObj.getScoreMode() : null"
+        @update:value="score = $event"
+      ></scoreMode>
+
       <inputNumber
         :label="utils.episode(malObj.getType())"
         :total="malObj.getTotalEpisodes()"
