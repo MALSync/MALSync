@@ -11,6 +11,7 @@ type dropdown = {
 
 type click = {
   module: 'click';
+  type: 'star' | 'smiley';
 };
 
 type ui = dropdown | input | click;

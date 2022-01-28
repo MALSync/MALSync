@@ -3,6 +3,7 @@ import { ScoreModeStrategy } from './ScoreModeStrategy';
 export const stars5: ScoreModeStrategy = {
   ui: {
     module: 'click',
+    type: 'star',
   },
   getOptions() {
     return [

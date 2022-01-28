@@ -3,6 +3,7 @@ import { ScoreModeStrategy } from './ScoreModeStrategy';
 export const smiley3: ScoreModeStrategy = {
   ui: {
     module: 'click',
+    type: 'smiley',
   },
   getOptions() {
     return [

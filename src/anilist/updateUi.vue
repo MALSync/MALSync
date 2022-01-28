@@ -1,23 +1,6 @@
 <template>
   <div v-if="malObj" id="malsync-update-ui">
     <div class="ms-data">
-      <div class="form score">
-        <div class="input-title">{{ lang('UI_Score') }}</div>
-        <div class="ms-input-wrapper">
-          <div class="el-input-number is-controls-right">
-            <span role="button" class="el-input-number__decrease ms-button">
-              <i class="el-icon-arrow-down"></i>
-            </span>
-            <span role="button" class="el-input-number__increase ms-button">
-              <i class="el-icon-arrow-up"></i>
-            </span>
-            <div class="el-input">
-              <input v-model="score" type="text" autocomplete="off" max="10" min="0" class="el-input__inner" />
-            </div>
-          </div>
-        </div>
-      </div>
-
       <scoreMode
         :label="lang('UI_Score')"
         :value="score"
@@ -77,9 +60,31 @@ export default {
     display: flex;
     flex-direction: column;
   }
-  .el-input__inner {
+  .el-input__inner,
+  .star-score-wrap,
+  .smile-score-wrap {
     background: rgb(var(--color-background)) !important;
     height: 27px;
+  }
+  .star-score-wrap {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .el-rate__item {
+      cursor: pointer;
+    }
+  }
+  .smile-score-wrap {
+    margin-top: 5px;
+    width: 100%;
+    .el-rate {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+    }
   }
   .ms-button {
     width: 20px;
