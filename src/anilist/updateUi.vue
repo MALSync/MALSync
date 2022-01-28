@@ -77,6 +77,11 @@ export default {
       color: rgb(var(--color-text-secondary));
     }
   }
+  .progress {
+    max-width: 229px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .el-input__inner,
   .star-score-wrap,
   .smile-score-wrap {
@@ -112,6 +117,9 @@ export default {
     &.el-input-number__decrease {
       line-height: 16px;
     }
+  }
+  .el-input-number {
+    width: auto;
   }
 
   .el-select {
