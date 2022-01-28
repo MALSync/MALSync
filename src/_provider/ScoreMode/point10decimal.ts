@@ -2,7 +2,7 @@ import { ScoreModeStrategy } from './ScoreModeStrategy';
 
 export const point10decimal: ScoreModeStrategy = {
   ui: {
-    module: 'input',
+    module: 'dropdown',
   },
   getOptions() {
     const resArr = [{ value: 0, label: api.storage.lang('UI_Score_Not_Rated') }];

@@ -2,6 +2,7 @@ import { score100 } from '../definitions';
 
 type input = {
   module: 'input';
+  pattern: string;
 };
 
 type dropdown = {

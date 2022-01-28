@@ -3,6 +3,7 @@ import { ScoreModeStrategy } from './ScoreModeStrategy';
 export const point100decimal: ScoreModeStrategy = {
   ui: {
     module: 'input',
+    pattern: '^([0-9](\\.[0-9])?|10(.0)?)$',
   },
   getOptions() {
     const resArr = [{ value: 0, label: api.storage.lang('UI_Score_Not_Rated') }];
