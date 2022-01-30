@@ -1,6 +1,7 @@
 <template>
   <div v-if="malObj" id="malsync-update-ui" :class="{ 'malsync-loading': loading }">
     <div class="ms-data">
+      <div v-show="loading" class="ms-loading"></div>
       <div class="ms-data-inner">
         <scoreMode
           :label="lang('UI_Score')"
@@ -165,7 +166,7 @@ export default {
 
     .malsync-save {
       text-align: center;
-      background: rgb(var(--color-blue));;
+      background: rgb(var(--color-blue));
       height: 28px;
       vertical-align: middle;
       line-height: 28px;
@@ -258,6 +259,46 @@ export default {
     .ms-input-ep {
       white-space: nowrap;
       margin-left: 10px;
+    }
+  }
+
+  .ms-loading {
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    overflow: hidden;
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      left: -200px;
+      width: 200px;
+      height: 4px;
+      background: rgb(var(--color-blue));
+      animation: loading-mal 2s linear infinite;
+    }
+
+    @keyframes loading-mal {
+      from {
+        left: -200px;
+        width: 30%;
+      }
+      50% {
+        width: 30%;
+      }
+      70% {
+        width: 70%;
+      }
+      80% {
+        left: 50%;
+      }
+      95% {
+        left: 120%;
+      }
+      to {
+        left: 100%;
+      }
     }
   }
 }
