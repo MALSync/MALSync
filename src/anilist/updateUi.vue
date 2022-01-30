@@ -1,5 +1,5 @@
 <template>
-  <div v-if="malObj" id="malsync-update-ui" :class="{ 'malsync-loading': loading }">
+  <div v-if="malObj" id="malsync-update-ui" :class="{ 'malsync-loading': loading, 'malsync-error': errorMessage }">
     <div class="ms-data">
       <div v-show="loading" class="ms-loading"></div>
       <div class="ms-data-inner">
@@ -31,10 +31,12 @@
           @update:value="volume = $event"
         />
 
+        <span v-if="errorMessage" v-dompurify-html="errorMessage" class="errorMessageText"></span>
+
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div v-if="malObj.isDirty() && !loading" class="malsync-save" @click="update()">{{ lang('Update') }}</div>
+      <div v-if="malObj.isDirty() && !loading && !errorMessage" class="malsync-save" @click="update()">{{ lang('Update') }}</div>
     </div>
   </div>
 </template>
@@ -77,6 +79,9 @@ export default {
         return this.malObj.getProgress();
       }
       return '';
+    },
+    errorMessage() {
+      return this.malObj && this.malObj.getLastError() ? this.malObj.getLastErrorMessage() : '';
     },
   },
   watch: {
@@ -140,10 +145,33 @@ export default {
 
 <style lang="less">
 #malsync-update-ui {
-  &.malsync-loading {
+  &.malsync-loading,
+  &.malsync-error {
     pointer-events: none;
     .ms-data-inner {
       opacity: 0.4 !important;
+    }
+  }
+
+  &.malsync-error {
+    pointer-events: none;
+    .ms-data {
+      outline: solid 1px red;
+    }
+    .ms-data-inner {
+      opacity: 1 !important;
+    }
+    .powered-malsync {
+      opacity: 1 !important;
+      color: red !important;
+    }
+    .ms-data-inner .progress {
+      opacity: 0.4 !important;
+    }
+    .errorMessageText {
+      color: red;
+      margin-bottom: 15px;
+      text-align: center;
     }
   }
 

@@ -1,10 +1,13 @@
 import Vue from 'vue';
+import VueDOMPurifyHTML from 'vue-dompurify-html';
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
 import { waitForPageToBeVisible } from '../utils/general';
+
+Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
 export class AnilistClass {
   page: any = null;
