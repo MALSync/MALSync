@@ -1,6 +1,7 @@
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
+import { waitForPageToBeVisible } from '../utils/general';
 
 export class KitsuClass {
   page: any = null;
@@ -55,6 +56,7 @@ export class KitsuClass {
   }
 
   async init() {
+    await waitForPageToBeVisible();
     if (this.url.indexOf('?mal-sync=authentication') > -1) {
       this.authentication();
     }

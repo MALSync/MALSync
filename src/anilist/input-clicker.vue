@@ -124,12 +124,12 @@ export default {
   }
 }
 .stars-50 .el-rate__icon{
-  color: rgb(247, 186, 42);
+  color: rgb(247 186 42);
 }
 
 .stars-70 .el-rate__icon,
 .stars-90 .el-rate__icon{
-  color: rgb(255, 153, 0);
+  color: rgb(255 153 0);
 }
 
 .smiley-off {

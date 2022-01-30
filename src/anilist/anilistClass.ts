@@ -4,6 +4,7 @@ import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
+import { waitForPageToBeVisible } from '../utils/general';
 
 export class AnilistClass {
   page: any = null;
@@ -53,7 +54,9 @@ export class AnilistClass {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   }
 
-  init() {
+  async init() {
+    await waitForPageToBeVisible();
+
     if (this.url.indexOf('access_token=') > -1) {
       this.authentication();
     }

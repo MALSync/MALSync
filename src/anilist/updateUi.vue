@@ -242,7 +242,7 @@ export default {
     }
     .el-input__suffix {
       pointer-events: none;
-      right: 0px;
+      right: 0;
       top: 6px;
 
       * {

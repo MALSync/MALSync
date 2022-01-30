@@ -4,6 +4,7 @@ import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
 import malkiss from './malkiss.vue';
 import { activeLinks } from '../utils/quicklinksBuilder';
+import { waitForPageToBeVisible } from '../utils/general';
 
 export class SimklClass {
   page: any = null;
@@ -39,6 +40,7 @@ export class SimklClass {
   }
 
   async init() {
+    await waitForPageToBeVisible();
     con.log(this.url);
 
     clearInterval(this.interval2);
