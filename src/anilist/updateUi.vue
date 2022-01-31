@@ -1,5 +1,9 @@
 <template>
-  <div v-if="malObj" id="malsync-update-ui" :class="{ 'malsync-loading': loading, 'malsync-error': errorMessage }">
+  <div
+    v-if="malObj"
+    id="malsync-update-ui"
+    :class="{ 'malsync-loading': loading, 'malsync-error': errorMessage, 'malsync-not-list': !onList }"
+  >
     <div class="ms-data">
       <div v-show="loading" class="ms-loading"></div>
       <div class="ms-data-inner">
@@ -36,7 +40,12 @@
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div v-if="malObj.isDirty() && !loading && !errorMessage" class="malsync-save" @click="update()">{{ lang('Update') }}</div>
+      <div v-if="!onList && !loading && !errorMessage" class="malsync-add" @click="addUpdate()">
+        {{ lang('Add') }}
+      </div>
+      <div v-else-if="malObj.isDirty() && !loading && !errorMessage" class="malsync-save" @click="update()">
+        {{ lang('Update') }}
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +91,9 @@ export default {
     },
     errorMessage() {
       return this.malObj && this.malObj.getLastError() ? this.malObj.getLastErrorMessage() : '';
+    },
+    onList() {
+      return this.malObj && this.malObj.isOnList() ? this.malObj.isOnList() : null;
     },
   },
   watch: {
@@ -150,6 +162,14 @@ export default {
         this.loading = false;
       }
     },
+    async addUpdate() {
+      this.update();
+      j.$('.cover-wrap-inner .list .add').click();
+      utils.waitUntilTrue(
+        () => j.$('.list-editor .el-icon-close').length,
+        () => j.$('.list-editor .el-icon-close').click(),
+      );
+    },
   },
 };
 </script>
@@ -161,6 +181,15 @@ export default {
     pointer-events: none;
     .ms-data-inner {
       opacity: 0.4 !important;
+    }
+  }
+
+  &.malsync-not-list {
+    .ms-data-inner {
+      opacity: 0.4 !important;
+      &:hover {
+        opacity: 1 !important;
+      }
     }
   }
 
@@ -203,7 +232,8 @@ export default {
       transition: opacity 0.1s ease-in-out;
     }
 
-    .malsync-save {
+    .malsync-save,
+    .malsync-add {
       text-align: center;
       background: rgb(var(--color-blue));
       height: 28px;
@@ -213,6 +243,10 @@ export default {
       text-transform: uppercase;
       font-size: 14px;
       cursor: pointer;
+    }
+
+    .malsync-add {
+      background: rgb(var(--color-green));
     }
 
     &:hover .powered-malsync {
