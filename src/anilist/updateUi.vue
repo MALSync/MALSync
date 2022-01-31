@@ -28,7 +28,7 @@
         </inputNumber>
 
         <inputNumber
-          v-if="malObj && malObj.type === 'manga'"
+          v-if="malObj && malObj.type === 'manga' && onList"
           :label="lang('UI_Volume')"
           :total="malObj.getTotalVolumes()"
           :value="volume"
@@ -40,7 +40,7 @@
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div v-if="!onList && !loading && !errorMessage" class="malsync-add" @click="addUpdate()">
+      <div v-if="!onList" class="malsync-add" :class="{ 'ms-load': loading || errorMessage }" @click="addUpdate()">
         {{ lang('Add') }}
       </div>
       <div v-else-if="malObj.isDirty() && !loading && !errorMessage" class="malsync-save" @click="update()">
@@ -243,6 +243,10 @@ export default {
       text-transform: uppercase;
       font-size: 14px;
       cursor: pointer;
+      &.ms-load {
+        pointer-events: none;
+        opacity: 0.4;
+      }
     }
 
     .malsync-add {

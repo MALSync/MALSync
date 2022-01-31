@@ -58,7 +58,7 @@ export class AnilistClass {
             if (this.vueEl) this.vueEl.reload();
           }, 500);
         },
-      )
+      );
     });
 
     // Anilist state dropdown
@@ -197,7 +197,7 @@ export class AnilistClass {
               font-size: 1.2rem;
 
             ">
-              <img src="${utils.favicon(page.domain)}">
+              <img src="${utils.favicon(page.domain)}" height="16" width="16">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
               <span title="${page.name}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
               ${tempHtml}
