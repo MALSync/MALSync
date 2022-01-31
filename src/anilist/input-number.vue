@@ -70,10 +70,10 @@ export default {
   },
   methods: {
     increase() {
-      if (!this.total || this.modelValue < this.total) this.modelValue++;
+      if (!this.total || this.modelValue < this.total) this.modelValue = Math.floor(this.modelValue + 1);
     },
     decrease() {
-      if (this.modelValue > 0) this.modelValue--;
+      if (this.modelValue > 0) this.modelValue = Math.ceil(this.modelValue - 1);
     },
   },
 };
