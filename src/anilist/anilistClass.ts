@@ -195,11 +195,14 @@ export class AnilistClass {
               margin-bottom: 16px;
               margin-top: 16px;
               font-size: 1.2rem;
+              position: relative;
 
             ">
               <img src="${utils.favicon(page.domain)}" height="16" width="16">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
-              <span title="${page.name}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
+              <span title="${
+                page.name
+              }" class="remove-mal-sync" title="remove" style="position: absolute; top: 2px; right: 5px; cursor: pointer; opacity: 0.4;">x</span>
               ${tempHtml}
             </div>`;
         });

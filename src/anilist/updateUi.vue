@@ -388,8 +388,9 @@ export default {
   .remove-update-mal-sync {
     cursor: pointer;
     position: absolute;
-    right: 10px;
-    top: 5px;
+    opacity: 0.4;
+    right: 5px;
+    top: 2px;
     font-size: 12px;
   }
 }
