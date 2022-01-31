@@ -731,6 +731,10 @@
     "message": "Last used page links",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Update UI",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Stealth UI mode",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"

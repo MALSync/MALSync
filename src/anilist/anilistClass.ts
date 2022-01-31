@@ -428,6 +428,8 @@ export class AnilistClass {
   }
 
   protected initVue(malObj) {
+    if (!api.settings.get('anilistUpdateUi')) return;
+
     if (!$('#malsync-update-ui').length)
       $('.sidebar')
         .first()

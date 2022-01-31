@@ -7,6 +7,7 @@
     <div class="ms-data">
       <div v-show="loading" class="ms-loading"></div>
       <div class="ms-data-inner">
+        <span class="remove-update-mal-sync" @click="hide()">x</span>
         <scoreMode
           :label="lang('UI_Score')"
           :value="score"
@@ -169,6 +170,11 @@ export default {
         () => j.$('.list-editor .el-icon-close').length,
         () => j.$('.list-editor .el-icon-close').click(),
       );
+    },
+    hide() {
+      this.$destroy();
+      this.$el.remove();
+      api.settings.set('anilistUpdateUi', false);
     },
   },
 };
@@ -377,6 +383,14 @@ export default {
         left: 100%;
       }
     }
+  }
+
+  .remove-update-mal-sync {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 12px;
   }
 }
 </style>
