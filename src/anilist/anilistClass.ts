@@ -46,9 +46,22 @@ export class AnilistClass {
 
     j.$(document).on('click', '.save-btn', () => {
       setTimeout(() => {
-        if (this.vueEl && this.vueEl.malObj) this.vueEl.malObj.update();
+        if (this.vueEl) this.vueEl.reload();
       }, 500);
     });
+
+    // Anilist state dropdown
+    utils.waitUntilTrue(
+      () => j.$('.cover-wrap .list .el-dropdown-link').length,
+      () => {
+        const dropdownId = j.$('.cover-wrap .list .el-dropdown-link').attr('aria-controls');
+        j.$(document).on('mousedown', `#${dropdownId} .el-dropdown-menu__item`, () => {
+          setTimeout(() => {
+            if (this.vueEl) this.vueEl.reload();
+          }, 500);
+        });
+      },
+    );
 
     if (this.url.indexOf('access_token=') > -1) {
       this.init();

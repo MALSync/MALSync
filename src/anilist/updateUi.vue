@@ -127,6 +127,17 @@ export default {
   },
   created() {},
   methods: {
+    async reload() {
+      if (this.malObj) {
+        this.loading = true;
+        try {
+          await this.malObj.update();
+        } catch (e) {
+          con.error(e);
+        }
+        this.loading = false;
+      }
+    },
     async update() {
       if (this.malObj) {
         this.loading = true;
