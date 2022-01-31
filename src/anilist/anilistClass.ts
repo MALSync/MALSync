@@ -50,6 +50,17 @@ export class AnilistClass {
       }, 500);
     });
 
+    j.$(document).on('click', '.delete-btn', () => {
+      utils.waitUntilTrue(
+        () => !j.$('.delete-btn').length,
+        () => {
+          setTimeout(() => {
+            if (this.vueEl) this.vueEl.reload();
+          }, 500);
+        },
+      )
+    });
+
     // Anilist state dropdown
     utils.waitUntilTrue(
       () => j.$('.cover-wrap .list .el-dropdown-link').length,
