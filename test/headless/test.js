@@ -10,6 +10,8 @@ const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
 const testsArray = [];
 
+console.log('Changed Files:', process.env.FILES);
+
 // Define global variables
 let browser;
 let browserFull;
