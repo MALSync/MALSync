@@ -27,7 +27,7 @@ const mode = {
   blockLog: true,
 };
 
-if (process.env.CI) mode.quiet = true;
+if (process.env.CI && !changedFiles.length) mode.quiet = true;
 
 puppeteer.use(pluginStealth());
 puppeteer.use(AdblockerPlugin());

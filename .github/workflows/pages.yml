@@ -2,10 +2,10 @@ name: Page tests
 on:
   push:
     paths:
-      - 'src\pages\*\*'
+      - 'src/pages/**'
   pull_request:
     paths:
-      - 'src\pages\*\*'
+      - 'src/pages/**'
 
 jobs:
   build:
