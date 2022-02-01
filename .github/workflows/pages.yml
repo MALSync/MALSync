@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: jitterbit/get-changed-files@v1
+    - id: files
+      uses: jitterbit/get-changed-files@v1
       with:
         format: 'json'
     - uses: actions/setup-node@v2
@@ -17,5 +18,5 @@ jobs:
         npm run test:headless
       env:
         CI: true
-        FILES: ${steps.files.outputs.added_modified}
+        FILES: ${{steps.files.outputs.added_modified}}
 
