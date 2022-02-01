@@ -1,5 +1,12 @@
 name: Page tests
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'src\pages\*\*'
+  pull_request:
+    paths:
+      - 'src\pages\*\*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
