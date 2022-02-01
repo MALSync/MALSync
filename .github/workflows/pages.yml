@@ -17,5 +17,5 @@ jobs:
         npm run test:headless
       env:
         CI: true
-        FILES: steps.files.outputs.added_modified
+        FILES: ${{steps.files.outputs.added_modified}}
 
