@@ -5,6 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
+    - run: |
+      readarray -t all_files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.all }}')"
+      for all_file in ${all_files[@]}; do
+        echo "Do something with this ${all_file}."
+      done
     - uses: actions/setup-node@v2
       with:
         node-version: '16.x'
