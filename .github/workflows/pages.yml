@@ -1,17 +1,29 @@
 name: Page tests
-on: [push]
+on:
+  push:
+    paths:
+      - 'src/pages/**'
+  pull_request:
+    paths:
+      - 'src/pages/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - id: files
+      uses: jitterbit/get-changed-files@v1
+      with:
+        format: 'json'
     - uses: actions/setup-node@v2
       with:
-        node-version: '14.x'
+        node-version: '16.x'
     - name: Page Tests
       run: |
         npm ci
         npm run test:headless
       env:
         CI: true
+        FILES: ${{steps.files.outputs.added_modified}}
 

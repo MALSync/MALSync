@@ -104,7 +104,7 @@ export const MangaHub: pageInterface = {
           start();
         },
         () => {
-          return j.$('head > title').text();
+          return j.$('head > meta[property="og:title"]').attr('content') || '';
         },
       );
     });

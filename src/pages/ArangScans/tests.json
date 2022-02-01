@@ -1,29 +1,28 @@
 {
   "title": "ArangScans",
-  "url": "https://arangscans.com/",
+  "url": "https://arangscans.org/",
   "testCases": [
     {
-      "url": "https://arangscans.com/chapters/08d9397a-4d2a-4bc5-8dee-773ffcb63bd4/read",
+      "url": "https://arangscans.org/manga/im-destined-for-greatness/chapter-45/",
       "expected": {
         "sync": true,
         "title": "I'm Destined for Greatness!",
-        "identifier": "08d93946-4699-495d-82a7-0767d6a55278",
-        "overviewUrl": "https://arangscans.com/titles/08d93946-4699-495d-82a7-0767d6a55278",
-        "nextEpUrl": "https://arangscans.com/chapters/08d9397a-667f-4be0-8608-13fc3351790b/read",
+        "identifier": "im-destined-for-greatness",
+        "overviewUrl": "https://arangscans.org/manga/im-destined-for-greatness/",
         "episode": 45,
         "uiSelector": false
       }
     },
     {
-      "url": "https://arangscans.com/titles/08d93946-4699-495d-82a7-0767d6a55278",
+      "url": "https://arangscans.org/manga/im-destined-for-greatness/",
       "expected": {
         "sync": false,
         "title": "I'm Destined for Greatness!",
         "identifier": "08d93946-4699-495d-82a7-0767d6a55278",
         "uiSelector": true,
         "epList": {
-          "17": "https://arangscans.com/chapters/08d9394d-c3c3-4a91-8a4a-cd388c2a5e7e/read",
-          "49": "https://arangscans.com/chapters/08d9397a-d5a1-4672-835e-bb6ab81b264c/read"
+          "62": "https://arangscans.org/manga/im-destined-for-greatness/chapter-62/",
+          "17": "https://arangscans.org/manga/im-destined-for-greatness/chapter-17/"
         }
       }
     }
