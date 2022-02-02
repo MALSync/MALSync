@@ -9,6 +9,12 @@ const dir = require('node-dir');
 const script = fs.readFileSync(`${__dirname}/../dist/testCode.js`, 'utf8');
 
 const testsArray = [];
+let changedFiles = [];
+
+if (process.env.FILES) {
+  changedFiles = JSON.parse(process.env.FILES.replace(/\\/g, '/'));
+  console.log('Changed Files:', changedFiles);
+}
 
 // Define global variables
 let browser;
@@ -21,7 +27,7 @@ const mode = {
   blockLog: true,
 };
 
-if (process.env.CI) mode.quiet = true;
+if (process.env.CI && !changedFiles.length) mode.quiet = true;
 
 puppeteer.use(pluginStealth());
 puppeteer.use(AdblockerPlugin());
@@ -286,7 +292,23 @@ async function initTestsArray() {
       },
       (err, content, file, next) => {
         if (err) throw err;
+        if (changedFiles && changedFiles.length) {
 
+          const found = changedFiles.find(
+            changed => {
+              const cleanChanged = changed.replace(/[^\/]+\.(less|ts|json)$/, '');
+              const cleanFile = file.replace('tests.json', '').replace(/\\/g, '/')
+
+              return changed && cleanChanged !== 'src/pages/' && cleanFile.includes(cleanChanged);
+            }
+
+          );
+
+          if (!found) {
+            next();
+            return;
+          }
+        }
         try {
           eval(`var s = ${content.replace(/^[^{]*/g, '')}`);
           s.path = file;
@@ -300,7 +322,7 @@ async function initTestsArray() {
       },
       (err, files) => {
         if (err) throw err;
-        console.log('Test files:', files);
+        console.log('Test files:', testsArray.map(t => t.path));
         resolve();
       },
     );
@@ -352,7 +374,7 @@ async function main() {
   }
 
   await closeBrowser();
-  if (buildFailed) console.error('BUILD FAILED');
-  //if (buildFailed) process.exit(1);
+  // if (buildFailed) console.error('BUILD FAILED');
+  if (buildFailed) process.exit(1);
   process.exit();
 }
