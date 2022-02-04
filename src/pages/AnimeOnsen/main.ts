@@ -79,7 +79,7 @@ export const AnimeOnsen: pageInterface = {
     },
     nextEpUrl(url) {
       // generate next episode url
-      const currentEpisode = Number(j.$('meta[name="ao-content-episode"]').attr('vacontentlue'));
+      const currentEpisode = Number(j.$('meta[name="ao-content-episode"]').attr('content'));
       const totalEpisodes = Number(j.$('meta[name="ao-content-episode-total"]').attr('content'));
       const nextEpisode: number = currentEpisode + 1;
 
