@@ -209,9 +209,10 @@ export default {
   &.malsync-not-list {
     .ms-data-inner {
       opacity: 0.4 !important;
-      &:hover {
-        opacity: 1 !important;
-      }
+    }
+
+    &:hover .ms-data-inner {
+      opacity: 1 !important;
     }
   }
 
