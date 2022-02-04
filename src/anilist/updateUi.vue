@@ -128,7 +128,27 @@ export default {
       handler(newValue, oldValue) {
         if (this.malObj) {
           this.malObj.setEpisode(newValue);
+
+          // Auto-update to Completed
           if (
+            this.malObj.getTotalEpisodes() &&
+            this.malObj.getEpisode() === this.malObj.getTotalEpisodes() &&
+            (this.malObj.getStatus() === status.Watching || this.malObj.getStatus() === status.PlanToWatch)
+          ) {
+            this.malObj.setStatus(status.Completed);
+            this.forceUpdateState = true;
+          }
+          // Auto-update to Watching from completed
+          else if (
+            this.malObj.getStatus() === status.Completed &&
+            this.malObj.getTotalEpisodes() &&
+            this.malObj.getEpisode() < this.malObj.getTotalEpisodes()
+          ) {
+            this.malObj.setStatus(status.Watching);
+            this.forceUpdateState = true;
+          }
+          // Auto-update to Watching
+          else if (
             !oldValue &&
             newValue &&
             (this.malObj.getStatus() === status.PlanToWatch || this.malObj.getStatus() === status.NoState)
