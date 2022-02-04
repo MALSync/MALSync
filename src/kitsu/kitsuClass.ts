@@ -62,7 +62,7 @@ export class KitsuClass {
     }
 
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart === 'anime' || urlpart === 'manga') {
+    if ((urlpart === 'anime' || urlpart === 'manga') && utils.urlPart(this.url, 4)) {
       if (this.same && typeof this.page !== 'undefined' && this.page.malObj !== 'undefined') {
         this.streamingUI();
         this.malToKiss();
