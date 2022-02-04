@@ -54,6 +54,7 @@
 <script type="text/javascript">
 import inputNumber from './input-number.vue';
 import scoreMode from './score-mode.vue';
+import { status } from '../_provider/definitions';
 
 export default {
   components: {
@@ -68,6 +69,7 @@ export default {
     score: null,
     volume: null,
     loading: false,
+    forceUpdateState: false,
   }),
   computed: {
     malObjEpisode() {
@@ -123,8 +125,18 @@ export default {
       },
     },
     episode: {
-      handler(newValue) {
-        if (this.malObj) this.malObj.setEpisode(newValue);
+      handler(newValue, oldValue) {
+        if (this.malObj) {
+          this.malObj.setEpisode(newValue);
+          if (
+            !oldValue &&
+            newValue &&
+            (this.malObj.getStatus() === status.PlanToWatch || this.malObj.getStatus() === status.NoState)
+          ) {
+            this.malObj.setStatus(status.Watching);
+            this.forceUpdateState = true;
+          }
+        }
       },
     },
     score: {
@@ -161,15 +173,19 @@ export default {
           con.error(e);
         }
         this.loading = false;
+        if (this.forceUpdateState) {
+          this.forceUpdateState = false;
+          j.$('.cover-wrap-inner .list .add').click();
+          utils.waitUntilTrue(
+            () => j.$('.list-editor .el-icon-close').length,
+            () => j.$('.list-editor .el-icon-close').click(),
+          );
+        }
       }
     },
     async addUpdate() {
-      this.update();
-      j.$('.cover-wrap-inner .list .add').click();
-      utils.waitUntilTrue(
-        () => j.$('.list-editor .el-icon-close').length,
-        () => j.$('.list-editor .el-icon-close').click(),
-      );
+      this.forceUpdateState = true;
+      await this.update();
     },
     hide() {
       this.$destroy();
