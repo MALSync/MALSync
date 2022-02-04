@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeOnsen: pageInterface = {
   name: 'AnimeOnsen',
-  domain: ['https://animeonsen.xyz', 'https://www.animeonsen.xyz'],
+  domain: 'https://animeonsen.xyz',
   database: 'AnimeOnsen',
   languages: ['English', 'Japanese'],
   type: 'anime',
@@ -31,15 +31,27 @@ export const AnimeOnsen: pageInterface = {
     uiSelector(selector) {
       const wrapper = document.createElement('div');
       wrapper.classList.add('malp-wrapper');
-      wrapper.innerHTML = selector;
-      j.$('div.content-details').after(wrapper);
+      wrapper.innerHTML = selector || '';
+      j.$('div.content-details').after(wrapper.outerHTML);
     },
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL') return resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
-        return false;
+        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        else resolve(false);
       });
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('div.episode-list > a');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), AnimeOnsen.domain);
+      },
+      elementEp(selector) {
+        return Number($(selector).find('div.episode').data('episode'));
+      },
     },
   },
   sync: {
@@ -81,8 +93,8 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL') return resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
-        return false;
+        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        else resolve(false);
       });
     },
   },
