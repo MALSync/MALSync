@@ -140,7 +140,7 @@
     "description": "Episode"
   },
   "UI_Volume": {
-    "message": "Bände:",
+    "message": "Band:",
     "description": "Volume"
   },
   "UI_Chapter": {
