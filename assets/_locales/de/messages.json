@@ -140,7 +140,7 @@
     "description": "Episode"
   },
   "UI_Volume": {
-    "message": "Volumen:",
+    "message": "Bände:",
     "description": "Volume"
   },
   "UI_Chapter": {
@@ -909,9 +909,21 @@
     "message": "Cache leeren",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Das MAL-Sync-Symbol anstelle des Seitensymbols anzeigen",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Bild",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Titelbild",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Webseiten Icon",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Malsync Icon",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Aktiviert",
@@ -952,10 +964,6 @@
   "settings_presenceShowButtons": {
     "message": "Zeige den Button um einen Anime/Manga auf MAL oder einem anderen Anbieter anzusehen",
     "description": "Show button to view the anime/manga on MAL or another provider"
-  },
-  "settings_presenceShowMalsync": {
-    "message": "Zeige Mal-Sync im Titel der Presence anstatt des Anime/Manga",
-    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Aktualisieren",
