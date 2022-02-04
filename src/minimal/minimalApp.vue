@@ -506,7 +506,7 @@ export default {
         message: tab,
         data: {
           url: this.renderUrl,
-          tab: this.tabs[tab]
+          tab: this.tabs[tab],
         },
       });
 

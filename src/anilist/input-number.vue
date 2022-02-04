@@ -1,5 +1,4 @@
 <template>
-
   <div class="form progress">
     <div class="input-title">{{ label }}</div>
     <div class="ms-input-wrapper">
@@ -7,11 +6,16 @@
         <span role="button" class="el-input-number__decrease ms-button" @click="decrease()" v-show="value">
           <i class="el-icon-arrow-down"></i>
         </span>
-        <span role="button" class="el-input-number__increase ms-button" @click="increase()" v-show="!(total && value === total)">
+        <span
+          role="button"
+          class="el-input-number__increase ms-button"
+          @click="increase()"
+          v-show="!(total && value === total)"
+        >
           <i class="el-icon-arrow-up"></i>
         </span>
         <div class="el-input">
-          <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" :pattern="pattern"/>
+          <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" :pattern="pattern" />
         </div>
       </div>
       <div v-if="additionalSlot || total" class="ms-input-ep">
@@ -20,7 +24,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script type="text/javascript">
@@ -79,5 +82,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

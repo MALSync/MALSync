@@ -102,7 +102,7 @@ export default {
   watch: {
     malObj: {
       handler(newVal) {
-        if (newVal)newVal.initProgress();
+        if (newVal) newVal.initProgress();
       },
       immediate: true,
     },
