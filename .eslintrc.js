@@ -156,6 +156,7 @@ module.exports = {
       plugins: ['vue', 'prettier'],
       rules: {
         ...COMMON_RULES,
+        'prettier/prettier': ['error', { singleQuote: true }],
         'vue/component-tags-order': 'off',
         'vue/no-v-for-template-key-on-child': 'off',
         'vue/no-deprecated-destroyed-lifecycle': 'off',
