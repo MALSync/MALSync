@@ -17,7 +17,7 @@ export const MonosChinos: pageInterface = {
         .$('.heromain_h1')
         .first()
         .text()
-        .replace(/(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
+        .replace(/(\. )?(\d+\s+)(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
     },
     getIdentifier(url) {
@@ -65,6 +65,7 @@ export const MonosChinos: pageInterface = {
     getTitle(url) {
       return j
         .$('h1')
+        .first()
         .text()
         .replace(/(Sub|Dub)(\s+Español)$/gi, '')
         .trim();
