@@ -31,8 +31,8 @@ export const AnimeOnsen: pageInterface = {
     uiSelector(selector) {
       const wrapper = document.createElement('div');
       wrapper.classList.add('malp-wrapper');
-      wrapper.innerHTML = selector || '';
-      j.$('div.content-details').after(wrapper.outerHTML);
+      wrapper.innerHTML = j.html(selector);
+      j.$('div.content-details').after(j.html(wrapper.outerHTML));
     },
     getMalUrl(provider) {
       // get myanimelist anime url
@@ -57,7 +57,7 @@ export const AnimeOnsen: pageInterface = {
   sync: {
     getTitle(_) {
       // get anime name
-      return j.$('span.ao-player-metadata-title').text() || '';
+      return j.$('span.ao-player-metadata-title').text();
     },
     getIdentifier(url) {
       // get animeonsen content id for database
@@ -103,8 +103,9 @@ export const AnimeOnsen: pageInterface = {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
 
     const checkCondition = () => {
-      // check if the document
-      // has completed loading.
+      // check if the document has completed loading.
+      const [, pageType] = new URL(page.url).pathname.split('/');
+      if (/^watch$/i.test(pageType)) return j.$('span.ao-player-metadata-title').length > 0;
       return document.readyState === 'complete';
     };
     const start = () => {
