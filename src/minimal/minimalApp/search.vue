@@ -8,9 +8,9 @@
     ></div>
     <slot></slot>
     <div class="mdl-grid">
-      <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"
-        ><span class="mdl-chip__text">{{ lang('NoEntries') }}</span></span
-      >
+      <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;">
+        <span class="mdl-chip__text">{{ lang('NoEntries') }}</span>
+      </span>
 
       <a
         v-for="item in items"
