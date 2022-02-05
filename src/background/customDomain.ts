@@ -22,6 +22,10 @@ function updateListener() {
 }
 
 async function setListener() {
+  if (typeof chrome.webNavigation === 'undefined') {
+    con.error('Custom Domain is not possible');
+    return;
+  }
   const domains: domainType[] = await api.settings.getAsync('customDomains');
   clearListener();
   if (domains) domains.forEach(d => singleListener(d));
