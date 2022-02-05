@@ -50,7 +50,11 @@ export const AnimeOnsen: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeOnsen.domain);
       },
       elementEp(selector) {
-        return Number($(selector).find('div.episode').data('episode'));
+        return Number(
+          $(selector)
+            .find('div.episode')
+            .data('episode')
+        );
       },
     },
   },
