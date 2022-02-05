@@ -8,9 +8,13 @@
     ></div>
     <slot></slot>
     <div class="mdl-grid">
-      <span v-if="(!loading && !items.length) || error" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;">
-        <span class="mdl-chip__text" v-if="error">{{ error.message }}</span>
-        <span class="mdl-chip__text" v-else>{{ lang('NoEntries') }}</span>
+      <span
+        v-if="(!loading && !items.length) || error"
+        class="mdl-chip"
+        style="margin: auto; margin-top: 16px; display: table;"
+      >
+        <span v-if="error" class="mdl-chip__text">{{ error.message }}</span>
+        <span v-else class="mdl-chip__text">{{ lang('NoEntries') }}</span>
       </span>
 
       <a
