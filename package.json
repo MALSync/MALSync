@@ -6,6 +6,10 @@
   "repository": "github:MALSync/MALSync",
   "version": "0.8.17",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=16.0.0"
+  },
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.17.1",
     "@types/chai": "^4.2.21",
