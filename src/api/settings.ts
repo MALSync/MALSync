@@ -82,6 +82,8 @@ export const settingsObj = {
 
     customDomains: [],
 
+    anilistUpdateUi: true,
+
     anilistToken: '',
     anilistOptions: {
       displayAdultContent: true,

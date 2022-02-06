@@ -6,6 +6,7 @@ import { getProgressTypeList, predictionXhrGET } from '../background/releaseProg
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';
 import { errorMessage as _errorMessage } from './Errors';
+import { point10 } from './ScoreMode/point10';
 
 Object.seal(emitter);
 
@@ -94,8 +95,15 @@ export abstract class SingleAbstract {
     return this._getStatus();
   }
 
+  public getScoreMode() {
+    return point10;
+  }
+
   abstract _setScore(score: definitions.score): void;
 
+  /**
+   * @deprecated Use setAbsoluteScore instead
+   */
   public setScore(score: definitions.score): SingleAbstract {
     score = parseInt(`${score}`);
     if (!score) score = 0;
@@ -105,27 +113,26 @@ export abstract class SingleAbstract {
 
   abstract _getScore(): definitions.score;
 
+  /**
+   * @deprecated Use getAbsoluteScore instead
+   */
   public getScore(): definitions.score {
     const score = this._getScore();
     if (!score) return 0;
     return score;
   }
 
-  protected _setAbsoluteScore(score: number): void {
-    this.setScore(score);
-  }
+  abstract _setAbsoluteScore(score: definitions.score100): void;
 
-  public setAbsoluteScore(score: number): SingleAbstract {
+  public setAbsoluteScore(score: definitions.score100): SingleAbstract {
     score = parseInt(`${score}`);
     this._setAbsoluteScore(score);
     return this;
   }
 
-  protected _getAbsoluteScore(): number {
-    return this.getScore();
-  }
+  abstract _getAbsoluteScore(): definitions.score100;
 
-  public getAbsoluteScore(): number {
+  public getAbsoluteScore(): definitions.score100 {
     const score = this._getAbsoluteScore();
     if (!score) return 0;
     return score;
@@ -374,7 +381,7 @@ export abstract class SingleAbstract {
   }
 
   protected updateEvent(data) {
-    if (JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl())) {
+    if (this.isDirty()) {
       this.logger.log('Ignore event');
       return;
     }
@@ -384,6 +391,10 @@ export abstract class SingleAbstract {
       this.persistanceState = this.getStateEl();
       emitter.emit('syncPage_fillUi');
     }
+  }
+
+  public isDirty(): boolean {
+    return JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl());
   }
 
   public undo(): Promise<void> {
@@ -584,9 +595,7 @@ export abstract class SingleAbstract {
     let checkHtml =
       '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
     this.getScoreCheckbox().forEach(el => {
-      checkHtml += `<option value="${el.value}" ${String(currentScore) === el.value ? 'selected' : ''}>${
-        el.label
-      }</option>`;
+      checkHtml += `<option value="${el.value}" ${currentScore === el.value ? 'selected' : ''}>${el.label}</option>`;
     });
     checkHtml += '</select></div>';
 
@@ -623,32 +632,20 @@ export abstract class SingleAbstract {
   }
 
   public getScoreCheckbox() {
-    return [
-      { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-      { value: '10', label: api.storage.lang('UI_Score_Masterpiece') },
-      { value: '9', label: api.storage.lang('UI_Score_Great') },
-      { value: '8', label: api.storage.lang('UI_Score_VeryGood') },
-      { value: '7', label: api.storage.lang('UI_Score_Good') },
-      { value: '6', label: api.storage.lang('UI_Score_Fine') },
-      { value: '5', label: api.storage.lang('UI_Score_Average') },
-      { value: '4', label: api.storage.lang('UI_Score_Bad') },
-      { value: '3', label: api.storage.lang('UI_Score_VeryBad') },
-      { value: '2', label: api.storage.lang('UI_Score_Horrible') },
-      { value: '1', label: api.storage.lang('UI_Score_Appalling') },
-    ];
+    return this.getScoreMode().getOptions();
   }
 
   public getScoreCheckboxValue() {
-    return this.getScore();
+    return this.getScoreMode().valueToOptionValue(this.getAbsoluteScore());
   }
 
   public handleScoreCheckbox(value) {
-    this.setScore(value);
+    this.setAbsoluteScore(this.getScoreMode().optionValueToValue(value));
   }
 
   public getDisplayScoreCheckbox() {
     const curScore = this.getScoreCheckboxValue();
-    const labelEl = this.getScoreCheckbox().filter(el => el.value === String(curScore));
+    const labelEl = this.getScoreCheckbox().filter(el => el.value === curScore);
     if (labelEl.length) return labelEl[0].label;
     return '';
   }

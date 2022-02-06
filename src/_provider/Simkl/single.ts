@@ -75,6 +75,23 @@ export class Single extends SingleAbstract {
     this.animeInfo.user_rating = score;
   }
 
+  _getAbsoluteScore() {
+    return this.getScore() * 10;
+  }
+
+  _setAbsoluteScore(score) {
+    if (!score) {
+      this.setScore(0);
+      return;
+    }
+    if (score < 10) {
+      this.setScore(1);
+      return;
+    }
+
+    this.setScore(Math.round(score / 10));
+  }
+
   _getEpisode() {
     if (this._getStatus() === 2) return this._getTotalEpisodes();
     return this.curWatchedEp;

@@ -65,6 +65,23 @@ export class Single extends SingleAbstract {
     this.animeInfo.score = score;
   }
 
+  _getAbsoluteScore() {
+    return this.getScore() * 10;
+  }
+
+  _setAbsoluteScore(score) {
+    if (!score) {
+      this.setScore(0);
+      return;
+    }
+    if (score < 10) {
+      this.setScore(1);
+      return;
+    }
+
+    this.setScore(Math.round(score / 10));
+  }
+
   _getEpisode() {
     return this.animeInfo.progress;
   }

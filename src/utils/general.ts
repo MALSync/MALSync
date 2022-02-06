@@ -847,3 +847,17 @@ export function htmlDecode(text) {
 export function isFirefox(): boolean {
   return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
 }
+
+export function waitForPageToBeVisible() {
+  const condition = () => Boolean(!document.visibilityState || document.visibilityState === 'visible');
+
+  if (condition()) return Promise.resolve();
+
+  con.log('Page in background');
+
+  const { asyncWaitUntilTrue: awaitUi } = getAsyncWaitUntilTrue(() => condition());
+
+  return awaitUi().then(() => {
+    con.log('Page is visible');
+  });
+}
