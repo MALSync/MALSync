@@ -9,7 +9,7 @@ module.exports = {
     match: ['*://*.mp4upload.com/*'],
   },
   mcloud: {
-    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*'],
+    match: ['*://*.mcloud.to/*', '*://*.mcloud2.to/*', '*://*.mzcloud.life/*'],
   },
   prettyfast: {
     match: ['*://*.prettyfast.to/*'],
@@ -24,7 +24,7 @@ module.exports = {
     match: ['*://*.static.vrv.co/*'],
   },
   vidstreaming: {
-    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*'],
+    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*', '*://*.vidstreamingvw.xyz/*'],
   },
   xstreamcdn: {
     match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
@@ -73,6 +73,7 @@ module.exports = {
       '*://*.fplayer.info/*',
       '*://*.dutrag.com/*',
       '*://*.diasfem.com/*',
+      '*://*.fembed-hd.com/*',
     ],
   },
   youpload: {
@@ -159,7 +160,7 @@ module.exports = {
   },
   // voiranime
   vaplayer: {
-    match: ['*://www.vaplayer.xyz/v/*'],
+    match: ['*://www.vaplayer.xyz/v/*', '*://vaplayer.me/*'],
   },
   // dubbedanime
   mp4sh: {
@@ -272,6 +273,11 @@ module.exports = {
       '*://strtape.tech/*',
       '*://strtapeadblock.club/*',
       '*://strtapeadblock.me/*',
+      '*://streamta.site/*',
+      '*://scloud.online/*',
+      '*://strtpe.link/*',
+      '*://stape.me/*',
+      '*://stape.fun/*',
     ],
   },
   // monoschinos
@@ -303,6 +309,7 @@ module.exports = {
     match: [
       '*://*.animixplay.to/api/live*',
       '*://*.animixplay.to/goplyr.html*',
+      '*://*.animixplay.to/player.html*',
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',
@@ -360,6 +367,10 @@ module.exports = {
       '*://*.gogoplay2.com/load.php?*',
       '*://*.gogoplay2.com/loadserver.php?*',
       '*://*.gogoplay2.com/embedplus*',
+      '*://*.gogoplay.io/streaming.php?*',
+      '*://*.gogoplay.io/load.php?*',
+      '*://*.gogoplay.io/loadserver.php?*',
+      '*://*.gogoplay.io/embedplus*',
     ],
   },
   // bs.to
@@ -385,12 +396,22 @@ module.exports = {
       '*://sbplay.org/*',
       '*://sbplay.one/*',
       '*://sbplay1.com/*',
+      '*://sbplay2.com/*',
       '*://embedsb.com/*',
+      '*://watchsb.com/*',
     ],
   },
   // gogo
   dood: {
-    match: ['*://dood.to/*', '*://dood.watch/*', '*://doodstream.com/*', '*://dood.la/*', '*://dood.ws/e/*'],
+    match: [
+      '*://dood.to/*',
+      '*://dood.watch/*',
+      '*://doodstream.com/*',
+      '*://dood.la/*',
+      '*://dood.ws/e/*',
+      '*://dood.sh/e/*',
+      '*://dood.so/e/*',
+    ],
   },
   // animedao.to
   vcdn: {
@@ -537,7 +558,7 @@ module.exports = {
   },
   // 9anime
   videovard: {
-    match: ['*://videovard.sx/*'],
+    match: ['*://videovard.sx/*', '*://videovard.to/*'],
   },
   // kickassanime
   beststremo: {
@@ -597,5 +618,25 @@ module.exports = {
   // animexin
   mobi: {
     match: ['*://uploads.mobi/*'],
+  },
+  // anistream
+  bunny: {
+    match: ['*://iframe.mediadelivery.net/embed/*'],
+  },
+  // kickassanime
+  maverickki: {
+    match: ['*://maverickki.com/*'],
+  },
+  // animesonline
+  rustream: {
+    match: ['*://secvideo1.online/*'],
+  },
+  // animesonline
+  gdplayer: {
+    match: ['*://gdplayer.top/*'],
+  },
+  // animixplay
+  yfvf: {
+    match: ['*://*.yfvf.com/*'],
   },
 };
