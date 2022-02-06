@@ -51,7 +51,7 @@ export const AnimeOnsen: pageInterface = {
       },
       elementEp(selector) {
         return Number(
-          j.$(selector)
+            j.$(selector)
             .find('div.episode')
             .data('episode'),
         );
