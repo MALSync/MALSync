@@ -133,7 +133,9 @@ export default {
           if (
             this.malObj.getTotalEpisodes() &&
             this.malObj.getEpisode() === this.malObj.getTotalEpisodes() &&
-            (this.malObj.getStatus() === status.Watching || this.malObj.getStatus() === status.PlanToWatch)
+            (this.malObj.getStatus() === status.Watching ||
+              this.malObj.getStatus() === status.PlanToWatch ||
+              this.malObj.getStatus() === status.NoState)
           ) {
             this.malObj.setStatus(status.Completed);
             this.forceUpdateState = true;
