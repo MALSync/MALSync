@@ -76,7 +76,8 @@ export const settingsObj = {
     progressInterval: 120,
     progressIntervalDefaultAnime: 'en/sub',
     progressIntervalDefaultManga: 'en/sub',
-    progressNotifications: true,
+    progressNotificationsAnime: true,
+    progressNotificationsManga: true,
 
     bookMarksList: false,
 

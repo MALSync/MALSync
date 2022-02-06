@@ -134,8 +134,8 @@ export async function predictionXhrGET(type: string, apiCacheKey: number | strin
 }
 
 export async function predictionXhrPOST(type: string, malDATA: listElement[] | null) {
-  if (malDATA === null) return [{}];
-  if (malDATA.length <= 0) return [{}];
+  if (malDATA === null) return [];
+  if (malDATA.length <= 0) return [];
   const malDATAID = malDATA.map(el => el.apiCacheKey);
   const returnArray: xhrResponseI[] = [];
   for (let i = 0; i <= malDATAID.length; ) {
@@ -216,7 +216,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
     }
   });
 
-  let xhrArray;
+  let xhrArray: any = [];
   if (remoteUpdateList.length > 0) {
     xhrArray = await predictionXhrPOST(type, remoteUpdateList);
     await utils.wait(500);
@@ -469,7 +469,12 @@ export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ ke
 
 async function notificationCheck(el, cProgress, nProgress, type) {
   try {
-    if (!api.settings.get('progressNotifications')) return;
+    if (
+      (type === 'anime' && !api.settings.get('progressNotificationsAnime')) ||
+      (type === 'manga' && !api.settings.get('progressNotificationsManga'))
+    ) {
+      return;
+    }
     if (el && nProgress && nProgress) {
       if (
         cProgress.lastEp &&

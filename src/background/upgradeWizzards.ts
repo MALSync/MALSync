@@ -56,6 +56,18 @@ export async function upgradewWizzards(lastVersion) {
         });
       },
     },
+    {
+      version: '0.8.18',
+      name: 'Split notification options',
+      action: () => {
+        return api.storage.get('settings/progressNotifications').then(res => {
+          if (!res) {
+            api.storage.set('settings/progressNotificationsAnime', false);
+            api.storage.set('settings/progressNotificationsManga', false);
+          }
+        });
+      },
+    },
   ];
 
   for (let i = 0; i < wizards.length; i++) {
