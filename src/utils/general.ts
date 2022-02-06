@@ -441,12 +441,12 @@ export function statusTag(status, type, id) {
     },
   };
 
-  $.each([1, 2, 3, 4, 6], function(i, el) {
+  $.each([1, 2, 3, 4, 6, 23], function(i, el) {
     info.anime[info.anime[el].title] = info.anime[el];
     info.manga[info.manga[el].title] = info.manga[el];
   });
 
-  if (status) {
+  if (status && info[type][status]) {
     const tempInfo = info[type][status];
     return ` <a href="https://myanimelist.net/ownlist/${type}/${id}/edit?hideLayout=1" title="${tempInfo.title}" class="Lightbox_AddEdit button_edit ${tempInfo.class}">${tempInfo.text}</a>`;
   }
@@ -846,4 +846,18 @@ export function htmlDecode(text) {
 
 export function isFirefox(): boolean {
   return Boolean(typeof browser !== 'undefined' && typeof chrome !== 'undefined');
+}
+
+export function waitForPageToBeVisible() {
+  const condition = () => Boolean(!document.visibilityState || document.visibilityState === 'visible');
+
+  if (condition()) return Promise.resolve();
+
+  con.log('Page in background');
+
+  const { asyncWaitUntilTrue: awaitUi } = getAsyncWaitUntilTrue(() => condition());
+
+  return awaitUi().then(() => {
+    con.log('Page is visible');
+  });
 }

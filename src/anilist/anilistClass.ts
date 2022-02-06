@@ -1,10 +1,18 @@
+import Vue from 'vue';
+import VueDOMPurifyHTML from 'vue-dompurify-html';
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
+import updateUi from './updateUi.vue';
+import { waitForPageToBeVisible } from '../utils/general';
+
+Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
 export class AnilistClass {
   page: any = null;
+
+  private vueEl;
 
   constructor(public url: string) {
     let first = true;
@@ -36,6 +44,36 @@ export class AnilistClass {
       },
     );
 
+    j.$(document).on('click', '.save-btn', () => {
+      setTimeout(() => {
+        if (this.vueEl) this.vueEl.reload();
+      }, 500);
+    });
+
+    j.$(document).on('click', '.delete-btn', () => {
+      utils.waitUntilTrue(
+        () => !j.$('.delete-btn').length,
+        () => {
+          setTimeout(() => {
+            if (this.vueEl) this.vueEl.reload();
+          }, 500);
+        },
+      );
+    });
+
+    // Anilist state dropdown
+    utils.waitUntilTrue(
+      () => j.$('.cover-wrap .list .el-dropdown-link').length,
+      () => {
+        const dropdownId = j.$('.cover-wrap .list .el-dropdown-link').attr('aria-controls');
+        j.$(document).on('mousedown', `#${dropdownId} .el-dropdown-menu__item`, () => {
+          setTimeout(() => {
+            if (this.vueEl) this.vueEl.reload();
+          }, 500);
+        });
+      },
+    );
+
     if (this.url.indexOf('access_token=') > -1) {
       this.init();
     }
@@ -43,7 +81,9 @@ export class AnilistClass {
     api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
   }
 
-  init() {
+  async init() {
+    await waitForPageToBeVisible();
+
     if (this.url.indexOf('access_token=') > -1) {
       this.authentication();
     }
@@ -155,11 +195,14 @@ export class AnilistClass {
               margin-bottom: 16px;
               margin-top: 16px;
               font-size: 1.2rem;
+              position: relative;
 
             ">
-              <img src="${utils.favicon(page.domain)}">
+              <img src="${utils.favicon(page.domain)}" height="16" width="16">
               <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
-              <span title="${page.name}" class="remove-mal-sync" style="float: right; cursor: pointer;">x</span>
+              <span title="${
+                page.name
+              }" class="remove-mal-sync" title="remove" style="position: absolute; top: 2px; right: 5px; cursor: pointer; opacity: 0.4;">x</span>
               ${tempHtml}
             </div>`;
         });
@@ -183,8 +226,10 @@ export class AnilistClass {
     con.log('Streaming UI');
     $('#mal-sync-stream-div').remove();
     $('.malsync-rel-link').remove();
+    if (this.vueEl) this.vueEl.loading = true;
     const malObj = new AniListSingle(this.url);
     await malObj.update();
+    this.initVue(malObj);
     this.pageRelation(malObj);
 
     const streamUrl = malObj.getStreamingUrl();
@@ -383,5 +428,23 @@ export class AnilistClass {
         });
       }
     });
+  }
+
+  protected initVue(malObj) {
+    if (!api.settings.get('anilistUpdateUi')) return;
+
+    if (!$('#malsync-update-ui').length)
+      $('.sidebar')
+        .first()
+        .prepend(j.html('<div id="malsync-update-ui"></div>'));
+
+    if (this.vueEl) this.vueEl.$destroy();
+
+    [this.vueEl] = new Vue({
+      el: '#malsync-update-ui',
+      render: h => h(updateUi),
+    }).$children;
+
+    this.vueEl.malObj = malObj;
   }
 }

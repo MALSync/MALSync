@@ -15,6 +15,12 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
     keyword = keyword.substr(0, 64);
   }
 
+  if (!keyword) return [];
+
+  if (keyword.length < 3) {
+    throw new Error('Search term must be at least 3 characters long');
+  }
+
   return tempObj
     .apiCall({
       type: 'GET',

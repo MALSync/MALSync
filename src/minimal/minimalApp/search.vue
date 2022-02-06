@@ -8,9 +8,14 @@
     ></div>
     <slot></slot>
     <div class="mdl-grid">
-      <span v-if="!loading && !items.length" class="mdl-chip" style="margin: auto; margin-top: 16px; display: table;"
-        ><span class="mdl-chip__text">{{ lang('NoEntries') }}</span></span
+      <span
+        v-if="(!loading && !items.length) || error"
+        class="mdl-chip"
+        style="margin: auto; margin-top: 16px; display: table;"
       >
+        <span v-if="error" class="mdl-chip__text">{{ error.message }}</span>
+        <span v-else class="mdl-chip__text">{{ lang('NoEntries') }}</span>
+      </span>
 
       <a
         v-for="item in items"
@@ -71,6 +76,7 @@ export default {
     return {
       items: [],
       loading: true,
+      error: null,
     };
   },
   watch: {
@@ -98,11 +104,18 @@ export default {
     episodeText: utils.episode,
     load() {
       this.loading = true;
+      this.error = null;
 
-      miniMALSearch(this.keyword, this.type).then(items => {
-        this.loading = false;
-        this.items = items;
-      });
+      miniMALSearch(this.keyword, this.type)
+        .then(items => {
+          this.loading = false;
+          this.items = items;
+        })
+        .catch(e => {
+          this.loading = false;
+          this.error = e;
+          this.items = [];
+        });
     },
     clickItem(e, item) {
       e.preventDefault();

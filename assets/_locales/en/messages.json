@@ -731,6 +731,10 @@
     "message": "Last used page links",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Update UI",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Stealth UI mode",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -910,9 +914,21 @@
     "message": "Clear Cache",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Show MAL-Sync icon instead of page icon",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Presence Image",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Cover Image",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Website Icon",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Malsync Icon",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Enabled",
@@ -953,10 +969,6 @@
   "settings_presenceShowButtons": {
     "message": "Show button to view the anime/manga on MAL or another provider",
     "description": "Show button to view the anime/manga on MAL or another provider"
-  },
-  "settings_presenceShowMalsync": {
-    "message": "Show Mal-Sync in the title of the presence instead of anime/manga",
-    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Refresh",

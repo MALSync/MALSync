@@ -2,70 +2,115 @@ import { pageInterface } from '../pageInterface';
 
 export const AnimeOnsen: pageInterface = {
   name: 'AnimeOnsen',
-  domain: ['https://animeonsen.xyz', 'https://www.animeonsen.xyz'],
+  domain: 'https://animeonsen.xyz',
   database: 'AnimeOnsen',
   languages: ['English', 'Japanese'],
   type: 'anime',
   isOverviewPage(url) {
-    // added from: https://github.com/MALSync/MALSync/pull/984#discussion_r770401087
+    // check if current page is details/overview page
+    const [, page] = new URL(url).pathname.split('/');
+    if (/^details$/i.test(page)) return true;
     return false;
   },
   isSyncPage(url) {
-    // check if current page is /watch page
-    const { pathname, searchParams } = new URL(url);
-    if (pathname.startsWith('/watch') && searchParams.has('v')) return true;
+    // check if current page is watch/sync page
+    const [, page] = new URL(url).pathname.split('/');
+    if (/^watch$/i.test(page)) return true;
     return false;
   },
-  sync: {
-    getTitle(url) {
+  overview: {
+    getTitle(_) {
       // get anime name
-      return j.$('meta[name="ao-api-malsync-title"]').attr('value') || '';
+      return j.$('div.metadata-container div.title span[lang="en"]').text() || '';
     },
     getIdentifier(url) {
-      // get ao.id identifier for database
-      const urlParams = new URL(url).searchParams;
-      const identifier = urlParams.get('v');
-      return identifier || '';
+      // get animeonsen content id for database
+      const [, , contentId] = new URL(url).pathname.split('/');
+      return contentId || '';
+    },
+    uiSelector(selector) {
+      const wrapper = document.createElement('div');
+      wrapper.classList.add('malp-wrapper');
+      wrapper.innerHTML = j.html(selector);
+      j.$('div.content-details').after(j.html(wrapper.outerHTML));
+    },
+    getMalUrl(provider) {
+      // get myanimelist anime url
+      return new Promise(resolve => {
+        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        else resolve(false);
+      });
+    },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('div.episode-list > a');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), AnimeOnsen.domain);
+      },
+      elementEp(selector) {
+        return Number(
+          j
+            .$(selector)
+            .find('div.episode')
+            .data('episode'),
+        );
+      },
+    },
+  },
+  sync: {
+    getTitle(_) {
+      // get anime name
+      return j.$('span.ao-player-metadata-title').text();
+    },
+    getIdentifier(url) {
+      // get animeonsen content id for database
+      return AnimeOnsen.overview!.getIdentifier(url) || '';
     },
     getOverviewUrl(url) {
       // generate ao.details url
-      const urlParams = new URL(url).searchParams;
-      const overviewUrl = new URL(`https://animeonsen.xyz`);
+      const contentId = AnimeOnsen.overview!.getIdentifier(url) || '';
+      const overviewUrl = new URL(<string>AnimeOnsen.domain);
       // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-      overviewUrl.searchParams.append('md', urlParams.get('v') || '0');
+      overviewUrl.pathname = `/details/${contentId}`;
       return overviewUrl.href;
     },
-    getEpisode(url) {
+    getEpisode(_) {
       // get current episode
-      const episode = j.$('meta[name="ao-api-malsync-episode"]').attr('value');
+      const episode = j.$('meta[name="ao-content-episode"]').attr('content');
       return Number(episode);
     },
     nextEpUrl(url) {
       // generate next episode url
-      const currentEpisode = Number(j.$('meta[name="ao-api-malsync-episode"]').attr('value'));
-      const totalEpisodes = Number(j.$('meta[name="ao-api-malsync-episodes"]').attr('value'));
-      const nextEpisode: number = currentEpisode + 1;
+      const currentEpisode = AnimeOnsen.sync.getEpisode(url);
+      const totalEpisodes = Number(j.$('meta[name="ao-content-episode-total"]').attr('content'));
+      const nextEpisode = currentEpisode + 1;
 
       if (nextEpisode > totalEpisodes) return undefined;
 
       const nextEpisodeUrl = new URL(url);
-      nextEpisodeUrl.searchParams.set('ep', nextEpisode.toString());
+      nextEpisodeUrl.searchParams.set('episode', nextEpisode.toString());
 
       return nextEpisodeUrl.href;
     },
-    getMalUrl(url) {
+    getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        resolve(url !== 'MAL' ? false : j.$('meta[name="ao-api-malsync-mal-url"]').attr('value') || false);
+        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        else resolve(false);
       });
     },
   },
   init(page) {
+    // add styles
+    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+
     const checkCondition = () => {
-      // check if loading element is still there,
-      // this is a shorthand way of checking if
-      // the page has fully loaded.
-      return j.$('div#loader-wrapper_handler').length === 0;
+      // check if the document has completed loading.
+      const [, pageType] = new URL(page.url).pathname.split('/');
+      if (/^watch$/i.test(pageType)) return j.$('span.ao-player-metadata-title').length > 0;
+      return document.readyState === 'complete';
     };
     const start = () => {
       // set handle timeout to 500ms / 0.5s
@@ -74,15 +119,15 @@ export const AnimeOnsen: pageInterface = {
       // handlePage()
       page.handlePage();
 
-      // go-home + episode-next
-      j.$('div#ao-episode-buttons-wrapper').on('click', () => {
+      // handle episode selection
+      j.$('select.ao-player-metadata-episode').on('input', () => {
         setTimeout(() => {
           page.handleList();
         }, handleTimeout);
       });
 
-      // next-episode
-      j.$('div#ao-button-overlay').on('click', () => {
+      // handle next-episode
+      j.$('button.ao-player-metadata-action-button').on('click', () => {
         setTimeout(() => {
           page.handleList();
         }, handleTimeout);

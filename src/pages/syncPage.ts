@@ -1149,9 +1149,33 @@ export class SyncPage {
         }, 5 * 60 * 1000);
         if (!this.browsingtime) this.browsingtime = Date.now();
 
+        // Cover
+        let presenceShowMalsync = false;
+        let presenceShowCover = true;
+        let presenceHidePage = true;
+
+        const option = api.settings.get('presenceLargeImage');
+
+        switch (option) {
+          case 'website':
+            presenceShowMalsync = false;
+            presenceShowCover = false;
+            presenceHidePage = false;
+            break;
+
+          case 'malsync':
+            presenceShowMalsync = true;
+            presenceShowCover = false;
+            presenceHidePage = true;
+            break;
+
+          default:
+            break;
+        }
+
         let clientId = '606504719212478504';
 
-        if (!api.settings.get('presenceShowMalsync')) {
+        if (!presenceShowMalsync) {
           if (this.page.type !== 'anime') {
             clientId = '823563138669608980';
           } else {
@@ -1161,12 +1185,16 @@ export class SyncPage {
 
         let largeImageKeyTemp;
         let largeImageTextTemp;
-        if (!api.settings.get('presenceHidePage')) {
+        if (!presenceHidePage) {
           largeImageKeyTemp = this.page.name.toLowerCase();
           largeImageTextTemp = `${this.page.name} • MAL-Sync`;
         } else {
           largeImageKeyTemp = 'malsync';
           largeImageTextTemp = 'MAL-Sync';
+        }
+
+        if (presenceShowCover && this.singleObj.getImage()) {
+          largeImageKeyTemp = this.singleObj.getImage();
         }
 
         if (this.curState) {
@@ -1183,7 +1211,7 @@ export class SyncPage {
           if (api.settings.get('presenceShowButtons')) {
             let url = this.singleObj.getMalUrl();
             if (!url && this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
-            if (!url && !api.settings.get('presenceHidePage')) url = this.singleObj.getStreamingUrl();
+            if (!url && !presenceHidePage) url = this.singleObj.getStreamingUrl();
             if (url) {
               pres.presence.buttons = [
                 {
@@ -1230,7 +1258,7 @@ export class SyncPage {
             }
           } else {
             let browsingTemp;
-            if (!api.settings.get('presenceHidePage')) {
+            if (!presenceHidePage) {
               browsingTemp = this.page.name;
             } else {
               browsingTemp = this.page.type.toString();

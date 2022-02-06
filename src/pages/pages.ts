@@ -109,7 +109,6 @@ import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
-import { KangaryuTeam } from './KangaryuTeam/main';
 import { Japanread } from './Japanread/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
@@ -251,7 +250,6 @@ export const pages = {
   MangaHub,
   ComicK,
   AnimeShitai,
-  KangaryuTeam,
   Japanread,
   MangaSushi,
   ArangScans,

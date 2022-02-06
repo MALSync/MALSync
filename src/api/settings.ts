@@ -5,9 +5,8 @@ export const settingsObj = {
     enablePages: {},
     forceEn: false,
     rpc: true,
-    presenceHidePage: false,
+    presenceLargeImage: 'cover',
     presenceShowButtons: true,
-    presenceShowMalsync: false,
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
@@ -82,6 +81,8 @@ export const settingsObj = {
     bookMarksList: false,
 
     customDomains: [],
+
+    anilistUpdateUi: true,
 
     anilistToken: '',
     anilistOptions: {

@@ -1,6 +1,7 @@
 import { Single as KitsuSingle } from '../_provider/Kitsu/single';
 import { UserList } from '../_provider/Kitsu/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
+import { waitForPageToBeVisible } from '../utils/general';
 
 export class KitsuClass {
   page: any = null;
@@ -55,12 +56,13 @@ export class KitsuClass {
   }
 
   async init() {
+    await waitForPageToBeVisible();
     if (this.url.indexOf('?mal-sync=authentication') > -1) {
       this.authentication();
     }
 
     const urlpart = utils.urlPart(this.url, 3);
-    if (urlpart === 'anime' || urlpart === 'manga') {
+    if ((urlpart === 'anime' || urlpart === 'manga') && utils.urlPart(this.url, 4)) {
       if (this.same && typeof this.page !== 'undefined' && this.page.malObj !== 'undefined') {
         this.streamingUI();
         this.malToKiss();

@@ -1,6 +1,11 @@
 import { SingleAbstract } from '../singleAbstract';
 import * as helper from './helper';
 import { NotAutenticatedError, UrlNotSupportedError } from '../Errors';
+import { point100 } from '../ScoreMode/point100';
+import { point10 } from '../ScoreMode/point10';
+import { smiley3 } from '../ScoreMode/smiley3';
+import { stars5 } from '../ScoreMode/stars5';
+import { point100decimal } from '../ScoreMode/point100decimal';
 
 export class Single extends SingleAbstract {
   constructor(protected url: string) {
@@ -244,87 +249,18 @@ export class Single extends SingleAbstract {
     return helper.apiCall(query, variables, authentication);
   }
 
-  private getScoreMode() {
-    return api.settings.get('anilistOptions').scoreFormat;
-  }
-
-  public getScoreCheckbox() {
-    switch (this.getScoreMode()) {
-      case 'POINT_3':
-        return [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-          { value: '85', label: '🙂' },
-          { value: '60', label: '😐' },
-          { value: '35', label: '🙁' },
-        ];
-        break;
-      case 'POINT_5':
-        return [
-          { value: '0', label: api.storage.lang('UI_Score_Not_Rated') },
-          { value: '90', label: '★★★★★' },
-          { value: '70', label: '★★★★' },
-          { value: '50', label: '★★★' },
-          { value: '30', label: '★★' },
-          { value: '10', label: '★' },
-        ];
-        break;
-      case 'POINT_10_DECIMAL': {
-        const decArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
-        for (let i = 1; i < 101; i++) {
-          decArr.push({ value: i.toString(), label: (i / 10).toFixed(1) });
-        }
-        return decArr;
-        break;
-      }
-      case 'POINT_100': {
-        const resArr = [{ value: '0', label: api.storage.lang('UI_Score_Not_Rated') }];
-        for (let i = 1; i < 101; i++) {
-          resArr.push({ value: i.toString(), label: String(i) });
-        }
-        return resArr;
-        break;
-      }
-      default:
-        return super.getScoreCheckbox();
-    }
-  }
-
-  public getScoreCheckboxValue() {
-    const curScore = Number(this.animeInfo.mediaListEntry.score);
-    switch (this.getScoreMode()) {
-      case 'POINT_3':
-        if (!curScore) return 0;
-        if (curScore >= 73) return 85;
-        if (curScore <= 47) return 35;
-        return 60;
-        break;
-      case 'POINT_5':
-        if (!curScore) return 0;
-        if (curScore < 20) return 10;
-        if (curScore < 40) return 30;
-        if (curScore < 60) return 50;
-        if (curScore < 80) return 70;
-        return 90;
-        break;
-      case 'POINT_10_DECIMAL':
+  public getScoreMode() {
+    switch (api.settings.get('anilistOptions').scoreFormat) {
       case 'POINT_100':
-        return curScore;
-        break;
-      default:
-        return super.getScoreCheckboxValue();
-    }
-  }
-
-  public handleScoreCheckbox(value) {
-    switch (this.getScoreMode()) {
+        return point100;
       case 'POINT_3':
+        return smiley3;
       case 'POINT_5':
+        return stars5;
       case 'POINT_10_DECIMAL':
-      case 'POINT_100':
-        this.animeInfo.mediaListEntry.score = Number(value);
-        break;
+        return point100decimal;
       default:
-        super.handleScoreCheckbox(value);
+        return point10;
     }
   }
 

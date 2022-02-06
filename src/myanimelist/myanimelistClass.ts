@@ -3,6 +3,7 @@ import { UserList as LegacyList } from '../_provider/MyAnimeList_legacy/list';
 
 import { UserList as ApiList } from '../_provider/MyAnimeList_hybrid/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
+import { waitForPageToBeVisible } from '../utils/general';
 
 export class MyAnimeListClass {
   page: 'detail' | 'bookmarks' | 'modern' | 'classic' | 'character' | 'people' | 'search' | null = null;
@@ -52,7 +53,9 @@ export class MyAnimeListClass {
     }
   }
 
-  init() {
+  async init() {
+    await waitForPageToBeVisible();
+
     con.log(this);
     switch (this.page) {
       case 'detail':

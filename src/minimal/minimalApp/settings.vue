@@ -166,6 +166,14 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
+          <h2 class="mdl-card__title-text">Anilist</h2>
+        </div>
+
+        <checkbox option="anilistUpdateUi">{{ lang('settings_anilist_update_ui') }}</checkbox>
+      </div>
+
+      <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+        <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">
             MyAnimeList / AniList / Kitsu / Simkl
           </h2>
@@ -333,8 +341,11 @@
           >
         </div>
         <checkbox option="rpc">{{ lang('settings_enabled') }}</checkbox>
-        <checkbox option="presenceShowMalsync">{{ lang('settings_presenceShowMalsync') }}</checkbox>
-        <checkbox option="presenceHidePage">{{ lang('settings_presenceHidePage') }}</checkbox>
+        <dropdown option="presenceLargeImage" :text="lang('settings_presence_largeimage')">
+          <option value="cover">{{ lang('settings_presence_largeimage_cover') }}</option>
+          <option value="website">{{ lang('settings_presence_largeimage_website') }}</option>
+          <option value="malsync">{{ lang('settings_presence_largeimage_malsync') }}</option>
+        </dropdown>
         <checkbox option="presenceShowButtons">{{ lang('settings_presenceShowButtons') }}</checkbox>
       </div>
 
