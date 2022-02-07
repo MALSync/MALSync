@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const TurkAnime: pageInterface = {
   name: 'TurkAnime',
-  domain: 'https://www.turkanime.net',
+  domain: 'https://www.turkanime.co',
   languages: ['Turkish'],
   type: 'anime',
   isSyncPage(url) {

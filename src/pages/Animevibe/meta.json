@@ -1,6 +1,0 @@
-{
-  "search": "https://animevibe.wtf/search?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://animevibe.wtf/ani/*", "*://animemate.xyz/ani/*"]
-  }
-}

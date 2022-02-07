@@ -1,27 +1,27 @@
 {
   "title": "TurkAnime",
-  "url": "https://www.turkanime.net",
+  "url": "https://www.turkanime.co",
   "testCases": [
     {
-      "url": "https://www.turkanime.net/anime/no-game-no-life",
+      "url": "https://www.turkanime.co/anime/no-game-no-life",
       "expected": {
         "sync": false,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
         "uiSelector": true,
         "epList": {
-          "5": "https://www.turkanime.net/video/no-game-no-life-5-bolum"
+          "5": "https://www.turkanime.co/video/no-game-no-life-5-bolum"
         }
       }
     },
     {
-      "url": "https://www.turkanime.net/video/no-game-no-life-6-bolum",
+      "url": "https://www.turkanime.co/video/no-game-no-life-6-bolum",
       "expected": {
         "sync": true,
         "title": "No Game No Life",
         "identifier": "no-game-no-life",
-        "overviewUrl": "https://www.turkanime.net/anime/no-game-no-life",
-        "nextEpUrl": "https://www.turkanime.net/video/no-game-no-life-7-bolum",
+        "overviewUrl": "https://www.turkanime.co/anime/no-game-no-life",
+        "nextEpUrl": "https://www.turkanime.co/video/no-game-no-life-7-bolum",
         "episode": 6,
         "uiSelector": false
       }

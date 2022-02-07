@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const SugarBabies: pageInterface = {
   name: 'SugarBabies',
-  domain: 'https://sugarbscan.com/',
+  domain: 'https://sugarbbscan.com/',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {

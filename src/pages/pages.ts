@@ -68,7 +68,6 @@ import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
-import { Animevibe } from './Animevibe/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
 import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
@@ -91,7 +90,6 @@ import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { Pantsubase } from './Pantsubase/main';
-import { AnimeOwl } from './AnimeOwl/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
@@ -211,7 +209,6 @@ export const pages = {
   YayAnimes,
   DesuOnline,
   Simplyaweeb,
-  Animevibe,
   WuxiaWorld,
   EdelgardeScans,
   HatigarmScanz,
@@ -234,7 +231,6 @@ export const pages = {
   Okanime,
   BSTO,
   Pantsubase,
-  AnimeOwl,
   AsuraScans,
   NaniScans,
   MerakiScans,
