@@ -30,12 +30,7 @@
     "name": "Twistmoe"
   },
   {
-    "domain": "https://aniyan.net",
-    "type": "anime",
-    "name": "Aniyan"
-  },
-  {
-    "domain": "https://www.turkanime.net",
+    "domain": "https://www.turkanime.co",
     "type": "anime",
     "name": "TurkAnime"
   },
@@ -185,7 +180,7 @@
     "name": "Goyabu"
   },
   {
-    "domain": "https://animesvision.biz",
+    "domain": "https://animes.vision",
     "type": "anime",
     "name": "AnimesVision"
   },
@@ -355,19 +350,9 @@
     "name": "Simplyaweeb"
   },
   {
-    "domain": "https://animevibe.wtf",
-    "type": "anime",
-    "name": "Animevibe"
-  },
-  {
     "domain": "https://wuxiaworld.site",
     "type": "manga",
     "name": "WuxiaWorld"
-  },
-  {
-    "domain": "https://www.anime-on-demand.de",
-    "type": "anime",
-    "name": "AnimeOnDemand"
   },
   {
     "domain": "https://edelgardescans.com",
@@ -475,11 +460,6 @@
     "name": "Pantsubase"
   },
   {
-    "domain": "https://animeowl.net",
-    "type": "anime",
-    "name": "AnimeOwl"
-  },
-  {
     "domain": "https://asurascans.com",
     "type": "manga",
     "name": "AsuraScans"
@@ -575,11 +555,6 @@
     "name": "AnimeShitai"
   },
   {
-    "domain": "https://kangaryu-team.fr",
-    "type": "manga",
-    "name": "KangaryuTeam"
-  },
-  {
     "domain": "https://www.japanread.cc/",
     "type": "manga",
     "name": "Japanread"
@@ -590,7 +565,7 @@
     "name": "MangaSushi"
   },
   {
-    "domain": "https://arangscans.com",
+    "domain": "https://arangscans.org",
     "type": "manga",
     "name": "ArangScans"
   },
@@ -680,7 +655,7 @@
     "name": "DynastyScans"
   },
   {
-    "domain": "https://sugarbscan.com/",
+    "domain": "https://sugarbbscan.com/",
     "type": "manga",
     "name": "SugarBabies"
   },
@@ -713,5 +688,10 @@
     "domain": "https://mangareader.to",
     "type": "manga",
     "name": "MangaReader"
+  },
+  {
+    "domain": "https://animeonsen.xyz",
+    "type": "anime",
+    "name": "AnimeOnsen"
   }
 ]
