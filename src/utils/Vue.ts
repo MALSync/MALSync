@@ -33,6 +33,7 @@ export function createApp(component, selector: string | HTMLElement, option?: { 
     style.type = 'text/css';
     const styleText = document.createTextNode(component.styles);
     style.appendChild(styleText);
+    // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     root.$el.after(createStyleTag(component.styles));
   }
 
