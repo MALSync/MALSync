@@ -107,7 +107,6 @@
 </template>
 
 <script lang="ts">
-// eslint-disable-next-line import/no-unresolved
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
 import { removeOptionKey } from '../../../utils/quicklinksBuilder';
