@@ -119,7 +119,7 @@ export default {
     },
   },
   created() {
-    const classes = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const classes = JSON.parse(localStorage.getItem(STORAGE_KEY)!);
     if (classes) {
       this.classes = classes;
     }

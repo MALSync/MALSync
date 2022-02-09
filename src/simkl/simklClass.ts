@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp } from '../utils/Vue';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
@@ -67,11 +67,8 @@ export class SimklClass {
 
       if (!$('#malkiss').length)
         $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after(j.html('<div id="malkiss"></div>'));
-      if (this.malkiss) this.malkiss.$destroy();
-      this.malkiss = new Vue({
-        el: '#malkiss',
-        render: h => h(malkiss),
-      }).$children[0];
+      if (this.malkiss) this.malkiss.$.appContext.app.unmount();
+      this.malkiss = createApp(malkiss, '#malkiss');
 
       this.streamingUI();
       this.malToKiss();
