@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import inputNumber from './input-number.vue';
 import scoreMode from './score-mode.vue';
 import { status } from '../_provider/definitions';

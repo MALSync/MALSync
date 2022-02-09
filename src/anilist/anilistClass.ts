@@ -1,13 +1,10 @@
-import Vue from 'vue';
-import VueDOMPurifyHTML from 'vue-dompurify-html';
+import { createApp } from '../utils/Vue';
 import * as helper from '../provider/AniList/helper';
 import { Single as AniListSingle } from '../_provider/AniList/single';
 import { UserList } from '../_provider/AniList/list';
 import { activeLinks, removeFromOptions } from '../utils/quicklinksBuilder';
 import updateUi from './updateUi.vue';
 import { waitForPageToBeVisible } from '../utils/general';
-
-Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
 export class AnilistClass {
   page: any = null;
@@ -438,12 +435,9 @@ export class AnilistClass {
         .first()
         .prepend(j.html('<div id="malsync-update-ui"></div>'));
 
-    if (this.vueEl) this.vueEl.$destroy();
+    if (this.vueEl) this.vueEl.$.appContext.app.unmount();
 
-    [this.vueEl] = new Vue({
-      el: '#malsync-update-ui',
-      render: h => h(updateUi),
-    }).$children;
+    this.vueEl = createApp(updateUi, '#malsync-update-ui');
 
     this.vueEl.malObj = malObj;
   }
