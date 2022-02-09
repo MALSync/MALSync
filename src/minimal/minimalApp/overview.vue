@@ -521,7 +521,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { getOverview } from '../../_provider/metaDataFactory';
 import { activeLinks } from '../../utils/quicklinksBuilder';
 

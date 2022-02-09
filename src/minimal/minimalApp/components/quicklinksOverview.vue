@@ -18,7 +18,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { combinedLinks } from '../../../utils/quicklinksBuilder';
 
 export default {

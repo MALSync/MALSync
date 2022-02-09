@@ -25,7 +25,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   data() {
     return {

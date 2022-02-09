@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { getSingle } from '../../../_provider/singleFactory';
 import { getOnlyList } from '../../../_provider/listFactory';
 

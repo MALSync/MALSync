@@ -274,7 +274,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import settingsVue from './minimalApp/settings.vue';
 import overviewVue from './minimalApp/overview.vue';
 import recommendationsVue from './minimalApp/recommendations.vue';

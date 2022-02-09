@@ -545,7 +545,7 @@
   </ul>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 /* eslint-disable no-prototype-builtins */
 import checkbox from './components/settingsCheckbox.vue';
 import numberInput from './components/settingsNumberInput.vue';

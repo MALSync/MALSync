@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import CountryFlag from './overviewProgressCountryFlag.vue';
 import { timestampToShortTime } from '../../../utils/time';
 

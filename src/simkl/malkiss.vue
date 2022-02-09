@@ -93,7 +93,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { removeFromOptions } from '../utils/quicklinksBuilder';
 
 const STORAGE_KEY = 'SIMKL-MAL-SYNC';

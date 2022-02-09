@@ -67,7 +67,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 function getBaseText(element) {
   let text = element.text();
   element.children().each(function() {

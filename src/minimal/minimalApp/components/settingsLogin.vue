@@ -37,7 +37,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import { NotAutenticatedError } from '../../../_provider/Errors';
 import { getListbyType } from '../../../_provider/listFactory';
 

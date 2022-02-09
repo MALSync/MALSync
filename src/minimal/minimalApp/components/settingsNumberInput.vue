@@ -20,7 +20,7 @@
   </li>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     option: {

@@ -57,7 +57,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { miniMALSearch } from '../../utils/Search';
 
 export default {

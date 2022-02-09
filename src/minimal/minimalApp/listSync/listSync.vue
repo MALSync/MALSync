@@ -148,7 +148,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import * as sync from './syncHandler';
 import backbutton from '../components/backbutton.vue';
 

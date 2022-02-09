@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { getList } from '../../_provider/listFactory';
 import bookmarksItem from './bookmarksItem.vue';
 

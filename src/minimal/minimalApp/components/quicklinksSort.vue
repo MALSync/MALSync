@@ -15,7 +15,7 @@
   </draggable>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import draggable from 'vuedraggable';
 import { optionToCombined } from '../../../utils/quicklinksBuilder';
 

@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { pages } from '../../pages/pages';
 import backbutton from './components/backbutton.vue';
 

@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { keyboardMap } from './components/keyboardMap';
 
 export default {

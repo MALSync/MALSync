@@ -54,7 +54,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import tooltip from './tooltip.vue';
 import { keyboardMap } from './keyboardMap';
 

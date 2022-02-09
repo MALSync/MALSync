@@ -51,7 +51,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { normalSearch } from '../../../utils/Search';
 
 let searchTimeout;

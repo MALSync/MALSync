@@ -285,7 +285,7 @@ p {
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import quicklinksEdit from '../minimal/minimalApp/components/quicklinksEdit.vue';
 import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
 

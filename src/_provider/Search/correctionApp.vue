@@ -53,7 +53,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import search from './components/search.vue';
 import inputButton from './components/inputButton.vue';
 import entry from './components/entry.vue';

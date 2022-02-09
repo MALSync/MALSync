@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   methods: {
     lang: api.storage.lang,
