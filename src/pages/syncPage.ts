@@ -1283,21 +1283,23 @@ export class SyncPage {
     const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
 
     if (!(await cacheObj.hasValueAndIsNotEmpty())) {
-      const url = `https://api.jikan.moe/v3/anime/${malid}/episodes/${page}`;
+      const url = `https://api.jikan.moe/v4/anime/${malid}/episodes?page=${page}`;
       const request = await api.request.xhr('GET', url).then(async response => {
-        if (response.status === 200 && response.responseText) {
-          const data = JSON.parse(response.responseText);
-          if (data.episodes && data.episodes.length) {
-            try {
-              return data.episodes.map(e => ({
-                filler: e.filler,
-                recap: e.recap,
-                episode_id: e.episode_id,
-              }));
-            } catch (e) {
-              // do nothing.
+        try {
+          if (response.status === 200 && response.responseText) {
+            const data = JSON.parse(response.responseText);
+            if (data.data && data.data.length) {
+              return data.data
+                .map(e => ({
+                  filler: e.filler,
+                  recap: e.recap,
+                  episode_id: e.mal_id, // mal_id is the episode_id in the v4 API very stupid
+                }))
+                .filter(e => e.filler || e.recap);
             }
           }
+        } catch (e) {
+          // do nothing.
         }
         return [];
       });
