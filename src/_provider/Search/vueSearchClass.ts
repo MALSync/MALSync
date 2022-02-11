@@ -28,13 +28,13 @@ export class SearchClass extends SearchClassExtend {
         }
       }
 
-      const flasmessage = utils.flashm('<div class="shadow"></div>', {
+      const flasmessage = utils.flashm('<div class="ms-shadow"></div>', {
         permanent: true,
         position: 'top',
         type: 'correction',
       });
 
-      this.vueInstance = createApp(correctionApp, flasmessage.find('.shadow').get(0), { shadowDom: true });
+      this.vueInstance = createApp(correctionApp, flasmessage.find('.ms-shadow').get(0), { shadowDom: true });
       this.vueInstance.searchClass = this;
       this.vueInstance.syncMode = syncMode;
       this.vueInstance.unmountFnc = () => {
