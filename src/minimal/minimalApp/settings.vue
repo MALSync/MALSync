@@ -612,7 +612,7 @@ export default {
         con.info('Commands', commands);
 
         const tempCommands = commands.reduce(function(total, current) {
-          total[current.name] = current;
+          total[current.name!] = current;
           return total;
         }, {});
 

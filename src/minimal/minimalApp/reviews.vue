@@ -88,7 +88,7 @@ export default {
   },
   computed: {
     reviews() {
-      const array = [];
+      const array: any[] = [];
       try {
         const reviews = this.xhr.split('Reviews</h2>')[1].split('<h2>')[0];
         const reviewsData = j.$.parseHTML(reviews);
@@ -147,7 +147,7 @@ export default {
             .find('.textReadability')
             .contents()
             .filter(function() {
-              return this.nodeType === 3 && j.$.trim(this.nodeValue).length;
+              return Boolean(this.nodeType === 3 && j.$.trim(this.nodeValue!).length);
             })
             .text()
             .trim()
@@ -158,8 +158,7 @@ export default {
             .find('.textReadability > span')
             .contents()
             .filter(function() {
-              // @ts-ignore
-              return this.nodeType === 3 && j.$.trim(this.nodeValue).length;
+              return Boolean(this.nodeType === 3 && j.$.trim(this.nodeValue!).length);
             })
             .text()
             .trim()

@@ -50,13 +50,13 @@ export default {
       const reader = new FileReader();
 
       reader.onload = evt => {
-        if (evt.target.readyState !== 2) return;
-        if (evt.target.error) {
+        if (evt.target!.readyState !== 2) return;
+        if (evt.target!.error) {
           alert('Error while reading file');
           return;
         }
 
-        const filecontent = evt.target.result;
+        const filecontent = evt.target!.result;
 
         this.$emit('upload', filecontent);
       };
