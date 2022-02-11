@@ -1,5 +1,5 @@
 <template>
-  <div id="material">
+  <div v-if="syncPage" id="material">
     <div v-if="syncMode && minimized">
       <a style="cursor: pointer;" @click="minimized = false">
         Action required
@@ -69,13 +69,13 @@ export default {
   data: () => ({
     inputOffset: 0,
     minimized: false,
+    syncMode: null,
+    searchClass: null,
+    unmountFnc: () => {},
   }),
   computed: {
-    searchClass() {
-      return this.$parent.searchClass;
-    },
     syncPage() {
-      return this.$parent.searchClass.getSyncPage();
+      return this.searchClass ? this.searchClass.getSyncPage() : null;
     },
     rulesClass() {
       return this.searchClass.rules;
@@ -86,9 +86,6 @@ export default {
       }
       return undefined;
     },
-    syncMode() {
-      return this.$parent.syncMode;
-    },
     offset() {
       return this.searchClass.getOffset();
     },
@@ -96,18 +93,21 @@ export default {
   created() {
     this.minimized = api.settings.get('minimizeBigPopup');
   },
+  unmounted() {
+    this.unmountFnc();
+  },
   methods: {
     lang: api.storage.lang,
     setPage(url, id = 0) {
       this.searchClass.setUrl(url, id);
-      utils.flashm(api.storage.lang('correction_NewUrl', [url]), false);
+      utils.flashm(api.storage.lang('correction_NewUrl', [url]));
       this.close();
     },
     setOffset(offset) {
       this.searchClass.setOffset(offset);
     },
     close() {
-      this.$root.$destroy();
+      this.$.appContext.app.unmount();
     },
     calcEpOffset(ep) {
       return parseInt(ep) - parseInt(this.inputOffset);
@@ -115,3 +115,7 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+@import './correctionStyle.less';
+</style>
