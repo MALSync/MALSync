@@ -278,7 +278,7 @@ export default {
     openLink(url) {
       const link = document.createElement('a');
       link.href = url;
-      document.getElementById('malList').appendChild(link);
+      document.getElementById('malList')!.appendChild(link);
       link.click();
     },
     setQuestionmark(e) {

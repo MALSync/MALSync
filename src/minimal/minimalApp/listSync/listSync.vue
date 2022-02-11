@@ -195,7 +195,7 @@ export default {
   },
   computed: {
     listSyncLength() {
-      return Object.values(this.list).filter(el => el.diff).length;
+      return Object.values(this.list as any[]).filter(el => el.diff).length;
     },
     listDiff() {
       const res = {};
@@ -224,7 +224,7 @@ export default {
 
     const listOptions = await sync.retriveLists(providerList, type, sync.getList);
 
-    sync.generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
+    sync.generateSync(listOptions.master as any, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
     this.list = { ...this.list };
 
     this.listReady = true;

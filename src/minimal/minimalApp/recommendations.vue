@@ -132,7 +132,7 @@ export default {
   },
   computed: {
     recommendations() {
-      const array = [];
+      const array: { titleHref, titleName, imageUrl, user, children }[] = [];
       try {
         const recommendationsBlock = this.xhr
           .split('Make a recommendation</a>')[1]
@@ -157,7 +157,7 @@ export default {
 
           const user = getUserRec(value);
 
-          const children = [];
+          const children: any[] = [];
           j.$(value)
             .find('td:eq(1) > div')
             .last()

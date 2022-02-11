@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     elements() {
-      const elements = [];
+      const elements: {language, index, item}[] = [];
       if (this.xhr) {
         for (const language in this.xhr) {
           for (const i in this.xhr[language]) {
