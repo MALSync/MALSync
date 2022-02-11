@@ -1,10 +1,8 @@
-import Vue from 'vue';
-import VueDOMPurifyHTML from 'vue-dompurify-html';
 import * as VueClazyLoad from 'vue-clazy-load';
+import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
 
-Vue.use(VueClazyLoad);
-Vue.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
+
 
 export class Minimal {
   private history: string[] = [];
@@ -14,15 +12,15 @@ export class Minimal {
   // eslint-disable-next-line no-shadow
   constructor(public minimal) {
     this.minimal.find('body').append(j.html('<div id="minimalApp"></div>'));
-    this.minimalVue = new Vue({
-      el: this.minimal.find('#minimalApp').get(0),
-      methods: {
-        updateDom: () => {
-          this.updateDom();
-        },
+    this.minimalVue = createApp(minimalApp, this.minimal.find('#minimalApp').get(0), {
+      use: vue => {
+        vue.use(VueClazyLoad);
       },
-      render: h => h(minimalApp),
     });
+    this.minimalVue.updateDom = () => {
+      this.updateDom();
+    };
+
     this.minimal.find('head').append(j.html('<base href="https://myanimelist.net/">'));
 
     this.uiListener();

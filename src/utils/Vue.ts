@@ -1,9 +1,17 @@
-import { createApp as vueCreateApp } from 'vue';
+import { createApp as vueCreateApp, App } from 'vue';
 import VueDOMPurifyHTML from 'vue-dompurify-html';
 
-export function createApp(component, selector: string | HTMLElement, option?: { shadowDom?: boolean }) {
+export function createApp(
+  component,
+  selector: string | HTMLElement,
+  option?: { shadowDom?: boolean; use?: (vue: App) => void },
+) {
   const app = vueCreateApp(component);
   app.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
+
+  if (option && option.use) {
+    option.use(app);
+  }
 
   let rootElement = typeof selector === 'string' ? document.querySelector(selector) : selector;
 

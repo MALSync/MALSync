@@ -20,8 +20,8 @@
 
     <template v-if="!listView">
       <div v-if="!(cache && errorText)" id="malList" class="mdl-grid" style="justify-content: space-around;">
-        <template v-for="item in items">
-          <bookmarksItem :ref="item.uid" :key="item.uid" :item="item" />
+        <template v-for="item in items" :key="item.uid">
+          <bookmarksItem :ref="item.uid" :item="item" />
         </template>
 
         <div
@@ -40,8 +40,8 @@
         style="width: 100%;"
       >
         <tbody>
-          <template v-for="item in items">
-            <bookmarksItem :ref="item.uid" :key="item.uid" :item="item" :list-view="listView" />
+          <template v-for="item in items" :key="item.uid">
+            <bookmarksItem :ref="item.uid" :item="item" :list-view="listView" />
           </template>
         </tbody>
       </table>

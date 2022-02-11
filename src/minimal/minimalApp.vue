@@ -295,7 +295,7 @@ let ignoreCurrentTab = true;
 let ignoreNullBase = false;
 const STORAGE_KEY = 'VUE-MAL-SYNC';
 const scrollHandler = {};
-let scrollHandlerArray = [];
+let scrollHandlerArray: ((pos) => void)[] = [];
 const randomListCache = { anime: [], manga: [] };
 const popupStorage = {
   fetch() {
@@ -383,6 +383,7 @@ export default {
     baseFallback: '',
     page: null,
     options: api.settings.options,
+    updateDom: () => {},
   }),
   computed: {
     base() {
@@ -753,7 +754,7 @@ export default {
     openLink(url) {
       const link = document.createElement('a');
       link.href = url;
-      document.getElementById('malList').appendChild(link);
+      document.getElementById('malList')!.appendChild(link);
       link.click();
     },
     async openRandom(status, type) {

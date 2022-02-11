@@ -181,7 +181,6 @@
                     name="myinfo_watchedeps"
                     size="3"
                     class="inputtext mdl-textfield__input"
-                    value="6"
                     style="width: 35px; display: inline-block;"
                   />
                   /
@@ -228,7 +227,6 @@
                     name="myinfo_volumes"
                     size="3"
                     class="inputtext mdl-textfield__input"
-                    value="6"
                     style="width: 35px; display: inline-block;"
                   />
                   /

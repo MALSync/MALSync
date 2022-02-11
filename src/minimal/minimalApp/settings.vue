@@ -434,8 +434,8 @@
         @click="myOpen()"
       >
         <div style="display: table; width: 100%;">
-          <template v-for="(contributerGroup, group) in contributer" class="inline-block">
-            <div :key="group" class="group">{{ group }}</div>
+          <template v-for="(contributerGroup, group) in contributer" :key="group" class="inline-block">
+            <div class="group">{{ group }}</div>
             <div v-for="contr in contributerGroup" :key="contr.name" class="inline-block">
               <div class="user">
                 <div class="image align-middle">
