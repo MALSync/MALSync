@@ -306,6 +306,7 @@ module.exports = {
       '*://*.animixplay.to/api/live*',
       '*://*.animixplay.to/goplyr.html*',
       '*://*.animixplay.to/player.html*',
+      '*://*.plyr.link/*',
       '*://jzscuqezoqkcpvy.win/*',
       '*://v.cdnmix.org/*',
       '*://v.cachecow.eu/*',

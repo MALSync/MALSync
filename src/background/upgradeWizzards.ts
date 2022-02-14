@@ -57,14 +57,14 @@ export async function upgradewWizzards(lastVersion) {
       },
     },
     {
-      version: '0.8.18',
+      version: '0.8.19',
       name: 'Split notification options',
       action: () => {
         return api.storage.get('settings/progressNotifications').then(res => {
-          if (!res) {
-            api.storage.set('settings/progressNotificationsAnime', false);
-            api.storage.set('settings/progressNotificationsManga', false);
-          }
+          let mode = true;
+          if (typeof res !== 'undefined' && res === false) mode = false;
+          api.storage.set('settings/progressNotificationsAnime', mode);
+          api.storage.set('settings/progressNotificationsManga', mode);
         });
       },
     },

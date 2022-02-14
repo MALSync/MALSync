@@ -44,6 +44,11 @@ describe('quicklinksBuilder', function() {
       },
       {
         title: 'All',
+        search: '{searchterm( )[specialReplace]}',
+        result: 'no game no life 4 1',
+      },
+      {
+        title: 'All',
         search: '{searchterm(_)[noSpecial,noLowercase,noEncode]}',
         result: 'No_gameno_Life4_1',
       },
