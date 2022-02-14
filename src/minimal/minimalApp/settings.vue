@@ -351,6 +351,7 @@
           <option value="website">{{ lang('settings_presence_largeimage_website') }}</option>
           <option value="malsync">{{ lang('settings_presence_largeimage_malsync') }}</option>
         </dropdown>
+        <checkbox option="presenceShowMalsync">{{ lang('settings_presenceShowMalsync') }}</checkbox>
         <checkbox option="presenceShowButtons">{{ lang('settings_presenceShowButtons') }}</checkbox>
       </div>
 

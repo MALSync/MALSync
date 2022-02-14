@@ -7,6 +7,7 @@ export const settingsObj = {
     rpc: true,
     presenceLargeImage: 'cover',
     presenceShowButtons: true,
+    presenceShowMalsync: false,
     userscriptModeButton: false,
     syncMode: 'MAL',
     syncModeSimkl: 'MAL',
