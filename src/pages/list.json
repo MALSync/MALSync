@@ -310,11 +310,6 @@
     "name": "MyAnimeList"
   },
   {
-    "domain": "https://ww1.animesimple.com",
-    "type": "anime",
-    "name": "AnimeSimple"
-  },
-  {
     "domain": "https://animeunity.it",
     "type": "anime",
     "name": "AnimeUnity"
@@ -328,11 +323,6 @@
     "domain": "http://fanfox.net",
     "type": "manga",
     "name": "MangaFox"
-  },
-  {
-    "domain": "https://justanime.app",
-    "type": "anime",
-    "name": "JustAnime"
   },
   {
     "domain": "https://yayanimes.net",
