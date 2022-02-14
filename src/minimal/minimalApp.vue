@@ -110,12 +110,14 @@
           <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title" />
         </section>
         <section id="fixed-tab-4" :class="{ 'is-active': popOver }" class="mdl-layout__tab-panel">
-          <keepAlive :max="1">
+          <KeepAlive :max="1">
             <bookmarksVue
               v-if="currentTab == tabs.bookmarks.title"
               :state="tabs.bookmarks.state"
               :list-type="tabs.bookmarks.type"
               :sort="tabs.bookmarks.sort"
+              :registerScroll="registerScroll"
+              :unregisterScroll="unregisterScroll"
               @rewatch="tabs.bookmarks.supportsRewatch = $event"
               @sort="tabs.bookmarks.sort = $event"
             >
@@ -224,7 +226,7 @@
                 </div>
               </template>
             </bookmarksVue>
-          </keepAlive>
+          </KeepAlive>
           <searchVue
             v-if="currentTab == tabs.search.title"
             :keyword="tabs.search.keyword"

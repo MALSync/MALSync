@@ -21,7 +21,7 @@
     <template v-if="!listView">
       <div v-if="!(cache && errorText)" id="malList" class="mdl-grid" style="justify-content: space-around;">
         <template v-for="item in items" :key="item.uid">
-          <bookmarksItem :ref="item.uid" :item="item" />
+          <bookmarksItem :item="item" />
         </template>
 
         <div
@@ -41,7 +41,7 @@
       >
         <tbody>
           <template v-for="item in items" :key="item.uid">
-            <bookmarksItem :ref="item.uid" :item="item" :list-view="listView" />
+            <bookmarksItem :item="item" :list-view="listView" />
           </template>
         </tbody>
       </table>
@@ -81,6 +81,14 @@ export default {
     sort: {
       type: Object,
       default: null,
+    },
+    registerScroll: {
+      type: Function,
+      required: true,
+    },
+    unregisterScroll: {
+      type: Function,
+      required: true,
     },
   },
   data() {
@@ -130,7 +138,7 @@ export default {
   },
   mounted() {
     this.load();
-    this.$parent.registerScroll('books', this.handleScroll);
+    this.registerScroll('books', this.handleScroll);
     clearTimeout(this.destroyTimer);
   },
   activated() {
@@ -141,14 +149,14 @@ export default {
         .click();
     });
     clearTimeout(this.destroyTimer);
-    this.$parent.registerScroll('books', this.handleScroll);
+    this.registerScroll('books', this.handleScroll);
     if (this.reload) {
       this.reload = false;
       this.load();
     }
   },
   deactivated() {
-    this.$parent.unregisterScroll('books');
+    this.unregisterScroll('books');
     clearTimeout(this.destroyTimer);
     this.destroyTimer = setTimeout(() => {
       this.listProvider.destroy();
