@@ -63,7 +63,6 @@ import { MyAnimeListVideo } from './MyAnimeListVideo/main';
 import { AnimeUnity } from './AnimeUnity/main';
 import { MangaHere } from './MangaHere/main';
 import { MangaFox } from './MangaFox/main';
-import { JustAnime } from './JustAnime/main';
 import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
@@ -203,7 +202,6 @@ export const pages = {
   AnimeUnity,
   MangaHere,
   MangaFox,
-  JustAnime,
   YayAnimes,
   DesuOnline,
   Simplyaweeb,
