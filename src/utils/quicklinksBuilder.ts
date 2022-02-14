@@ -38,10 +38,11 @@ export function titleSearch(url, title, id) {
   Options:
     noEncode -> Dont encode characters
     noSpecial -> Remove special characters
+    specialReplace -> Replace special characters with a <whitespaceReplacement>
     noLowercase -> Dont lowercase everything
 */
 
-type option = 'noEncode' | 'noSpecial' | 'noLowercase';
+type option = 'noEncode' | 'noSpecial' | 'noLowercase' | 'specialReplace';
 
 export function searchSyntax(url, title) {
   let resTitle = title.trim();
@@ -64,6 +65,11 @@ export function searchSyntax(url, title) {
   if (options.includes('noSpecial')) {
     resTitle = resTitle
       .replace(/[^a-zA-Z\d ]/g, '')
+      .replace(/ +/g, ' ')
+      .trim();
+  } else if (options.includes('specialReplace')) {
+    resTitle = resTitle
+      .replace(/[^a-zA-Z\d ]/g, ' ')
       .replace(/ +/g, ' ')
       .trim();
   }

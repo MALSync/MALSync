@@ -1150,7 +1150,6 @@ export class SyncPage {
         if (!this.browsingtime) this.browsingtime = Date.now();
 
         // Cover
-        let presenceShowMalsync = false;
         let presenceShowCover = true;
         let presenceHidePage = true;
 
@@ -1158,13 +1157,11 @@ export class SyncPage {
 
         switch (option) {
           case 'website':
-            presenceShowMalsync = false;
             presenceShowCover = false;
             presenceHidePage = false;
             break;
 
           case 'malsync':
-            presenceShowMalsync = true;
             presenceShowCover = false;
             presenceHidePage = true;
             break;
@@ -1174,8 +1171,7 @@ export class SyncPage {
         }
 
         let clientId = '606504719212478504';
-
-        if (!presenceShowMalsync) {
+        if (!api.settings.get('presenceShowMalsync')) {
           if (this.page.type !== 'anime') {
             clientId = '823563138669608980';
           } else {
