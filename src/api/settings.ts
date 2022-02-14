@@ -42,7 +42,6 @@ export const settingsObj = {
       'Twistmoe',
       'Mangadex',
       'MangaNato',
-      'AnimeSimple',
       'MangaFox',
       'MangaSee',
       'YugenAnime',
