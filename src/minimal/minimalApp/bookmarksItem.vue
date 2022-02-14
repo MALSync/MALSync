@@ -7,16 +7,7 @@
   >
     <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
-        <clazy-load
-          :src="imageHi"
-          margin="200px 0px"
-          :threshold="0.1"
-          :ratio="0.1"
-          style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;"
-          @error="setQuestionmark"
-        >
-          <img :src="imageHi" width="100%" @error="setQuestionmark" />
-        </clazy-load>
+        <img v-lazy="imageHi" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;"/>
       </div>
 
       <div
@@ -116,9 +107,7 @@
   <tr v-else style="cursor: pointer;" @click="openLink(item.url)">
     <td style="width: 64px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden;" class="imageTd">
-        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" @error="setQuestionmark">
-          <img :src="imageHi" width="100%" @error="setQuestionmark" />
-        </clazy-load>
+        <img v-lazy="imageHi" style="width: 100%"/>
       </div>
     </td>
     <td

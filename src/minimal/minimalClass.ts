@@ -1,8 +1,6 @@
-import * as VueClazyLoad from 'vue-clazy-load';
+import VueLazyLoad from 'vue3-lazyload';
 import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
-
-
 
 export class Minimal {
   private history: string[] = [];
@@ -14,7 +12,12 @@ export class Minimal {
     this.minimal.find('body').append(j.html('<div id="minimalApp"></div>'));
     this.minimalVue = createApp(minimalApp, this.minimal.find('#minimalApp').get(0), {
       use: vue => {
-        vue.use(VueClazyLoad);
+        vue.use(VueLazyLoad, {
+          error: api.storage.assetUrl('questionmark.gif'),
+          observerOptions: {
+            root: document.querySelector('.mdl-layout__content'),
+          },
+        });
       },
     });
     this.minimalVue.updateDom = () => {
@@ -114,17 +117,17 @@ export class Minimal {
   }
 
   fill(url: string | null) {
-    return this.minimalVue.$children[0].fill(url);
+    return this.minimalVue.fill(url);
   }
 
   fillBase(url: string | null) {
-    return this.minimalVue.$children[0].fillBase(url);
+    return this.minimalVue.fillBase(url);
   }
 
   private pageSync;
 
   setPageSync(page) {
-    this.minimalVue.$children[0].setPage(page);
+    this.minimalVue.setPage(page);
   }
 
   loadSettings() {
@@ -221,23 +224,23 @@ export class Minimal {
     }
 
     this.minimal.find('#listSyncUi').click(() => {
-      this.minimalVue.$children[0].selectTab('listSync');
+      this.minimalVue.selectTab('listSync');
     });
 
     this.minimal.find('#cleanTagsUi').click(() => {
-      this.minimalVue.$children[0].selectTab('cleanTags');
+      this.minimalVue.selectTab('cleanTags');
     });
 
     this.minimal.find('#allSitesUi').click(() => {
-      this.minimalVue.$children[0].selectTab('allSites');
+      this.minimalVue.selectTab('allSites');
     });
 
     this.minimal.find('#customDomainsUi').click(() => {
-      this.minimalVue.$children[0].selectTab('customDomains');
+      this.minimalVue.selectTab('customDomains');
     });
 
     this.minimal.find('#quicklinkoverview').click(() => {
-      this.minimalVue.$children[0].selectTab('quicklinks');
+      this.minimalVue.selectTab('quicklinks');
     });
 
     api.storage.get('tempVersion').then(version => {

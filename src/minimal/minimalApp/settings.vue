@@ -439,12 +439,8 @@
             <div v-for="contr in contributerGroup" :key="contr.name" class="inline-block">
               <div class="user">
                 <div class="image align-middle">
-                  <clazy-load v-if="contr.gif" :src="contr.gif">
-                    <img :src="contr.gif" class="lazy init gif" style="max-width: 100%;" />
-                  </clazy-load>
-                  <clazy-load :src="contr.image">
-                    <img :src="contr.image" class="lazy init" style="max-width: 100%;" />
-                  </clazy-load>
+                  <img v-if="contr.gif" v-lazy="contr.gif" class="lazy init gif" style="max-width: 100%;"/>
+                  <img v-lazy="contr.image" class="lazy init" style="max-width: 100%;"/>
                 </div>
                 <div class="text align-middle">
                   <div class="name" :style="'color:' + contr.color" :title="contr.name">
@@ -464,80 +460,40 @@
               </i>
             </div>
           </div>
-          <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw" class="discord" style="min-height: 160px">
+          <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw" class="discord" style="min-height: 160px; margin: -15px; margin-top: 15px; background-color: #738bd7; position: relative;">
             <div
-              style="height: 20px; margin: -15px; margin-top: 15px; background: linear-gradient(to bottom, #fff 0%,#738bd7 74%);"
+              style="height: 20px; background: linear-gradient(to bottom, #fff 0%,#738bd7 74%);"
             ></div>
-            <clazy-load
-              src="https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3"
-              style="background: linear-gradient(to bottom, #738bd7 0%,#738bd7 64%,#697ec4 64%,#697ec4 100%); background-color: #697ec4; position: relative; overflow: hidden; margin: 15px -15px -15px;"
-            >
-              <img
-                style="margin: auto; display: block;"
-                src="https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3"
-              />
-            </clazy-load>
+            <img v-lazy="'https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3'" style="margin: auto; display: block; "/>
+            <div style="background-color: #697ec4; height: 50px; width: 100%; background-image: none !important; margin-top: -50px;"></div>
           </a>
         </div>
       </div>
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <li class="mdl-list__item">
           <div style="line-height: 30px;">
-            <clazy-load tag="a" rel="noreferrer" :href="version.link" :src="version.img">
-              <img :src="version.img" />
-              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
-              <span slot="placeholder">
-                {{ lang('Loading') }}
-              </span>
-            </clazy-load>
+            <a rel="noreferrer" :href="version.link">
+              <img v-lazy="version.img"/>
+            </a>
+
             <br />
 
-            <clazy-load
-              tag="a"
-              rel="noreferrer"
-              href="https://discord.com/invite/cTH4yaw"
-              src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"
-            >
-              <img
-                src="https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA"
-              />
-              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
-              <span slot="placeholder">
-                {{ lang('Loading') }}
-              </span>
-            </clazy-load>
+            <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw">
+              <img v-lazy="'https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA'"/>
+            </a>
+
             <br />
 
-            <clazy-load
-              tag="a"
-              rel="noreferrer"
-              href="https://github.com/MALSync/MALSync"
-              src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
-            >
-              <img
-                src="https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github"
-              />
-              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
-              <span slot="placeholder">
-                {{ lang('Loading') }}
-              </span>
-            </clazy-load>
+            <a rel="noreferrer" href="https://github.com/MALSync/MALSync">
+              <img v-lazy="'https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github'"/>
+            </a>
+
             <br />
 
-            <clazy-load
-              tag="a"
-              rel="noreferrer"
-              href="https://github.com/MALSync/MALSync/issues"
-              src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white"
-            >
-              <img
-                src="https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white"
-              />
-              <!--eslint-disable-next-line vue/no-deprecated-slot-attribute-->
-              <span slot="placeholder">
-                {{ lang('Loading') }}
-              </span>
-            </clazy-load>
+            <a rel="noreferrer" href="https://github.com/MALSync/MALSync/issues">
+              <img v-lazy="'https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white'"/>
+            </a>
+
           </div>
         </li>
       </div>

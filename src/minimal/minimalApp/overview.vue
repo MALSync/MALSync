@@ -54,9 +54,7 @@
           class="mdl-card__media mdl-cell mdl-cell--2-col"
           style="background-color: transparent; float:left; padding-right: 16px;"
         >
-          <clazy-load :src="image" class="malImage malClear" style="width: 100%;height: auto;" @error="setQuestionmark">
-            <img :src="image" style="height: auto; width: 100%;" @error="setQuestionmark" />
-          </clazy-load>
+          <img v-lazy="image" class="malImage malClear" style="height: auto; width: 100%;"/>
         </div>
         <div class="mdl-cell mdl-cell--12-col">
           <a
@@ -398,15 +396,7 @@
         >
           <div v-for="character in characters" :key="character.html">
             <div class="mdl-grid" style="width: 126px;">
-              <clazy-load
-                :src="character.img"
-                margin="200px 0px"
-                :threshold="0.1"
-                :ratio="0.1"
-                style="width: 100%; height: auto;"
-              >
-                <img :src="character.img" style="height: auto; width: 100%;" />
-              </clazy-load>
+              <img v-lazy="character.img" style="width: 100%; height: auto;"/>
               <div>
                 <a :href="character.url">
                   {{ character.name }}
