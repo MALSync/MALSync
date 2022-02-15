@@ -26,7 +26,7 @@
             :style="backbuttonSearchStyle"
             :class="{ 'is-dirty': currentTab == tabs.search.title }"
             class="mdl-textfield mdl-js-textfield mdl-textfield--expandable"
-            style="margin-left: -57px; margin-top: 3px; padding-left: 40px;"
+            style="margin-top: 3px; padding-left: 40px;"
           >
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
