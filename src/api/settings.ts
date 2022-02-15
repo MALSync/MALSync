@@ -1,5 +1,7 @@
+import { reactive } from 'vue';
+
 export const settingsObj = {
-  options: {
+  options: reactive({
     autoTrackingModeanime: 'video',
     autoTrackingModemanga: 'instant',
     enablePages: {},
@@ -100,7 +102,7 @@ export const settingsObj = {
 
     malToken: '',
     malRefresh: '',
-  },
+  }),
 
   async init() {
     const tempSettings = [];

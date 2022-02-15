@@ -108,6 +108,8 @@ module.exports = {
       env: JSON.stringify({
         CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
       }),
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
     }),
   ],
 };
