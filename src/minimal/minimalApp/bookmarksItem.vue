@@ -208,6 +208,7 @@ export default {
       return parseInt(this.item.watchedEp.toString());
     },
     imageHi() {
+      if (!this.item.image) return api.storage.assetUrl('questionmark.gif');
       let imageHi = this.item.image;
       const regexDimensions = /\/r\/\d*x\d*/g;
       if (regexDimensions.test(imageHi)) {
