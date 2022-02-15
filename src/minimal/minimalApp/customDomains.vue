@@ -97,7 +97,16 @@ export default {
       },
     },
     browserPermissions() {
-      const origins = this.permissions.map(perm => `${new URL(perm.domain).origin}/`);
+      const origins = this.permissions
+        .filter(perm => {
+          try {
+            const url = new URL(perm.domain);
+            return Boolean(url.origin);
+          } catch (_) {
+            return false;
+          }
+        })
+        .map(perm => `${new URL(perm.domain).origin}/`);
       return {
         permissions: ['webNavigation'],
         origins,
