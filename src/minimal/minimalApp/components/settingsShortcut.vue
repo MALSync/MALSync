@@ -115,13 +115,13 @@ export default {
     lang: api.storage.lang,
     keyDown(event) {
       if (!this.keys[event.keyCode]) con.log(`down${event.keyCode}`);
-      this.$set(this.keys, event.keyCode, keyboardMap[event.keyCode]);
+      this.keys[event.keyCode] = keyboardMap[event.keyCode];
       this.tempKeys = {};
     },
     keyUp(event) {
       con.log(`up${event.keyCode}`);
       this.setTempState(this.keys);
-      this.$delete(this.keys, event.keyCode);
+      delete this.keys[event.keyCode];
     },
     focusLost() {
       this.keys = {};

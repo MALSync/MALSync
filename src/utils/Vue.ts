@@ -6,6 +6,7 @@ export function createApp(
   selector: string | HTMLElement,
   option?: { shadowDom?: boolean; use?: (vue: App) => void },
 ) {
+  const componentStyles = getAllStyles(component).join('\n');
   const app = vueCreateApp(component);
   app.use(VueDOMPurifyHTML, { default: { ADD_ATTR: ['target'] } });
 
@@ -26,8 +27,8 @@ export function createApp(
       shadowRoot = rootElement.attachShadow({ mode: 'open' });
     }
 
-    if (component.styles) {
-      shadowRoot.appendChild(createStyleTag(component.styles));
+    if (componentStyles) {
+      shadowRoot.appendChild(createStyleTag(componentStyles));
     }
 
     rootElement = shadowRoot.appendChild(document.createElement('div'));
@@ -36,18 +37,17 @@ export function createApp(
   const root = app.mount(rootElement);
 
   // inject Styles
-  if (component.styles && (!option || !option.shadowDom)) {
+  if (componentStyles && (!option || !option.shadowDom)) {
     const style = document.createElement('style');
     style.type = 'text/css';
-    const styleText = document.createTextNode(component.styles);
+    const styleText = document.createTextNode(componentStyles);
     style.appendChild(styleText);
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-    root.$el.after(createStyleTag(component.styles));
+    root.$el.after(createStyleTag(componentStyles));
   }
 
   return root;
 }
-
 
 function createStyleTag(styleString: string) {
   const style = document.createElement('style');
@@ -55,4 +55,18 @@ function createStyleTag(styleString: string) {
   const styleText = document.createTextNode(styleString);
   style.appendChild(styleText);
   return style;
+}
+
+function getAllStyles(component): string[] {
+  const styles: string[] = [];
+  if (component.styles) {
+    styles.push(...component.styles);
+  }
+  if (component.components) {
+    for (const key in component.components) {
+      const subComponent = component.components[key];
+      styles.push(...getAllStyles(subComponent));
+    }
+  }
+  return styles;
 }
