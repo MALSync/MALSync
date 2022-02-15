@@ -121,7 +121,7 @@
     "vue": "^3.2.0",
     "vue-dompurify-html": "^3.0.0-beta.2",
     "vue3-lazyload": "^0.2.5-beta",
-    "vuedraggable": "^2.24.3",
+    "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.1.1"
   }
 }

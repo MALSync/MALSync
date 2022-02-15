@@ -1,17 +1,19 @@
 <template>
-  <draggable id="quicklinksForSorting" v-model="value" group="people" @start="drag = true" @end="drag = false">
-    <div
-      v-for="link in value"
-      :key="optionToCombined(link).name"
-      class="mdl-chip quicklink active"
-      style="display: flex; align-items: center;"
-    >
-      <span class="material-icons" style="margin-right: 5px;">
-        drag_handle
-      </span>
-      <img style="margin-right: 5px;" :src="favicon(optionToCombined(link).domain)" height="16" width="16" />
-      {{ optionToCombined(link).name }}
-    </div>
+  <draggable
+    id="quicklinksForSorting"
+    v-model="value"
+    group="people"
+    :item-key="link => optionToCombined(link).name"
+    @start="drag = true"
+    @end="drag = false"
+  >
+    <template #item="{ element }">
+      <div class="mdl-chip quicklink active" style="display: flex; align-items: center">
+        <span class="material-icons" style="margin-right: 5px"> drag_handle </span>
+        <img style="margin-right: 5px;" :src="favicon(optionToCombined(element).domain)" height="16" width="16" />
+        {{ optionToCombined(element).name }}
+      </div>
+    </template>
   </draggable>
 </template>
 
