@@ -291,6 +291,7 @@ import quicklinksEdit from './minimalApp/components/quicklinksEdit.vue';
 import { getSingle } from '../_provider/singleFactory';
 import { getList } from '../_provider/listFactory';
 import { bloodTrail } from '../utils/shark';
+import { reactive } from 'vue';
 
 let timer;
 let ignoreCurrentTab = true;
@@ -483,7 +484,7 @@ export default {
   watch: {
     renderUrl(url) {
       this.renderObj = null;
-      const tempRenderObj = getSingle(url);
+      const tempRenderObj = reactive(getSingle(url)) ;
 
       tempRenderObj
         .update()

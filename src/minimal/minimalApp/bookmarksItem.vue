@@ -7,7 +7,7 @@
   >
     <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
       <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
-        <img v-lazy="imageHi" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;"/>
+        <img v-lazy="imageHi" style="width: 100%; height: 100%; object-fit: cover;"/>
       </div>
 
       <div
