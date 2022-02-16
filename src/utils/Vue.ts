@@ -38,10 +38,6 @@ export function createApp(
 
   // inject Styles
   if (componentStyles && (!option || !option.shadowDom)) {
-    const style = document.createElement('style');
-    style.type = 'text/css';
-    const styleText = document.createTextNode(componentStyles);
-    style.appendChild(styleText);
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     root.$el.after(createStyleTag(componentStyles));
   }
