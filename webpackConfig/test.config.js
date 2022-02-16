@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: {
@@ -19,13 +19,14 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [{ loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
         loader: 'vue-loader',
         options: {
+          customElement: true,
           shadowMode: true,
         },
       },
@@ -35,7 +36,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.less'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      vue: '@vue/runtime-dom',
     },
   },
   mode: 'development',

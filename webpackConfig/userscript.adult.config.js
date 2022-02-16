@@ -6,7 +6,7 @@ const pageUrls = require('../src/pages-adult/pageUrls');
 const playerUrls = require('../src/pages-adult/playerUrls');
 const resourcesJson = require('./resourcesUserscript');
 const httpPermissionsJson = require('./httpPermissions.json');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
 
@@ -101,13 +101,14 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ['vue-style-loader', { loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
         loader: 'vue-loader',
         options: {
+          customElement: true,
           shadowMode: true,
         },
       },
@@ -116,7 +117,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.less', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      vue: '@vue/runtime-dom',
     },
   },
   output: {
