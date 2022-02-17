@@ -48,19 +48,13 @@ export const MangaKatana: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.info > h1.heading')
-        .first()
-        .text()
-        .trim();
+      return j.$('div.info > h1.heading').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#single_book')
-        .first()
-        .before(j.html(selector));
+      j.$('#single_book').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -73,69 +67,43 @@ export const MangaKatana: pageInterface = {
         }
         if (
           typeof window.location.href.split('/')[5] === 'undefined' &&
-          typeof j
-            .$('#single_book > script')
-            .prev()
-            .children()
-            .children() !== 'undefined' &&
-          j
-            .$('#single_book > script')
-            .prev()
-            .children()
-            .children().length
+          typeof j.$('#single_book > script').prev().children().children() !== 'undefined' &&
+          j.$('#single_book > script').prev().children().children().length
         ) {
           obfusList = true;
-          return j
-            .$('#single_book > script')
-            .prev()
-            .children()
-            .children();
+          return j.$('#single_book > script').prev().children().children();
         }
         return j.$('.nowaythisexists');
       },
       elementUrl(selector) {
         if (!obfusList) {
           return utils.absoluteLink(
-            selector
-              .find('td > div.chapter > a')
-              .first()
-              .attr('href'),
+            selector.find('td > div.chapter > a').first().attr('href'),
             MangaKatana.domain,
           );
         }
         return utils.absoluteLink(
-          selector
-            .find('div > div > a')
-            .first()
-            .attr('href'),
+          selector.find('div > div > a').first().attr('href'),
           MangaKatana.domain,
         );
       },
       elementEp(selector) {
         if (!obfusList) {
           return MangaKatana.sync.getEpisode(
-            String(
-              selector
-                .find('td > div.chapter > a')
-                .first()
-                .attr('href'),
-            ),
+            String(selector.find('td > div.chapter > a').first().attr('href')),
           );
         }
         return MangaKatana.sync.getEpisode(
-          String(
-            selector
-              .find('div > div > a')
-              .first()
-              .attr('href'),
-          ),
+          String(selector.find('div > div > a').first().attr('href')),
         );
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'manga' &&
         page.url.split('/')[4] !== undefined &&

@@ -7,7 +7,7 @@ export const webextension: storageInterface = {
     const obj = {} as any;
     obj[key] = value;
     return new Promise((resolve, reject) => {
-      getStorage(key).set(obj, function() {
+      getStorage(key).set(obj, function () {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
           return;
@@ -19,7 +19,7 @@ export const webextension: storageInterface = {
 
   async get(key: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      getStorage(key).get(key, function(results) {
+      getStorage(key).get(key, function (results) {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
           return;
@@ -31,7 +31,7 @@ export const webextension: storageInterface = {
 
   async remove(key: string): Promise<void> {
     return new Promise((resolve, reject) => {
-      getStorage(key).remove(key, function() {
+      getStorage(key).remove(key, function () {
         if (chrome.runtime.lastError) {
           reject(chrome.runtime.lastError);
           return;
@@ -44,11 +44,11 @@ export const webextension: storageInterface = {
   async list(type = 'local'): Promise<any> {
     return new Promise((resolve, reject) => {
       if (type === 'local') {
-        chrome.storage.local.get(null, function(results) {
+        chrome.storage.local.get(null, function (results) {
           resolve(results);
         });
       } else {
-        chrome.storage.sync.get(null, function(results) {
+        chrome.storage.sync.get(null, function (results) {
           resolve(results);
         });
       }
@@ -94,7 +94,7 @@ export const webextension: storageInterface = {
   injectjsResource(res, head) {
     const s = document.createElement('script');
     s.src = chrome.extension.getURL(`vendor/${res}`);
-    s.onload = function() {
+    s.onload = function () {
       // @ts-ignore
       this.remove();
     };
@@ -114,7 +114,7 @@ export const webextension: storageInterface = {
             },500);
           }
         }`;
-    s.onload = function() {
+    s.onload = function () {
       // @ts-ignore
       this.remove();
     };

@@ -39,12 +39,7 @@ export const Kitsune: pageInterface = {
       return parseInt(jsonData.episode) || 0;
     },
     nextEpUrl(url) {
-      return j
-        .$('.episodes-list a.active')
-        .parents('div')
-        .next()
-        .find('a')
-        .attr('href');
+      return j.$('.episodes-list a.active').parents('div').next().find('a').attr('href');
     },
     async getMalUrl(provider) {
       try {
@@ -83,7 +78,7 @@ export const Kitsune: pageInterface = {
   init(page) {
     let interval;
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
@@ -91,7 +86,7 @@ export const Kitsune: pageInterface = {
     function check() {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
-        function() {
+        function () {
           const elem = j.$('#sync-info');
           if (elem.length && elem.text()) {
             jsonData = JSON.parse(elem.text());
@@ -99,7 +94,7 @@ export const Kitsune: pageInterface = {
           }
           return false;
         },
-        function() {
+        function () {
           page.handlePage();
         },
       );

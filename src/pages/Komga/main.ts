@@ -49,19 +49,13 @@ export const Komga: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.v-toolbar__title > span:nth-child(1)')
-        .first()
-        .text()
-        .trim();
+      return j.$('.v-toolbar__title > span:nth-child(1)').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.text-h5')
-        .first()
-        .after(j.html(selector));
+      j.$('.text-h5').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -69,13 +63,7 @@ export const Komga: pageInterface = {
         return j.$('div.my-2');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Komga.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Komga.domain);
       },
       elementEp(selector) {
         const chapterAsText = selector
@@ -90,7 +78,9 @@ export const Komga: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     let checker;
 
     loaded();

@@ -9,7 +9,14 @@ import { UserList as KitsuList } from '../../../_provider/Kitsu/list';
 import { UserList as SimklList } from '../../../_provider/Simkl/list';
 import { getSyncMode } from '../../../_provider/helper';
 
-export function generateSync(masterList: object, slaveLists: object[], mode, typeArray, list, missing) {
+export function generateSync(
+  masterList: object,
+  slaveLists: object[],
+  mode,
+  typeArray,
+  list,
+  missing,
+) {
   mapToArray(masterList, list, true);
 
   for (const i in slaveLists) {
@@ -175,7 +182,8 @@ export function syncItem(slave, pageType) {
     return singleClass
       .update()
       .then(() => {
-        if (typeof slave.diff.watchedEp !== 'undefined') singleClass.setEpisode(slave.diff.watchedEp);
+        if (typeof slave.diff.watchedEp !== 'undefined')
+          singleClass.setEpisode(slave.diff.watchedEp);
         if (typeof slave.diff.status !== 'undefined') singleClass.setStatus(slave.diff.status);
         if (typeof slave.diff.score !== 'undefined') singleClass.setScore(slave.diff.score);
         return singleClass.sync();
@@ -229,7 +237,7 @@ export async function retriveLists(
   let master = false;
   const slaves: any = [];
 
-  providerList.forEach(function(pi) {
+  providerList.forEach(function (pi) {
     if (pi.providerSettings.master) {
       master = pi.providerSettings.list;
     } else if (pi.providerSettings.list !== null) slaves.push(pi.providerSettings.list);
@@ -283,7 +291,7 @@ export function getList(Prov, type) {
 
 export const background = {
   async isEnabled() {
-    return api.storage.get('backgroundListSync').then(async function(state) {
+    return api.storage.get('backgroundListSync').then(async function (state) {
       con.info('background list sync state', state);
       if (state && state.mode === (await api.settings.getAsync('syncMode'))) return true;
       background.disable();
@@ -348,7 +356,14 @@ export const background = {
 
       const listOptions: any = await retriveLists(providerList, type, getList);
 
-      generateSync(listOptions.master, listOptions.slaves, mode, listOptions.typeArray, list, missing);
+      generateSync(
+        listOptions.master,
+        listOptions.slaves,
+        mode,
+        listOptions.typeArray,
+        list,
+        missing,
+      );
       con.log('Start syncing', list, missing);
       await syncList(list, missing);
     }

@@ -29,21 +29,10 @@ export const Anicloud: pageInterface = {
       return getIdentifier(url);
     },
     getOverviewUrl(url: string): string {
-      return (
-        j
-          .$('ul.breadCrumbMenu > li')
-          .eq(2)
-          .find('a')
-          .attr('href') || ''
-      );
+      return j.$('ul.breadCrumbMenu > li').eq(2).find('a').attr('href') || '';
     },
     getEpisode(url: string): number {
-      return Number(
-        url
-          .split('/')[7]
-          .split('-')[1]
-          .split('#')[0],
-      );
+      return Number(url.split('/')[7].split('-')[1].split('#')[0]);
     },
     uiSelector(selector) {
       j.$('div.hosterSiteDirectNav').before(j.html(selector));
@@ -73,7 +62,9 @@ export const Anicloud: pageInterface = {
     },
   },
   init(page): void {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       page.handlePage();
     });
@@ -107,10 +98,7 @@ function getIdentifier(url: string): string {
   const name = urlParts[5];
 
   if (urlParts[6] === 'filme') {
-    return `${name}?m=${getTitle(url)
-      .split(' ')
-      .join('-')
-      .toLowerCase()}`;
+    return `${name}?m=${getTitle(url).split(' ').join('-').toLowerCase()}`;
   }
 
   const season = typeof urlParts[6] === 'undefined' ? 'staffel-1' : urlParts[6].split('#')[0];

@@ -129,7 +129,10 @@ export async function listUpdateWithPOST(state, type) {
 
 export async function predictionXhrGET(type: string, apiCacheKey: number | string | null) {
   if (!apiCacheKey) return {};
-  const response = await api.request.xhr('GET', `https://api.malsync.moe/nc/mal/${type}/${apiCacheKey}/pr`);
+  const response = await api.request.xhr(
+    'GET',
+    `https://api.malsync.moe/nc/mal/${type}/${apiCacheKey}/pr`,
+  );
   return JSON.parse(response.responseText);
 }
 
@@ -180,7 +183,9 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
   await asyncForEach(Array, async el => {
     if (!el.apiCacheKey) return;
 
-    const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
+    const releaseItem: undefined | releaseItemInterface = await api.storage.get(
+      `release/${type}/${el.cacheKey}`,
+    );
 
     if (releaseItem && releaseItem.value) {
       el.fn.progress = releaseItem.value;
@@ -188,14 +193,15 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 
     let mode = el.options!.p;
     if (!mode) mode = 'default';
-    logger
-      .m(el.apiCacheKey)
-      .m('Load')
-      .log(releaseItem);
+    logger.m(el.apiCacheKey).m('Load').log(releaseItem);
 
     if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) {
       remoteUpdateList.push(el);
-    } else if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000) {
+    } else if (
+      releaseItem &&
+      releaseItem.timestamp &&
+      Date.now() - releaseItem.timestamp < 2 * 60 * 1000
+    ) {
       logger.m(el.apiCacheKey).log('Up to date');
     } else if (
       releaseItem &&
@@ -239,10 +245,7 @@ export async function multiple(Array: listElement[], type, logger = con.m('relea
 
     if (progressValue && progressValue.state && progressValue.state === 'complete') finished = true;
 
-    logger
-      .m(elRef.malId)
-      .m('Save')
-      .log(progressValue);
+    logger.m(elRef.malId).m('Save').log(progressValue);
     if (elRef.cacheKey) {
       if (elRef && elRef.fn && elRef.fn.progress) {
         notificationCheck(elRef, elRef.fn.progress, progressValue, type);
@@ -282,7 +285,9 @@ export async function single(
     logger.log('epPredictions disabled');
     return;
   }
-  const releaseItem: undefined | releaseItemInterface = await api.storage.get(`release/${type}/${el.cacheKey}`);
+  const releaseItem: undefined | releaseItemInterface = await api.storage.get(
+    `release/${type}/${el.cacheKey}`,
+  );
 
   logger.m('Load').log(releaseItem);
 
@@ -290,7 +295,12 @@ export async function single(
 
   if (releaseItem && releaseItem.mode && releaseItem.mode !== mode) force = true;
 
-  if (releaseItem && releaseItem.timestamp && Date.now() - releaseItem.timestamp < 2 * 60 * 1000 && !force) {
+  if (
+    releaseItem &&
+    releaseItem.timestamp &&
+    Date.now() - releaseItem.timestamp < 2 * 60 * 1000 &&
+    !force
+  ) {
     logger.log('Up to date');
     return;
   }
@@ -425,7 +435,10 @@ export function getProgress(res, mode, type) {
           };
         }
       } else if (predTemp.lastEp.total && top.lastEp.total === predTemp.lastEp.total - 1) {
-        if (Math.abs(predTime - (predTemp.predicition.timestamp - 7 * 24 * 60 * 60 * 1000)) < 30 * 60 * 60 * 1000) {
+        if (
+          Math.abs(predTime - (predTemp.predicition.timestamp - 7 * 24 * 60 * 60 * 1000)) <
+          30 * 60 * 60 * 1000
+        ) {
           top.predicition = {
             timestamp: predTime,
             probability: 'medium',
@@ -449,7 +462,9 @@ export function getProgress(res, mode, type) {
   return top;
 }
 
-export async function getProgressTypeList(type: 'anime' | 'manga'): Promise<{ key: string; label: string }[]> {
+export async function getProgressTypeList(
+  type: 'anime' | 'manga',
+): Promise<{ key: string; label: string }[]> {
   const cacheObj = new Cache(`ProgressTypeList${type}`, 24 * 60 * 60 * 1000, false);
   if (!(await cacheObj.hasValueAndIsNotEmpty())) {
     con.log('Getting new ProgressTypeList Cache');

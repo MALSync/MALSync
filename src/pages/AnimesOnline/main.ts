@@ -41,7 +41,9 @@ export const AnimesOnline: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const nextUrl = j.$('#single > div.content > div.pag_episodes > div:nth-child(3) > a').attr('href');
+      const nextUrl = j
+        .$('#single > div.content > div.pag_episodes > div:nth-child(3) > a')
+        .attr('href');
       if (nextUrl && nextUrl !== '#') {
         return utils.absoluteLink(nextUrl, AnimesOnline.domain);
       }
@@ -49,8 +51,10 @@ export const AnimesOnline: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

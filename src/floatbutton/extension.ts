@@ -4,7 +4,7 @@ export function floatClick(page) {
     page.openCorrectionUi();
   } else {
     con.log('Open miniMAL');
-    openMinimal(function(response) {
+    openMinimal(function (response) {
       con.log('Opened');
     });
   }

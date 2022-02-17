@@ -28,15 +28,14 @@ export const Kissanime: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5).replace(/1080p|720p/i, ' ');
 
-      const episodeTextMatches = episodePart.match(/[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/);
+      const episodeTextMatches = episodePart.match(
+        /[e,E][p,P][i,I]?[s,S]?[o,O]?[d,D]?[e,E]?\D?\d+/,
+      );
 
       if (!episodeTextMatches || episodeTextMatches.length === 0) return NaN;
 
@@ -51,10 +50,7 @@ export const Kissanime: pageInterface = {
       return Number(episodeNumber.replace(/[^\d]/g, ''));
     },
     nextEpUrl(url) {
-      const nextEp = j
-        .$('#selectEpisode option:selected')
-        .next()
-        .val();
+      const nextEp = j.$('#selectEpisode option:selected').next().val();
 
       if (!nextEp) return '';
 
@@ -63,18 +59,13 @@ export const Kissanime: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.bigChar')
-        .first()
-        .text();
+      return j.$('.bigChar').first().text();
     },
     getIdentifier(url) {
       return Kissanime.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.bigChar')
-        .first()
-        .after(j.html(selector));
+      j.$('.bigChar').first().after(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -82,32 +73,21 @@ export const Kissanime: pageInterface = {
         return j.$('.listing tr');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Kissanime.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Kissanime.domain);
       },
       elementEp(selector) {
         const url = Kissanime.overview!.list!.elementUrl!(selector);
-        if (
-          /_ED|_OP|_Ending|_Opening|_Preview|_Trailer/i.test(
-            selector
-              .find('a')
-              .first()
-              .text(),
-          )
-        )
+        if (/_ED|_OP|_Ending|_Opening|_Preview|_Trailer/i.test(selector.find('a').first().text()))
           return NaN;
         return Kissanime.sync.getEpisode(url);
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

@@ -13,10 +13,7 @@ export const NaniScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('a.section')
-        .text()
-        .trim();
+      return j.$('a.section').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(NaniScans.sync.getOverviewUrl(url), 4);
@@ -25,30 +22,18 @@ export const NaniScans: pageInterface = {
       return utils.absoluteLink(j.$('a.section').attr('href'), NaniScans.domain);
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('div#chapter-selector div.text')
-          .text()
-          .trim()
-          .replace('Chapter ', ''),
-      );
+      return Number(j.$('div#chapter-selector div.text').text().trim().replace('Chapter ', ''));
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('i.chevron.right.icon')
-          .parent()
-          .attr('href'),
+        j.$('i.chevron.right.icon').parent().attr('href'),
         NaniScans.domain,
       );
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.ui.centered.header')
-        .text()
-        .trim();
+      return j.$('h1.ui.centered.header').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -56,7 +41,11 @@ export const NaniScans: pageInterface = {
     uiSelector(selector) {
       j.$('div.content div.description')
         .first()
-        .after(j.html(`<div class="ui hidden divider"></div><div id= "malthing"><h5>MALSync</h5>${selector}</div>`));
+        .after(
+          j.html(
+            `<div class="ui hidden divider"></div><div id= "malthing"><h5>MALSync</h5>${selector}</div>`,
+          ),
+        );
     },
     list: {
       offsetHandler: false,
@@ -64,15 +53,7 @@ export const NaniScans: pageInterface = {
         return j.$('div#chapters div.item');
       },
       elementUrl(selector) {
-        return (
-          utils.absoluteLink(
-            selector
-              .find('a')
-              .last()
-              .attr('href'),
-            NaniScans.domain,
-          ) || ''
-        );
+        return utils.absoluteLink(selector.find('a').last().attr('href'), NaniScans.domain) || '';
       },
       elementEp(selector) {
         let temp = selector
@@ -92,8 +73,10 @@ export const NaniScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'chapters' ||
         (page.url.split('/')[3] === 'titles' && page.url.split('/')[4] !== undefined)

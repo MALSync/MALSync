@@ -12,7 +12,7 @@ function main() {
   messageAniListListener(anilist);
   firebaseNotification();
 
-  $(window).blur(function() {
+  $(window).blur(function () {
     lastFocus = Date.now();
   });
 }
@@ -28,7 +28,7 @@ api.settings.init().then(() => {
 function messageAniListListener(anilist) {
   const logger = con.m('TabMalUrl');
   // @ts-ignore
-  chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (Date.now() - lastFocus < 3 * 1000) {
       if (msg.action === 'TabMalUrl') {
         logger.info('miniMAL');

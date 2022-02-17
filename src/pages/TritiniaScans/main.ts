@@ -19,10 +19,7 @@ export const TritiniaScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1])
-        .text()
-        .trim();
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -53,11 +50,7 @@ export const TritiniaScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('ol.breadcrumb li a')
-        .last()
-        .text()
-        .trim();
+      return j.$('ol.breadcrumb li a').last().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -77,12 +70,7 @@ export const TritiniaScans: pageInterface = {
         return j.$('ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return TritiniaScans.sync.getEpisode(TritiniaScans.overview!.list!.elementUrl!(selector));
@@ -90,17 +78,19 @@ export const TritiniaScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (TritiniaScans.isSyncPage(page.url)) {
         page.handlePage();
       }
       if (TritiniaScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.wp-manga-chapter').length > 0;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

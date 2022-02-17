@@ -6,23 +6,27 @@ export const Readm: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0 && !j.$('#series-profile-wrapper').length) {
+    if (
+      url.split('/')[5] !== undefined &&
+      url.split('/')[5].length > 0 &&
+      !j.$('#series-profile-wrapper').length
+    ) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if ((url.split('/')[4] !== undefined && url.split('/')[4].length > 0) || j.$('#series-profile-wrapper').length) {
+    if (
+      (url.split('/')[4] !== undefined && url.split('/')[4].length > 0) ||
+      j.$('#series-profile-wrapper').length
+    ) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('h1.page-title > a')
-        .text()
-        .trim();
+      return j.$('h1.page-title > a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -42,18 +46,13 @@ export const Readm: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.page-title')
-        .text()
-        .trim();
+      return j.$('h1.page-title').text().trim();
     },
     getIdentifier(url) {
       return Readm.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#router-view > div > div.ui.grid')
-        .first()
-        .after(j.html(selector));
+      j.$('#router-view > div > div.ui.grid').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -69,8 +68,10 @@ export const Readm: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('404 Not Found')) {
         con.error('404');
         return;

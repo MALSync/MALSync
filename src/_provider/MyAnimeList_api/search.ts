@@ -7,7 +7,12 @@ const tempObj = {
   type: 'anime',
 };
 
-export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
+export const search: searchInterface = async function (
+  keyword,
+  type: 'anime' | 'manga',
+  options = {},
+  sync = false,
+) {
   tempObj.type = type;
 
   keyword = keyword.trim();
@@ -30,12 +35,13 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
     .then(json => {
       const resItems: any = [];
 
-      json.data.forEach(function(item) {
+      json.data.forEach(function (item) {
         let alt = [item.node.title];
         if (item.node.alternative_titles) {
           if (item.node.alternative_titles.en) alt.push(item.node.alternative_titles.en);
           if (item.node.alternative_titles.ja) alt.push(item.node.alternative_titles.ja);
-          if (item.node.alternative_titles.synonyms) alt = alt.concat(item.node.alternative_titles.synonyms);
+          if (item.node.alternative_titles.synonyms)
+            alt = alt.concat(item.node.alternative_titles.synonyms);
         }
 
         resItems.push({
@@ -48,7 +54,9 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
           },
           image: item.node.main_picture?.medium ?? '',
           media_type: item.node.media_type
-            ? (item.node.media_type.charAt(0) + item.node.media_type.slice(1).toLowerCase()).replace('_', ' ')
+            ? (
+                item.node.media_type.charAt(0) + item.node.media_type.slice(1).toLowerCase()
+              ).replace('_', ' ')
             : '',
           isNovel: item.node.media_type.toLowerCase().includes('novel'),
           score: item.node.mean,

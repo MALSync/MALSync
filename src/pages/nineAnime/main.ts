@@ -21,24 +21,13 @@ export const nineAnime: pageInterface = {
       return url;
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('ul.episodes > li > a')
-          .first()
-          .attr('href'),
-        nineAnime.domain,
-      );
+      return utils.absoluteLink(j.$('ul.episodes > li > a').first().attr('href'), nineAnime.domain);
     },
     getEpisode(url) {
       return parseInt(j.$('ul.episodes > li > a.active').attr('data-base')!);
     },
     nextEpUrl(url) {
-      const nextEp = j
-        .$('ul.episodes > li > a.active')
-        .parent('li')
-        .next()
-        .find('a')
-        .attr('href');
+      const nextEp = j.$('ul.episodes > li > a.active').parent('li').next().find('a').attr('href');
       if (!nextEp) return nextEp;
       return utils.absoluteLink(nextEp, nineAnime.domain);
     },
@@ -70,15 +59,17 @@ export const nineAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('ul.episodes > li').length;
       },
-      function() {
+      function () {
         con.info('Start check');
         page.handlePage();
-        utils.urlChangeDetect(function() {
+        utils.urlChangeDetect(function () {
           con.info('Check');
           page.handlePage();
         });

@@ -6,7 +6,11 @@ export const AnimeTribes: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'watch' && url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+    if (
+      url.split('/')[3] === 'watch' &&
+      url.split('/')[5] !== undefined &&
+      url.split('/')[5].length > 0
+    ) {
       return true;
     }
     return false;
@@ -20,10 +24,7 @@ export const AnimeTribes: pageInterface = {
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('#dropdown-menu > div.dropdown-content > a')
-          .last()
-          .attr('href'),
+        j.$('#dropdown-menu > div.dropdown-content > a').last().attr('href'),
         AnimeTribes.domain,
       );
     },
@@ -35,10 +36,7 @@ export const AnimeTribes: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('nav.pagination span.typcn.typcn-media-fast-forward')
-          .parent('a')
-          .attr('href'),
+        j.$('nav.pagination span.typcn.typcn-media-fast-forward').parent('a').attr('href'),
         AnimeTribes.domain,
       );
     },
@@ -70,8 +68,10 @@ export const AnimeTribes: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

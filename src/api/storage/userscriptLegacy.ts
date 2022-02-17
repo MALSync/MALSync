@@ -25,7 +25,7 @@ export const userscriptLegacy: storageInterface = {
 
   async list(): Promise<any[]> {
     const reverseArray: any = {};
-    j.$.each(GM_listValues(), function(index, cache) {
+    j.$.each(GM_listValues(), function (index, cache) {
       reverseArray[cache] = index;
     });
     return reverseArray;
@@ -68,7 +68,7 @@ export const userscriptLegacy: storageInterface = {
   injectjsResource(res, head) {
     const s = document.createElement('script');
     s.text = GM_getResourceText(res);
-    s.onload = function() {
+    s.onload = function () {
       // @ts-ignore
       this.remove();
     };
@@ -88,7 +88,7 @@ export const userscriptLegacy: storageInterface = {
             },500);
           }
         }`;
-    s.onload = function() {
+    s.onload = function () {
       // @ts-ignore
       this.remove();
     };

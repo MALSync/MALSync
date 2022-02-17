@@ -30,7 +30,9 @@ export const NekoSama: pageInterface = {
       return NekoSama.domain + (j.$('.details > div > h1 > a').attr('href') || '');
     },
     getEpisode(url) {
-      const headerElementText = j.$('#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2').text();
+      const headerElementText = j
+        .$('#watch > div > div.row.no-gutters.anime-info > div.info > div > div > h2')
+        .text();
 
       if (!headerElementText) return NaN;
 
@@ -38,7 +40,11 @@ export const NekoSama: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j.$('#watch > div > div:nth-child(2) > div > div.item.right > a.ui.button.small.with-svg-right').attr('href'),
+        j
+          .$(
+            '#watch > div > div:nth-child(2) > div > div.item.right > a.ui.button.small.with-svg-right',
+          )
+          .attr('href'),
         NekoSama.domain,
       );
     },
@@ -52,47 +58,37 @@ export const NekoSama: pageInterface = {
       return NekoSama.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#head > div.content > div > div > div > div')
-        .first()
-        .after(j.html(selector));
+      j.$('#head > div.content > div > div > div > div').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#stats > div > div.episodes > div.row.no-gutters.js-list-episode-container > div > div > div.text');
+        return j.$(
+          '#stats > div > div.episodes > div.row.no-gutters.js-list-episode-container > div > div > div.text',
+        );
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          NekoSama.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), NekoSama.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .text()
-            .replace(/\D+/, ''),
-        );
+        return Number(selector.find('a').first().text().replace(/\D+/, ''));
       },
     },
   },
 
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('#stats,#watch').length;
       },
-      function() {
+      function () {
         page.handlePage();
 
-        j.$('.ui.toggle.checkbox, #stats > div > div.episodes > div > div').click(function() {
-          setTimeout(function() {
+        j.$('.ui.toggle.checkbox, #stats > div > div.episodes > div > div').click(function () {
+          setTimeout(function () {
             page.handleList();
           }, 500);
         });

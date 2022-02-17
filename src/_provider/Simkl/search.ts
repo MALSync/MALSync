@@ -2,11 +2,16 @@ import { searchInterface } from '../definitions';
 import { parseJson } from '../Errors';
 import * as helper from './helper';
 
-export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
+export const search: searchInterface = async function (
+  keyword,
+  type: 'anime' | 'manga',
+  options = {},
+  sync = false,
+) {
   return call(`https://api.simkl.com/search/${type}`, { q: keyword }, true).then(res => {
     const resItems: any = [];
     con.log('search', res);
-    j.$.each(res, function(index, item) {
+    j.$.each(res, function (index, item) {
       resItems.push({
         id: item.ids.simkl_id,
         name: item.title,
@@ -27,7 +32,13 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
   });
 };
 
-async function call(url, sData = {}, asParameter = false, methode: 'GET' | 'POST' = 'GET', login = true) {
+async function call(
+  url,
+  sData = {},
+  asParameter = false,
+  methode: 'GET' | 'POST' = 'GET',
+  login = true,
+) {
   if (asParameter) {
     url += `?${j.$.param(sData)}`;
   }

@@ -13,21 +13,13 @@ export const JaiminisBox: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.tbtitle > div.text > a')
-        .first()
-        .text();
+      return j.$('div.tbtitle > div.text > a').first().text();
     },
     getIdentifier(url) {
       return JaiminisBox.sync.getOverviewUrl(url).split('/')[5];
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('div.tbtitle > div.text > a')
-          .first()
-          .attr('href') || ''
-      );
+      return j.$('div.tbtitle > div.text > a').first().attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[8]);
@@ -52,19 +44,13 @@ export const JaiminisBox: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.title')
-        .first()
-        .text()
-        .trim();
+      return j.$('h1.title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 5);
     },
     uiSelector(selector) {
-      j.$('h1.title')
-        .first()
-        .after(j.html(selector));
+      j.$('h1.title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -73,10 +59,7 @@ export const JaiminisBox: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('div.title > a')
-            .first()
-            .attr('href'),
+          selector.find('div.title > a').first().attr('href'),
           JaiminisBox.domain,
         );
       },
@@ -86,8 +69,10 @@ export const JaiminisBox: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

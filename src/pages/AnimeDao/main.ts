@@ -7,13 +7,21 @@ export const AnimeDao: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'view' && url.split('/')[4] !== undefined && url.split('/')[4].length) {
+    if (
+      url.split('/')[3] === 'view' &&
+      url.split('/')[4] !== undefined &&
+      url.split('/')[4].length
+    ) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'anime' && url.split('/')[4] !== undefined && url.split('/')[4].length) {
+    if (
+      url.split('/')[3] === 'anime' &&
+      url.split('/')[4] !== undefined &&
+      url.split('/')[4].length
+    ) {
       return true;
     }
     return false;
@@ -30,13 +38,13 @@ export const AnimeDao: pageInterface = {
       return utils.urlPart(AnimeDao.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('#videocontent a[href*="/anime/"]').attr('href') || '', AnimeDao.domain);
+      return utils.absoluteLink(
+        j.$('#videocontent a[href*="/anime/"]').attr('href') || '',
+        AnimeDao.domain,
+      );
     },
     getEpisode(url) {
-      const text = j
-        .$('h2.page_title')
-        .text()
-        .toLowerCase();
+      const text = j.$('h2.page_title').text().toLowerCase();
       if (text.includes('special') || text.includes('ova') || text.includes('movie')) {
         throw new SafeError('specials are not supported');
       }
@@ -56,18 +64,13 @@ export const AnimeDao: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.animeinfo-div > div > h2 > b')
-        .text()
-        .trim();
+      return j.$('div.animeinfo-div > div > h2 > b').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.animeinfo-div > div > h2')
-        .first()
-        .after(j.html(selector));
+      j.$('div.animeinfo-div > div > h2').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -87,8 +90,10 @@ export const AnimeDao: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Not Found')) {
         con.error('404');
         return;

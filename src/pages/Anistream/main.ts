@@ -45,16 +45,16 @@ export const Anistream: pageInterface = {
       return Anistream.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position)
-        .first()
-        .after(j.html(selector));
+      j.$(jsonData.selector_position).first().after(j.html(selector));
     },
     getMalUrl(provider) {
       return Anistream.sync.getMalUrl!(provider);
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     utils.changeDetect(loaded, () => j.$('#syncData').text());
 

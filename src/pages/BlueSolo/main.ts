@@ -10,16 +10,16 @@ export const BlueSolo: pageInterface = {
   },
   sync: {
     getTitle() {
-      return j
-        .$('div.c-breadcrumb > ol > li:nth-child(3) > a')
-        .text()
-        .trim();
+      return j.$('div.c-breadcrumb > ol > li:nth-child(3) > a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(j.$('div.c-breadcrumb > ol > li:nth-child(3) > a').attr('href'), BlueSolo.domain);
+      return utils.absoluteLink(
+        j.$('div.c-breadcrumb > ol > li:nth-child(3) > a').attr('href'),
+        BlueSolo.domain,
+      );
     },
     getEpisode(url) {
       const type = url.split('/')[5];
@@ -41,10 +41,7 @@ export const BlueSolo: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.post-title > h1')
-        .text()
-        .trim();
+      return j.$('.post-title > h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -67,7 +64,10 @@ export const BlueSolo: pageInterface = {
         return j.$('.version-chap > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a[href*="/manga/"]').attr('href') || '', BlueSolo.domain);
+        return utils.absoluteLink(
+          selector.find('a[href*="/manga/"]').attr('href') || '',
+          BlueSolo.domain,
+        );
       },
       elementEp(selector) {
         return BlueSolo.sync.getEpisode(BlueSolo.overview!.list!.elementUrl!(selector));
@@ -75,13 +75,18 @@ export const BlueSolo: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
         con.info('Waiting');
         utils.waitUntilTrue(
           () => {
-            return (j.$('.post-title > h1').length && j.$('.profile-manga').length) || j.$('#chapter-heading');
+            return (
+              (j.$('.post-title > h1').length && j.$('.profile-manga').length) ||
+              j.$('#chapter-heading')
+            );
           },
           () => {
             con.info('Start');

@@ -4,7 +4,7 @@ const logger = con.m('Player');
 
 export function getPlayerTime(callback) {
   clearInterval(inter);
-  inter = setInterval(function() {
+  inter = setInterval(function () {
     const players = document.getElementsByTagName('video');
     for (let i = 0; i < players.length; i++) {
       const player: any = players[i];
@@ -41,7 +41,10 @@ function playerExtras(item, player) {
 
 async function setFullscreen(player) {
   if (!(await api.settings.getAsync('autofull'))) return;
-  if (window.fullScreen || (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)) {
+  if (
+    window.fullScreen ||
+    (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)
+  ) {
     con.info('Browser already in fullscreen');
   } else {
     let playerEl = player;
@@ -93,7 +96,11 @@ async function setFullscreen(player) {
       }
 
       function exitHandler() {
-        if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null) {
+        if (
+          document.webkitIsFullScreen ||
+          document.mozFullScreen ||
+          document.msFullscreenElement !== null
+        ) {
           player.removeAttribute('controls', 'controls');
         }
       }

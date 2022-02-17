@@ -24,16 +24,11 @@ export class AnilistClass {
           return undefined;
         }
         if (this.page !== null && this.page.page === 'bookmarks' && $('.lists').length) {
-          return $('.lists')
-            .first()
-            .height();
+          return $('.lists').first().height();
         }
         let ogUrl = $('meta[property="og:url"]').attr('content');
         if (typeof ogUrl !== 'undefined' && ogUrl.split('/').length > 4) {
-          return ogUrl
-            .split('/')
-            .slice(0, 6)
-            .join('/');
+          return ogUrl.split('/').slice(0, 6).join('/');
         }
         ogUrl = window.location.href;
 
@@ -75,7 +70,9 @@ export class AnilistClass {
       this.init();
     }
 
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
   }
 
   async init() {
@@ -128,7 +125,7 @@ export class AnilistClass {
 
       await api.settings.set('anilistToken', token);
 
-      $(document).ready(function() {
+      $(document).ready(function () {
         $('.page-content .container').html(
           j.html(
             `
@@ -160,14 +157,7 @@ export class AnilistClass {
     $(document).ready(() => {
       con.log('malToKiss');
       $('.mal_links').remove();
-      const title = $('h1')
-        .first()
-        .clone()
-        .children()
-        .remove()
-        .end()
-        .text()
-        .trim();
+      const title = $('h1').first().clone().children().remove().end().text().trim();
 
       activeLinks(this.page!.type, this.page!.apiCacheKey, title).then(links => {
         let html = '';
@@ -196,7 +186,9 @@ export class AnilistClass {
 
             ">
               <img src="${utils.favicon(page.domain)}" height="16" width="16">
-              <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${page.name}</span>
+              <span style="font-weight: 500; line-height: 16px; vertical-align: middle;">${
+                page.name
+              }</span>
               <span title="${
                 page.name
               }" class="remove-mal-sync" title="remove" style="position: absolute; top: 2px; right: 5px; cursor: pointer; opacity: 0.4;">x</span>
@@ -210,7 +202,7 @@ export class AnilistClass {
         } else {
           $('.sidebar .data').before(j.html(html));
         }
-        $('.remove-mal-sync').click(function() {
+        $('.remove-mal-sync').click(function () {
           const key = $(this).attr('title');
           removeFromOptions(String(key));
           window.location.reload();
@@ -231,7 +223,7 @@ export class AnilistClass {
 
     const streamUrl = malObj.getStreamingUrl();
     if (streamUrl) {
-      $(document).ready(async function() {
+      $(document).ready(async function () {
         $('#mal-sync-stream-div').remove();
         $('h1')
           .first()
@@ -254,7 +246,9 @@ export class AnilistClass {
             j.html(
               `<a class="nextStream" title="${api.storage.lang(
                 `overview_Continue_${malObj.getType()}`,
-              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${continueUrlObj.url}">
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+                continueUrlObj.url
+              }">
               <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
             </a>`,
             ),
@@ -264,7 +258,9 @@ export class AnilistClass {
             j.html(
               `<a class="resumeStream" title="${api.storage.lang(
                 `overview_Resume_Episode_${malObj.getType()}`,
-              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${resumeUrlObj.url}">
+              )}" target="_blank" style="margin: 0 5px 0 0; color: #BABABA;" href="${
+                resumeUrlObj.url
+              }">
               <img src="${api.storage.assetUrl('arrow-16px.png')}" width="16" height="16">
             </a>`,
             ),
@@ -278,9 +274,7 @@ export class AnilistClass {
     await malObj.fillRelations();
 
     $('.malsync-rel-link').remove();
-    $('h1')
-      .first()
-      .append(j.html(`<div class="malsync-rel-link" style="float: right;"></div>`));
+    $('h1').first().append(j.html(`<div class="malsync-rel-link" style="float: right;"></div>`));
 
     malObj.getPageRelations().forEach(page => {
       $('.malsync-rel-link').append(
@@ -305,23 +299,14 @@ export class AnilistClass {
         .not('.malSyncDone')
         .each((index, el) => {
           $(el).addClass('malSyncDone');
-          let label = $(el)
-            .find('.notes')
-            .first()
-            .attr('label');
+          let label = $(el).find('.notes').first().attr('label');
 
           if (typeof label !== 'undefined') {
             label = label.replace(/(malSync|last)::[\d\D]+::/, '').replace(/#,/, '');
             if (label.trim() === '' || label.trim() === ',') {
-              $(el)
-                .find('.notes')
-                .first()
-                .css('visibility', 'hidden');
+              $(el).find('.notes').first().css('visibility', 'hidden');
             } else {
-              $(el)
-                .find('.notes')
-                .first()
-                .attr('label', label);
+              $(el).find('.notes').first().attr('label', label);
             }
           }
         });
@@ -393,7 +378,9 @@ export class AnilistClass {
                   `<a class="nextStream mal-rem" title="Continue watching" target="_blank" style="margin: -2px 5px 0 0; color: #BABABA;" href="${
                     continueUrlObj.url
                   }">
-                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                  <img src="${api.storage.assetUrl(
+                    'double-arrow-16px.png',
+                  )}" width="16" height="16">
                 </a>`,
                 ),
               );
@@ -431,9 +418,7 @@ export class AnilistClass {
     if (!api.settings.get('anilistUpdateUi')) return;
 
     if (!$('#malsync-update-ui').length)
-      $('.sidebar')
-        .first()
-        .prepend(j.html('<div id="malsync-update-ui"></div>'));
+      $('.sidebar').first().prepend(j.html('<div id="malsync-update-ui"></div>'));
 
     if (this.vueEl) this.vueEl.$.appContext.app.unmount();
 

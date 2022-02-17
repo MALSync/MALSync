@@ -39,12 +39,7 @@ export const Aniwatch: pageInterface = {
       if (tabPage === 'stream') {
         return parseInt(utils.urlPart(url, 5));
       }
-      return Number(
-        j
-          .$('h2.md-title > span.desc-color')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('h2.md-title > span.desc-color').text().replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
       if (tabPage !== 'stream' || j.$('#anilyr-nextEpi').is('[disabled=disabled]')) return '';
@@ -64,29 +59,30 @@ export const Aniwatch: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div')
+      j.$(
+        '#enable-ani-cm > div > section.section-padding > div > md-content > div > div > md-content > div',
+      )
         .first()
         .before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     utils.changeDetect(loaded, () => {
       if (window.location.href.split('/')[3] === 'watch2gether') {
         return (
           window.location.href +
           j.$('h2.md-title > span.border-right > a').text() +
-          j
-            .$('h2.md-title > span.desc-color')
-            .text()
-            .replace(/\D+/g, '')
+          j.$('h2.md-title > span.desc-color').text().replace(/\D+/g, '')
         );
       }
       return `${window.location.href}/${j.$('.md-tab.md-active').text()}`;
     });
     loaded();
-    $(document).on('keydown', function(e) {
+    $(document).on('keydown', function (e) {
       if ((e.which || e.keyCode) === 116) {
         loaded();
       }
@@ -94,22 +90,20 @@ export const Aniwatch: pageInterface = {
     function loaded() {
       page.reset();
       if (page.url.split('/')[3] === 'anime') {
-        tabPage = j
-          .$('.md-tab.md-active')
-          .text()
-          .toLowerCase();
+        tabPage = j.$('.md-tab.md-active').text().toLowerCase();
         if (typeof tabPage !== 'undefined' && (tabPage === 'stream' || tabPage === 'overview')) {
           utils.waitUntilTrue(
-            function() {
+            function () {
               if (
-                j.$('md-content > div > div.responsive-anime.anime-boxes-margin > h1').text().length ||
+                j.$('md-content > div > div.responsive-anime.anime-boxes-margin > h1').text()
+                  .length ||
                 j.$('h1.md-headline.no-margin > span.border-right.pr-5').text().length
               ) {
                 return true;
               }
               return false;
             },
-            function() {
+            function () {
               console.log('pagehandle');
               page.handlePage();
             },

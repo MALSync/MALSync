@@ -1,13 +1,18 @@
 <template>
   <div>
     <backbutton />
-    <div class="mdl-grid" style="display: block;">
+    <div class="mdl-grid" style="display: block">
       <div class="mdl-cell bg-cell mdl-cell--12-col">
         <div v-for="page in pages" :key="page.name">
-          <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
+          <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
             <span class="mdl-list__item-primary-content">
               <a :href="getDomain(page)">
-                <img :src="favicon(getDomain(page))" height="16" width="16" style="margin-right: 5px;" />
+                <img
+                  :src="favicon(getDomain(page))"
+                  height="16"
+                  width="16"
+                  style="margin-right: 5px"
+                />
                 {{ page.name }}
               </a>
             </span>
@@ -66,7 +71,8 @@ export default {
       return domain;
     },
     getPageState(page) {
-      if (typeof this.enablePages[page.name] === 'undefined' || this.enablePages[page.name]) return true;
+      if (typeof this.enablePages[page.name] === 'undefined' || this.enablePages[page.name])
+        return true;
       return false;
     },
     setPageState(page, state) {

@@ -28,17 +28,17 @@ try {
   con.error(e);
 }
 
-api.request.sendMessage = function(message: sendMessageI) {
+api.request.sendMessage = function (message: sendMessageI) {
   return new Promise((resolve, reject) => {
-    messageHandler(message, null, function(response: responseMessageI) {
+    messageHandler(message, null, function (response: responseMessageI) {
       resolve(response);
     });
   });
 };
 
-chrome.runtime.onInstalled.addListener(function(details) {
+chrome.runtime.onInstalled.addListener(function (details) {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function(tab) {
+    chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function (tab) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
@@ -56,7 +56,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
   switch (message.name) {
     case 'xhr': {
       const xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
+      xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           console.log(xhr);
           if (xhr.status === 429 && retry < 4 && !utils.rateLimitExclude.test(xhr.responseURL)) {
@@ -133,7 +133,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
       api.storage.get('windowId').then(winId => {
         if (typeof winId === 'undefined') winId = 22;
         if (chrome.windows && chrome.windows.update && chrome.windows.create) {
-          chrome.windows.update(winId, { focused: true }, function() {
+          chrome.windows.update(winId, { focused: true }, function () {
             if (chrome.runtime.lastError) {
               const config: any = {
                 url: chrome.runtime.getURL('window.html'),
@@ -150,7 +150,7 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
                 config.left = message.left;
               }
 
-              chrome.windows.create(config, function(win) {
+              chrome.windows.create(config, function (win) {
                 api.storage.set('windowId', win!.id);
                 sendResponse();
               });
@@ -159,14 +159,14 @@ function messageHandler(message: sendMessageI, sender, sendResponse, retry = 0) 
             }
           });
         } else {
-          chrome.tabs.update(winId, { active: true }, function() {
+          chrome.tabs.update(winId, { active: true }, function () {
             if (chrome.runtime.lastError) {
               const config: any = {
                 url: chrome.runtime.getURL('window.html'),
                 active: true,
               };
 
-              chrome.tabs.create(config, function(win) {
+              chrome.tabs.create(config, function (win) {
                 api.storage.set('windowId', win!.id);
                 sendResponse();
               });
@@ -203,9 +203,9 @@ listSyncInit();
 initProgressScheduler();
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
-  function(info) {
+  function (info) {
     const headers = info.requestHeaders;
-    headers!.forEach(function(header, i) {
+    headers!.forEach(function (header, i) {
       if (header.name.toLowerCase() === 'user-agent') {
         header.value =
           'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36';
@@ -220,13 +220,17 @@ chrome.webRequest.onBeforeSendHeaders.addListener(
   ['blocking', 'requestHeaders'],
 );
 
-chrome.notifications.onClicked.addListener(function(notificationId) {
+chrome.notifications.onClicked.addListener(function (notificationId) {
   chrome.tabs.create({ url: notificationId });
 });
 
-chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
-  chrome.tabs.sendMessage(request.tab, { action: 'presence', data: request.info }, function(response) {
-    sendResponse(response);
-  });
+chrome.runtime.onMessageExternal.addListener(function (request, sender, sendResponse) {
+  chrome.tabs.sendMessage(
+    request.tab,
+    { action: 'presence', data: request.info },
+    function (response) {
+      sendResponse(response);
+    },
+  );
   return true;
 });

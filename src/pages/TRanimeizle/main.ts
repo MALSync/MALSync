@@ -67,13 +67,16 @@ export const TRanimeizle: pageInterface = {
       return Number(url.replace(/.*-(\d{1,})-.*/, '$1') || undefined);
     },
     nextEpUrl: () => {
-      const nextEpisodeAnchor = document.querySelector(`.youtube-wrapper .my-15 a:first-child`) as HTMLAnchorElement;
+      const nextEpisodeAnchor = document.querySelector(
+        `.youtube-wrapper .my-15 a:first-child`,
+      ) as HTMLAnchorElement;
 
       if (!nextEpisodeAnchor) {
         throw Error("Can't find next episode anchor element");
       }
 
-      if (!nextEpisodeAnchor.href.includes('izle') || !nextEpisodeAnchor.href.includes('bolum')) return undefined;
+      if (!nextEpisodeAnchor.href.includes('izle') || !nextEpisodeAnchor.href.includes('bolum'))
+        return undefined;
 
       return nextEpisodeAnchor.href;
     },
@@ -128,7 +131,9 @@ export const TRanimeizle: pageInterface = {
   },
   init(page) {
     // eslint-disable-next-line import/no-unresolved, global-require
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     j.$(() => {
       if (!TRanimeizle.isSyncPage(page.url) && !IsOverviewUrl(page.url)) return;

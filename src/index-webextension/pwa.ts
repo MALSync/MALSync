@@ -1,5 +1,5 @@
 let running = false;
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (running) return;
   running = true;
   const ifrm = window.document.createElement('iframe');

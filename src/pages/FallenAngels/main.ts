@@ -43,18 +43,13 @@ export const FallenAngels: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h2.widget-title')
-        .first()
-        .text();
+      return j.$('h2.widget-title').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h2.widget-title')
-        .first()
-        .after(j.html(selector));
+      j.$('h2.widget-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -63,29 +58,22 @@ export const FallenAngels: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('h5 > a')
-            .first()
-            .attr('href'),
+          selector.find('h5 > a').first().attr('href'),
           FallenAngels.domain,
         );
       },
       elementEp(selector) {
         return utils
-          .absoluteLink(
-            selector
-              .find('h5 > a')
-              .first()
-              .attr('href'),
-            FallenAngels.domain,
-          )
+          .absoluteLink(selector.find('h5 > a').first().attr('href'), FallenAngels.domain)
           .split('/')[5];
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title === '') {
         con.error('404');
         return;

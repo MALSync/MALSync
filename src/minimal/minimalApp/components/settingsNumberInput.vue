@@ -4,7 +4,10 @@
       <slot />
     </span>
     <span class="mdl-list__item-secondary-action">
-      <div class="mdl-textfield mdl-js-textfield" style="min-width: 35px; max-width: 35px; width: 100%; padding: 0;">
+      <div
+        class="mdl-textfield mdl-js-textfield"
+        style="min-width: 35px; max-width: 35px; width: 100%; padding: 0"
+      >
         <input
           :id="option"
           v-model="value"
@@ -13,7 +16,7 @@
           :step="step"
           :min="min"
           :max="max"
-          style="text-align: center;"
+          style="text-align: center"
         />
       </div>
     </span>

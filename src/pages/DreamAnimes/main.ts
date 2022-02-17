@@ -37,14 +37,16 @@ export const DreamAnimes: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let Interval;
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       start();
 
-      utils.urlChangeDetect(function() {
+      utils.urlChangeDetect(function () {
         page.reset();
         start();
       });
@@ -57,10 +59,10 @@ export const DreamAnimes: pageInterface = {
         } else {
           clearInterval(Interval);
           Interval = utils.waitUntilTrue(
-            function() {
+            function () {
               return DreamAnimes.overview!.getTitle(page.url);
             },
-            function() {
+            function () {
               page.handlePage();
             },
           );

@@ -1,10 +1,10 @@
 <template>
-  <ul class="demo-list-control mdl-list" style="margin: 0; padding: 0;">
+  <ul class="demo-list-control mdl-list" style="margin: 0; padding: 0">
     <div class="mdl-grid">
       <div
         id="page-config"
         class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
-        style="display: none;"
+        style="display: none"
       ></div>
 
       <correction v-if="page && page.UILoaded" :page="page"></correction>
@@ -19,7 +19,12 @@
             {{ lang('settings_Mode') }}
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select id="syncMode" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+            <select
+              id="syncMode"
+              name="myinfo_score"
+              class="inputtext mdl-textfield__input"
+              style="outline: none"
+            >
               <option value="MAL">MyAnimeList API (Hybrid)</option>
               <option value="ANILIST">AniList</option>
               <option value="KITSU">Kitsu</option>
@@ -48,7 +53,7 @@
               id="autoTrackingModeanime"
               name="myinfo_score"
               class="inputtext mdl-textfield__input"
-              style="outline: none;"
+              style="outline: none"
             >
               <option value="video">{{ lang('settings_Animesync_Video') }}</option>
               <option value="instant">{{ lang('settings_Animesync_Instant') }}</option>
@@ -65,7 +70,7 @@
               id="autoTrackingModemanga"
               name="myinfo_score"
               class="inputtext mdl-textfield__input"
-              style="outline: none;"
+              style="outline: none"
             >
               <option value="instant">{{ lang('settings_Animesync_Instant') }}</option>
               <option value="manual">{{ lang('settings_Animesync_Manual') }}</option>
@@ -73,7 +78,9 @@
           </span>
         </li>
         <numberInput
-          v-show="options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'"
+          v-show="
+            options.autoTrackingModeanime == 'video' || options.autoTrackingModemanga == 'video'
+          "
           option="videoDuration"
           :min="10"
           :max="99"
@@ -81,13 +88,19 @@
         >
 
         <numberInput
-          v-show="options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'"
+          v-show="
+            options.autoTrackingModeanime == 'instant' || options.autoTrackingModemanga == 'instant'
+          "
           option="delay"
           >{{ lang('settings_AutoTracking_Instant', [options.delay]) }}</numberInput
         >
 
         <li class="mdl-list__item">
-          <button id="allSitesUi" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          <button
+            id="allSitesUi"
+            type="button"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+          >
             {{ lang('settings_website_button') }}
           </button>
           <button
@@ -95,7 +108,7 @@
             id="customDomainsUi"
             type="button"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            style="margin-left: 15px;"
+            style="margin-left: 15px"
           >
             {{ lang('settings_custom_domains_button') }}
           </button>
@@ -110,7 +123,7 @@
           <a
             href="https://github.com/MALSync/MALSync/wiki/Local-Sync"
             target="_blank"
-            style="margin-left: auto; margin-right: 10px;"
+            style="margin-left: auto; margin-right: 10px"
             >[INFO]</a
           >
         </checkbox>
@@ -123,7 +136,7 @@
           >
             {{ lang('settings_LocalSync_Export') }}
           </button>
-          <fileUpload style="margin-left: 15px;" @upload="importFallbackSync">{{
+          <fileUpload style="margin-left: 15px" @upload="importFallbackSync">{{
             lang('settings_LocalSync_Import')
           }}</fileUpload>
         </li>
@@ -153,7 +166,12 @@
             >
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select id="malThumbnail" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+            <select
+              id="malThumbnail"
+              name="myinfo_score"
+              class="inputtext mdl-textfield__input"
+              style="outline: none"
+            >
               <option value="144">{{ lang('settings_Thumbnails_Large') }}</option>
               <option value="100">{{ lang('settings_Thumbnails_Medium') }}</option>
               <option value="60">{{ lang('settings_Thumbnails_Small') }}</option>
@@ -174,9 +192,7 @@
 
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <div class="mdl-card__title mdl-card--border">
-          <h2 class="mdl-card__title-text">
-            MyAnimeList / AniList / Kitsu / Simkl
-          </h2>
+          <h2 class="mdl-card__title-text">MyAnimeList / AniList / Kitsu / Simkl</h2>
         </div>
         <checkbox option="epPredictions">{{ lang('settings_epPredictions') }}</checkbox>
         <checkbox option="malTags">
@@ -200,7 +216,12 @@
             {{ lang('settings_miniMAL_theme') }}
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select id="theme" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+            <select
+              id="theme"
+              name="myinfo_score"
+              class="inputtext mdl-textfield__input"
+              style="outline: none"
+            >
               <option value="auto">Auto</option>
               <option value="light">Light</option>
               <option value="dark">Dark</option>
@@ -208,12 +229,18 @@
             </select>
           </span>
         </li>
-        <span class="option-extension" style="display: none;"
+        <span class="option-extension" style="display: none"
           ><checkbox option="minimalWindow">{{ lang('settings_miniMAL_window') }}</checkbox></span
         >
-        <checkbox option="floatButtonStealth">{{ lang('settings_miniMAL_floatButtonStealth') }}</checkbox>
-        <checkbox option="minimizeBigPopup">{{ lang('settings_miniMAL_minimizeBigPopup') }}</checkbox>
-        <checkbox option="floatButtonCorrection">{{ lang('settings_miniMAL_floatButtonCorrection') }}</checkbox>
+        <checkbox option="floatButtonStealth">{{
+          lang('settings_miniMAL_floatButtonStealth')
+        }}</checkbox>
+        <checkbox option="minimizeBigPopup">{{
+          lang('settings_miniMAL_minimizeBigPopup')
+        }}</checkbox>
+        <checkbox option="floatButtonCorrection">{{
+          lang('settings_miniMAL_floatButtonCorrection')
+        }}</checkbox>
         <checkbox option="floatButtonHide">{{ lang('settings_miniMAL_floatButtonHide') }}</checkbox>
         <checkbox v-if="!isExtension()" option="autoCloseMinimal">{{
           lang('settings_miniMAL_autoCloseMinimal')
@@ -238,9 +265,16 @@
             {{ lang('settings_miniMAL_Display') }}
           </span>
           <span class="mdl-list__item-secondary-action">
-            <select id="posLeft" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+            <select
+              id="posLeft"
+              name="myinfo_score"
+              class="inputtext mdl-textfield__input"
+              style="outline: none"
+            >
               <option value="left">{{ lang('settings_miniMAL_Display_Left') }}</option>
-              <option v-if="isExtension()" value="center">{{ lang('settings_miniMAL_Display_Center') }}</option>
+              <option v-if="isExtension()" value="center">
+                {{ lang('settings_miniMAL_Display_Center') }}
+              </option>
               <option value="right">{{ lang('settings_miniMAL_Display_Right') }}</option>
             </select>
           </span>
@@ -248,8 +282,11 @@
         <!--${materialCheckbox('miniMALonMal','Display on MyAnimeList')/*TODO*/}
         ${materialCheckbox('displayFloatButton','Floating menu button')}
         ${materialCheckbox('outWay','Move video out of the way')}-->
-        <li class="mdl-list__item" style="display: inline-block; width: 49%;">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+        <li class="mdl-list__item" style="display: inline-block; width: 49%">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+            style="width: 100%"
+          >
             <input
               id="miniMalHeight"
               class="mdl-textfield__input"
@@ -262,9 +299,18 @@
             </label>
           </div>
         </li>
-        <li class="mdl-list__item" style="display: inline-block; width: 50%;">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
-            <input id="miniMalWidth" class="mdl-textfield__input" type="text" step="1" :value="options.miniMalWidth" />
+        <li class="mdl-list__item" style="display: inline-block; width: 50%">
+          <div
+            class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+            style="width: 100%"
+          >
+            <input
+              id="miniMalWidth"
+              class="mdl-textfield__input"
+              type="text"
+              step="1"
+              :value="options.miniMalWidth"
+            />
             <label class="mdl-textfield__label" for="miniMalWidth">
               {{ lang('settings_miniMAL_Width') }}
             </label>
@@ -283,24 +329,37 @@
         <checkbox option="autoresume">{{ lang('settings_Video_Resume') }}</checkbox>
         <checkbox option="autoNextEp">{{ lang('settings_autoNextEp') }}</checkbox>
 
-        <shortcut v-if="isExtension()" option="nextEpShort">{{ lang('settings_Shortcuts_Next_Episode') }}</shortcut>
+        <shortcut v-if="isExtension()" option="nextEpShort">{{
+          lang('settings_Shortcuts_Next_Episode')
+        }}</shortcut>
 
-        <shortcut v-if="isExtension()" option="introSkipFwd">{{ lang('settings_Shortcuts_Skip_Forward') }}</shortcut>
-        <shortcut v-if="isExtension()" option="introSkipBwd">{{ lang('settings_Shortcuts_Skip_Backward') }}</shortcut>
+        <shortcut v-if="isExtension()" option="introSkipFwd">{{
+          lang('settings_Shortcuts_Skip_Forward')
+        }}</shortcut>
+        <shortcut v-if="isExtension()" option="introSkipBwd">{{
+          lang('settings_Shortcuts_Skip_Backward')
+        }}</shortcut>
 
         <numberInput v-if="isExtension()" option="introSkip" :min="5">{{
           lang('settings_introSkip', [options.introSkip])
         }}</numberInput>
       </div>
 
-      <div id="progressCheck" class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
+      <div
+        id="progressCheck"
+        class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
+      >
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">
             {{ lang('settings_ProgressCheck') }}
           </h2>
         </div>
 
-        <dropdown option="progressInterval" :text="lang('settings_Interval')" @changed="startProgressSync()">
+        <dropdown
+          option="progressInterval"
+          :text="lang('settings_Interval')"
+          @changed="startProgressSync()"
+        >
           <option value="0">{{ lang('settings_Interval_Off') }}</option>
           <option value="30">30min</option>
           <option value="60">1h</option>
@@ -315,7 +374,9 @@
           :text="lang('settings_Interval_Default_Anime')"
           @changed="startProgressSync()"
         >
-          <option v-for="drop in progressAnimeDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
+          <option v-for="drop in progressAnimeDropdown" :key="drop.key" :value="drop.key">
+            {{ drop.label }}
+          </option>
         </dropdown>
 
         <dropdown
@@ -323,7 +384,9 @@
           :text="lang('settings_Interval_Default_Manga')"
           @changed="startProgressSync()"
         >
-          <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">{{ drop.label }}</option>
+          <option v-for="drop in progressMangaDropdown" :key="drop.key" :value="drop.key">
+            {{ drop.label }}
+          </option>
         </dropdown>
         <checkbox option="progressNotificationsAnime">
           {{ lang('settings_Notifications') }} ({{ lang('Anime') }})
@@ -338,7 +401,7 @@
         <div class="mdl-card__title mdl-card--border">
           <h2 class="mdl-card__title-text">Discord Rich Presence</h2>
           <a
-            style="margin-left: auto;"
+            style="margin-left: auto"
             href="https://github.com/MALSync/MALSync/wiki/Discord-Rich-Presence"
             target="_blank"
           >
@@ -360,27 +423,31 @@
           <h2 class="mdl-card__title-text">{{ lang('settings_ETC') }}</h2>
         </div>
         <checkbox option="forceEn">Force english</checkbox>
-        <span style="display: none;"
+        <span style="display: none"
           ><checkbox option="userscriptModeButton"
             >{{ lang('settings_Userscriptmode')
-            }}<tooltip direction="bottom">{{ lang('settings_Userscriptmode_Text') }}</tooltip></checkbox
+            }}<tooltip direction="bottom">{{
+              lang('settings_Userscriptmode_Text')
+            }}</tooltip></checkbox
           ></span
         >
-        <span class="option-extension" style="display: none;"
+        <span class="option-extension" style="display: none"
           ><checkbox option="highlightAllEp"
             >{{ lang('settings_highlightAllEp')
             }}<tooltip>{{ lang('settings_highlightAllEp_Text') }}</tooltip></checkbox
           ></span
         >
-        <span class="option-extension" style="display: none;"
+        <span class="option-extension" style="display: none"
           ><checkbox option="checkForFiller"
-            >{{ lang('settings_filler') }}<tooltip>{{ lang('settings_filler_text') }}</tooltip></checkbox
+            >{{ lang('settings_filler')
+            }}<tooltip>{{ lang('settings_filler_text') }}</tooltip></checkbox
           ></span
         >
 
-        <span class="option-extension" style="display: none;">
+        <span class="option-extension" style="display: none">
           <checkbox option="crashReport">
-            {{ lang('settings_crash_report') }}<tooltip>{{ lang('settings_crash_report_text') }}</tooltip>
+            {{ lang('settings_crash_report')
+            }}<tooltip>{{ lang('settings_crash_report_text') }}</tooltip>
           </checkbox>
         </span>
 
@@ -400,9 +467,7 @@
         -->
 
         <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            List Sync
-          </span>
+          <span class="mdl-list__item-primary-content"> List Sync </span>
           <span class="mdl-list__item-secondary-action">
             <button
               id="listSyncUi"
@@ -415,14 +480,18 @@
         </li>
 
         <li class="mdl-list__item">
-          <button id="clearCache" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          <button
+            id="clearCache"
+            type="button"
+            class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+          >
             {{ lang('settings_ClearCache') }}
           </button>
           <button
             id="cleanTagsUi"
             type="button"
             class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            style="margin-left: 20px;"
+            style="margin-left: 20px"
           >
             {{ lang('settings_clean_tags_button') }}
           </button>
@@ -434,14 +503,23 @@
         class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp"
         @click="myOpen()"
       >
-        <div style="display: table; width: 100%;">
-          <template v-for="(contributerGroup, group) in contributer" :key="group" class="inline-block">
+        <div style="display: table; width: 100%">
+          <template
+            v-for="(contributerGroup, group) in contributer"
+            :key="group"
+            class="inline-block"
+          >
             <div class="group">{{ group }}</div>
             <div v-for="contr in contributerGroup" :key="contr.name" class="inline-block">
               <div class="user">
                 <div class="image align-middle">
-                  <img v-if="contr.gif" v-lazy="contr.gif" class="lazy init gif" style="max-width: 100%;"/>
-                  <img v-lazy="contr.image" class="lazy init" style="max-width: 100%;"/>
+                  <img
+                    v-if="contr.gif"
+                    v-lazy="contr.gif"
+                    class="lazy init gif"
+                    style="max-width: 100%"
+                  />
+                  <img v-lazy="contr.image" class="lazy init" style="max-width: 100%" />
                 </div>
                 <div class="text align-middle">
                   <div class="name" :style="'color:' + contr.color" :title="contr.name">
@@ -456,45 +534,78 @@
           </template>
           <div class="user pop">
             <div class="image align-middle">
-              <i class="material-icons" style="color: white; padding: 4px; cursor: pointer;">
+              <i class="material-icons" style="color: white; padding: 4px; cursor: pointer">
                 arrow_right_alt
               </i>
             </div>
           </div>
-          <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw" class="discord" style="min-height: 160px; margin: -15px; margin-top: 15px; background-color: #738bd7; position: relative;">
+          <a
+            rel="noreferrer"
+            href="https://discord.com/invite/cTH4yaw"
+            class="discord"
+            style="
+              min-height: 160px;
+              margin: -15px;
+              margin-top: 15px;
+              background-color: #738bd7;
+              position: relative;
+            "
+          >
             <div
-              style="height: 20px; background: linear-gradient(to bottom, #fff 0%,#738bd7 74%);"
+              style="height: 20px; background: linear-gradient(to bottom, #fff 0%, #738bd7 74%)"
             ></div>
-            <img v-lazy="'https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3'" style="margin: auto; display: block; "/>
-            <div style="background-color: #697ec4; height: 50px; width: 100%; background-image: none !important; margin-top: -50px;"></div>
+            <img
+              v-lazy="'https://discord.com/api/guilds/358599430502481920/widget.png?style=banner3'"
+              style="margin: auto; display: block"
+            />
+            <div
+              style="
+                background-color: #697ec4;
+                height: 50px;
+                width: 100%;
+                background-image: none !important;
+                margin-top: -50px;
+              "
+            ></div>
           </a>
         </div>
       </div>
       <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
         <li class="mdl-list__item">
-          <div style="line-height: 30px;">
+          <div style="line-height: 30px">
             <a rel="noreferrer" :href="version.link">
-              <img v-lazy="version.img"/>
+              <img v-lazy="version.img" />
             </a>
 
             <br />
 
             <a rel="noreferrer" href="https://discord.com/invite/cTH4yaw">
-              <img v-lazy="'https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA'"/>
+              <img
+                v-lazy="
+                  'https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA'
+                "
+              />
             </a>
 
             <br />
 
             <a rel="noreferrer" href="https://github.com/MALSync/MALSync">
-              <img v-lazy="'https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github'"/>
+              <img
+                v-lazy="
+                  'https://img.shields.io/github/last-commit/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white&label=Github'
+                "
+              />
             </a>
 
             <br />
 
             <a rel="noreferrer" href="https://github.com/MALSync/MALSync/issues">
-              <img v-lazy="'https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white'"/>
+              <img
+                v-lazy="
+                  'https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white'
+                "
+              />
             </a>
-
           </div>
         </li>
       </div>
@@ -568,7 +679,7 @@ export default {
       chrome.commands.getAll(commands => {
         con.info('Commands', commands);
 
-        const tempCommands = commands.reduce(function(total, current) {
+        const tempCommands = commands.reduce(function (total, current) {
           total[current.name!] = current;
           return total;
         }, {});
@@ -617,16 +728,15 @@ export default {
       const exportObj = await exportData();
       con.log('Export', exportObj);
 
-      const encodedUri = `data:text/csv;charset=utf-8,${encodeURIComponent(JSON.stringify(exportObj))}`;
+      const encodedUri = `data:text/csv;charset=utf-8,${encodeURIComponent(
+        JSON.stringify(exportObj),
+      )}`;
       try {
         const link = document.createElement('a');
         link.setAttribute('href', encodedUri);
         link.setAttribute(
           'download',
-          `malsync_${new Date()
-            .toJSON()
-            .slice(0, 10)
-            .replace(/-/g, '/')}.txt`,
+          `malsync_${new Date().toJSON().slice(0, 10).replace(/-/g, '/')}.txt`,
         );
         document.body.appendChild(link);
 

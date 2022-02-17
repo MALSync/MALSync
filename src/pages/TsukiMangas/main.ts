@@ -58,29 +58,19 @@ export const TsukiMangas: pageInterface = {
         return j.$('div.over23 > div.allbox > div.allcap');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          TsukiMangas.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), TsukiMangas.domain);
       },
       elementEp(selector) {
         return utils
-          .absoluteLink(
-            selector
-              .find('a')
-              .first()
-              .attr('href'),
-            TsukiMangas.domain,
-          )
+          .absoluteLink(selector.find('a').first().attr('href'), TsukiMangas.domain)
           .split('/')[7];
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let interval;
     let oldJsonString = '';
@@ -89,7 +79,7 @@ export const TsukiMangas: pageInterface = {
       mangaName: null,
     };
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
@@ -97,14 +87,15 @@ export const TsukiMangas: pageInterface = {
     function check() {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
-        function() {
+        function () {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
             const newJsonString = JSON.stringify(jsonData);
             if (
               jsonData.mangaName &&
               newJsonString !== oldJsonString &&
-              (oldJson.mangaName !== jsonData.mangaName || oldJson.currentChapter !== jsonData.currentChapter)
+              (oldJson.mangaName !== jsonData.mangaName ||
+                oldJson.currentChapter !== jsonData.currentChapter)
             ) {
               oldJson = jsonData;
               oldJsonString = newJsonString;
@@ -113,7 +104,7 @@ export const TsukiMangas: pageInterface = {
           }
           return false;
         },
-        function() {
+        function () {
           if (
             Object.prototype.hasOwnProperty.call(jsonData, 'isReaderPage') &&
             Object.prototype.hasOwnProperty.call(jsonData, 'identifier') &&

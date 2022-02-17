@@ -22,23 +22,13 @@ export const SugarBabies: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.c-breadcrumb-wrapper .breadcrumb li')
-        .last()
-        .prev()
-        .text()
-        .trim();
+      return j.$('.c-breadcrumb-wrapper .breadcrumb li').last().prev().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('.c-breadcrumb-wrapper .breadcrumb li a')
-          .last()
-          .attr('href') || ''
-      );
+      return j.$('.c-breadcrumb-wrapper .breadcrumb li a').last().attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -50,18 +40,12 @@ export const SugarBabies: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$('.nav-links .next_page')
-        .first()
-        .attr('href');
+      return j.$('.nav-links .next_page').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.summary-content.vote-details .rate-title')
-        .text()
-        .trim();
+      return j.$('.summary-content.vote-details .rate-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -81,12 +65,7 @@ export const SugarBabies: pageInterface = {
         return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return SugarBabies.sync.getEpisode(SugarBabies.overview!.list!.elementUrl!(selector));
@@ -94,17 +73,19 @@ export const SugarBabies: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (SugarBabies.isSyncPage(page.url)) {
         page.handlePage();
       }
       if (SugarBabies.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.wp-manga-chapter').length > 0;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

@@ -34,7 +34,9 @@ export class SearchClass extends SearchClassExtend {
         type: 'correction',
       });
 
-      this.vueInstance = createApp(correctionApp, flasmessage.find('.ms-shadow').get(0), { shadowDom: true });
+      this.vueInstance = createApp(correctionApp, flasmessage.find('.ms-shadow').get(0), {
+        shadowDom: true,
+      });
       this.vueInstance.searchClass = this;
       this.vueInstance.syncMode = syncMode;
       this.vueInstance.unmountFnc = () => {

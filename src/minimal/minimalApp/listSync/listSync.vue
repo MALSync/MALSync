@@ -1,8 +1,8 @@
 <template>
   <div>
     <backbutton />
-    <div class="mdl-grid bg-cell" style="display: block; margin: 10px;">
-      <div style="margin-bottom: 20px;">
+    <div class="mdl-grid bg-cell" style="display: block; margin: 10px">
+      <div style="margin-bottom: 20px">
         This feature is still in beta. Use at your own risk. More info
         <a href="https://github.com/MALSync/MALSync/wiki/List-Sync">Here</a>
       </div>
@@ -13,7 +13,7 @@
 
       <div
         :style="getTypeColor(getType('myanimelist.net'))"
-        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
+        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px"
       >
         MyAnimeList <span v-if="listProvider.mal.master">(Master)</span><br />
         <span v-dompurify-html="listProvider.mal.text"></span><br />
@@ -23,7 +23,7 @@
       </div>
       <div
         :style="getTypeColor(getType('anilist.co'))"
-        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
+        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px"
       >
         AniList <span v-if="listProvider.anilist.master">(Master)</span><br />
         <span v-dompurify-html="listProvider.anilist.text"></span> <br />
@@ -33,7 +33,7 @@
       </div>
       <div
         :style="getTypeColor(getType('kitsu.io'))"
-        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
+        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px"
       >
         Kitsu <span v-if="listProvider.kitsu.master">(Master)</span><br />
         <span v-dompurify-html="listProvider.kitsu.text"></span><br />
@@ -43,7 +43,7 @@
       </div>
       <div
         :style="getTypeColor(getType('simkl.com'))"
-        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px;"
+        style="display: inline-block; margin-right: 40px; padding-left: 10px; margin-bottom: 20px"
       >
         Simkl <span v-if="listProvider.simkl.master">(Master)</span><br />
         <span v-dompurify-html="listProvider.simkl.text"></span><br />
@@ -57,7 +57,7 @@
         type="button"
         :disabled="!listReady"
         class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-        style="margin-bottom: 20px;"
+        style="margin-bottom: 20px"
         @click="syncList()"
       >
         Sync
@@ -67,15 +67,11 @@
         v-if="apiType() == 'webextension'"
         type="button"
         class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-        style="margin-bottom: 20px; float: right;"
+        style="margin-bottom: 20px; float: right"
         @click="backgroundClick()"
       >
-        <template v-if="isBackgroundEnabled">
-          Background Sync Enabled
-        </template>
-        <template v-else>
-          Sync in Background
-        </template>
+        <template v-if="isBackgroundEnabled"> Background Sync Enabled </template>
+        <template v-else> Sync in Background </template>
       </button>
 
       <span v-if="listLength">{{ listLength - listSyncLength }}/{{ listLength }}</span>
@@ -83,19 +79,24 @@
       <div
         v-for="(item, index) in listDiff"
         :key="index"
-        style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
+        style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px"
       >
-        <div style="width: 100%; border-bottom: 1px solid black; padding: 0 5px;">
+        <div style="width: 100%; border-bottom: 1px solid black; padding: 0 5px">
           {{ item.master.title }}
         </div>
-        <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
+        <div style="width: 50px; border-right: 1px solid black; padding: 5px">
           {{ index }}
         </div>
         <div
           v-if="item.master && item.master.uid"
           class="master"
           :style="getTypeColor(getType(item.master.url))"
-          style="background-color: #ffd5d5; border-right: 1px solid black; padding: 5px 10px; width: 70px;"
+          style="
+            background-color: #ffd5d5;
+            border-right: 1px solid black;
+            padding: 5px 10px;
+            width: 70px;
+          "
         >
           ID: <a target="_blank" :href="item.master.url">{{ item.master.uid }}</a
           ><br />
@@ -108,18 +109,22 @@
           :key="slave.uid"
           class="slave"
           :style="getTypeColor(getType(slave.url))"
-          style="border-right: 1px solid black; padding: 5px 10px; width: 100px;"
+          style="border-right: 1px solid black; padding: 5px 10px; width: 100px"
         >
           ID: <a target="_blank" :href="slave.url">{{ slave.uid }}</a
           ><br />
           EP: {{ slave.watchedEp }}
-          <span v-if="slave.diff && slave.diff.watchedEp" style="color: green;">→ {{ slave.diff.watchedEp }}</span
+          <span v-if="slave.diff && slave.diff.watchedEp" style="color: green"
+            >→ {{ slave.diff.watchedEp }}</span
           ><br />
           Status: {{ slave.status }}
-          <span v-if="slave.diff && slave.diff.status" style="color: green;">→ {{ slave.diff.status }}</span
+          <span v-if="slave.diff && slave.diff.status" style="color: green"
+            >→ {{ slave.diff.status }}</span
           ><br />
           Score: {{ slave.score }}
-          <span v-if="slave.diff && slave.diff.score" style="color: green;">→ {{ slave.diff.score }}</span>
+          <span v-if="slave.diff && slave.diff.score" style="color: green"
+            >→ {{ slave.diff.score }}</span
+          >
         </div>
       </div>
 
@@ -128,18 +133,18 @@
         <div
           v-for="item in missing"
           :key="item.url"
-          style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px;"
+          style="border: 1px solid black; display: flex; flex-wrap: wrap; margin-bottom: 10px"
         >
-          <div style="width: 50px; border-right: 1px solid black; padding: 5px;">
+          <div style="width: 50px; border-right: 1px solid black; padding: 5px">
             <a target="_blank" :href="item.url">{{ item.malId }}</a>
           </div>
-          <div :style="getTypeColor(item.syncType)" style="padding: 5px 10px;">
+          <div :style="getTypeColor(item.syncType)" style="padding: 5px 10px">
             {{ item.title }}<br />
             EP: {{ item.watchedEp }}<br />
             Status: {{ item.status }}<br />
             Score: {{ item.score }}
           </div>
-          <div v-if="item.error" style="color: red; width: 100%; border-top: 1px solid;">
+          <div v-if="item.error" style="color: red; width: 100%; border-top: 1px solid">
             {{ item.error }}
           </div>
         </div>
@@ -224,7 +229,14 @@ export default {
 
     const listOptions = await sync.retriveLists(providerList, type, sync.getList);
 
-    sync.generateSync(listOptions.master as any, listOptions.slaves, mode, listOptions.typeArray, this.list, this.missing);
+    sync.generateSync(
+      listOptions.master as any,
+      listOptions.slaves,
+      mode,
+      listOptions.typeArray,
+      this.list,
+      this.missing,
+    );
     this.list = { ...this.list };
 
     this.listReady = true;

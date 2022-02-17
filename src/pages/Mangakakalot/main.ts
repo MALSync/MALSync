@@ -14,38 +14,24 @@ export const Mangakakalot: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('body > div.breadcrumb > p > span:nth-child(3) > a > span')
-        .first()
-        .text();
+      return j.$('body > div.breadcrumb > p > span:nth-child(3) > a > span').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('body > div.breadcrumb > p > span:nth-child(3) > a')
-          .first()
-          .attr('href') || ''
-      );
+      return j.$('body > div.breadcrumb > p > span:nth-child(3) > a').first().attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[5].match(/\d+/gim));
     },
     nextEpUrl(url) {
-      return j
-        .$('div.btn-navigation-chap > a.back')
-        .first()
-        .attr('href');
+      return j.$('div.btn-navigation-chap > a.back').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.breadcrumb.breadcrumbs > p > span:nth-child(3) > a > span')
-        .first()
-        .text();
+      return j.$('div.breadcrumb.breadcrumbs > p > span:nth-child(3) > a > span').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -62,21 +48,11 @@ export const Mangakakalot: pageInterface = {
         return j.$("div.row:not('div.title-list-chapter')");
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('span:nth-child(1) > a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('span:nth-child(1) > a').first().attr('href') || '';
       },
       elementEp(selector) {
         return Number(
-          String(
-            selector
-              .find('span:nth-child(1) > a')
-              .first()
-              .attr('href'),
-          )
+          String(selector.find('span:nth-child(1) > a').first().attr('href'))
             .split('/')[5]
             .match(/\d+/gim),
         );
@@ -84,8 +60,10 @@ export const Mangakakalot: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'manga') {
         page.handlePage();
       }

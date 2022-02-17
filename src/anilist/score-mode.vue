@@ -60,7 +60,8 @@ export default {
   watch: {
     value: {
       handler(newValue) {
-        if (this.modelValue !== newValue) this.modelValue = this.scoreModeStrategy.valueToOptionValue(newValue);
+        if (this.modelValue !== newValue)
+          this.modelValue = this.scoreModeStrategy.valueToOptionValue(newValue);
       },
       immediate: true,
     },

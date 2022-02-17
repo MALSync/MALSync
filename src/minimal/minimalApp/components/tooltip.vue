@@ -3,7 +3,13 @@
     <div
       :id="id"
       class="icon material-icons"
-      style="font-size:16px; line-height: 0; color: #7f7f7f; padding-bottom: 20px; padding-left: 3px;"
+      style="
+        font-size: 16px;
+        line-height: 0;
+        color: #7f7f7f;
+        padding-bottom: 20px;
+        padding-left: 3px;
+      "
       :style="tagStyle"
     >
       {{ iconText }}

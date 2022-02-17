@@ -229,7 +229,8 @@ export class Single extends SingleAbstract {
           this.animeInfo.my_list_status &&
           typeof this.animeInfo.my_list_status.num_episodes_watched !== 'undefined'
         ) {
-          this.animeInfo.my_list_status.num_watched_episodes = this.animeInfo.my_list_status.num_episodes_watched;
+          this.animeInfo.my_list_status.num_watched_episodes =
+            this.animeInfo.my_list_status.num_episodes_watched;
           delete this.animeInfo.my_list_status.num_episodes_watched;
         }
       });
@@ -244,7 +245,10 @@ export class Single extends SingleAbstract {
       this.animeInfo.my_list_status.start_date = returnYYYYMMDD();
     }
 
-    if (typeof this.animeInfo.my_list_status.finish_date === 'undefined' && this._getStatus() === 2) {
+    if (
+      typeof this.animeInfo.my_list_status.finish_date === 'undefined' &&
+      this._getStatus() === 2
+    ) {
       this.animeInfo.my_list_status.finish_date = returnYYYYMMDD();
 
       if (typeof this.animeInfo.my_list_status.start_date === 'undefined') {
@@ -294,7 +298,10 @@ export class Single extends SingleAbstract {
   }
 
   public async fillRelations(): Promise<void> {
-    const cacheObj = new Cache(`fillRelations/${this.ids.mal}/${this.getType()}`, 7 * 24 * 60 * 60 * 1000);
+    const cacheObj = new Cache(
+      `fillRelations/${this.ids.mal}/${this.getType()}`,
+      7 * 24 * 60 * 60 * 1000,
+    );
 
     return cacheObj.hasValueAndIsNotEmpty().then(exists => {
       if (!exists) {

@@ -9,7 +9,13 @@ export function simklIdToMal(simklId) {
   });
 }
 
-export async function call(url, sData = {}, asParameter = false, methode: 'GET' | 'POST' = 'GET', login = true) {
+export async function call(
+  url,
+  sData = {},
+  asParameter = false,
+  methode: 'GET' | 'POST' = 'GET',
+  login = true,
+) {
   if (asParameter) {
     url += `?${j.$.param(sData)}`;
   }

@@ -7,7 +7,9 @@ export const DisasterScans: pageInterface = {
   type: 'manga',
   isSyncPage(url) {
     return Boolean(
-      utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) && utils.urlPart(url, 5).startsWith('chapter-'),
+      utils.urlPart(url, 3) === 'manga' &&
+        utils.urlPart(url, 5) &&
+        utils.urlPart(url, 5).startsWith('chapter-'),
     );
   },
   isOverviewPage(url) {
@@ -18,23 +20,13 @@ export const DisasterScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.c-breadcrumb-wrapper .breadcrumb li')
-        .last()
-        .prev()
-        .text()
-        .trim();
+      return j.$('.c-breadcrumb-wrapper .breadcrumb li').last().prev().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('.c-breadcrumb-wrapper .breadcrumb li a')
-          .last()
-          .attr('href') || ''
-      );
+      return j.$('.c-breadcrumb-wrapper .breadcrumb li a').last().attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -46,18 +38,12 @@ export const DisasterScans: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$('.nav-links .next_page')
-        .first()
-        .attr('href');
+      return j.$('.nav-links .next_page').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.summary-content.vote-details .rate-title')
-        .text()
-        .trim();
+      return j.$('.summary-content.vote-details .rate-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -77,12 +63,7 @@ export const DisasterScans: pageInterface = {
         return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return DisasterScans.sync.getEpisode(DisasterScans.overview!.list!.elementUrl!(selector));
@@ -90,17 +71,19 @@ export const DisasterScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (DisasterScans.isSyncPage(page.url)) {
         page.handlePage();
       }
       if (DisasterScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.wp-manga-chapter').length > 0;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

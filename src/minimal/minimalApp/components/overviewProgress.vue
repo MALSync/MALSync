@@ -2,7 +2,7 @@
   <div
     v-if="apiCacheKey && elements && elements.length"
     class="mdl-cell bg-cell mdl-cell--12-col mdl-shadow--4dp"
-    style="padding: 8px;"
+    style="padding: 8px"
   >
     <template v-if="completed && completed.length">
       <div>{{ lang('prediction_complete') }}</div>
@@ -25,7 +25,7 @@
           v-for="(item, index) in ongoing"
           :key="index"
           class="list-content mdl-cell--6-col mdl-cell--8-col-tablet"
-          style="display: flex; align-items: center;"
+          style="display: flex; align-items: center"
         >
           <country-flag
             :country="correctFlag(item.language)"
@@ -34,11 +34,15 @@
           />
 
           <template v-if="item.item.top.state && item.item.top.state !== 'ongoing'">
-            <span style="color: red; padding-right: 5px;">{{ lang('prediction_incomplete') }}</span>
+            <span style="color: red; padding-right: 5px">{{ lang('prediction_incomplete') }}</span>
           </template>
 
           <template v-if="item.item.top.lastEp && item.item.top.lastEp.total">
-            <template v-if="item.item.top.state && item.item.top.state !== 'ongoing' && item.item.top.stateInfo">
+            <template
+              v-if="
+                item.item.top.state && item.item.top.state !== 'ongoing' && item.item.top.stateInfo
+              "
+            >
               {{ item.item.top.stateInfo }}
             </template>
             <template v-else>
@@ -50,7 +54,9 @@
               ({{ releaseTime(item.item.top.lastEp.timestamp) }})
             </template>
             <template v-if="item.item.top.predicition">
-              [{{ lang('prediction_next', [releaseTime(item.item.top.predicition.timestamp).trim()]) }}]
+              [{{
+                lang('prediction_next', [releaseTime(item.item.top.predicition.timestamp).trim()])
+              }}]
             </template>
           </template>
         </div>
@@ -86,7 +92,7 @@ export default {
   },
   computed: {
     elements() {
-      const elements: {language, index, item}[] = [];
+      const elements: { language; index; item }[] = [];
       if (this.xhr) {
         for (const language in this.xhr) {
           for (const i in this.xhr[language]) {

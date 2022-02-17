@@ -1,7 +1,12 @@
 import { searchInterface } from '../definitions';
 import { parseJson } from '../Errors';
 
-export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
+export const search: searchInterface = async function (
+  keyword,
+  type: 'anime' | 'manga',
+  options = {},
+  sync = false,
+) {
   const query = `
     query ($search: String) {
       ${type}: Page (perPage: 10) {
@@ -54,7 +59,7 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
 
   const resItems: any = [];
 
-  j.$.each(res.data[type].results, function(index, item) {
+  j.$.each(res.data[type].results, function (index, item) {
     resItems.push({
       id: item.id,
       name: item.title.userPreferred,
@@ -64,7 +69,9 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
         return item.idMal ? `https://myanimelist.net/${type}/${item.idMal}` : null;
       },
       image: item.coverImage.medium,
-      media_type: item.format ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' ') : '',
+      media_type: item.format
+        ? (item.format.charAt(0) + item.format.slice(1).toLowerCase()).replace('_', ' ')
+        : '',
       isNovel: item.format === 'NOVEL',
       score: item.averageScore,
       year: item.startDate.year,

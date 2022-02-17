@@ -9,7 +9,7 @@
       <template v-if="username && listObj.deauth">
         <i
           class="material-icons"
-          style="color: black; cursor: pointer; vertical-align: middle; margin-top: -4px;"
+          style="color: black; cursor: pointer; vertical-align: middle; margin-top: -4px"
           @click="deauth()"
         >
           eject

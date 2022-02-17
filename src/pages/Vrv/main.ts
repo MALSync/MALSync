@@ -10,11 +10,13 @@ function getSeries(page, overview = '') {
   ident = undefined;
   api.request.xhr('GET', page.url).then(response => {
     con.log(response);
-    json = JSON.parse(`{${response.responseText.split('__INITIAL_STATE__ = {')[1].split('};')[0]}}`);
+    json = JSON.parse(
+      `{${response.responseText.split('__INITIAL_STATE__ = {')[1].split('};')[0]}}`,
+    );
     con.log(json);
 
     if (overview.length) {
-      json.seriesPage.seasons.forEach(function(element) {
+      json.seriesPage.seasons.forEach(function (element) {
         if (overview.indexOf(element.json.title) !== -1) {
           con.log('Season Found', element);
           ident = element;
@@ -32,7 +34,16 @@ function getSeries(page, overview = '') {
 export const Vrv: pageInterface = {
   name: 'Vrv',
   domain: 'https://vrv.co',
-  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
+  languages: [
+    'English',
+    'Spanish',
+    'Portuguese',
+    'French',
+    'German',
+    'Arabic',
+    'Italian',
+    'Russian',
+  ],
   type: 'anime',
   isSyncPage(url) {
     if (utils.urlPart(window.location.href, 3) === 'series') return false;
@@ -40,7 +51,9 @@ export const Vrv: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return `${json.watch.mediaResource.json.series_title} - ${json.watch.mediaResource.json.season_title.replace(
+      return `${
+        json.watch.mediaResource.json.series_title
+      } - ${json.watch.mediaResource.json.season_title.replace(
         json.watch.mediaResource.json.series_title,
         '',
       )}`;
@@ -49,7 +62,9 @@ export const Vrv: pageInterface = {
       return json.watch.mediaResource.json.season_id;
     },
     getOverviewUrl(url) {
-      return `${Vrv.domain}/series/${json.watch.mediaResource.json.series_id}?season=${Vrv.sync.getIdentifier(url)}`;
+      return `${Vrv.domain}/series/${
+        json.watch.mediaResource.json.series_id
+      }?season=${Vrv.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
       return json.watch.mediaResource.json.episode_number;
@@ -70,9 +85,7 @@ export const Vrv: pageInterface = {
       return ident.json.id;
     },
     uiSelector(selector) {
-      $('.erc-series-info .series-title')
-        .first()
-        .after(j.html(selector));
+      $('.erc-series-info .series-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -80,19 +93,10 @@ export const Vrv: pageInterface = {
         return j.$('.erc-series-media-list-element');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Vrv.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Vrv.domain);
       },
       elementEp(selector) {
-        const epInfo = selector
-          .find('.episode-title')
-          .text()
-          .trim();
+        const epInfo = selector.find('.episode-title').text().trim();
         const temp = epInfo.match(/^E\d+/i);
 
         if (!temp) return NaN;
@@ -114,39 +118,23 @@ export const Vrv: pageInterface = {
       }
       if (utils.urlPart(window.location.href, 3) === 'series') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.erc-series-info .series-title').first().length;
           },
-          function() {
+          function () {
             if (
               !j.$('.erc-series-media-list-element').length ||
-              typeof j
-                .$('.erc-series-media-list-element a')
-                .first()
-                .attr('href') !== 'undefined'
+              typeof j.$('.erc-series-media-list-element a').first().attr('href') !== 'undefined'
             ) {
-              getSeries(
-                page,
-                $('.controls-select-trigger .season-info')
-                  .text()
-                  .trim(),
-              );
+              getSeries(page, $('.controls-select-trigger .season-info').text().trim());
             }
             seasonInterval = utils.changeDetect(
-              function() {
+              function () {
                 page.reset();
-                getSeries(
-                  page,
-                  $('.controls-select-trigger .season-info')
-                    .text()
-                    .trim(),
-                );
+                getSeries(page, $('.controls-select-trigger .season-info').text().trim());
               },
-              function() {
-                return j
-                  .$('.erc-series-media-list-element a')
-                  .first()
-                  .attr('href');
+              function () {
+                return j.$('.erc-series-media-list-element a').first().attr('href');
               },
             );
           },
@@ -154,11 +142,13 @@ export const Vrv: pageInterface = {
       }
     }
 
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       ready();
     });
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.url = window.location.href;
       ready();
     });

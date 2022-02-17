@@ -20,37 +20,20 @@ export const JapScan: pageInterface = {
     },
     getOverviewUrl(url) {
       return (
-        JapScan.domain +
-        (j
-          .$('ol.breadcrumb > li:nth-child(3) > a')
-          .first()
-          .attr('href') || '')
+        JapScan.domain + (j.$('ol.breadcrumb > li:nth-child(3) > a').first().attr('href') || '')
       );
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
     },
     nextEpUrl(url) {
-      const anchorHref =
-        j
-          .$('div.clearfix > p > a')
-          .last()
-          .attr('href') || '';
+      const anchorHref = j.$('div.clearfix > p > a').last().attr('href') || '';
 
       if (
-        j
-          .$('div.clearfix > p > span')
-          .last()
-          .text() === 'Chapitre Suivant' &&
+        j.$('div.clearfix > p > span').last().text() === 'Chapitre Suivant' &&
         anchorHref.length
       ) {
-        return (
-          JapScan.domain +
-          (j
-            .$('div.clearfix > p > a')
-            .last()
-            .attr('href') || '')
-        );
+        return JapScan.domain + (j.$('div.clearfix > p > a').last().attr('href') || '');
       }
       return '';
     },
@@ -68,9 +51,7 @@ export const JapScan: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div#main > div.card > div.card-body > h1')
-        .first()
-        .after(j.html(selector));
+      j.$('div#main > div.card > div.card-body > h1').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -78,29 +59,18 @@ export const JapScan: pageInterface = {
         return j.$('div#chapters_list > div > div.chapters_list.text-truncate');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          JapScan.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), JapScan.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .attr('href')
-            ?.split('/')?.[3]
-            ?.match(/\d+/gim),
-        );
+        return Number(selector.find('a').first().attr('href')?.split('/')?.[3]?.match(/\d+/gim));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title === '') {
         con.error('404');
         return;

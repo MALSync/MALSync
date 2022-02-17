@@ -14,7 +14,9 @@ export const mangatx: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a')
+        .$(
+          'div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
+        )
         .text()
         .trim();
     },
@@ -47,13 +49,17 @@ export const mangatx: pageInterface = {
     },
     nextEpUrl(url) {
       return j
-        .$('div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page')
+        .$(
+          'div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
+        )
         .attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return utils.getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1')).trim();
+      return utils
+        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1'))
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
@@ -73,13 +79,7 @@ export const mangatx: pageInterface = {
         return j.$('div.page-content-listing.single-page > div > ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          mangatx.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), mangatx.domain);
       },
       elementEp(selector) {
         return mangatx.sync.getEpisode(mangatx.overview!.list!.elementUrl!(selector));
@@ -87,8 +87,10 @@ export const mangatx: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'manga' &&
         page.url.split('/')[4] !== undefined &&

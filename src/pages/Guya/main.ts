@@ -8,13 +8,21 @@ export const Guya: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'read' && !excluded.includes(url.split('/')[4]) && url.split('/').length >= 8) {
+    if (
+      url.split('/')[3] === 'read' &&
+      !excluded.includes(url.split('/')[4]) &&
+      url.split('/').length >= 8
+    ) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'read' && !excluded.includes(url.split('/')[4]) && url.split('/').length >= 6) {
+    if (
+      url.split('/')[3] === 'read' &&
+      !excluded.includes(url.split('/')[4]) &&
+      url.split('/').length >= 6
+    ) {
       return true;
     }
     return false;
@@ -27,7 +35,10 @@ export const Guya: pageInterface = {
       return utils.urlPart(url, 5);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('#rdr-main > aside > header > h1 > a').attr('href'), Guya.domain);
+      return utils.absoluteLink(
+        j.$('#rdr-main > aside > header > h1 > a').attr('href'),
+        Guya.domain,
+      );
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 6));
@@ -35,10 +46,7 @@ export const Guya: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.series-content > article > h1, article content > h1')
-        .first()
-        .text();
+      return j.$('div.series-content > article > h1, article content > h1').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 5);
@@ -64,32 +72,29 @@ export const Guya: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     let interval;
 
     let urlWithoutPage = '';
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       clearInterval(interval);
       interval = utils.waitUntilTrue(
-        function() {
-          if (Guya.overview!.getTitle(window.location.href).length || Guya.sync.getTitle(window.location.href).length) {
+        function () {
+          if (
+            Guya.overview!.getTitle(window.location.href).length ||
+            Guya.sync.getTitle(window.location.href).length
+          ) {
             return true;
           }
           return false;
         },
-        function() {
-          if (
-            window.location.href
-              .split('/')
-              .slice(0, 7)
-              .join('/') !== urlWithoutPage
-          ) {
-            urlWithoutPage = window.location.href
-              .split('/')
-              .slice(0, 7)
-              .join('/');
+        function () {
+          if (window.location.href.split('/').slice(0, 7).join('/') !== urlWithoutPage) {
+            urlWithoutPage = window.location.href.split('/').slice(0, 7).join('/');
 
             switch (window.location.href.split('/')[4]) {
               case 'mangadex':

@@ -31,7 +31,9 @@ export const Simplyaweeb: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     utils.changeDetect(loaded, () => {
       const data = j.$('#syncData').text();

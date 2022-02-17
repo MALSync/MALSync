@@ -28,7 +28,8 @@ export const ComicK: pageInterface = {
     },
     getMalUrl(provider) {
       if (jsonData.md_comic.links) {
-        if (jsonData.md_comic.links.mal) return `https://myanimelist.net/manga/${jsonData.md_comic.links.mal}`;
+        if (jsonData.md_comic.links.mal)
+          return `https://myanimelist.net/manga/${jsonData.md_comic.links.mal}`;
         if (provider === 'ANILIST' && jsonData.md_comic.links.al)
           return `https://anilist.co/manga/${jsonData.md_comic.links.al}`;
       }
@@ -43,32 +44,33 @@ export const ComicK: pageInterface = {
       return jsonData.id;
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position)
-        .first()
-        .append(j.html(selector));
+      j.$(jsonData.selector_position).first().append(j.html(selector));
     },
     getMalUrl(provider) {
       if (jsonData.links) {
         if (jsonData.links.mal) return `https://myanimelist.net/manga/${jsonData.links.mal}`;
-        if (provider === 'ANILIST' && jsonData.links.al) return `https://anilist.co/manga/${jsonData.links.al}`;
+        if (provider === 'ANILIST' && jsonData.links.al)
+          return `https://anilist.co/manga/${jsonData.links.al}`;
       }
       return false;
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let interval;
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       clearInterval(interval);
 
       interval = utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('#__MALSYNC__').length;
         },
-        function() {
+        function () {
           jsonData = JSON.parse(j.$('#__MALSYNC__').text());
           page.handlePage();
         },

@@ -16,10 +16,7 @@ export const AsuraScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1])
-        .text()
-        .trim();
+      return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(AsuraScans.sync.getOverviewUrl(url), 4);
@@ -46,10 +43,7 @@ export const AsuraScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.entry-title')
-        .text()
-        .trim();
+      return j.$('h1.entry-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -65,18 +59,10 @@ export const AsuraScans: pageInterface = {
         return j.$('div#chapterlist li div.chbox');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        const elementEpN = selector
-          .find('span')
-          .first()
-          .text();
+        const elementEpN = selector.find('span').first().text();
 
         const temp = elementEpN.match(/chapter \d+/gim);
 
@@ -87,11 +73,13 @@ export const AsuraScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (AsuraScans.isSyncPage(window.location.href)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (
               j.$('#chapter > option:selected').length &&
               j.$('#chapter > option:selected').text() !== 'Select Chapter'
@@ -99,7 +87,7 @@ export const AsuraScans: pageInterface = {
               return true;
             return false;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

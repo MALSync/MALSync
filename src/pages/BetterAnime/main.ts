@@ -27,17 +27,14 @@ export const BetterAnime: pageInterface = {
       return url.substring(0, url.lastIndexOf('/'));
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('.anime-title > h3')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('.anime-title > h3').text().replace(/\D+/g, ''));
     },
   },
   init(page) {
-    j.$(document).ready(function() {
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    j.$(document).ready(function () {
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
       page.handlePage();
     });
   },

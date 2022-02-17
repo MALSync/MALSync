@@ -85,7 +85,16 @@ let authenticated = false;
 export const beta: pageInterface = {
   name: 'BetaCrunchyroll',
   domain: 'https://beta.crunchyroll.com',
-  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
+  languages: [
+    'English',
+    'Spanish',
+    'Portuguese',
+    'French',
+    'German',
+    'Arabic',
+    'Italian',
+    'Russian',
+  ],
   type: 'anime',
   isSyncPage(url) {
     return Boolean(j.$('.erc-watch-episode-layout').length);
@@ -108,18 +117,8 @@ export const beta: pageInterface = {
       return Number(status.episode!.episode_metadata.episode_number) || 1;
     },
     nextEpUrl(url) {
-      if (
-        $('.up-next-title').length &&
-        $('.up-next-title')
-          .first()
-          .attr('href')
-      ) {
-        return utils.absoluteLink(
-          $('.up-next-title')
-            .first()
-            .attr('href'),
-          beta.domain,
-        );
+      if ($('.up-next-title').length && $('.up-next-title').first().attr('href')) {
+        return utils.absoluteLink($('.up-next-title').first().attr('href'), beta.domain);
       }
       return '';
     },
@@ -135,9 +134,7 @@ export const beta: pageInterface = {
       return status.episode!.episode_metadata.season_id;
     },
     uiSelector(selector) {
-      j.$('.top-controls')
-        .first()
-        .before(j.html(selector));
+      j.$('.top-controls').first().before(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -145,19 +142,10 @@ export const beta: pageInterface = {
         return j.$('.episode-list .c-playable-card');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          beta.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), beta.domain);
       },
       elementEp(selector) {
-        const text = selector
-          .find('.c-playable-card__title')
-          .first()
-          .text();
+        const text = selector.find('.c-playable-card__title').first().text();
 
         const matches = text.match(/E(\d+)/);
 
@@ -170,7 +158,9 @@ export const beta: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./styleBeta.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./styleBeta.less').toString(),
+    );
     let firstCall = true;
     let placeholderInterval;
 
@@ -186,16 +176,14 @@ export const beta: pageInterface = {
       },
     );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       check();
     });
 
     utils.changeDetect(
       () => check(),
       () => {
-        const sesInfo = $('.season-info .c-text')
-          .first()
-          .text();
+        const sesInfo = $('.season-info .c-text').first().text();
         if (sesInfo) return sesInfo;
         return window.location.href;
       },
@@ -217,9 +205,7 @@ export const beta: pageInterface = {
             placeholderInterval = utils.waitUntilTrue(
               () => Boolean($('.episode-list .c-playable-card a').length),
               async () => {
-                const epUrl = $('.episode-list .c-playable-card a')
-                  .first()
-                  .attr('href');
+                const epUrl = $('.episode-list .c-playable-card a').first().attr('href');
                 if (!epUrl) throw 'No Episode found on the page';
                 status.episode = await episode(getIdFromUrl(epUrl));
                 page.handlePage();
@@ -408,7 +394,5 @@ async function firstCallFunction(id: string) {
     $('.seasons-select [role="button"].trigger').click();
   }
 
-  $('.seasons-select .c-dropdown-content [role="button"]')
-    .eq(index)
-    .click();
+  $('.seasons-select .c-dropdown-content [role="button"]').eq(index).click();
 }

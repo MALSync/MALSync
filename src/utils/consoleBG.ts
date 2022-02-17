@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 
-export const log = (function() {
+export const log = (function () {
   return Function.prototype.bind.call(
     console.log,
     console,
@@ -9,7 +9,7 @@ export const log = (function() {
   );
 })();
 
-export const error = (function() {
+export const error = (function () {
   return Function.prototype.bind.call(
     console.error,
     console,
@@ -18,7 +18,7 @@ export const error = (function() {
   );
 })();
 
-export const info = (function() {
+export const info = (function () {
   return Function.prototype.bind.call(
     console.info,
     console,
@@ -27,7 +27,7 @@ export const info = (function() {
   );
 })();
 
-export const debug = (function() {
+export const debug = (function () {
   return Function.prototype.bind.call(
     console.debug,
     console,
@@ -55,7 +55,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
   const moduleText = blocks.reduce((sum, el) => `${sum}%c${el.name}`, '');
   const moduleStyle = blocks.map(el => el.style);
 
-  temp.log = (function() {
+  temp.log = (function () {
     return Function.prototype.bind.call(
       console.log,
       console,
@@ -65,7 +65,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     );
   })();
 
-  temp.error = (function() {
+  temp.error = (function () {
     return Function.prototype.bind.call(
       console.error,
       console,
@@ -75,7 +75,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     );
   })();
 
-  temp.info = (function() {
+  temp.info = (function () {
     return Function.prototype.bind.call(
       console.info,
       console,
@@ -85,7 +85,7 @@ export const m = (name, color = '', blocks: { name: string; style: string }[] = 
     );
   })();
 
-  temp.debug = (function() {
+  temp.debug = (function () {
     return Function.prototype.bind.call(
       console.debug,
       console,

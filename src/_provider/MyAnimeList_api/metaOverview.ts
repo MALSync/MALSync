@@ -281,7 +281,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.studios) {
       const studios: any[] = [];
-      data.studios.forEach(function(i, index) {
+      data.studios.forEach(function (i, index) {
         studios.push({
           text: i.name,
           url: `https://myanimelist.net/anime/producer/${i.id}`,
@@ -296,10 +296,11 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.authors) {
       const authors: any[] = [];
-      data.authors.forEach(function(i, index) {
+      data.authors.forEach(function (i, index) {
         authors.push({
-          text: `${i.node.last_name ?? ''}${i.node.last_name && i.node.first_name ? ',' : ''} ${i.node.first_name ??
-            ''}`,
+          text: `${i.node.last_name ?? ''}${i.node.last_name && i.node.first_name ? ',' : ''} ${
+            i.node.first_name ?? ''
+          }`,
           url: `https://myanimelist.net/people/${i.node.id}`,
           subtext: i.role ? `(${i.role})` : '',
         });
@@ -351,7 +352,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.serialization) {
       const serialization: any[] = [];
-      data.serialization.forEach(function(i, index) {
+      data.serialization.forEach(function (i, index) {
         serialization.push({
           text: i.node.name,
           url: `https://myanimelist.net/manga/magazine/${i.node.id}`,

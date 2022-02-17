@@ -10,7 +10,12 @@
     <template #item="{ element }">
       <div class="mdl-chip quicklink active" style="display: flex; align-items: center">
         <span class="material-icons" style="margin-right: 5px"> drag_handle </span>
-        <img style="margin-right: 5px;" :src="favicon(optionToCombined(element).domain)" height="16" width="16" />
+        <img
+          style="margin-right: 5px"
+          :src="favicon(optionToCombined(element).domain)"
+          height="16"
+          width="16"
+        />
         {{ optionToCombined(element).name }}
       </div>
     </template>

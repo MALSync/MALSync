@@ -5,7 +5,13 @@ import { search as aniSearch } from './AniList/search';
 import { search as kitsuSearch } from './Kitsu/search';
 import { search as simklSearch } from './Simkl/search';
 
-export function search(keyword, type: 'anime' | 'manga', options = {}, sync = false, syncMode = '') {
+export function search(
+  keyword,
+  type: 'anime' | 'manga',
+  options = {},
+  sync = false,
+  syncMode = '',
+) {
   if (!syncMode) {
     syncMode = helper.getSyncMode(type);
   }

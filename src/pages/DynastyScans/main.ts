@@ -29,7 +29,10 @@ export const DynastyScans: pageInterface = {
       return j.$('#chapter-title > b > a').text() || j.$('#chapter-title > b').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(utils.absoluteLink(DynastyScans.sync.getOverviewUrl(url), DynastyScans.domain), 4);
+      return utils.urlPart(
+        utils.absoluteLink(DynastyScans.sync.getOverviewUrl(url), DynastyScans.domain),
+        4,
+      );
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), url) || url;
@@ -44,10 +47,7 @@ export const DynastyScans: pageInterface = {
       return Number(temp[1]);
     },
     nextEpUrl(url) {
-      const nexthref = j
-        .$('#next_link')
-        .first()
-        .attr('href');
+      const nexthref = j.$('#next_link').first().attr('href');
       if (nexthref !== '#') {
         return utils.absoluteLink(nexthref, DynastyScans.domain);
       }
@@ -62,27 +62,15 @@ export const DynastyScans: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.row.cover-chapters')
-        .first()
-        .before(j.html(selector));
+      j.$('div.row.cover-chapters').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return $(
-          $('dl.chapter-list > dd')
-            .get()
-            .reverse(),
-        );
+        return $($('dl.chapter-list > dd').get().reverse());
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          DynastyScans.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), DynastyScans.domain);
       },
       elementEp(selector) {
         return DynastyScans.sync.getEpisode(DynastyScans.overview!.list!.elementUrl!(selector));
@@ -90,7 +78,9 @@ export const DynastyScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       page.handlePage();
     });

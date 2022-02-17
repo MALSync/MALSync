@@ -67,7 +67,10 @@ function getSeries(page) {
   const meta = extractMetadata();
   const videoId = utils.urlPart(window.location.href, 4);
   api.request
-    .xhr('GET', `${meta.models.playerModel.data.config.ui.initParams.apiUrl}/metadata?movieid=${videoId}`)
+    .xhr(
+      'GET',
+      `${meta.models.playerModel.data.config.ui.initParams.apiUrl}/metadata?movieid=${videoId}`,
+    )
     .then(response => {
       const data = JSON.parse(response.responseText);
 
@@ -161,11 +164,13 @@ export const Netflix: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       ready();
     });
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       ready();
     });
 
@@ -174,10 +179,10 @@ export const Netflix: pageInterface = {
       $('html').addClass('miniMAL-hide');
       if (utils.urlPart(window.location.href, 3) === 'watch') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('[data-videoid]').length;
           },
-          function() {
+          function () {
             proxy.addProxy(async (caller: ScriptProxy) => {
               getSeries(page);
             });

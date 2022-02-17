@@ -18,11 +18,7 @@ export const Animeflv: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('h1.Title')
-        .text()
-        .split(' Episodio')[0]
-        .trim();
+      return j.$('h1.Title').text().split(' Episodio')[0].trim();
     },
     getIdentifier(url) {
       return utils.urlPart(`${Animeflv.domain}${j.$('.fa-th-list').attr('href')}`, 4);
@@ -31,13 +27,7 @@ export const Animeflv: pageInterface = {
       return Animeflv.domain + (j.$('.fa-th-list').attr('href') || '');
     },
     getEpisode(url) {
-      return parseInt(
-        j
-          .$('h2.SubTitle')
-          .text()
-          .replace('Episodio ', '')
-          .trim(),
-      );
+      return parseInt(j.$('h2.SubTitle').text().replace('Episodio ', '').trim());
     },
     nextEpUrl(url) {
       const nextEp = j.$('.fa-chevron-right').attr('href');
@@ -86,7 +76,9 @@ export const Animeflv: pageInterface = {
                     .split(',')[0]
                     .replace('[', '')}`;
                   const Episodio = element.split(',')[0].replace('[', '');
-                  idMALSync.innerHTML += j.html(`<li><a href="${Url}" epi="${Episodio}"></a> </li>`);
+                  idMALSync.innerHTML += j.html(
+                    `<li><a href="${Url}" epi="${Episodio}"></a> </li>`,
+                  );
                 }
               });
             }
@@ -114,13 +106,15 @@ export const Animeflv: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (document.title === 'Verifica que no eres un bot | AnimeFLV') {
       con.log('loading');
       page.cdn();
       return;
     }
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

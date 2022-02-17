@@ -1,15 +1,18 @@
 <template>
   <div v-if="syncPage" id="material">
     <div v-if="syncMode && minimized">
-      <a style="cursor: pointer;" @click="minimized = false">
-        Action required
-      </a>
+      <a style="cursor: pointer" @click="minimized = false"> Action required </a>
     </div>
     <div v-else class="scroll">
       <entry v-if="!syncMode" :obj="syncPage.singleObj"></entry>
       <rules :obj="rulesClass"></rules>
 
-      <input-button v-if="!syncMode" label="URL" :state="searchClass.getUrl()" @clicked="setPage"></input-button>
+      <input-button
+        v-if="!syncMode"
+        label="URL"
+        :state="searchClass.getUrl()"
+        @clicked="setPage"
+      ></input-button>
 
       <input-button
         v-if="!syncMode"

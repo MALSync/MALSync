@@ -4,12 +4,12 @@
       v-show="xhr == ''"
       id="loadOverview"
       class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-      style="width: 100%; position: absolute;"
+      style="width: 100%; position: absolute"
     ></div>
     <span
       v-show="xhr != '' && recommendations && recommendations.length === 0"
       class="mdl-chip"
-      style="margin: auto; margin-top: 16px; display: table;"
+      style="margin: auto; margin-top: 16px; display: table"
       ><span class="mdl-chip__text">{{ lang('NothingFound') }}</span></span
     >
     <div v-if="xhr != ''" class="mdl-grid">
@@ -18,12 +18,12 @@
         :key="rec.titleName"
         class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp mdl-grid"
       >
-        <div class="mdl-card__media" style="background-color: transparent; margin: 8px;">
+        <div class="mdl-card__media" style="background-color: transparent; margin: 8px">
           <a :href="rec.titleHref">
             <img :src="rec.imageUrl" width="50" />
           </a>
         </div>
-        <div class="mdl-cell" style="flex-grow: 100;">
+        <div class="mdl-cell" style="flex-grow: 100">
           <div>
             <a :href="rec.titleHref"
               ><strong>{{ rec.titleName }}</strong></a
@@ -40,7 +40,11 @@
               >Read recommendations by {{ rec.children.length }} more user</a
             >
             <div v-show="activeItems.includes(rec.titleName)" class="more">
-              <div v-for="(child, index) in rec.children" :key="child.username" style="padding: 3px; margin: 4px 0;">
+              <div
+                v-for="(child, index) in rec.children"
+                :key="child.username"
+                style="padding: 3px; margin: 4px 0"
+              >
                 <div style="white-space: pre-wrap">
                   <span>{{ child.text }}</span
                   ><span v-if="child.readmore">
@@ -70,27 +74,16 @@
 <script lang="ts">
 function getBaseText(element) {
   let text = element.text();
-  element.children().each(function() {
+  element.children().each(function () {
     text = text.replace(j.$(this).text(), '');
   });
   return text;
 }
 
 function getUserRec(value) {
-  const text = getBaseText(
-    j
-      .$(value)
-      .find('.detail-user-recs-text')
-      .first(),
-  ).trim();
+  const text = getBaseText(j.$(value).find('.detail-user-recs-text').first()).trim();
 
-  const username = j
-    .$(value)
-    .find('.detail-user-recs-text')
-    .next()
-    .find('a')
-    .last()
-    .text();
+  const username = j.$(value).find('.detail-user-recs-text').next().find('a').last().text();
 
   const userHref = `https://myanimelist.net${j
     .$(value)
@@ -102,11 +95,7 @@ function getUserRec(value) {
 
   let readmore = '';
   if (j.$(value).find('.detail-user-recs-text > span[id^=recommend]').length) {
-    readmore = j
-      .$(value)
-      .find('.detail-user-recs-text > span[id^=recommend]')
-      .text()
-      .trim();
+    readmore = j.$(value).find('.detail-user-recs-text > span[id^=recommend]').text().trim();
   }
 
   return { text, username, userHref, readmore };
@@ -132,7 +121,7 @@ export default {
   },
   computed: {
     recommendations() {
-      const array: { titleHref, titleName, imageUrl, user, children }[] = [];
+      const array: { titleHref; titleName; imageUrl; user; children }[] = [];
       try {
         const recommendationsBlock = this.xhr
           .split('Make a recommendation</a>')[1]
@@ -145,15 +134,9 @@ export default {
 
           const titleHref = imageBlock.find('a').attr('href');
 
-          const titleName = imageBlock
-            .find('a > img')
-            .first()
-            .attr('alt');
+          const titleName = imageBlock.find('a > img').first().attr('alt');
 
-          const imageUrl = imageBlock
-            .find('a > img')
-            .first()
-            .attr('data-src');
+          const imageUrl = imageBlock.find('a > img').first().attr('data-src');
 
           const user = getUserRec(value);
 

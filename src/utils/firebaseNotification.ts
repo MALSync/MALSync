@@ -36,21 +36,21 @@ async function checkNotifications() {
   const message = JSON.parse(resNotification.responseText);
   if (!message) {
     con.info('Notification empty', resNotification.responseText);
-    api.storage.set('firebaseNotification', next).then(function() {
+    api.storage.set('firebaseNotification', next).then(function () {
       checkNotifications();
     });
 
     return;
   }
 
-  j.$(document).ready(function() {
+  j.$(document).ready(function () {
     const flashm = utils.flashm(
       `<div style="text-align: left;">${message}</div><button class="okChangelog" style="background-color: transparent; border: none; color: rgb(255,64,129);margin-top: 10px;cursor: pointer;">Close</button>`,
       { permanent: true, position: 'top' },
     );
-    flashm.find('.okChangelog').click(function() {
+    flashm.find('.okChangelog').click(function () {
       flashm.remove();
-      api.storage.set('firebaseNotification', next).then(function() {
+      api.storage.set('firebaseNotification', next).then(function () {
         checkNotifications();
       });
     });

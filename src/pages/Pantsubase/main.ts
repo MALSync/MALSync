@@ -19,16 +19,16 @@ export const Pantsubase: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.breadcrumb a[href*="/anime/"] > span')
-        .text()
-        .trim();
+      return j.$('div.breadcrumb a[href*="/anime/"] > span').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(Pantsubase.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('div.breadcrumb a[href*="/anime/"]').attr('href'), Pantsubase.domain);
+      return utils.absoluteLink(
+        j.$('div.breadcrumb a[href*="/anime/"]').attr('href'),
+        Pantsubase.domain,
+      );
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
@@ -48,10 +48,7 @@ export const Pantsubase: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.info > h1 > div')
-        .text()
-        .trim();
+      return j.$('div.info > h1 > div').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -73,16 +70,19 @@ export const Pantsubase: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           return (
             Pantsubase.sync.getTitle(page.url) ||
-            (Pantsubase.overview!.getTitle(page.url) && Pantsubase.overview!.list!.elementsSelector().length)
+            (Pantsubase.overview!.getTitle(page.url) &&
+              Pantsubase.overview!.list!.elementsSelector().length)
           );
         },
-        function() {
+        function () {
           page.handlePage();
         },
       );

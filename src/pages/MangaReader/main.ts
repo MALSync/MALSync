@@ -49,7 +49,8 @@ export const MangaReader: pageInterface = {
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) return `https://myanimelist.net/manga/${jsonData.mal_id}`;
-      if (provider === 'ANILIST' && jsonData.anilist_id) return `https://anilist.co/manga/${jsonData.anilist_id}`;
+      if (provider === 'ANILIST' && jsonData.anilist_id)
+        return `https://anilist.co/manga/${jsonData.anilist_id}`;
       return false;
     },
   },
@@ -80,7 +81,9 @@ export const MangaReader: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let _debounce;
 

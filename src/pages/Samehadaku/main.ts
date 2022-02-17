@@ -19,7 +19,10 @@ export const Samehadaku: pageInterface = {
       return Samehadaku.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('div.naveps > div.nvs.nvsc > a').attr('href'), Samehadaku.domain);
+      return utils.absoluteLink(
+        j.$('div.naveps > div.nvs.nvsc > a').attr('href'),
+        Samehadaku.domain,
+      );
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -70,8 +73,10 @@ export const Samehadaku: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'anime' ||
         (j.$('div.player-area.widget_senction > div.plarea').length &&

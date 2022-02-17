@@ -2,7 +2,12 @@
   <div id="quicklinkoverview">
     <div v-if="links && links.length" class="quicklinks">
       <div v-for="link in links" :key="link.name" class="mdl-chip quicklink">
-        <img style="padding-bottom: 3px; margin-right: 5px;" :src="favicon(link.domain)" height="16" width="16" />
+        <img
+          style="padding-bottom: 3px; margin-right: 5px"
+          :src="favicon(link.domain)"
+          height="16"
+          width="16"
+        />
         {{ link.name }}
       </div>
     </div>
@@ -12,7 +17,7 @@
         :value="lang('Add')"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
         data-upgraded=",MaterialButton"
-        style="width: 100%; margin-top: 20px;"
+        style="width: 100%; margin-top: 20px"
       />
     </div>
   </div>

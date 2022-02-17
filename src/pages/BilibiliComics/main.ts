@@ -14,11 +14,7 @@ export const BilibiliComics: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.manga-title')
-        .first()
-        .text()
-        .trim();
+      return j.$('.manga-title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
@@ -27,12 +23,7 @@ export const BilibiliComics: pageInterface = {
       return utils.absoluteLink(j.$('.manga-title').attr('href'), BilibiliComics.domain);
     },
     getEpisode(url) {
-      const ep = Number(
-        j
-          .$('.read-nav .episode')
-          .text()
-          .trim(),
-      );
+      const ep = Number(j.$('.read-nav .episode').text().trim());
       if (Number.isNaN(ep)) {
         throw new SafeError('Cannot find episode number');
       }
@@ -41,18 +32,13 @@ export const BilibiliComics: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.manga-title')
-        .first()
-        .text();
+      return j.$('.manga-title').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.author-name, .manga-title-container')
-        .last()
-        .after(j.html(selector));
+      j.$('.author-name, .manga-title-container').last().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -60,18 +46,15 @@ export const BilibiliComics: pageInterface = {
         return j.$('.list-data > button');
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('.short-title')
-            .first()
-            .text(),
-        );
+        return Number(selector.find('.short-title').first().text());
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       start();
     });
 
@@ -82,10 +65,7 @@ export const BilibiliComics: pageInterface = {
         utils.waitUntilTrue(
           () =>
             BilibiliComics.sync.getTitle(page.url) &&
-            j
-              .$('.read-nav .episode')
-              .text()
-              .trim() !== '--',
+            j.$('.read-nav .episode').text().trim() !== '--',
           () => page.handlePage(),
         );
       } else if (BilibiliComics.isOverviewPage!(page.url)) {

@@ -13,10 +13,7 @@ export const NonstopScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1])
-        .text()
-        .trim();
+      return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(NonstopScans.sync.getOverviewUrl(url), 4);
@@ -43,10 +40,7 @@ export const NonstopScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.entry-title')
-        .text()
-        .trim();
+      return j.$('h1.entry-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -62,12 +56,7 @@ export const NonstopScans: pageInterface = {
         return j.$('div#chapterlist li div.chbox');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return NonstopScans.sync.getEpisode(NonstopScans.overview!.list!.elementUrl!(selector));
@@ -75,8 +64,10 @@ export const NonstopScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         j.$('div#content.readercontent').length ||
         (page.url.split('/')[3] === 'manga' && page.url.split('/')[4] !== '')

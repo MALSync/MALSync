@@ -19,13 +19,7 @@ export const Scantrad: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl() {
-      return utils.absoluteLink(
-        j
-          .$('.logo_box')
-          .first()
-          .attr('href'),
-        Scantrad.domain,
-      );
+      return utils.absoluteLink(j.$('.logo_box').first().attr('href'), Scantrad.domain);
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
@@ -41,20 +35,16 @@ export const Scantrad: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('div.titre')
-        .clone()
-        .children()
-        .remove()
-        .end()
-        .text();
+      return j.$('div.titre').clone().children().remove().end().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
       j.$('.ct-top').after(
-        j.html(`<h3 class="home-titre" style="margin-top: 31px;">MAL-Sync</h3><div class="new-main">${selector}</div>`),
+        j.html(
+          `<h3 class="home-titre" style="margin-top: 31px;">MAL-Sync</h3><div class="new-main">${selector}</div>`,
+        ),
       );
     },
     list: {
@@ -63,7 +53,10 @@ export const Scantrad: pageInterface = {
         return j.$('#chapitres > div.chapitre ');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a[href*="/mangas/"]').attr('href') || '', Scantrad.domain);
+        return utils.absoluteLink(
+          selector.find('a[href*="/mangas/"]').attr('href') || '',
+          Scantrad.domain,
+        );
       },
       elementEp(selector) {
         return Scantrad.sync.getEpisode(Scantrad.overview!.list!.elementUrl!(selector));
@@ -71,11 +64,14 @@ export const Scantrad: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         (page.url.split('/')[3] === 'mangas' && typeof page.url.split('/')[4] !== 'undefined') ||
-        (j.$('body > div.main-fiche > div.mf-chapitre > div.ct-top > div.info > div.titre').length &&
+        (j.$('body > div.main-fiche > div.mf-chapitre > div.ct-top > div.info > div.titre')
+          .length &&
           j.$('#chap-top').length)
       ) {
         page.handlePage();

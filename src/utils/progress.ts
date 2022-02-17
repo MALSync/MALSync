@@ -1,4 +1,8 @@
-import { releaseItemInterface, progressIsOld, single as updateProgress } from '../background/releaseProgress';
+import {
+  releaseItemInterface,
+  progressIsOld,
+  single as updateProgress,
+} from '../background/releaseProgress';
 import { timestampToShortTime } from './time';
 
 export class Progress {
@@ -43,13 +47,15 @@ export class Progress {
 
   protected getProgressPrediction() {
     const re = this.releaseItem;
-    if (re && re.value && re.value.predicition && re.value.predicition.timestamp) return re.value.predicition.timestamp;
+    if (re && re.value && re.value.predicition && re.value.predicition.timestamp)
+      return re.value.predicition.timestamp;
     return null;
   }
 
   protected getProgressLastTimestamp() {
     const re = this.releaseItem;
-    if (re && re.value && re.value.lastEp && re.value.lastEp.timestamp) return re.value.lastEp.timestamp;
+    if (re && re.value && re.value.lastEp && re.value.lastEp.timestamp)
+      return re.value.lastEp.timestamp;
     return null;
   }
 
@@ -88,7 +94,8 @@ export class Progress {
   }
 
   getPredictionTimestamp(): number {
-    if (!this.getProgressPrediction() || new Date().getTime() > this.getProgressPrediction()) return NaN;
+    if (!this.getProgressPrediction() || new Date().getTime() > this.getProgressPrediction())
+      return NaN;
     return this.getProgressPrediction();
   }
 

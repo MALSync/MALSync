@@ -25,11 +25,7 @@ export const Animefreak: pageInterface = {
       return Number(url.split('/')[6].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.fa-step-forward')
-        .first()
-        .parent()
-        .attr('href');
+      const href = j.$('.fa-step-forward').first().parent().attr('href');
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, Animefreak.domain);
       }
@@ -44,14 +40,14 @@ export const Animefreak: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('div.anime-title')
-        .first()
-        .before(j.html(selector));
+      j.$('div.anime-title').first().before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'watch') {
         page.handlePage();
       }

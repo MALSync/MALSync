@@ -158,7 +158,11 @@ export function optionToCombined(link) {
   return quicklinks.find(el => el.name === link);
 }
 
-export async function activeLinks(type: 'anime' | 'manga', id: any, searchterm: string): Promise<Quicklink[]> {
+export async function activeLinks(
+  type: 'anime' | 'manga',
+  id: any,
+  searchterm: string,
+): Promise<Quicklink[]> {
   let combined = combinedLinks();
 
   if (id) {

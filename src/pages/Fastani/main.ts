@@ -56,19 +56,24 @@ export const Fastani: pageInterface = {
   },
   init(page) {
     // eslint-disable-next-line global-require
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let Interval;
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       $('html').addClass('miniMAL-hide');
       clearInterval(Interval);
       Interval = utils.waitUntilTrue(
-        function() {
-          return j.$('#watch-page-main').length && j.$('#watch-page-main').attr('data-fastani-ani') !== 'loading';
+        function () {
+          return (
+            j.$('#watch-page-main').length &&
+            j.$('#watch-page-main').attr('data-fastani-ani') !== 'loading'
+          );
         },
-        async function() {
+        async function () {
           await getData(
             Number(j.$('#watch-page-main').attr('data-fastani-ani')),
             j.$('#watch-page-main').attr('data-fastani-title'),

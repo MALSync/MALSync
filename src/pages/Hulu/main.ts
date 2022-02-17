@@ -47,7 +47,8 @@ export const Hulu: pageInterface = {
         .text()
         .replace(/\D+/g, '');
 
-      if (typeof currentSeason !== 'undefined' && Number(currentSeason) > 1) return `${name} season ${currentSeason}`;
+      if (typeof currentSeason !== 'undefined' && Number(currentSeason) > 1)
+        return `${name} season ${currentSeason}`;
 
       return name;
     },
@@ -80,7 +81,7 @@ export const Hulu: pageInterface = {
         page.url.split('/')[3] === 'movie'
       ) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (page.url.split('/')[3] !== 'series') {
               return true;
             }
@@ -91,7 +92,7 @@ export const Hulu: pageInterface = {
               .first()
               .text();
           },
-          async function() {
+          async function () {
             if (await checkPage()) {
               page.handlePage();
               $('html').removeClass('miniMAL-hide');
@@ -99,7 +100,7 @@ export const Hulu: pageInterface = {
                 $('body').on(
                   'DOMSubtreeModified',
                   'div.DetailsDropdown > div > div > button.Select__control > div.Select__single-value',
-                  function() {
+                  function () {
                     page.reset();
                     page.handlePage();
                     $('html').removeClass('miniMAL-hide');
@@ -112,11 +113,13 @@ export const Hulu: pageInterface = {
       }
     }
 
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     startCheck();
 
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       con.log('url change');
       startCheck();
@@ -133,7 +136,12 @@ async function checkPage(): Promise<boolean> {
 
   const json = JSON.parse(response.responseText);
 
-  if (!(json.items[0].genre_names.includes('Anime') || json.items[0].genre_names.includes('Animation'))) return false;
+  if (
+    !(
+      json.items[0].genre_names.includes('Anime') || json.items[0].genre_names.includes('Animation')
+    )
+  )
+    return false;
 
   episode = parseInt(json.items[0].number);
 

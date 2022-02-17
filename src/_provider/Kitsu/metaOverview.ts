@@ -37,7 +37,11 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   async _init() {
-    this.logger.log('Retrieve', this.type, this.kitsuSlug ? `Kitsu: ${this.kitsuSlug}` : `MAL: ${this.malId}`);
+    this.logger.log(
+      'Retrieve',
+      this.type,
+      this.kitsuSlug ? `Kitsu: ${this.kitsuSlug}` : `MAL: ${this.malId}`,
+    );
 
     await this.getData();
     this.logger.log('Data', this.animeInfo);
@@ -88,7 +92,10 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private title() {
-    this.meta.title = helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+    this.meta.title = helper.getTitle(
+      this.animeI().attributes.titles,
+      this.animeI().attributes.canonicalTitle,
+    );
   }
 
   private description() {
@@ -128,7 +135,10 @@ export class MetaOverview extends MetaOverviewAbstract {
           const { name } = i.attributes;
 
           this.meta.characters.push({
-            img: i.attributes.image !== null ? i.attributes.image.original : api.storage.assetUrl('questionmark.gif'),
+            img:
+              i.attributes.image !== null
+                ? i.attributes.image.original
+                : api.storage.assetUrl('questionmark.gif'),
             name,
             url: `https://myanimelist.net/character/${i.attributes.malId}`,
           });
@@ -164,10 +174,11 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private info() {
-    if (typeof this.animeI().attributes.subtype !== 'undefined' && this.animeI().attributes.subtype !== null) {
-      let format = this.animeI()
-        .attributes.subtype.toLowerCase()
-        .replace('_', ' ');
+    if (
+      typeof this.animeI().attributes.subtype !== 'undefined' &&
+      this.animeI().attributes.subtype !== null
+    ) {
+      let format = this.animeI().attributes.subtype.toLowerCase().replace('_', ' ');
       format = format.charAt(0).toUpperCase() + format.slice(1);
       this.meta.info.push({
         title: 'Format:',
@@ -175,7 +186,10 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (typeof this.animeI().attributes.episodeCount !== 'undefined' && this.animeI().attributes.episodeCount !== null)
+    if (
+      typeof this.animeI().attributes.episodeCount !== 'undefined' &&
+      this.animeI().attributes.episodeCount !== null
+    )
       this.meta.info.push({
         title: 'Episodes:',
         body: [{ text: this.animeI().attributes.episodeCount }],
@@ -190,10 +204,11 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: [{ text: `${this.animeI().attributes.episodeLength} mins` }],
       });
 
-    if (typeof this.animeI().attributes.status !== 'undefined' && this.animeI().attributes.status !== null) {
-      let status = this.animeI()
-        .attributes.status.toLowerCase()
-        .replace('_', ' ');
+    if (
+      typeof this.animeI().attributes.status !== 'undefined' &&
+      this.animeI().attributes.status !== null
+    ) {
+      let status = this.animeI().attributes.status.toLowerCase().replace('_', ' ');
       status = status.charAt(0).toUpperCase() + status.slice(1);
       this.meta.info.push({
         title: 'Status:',
@@ -201,13 +216,19 @@ export class MetaOverview extends MetaOverviewAbstract {
       });
     }
 
-    if (typeof this.animeI().attributes.startDate !== 'undefined' && this.animeI().attributes.startDate !== null)
+    if (
+      typeof this.animeI().attributes.startDate !== 'undefined' &&
+      this.animeI().attributes.startDate !== null
+    )
       this.meta.info.push({
         title: 'Start Date:',
         body: [{ text: this.animeI().attributes.startDate }],
       });
 
-    if (typeof this.animeI().attributes.endDate !== 'undefined' && this.animeI().attributes.endDate !== null)
+    if (
+      typeof this.animeI().attributes.endDate !== 'undefined' &&
+      this.animeI().attributes.endDate !== null
+    )
       this.meta.info.push({
         title: 'Start Date:',
         body: [{ text: this.animeI().attributes.endDate }],
@@ -230,13 +251,19 @@ export class MetaOverview extends MetaOverviewAbstract {
         body: genres,
       });
 
-    if (typeof this.animeI().attributes.ageRating !== 'undefined' && this.animeI().attributes.ageRating !== null)
+    if (
+      typeof this.animeI().attributes.ageRating !== 'undefined' &&
+      this.animeI().attributes.ageRating !== null
+    )
       this.meta.info.push({
         title: 'Rating:',
         body: [{ text: this.animeI().attributes.ageRating }],
       });
 
-    if (typeof this.animeI().attributes.totalLength !== 'undefined' && this.animeI().attributes.totalLength !== null)
+    if (
+      typeof this.animeI().attributes.totalLength !== 'undefined' &&
+      this.animeI().attributes.totalLength !== null
+    )
       this.meta.info.push({
         title: 'Total playtime:',
         body: [{ text: `${this.animeI().attributes.totalLength} mins` }],
@@ -247,7 +274,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     const links: any = {};
     const an: any[] = [];
     if (this.animeInfo.included && this.animeInfo.included.length) {
-      this.animeInfo.included.forEach(function(i) {
+      this.animeInfo.included.forEach(function (i) {
         if (i.type === 'manga' || i.type === 'anime') {
           an[i.id] = {
             url: `https://kitsu.io/${i.type}/${i.attributes.slug}`,
@@ -259,7 +286,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         }
       });
 
-      this.animeInfo.included.forEach(function(i) {
+      this.animeInfo.included.forEach(function (i) {
         if (i.type === 'mediaRelationships') {
           if (typeof links[i.attributes.role] === 'undefined') {
             let title = i.attributes.role.toLowerCase().replace('_', ' ');

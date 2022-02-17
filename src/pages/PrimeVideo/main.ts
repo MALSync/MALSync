@@ -39,18 +39,18 @@ export const PrimeVideo: pageInterface = {
       return PrimeVideo.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('div.av-detail-section > div > h1')
-        .first()
-        .before(j.html(selector));
+      j.$('div.av-detail-section > div > h1').first().before(j.html(selector));
     },
   },
   init(page) {
     let epId: any;
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       ready();
     });
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       ready();
     });
     utils.changeDetect(
@@ -89,15 +89,12 @@ export const PrimeVideo: pageInterface = {
         page.handlePage();
       },
       () => {
-        const tempT = j
-          .$(EPISODETEXT)
-          .parent()
-          .text();
+        const tempT = j.$(EPISODETEXT).parent().text();
         if (!tempT) return undefined;
         return tempT;
       },
     );
-    $('html').on('click', 'a', async function(e) {
+    $('html').on('click', 'a', async function (e) {
       const vidUrl = j.$(this).attr('href');
       const internalId = j.$(this).attr('data-title-id');
       epId = {
@@ -111,7 +108,10 @@ export const PrimeVideo: pageInterface = {
       epId = undefined;
       page.reset();
       $('html').addClass('miniMAL-hide');
-      if (utils.urlPart(window.location.href, 3) === 'detail' || utils.urlPart(window.location.href, 5) === 'detail') {
+      if (
+        utils.urlPart(window.location.href, 3) === 'detail' ||
+        utils.urlPart(window.location.href, 5) === 'detail'
+      ) {
         const tempData = await getApi(window.location.href);
         if (!tempData.genres.includes('av_genre_anime')) {
           con.error('Not an Anime');
@@ -141,8 +141,14 @@ function getApi(url) {
   };
   const fns: any[] = [
     // id
-    function(e) {
-      if (e && e.props && e.props.state && e.props.state.self && Object.keys(e.props.state.self).length) {
+    function (e) {
+      if (
+        e &&
+        e.props &&
+        e.props.state &&
+        e.props.state.self &&
+        Object.keys(e.props.state.self).length
+      ) {
         const current: any = Object.values(e.props.state.self).find((el: any) => {
           return Boolean(el.compactGTI && url.toLowerCase().includes(el.compactGTI.toLowerCase()));
         });
@@ -166,10 +172,7 @@ function getApi(url) {
             Boolean(el.titleType === 'season' || el.titleType === 'movie'),
           );
           if (parent) {
-            con
-              .m('Self')
-              .m('Parent')
-              .log(parent);
+            con.m('Self').m('Parent').log(parent);
             data.id = parent.compactGTI;
             data.gti = parent.gti;
           }
@@ -177,7 +180,7 @@ function getApi(url) {
       }
     },
     // title, genres
-    function(e) {
+    function (e) {
       if (data.gti && e && e.props && e.props.state && e.props.state.detail) {
         // Parent
         let detail;
@@ -185,11 +188,16 @@ function getApi(url) {
         // Episode
         if (
           data.epMeta.gti &&
-          (Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.epMeta.gti) ||
+          (Object.prototype.hasOwnProperty.call(
+            e.props.state.detail.headerDetail,
+            data.epMeta.gti,
+          ) ||
             Object.prototype.hasOwnProperty.call(e.props.state.detail.detail, data.epMeta.gti))
         ) {
           let epDetail;
-          if (Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.epMeta.gti)) {
+          if (
+            Object.prototype.hasOwnProperty.call(e.props.state.detail.headerDetail, data.epMeta.gti)
+          ) {
             epDetail = e.props.state.detail.headerDetail[data.epMeta.gti];
           } else {
             epDetail = e.props.state.detail.detail[data.epMeta.gti];
@@ -217,7 +225,11 @@ function getApi(url) {
           return;
         }
 
-        if (detail && (detail.titleType.toLowerCase() === 'season' || detail.titleType.toLowerCase() === 'movie')) {
+        if (
+          detail &&
+          (detail.titleType.toLowerCase() === 'season' ||
+            detail.titleType.toLowerCase() === 'movie')
+        ) {
           if (detail.title) data.title = detail.title;
         }
         if (detail) {
@@ -228,10 +240,14 @@ function getApi(url) {
     },
   ];
   return api.request.xhr('GET', url).then(response => {
-    const templateMatches = response.responseText.match(/<script type="text\/template">.*(?=<\/script>)/g);
+    const templateMatches = response.responseText.match(
+      /<script type="text\/template">.*(?=<\/script>)/g,
+    );
 
     if (templateMatches && templateMatches.length > 0) {
-      const templates = templateMatches.map(e => JSON.parse(e.replace('<script type="text/template">', '')));
+      const templates = templateMatches.map(e =>
+        JSON.parse(e.replace('<script type="text/template">', '')),
+      );
 
       fns.forEach(fn => {
         templates.forEach(fn);

@@ -4,7 +4,16 @@ import { beta } from './beta';
 export const Crunchyroll: pageInterface = {
   name: 'Crunchyroll',
   domain: 'https://www.crunchyroll.com',
-  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
+  languages: [
+    'English',
+    'Spanish',
+    'Portuguese',
+    'French',
+    'German',
+    'Arabic',
+    'Italian',
+    'Russian',
+  ],
   type: 'anime',
   isSyncPage(url) {
     if (typeof url.split('/')[4] !== 'undefined') {
@@ -16,33 +25,21 @@ export const Crunchyroll: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return (
-        j
-          .$('link[rel="index"]')
-          .first()
-          .attr('title') ?? ''
-      );
+      return j.$('link[rel="index"]').first().attr('title') ?? '';
     },
     getIdentifier(url) {
       return Crunchyroll.sync.getTitle(url);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('link[rel="index"]')
-          .first()
-          .attr('href') ?? '',
+        j.$('link[rel="index"]').first().attr('href') ?? '',
         Crunchyroll.domain,
       );
     },
     getEpisode(url) {
       return episodeHelper(
         url,
-        j
-          .$('h1.ellipsis')
-          .text()
-          .replace(j.$('h1.ellipsis > a').text(), '')
-          .trim(),
+        j.$('h1.ellipsis').text().replace(j.$('h1.ellipsis > a').text(), '').trim(),
       );
     },
     nextEpUrl(url) {
@@ -57,7 +54,7 @@ export const Crunchyroll: pageInterface = {
     },
   },
   init(page) {
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       if ($('#content').length) {
         Crunchyroll.database = beta.database;
         Crunchyroll.isSyncPage = beta.isSyncPage;
@@ -69,7 +66,9 @@ export const Crunchyroll: pageInterface = {
         return;
       }
 
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
 
       page.handlePage();
     });
@@ -77,10 +76,7 @@ export const Crunchyroll: pageInterface = {
 };
 
 function urlHandling(url) {
-  const langslug = j
-    .$('#home_link, #logo_beta a')
-    .first()
-    .attr('href');
+  const langslug = j.$('#home_link, #logo_beta a').first().attr('href');
   if (langslug === '/') {
     return url;
   }

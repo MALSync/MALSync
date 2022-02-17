@@ -1,5 +1,9 @@
 export class Cache {
-  constructor(protected key: string, protected ttl: number, protected localStorage: boolean = true) {
+  constructor(
+    protected key: string,
+    protected ttl: number,
+    protected localStorage: boolean = true,
+  ) {
     return this;
   }
 

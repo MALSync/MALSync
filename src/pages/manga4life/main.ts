@@ -20,32 +20,32 @@ export const manga4life: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return utils.getBaseText($('div.MainContainer > div.container > div.row > div.Column > a').first()).trim();
+      return utils
+        .getBaseText($('div.MainContainer > div.container > div.row > div.Column > a').first())
+        .trim();
     },
     getIdentifier(url) {
       return utils.urlPart(manga4life.sync.getOverviewUrl(url), 4) || '';
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.MainContainer > div.container > div.row > div.Column > a')
-          .first()
-          .attr('href'),
+        j.$('div.MainContainer > div.container > div.row > div.Column > a').first().attr('href'),
         manga4life.domain,
       );
     },
     getEpisode(url) {
       return utils
-        .getBaseText($('div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button').first())
+        .getBaseText(
+          $(
+            'div.MainContainer > div.container > div.row > div.Column:nth-child(2) > button',
+          ).first(),
+        )
         .match(/\d+/gim);
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1')
-        .first()
-        .text();
+      return j.$('div.BoxBody > div.row > div.top-5 > ul > li:nth-child(1) > h1').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
@@ -65,34 +65,31 @@ export const manga4life: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), manga4life.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('span')
-            .first()
-            .text()
-            .match(/\d+/gim),
-        );
+        return Number(selector.find('span').first().text().match(/\d+/gim));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           if (manga4life.isSyncPage(page.url)) {
             return manga4life.sync.getTitle(page.url) && manga4life.sync.getEpisode(page.url);
           }
           if (manga4life.isOverviewPage!(page.url)) {
             return (
               manga4life.overview!.getTitle(page.url) &&
-              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]').length
+              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]')
+                .length
             );
           }
           return false;
         },
-        function() {
+        function () {
           if (manga4life.isOverviewPage!(page.url)) {
             page.handlePage();
           }
@@ -116,7 +113,7 @@ export const manga4life: pageInterface = {
 
     function changeDetectBlank(callback, func) {
       let currentPage = '';
-      const intervalId = setInterval(function() {
+      const intervalId = setInterval(function () {
         const temp = func();
         if (typeof temp !== 'undefined' && currentPage !== temp) {
           currentPage = func();

@@ -104,7 +104,10 @@ export async function syncList(lazy = false) {
   return cacheList;
 }
 
-export async function getSingle(ids: { simkl?: string | number; mal?: string | number }, lazy = false) {
+export async function getSingle(
+  ids: { simkl?: string | number; mal?: string | number },
+  lazy = false,
+) {
   const list = await this.syncList(lazy);
   if (ids.simkl) {
     if (list[ids.simkl] !== undefined) {
@@ -125,7 +128,13 @@ export async function getSingle(ids: { simkl?: string | number; mal?: string | n
   return null;
 }
 
-export async function call(url, sData: any = {}, asParameter = false, method: 'GET' | 'POST' = 'GET', login = true) {
+export async function call(
+  url,
+  sData: any = {},
+  asParameter = false,
+  method: 'GET' | 'POST' = 'GET',
+  login = true,
+) {
   const logger = con.m('Simkl', '#9b7400').m('call');
 
   if (asParameter) {

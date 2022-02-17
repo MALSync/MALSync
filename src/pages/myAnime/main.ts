@@ -19,36 +19,29 @@ export const myAnime: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return myAnime.domain + (j.$('#episode-details > div > span.current-series > a').attr('href') || '');
+      return (
+        myAnime.domain +
+        (j.$('#episode-details > div > span.current-series > a').attr('href') || '')
+      );
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5) || '');
     },
     nextEpUrl(url) {
-      const nextEp = j
-        .$('div#ep-next')
-        .first()
-        .parent()
-        .attr('href');
+      const nextEp = j.$('div#ep-next').first().parent().attr('href');
       if (!nextEp) return nextEp;
       return myAnime.domain + nextEp;
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('span.anime-title')
-        .first()
-        .text()
-        .trim();
+      return j.$('span.anime-title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('img.anime-bg')
-        .first()
-        .after(j.html(selector));
+      j.$('img.anime-bg').first().after(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j
@@ -58,19 +51,11 @@ export const myAnime: pageInterface = {
         .attr('href');
       if (url) return url;
       if (provider === 'ANILIST') {
-        url = j
-          .$('a[href^="https://anilist.co/anime/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
+        url = j.$('a[href^="https://anilist.co/anime/"]').not('#malRating').first().attr('href');
         if (url) return url;
       }
       if (provider === 'KITSU') {
-        url = j
-          .$('a[href^="https://kitsu.io/anime/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
+        url = j.$('a[href^="https://kitsu.io/anime/"]').not('#malRating').first().attr('href');
         if (url) return url;
       }
       return false;
@@ -81,19 +66,10 @@ export const myAnime: pageInterface = {
         return j.$('ul.list > li.li-block');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          myAnime.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), myAnime.domain);
       },
       elementEp(selector) {
-        const url = selector
-          .find('a')
-          .first()
-          .attr('href');
+        const url = selector.find('a').first().attr('href');
 
         if (!url) return NaN;
 
@@ -102,8 +78,10 @@ export const myAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'anime') {
         page.handlePage();
       }

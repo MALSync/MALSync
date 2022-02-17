@@ -2,7 +2,9 @@ import { pageInterface } from '../pageInterface';
 
 const uiSelec = '[style*="synopsis"]';
 
-const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitUntilTrue(() => j.$(uiSelec).length);
+const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitUntilTrue(
+  () => j.$(uiSelec).length,
+);
 
 const mangaData = {
   id: '',
@@ -66,8 +68,10 @@ export const Mangadex: pageInterface = {
     },
     getMalUrl(provider) {
       if (mangaData.links?.mal) return `https://myanimelist.net/manga/${mangaData.links.mal}`;
-      if (provider === 'ANILIST' && mangaData.links?.al) return `https://anilist.co/manga/${mangaData.links.al}`;
-      if (provider === 'KITSU' && mangaData.links?.kt) return `https://kitsu.io/manga/${mangaData.links.kt}`;
+      if (provider === 'ANILIST' && mangaData.links?.al)
+        return `https://anilist.co/manga/${mangaData.links.al}`;
+      if (provider === 'KITSU' && mangaData.links?.kt)
+        return `https://kitsu.io/manga/${mangaData.links.kt}`;
       return false;
     },
   },
@@ -79,16 +83,16 @@ export const Mangadex: pageInterface = {
       return mangaData.id;
     },
     uiSelector(selector) {
-      j.$(uiSelec)
-        .first()
-        .prepend(j.html(selector));
+      j.$(uiSelec).first().prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return Mangadex.sync.getMalUrl!(provider);
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     utils.changeDetect(
       () => {
         page.reset();
@@ -97,7 +101,10 @@ export const Mangadex: pageInterface = {
       () => {
         const part = utils.urlPart(window.location.href, 3).toLowerCase();
         if (part === 'chapter') {
-          return `${utils.urlPart(window.location.href, 3)}/${utils.urlPart(window.location.href, 4)}`;
+          return `${utils.urlPart(window.location.href, 3)}/${utils.urlPart(
+            window.location.href,
+            4,
+          )}`;
         }
         return utils.urlStrip(window.location.href);
       },
@@ -106,12 +113,18 @@ export const Mangadex: pageInterface = {
 
     async function check() {
       resetAwaitUi();
-      if (!Mangadex.isSyncPage(window.location.href) && !Mangadex.isOverviewPage!(window.location.href)) return;
+      if (
+        !Mangadex.isSyncPage(window.location.href) &&
+        !Mangadex.isOverviewPage!(window.location.href)
+      )
+        return;
 
       let manga: any = {};
 
       if (Mangadex.isSyncPage(window.location.href)) {
-        const chapterResponse = await request(`chapter/${utils.urlPart(window.location.href, 4)}?includes[]=manga`);
+        const chapterResponse = await request(
+          `chapter/${utils.urlPart(window.location.href, 4)}?includes[]=manga`,
+        );
         const chapter = JSON.parse(chapterResponse.responseText);
         chapterData.chapter = chapter.data.attributes.chapter;
         chapterData.volume = chapter.data.attributes.volume;

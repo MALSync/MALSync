@@ -21,24 +21,13 @@ export const AnimeId: pageInterface = {
       return j.$(`#infoanime h1 a`)[0].innerText;
     },
     getIdentifier(url) {
-      return (
-        j
-          .$(`#infoanime h1 a`)[0]
-          .getAttribute(`href`)
-          ?.split(`/`)
-          .pop() || ''
-      );
+      return j.$(`#infoanime h1 a`)[0].getAttribute(`href`)?.split(`/`).pop() || '';
     },
     getOverviewUrl(url) {
       return `${AnimeId.domain}${$(`#infoanime h1 a`)[0].getAttribute(`href`)}`;
     },
     getEpisode(url) {
-      return Number.parseInt(
-        j
-          .$(`#infoanime strong`)[0]
-          .innerText.replace('Capítulo ', '')
-          .trim(),
-      );
+      return Number.parseInt(j.$(`#infoanime strong`)[0].innerText.replace('Capítulo ', '').trim());
     },
     nextEpUrl(url) {
       const epi = `${AnimeId.domain}${j.$(`.buttons li a`)[2].getAttribute(`href`)}`;
@@ -73,7 +62,10 @@ export const AnimeId: pageInterface = {
             for (let x = 1; x < Number.parseInt(numLastEpi) + 1; x++) {
               if (idMALSync !== null) {
                 idMALSync.innerHTML += j.html(
-                  `<li><a href="${AnimeId.domain}/v/${utils.urlPart(url, 3)}-${x}" epi="${x}"></a> </li>`,
+                  `<li><a href="${AnimeId.domain}/v/${utils.urlPart(
+                    url,
+                    3,
+                  )}-${x}" epi="${x}"></a> </li>`,
                 );
               }
             }
@@ -99,9 +91,11 @@ export const AnimeId: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     con.log('loading');
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

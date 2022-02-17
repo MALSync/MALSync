@@ -53,7 +53,7 @@ export class Minimal {
     const modal = document.getElementById('info-popup');
     const This = this;
 
-    this.minimal.on('click', '.mdl-layout__content a', function(e) {
+    this.minimal.on('click', '.mdl-layout__content a', function (e) {
       // @ts-ignore
       if (j.$(this).attr('target') === '_blank' || j.$(this).hasClass('nojs')) {
         return;
@@ -73,7 +73,7 @@ export class Minimal {
       }
     });
 
-    this.minimal.find('#close-info-popup').click(function() {
+    this.minimal.find('#close-info-popup').click(function () {
       if (This.isPopup()) {
         window.close();
       } else {
@@ -82,19 +82,15 @@ export class Minimal {
       }
     });
 
-    this.minimal.find('#material-fullscreen').click(function() {
+    this.minimal.find('#material-fullscreen').click(function () {
       if (j.$('.modal-content-kal.fullscreen').length) {
         j.$('.modal-content-kal').removeClass('fullscreen');
         // @ts-ignore
-        j.$(this)
-          .find('i')
-          .text('fullscreen');
+        j.$(this).find('i').text('fullscreen');
       } else {
         j.$('.modal-content-kal').addClass('fullscreen');
         // @ts-ignore
-        j.$(this)
-          .find('i')
-          .text('fullscreen_exit');
+        j.$(this).find('i').text('fullscreen_exit');
       }
     });
   }
@@ -113,7 +109,13 @@ export class Minimal {
     this.minimal
       .find('head')
       // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
-      .append(j.$('<style>').html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()));
+      .append(
+        // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+        j
+          // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
+          .$('<style>')
+          .html(require('!to-string-loader!css-loader!less-loader!./minimalStyle.less').toString()),
+      );
   }
 
   fill(url: string | null) {
@@ -135,7 +137,7 @@ export class Minimal {
 
     // Listener
     this.minimal.find('#posLeft').val(api.settings.get('posLeft'));
-    this.minimal.find('#posLeft').change(function() {
+    this.minimal.find('#posLeft').change(function () {
       // @ts-ignore
       api.settings.set('posLeft', j.$(this).val());
       // @ts-ignore
@@ -146,25 +148,25 @@ export class Minimal {
     });
 
     this.minimal.find('#autoTrackingModeanime').val(api.settings.get('autoTrackingModeanime'));
-    this.minimal.find('#autoTrackingModeanime').change(function() {
+    this.minimal.find('#autoTrackingModeanime').change(function () {
       // @ts-ignore
       api.settings.set('autoTrackingModeanime', j.$(this).val());
     });
 
     this.minimal.find('#theme').val(api.settings.get('theme'));
-    this.minimal.find('#theme').change(function() {
+    this.minimal.find('#theme').change(function () {
       // @ts-ignore
       api.settings.set('theme', j.$(this).val());
       This.minimal.attr('id', 'cr');
     });
 
     this.minimal.find('#autoTrackingModemanga').val(api.settings.get('autoTrackingModemanga'));
-    this.minimal.find('#autoTrackingModemanga').change(function() {
+    this.minimal.find('#autoTrackingModemanga').change(function () {
       // @ts-ignore
       api.settings.set('autoTrackingModemanga', j.$(this).val());
     });
 
-    this.minimal.find('#miniMalWidth').on('input', function() {
+    this.minimal.find('#miniMalWidth').on('input', function () {
       let miniMalWidth = This.minimal.find('#miniMalWidth').val();
       if (miniMalWidth !== null) {
         if (miniMalWidth === '') {
@@ -176,7 +178,7 @@ export class Minimal {
       j.$('#modal-content').css('width', miniMalWidth);
     });
 
-    this.minimal.find('#syncMode').change(function() {
+    this.minimal.find('#syncMode').change(function () {
       // @ts-ignore
       const value = j.$(this).val();
       api.settings.set('syncMode', value);
@@ -184,7 +186,7 @@ export class Minimal {
     });
     this.minimal.find('#syncMode').val(api.settings.get('syncMode'));
 
-    this.minimal.find('#miniMalHeight').on('input', function() {
+    this.minimal.find('#miniMalHeight').on('input', function () {
       let miniMalHeight = This.minimal.find('#miniMalHeight').val();
       if (miniMalHeight !== null) {
         if (miniMalHeight === '') {
@@ -197,15 +199,15 @@ export class Minimal {
     });
 
     this.minimal.find('#malThumbnail').val(api.settings.get('malThumbnail'));
-    this.minimal.find('#malThumbnail').change(function() {
+    this.minimal.find('#malThumbnail').change(function () {
       api.settings.set('malThumbnail', This.minimal.find('#malThumbnail').val());
     });
 
-    this.minimal.find('#clearCache').click(async function() {
+    this.minimal.find('#clearCache').click(async function () {
       const cacheArray = await api.storage.list();
       let deleted = 0;
 
-      j.$.each(cacheArray, function(index, cache) {
+      j.$.each(cacheArray, function (index, cache) {
         if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
           api.storage.remove(String(index));
           deleted++;
@@ -291,7 +293,7 @@ export class Minimal {
           `;
       }
       if (versionMsg !== '') {
-        this.flashm(versionMsg, function() {
+        this.flashm(versionMsg, function () {
           api.storage.set('tempVersion', api.storage.version());
         });
       }
@@ -320,8 +322,8 @@ export class Minimal {
 
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     const flashmDiv = j.$(j.html(mess)).appendTo(this.minimal.find('.mdl-layout'));
-    flashmDiv.find('.close').click(function() {
-      flashmDiv.slideUp(100, function() {
+    flashmDiv.find('.close').click(function () {
+      flashmDiv.slideUp(100, function () {
         flashmDiv.remove();
         closefn();
       });

@@ -46,9 +46,7 @@ export const RiiE: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = $("a[rel='next']")
-        .first()
-        .attr('href');
+      const href = $("a[rel='next']").first().attr('href');
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, RiiE.domain);
       }
@@ -63,9 +61,7 @@ export const RiiE: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('#content > div.naru > div.areaxb')
-        .first()
-        .after(j.html(selector));
+      j.$('#content > div.naru > div.areaxb').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -74,30 +70,24 @@ export const RiiE: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('span.leftoff > a')
-            .first()
-            .attr('href'),
+          selector.find('span.leftoff > a').first().attr('href'),
           RiiE.domain,
         );
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('span.leftoff > a')
-            .first()
-            .text()
-            .replace(/\D+/, ''),
-        );
+        return Number(selector.find('span.leftoff > a').first().text().replace(/\D+/, ''));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'anime' ||
-        (j.$('#lightsVideo')[0] && j.$('#content > div.postarea > div > div.post > div.newzone > div.right')[0])
+        (j.$('#lightsVideo')[0] &&
+          j.$('#content > div.postarea > div > div.post > div.newzone > div.right')[0])
       )
         page.handlePage();
     });

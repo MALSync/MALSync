@@ -118,7 +118,11 @@ export abstract class ListAbstract {
   async getNextPage(): Promise<listElement[]> {
     if (this.done) return this.templist;
 
-    if (this.modes.frontend && this.status === 1 && (this.sort === 'default' || this.sort === 'unread')) {
+    if (
+      this.modes.frontend &&
+      this.status === 1 &&
+      (this.sort === 'default' || this.sort === 'unread')
+    ) {
       this.modes.sortAiring = true;
       return this.getCompleteList();
     }
@@ -324,7 +328,7 @@ export abstract class ListAbstract {
   }
 
   sortUnread() {
-    this.templist = this.templist.sort(function(a, b) {
+    this.templist = this.templist.sort(function (a, b) {
       let valA = 10000;
       let valB = 10000;
 
@@ -345,7 +349,10 @@ export abstract class ListAbstract {
 
   getCache() {
     if (this.cacheObj) return this.cacheObj;
-    this.cacheObj = new Cache(`list/${this.name}/${this.listType}/${this.status}/${this.sort}`, 48 * 60 * 60 * 1000);
+    this.cacheObj = new Cache(
+      `list/${this.name}/${this.listType}/${this.status}/${this.sort}`,
+      48 * 60 * 60 * 1000,
+    );
     return this.cacheObj;
   }
 }

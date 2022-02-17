@@ -20,7 +20,8 @@ export class Single extends SingleAbstract {
 
   shortName = 'AniList';
 
-  authenticationUrl = 'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
+  authenticationUrl =
+    'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
   protected handleUrl(url) {
     if (url.match(/anilist\.co\/(anime|manga)\/\d*/i)) {

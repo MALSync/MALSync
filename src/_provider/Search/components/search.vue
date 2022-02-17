@@ -9,15 +9,19 @@
     </div>
 
     <div class="loadingBar">
-      <div v-show="loading" class="mdl-progress mdl-js-progress mdl-progress__indeterminate" style="width: 100%;">
-        <div class="progressbar bar bar1" style="width: 0%;"></div>
-        <div class="bufferbar bar bar2" style="width: 100%;"></div>
-        <div class="auxbar bar bar3" style="width: 0%;"></div>
+      <div
+        v-show="loading"
+        class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
+        style="width: 100%"
+      >
+        <div class="progressbar bar bar1" style="width: 0%"></div>
+        <div class="bufferbar bar bar2" style="width: 100%"></div>
+        <div class="auxbar bar bar3" style="width: 0%"></div>
       </div>
     </div>
 
     <div v-if="searchKeyword" class="results">
-      <a class="result" href="" style="cursor: pointer;" @click="clickItem($event, '')">
+      <a class="result" href="" style="cursor: pointer" @click="clickItem($event, '')">
         <div class="image"></div>
         <div class="right">
           <span class="title">{{ lang('correction_NoEntry') }}</span>
@@ -38,7 +42,9 @@
           <template v-if="item.list">
             <p>{{ lang('UI_Status') }} {{ getStatusText(type, item.list.status) }}</p>
             <p v-if="item.list.score">{{ lang('UI_Score') }} {{ item.list.score }}</p>
-            <p v-else-if="item.list.status === 1">{{ episodeText(type) }} {{ item.list.episode }}</p>
+            <p v-else-if="item.list.status === 1">
+              {{ episodeText(type) }} {{ item.list.episode }}
+            </p>
           </template>
           <template v-else>
             <p v-if="item.media_type">{{ lang('search_Type') }} {{ item.media_type }}</p>

@@ -4,22 +4,34 @@
       v-show="loading"
       id="loadMalSearchPop"
       class="mdl-progress mdl-js-progress mdl-progress__indeterminate"
-      style="width: 100%; position: fixed; z-index: 30; max-width: 1377px; margin-left: auto; margin-right: auto;"
+      style="
+        width: 100%;
+        position: fixed;
+        z-index: 30;
+        max-width: 1377px;
+        margin-left: auto;
+        margin-right: auto;
+      "
     >
-      <div class="progressbar bar bar1" style="width: 0%;"></div>
-      <div class="bufferbar bar bar2" style="width: 100%;"></div>
-      <div class="auxbar bar bar3" style="width: 0%;"></div>
+      <div class="progressbar bar bar1" style="width: 0%"></div>
+      <div class="bufferbar bar bar2" style="width: 100%"></div>
+      <div class="auxbar bar bar3" style="width: 0%"></div>
     </div>
     <slot :sorting="listProvider ? listProvider.getSortingOptions(true) : []"></slot>
     <span
       v-if="!loading && !items.length && !errorText"
       class="mdl-chip"
-      style="margin: auto; margin-top: 16px; display: table;"
+      style="margin: auto; margin-top: 16px; display: table"
       ><span class="mdl-chip__text">{{ lang('NoEntries') }}</span></span
     >
 
     <template v-if="!listView">
-      <div v-if="!(cache && errorText)" id="malList" class="mdl-grid" style="justify-content: space-around;">
+      <div
+        v-if="!(cache && errorText)"
+        id="malList"
+        class="mdl-grid"
+        style="justify-content: space-around"
+      >
         <template v-for="item in items" :key="item.uid">
           <bookmarksItem :item="item" />
         </template>
@@ -27,8 +39,16 @@
         <div
           v-for="n in 10"
           :key="'placeholder_' + n"
-          class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid "
-          style="cursor: pointer; padding: 0; width: 210px; height: 0; margin-top:0; margin-bottom:0; visibility: hidden;"
+          class="listPlaceholder mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid"
+          style="
+            cursor: pointer;
+            padding: 0;
+            width: 210px;
+            height: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            visibility: hidden;
+          "
         ></div>
       </div>
     </template>
@@ -37,7 +57,7 @@
         v-if="!(cache && errorText)"
         id="malList"
         class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp bg-cell"
-        style="width: 100%;"
+        style="width: 100%"
       >
         <tbody>
           <template v-for="item in items" :key="item.uid">
@@ -50,7 +70,7 @@
     <span
       v-if="errorText"
       class="mdl-chip"
-      style="margin: 16px auto 70px; display: table; padding-right: 5px; border: 2px solid red;"
+      style="margin: 16px auto 70px; display: table; padding-right: 5px; border: 2px solid red"
       @click="!loading ? load() : ''"
     >
       <span v-dompurify-html="errorText" class="mdl-chip__text"></span>
@@ -143,10 +163,7 @@ export default {
   },
   activated() {
     this.$nextTick(() => {
-      j.$(this.$el)
-        .closest('html')
-        .find('head')
-        .click();
+      j.$(this.$el).closest('html').find('head').click();
     });
     clearTimeout(this.destroyTimer);
     this.registerScroll('books', this.handleScroll);

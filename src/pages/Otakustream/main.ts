@@ -15,11 +15,7 @@ export const Otakustream: pageInterface = {
   sync: {
     getTitle(url) {
       if (url.split('/')[3] === 'movie') return Otakustream.overview!.getTitle(url);
-      return j
-        .$('#breadcrumbs a')
-        .last()
-        .text()
-        .trim();
+      return j.$('#breadcrumbs a').last().text().trim();
     },
     getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
@@ -29,10 +25,7 @@ export const Otakustream: pageInterface = {
       return urlPart4.toLowerCase();
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       let EpText = utils.urlPart(url, 5);
@@ -51,29 +44,18 @@ export const Otakustream: pageInterface = {
       return parseInt(temp[0]);
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('.navigation-right')
-          .first()
-          .attr('href'),
-        Otakustream.domain,
-      );
+      return utils.absoluteLink(j.$('.navigation-right').first().attr('href'), Otakustream.domain);
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.breadcrumb_last')
-        .text()
-        .trim();
+      return j.$('.breadcrumb_last').text().trim();
     },
     getIdentifier(url) {
       return Otakustream.sync!.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.single-details h1')
-        .first()
-        .after(j.html(selector));
+      j.$('.single-details h1').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -81,13 +63,7 @@ export const Otakustream: pageInterface = {
         return j.$('.ep-list li');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Otakustream.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Otakustream.domain);
       },
       elementEp(selector) {
         return Otakustream.sync!.getEpisode(Otakustream.overview!.list!.elementUrl!(selector));
@@ -95,8 +71,10 @@ export const Otakustream: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

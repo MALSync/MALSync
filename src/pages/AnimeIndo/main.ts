@@ -41,10 +41,7 @@ export const AnimeIndo: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.nav.next a')
-        .first()
-        .attr('href');
+      const href = j.$('.nav.next a').first().attr('href');
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, AnimeIndo.domain);
       }
@@ -64,9 +61,7 @@ export const AnimeIndo: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#sct_content > h1')
-        .first()
-        .after(j.html(selector));
+      j.$('#sct_content > h1').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -74,28 +69,18 @@ export const AnimeIndo: pageInterface = {
         return j.$('ul.eps_lst,ul#epl').find('li:not(.hdr)');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          AnimeIndo.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), AnimeIndo.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .text()
-            .replace(/\D+/g, ''),
-        );
+        return Number(selector.find('a').first().text().replace(/\D+/g, ''));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'anime' ||
         (page.url.split('/')[3] !== null && j.$('#sct_content > div > div.preview')[0])

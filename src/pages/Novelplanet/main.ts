@@ -14,32 +14,19 @@ export const Novelplanet: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('#main .title')
-        .first()
-        .text()
-        .trim();
+      return j.$('#main .title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
-      return getEp(
-        $('.selectChapter option')
-          .first()
-          .text(),
-      );
+      return getEp($('.selectChapter option').first().text());
     },
     getVolume(_url) {
-      const url = $('.selectChapter option')
-        .first()
-        .text();
+      const url = $('.selectChapter option').first().text();
 
       if (!url) return NaN;
 
@@ -55,28 +42,20 @@ export const Novelplanet: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.row > div:nth-child(5)  > a')
-          .first()
-          .attr('href'),
+        j.$('div.row > div:nth-child(5)  > a').first().attr('href'),
         Novelplanet.domain,
       );
     },
   },
   overview: {
     getTitle() {
-      return j
-        .$('.post-contentDetails .title')
-        .first()
-        .text();
+      return j.$('.post-contentDetails .title').first().text();
     },
     getIdentifier(url) {
       return Novelplanet.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.post-contentDetails p')
-        .first()
-        .after(j.html(selector));
+      j.$('.post-contentDetails p').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -84,28 +63,19 @@ export const Novelplanet: pageInterface = {
         return j.$('.rowChapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Novelplanet.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Novelplanet.domain);
       },
       elementEp(selector) {
-        return getEp(
-          selector
-            .find('a')
-            .first()
-            .text(),
-        );
+        return getEp(selector.find('a').first().text());
       },
     },
   },
   init(page) {
     page.novel = true;
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

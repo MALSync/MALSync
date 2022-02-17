@@ -90,7 +90,10 @@ async function checkItemId(page, id, curUrl = '', video = false) {
         apiCall(reqUrl, true).then(response2 => {
           const genres: any = JSON.parse(response2.responseText);
           con.log('genres', genres);
-          if (genres.Path.includes('Anime') || genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime')) {
+          if (
+            genres.Path.includes('Anime') ||
+            genres.GenreItems.find(genre => genre.Name.toLowerCase() === 'anime')
+          ) {
             con.info('Anime detected');
             if (curUrl) {
               page.url = curUrl;
@@ -147,17 +150,11 @@ async function parseSession(data, deviceId, userId, user) {
 
   if (!data.length) {
     if (deviceId) {
-      con
-        .m('Session')
-        .m(user)
-        .log('Fallback to userId');
+      con.m('Session').m(user).log('Fallback to userId');
       return parseSession(data, null, userId, user);
     }
     if (user) {
-      con
-        .m('Session')
-        .m(user)
-        .log('Fallback to request without ControllableByUserId');
+      con.m('Session').m(user).log('Fallback to request without ControllableByUserId');
       return getSession(deviceId, userId, false);
     }
     throw 'Could not get session';
@@ -318,7 +315,9 @@ export const Jellyfin: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '');
+      return (
+        item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '')
+      );
     },
     getIdentifier(url) {
       if (typeof item.SeasonId !== 'undefined') return item.SeasonId;
@@ -340,13 +339,13 @@ export const Jellyfin: pageInterface = {
       return item.Id;
     },
     uiSelector(selector) {
-      j.$('.page:not(.hide) .detailPageContent')
-        .first()
-        .prepend(j.html(selector));
+      j.$('.page:not(.hide) .detailPageContent').first().prepend(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     testApi().then(() => {
       con.info('Authenticated');
       utils.changeDetect(
@@ -355,30 +354,28 @@ export const Jellyfin: pageInterface = {
           checkApi(page);
         },
         () => {
-          const src = $('video')
-            .first()
-            .attr('src');
+          const src = $('video').first().attr('src');
           if (typeof src === 'undefined') return 'NaN';
           return src;
         },
       );
-      utils.urlChangeDetect(function() {
+      utils.urlChangeDetect(function () {
         if (!(window.location.href.indexOf('video') !== -1)) {
           page.reset();
           urlChange(page);
         }
       });
-      j.$(document).ready(function() {
+      j.$(document).ready(function () {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.page').length;
           },
-          function() {
+          function () {
             urlChange(page);
           },
         );
       });
-      document.addEventListener('fullscreenchange', function() {
+      document.addEventListener('fullscreenchange', function () {
         if (
           window.fullScreen ||
           (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)

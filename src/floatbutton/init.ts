@@ -54,7 +54,7 @@ export function initFloatButton(page, floatClick) {
     j.$('.open-info-popup').show();
     if (api.settings.get('autoCloseMinimal')) j.$('.modal-kal').css('pointer-events', 'initial');
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
       if (!e || !e.target) return;
       if (j.$(e.target).hasClass('open-info-popup')) {
         floatClick(page);

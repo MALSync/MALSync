@@ -37,7 +37,8 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        if (provider === 'MAL')
+          resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
         else resolve(false);
       });
     },
@@ -50,12 +51,7 @@ export const AnimeOnsen: pageInterface = {
         return utils.absoluteLink(selector.attr('href'), AnimeOnsen.domain);
       },
       elementEp(selector) {
-        return Number(
-          j
-            .$(selector)
-            .find('div.episode')
-            .data('episode'),
-        );
+        return Number(j.$(selector).find('div.episode').data('episode'));
       },
     },
   },
@@ -97,14 +93,17 @@ export const AnimeOnsen: pageInterface = {
     getMalUrl(provider) {
       // get myanimelist anime url
       return new Promise(resolve => {
-        if (provider === 'MAL') resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
+        if (provider === 'MAL')
+          resolve(j.$('meta[name="ao-content-mal-url"]').attr('content') || false);
         else resolve(false);
       });
     },
   },
   init(page) {
     // add styles
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     const checkCondition = () => {
       // check if the document has completed loading.

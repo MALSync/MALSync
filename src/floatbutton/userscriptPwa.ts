@@ -3,13 +3,13 @@ import { Minimal } from '../minimal/minimalClass';
 declare let componentHandler: any;
 
 export function pwa() {
-  $(document).ready(async function() {
-    document.getElementsByTagName('head')[0].onclick = function(e) {
+  $(document).ready(async function () {
+    document.getElementsByTagName('head')[0].onclick = function (e) {
       try {
         componentHandler.upgradeDom();
       } catch (e2) {
         console.log(e2);
-        setTimeout(function() {
+        setTimeout(function () {
           componentHandler.upgradeDom();
         }, 500);
       }

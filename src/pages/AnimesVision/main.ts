@@ -79,13 +79,7 @@ export const AnimesVision: pageInterface = {
         return j.$('.screen-items > .item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          AnimesVision.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), AnimesVision.domain);
       },
       elementEp(selector) {
         return AnimesVision.sync.getEpisode(AnimesVision.overview!.list!.elementUrl!(selector));
@@ -93,7 +87,9 @@ export const AnimesVision: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let _debounce;
 

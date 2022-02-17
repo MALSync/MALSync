@@ -52,10 +52,7 @@ export const moeclip: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils
-        .getBaseText($('#data2 > div:nth-child(2)'))
-        .trim()
-        .replace(/:[ ]*/g, '');
+      return utils.getBaseText($('#data2 > div:nth-child(2)')).trim().replace(/:[ ]*/g, '');
     },
     getIdentifier(url) {
       return url
@@ -64,9 +61,7 @@ export const moeclip: pageInterface = {
         .trim();
     },
     uiSelector(selector) {
-      j.$('div.entry-meta')
-        .first()
-        .after(j.html(selector));
+      j.$('div.entry-meta').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -74,28 +69,18 @@ export const moeclip: pageInterface = {
         return j.$('li.episode-list');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('div > a')
-            .first()
-            .attr('href'),
-          moeclip.domain,
-        );
+        return utils.absoluteLink(selector.find('div > a').first().attr('href'), moeclip.domain);
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('div > a')
-            .first()
-            .text()
-            .replace(/\D+/, ''),
-        );
+        return Number(selector.find('div > a').first().text().replace(/\D+/, ''));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'anime' ||
         (j.$('div.video-content')[0] &&

@@ -2,7 +2,11 @@
   <div
     v-if="malObj"
     id="malsync-update-ui"
-    :class="{ 'malsync-loading': loading, 'malsync-error': errorMessage, 'malsync-not-list': !onList }"
+    :class="{
+      'malsync-loading': loading,
+      'malsync-error': errorMessage,
+      'malsync-not-list': !onList,
+    }"
   >
     <div class="ms-data">
       <div v-show="loading" class="ms-loading"></div>
@@ -23,7 +27,9 @@
           @update:value="episode = $event"
         >
           <span v-if="progress" class="mal-sync-ep" :title="progress.getAutoText()">
-            [<span :style="`border-bottom: 1px dotted ${progress.getColor()};`">{{ progress.getCurrentEpisode() }}</span
+            [<span :style="`border-bottom: 1px dotted ${progress.getColor()};`">{{
+              progress.getCurrentEpisode()
+            }}</span
             >]
           </span>
         </inputNumber>
@@ -41,10 +47,19 @@
         <span class="powered-malsync">Provided by MAL-Sync</span>
       </div>
 
-      <div v-if="!onList" class="malsync-add" :class="{ 'ms-load': loading || errorMessage }" @click="addUpdate()">
+      <div
+        v-if="!onList"
+        class="malsync-add"
+        :class="{ 'ms-load': loading || errorMessage }"
+        @click="addUpdate()"
+      >
         {{ lang('Add') }}
       </div>
-      <div v-else-if="malObj.isDirty() && !loading && !errorMessage" class="malsync-save" @click="update()">
+      <div
+        v-else-if="malObj.isDirty() && !loading && !errorMessage"
+        class="malsync-save"
+        @click="update()"
+      >
         {{ lang('Update') }}
       </div>
     </div>
@@ -153,7 +168,8 @@ export default {
           else if (
             !oldValue &&
             newValue &&
-            (this.malObj.getStatus() === status.PlanToWatch || this.malObj.getStatus() === status.NoState)
+            (this.malObj.getStatus() === status.PlanToWatch ||
+              this.malObj.getStatus() === status.NoState)
           ) {
             this.malObj.setStatus(status.Watching);
             this.forceUpdateState = true;

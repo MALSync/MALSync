@@ -48,10 +48,7 @@ async function checkApi(page) {
         itemId = await returnPlayingItemId();
         apiKey = await getApiKey();
       } else {
-        apiBase = url
-          .split('/')
-          .splice(0, 4)
-          .join('/');
+        apiBase = url.split('/').splice(0, 4).join('/');
         itemId = utils.urlPart(url, 5);
         apiKey = await getApiKey();
         setBase(apiBase);
@@ -148,25 +145,15 @@ async function returnPlayingItemId() {
 async function waitForBase() {
   return new Promise((resolve, reject) => {
     utils.waitUntilTrue(
-      function() {
+      function () {
         return (
           j.$('*[data-url]').length ||
-          (j
-            .$('.view:not(.hide) .cardImageContainer')
-            .first()
-            .css('background-image') &&
-            j
-              .$('.view:not(.hide) .cardImageContainer')
-              .first()
-              .css('background-image') !== 'none')
+          (j.$('.view:not(.hide) .cardImageContainer').first().css('background-image') &&
+            j.$('.view:not(.hide) .cardImageContainer').first().css('background-image') !== 'none')
         );
       },
-      function() {
-        let elementUrl =
-          j
-            .$('*[data-url]')
-            .first()
-            .attr('data-url') || '';
+      function () {
+        let elementUrl = j.$('*[data-url]').first().attr('data-url') || '';
 
         if (!elementUrl) {
           elementUrl = j
@@ -177,10 +164,7 @@ async function waitForBase() {
             .replace('")', '');
         }
 
-        const base = elementUrl
-          .split('/')
-          .splice(0, 4)
-          .join('/');
+        const base = elementUrl.split('/').splice(0, 4).join('/');
         con.log('Base Found', base);
         resolve(base);
       },
@@ -255,13 +239,11 @@ async function askForApiKey() {
       `,
       { position: 'bottom', permanent: true, type: 'getApi' },
     );
-    msg.find('.Yes').click(function(evt) {
+    msg.find('.Yes').click(function (evt) {
       const api = j.$('#MS-ApiKey').val();
       con.info('api', api);
       setApiKey(api);
-      j.$(evt.target)
-        .parentsUntil('.flash')
-        .remove();
+      j.$(evt.target).parentsUntil('.flash').remove();
       testApi()
         .then(() => {
           resolve(true);
@@ -272,10 +254,8 @@ async function askForApiKey() {
           resolve(true);
         });
     });
-    msg.find('.Cancel').click(function(evt) {
-      j.$(evt.target)
-        .parentsUntil('.flash')
-        .remove();
+    msg.find('.Cancel').click(function (evt) {
+      j.$(evt.target).parentsUntil('.flash').remove();
       reject();
     });
   });
@@ -309,7 +289,9 @@ export const Emby: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '');
+      return (
+        item.SeriesName + (item.ParentIndexNumber > 1 ? ` Season ${item.ParentIndexNumber}` : '')
+      );
     },
     getIdentifier(url) {
       if (typeof item.SeasonId !== 'undefined') return item.SeasonId;
@@ -331,13 +313,13 @@ export const Emby: pageInterface = {
       return item.Id;
     },
     uiSelector(selector) {
-      j.$('.page:not(.hide) .nameContainer')
-        .first()
-        .append(j.html(selector));
+      j.$('.page:not(.hide) .nameContainer').first().append(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     testApi()
       .catch(() => {
         con.info('Not Authenticated');
@@ -351,33 +333,35 @@ export const Emby: pageInterface = {
             checkApi(page);
           },
           () => {
-            const src = $('video')
-              .first()
-              .attr('src');
+            const src = $('video').first().attr('src');
             if (typeof src === 'undefined') return 'NaN';
             return src;
           },
         );
-        utils.urlChangeDetect(function() {
-          if (!(window.location.href.indexOf('video') !== -1) && !(window.location.href.indexOf('#dlg') !== -1)) {
+        utils.urlChangeDetect(function () {
+          if (
+            !(window.location.href.indexOf('video') !== -1) &&
+            !(window.location.href.indexOf('#dlg') !== -1)
+          ) {
             page.reset();
             urlChange(page);
           }
         });
-        j.$(document).ready(function() {
+        j.$(document).ready(function () {
           utils.waitUntilTrue(
-            function() {
+            function () {
               return j.$('.page').length;
             },
-            function() {
+            function () {
               urlChange(page);
             },
           );
         });
-        document.addEventListener('fullscreenchange', function() {
+        document.addEventListener('fullscreenchange', function () {
           if (
             window.fullScreen ||
-            (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)
+            (window.innerWidth === window.screen.width &&
+              window.innerHeight === window.screen.height)
           ) {
             $('html').addClass('miniMAL-Fullscreen');
           } else {

@@ -19,18 +19,17 @@ export const tenshi: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('#content > ol.breadcrumb > li:nth-child(3) > a').attr('href'), tenshi.domain);
+      return utils.absoluteLink(
+        j.$('#content > ol.breadcrumb > li:nth-child(3) > a').attr('href'),
+        tenshi.domain,
+      );
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 5));
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('ol.playlist-episodes > li.sel')
-          .next('li')
-          .find('a')
-          .attr('href'),
+        j.$('ol.playlist-episodes > li.sel').next('li').find('a').attr('href'),
         tenshi.domain,
       );
     },
@@ -61,8 +60,10 @@ export const tenshi: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Not Found')) {
         con.error('404');
         return;
