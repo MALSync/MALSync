@@ -20,6 +20,7 @@ const COMMON_RULES = {
   'no-plusplus': 0,
   'vue/no-useless-template-attributes': 'off',
   'no-constructor-return': 'off',
+  'import/no-unresolved': ['error', { ignore: ['style\\.less$', 'quicklinks\\.json$'] }],
   'no-restricted-syntax': [
     'error',
     // TODO: Reenable rule
@@ -91,7 +92,6 @@ module.exports = {
         ...COMMON_RULES,
         // Import rules
         'import/no-cycle': 'warn', // TODO
-        'import/no-unresolved': 'warn',
         'import/no-self-import': 'warn',
         // TS rules
         '@typescript-eslint/ban-ts-comment': 'warn',
