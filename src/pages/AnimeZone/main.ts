@@ -35,9 +35,7 @@ export const AnimeZone: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('.ratings .panel-body .description')
-        .first()
-        .after(j.html(selector));
+      j.$('.ratings .panel-body .description').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -45,10 +43,7 @@ export const AnimeZone: pageInterface = {
         return j.$('table.episodes > tbody > tr');
       },
       elementUrl(selector) {
-        const anchorHref = selector
-          .find('td:nth-child(6) > a')
-          .first()
-          .attr('href');
+        const anchorHref = selector.find('td:nth-child(6) > a').first().attr('href');
 
         if (!anchorHref) return '';
 
@@ -68,14 +63,16 @@ export const AnimeZone: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
 
       const target = j.$('#episode')[0];
       const config = { attributes: false, childList: true, subtree: true };
 
-      const callback = function(mutationsList: MutationRecord[], observer: MutationObserver) {
+      const callback = function (mutationsList: MutationRecord[], observer: MutationObserver) {
         /* eslint-disable-next-line */
         for (const mutation of mutationsList) {
           if (mutation.type !== 'childList') return;
@@ -109,8 +106,8 @@ export const AnimeZone: pageInterface = {
 
       const observer = new MutationObserver(callback);
 
-      j.$('.btn.btn-xs.btn-success').each(function(i, e) {
-        j.$(e).click(function() {
+      j.$('.btn.btn-xs.btn-success').each(function (i, e) {
+        j.$(e).click(function () {
           observer.observe(target, config);
         });
       });

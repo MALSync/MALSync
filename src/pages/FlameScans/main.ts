@@ -13,10 +13,7 @@ export const FlameScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.chapterbody .headpost a')
-        .text()
-        .trim();
+      return j.$('.chapterbody .headpost a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(FlameScans.sync.getOverviewUrl(url), 4);
@@ -25,10 +22,7 @@ export const FlameScans: pageInterface = {
       return j.$('.chapterbody .headpost a').attr('href') || '';
     },
     getEpisode(url) {
-      const elementEpN = j
-        .$('select#chapter option[selected="selected"]')
-        .first()
-        .text();
+      const elementEpN = j.$('select#chapter option[selected="selected"]').first().text();
 
       const temp = elementEpN.match(/chapter \d+/gim);
 
@@ -46,10 +40,7 @@ export const FlameScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.entry-title')
-        .text()
-        .trim();
+      return j.$('h1.entry-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4).replace(/^\d+-/g, '');
@@ -83,8 +74,10 @@ export const FlameScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Page not found')) {
         con.error('404');
         return;
@@ -94,13 +87,13 @@ export const FlameScans: pageInterface = {
       }
       if (j.$('div#content.readercontent').length) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (j.$('select#chapter option[selected="selected"]').first().length) {
               return true;
             }
             return false;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

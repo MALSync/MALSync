@@ -23,21 +23,14 @@ export const MangaSee: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.Column.col-lg-4.col-12')
-        .first()
-        .text()
-        .trim();
+      return j.$('div.Column.col-lg-4.col-12').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(MangaSee.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.Column.col-lg-4.col-12 a')
-          .first()
-          .attr('href'),
+        j.$('div.Column.col-lg-4.col-12 a').first().attr('href'),
         MangaSee.domain,
       );
     },
@@ -62,18 +55,16 @@ export const MangaSee: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('li.list-group-item')
-        .first()
-        .text()
-        .trim();
+      return j.$('li.list-group-item').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$(j.$('li.list-group-item')[1]).after(
-        j.html(`<li class="list-group-item d-none d-sm-block"><span class="mlabel">MAL-Sync:</span>${selector}</li>`),
+        j.html(
+          `<li class="list-group-item d-none d-sm-block"><span class="mlabel">MAL-Sync:</span>${selector}</li>`,
+        ),
       );
     },
     list: {
@@ -91,23 +82,26 @@ export const MangaSee: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           if (MangaSee.isSyncPage(page.url)) {
             return MangaSee.sync.getTitle(page.url) && MangaSee.sync.getEpisode(page.url);
           }
           if (MangaSee.isOverviewPage!(page.url)) {
             return (
               MangaSee.overview!.getTitle(page.url) &&
-              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]').length
+              !j.$('a[href$="{{vm.ChapterURLEncode(vm.Chapters[vm.Chapters.length-1].Chapter)}}"]')
+                .length
             );
           }
           return false;
         },
-        function() {
+        function () {
           if (MangaSee.isOverviewPage!(page.url)) {
             page.handlePage();
           }
@@ -131,7 +125,7 @@ export const MangaSee: pageInterface = {
 
     function changeDetectBlank(callback, func) {
       let currentPage = '';
-      const intervalId = setInterval(function() {
+      const intervalId = setInterval(function () {
         const temp = func();
         if (typeof temp !== 'undefined' && currentPage !== temp) {
           currentPage = func();

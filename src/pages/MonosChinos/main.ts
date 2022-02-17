@@ -24,13 +24,7 @@ export const MonosChinos: pageInterface = {
       return MonosChinos.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('.playlist')
-          .first()
-          .parent()
-          .attr('href') || ''
-      );
+      return j.$('.playlist').first().parent().attr('href') || '';
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -48,11 +42,7 @@ export const MonosChinos: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$('[src$="/public/img/playarrowright.png"]')
-        .first()
-        .parent()
-        .attr('href');
+      const href = j.$('[src$="/public/img/playarrowright.png"]').first().parent().attr('href');
       if (href) {
         if (MonosChinos.sync.getEpisode(url) < MonosChinos.sync.getEpisode(href)) {
           return href;
@@ -74,9 +64,7 @@ export const MonosChinos: pageInterface = {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('.heromain2')
-        .first()
-        .before(j.html(selector));
+      j.$('.heromain2').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -84,12 +72,7 @@ export const MonosChinos: pageInterface = {
         return j.$('.allanimes .col-item');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return MonosChinos.sync.getEpisode(MonosChinos.overview!.list!.elementUrl!(selector));
@@ -97,8 +80,10 @@ export const MonosChinos: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('MonosChinos - Anime sub español y latino')) {
         con.error('404');
         return;

@@ -14,7 +14,7 @@ export const requestApi: requestInterface = {
 
   async sendMessage(message: sendMessageI): Promise<any> {
     return new Promise((resolve, reject) => {
-      chrome.runtime.sendMessage(message, function(response: responseMessageI) {
+      chrome.runtime.sendMessage(message, function (response: responseMessageI) {
         resolve(response);
       });
     });

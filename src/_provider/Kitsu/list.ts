@@ -107,16 +107,23 @@ export class UserList extends ListAbstract {
       statusPart = `&filter[status]=${statusTemp}`;
     }
 
-    con.log('[UserList][Kitsu]', `user: ${userid}`, `status: ${this.status}`, `offset: ${this.offset}`);
+    con.log(
+      '[UserList][Kitsu]',
+      `user: ${userid}`,
+      `status: ${this.status}`,
+      `offset: ${this.offset}`,
+    );
 
     return helper
       .apiCall(
         'GET',
         `https://kitsu.io/api/edge/library-entries?filter[user_id]=${userid}${statusPart}&filter[kind]=${
           this.listType
-        }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${this.listType},${this.listType}.mappings,${
+        }&page[offset]=${this.offset}&page[limit]=50${sorting}&include=${this.listType},${
           this.listType
-        }.mappings.item&fields[${this.listType}]=slug,titles,canonicalTitle,averageRating,posterImage,${
+        }.mappings,${this.listType}.mappings.item&fields[${
+          this.listType
+        }]=slug,titles,canonicalTitle,averageRating,posterImage,${
           this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
       )
@@ -169,7 +176,10 @@ export class UserList extends ListAbstract {
           totalEp: el.attributes.episodeCount,
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
-          image: el.attributes.posterImage && el.attributes.posterImage.large ? el.attributes.posterImage.large : '',
+          image:
+            el.attributes.posterImage && el.attributes.posterImage.large
+              ? el.attributes.posterImage.large
+              : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
         });
@@ -187,7 +197,10 @@ export class UserList extends ListAbstract {
           totalEp: el.attributes.chapterCount,
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
-          image: el.attributes.posterImage && el.attributes.posterImage.large ? el.attributes.posterImage.large : '',
+          image:
+            el.attributes.posterImage && el.attributes.posterImage.large
+              ? el.attributes.posterImage.large
+              : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
         });

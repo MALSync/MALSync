@@ -28,16 +28,13 @@ export const WonderfulSubs: pageInterface = {
       return `${WonderfulSubs.domain}/watch/${url.split('/')[4].replace(/\?[^?]*$/g, '')}`;
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('span.card-title span.new.badge')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('span.card-title span.new.badge').text().replace(/\D+/g, ''));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     page.url = window.location.href;
     if (page.url.split('/')[2] === 'beta.wonderfulsubs.com') {
       WonderfulSubs.isSyncPage = betaWonderfulSubs.isSyncPage;
@@ -46,22 +43,22 @@ export const WonderfulSubs: pageInterface = {
     } else {
       if (page.url.split('/')[3] === 'watch') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('span.card-title p.hide-truncate.activator').text();
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
       }
-      utils.urlChangeDetect(function() {
+      utils.urlChangeDetect(function () {
         page.reset();
         if (page.url.split('/')[3] === 'watch') {
           utils.waitUntilTrue(
-            function() {
+            function () {
               return j.$('span.card-title p.hide-truncate.activator').text();
             },
-            function() {
+            function () {
               page.handlePage();
             },
           );
@@ -87,45 +84,40 @@ let betaWonderfulSubs: pageInterface = {
       return j.$('h6.subtitle').text();
     },
     getIdentifier(url) {
-      return j
-        .$('h6.subtitle')
-        .text()
-        .toLowerCase()
-        .replace(/ /g, '-');
+      return j.$('h6.subtitle').text().toLowerCase().replace(/ /g, '-');
     },
     getOverviewUrl(url) {
-      return `${'https://beta.wonderfulsubs.com/watch/'}${url.split('/')[4].replace(/\?[^?]*$/g, '')}`;
+      return `${'https://beta.wonderfulsubs.com/watch/'}${url
+        .split('/')[4]
+        .replace(/\?[^?]*$/g, '')}`;
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('div.episode-number')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('div.episode-number').text().replace(/\D+/g, ''));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     page.url = window.location.href;
     if (page.url.split('/')[3] === 'watch') {
       utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('h6.subtitle').text();
         },
-        function() {
+        function () {
           page.handlePage();
         },
       );
     }
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       if (page.url.split('/')[3] === 'watch') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('h6.subtitle').text();
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

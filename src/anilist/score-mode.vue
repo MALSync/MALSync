@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import inputDropdown from './input-dropdown.vue';
 import inputNumber from './input-number.vue';
 import inputClicker from './input-clicker.vue';
@@ -60,7 +60,8 @@ export default {
   watch: {
     value: {
       handler(newValue) {
-        if (this.modelValue !== newValue) this.modelValue = this.scoreModeStrategy.valueToOptionValue(newValue);
+        if (this.modelValue !== newValue)
+          this.modelValue = this.scoreModeStrategy.valueToOptionValue(newValue);
       },
       immediate: true,
     },

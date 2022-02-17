@@ -14,7 +14,9 @@ export const WuxiaWorld: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('div.entry-header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a')
+        .$(
+          'div.entry-header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
+        )
         .text()
         .replace(/(comics|comic)\s*$/i, '')
         .trim();
@@ -25,7 +27,9 @@ export const WuxiaWorld: pageInterface = {
     getOverviewUrl(url) {
       return (
         j
-          .$('div.entry-header> div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a')
+          .$(
+            'div.entry-header> div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
+          )
           .attr('href') || ''
       );
     },
@@ -40,7 +44,9 @@ export const WuxiaWorld: pageInterface = {
     },
     nextEpUrl(url) {
       return j
-        .$('div.entry-header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page')
+        .$(
+          'div.entry-header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
+        )
         .attr('href');
     },
   },
@@ -65,13 +71,7 @@ export const WuxiaWorld: pageInterface = {
         return j.$('div.page-content-listing.single-page > div > ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          WuxiaWorld.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), WuxiaWorld.domain);
       },
       elementEp(selector) {
         return WuxiaWorld.sync.getEpisode(WuxiaWorld.overview!.list!.elementUrl!(selector));
@@ -79,8 +79,10 @@ export const WuxiaWorld: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (WuxiaWorld.isSyncPage(page.url)) {
         if (j.$('.entry-content .reading-content img').length) {
           page.novel = false;

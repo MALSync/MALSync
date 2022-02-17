@@ -185,12 +185,17 @@ export class Single extends SingleAbstract {
           this._onList = false;
           let el;
           if (de.simkl) {
-            el = await this.call(`https://api.simkl.com/anime/${de.simkl}`, { extended: 'full' }, true);
+            el = await this.call(
+              `https://api.simkl.com/anime/${de.simkl}`,
+              { extended: 'full' },
+              true,
+            );
             if (!el) throw new NotFoundError('Anime not found');
           } else {
             el = await this.call('https://api.simkl.com/search/id', de, true);
             if (!el) throw new NotFoundError('Anime not found');
-            if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special') throw new Error('Is a special');
+            if (el[0].mal && el[0].mal.type && el[0].mal.type === 'Special')
+              throw new Error('Is a special');
             el = el[0];
           }
 

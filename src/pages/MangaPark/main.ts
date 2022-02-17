@@ -6,10 +6,16 @@ export const MangaPark: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return Boolean(url.split('/')[3] === 'comic' && url.split('/')[6] !== undefined && j.$('#viewer').length);
+    return Boolean(
+      url.split('/')[3] === 'comic' && url.split('/')[6] !== undefined && j.$('#viewer').length,
+    );
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'comic' && url.split('/')[4] !== undefined && url.split('/')[4].length > 0) {
+    if (
+      url.split('/')[3] === 'comic' &&
+      url.split('/')[4] !== undefined &&
+      url.split('/')[4].length > 0
+    ) {
       return true;
     }
     return false;
@@ -64,24 +70,20 @@ export const MangaPark: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h3.item-title > a')
-        .first()
-        .text()
-        .trim();
+      return j.$('h3.item-title > a').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.episode-list')
-        .first()
-        .before(j.html(selector));
+      j.$('div.episode-list').first().before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

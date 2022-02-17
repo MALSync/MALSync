@@ -9,7 +9,7 @@
       <template v-if="username && listObj.deauth">
         <i
           class="material-icons"
-          style="color: black; cursor: pointer; vertical-align: middle; margin-top: -4px;"
+          style="color: black; cursor: pointer; vertical-align: middle; margin-top: -4px"
           @click="deauth()"
         >
           eject
@@ -37,7 +37,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import { NotAutenticatedError } from '../../../_provider/Errors';
 import { getListbyType } from '../../../_provider/listFactory';
 
@@ -58,7 +58,9 @@ export default {
       get() {
         return api.settings.get(this.option);
       },
-      set() {},
+      set() {
+        // do nothing
+      },
     },
     pageName() {
       if (this.listObj) return this.listObj.name;

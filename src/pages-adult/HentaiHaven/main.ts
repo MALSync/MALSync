@@ -6,7 +6,11 @@ export const HentaiHaven: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) {
+    if (
+      url.split('/')[3] !== null &&
+      j.$('h1.entry-title')[0] &&
+      j.$('div.hentaiha-post-tabs')[0]
+    ) {
       return true;
     }
     return false;
@@ -49,16 +53,18 @@ export const HentaiHaven: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('div.archive-meta.category-meta')
-        .first()
-        .after(j.html(selector));
+      j.$('div.archive-meta.category-meta').first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
-        (page.url.split('/')[3] !== null && j.$('h1.entry-title')[0] && j.$('div.hentaiha-post-tabs')[0]) ||
+        (page.url.split('/')[3] !== null &&
+          j.$('h1.entry-title')[0] &&
+          j.$('div.hentaiha-post-tabs')[0]) ||
         page.url.split('/')[3] === 'series'
       ) {
         page.handlePage();

@@ -13,32 +13,19 @@ export const MerakiScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('h1#reader_text a')
-        .first()
-        .text()
-        .trim();
+      return j.$('h1#reader_text a').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('h1#reader_text a')
-          .first()
-          .attr('href'),
-        MerakiScans.domain,
-      );
+      return utils.absoluteLink(j.$('h1#reader_text a').first().attr('href'), MerakiScans.domain);
     },
     getEpisode(url) {
       return Number(url.split('/')[5]);
     },
     nextEpUrl(url) {
-      const nextChap: any = j
-        .$('#chapter_select option:selected')
-        .next()
-        .val();
+      const nextChap: any = j.$('#chapter_select option:selected').next().val();
 
       if (nextChap === undefined) {
         return undefined;
@@ -88,8 +75,10 @@ export const MerakiScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Page Not Found')) {
         con.error('404');
         return;

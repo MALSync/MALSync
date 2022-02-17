@@ -45,10 +45,7 @@ export const AnimeShitai: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.content div.eright')
-          .parent('a')
-          .attr('href'),
+        j.$('div.content div.eright').parent('a').attr('href'),
         AnimeShitai.domain,
       );
     },
@@ -69,9 +66,7 @@ export const AnimeShitai: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#ani > div.body > div.br')
-        .first()
-        .prepend(j.html(selector));
+      j.$('#ani > div.body > div.br').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -90,9 +85,11 @@ export const AnimeShitai: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

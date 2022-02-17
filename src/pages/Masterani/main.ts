@@ -14,33 +14,20 @@ export const Masterani: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.info h1')
-        .text()
-        .trim();
+      return j.$('.info h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 5) || '';
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('.info a')
-          .first()
-          .attr('href'),
-        Masterani.domain,
-      );
+      return utils.absoluteLink(j.$('.info a').first().attr('href'), Masterani.domain);
     },
     getEpisode(url) {
       return parseInt(utils.urlPart(url, 6) || '');
     },
     nextEpUrl(url) {
       const nexUrl =
-        Masterani.domain +
-        (j
-          .$('#watch .anime-info .actions a')
-          .last()
-          .attr('href') || '');
+        Masterani.domain + (j.$('#watch .anime-info .actions a').last().attr('href') || '');
       if (!Masterani.isSyncPage(nexUrl)) {
         return undefined;
       }
@@ -55,9 +42,7 @@ export const Masterani: pageInterface = {
       return Masterani.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#stats')
-        .first()
-        .prepend(j.html(selector));
+      j.$('#stats').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -65,13 +50,7 @@ export const Masterani: pageInterface = {
         return j.$('.episodes .thumbnail');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Masterani.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Masterani.domain);
       },
       elementEp(selector) {
         return Masterani.sync.getEpisode(Masterani.overview!.list!.elementUrl!(selector));
@@ -87,16 +66,18 @@ export const Masterani: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('#stats,#watch').length;
       },
-      function() {
+      function () {
         page.handlePage();
 
-        j.$('.ui.toggle.checkbox, .pagination.menu').click(function() {
-          setTimeout(function() {
+        j.$('.ui.toggle.checkbox, .pagination.menu').click(function () {
+          setTimeout(function () {
             page.handleList();
           }, 500);
         });

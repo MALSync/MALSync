@@ -6,12 +6,12 @@ initShark();
 
 declare let componentHandler: any;
 
-document.getElementsByTagName('head')[0].onclick = function(e) {
+document.getElementsByTagName('head')[0].onclick = function (e) {
   try {
     componentHandler.upgradeDom();
   } catch (e2) {
     console.log(e2);
-    setTimeout(function() {
+    setTimeout(function () {
       componentHandler.upgradeDom();
     }, 500);
   }
@@ -30,7 +30,7 @@ api.settings.init().then(() => {
     const mode = $('html').attr('mode');
     con.log('Mode', mode);
     if (mode === 'popup' && api.settings.get('minimalWindow')) {
-      openMinimal(function(response) {
+      openMinimal(function (response) {
         $('html').css('height', '0');
         if (!isFirefox()) {
           window.close();
@@ -53,10 +53,10 @@ function checkFill(minimalObj) {
     con.error('Can not check for tabs');
     return;
   }
-  chrome.tabs.query({ active: true }, function(tabs) {
+  chrome.tabs.query({ active: true }, function (tabs) {
     con.m('tabs').log(tabs);
     tabs.forEach(el => {
-      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function(response) {
+      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function (response) {
         setTimeout(() => {
           if (typeof response !== 'undefined' && response.length) {
             minimalObj.fillBase(response);

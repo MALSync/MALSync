@@ -50,7 +50,8 @@ export class Single extends SingleAbstract {
   }
 
   _getStatus() {
-    if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current') return 23;
+    if (this.listI().attributes.reconsuming && this.listI().attributes.status === 'current')
+      return 23;
     return parseInt(helper.translateList(this.listI().attributes.status));
   }
 
@@ -122,7 +123,10 @@ export class Single extends SingleAbstract {
 
   _getTitle() {
     try {
-      return helper.getTitle(this.animeI().attributes.titles, this.animeI().attributes.canonicalTitle);
+      return helper.getTitle(
+        this.animeI().attributes.titles,
+        this.animeI().attributes.canonicalTitle,
+      );
     } catch (e) {
       console.error('title', e);
       return 'Failed';
@@ -231,7 +235,9 @@ export class Single extends SingleAbstract {
         if (tempAnimeInfo.data[0].attributes.ratingHundred) {
           tempAnimeInfo.data[0].attributes.ratingHundred = 0;
         } else {
-          tempAnimeInfo.data[0].attributes.ratingHundred = Number(tempAnimeInfo.data[0].attributes.ratingTwenty * 5);
+          tempAnimeInfo.data[0].attributes.ratingHundred = Number(
+            tempAnimeInfo.data[0].attributes.ratingTwenty * 5,
+          );
         }
 
         this.animeInfo = tempAnimeInfo;
@@ -373,7 +379,11 @@ export class Single extends SingleAbstract {
       return userId;
     }
     return this.apiCall('Get', 'https://kitsu.io/api/edge/users?filter[self]=true').then(res => {
-      if (typeof res.data === 'undefined' || !res.data.length || typeof res.data[0] === 'undefined') {
+      if (
+        typeof res.data === 'undefined' ||
+        !res.data.length ||
+        typeof res.data[0] === 'undefined'
+      ) {
         throw new NotAutenticatedError('Not Authenticated');
       }
       api.storage.set('kitsuUserId', res.data[0].id);

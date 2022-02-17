@@ -12,16 +12,14 @@
     </div>
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
       <div v-for="(perm, index) in permissions" :key="index">
-        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
-          <div class="icon material-icons close-icon" @click="removePermission(index)">
-            close
-          </div>
+        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
+          <div class="icon material-icons close-icon" @click="removePermission(index)">close</div>
           <span class="mdl-list__item-primary-content">
             <select
               v-model="perm.page"
               name="myinfo_score"
               class="inputtext mdl-textfield__input"
-              style="outline: none; margin-left: 10px; margin-right: 10px;"
+              style="outline: none; margin-left: 10px; margin-right: 10px"
               :class="{ error: !pageCheck(perm.page) }"
             >
               <option value="" disabled selected>Select Page</option>
@@ -38,7 +36,7 @@
                 class="mdl-textfield__input"
                 type="text"
                 placeholder="Domain"
-                style="outline: none;"
+                style="outline: none"
                 :class="{ error: !domainCheck(perm.domain) }"
               />
             </div>
@@ -47,8 +45,11 @@
       </div>
 
       <div>
-        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" @click="addPermission()">
+        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
+          <button
+            class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab"
+            @click="addPermission()"
+          >
             <i class="material-icons">add</i>
           </button>
           <span class="mdl-list__item-primary-content"></span>
@@ -56,12 +57,12 @@
       </div>
 
       <div v-if="!hasPermissions || JSON.stringify(option) !== JSON.stringify(permissions)">
-        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0;">
+        <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
           <input
             type="button"
             :value="lang('Update')"
             class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-            style="margin-right: 5px;"
+            style="margin-right: 5px"
             data-upgraded=",MaterialButton"
             @click="savePermissions()"
           />
@@ -72,7 +73,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { pages } from '../../pages/pages';
 import backbutton from './components/backbutton.vue';
 
@@ -97,7 +98,16 @@ export default {
       },
     },
     browserPermissions() {
-      const origins = this.permissions.map(perm => `${new URL(perm.domain).origin}/`);
+      const origins = this.permissions
+        .filter(perm => {
+          try {
+            const url = new URL(perm.domain);
+            return Boolean(url.origin);
+          } catch (_) {
+            return false;
+          }
+        })
+        .map(perm => `${new URL(perm.domain).origin}/`);
       return {
         permissions: ['webNavigation'],
         origins,

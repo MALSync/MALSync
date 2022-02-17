@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 const pages = require('./utils/pages').pages();
 
@@ -67,13 +67,18 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: ['vue-style-loader', { loader: 'to-string-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }],
+        use: [
+          'style-loader',
+          'css-loader',
+          'less-loader',
+        ],
       },
       {
         test: /\.vue$/,
         exclude: /node_modules/,
         loader: 'vue-loader',
         options: {
+          customElement: true,
           shadowMode: true,
         },
       },
@@ -83,7 +88,7 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.less', '.vue'],
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      vue: '@vue/runtime-dom',
     },
   },
   mode: 'development',
@@ -103,6 +108,8 @@ module.exports = {
       env: JSON.stringify({
         CONTEXT: process.env.MODE === 'travis' ? 'production' : 'development',
       }),
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
     }),
   ],
 };

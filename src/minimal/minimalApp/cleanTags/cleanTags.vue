@@ -1,11 +1,11 @@
 <template>
-  <div class="mdl-grid bg-cell" style="display: block;">
+  <div class="mdl-grid bg-cell" style="display: block">
     <h5>This script removes all malsync::xxxxx:: from your list.</h5>
     <button
       type="button"
       :disabled="animeLoading"
       class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-      style="margin-bottom: 20px;"
+      style="margin-bottom: 20px"
       @click="cleanTags()"
     >
       Clean Up Mal-Sync Tags
@@ -13,16 +13,19 @@
     <br />
     Anime:
     <span v-if="animeLoading && !animelistLength">Loading</span>
-    <span v-if="animelistLength">{{ animelistLength - animelist.length }}/{{ animelistLength }}</span>
+    <span v-if="animelistLength"
+      >{{ animelistLength - animelist.length }}/{{ animelistLength }}</span
+    >
     <br />
     Manga:
     <span v-if="mangaLoading && !mangalistLength">Loading</span>
-    <span v-if="mangalistLength">{{ mangalistLength - mangalist.length }}/{{ mangalistLength }}</span
+    <span v-if="mangalistLength"
+      >{{ mangalistLength - mangalist.length }}/{{ mangalistLength }}</span
     ><br />
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 import { getSingle } from '../../../_provider/singleFactory';
 import { getOnlyList } from '../../../_provider/listFactory';
 

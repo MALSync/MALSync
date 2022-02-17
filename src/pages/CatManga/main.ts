@@ -32,13 +32,21 @@ export const CatManga: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'series' && typeof url.split('/')[5] !== 'undefined' && url.split('/')[5].length) {
+    if (
+      url.split('/')[3] === 'series' &&
+      typeof url.split('/')[5] !== 'undefined' &&
+      url.split('/')[5].length
+    ) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (url.split('/')[3] === 'series' && typeof url.split('/')[4] !== 'undefined' && url.split('/')[4].length) {
+    if (
+      url.split('/')[3] === 'series' &&
+      typeof url.split('/')[4] !== 'undefined' &&
+      url.split('/')[4].length
+    ) {
       return true;
     }
     return false;
@@ -73,13 +81,9 @@ export const CatManga: pageInterface = {
       return CatManga.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('p:contains("Chapter")')
-        .parent()
-        .css('flex-wrap', 'wrap');
+      j.$('p:contains("Chapter")').parent().css('flex-wrap', 'wrap');
 
-      j.$('p:contains("Chapter")')
-        .first()
-        .after(j.html(selector));
+      j.$('p:contains("Chapter")').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -95,15 +99,20 @@ export const CatManga: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     }, true);
 
     function check() {
-      if (CatManga.isOverviewPage!(window.location.href) || CatManga.isSyncPage(window.location.href)) {
+      if (
+        CatManga.isOverviewPage!(window.location.href) ||
+        CatManga.isSyncPage(window.location.href)
+      ) {
         proxy.addProxy(async (caller: ScriptProxy) => {
           const nextData = extractMetadata();
           const { buildId } = nextData;

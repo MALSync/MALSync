@@ -26,10 +26,7 @@ export const Kissmanga: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       let episodePart = utils.urlPart(url, 5);
@@ -74,10 +71,7 @@ export const Kissmanga: pageInterface = {
       return Number(volumeNumber[0].slice(-3));
     },
     nextEpUrl(url) {
-      const num = $('select.selectChapter')
-        .find('option:selected')
-        .next()
-        .attr('value');
+      const num = $('select.selectChapter').find('option:selected').next().attr('value');
 
       if (!num) return '';
 
@@ -91,18 +85,13 @@ export const Kissmanga: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.bigChar')
-        .first()
-        .text();
+      return j.$('.bigChar').first().text();
     },
     getIdentifier(url) {
       return Kissmanga.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.bigChar')
-        .first()
-        .after(j.html(selector));
+      j.$('.bigChar').first().after(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -110,13 +99,7 @@ export const Kissmanga: pageInterface = {
         return j.$('.listing tr');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Kissmanga.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Kissmanga.domain);
       },
       elementEp(selector) {
         const url = Kissmanga.overview!.list!.elementUrl!(selector);
@@ -126,13 +109,15 @@ export const Kissmanga: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (document.title.trim() === 'Are You Human') {
       con.log('loading');
       page.cdn('captcha');
       return;
     }
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

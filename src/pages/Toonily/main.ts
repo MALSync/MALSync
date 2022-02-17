@@ -10,16 +10,18 @@ export const Toonily: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.breadcrumb li > a[href*="/manga/"]')
-        .text()
-        .trim();
+      return j.$('.breadcrumb li > a[href*="/manga/"]').text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.breadcrumb li > a[href*="/manga/"]').attr('href'), Toonily.domain) || '';
+      return (
+        utils.absoluteLink(
+          j.$('.breadcrumb li > a[href*="/manga/"]').attr('href'),
+          Toonily.domain,
+        ) || ''
+      );
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 5);
@@ -64,8 +66,10 @@ export const Toonily: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         utils.urlPart(page.url, 3) === 'manga' &&
         utils.urlPart(page.url, 4) !== undefined &&

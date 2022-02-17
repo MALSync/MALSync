@@ -14,29 +14,21 @@ export const Gogoanime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.anime-info a')
-        .first()
-        .text()
-        .trim();
+      return j.$('.anime-info a').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 3).split('-episode')[0];
     },
     getOverviewUrl(url) {
-      return `${url
-        .split('/')
-        .slice(0, 3)
-        .join('/')}/category/${Gogoanime.sync.getIdentifier(url)}`;
+      return `${url.split('/').slice(0, 3).join('/')}/category/${Gogoanime.sync.getIdentifier(
+        url,
+      )}`;
     },
     getEpisode(url) {
       return Number(utils.urlPart(url, 3).split('episode-')[1]);
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.anime_video_body_episodes_r a')
-        .last()
-        .attr('href');
+      const href = j.$('.anime_video_body_episodes_r a').last().attr('href');
       if (typeof href !== 'undefined') {
         return Gogoanime.domain + href;
       }
@@ -45,19 +37,13 @@ export const Gogoanime: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.anime_info_body_bg > h1')
-        .first()
-        .text()
-        .trim();
+      return j.$('.anime_info_body_bg > h1').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.anime_info_body')
-        .first()
-        .prepend(j.html(selector));
+      j.$('.anime_info_body').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -78,12 +64,7 @@ export const Gogoanime: pageInterface = {
       paginationNext() {
         let next = false;
         let nextReturn = false;
-        j.$(
-          j
-            .$('#episode_page a')
-            .get()
-            .reverse(),
-        ).each(function(index, el) {
+        j.$(j.$('#episode_page a').get().reverse()).each(function (index, el) {
           if (next && !nextReturn) {
             el.click();
             nextReturn = true;
@@ -98,18 +79,20 @@ export const Gogoanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (Gogoanime.isSyncPage(page.url)) {
-      j.$(document).ready(function() {
+      j.$(document).ready(function () {
         start();
       });
     } else {
       con.log('noSync');
       utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('#episode_related').length;
         },
-        function() {
+        function () {
           start();
         },
       );
@@ -119,8 +102,8 @@ export const Gogoanime: pageInterface = {
       Gogoanime.domain = `${window.location.protocol}//${window.location.hostname}`;
       page.handlePage();
 
-      j.$('#episode_page').click(function() {
-        setTimeout(function() {
+      j.$('#episode_page').click(function () {
+        setTimeout(function () {
           page.handleList();
         }, 500);
       });

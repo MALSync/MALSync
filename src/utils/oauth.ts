@@ -1,15 +1,13 @@
 export const clientId = '10093a3f9f0174b6b5577c40e9accdae';
 
 export function oauth() {
-  $(document).ready(async function() {
+  $(document).ready(async function () {
     if (window.location.href.includes('code=')) {
       try {
         await getRefreshToken();
       } catch (e) {
         console.error(e);
-        $('.card-text')
-          .first()
-          .text(`Error: ${e}`);
+        $('.card-text').first().text(`Error: ${e}`);
         $('body').removeClass();
         $('body').addClass('noExtension');
       }
@@ -24,7 +22,9 @@ function generateUrl() {
   const state = generateRandomString(10);
   sessionStorage.setItem(state, challenge);
   const url = `https://myanimelist.net/v1/oauth2/authorize?response_type=code&client_id=${clientId}&state=${state}&code_challenge=${challenge}&code_challenge_method=plain`;
-  $('.card-text.succ').prepend(j.html(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`));
+  $('.card-text.succ').prepend(
+    j.html(`<a class="btn btn-outline-light" href="${url}">Start Authentication</a>`),
+  );
   $('body').removeClass();
   $('body').addClass('success');
 }

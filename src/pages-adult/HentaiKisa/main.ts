@@ -6,17 +6,18 @@ export const HentaiKisa: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {
+    if (
+      url.split('/')[3] !== null &&
+      j.$('div.c a.infoan2')[0] &&
+      j.$('#playerselector option:selected')[0]
+    ) {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.c a.infoan2')
-        .text()
-        .trim();
+      return j.$('div.c a.infoan2').text().trim();
     },
     getIdentifier(url) {
       return j.$('div.c a.infoan2').attr('href') || '';
@@ -32,10 +33,7 @@ export const HentaiKisa: pageInterface = {
       return Number(episodeText.replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const num = $('#playerselector')
-        .find('option:selected')
-        .next()
-        .attr('value');
+      const num = $('#playerselector').find('option:selected').next().attr('value');
 
       if (!num) return '';
 
@@ -49,7 +47,9 @@ export const HentaiKisa: pageInterface = {
   overview: {
     getTitle(url) {
       return j
-        .$('#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1')
+        .$(
+          '#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1',
+        )
         .text()
         .trim();
     },
@@ -57,19 +57,29 @@ export const HentaiKisa: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground')
+      j.$(
+        '#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground',
+      )
         .first()
         .before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
-        (page.url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) ||
         (page.url.split('/')[3] !== null &&
-          j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1')[0] &&
-          j.$('#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground')[0])
+          j.$('div.c a.infoan2')[0] &&
+          j.$('#playerselector option:selected')[0]) ||
+        (page.url.split('/')[3] !== null &&
+          j.$(
+            '#body > div.main-container > div > div.notmain > div > div.infobox > div.infoboxc > div > h1',
+          )[0] &&
+          j.$(
+            '#body > div.main-container > div > div.notmain > div > div.infobox > div.iepbox.nobackground',
+          )[0])
       ) {
         page.handlePage();
       }

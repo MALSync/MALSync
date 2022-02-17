@@ -45,22 +45,22 @@ export const shiro: pageInterface = {
       return shiro.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$(jsonData.selector_position)
-        .first()
-        .prepend(j.html(selector));
+      j.$(jsonData.selector_position).first().prepend(j.html(selector));
     },
     getMalUrl(provider) {
       return shiro.sync.getMalUrl!(provider);
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('#syncData').length;
         },
-        function() {
+        function () {
           jsonData = JSON.parse(j.$('#syncData').text());
           page.handlePage();
         },

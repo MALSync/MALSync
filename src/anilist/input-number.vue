@@ -3,7 +3,12 @@
     <div class="input-title">{{ label }}</div>
     <div class="ms-input-wrapper">
       <div class="el-input-number is-controls-right">
-        <span role="button" class="el-input-number__decrease ms-button" @click="decrease()" v-show="value">
+        <span
+          role="button"
+          class="el-input-number__decrease ms-button"
+          @click="decrease()"
+          v-show="value"
+        >
           <i class="el-icon-arrow-down"></i>
         </span>
         <span
@@ -15,7 +20,13 @@
           <i class="el-icon-arrow-up"></i>
         </span>
         <div class="el-input">
-          <input v-model="modelValue" type="text" autocomplete="off" class="el-input__inner" :pattern="pattern" />
+          <input
+            v-model="modelValue"
+            type="text"
+            autocomplete="off"
+            class="el-input__inner"
+            :pattern="pattern"
+          />
         </div>
       </div>
       <div v-if="additionalSlot || total" class="ms-input-ep">
@@ -26,7 +37,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     value: {
@@ -73,7 +84,8 @@ export default {
   },
   methods: {
     increase() {
-      if (!this.total || this.modelValue < this.total) this.modelValue = Math.floor(this.modelValue + 1);
+      if (!this.total || this.modelValue < this.total)
+        this.modelValue = Math.floor(this.modelValue + 1);
     },
     decrease() {
       if (this.modelValue > 0) this.modelValue = Math.ceil(this.modelValue - 1);

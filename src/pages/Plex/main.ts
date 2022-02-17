@@ -3,7 +3,8 @@ import { ScriptProxy } from '../../utils/scriptProxy';
 
 let item: any;
 
-const overviewSelector = '[data-qa-id="preplay-mainTitle"], [class^="PrePlayPrimaryTitle-primaryTitle"]';
+const overviewSelector =
+  '[data-qa-id="preplay-mainTitle"], [class^="PrePlayPrimaryTitle-primaryTitle"]';
 const syncSelector =
   '[class*="MetadataPosterTitle-isSecondary"] [data-qa-id="metadataTitleLink"], [class*="MetadataPosterTitle-isSecondary"] [data-testid="metadataTitleLink"]';
 
@@ -74,10 +75,10 @@ async function urlChange(page) {
         }
 
         loadInterval = utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$(overviewSelector).length;
           },
-          function() {
+          function () {
             page.UILoaded = false;
             page.handlePage(curUrl);
             $('html').removeClass('miniMAL-hide');
@@ -87,10 +88,10 @@ async function urlChange(page) {
       case 'season':
         con.log('Season', data);
         loadInterval = utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$(overviewSelector).length;
           },
-          function() {
+          function () {
             page.UILoaded = false;
             page.handlePage(curUrl);
             $('html').removeClass('miniMAL-hide');
@@ -155,7 +156,8 @@ async function authenticate() {
             users &&
             users.users &&
             users.users.length &&
-            (!users.users[0].servers.length || typeof users.users[0].servers[0].accessToken === 'undefined')
+            (!users.users[0].servers.length ||
+              typeof users.users[0].servers[0].accessToken === 'undefined')
           ) {
             logger.log('Switching to no account mode');
 
@@ -246,11 +248,7 @@ export const Plex: pageInterface = {
       let base = window.location.href.split('?')[0];
       if (!base.includes('server/')) {
         const href =
-          window.location.href.split('#')[0] +
-          j
-            .$('[href^="#!/server"]')
-            .first()
-            .attr('href');
+          window.location.href.split('#')[0] + j.$('[href^="#!/server"]').first().attr('href');
         base = href.split('?')[0];
       }
       return `${base}?key=/library/metadata/${Plex.sync.getIdentifier(url)}`;
@@ -268,30 +266,28 @@ export const Plex: pageInterface = {
       return item.key.split('/')[3];
     },
     uiSelector(selector) {
-      j.$(overviewSelector)
-        .first()
-        .after(j.html(selector));
+      j.$(overviewSelector).first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       urlChange(page);
     });
 
     utils.changeDetect(
       () => urlChange(page),
       () => {
-        const epUrl = $(syncSelector)
-          .first()
-          .attr('href');
+        const epUrl = $(syncSelector).first().attr('href');
         if (epUrl) return epUrl;
         return String(utils.urlParam(window.location.href, 'key'));
       },
     );
 
-    document.addEventListener('fullscreenchange', function() {
+    document.addEventListener('fullscreenchange', function () {
       if (
         window.fullScreen ||
         (window.innerWidth === window.screen.width && window.innerHeight === window.screen.height)

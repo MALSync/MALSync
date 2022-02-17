@@ -6,7 +6,11 @@ export const unionmangas: pageInterface = {
   languages: ['Portuguese'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'leitor' && url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
+    if (
+      url.split('/')[3] === 'leitor' &&
+      url.split('/')[5] !== undefined &&
+      url.split('/')[5].length > 0
+    ) {
       return true;
     }
     return false;
@@ -16,7 +20,9 @@ export const unionmangas: pageInterface = {
       return utils.getBaseText($('body > div.breadcrumbs > div > div > a:nth-child(3)')).trim();
     },
     getIdentifier(url) {
-      const identifierAnchorHref = j.$('body > div.breadcrumbs > div > div > a:nth-child(3)').attr('href');
+      const identifierAnchorHref = j
+        .$('body > div.breadcrumbs > div > div > a:nth-child(3)')
+        .attr('href');
 
       if (!identifierAnchorHref) return '';
 
@@ -30,10 +36,7 @@ export const unionmangas: pageInterface = {
     },
     nextEpUrl(url) {
       const newUrl = url.split(/[?#]/)[0];
-      const num = $('#capitulo_trocar')
-        .find('option:selected')
-        .next()
-        .attr('value');
+      const num = $('#capitulo_trocar').find('option:selected').next().attr('value');
 
       if (!num) return '';
 
@@ -47,11 +50,7 @@ export const unionmangas: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.row > div.col-md-12 > h2')
-        .first()
-        .text()
-        .trim();
+      return j.$('div.row > div.col-md-12 > h2').first().text().trim();
     },
     getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
@@ -61,9 +60,7 @@ export const unionmangas: pageInterface = {
       return urlPart4.toLowerCase();
     },
     uiSelector(selector) {
-      j.$('div.row > div.col-md-12 > h2')
-        .first()
-        .after(j.html(selector));
+      j.$('div.row > div.col-md-12 > h2').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -72,29 +69,22 @@ export const unionmangas: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('div > a')
-            .first()
-            .attr('href'),
+          selector.find('div > a').first().attr('href'),
           unionmangas.domain,
         );
       },
       elementEp(selector) {
         return utils
-          .absoluteLink(
-            selector
-              .find('div > a')
-              .first()
-              .attr('href'),
-            unionmangas.domain,
-          )
+          .absoluteLink(selector.find('div > a').first().attr('href'), unionmangas.domain)
           .split('/')[5];
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title === '') {
         con.error('404');
         return;

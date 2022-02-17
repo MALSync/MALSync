@@ -23,27 +23,12 @@ export const Mangarock: pageInterface = {
       return Mangarock.overview!.getIdentifier(url);
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
-      con.log(
-        j
-          .$("option:contains('Chapter')")
-          .first()
-          .parent()
-          .find(':selected')
-          .text(),
-      );
+      con.log(j.$("option:contains('Chapter')").first().parent().find(':selected').text());
       return EpisodePartToEpisode(
-        j
-          .$("option:contains('Chapter')")
-          .first()
-          .parent()
-          .find(':selected')
-          .text(),
+        j.$("option:contains('Chapter')").first().parent().find(':selected').text(),
       );
     },
     getVolume(url) {
@@ -59,29 +44,20 @@ export const Mangarock: pageInterface = {
         .next()
         .attr('value');
       if (num !== undefined) {
-        return `${url
-          .split('/')
-          .slice(0, 6)
-          .join('/')}/${num}`;
+        return `${url.split('/').slice(0, 6).join('/')}/${num}`;
       }
       return '';
     },
   },
   overview: {
     getTitle() {
-      return j
-        .$('h1')
-        .first()
-        .text()
-        .trim();
+      return j.$('h1').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4).replace(/mrs-serie-/i, '');
     },
     uiSelector(selector) {
-      $('#chapters-list')
-        .first()
-        .before(j.html(selector));
+      $('#chapters-list').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -89,13 +65,7 @@ export const Mangarock: pageInterface = {
         return j.$('[data-test="chapter-table"] tr');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Mangarock.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Mangarock.domain);
       },
       elementEp(selector) {
         return EpisodePartToEpisode(selector.find('a').text());
@@ -103,11 +73,13 @@ export const Mangarock: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     start();
 
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       start();
     });
@@ -119,26 +91,31 @@ export const Mangarock: pageInterface = {
       }
       if (Mangarock.isSyncPage(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return Mangarock.sync.getTitle(page.url);
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
       } else {
-        j.$(document).ready(function() {
+        j.$(document).ready(function () {
           let waitTimeout = false;
           utils.waitUntilTrue(
-            function() {
-              con.log('visibility', j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length);
-              return !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length || waitTimeout;
+            function () {
+              con.log(
+                'visibility',
+                j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length,
+              );
+              return (
+                !j.$('#page-content .col-lg-8 .lazyload-placeholder:visible').length || waitTimeout
+              );
             },
-            function() {
+            function () {
               page.handlePage();
             },
           );
-          setTimeout(function() {
+          setTimeout(function () {
             waitTimeout = true;
           }, 1000);
         });

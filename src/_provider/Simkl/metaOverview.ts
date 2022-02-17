@@ -32,7 +32,11 @@ export class MetaOverview extends MetaOverviewAbstract {
   private readonly malId: number;
 
   async _init() {
-    this.logger.log('Retrieve', this.type, this.simklId ? `Simkl: ${this.simklId}` : `MAL: ${this.malId}`);
+    this.logger.log(
+      'Retrieve',
+      this.type,
+      this.simklId ? `Simkl: ${this.simklId}` : `MAL: ${this.malId}`,
+    );
 
     const data = await this.getData();
     this.logger.log('Data', data);
@@ -82,7 +86,8 @@ export class MetaOverview extends MetaOverviewAbstract {
   }
 
   private alternativeTitle(data) {
-    if (typeof data.en_title !== 'undefined' && data.en_title) this.meta.alternativeTitle.push(data.en_title);
+    if (typeof data.en_title !== 'undefined' && data.en_title)
+      this.meta.alternativeTitle.push(data.en_title);
   }
 
   private statistics(data) {

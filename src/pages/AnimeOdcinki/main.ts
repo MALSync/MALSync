@@ -19,7 +19,10 @@ export const AnimeOdcinki: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('.field-name-field-tytul-anime a').attr('href'), AnimeOdcinki.domain);
+      return utils.absoluteLink(
+        j.$('.field-name-field-tytul-anime a').attr('href'),
+        AnimeOdcinki.domain,
+      );
     },
     getEpisode(url) {
       return parseInt(url.split('/')[5]);
@@ -36,9 +39,7 @@ export const AnimeOdcinki: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('#user-anime-top')
-        .first()
-        .after(j.html(selector));
+      j.$('#user-anime-top').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -46,37 +47,27 @@ export const AnimeOdcinki: pageInterface = {
         return j.$('div.view-content > ul > li.lista_odc_tytul_pozycja');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('a')
-            .first()
-            .attr('href')
-            ?.split('/')?.[5]
-            ?.match(/\d+/gim),
-        );
+        return Number(selector.find('a').first().attr('href')?.split('/')?.[5]?.match(/\d+/gim));
       },
     },
   },
 
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[5] !== undefined) {
         page.handlePage();
       } else {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('div.view-content').length;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

@@ -31,10 +31,7 @@ export const DesuOnline: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$('div.naveps.bignav > div:nth-child(3) > a')
-        .first()
-        .attr('href');
+      const href = j.$('div.naveps.bignav > div:nth-child(3) > a').first().attr('href');
       if (href) {
         if (DesuOnline.sync.getEpisode(url) < DesuOnline.sync.getEpisode(href)) {
           return href;
@@ -51,9 +48,7 @@ export const DesuOnline: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('div.infox > h1.entry-title')
-        .first()
-        .before(j.html(selector));
+      j.$('div.infox > h1.entry-title').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -61,35 +56,26 @@ export const DesuOnline: pageInterface = {
         return j.$('div.bixbox.bxcl.epcheck > div.eplister > ul > li');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        return DesuOnline.sync.getEpisode(
-          String(
-            selector
-              .find('a')
-              .first()
-              .attr('href'),
-          ),
-        );
+        return DesuOnline.sync.getEpisode(String(selector.find('a').first().attr('href')));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         (page.url.split('/')[3] === 'anime' &&
           page.url.split('/')[4] !== undefined &&
           page.url.split('/')[4].length &&
           j.$('div.infox > h1.entry-title').length &&
           j.$('div.bixbox.bxcl.epcheck').length) ||
-        (j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').length && j.$('div.video-content').length)
+        (j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').length &&
+          j.$('div.video-content').length)
       ) {
         page.handlePage();
       }

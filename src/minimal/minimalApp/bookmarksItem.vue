@@ -3,78 +3,119 @@
     v-if="!listView"
     :title="item.fn.progress && item.fn.progress.getAutoText()"
     class="mdl-cell mdl-cell--2-col mdl-cell--4-col-tablet mdl-cell--6-col-phone mdl-shadow--2dp mdl-grid bookEntry"
-    style="position: relative; padding: 0; width: 210px; height: 293px;"
+    style="position: relative; padding: 0; width: 210px; height: 293px"
   >
-    <div class="data title" style=" background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;">
-        <clazy-load
-          :src="imageHi"
-          margin="200px 0px"
-          :threshold="0.1"
-          :ratio="0.1"
-          style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden;"
-          @error="setQuestionmark"
-        >
-          <img :src="imageHi" width="100%" @error="setQuestionmark" />
-        </clazy-load>
+    <div
+      class="data title"
+      style="background-color: #cdcdcd; width: 100%; position: relative; padding-top: 5px"
+    >
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden">
+        <img v-lazy="imageHi" style="width: 100%; height: 100%; object-fit: cover" />
       </div>
 
       <div
         v-if="item.fn.progress && item.fn.progress.isAiring()"
         class="mdl-shadow--2dp"
-        style=" position: absolute; top: 0; right: 0; background-color: rgb(255 255 255 / 90%); padding: 0 5px; margin: 5px 0; text-align: center;"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: rgb(255 255 255 / 90%);
+          padding: 0 5px;
+          margin: 5px 0;
+          text-align: center;
+        "
       >
         {{ item.fn.progress.getAuto() }}
       </div>
 
       <div
         v-if="item.score"
-        style=" position: absolute; top: 0; left: 0; padding: 0 5px; margin: 5px 0; text-align: center;"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 0 5px;
+          margin: 5px 0;
+          text-align: center;
+        "
       >
-        <div style="width: 38px; height: 38px; position: relative;">
-          <i class="material-icons" style="color: #3f51b5; position: absolute; left: 0; top: 0; font-size: 38px;"
+        <div style="width: 38px; height: 38px; position: relative">
+          <i
+            class="material-icons"
+            style="color: #3f51b5; position: absolute; left: 0; top: 0; font-size: 38px"
             >star</i
           >
           <div
-            style="color: white; position: absolute; left: 0; top: 0; right: 0; bottom: 0; text-align: center; line-height: 38px;padding-top: 1px;"
+            style="
+              color: white;
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              text-align: center;
+              line-height: 38px;
+              padding-top: 1px;
+            "
           >
             {{ item.score }}
           </div>
         </div>
       </div>
 
-      <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;"></a>
+      <a :href="item.url" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0"></a>
       <span
         class="mdl-shadow--2dp"
-        style="position: absolute; bottom: 0; display: block; background-color: rgb(255 255 255 / 90%); align-items: center; justify-content: space-between; left: 0; right: 0; padding: 5px 8px 8px;"
+        style="
+          position: absolute;
+          bottom: 0;
+          display: block;
+          background-color: rgb(255 255 255 / 90%);
+          align-items: center;
+          justify-content: space-between;
+          left: 0;
+          right: 0;
+          padding: 5px 8px 8px;
+        "
       >
-        <a :href="item.url" style="color: black; text-decoration: none;">
+        <a :href="item.url" style="color: black; text-decoration: none">
           {{ item.title }}
         </a>
-        <div id="p1" class="mdl-progress pr-bar" style="position: absolute; top: -4px; left: 0;">
+        <div id="p1" class="mdl-progress pr-bar" style="position: absolute; top: -4px; left: 0">
           <div class="progressbar bar bar1" :style="progress"></div>
-          <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
+          <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px)"></div>
           <div
             v-if="item.fn.progress && item.fn.progress.isAiring()"
             class="predictionbar bar kal-ep-pre"
             :style="predictionBar"
           >
             <div
-              v-if="barData.predWidth && barData.predWidth !== 100 && barData.predWidth <= barData.epWidth"
+              v-if="
+                barData.predWidth &&
+                barData.predWidth !== 100 &&
+                barData.predWidth <= barData.epWidth
+              "
               class="bar-tab"
             >
               <i class="material-icons">arrow_drop_up</i>
             </div>
           </div>
-          <div class="auxbar bar bar3" style="width: 0%;"></div>
+          <div class="auxbar bar bar3" style="width: 0%"></div>
         </div>
         <div
           class="data progress mdl-chip mdl-chip--contact mdl-color--indigo-100"
-          style="float: right; line-height: 20px; height: 20px; padding-right: 4px; margin-left: 5px;"
+          style="
+            float: right;
+            line-height: 20px;
+            height: 20px;
+            padding-right: 4px;
+            margin-left: 5px;
+          "
         >
           <div
             class="link mdl-chip__contact mdl-color--primary mdl-color-text--white"
-            style="line-height: 20px; height: 20px; margin-right: 0;"
+            style="line-height: 20px; height: 20px; margin-right: 0"
             :title="'[' + item.watchedEp + '/' + item.totalEp + ']'"
           >
             {{ item.watchedEp }}
@@ -84,7 +125,7 @@
             class="mal-sync-stream"
             :title="streamUrl.split('/')[2]"
             target="_blank"
-            style="margin: 0 5px;"
+            style="margin: 0 5px"
             :href="streamUrl"
           >
             <img :src="favicon(streamUrl.split('/')[2])" />
@@ -94,7 +135,7 @@
             class="nextStream"
             :title="lang('overview_Continue_' + item.type)"
             target="_blank"
-            style="margin: 0 5px 0 0; color: #BABABA;"
+            style="margin: 0 5px 0 0; color: #bababa"
             :href="continueUrl"
           >
             <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16" />
@@ -104,7 +145,7 @@
             class="resumeStream"
             :title="lang('overview_Resume_Episode_' + item.type)"
             target="_blank"
-            style="margin: 0 5px 0 0; color: #BABABA;"
+            style="margin: 0 5px 0 0; color: #bababa"
             :href="resumeUrl"
           >
             <img :src="assetUrl('arrow-16px.png')" width="16" height="16" />
@@ -113,32 +154,41 @@
       </span>
     </div>
   </div>
-  <tr v-else style="cursor: pointer;" @click="openLink(item.url)">
-    <td style="width: 64px;">
-      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden;" class="imageTd">
-        <clazy-load :src="imageHi" margin="200px 0px" :threshold="0.1" :ratio="0.1" @error="setQuestionmark">
-          <img :src="imageHi" width="100%" @error="setQuestionmark" />
-        </clazy-load>
+  <tr v-else style="cursor: pointer" @click="openLink(item.url)">
+    <td style="width: 64px">
+      <div
+        style="position: absolute; top: 0; left: 0; right: 0; bottom: -1px; overflow: hidden"
+        class="imageTd"
+      >
+        <img v-lazy="imageHi" style="width: 100%" />
       </div>
     </td>
     <td
       class="mdl-data-table__cell--non-numeric"
-      style="white-space: normal; position: relative; padding-left: 10px; padding-right: 28px;"
+      style="white-space: normal; position: relative; padding-left: 10px; padding-right: 28px"
     >
       <div
         v-if="item.fn.progress && item.fn.progress.isAiring()"
-        style="position: absolute; top: 0; left: 0; padding: 0 11px; margin: 0; text-align: center;     font-size: 10px;"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 0 11px;
+          margin: 0;
+          text-align: center;
+          font-size: 10px;
+        "
       >
         {{ item.fn.progress.getAuto() }}
       </div>
-      <span style="font-weight: bold;">{{ item.title }}</span>
+      <span style="font-weight: bold">{{ item.title }}</span>
 
       <a
         v-if="streamUrl"
         class="mal-sync-stream"
         :title="streamUrl.split('/')[2]"
         target="_blank"
-        style="margin: 0 5px; position: absolute; right: 0; top: 0;"
+        style="margin: 0 5px; position: absolute; right: 0; top: 0"
         :href="streamUrl"
       >
         <img :src="favicon(streamUrl.split('/')[2])" />
@@ -148,7 +198,7 @@
         class="nextStream"
         :title="lang('overview_Continue_' + item.type)"
         target="_blank"
-        style="margin: 0 5px 0 0; color: #BABABA;position: absolute; right: 0; top: 20px;"
+        style="margin: 0 5px 0 0; color: #bababa; position: absolute; right: 0; top: 20px"
         :href="continueUrl"
       >
         <img :src="assetUrl('double-arrow-16px.png')" width="16" height="16" />
@@ -158,7 +208,7 @@
         class="resumeStream"
         :title="lang('overview_Resume_Episode_' + item.type)"
         target="_blank"
-        style="margin: 0 5px 0 0; color: #BABABA; position: absolute; right: 0; top: 20px;"
+        style="margin: 0 5px 0 0; color: #bababa; position: absolute; right: 0; top: 20px"
         :href="resumeUrl"
       >
         <img :src="assetUrl('arrow-16px.png')" width="16" height="16" />
@@ -167,37 +217,41 @@
       <div
         id="p1"
         class="mdl-progress pr-bar"
-        style="position: absolute; bottom: 0; left: 0; right: 0; width: auto; opacity: 0.5;"
+        style="position: absolute; bottom: 0; left: 0; right: 0; width: auto; opacity: 0.5"
       >
         <div class="progressbar bar bar1" :style="progress"></div>
-        <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px);"></div>
+        <div v-if="hasTotalEp" class="bufferbar bar bar2" style="width: calc(100% + 1px)"></div>
         <div
           v-if="item.fn.progress && item.fn.progress.isAiring()"
           class="predictionbar bar kal-ep-pre"
           :style="predictionBar"
         >
           <div
-            v-if="barData.predWidth && barData.predWidth !== '100' && barData.predWidth <= barData.epWidth"
+            v-if="
+              barData.predWidth &&
+              barData.predWidth !== '100' &&
+              barData.predWidth <= barData.epWidth
+            "
             class="bar-tab"
           >
             <i class="material-icons">arrow_drop_up</i>
           </div>
         </div>
-        <div class="auxbar bar bar3" style="width: 0%;"></div>
+        <div class="auxbar bar bar3" style="width: 0%"></div>
       </div>
     </td>
-    <td style="width: 70px;">
+    <td style="width: 70px">
       {{ item.watchedEp }}/<template v-if="item.totalEp">{{ item.totalEp }}</template>
       <template v-else>?</template>
     </td>
-    <td style="width: 57px;">
+    <td style="width: 57px">
       <template v-if="item.score">{{ item.score }}</template>
       <template v-else>-</template>
     </td>
   </tr>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     item: {
@@ -219,6 +273,7 @@ export default {
       return parseInt(this.item.watchedEp.toString());
     },
     imageHi() {
+      if (!this.item.image) return api.storage.assetUrl('questionmark.gif');
       let imageHi = this.item.image;
       const regexDimensions = /\/r\/\d*x\d*/g;
       if (regexDimensions.test(imageHi)) {
@@ -278,7 +333,7 @@ export default {
     openLink(url) {
       const link = document.createElement('a');
       link.href = url;
-      document.getElementById('malList').appendChild(link);
+      document.getElementById('malList')!.appendChild(link);
       link.click();
     },
     setQuestionmark(e) {

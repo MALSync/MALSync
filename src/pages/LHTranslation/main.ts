@@ -7,7 +7,9 @@ export const LHTranslation: pageInterface = {
   type: 'manga',
   isSyncPage(url) {
     return Boolean(
-      utils.urlPart(url, 3) === 'manga' && utils.urlPart(url, 5) && utils.urlPart(url, 5).startsWith('chapter-'),
+      utils.urlPart(url, 3) === 'manga' &&
+        utils.urlPart(url, 5) &&
+        utils.urlPart(url, 5).startsWith('chapter-'),
     );
   },
   isOverviewPage(url) {
@@ -18,10 +20,7 @@ export const LHTranslation: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('.c-breadcrumb-wrapper .breadcrumb li')[1])
-        .text()
-        .trim();
+      return j.$(j.$('.c-breadcrumb-wrapper .breadcrumb li')[1]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -39,18 +38,12 @@ export const LHTranslation: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$('.nav-links .next_page')
-        .first()
-        .attr('href');
+      return j.$('.nav-links .next_page').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.post-title h1')
-        .prop('innerText')
-        .trim();
+      return j.$('.post-title h1').prop('innerText').trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -70,12 +63,7 @@ export const LHTranslation: pageInterface = {
         return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return LHTranslation.sync.getEpisode(LHTranslation.overview!.list!.elementUrl!(selector));
@@ -83,17 +71,19 @@ export const LHTranslation: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (LHTranslation.isSyncPage(page.url)) {
         page.handlePage();
       }
       if (LHTranslation.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.wp-manga-chapter').length > 0;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

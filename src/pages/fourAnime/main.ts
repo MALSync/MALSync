@@ -13,10 +13,7 @@ export const fourAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('span.singletitletop a')
-        .text()
-        .trim();
+      return j.$('span.singletitletop a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(fourAnime.sync.getOverviewUrl(url), 4);
@@ -25,18 +22,10 @@ export const fourAnime: pageInterface = {
       return j.$('span.singletitletop a').attr('href') || '';
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('ul.episodes a.active')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('ul.episodes a.active').text().replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.anipager-next a')
-        .first()
-        .attr('href');
+      const href = j.$('.anipager-next a').first().attr('href');
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, fourAnime.domain);
       }
@@ -45,18 +34,13 @@ export const fourAnime: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('p.single-anime-desktop')
-        .text()
-        .trim();
+      return j.$('p.single-anime-desktop').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('p.description-mobile')
-        .first()
-        .after(j.html(selector));
+      j.$('p.description-mobile').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -72,9 +56,14 @@ export const fourAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      if ((j.$('.singletitletop').length && j.$('.episodes').length) || page.url.split('/')[3] === 'anime') {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
+      if (
+        (j.$('.singletitletop').length && j.$('.episodes').length) ||
+        page.url.split('/')[3] === 'anime'
+      ) {
         page.handlePage();
       }
     });

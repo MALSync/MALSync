@@ -8,17 +8,16 @@ export const Okanime: pageInterface = {
 
   isOverviewPage: url => utils.urlPart(url, 3) === 'animes' || utils.urlPart(url, 3) === 'movies',
   isSyncPage: url =>
-    utils.urlPart(url, 5) === 'episodes' || (utils.urlPart(url, 3) === 'movies' && utils.urlPart(url, 5) === 'watch'),
+    utils.urlPart(url, 5) === 'episodes' ||
+    (utils.urlPart(url, 3) === 'movies' && utils.urlPart(url, 5) === 'watch'),
 
   overview: {
     getTitle: url =>
       isRealOverview(url)
-        ? j
-            .$('.author-info-title > span')
-            .first()
-            .text()
+        ? j.$('.author-info-title > span').first().text()
         : Okanime.sync.getTitle(url),
-    getIdentifier: url => (isRealOverview(url) ? utils.urlPart(url, 4) : Okanime.sync.getIdentifier(url)),
+    getIdentifier: url =>
+      isRealOverview(url) ? utils.urlPart(url, 4) : Okanime.sync.getIdentifier(url),
     uiSelector: selector => {
       j.$('div.whitebox .whitebox-wrap .review-author-info .author-info-title')
         .first()
@@ -38,7 +37,9 @@ export const Okanime: pageInterface = {
         isRealOverview(window.location.href)
           ? Number(
               j
-                .$('div.review-author-wrap .content-block .full-list-info:last-child small:last-child')
+                .$(
+                  'div.review-author-wrap .content-block .full-list-info:last-child small:last-child',
+                )
                 .first()
                 .text()
                 .split('/')[1],
@@ -47,41 +48,24 @@ export const Okanime: pageInterface = {
     },
   },
   sync: {
-    getTitle: url =>
-      j
-        .$('.summary-block p a')
-        .first()
-        .text(),
+    getTitle: url => j.$('.summary-block p a').first().text(),
     getIdentifier: url => utils.urlPart(url, 4),
-    getOverviewUrl: url =>
-      `${url
-        .split('/')
-        .slice(0, 5)
-        .join('/')}`,
-    getEpisode: url =>
-      Number(
-        utils
-          .urlPart(url, 6)
-          .split('-')
-          .slice(-2)[0],
-      ),
+    getOverviewUrl: url => `${url.split('/').slice(0, 5).join('/')}`,
+    getEpisode: url => Number(utils.urlPart(url, 6).split('-').slice(-2)[0]),
     nextEpUrl: url => {
       return utils.absoluteLink(
-        j
-          .$('div.action-tiem.backward a')
-          .first()
-          .attr('href'),
+        j.$('div.action-tiem.backward a').first().attr('href'),
         Okanime.domain,
       );
     },
     uiSelector: selector => {
-      j.$('div.user-block .translated-box')
-        .first()
-        .prepend(j.html(selector));
+      j.$('div.user-block .translated-box').first().prepend(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     j.$(() => {
       utils.waitUntilTrue(

@@ -26,17 +26,12 @@ export const Anime4you: pageInterface = {
       return parseInt(utils.urlPart(url, 8));
     },
     nextEpUrl(url) {
-      const nextEp = j
-        .$('.vidplayer .forward a')
-        .first()
-        .attr('href');
+      const nextEp = j.$('.vidplayer .forward a').first().attr('href');
       if (!nextEp) return nextEp;
       return Anime4you.domain + nextEp;
     },
     uiSelector(selector) {
-      j.$('.beschreibung > div > p')
-        .first()
-        .after(j.html(selector));
+      j.$('.beschreibung > div > p').first().after(j.html(selector));
     },
   },
   overview: {
@@ -55,13 +50,7 @@ export const Anime4you: pageInterface = {
         return j.$('.episoden li');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Anime4you.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Anime4you.domain);
       },
       elementEp(selector) {
         return Anime4you.sync!.getEpisode(Anime4you.overview!.list!.elementUrl!(selector));
@@ -69,27 +58,25 @@ export const Anime4you: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('.streamhost.vivo').length;
       },
-      function() {
+      function () {
         // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
         j.$('ul.streamer').append(
           j
             .$('.streamhost.vivo')
             .clone()
-            .click(function() {
+            .click(function () {
               j.$('#videoframe').remove();
-              const array = j
-                .$('.streamhost.vivo')
-                .first()
-                .attr('href')!
-                .split('/');
+              const array = j.$('.streamhost.vivo').first().attr('href')!.split('/');
               const id = array.pop()!;
               array.push('embed');
               array.push(id);
@@ -100,12 +87,8 @@ export const Anime4you: pageInterface = {
               );
             }),
         );
-        j.$('.streamhost.vivo')
-          .last()
-          .wrap('<li></li>');
-        j.$('.streamhost.vivo')
-          .first()
-          .hide();
+        j.$('.streamhost.vivo').last().wrap('<li></li>');
+        j.$('.streamhost.vivo').first().hide();
       },
     );
   },

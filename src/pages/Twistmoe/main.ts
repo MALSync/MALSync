@@ -11,10 +11,7 @@ export const Twistmoe: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.series-title')
-        .text()
-        .trim();
+      return j.$('.series-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
@@ -31,20 +28,12 @@ export const Twistmoe: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('.episode-list .current')
-          .first()
-          .parent()
-          .next()
-          .find('a')
-          .attr('href'),
+        j.$('.episode-list .current').first().parent().next().find('a').attr('href'),
         Twistmoe.domain,
       );
     },
     uiSelector(selector) {
-      j.$('.information')
-        .first()
-        .after(j.html(selector));
+      j.$('.information').first().after(j.html(selector));
     },
   },
   overview: {
@@ -63,13 +52,7 @@ export const Twistmoe: pageInterface = {
         return j.$('.episode-list li');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Twistmoe.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Twistmoe.domain);
       },
       elementEp(selector) {
         return Twistmoe.sync!.getEpisode(Twistmoe.overview!.list!.elementUrl!(selector));
@@ -78,12 +61,7 @@ export const Twistmoe: pageInterface = {
   },
   init(page) {
     const start = () => {
-      if (
-        !$('.information .series-title')
-          .text()
-          .trim()
-      )
-        return;
+      if (!$('.information .series-title').text().trim()) return;
 
       const urlPart3 = utils.urlPart(page.url, 3);
 
@@ -96,8 +74,10 @@ export const Twistmoe: pageInterface = {
       page.handlePage();
     };
 
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       start();
 
       utils.changeDetect(

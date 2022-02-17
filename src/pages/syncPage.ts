@@ -62,7 +62,7 @@ export class SyncPage {
 
   init() {
     const This = this;
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       initFloatButton(This, This.floatClick);
     });
 
@@ -106,13 +106,7 @@ export class SyncPage {
       function checkDomain(domain) {
         if (
           url.indexOf(
-            `${
-              utils
-                .urlPart(domain, 2)
-                .replace('.com.br', '.br')
-                .split('.')
-                .slice(-2, -1)[0]
-            }.`,
+            `${utils.urlPart(domain, 2).replace('.com.br', '.br').split('.').slice(-2, -1)[0]}.`,
           ) > -1
         ) {
           return true;
@@ -155,9 +149,7 @@ export class SyncPage {
     if (j.$('#malSyncProgress').length) {
       if (progress < 100) {
         j.$('.ms-progress').css('width', `${progress}%`);
-        j.$('#malSyncProgress')
-          .removeClass('ms-loading')
-          .removeClass('ms-done');
+        j.$('#malSyncProgress').removeClass('ms-loading').removeClass('ms-done');
       } else {
         j.$('#malSyncProgress').addClass('ms-done');
         j.$('.flash.type-update .sync').click();
@@ -201,12 +193,12 @@ export class SyncPage {
     } else {
       const localItem = localStorage.getItem(localSelector);
       logger.info('Resume', localItem);
-      if (localItem !== null && parseInt(localItem) - 30 > item.current && parseInt(localItem) > 30) {
-        if (!j.$('#MALSyncResume').length)
-          j.$('#MALSyncResume')
-            .parent()
-            .parent()
-            .remove();
+      if (
+        localItem !== null &&
+        parseInt(localItem) - 30 > item.current &&
+        parseInt(localItem) > 30
+      ) {
+        if (!j.$('#MALSyncResume').length) j.$('#MALSyncResume').parent().parent().remove();
         const resumeTime = Math.round(parseInt(localItem));
         let resumeTimeString = '';
 
@@ -239,23 +231,17 @@ export class SyncPage {
           },
         );
 
-        resumeMsg.find('.sync').on('click', function() {
+        resumeMsg.find('.sync').on('click', function () {
           timeCb(resumeTime);
           This.curState.videoChecked = 2;
           // @ts-ignore
-          j.$(this)
-            .parent()
-            .parent()
-            .remove();
+          j.$(this).parent().parent().remove();
         });
 
-        resumeMsg.find('.resumeClose').on('click', function() {
+        resumeMsg.find('.resumeClose').on('click', function () {
           This.curState.videoChecked = 2;
           // @ts-ignore
-          j.$(this)
-            .parent()
-            .parent()
-            .remove();
+          j.$(this).parent().parent().remove();
         });
       } else {
         setTimeout(() => {
@@ -298,7 +284,11 @@ export class SyncPage {
         detectedEpisode: parseInt(`${this.page.sync.getEpisode(this.url)}`),
       };
 
-      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(
+        state.title,
+        this.novel ? 'novel' : this.page.type,
+        state.identifier,
+      );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
@@ -321,7 +311,8 @@ export class SyncPage {
           state.episode = 0;
         }
       } else {
-        state.episode = state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
+        state.episode =
+          state.detectedEpisode + parseInt(this.searchObj.getRuledOffset(state.detectedEpisode));
       }
 
       if (typeof this.page.sync.getVolume !== 'undefined') {
@@ -364,7 +355,11 @@ export class SyncPage {
         identifier: this.page.overview.getIdentifier(this.url),
       };
 
-      this.searchObj = new SearchClass(state.title, this.novel ? 'novel' : this.page.type, state.identifier);
+      this.searchObj = new SearchClass(
+        state.title,
+        this.novel ? 'novel' : this.page.type,
+        state.identifier,
+      );
       this.searchObj.setPage(this.page);
       this.searchObj.setSyncPage(this);
       this.searchObj.setLocalUrl(this.generateLocalUrl(this.page, state));
@@ -439,7 +434,7 @@ export class SyncPage {
       // Discord Presence
       if (api.type === 'webextension' && api.settings.get('rpc')) {
         try {
-          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function(response) {
+          chrome.runtime.sendMessage(extensionId, { mode: 'active' }, function (response) {
             logger.log('Presence registred', response);
           });
         } catch (e) {
@@ -470,7 +465,11 @@ export class SyncPage {
           logger.log(`Start Sync (${api.settings.get('delay')} Seconds)`);
 
           // filler
-          if (this.singleObj.getMalId() && this.singleObj.getType() === 'anime' && api.settings.get('checkForFiller')) {
+          if (
+            this.singleObj.getMalId() &&
+            this.singleObj.getType() === 'anime' &&
+            api.settings.get('checkForFiller')
+          ) {
             this.checkForFiller(this.singleObj.getMalId(), this.singleObj.getEpisode());
           }
 
@@ -500,7 +499,10 @@ export class SyncPage {
               minimized: false,
             };
 
-            if (api.settings.get(`autoTrackingMode${this.page.type}`) === 'video' && this.page.type === 'anime') {
+            if (
+              api.settings.get(`autoTrackingMode${this.page.type}`) === 'video' &&
+              this.page.type === 'anime'
+            ) {
               message = `
                 <div id="malSyncProgress" class="ms-loading" style="background-color: transparent; position: absolute; top: 0; left: 0; right: 0; height: 4px;">
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
@@ -579,7 +581,9 @@ export class SyncPage {
   }
 
   public generateLocalUrl(page, state) {
-    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(state.title)}`;
+    return `local://${page.name}/${page.type}/${state.identifier}/${encodeURIComponent(
+      state.title,
+    )}`;
   }
 
   // eslint-disable-next-line consistent-return
@@ -774,7 +778,7 @@ export class SyncPage {
         ),
       );
       const This = this;
-      j.$('#AddMal').click(async function(event) {
+      j.$('#AddMal').click(async function (event) {
         event.preventDefault();
         if (!This.page.isSyncPage(This.url)) {
           This.singleObj.setStreamingUrl(This.url);
@@ -829,7 +833,10 @@ export class SyncPage {
   handleList(searchCurrent = false, reTry = 0) {
     if (!this.singleObj) return; // Object not ready yet
     j.$('.mal-sync-active').removeClass('mal-sync-active');
-    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
+    if (
+      typeof this.page.overview !== 'undefined' &&
+      typeof this.page.overview.list !== 'undefined'
+    ) {
       const epList = this.getEpList();
       if (typeof epList !== 'undefined' && epList.length > 0) {
         this.offsetHandler(epList);
@@ -837,7 +844,7 @@ export class SyncPage {
           const { elementUrl } = this.page.overview.list;
           logger.log(
             'Episode List',
-            j.$.map(epList, function(val, i) {
+            j.$.map(epList, function (val, i) {
               if (typeof val !== 'undefined') {
                 return elementUrl(val);
               }
@@ -857,7 +864,7 @@ export class SyncPage {
             logger.log('Pagination next');
             const This = this;
             if (this.page.overview.list.paginationNext(false)) {
-              setTimeout(function() {
+              setTimeout(function () {
                 reTry++;
                 This.handleList(true, reTry);
               }, 500);
@@ -866,9 +873,10 @@ export class SyncPage {
 
           const nextEp = epList[this.singleObj.getEpisode() + 1];
           if (typeof nextEp !== 'undefined' && nextEp && !this.page.isSyncPage(this.url)) {
-            const message = `<a href="${elementUrl(
-              nextEp,
-            )}">${api.storage.lang(`syncPage_malObj_nextEp_${this.page.type}`, [this.singleObj.getEpisode() + 1])}</a>`;
+            const message = `<a href="${elementUrl(nextEp)}">${api.storage.lang(
+              `syncPage_malObj_nextEp_${this.page.type}`,
+              [this.singleObj.getEpisode() + 1],
+            )}</a>`;
             utils.flashm(message, {
               hoverInfo: true,
               type: 'nextEp',
@@ -883,18 +891,24 @@ export class SyncPage {
   getEpList() {
     const This = this;
     const elementArray = [] as JQuery<HTMLElement>[];
-    if (typeof this.page.overview !== 'undefined' && typeof this.page.overview.list !== 'undefined') {
+    if (
+      typeof this.page.overview !== 'undefined' &&
+      typeof this.page.overview.list !== 'undefined'
+    ) {
       const { elementEp } = this.page.overview.list;
       let currentEpisode = 0;
       if (this.singleObj) {
         currentEpisode = parseInt(this.singleObj.getEpisode());
       }
 
-      this.page.overview.list.elementsSelector().each(function(index, el) {
+      this.page.overview.list.elementsSelector().each(function (index, el) {
         try {
           const elEp = parseInt(`${elementEp(j.$(el))}`) + parseInt(This.getOffset());
           elementArray[elEp] = j.$(el);
-          if ((api.settings.get('highlightAllEp') && elEp <= currentEpisode) || elEp === currentEpisode) {
+          if (
+            (api.settings.get('highlightAllEp') && elEp <= currentEpisode) ||
+            elEp === currentEpisode
+          ) {
             j.$(el).addClass('mal-sync-active');
           }
         } catch (e) {
@@ -1000,7 +1014,8 @@ export class SyncPage {
     let ui = '<p id="malp">';
     ui += `<span id="MalInfo">${api.storage.lang('Loading')}</span>`;
 
-    ui += '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
+    ui +=
+      '<span id="MalData" style="display: none; justify-content: space-between; flex-wrap: wrap;">';
 
     ui += '<span style="display: inline-block;" class="malp-group malp-group-rating">';
     ui += `<span class="info malp-group-label">${api.storage.lang('search_Score')} </span>`;
@@ -1022,7 +1037,8 @@ export class SyncPage {
     if (this.page.type === 'anime') {
       middle += wrapStart('episode');
       middle += `<span class="info malp-group-label">${api.storage.lang('UI_Episode')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
       middle +=
         '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotal" class="malp-group-value">0</span>';
@@ -1031,7 +1047,8 @@ export class SyncPage {
     } else {
       middle += wrapStart('volume');
       middle += `<span class="info malp-group-label">${api.storage.lang('UI_Volume')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
       middle +=
         '<input id="malVolumes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotalVol" class="malp-group-value">0</span>';
@@ -1040,7 +1057,8 @@ export class SyncPage {
 
       middle += wrapStart('chapter');
       middle += `<span class="info malp-group-label">${api.storage.lang('UI_Chapter')} </span>`;
-      middle += '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
+      middle +=
+        '<span style=" text-decoration: none; outline: medium none;" class="malp-group-value-section">';
       middle +=
         '<input id="malEpisodes" class="malp-group-field malp-group-input" value="0" type="text" size="1" maxlength="4">';
       middle += '/<span id="malTotalCha" class="malp-group-value">0</span>';
@@ -1068,7 +1086,7 @@ export class SyncPage {
       this.page.overview.uiSelector(ui);
     }
 
-    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function() {
+    j.$('#malEpisodes, #malVolumes, #malUserRating, #malStatus').change(function () {
       This.buttonclick();
       // @ts-ignore
       const el = j.$(this);
@@ -1076,7 +1094,7 @@ export class SyncPage {
     });
 
     j.$('#malEpisodes, #malVolumes')
-      .on('input', function() {
+      .on('input', function () {
         // @ts-ignore
         const el = j.$(this);
         let numberlength = el.val()!.toString().length;
@@ -1088,11 +1106,8 @@ export class SyncPage {
   }
 
   private calcSelectWidth(selectors) {
-    selectors.each(function(index, selector) {
-      const text = j
-        .$(selector)
-        .find('option:selected')
-        .text();
+    selectors.each(function (index, selector) {
+      const text = j.$(selector).find('option:selected').text();
       const aux = j.$('<select style="width: auto;"/>').append(j.html(`<option>${text}</option>`));
       const width = aux.width() || 0;
 
@@ -1223,7 +1238,9 @@ export class SyncPage {
             if (this.curState.episode > 0) {
               let totalEp = this.singleObj.getTotalEpisodes();
               totalEp = totalEp ? `/${totalEp}` : '';
-              stateParts.push(`${utils.episode(this.page.type)} ${this.curState.episode}${totalEp}`);
+              stateParts.push(
+                `${utils.episode(this.page.type)} ${this.curState.episode}${totalEp}`,
+              );
             }
 
             if (this.curState.volume > 0) {
@@ -1240,7 +1257,8 @@ export class SyncPage {
                 pres.presence.smallImageKey = 'pause';
                 pres.presence.smallImageText = 'Paused';
               } else {
-                const timeleft = this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
+                const timeleft =
+                  this.curState.lastVideoTime.duration - this.curState.lastVideoTime.current;
                 pres.presence.endTimestamp = Date.now() + timeleft * 1000;
                 pres.presence.smallImageKey = 'play';
                 pres.presence.smallImageText = 'Playing';
@@ -1279,21 +1297,23 @@ export class SyncPage {
     const cacheObj = new Cache(`fillers/${malid}/${page}`, 7 * 24 * 60 * 60 * 1000);
 
     if (!(await cacheObj.hasValueAndIsNotEmpty())) {
-      const url = `https://api.jikan.moe/v3/anime/${malid}/episodes/${page}`;
+      const url = `https://api.jikan.moe/v4/anime/${malid}/episodes?page=${page}`;
       const request = await api.request.xhr('GET', url).then(async response => {
-        if (response.status === 200 && response.responseText) {
-          const data = JSON.parse(response.responseText);
-          if (data.episodes && data.episodes.length) {
-            try {
-              return data.episodes.map(e => ({
-                filler: e.filler,
-                recap: e.recap,
-                episode_id: e.episode_id,
-              }));
-            } catch (e) {
-              // do nothing.
+        try {
+          if (response.status === 200 && response.responseText) {
+            const data = JSON.parse(response.responseText);
+            if (data.data && data.data.length) {
+              return data.data
+                .map(e => ({
+                  filler: e.filler,
+                  recap: e.recap,
+                  episode_id: e.mal_id, // mal_id is the episode_id in the v4 API very stupid
+                }))
+                .filter(e => e.filler || e.recap);
             }
           }
+        } catch (e) {
+          // do nothing.
         }
         return [];
       });

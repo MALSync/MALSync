@@ -48,7 +48,9 @@ export async function apiCall(options: {
         res = JSON.parse(response.responseText);
       } catch (e) {
         if (checkIfBanned(response.responseText)) {
-          throw new Error(`Your IP has been banned on MAL, change your IP or wait for it to get unbanned`);
+          throw new Error(
+            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+          );
         }
         throw e;
       }
@@ -64,7 +66,9 @@ export async function apiCall(options: {
           case 'not_found':
             throw new NotFoundError(res.message ?? res.error);
           case 'invalid_content':
-            throw new Error(`This Entry is currently pending approval. It can´t be saved to mal for now`);
+            throw new Error(
+              `This Entry is currently pending approval. It can´t be saved to mal for now`,
+            );
           default:
             throw new Error(res.message ?? res.error);
         }
@@ -99,7 +103,9 @@ async function refreshToken(logger) {
         return parseJson(res.responseText);
       } catch (e) {
         if (checkIfBanned(res.responseText)) {
-          throw new Error(`Your IP has been banned on MAL, change your IP or wait for it to get unbanned`);
+          throw new Error(
+            `Your IP has been banned on MAL, change your IP or wait for it to get unbanned`,
+          );
         }
         throw e;
       }

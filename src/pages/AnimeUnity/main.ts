@@ -13,10 +13,7 @@ export const AnimeUnity: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.general > h1.title')
-        .text()
-        .trim();
+      return j.$('div.general > h1.title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -26,10 +23,7 @@ export const AnimeUnity: pageInterface = {
     },
     getEpisode(url) {
       const episode = Number(
-        j
-          .$('div.episode-wrapper > div.episode.episode-item.active')
-          .text()
-          .trim(),
+        j.$('div.episode-wrapper > div.episode.episode-item.active').text().trim(),
       );
       if (episode) return episode;
       return 1;
@@ -39,8 +33,10 @@ export const AnimeUnity: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    utils.fullUrlChangeDetect(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       page.handlePage();
     });

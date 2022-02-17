@@ -49,12 +49,14 @@ export const AnimeWho: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let interval;
     let oldHtml = '';
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
@@ -65,14 +67,14 @@ export const AnimeWho: pageInterface = {
       }
       clearInterval(interval);
       interval = utils.waitUntilTrue(
-        function() {
+        function () {
           if (j.$('#malsync-data').length && j.$('#malsync-data').prop('outerHTML')! !== oldHtml) {
             oldHtml = j.$('#malsync-data').prop('outerHTML');
             return true;
           }
           return false;
         },
-        function() {
+        function () {
           if (j.$('#malsync-data').attr('type') === 'anime') {
             AnimeWho.type = 'anime';
           } else {

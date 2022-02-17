@@ -14,10 +14,7 @@ export const Proxer: pageInterface = {
   sync: {
     getTitle(url) {
       if (url.indexOf('watch') !== -1) {
-        return j
-          .$('.wName')
-          .text()
-          .trim();
+        return j.$('.wName').text().trim();
       }
       if (url.indexOf('read') !== -1) {
         return j.$('div#breadcrumb a:first').text();
@@ -33,29 +30,12 @@ export const Proxer: pageInterface = {
     },
     getEpisode(url) {
       if (url.indexOf('watch') !== -1) {
-        return getEpisodeFallback(
-          `episode ${$('.wEp')
-            .last()
-            .text()
-            .trim()}`,
-          url.split('/')[5],
-        );
+        return getEpisodeFallback(`episode ${$('.wEp').last().text().trim()}`, url.split('/')[5]);
       }
-      return getEpisodeFallback(
-        $('#breadcrumb > a')
-          .last()
-          .text()
-          .trim(),
-        url.split('/')[5],
-      );
+      return getEpisodeFallback($('#breadcrumb > a').last().text().trim(), url.split('/')[5]);
     },
     nextEpUrl(url) {
-      return (
-        Proxer.domain +
-        $('.no_details a')!
-          .last()!
-          .attr('href')!
-      );
+      return Proxer.domain + $('.no_details a')!.last()!.attr('href')!;
     },
   },
   overview: {
@@ -71,17 +51,12 @@ export const Proxer: pageInterface = {
       return Proxer.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.hreview-aggregate > span')
-        .first()
-        .after(j.html(selector));
+      j.$('.hreview-aggregate > span').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j
-          .$('span[id^="listTitle"]')
-          .parent()
-          .parent();
+        return j.$('span[id^="listTitle"]').parent().parent();
       },
       elementUrl(selector) {
         return utils.absoluteLink(
@@ -94,11 +69,7 @@ export const Proxer: pageInterface = {
       },
       elementEp(selector) {
         return getEpisodeFallback(
-          selector
-            .find('span[id^="listTitle"]')
-            .first()
-            .text()
-            .trim(),
+          selector.find('span[id^="listTitle"]').first().text().trim(),
           Proxer.overview!.list!.elementUrl!(selector).split('/')[5],
         );
       },
@@ -113,10 +84,7 @@ export const Proxer: pageInterface = {
           el[0].click();
           return true;
         }
-        el = j
-          .$('.menu.active')
-          .first()
-          .next();
+        el = j.$('.menu.active').first().next();
         if (typeof el[0] === 'undefined') {
           return false;
         }
@@ -138,7 +106,9 @@ export const Proxer: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (j.$('.g-recaptcha').length) {
       con.log('loading');
       page.cdn('captcha');
@@ -150,10 +120,11 @@ export const Proxer: pageInterface = {
       } else if (page.url.split('/')[3] === 'read') {
         Proxer.type = 'manga';
       }
-      j.$(document).ready(function() {
+      j.$(document).ready(function () {
         if (
-          j.$('h3:contains(Bitte logge dich ein!), img[alt*="Diese Seite wurde nicht gefunden oder wurde verschoben"]')
-            .length
+          j.$(
+            'h3:contains(Bitte logge dich ein!), img[alt*="Diese Seite wurde nicht gefunden oder wurde verschoben"]',
+          ).length
         ) {
           con.error('404');
           return;
@@ -163,7 +134,7 @@ export const Proxer: pageInterface = {
     }
 
     ajaxHandle(page);
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       ajaxHandle(page);
     });
@@ -178,10 +149,10 @@ function ajaxHandle(page) {
   con.info('page', detailPart);
   if (detailPart === 'list') {
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('#contentList').length;
       },
-      function() {
+      function () {
         if (j.$('#simple-navi a[href*="manga"]').length) {
           Proxer.type = 'manga';
         } else {
@@ -205,10 +176,10 @@ function ajaxHandle(page) {
   }
   if (detailPart === 'details' || !detailPart) {
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('.hreview-aggregate').length;
       },
-      function() {
+      function () {
         current = parseInt(Proxer.overview!.getIdentifier(page.url));
         if (j.$('#simple-navi a[href*="manga"]').length) {
           Proxer.type = 'manga';

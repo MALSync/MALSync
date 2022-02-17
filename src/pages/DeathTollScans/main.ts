@@ -19,21 +19,13 @@ export const DeathTollScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.tbtitle div.text a')
-        .first()
-        .text();
+      return j.$('div.tbtitle div.text a').first().text();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$('div.tbtitle div.text a')
-          .first()
-          .attr('href') || ''
-      );
+      return j.$('div.tbtitle div.text a').first().attr('href') || '';
     },
     getEpisode(url) {
       return Number(url.split('/')[7]);
@@ -57,19 +49,13 @@ export const DeathTollScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.title')
-        .first()
-        .text()
-        .trim();
+      return j.$('h1.title').first().text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('h1.title')
-        .first()
-        .after(j.html(selector));
+      j.$('h1.title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -78,10 +64,7 @@ export const DeathTollScans: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('div.title a')
-            .first()
-            .attr('href'),
+          selector.find('div.title a').first().attr('href'),
           DeathTollScans.domain,
         );
       },
@@ -91,8 +74,10 @@ export const DeathTollScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'series' || page.url.split('/')[3] === 'read') {
         page.handlePage();
       }

@@ -6,11 +6,8 @@ function createIframe(page) {
   const iframe = document.createElement('iframe');
   iframe.setAttribute('id', 'info-iframe');
   iframe.setAttribute('style', 'height:100%;width:100%;border:0;display:block;');
-  iframe.onload = function() {
-    const head = j
-      .$('#info-iframe')
-      .contents()
-      .find('head');
+  iframe.onload = function () {
+    const head = j.$('#info-iframe').contents().find('head');
 
     api.storage.injectjsResource('material.js', head);
     api.storage.updateDom(head);
@@ -18,13 +15,8 @@ function createIframe(page) {
     api.storage.injectCssResource('material.css', head);
     api.storage.injectCssResource('materialFont.css', head);
 
-    setTimeout(function() {
-      minimalObj = new Minimal(
-        j
-          .$('#info-iframe')
-          .contents()
-          .find('html'),
-      );
+    setTimeout(function () {
+      minimalObj = new Minimal(j.$('#info-iframe').contents().find('html'));
       if (typeof page !== 'undefined') {
         if (typeof page.singleObj !== 'undefined') {
           minimalObj.fillBase(page.singleObj.getUrl());

@@ -48,7 +48,9 @@ export const MangaJar: pageInterface = {
     nextEpUrl(url) {
       return utils.absoluteLink(
         j
-          .$('body > div.container-fluid.chapter-container > div.row.text-center > div > a.btn-primary')
+          .$(
+            'body > div.container-fluid.chapter-container > div.row.text-center > div > a.btn-primary',
+          )
           .first()
           .attr('href'),
         MangaJar.domain,
@@ -63,9 +65,7 @@ export const MangaJar: pageInterface = {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h1.entry-title')
-        .first()
-        .after(j.html(selector));
+      j.$('h1.entry-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -73,13 +73,7 @@ export const MangaJar: pageInterface = {
         return j.$('ul.chaptersList > li.chapter-item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href') || '',
-          MangaJar.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href') || '', MangaJar.domain);
       },
       elementEp(selector) {
         return MangaJar.sync.getEpisode(MangaJar.overview!.list!.elementUrl!(selector));
@@ -87,8 +81,10 @@ export const MangaJar: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Not Found')) {
         con.error('404');
         return;

@@ -39,9 +39,7 @@ export const animestrue: pageInterface = {
       return animestrue.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#pageTitle')
-        .first()
-        .before(j.html(selector));
+      j.$('#pageTitle').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -49,33 +47,23 @@ export const animestrue: pageInterface = {
         return j.$('#listar_animes > li > div > div > table > tbody > tr');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('td > a')
-            .first()
-            .attr('href'),
-          animestrue.domain,
-        );
+        return utils.absoluteLink(selector.find('td > a').first().attr('href'), animestrue.domain);
       },
       elementEp(selector) {
         return animestrue.sync.getEpisode(
-          utils.absoluteLink(
-            selector
-              .find('td > a')
-              .first()
-              .attr('href'),
-            animestrue.domain,
-          ),
+          utils.absoluteLink(selector.find('td > a').first().attr('href'), animestrue.domain),
         );
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let Interval;
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
@@ -83,13 +71,16 @@ export const animestrue: pageInterface = {
     function check() {
       clearInterval(Interval);
       Interval = utils.waitUntilTrue(
-        function() {
-          if (j.$('div.anime-nome > a, #pageTitle').length && j.$('div.anime-nome > a, #pageTitle').text()) {
+        function () {
+          if (
+            j.$('div.anime-nome > a, #pageTitle').length &&
+            j.$('div.anime-nome > a, #pageTitle').text()
+          ) {
             return true;
           }
           return false;
         },
-        function() {
+        function () {
           page.handlePage();
         },
       );

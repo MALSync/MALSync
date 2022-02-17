@@ -18,7 +18,11 @@ export function getInter(): pageInterface {
       return false;
     },
     isOverviewPage(url) {
-      if (url.split('/')[4] !== undefined && url.split('/')[4].length && !thisSelf.isSyncPage(url)) {
+      if (
+        url.split('/')[4] !== undefined &&
+        url.split('/')[4].length &&
+        !thisSelf.isSyncPage(url)
+      ) {
         return true;
       }
       return false;
@@ -31,7 +35,10 @@ export function getInter(): pageInterface {
         return url.split('/')[4];
       },
       getOverviewUrl(url) {
-        return utils.absoluteLink(j.$('p.reader-header-title-1 > a:nth-child(1)').attr('href'), thisSelf.domain);
+        return utils.absoluteLink(
+          j.$('p.reader-header-title-1 > a:nth-child(1)').attr('href'),
+          thisSelf.domain,
+        );
       },
       getEpisode(url) {
         return getChapterNumber(j.$('p.reader-header-title-2').text());
@@ -55,18 +62,13 @@ export function getInter(): pageInterface {
     },
     overview: {
       getTitle(url) {
-        return j
-          .$('span.detail-info-right-title-font')
-          .first()
-          .text();
+        return j.$('span.detail-info-right-title-font').first().text();
       },
       getIdentifier(url) {
         return utils.urlPart(url, 4);
       },
       uiSelector(selector) {
-        j.$('div.detail-main')
-          .first()
-          .before(j.html(selector));
+        j.$('div.detail-main').first().before(j.html(selector));
       },
       list: {
         offsetHandler: false,
@@ -74,13 +76,7 @@ export function getInter(): pageInterface {
           return j.$('ul.detail-main-list > li');
         },
         elementUrl(selector) {
-          return utils.absoluteLink(
-            selector
-              .find('a')
-              .first()
-              .attr('href') || '',
-            thisSelf.domain,
-          );
+          return utils.absoluteLink(selector.find('a').first().attr('href') || '', thisSelf.domain);
         },
         elementEp(selector) {
           return getChapterNumber(selector.find('a > div > p.title3').text());
@@ -88,12 +84,14 @@ export function getInter(): pageInterface {
       },
     },
     init(page) {
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
       if (window.location.host.startsWith('m.')) {
         con.error('Mobile version not supported');
         return;
       }
-      j.$(document).ready(function() {
+      j.$(document).ready(function () {
         if (document.title === '404' || document.title.includes('The resource cannot be found')) {
           con.error('404');
           return;

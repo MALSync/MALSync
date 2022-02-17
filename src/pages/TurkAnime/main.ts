@@ -10,23 +10,13 @@ export const TurkAnime: pageInterface = {
   },
   sync: {
     getTitle() {
-      return j
-        .$('.breadcrumb a')
-        .first()
-        .text()
-        .trim();
+      return j.$('.breadcrumb a').first().text().trim();
     },
     getIdentifier(url) {
       return TurkAnime.overview!.getIdentifier(TurkAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl() {
-      return utils.absoluteLink(
-        j
-          .$('.breadcrumb a')
-          .first()
-          .attr('href'),
-        TurkAnime.domain,
-      );
+      return utils.absoluteLink(j.$('.breadcrumb a').first().attr('href'), TurkAnime.domain);
     },
     getEpisode(episodeURL: string) {
       // Some translations:
@@ -73,19 +63,13 @@ export const TurkAnime: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('#detayPaylas .panel-title')
-        .first()
-        .text()
-        .trim();
+      return j.$('#detayPaylas .panel-title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('#detayPaylas .panel-body')
-        .first()
-        .prepend(j.html(selector));
+      j.$('#detayPaylas .panel-body').first().prepend(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -93,10 +77,7 @@ export const TurkAnime: pageInterface = {
         return j.$('.list.menum > li');
       },
       elementUrl(selector) {
-        const anchorHref = selector
-          .find('a')
-          .last()
-          .attr('href');
+        const anchorHref = selector.find('a').last().attr('href');
 
         if (!anchorHref) return '';
 
@@ -110,7 +91,9 @@ export const TurkAnime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     j.$(() => {
       utils.waitUntilTrue(

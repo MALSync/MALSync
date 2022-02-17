@@ -72,27 +72,17 @@ export const MangaNato: pageInterface = {
         return j.$('div.panel-story-chapter-list > ul.row-content-chapter > li.a-h');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
-        return MangaNato.sync.getEpisode(
-          String(
-            selector
-              .find('a')
-              .first()
-              .attr('href'),
-          ),
-        );
+        return MangaNato.sync.getEpisode(String(selector.find('a').first().attr('href')));
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (document.title.includes('Not Found')) {
         con.error('404');

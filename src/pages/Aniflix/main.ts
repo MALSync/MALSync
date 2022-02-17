@@ -41,10 +41,7 @@ export const Aniflix: pageInterface = {
             .text()
             .replace(/\D+/g, ''),
         ) === 1 ||
-        j
-          .$('div.seasons-wrapper > div.season.season-active > div')
-          .first()
-          .text() === 'Specials'
+        j.$('div.seasons-wrapper > div.season.season-active > div').first().text() === 'Specials'
       ) {
         return j.$('h1.show-name').text();
       }
@@ -56,10 +53,7 @@ export const Aniflix: pageInterface = {
     },
     getIdentifier(url) {
       if (
-        j
-          .$('div.seasons-wrapper > div.season.season-active > div')
-          .first()
-          .text() === 'Specials'
+        j.$('div.seasons-wrapper > div.season.season-active > div').first().text() === 'Specials'
       ) {
         return `${url.split('/')[4]}?s=0`;
       }
@@ -70,16 +64,16 @@ export const Aniflix: pageInterface = {
         .replace(/\D+/g, '')}`;
     },
     uiSelector(selector) {
-      j.$('div.episodes')
-        .first()
-        .before(j.html(selector));
+      j.$('div.episodes').first().before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     page.url = window.location.href;
     ready();
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       ready();
     });
     function ready() {
@@ -87,36 +81,30 @@ export const Aniflix: pageInterface = {
       if (page.url.split('/')[3] === 'show') {
         if (Aniflix.isSyncPage(page.url)) {
           utils.waitUntilTrue(
-            function() {
+            function () {
               if (j.$('a.episode-showname').length) {
                 return true;
               }
               return false;
             },
-            function() {
+            function () {
               page.handlePage();
             },
           );
         } else {
           page.reset();
           utils.waitUntilTrue(
-            function() {
-              if (
-                j.$('h1.show-name').length &&
-                j
-                  .$('h1.show-name')
-                  .first()
-                  .text()
-              ) {
+            function () {
+              if (j.$('h1.show-name').length && j.$('h1.show-name').first().text()) {
                 return true;
               }
               return false;
             },
-            function() {
+            function () {
               page.handlePage();
               $('div.seasons-wrapper')
                 .unbind('click')
-                .click(function() {
+                .click(function () {
                   page.reset();
                   page.handlePage();
                 });

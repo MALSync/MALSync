@@ -20,26 +20,13 @@ export const Animeheaven: pageInterface = {
       return utils.urlParam(url, 'a') || '';
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('a.infoan2')
-          .first()
-          .attr('href'),
-        Animeheaven.domain,
-      );
+      return utils.absoluteLink(j.$('a.infoan2').first().attr('href'), Animeheaven.domain);
     },
     getEpisode(url) {
       return Number(utils.urlParam(url, 'e'));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('.next2')
-          .first()
-          .parent()
-          .attr('href'),
-        Animeheaven.domain,
-      );
+      return utils.absoluteLink(j.$('.next2').first().parent().attr('href'), Animeheaven.domain);
     },
   },
   overview: {
@@ -50,9 +37,7 @@ export const Animeheaven: pageInterface = {
       return Animeheaven.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('.infoepboxmain')
-        .first()
-        .before(j.html(selector));
+      j.$('.infoepboxmain').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -69,11 +54,13 @@ export const Animeheaven: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
       setDesign();
-      $('#bbox').click(function() {
+      $('#bbox').click(function () {
         setDesign();
       });
     });

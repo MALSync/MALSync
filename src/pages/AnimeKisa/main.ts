@@ -6,7 +6,11 @@ export const AnimeKisa: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] !== null && j.$('div.c a.infoan2')[0] && j.$('#playerselector option:selected')[0]) {
+    if (
+      url.split('/')[3] !== null &&
+      j.$('div.c a.infoan2')[0] &&
+      j.$('#playerselector option:selected')[0]
+    ) {
       return true;
     }
     return false;
@@ -21,10 +25,7 @@ export const AnimeKisa: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.c a.infoan2')
-        .text()
-        .trim();
+      return j.$('div.c a.infoan2').text().trim();
     },
     getIdentifier(url) {
       return j.$('div.c a.infoan2').attr('href') || '';
@@ -33,18 +34,10 @@ export const AnimeKisa: pageInterface = {
       return `${AnimeKisa.domain}/${j.$('div.c a.infoan2').attr('href')}`;
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$('#playerselector option:selected')
-          .text()
-          .replace(/\D+/g, ''),
-      );
+      return Number(j.$('#playerselector option:selected').text().replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const num = $('#playerselector')
-        .find('option:selected')
-        .next()
-        .attr('value');
+      const num = $('#playerselector').find('option:selected').next().attr('value');
 
       if (!num) return '';
 
@@ -70,9 +63,7 @@ export const AnimeKisa: pageInterface = {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      j.$('.infoepboxmain')
-        .first()
-        .before(j.html(selector));
+      j.$('.infoepboxmain').first().before(j.html(selector));
     },
     getMalUrl(provider) {
       let url = j
@@ -82,19 +73,11 @@ export const AnimeKisa: pageInterface = {
         .attr('href');
       if (url) return url;
       if (provider === 'ANILIST') {
-        url = j
-          .$('a[href^="https://anilist.co/anime/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
+        url = j.$('a[href^="https://anilist.co/anime/"]').not('#malRating').first().attr('href');
         if (url) return url;
       }
       if (provider === 'KITSU') {
-        url = j
-          .$('a[href^="https://kitsu.io/anime/"]')
-          .not('#malRating')
-          .first()
-          .attr('href');
+        url = j.$('a[href^="https://kitsu.io/anime/"]').not('#malRating').first().attr('href');
         if (url) return url;
       }
       return false;
@@ -105,25 +88,18 @@ export const AnimeKisa: pageInterface = {
         return j.$('div.infoepbox > a');
       },
       elementUrl(selector) {
-        return `${AnimeKisa.domain}/${selector
-          .find('.infoepmain')
-          .first()
-          .parent()
-          .attr('href')}`;
+        return `${AnimeKisa.domain}/${selector.find('.infoepmain').first().parent().attr('href')}`;
       },
       elementEp(selector) {
-        return Number(
-          selector
-            .find('div.infoept2r > div, div.infoept2 > div')
-            .first()
-            .text(),
-        );
+        return Number(selector.find('div.infoept2r > div, div.infoept2 > div').first().text());
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

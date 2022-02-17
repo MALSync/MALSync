@@ -51,12 +51,14 @@ export const Anihub: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     let interval;
     let oldJson = '';
 
-    utils.fullUrlChangeDetect(function() {
+    utils.fullUrlChangeDetect(function () {
       page.reset();
       check();
     });
@@ -64,7 +66,7 @@ export const Anihub: pageInterface = {
     function check() {
       clearInterval(interval);
       interval = utils.waitUntilTrue(
-        function() {
+        function () {
           if (j.$('#syncData').length) {
             jsonData = JSON.parse(j.$('#syncData').text());
             if (
@@ -78,7 +80,7 @@ export const Anihub: pageInterface = {
           }
           return false;
         },
-        function() {
+        function () {
           if (
             Object.prototype.hasOwnProperty.call(jsonData, 'isStreaming') &&
             Object.prototype.hasOwnProperty.call(jsonData, 'id') &&

@@ -56,14 +56,14 @@ export const Hentaigasm: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('div.loop-actions')
-        .first()
-        .after(j.html(selector));
+      j.$('div.loop-actions').first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         (page.url.split('/')[6] !== null &&
           j.$('#extras > h4:nth-child(2) > a')[0] &&

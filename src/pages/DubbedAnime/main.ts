@@ -23,7 +23,10 @@ export const DubbedAnime: pageInterface = {
       return DubbedAnime.overview!.getIdentifier(DubbedAnime.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('div.video-info a[href*="/anime/"]').attr('href'), DubbedAnime.domain);
+      return utils.absoluteLink(
+        j.$('div.video-info a[href*="/anime/"]').attr('href'),
+        DubbedAnime.domain,
+      );
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
@@ -36,57 +39,46 @@ export const DubbedAnime: pageInterface = {
     },
     nextEpUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.video-info i.fa-forward')
-          .closest('a')
-          .attr('href'),
+        j.$('div.video-info i.fa-forward').closest('a').attr('href'),
         DubbedAnime.domain,
       );
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.h3.dosis.mt-0.text-white.pt-2.d-none.d-sm-block')
-        .text()
-        .trim();
+      return j.$('h1.h3.dosis.mt-0.text-white.pt-2.d-none.d-sm-block').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('#episodes > div > div.row.mb-3.pr-2')
-        .first()
-        .after(j.html(selector));
+      j.$('#episodes > div > div.row.mb-3.pr-2').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)');
+        return j.$(
+          'div.da-page-episodes > ul.list-unstyled > li.da-tbl:not(.ongoing-ep-new,:hidden)',
+        );
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('div.da-video-tbl > a')
-            .first()
-            .attr('href'),
+          selector.find('div.da-video-tbl > a').first().attr('href'),
           DubbedAnime.domain,
         );
       },
       elementEp(selector) {
         return Number(
-          selector
-            .find('div.da-video-tbl > span.ep-num')
-            .first()
-            .text()
-            .replace(/\D+/, ''),
+          selector.find('div.da-video-tbl > span.ep-num').first().text().replace(/\D+/, ''),
         );
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('410 Gone') || document.title.includes('Not Found')) {
         con.error('Does not exist anymore');
         return;
@@ -97,7 +89,7 @@ export const DubbedAnime: pageInterface = {
         page.handlePage();
         $('div.col-4.px-0 > button.subdub')
           .unbind('click')
-          .click(function() {
+          .click(function () {
             page.handleList();
           });
       }

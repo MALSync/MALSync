@@ -18,16 +18,17 @@ export function getInter(): pageInterface {
     },
     sync: {
       getTitle(url) {
-        return j
-          .$('.d-flex .heading h6.text-highlight')
-          .text()
-          .trim();
+        return j.$('.d-flex .heading h6.text-highlight').text().trim();
       },
       getIdentifier(url) {
         return url.split('/')[4];
       },
       getOverviewUrl(url) {
-        return j.$('div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn').attr('href') || '';
+        return (
+          j
+            .$('div.container.py-5 div#pages-container div.d-flex div.btn-group a.btn')
+            .attr('href') || ''
+        );
       },
       getEpisode(url) {
         return Number(utils.urlPart(url, 6));
@@ -37,16 +38,15 @@ export function getInter(): pageInterface {
       },
       nextEpUrl(url) {
         return j
-          .$("div#content.flex div.container.py-5 div#pages-container div.d-flex a:contains('Next')")
+          .$(
+            "div#content.flex div.container.py-5 div#pages-container div.d-flex a:contains('Next')",
+          )
           .attr('href');
       },
     },
     overview: {
       getTitle(url) {
-        return j
-          .$('.d-flex .heading h5.text-highlight')
-          .text()
-          .trim();
+        return j.$('.d-flex .heading h5.text-highlight').text().trim();
       },
       getIdentifier(url) {
         return utils.urlPart(url, 4);
@@ -66,25 +66,18 @@ export function getInter(): pageInterface {
           return j.$('div.list-item.col-sm-3');
         },
         elementUrl(selector) {
-          return (
-            selector
-              .find('a')
-              .first()
-              .attr('href') || ''
-          );
+          return selector.find('a').first().attr('href') || '';
         },
         elementEp(selector) {
-          return selector
-            .find('a')
-            .first()
-            .attr('href')
-            .split('/')[6];
+          return selector.find('a').first().attr('href').split('/')[6];
         },
       },
     },
     init(page) {
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-      j.$(document).ready(function() {
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
+      j.$(document).ready(function () {
         if (document.title.includes('Not Found')) {
           con.error('404');
           return;

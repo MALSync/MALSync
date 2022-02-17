@@ -26,10 +26,7 @@ export const BSTO: pageInterface = {
       return BSTO.overview!.getIdentifier(url);
     },
     getOverviewUrl(url) {
-      return url
-        .split('/')
-        .slice(0, 5)
-        .join('/');
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       return Number(j.$('.episode .active > a').text());
@@ -82,18 +79,12 @@ export const BSTO: pageInterface = {
         return j.$('table.episodes tr, div.episode li[class^="e"]');
       },
       elementUrl(selector: JQuery<HTMLElement>) {
-        const anchorHref = selector
-          .find('a')
-          .first()
-          .attr('href');
+        const anchorHref = selector.find('a').first().attr('href');
         if (!anchorHref) return '';
         return anchorHref;
       },
       elementEp(selector) {
-        const anchorNb = selector
-          .find('a')
-          .first()
-          .text();
+        const anchorNb = selector.find('a').first().text();
         if (!anchorNb) return NaN;
 
         return Number(anchorNb);
@@ -102,19 +93,17 @@ export const BSTO: pageInterface = {
   },
   init(page) {
     // eslint-disable-next-line global-require
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       /* eslint-disable-next-line */
       j.$('body').append(
         '<script>var openWindow = window.open; window.open = function (url, windowName, windowFeatures) {if(!url.startsWith("https://vivo")) openWindow(url, windowName, windowFeatures)}</script>',
       );
       $('html').addClass('miniMAL-hide');
       if (
-        j
-          .$('.infos span:contains("Genres")')
-          .next('p')
-          .text()
-          .indexOf('Anime') >= 0 &&
+        j.$('.infos span:contains("Genres")').next('p').text().indexOf('Anime') >= 0 &&
         parseInt(utils.urlPart(page.url, 5)) !== 0 // ignore specials since its bad on this page
       ) {
         $('html').removeClass('miniMAL-hide');
@@ -122,14 +111,11 @@ export const BSTO: pageInterface = {
       }
     });
     utils.waitUntilTrue(
-      function() {
+      function () {
         return j.$('div.hoster-player > a[href^="https://vivo"]').length;
       },
-      function() {
-        const array = j
-          .$('div.hoster-player > a[href^="https://vivo"]')!
-          .attr('href')!
-          .split('/');
+      function () {
+        const array = j.$('div.hoster-player > a[href^="https://vivo"]')!.attr('href')!.split('/');
         const id = array.pop()!;
         array.push('embed');
         array.push(id);

@@ -26,7 +26,7 @@ function main() {
   page.init();
   firebaseNotification();
 
-  $(window).blur(function() {
+  $(window).blur(function () {
     lastFocus = Date.now();
   });
 }
@@ -42,7 +42,7 @@ api.settings.init().then(() => {
 let timeAddCb;
 function messagePageListener(page) {
   // @ts-ignore
-  chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
+  chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     if (msg.action === 'TabMalUrl') {
       if (Date.now() - lastFocus < 3 * 1000) {
         con.log('TabMalUrl Message', page.singleObj.url);
@@ -50,14 +50,14 @@ function messagePageListener(page) {
       }
     }
     if (msg.action === 'videoTime') {
-      page.setVideoTime(msg.item, function(time) {
+      page.setVideoTime(msg.item, function (time) {
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
           time,
           sender: msg.sender,
         });
       });
-      timeAddCb = async function(forward) {
+      timeAddCb = async function (forward) {
         chrome.runtime.sendMessage({
           name: 'videoTimeSet',
           timeAdd: forward,
@@ -135,7 +135,11 @@ function messagePageListener(page) {
       if (!forward) time = 0 - time;
 
       const totalTime = page.tempPlayer.currentTime + time;
-      if (page.tempPlayer.duration && page.tempPlayer.duration > 15 && totalTime > page.tempPlayer.duration - 3) {
+      if (
+        page.tempPlayer.duration &&
+        page.tempPlayer.duration > 15 &&
+        totalTime > page.tempPlayer.duration - 3
+      ) {
         page.tempPlayer.currentTime = page.tempPlayer.duration - 3;
         return;
       }

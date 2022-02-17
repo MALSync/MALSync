@@ -44,9 +44,7 @@ export const DreamSub: pageInterface = {
       return DreamSub.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('div.detail-content')
-        .first()
-        .after(j.html(selector));
+      j.$('div.detail-content').first().after(j.html(selector));
     },
     getMalUrl(provider) {
       if (jsonData.mal_id) {
@@ -57,7 +55,7 @@ export const DreamSub: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul#episodes-sv ul.innerSeas > li.ep-item').filter(function(index) {
+        return j.$('ul#episodes-sv ul.innerSeas > li.ep-item').filter(function (index) {
           if ($(this).find('div.sli-name > a.disabled').length) {
             return false;
           }
@@ -66,10 +64,7 @@ export const DreamSub: pageInterface = {
       },
       elementUrl(selector) {
         return utils.absoluteLink(
-          selector
-            .find('div.sli-name > a')
-            .first()
-            .attr('href'),
+          selector.find('div.sli-name > a').first().attr('href'),
           DreamSub.domain,
         );
       },
@@ -79,18 +74,20 @@ export const DreamSub: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (document.title === 'Verifica che non sei un bot | DreamSub') {
       con.log('loading');
       page.cdn();
       return;
     }
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       utils.waitUntilTrue(
-        function() {
+        function () {
           return j.$('#syncData').length;
         },
-        function() {
+        function () {
           jsonData = JSON.parse(j.$('#syncData').text());
           page.handlePage();
         },

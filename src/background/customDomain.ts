@@ -86,10 +86,7 @@ function singleListener(domainConfig: domainType) {
   chrome.webNavigation.onCompleted.addListener(callback, {
     url: [{ originAndPathMatches: domainConfig.domain }],
   });
-  logger
-    .m('registred')
-    .m(domainConfig.page)
-    .log(domainConfig.domain);
+  logger.m('registred').m(domainConfig.page).log(domainConfig.domain);
 }
 
 export async function cleanupCustomDomains() {
@@ -101,7 +98,9 @@ export async function cleanupCustomDomains() {
 
   let pageOrigins: string[] = [];
   pageScripts.forEach((item: any) => {
-    pageOrigins = pageOrigins.concat(item.matches.map(origin => getComparableDomains(origin)).filter(el => el));
+    pageOrigins = pageOrigins.concat(
+      item.matches.map(origin => getComparableDomains(origin)).filter(el => el),
+    );
   });
 
   const customDomains = await api.settings.getAsync('customDomains');

@@ -19,14 +19,8 @@ export const Otakustv: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      const title = j
-        .$('title')
-        .text()
-        .trim();
-      const content = j
-        .$('.epsd h1')
-        .text()
-        .trim();
+      const title = j.$('title').text().trim();
+      const content = j.$('.epsd h1').text().trim();
 
       // Check when strings deviate
       let endTitle = '';
@@ -49,10 +43,7 @@ export const Otakustv: pageInterface = {
       return getEpisode(url);
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.vid_next a')
-        .first()
-        .attr('href');
+      const href = j.$('.vid_next a').first().attr('href');
       if (typeof href !== 'undefined' && !href.includes(':void(0)')) {
         return utils.absoluteLink(href, Otakustv.domain);
       }
@@ -61,11 +52,7 @@ export const Otakustv: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.inn-text h1')
-        .first()
-        .text()
-        .trim();
+      return j.$('.inn-text h1').first().text().trim();
     },
     getIdentifier(url) {
       const urlPart4 = utils.urlPart(url, 4);
@@ -75,9 +62,7 @@ export const Otakustv: pageInterface = {
       return urlPart4;
     },
     uiSelector(selector) {
-      j.$('.inn-text h1')
-        .first()
-        .after(j.html(selector));
+      j.$('.inn-text h1').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -85,13 +70,7 @@ export const Otakustv: pageInterface = {
         return j.$('.episodios-bottom .row > div');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Otakustv.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Otakustv.domain);
       },
       elementEp(selector) {
         return getEpisode(Otakustv.overview!.list!.elementUrl!(selector));
@@ -99,8 +78,10 @@ export const Otakustv: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

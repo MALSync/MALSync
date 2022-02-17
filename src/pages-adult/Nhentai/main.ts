@@ -59,26 +59,21 @@ export const Nhentai: pageInterface = {
   },
   overview: {
     getTitle() {
-      return cleanTitle(
-        j
-          .$('meta[itemprop="name"]')
-          .first()
-          .attr('content'),
-      );
+      return cleanTitle(j.$('meta[itemprop="name"]').first().attr('content'));
     },
     getIdentifier(url) {
       return Nhentai.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('#info h1')
-        .first()
-        .after(j.html(selector));
+      j.$('#info h1').first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
-    j.$(document).ready(function() {
+    j.$(document).ready(function () {
       if (page.url.match(/nhentai.[^/]*\/g\/\d+/i)) {
         page.handlePage();
       }

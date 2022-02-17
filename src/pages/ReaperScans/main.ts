@@ -19,10 +19,7 @@ export const ReaperScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('.c-breadcrumb-wrapper .breadcrumb li')[2])
-        .text()
-        .trim();
+      return j.$(j.$('.c-breadcrumb-wrapper .breadcrumb li')[2]).text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -44,18 +41,12 @@ export const ReaperScans: pageInterface = {
       return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$('.nav-links .next_page')
-        .first()
-        .attr('href');
+      return j.$('.nav-links .next_page').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.post-title h1')
-        .prop('innerText')
-        .trim();
+      return j.$('.post-title h1').prop('innerText').trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -75,12 +66,7 @@ export const ReaperScans: pageInterface = {
         return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return ReaperScans.sync.getEpisode(ReaperScans.overview!.list!.elementUrl!(selector));
@@ -88,8 +74,10 @@ export const ReaperScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (ReaperScans.isSyncPage(page.url)) {
         if (j.$('.page-break.no-gaps').length) {
           page.handlePage();
@@ -97,17 +85,14 @@ export const ReaperScans: pageInterface = {
       }
       if (ReaperScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (j.$('.wp-manga-chapter').length) {
               return true;
             }
             return false;
           },
-          function() {
-            const typeRS = j
-              .$('.manga-title-badges')
-              .text()
-              .toLowerCase();
+          function () {
+            const typeRS = j.$('.manga-title-badges').text().toLowerCase();
             if (!typeRS.includes('novel')) {
               page.handlePage();
             }

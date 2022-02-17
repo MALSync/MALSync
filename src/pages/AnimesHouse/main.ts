@@ -19,10 +19,7 @@ export const AnimesHouse: pageInterface = {
     },
     getIdentifier(url) {
       if (!film) {
-        return AnimesHouse.sync
-          .getTitle(url)
-          .toLowerCase()
-          .replace(/\s+/g, '_');
+        return AnimesHouse.sync.getTitle(url).toLowerCase().replace(/\s+/g, '_');
       }
       return url.split('/')[4];
     },
@@ -34,25 +31,19 @@ export const AnimesHouse: pageInterface = {
     },
     getEpisode(url) {
       if (!film) {
-        return Number(
-          j
-            .$('#info > div > h3.epih3')
-            .text()
-            .replace(/\D+/g, ''),
-        );
+        return Number(j.$('#info > div > h3.epih3').text().replace(/\D+/g, ''));
       }
       return 1;
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[4] !== undefined && page.url.split('/')[4].length > 0) {
         if (page.url.split('/')[3] === 'episodio') {
-          const episodeText = j
-            .$('#info > div > h3.epih3')
-            .text()
-            .toLowerCase();
+          const episodeText = j.$('#info > div > h3.epih3').text().toLowerCase();
           if (
             episodeText.length &&
             (episodeText.indexOf('episódio') !== -1 || episodeText.indexOf('episodio') !== -1) &&

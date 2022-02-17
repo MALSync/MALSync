@@ -13,10 +13,7 @@ export const tioanime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.container div.episode-single h1.anime-title')
-        .text()
-        .replace(/ \d+$/, '');
+      return j.$('div.container div.episode-single h1.anime-title').text().replace(/ \d+$/, '');
     },
     getIdentifier(url) {
       return utils.urlPart(tioanime.sync.getOverviewUrl(url), 4);
@@ -79,8 +76,10 @@ export const tioanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('Error 404')) {
         con.error('404');
         return;

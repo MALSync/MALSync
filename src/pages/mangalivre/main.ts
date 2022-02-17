@@ -21,7 +21,8 @@ export const mangalivre: pageInterface = {
     getOverviewUrl(url) {
       return (
         mangalivre.domain +
-        (j.$('div.series-info-popup-container > div > div > div.series-cover > a').attr('href') || '')
+        (j.$('div.series-info-popup-container > div > div > div.series-cover > a').attr('href') ||
+          '')
       );
     },
     getEpisode(url) {
@@ -29,11 +30,7 @@ export const mangalivre: pageInterface = {
     },
     nextEpUrl(url) {
       const href = utils.absoluteLink(
-        j
-          .$('ul.chapter-list > li.selected')
-          .prev('li')
-          .find('a')
-          .attr('href'),
+        j.$('ul.chapter-list > li.selected').prev('li').find('a').attr('href'),
         mangalivre.domain,
       );
       if (href) {
@@ -60,8 +57,10 @@ export const mangalivre: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (document.title.includes('404!')) {
         con.error('404');
         return;

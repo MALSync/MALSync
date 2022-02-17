@@ -54,27 +54,29 @@ export const hanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'videos' && page.url.split('/')[4] === 'hentai') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('h1.tv-title').text();
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
       }
     });
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       if (page.url.split('/')[3] === 'videos' && page.url.split('/')[4] === 'hentai') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('h1.tv-title').text();
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );

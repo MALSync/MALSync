@@ -10,10 +10,7 @@ export const Japanread: pageInterface = {
   },
   sync: {
     getTitle() {
-      return j
-        .$('.reader-controls-title > div > a')
-        .text()
-        .trim();
+      return j.$('.reader-controls-title > div > a').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -60,10 +57,7 @@ export const Japanread: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('h1.card-header')
-        .text()
-        .trim();
+      return j.$('h1.card-header').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -76,9 +70,7 @@ export const Japanread: pageInterface = {
             '<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MAL-Sync:</div><div class="col-lg-9 col-xl-10 mal-sync"></div></div>',
           ),
         );
-      j.$('.container .card .mal-sync')
-        .first()
-        .append(j.html(selector));
+      j.$('.container .card .mal-sync').first().append(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -87,21 +79,9 @@ export const Japanread: pageInterface = {
       },
       elementUrl(selector) {
         if (j.$('#navbar-guest').length === 0) {
-          return utils.absoluteLink(
-            selector
-              .find('a')
-              .eq(1)
-              .attr('href'),
-            Japanread.domain,
-          );
+          return utils.absoluteLink(selector.find('a').eq(1).attr('href'), Japanread.domain);
         }
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          Japanread.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Japanread.domain);
       },
       elementEp(selector) {
         return Japanread.sync.getEpisode(Japanread.overview!.list!.elementUrl!(selector));
@@ -109,13 +89,17 @@ export const Japanread: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'manga' && typeof page.url.split('/')[4] !== 'undefined') {
         con.info('Waiting');
         utils.waitUntilTrue(
           () => {
-            return j.$('#jump-chapter option:selected').text() !== '' || j.$('[data-row=chapter]').length;
+            return (
+              j.$('#jump-chapter option:selected').text() !== '' || j.$('[data-row=chapter]').length
+            );
           },
           () => {
             con.info('Start');

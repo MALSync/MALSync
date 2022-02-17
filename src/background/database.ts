@@ -142,17 +142,17 @@ export async function addEntry(entry: Entry) {
   return table.put(entry);
 }
 
-export async function getEntry(type: 'anime' | 'manga', uid: number | string): Promise<undefined | Entry> {
+export async function getEntry(
+  type: 'anime' | 'manga',
+  uid: number | string,
+): Promise<undefined | Entry> {
   const table = type === 'anime' ? db.table('anime') : db.table('manga');
   return table.get(uid);
 }
 
 export async function removeEntry(type: 'anime' | 'manga', uid: number | string) {
   const table = type === 'anime' ? db.table('anime') : db.table('manga');
-  return table
-    .where('uid')
-    .equals(uid)
-    .delete();
+  return table.where('uid').equals(uid).delete();
 }
 
 async function importEntries(type: 'anime' | 'manga', entries: Entry[]) {

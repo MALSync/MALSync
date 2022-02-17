@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp } from '../utils/Vue';
 import { Single as SimklSingle } from '../_provider/Simkl/single';
 import { UserList } from '../_provider/Simkl/list';
 import * as helper from '../provider/Simkl/helper';
@@ -19,7 +19,7 @@ export class SimklClass {
     utils.urlChangeDetect(() => {
       clearInterval(this.interval);
       this.interval = utils.waitUntilTrue(
-        function() {
+        function () {
           return (
             (!$('#global_div').length || parseInt($('#global_div').css('opacity')) === 1) &&
             (!$('#tvMainTable').length || parseInt($('#tvMainTable').css('opacity')) === 1)
@@ -33,7 +33,9 @@ export class SimklClass {
       );
     });
 
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     $(document).ready(() => {
       this.init();
     });
@@ -66,12 +68,11 @@ export class SimklClass {
       con.log('page', this.page);
 
       if (!$('#malkiss').length)
-        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after(j.html('<div id="malkiss"></div>'));
-      if (this.malkiss) this.malkiss.$destroy();
-      this.malkiss = new Vue({
-        el: '#malkiss',
-        render: h => h(malkiss),
-      }).$children[0];
+        $('.SimklTVAboutBlockTitle, .simkltvdetailmobilesummaryinfo').after(
+          j.html('<div id="malkiss"></div>'),
+        );
+      if (this.malkiss) this.malkiss.$.appContext.app.unmount();
+      this.malkiss = createApp(malkiss, '#malkiss');
 
       this.streamingUI();
       this.malToKiss();
@@ -134,7 +135,10 @@ export class SimklClass {
           'POST',
         )
         .then(access_token => {
-          if (typeof access_token.error !== 'undefined' || typeof access_token.access_token === 'undefined')
+          if (
+            typeof access_token.error !== 'undefined' ||
+            typeof access_token.access_token === 'undefined'
+          )
             throw access_token;
           return api.settings.set('simklToken', access_token.access_token);
         })
@@ -152,7 +156,9 @@ export class SimklClass {
 
     function ee(e) {
       con.error(e);
-      $('.firstStage .SimklTVKodititletext, .secondStage .SimklTVKodititletext').text('Something went wrong');
+      $('.firstStage .SimklTVKodititletext, .secondStage .SimklTVKodititletext').text(
+        'Something went wrong',
+      );
     }
   }
 
@@ -181,10 +187,7 @@ export class SimklClass {
   malToKiss() {
     con.log('malToKiss');
 
-    const title = $('h1')
-      .first()
-      .text()
-      .trim();
+    const title = $('h1').first().text().trim();
 
     activeLinks(this.page!.type, this.page!.malid, title).then(links => {
       this.malkiss.links = links;
@@ -270,7 +273,10 @@ export class SimklClass {
             exec();
           },
           () => {
-            return $('#tv_best_left_addContainer li').length + $('#tv_best_left_addContainer > div').height()!;
+            return (
+              $('#tv_best_left_addContainer li').length +
+              $('#tv_best_left_addContainer > div').height()!
+            );
           },
         );
 
@@ -306,7 +312,9 @@ export class SimklClass {
                     `<a class="nextStream mal-rem" onclick="event.stopPropagation();" title="Continue watching" target="_blank" style="position: absolute; z-index: 10; right: 0; top: 26px; background-color: #00000057; padding: 5px;" href="${
                       continueUrlObj.url
                     }">
-                  <img src="${api.storage.assetUrl('double-arrow-16px.png')}" width="16" height="16">
+                  <img src="${api.storage.assetUrl(
+                    'double-arrow-16px.png',
+                  )}" width="16" height="16">
                 </a>`,
                   ),
                 );

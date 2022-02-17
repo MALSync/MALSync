@@ -42,10 +42,7 @@ export const Animeflix: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.flex.xs12.lg8 > h1')
-        .text()
-        .trim();
+      return j.$('div.flex.xs12.lg8 > h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -57,12 +54,14 @@ export const Animeflix: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
 
     function check() {
       if (page.url.split('/')[3] === 'shows') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (
               j.$('h4.title.text-truncate').text() ||
               j.$('h4.headline.text-truncate').text() ||
@@ -72,14 +71,14 @@ export const Animeflix: pageInterface = {
             }
             return false;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
       }
     }
     check();
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       check();
     });

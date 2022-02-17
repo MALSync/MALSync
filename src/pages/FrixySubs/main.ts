@@ -62,22 +62,25 @@ export const FrixySubs: pageInterface = {
         return utils.absoluteLink(`ogladaj.html?id=${id}`, FrixySubs.domain);
       },
       elementEp(selector) {
-        const text = j
-          .$(selector)
-          .find('.episodes-h1')
-          .text();
+        const text = j.$(selector).find('.episodes-h1').text();
         return getEpNumber(text, /Odcinek (\d+)/);
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       const urlPart = page.url.split('/')[3];
       if (urlPart.startsWith('ogladaj') || urlPart.startsWith('odcinki')) {
         utils.waitUntilTrue(
           () => {
-            if (FrixySubs.overview!.getTitle(page.url).length || FrixySubs.sync.getTitle(page.url).length) return true;
+            if (
+              FrixySubs.overview!.getTitle(page.url).length ||
+              FrixySubs.sync.getTitle(page.url).length
+            )
+              return true;
             return false;
           },
           () => {

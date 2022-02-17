@@ -42,7 +42,9 @@ export async function importData(newData: {}) {
     await api.storage.set(k, newData[k]).catch(e => {
       if (e.message) {
         if (e.message.includes('MAX_WRITE_OPERATIONS_PER_MINUTE')) {
-          utils.flashm('Max write operations per minute hit. Import stopped for 1 minute. Just keep this window open.');
+          utils.flashm(
+            'Max write operations per minute hit. Import stopped for 1 minute. Just keep this window open.',
+          );
           return new Promise(resolve => {
             setTimeout(() => {
               resolve(api.storage.set(k, newData[k]));

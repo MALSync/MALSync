@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import { createApp } from '../../utils/Vue';
 import { SearchClass as SearchClassExtend } from './searchClass';
 
 import correctionApp from './correctionApp.vue';
@@ -21,47 +21,29 @@ export class SearchClass extends SearchClassExtend {
   public openCorrection(syncMode = false): Promise<boolean> {
     return new Promise((resolve, reject) => {
       if (this.vueInstance) {
-        this.vueInstance.$destroy();
+        this.vueInstance.$.appContext.app.unmount();
         if (!syncMode) {
           resolve(false);
           return;
         }
       }
 
-      const flasmessage = utils.flashm('<div class="shadow"></div>', {
+      const flasmessage = utils.flashm('<div class="ms-shadow"></div>', {
         permanent: true,
         position: 'top',
         type: 'correction',
       });
 
-      const shadow = flasmessage
-        .find('.shadow')
-        .get(0)!
-        .attachShadow({ mode: 'open' });
-
-      shadow.innerHTML = `
-        <style>
-          ${j.html(require('!to-string-loader!css-loader!less-loader!./correctionStyle.less').toString())}
-        </style>
-        <div id="correctionApp"></div>
-        `;
-      const element = flasmessage
-        .find('.shadow')
-        .get(0)!
-        .shadowRoot!.querySelector('#correctionApp')!;
-      this.vueInstance = new Vue({
-        el: element,
-        data: () => ({
-          searchClass: this,
-          syncMode,
-        }),
-        destroyed: () => {
-          resolve(this.changed);
-          flasmessage.remove();
-          this.vueInstance = undefined;
-        },
-        render: h => h(correctionApp),
+      this.vueInstance = createApp(correctionApp, flasmessage.find('.ms-shadow').get(0), {
+        shadowDom: true,
       });
+      this.vueInstance.searchClass = this;
+      this.vueInstance.syncMode = syncMode;
+      this.vueInstance.unmountFnc = () => {
+        resolve(this.changed);
+        flasmessage.remove();
+        this.vueInstance = undefined;
+      };
     });
   }
 }

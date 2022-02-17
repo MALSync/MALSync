@@ -17,22 +17,14 @@ export const AnimeStreamingFR: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return cleanUpTitle(
-        j
-          .$('#animeTitle')
-          .text()
-          .trim(),
-      );
+      return cleanUpTitle(j.$('#animeTitle').text().trim());
     },
     getIdentifier(url) {
       return AnimeStreamingFR.overview!.getIdentifier(AnimeStreamingFR.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        `${j
-          .$('#animeTitle')
-          .parent()
-          .attr('href')}`,
+        `${j.$('#animeTitle').parent().attr('href')}`,
         AnimeStreamingFR.domain,
       );
     },
@@ -40,23 +32,12 @@ export const AnimeStreamingFR: pageInterface = {
       return Number(j.$('meta[itemprop="episodeNumber"]').attr('content'));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
-        j
-          .$('#nextEpisode')
-          .parent()
-          .attr('href'),
-        AnimeStreamingFR.domain,
-      );
+      return utils.absoluteLink(j.$('#nextEpisode').parent().attr('href'), AnimeStreamingFR.domain);
     },
   },
   overview: {
     getTitle(url) {
-      return cleanUpTitle(
-        j
-          .$('#season')
-          .text()
-          .trim(),
-      );
+      return cleanUpTitle(j.$('#season').text().trim());
     },
     getIdentifier(url) {
       return `${utils.urlPart(url, 5)}-${utils.urlPart(url, 7)}`;
@@ -66,7 +47,9 @@ export const AnimeStreamingFR: pageInterface = {
         .parent()
         .parent()
         .parent()
-        .after(j.html(`<div class="Grid-item" style="width: 100%; max-width: 800px;">${selector}</div>`));
+        .after(
+          j.html(`<div class="Grid-item" style="width: 100%; max-width: 800px;">${selector}</div>`),
+        );
     },
     list: {
       offsetHandler: true,
@@ -82,10 +65,12 @@ export const AnimeStreamingFR: pageInterface = {
     },
   },
   init(page) {
-    j.$(document).ready(function() {
-      api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    j.$(document).ready(function () {
+      api.storage.addStyle(
+        require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+      );
       page.handlePage();
-      utils.urlChangeDetect(function() {
+      utils.urlChangeDetect(function () {
         page.reset();
         page.handlePage();
       });

@@ -44,13 +44,7 @@ export const bato: pageInterface = {
       return Number(chapterTextMatches[0].match(/\d+/));
     },
     nextEpUrl(url) {
-      const href = utils.absoluteLink(
-        j
-          .$('div.nav-next > a')
-          .first()
-          .attr('href'),
-        bato.domain,
-      );
+      const href = utils.absoluteLink(j.$('div.nav-next > a').first().attr('href'), bato.domain);
       if (href.split('/')[3] === 'chapter') {
         return href;
       }
@@ -59,18 +53,13 @@ export const bato: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h3.item-title > a')
-        .first()
-        .text();
+      return j.$('h3.item-title > a').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('h3.item-title')
-        .first()
-        .after(j.html(selector));
+      j.$('h3.item-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -78,13 +67,7 @@ export const bato: pageInterface = {
         return j.$('div.episode-list > div.main > div.item');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('a')
-            .first()
-            .attr('href'),
-          bato.domain,
-        );
+        return utils.absoluteLink(selector.find('a').first().attr('href'), bato.domain);
       },
       elementEp(selector) {
         const episodeText = selector.find('a > b').text();
@@ -100,8 +83,10 @@ export const bato: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'chapter' || page.url.split('/')[3] === 'series') {
         page.handlePage();
       }

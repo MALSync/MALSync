@@ -9,7 +9,11 @@
       </div>
     </span>
     <span class="mdl-list__item-secondary-action">
-      <div v-if="Object.keys(value).length" class="icon material-icons close-icon" @click="value = {}">
+      <div
+        v-if="Object.keys(value).length"
+        class="icon material-icons close-icon"
+        @click="value = {}"
+      >
         close
       </div>
       <div class="mdl-textfield mdl-js-textfield">
@@ -54,7 +58,7 @@
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import tooltip from './tooltip.vue';
 import { keyboardMap } from './keyboardMap';
 
@@ -84,7 +88,8 @@ export default {
         return Object.keys(this.keys)
           .map(val => keyboardMap[val])
           .join(' + ');
-      if (!this.value || !Object.keys(this.value).length) return this.lang('settings_Shortcuts_Click');
+      if (!this.value || !Object.keys(this.value).length)
+        return this.lang('settings_Shortcuts_Click');
       return Object.keys(this.value)
         .map(val => keyboardMap[val])
         .join(' + ');
@@ -115,13 +120,13 @@ export default {
     lang: api.storage.lang,
     keyDown(event) {
       if (!this.keys[event.keyCode]) con.log(`down${event.keyCode}`);
-      this.$set(this.keys, event.keyCode, keyboardMap[event.keyCode]);
+      this.keys[event.keyCode] = keyboardMap[event.keyCode];
       this.tempKeys = {};
     },
     keyUp(event) {
       con.log(`up${event.keyCode}`);
       this.setTempState(this.keys);
-      this.$delete(this.keys, event.keyCode);
+      delete this.keys[event.keyCode];
     },
     focusLost() {
       this.keys = {};

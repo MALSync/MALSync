@@ -19,10 +19,7 @@ export const OtakuFR: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('.single-episode > nav li > a[href*="/anime/"]')
-        .text()
-        .trim();
+      return j.$('.single-episode > nav li > a[href*="/anime/"]').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(OtakuFR.sync.getOverviewUrl(url), 4) || '';
@@ -41,18 +38,13 @@ export const OtakuFR: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('.list > div')
-        .text()
-        .trim();
+      return j.$('.list > div').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.card')
-        .first()
-        .before(j.html(selector));
+      j.$('.card').first().before(j.html(selector));
     },
     list: {
       offsetHandler: true,
@@ -68,8 +60,10 @@ export const OtakuFR: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

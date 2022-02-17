@@ -6,7 +6,10 @@ export const animeultima: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[3] === 'a' && j.$('h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile')[0]) {
+    if (
+      url.split('/')[3] === 'a' &&
+      j.$('h1.title.is-marginless span.is-size-4.is-size-5-touch.is-size-6-mobile')[0]
+    ) {
       return true;
     }
     return false;
@@ -35,10 +38,7 @@ export const animeultima: pageInterface = {
       );
     },
     nextEpUrl(url) {
-      const href = j
-        .$('.level-right a')
-        .first()
-        .attr('href');
+      const href = j.$('.level-right a').first().attr('href');
       if (typeof href !== 'undefined') {
         return utils.absoluteLink(href, animeultima.domain);
       }
@@ -56,9 +56,7 @@ export const animeultima: pageInterface = {
       return animeultima.sync.getIdentifier(url);
     },
     uiSelector(selector) {
-      j.$('div.tags.is-marginless')
-        .first()
-        .after(j.html(selector));
+      j.$('div.tags.is-marginless').first().after(j.html(selector));
     },
     getMalUrl(provider) {
       const url = j
@@ -71,8 +69,10 @@ export const animeultima: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

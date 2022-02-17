@@ -1,7 +1,12 @@
 import { searchInterface } from '../definitions';
 import * as helper from './helper';
 
-export const search: searchInterface = async function(keyword, type: 'anime' | 'manga', options = {}, sync = false) {
+export const search: searchInterface = async function (
+  keyword,
+  type: 'anime' | 'manga',
+  options = {},
+  sync = false,
+) {
   return helper
     .apiCall(
       'GET',
@@ -12,7 +17,7 @@ export const search: searchInterface = async function(keyword, type: 'anime' | '
       con.log('search', res);
 
       const resItems: any = [];
-      res.data.forEach(function(item) {
+      res.data.forEach(function (item) {
         resItems.push({
           id: item.id,
           name: helper.getTitle(item.attributes.titles, item.attributes.canonicalTitle),

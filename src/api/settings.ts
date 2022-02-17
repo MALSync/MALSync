@@ -1,5 +1,7 @@
+import { reactive } from 'vue';
+
 export const settingsObj = {
-  options: {
+  options: reactive({
     autoTrackingModeanime: 'video',
     autoTrackingModemanga: 'instant',
     enablePages: {},
@@ -100,7 +102,7 @@ export const settingsObj = {
 
     malToken: '',
     malRefresh: '',
-  },
+  }),
 
   async init() {
     const tempSettings = [];
@@ -169,7 +171,8 @@ export const settingsObj = {
 
   async getAsync(name: string) {
     const value = await api.storage.get(`settings/${name}`);
-    if (typeof value === 'undefined' && typeof this.options[name] !== 'undefined') return this.options[name];
+    if (typeof value === 'undefined' && typeof this.options[name] !== 'undefined')
+      return this.options[name];
     return value;
   },
 };

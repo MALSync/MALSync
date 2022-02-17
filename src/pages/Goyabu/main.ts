@@ -31,27 +31,18 @@ export const Goyabu: pageInterface = {
       return getEpisode(j.$('#main > div > div.left-single > h1').text());
     },
     nextEpUrl(url) {
-      return j
-        .$('div.kanra-controls > a[rel="next"]')
-        .first()
-        .attr('href');
+      return j.$('div.kanra-controls > a[rel="next"]').first().attr('href');
     },
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('div.anime-title > h1')
-        .first()
-        .text()
-        .trim();
+      return j.$('div.anime-title > h1').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.anime-single-index.episodes-container')
-        .first()
-        .before(j.html(selector));
+      j.$('div.anime-single-index.episodes-container').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -67,8 +58,10 @@ export const Goyabu: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

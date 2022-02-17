@@ -5,12 +5,12 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   methods: {
     lang: api.storage.lang,
     click() {
-      this.$root.$children[0].selectTab('settings');
+      this.$root.selectTab('settings');
     },
   },
 };

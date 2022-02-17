@@ -25,10 +25,7 @@ export const KissHentai: pageInterface = {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      const anchorHref = j
-        .$('#navsubbar a')
-        .first()
-        .attr('href');
+      const anchorHref = j.$('#navsubbar a').first().attr('href');
 
       if (!anchorHref) return '';
 
@@ -52,23 +49,20 @@ export const KissHentai: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.bigChar')
-        .first()
-        .text();
+      return j.$('.bigChar').first().text();
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('.bigChar')
-        .first()
-        .after(j.html(selector));
+      j.$('.bigChar').first().after(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'Hentai') {
         page.handlePage();
       }

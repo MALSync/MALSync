@@ -20,6 +20,7 @@ const COMMON_RULES = {
   'no-plusplus': 0,
   'vue/no-useless-template-attributes': 'off',
   'no-constructor-return': 'off',
+  'import/no-unresolved': ['error', { ignore: ['style\\.less$', 'quicklinks\\.json$'] }],
   'no-restricted-syntax': [
     'error',
     // TODO: Reenable rule
@@ -34,11 +35,13 @@ const COMMON_RULES = {
     },
     {
       selector: 'LabeledStatement',
-      message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+      message:
+        'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
     },
     {
       selector: 'WithStatement',
-      message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
+      message:
+        '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
     },
   ],
 };
@@ -89,7 +92,6 @@ module.exports = {
         ...COMMON_RULES,
         // Import rules
         'import/no-cycle': 'warn', // TODO
-        'import/no-unresolved': 'warn',
         'import/no-self-import': 'warn',
         // TS rules
         '@typescript-eslint/ban-ts-comment': 'warn',
@@ -150,9 +152,16 @@ module.exports = {
       },
     },
     {
-      extends: ['plugin:vue/vue3-recommended', '@vue/prettier'],
+      extends: [
+        'plugin:vue/vue3-recommended',
+        '@vue/prettier',
+        '@vue/eslint-config-typescript/recommended',
+      ],
       files: ['*.vue'],
       parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
       plugins: ['vue', 'prettier'],
       rules: {
         ...COMMON_RULES,
@@ -161,6 +170,7 @@ module.exports = {
         'vue/no-v-for-template-key-on-child': 'off',
         'vue/no-deprecated-destroyed-lifecycle': 'off',
         'vue/no-v-html': 'error',
+        'vue/multi-word-component-names': 'off',
       },
     },
     {

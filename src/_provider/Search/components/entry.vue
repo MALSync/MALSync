@@ -1,6 +1,6 @@
 <template>
   <div v-if="obj" class="entry">
-    <a class="result" :href="obj.getDisplayUrl()" target="_blank" style="cursor: pointer;">
+    <a class="result" :href="obj.getDisplayUrl()" target="_blank" style="cursor: pointer">
       <div class="image"><img v-if="obj.getImage()" :src="obj.getImage()" /></div>
       <div class="right">
         <span class="title">{{ obj.getTitle() }}</span>
@@ -16,7 +16,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     obj: {

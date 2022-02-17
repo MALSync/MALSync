@@ -1,12 +1,18 @@
 <template>
-  <div id="material" style="height: 100%;" :class="{ 'pop-over': !navigation, [getTheme(options)]: true }">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp">
-      <header class="mdl-layout__header" style="min-height: 0;">
+  <div
+    id="material"
+    style="height: 100%"
+    :class="{ 'pop-over': !navigation, [getTheme(options)]: true }"
+  >
+    <div
+      class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-shadow--2dp"
+    >
+      <header class="mdl-layout__header" style="min-height: 0">
         <button
           v-show="backbutton"
           id="backbutton"
           class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button"
-          style="display: none;"
+          style="display: none"
           @click="backbuttonClick()"
         >
           <i class="material-icons">arrow_back</i>
@@ -26,7 +32,7 @@
             :style="backbuttonSearchStyle"
             :class="{ 'is-dirty': currentTab == tabs.search.title }"
             class="mdl-textfield mdl-js-textfield mdl-textfield--expandable"
-            style="margin-left: -57px; margin-top: 3px; padding-left: 40px;"
+            style="margin-top: 3px; padding-left: 40px"
           >
             <label class="mdl-button mdl-js-button mdl-button--icon" for="headMalSearch">
               <i class="material-icons">search</i>
@@ -45,14 +51,14 @@
           <button
             id="material-fullscreen"
             class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button"
-            style="left: initial; right: 40px;"
+            style="left: initial; right: 40px"
           >
             <i class="material-icons md-48">fullscreen</i>
           </button>
           <button
             id="close-info-popup"
             class="mdl-button mdl-js-button mdl-button--icon mdl-layout__drawer-button"
-            style="left: initial; right: 0;"
+            style="left: initial; right: 0"
           >
             <i class="material-icons close">close</i>
           </button>
@@ -87,7 +93,7 @@
           >
         </div>
       </header>
-      <main class="mdl-layout__content" style="height: 100%;">
+      <main class="mdl-layout__content" style="height: 100%">
         <section
           id="fixed-tab-1"
           :class="{ 'is-active': currentTab == tabs.overview.title }"
@@ -107,72 +113,96 @@
           :class="{ 'is-active': currentTab == tabs.recommendations.title }"
           class="mdl-layout__tab-panel"
         >
-          <recommendationsVue :url="renderMalUrl" :state="currentTab == tabs.recommendations.title" />
+          <recommendationsVue
+            :url="renderMalUrl"
+            :state="currentTab == tabs.recommendations.title"
+          />
         </section>
         <section id="fixed-tab-4" :class="{ 'is-active': popOver }" class="mdl-layout__tab-panel">
-          <keepAlive :max="1">
+          <KeepAlive :max="1">
             <bookmarksVue
               v-if="currentTab == tabs.bookmarks.title"
               :state="tabs.bookmarks.state"
               :list-type="tabs.bookmarks.type"
               :sort="tabs.bookmarks.sort"
+              :registerScroll="registerScroll"
+              :unregisterScroll="unregisterScroll"
               @rewatch="tabs.bookmarks.supportsRewatch = $event"
               @sort="tabs.bookmarks.sort = $event"
             >
-              <template #default="{sorting}">
-                <div id="malList" class="mdl-grid" style="justify-content: space-around;">
+              <template #default="{ sorting }">
+                <div id="malList" class="mdl-grid" style="justify-content: space-around">
                   <select
                     id="userListType"
                     v-model="tabs.bookmarks.type"
                     name="myinfo_score"
                     class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
-                    style="outline: none; background-color: white; border: none;"
+                    style="outline: none; background-color: white; border: none"
                   >
                     <option value="anime">{{ lang('Anime') }}</option>
                     <option value="manga">{{ lang('Manga') }}</option>
                   </select>
-                  <div class="mdl-cell mdl-cell--12-col" style="display: flex;">
+                  <div class="mdl-cell mdl-cell--12-col" style="display: flex">
                     <select
                       id="userListState"
                       v-model="tabs.bookmarks.state"
                       name="myinfo_score"
                       class="inputtext mdl-textfield__input"
-                      style="outline: none; background-color: white; border: none; flex: 1; width: auto;"
+                      style="
+                        outline: none;
+                        background-color: white;
+                        border: none;
+                        flex: 1;
+                        width: auto;
+                      "
                     >
                       <option :value="7">{{ lang('All') }}</option>
-                      <option :value="1" selected>{{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}</option>
+                      <option :value="1" selected>
+                        {{ lang('UI_Status_watching_' + tabs.bookmarks.type) }}
+                      </option>
                       <option :value="2">{{ lang('UI_Status_Completed') }}</option>
                       <option :value="3">{{ lang('UI_Status_OnHold') }}</option>
                       <option :value="4">{{ lang('UI_Status_Dropped') }}</option>
-                      <option :value="6">{{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}</option>
-                      <option v-if="tabs.bookmarks.supportsRewatch" :value="23">{{
-                        lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`)
-                      }}</option>
+                      <option :value="6">
+                        {{ lang('UI_Status_planTo_' + tabs.bookmarks.type) }}
+                      </option>
+                      <option v-if="tabs.bookmarks.supportsRewatch" :value="23">
+                        {{ lang(`UI_Status_Rewatching_${tabs.bookmarks.type}`) }}
+                      </option>
                     </select>
                     <div
                       v-if="tabs.bookmarks.state === 6"
-                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer"
                       class="bg-cell"
                       @click="openRandom(6, tabs.bookmarks.type)"
                     >
-                      <i class="material-icons" style="position: relative; top: 2px;">shuffle</i>
+                      <i class="material-icons" style="position: relative; top: 2px">shuffle</i>
                     </div>
                     <div
-                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer"
                       class="bg-cell"
                       @click="listView = !listView"
                     >
-                      <i v-if="!listView" class="material-icons" style="position: relative; top: 2px;">view_list</i>
-                      <i v-else class="material-icons" style="position: relative; top: 2px;">view_module</i>
+                      <i
+                        v-if="!listView"
+                        class="material-icons"
+                        style="position: relative; top: 2px"
+                        >view_list</i
+                      >
+                      <i v-else class="material-icons" style="position: relative; top: 2px"
+                        >view_module</i
+                      >
                     </div>
 
                     <div
                       v-show="sorting && sorting.length && sorting.length > 1"
                       id="demo-menu-lower-left"
-                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer;"
+                      style="padding: 0 5px; margin-left: 10px; display: flex; cursor: pointer"
                       class="bg-cell"
                     >
-                      <i v-if="tabs.bookmarks.sort" class="material-icons">{{ tabs.bookmarks.sort.icon }}</i>
+                      <i v-if="tabs.bookmarks.sort" class="material-icons">{{
+                        tabs.bookmarks.sort.icon
+                      }}</i>
                     </div>
                     <div>
                       <ul
@@ -198,23 +228,29 @@
                           <template
                             v-if="
                               sort.child &&
-                                (sort.value === tabs.bookmarks.sort.value ||
-                                  sort.child.value === tabs.bookmarks.sort.value)
+                              (sort.value === tabs.bookmarks.sort.value ||
+                                sort.child.value === tabs.bookmarks.sort.value)
                             "
                           >
                             <i
                               v-if="sort.value === tabs.bookmarks.sort.value"
                               class="material-icons"
-                              style="vertical-align: sub; margin-right: 10px;"
+                              style="vertical-align: sub; margin-right: 10px"
                               >arrow_downward</i
                             >
-                            <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;"
+                            <i
+                              v-else
+                              class="material-icons"
+                              style="vertical-align: sub; margin-right: 10px"
                               >arrow_upward</i
                             >
                           </template>
-                          <i v-else class="material-icons" style="vertical-align: sub; margin-right: 10px;">{{
-                            sort.icon
-                          }}</i>
+                          <i
+                            v-else
+                            class="material-icons"
+                            style="vertical-align: sub; margin-right: 10px"
+                            >{{ sort.icon }}</i
+                          >
 
                           {{ sort.title }}
                         </li>
@@ -224,20 +260,20 @@
                 </div>
               </template>
             </bookmarksVue>
-          </keepAlive>
+          </KeepAlive>
           <searchVue
             v-if="currentTab == tabs.search.title"
             :keyword="tabs.search.keyword"
             :type="tabs.search.type"
             @clicked="searchClick"
           >
-            <div class="mdl-grid" style="justify-content: space-around;">
+            <div class="mdl-grid" style="justify-content: space-around">
               <select
                 id="userListType"
                 v-model="tabs.search.type"
                 name="myinfo_score"
                 class="inputtext mdl-textfield__input mdl-cell mdl-cell--12-col"
-                style="outline: none; background-color: white; border: none;"
+                style="outline: none; background-color: white; border: none"
               >
                 <option value="anime">{{ lang('Anime') }}</option>
                 <option value="manga">{{ lang('Manga') }}</option>
@@ -247,7 +283,7 @@
           <listSyncVue v-if="currentTab == tabs.listSync.title" :list-type="tabs.listSync.type">
             <select
               v-model="tabs.listSync.type"
-              style="margin-bottom: 20px;"
+              style="margin-bottom: 20px"
               class="typeSelect-updateCheck"
               @change="rebuildListSync()"
             >
@@ -274,7 +310,8 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
+import { reactive } from 'vue';
 import settingsVue from './minimalApp/settings.vue';
 import overviewVue from './minimalApp/overview.vue';
 import recommendationsVue from './minimalApp/recommendations.vue';
@@ -295,7 +332,7 @@ let ignoreCurrentTab = true;
 let ignoreNullBase = false;
 const STORAGE_KEY = 'VUE-MAL-SYNC';
 const scrollHandler = {};
-let scrollHandlerArray = [];
+let scrollHandlerArray: ((pos) => void)[] = [];
 const randomListCache = { anime: [], manga: [] };
 const popupStorage = {
   fetch() {
@@ -383,6 +420,9 @@ export default {
     baseFallback: '',
     page: null,
     options: api.settings.options,
+    updateDom: () => {
+      // placeholder
+    },
   }),
   computed: {
     base() {
@@ -480,7 +520,7 @@ export default {
   watch: {
     renderUrl(url) {
       this.renderObj = null;
-      const tempRenderObj = getSingle(url);
+      const tempRenderObj = reactive(getSingle(url));
 
       tempRenderObj
         .update()
@@ -567,16 +607,8 @@ export default {
         if (scrollHandlerArray.length) {
           const pos = {
             pos: this.getScroll(),
-            elHeight: j
-              .$(this.$el)
-              .find('.mdl-layout__content')
-              .first()
-              .height(),
-            height: j
-              .$(this.$el)
-              .find('.mdl-layout__content > .is-active')
-              .first()
-              .height(),
+            elHeight: j.$(this.$el).find('.mdl-layout__content').first().height(),
+            height: j.$(this.$el).find('.mdl-layout__content > .is-active').first().height(),
           };
           for (const i in scrollHandlerArray) {
             scrollHandlerArray[i](pos);
@@ -605,7 +637,9 @@ export default {
 
       if (
         this.onlySettings &&
-        (selectedTab === 'overview' || selectedTab === 'reviews' || selectedTab === 'recommendations')
+        (selectedTab === 'overview' ||
+          selectedTab === 'reviews' ||
+          selectedTab === 'recommendations')
       )
         selectedTab = 'settings';
 
@@ -622,18 +656,10 @@ export default {
       scrollHandlerArray = Object.values(scrollHandler);
     },
     getScroll() {
-      return j
-        .$(this.$el)
-        .find('.mdl-layout__content')
-        .first()
-        .scrollTop();
+      return j.$(this.$el).find('.mdl-layout__content').first().scrollTop();
     },
     setScroll(scroll) {
-      return j
-        .$(this.$el)
-        .find('.mdl-layout__content')
-        .first()
-        .scrollTop(scroll);
+      return j.$(this.$el).find('.mdl-layout__content').first().scrollTop(scroll);
     },
     isPopup() {
       if (j.$('#Mal-Sync-Popup').length) return true;
@@ -753,7 +779,7 @@ export default {
     openLink(url) {
       const link = document.createElement('a');
       link.href = url;
-      document.getElementById('malList').appendChild(link);
+      document.getElementById('malList')!.appendChild(link);
       link.click();
     },
     async openRandom(status, type) {
@@ -770,7 +796,9 @@ export default {
           });
       }
       if (randomListCache[type].length > 1) {
-        this.openLink(randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url);
+        this.openLink(
+          randomListCache[type][Math.floor(Math.random() * randomListCache[type].length)].url,
+        );
       } else {
         utils.flashm('List is too small!');
       }

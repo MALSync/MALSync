@@ -24,7 +24,7 @@ export function urlParam(url, name) {
 
 export function getBaseText(element) {
   let text = element.text();
-  element.children().each(function() {
+  element.children().each(function () {
     // @ts-ignore
     text = text.replace(j.$(this).text(), '');
   });
@@ -64,7 +64,8 @@ export function episode(type: 'anime' | 'manga') {
   return api.storage.lang('UI_Episode');
 }
 
-export const syncRegex = /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/|^list-tagSettings$)/;
+export const syncRegex =
+  /(^settings\/.*|^updateCheckTime$|^tempVersion$|^local:\/\/|^list-tagSettings$)/;
 
 export const rateLimitExclude = /^https:\/\/api.malsync.moe\/(mal\/|nc\/mal\/.*\/progress$)/i;
 
@@ -110,7 +111,7 @@ export function parseHtml(text) {
 
 export function urlChangeDetect(callback) {
   let currentPage = window.location.href;
-  return setInterval(function() {
+  return setInterval(function () {
     if (currentPage !== window.location.href) {
       currentPage = window.location.href;
       callback();
@@ -120,7 +121,7 @@ export function urlChangeDetect(callback) {
 
 export function fullUrlChangeDetect(callback, strip = false) {
   let currentPage = '';
-  const intervalId = setInterval(function() {
+  const intervalId = setInterval(function () {
     const url = strip ? urlStrip(window.location.href) : window.location.href;
     if (currentPage !== url) {
       currentPage = url;
@@ -133,7 +134,7 @@ export function fullUrlChangeDetect(callback, strip = false) {
 
 export function changeDetect(callback, func) {
   let currentPage = func();
-  const intervalId = setInterval(function() {
+  const intervalId = setInterval(function () {
     const temp = func();
     if (typeof temp !== 'undefined' && currentPage !== temp) {
       currentPage = func();
@@ -145,7 +146,7 @@ export function changeDetect(callback, func) {
 }
 
 export function waitUntilTrue(condition: Function, callback: Function, interval = 100) {
-  const intervalId = setInterval(function() {
+  const intervalId = setInterval(function () {
     if (condition()) {
       clearInterval(intervalId);
       callback();
@@ -178,13 +179,17 @@ export function getAsyncWaitUntilTrue(condition: Function, interval = 100) {
 const doubleId = Math.random();
 export function checkDoubleExecution() {
   if ($('.mal-sync-double-detect').length) {
-    $('.mal-sync-double-detect').each(function(index) {
+    $('.mal-sync-double-detect').each(function (index) {
       if ($(this).text() !== doubleId.toString()) {
         alert('Double execution detected! Please run MAL-Sync once only.');
       }
     });
   }
-  $('body').after(j.html(`<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`));
+  $('body').after(
+    j.html(
+      `<div class="mal-sync-double-detect" style="display: none;">${doubleId.toString()}</div>`,
+    ),
+  );
 }
 
 export function getUrlFromTags(tags: string) {
@@ -441,7 +446,7 @@ export function statusTag(status, type, id) {
     },
   };
 
-  $.each([1, 2, 3, 4, 6, 23], function(i, el) {
+  $.each([1, 2, 3, 4, 6, 23], function (i, el) {
     info.anime[info.anime[el].title] = info.anime[el];
     info.manga[info.manga[el].title] = info.manga[el];
   });
@@ -544,7 +549,11 @@ export function flashm(
   }
 
   let flashdiv = '#flash-div-bottom';
-  if (typeof options !== 'undefined' && typeof options.position !== 'undefined' && options.position) {
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.position !== 'undefined' &&
+    options.position
+  ) {
     flashdiv = `#flash-div-${options.position}`;
   }
 
@@ -572,26 +581,42 @@ export function flashm(
 
   let flashmEl;
 
-  if (typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo) {
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.hoverInfo !== 'undefined' &&
+    options.hoverInfo
+  ) {
     messClass += ' flashinfo';
     mess = `<div class="${messClass}" style="display:none; max-height: 5000px; overflow: hidden;"><div style="display:table; pointer-events: all; margin: 0 auto; margin-top: -2px; max-width: 60%; -webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 2px;color: white;background:${colorF}; position: relative;"><div style="max-height: 60vh; overflow-y: auto; padding: 14px 24px 14px 24px;">${text}</div></div></div>`;
     j.$('#flashinfo-div').addClass('hover');
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     flashmEl = j.$(j.html(mess)).appendTo('#flashinfo-div');
-    if (typeof options !== 'undefined' && typeof options.minimized !== 'undefined' && options.minimized)
+    if (
+      typeof options !== 'undefined' &&
+      typeof options.minimized !== 'undefined' &&
+      options.minimized
+    )
       flashmEl.css('max-height', '8px');
   } else {
     // eslint-disable-next-line jquery-unsafe-malsync/no-xss-jquery
     flashmEl = j.$(j.html(mess)).appendTo(flashdiv);
   }
 
-  if (typeof options !== 'undefined' && typeof options.permanent !== 'undefined' && options.permanent) {
+  if (
+    typeof options !== 'undefined' &&
+    typeof options.permanent !== 'undefined' &&
+    options.permanent
+  ) {
     flashmEl.slideDown(800);
-  } else if (typeof options !== 'undefined' && typeof options.hoverInfo !== 'undefined' && options.hoverInfo) {
+  } else if (
+    typeof options !== 'undefined' &&
+    typeof options.hoverInfo !== 'undefined' &&
+    options.hoverInfo
+  ) {
     flashmEl
       .slideDown(800)
       .delay(4000)
-      .queue(function() {
+      .queue(function () {
         j.$('#flashinfo-div').removeClass('hover');
         flashmEl.css('max-height', '8px');
       });
@@ -618,7 +643,7 @@ export async function flashConfirm(
   },
   yesNo = false,
 ): Promise<boolean> {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     let yesText = api.storage.lang('Ok');
     let noText = api.storage.lang('Cancel');
     if (yesNo) {
@@ -631,21 +656,21 @@ export async function flashConfirm(
       position: 'top',
       type,
     });
-    flasmessage.find('.Yes').click(function(evt) {
+    flasmessage.find('.Yes').click(function (evt) {
       resolve(true);
       j.$(evt.target)
         .parentsUntil('.flash')
-        .fadeOut(300, function() {
+        .fadeOut(300, function () {
           // @ts-ignore
           j.$(this).remove();
         });
       yesCall();
     });
-    flasmessage.find('.Cancel').click(function(evt) {
+    flasmessage.find('.Cancel').click(function (evt) {
       resolve(false);
       j.$(evt.target)
         .parentsUntil('.flash')
-        .fadeOut(300, function() {
+        .fadeOut(300, function () {
           // @ts-ignore
           j.$(this).remove();
         });
@@ -753,7 +778,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
     } else {
       const img = new Image();
       const src = el.getAttribute('data-src');
-      img.onload = function() {
+      img.onload = function () {
         if (el.parent) el.parent.replaceChild(img, el);
         else el.src = src;
         // eslint-disable-next-line
@@ -769,7 +794,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
 
   lazyimages = [];
   const query = doc.find('img.lazy.init, .lazyBack.init');
-  const processScroll = function() {
+  const processScroll = function () {
     for (let i = 0; i < lazyimages.length; i++) {
       if (utils.elementInViewport(lazyimages[i], 600)) {
         // eslint-disable-next-line
@@ -792,7 +817,7 @@ export function lazyload(doc, scrollElement = '.mdl-layout__content') {
 
   if (!lazyloaded) {
     lazyloaded = true;
-    doc.find(scrollElement).scroll(function() {
+    doc.find(scrollElement).scroll(function () {
       processScroll();
     });
   }
@@ -815,7 +840,11 @@ export function wait(ms: number) {
   });
 }
 
-export function pageUrl(page: 'mal' | 'anilist' | 'kitsu' | 'simkl', type: 'anime' | 'manga', id: string | number) {
+export function pageUrl(
+  page: 'mal' | 'anilist' | 'kitsu' | 'simkl',
+  type: 'anime' | 'manga',
+  id: string | number,
+) {
   switch (page) {
     case 'mal':
       return `https://myanimelist.net/${type}/${id}`;
@@ -839,9 +868,7 @@ export function returnYYYYMMDD(numFromToday = 0) {
 }
 
 export function htmlDecode(text) {
-  return $('<textarea/>')
-    .html(j.html(text))
-    .text();
+  return $('<textarea/>').html(j.html(text)).text();
 }
 
 export function isFirefox(): boolean {
@@ -849,7 +876,8 @@ export function isFirefox(): boolean {
 }
 
 export function waitForPageToBeVisible() {
-  const condition = () => Boolean(!document.visibilityState || document.visibilityState === 'visible');
+  const condition = () =>
+    Boolean(!document.visibilityState || document.visibilityState === 'visible');
 
   if (condition()) return Promise.resolve();
 

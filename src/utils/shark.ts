@@ -8,7 +8,7 @@ declare type FetchImpl = typeof fetch;
 
 class FakeFetchTransport extends Sentry.Transports.FetchTransport {
   constructor(options, fetchImpl?: FetchImpl) {
-    const fakeFetch = function(url, opt) {
+    const fakeFetch = function (url, opt) {
       return api.request.xhr(opt.method ?? 'GET', {
         url,
         data: opt.body,
@@ -72,10 +72,11 @@ export async function initShark() {
         event.exception.values[0].stacktrace &&
         event.exception.values[0].stacktrace.frames
       ) {
-        event.exception.values[0].stacktrace.frames = event.exception.values[0].stacktrace.frames.map(frame => {
-          frame.filename = normalizeUrl(frame.filename);
-          return frame;
-        });
+        event.exception.values[0].stacktrace.frames =
+          event.exception.values[0].stacktrace.frames.map(frame => {
+            frame.filename = normalizeUrl(frame.filename);
+            return frame;
+          });
       }
 
       return event;

@@ -34,11 +34,7 @@ export const UnderHentai: pageInterface = {
       return `${UnderHentai.domain}/${UnderHentai.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const episodePart = j
-        .$('div.content-box.content-head.sidebar-light')
-        .first()
-        .text()
-        .trim();
+      const episodePart = j.$('div.content-box.content-head.sidebar-light').first().text().trim();
 
       if (episodePart.length === 0) return NaN;
 
@@ -51,19 +47,13 @@ export const UnderHentai: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h1.content-box.content-head.sidebar-light')
-        .first()
-        .text()
-        .trim();
+      return j.$('h1.content-box.content-head.sidebar-light').first().text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[3];
     },
     uiSelector(selector) {
-      j.$('div.content-table')
-        .first()
-        .before(j.html(selector));
+      j.$('div.content-table').first().before(j.html(selector));
     },
   },
   init(page) {
@@ -72,11 +62,14 @@ export const UnderHentai: pageInterface = {
       page.cdn();
       return;
     }
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         page.url.split('/')[3] === 'watch' ||
-        (page.url.split('/')[3] !== null && j.$('div.content-table > table > thead > tr > th.c1').text() === 'Episode')
+        (page.url.split('/')[3] !== null &&
+          j.$('div.content-table > table > thead > tr > th.c1').text() === 'Episode')
       ) {
         page.handlePage();
       }

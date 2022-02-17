@@ -39,18 +39,13 @@ export const mangadenizi: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h2.widget-title')
-        .first()
-        .text();
+      return j.$('h2.widget-title').first().text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
     },
     uiSelector(selector) {
-      j.$('h2.widget-title')
-        .first()
-        .after(j.html(selector));
+      j.$('h2.widget-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -58,30 +53,20 @@ export const mangadenizi: pageInterface = {
         return j.$('ul.chapters > li');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(
-          selector
-            .find('h5 > a')
-            .first()
-            .attr('href'),
-          mangadenizi.domain,
-        );
+        return utils.absoluteLink(selector.find('h5 > a').first().attr('href'), mangadenizi.domain);
       },
       elementEp(selector) {
         return utils
-          .absoluteLink(
-            selector
-              .find('h5 > a')
-              .first()
-              .attr('href'),
-            mangadenizi.domain,
-          )
+          .absoluteLink(selector.find('h5 > a').first().attr('href'), mangadenizi.domain)
           .split('/')[5];
       },
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'manga') {
         page.handlePage();
       }

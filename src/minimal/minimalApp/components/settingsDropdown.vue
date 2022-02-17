@@ -4,14 +4,19 @@
       {{ text }}
     </span>
     <span class="mdl-list__item-secondary-action">
-      <select v-model="value" name="myinfo_score" class="inputtext mdl-textfield__input" style="outline: none;">
+      <select
+        v-model="value"
+        name="myinfo_score"
+        class="inputtext mdl-textfield__input"
+        style="outline: none"
+      >
         <slot />
       </select>
     </span>
   </li>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     option: {

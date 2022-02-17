@@ -33,7 +33,9 @@
       <div class="demo-container mdl-grid">
         <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
         <div class="mdl-cell mdl-cell--8-col">
-          <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
+          <div
+            class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800"
+          >
             <h3 class="noMarginTop mainHeader">
               {{ lang('minimalClass_versionMsg_Text_1') }}
             </h3>
@@ -44,7 +46,7 @@
                 v-model="syncMode"
                 name="myinfo_score"
                 class="inputtext mdl-textfield__input"
-                style="outline: none;"
+                style="outline: none"
               >
                 <option value="" disabled selected hidden>-- {{ lang('Select') }} --</option>
                 <option value="MAL">MyAnimeList</option>
@@ -55,9 +57,7 @@
             </span>
             <div v-if="options.syncMode !== ''" class="syncExtended">
               <li v-if="options.syncMode == 'SIMKL'" class="mdl-list__item">
-                <span class="mdl-list__item-primary-content">
-                  Simkl
-                </span>
+                <span class="mdl-list__item-primary-content"> Simkl </span>
                 <span class="mdl-list__item-secondary-action">
                   <a
                     target="_blank"
@@ -66,31 +66,37 @@
                   >
                 </span>
               </li>
-              <dropdown v-if="options.syncMode == 'SIMKL'" option="syncModeSimkl" text="Manga Sync Mode">
+              <dropdown
+                v-if="options.syncMode == 'SIMKL'"
+                option="syncModeSimkl"
+                text="Manga Sync Mode"
+              >
                 <option value="MAL">MyAnimeList</option>
                 <option value="ANILIST">AniList</option>
                 <option value="KITSU">Kitsu</option>
               </dropdown>
               <li
-                v-if="options.syncMode == 'MAL' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'MAL')"
+                v-if="
+                  options.syncMode == 'MAL' ||
+                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'MAL')
+                "
                 class="mdl-list__item"
               >
-                <span class="mdl-list__item-primary-content">
-                  MyAnimeList
-                </span>
+                <span class="mdl-list__item-primary-content"> MyAnimeList </span>
                 <span class="mdl-list__item-secondary-action">
-                  <a target="_blank" href="https://malsync.moe/mal/oauth">{{ lang('settings_Authenticate') }}</a>
+                  <a target="_blank" href="https://malsync.moe/mal/oauth">{{
+                    lang('settings_Authenticate')
+                  }}</a>
                 </span>
               </li>
               <li
                 v-if="
-                  options.syncMode == 'ANILIST' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')
+                  options.syncMode == 'ANILIST' ||
+                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'ANILIST')
                 "
                 class="mdl-list__item"
               >
-                <span class="mdl-list__item-primary-content">
-                  AniList
-                </span>
+                <span class="mdl-list__item-primary-content"> AniList </span>
                 <span class="mdl-list__item-secondary-action">
                   <a
                     target="_blank"
@@ -100,12 +106,13 @@
                 </span>
               </li>
               <li
-                v-if="options.syncMode == 'KITSU' || (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')"
+                v-if="
+                  options.syncMode == 'KITSU' ||
+                  (options.syncMode == 'SIMKL' && options.syncModeSimkl == 'KITSU')
+                "
                 class="mdl-list__item"
               >
-                <span class="mdl-list__item-primary-content">
-                  Kitsu
-                </span>
+                <span class="mdl-list__item-primary-content"> Kitsu </span>
                 <span class="mdl-list__item-secondary-action">
                   <a target="_blank" href="https://kitsu.io/404?mal-sync=authentication">{{
                     lang('settings_Authenticate')
@@ -134,7 +141,10 @@
 
             <h4>{{ lang('minimalClass_versionMsg_Text_4') }}</h4>
             <a target="_blank" href="https://github.com/Karmesinrot/Anifiltrs#anifiltrs">
-              <img alt="Filter List" src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square" />
+              <img
+                alt="Filter List"
+                src="https://img.shields.io/badge/ublock-Anifiltrs-800900.svg?style=flat-square"
+              />
             </a>
             <h4>{{ lang('minimalClass_versionMsg_Text_2') }}</h4>
             <a target="_blank" href="https://discord.com/invite/cTH4yaw">
@@ -285,7 +295,7 @@ p {
 }
 </style>
 
-<script type="text/javascript">
+<script lang="ts">
 import quicklinksEdit from '../minimal/minimalApp/components/quicklinksEdit.vue';
 import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
 
@@ -317,7 +327,7 @@ export default {
     componentHandler.upgradeDom();
 
     const [settingsEl] = document.getElementsByClassName('open-settings');
-    settingsEl.addEventListener('click', function() {
+    settingsEl.addEventListener('click', function () {
       con.log('Open Settings');
       chrome.runtime.openOptionsPage();
     });

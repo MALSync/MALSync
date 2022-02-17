@@ -38,7 +38,11 @@ export class SearchClass {
 
   changed = false;
 
-  constructor(protected title: string, protected type: 'anime' | 'manga' | 'novel', protected identifier: string) {
+  constructor(
+    protected title: string,
+    protected type: 'anime' | 'manga' | 'novel',
+    protected identifier: string,
+  ) {
     this.identifier += '';
     this.sanitizedTitel = this.sanitizeTitel(this.title);
     this.logger = con.m('search', 'red');
@@ -133,7 +137,10 @@ export class SearchClass {
   }
 
   public sanitizeTitel(title) {
-    let resTitle = title.replace(/ *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i, '');
+    let resTitle = title.replace(
+      / *(\(dub\)|\(sub\)|\(uncensored\)|\(uncut\)|\(subbed\)|\(dubbed\))/i,
+      '',
+    );
     resTitle = resTitle.replace(/ *\([^)]+audio\)/i, '');
     resTitle = resTitle.replace(/ BD( |$)/i, '');
     resTitle = resTitle.trim();
@@ -152,7 +159,10 @@ export class SearchClass {
       this.state = await this.searchForIt();
     }
 
-    if (!this.state || (this.state && !['user', 'firebase', 'sync', 'local'].includes(this.state.provider))) {
+    if (
+      !this.state ||
+      (this.state && !['user', 'firebase', 'sync', 'local'].includes(this.state.provider))
+    ) {
       const tempRes = await this.onsiteSearch();
       if (tempRes) this.state = tempRes;
     }
@@ -223,7 +233,8 @@ export class SearchClass {
     try {
       result = searchCompare(result, await this.malSync());
     } catch (e) {
-      if (this.page && this.page.database) this.logger.error('MALSync api error or not supported', e);
+      if (this.page && this.page.database)
+        this.logger.error('MALSync api error or not supported', e);
     }
 
     if ((result && result.provider !== 'firebase') || !result) {
@@ -242,7 +253,12 @@ export class SearchClass {
       }
     }
 
-    if (result && result.provider === 'firebase' && api.settings.get('syncMode') !== 'MAL' && !result.url) {
+    if (
+      result &&
+      result.provider === 'firebase' &&
+      api.settings.get('syncMode') !== 'MAL' &&
+      !result.url
+    ) {
       try {
         const temp = await this.pageSearch();
         if (temp && !(temp.url.indexOf('myanimelist.net') !== -1) && temp.similarity.same) {
@@ -271,14 +287,18 @@ export class SearchClass {
 
     const logger = this.logger.m('Firebase');
 
-    const url = `https://kissanimelist.firebaseio.com/Data2/${this.page.database}/${encodeURIComponent(
-      this.identifierToDbKey(this.identifier),
-    ).toLowerCase()}/Mal.json`;
+    const url = `https://kissanimelist.firebaseio.com/Data2/${
+      this.page.database
+    }/${encodeURIComponent(this.identifierToDbKey(this.identifier)).toLowerCase()}/Mal.json`;
     logger.log(url);
     const response = await api.request.xhr('GET', url);
 
     logger.log('response', response.responseText);
-    if (!response.responseText || response.responseText === 'null' || response.responseText.includes('error'))
+    if (
+      !response.responseText ||
+      response.responseText === 'null' ||
+      response.responseText.includes('error')
+    )
       return false;
     let matches;
     try {
@@ -348,9 +368,13 @@ export class SearchClass {
   public async malSearch(): Promise<SearchResult | false> {
     const logger = this.logger.m('MAL');
 
-    let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(this.sanitizedTitel)}`;
+    let url = `https://myanimelist.net/${this.getNormalizedType()}.php?q=${encodeURI(
+      this.sanitizedTitel,
+    )}`;
     if (this.type === 'novel') {
-      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(this.sanitizedTitel)}`;
+      url = `https://myanimelist.net/${this.getNormalizedType()}.php?type=2&q=${encodeURI(
+        this.sanitizedTitel,
+      )}`;
     }
     logger.log(url);
 
@@ -361,7 +385,9 @@ export class SearchClass {
       if (link !== false) {
         try {
           if (This.type === 'manga') {
-            const typeCheck = response.responseText.split(`href="${link}" id="si`)[1].split('</tr>')[0];
+            const typeCheck = response.responseText
+              .split(`href="${link}" id="si`)[1]
+              .split('</tr>')[0];
             if (typeCheck.indexOf('Novel') !== -1) {
               logger.log('Novel Found check next entry');
               return handleResult(response, i + 1, This);
@@ -431,7 +457,11 @@ export class SearchClass {
         index: i,
         similarity: sim,
       };
-      if ((this.type === 'manga' && !el.isNovel) || (this.type === 'novel' && el.isNovel) || this.type === 'anime') {
+      if (
+        (this.type === 'manga' && !el.isNovel) ||
+        (this.type === 'novel' && el.isNovel) ||
+        this.type === 'anime'
+      ) {
         if (!best || sim.value > best.similarity.value) {
           best = tempBest;
         }
@@ -554,10 +584,7 @@ export class SearchClass {
     if (this.page.database === 'Crunchyroll') {
       return encodeURIComponent(title.toLowerCase().split('#')[0]).replace(/\./g, '%2E');
     }
-    return title
-      .toLowerCase()
-      .split('#')[0]
-      .replace(/\./g, '%2E');
+    return title.toLowerCase().split('#')[0].replace(/\./g, '%2E');
   }
 
   // Rules

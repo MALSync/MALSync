@@ -12,16 +12,14 @@ export const MangaKisa: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    if (!url.split('/')[3] || j.$('div.infoboxc > div.infodesbox > h1.infodes').length === 0) return false;
+    if (!url.split('/')[3] || j.$('div.infoboxc > div.infodesbox > h1.infodes').length === 0)
+      return false;
 
     return true;
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.now2 > a.infoan2')
-        .text()
-        .trim();
+      return j.$('div.now2 > a.infoan2').text().trim();
     },
     getIdentifier(url) {
       const anchorHref = j.$('div.now2 > a.infoan2').attr('href');
@@ -45,10 +43,7 @@ export const MangaKisa: pageInterface = {
       return Number(matches[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      const num = $('#chaptertext')
-        .find('option:selected')
-        .next()
-        .attr('value');
+      const num = $('#chaptertext').find('option:selected').next().attr('value');
 
       if (!num) return '';
 
@@ -71,9 +66,7 @@ export const MangaKisa: pageInterface = {
       return utils.urlPart(url, 3);
     },
     uiSelector(selector) {
-      j.$('.infoepboxmain')
-        .first()
-        .before(j.html(selector));
+      j.$('.infoepboxmain').first().before(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -81,11 +74,7 @@ export const MangaKisa: pageInterface = {
         return j.$('div.infoepbox > a');
       },
       elementUrl(selector) {
-        return `${MangaKisa.domain}/${selector
-          .find('.infoepmain')
-          .first()
-          .parent()
-          .attr('href')}`;
+        return `${MangaKisa.domain}/${selector.find('.infoepmain').first().parent().attr('href')}`;
       },
       elementEp(selector) {
         return Number(
@@ -100,8 +89,10 @@ export const MangaKisa: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       page.handlePage();
     });
   },

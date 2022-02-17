@@ -142,7 +142,8 @@ export abstract class SingleAbstract {
 
   public setEpisode(episode: number): SingleAbstract {
     episode = parseInt(`${episode}`);
-    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes()) episode = this.getTotalEpisodes();
+    if (this.getTotalEpisodes() && episode > this.getTotalEpisodes())
+      episode = this.getTotalEpisodes();
     this._setEpisode(episode);
     return this;
   }
@@ -329,7 +330,9 @@ export abstract class SingleAbstract {
   public async sync(): Promise<void> {
     this.logger.log('[SINGLE]', 'Sync', this.ids);
     this.lastError = null;
-    this._setTags(await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()));
+    this._setTags(
+      await utils.setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags()),
+    );
     return this._sync()
       .catch(e => {
         this.lastError = e;
@@ -376,7 +379,9 @@ export abstract class SingleAbstract {
 
   protected registerEvent() {
     if (!this.globalUpdateEvent) {
-      this.globalUpdateEvent = emitter.on(`update.${this.getCacheKey()}`, data => this.updateEvent(data));
+      this.globalUpdateEvent = emitter.on(`update.${this.getCacheKey()}`, data =>
+        this.updateEvent(data),
+      );
     }
   }
 
@@ -461,7 +466,9 @@ export abstract class SingleAbstract {
       } catch (e) {
         con.error('no title found');
       }
-      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(title)}`;
+      return `https://myanimelist.net/${this.getType()}/${this.ids.mal}/${encodeURIComponent(
+        title,
+      )}`;
     }
     return null;
   }
@@ -561,7 +568,11 @@ export abstract class SingleAbstract {
     if (
       curEpisode >= episode &&
       // Novel Volume
-      !(typeof volume !== 'undefined' && (curVolume || volume > 1 || !episode) && volume > curVolume)
+      !(
+        typeof volume !== 'undefined' &&
+        (curVolume || volume > 1 || !episode) &&
+        volume > curVolume
+      )
     ) {
       return false;
     }
@@ -583,10 +594,12 @@ export abstract class SingleAbstract {
   }
 
   public async startWatchingMessage() {
-    return utils.flashConfirm(api.storage.lang(`syncPage_flashConfirm_start_${this.getType()}`), 'add').then(res => {
-      if (res) this.setStatus(definitions.status.Watching);
-      return res;
-    });
+    return utils
+      .flashConfirm(api.storage.lang(`syncPage_flashConfirm_start_${this.getType()}`), 'add')
+      .then(res => {
+        if (res) this.setStatus(definitions.status.Watching);
+        return res;
+      });
   }
 
   public async finishWatchingMessage(): Promise<boolean> {
@@ -595,27 +608,34 @@ export abstract class SingleAbstract {
     let checkHtml =
       '<div><select id="finish_score" style="margin-top:5px; color:white; background-color:#4e4e4e; border: none;">';
     this.getScoreCheckbox().forEach(el => {
-      checkHtml += `<option value="${el.value}" ${currentScore === el.value ? 'selected' : ''}>${el.label}</option>`;
+      checkHtml += `<option value="${el.value}" ${currentScore === el.value ? 'selected' : ''}>${
+        el.label
+      }</option>`;
     });
     checkHtml += '</select></div>';
 
-    return utils.flashConfirm(api.storage.lang('syncPage_flashConfirm_complete') + checkHtml, 'complete').then(res => {
-      if (res) {
-        this.setStatus(definitions.status.Completed);
-        const finishScore = Number(j.$('#finish_score').val());
-        if (finishScore > 0) {
-          this.logger.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
-          this.handleScoreCheckbox(j.$('#finish_score :selected').val());
+    return utils
+      .flashConfirm(api.storage.lang('syncPage_flashConfirm_complete') + checkHtml, 'complete')
+      .then(res => {
+        if (res) {
+          this.setStatus(definitions.status.Completed);
+          const finishScore = Number(j.$('#finish_score').val());
+          if (finishScore > 0) {
+            this.logger.log(`finish_score: ${j.$('#finish_score :selected').val()}`);
+            this.handleScoreCheckbox(j.$('#finish_score :selected').val());
+          }
         }
-      }
 
-      return res;
-    });
+        return res;
+      });
   }
 
   public async startRewatchingMessage(): Promise<boolean> {
     return utils
-      .flashConfirm(api.storage.lang(`syncPage_flashConfirm_rewatch_start_${this.getType()}`), 'add')
+      .flashConfirm(
+        api.storage.lang(`syncPage_flashConfirm_rewatch_start_${this.getType()}`),
+        'add',
+      )
       .then(res => {
         if (res) this.setStatus(definitions.status.Rewatching);
         return res;
@@ -624,7 +644,10 @@ export abstract class SingleAbstract {
 
   public async finishRewatchingMessage(): Promise<boolean> {
     return utils
-      .flashConfirm(api.storage.lang(`syncPage_flashConfirm_rewatch_finish_${this.getType()}`), 'complete')
+      .flashConfirm(
+        api.storage.lang(`syncPage_flashConfirm_rewatch_finish_${this.getType()}`),
+        'complete',
+      )
       .then(res => {
         if (res) this.setStatus(definitions.status.Completed);
         return res;

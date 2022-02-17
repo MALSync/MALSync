@@ -36,10 +36,7 @@ export const Jkanime: pageInterface = {
       return parseInt(utils.urlPart(url, 4)) || 1;
     },
     nextEpUrl(url) {
-      return j
-        .$('div:contains("Proximo Episodio")')
-        .parent('a')
-        .attr('href');
+      return j.$('div:contains("Proximo Episodio")').parent('a').attr('href');
     },
   },
   overview: {
@@ -84,11 +81,11 @@ export const Jkanime: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
-      $('div.anime__pagination > a')
-        .first()
-        .addClass('pagination-active');
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
+      $('div.anime__pagination > a').first().addClass('pagination-active');
       page.handlePage();
     });
     utils.changeDetect(
@@ -96,13 +93,10 @@ export const Jkanime: pageInterface = {
         page.handleList();
       },
       () => {
-        return j
-          .$('div.epcontent > div.anime__item a')
-          .first()
-          .attr('href');
+        return j.$('div.epcontent > div.anime__item a').first().attr('href');
       },
     );
-    $('div.anime__pagination > a').click(function() {
+    $('div.anime__pagination > a').click(function () {
       $('div.anime__pagination > a').removeClass('pagination-active');
       $(this).addClass('pagination-active');
     });

@@ -3,10 +3,21 @@ import { pageInterface } from '../pageInterface';
 export const Wakanim: pageInterface = {
   name: 'Wakanim',
   domain: 'https://www.wakanim.tv',
-  languages: ['English', 'Spanish', 'Portuguese', 'French', 'German', 'Arabic', 'Italian', 'Russian'],
+  languages: [
+    'English',
+    'Spanish',
+    'Portuguese',
+    'French',
+    'German',
+    'Arabic',
+    'Italian',
+    'Russian',
+  ],
   type: 'anime',
   isSyncPage(url) {
-    if (j.$('body > section.episode > div > div > div.episode_main > div.episode_video > div').length) {
+    if (
+      j.$('body > section.episode > div > div > div.episode_main > div.episode_video > div').length
+    ) {
       return true;
     }
     return false;
@@ -26,14 +37,20 @@ export const Wakanim: pageInterface = {
       return (
         Wakanim.domain +
         (j
-          .$('body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)')
+          .$(
+            'body > section.episode > div > div > div.episode_info > div.episode_buttons > a:nth-child(2)',
+          )
           .attr('href') || '')
       );
     },
 
     getEpisode(url) {
       return Number(
-        j.$('body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span').text(),
+        j
+          .$(
+            'body > section.episode > div > div > div.episode_info > h1 > span.episode_subtitle > span > span',
+          )
+          .text(),
       );
     },
 
@@ -51,14 +68,16 @@ export const Wakanim: pageInterface = {
       return Wakanim.overview!.getIdentifier(url);
     },
     getIdentifier(url) {
-      const secondPart = seasonHelper(j.$('#list-season-container > div > select > option:selected').text());
-      return `${j.$('[itemtype="http://schema.org/TVSeries"] > meta[itemprop="name"]').attr('content')} ${secondPart}`;
+      const secondPart = seasonHelper(
+        j.$('#list-season-container > div > select > option:selected').text(),
+      );
+      return `${j
+        .$('[itemtype="http://schema.org/TVSeries"] > meta[itemprop="name"]')
+        .attr('content')} ${secondPart}`;
     },
 
     uiSelector(selector) {
-      j.$('#nav-show')
-        .first()
-        .before(j.html(selector));
+      j.$('#nav-show').first().before(j.html(selector));
     },
 
     list: {
@@ -81,39 +100,42 @@ export const Wakanim: pageInterface = {
   },
 
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     if (
       (page.url.split('/')[6] === 'show' && page.url.split('/')[9] === 'season') ||
       page.url.split('/')[6] === 'episode'
     ) {
       utils.waitUntilTrue(
-        function() {
+        function () {
           if (
-            j.$('body > div.SerieV2 > section > div.container > div > div.SerieV2-content').length ||
+            j.$('body > div.SerieV2 > section > div.container > div > div.SerieV2-content')
+              .length ||
             j.$('#jwplayer-container').length
           ) {
             return true;
           }
           return false;
         },
-        function() {
+        function () {
           page.reset();
           page.handlePage();
         },
       );
     }
 
-    utils.urlChangeDetect(function() {
+    utils.urlChangeDetect(function () {
       page.reset();
       if (page.url.split('/')[6] === 'show' && page.url.split('/')[9] === 'season') {
         utils.waitUntilTrue(
-          function() {
+          function () {
             if (j.$('#list-season-container').length) {
               return true;
             }
             return false;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
@@ -130,10 +152,7 @@ function seasonHelper(text) {
   if (text.includes('Cour')) {
     const temp = text.match(/Cour (\d+)/);
     if (temp[1] === 2) {
-      return text
-        .replace(temp[0], 'Part 2 ')
-        .trim()
-        .replace('-', '');
+      return text.replace(temp[0], 'Part 2 ').trim().replace('-', '');
     }
     return text
       .replace(/Cour \d+/, '')

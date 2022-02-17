@@ -11,17 +11,23 @@
         <option value="below">Below Information</option>
       </dropdown>
     </div>
-    <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 10px 15px;">
-      <input v-if="!sortMode" v-model="search" type="text" class="mdl-textfield__input" placeholder="Search" />
+    <div class="mdl-cell bg-cell mdl-cell--12-col" style="padding: 10px 15px">
+      <input
+        v-if="!sortMode"
+        v-model="search"
+        type="text"
+        class="mdl-textfield__input"
+        placeholder="Search"
+      />
       <input
         type="button"
         :value="sortMode ? 'Remove and add' : 'Change Order'"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-        style="margin: 15px;"
+        style="margin: 15px"
         @click="sortMode = !sortMode"
       />
     </div>
-    <div class="quicklinks mdl-cell bg-cell mdl-cell--12-col" style="padding: 15px;">
+    <div class="quicklinks mdl-cell bg-cell mdl-cell--12-col" style="padding: 15px">
       <quicklinks-sort v-if="sortMode" />
       <div
         v-for="link in linksWithState"
@@ -37,7 +43,12 @@
         }"
         @click="toggleLink(link)"
       >
-        <img style="padding-bottom: 3px; margin-right: 5px;" :src="favicon(link.domain)" height="16" width="16" />
+        <img
+          style="padding-bottom: 3px; margin-right: 5px"
+          :src="favicon(link.domain)"
+          height="16"
+          width="16"
+        />
         {{ link.name }}
       </div>
     </div>
@@ -69,27 +80,42 @@
           </tr>
         </table>
       </li>
-      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%">
         <span class="mdl-list__item-primary-content">
           <span>Name: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_name" type="text" class="mdl-textfield__input" style="outline: none;" />
+            <input
+              v-model="custom_name"
+              type="text"
+              class="mdl-textfield__input"
+              style="outline: none"
+            />
           </span>
         </span>
       </li>
-      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%">
         <span class="mdl-list__item-primary-content">
           <span>Anime Search Url: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_anime" type="text" class="mdl-textfield__input" style="outline: none;" />
+            <input
+              v-model="custom_anime"
+              type="text"
+              class="mdl-textfield__input"
+              style="outline: none"
+            />
           </span>
         </span>
       </li>
-      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%;">
+      <li class="mdl-list__item mdl-list__item--three-line" style="width: 100%">
         <span class="mdl-list__item-primary-content">
           <span>Manga Search Url: </span>
           <span class="mdl-list__item-text-body">
-            <input v-model="custom_manga" type="text" class="mdl-textfield__input" style="outline: none;" />
+            <input
+              v-model="custom_manga"
+              type="text"
+              class="mdl-textfield__input"
+              style="outline: none"
+            />
           </span>
         </span>
       </li>
@@ -99,15 +125,14 @@
         type="button"
         value="Add"
         class="inputButton btn-middle flat js-anime-update-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
-        style="margin: 15px;"
+        style="margin: 15px"
         @click="addCustom"
       />
     </div>
   </div>
 </template>
 
-<script type="text/javascript">
-// eslint-disable-next-line import/no-unresolved
+<script lang="ts">
 import quicklinks from '../../../utils/quicklinks.json';
 import backbutton from './backbutton.vue';
 import { removeOptionKey } from '../../../utils/quicklinksBuilder';

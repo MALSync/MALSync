@@ -10,10 +10,7 @@ export const Furyosquad: pageInterface = {
   },
   sync: {
     getTitle() {
-      return j
-        .$('.fs-read-comic-link')
-        .text()
-        .trim();
+      return j.$('.fs-read-comic-link').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -38,10 +35,7 @@ export const Furyosquad: pageInterface = {
   },
   overview: {
     getTitle() {
-      return j
-        .$('.fs-comic-title')
-        .text()
-        .trim();
+      return j.$('.fs-comic-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -59,7 +53,10 @@ export const Furyosquad: pageInterface = {
         return j.$('.group > div.element');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.find('a[href*="/read/"]').attr('href') || '', Furyosquad.domain);
+        return utils.absoluteLink(
+          selector.find('a[href*="/read/"]').attr('href') || '',
+          Furyosquad.domain,
+        );
       },
       elementEp(selector) {
         return Furyosquad.sync.getEpisode(Furyosquad.overview!.list!.elementUrl!(selector));
@@ -67,8 +64,10 @@ export const Furyosquad: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (
         (page.url.split('/')[3] === 'read' && typeof page.url.split('/')[4] !== 'undefined') ||
         (j.$('.fs-comic-title').length && j.$('div.main-container-top.comic').length)

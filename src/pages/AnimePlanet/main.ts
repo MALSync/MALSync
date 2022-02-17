@@ -32,9 +32,7 @@ export const AnimePlanet: pageInterface = {
       return NaN;
     },
     uiSelector(selector) {
-      j.$('#siteContainer > nav')
-        .first()
-        .before(j.html(selector));
+      j.$('#siteContainer > nav').first().before(j.html(selector));
     },
   },
   overview: {
@@ -45,14 +43,14 @@ export const AnimePlanet: pageInterface = {
       return url.split('/')[4];
     },
     uiSelector(selector) {
-      j.$('#siteContainer > nav')
-        .first()
-        .before(j.html(selector));
+      j.$('#siteContainer > nav').first().before(j.html(selector));
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (page.url.split('/')[3] === 'anime' && utils.urlPart(page.url, 4) !== 'all') {
         page.handlePage();
       }

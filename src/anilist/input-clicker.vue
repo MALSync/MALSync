@@ -56,7 +56,7 @@
   </div>
 </template>
 
-<script type="text/javascript">
+<script lang="ts">
 export default {
   props: {
     value: {

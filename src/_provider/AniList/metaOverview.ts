@@ -28,7 +28,11 @@ export class MetaOverview extends MetaOverviewAbstract {
   private readonly malId: number;
 
   async _init() {
-    this.logger.log('Retrieve', this.type, this.aniId ? `Anilist: ${this.aniId}` : `MAL: ${this.malId}`);
+    this.logger.log(
+      'Retrieve',
+      this.type,
+      this.aniId ? `Anilist: ${this.aniId}` : `MAL: ${this.malId}`,
+    );
 
     const data = await this.getData();
     this.logger.log('Data', data);
@@ -282,7 +286,9 @@ export class MetaOverview extends MetaOverviewAbstract {
       this.meta.info.push({
         title: 'End Date:',
         body: [
-          { text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}` },
+          {
+            text: `${data.data.Media.endDate.year}-${data.data.Media.endDate.month}-${data.data.Media.endDate.day}`,
+          },
         ],
       });
 
@@ -297,7 +303,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     const studios: any = [];
-    data.data.Media.studios.edges.forEach(function(i, index) {
+    data.data.Media.studios.edges.forEach(function (i, index) {
       if (i.isMain) {
         studios.push({
           text: i.node.name,
@@ -322,7 +328,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
     if (data.data.Media.genres) {
       const gen: any[] = [];
-      data.data.Media.genres.forEach(function(i, index) {
+      data.data.Media.genres.forEach(function (i, index) {
         gen.push({
           text: i,
           url: `https://anilist.co/search/anime?includedGenres=${i}`,
@@ -335,7 +341,7 @@ export class MetaOverview extends MetaOverviewAbstract {
     }
 
     const external: any[] = [];
-    data.data.Media.externalLinks.forEach(function(i, index) {
+    data.data.Media.externalLinks.forEach(function (i, index) {
       external.push({
         text: i.site,
         url: i.url,

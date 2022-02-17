@@ -6,7 +6,10 @@ import { searchResult } from '../_provider/definitions';
 import { listElement } from '../_provider/listAbstract';
 
 export async function miniMALSearch(searchterm: string, type: 'anime' | 'manga') {
-  return [...(await localSearch(searchterm, type)).slice(0, 8), ...(await normalSearch(searchterm, type))];
+  return [
+    ...(await localSearch(searchterm, type)).slice(0, 8),
+    ...(await normalSearch(searchterm, type)),
+  ];
 }
 
 const searchFuse: {
@@ -17,7 +20,10 @@ const searchFuse: {
   manga: null,
 };
 
-export async function normalSearch(searchterm: string, type: 'anime' | 'manga'): Promise<searchResult[]> {
+export async function normalSearch(
+  searchterm: string,
+  type: 'anime' | 'manga',
+): Promise<searchResult[]> {
   return search(searchterm, type).then(res =>
     Promise.all(
       res.map(async el => {

@@ -36,21 +36,14 @@ export const AMAScan: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$('div.navbar-collapse > ul.nav > li > a')
-        .first()
-        .text()
-        .trim();
+      return j.$('div.navbar-collapse > ul.nav > li > a').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j
-          .$('div.navbar-collapse > ul.nav > li > a')
-          .first()
-          .attr('href') || '',
+        j.$('div.navbar-collapse > ul.nav > li > a').first().attr('href') || '',
         AMAScan.domain,
       );
     },
@@ -68,19 +61,13 @@ export const AMAScan: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$('h2.widget-title')
-        .first()
-        .text()
-        .trim();
+      return j.$('h2.widget-title').first().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('h2.widget-title')
-        .first()
-        .after(j.html(selector));
+      j.$('h2.widget-title').first().after(j.html(selector));
     },
     list: {
       offsetHandler: false,
@@ -88,12 +75,7 @@ export const AMAScan: pageInterface = {
         return j.$('.chapters > li:not(.btn)');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         return AMAScan.sync.getEpisode(AMAScan.overview!.list!.elementUrl!(selector));
@@ -101,8 +83,10 @@ export const AMAScan: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
-    j.$(document).ready(function() {
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
+    j.$(document).ready(function () {
       if (AMAScan.isSyncPage(window.location.href)) {
         proxy.addProxy(async (caller: ScriptProxy) => page.handlePage());
       } else {

@@ -19,10 +19,7 @@ export const LeviatanScans: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(j.$('.c-breadcrumb-wrapper .breadcrumb li a')[1])
-        .text()
-        .trim();
+      return j.$(j.$('.c-breadcrumb-wrapper .breadcrumb li a')[1]).text().trim();
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'manga') {
@@ -64,10 +61,7 @@ export const LeviatanScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j
-        .$(j.$('.post-title h1'))
-        .text()
-        .trim();
+      return j.$(j.$('.post-title h1')).text().trim();
     },
     getIdentifier(url) {
       if (utils.urlPart(url, 3) === 'manga') {
@@ -90,12 +84,7 @@ export const LeviatanScans: pageInterface = {
         return j.$('.wp-manga-chapter');
       },
       elementUrl(selector) {
-        return (
-          selector
-            .find('a')
-            .first()
-            .attr('href') || ''
-        );
+        return selector.find('a').first().attr('href') || '';
       },
       elementEp(selector) {
         let episodePart = utils.urlPart(LeviatanScans.overview!.list!.elementUrl!(selector), 6);
@@ -113,17 +102,19 @@ export const LeviatanScans: pageInterface = {
     },
   },
   init(page) {
-    api.storage.addStyle(require('!to-string-loader!css-loader!less-loader!./style.less').toString());
+    api.storage.addStyle(
+      require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
+    );
     j.$(() => {
       if (LeviatanScans.isSyncPage(page.url)) {
         page.handlePage();
       }
       if (LeviatanScans.isOverviewPage!(page.url)) {
         utils.waitUntilTrue(
-          function() {
+          function () {
             return j.$('.wp-manga-chapter').length > 0;
           },
-          function() {
+          function () {
             page.handlePage();
           },
         );
