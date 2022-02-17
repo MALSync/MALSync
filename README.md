@@ -1,4 +1,3 @@
-[![img](https://img.shields.io/github/checks-status/MALSync/MALSync/master.svg?style=flat-square&logo=github)](https://github.com/MALSync/MALSync/actions)
 [![img](https://img.shields.io/discord/358599430502481920.svg?style=flat-square&logo=discord&label=Chat%20%2F%20Support&colorB=7289DA)](https://discord.com/invite/cTH4yaw)
 [![img](https://img.shields.io/github/issues/MALSync/MALSync.svg?style=flat-square&logo=github&logoColor=white)](https://github.com/MALSync/MALSync/issues)
 [![CodeFactor](https://www.codefactor.io/repository/github/MALSync/MALSync/badge)](https://www.codefactor.io/repository/github/MALSync/MALSync)
