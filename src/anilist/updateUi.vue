@@ -172,7 +172,6 @@ export default {
       },
     },
   },
-  created() {},
   methods: {
     async reload() {
       if (this.malObj) {

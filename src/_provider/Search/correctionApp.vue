@@ -71,7 +71,9 @@ export default {
     minimized: false,
     syncMode: null,
     searchClass: null,
-    unmountFnc: () => {},
+    unmountFnc: () => {
+      // placeholder
+    },
   }),
   computed: {
     syncPage() {

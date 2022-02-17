@@ -150,9 +150,12 @@ module.exports = {
       },
     },
     {
-      extends: ['plugin:vue/vue3-recommended', '@vue/prettier'],
+      extends: ['plugin:vue/vue3-recommended', '@vue/prettier', '@vue/eslint-config-typescript/recommended'],
       files: ['*.vue'],
       parser: 'vue-eslint-parser',
+      parserOptions: {
+        parser: '@typescript-eslint/parser',
+      },
       plugins: ['vue', 'prettier'],
       rules: {
         ...COMMON_RULES,
@@ -161,6 +164,7 @@ module.exports = {
         'vue/no-v-for-template-key-on-child': 'off',
         'vue/no-deprecated-destroyed-lifecycle': 'off',
         'vue/no-v-html': 'error',
+        'vue/multi-word-component-names': 'off',
       },
     },
     {

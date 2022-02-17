@@ -386,7 +386,9 @@ export default {
     baseFallback: '',
     page: null,
     options: api.settings.options,
-    updateDom: () => {},
+    updateDom: () => {
+      // placeholder
+    },
   }),
   computed: {
     base() {
