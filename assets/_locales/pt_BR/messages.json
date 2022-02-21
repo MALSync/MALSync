@@ -731,6 +731,10 @@
     "message": "Links das ultimas paginas usadas",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Interface de Atualização",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Modo de Furtividade da UI",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -874,7 +878,7 @@
     "description": "Dropdown label for selecting the global progress manga source"
   },
   "settings_ProgressCheck": {
-    "message": "Verificar progresso",
+    "message": "Verificação de progresso",
     "description": "Header for the progress section in the settings"
   },
   "settings_Notifications": {
@@ -909,9 +913,21 @@
     "message": "Limpar cache",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Mostrar o ícone do MAL-Sync em vez do ícone da página",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Imagem da Presence",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Imagem da capa",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Ícone do site",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Ícone do MalSync",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Ativado",
