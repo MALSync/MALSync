@@ -26,7 +26,7 @@ export const Animetoast: pageInterface = {
       return `${Animetoast.domain}/${Animetoast.sync.getIdentifier(url)}`;
     },
     getEpisode(url: string): number {
-      const matching = $('.current-link').text().match(/(\d+)/g);
+      const matching = $('.current-link').text().match(/(\d+)/i);
       return matching ? parseEpisode(matching) : NaN;
     },
     nextEpUrl(url: string): string | undefined {
