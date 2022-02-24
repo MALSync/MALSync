@@ -15,7 +15,7 @@
         }
       },
       {
-        "url": "https://www.animetoast.cc/one-piece/?link=163",
+        "url": "https://www.animetoast.cc/one-piece/?someRandomParameter&link=163&someOtherRandomParameter",
         "expected": {
           "sync": true,
           "title": "One Piece",
@@ -23,6 +23,15 @@
           "overviewUrl": "https://www.animetoast.cc/one-piece",
           "episode": 1008,
           "nextEpUrl": "https://www.animetoast.cc/one-piece/?link=164",
+          "uiSelector": true
+        }
+      },
+      {
+        "url": "https://www.animetoast.cc/tensai-ouji-no-akaji-kokka-saisei-jutsu-ger-sub/",
+        "expected":{
+          "sync": false,
+          "title": "Tensai Ouji no Akaji Kokka Saisei Jutsu",
+          "identifier": "tensai-ouji-no-akaji-kokka-saisei-jutsu-ger-sub",
           "uiSelector": true
         }
       }
