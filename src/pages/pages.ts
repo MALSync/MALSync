@@ -275,5 +275,5 @@ export const pages = {
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
-  Animetoast
+  Animetoast,
 };
