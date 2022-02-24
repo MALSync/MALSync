@@ -20,7 +20,7 @@ export const Animetoast: pageInterface = {
         .trim();
     },
     getIdentifier(url: string): string {
-      return url.replace(/(https|http):\/\//gi, '').split('/')[1];
+      return utils.urlPart(url, 3);
     },
     getOverviewUrl(url: string): string {
       return `${Animetoast.domain}/${Animetoast.sync.getIdentifier(url)}`;
