@@ -7,36 +7,24 @@ export const Animetoast: pageInterface = {
     languages: ['German'],
     type: "anime",
     isSyncPage: function (url: string): boolean {
-        return $('.entry-title.light-title').text() != null && url.includes('?link=');
+        return $('.entry-title.light-title').text() != null && url.includes('link=');
     },
     isOverviewPage: function (url: string): boolean {
-        return $('.entry-title.light-title').text() != null && !url.includes('?link=');
+        return $('.entry-title.light-title').text() != null && !url.includes('link=');
     },
     sync: {
         getTitle: function (url: string): string {
-            let title = $('.entry-title.light-title').text().split(' ');
-            if(!(title.length >= 2))return title.join(' ');
-            for(let i = title.length - 1; i >= title.length - 2; i--){
-                const t = title[i];
-                t.match(/(Ger|Sub|Dub)/gi) ? title.splice(i, 1) : null;
-            }
-            return title.join(' ');
+            return $('.entry-title.light-title').text().replace(/(Ger Sub|Ger Dub)/gi, '').trim();
         },
         getIdentifier: function (url: string): string {
-            let title = $('.entry-title.light-title').text().split(' ');
-            if(!(title.length >= 2))return title.join(' ');
-            for(let i = title.length - 1; i >= title.length - 2; i--){
-                const t = title[i];
-                t.match(/(Ger|Sub|Dub)/gi) ? title.splice(i, 1) : null;
-            }
-            return title.join(' ');
+            return url.replace(/(https|http):\/\//gi, '').split('/')[1];
         },
         getOverviewUrl: function (url: string): string {
-            return url.split('?link=')[0];
+            return `${Animetoast.domain}/${Animetoast.sync.getIdentifier(url)}`;
         },
         getEpisode: function (url: string): number {
-            let s = $('.current-link').text().match(/(\d+)/gi);
-            return Number((s![s!?.length-1]));
+          let matching = $('.current-link').text().match(/(\d+)/g);
+          return matching ? parseEpisode(matching) : NaN;
         },
         nextEpUrl: function (url: string): string | undefined {
             return $('.current-link').next().attr('href');
@@ -65,8 +53,7 @@ export const Animetoast: pageInterface = {
                 return selector.attr('href')!;
             },
             elementEp: function (selector: JQuery<HTMLElement>): number {
-                let s = selector.text().match(/(\d+)/gi);
-                return Number((s![s!?.length-1]));
+              return parseEpisode(selector);
             },
 
         }
@@ -79,4 +66,9 @@ export const Animetoast: pageInterface = {
             );
         })
     }
+}
+
+function parseEpisode(selector: JQuery<HTMLElement> | RegExpMatchArray):number{
+  let ep = Number((selector[selector.length-1]))
+  return ep ? ep : NaN;
 }

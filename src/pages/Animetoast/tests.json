@@ -7,8 +7,8 @@
         "expected": {
           "sync": true,
           "title": "Vinland Saga",
-          "identifier": "Vinland Saga",
-          "overviewUrl": "https://www.animetoast.cc/vinland-saga-ger-sub/",
+          "identifier": "vinland-saga-ger-sub",
+          "overviewUrl": "https://www.animetoast.cc/vinland-saga-ger-sub",
           "episode": 10,
           "nextEpUrl": "https://www.animetoast.cc/vinland-saga-ger-sub/?link=82",
           "uiSelector": true
@@ -19,8 +19,8 @@
         "expected": {
           "sync": true,
           "title": "One Piece",
-          "identifier": "One Piece",
-          "overviewUrl": "https://www.animetoast.cc/one-piece/",
+          "identifier": "one-piece",
+          "overviewUrl": "https://www.animetoast.cc/one-piece",
           "episode": 1008,
           "nextEpUrl": "https://www.animetoast.cc/one-piece/?link=164",
           "uiSelector": true
