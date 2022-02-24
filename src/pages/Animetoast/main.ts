@@ -70,7 +70,7 @@ export const Animetoast: pageInterface = {
 
 function parseEpisode(selector: string): number {
   const matching = selector.match(/(\d+)/i);
-  if(!matching) return NaN;
+  if (!matching) return NaN;
   const ep = Number(matching[matching.length - 1]);
   return ep || NaN;
 }
