@@ -7,10 +7,10 @@ export const Animetoast: pageInterface = {
   languages: ['German'],
   type: 'anime',
   isSyncPage(url: string): boolean {
-    return $('.entry-title.light-title').text() != null && url.includes('link=');
+    return $('.single-post') != null && url.includes('link=');
   },
   isOverviewPage(url: string): boolean {
-    return $('.entry-title.light-title').text() != null && !url.includes('link=');
+    return $('.single-post') != null && !url.includes('link=');
   },
   sync: {
     getTitle(url: string): string {
