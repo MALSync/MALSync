@@ -26,8 +26,7 @@ export const Animetoast: pageInterface = {
       return `${Animetoast.domain}/${Animetoast.sync.getIdentifier(url)}`;
     },
     getEpisode(url: string): number {
-      const matching = $('.current-link').text().match(/(\d+)/i);
-      return matching ? parseEpisode(matching) : NaN;
+      return parseEpisode($('.current-link').text());
     },
     nextEpUrl(url: string): string | undefined {
       return $('.current-link').next().attr('href');
@@ -55,7 +54,7 @@ export const Animetoast: pageInterface = {
         return selector.attr('href')!;
       },
       elementEp(selector: JQuery<HTMLElement>): number {
-        return parseEpisode(selector);
+        return parseEpisode(selector.text());
       },
     },
   },
@@ -69,7 +68,9 @@ export const Animetoast: pageInterface = {
   },
 };
 
-function parseEpisode(selector: JQuery<HTMLElement> | RegExpMatchArray): number {
-  const ep = Number(selector[selector.length - 1]);
+function parseEpisode(selector: string): number {
+  const matching = selector.match(/(\d+)/i);
+  if(!matching) return NaN;
+  const ep = Number(matching[matching.length - 1]);
   return ep || NaN;
 }
