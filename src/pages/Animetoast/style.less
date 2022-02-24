@@ -5,16 +5,26 @@
   border-top: 1px solid #bcbcbc;
   margin-top: 0.5rem;
   padding: 1rem 0;
-  .malp-group span {
-    display: flex;
+  #MalData {
+    span {
+      display: block;
+      .malp-group-value-section {
+        display: flex !important;
+      }
+    }
   }
 }
+#AddMalDiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 #malStatus,
 #malUserRating {
   color: #333;
   background-color: #fff !important;
   border-color: #ccc;
-  display: inline-block;
   margin-bottom: 0;
   padding: 5px 10px;
   font-size: 12px;
@@ -27,11 +37,5 @@
 }
 
 .mal-sync-active {
-  background-color: #979797 !important;
-}
-.mal-sync-active:hover {
-  background-color: #bcbcbc !important;
-}
-.current-link {
-  color: #f0d27c !important;
+  box-shadow: inset 10.75rem 0 0 -10rem #f0d27c;
 }
