@@ -15,14 +15,14 @@
         }
       },
       {
-        "url": "https://www.animetoast.cc/one-piece/?someRandomParameter&link=163&someOtherRandomParameter",
+        "url": "https://www.animetoast.cc/darker-than-black-ger-sub/?someRandomParameter&link=66&someOtherRandomParameter",
         "expected": {
           "sync": true,
-          "title": "One Piece",
-          "identifier": "one-piece",
-          "overviewUrl": "https://www.animetoast.cc/one-piece",
-          "episode": 1007,
-          "nextEpUrl": "https://www.animetoast.cc/one-piece/?link=164",
+          "title": "Darker than Black",
+          "identifier": "darker-than-black-ger-sub",
+          "overviewUrl": "https://www.animetoast.cc/darker-than-black-ger-sub",
+          "episode": 15,
+          "nextEpUrl": "https://www.animetoast.cc/darker-than-black-ger-sub/?link=67",
           "uiSelector": true
         }
       },
