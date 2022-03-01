@@ -10,19 +10,10 @@ const httpPermissionsJson = require('./httpPermissions.json');
 const { VueLoaderPlugin } = require('vue-loader');
 const TerserPlugin = require('terser-webpack-plugin');
 const i18n = require('./utils/i18n');
+const pagesUtils = require('./utils/pages');
+const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
 const pageUrls = { ...generalUrls, ...pages };
-
-const generateMatchExcludes = urls => {
-  let match = [];
-  let exclude = [];
-  for (const key in urls) {
-    const el = urls[key];
-    if (typeof el.match !== 'undefined') match = match.concat(el.match);
-    if (typeof el.exclude !== 'undefined') exclude = exclude.concat(el.exclude);
-  }
-  return { match: match, exclude: exclude };
-};
 
 const generateResources = () => {
   const resources = [];
