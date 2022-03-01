@@ -1,6 +1,9 @@
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
+const pagesUtils = require('./utils/pages');
+const pages = pagesUtils.pages();
+const playerUrls = require('../src/pages/playerUrls');
 
 main();
 async function main() {
@@ -10,13 +13,33 @@ async function main() {
   await ex(`unzip dist/lastExtension.zip -d dist/lastExtension`);
 
   const oldUrls = getUrls(require('../dist/lastExtension/manifest.json'));
-  const newUrls = getUrls(require('../dist/webextension/manifest.json'));
-  const diffUrls = newUrls.filter(el => !oldUrls.includes(el)).map(el => formatUrls(el));
+  const diffUrls = getDiff(oldUrls);
   const descFile = path.join(__dirname, '../src/pages/diffUrls.json');
   console.log(diffUrls);
   fs.writeFile(descFile, JSON.stringify(diffUrls, null, 2), 'utf8', function (err) {
     if (err) throw err;
   });
+}
+
+function getDiff(oldUrls) {
+  res = {};
+
+  // Page urls
+  pages.forEach(page => {
+    const urls = pagesUtils.urls(page);
+    const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => formatUrls(el));
+    if (diffUrls.length) {
+      res[page] = diffUrls;
+    }
+  });
+
+  // Iframe urls
+  res['iframe'] = pagesUtils
+    .generateMatchExcludes(playerUrls)
+    .match.filter(el => !oldUrls.includes(el))
+    .map(el => formatUrls(el));
+
+  return res;
 }
 
 function formatUrls(url) {
