@@ -38,6 +38,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { domainType } from '../../background/customDomain';
+import { hasDomainPermission } from '../../utils/manifest';
 
 export default {
   props: {
@@ -69,11 +70,14 @@ export default {
       return formatted;
     },
     neededPermissions() {
-      return this.formattedMissingPermissions.filter(perm => {
-        return !this.currentCustomDomains.some(
-          currentPerm => currentPerm.page === perm.page && currentPerm.domain === perm.domain,
-        );
-      });
+      // check if already added or already in the manifest
+      return this.formattedMissingPermissions
+        .filter(perm => {
+          return !this.currentCustomDomains.some(
+            currentPerm => currentPerm.page === perm.page && currentPerm.domain === perm.domain,
+          );
+        })
+        .filter(perm => !hasDomainPermission(perm.domain));
     },
   },
   mounted() {
