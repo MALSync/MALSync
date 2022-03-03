@@ -2,7 +2,7 @@ import { isIframeUrl } from '../utils/manifest';
 
 const logger = con.m('Custom Domain');
 
-export type domainType = { domain: string; page: string; auto?: boolean};
+export type domainType = { domain: string; page: string; auto?: boolean };
 
 export async function initCustomDomain() {
   await setListener();
