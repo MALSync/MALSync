@@ -7,10 +7,12 @@ const playerUrls = require('../src/pages/playerUrls');
 
 main();
 async function main() {
+  console.log('Downloading');
   await ex(
     'curl -fsSL https://github.com/MALSync/MALSync/releases/latest/download/webextension.zip -o dist/lastExtension.zip',
   );
-  await ex(`unzip dist/lastExtension.zip -d dist/lastExtension`);
+  console.log('Extracting');
+  await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
 
   const oldUrls = getUrls(require('../dist/lastExtension/manifest.json'));
   const diffUrls = getDiff(oldUrls);
