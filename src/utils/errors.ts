@@ -25,3 +25,10 @@ export class MissingDataError extends Error {
     this.name = 'MissingDataError';
   }
 }
+
+export class CustomDomainError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'CustomDomainError';
+  }
+}
