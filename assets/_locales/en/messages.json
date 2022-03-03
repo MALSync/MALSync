@@ -958,6 +958,10 @@
     "message": "Custom domains",
     "description": "Button that leads to the custom domain configuration page"
   },
+  "settings_custom_domains_missing_permissions_header": {
+    "message": "Missing domain permissions detected",
+    "description": "Section header for asking to allow missing domain permissions"
+  },
   "settings_clean_tags_button": {
     "message": "Clean Tags",
     "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"

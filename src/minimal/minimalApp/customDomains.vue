@@ -10,6 +10,10 @@
         More info <a href="https://github.com/MALSync/MALSync/wiki/Custom-Domains">here</a>
       </div>
     </div>
+    <customDomainsMissingPermissions
+      :current-custom-domains="option"
+      @add-custom-domain="addPermissionsFromChild"
+    />
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
       <div v-for="(perm, index) in permissions" :key="index">
         <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
@@ -20,12 +24,13 @@
               name="myinfo_score"
               class="inputtext mdl-textfield__input"
               style="outline: none; margin-left: 10px; margin-right: 10px"
+              :disabled="perm.auto"
               :class="{ error: !pageCheck(perm.page) }"
             >
               <option value="" disabled selected>Select Page</option>
               <option value="iframe">Video Iframe</option>
               <option v-for="(page, pageKey) in pages" :key="pageKey" :value="pageKey">
-                {{ page.name }}
+                {{ page.name }} <span v-if="perm.auto">(Auto)</span>
               </option>
             </select>
           </span>
@@ -37,7 +42,8 @@
                 type="text"
                 placeholder="Domain"
                 style="outline: none"
-                :class="{ error: !domainCheck(perm.domain) }"
+                :disabled="perm.auto"
+                :class="{ error: !domainCheck(perm.domain), disabled: perm.auto }"
               />
             </div>
           </span>
@@ -76,10 +82,12 @@
 <script lang="ts">
 import { pages } from '../../pages/pages';
 import backbutton from './components/backbutton.vue';
+import customDomainsMissingPermissions from './customDomainsMissingPermissions.vue';
 
 export default {
   components: {
     backbutton,
+    customDomainsMissingPermissions,
   },
   data() {
     return {
@@ -171,6 +179,11 @@ export default {
         this.checkPermissions();
       });
     },
+    addPermissionsFromChild(permissions) {
+      con.log('Add missing Permissions', permissions);
+      this.permissions = this.permissions.concat(permissions);
+      this.savePermissions();
+    },
   },
 };
 </script>
@@ -184,6 +197,9 @@ export default {
   }
   &.tempRec {
     border-bottom: 1px solid orange;
+  }
+  &.disabled {
+    opacity: 0.5;
   }
 }
 </style>
