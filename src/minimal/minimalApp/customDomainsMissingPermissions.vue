@@ -1,4 +1,3 @@
-
 <template>
   <div
     v-if="neededPermissions && neededPermissions.length"
