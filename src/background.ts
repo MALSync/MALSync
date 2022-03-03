@@ -36,13 +36,13 @@ api.request.sendMessage = function (message: sendMessageI) {
   });
 };
 
-chrome.runtime.onInstalled.addListener(function (details) {
+chrome.runtime.onInstalled.addListener(async function (details) {
   if (details.reason === 'install') {
     chrome.tabs.create({ url: chrome.extension.getURL('install.html') }, function (tab) {
       con.info('Open installPage');
     });
   } else if (details.reason === 'update') {
-    upgradewWizzards(details.previousVersion);
+    await upgradewWizzards(details.previousVersion);
     cleanupCustomDomains();
   }
   chrome.alarms.clearAll();

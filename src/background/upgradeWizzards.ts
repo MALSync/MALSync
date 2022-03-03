@@ -68,11 +68,21 @@ export async function upgradewWizzards(lastVersion) {
         });
       },
     },
+    {
+      version: '*',
+      name: 'Remove auto domain permissions',
+      action: () => {
+        return api.settings.getAsync('customDomains').then(perms => {
+          const filteredDomains = perms.filter(customDomain => !customDomain.auto);
+          return api.settings.set('customDomains', filteredDomains);
+        });
+      },
+    },
   ];
 
   for (let i = 0; i < wizards.length; i++) {
     const wizard = wizards[i];
-    if (semverGt(wizard.version, lastVersion)) {
+    if (wizard.version === '*' || semverGt(wizard.version, lastVersion)) {
       logger.m(wizard.version).log(wizard.name);
 
       try {
