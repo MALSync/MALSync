@@ -85,9 +85,12 @@ function singleListener(domainConfig: domainType) {
     }
   };
   listenerArray.push(callback);
+
+  const fixDomain = utils.makeDomainCompatible(domainConfig.domain);
+
   try {
     chrome.webNavigation.onCompleted.addListener(callback, {
-      url: [{ originAndPathMatches: domainConfig.domain }],
+      url: [{ originAndPathMatches: fixDomain }],
     });
   } catch (e) {
     Shark.captureException(new CustomDomainError(e), {
@@ -95,11 +98,11 @@ function singleListener(domainConfig: domainType) {
         domain: domainConfig.domain,
       },
     });
-    logger.error(`Could not add listener for ${domainConfig.domain}`, e);
+    logger.error(`Could not add listener for ${fixDomain}`, e);
     return;
   }
 
-  logger.m('registred').m(domainConfig.page).log(domainConfig.domain);
+  logger.m('registred').m(domainConfig.page).log(fixDomain);
 }
 
 export async function cleanupCustomDomains() {

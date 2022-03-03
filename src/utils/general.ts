@@ -889,3 +889,14 @@ export function waitForPageToBeVisible() {
     con.log('Page is visible');
   });
 }
+
+export function makeDomainCompatible(domain: string) {
+  // Add '/' to end of origin if it doesn't exist
+  if (domain.split('/').length < 4) {
+    domain += '/';
+  }
+
+  // Remove all after ?
+  domain = domain.replace(/\?.*/, '?');
+  return domain;
+}
