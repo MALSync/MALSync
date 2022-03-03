@@ -162,9 +162,17 @@ export default {
       return !!page;
     },
     domainCheck(domain) {
+      let origin;
+      try {
+        origin = new URL(domain).origin;
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+
       return (
         /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) &&
-        new URL(domain).origin
+        origin
       );
     },
     checkPermissions() {
