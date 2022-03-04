@@ -38,6 +38,7 @@
 import { PropType } from 'vue';
 import { domainType } from '../../background/customDomain';
 import { hasDomainPermission } from '../../utils/manifest';
+import { greaterOrEqualCurrentVersion } from '../../utils/version';
 
 export default {
   props: {
@@ -85,12 +86,28 @@ export default {
   methods: {
     lang: api.storage.lang,
     getMissingPermissions() {
-      /* Placeholder */
-      const missingPermissions = {
-        nineAnime: ['https://9anime.center/watch/*', 'https://9anime.club/watch/*'],
-        iframe: [],
-      };
-      this.missingPermissions = missingPermissions;
+      api.request.xhr('GET', 'https://api.malsync.moe/general/permissions').then(response => {
+        const permissions: { [index: string]: { [index: string]: string[] } } = JSON.parse(
+          response.responseText,
+        );
+        // Versions that are gte than the current version
+        const versions = Object.keys(permissions)
+          .filter(key => key !== 'ttl')
+          .filter(key => greaterOrEqualCurrentVersion(key));
+
+        const missingPermissions = versions.reduce((acc, version) => {
+          for (const key in permissions[version]) {
+            if (acc[key]) {
+              acc[key] = acc[key].concat(permissions[version][key]);
+            } else {
+              acc[key] = permissions[version][key];
+            }
+          }
+          return acc;
+        }, {});
+
+        this.missingPermissions = missingPermissions;
+      });
     },
     add() {
       this.$emit('add-custom-domain', this.neededPermissions);
