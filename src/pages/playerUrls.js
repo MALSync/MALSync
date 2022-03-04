@@ -392,7 +392,13 @@ module.exports = {
   },
   // 9anime
   vidstream: {
-    match: ['*://vidstream.pro/e/*', '*://vidstreamz.online/embed/*', '*://vidstream.pro/embed/*'],
+    match: [
+      '*://vidstream.pro/e/*',
+      '*://vidstreamz.online/embed/*',
+      '*://vidstream.pro/embed/*',
+      '*://vizcloud.ru/embed/*',
+      '*://vizcloud2.ru/embed/*',
+    ],
   },
   // gogo
   streamsb: {

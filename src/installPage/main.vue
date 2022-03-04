@@ -299,6 +299,10 @@ p {
 import quicklinksEdit from '../minimal/minimalApp/components/quicklinksEdit.vue';
 import dropdown from '../minimal/minimalApp/components/settingsDropdown.vue';
 
+declare const componentHandler: {
+  upgradeDom: () => void;
+};
+
 export default {
   components: {
     dropdown,
@@ -323,11 +327,10 @@ export default {
   },
   watch: {},
   mounted() {
-    // eslint-disable-next-line
     componentHandler.upgradeDom();
 
-    const [settingsEl] = document.getElementsByClassName('open-settings');
-    settingsEl.addEventListener('click', function () {
+    const settingsEl = document.getElementsByClassName('open-settings')[0];
+    settingsEl.addEventListener('click', () => {
       con.log('Open Settings');
       chrome.runtime.openOptionsPage();
     });
