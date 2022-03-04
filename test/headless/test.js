@@ -299,7 +299,12 @@ async function initTestsArray() {
               const cleanChanged = changed.replace(/[^\/]+\.(less|ts|json)$/, '');
               const cleanFile = file.replace('tests.json', '').replace(/\\/g, '/')
 
-              return changed && cleanChanged !== 'src/pages/' && cleanFile.includes(cleanChanged);
+              return (
+                changed &&
+                cleanChanged &&
+                cleanChanged !== 'src/pages/' &&
+                cleanFile.includes(cleanChanged)
+              );
             }
 
           );
