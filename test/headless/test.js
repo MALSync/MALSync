@@ -302,6 +302,7 @@ async function initTestsArray() {
               return (
                 changed &&
                 cleanChanged &&
+                cleanChanged !== 'src/' &&
                 cleanChanged !== 'src/pages/' &&
                 cleanFile.includes(cleanChanged)
               );
