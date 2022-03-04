@@ -1,0 +1,22 @@
+{
+  "nineAnime": [
+    "https://9anime.center/watch/*",
+    "https://9anime.club/watch/*"
+  ],
+  "iframe": [
+    "https://gogoplay3.com/streaming.php?*",
+    "https://gogoplay3.com/load.php?*",
+    "https://gogoplay3.com/loadserver.php?*",
+    "https://gogoplay3.com/embedplus*",
+    "https://gogoplay4.com/streaming.php?*",
+    "https://gogoplay4.com/load.php?*",
+    "https://gogoplay4.com/loadserver.php?*",
+    "https://gogoplay4.com/embedplus*",
+    "https://gogoplay5.com/streaming.php?*",
+    "https://gogoplay5.com/load.php?*",
+    "https://gogoplay5.com/loadserver.php?*",
+    "https://gogoplay5.com/embedplus*",
+    "https://vizcloud.ru/embed/*",
+    "https://vizcloud2.ru/embed/*"
+  ]
+}
