@@ -4,15 +4,17 @@ const fs = require('fs');
 const pagesUtils = require('./utils/pages');
 const pages = pagesUtils.pages();
 const playerUrls = require('../src/pages/playerUrls');
+const mkdirp = require('mkdirp');
 
 main();
 async function main() {
   console.log('Downloading');
+  mkdirp.sync(path.join(__dirname, '../dist/lastExtension'));
   await ex(
     'curl -fsSL https://github.com/MALSync/MALSync/releases/latest/download/webextension.zip -o dist/lastExtension.zip',
   );
   console.log('Extracting');
-  await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
+  await ex(`tar -xf dist/lastExtension.zip --directory dist/lastExtension`);
 
   const manifest = require('../dist/lastExtension/manifest.json');
 
