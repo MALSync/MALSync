@@ -12,6 +12,7 @@
     </div>
     <customDomainsMissingPermissions
       :current-custom-domains="option"
+      :options="options"
       @add-custom-domain="addPermissionsFromChild"
     />
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
@@ -28,9 +29,8 @@
               :class="{ error: !pageCheck(perm.page) }"
             >
               <option value="" disabled selected>Select Page</option>
-              <option value="iframe">Video Iframe</option>
-              <option v-for="(page, pageKey) in pages" :key="pageKey" :value="pageKey">
-                {{ page.name }} <span v-if="perm.auto">(Auto)</span>
+              <option v-for="optionEl in options" :key="optionEl.key" :value="optionEl.key">
+                {{ optionEl.title }} <span v-if="perm.auto">(Auto)</span>
               </option>
             </select>
           </span>
@@ -120,6 +120,16 @@ export default {
         permissions: ['webNavigation'],
         origins,
       };
+    },
+    options() {
+      const options = [{ key: 'iframe', title: 'Video Iframe' }];
+      Object.keys(this.pages).forEach(key => {
+        options.push({
+          key,
+          title: this.pages[key].name,
+        });
+      });
+      return options;
     },
   },
   watch: {

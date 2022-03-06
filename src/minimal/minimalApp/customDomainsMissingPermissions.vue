@@ -13,7 +13,7 @@
       <table>
         <tbody>
           <tr v-for="permission in neededPermissions" :key="permission.domain">
-            <td>{{ permission.page }}</td>
+            <td>{{ getPageName(permission.page) }}</td>
             <td>⬌</td>
             <td>{{ permission.domain }}</td>
           </tr>
@@ -44,6 +44,10 @@ export default {
   props: {
     currentCustomDomains: {
       type: Array as PropType<domainType[]>,
+      default: () => [],
+    },
+    options: {
+      type: Array as PropType<{ key: string; title: string }[]>,
       default: () => [],
     },
   },
@@ -97,6 +101,11 @@ export default {
 
         const missingPermissions = versions.reduce((acc, version) => {
           for (const key in permissions[version]) {
+            // check if key exists in options
+            if (!this.options.some(option => option.key === key)) {
+              continue;
+            }
+
             if (acc[key]) {
               acc[key] = acc[key].concat(permissions[version][key]);
             } else {
@@ -111,6 +120,10 @@ export default {
     },
     add() {
       this.$emit('add-custom-domain', this.neededPermissions);
+    },
+    getPageName(key: string) {
+      const page = this.options.find(pageEl => pageEl.key === key);
+      return page ? page.title : key;
     },
   },
 };
