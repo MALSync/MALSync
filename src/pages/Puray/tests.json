@@ -1,0 +1,27 @@
+{
+  "title": "Puray",
+  "url": "https://puray.moe",
+  "enabled": false,
+  "testCases": [
+    {
+      "url": "https://puray.moe/watch/996",
+      "expected": {
+        "sync": true,
+        "title": "Attack on Titan S3",
+        "identifier": "61",
+        "overviewUrl": "https://puray.moe/anime/61",
+        "episode": 38,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://puray.moe/anime/61",
+      "expected": {
+        "sync": false,
+        "title": "Attack on Titan",
+        "identifier": "61",
+        "uiSelector": true
+      }
+    }
+  ]
+}
