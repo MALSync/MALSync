@@ -21,11 +21,7 @@ export const Puray: pageInterface = {
         .text();
     },
     getIdentifier(url) {
-      return j
-        .$('#root > main > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div> a')
-        .first()
-        .prop('href')
-        .split('/')[4];
+      return Puray.sync.getTitle(url);
     },
     getOverviewUrl(url) {
       return j
@@ -50,7 +46,7 @@ export const Puray: pageInterface = {
       return j.$('div.text-3xl').first().text();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return Puray.overview!.getTitle(url);
     },
     uiSelector(selector) {
       j.$(
