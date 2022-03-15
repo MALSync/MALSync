@@ -14,44 +14,40 @@ export const Puray: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$(
-          '#root > main > div > div > div > div > div.mt-4.flex.flex-col.justify-between.xl\\:flex-row > div.mr-12.flex.flex-col > div > a > span',
-        )
+        .$('span.text-sm')
         .first()
-        .text();
+        .text()
+        .replace(/\(.*?\)/g, '')
+        .trim();
     },
     getIdentifier(url) {
       return Puray.sync.getTitle(url);
     },
     getOverviewUrl(url) {
-      return j
-        .$('#root > main > div > div > div > div > div:nth-child(2) > div:nth-child(1) > div> a')
-        .first()
-        .prop('href');
+      return j.$('span.text-sm').first().parent().prop('href');
     },
     getEpisode(url) {
-      return Number(
-        j
-          .$(
-            '#root > main > div > div > div > div > div.mt-4.flex.flex-col.justify-between.xl\\:flex-row > div.mr-12.flex.flex-col > span',
-          )
-          .first()
-          .text()
-          .split('-')[0],
-      );
+      return Number(j.$('span.text-lg').first().text().split('-')[0]);
     },
   },
   overview: {
     getTitle(url) {
-      return j.$('div.text-3xl').first().text();
+      return j
+        .$('div.text-3xl')
+        .first()
+        .text()
+        .replace(/\(.*?\)/g, '')
+        .trim();
     },
     getIdentifier(url) {
       return Puray.overview!.getTitle(url);
     },
     uiSelector(selector) {
-      j.$(
-        '#root > main > div:nth-child(1) > section > div > div > div:nth-child(2) > div:nth-child(4) > a',
-      ).after(j.html(selector));
+      if (j.$('#headlessui-switch-12').length) {
+        j.$('#headlessui-switch-12').after(j.html(selector));
+      } else {
+        j.$('div.text-left > div.items-center > a').first().after(j.html(selector));
+      }
     },
   },
   init(page) {
