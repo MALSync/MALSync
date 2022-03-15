@@ -8,7 +8,7 @@
       "expected": {
         "sync": true,
         "title": "Attack on Titan S3",
-        "identifier": "61",
+        "identifier": "Attack on Titan S3",
         "overviewUrl": "https://puray.moe/anime/61",
         "episode": 38,
         "uiSelector": false
@@ -19,7 +19,7 @@
       "expected": {
         "sync": false,
         "title": "Attack on Titan",
-        "identifier": "61",
+        "identifier": "Attack on Titan",
         "uiSelector": true
       }
     }
