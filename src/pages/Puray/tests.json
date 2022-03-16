@@ -13,15 +13,6 @@
         "episode": 38,
         "uiSelector": false
       }
-    },
-    {
-      "url": "https://puray.moe/anime/61",
-      "expected": {
-        "sync": false,
-        "title": "Attack on Titan",
-        "identifier": "Attack on Titan",
-        "uiSelector": true
-      }
     }
   ]
 }
