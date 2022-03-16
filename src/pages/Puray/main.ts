@@ -9,7 +9,7 @@ export const Puray: pageInterface = {
     return url.split('/')[3] === 'watch' && !Number.isNaN(Puray.sync.getEpisode(url));
   },
   isOverviewPage(url) {
-    return Boolean(url.split('/')[3] === 'anime');
+    return false;
   },
   sync: {
     getTitle(url) {
@@ -28,26 +28,6 @@ export const Puray: pageInterface = {
     },
     getEpisode(url) {
       return Number(j.$('span.text-lg').first().text().split('-')[0]);
-    },
-  },
-  overview: {
-    getTitle(url) {
-      return j
-        .$('div.text-3xl')
-        .first()
-        .text()
-        .replace(/\(.*?\)/g, '')
-        .trim();
-    },
-    getIdentifier(url) {
-      return Puray.overview!.getTitle(url);
-    },
-    uiSelector(selector) {
-      if (j.$('#headlessui-switch-12').length) {
-        j.$('#headlessui-switch-12').after(j.html(selector));
-      } else {
-        j.$('div.text-left > div.items-center > a').first().after(j.html(selector));
-      }
     },
   },
   init(page) {
