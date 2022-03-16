@@ -25,7 +25,7 @@
                 v-model="perm.page"
                 name="myinfo_score"
                 class="inputtext mdl-textfield__input"
-                style="outline: none; margin-left: 10px; margin-right: 10px; min-width: 124px;"
+                style="outline: none; margin-left: 10px; margin-right: 10px; min-width: 124px"
                 :disabled="perm.auto"
                 :class="{ error: !pageCheck(perm.page) }"
               >
@@ -225,6 +225,7 @@ export default {
 
 .cell-content {
   display: flex;
+
   @media (max-width: 450px) {
     flex-wrap: wrap;
     justify-content: flex-end;
