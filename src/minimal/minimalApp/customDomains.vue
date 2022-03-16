@@ -19,34 +19,36 @@
       <div v-for="(perm, index) in permissions" :key="index">
         <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
           <div class="icon material-icons close-icon" @click="removePermission(index)">close</div>
-          <span class="mdl-list__item-primary-content">
-            <select
-              v-model="perm.page"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none; margin-left: 10px; margin-right: 10px"
-              :disabled="perm.auto"
-              :class="{ error: !pageCheck(perm.page) }"
-            >
-              <option value="" disabled selected>Select Page</option>
-              <option v-for="optionEl in options" :key="optionEl.key" :value="optionEl.key">
-                {{ optionEl.title }} <span v-if="perm.auto">(Auto)</span>
-              </option>
-            </select>
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <div class="mdl-textfield mdl-js-textfield">
-              <input
-                v-model="perm.domain"
-                class="mdl-textfield__input"
-                type="text"
-                placeholder="Domain"
-                style="outline: none"
+          <div class="cell-content">
+            <span class="mdl-list__item-primary-content">
+              <select
+                v-model="perm.page"
+                name="myinfo_score"
+                class="inputtext mdl-textfield__input"
+                style="outline: none; margin-left: 10px; margin-right: 10px; min-width: 124px;"
                 :disabled="perm.auto"
-                :class="{ error: !domainCheck(perm.domain), disabled: perm.auto }"
-              />
-            </div>
-          </span>
+                :class="{ error: !pageCheck(perm.page) }"
+              >
+                <option value="" disabled selected>Select Page</option>
+                <option v-for="optionEl in options" :key="optionEl.key" :value="optionEl.key">
+                  {{ optionEl.title }} <span v-if="perm.auto">(Auto)</span>
+                </option>
+              </select>
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input
+                  v-model="perm.domain"
+                  class="mdl-textfield__input"
+                  type="text"
+                  placeholder="Domain"
+                  style="outline: none"
+                  :disabled="perm.auto"
+                  :class="{ error: !domainCheck(perm.domain), disabled: perm.auto }"
+                />
+              </div>
+            </span>
+          </div>
         </li>
       </div>
 
@@ -218,6 +220,14 @@ export default {
   }
   &.disabled {
     opacity: 0.5;
+  }
+}
+
+.cell-content {
+  display: flex;
+  @media (max-width: 450px) {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 }
 </style>
