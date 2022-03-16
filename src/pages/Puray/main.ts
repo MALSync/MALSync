@@ -6,7 +6,10 @@ export const Puray: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return url.split('/')[3] === 'watch' && !Number.isNaN(Puray.sync.getEpisode(url));
+    return (
+      url.split('/')[3] === 'watch' &&
+      j.$('span.text-lg').first().text().split('-')[0].trim() !== 'SP'
+    );
   },
   isOverviewPage(url) {
     return false;
