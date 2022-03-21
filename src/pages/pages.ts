@@ -135,6 +135,7 @@ import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
 import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
+import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 
 export const pages = {
@@ -275,5 +276,6 @@ export const pages = {
   BilibiliComics,
   MangaReader,
   AnimeOnsen,
+  Puray,
   Animetoast,
 };
