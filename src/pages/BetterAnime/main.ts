@@ -6,7 +6,10 @@ export const BetterAnime: pageInterface = {
   languages: ['Portuguese'],
   type: 'anime',
   isSyncPage(url) {
-    return Boolean(url.split('/')[6] && url.split('/')[6].startsWith('episodio-'));
+    return (
+      Boolean(url.split('/')[6] && url.split('/')[6].startsWith('episodio-')) &&
+      !url.includes('/download')
+    );
   },
   isOverviewPage(url) {
     return false;
