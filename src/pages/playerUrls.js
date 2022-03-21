@@ -364,6 +364,18 @@ module.exports = {
       '*://*.gogoplay2.com/load.php?*',
       '*://*.gogoplay2.com/loadserver.php?*',
       '*://*.gogoplay2.com/embedplus*',
+      '*://*.gogoplay3.com/streaming.php?*',
+      '*://*.gogoplay3.com/load.php?*',
+      '*://*.gogoplay3.com/loadserver.php?*',
+      '*://*.gogoplay3.com/embedplus*',
+      '*://*.gogoplay4.com/streaming.php?*',
+      '*://*.gogoplay4.com/load.php?*',
+      '*://*.gogoplay4.com/loadserver.php?*',
+      '*://*.gogoplay4.com/embedplus*',
+      '*://*.gogoplay5.com/streaming.php?*',
+      '*://*.gogoplay5.com/load.php?*',
+      '*://*.gogoplay5.com/loadserver.php?*',
+      '*://*.gogoplay5.com/embedplus*',
       '*://*.gogoplay.io/streaming.php?*',
       '*://*.gogoplay.io/load.php?*',
       '*://*.gogoplay.io/loadserver.php?*',
@@ -380,7 +392,13 @@ module.exports = {
   },
   // 9anime
   vidstream: {
-    match: ['*://vidstream.pro/e/*', '*://vidstreamz.online/embed/*', '*://vidstream.pro/embed/*'],
+    match: [
+      '*://vidstream.pro/e/*',
+      '*://vidstreamz.online/embed/*',
+      '*://vidstream.pro/embed/*',
+      '*://vizcloud.ru/embed/*',
+      '*://vizcloud2.ru/embed/*',
+    ],
   },
   // gogo
   streamsb: {
@@ -635,5 +653,9 @@ module.exports = {
   // animixplay
   yfvf: {
     match: ['*://*.yfvf.com/*'],
+  },
+  // animetoast
+  dydrox: {
+    match: ['*://waaw.to/*'],
   },
 };
