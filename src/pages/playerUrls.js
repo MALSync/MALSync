@@ -654,4 +654,8 @@ module.exports = {
   yfvf: {
     match: ['*://*.yfvf.com/*'],
   },
+  // animetoast
+  dydrox: {
+    match: ['*://waaw.to/*'],
+  },
 };
