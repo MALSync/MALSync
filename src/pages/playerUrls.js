@@ -278,6 +278,7 @@ module.exports = {
       '*://strtpe.link/*',
       '*://stape.me/*',
       '*://stape.fun/*',
+      '*://streamtapeadblock.art/*',
     ],
   },
   // monoschinos
