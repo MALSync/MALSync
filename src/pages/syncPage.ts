@@ -10,6 +10,7 @@ import { isIframeUrl } from '../utils/manifest';
 import { bloodTrail, Shark } from '../utils/shark';
 import { MissingDataError, MissingPlayerError } from '../utils/errors';
 import { NotFoundError, UrlNotSupportedError } from '../_provider/Errors';
+import { hasMissingPermissions } from '../utils/customDomains';
 
 declare let browser: any;
 
@@ -508,8 +509,19 @@ export class SyncPage {
                   <div class="ms-progress" style="background-color: #2980b9; width: 0%; height: 100%; transition: width 1s;"></div>
                 </div>
                 <div class="player-error" style="display: none; position: absolute; left: 0; right: 0; padding: 5px; bottom: 100%; color: rgb(255,64,129); background-color: #323232;">
-                  ${api.storage.lang('syncPage_flash_player_error')}
-                  <a href="https://discord.com/invite/cTH4yaw" style="display: block; padding: 10px">Help</a>
+                  <span class="player-error-default">${api.storage.lang(
+                    'syncPage_flash_player_error',
+                  )}</span>
+                  <span class="player-error-missing-permissions" style="display: none; padding-top: 10px">
+                    ${api.storage.lang('settings_custom_domains_missing_permissions_header')}
+                  </span>
+                  <div style="display: flex; justify-content: space-evenly">
+                    <a class="player-error-missing-permissions" href="https://malsync.moe/pwa#customDomains" style="display: none; margin: 10px; border-bottom: 2px solid #e13f7b;">
+                      ${api.storage.lang('Add')}
+                    </a>
+                    <a href="https://discord.com/invite/cTH4yaw" style="display: block; margin: 10px">Help</a>
+                  </div>
+
                 </div>
               ${message}`;
               options = {
@@ -531,8 +543,12 @@ export class SyncPage {
 
             // Show error if no player gets detected for 5 minutes
             if (this.singleObj.getType() === 'anime') {
-              playerTimeout = setTimeout(() => {
+              playerTimeout = setTimeout(async () => {
                 j.$('#flashinfo-div').addClass('player-error');
+
+                if (await hasMissingPermissions()) {
+                  j.$('#flashinfo-div').addClass('player-error-missing-permissions');
+                }
 
                 const iframes = $('iframe')
                   .toArray()
@@ -577,6 +593,7 @@ export class SyncPage {
       clearTimeout(playerTimeout);
       playerTimeout = undefined;
       j.$('#flashinfo-div').removeClass('player-error');
+      j.$('#flashinfo-div').removeClass('player-error-missing-permissions');
     }
   }
 

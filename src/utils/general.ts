@@ -724,6 +724,12 @@ function initflashm() {
                  #flashinfo-div.player-error .player-error{
                   display: block !important
                  }
+                 #flashinfo-div.player-error-missing-permissions .player-error-missing-permissions{
+                  display: block !important
+                 }
+                 #flashinfo-div.player-error-missing-permissions .player-error-default{
+                  display: none !important
+                 }
 
                  #flash-div-top, #flash-div-bottom, #flashinfo-div{
                     font-family: "Helvetica","Arial",sans-serif;

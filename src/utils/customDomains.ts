@@ -83,3 +83,12 @@ export class MissingPermissions {
     return formatted;
   }
 }
+
+export async function hasMissingPermissions(): Promise<boolean> {
+  if (api.type !== 'webextension') return false;
+  const missingPermissions = new MissingPermissions();
+  await missingPermissions.init();
+  const missing = missingPermissions.getMissingPermissions(api.settings.get('customDomains'));
+  con.m('Missing Permissions').log(missing);
+  return Boolean(missing.length);
+}

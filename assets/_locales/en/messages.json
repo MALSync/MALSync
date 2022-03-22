@@ -959,7 +959,7 @@
     "description": "Button that leads to the custom domain configuration page"
   },
   "settings_custom_domains_missing_permissions_header": {
-    "message": "Missing domain permissions detected",
+    "message": "Missing permissions detected",
     "description": "Section header for asking to allow missing domain permissions"
   },
   "settings_clean_tags_button": {
