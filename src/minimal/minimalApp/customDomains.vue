@@ -10,37 +10,45 @@
         More info <a href="https://github.com/MALSync/MALSync/wiki/Custom-Domains">here</a>
       </div>
     </div>
+    <customDomainsMissingPermissions
+      :current-custom-domains="option"
+      :options="options"
+      @add-custom-domain="addPermissionsFromChild"
+    />
     <div class="mdl-cell bg-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-shadow--4dp">
       <div v-for="(perm, index) in permissions" :key="index">
         <li class="mdl-list__item" style="padding-top: 0; padding-bottom: 0">
           <div class="icon material-icons close-icon" @click="removePermission(index)">close</div>
-          <span class="mdl-list__item-primary-content">
-            <select
-              v-model="perm.page"
-              name="myinfo_score"
-              class="inputtext mdl-textfield__input"
-              style="outline: none; margin-left: 10px; margin-right: 10px"
-              :class="{ error: !pageCheck(perm.page) }"
-            >
-              <option value="" disabled selected>Select Page</option>
-              <option value="iframe">Video Iframe</option>
-              <option v-for="(page, pageKey) in pages" :key="pageKey" :value="pageKey">
-                {{ page.name }}
-              </option>
-            </select>
-          </span>
-          <span class="mdl-list__item-secondary-action">
-            <div class="mdl-textfield mdl-js-textfield">
-              <input
-                v-model="perm.domain"
-                class="mdl-textfield__input"
-                type="text"
-                placeholder="Domain"
-                style="outline: none"
-                :class="{ error: !domainCheck(perm.domain) }"
-              />
-            </div>
-          </span>
+          <div class="cell-content">
+            <span class="mdl-list__item-primary-content">
+              <select
+                v-model="perm.page"
+                name="myinfo_score"
+                class="inputtext mdl-textfield__input"
+                style="outline: none; margin-left: 10px; margin-right: 10px; min-width: 124px"
+                :disabled="perm.auto"
+                :class="{ error: !pageCheck(perm.page) }"
+              >
+                <option value="" disabled selected>Select Page</option>
+                <option v-for="optionEl in options" :key="optionEl.key" :value="optionEl.key">
+                  {{ optionEl.title }} <span v-if="perm.auto">(Auto)</span>
+                </option>
+              </select>
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input
+                  v-model="perm.domain"
+                  class="mdl-textfield__input"
+                  type="text"
+                  placeholder="Domain"
+                  style="outline: none"
+                  :disabled="perm.auto"
+                  :class="{ error: !domainCheck(perm.domain), disabled: perm.auto }"
+                />
+              </div>
+            </span>
+          </div>
         </li>
       </div>
 
@@ -74,16 +82,18 @@
 </template>
 
 <script lang="ts">
-import { pages } from '../../pages/pages';
 import backbutton from './components/backbutton.vue';
+import customDomainsMissingPermissions from './customDomainsMissingPermissions.vue';
+import { getPageOptions } from '../../utils/customDomains';
 
 export default {
   components: {
     backbutton,
+    customDomainsMissingPermissions,
   },
   data() {
     return {
-      pages,
+      options: getPageOptions(),
       permissions: [],
       hasPermissions: null,
     };
@@ -154,9 +164,17 @@ export default {
       return !!page;
     },
     domainCheck(domain) {
+      let origin;
+      try {
+        origin = new URL(domain).origin;
+      } catch (e) {
+        console.log(e);
+        return false;
+      }
+
       return (
         /^https?:\/\/(localhost|(?:www?\d?\.)?((?:(?!www\.|\.).)+\.[a-zA-Z0-9.]+))/.test(domain) &&
-        new URL(domain).origin
+        origin
       );
     },
     checkPermissions() {
@@ -171,6 +189,11 @@ export default {
         this.checkPermissions();
       });
     },
+    addPermissionsFromChild(permissions) {
+      con.log('Add missing Permissions', permissions);
+      this.permissions = this.permissions.concat(permissions);
+      this.savePermissions();
+    },
   },
 };
 </script>
@@ -184,6 +207,18 @@ export default {
   }
   &.tempRec {
     border-bottom: 1px solid orange;
+  }
+  &.disabled {
+    opacity: 0.5;
+  }
+}
+
+.cell-content {
+  display: flex;
+
+  @media (max-width: 450px) {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 }
 </style>

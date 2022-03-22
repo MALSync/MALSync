@@ -15,3 +15,17 @@ export function isIframeUrl(url: string): boolean {
     return false;
   }
 }
+
+export function hasDomainPermission(url: string): boolean {
+  try {
+    const manifest = chrome.runtime.getManifest();
+
+    const found = manifest.content_scripts!.some(
+      script => script.matches && script.matches.some(pattern => patternToRegex(pattern).test(url)),
+    );
+
+    return found;
+  } catch (e) {
+    return false;
+  }
+}

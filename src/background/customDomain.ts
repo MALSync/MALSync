@@ -1,8 +1,10 @@
+import { CustomDomainError } from '../utils/errors';
 import { isIframeUrl } from '../utils/manifest';
+import { Shark } from '../utils/shark';
 
 const logger = con.m('Custom Domain');
 
-type domainType = { domain: string; page: string };
+export type domainType = { domain: string; page: string; auto?: boolean };
 
 export async function initCustomDomain() {
   await setListener();
@@ -83,10 +85,24 @@ function singleListener(domainConfig: domainType) {
     }
   };
   listenerArray.push(callback);
-  chrome.webNavigation.onCompleted.addListener(callback, {
-    url: [{ originAndPathMatches: domainConfig.domain }],
-  });
-  logger.m('registred').m(domainConfig.page).log(domainConfig.domain);
+
+  const fixDomain = utils.makeDomainCompatible(domainConfig.domain);
+
+  try {
+    chrome.webNavigation.onCompleted.addListener(callback, {
+      url: [{ originAndPathMatches: fixDomain }],
+    });
+  } catch (e) {
+    Shark.captureException(new CustomDomainError(e), {
+      tags: {
+        domain: domainConfig.domain,
+      },
+    });
+    logger.error(`Could not add listener for ${fixDomain}`, e);
+    return;
+  }
+
+  logger.m('registred').m(domainConfig.page).log(fixDomain);
 }
 
 export async function cleanupCustomDomains() {

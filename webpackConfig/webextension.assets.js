@@ -11,6 +11,7 @@ const httpPermissionsJson = require('./httpPermissions.json');
 const i18n = require('./utils/i18n');
 const pagesUtils = require('./utils/pages');
 const pages = pagesUtils.pages();
+const generateMatchExcludes = pagesUtils.generateMatchExcludes;
 
 const mode = process.env.MODE || 'default';
 console.log('Mode', mode);
@@ -29,17 +30,6 @@ delete contentUrls.kitsu;
 delete contentUrls.simkl;
 delete contentUrls.malsync;
 delete contentUrls.malsyncPwa;
-
-const generateMatchExcludes = urls => {
-  let match = [];
-  let exclude = [];
-  for (const key in urls) {
-    const el = urls[key];
-    if (typeof el.match !== 'undefined') match = match.concat(el.match);
-    if (typeof el.exclude !== 'undefined') exclude = exclude.concat(el.exclude);
-  }
-  return { match, exclude };
-};
 
 var content_scripts = [
   {

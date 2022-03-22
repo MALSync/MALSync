@@ -724,6 +724,12 @@ function initflashm() {
                  #flashinfo-div.player-error .player-error{
                   display: block !important
                  }
+                 #flashinfo-div.player-error-missing-permissions .player-error-missing-permissions{
+                  display: block !important
+                 }
+                 #flashinfo-div.player-error-missing-permissions .player-error-default{
+                  display: none !important
+                 }
 
                  #flash-div-top, #flash-div-bottom, #flashinfo-div{
                     font-family: "Helvetica","Arial",sans-serif;
@@ -888,4 +894,15 @@ export function waitForPageToBeVisible() {
   return awaitUi().then(() => {
     con.log('Page is visible');
   });
+}
+
+export function makeDomainCompatible(domain: string) {
+  // Add '/' to end of origin if it doesn't exist
+  if (domain.split('/').length < 4) {
+    domain += '/';
+  }
+
+  // Remove all after ?
+  domain = domain.replace(/\?.*/, '?');
+  return domain;
 }

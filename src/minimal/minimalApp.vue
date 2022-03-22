@@ -599,6 +599,12 @@ export default {
         ignoreNullBase = true;
         this.setCurrent(state);
       }
+      if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        if (Object.keys(this.tabs).includes(hash)) {
+          this.selectTab(hash);
+        }
+      }
     }
     j.$(this.$el)
       .find('.mdl-layout__content')

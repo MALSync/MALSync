@@ -29,7 +29,17 @@ module.exports = {
       ret[p] = module.exports.urls(p);
     })
     return ret;
-  }
+  },
+  generateMatchExcludes: urls => {
+    let match = [];
+    let exclude = [];
+    for (const key in urls) {
+      const el = urls[key];
+      if (typeof el.match !== 'undefined') match = match.concat(el.match);
+      if (typeof el.exclude !== 'undefined') exclude = exclude.concat(el.exclude);
+    }
+    return { match: match, exclude: exclude };
+  },
 }
 
 
