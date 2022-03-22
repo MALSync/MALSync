@@ -82,9 +82,9 @@
 </template>
 
 <script lang="ts">
-import { pages } from '../../pages/pages';
 import backbutton from './components/backbutton.vue';
 import customDomainsMissingPermissions from './customDomainsMissingPermissions.vue';
+import { getPageOptions } from '../../utils/customDomains';
 
 export default {
   components: {
@@ -93,7 +93,7 @@ export default {
   },
   data() {
     return {
-      pages,
+      options: getPageOptions(),
       permissions: [],
       hasPermissions: null,
     };
@@ -122,16 +122,6 @@ export default {
         permissions: ['webNavigation'],
         origins,
       };
-    },
-    options() {
-      const options = [{ key: 'iframe', title: 'Video Iframe' }];
-      Object.keys(this.pages).forEach(key => {
-        options.push({
-          key,
-          title: this.pages[key].name,
-        });
-      });
-      return options;
     },
   },
   watch: {

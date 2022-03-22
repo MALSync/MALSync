@@ -37,8 +37,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { domainType } from '../../background/customDomain';
-import { hasDomainPermission } from '../../utils/manifest';
-import { greaterOrEqualCurrentVersion } from '../../utils/version';
+import { MissingPermissions } from '../../utils/customDomains';
 
 export default {
   props: {
@@ -54,70 +53,19 @@ export default {
   emits: ['add-custom-domain'],
   data() {
     return {
-      missingPermissions: {},
+      missingPermissions: new MissingPermissions(),
     };
   },
   computed: {
-    formattedMissingPermissions() {
-      const formatted: domainType[] = [];
-
-      for (const key in this.missingPermissions) {
-        this.missingPermissions[key].forEach(perm => {
-          formatted.push({
-            page: key,
-            domain: perm,
-            auto: true,
-          });
-        });
-      }
-
-      return formatted;
-    },
     neededPermissions() {
-      // check if already added or already in the manifest
-      return this.formattedMissingPermissions
-        .filter(perm => {
-          return !this.currentCustomDomains.some(
-            currentPerm => currentPerm.page === perm.page && currentPerm.domain === perm.domain,
-          );
-        })
-        .filter(perm => !hasDomainPermission(perm.domain));
+      return this.missingPermissions.getMissingPermissions(this.currentCustomDomains);
     },
   },
   mounted() {
-    this.getMissingPermissions();
+    this.missingPermissions.init();
   },
   methods: {
     lang: api.storage.lang,
-    getMissingPermissions() {
-      api.request.xhr('GET', 'https://api.malsync.moe/general/permissions').then(response => {
-        const permissions: { [index: string]: { [index: string]: string[] } } = JSON.parse(
-          response.responseText,
-        );
-        // Versions that are gte than the current version
-        const versions = Object.keys(permissions)
-          .filter(key => key !== 'ttl')
-          .filter(key => greaterOrEqualCurrentVersion(key));
-
-        const missingPermissions = versions.reduce((acc, version) => {
-          for (const key in permissions[version]) {
-            // check if key exists in options
-            if (!this.options.some(option => option.key === key)) {
-              continue;
-            }
-
-            if (acc[key]) {
-              acc[key] = acc[key].concat(permissions[version][key]);
-            } else {
-              acc[key] = permissions[version][key];
-            }
-          }
-          return acc;
-        }, {});
-
-        this.missingPermissions = missingPermissions;
-      });
-    },
     add() {
       this.$emit('add-custom-domain', this.neededPermissions);
     },
