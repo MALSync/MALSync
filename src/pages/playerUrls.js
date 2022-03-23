@@ -278,6 +278,7 @@ module.exports = {
       '*://strtpe.link/*',
       '*://stape.me/*',
       '*://stape.fun/*',
+      '*://streamtapeadblock.art/*',
     ],
   },
   // monoschinos
@@ -398,6 +399,10 @@ module.exports = {
       '*://vidstream.pro/embed/*',
       '*://vizcloud.ru/embed/*',
       '*://vizcloud2.ru/embed/*',
+      '*://vizcloud2.online/embed/*',
+      '*://vizcloud.online/embed/*',
+      '*://vizstream.ru/embed/*',
+      '*://vizcloud.xyz/embed/*',
     ],
   },
   // gogo
@@ -414,6 +419,8 @@ module.exports = {
       '*://sbplay2.com/*',
       '*://embedsb.com/*',
       '*://watchsb.com/*',
+      '*://steamsb.net/*',
+      '*://sbplay2.xyz/*',
     ],
   },
   // gogo
@@ -430,7 +437,7 @@ module.exports = {
   },
   // animedao.to
   vcdn: {
-    match: ['*://vcdn.space/v/*'],
+    match: ['*://vcdn.space/v/*', '*://vcdn-stream.xyz/v/*'],
   },
   // animedao.to
   pd: {
@@ -612,7 +619,7 @@ module.exports = {
   },
   // turkanime
   turkanime: {
-    match: ['*://*.turkanime.net/player/*'],
+    match: ['*://*.turkanime.net/player/*', '*://*.turkanime.co/player/*'],
   },
   // turkanime
   cozyplayer: {
@@ -657,5 +664,13 @@ module.exports = {
   // animetoast
   dydrox: {
     match: ['*://waaw.to/*'],
+  },
+  // turkanime
+  suzihaza: {
+    match: ['*://suzihaza.com/*'],
+  },
+  // monoschinos
+  solidfiles: {
+    match: ['*://*.solidfiles.com/*'],
   },
 };

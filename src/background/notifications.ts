@@ -19,6 +19,7 @@ export async function sendNotification(options: {
     title: options.title,
     message: options.text,
     iconUrl: imgBlob,
+    contextMessage: 'MAL-Sync',
     requireInteraction: options.sticky ?? false,
     eventTime: Date.now(),
   };

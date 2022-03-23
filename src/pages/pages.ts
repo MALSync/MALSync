@@ -19,7 +19,6 @@ import { Wakanim } from './Wakanim/main';
 import { AnimeIndo } from './AnimeIndo/main';
 import { Shinden } from './Shinden/main';
 import { Voiranime } from './Voiranime/main';
-import { DubbedAnime } from './DubbedAnime/main';
 import { VIZ } from './VIZ/main';
 import { MangaNato } from './MangaNato/main';
 import { NekoSama } from './NekoSama/main';
@@ -160,7 +159,6 @@ export const pages = {
   AnimeIndo,
   Shinden,
   Voiranime,
-  DubbedAnime,
   MangaNato,
   VIZ,
   NekoSama,
