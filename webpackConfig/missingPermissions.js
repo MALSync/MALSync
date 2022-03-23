@@ -14,7 +14,12 @@ async function main() {
     'curl -fsSL https://github.com/MALSync/MALSync/releases/latest/download/webextension.zip -o dist/lastExtension.zip',
   );
   console.log('Extracting');
-  await ex(`tar -xf dist/lastExtension.zip --directory dist/lastExtension`);
+  try {
+    await ex(`tar -xf dist/lastExtension.zip --directory dist/lastExtension`);
+  } catch (error) {
+    await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
+  }
+
 
   const manifest = require('../dist/lastExtension/manifest.json');
 
