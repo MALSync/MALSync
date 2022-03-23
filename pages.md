@@ -13,13 +13,6 @@
     </thead>
     <tbody>
       <tr>
-    <td><a href="https://1anime.to"><img src="https://favicon.malsync.moe/?domain=https://1anime.to"> 1Anime</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://9anime.to"><img src="https://favicon.malsync.moe/?domain=https://9anime.to"> 9anime</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -162,6 +155,13 @@
   </tr><tr>
     <td><a href="https://animes.vision"><img src="https://favicon.malsync.moe/?domain=https://animes.vision"> AnimesVision</a></td>
     <td>Portuguese</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
+    <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -411,6 +411,13 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://puray.moe"><img src="https://favicon.malsync.moe/?domain=https://puray.moe"> Puray</a></td>
+    <td>Portuguese</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:x:</td>
   </tr><tr>
     <td><a href="https://samehadaku.vip"><img src="https://favicon.malsync.moe/?domain=https://samehadaku.vip"> Samehadaku</a></td>
     <td>Indonesian</td>

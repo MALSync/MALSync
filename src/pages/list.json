@@ -105,11 +105,6 @@
     "name": "Voiranime"
   },
   {
-    "domain": "https://1anime.to",
-    "type": "anime",
-    "name": "1Anime"
-  },
-  {
     "domain": "https://manganato.com",
     "type": "manga",
     "name": "MangaNato"
@@ -683,5 +678,15 @@
     "domain": "https://animeonsen.xyz",
     "type": "anime",
     "name": "AnimeOnsen"
+  },
+  {
+    "domain": "https://puray.moe",
+    "type": "anime",
+    "name": "Puray"
+  },
+  {
+    "domain": "https://www.animetoast.cc",
+    "type": "anime",
+    "name": "Animetoast"
   }
 ]
