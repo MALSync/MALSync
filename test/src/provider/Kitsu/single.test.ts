@@ -111,7 +111,7 @@ function setGlobals() {
         image:
           'https://media.kitsu.io/anime/poster_images/12/large.jpg?1490541434',
         rating: '82.88%',
-        cacheKey: '21',
+        cacheKey: 21,
       },
       notOnListUrl: {
         url: 'https://kitsu.io/anime/shiki-specials',

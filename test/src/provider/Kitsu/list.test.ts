@@ -22,10 +22,10 @@ const responses = {
 
 const elements = [
   {
-    malId: '6547',
-    uid: '4604',
-    apiCacheKey: '6547',
-    cacheKey: '6547',
+    malId: 6547,
+    uid: 4604,
+    apiCacheKey: 6547,
+    cacheKey: 6547,
     kitsuSlug: 'angel-beats',
     type: 'anime',
     title: 'Angel Beats!',
@@ -40,10 +40,10 @@ const elements = [
     airingState: undefined,
   },
   {
-    malId: '9776',
-    uid: '5861',
-    apiCacheKey: '9776',
-    cacheKey: '9776',
+    malId: 9776,
+    uid: 5861,
+    apiCacheKey: 9776,
+    cacheKey: 9776,
     kitsuSlug: 'a-channel',
     type: 'anime',
     title: 'A-Channel',
