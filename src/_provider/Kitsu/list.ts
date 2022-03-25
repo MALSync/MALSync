@@ -154,7 +154,7 @@ export class UserList extends ListAbstract {
         if (mapping.type === 'mappings') {
           if (mapping.attributes.externalSite === `myanimelist/${listType}`) {
             if (mapping.relationships.item.data.id === el.id) {
-              malId = mapping.attributes.externalId;
+              malId = Number(mapping.attributes.externalId);
               data.included.splice(k, 1);
               break;
             }
@@ -166,7 +166,7 @@ export class UserList extends ListAbstract {
         tempData = await this.fn({
           malId,
           apiCacheKey: malId,
-          uid: el.id,
+          uid: Number(el.id),
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,
           type: listType,
@@ -187,7 +187,7 @@ export class UserList extends ListAbstract {
         tempData = await this.fn({
           malId,
           apiCacheKey: malId,
-          uid: el.id,
+          uid: Number(el.id),
           cacheKey: helper.getCacheKey(malId, el.id),
           kitsuSlug: el.attributes.slug,
           type: listType,

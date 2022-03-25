@@ -19,7 +19,7 @@ export const search: searchInterface = async function (
       const resItems: any = [];
       res.data.forEach(function (item) {
         resItems.push({
-          id: item.id,
+          id: Number(item.id),
           name: helper.getTitle(item.attributes.titles, item.attributes.canonicalTitle),
           altNames: Object.values(item.attributes.titles),
           url: `https://kitsu.io/${type}/${item.attributes.slug}`,

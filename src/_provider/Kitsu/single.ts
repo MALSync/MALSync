@@ -167,8 +167,8 @@ export class Single extends SingleAbstract {
       /* eslint-disable-next-line no-var */
       var kitsuSlugRes = await this.kitsuSlugtoKitsu(this.ids.kitsu.slug, this.getType());
       try {
-        this.ids.kitsu.id = kitsuSlugRes.res.data[0].id;
-        this.ids.mal = kitsuSlugRes.malId;
+        this.ids.kitsu.id = Number(kitsuSlugRes.res.data[0].id);
+        this.ids.mal = Number(kitsuSlugRes.malId);
       } catch (e) {
         this._authenticated = true;
         throw new NotFoundError('Not found');
@@ -178,7 +178,7 @@ export class Single extends SingleAbstract {
       /* eslint-disable-next-line no-var */
       var kitsuRes = await this.malToKitsu(this.ids.mal, this.getType());
       try {
-        this.ids.kitsu.id = kitsuRes.data[0].relationships.item.data.id;
+        this.ids.kitsu.id = Number(kitsuRes.data[0].relationships.item.data.id);
       } catch (e) {
         this._authenticated = true;
         throw new NotFoundError('Not found');
@@ -337,11 +337,11 @@ export class Single extends SingleAbstract {
             const mapping = res.included[k];
             if (mapping.type === 'mappings') {
               if (mapping.attributes.externalSite === `myanimelist/${type}`) {
-                malId = mapping.attributes.externalId;
+                malId = Number(mapping.attributes.externalId);
                 res.included.splice(k, 1);
                 break;
               } else if (mapping.attributes.externalSite === `anilist/${type}`) {
-                this.ids.ani = mapping.attributes.externalId;
+                this.ids.ani = Number(mapping.attributes.externalId);
               }
             }
           }
