@@ -1,8 +1,8 @@
 import { pageInterface } from '../pageInterface';
 
-export const Japanread: pageInterface = {
-  name: 'Japanread',
-  domain: 'https://www.japanread.cc/',
+export const Bentomanga: pageInterface = {
+  name: 'Bentomanga',
+  domain: 'https://www.bentomanga.com',
   languages: ['French'],
   type: 'manga',
   isSyncPage(url) {
@@ -15,11 +15,14 @@ export const Japanread: pageInterface = {
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
-    getOverviewUrl(url) {
-      return url.substr(0, url.lastIndexOf('/'));
+    getOverviewUrl() {
+      return utils.absoluteLink(
+        j.$('.reader-controls-title > div > a').attr('href'),
+        Bentomanga.domain,
+      );
     },
     getEpisode(url) {
-      return parseInt(utils.urlPart(url, 5));
+      return parseInt(utils.urlPart(url, 6));
     },
     getVolume() {
       const currentChapter = j.$('#jump-chapter option:selected');
@@ -37,54 +40,31 @@ export const Japanread: pageInterface = {
       }
       return 0;
     },
-    nextEpUrl(url) {
-      const nextChapter = j.$('#jump-chapter option:selected').prev();
-
-      if (nextChapter && typeof nextChapter !== 'undefined') {
-        let temp = nextChapter
-          .text()
-          .trim()
-          .match(/(ch\.|chapitre)\D?\d+/i);
-        if (temp !== null) {
-          temp = temp[0].replace('.', '-').match(/\d+/);
-          if (temp !== null) {
-            return utils.absoluteLink(temp[0], Japanread.sync.getOverviewUrl(url));
-          }
-        }
-      }
-      return '';
-    },
   },
   overview: {
     getTitle() {
-      return j.$('h1.card-header').text().trim();
+      return j.$('.component-manga-title_main > h1').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('.card.card-manga .card-body .row.edit .col-md-7')
-        .first()
-        .append(
-          j.html(
-            '<div class="row m-0 py-1 px-0 border-top"><div class="col-lg-3 col-xl-2 strong">MAL-Sync:</div><div class="col-lg-9 col-xl-10 mal-sync"></div></div>',
-          ),
-        );
-      j.$('.container .card .mal-sync').first().append(j.html(selector));
+      j.$('.datas').after(
+        j.html(
+          `<div class="datas"><h3 class="datas_header">MAL-Sync</h3><div>${selector}</div></div>`,
+        ),
+      );
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('[data-row=chapter]');
+        return j.$('[data-chapter]');
       },
       elementUrl(selector) {
-        if (j.$('#navbar-guest').length === 0) {
-          return utils.absoluteLink(selector.find('a').eq(1).attr('href'), Japanread.domain);
-        }
-        return utils.absoluteLink(selector.find('a').first().attr('href'), Japanread.domain);
+        return utils.absoluteLink(selector.find('a.text-truncate').attr('href'), Bentomanga.domain);
       },
       elementEp(selector) {
-        return Japanread.sync.getEpisode(Japanread.overview!.list!.elementUrl!(selector));
+        return Bentomanga.sync.getEpisode(Bentomanga.overview!.list!.elementUrl!(selector));
       },
     },
   },
@@ -98,7 +78,7 @@ export const Japanread: pageInterface = {
         utils.waitUntilTrue(
           () => {
             return (
-              j.$('#jump-chapter option:selected').text() !== '' || j.$('[data-row=chapter]').length
+              j.$('#jump-chapter option:selected').text() !== '' || j.$('.div-chapters').length
             );
           },
           () => {
@@ -108,5 +88,13 @@ export const Japanread: pageInterface = {
         );
       }
     });
+    utils.changeDetect(
+      () => {
+        page.handleList();
+      },
+      () => {
+        return j.$('[data-chapter]').length;
+      },
+    );
   },
 };
