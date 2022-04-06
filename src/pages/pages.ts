@@ -136,7 +136,7 @@ import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
-import { MuitoManga } from './MuitoManga/main'
+import { MuitoManga } from './MuitoManga/main';
 
 export const pages = {
   nineAnime,
