@@ -34,7 +34,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://anicloud.io"><img src="https://favicon.malsync.moe/?domain=https://anicloud.io"> Anicloud</a></td>
+    <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> AniWorld</a></td>
     <td>German</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>

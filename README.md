@@ -281,7 +281,7 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://mangareader.to"><img src="https://favicon.malsync.moe/?domain=https://mangareader.to"> MangaReader</a></td>
                 <td></td>
               </tr><tr>
-                <td><a href="https://anicloud.io"><img src="https://favicon.malsync.moe/?domain=https://anicloud.io"> Anicloud</a></td>
+                <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> AniWorld</a></td>
                 <td></td>
                 <td></td>
               </tr><tr>

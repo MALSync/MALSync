@@ -128,7 +128,7 @@ import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
 import { SugarBabies } from './SugarBabies/main';
 import { AlphaScans } from './AlphaScans/main';
-import { Anicloud } from './Anicloud/main';
+import { AniWorld } from './AniWorld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
@@ -268,7 +268,7 @@ export const pages = {
   DynastyScans,
   SugarBabies,
   AlphaScans,
-  Anicloud,
+  AniWorld,
   BetterAnime,
   AMAScan,
   BilibiliComics,

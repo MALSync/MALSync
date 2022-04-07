@@ -1,6 +1,0 @@
-{
-  "search": "https://anicloud.io/search?q={searchterm}",
-  "urls": {
-    "match": ["*://anicloud.io/*"]
-  }
-}
