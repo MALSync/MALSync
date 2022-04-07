@@ -403,6 +403,7 @@ module.exports = {
       '*://vizcloud.online/embed/*',
       '*://vizstream.ru/embed/*',
       '*://vizcloud.xyz/embed/*',
+      '*://vizcloud.live/embed/*',
     ],
   },
   // gogo
