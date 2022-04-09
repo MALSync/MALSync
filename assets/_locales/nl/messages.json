@@ -237,6 +237,20 @@
       }
     }
   },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "Update $page$ naar deel $epNr$",
+    "description": "Update MAL to volume 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
   "syncPage_flashm_sync_undefined_undo": {
     "message": "Ongedaan maken",
     "description": "Undo button on 'synced' message"
@@ -717,6 +731,10 @@
     "message": "Laatst gebruikte pagina links",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Update UI",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Verborgen UI modus",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -895,9 +913,21 @@
     "message": "Maak Cache schoon",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Toon MAL-Sync icoon in plaats van pagina icoon",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Aanwezigheid Afbeelding",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Omslagfoto",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Website Icoon",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Malsync Icoon",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Ingeschakeld",
@@ -927,6 +957,10 @@
     "message": "Eigen domeinen",
     "description": "Button that leads to the custom domain configuration page"
   },
+  "settings_custom_domains_missing_permissions_header": {
+    "message": "Missende toegang gedetecteerd",
+    "description": "Section header for asking to allow missing domain permissions"
+  },
   "settings_clean_tags_button": {
     "message": "Tags opschonen",
     "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
@@ -938,6 +972,10 @@
   "settings_presenceShowButtons": {
     "message": "Weergeef de knop om de anime/manga te zien op MAL of andere provider",
     "description": "Show button to view the anime/manga on MAL or another provider"
+  },
+  "settings_presenceShowMalsync": {
+    "message": "Laat Mal-Sync in de titel zien in plaats van anime/manga",
+    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Ververs",
@@ -1146,5 +1184,9 @@
   "filler_recap_confirm": {
     "message": "Deze aflevering is gemarkeerd als samenvatting op MyAnimeList, wil je het overslaan?",
     "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Positie",
+    "description": "Position of the quicklinks"
   }
 }
