@@ -1,2 +1,11 @@
 {
+  "0.8.20": {
+    "iframe": [
+      "https://goload.pro/streaming.php?*",
+      "https://goload.pro/load.php?*",
+      "https://goload.pro/loadserver.php?*",
+      "https://goload.pro/embedplus*",
+      "https://vizcloud.live/embed/*"
+    ]
+  }
 }

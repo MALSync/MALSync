@@ -39,7 +39,7 @@
     "fs-extra": "^10.0.0",
     "less": "^4.0.0",
     "less-loader": "^10.0.1",
-    "minimist": ">=0.2.1",
+    "minimist": ">=1.2.6",
     "mkdirp": "^1.0.0",
     "mocha": "^9.0.0",
     "node-dir": "^0.1.17",

@@ -357,6 +357,10 @@ module.exports = {
       '*://*.goload.one/load.php?*',
       '*://*.goload.one/loadserver.php?*',
       '*://*.goload.one/embedplus*',
+      '*://*.goload.pro/streaming.php?*',
+      '*://*.goload.pro/load.php?*',
+      '*://*.goload.pro/loadserver.php?*',
+      '*://*.goload.pro/embedplus*',
       '*://*.gogoplay1.com/streaming.php?*',
       '*://*.gogoplay1.com/load.php?*',
       '*://*.gogoplay1.com/loadserver.php?*',
@@ -403,6 +407,7 @@ module.exports = {
       '*://vizcloud.online/embed/*',
       '*://vizstream.ru/embed/*',
       '*://vizcloud.xyz/embed/*',
+      '*://vizcloud.live/embed/*',
     ],
   },
   // gogo
