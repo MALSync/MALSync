@@ -1,5 +1,8 @@
 {
   "0.8.20": {
+    "nineAnime": [
+      "https://9anime.pl/watch/*"
+    ],
     "iframe": [
       "https://goload.pro/streaming.php?*",
       "https://goload.pro/load.php?*",
