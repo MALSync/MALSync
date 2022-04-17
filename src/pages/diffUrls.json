@@ -8,7 +8,8 @@
       "https://goload.pro/load.php?*",
       "https://goload.pro/loadserver.php?*",
       "https://goload.pro/embedplus*",
-      "https://vizcloud.live/embed/*"
+      "https://vizcloud.live/embed/*",
+      "https://kaast1.com/*"
     ]
   }
 }
