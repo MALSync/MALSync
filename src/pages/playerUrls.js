@@ -678,4 +678,8 @@ module.exports = {
   solidfiles: {
     match: ['*://*.solidfiles.com/*'],
   },
+  // kickassanime
+  kaast: {
+    match: ['*://*.kaast1.com/*'],
+  },
 };
