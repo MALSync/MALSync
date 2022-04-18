@@ -408,6 +408,7 @@ module.exports = {
       '*://vizstream.ru/embed/*',
       '*://vizcloud.xyz/embed/*',
       '*://vizcloud.live/embed/*',
+      '*://vizcloud.digital/embed/*',
     ],
   },
   // gogo

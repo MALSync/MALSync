@@ -9,6 +9,7 @@
       "https://goload.pro/loadserver.php?*",
       "https://goload.pro/embedplus*",
       "https://vizcloud.live/embed/*",
+      "https://vizcloud.digital/embed/*",
       "https://kaast1.com/*"
     ]
   }
