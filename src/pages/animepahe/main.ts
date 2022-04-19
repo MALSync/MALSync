@@ -35,6 +35,9 @@ export const animepahe: pageInterface = {
     uiSelector(selector) {
       j.$('.anime-season').after(j.html(selector));
     },
+    getMalUrl(provider) {
+      return animepahe.overview!.getMalUrl!(provider);
+    },
   },
   overview: {
     getTitle(url) {
@@ -47,15 +50,15 @@ export const animepahe: pageInterface = {
       j.$('.anime-content').prepend(j.html(selector));
     },
     getMalUrl(provider) {
-      let url = j.$('a[href^="//myanimelist.net/anime/"]').not('#malRating').first().attr('href');
-      if (url) return url.replace(/^\/\//, 'https://');
+      const mal = $('meta[name=myanimelist]').attr('content');
+      if (mal) return `https://myanimelist.net/anime/${mal}`;
       if (provider === 'ANILIST') {
-        url = j.$('a[href^="//anilist.co/anime/"]').not('#malRating').first().attr('href');
-        if (url) return url.replace(/^\/\//, 'https://');
+        const al = $('meta[name=anilist]').attr('content');
+        if (al) return `https://anilist.co/anime/${al}`;
       }
       if (provider === 'KITSU') {
-        url = j.$('a[href^="//kitsu.io/anime/"]').not('#malRating').first().attr('href');
-        if (url) return url.replace(/^\/\//, 'https://');
+        const kitsu = $('meta[name=kitsu]').attr('content');
+        if (kitsu) return `https://kitsu.io/anime/${kitsu}`;
       }
       return false;
     },
@@ -103,28 +106,10 @@ export const animepahe: pageInterface = {
   },
 };
 
-let id;
 function getId() {
+  const id = j.$('meta[name=id]').attr('content');
   if (id) return id;
-  // overview id
-  const href = j.$('a[href^="//pahe.win/a/"]').attr('href');
-  if (href) {
-    id = href.split('/')[4];
-    return id;
-  }
-
-  // episode id
-  const script = $('script').filter(function (idx) {
-    return this.innerHTML.includes('getUrls(');
-  });
-  if (script && script.length) {
-    const matches = script[0].innerHTML.match(/getUrls\(\d+/);
-    if (matches && matches.length) {
-      id = matches[0].replace(/\D+/g, '');
-      return id;
-    }
-  }
-  return undefined;
+  throw new Error('no id found');
 }
 
 function getUrl(aid, overviewForce, increment = 0) {
