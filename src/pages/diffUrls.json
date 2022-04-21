@@ -3,6 +3,9 @@
     "nineAnime": [
       "https://9anime.pl/watch/*"
     ],
+    "Gogoanime": [
+      "https://gogoanime.sk/*"
+    ],
     "iframe": [
       "https://goload.pro/streaming.php?*",
       "https://goload.pro/load.php?*",
