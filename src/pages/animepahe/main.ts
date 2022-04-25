@@ -106,24 +106,14 @@ export const animepahe: pageInterface = {
 let id;
 function getId() {
   if (id) return id;
-  // overview id
-  const href = j.$('a[href^="//pahe.win/a/"]').attr('href');
-  if (href) {
-    id = href.split('/')[4];
+
+  const meta = j.$('meta[name=id]');
+
+  if (meta) {
+    id = meta.content;
     return id;
   }
 
-  // episode id
-  const script = $('script').filter(function (idx) {
-    return this.innerHTML.includes('getUrls(');
-  });
-  if (script && script.length) {
-    const matches = script[0].innerHTML.match(/getUrls\(\d+/);
-    if (matches && matches.length) {
-      id = matches[0].replace(/\D+/g, '');
-      return id;
-    }
-  }
   return undefined;
 }
 
