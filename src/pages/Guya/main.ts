@@ -1,28 +1,18 @@
 import { pageInterface } from '../pageInterface';
 
-const excluded = ['imgur'];
-
 export const Guya: pageInterface = {
-  name: 'Guya & Cubari',
-  domain: ['https://guya.moe', 'https://cubari.moe'],
+  name: 'Guya',
+  domain: ['https://guya.moe'],
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      url.split('/')[3] === 'read' &&
-      !excluded.includes(url.split('/')[4]) &&
-      url.split('/').length >= 8
-    ) {
+    if (url.split('/')[3] === 'read' && url.split('/').length >= 8) {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if (
-      url.split('/')[3] === 'read' &&
-      !excluded.includes(url.split('/')[4]) &&
-      url.split('/').length >= 6
-    ) {
+    if (url.split('/')[3] === 'read' && url.split('/').length >= 6) {
       return true;
     }
     return false;
