@@ -41,14 +41,17 @@ export const Cubari: pageInterface = {
       );
     },
     getEpisode(url) {
-      let temp = j
-        .$(
-          '#rdr-main > aside > div.rdr-aside-content > section.rdr-selector > div.rdr-selector-mid > div.rdr-chap-wrap.UI.FauxDrop > label',
-        )
-        .text();
-      temp = temp.substring(temp.indexOf('-') + 2).split('.')[0];
-      if (!temp || !temp.length) return 0;
-      return Number(temp.replace(/\D+/g, ''));
+      if (url.split('/')[4] === 'mangasee') {
+        let temp = j
+          .$(
+            '#rdr-main > aside > div.rdr-aside-content > section.rdr-selector > div.rdr-selector-mid > div.rdr-chap-wrap.UI.FauxDrop > label',
+          )
+          .text();
+        temp = temp.substring(temp.indexOf('-') + 2).split('.')[0];
+        if (!temp || !temp.length) return 0;
+        return Number(temp.replace(/\D+/g, ''));
+      }
+      return parseInt(utils.urlPart(url, 6));
     },
   },
   overview: {
