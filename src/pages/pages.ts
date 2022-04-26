@@ -107,6 +107,7 @@ import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { Japanread } from './Japanread/main';
+import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -247,6 +248,7 @@ export const pages = {
   ComicK,
   AnimeShitai,
   Japanread,
+  Bentomanga,
   MangaSushi,
   ArangScans,
   HunlightScans,

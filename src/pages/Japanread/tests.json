@@ -1,7 +1,8 @@
 {
   "title": "Japanread",
   "url": "https://www.japanread.cc/",
-  "testCases": [{
+  "testCases": [
+    {
       "url": "https://www.japanread.cc/manga/oshi-no-ko",
       "expected": {
         "sync": false,
@@ -9,8 +10,8 @@
         "identifier": "oshi-no-ko",
         "uiSelector": true,
         "epList": {
-          "32": "https://www.japanread.cc/manga/oshi-no-ko/32",
-          "46": "https://www.japanread.cc/manga/oshi-no-ko/46"
+          "77": "https://www.japanread.cc/manga/oshi-no-ko/77",
+          "65": "https://www.japanread.cc/manga/oshi-no-ko/65"
         }
       }
     },
