@@ -36,10 +36,14 @@ export const MuitoManga: pageInterface = {
       return Number(utils.urlPart(url, 5).replace('capitulo-', ''));
     },
     nextEpUrl(url) {
-      return utils.absoluteLink(
+      const link = utils.absoluteLink(
         j.$('.widgtl .botao_caps').last().attr('href') || '',
         MuitoManga.domain,
       );
+      if (utils.urlPart(link, 3) === 'manga') {
+        return undefined;
+      }
+      return link;
     },
   },
   overview: {
@@ -74,6 +78,8 @@ export const MuitoManga: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    page.handlePage();
+    j.$(() => {
+      page.handlePage();
+    });
   },
 };
