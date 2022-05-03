@@ -315,10 +315,6 @@ module.exports = {
     ],
   },
   // animekisa
-  animekisa: {
-    match: ['*://third-party.animekisa.tv/player-*.php?*'],
-  },
-  // animekisa
   cloud9: {
     match: ['*://cloud9.to/e*/*'],
   },

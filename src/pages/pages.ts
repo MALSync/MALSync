@@ -14,7 +14,6 @@ import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
-import { AnimeKisa } from './AnimeKisa/main';
 import { Wakanim } from './Wakanim/main';
 import { AnimeIndo } from './AnimeIndo/main';
 import { Shinden } from './Shinden/main';
@@ -155,7 +154,6 @@ export const pages = {
   Plex,
   Aniflix,
   KickAssAnime,
-  AnimeKisa,
   AnimeIndo,
   Shinden,
   Voiranime,
