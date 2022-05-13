@@ -6,6 +6,9 @@
     "Gogoanime": [
       "https://gogoanime.sk/*"
     ],
+    "DreamSub": [
+      "https://dreamsub.me/*"
+    ],
     "iframe": [
       "https://goload.pro/streaming.php?*",
       "https://goload.pro/load.php?*",
