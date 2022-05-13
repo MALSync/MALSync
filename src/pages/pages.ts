@@ -85,7 +85,6 @@ import { MangaSee } from './MangaSee/main';
 import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
-import { Pantsubase } from './Pantsubase/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
 import { MerakiScans } from './MerakiScans/main';
@@ -224,7 +223,6 @@ export const pages = {
   AnimeTribes,
   Okanime,
   BSTO,
-  Pantsubase,
   AsuraScans,
   NaniScans,
   MerakiScans,
