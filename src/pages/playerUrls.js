@@ -495,7 +495,7 @@ module.exports = {
   },
   // animewho
   voe: {
-    match: ['*://voe.sx/*'],
+    match: ['*://voe.sx/*', '*://voe-unblock.com/e/*'],
   },
   // animewho
   vidoo: {
