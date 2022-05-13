@@ -2,7 +2,6 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const pagesUtils = require('./utils/pages');
-const pages = pagesUtils.pages();
 const playerUrls = require('../src/pages/playerUrls');
 const mkdirp = require('mkdirp');
 
@@ -19,7 +18,6 @@ async function main() {
   } catch (error) {
     await ex(`unzip -o dist/lastExtension.zip -d dist/lastExtension`);
   }
-
 
   const manifest = require('../dist/lastExtension/manifest.json');
 
@@ -41,8 +39,12 @@ async function main() {
 function getDiff(oldUrls) {
   res = {};
 
+  const oldPages = fs.readdirSync(path.join(__dirname, '../dist/lastExtension/content'))
+    .filter(el => el.startsWith('page_') && el.endsWith('.js'))
+    .map(el => el.replace('page_', '').replace('.js', ''))
+
   // Page urls
-  pages.forEach(page => {
+  oldPages.forEach(page => {
     const urls = pagesUtils.urls(page);
     const diffUrls = urls.match.filter(el => !oldUrls.includes(el)).map(el => formatUrls(el));
     if (diffUrls.length) {
