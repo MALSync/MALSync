@@ -436,9 +436,11 @@ module.exports = {
       '*://dood.watch/*',
       '*://doodstream.com/*',
       '*://dood.la/*',
+      '*://*.dood.video/*',
       '*://dood.ws/e/*',
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
+      '*://dood.pm/e/*',
     ],
   },
   // animedao.to
