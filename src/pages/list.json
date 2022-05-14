@@ -688,10 +688,5 @@
     "domain": "https://www.animetoast.cc",
     "type": "anime",
     "name": "Animetoast"
-  },
-  {
-    "domain": "https://oxyanime.to",
-    "type": "anime",
-    "name": "OxyAnime"
   }
 ]
