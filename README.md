@@ -300,6 +300,10 @@ Makes it possible to use your MyAnimeList/Anilist/Kitsu/Simkl anime/mangalist as
                 <td><a href="https://www.animetoast.cc"><img src="https://favicon.malsync.moe/?domain=https://www.animetoast.cc"> Animetoast</a></td>
                 <td></td>
                 <td></td>
+              </tr><tr>
+                <td><a href="https://oxyanime.to"><img src="https://favicon.malsync.moe/?domain=https://oxyanime.to"> OxyAnime</a></td>
+                <td></td>
+                <td></td>
               </tr>
     </tbody>
   </table>

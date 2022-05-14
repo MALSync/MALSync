@@ -523,6 +523,13 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://oxyanime.to"><img src="https://favicon.malsync.moe/?domain=https://oxyanime.to"> OxyAnime</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr>
     </tbody>
   </table>
@@ -997,4 +1004,3 @@
   </tr>
     </tbody>
   </table>
-  
