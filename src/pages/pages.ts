@@ -137,7 +137,7 @@ import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
-import { OxyAnime } from './Oxyanime/main';
+import { OxyAnime } from './OxyAnime/main';
 
 export const pages = {
   nineAnime,

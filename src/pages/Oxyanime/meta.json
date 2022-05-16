@@ -1,6 +1,0 @@
-{
-  "search": "https://oxyanime.to/#/search/q/{searchterm}",
-  "urls": {
-    "match": ["*://oxyanime.to/*"]
-  }
-}
