@@ -310,7 +310,7 @@ async function getAuthPolicy() {
   const response = await apiCall('/index/v2', 'GET', { bearer: true });
   if (response.status !== 200) throw 'Could not get Policy';
   const data = JSON.parse(response.responseText) as {
-    cms: {
+    cms_beta: {
       bucket: string;
       policy: string;
       signature: string;
@@ -319,10 +319,10 @@ async function getAuthPolicy() {
     };
   };
 
-  authObj.bucket.path = data.cms.bucket;
-  authObj.bucket.keyPairId = data.cms.key_pair_id;
-  authObj.bucket.policy = data.cms.policy;
-  authObj.bucket.signature = data.cms.signature;
+  authObj.bucket.path = data.cms_beta.bucket;
+  authObj.bucket.keyPairId = data.cms_beta.key_pair_id;
+  authObj.bucket.policy = data.cms_beta.policy;
+  authObj.bucket.signature = data.cms_beta.signature;
 
   logger.log(authObj);
 }
