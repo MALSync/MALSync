@@ -137,6 +137,7 @@ import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
+import { MuitoManga } from './MuitoManga/main';
 import { OxyAnime } from './OxyAnime/main';
 
 export const pages = {
@@ -279,5 +280,6 @@ export const pages = {
   AnimeOnsen,
   Puray,
   Animetoast,
+  MuitoManga,
   OxyAnime,
 };
