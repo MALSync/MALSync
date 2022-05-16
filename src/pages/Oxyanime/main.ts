@@ -7,40 +7,48 @@ export const OxyAnime: pageInterface = {
   languages: ['English'],
   type: 'anime',
   isSyncPage(url) {
-    if (url.split('/')[4] === "watch") {
+    if (url.split('/')[4] === 'watch') {
       return true;
     }
     return false;
   },
   isOverviewPage(url) {
-    if ( url.split('/')[4] === 'detail' ){
+    if (url.split('/')[4] === 'detail') {
       return true;
     }
     return false;
   },
   sync: {
     getTitle(url) {
-      let title =  url.split('/')[5];
-      return title.replace('-'," ");
+      const title = url.split('/')[5];
+      return title.replace('-', ' ');
     },
     getIdentifier(url) {
       return url.split('/')[5];
     },
     getOverviewUrl(url) {
-      return (OxyAnime.domain+ "/" + j.$('.titlecss > .w3-tag').attr("href"));
+      return `${OxyAnime.domain}/${j.$('.titlecss > .w3-tag').attr('href')}`;
     },
     getEpisode(url) {
       return Number(j.$('.ep_container > div > div > button.active').text());
     },
     uiSelector(selector) {
-      j.$('.w3-rest > .w3-card-4.w3-container.w3-border-bottom > div').before(j.html(`<section style="font-size: 12px;padding: 5px;">${selector}</section>`));
+      j.$('.w3-rest > .w3-card-4.w3-container.w3-border-bottom > div').before(
+        j.html(`<section style="font-size: 12px;padding: 5px;">${selector}</section>`),
+      );
     },
     nextEpUrl(url) {
-      let nextep = j.$('.ep_container > div > div > button.active').parent("div").next().find('button').text().trim();
-      if(!nextep){
+      let nextep = j
+        .$('.ep_container > div > div > button.active')
+        .parent('div')
+        .next()
+        .find('button')
+        .text()
+        .trim();
+      if (!nextep) {
         nextep = j.$('.ep_container > div > div > button.active').text().trim();
       }
-      return (OxyAnime.domain+"/#/watch/"+OxyAnime.sync.getIdentifier(url)+"/"+nextep+"/0");
+      return `${OxyAnime.domain}/#/watch/${OxyAnime.sync.getIdentifier(url)}/${nextep}/0`;
     },
   },
   overview: {
@@ -48,14 +56,15 @@ export const OxyAnime: pageInterface = {
       return j.$('.w3-threequarter > div:nth-child(1) > h2').text();
     },
     getIdentifier(url) {
-      if(url.split('/')[6] == "0"){
+      if (url.split('/')[6] === '0') {
         return url.split('/')[5];
-      }else{
-        return url.split('/')[6];
       }
+      return url.split('/')[6];
     },
     uiSelector(selector) {
-      j.$('.w3-threequarter > div:nth-child(1) >  h2').before(j.html(`<section>${selector}</section>`));
+      j.$('.w3-threequarter > div:nth-child(1) >  h2').before(
+        j.html(`<section>${selector}</section>`),
+      );
     },
     list: {
       offsetHandler: false,
@@ -63,8 +72,10 @@ export const OxyAnime: pageInterface = {
         return j.$('.ep_container > div > div > button');
       },
       elementUrl(selector) {
-        let ep = selector.text().trim()
-        return OxyAnime.domain+"/#/watch/"+OxyAnime.sync.getIdentifier(window.location.href)+"/"+ep+"/0";
+        const ep = selector.text().trim();
+        return `${OxyAnime.domain}/#/watch/${OxyAnime.sync.getIdentifier(
+          window.location.href,
+        )}/${ep}/0`;
       },
       elementEp(selector) {
         return Number(selector.text());
@@ -72,7 +83,7 @@ export const OxyAnime: pageInterface = {
     },
   },
   init(page) {
-    con.log("MALSYNC connect Oxyanime");
+    con.log('MALSYNC connect Oxyanime');
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
@@ -90,22 +101,25 @@ export const OxyAnime: pageInterface = {
         function () {
           return checkpath(window.location.href);
         },
-        function(){
+        function () {
           page.handlePage();
           utils.urlChangeDetect(function () {
             reload();
           });
-        }
+        },
       );
     }
 
-    function checkpath(url:string){
-      if(OxyAnime.isOverviewPage!(url) && j.$('.w3-threequarter > div:nth-child(1) > h2').text().length)
+    function checkpath(url: string) {
+      if (
+        OxyAnime.isOverviewPage!(url) &&
+        j.$('.w3-threequarter > div:nth-child(1) > h2').text().length
+      )
         return true;
-      else if(OxyAnime.isSyncPage!(url) && j.$('.titlecss').text().search("Loading...") == -1 ){
+      if (OxyAnime.isSyncPage!(url) && j.$('.titlecss').text().search('Loading...') === -1) {
         return true;
-      }else
-        return false;
+      }
+      return false;
     }
   },
 };
