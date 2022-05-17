@@ -71,6 +71,12 @@ export const settingsObj = {
     introSkip: 85,
     introSkipFwd: [17, 39],
     introSkipBwd: [17, 37],
+
+    shortSkipFwd: [],
+    shortSkipBwd: [],
+    shortSkipFwdInterval: 30,
+    shortSkipBwdInterval: 10,
+
     nextEpShort: [],
     correctionShort: [67],
     syncShort: [],

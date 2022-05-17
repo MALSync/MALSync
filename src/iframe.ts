@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     }
     if (typeof msg.timeAdd !== 'undefined') {
       tempPlayer.play();
-      addVideoTime(msg.timeAdd);
+      addVideoTime(msg.timeAdd, false);
     }
   } else if (msg.action === 'content') {
     switch (msg.item.action) {
@@ -42,10 +42,16 @@ api.settings.init().then(() => {
     con.log('[iframe] Shortcut', shortcut);
     switch (shortcut.shortcut) {
       case 'introSkipFwd':
-        addVideoTime(true);
+        addVideoTime(true, false);
         break;
       case 'introSkipBwd':
-        addVideoTime(false);
+        addVideoTime(false, false);
+        break;
+      case 'shortSkipFwd':
+        addVideoTime(true, true);
+        break;
+      case 'shortSkipBwd':
+        addVideoTime(false, true);
         break;
       case 'nextEpShort':
         chrome.runtime.sendMessage({
@@ -70,12 +76,21 @@ api.settings.init().then(() => {
   });
 });
 
-async function addVideoTime(forward: boolean) {
+async function addVideoTime(forward: boolean, shortSkip: boolean) {
   if (typeof tempPlayer === 'undefined') {
     con.error('[Iframe] No player Found');
     return;
   }
-  let time = parseInt(await api.settings.getAsync('introSkip'));
+  let time;
+  if (shortSkip) {
+    if (forward) {
+      time = parseInt(await api.settings.getAsync('shortSkipFwdInterval'));
+    } else {
+      time = parseInt(await api.settings.getAsync('shortSkipBwdInterval'));
+    }
+  } else {
+    time = parseInt(await api.settings.getAsync('introSkip'));
+  }
   if (!forward) time = 0 - time;
   const totalTime = tempPlayer.currentTime + time;
   if (tempPlayer.duration && tempPlayer.duration > 15 && totalTime > tempPlayer.duration - 3) {

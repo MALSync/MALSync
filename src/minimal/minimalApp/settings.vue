@@ -343,6 +343,20 @@
         <numberInput v-if="isExtension()" option="introSkip" :min="5">{{
           lang('settings_introSkip', [options.introSkip])
         }}</numberInput>
+
+        <shortcut v-if="isExtension()" option="shortSkipFwd">{{
+          lang('settings_Shortcuts_Short_Skip_Forward')
+        }}</shortcut>
+        <numberInput v-if="isExtension()" option="shortSkipFwdInterval" :min="2">{{
+          lang('settings_Short_Skip_Forward', [options.shortSkipFwdInterval])
+        }}</numberInput>
+
+        <shortcut v-if="isExtension()" option="shortSkipBwd">{{
+          lang('settings_Shortcuts_Short_Skip_Backward')
+        }}</shortcut>
+        <numberInput v-if="isExtension()" option="shortSkipBwdInterval" :min="2">{{
+          lang('settings_Short_Skip_Backward', [options.shortSkipBwdInterval])
+        }}</numberInput>
       </div>
 
       <div

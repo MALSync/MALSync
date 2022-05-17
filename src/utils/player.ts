@@ -180,6 +180,8 @@ const shortcutOptions = [
   //
   'introSkipFwd',
   'introSkipBwd',
+  'shortSkipFwd',
+  'shortSkipBwd',
   'nextEpShort',
   'correctionShort',
   'syncShort',

@@ -854,6 +854,34 @@
       }
     }
   },
+  "settings_Shortcuts_Short_Skip_Forward": {
+    "message": "Skips forward the video",
+    "description": "Description for the the video skip forward shortcut"
+  },
+  "settings_Shortcuts_Short_Skip_Backward": {
+    "message": "Skips backward the video",
+    "description": "Description for the the video skip backward shortcut"
+  },
+  "settings_Short_Skip_Forward": {
+    "message": "Set forward skip length ($Seconds$ seconds)",
+    "description": "Skips video seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "settings_Short_Skip_Backward": {
+    "message": "Set backward skip length ($Seconds$ seconds)",
+    "description": "Skips video seconds",
+    "placeholders": {
+      "Seconds": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
   "settings_UpdateCheck": {
     "message": "Update Check",
     "description": "Update Check"

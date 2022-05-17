@@ -104,10 +104,16 @@ function messagePageListener(page) {
     con.log('[content] Shortcut', shortcut);
     switch (shortcut.shortcut) {
       case 'introSkipFwd':
-        addVideoTime(true);
+        addVideoTime(true, false);
         break;
       case 'introSkipBwd':
-        addVideoTime(false);
+        addVideoTime(false, false);
+        break;
+      case 'shortSkipFwd':
+        addVideoTime(true, true);
+        break;
+      case 'shortSkipBwd':
+        addVideoTime(false, true);
         break;
       case 'nextEpShort':
         page.openNextEp();
@@ -122,7 +128,7 @@ function messagePageListener(page) {
       default:
     }
 
-    async function addVideoTime(forward: boolean) {
+    async function addVideoTime(forward: boolean, shortSkip: boolean) {
       if (typeof page.tempPlayer === 'undefined') {
         if (!timeAddCb) {
           con.error('[content] No iframe and onsite player found');
@@ -131,7 +137,16 @@ function messagePageListener(page) {
         timeAddCb(forward);
         return;
       }
-      let time = parseInt(await api.settings.getAsync('introSkip'));
+      let time;
+      if (shortSkip) {
+        if (forward) {
+          time = parseInt(await api.settings.getAsync('shortSkipFwdInterval'));
+        } else {
+          time = parseInt(await api.settings.getAsync('shortSkipBwdInterval'));
+        }
+      } else {
+        time = parseInt(await api.settings.getAsync('introSkip'));
+      }
       if (!forward) time = 0 - time;
 
       const totalTime = page.tempPlayer.currentTime + time;
