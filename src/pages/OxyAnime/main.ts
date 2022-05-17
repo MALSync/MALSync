@@ -21,7 +21,7 @@ export const OxyAnime: pageInterface = {
   sync: {
     getTitle(url) {
       const title = url.split('/')[5];
-      return title.replace(/\-/g,' ');
+      return title.replace(/-/g, ' ');
     },
     getIdentifier(url) {
       return url.split('/')[5];
