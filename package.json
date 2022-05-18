@@ -60,7 +60,7 @@
     "terser-webpack-plugin": "^5.2.4",
     "to-string-loader": "github:gajus/to-string-loader",
     "ts-loader": "^9.2.6",
-    "ts-mocha": "^9.0.0",
+    "ts-mocha": "^10.0.0",
     "ts-node": "^10.0.0",
     "typescript": "^4.0.0",
     "vue-loader": "^17.0.0",
