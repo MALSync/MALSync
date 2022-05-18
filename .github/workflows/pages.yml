@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - id: files
-      allow_failure: true
+      continue-on-error: true
       uses: jitterbit/get-changed-files@v1
       with:
         format: 'json'
