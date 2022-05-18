@@ -409,6 +409,7 @@ module.exports = {
       '*://vizcloud.xyz/embed/*',
       '*://vizcloud.live/embed/*',
       '*://vizcloud.digital/embed/*',
+      '*://vizcloud.cloud/embed/*',
     ],
   },
   // gogo
