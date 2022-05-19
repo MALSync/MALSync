@@ -9,7 +9,10 @@
         "sync": false,
         "title": "No Game No Life",
         "identifier": "eb57cab2-b5bf-4317-9928-7215921a74d2",
-        "uiSelector": true
+        "uiSelector": true,
+        "epList": {
+          "6": "https://mangadex.org/chapter/53528c0c-e28e-485b-9a16-86a35c10cb66"
+        }
       }
     },
     {

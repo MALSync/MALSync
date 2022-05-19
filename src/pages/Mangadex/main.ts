@@ -6,6 +6,8 @@ const { asyncWaitUntilTrue: awaitUi, reset: resetAwaitUi } = utils.getAsyncWaitU
   () => j.$(uiSelec).length,
 );
 
+let listUpdate: number;
+
 const mangaData = {
   id: '',
   title: '',
@@ -88,6 +90,24 @@ export const Mangadex: pageInterface = {
     getMalUrl(provider) {
       return Mangadex.sync.getMalUrl!(provider);
     },
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('.chapter').closest('.bg-accent');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.find('a').first().attr('href'), Mangadex.domain);
+      },
+      elementEp(selector) {
+        // multi line
+        let epText = selector.find('.font-bold:not(.ml-1):not(a)').first().text();
+        // single line
+        if (!epText) epText = selector.find('a').first().attr('title')!;
+        const ep = epText.match(/ch(apter)?\.? *(\d+)/i);
+        if (!ep) return 0;
+        return Number(ep[2]);
+      },
+    },
   },
   init(page) {
     api.storage.addStyle(
@@ -113,6 +133,7 @@ export const Mangadex: pageInterface = {
 
     async function check() {
       resetAwaitUi();
+      clearInterval(listUpdate);
       if (
         !Mangadex.isSyncPage(window.location.href) &&
         !Mangadex.isOverviewPage!(window.location.href)
@@ -137,6 +158,11 @@ export const Mangadex: pageInterface = {
         const mangaResponse = await request(`manga/${id}?includes[]=cover_art`);
         manga = JSON.parse(mangaResponse.responseText);
         await awaitUi();
+
+        listUpdate = utils.changeDetect(
+          () => page.handleList(),
+          () => $('.chapter').first().text() + $('.chapter').last().text(),
+        );
       }
 
       mangaData.id = manga.data.id;
