@@ -87,7 +87,6 @@ import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
-import { MerakiScans } from './MerakiScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
@@ -225,7 +224,6 @@ export const pages = {
   BSTO,
   AsuraScans,
   NaniScans,
-  MerakiScans,
   Jellyfin,
   An1me,
   MangaJar,
