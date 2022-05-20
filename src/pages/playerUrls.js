@@ -698,4 +698,12 @@ module.exports = {
   kaast: {
     match: ['*://*.kaast1.com/*'],
   },
+  // goyabu
+  kanra: {
+    match: ['*://kanra.dev/*'],
+  },
+  // simplyaweeb
+  simplyaweeb: {
+    match: ['*://player.simplyaweeb.to/*'],
+  },
 };
