@@ -139,6 +139,7 @@ import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
+
 export const pages = {
   nineAnime,
   Crunchyroll,
