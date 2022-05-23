@@ -1,0 +1,39 @@
+{
+    "title": "RealmScans",
+    "url": "https://realmscans.com/",
+    "testCases": [
+      {
+        "url": "https://realmscans.com/eternal-club-chapter-84/",
+        "expected": {
+          "sync": true,
+          "title": "Eternal Club",
+          "identifier": "eternal-club",
+          "overviewUrl": "https://realmscans.com/series/eternal-club/",
+          "episode": 84,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://realmscans.com/infinite-level-up-in-murim-chapter-113/",
+        "expected": {
+          "sync": true,
+          "title": "Infinite Level up in Murim",
+          "identifier": "infinite-level-up-in-murim",
+          "overviewUrl": "https://realmscans.com/series/infinite-level-up-in-murim/",
+          "episode": 113,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://realmscans.com/noble-reincarnation-blessed-with-the-strongest-power-from-birth-chapter-18/",
+        "expected": {
+          "sync": true,
+          "title": "Noble Reincarnation – Blessed With the Strongest Power from Birth",
+          "identifier": "noble-reincarnation-blessed-with-the-strongest-power-from-birth",
+          "overviewUrl": "https://realmscans.com/series/noble-reincarnation-blessed-with-the-strongest-power-from-birth/",
+          "episode": 18,
+          "uiSelector": false
+        }
+      }
+    ]
+  }
