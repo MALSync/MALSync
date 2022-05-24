@@ -6,7 +6,7 @@ export const AnimeOdcinki: pageInterface = {
   languages: ['Polish'],
   type: 'anime',
   isSyncPage(url) {
-    return url.split('/')[5] !== undefined;
+    return Boolean(url.split('/')[5]);
   },
   isOverviewPage(url) {
     return Boolean(utils.urlPart(url, 4));
@@ -60,7 +60,7 @@ export const AnimeOdcinki: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
-      if (page.url.split('/')[5] !== undefined) {
+      if (AnimeOdcinki.isSyncPage(page.url)) {
         page.handlePage();
       } else {
         utils.waitUntilTrue(
