@@ -16,15 +16,11 @@ body:
       placeholder: A list of steps to reproduce the described bug.
     validations:
       required: true
-  - type: dropdown
+  - type: input
     id: browser
     attributes:
       label: Browser
       description: What browser are you using?
-      multiple: true
-      options:
-        - Chrome
-        - Firefox
     validations:
       required: true
   - type: dropdown
