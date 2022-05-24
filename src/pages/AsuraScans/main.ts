@@ -77,6 +77,11 @@ export const AsuraScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
+      if (document.title.includes('Page not found')) {
+        con.error('404');
+        return;
+      }
+
       if (AsuraScans.isSyncPage(window.location.href)) {
         utils.waitUntilTrue(
           function () {
