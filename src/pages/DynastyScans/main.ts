@@ -82,6 +82,10 @@ export const DynastyScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(() => {
+      if (document.title.includes("The page you were looking for doesn't exist")) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },
