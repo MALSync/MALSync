@@ -1,6 +1,6 @@
 {
-    "search": "https://realmscans.com/?s=searchtermPlus",
+    "search": "https://realmscans.com/?s={searchtermPlus}",
     "urls": {
-      "match": ["*://realmscans.com/*"]
+      "match": ["*://realmscans.com*"]
     }
   }

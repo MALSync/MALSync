@@ -2,51 +2,40 @@ import { pageInterface } from '../pageInterface';
 
 export const RealmScans: pageInterface = {
   name: 'RealmScans',
-  domain: 'https://realmscans.com/',
+  domain: 'https://realmscans.com',
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (
-      j.$(
-        'div.entry-content.entry-content-single.maincontent > div.chnav.ctop.nomirror > span.selector.slc.l > div',
-      ).length
-    ) {
-      return true;
-    }
-    return false;
+    return j.$('#screenmode').length > 0;
   },
   isOverviewPage(url) {
     return utils.urlPart(url, 3) === 'series';
   },
   getImage() {
-    return j.$('div.main-info > div.info-left > div > div.thumb > img').attr('src');
+    return j.$('div.thumb > img').attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a > span').text();
+      return j.$('ol > li:nth-child(2) > a > span').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3).split('-chapter-')[0];
+      const temp_ident = j.$('ol > li:nth-child(2) > a').attr('href') || '';
+      return utils.urlPart(temp_ident, 4);
     },
     getOverviewUrl(url) {
-      return j.$('div.ts-breadcrumb.bixbox > ol > li:nth-child(2) > a').attr('href') || '';
+      return j.$('ol > li:nth-child(2) > a').attr('href') || '';
     },
     getEpisode(url) {
-      let episodePart = utils.urlPart(url, 3).split('-chapter-')[1];
+      const episodePart = utils.urlPart(url, 3);
 
-      if (!episodePart || !episodePart.length) return 0;
+      const temp = episodePart.match(/-chapter-\d+/gim);
 
-      if (episodePart.includes('-') === true) {
-        episodePart = episodePart.split('-')[0];
-      }
-      return Number(episodePart);
+      if (!temp || temp.length === 0) return 1;
+
+      return Number(temp[0].replace(/\D+/g, ''));
     },
     nextEpUrl(url) {
-      return j
-        .$(
-          'div.entry-content.entry-content-single.maincontent > div.chnav.ctop.nomirror > span.navlef > span.npv.r > div > a.ch-next-btn',
-        )
-        .attr('src');
+      return j.$('a.ch-next-btn:first').attr('src');
     },
   },
   overview: {
@@ -54,7 +43,7 @@ export const RealmScans: pageInterface = {
       return j.$('#titlemove > h1').text();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3);
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('#series-history').first().after(j.html(selector));

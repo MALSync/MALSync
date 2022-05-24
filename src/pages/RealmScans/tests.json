@@ -25,14 +25,16 @@
         }
       },
       {
-        "url": "https://realmscans.com/noble-reincarnation-blessed-with-the-strongest-power-from-birth-chapter-18/",
+        "url": "https://realmscans.com/series/noble-reincarnation-blessed-with-the-strongest-power-from-birth/",
         "expected": {
-          "sync": true,
-          "title": "Noble Reincarnation – Blessed With the Strongest Power from Birth",
-          "identifier": "noble-reincarnation-blessed-with-the-strongest-power-from-birth",
-          "overviewUrl": "https://realmscans.com/series/noble-reincarnation-blessed-with-the-strongest-power-from-birth/",
-          "episode": 18,
-          "uiSelector": false
+        "sync": false,
+        "title": "Noble Reincarnation – Blessed With the Strongest Power from Birth",
+        "identifier": "noble-reincarnation-blessed-with-the-strongest-power-from-birth",
+        "uiSelector": true,
+        "epList": {
+          "18": "https://realmscans.com/noble-reincarnation-blessed-with-the-strongest-power-from-birth-chapter-18/",
+          "1": "https://realmscans.com/noble-reincarnation-blessed-with-the-strongest-power-from-birth-chapter-1/"
+        }
         }
       }
     ]
