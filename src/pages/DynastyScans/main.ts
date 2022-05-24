@@ -35,7 +35,7 @@ export const DynastyScans: pageInterface = {
       );
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), url) || url;
+      return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), DynastyScans.domain);
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
