@@ -1,6 +1,6 @@
 {
-  "search": "https://dreamsub.cc/search/?q={searchtermPlus}",
+  "search": "https://dreamsub.me/search/?q={searchtermPlus}",
   "urls": {
-    "match": ["*://dreamsub.cc/*"]
+    "match": ["*://dreamsub.cc/*", "*://dreamsub.me/*"]
   }
 }

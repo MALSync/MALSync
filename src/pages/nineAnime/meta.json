@@ -19,7 +19,8 @@
       "*://*.9anime.ws/watch/*",
       "*://*.9anime.id/watch/*",
       "*://*.9anime.center/watch/*",
-      "*://*.9anime.club/watch/*"
+      "*://*.9anime.club/watch/*",
+      "*://*.9anime.pl/watch/*"
     ]
   }
 }

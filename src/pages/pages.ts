@@ -107,6 +107,7 @@ import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { Japanread } from './Japanread/main';
+import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -136,6 +137,7 @@ import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
+import { MuitoManga } from './MuitoManga/main';
 
 export const pages = {
   nineAnime,
@@ -247,6 +249,7 @@ export const pages = {
   ComicK,
   AnimeShitai,
   Japanread,
+  Bentomanga,
   MangaSushi,
   ArangScans,
   HunlightScans,
@@ -276,4 +279,5 @@ export const pages = {
   AnimeOnsen,
   Puray,
   Animetoast,
+  MuitoManga,
 };

@@ -357,6 +357,10 @@ module.exports = {
       '*://*.goload.one/load.php?*',
       '*://*.goload.one/loadserver.php?*',
       '*://*.goload.one/embedplus*',
+      '*://*.goload.pro/streaming.php?*',
+      '*://*.goload.pro/load.php?*',
+      '*://*.goload.pro/loadserver.php?*',
+      '*://*.goload.pro/embedplus*',
       '*://*.gogoplay1.com/streaming.php?*',
       '*://*.gogoplay1.com/load.php?*',
       '*://*.gogoplay1.com/loadserver.php?*',
@@ -394,15 +398,30 @@ module.exports = {
   // 9anime
   vidstream: {
     match: [
+      '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
       '*://vidstreamz.online/embed/*',
+      '*://vidstreamz.online/e/*',
       '*://vidstream.pro/embed/*',
+      '*://vidstream.pro/e/*',
       '*://vizcloud.ru/embed/*',
+      '*://vizcloud.ru/e/*',
       '*://vizcloud2.ru/embed/*',
+      '*://vizcloud2.ru/e/*',
       '*://vizcloud2.online/embed/*',
+      '*://vizcloud2.online/e/*',
       '*://vizcloud.online/embed/*',
+      '*://vizcloud.online/e/*',
       '*://vizstream.ru/embed/*',
+      '*://vizstream.ru/e/*',
       '*://vizcloud.xyz/embed/*',
+      '*://vizcloud.xyz/e/*',
+      '*://vizcloud.live/embed/*',
+      '*://vizcloud.live/e/*',
+      '*://vizcloud.digital/embed/*',
+      '*://vizcloud.digital/e/*',
+      '*://vizcloud.cloud/embed/*',
+      '*://vizcloud.cloud/e/*',
     ],
   },
   // gogo
@@ -430,9 +449,11 @@ module.exports = {
       '*://dood.watch/*',
       '*://doodstream.com/*',
       '*://dood.la/*',
+      '*://*.dood.video/*',
       '*://dood.ws/e/*',
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
+      '*://dood.pm/e/*',
     ],
   },
   // animedao.to
@@ -489,7 +510,12 @@ module.exports = {
   },
   // animewho
   voe: {
-    match: ['*://voe.sx/*'],
+    match: [
+      '*://voe.sx/e/*',
+      '*://voe-unblock.com/e/*',
+      '*://voe-unblock.net/e/*',
+      '*://voeunblock.com/e/*',
+    ],
   },
   // animewho
   vidoo: {
@@ -672,5 +698,17 @@ module.exports = {
   // monoschinos
   solidfiles: {
     match: ['*://*.solidfiles.com/*'],
+  },
+  // kickassanime
+  kaast: {
+    match: ['*://*.kaast1.com/*'],
+  },
+  // goyabu
+  kanra: {
+    match: ['*://kanra.dev/*'],
+  },
+  // simplyaweeb
+  simplyaweeb: {
+    match: ['*://player.simplyaweeb.to/*'],
   },
 };

@@ -1,0 +1,6 @@
+{
+  "search": "https://muitomanga.com/buscar?q={searchtermPlus}",
+  "urls": {
+    "match": ["*://muitomanga.com/*"]
+  }
+}
