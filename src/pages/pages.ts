@@ -69,7 +69,6 @@ import { EdelgardeScans } from './EdelgardeScans/main';
 import { HatigarmScanz } from './HatigarmScanz/main';
 import { LeviatanScans } from './LeviatanScans/main';
 import { MethodScans } from './MethodScans/main';
-import { NonamesScans } from './NonamesScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
@@ -206,7 +205,6 @@ export const pages = {
   HatigarmScanz,
   LeviatanScans,
   MethodScans,
-  NonamesScans,
   ReaperScans,
   LynxScans,
   SKScans,
