@@ -10,7 +10,7 @@ export const RealmScans: pageInterface = {
   },
   isOverviewPage(url) {
     if (utils.urlPart(url, 3) === 'series' && utils.urlPart(url, 4)) return true;
-    else return false;
+    return false;
   },
   getImage() {
     return j.$('div.thumb img').attr('src');
@@ -37,7 +37,7 @@ export const RealmScans: pageInterface = {
     nextEpUrl(url) {
       const nextButton = j.$('a.ch-next-btn:first').attr('href');
       if (nextButton === '#/next/') return undefined;
-      else return nextButton;
+      return nextButton;
     },
   },
   overview: {
