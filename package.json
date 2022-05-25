@@ -113,7 +113,7 @@
     "@types/chrome": "0.0.186",
     "@vue/eslint-config-typescript": "^10.0.0",
     "async-mutex": "^0.3.0",
-    "dexie": "^3.0.3",
+    "dexie": "^3.2.2",
     "dompurify": "^2.3.2",
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.4",
