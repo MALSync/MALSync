@@ -12,27 +12,26 @@ export const RealmScans: pageInterface = {
     return utils.urlPart(url, 3) === 'series';
   },
   getImage() {
-    return j.$('div.thumb > img').attr('src');
+    return j.$('div.thumb img').attr('src');
   },
   sync: {
     getTitle(url) {
-      return j.$('ol > li:nth-child(2) > a > span').text();
+      return j.$('.ts-breadcrumb li:nth-child(2) [itemprop="name"]').text();
     },
     getIdentifier(url) {
-      const temp_ident = j.$('ol > li:nth-child(2) > a').attr('href') || '';
-      return utils.urlPart(temp_ident, 4);
+      return RealmScans.overview!.getIdentifier(RealmScans.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
-      return j.$('ol > li:nth-child(2) > a').attr('href') || '';
+      return j.$('.ts-breadcrumb li:nth-child(2) a').attr('href') || '';
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 3);
 
-      const temp = episodePart.match(/-chapter-\d+/gim);
+      const temp = episodePart.match(/-chapter-(\d+)/im);
 
-      if (!temp || temp.length === 0) return 1;
+      if (!temp) return NaN;
 
-      return Number(temp[0].replace(/\D+/g, ''));
+      return Number(temp[1]);
     },
     nextEpUrl(url) {
       return j.$('a.ch-next-btn:first').attr('src');
@@ -40,7 +39,7 @@ export const RealmScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('#titlemove > h1').text();
+      return j.$('#titlemove [itemprop="name"]').text();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -51,7 +50,7 @@ export const RealmScans: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#chapterlist > ul > li > div');
+        return j.$('#chapterlist .chbox');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), RealmScans.domain);
