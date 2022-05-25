@@ -9,7 +9,8 @@ export const RealmScans: pageInterface = {
     return j.$('#screenmode').length > 0;
   },
   isOverviewPage(url) {
-    return utils.urlPart(url, 3) === 'series';
+    if (utils.urlPart(url, 3) === 'series' && utils.urlPart(url, 4)) return true;
+    else return false;
   },
   getImage() {
     return j.$('div.thumb img').attr('src');
@@ -34,7 +35,9 @@ export const RealmScans: pageInterface = {
       return Number(temp[1]);
     },
     nextEpUrl(url) {
-      return j.$('a.ch-next-btn:first').attr('src');
+      const nextButton = j.$('a.ch-next-btn:first').attr('href');
+      if (nextButton === '#/next/') return undefined;
+      else return nextButton;
     },
   },
   overview: {
