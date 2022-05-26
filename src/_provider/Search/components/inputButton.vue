@@ -36,7 +36,7 @@ export default {
       this.inputString = this.state;
     },
     inputString() {
-      this.$emit('change', this.inputString);
+      this.$emit('changed', this.inputString);
     },
   },
   mounted() {
