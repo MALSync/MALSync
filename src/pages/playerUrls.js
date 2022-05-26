@@ -515,6 +515,7 @@ module.exports = {
       '*://voe-unblock.com/e/*',
       '*://voe-unblock.net/e/*',
       '*://voeunblock.com/e/*',
+      '*://voeunblock1.com/e/*',
     ],
   },
   // animewho
