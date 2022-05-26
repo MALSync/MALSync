@@ -502,7 +502,7 @@ module.exports = {
   },
   // animewho
   aparat: {
-    match: ['*://aparat.cam/*'],
+    match: ['*://aparat.cam/*', '*://www.aparat.com/video/video/embed/*'],
   },
   // animewho
   vudeo: {
