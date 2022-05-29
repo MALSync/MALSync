@@ -20,7 +20,7 @@ export const animepahe: pageInterface = {
       return getId();
     },
     getOverviewUrl(url) {
-      return getUrl(getId(), true);
+      return `${window.location.origin}/a/${getId()}`;
     },
     getEpisode(url) {
       return Number(
@@ -30,7 +30,7 @@ export const animepahe: pageInterface = {
     nextEpUrl(url) {
       const nextEp = j.$('.sequel a').first().attr('href');
       if (!nextEp) return '';
-      return getUrl(getId(), false, 1);
+      return utils.absoluteLink(nextEp, window.location.origin);
     },
     uiSelector(selector) {
       j.$('.anime-season').after(j.html(selector));
@@ -100,7 +100,7 @@ export const animepahe: pageInterface = {
         return typeof getId() !== 'undefined';
       },
       function () {
-        page.handlePage(getUrl(getId(), false));
+        page.handlePage();
       },
     );
   },
@@ -110,11 +110,4 @@ function getId() {
   const id = j.$('meta[name=id]').attr('content');
   if (id) return id;
   throw new Error('no id found');
-}
-
-function getUrl(aid, overviewForce, increment = 0) {
-  if (window.location.href.split('/')[3] !== 'play' || overviewForce) {
-    return `https://pahe.win/a/${aid}`;
-  }
-  return `https://pahe.win/a/${aid}/${animepahe.sync.getEpisode(window.location.href) + increment}`;
 }
