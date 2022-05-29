@@ -36,7 +36,7 @@ export const ZeroScans: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('.v-card__title').text().trim();
+      return j.$('.v-card__title.text-h4').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
