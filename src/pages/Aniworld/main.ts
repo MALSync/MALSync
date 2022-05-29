@@ -1,9 +1,9 @@
 import { pageInterface } from '../pageInterface';
 
-export const Anicloud: pageInterface = {
-  domain: 'https://anicloud.io',
+export const Aniworld: pageInterface = {
+  domain: 'https://aniworld.to',
   languages: ['German'],
-  name: 'Anicloud',
+  name: 'Aniworld',
   type: 'anime',
   isSyncPage(url: string): boolean {
     return (
@@ -54,7 +54,7 @@ export const Anicloud: pageInterface = {
         return j.$('div.hosterSiteDirectNav > ul:eq(1) > li > a');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), Anicloud.domain);
+        return utils.absoluteLink(selector.attr('href'), Aniworld.domain);
       },
       elementEp(selector) {
         return parseInt(selector.text());

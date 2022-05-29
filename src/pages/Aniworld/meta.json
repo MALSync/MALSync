@@ -1,0 +1,6 @@
+{
+  "search": "https://aniworld.to/search?q={searchterm}",
+  "urls": {
+    "match": ["*://aniworld.to/*"]
+  }
+}
