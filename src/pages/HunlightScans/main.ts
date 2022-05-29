@@ -1,4 +1,4 @@
-import { getInter } from '../ZeroScans/main';
+import { getInter } from '../LynxScans/main';
 import { pageInterface } from '../pageInterface';
 
 const clone = getInter();
