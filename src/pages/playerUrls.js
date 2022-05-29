@@ -394,17 +394,30 @@ module.exports = {
   // 9anime
   vidstream: {
     match: [
+      '*://vidstream.pro/embed/*',
       '*://vidstream.pro/e/*',
       '*://vidstreamz.online/embed/*',
+      '*://vidstreamz.online/e/*',
       '*://vidstream.pro/embed/*',
+      '*://vidstream.pro/e/*',
       '*://vizcloud.ru/embed/*',
+      '*://vizcloud.ru/e/*',
       '*://vizcloud2.ru/embed/*',
+      '*://vizcloud2.ru/e/*',
       '*://vizcloud2.online/embed/*',
+      '*://vizcloud2.online/e/*',
       '*://vizcloud.online/embed/*',
+      '*://vizcloud.online/e/*',
       '*://vizstream.ru/embed/*',
+      '*://vizstream.ru/e/*',
       '*://vizcloud.xyz/embed/*',
+      '*://vizcloud.xyz/e/*',
       '*://vizcloud.live/embed/*',
+      '*://vizcloud.live/e/*',
       '*://vizcloud.digital/embed/*',
+      '*://vizcloud.digital/e/*',
+      '*://vizcloud.cloud/embed/*',
+      '*://vizcloud.cloud/e/*',
     ],
   },
   // gogo
@@ -432,9 +445,11 @@ module.exports = {
       '*://dood.watch/*',
       '*://doodstream.com/*',
       '*://dood.la/*',
+      '*://*.dood.video/*',
       '*://dood.ws/e/*',
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
+      '*://dood.pm/e/*',
     ],
   },
   // animedao.to
@@ -483,7 +498,7 @@ module.exports = {
   },
   // animewho
   aparat: {
-    match: ['*://aparat.cam/*'],
+    match: ['*://aparat.cam/*', '*://www.aparat.com/video/video/embed/*'],
   },
   // animewho
   vudeo: {
@@ -491,7 +506,13 @@ module.exports = {
   },
   // animewho
   voe: {
-    match: ['*://voe.sx/*'],
+    match: [
+      '*://voe.sx/e/*',
+      '*://voe-unblock.com/e/*',
+      '*://voe-unblock.net/e/*',
+      '*://voeunblock.com/e/*',
+      '*://voeunblock1.com/e/*',
+    ],
   },
   // animewho
   vidoo: {
@@ -678,5 +699,13 @@ module.exports = {
   // kickassanime
   kaast: {
     match: ['*://*.kaast1.com/*'],
+  },
+  // goyabu
+  kanra: {
+    match: ['*://kanra.dev/*'],
+  },
+  // simplyaweeb
+  simplyaweeb: {
+    match: ['*://player.simplyaweeb.to/*'],
   },
 };

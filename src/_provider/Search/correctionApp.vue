@@ -20,7 +20,7 @@
         :state="offset"
         type="number"
         @clicked="setOffset"
-        @change="val => (inputOffset = val)"
+        @changed="val => (inputOffset = val)"
       ></input-button>
       <div v-if="inputOffset && inputOffset !== '0'" id="offsetUi">
         <div v-for="index in 5" :key="index" class="offsetBox">

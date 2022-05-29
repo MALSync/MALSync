@@ -65,10 +65,7 @@ import { YayAnimes } from './YayAnimes/main';
 import { DesuOnline } from './DesuOnline/main';
 import { Simplyaweeb } from './Simplyaweeb/main';
 import { WuxiaWorld } from './WuxiaWorld/main';
-import { EdelgardeScans } from './EdelgardeScans/main';
-import { HatigarmScanz } from './HatigarmScanz/main';
 import { LeviatanScans } from './LeviatanScans/main';
-import { MethodScans } from './MethodScans/main';
 import { ReaperScans } from './ReaperScans/main';
 import { LynxScans } from './LynxScans/main';
 import { SKScans } from './SKScans/main';
@@ -103,6 +100,7 @@ import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
 import { AnimeShitai } from './AnimeShitai/main';
 import { Japanread } from './Japanread/main';
+import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
 import { ArangScans } from './ArangScans/main';
 import { HunlightScans } from './HunlightScans/main';
@@ -132,6 +130,8 @@ import { MangaReader } from './MangaReader/main';
 import { AnimeOnsen } from './AnimeOnsen/main';
 import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
+import { MuitoManga } from './MuitoManga/main';
+import { RealmScans } from './RealmScans/main';
 
 export const pages = {
   nineAnime,
@@ -201,10 +201,7 @@ export const pages = {
   DesuOnline,
   Simplyaweeb,
   WuxiaWorld,
-  EdelgardeScans,
-  HatigarmScanz,
   LeviatanScans,
-  MethodScans,
   ReaperScans,
   LynxScans,
   SKScans,
@@ -239,6 +236,7 @@ export const pages = {
   ComicK,
   AnimeShitai,
   Japanread,
+  Bentomanga,
   MangaSushi,
   ArangScans,
   HunlightScans,
@@ -268,4 +266,6 @@ export const pages = {
   AnimeOnsen,
   Puray,
   Animetoast,
+  MuitoManga,
+  RealmScans,
 };

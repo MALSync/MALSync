@@ -3,27 +3,27 @@
   "url": "https://zeroscans.com/",
   "testCases": [
     {
-      "url": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/151",
+      "url": "https://zeroscans.com/comics/second-life-ranker/400",
       "expected": {
         "sync": true,
-        "title": "Hero? I Quit A Long Time Ago",
-        "identifier": "636122-hero-i-quit-a-long-time-ago",
-        "overviewUrl": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago",
-        "nextEpUrl": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/152",
-        "episode": 151,
+        "title": "Second Life Ranker",
+        "identifier": "second-life-ranker",
+        "overviewUrl": "https://zeroscans.com/comics/second-life-ranker",
+        "nextEpUrl": "https://zeroscans.com/comics/second-life-ranker/401",
+        "episode": 108,
         "uiSelector": false
       }
     },
     {
-      "url": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago",
+      "url": "https://zeroscans.com/comics/second-life-ranker",
       "expected": {
         "sync": false,
-        "title": "Hero? I Quit A Long Time Ago",
-        "identifier": "636122-hero-i-quit-a-long-time-ago",
+        "title": "Second Life Ranker",
+        "identifier": "second-life-ranker",
         "uiSelector": true,
         "epList": {
-          "58": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/58",
-          "180": "https://zeroscans.com/comics/636122-hero-i-quit-a-long-time-ago/1/180"
+          "104": "https://zeroscans.com/comics/second-life-ranker/396",
+          "115": "https://zeroscans.com/comics/second-life-ranker/4719"
         }
       }
     }

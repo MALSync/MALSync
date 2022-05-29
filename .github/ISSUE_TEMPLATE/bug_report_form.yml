@@ -1,0 +1,43 @@
+---
+name: Bug report
+description: Create a report to help us improve
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the Bug
+      placeholder: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    id: bug-reproduction
+    attributes:
+      label: Steps to reproduce the behavior
+      placeholder: A list of steps to reproduce the described bug.
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: What browser are you using?
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      description: How are you using MALSync?
+      multiple: true
+      options:
+        - Extension
+        - Userscript
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: What URL are you attempting to access?
+    validations:
+      required: true
