@@ -243,6 +243,12 @@
     <td style="width: 70px">
       {{ item.watchedEp }}/<template v-if="item.totalEp">{{ item.totalEp }}</template>
       <template v-else>?</template>
+      <span
+        v-if="
+          item.fn.progress && item.fn.progress.isAiring() && item.fn.progress.getCurrentEpisode()
+        "
+        > [{{ item.fn.progress.getCurrentEpisode() }}]</span
+      >
     </td>
     <td style="width: 57px">
       <template v-if="item.score">{{ item.score }}</template>
