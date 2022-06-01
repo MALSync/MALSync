@@ -135,6 +135,7 @@ import { Puray } from './Puray/main';
 import { Animetoast } from './Animetoast/main';
 import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
+import { LuminousScans } from './LuminousScans/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   Animetoast,
   MuitoManga,
   RealmScans,
+  LuminousScans,
 };
