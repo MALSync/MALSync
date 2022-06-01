@@ -247,7 +247,8 @@
         v-if="
           item.fn.progress && item.fn.progress.isAiring() && item.fn.progress.getCurrentEpisode()
         "
-        > [{{ item.fn.progress.getCurrentEpisode() }}]</span
+      >
+        [{{ item.fn.progress.getCurrentEpisode() }}]</span
       >
     </td>
     <td style="width: 57px">
