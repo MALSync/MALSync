@@ -40,5 +40,8 @@
       "https://kanra.dev/*",
       "https://player.simplyaweeb.to/*"
     ]
+  },
+  "0.8.21": {
+    "iframe": []
   }
 }

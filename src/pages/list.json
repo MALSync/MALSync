@@ -85,11 +85,6 @@
     "name": "KickAssAnime"
   },
   {
-    "domain": "https://animekisa.tv",
-    "type": "anime",
-    "name": "AnimeKisa"
-  },
-  {
     "domain": "https://animeindo.net",
     "type": "anime",
     "name": "AnimeIndo"
@@ -215,7 +210,7 @@
     "name": "bato"
   },
   {
-    "domain": "https://dreamsub.cc",
+    "domain": "https://dreamsub.me",
     "type": "anime",
     "name": "DreamSub"
   },
@@ -340,29 +335,9 @@
     "name": "WuxiaWorld"
   },
   {
-    "domain": "https://edelgardescans.com",
-    "type": "manga",
-    "name": "EdelgardeScans"
-  },
-  {
-    "domain": "https://hatigarmscanz.net",
-    "type": "manga",
-    "name": "HatigarmScanz"
-  },
-  {
     "domain": "https://leviatanscans.com",
     "type": "manga",
     "name": "LeviatanScans"
-  },
-  {
-    "domain": "https://methodscans.com",
-    "type": "manga",
-    "name": "MethodScans"
-  },
-  {
-    "domain": "https://the-nonames.com",
-    "type": "manga",
-    "name": "NonamesScans"
   },
   {
     "domain": "https://reaperscans.com",
@@ -440,11 +415,6 @@
     "name": "bs.to"
   },
   {
-    "domain": "https://pantsubase.tv",
-    "type": "anime",
-    "name": "Pantsubase"
-  },
-  {
     "domain": "https://asurascans.com",
     "type": "manga",
     "name": "AsuraScans"
@@ -453,11 +423,6 @@
     "domain": "https://naniscans.com",
     "type": "manga",
     "name": "NaniScans"
-  },
-  {
-    "domain": "https://merakiscans.com",
-    "type": "manga",
-    "name": "MerakiScans"
   },
   {
     "domain": "https://jellyfin.org/",
@@ -543,6 +508,11 @@
     "domain": "https://www.japanread.cc/",
     "type": "manga",
     "name": "Japanread"
+  },
+  {
+    "domain": "https://www.bentomanga.com",
+    "type": "manga",
+    "name": "Bentomanga"
   },
   {
     "domain": "https://mangasushi.net",
@@ -650,9 +620,9 @@
     "name": "AlphaScans"
   },
   {
-    "domain": "https://anicloud.io",
+    "domain": "https://aniworld.to",
     "type": "anime",
-    "name": "Anicloud"
+    "name": "Aniworld"
   },
   {
     "domain": "https://betteranime.net",
@@ -688,5 +658,20 @@
     "domain": "https://www.animetoast.cc",
     "type": "anime",
     "name": "Animetoast"
+  },
+  {
+    "domain": "https://muitomanga.com",
+    "type": "manga",
+    "name": "MuitoMangá"
+  },
+  {
+    "domain": "https://realmscans.com",
+    "type": "manga",
+    "name": "RealmScans"
+  },
+  {
+    "domain": "https://luminousscans.com",
+    "type": "manga",
+    "name": "LuminousScans"
   }
 ]

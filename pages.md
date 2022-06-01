@@ -8,7 +8,7 @@
         <th>Overview Page</th>
         <th>Next Episode</th>
         <th>Database Support</th>
-        <th>Update Check</th>
+        <th>Episode Highlight</th>
       </tr>
     </thead>
     <tbody>
@@ -31,13 +31,6 @@
     <td>Greek</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://anicloud.io"><img src="https://favicon.malsync.moe/?domain=https://anicloud.io"> Anicloud</a></td>
-    <td>German</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
@@ -85,13 +78,6 @@
   </tr><tr>
     <td><a href="https://animeindo.net"><img src="https://favicon.malsync.moe/?domain=https://animeindo.net"> AnimeIndo</a></td>
     <td>Indonesian</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://animekisa.tv"><img src="https://favicon.malsync.moe/?domain=https://animekisa.tv"> AnimeKisa</a></td>
-    <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -216,6 +202,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://aniworld.to"><img src="https://favicon.malsync.moe/?domain=https://aniworld.to"> Aniworld</a></td>
+    <td>German</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://betteranime.net"><img src="https://favicon.malsync.moe/?domain=https://betteranime.net"> BetterAnime</a></td>
     <td>Portuguese</td>
     <td>:x:</td>
@@ -244,7 +237,7 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://dreamsub.cc"><img src="https://favicon.malsync.moe/?domain=https://dreamsub.cc"> DreamSub</a></td>
+    <td><a href="https://dreamsub.me"><img src="https://favicon.malsync.moe/?domain=https://dreamsub.me"> DreamSub</a></td>
     <td>Italian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -391,13 +384,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://pantsubase.tv"><img src="https://favicon.malsync.moe/?domain=https://pantsubase.tv"> Pantsubase</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="http://app.plex.tv"><img src="https://favicon.malsync.moe/?domain=http://app.plex.tv"> Plex</a></td>
     <td>Many</td>
     <td>:heavy_check_mark:</td>
@@ -535,7 +521,7 @@
         <th>Overview Page</th>
         <th>Next Chapter</th>
         <th>Database Support</th>
-        <th>Update Check</th>
+        <th>Chapter Higlight</th>
       </tr>
     </thead>
     <tbody>
@@ -572,6 +558,13 @@
     <td>Many</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://www.bentomanga.com"><img src="https://favicon.malsync.moe/?domain=https://www.bentomanga.com"> Bentomanga</a></td>
+    <td>French</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
@@ -617,13 +610,6 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://edelgardescans.com"><img src="https://favicon.malsync.moe/?domain=https://edelgardescans.com"> EdelgardeScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
     <td><a href="https://manga.fascans.com"><img src="https://favicon.malsync.moe/?domain=https://manga.fascans.com"> FallenAngels</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -649,13 +635,6 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://hatigarmscanz.net"><img src="https://favicon.malsync.moe/?domain=https://hatigarmscanz.net"> HatigarmScanz</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
@@ -715,6 +694,13 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://luminousscans.com"><img src="https://favicon.malsync.moe/?domain=https://luminousscans.com"> LuminousScans</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://lynxscans.com"><img src="https://favicon.malsync.moe/?domain=https://lynxscans.com"> LynxScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
@@ -741,7 +727,7 @@
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="http://fanfox.net"><img src="https://favicon.malsync.moe/?domain=http://fanfox.net"> MangaFox</a></td>
     <td>English</td>
@@ -848,28 +834,14 @@
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
-    <td><a href="https://merakiscans.com"><img src="https://favicon.malsync.moe/?domain=https://merakiscans.com"> MerakiScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://methodscans.com"><img src="https://favicon.malsync.moe/?domain=https://methodscans.com"> MethodScans</a></td>
-    <td>English</td>
+    <td><a href="https://muitomanga.com"><img src="https://favicon.malsync.moe/?domain=https://muitomanga.com"> MuitoMangá</a></td>
+    <td>Portuguese</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://naniscans.com"><img src="https://favicon.malsync.moe/?domain=https://naniscans.com"> NaniScans</a></td>
-    <td>English</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://the-nonames.com"><img src="https://favicon.malsync.moe/?domain=https://the-nonames.com"> NonamesScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
@@ -891,6 +863,13 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://readmanhua.net"><img src="https://favicon.malsync.moe/?domain=https://readmanhua.net"> ReadManhua</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://realmscans.com"><img src="https://favicon.malsync.moe/?domain=https://realmscans.com"> RealmScans</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
