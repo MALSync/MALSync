@@ -731,6 +731,10 @@
     "message": "Últimos enlaces de página usados",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Actualizar UI",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Modo de IU sigilosa",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -909,9 +913,21 @@
     "message": "Limpiar caché",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Mostrar ícono de MAL-Sync en lugar del icono de la página",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Imagen de presencia",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Imagen de cartel",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Ícono de sitio web",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Ícono de Malsync",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Activado",
@@ -940,6 +956,10 @@
   "settings_custom_domains_button": {
     "message": "Dominios personalizados",
     "description": "Button that leads to the custom domain configuration page"
+  },
+  "settings_custom_domains_missing_permissions_header": {
+    "message": "Se detectaron permisos faltantes",
+    "description": "Section header for asking to allow missing domain permissions"
   },
   "settings_clean_tags_button": {
     "message": "Limpiar etiquetas",
