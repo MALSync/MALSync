@@ -1,6 +1,0 @@
-{
-  "search" : "https://animekisa.tv/search?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://animekisa.tv/*"]
-  }
-}

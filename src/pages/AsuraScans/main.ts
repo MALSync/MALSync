@@ -19,7 +19,7 @@ export const AsuraScans: pageInterface = {
       return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox span')[1]).text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(AsuraScans.sync.getOverviewUrl(url), 4);
+      return AsuraScans.overview!.getIdentifier(AsuraScans.sync.getOverviewUrl(url));
     },
     getOverviewUrl(url) {
       return j.$(j.$('div#content.readercontent div.ts-breadcrumb.bixbox a')[1]).attr('href') || '';
@@ -46,7 +46,7 @@ export const AsuraScans: pageInterface = {
       return j.$('h1.entry-title').text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4);
+      return utils.urlPart(url, 4).replace(/^\d+-/gi, '');
     },
     uiSelector(selector) {
       j.$('div.bixbox.animefull')
@@ -77,6 +77,11 @@ export const AsuraScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(document).ready(function () {
+      if (document.title.includes('Page not found')) {
+        con.error('404');
+        return;
+      }
+
       if (AsuraScans.isSyncPage(window.location.href)) {
         utils.waitUntilTrue(
           function () {

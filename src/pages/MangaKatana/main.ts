@@ -8,10 +8,7 @@ export const MangaKatana: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
-      return true;
-    }
-    return false;
+    return Boolean(utils.urlPart(url, 5));
   },
   sync: {
     getTitle(url) {
@@ -108,7 +105,8 @@ export const MangaKatana: pageInterface = {
         page.url.split('/')[3] === 'manga' &&
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0 &&
-        page.url.split('/')[4] !== 'page'
+        page.url.split('/')[4] !== 'page' &&
+        utils.urlPart(page.url, 5) !== 'download'
       ) {
         page.handlePage();
       }

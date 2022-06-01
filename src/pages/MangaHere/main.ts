@@ -87,7 +87,7 @@ export function getInter(): pageInterface {
       api.storage.addStyle(
         require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
       );
-      if (window.location.host.startsWith('m.')) {
+      if (window.location.host.startsWith('m.') || window.location.host.startsWith('newm.')) {
         con.error('Mobile version not supported');
         return;
       }

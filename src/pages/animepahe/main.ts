@@ -20,7 +20,7 @@ export const animepahe: pageInterface = {
       return getId();
     },
     getOverviewUrl(url) {
-      return getUrl(getId(), true);
+      return `${window.location.origin}/a/${getId()}`;
     },
     getEpisode(url) {
       return Number(
@@ -30,10 +30,13 @@ export const animepahe: pageInterface = {
     nextEpUrl(url) {
       const nextEp = j.$('.sequel a').first().attr('href');
       if (!nextEp) return '';
-      return getUrl(getId(), false, 1);
+      return utils.absoluteLink(nextEp, window.location.origin);
     },
     uiSelector(selector) {
       j.$('.anime-season').after(j.html(selector));
+    },
+    getMalUrl(provider) {
+      return animepahe.overview!.getMalUrl!(provider);
     },
   },
   overview: {
@@ -47,15 +50,15 @@ export const animepahe: pageInterface = {
       j.$('.anime-content').prepend(j.html(selector));
     },
     getMalUrl(provider) {
-      let url = j.$('a[href^="//myanimelist.net/anime/"]').not('#malRating').first().attr('href');
-      if (url) return url.replace(/^\/\//, 'https://');
+      const mal = $('meta[name=myanimelist]').attr('content');
+      if (mal) return `https://myanimelist.net/anime/${mal}`;
       if (provider === 'ANILIST') {
-        url = j.$('a[href^="//anilist.co/anime/"]').not('#malRating').first().attr('href');
-        if (url) return url.replace(/^\/\//, 'https://');
+        const al = $('meta[name=anilist]').attr('content');
+        if (al) return `https://anilist.co/anime/${al}`;
       }
       if (provider === 'KITSU') {
-        url = j.$('a[href^="//kitsu.io/anime/"]').not('#malRating').first().attr('href');
-        if (url) return url.replace(/^\/\//, 'https://');
+        const kitsu = $('meta[name=kitsu]').attr('content');
+        if (kitsu) return `https://kitsu.io/anime/${kitsu}`;
       }
       return false;
     },
@@ -97,39 +100,14 @@ export const animepahe: pageInterface = {
         return typeof getId() !== 'undefined';
       },
       function () {
-        page.handlePage(getUrl(getId(), false));
+        page.handlePage();
       },
     );
   },
 };
 
-let id;
 function getId() {
+  const id = j.$('meta[name=id]').attr('content');
   if (id) return id;
-  // overview id
-  const href = j.$('a[href^="//pahe.win/a/"]').attr('href');
-  if (href) {
-    id = href.split('/')[4];
-    return id;
-  }
-
-  // episode id
-  const script = $('script').filter(function (idx) {
-    return this.innerHTML.includes('getUrls(');
-  });
-  if (script && script.length) {
-    const matches = script[0].innerHTML.match(/getUrls\(\d+/);
-    if (matches && matches.length) {
-      id = matches[0].replace(/\D+/g, '');
-      return id;
-    }
-  }
-  return undefined;
-}
-
-function getUrl(aid, overviewForce, increment = 0) {
-  if (window.location.href.split('/')[3] !== 'play' || overviewForce) {
-    return `https://pahe.win/a/${aid}`;
-  }
-  return `https://pahe.win/a/${aid}/${animepahe.sync.getEpisode(window.location.href) + increment}`;
+  throw new Error('no id found');
 }

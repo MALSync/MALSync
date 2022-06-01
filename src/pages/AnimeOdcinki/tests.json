@@ -8,8 +8,8 @@
         "sync": true,
         "title": "Cop Craft",
         "identifier": "cop-craft",
-        "overviewUrl": "https://anime-odcinki.pl/anime/cop-craft",
-        "nextEpUrl": "https://anime-odcinki.pl/anime/cop-craft/2",
+        "overviewUrl": "https://anime-odcinki.pl/anime/cop-craft/",
+        "nextEpUrl": "https://anime-odcinki.pl/anime/cop-craft/2/",
         "episode": 1,
         "uiSelector": false
       }
@@ -22,7 +22,7 @@
         "identifier": "cop-craft",
         "uiSelector": true,
         "epList": {
-          "5": "https://anime-odcinki.pl/anime/cop-craft/5"
+          "5": "https://anime-odcinki.pl/anime/cop-craft/5/"
         }
       }
     }

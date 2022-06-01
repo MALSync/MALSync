@@ -114,6 +114,10 @@ export const Animeflv: pageInterface = {
       page.cdn();
       return;
     }
+    if (window.location.hostname.startsWith('m.')) {
+      con.error('Mobile not supported');
+      return;
+    }
     j.$(document).ready(function () {
       page.handlePage();
     });

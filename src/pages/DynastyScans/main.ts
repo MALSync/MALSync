@@ -35,7 +35,7 @@ export const DynastyScans: pageInterface = {
       );
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), url) || url;
+      return utils.absoluteLink(j.$('#chapter-title > b > a').attr('href'), DynastyScans.domain);
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
@@ -82,6 +82,10 @@ export const DynastyScans: pageInterface = {
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
     j.$(() => {
+      if (document.title.includes("The page you were looking for doesn't exist")) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },

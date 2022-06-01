@@ -1,6 +1,7 @@
 {
   "title": "Animepahe",
   "url": "https://animepahe.com",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://pahe.win/a/176",
@@ -17,7 +18,6 @@
         "sync": true,
         "title": "No Game No Life",
         "identifier": "176",
-        "uiSelector": true,
         "episode": 4,
         "overviewUrl": "https://pahe.win/a/176",
         "nextEpUrl": "https://pahe.win/a/176/5",

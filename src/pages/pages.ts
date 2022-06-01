@@ -14,7 +14,6 @@ import { Vrv } from './Vrv/main';
 import { Proxer } from './Proxer/main';
 import { Aniflix } from './Aniflix/main';
 import { KickAssAnime } from './KickAssAnime/main';
-import { AnimeKisa } from './AnimeKisa/main';
 import { Wakanim } from './Wakanim/main';
 import { AnimeIndo } from './AnimeIndo/main';
 import { Shinden } from './Shinden/main';
@@ -82,10 +81,8 @@ import { MangaSee } from './MangaSee/main';
 import { AnimeTribes } from './AnimeTribes/main';
 import { Okanime } from './Okanime/main';
 import { BSTO } from './BSTO/main';
-import { Pantsubase } from './Pantsubase/main';
 import { AsuraScans } from './AsuraScans/main';
 import { NaniScans } from './NaniScans/main';
-import { MerakiScans } from './MerakiScans/main';
 import { Jellyfin } from './Jellyfin/main';
 import { An1me } from './An1me/main';
 import { MangaJar } from './MangaJar/main';
@@ -125,7 +122,7 @@ import { DisasterScans } from './DisasterScans/main';
 import { DynastyScans } from './DynastyScans/main';
 import { SugarBabies } from './SugarBabies/main';
 import { AlphaScans } from './AlphaScans/main';
-import { Anicloud } from './Anicloud/main';
+import { Aniworld } from './Aniworld/main';
 import { BetterAnime } from './BetterAnime/main';
 import { AMAScan } from './AMAScan/main';
 import { BilibiliComics } from './BilibiliComics/main';
@@ -155,7 +152,6 @@ export const pages = {
   Plex,
   Aniflix,
   KickAssAnime,
-  AnimeKisa,
   AnimeIndo,
   Shinden,
   Voiranime,
@@ -222,10 +218,8 @@ export const pages = {
   AnimeTribes,
   Okanime,
   BSTO,
-  Pantsubase,
   AsuraScans,
   NaniScans,
-  MerakiScans,
   Jellyfin,
   An1me,
   MangaJar,
@@ -265,7 +259,7 @@ export const pages = {
   DynastyScans,
   SugarBabies,
   AlphaScans,
-  Anicloud,
+  Aniworld,
   BetterAnime,
   AMAScan,
   BilibiliComics,

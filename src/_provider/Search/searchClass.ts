@@ -332,7 +332,7 @@ export class SearchClass {
     const logger = this.logger.m('API');
 
     if (!this.page) return false;
-    const dbPl = this.page.database ? this.page.database : this.page.name;
+    const dbPl = this.page.database;
     if (!dbPl) return false;
     const url = `https://api.malsync.moe/page/${dbPl}/${encodeURIComponent(
       this.identifierToDbKey(this.identifier),

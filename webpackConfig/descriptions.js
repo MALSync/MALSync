@@ -54,7 +54,7 @@ function createTable() {
         <th>Overview Page</th>
         <th>Next Episode</th>
         <th>Database Support</th>
-        <th>Update Check</th>
+        <th>Episode Highlight</th>
       </tr>
     </thead>
     <tbody>
@@ -70,7 +70,7 @@ function createTable() {
         <th>Overview Page</th>
         <th>Next Chapter</th>
         <th>Database Support</th>
-        <th>Update Check</th>
+        <th>Chapter Higlight</th>
       </tr>
     </thead>
     <tbody>
