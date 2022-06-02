@@ -195,6 +195,10 @@
     "message": "(1) Atroce",
     "description": "Appalling - Score"
   },
+  "UI_Rules": {
+    "message": "Règles",
+    "description": "Rules text for the correction UI"
+  },
   "syncPage_flashm_resumeMsg": {
     "message": "Reprendre à $time$",
     "description": "Video resume message",
@@ -222,6 +226,20 @@
   "syncPage_flashm_sync_manga": {
     "message": "Mise à jour $page$ du chapitre $epNr$",
     "description": "Update MAL to chapter 3",
+    "placeholders": {
+      "page": {
+        "content": "$1",
+        "example": "MAL"
+      },
+      "epNr": {
+        "content": "$2",
+        "example": "3"
+      }
+    }
+  },
+  "syncPage_flashm_sync_manga_volume": {
+    "message": "Mise à jour $page$ du volume $epNr$",
+    "description": "Update MAL to volume 3",
     "placeholders": {
       "page": {
         "content": "$1",
@@ -282,6 +300,10 @@
         "example": "No Game No Life"
       }
     }
+  },
+  "syncPage_flash_player_error": {
+    "message": "Lecteur non détecté. Veuillez mettre à jour manuellement ici.",
+    "description": "Message if the video player could not be recognized"
   },
   "syncPage_malObj_addAnime": {
     "message": "Ajouter à $page$",
@@ -709,6 +731,10 @@
     "message": "Liens de la dernière page utilisée",
     "description": "Last used page links"
   },
+  "settings_anilist_update_ui": {
+    "message": "Interface d'édition",
+    "description": "UI in the aniList sidebar to update episodes progress and the score"
+  },
   "settings_miniMAL_floatButtonStealth": {
     "message": "Mode discret pour l'UI",
     "description": "Stealth UI mode. Lowers the visibility of some malSync UI elements"
@@ -777,6 +803,7 @@
     "message": "Charger PTW/PTR pour l'évaluation des progrès",
     "description": "In addition to CW/CR also load PTW/PTR when checking Progress"
   },
+
   "settings_Video_Player": {
     "message": "Lecteur de vidéo",
     "description": "Video settings header"
@@ -818,7 +845,7 @@
     "description": "Shown if no shortcut is set for an option"
   },
   "settings_introSkip": {
-    "message": "Définir le temps de l'opening qui va être passé ($Seconds$ seconds)",
+    "message": "Définir la durée de l'opening qui va être passé ($Seconds$ seconds)",
     "description": "Skips video seconds",
     "placeholders": {
       "Seconds": {
@@ -872,16 +899,8 @@
     "description": "Userscript mode"
   },
   "settings_Userscriptmode_Text": {
-    "message": "Desactivé le script de contenu. Cela permets d'avoir l'extension et l'userscript activé en meme temps.",
+    "message": "Désactiver le script de contenu. Cela permet d'avoir l'extension et l'userscript activés en même temps.",
     "description": "Userscript mode - Text"
-  },
-  "settings_StrictCookies": {
-    "message": "Strict Cookies",
-    "description": "Strict Cookies"
-  },
-  "settings_StrictCookies_Text": {
-    "message": "Cette option ajoute le support du 'Firefox Multi-Account Containers'. Pensez à redémarrer votre navigateur après avoir activé cette option",
-    "description": "Strict Cookies - Text"
   },
   "settings_highlightAllEp": {
     "message": "Mettre en évidence tous les épisodes/chapitres",
@@ -895,9 +914,21 @@
     "message": "Nettoyer le cache",
     "description": "Clear Cache"
   },
-  "settings_presenceHidePage": {
-    "message": "Afficher l'icon de MAL-Sync au lieu de l'icon de la page",
-    "description": "Option on the settings page to replace the anime streaming page icon in the discord rich text presence with the mal-sync icon. If the user does not want to show everyone what page he is using"
+  "settings_presence_largeimage": {
+    "message": "Image Discord Rich Presence",
+    "description": "Dropdown label for selecting the presence image (manga/anime cover, website icon) for discord"
+  },
+  "settings_presence_largeimage_cover": {
+    "message": "Image couverture",
+    "description": "Dropdown option to show the cover from mal on discord"
+  },
+  "settings_presence_largeimage_website": {
+    "message": "Icône du site web",
+    "description": "Dropdown option to show the server icon on discord"
+  },
+  "settings_presence_largeimage_malsync": {
+    "message": "Icône de Malsync",
+    "description": "Dropdown option to show the malsync icon on discord"
   },
   "settings_enabled": {
     "message": "Activé",
@@ -927,13 +958,25 @@
     "message": "Domaines personnalisés",
     "description": "Button that leads to the custom domain configuration page"
   },
+  "settings_custom_domains_missing_permissions_header": {
+    "message": "Permissions manquantes détectées",
+    "description": "Section header for asking to allow missing domain permissions"
+  },
   "settings_clean_tags_button": {
-    "message": "Nettoyé les tags",
+    "message": "Nettoyer les tags",
     "description": "Button that leads to the clean tag page. This page is used to remove malsync meta data from the userlist tag/notes section"
   },
   "settings_more_info": {
-    "message": "Plus d'information",
+    "message": "Plus d'informations",
     "description": "Link button which links to more informations"
+  },
+  "settings_presenceShowButtons": {
+    "message": "Afficher le bouton pour voir l'anime/le manga sur MAL ou un autre fournisseur",
+    "description": "Show button to view the anime/manga on MAL or another provider"
+  },
+  "settings_presenceShowMalsync": {
+    "message": "Afficher Mal-Sync dans le titre de Discord Rich Presence à la place de l'anime/du manga",
+    "description": "Show Mal-Sync in the title of the presence instead of anime/manga"
   },
   "updateCheck_Refresh": {
     "message": "Actualiser",
@@ -1103,6 +1146,14 @@
       }
     }
   },
+  "discord_rpc_view_anime": {
+    "message": "Regarder cet anime",
+    "description": "Discord view anime button"
+  },
+  "discord_rpc_view_manga": {
+    "message": "Lire ce manga",
+    "description": "Discord view manga button"
+  },
   "nextEpShort_no_support": {
     "message": "Cette page ne support pas l'ouverture automatique du prochain épisode",
     "description": "Error message if the page does not support opening the next episode after pressing the shortcut"
@@ -1110,5 +1161,33 @@
   "nextEpShort_no_nextEp": {
     "message": "Impossible de trouver le prochain épisode",
     "description": "Error message if no next episode could be found after pressing the next episode shortcut"
+  },
+  "settings_filler": {
+    "message": "Vérifier les épisodes filler/récapitulatif",
+    "description": "Option to enable filler checking"
+  },
+  "settings_crash_report": {
+    "message": "Envoyer des rapports de crash",
+    "description": "If to send crash reports"
+  },
+  "settings_filler_text": {
+    "message": "Vérifie si l'épisode est marqué comme filler/récapitulatif sur MyAnimeList",
+    "description": "filler tooltip"
+  },
+  "settings_crash_report_text": {
+    "message": "Aide à corriger les bugs. Aucune donnée sensible n'est transmise",
+    "description": "Crash report tooltip"
+  },
+  "filler_filler_confirm": {
+    "message": "Cet épisode est marqué comme filler sur MyAnimeList, voulez-vous passer au suivant ?",
+    "description": "Question if the user wants to skip the filler"
+  },
+  "filler_recap_confirm": {
+    "message": "Cet épisode est marqué comme récapitulatif sur MyAnimeList, voulez-vous passer au suivant ?",
+    "description": "Question if the user wants to skip the recap"
+  },
+  "settings_custom_domains_position": {
+    "message": "Emplacement",
+    "description": "Position of the quicklinks"
   }
 }
