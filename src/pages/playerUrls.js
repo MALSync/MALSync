@@ -513,6 +513,7 @@ module.exports = {
       '*://voeunblock.com/e/*',
       '*://voeunblock1.com/e/*',
       '*://voeunblock2.com/e/*',
+      '*://voeunblock3.com/e/*',
     ],
   },
   // animewho
