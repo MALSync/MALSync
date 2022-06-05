@@ -1,0 +1,6 @@
+{
+  "search": "https://manhuafast.com/?s={searchtermPlus}&post_type=wp-manga&post_type=wp-manga",
+  "urls": {
+    "match": ["*://manhuafast.com/*"]
+  }
+}

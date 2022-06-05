@@ -50,6 +50,7 @@ import { OtakuFR } from './OtakuFR/main';
 import { Samehadaku } from './Samehadaku/main';
 import { TsukiMangas } from './TsukiMangas/main';
 import { mangatx } from './mangatx/main';
+import { manhuafast } from './manhuafast/main';
 import { TRanimeizle } from './TRanimeizle/main';
 import { Anihub } from './Anihub/main';
 import { AnimeStreamingFR } from './AnimeStreamingFR/main';
@@ -187,6 +188,7 @@ export const pages = {
   Samehadaku,
   TsukiMangas,
   mangatx,
+  manhuafast,
   TRanimeizle,
   Anihub,
   AnimeStreamingFR,

@@ -1,0 +1,32 @@
+{
+  "title": "manhuafast",
+  "url": "https://manhuafast.com/",
+  "testCases": [
+    {
+      "url": "https://manhuafast.com/manga/martial-peak-2/chapter-2288/",
+      "expected": {
+        "sync": true,
+        "title": "Martial Peak",
+        "identifier": "martial-peak-2",
+        "overviewUrl": "https://manhuafast.com/manga/martial-peak-2/",
+        "nextEpUrl": "https://manhuafast.com/manga/martial-peak-2/chapter-2289/",
+        "episode": 2288,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://manhuafast.com/manga/martial-peak-2/chapter-2288/",
+      "expected": {
+        "sync": false,
+        "title": "Martial Peak",
+        "identifier": "martial-peak-2",
+        "uiSelector": true,
+        "epList": {
+          "1": "https://manhuafast.com/manga/martial-peak-2/chapter-1/",
+          "108": "https://manhuafast.com/manga/martial-peak-2/chapter-108/",
+          "1000": "https://manhuafast.com/manga/martial-peak-2/chapter-1000/"
+        }
+      }
+    }
+  ]
+}
