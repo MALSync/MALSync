@@ -13,12 +13,9 @@ export const manhuafast: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j
-        .$(
-          'div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
-        )
-        .text()
-        .trim();
+      return JSON.parse(
+        j.$(`script[type="application/ld+json"]:contains('"@type": "Article"')`)[0].innerText,
+      ).headline.trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
@@ -57,9 +54,9 @@ export const manhuafast: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils
-        .getBaseText(j.$('div.profile-manga > div > div > div > div.post-title > h1'))
-        .trim();
+      return JSON.parse(
+        j.$(`script[type="application/ld+json"]:contains('"@type": "Article"')`)[0].innerText,
+      ).headline.trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
