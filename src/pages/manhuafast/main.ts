@@ -6,28 +6,17 @@ export const manhuafast: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    if (url.split('/')[5] !== undefined && url.split('/')[5].length > 0) {
-      return true;
-    }
-    return false;
+    return url.split('/')[5] !== undefined && url.split('/')[5].length > 0;
   },
   sync: {
     getTitle(url) {
-      return JSON.parse(
-        j.$(`script[type="application/ld+json"]:contains('"@type": "Article"')`)[0].innerText,
-      ).headline.trim();
+      return manhuafast.overview!.getTitle(url);
     },
     getIdentifier(url) {
       return url.split('/')[4];
     },
     getOverviewUrl(url) {
-      return (
-        j
-          .$(
-            'div.entry-header.header > div > div.entry-header_wrap > div > div.c-breadcrumb > ol > li:nth-child(2) > a',
-          )
-          .attr('href') || ''
-      );
+      return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
       const urlParts = url.split('/');
@@ -46,10 +35,12 @@ export const manhuafast: pageInterface = {
     },
     nextEpUrl(url) {
       return j
-        .$(
-          'div.entry-header.header > div > div.select-pagination > div.nav-links > div.nav-next > a.next_page',
-        )
-        .attr('href');
+        .$("option:contains('Chapter')")
+        .first()
+        .parent()
+        .find(':selected')
+        .prev()
+        .attr('data-redirect');
     },
   },
   overview: {
@@ -73,7 +64,7 @@ export const manhuafast: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('div.page-content-listing.single-page > div > ul > li.wp-manga-chapter');
+        return j.$('ul > li.wp-manga-chapter');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.find('a').first().attr('href'), manhuafast.domain);
@@ -93,7 +84,17 @@ export const manhuafast: pageInterface = {
         page.url.split('/')[4] !== undefined &&
         page.url.split('/')[4].length > 0
       ) {
-        page.handlePage();
+        utils.waitUntilTrue(
+          function () {
+            if (j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length) {
+              return true;
+            }
+            return false;
+          },
+          function () {
+            page.handlePage();
+          },
+        );
       }
     });
   },
