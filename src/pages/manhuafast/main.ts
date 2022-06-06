@@ -10,7 +10,7 @@ export const manhuafast: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return manhuafast.overview!.getTitle(url);
+      return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).text().trim();
     },
     getIdentifier(url) {
       return url.split('/')[4];
@@ -45,9 +45,7 @@ export const manhuafast: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return JSON.parse(
-        j.$(`script[type="application/ld+json"]:contains('"@type": "Article"')`)[0].innerText,
-      ).headline.trim();
+      return j.$('ol.breadcrumb li a').last().text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4) || '';
