@@ -1,0 +1,6 @@
+{
+  "search": "https://mangabuddy.com/search?q={searchtermPlus}",
+  "urls": {
+    "match": ["*://mangabuddy.com/*"]
+  }
+}

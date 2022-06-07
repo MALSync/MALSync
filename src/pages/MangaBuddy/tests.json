@@ -1,0 +1,43 @@
+{
+  "title": "MangaBuddy",
+  "url": "https://mangabuddy.com/",
+  "testCases": [
+    {
+      "url": "https://mangabuddy.com/real-man/chapter-85",
+      "expected": {
+        "sync": true,
+        "title": "Real Man",
+        "identifier": "real-man",
+        "overviewUrl": "https://mangabuddy.com/real-man",
+        "nextEpUrl": "https://mangabuddy.com/real-man/chapter-86",
+        "episode": 85,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangabuddy.com/seoul-station-druid/chapter-49",
+      "expected": {
+        "sync": true,
+        "title": "Seoul Station Druid",
+        "identifier": "seoul-station-druid",
+        "overviewUrl": "https://mangabuddy.com/seoul-station-druid",
+        "nextEpUrl": "https://mangabuddy.com/seoul-station-druid/chapter-50",
+        "episode": 49,
+        "uiSelector": false
+      }
+    },
+    {
+      "url": "https://mangabuddy.com/solo-bug-player",
+      "expected": {
+        "sync": false,
+        "title": "Solo Bug Player",
+        "identifier": "solo-bug-player",
+        "uiSelector": true,
+        "epList": {
+          "18": "https://mangabuddy.com/solo-bug-player/chapter-18",
+          "1": "https://mangabuddy.com/solo-bug-player/chapter-1"
+        }
+      }
+    }
+  ]
+}
