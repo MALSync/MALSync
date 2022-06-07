@@ -22,7 +22,7 @@ export const MangaBuddy: pageInterface = {
       return utils.urlPart(url, 3);
     },
     getOverviewUrl(url) {
-      return `${MangaBuddy.domain}/${MangaBuddy.sync.getIdentifier(url)}`;
+      return utils.absoluteLink(MangaBuddy.sync.getIdentifier(url), MangaBuddy.domain);
     },
     getEpisode(url) {
       const episodePart = utils.urlPart(url, 4);
@@ -34,11 +34,11 @@ export const MangaBuddy: pageInterface = {
       return Number(temp[1]);
     },
     nextEpUrl(url) {
-      const next = j.$('a.ch-next-btn').attr('href');
+      const next = j.$('#btn-next').attr('href');
 
       if (next === '#') return undefined;
 
-      return next;
+      return utils.absoluteLink(next, MangaBuddy.domain);
     },
   },
   overview: {
@@ -63,11 +63,7 @@ export const MangaBuddy: pageInterface = {
         return j.$('#chapter-list-inner li');
       },
       elementUrl(selector) {
-        const link = selector.find('a').first().attr('href');
-
-        if (link) return `${MangaBuddy.domain}/${link}`;
-
-        return '';
+        return utils.absoluteLink(selector.find('a').first().attr('href'), MangaBuddy.domain);
       },
       elementEp(selector) {
         return MangaBuddy.sync.getEpisode(MangaBuddy.overview!.list!.elementUrl!(selector));
