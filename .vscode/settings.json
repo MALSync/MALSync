@@ -5,6 +5,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.rulers": [120],
   "eslint.validate": ["javascript", "typescript", "vue"],
+  "stylelint.validate": ["css", "scss", "vue"],
   "less.validate": false,
   "scss.validate": false,
   "vetur.validation.template": false
