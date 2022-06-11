@@ -129,7 +129,7 @@
   },
   "overrides": {
     "@vue/eslint-config-typescript": {
-      "eslint-plugin-vue": "9.1.0"
+      "eslint-plugin-vue": "9.1.1"
     }
   }
 }
