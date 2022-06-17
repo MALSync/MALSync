@@ -1,8 +1,14 @@
 {
   "extends": ["stylelint-config-standard", "stylelint-prettier/recommended", "stylelint-config-recommended-vue"],
   "ignoreFiles": ["**/*.js"],
-  "customSyntax": "postcss-html",
+  "customSyntax": "postcss-less",
   "plugins": ["stylelint-prettier"],
+  "overrides": [
+    {
+      "files": ["*.vue", "**/*.vue"],
+      "customSyntax": "postcss-html"
+    }
+  ],
   "rules": {
     "prettier/prettier": true,
     "no-empty-source": null,
