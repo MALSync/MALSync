@@ -81,5 +81,11 @@ export const MangaBuddy: pageInterface = {
       }
       page.handlePage();
     });
+    const handleTimeout = 5e2;
+    j.$('div#show-more-chapters span').on('click', () => {
+      setTimeout(() => {
+        page.handleList();
+      }, handleTimeout);
+    });
   },
 };
