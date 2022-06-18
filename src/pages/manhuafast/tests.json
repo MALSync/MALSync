@@ -3,28 +3,28 @@
   "url": "https://manhuafast.com/",
   "testCases": [
     {
-      "url": "https://manhuafast.com/manga/martial-peak-2/chapter-2288/",
+      "url": "https://manhuafast.com/manga/crazy-leveling-system/chapter-1/",
       "expected": {
         "sync": true,
-        "title": "Martial Peak",
-        "identifier": "martial-peak-2",
-        "overviewUrl": "https://manhuafast.com/manga/martial-peak-2",
-        "nextEpUrl": "https://manhuafast.com/manga/martial-peak-2/chapter-2289/",
-        "episode": 2288,
+        "title": "Crazy Leveling System",
+        "identifier": "crazy-leveling-system",
+        "overviewUrl": "https://manhuafast.com/manga/crazy-leveling-system",
+        "nextEpUrl": "https://manhuafast.com/manga/crazy-leveling-system/chapter-2/",
+        "episode": 1,
         "uiSelector": false
       }
     },
     {
-      "url": "https://manhuafast.com/manga/martial-peak-2/",
+      "url": "https://manhuafast.com/manga/crazy-leveling-system/",
       "expected": {
         "sync": false,
-        "title": "Martial Peak",
-        "identifier": "martial-peak-2",
+        "title": "Crazy Leveling System",
+        "identifier": "crazy-leveling-system",
         "uiSelector": true,
         "epList": {
-          "1": "https://manhuafast.com/manga/martial-peak-2/chapter-1/",
-          "108": "https://manhuafast.com/manga/martial-peak-2/chapter-108/",
-          "1000": "https://manhuafast.com/manga/martial-peak-2/chapter-1000/"
+          "1": "https://manhuafast.com/manga/crazy-leveling-system/chapter-1/",
+          "5": "https://manhuafast.com/manga/crazy-leveling-system/chapter-5/",
+          "12": "https://manhuafast.com/manga/crazy-leveling-system/chapter-12/"
         }
       }
     }
