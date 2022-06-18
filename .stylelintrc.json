@@ -3,6 +3,12 @@
   "ignoreFiles": ["**/*.js"],
   "customSyntax": "postcss-less",
   "plugins": ["stylelint-prettier"],
+  "overrides": [
+    {
+      "files": ["*.vue", "**/*.vue"],
+      "customSyntax": "postcss-html"
+    }
+  ],
   "rules": {
     "prettier/prettier": true,
     "no-empty-source": null,

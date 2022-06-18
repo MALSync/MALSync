@@ -418,6 +418,8 @@ module.exports = {
       '*://vizcloud.digital/e/*',
       '*://vizcloud.cloud/embed/*',
       '*://vizcloud.cloud/e/*',
+      '*://vizcloud.store/embed/*',
+      '*://vizcloud.store/e/*',
     ],
   },
   // gogo
@@ -514,6 +516,9 @@ module.exports = {
       '*://voeunblock1.com/e/*',
       '*://voeunblock2.com/e/*',
       '*://voeunblock3.com/e/*',
+      '*://voeunbl0ck.com/e/*',
+      '*://voeunblck.com/e/*',
+      '*://voeunblk.com/e/*',
     ],
   },
   // animewho
