@@ -6,24 +6,20 @@ export const manhuafast: pageInterface = {
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
-    return url.split('/')[5] !== undefined && url.split('/')[5].length > 0;
+    return utils.urlPart(url, 5).length > 0;
   },
   sync: {
     getTitle(url) {
       return j.$(j.$('div.c-breadcrumb-wrapper ol.breadcrumb li a')[1]).text().trim();
     },
     getIdentifier(url) {
-      return url.split('/')[4];
+      return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
       return url.split('/').slice(0, 5).join('/');
     },
     getEpisode(url) {
-      const urlParts = url.split('/');
-
-      if (!urlParts || urlParts.length === 0) return NaN;
-
-      const episodePart = urlParts[5];
+      const episodePart = utils.urlPart(url, 5);
 
       if (episodePart.length === 0) return NaN;
 
@@ -48,7 +44,7 @@ export const manhuafast: pageInterface = {
       return j.$('ol.breadcrumb li a').last().text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 4) || '';
+      return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
       j.$('div.c-page__content div.c-blog__heading')
@@ -78,16 +74,13 @@ export const manhuafast: pageInterface = {
     );
     j.$(document).ready(function () {
       if (
-        page.url.split('/')[3] === 'manga' &&
-        page.url.split('/')[4] !== undefined &&
-        page.url.split('/')[4].length > 0
+        utils.urlPart(page.url, 3) === 'manga' &&
+        utils.urlPart(page.url, 4) !== undefined &&
+        utils.urlPart(page.url, 4).length > 0
       ) {
         utils.waitUntilTrue(
           function () {
-            if (j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length) {
-              return true;
-            }
-            return false;
+            return !!(j.$('ul > li.wp-manga-chapter').length || j.$('div.wp-manga-nav').length);
           },
           function () {
             page.handlePage();
