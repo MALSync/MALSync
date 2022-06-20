@@ -116,7 +116,7 @@
     "dexie": "^3.2.2",
     "dompurify": "^2.3.8",
     "download-file": "^0.1.5",
-    "eventemitter2": "^6.4.4",
+    "eventemitter2": "^6.4.5",
     "fuse.js": "^6.4.6",
     "semver": "^7.3.5",
     "jquery": "^3.6.0",
