@@ -21,6 +21,17 @@ export const Animeworld: pageInterface = {
     getOverviewUrl(url) {
       return `${Animeworld.domain}/${Animeworld.sync.getIdentifier(url)}`;
     },
+    getMalUrl(provider) {
+      return new Promise(resolve => {
+        if (provider === 'ANILIST') {
+          resolve(j.$('#mal-button').attr('href') || false);
+        }
+        if (provider === 'MAL') {
+          resolve(j.$('#anilist-button').attr('href') || false);
+        }
+        resolve(false);
+      });
+    },
     getEpisode(url) {
       return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
     },
