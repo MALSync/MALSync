@@ -37,9 +37,10 @@ export const Animeworld: pageInterface = {
   },
   init(page) {
     api.storage.addStyle(
+      // eslint-disable-next-line global-require
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    utils.fullUrlChangeDetect(function () {
+    utils.fullUrlChangeDetect(() => {
       page.reset();
       page.handlePage();
     });
