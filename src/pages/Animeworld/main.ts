@@ -23,13 +23,7 @@ export const Animeworld: pageInterface = {
     },
     getMalUrl(provider) {
       return new Promise(resolve => {
-        if (provider === 'ANILIST') {
-          resolve(j.$('#mal-button').attr('href') || false);
-        }
-        if (provider === 'MAL') {
-          resolve(j.$('#anilist-button').attr('href') || false);
-        }
-        resolve(false);
+        resolve(j.$('#mal-button').attr('href') || false);
       });
     },
     getEpisode(url) {
