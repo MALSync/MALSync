@@ -13,7 +13,7 @@ export const Animeworld: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$("#anime-title").text().trim()
+      return j.$('#anime-title').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
@@ -23,13 +23,16 @@ export const Animeworld: pageInterface = {
     },
     getEpisode(url) {
       const episode = Number(
-        j.$("div.widget-body>div.server.active>ul.episodes.range.active>li.episode>a.active").text().trim()
+        j
+          .$('div.widget-body>div.server.active>ul.episodes.range.active>li.episode>a.active')
+          .text()
+          .trim(),
       );
       if (episode) return episode;
       return 1;
     },
     uiSelector(selector) {
-      j.$('span.clearfix').after(j.html(selector));
+      j.$('span.clearfix').first().after(j.html(selector));
     },
   },
   init(page) {

@@ -1,13 +1,23 @@
 @import './../pages';
 
-#malp * {
-  color: white;
+#malp {
+  padding: 1% 2%;
+  margin: 1%;
+  box-shadow: rgb(0 0 0 / 7%) 0 -10px 70px;
 }
 
-html.theme-light #malp * {
+#malp * {
   color: black;
   select option {
     color: black;
     background-color: white;
+  }
+}
+
+body.dark #malp * {
+  color: white;
+  select option {
+    color: white;
+    background-color: black;
   }
 }
