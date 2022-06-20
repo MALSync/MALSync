@@ -167,14 +167,6 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
-    </tr><tr>
-    <td><a href="https://animeworld.tv"><img src="https://favicon.malsync.moe/?domain=https://animeworld.tv"> AnimeUnity</a></td>
-    <td>Italian</td>
-    <td>:x:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-    <td>:x:</td>
-  </tr><tr>
     <td><a href="https://animewho.com"><img src="https://favicon.malsync.moe/?domain=https://animewho.com"> AnimeWho</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>

@@ -673,10 +673,5 @@
     "domain": "https://luminousscans.com",
     "type": "manga",
     "name": "LuminousScans"
-  },
-  {
-    "domain": "https://www.animeworld.tv",
-    "type": "anime",
-    "name": "Animeworld"
   }
 ]
