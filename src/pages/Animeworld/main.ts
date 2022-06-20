@@ -22,14 +22,7 @@ export const Animeworld: pageInterface = {
       return `${Animeworld.domain}/${Animeworld.sync.getIdentifier(url)}`;
     },
     getEpisode(url) {
-      const episode = Number(
-        j
-          .$('div.widget-body>div.server.active>ul.episodes.range.active>li.episode>a.active')
-          .text()
-          .trim(),
-      );
-      if (episode) return episode;
-      return 1;
+      return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
     },
     uiSelector(selector) {
       j.$('span.clearfix').first().after(j.html(selector));
