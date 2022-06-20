@@ -718,6 +718,6 @@ module.exports = {
   },
   // animeworld
   animeworld: {
-    match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*']
-  }
+    match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
+  },
 };
