@@ -118,7 +118,7 @@
     "download-file": "^0.1.5",
     "eventemitter2": "^6.4.5",
     "fuse.js": "^6.6.2",
-    "semver": "^7.3.5",
+    "semver": "^7.3.7",
     "jquery": "^3.6.0",
     "string-similarity": "^4.0.4",
     "vue": "^3.2.0",
