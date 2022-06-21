@@ -122,7 +122,7 @@
     "jquery": "^3.6.0",
     "string-similarity": "^4.0.4",
     "vue": "^3.2.0",
-    "vue-dompurify-html": "^3.0.0-beta.2",
+    "vue-dompurify-html": "^3.0.0",
     "vue3-lazyload": "^0.3.4",
     "vuedraggable": "^4.1.0",
     "webext-patterns": "^1.1.1"
