@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://*.animeworld.tv/*"]
+    "match": ["*://*.animeworld.tv/play/*"]
   }
 }
