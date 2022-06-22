@@ -45,7 +45,7 @@
     "node-dir": "^0.1.17",
     "postcss-html": "^1.4.1",
     "postcss-less": "^6.0.0",
-    "prettier": "^2.5.1",
+    "prettier": "^2.7.1",
     "puppeteer": "^14.0.0",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-adblocker": "^2.12.0",
