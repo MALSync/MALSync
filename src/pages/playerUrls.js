@@ -438,6 +438,7 @@ module.exports = {
       '*://watchsb.com/*',
       '*://steamsb.net/*',
       '*://sbplay2.xyz/*',
+      '*://sbfull.com/e/*',
     ],
   },
   // gogo
@@ -520,6 +521,7 @@ module.exports = {
       '*://voeunblck.com/e/*',
       '*://voeunblk.com/e/*',
       '*://voe-un-block.com/e/*',
+      '*://voeun-block.net/e/*',
     ],
   },
   // animewho
