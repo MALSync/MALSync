@@ -438,6 +438,7 @@ module.exports = {
       '*://watchsb.com/*',
       '*://steamsb.net/*',
       '*://sbplay2.xyz/*',
+      '*://sbfull.com/e/*',
     ],
   },
   // gogo
