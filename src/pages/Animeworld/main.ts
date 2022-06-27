@@ -41,7 +41,11 @@ export const Animeworld: pageInterface = {
       return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
     },
     uiSelector(selector) {
-      j.$('div.widget.player').first().after(j.html(`<div class="widget crop text-center">${selector}</div>`));
+      if ($('#mal-sync-ui-selector').length) {
+        $('#mal-sync-ui-selector').append(selector);
+      } else {
+        j.$('div.widget.player').first().after(j.html(`<div id="mal-sync-ui-selector" class="widget crop text-center">${selector}</div>`));
+      }
     },
   },
   overview: {
