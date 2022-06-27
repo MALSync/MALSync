@@ -48,11 +48,13 @@
     "iframe": [
       "https://vizcloud.store/embed/*",
       "https://vizcloud.store/e/*",
+      "https://sbfull.com/e/*",
       "https://voeunblock3.com/e/*",
       "https://voeunbl0ck.com/e/*",
       "https://voeunblck.com/e/*",
       "https://voeunblk.com/e/*",
-      "https://voe-un-block.com/e/*"
+      "https://voe-un-block.com/e/*",
+      "https://voeun-block.net/e/*"
     ]
   }
 }
