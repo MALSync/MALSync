@@ -19,7 +19,7 @@ export const Animeworld: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return `${Animeworld.domain}/${Animeworld.sync.getIdentifier(url)}`;
+      return utils.absoluteLink(j.$('a[href*="/play"]').first().attr('href'), Animeworld.domain);
     },
     getMalUrl(provider) {
       return new Promise(resolve => {
@@ -41,7 +41,28 @@ export const Animeworld: pageInterface = {
       return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
     },
     uiSelector(selector) {
-      j.$('span.clearfix').first().after(j.html(selector));
+      j.$('div.widget.player').first().after(j.html(`<div class="widget crop text-center">${selector}</div>`));
+    },
+  },
+  overview: {
+    getTitle(url) {
+      return '';
+    },
+    getIdentifier(url) {
+      return '';
+    },
+    uiSelector(selector) {},
+    list: {
+      offsetHandler: false,
+      elementsSelector() {
+        return j.$('a[href*="/play"]');
+      },
+      elementUrl(selector) {
+        return utils.absoluteLink(selector.attr('href'), Animeworld.domain);
+      },
+      elementEp(selector) {
+        return Number(selector.attr('data-episode-num'));
+      },
     },
   },
   init(page) {
