@@ -3,7 +3,6 @@ import { pageInterface } from '../pageInterface';
 export const AnimeOnsen: pageInterface = {
   name: 'AnimeOnsen',
   domain: 'https://animeonsen.xyz',
-  database: 'AnimeOnsen',
   languages: ['English', 'Japanese'],
   type: 'anime',
   isOverviewPage(url) {
