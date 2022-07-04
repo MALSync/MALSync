@@ -1,4 +1,5 @@
 {
+  "searchDatabase": "animepahe",
   "urls": {
     "match": [
       "*://animepahe.com/play/*",

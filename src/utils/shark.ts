@@ -6,10 +6,23 @@ const normalizeUrl = url => {
 
 function makeFakeFetchTransport(options, _fetchImpl): any {
   return Sentry.makeFetchTransport(options, (url: any, opt: any) => {
-    return api.request.xhr(opt.method ?? 'GET', {
-      url,
-      data: opt.body,
-    }) as any;
+    const retObj = {
+      status: 200,
+      headers: {
+        get: type => '',
+      },
+    };
+
+    return api.request
+      .xhr(opt.method ?? 'GET', {
+        url,
+        data: opt.body,
+      })
+      .catch(e => {
+        retObj.status = 429;
+        return retObj;
+      })
+      .then(res => retObj) as any;
   });
 }
 

@@ -418,6 +418,8 @@ module.exports = {
       '*://vizcloud.digital/e/*',
       '*://vizcloud.cloud/embed/*',
       '*://vizcloud.cloud/e/*',
+      '*://vizcloud.store/embed/*',
+      '*://vizcloud.store/e/*',
     ],
   },
   // gogo
@@ -436,6 +438,7 @@ module.exports = {
       '*://watchsb.com/*',
       '*://steamsb.net/*',
       '*://sbplay2.xyz/*',
+      '*://sbfull.com/e/*',
     ],
   },
   // gogo
@@ -515,6 +518,11 @@ module.exports = {
       '*://voeunblock2.com/e/*',
       '*://voeunblock3.com/e/*',
       '*://voeunbl0ck.com/e/*',
+      '*://voeunblck.com/e/*',
+      '*://voeunblk.com/e/*',
+      '*://voe-un-block.com/e/*',
+      '*://voeun-block.net/e/*',
+      '*://un-block-voe.net/e/*',
     ],
   },
   // animewho

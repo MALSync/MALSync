@@ -544,7 +544,7 @@ export class MyAnimeListClass {
   friendScore() {
     if (!api.settings.get('friendScore')) return;
     $(document).ready(function () {
-      const position = $('h2:contains(Reviews)');
+      const position = $('h2:contains(Reviews)').prev();
       if (!position.length) return;
 
       const overview = $('#horiznav_nav li a').first();

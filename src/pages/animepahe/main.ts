@@ -17,7 +17,7 @@ export const animepahe: pageInterface = {
       return j.$('.theatre-info h1 a').first().text().trim();
     },
     getIdentifier(url) {
-      return getId();
+      return getId()!;
     },
     getOverviewUrl(url) {
       return `${window.location.origin}/a/${getId()}`;
@@ -41,10 +41,10 @@ export const animepahe: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return utils.getBaseText(j.$('.title-wrapper h1').first()).trim();
+      return j.$('.title-wrapper h1 > span').first().text().trim();
     },
     getIdentifier(url) {
-      return getId();
+      return getId()!;
     },
     uiSelector(selector) {
       j.$('.anime-content').prepend(j.html(selector));
@@ -109,5 +109,5 @@ export const animepahe: pageInterface = {
 function getId() {
   const id = j.$('meta[name=id]').attr('content');
   if (id) return id;
-  throw new Error('no id found');
+  return undefined;
 }
