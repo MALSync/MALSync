@@ -12,7 +12,7 @@ export const AsuraScans: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    return url.split('/')[3] === 'comics' && url.split('/')[4] !== '';
+    return j.$('div.thumbook').length > 0;
   },
   sync: {
     getTitle(url) {
