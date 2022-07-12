@@ -1,6 +1,0 @@
-{
-  "search": "https://dreamsub.me/search/?q={searchtermPlus}",
-  "urls": {
-    "match": ["*://dreamsub.cc/*", "*://dreamsub.me/*"]
-  }
-}

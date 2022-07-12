@@ -633,10 +633,6 @@ module.exports = {
   BetterAnime: {
     match: ['*://betteranime.net/player*'],
   },
-  // Dreamsub
-  dreamsub: {
-    match: ['*://cdn2.dreamsub.cc/*'],
-  },
   // animixplay
   streamzz: {
     match: ['*://streamzz.to/*'],
