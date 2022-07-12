@@ -135,6 +135,7 @@ import { MuitoManga } from './MuitoManga/main';
 import { RealmScans } from './RealmScans/main';
 import { LuminousScans } from './LuminousScans/main';
 import { Animeworld } from './Animeworld/main';
+import { MangaBuddy } from './MangaBuddy/main';
 
 export const pages = {
   nineAnime,
@@ -274,4 +275,5 @@ export const pages = {
   RealmScans,
   LuminousScans,
   Animeworld,
+  MangaBuddy,
 };
