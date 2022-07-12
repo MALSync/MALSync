@@ -19,7 +19,10 @@ export const Animeworld: pageInterface = {
       return utils.urlPart(url, 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('a[href*="/play"]').first().attr('href'), Animeworld.domain);
+      return utils.absoluteLink(
+        j.$('div.server a[href*="/play"]').first().attr('href'),
+        Animeworld.domain,
+      );
     },
     getMalUrl(provider) {
       const malUrl = j.$('#mal-button').attr('href');
@@ -34,7 +37,9 @@ export const Animeworld: pageInterface = {
       return false;
     },
     getEpisode(url) {
-      return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
+      return parseInt(
+        j.$('div.server a[href*="/play"].active').first().attr('data-episode-num') || '1',
+      );
     },
     uiSelector(selector) {
       j.$('div.widget.player')
@@ -59,7 +64,7 @@ export const Animeworld: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('a[href*="/play"]');
+        return j.$('div.server a[href*="/play"]');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), Animeworld.domain);
