@@ -108,7 +108,7 @@
     "lint:ci": "npm run lint:less:ci && npm run lint:script:ci"
   },
   "dependencies": {
-    "@rushstack/eslint-patch": "^1.1.3",
+    "@rushstack/eslint-patch": "^1.1.4",
     "@sentry/browser": "^7.0.0",
     "@types/chrome": "0.0.193",
     "@vue/eslint-config-typescript": "^11.0.0",
