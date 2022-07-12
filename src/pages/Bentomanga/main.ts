@@ -93,7 +93,7 @@ export const Bentomanga: pageInterface = {
         page.handleList();
       },
       () => {
-        return j.$('[data-chapter]').length;
+        return j.$('[data-chapter]').first().text();
       },
     );
   },

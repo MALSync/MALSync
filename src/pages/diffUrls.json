@@ -46,6 +46,7 @@
       "https://gogoanime.lu/*"
     ],
     "iframe": [
+      "https://vidstreaming1.xyz/*",
       "https://vizcloud.store/embed/*",
       "https://vizcloud.store/e/*",
       "https://sbfull.com/e/*",
@@ -55,7 +56,8 @@
       "https://voeunblk.com/e/*",
       "https://voe-un-block.com/e/*",
       "https://voeun-block.net/e/*",
-      "https://un-block-voe.net/e/*"
+      "https://un-block-voe.net/e/*",
+      "https://v-o-e-unblock.com/e/*"
     ]
   }
 }

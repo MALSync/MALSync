@@ -24,7 +24,12 @@ module.exports = {
     match: ['*://*.static.vrv.co/*'],
   },
   vidstreaming: {
-    match: ['*://*.vidstreaming.io/*', '*://*.vidstreaming.me/*', '*://*.vidstreamingvw.xyz/*'],
+    match: [
+      '*://*.vidstreaming.io/*',
+      '*://*.vidstreaming.me/*',
+      '*://*.vidstreamingvw.xyz/*',
+      '*://*.vidstreaming1.xyz/*',
+    ],
   },
   xstreamcdn: {
     match: ['*://*.xstreamcdn.com/*', '*://*.gcloud.live/*'],
@@ -523,6 +528,7 @@ module.exports = {
       '*://voe-un-block.com/e/*',
       '*://voeun-block.net/e/*',
       '*://un-block-voe.net/e/*',
+      '*://v-o-e-unblock.com/e/*',
     ],
   },
   // animewho
@@ -718,5 +724,9 @@ module.exports = {
   // simplyaweeb
   simplyaweeb: {
     match: ['*://player.simplyaweeb.to/*'],
+  },
+  // animeworld
+  animeworld: {
+    match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
   },
 };
