@@ -20,7 +20,7 @@ export const Animeworld: pageInterface = {
     },
     getOverviewUrl(url) {
       return utils.absoluteLink(
-        j.$('div.server a[href*="/play"]').first().attr('href'),
+        j.$('div.server:not([style*="display: none"]) a[href*="/play"]').first().attr('href'),
         Animeworld.domain,
       );
     },
