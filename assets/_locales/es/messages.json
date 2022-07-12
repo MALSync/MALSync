@@ -732,7 +732,7 @@
     "description": "Last used page links"
   },
   "settings_anilist_update_ui": {
-    "message": "Actualizar UI",
+    "message": "Bloque de actualización",
     "description": "UI in the aniList sidebar to update episodes progress and the score"
   },
   "settings_miniMAL_floatButtonStealth": {
