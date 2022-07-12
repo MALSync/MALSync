@@ -1,7 +1,6 @@
 {
   "title": "animeworld",
   "url": "https://www.animeworld.tv/",
-  "enabled": false,
   "testCases": [
     {
       "url": "https://www.animeworld.tv/play/otome-game-sekai-wa-mob-ni-kibishii-sekai-desu.5z9UH/htfv9X",
