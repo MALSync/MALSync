@@ -6,5 +6,8 @@
       "matchPackagePatterns": ["*"],
       "rangeStrategy": "bump"
     }
-  ]
+  ],
+  "npm": {
+     "rangeStrategy": "update-lockfile"
+  }
 }
