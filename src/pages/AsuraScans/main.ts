@@ -12,7 +12,7 @@ export const AsuraScans: pageInterface = {
     return false;
   },
   isOverviewPage(url) {
-    return j.$('div.thumbook').length > 0;
+    return j.$('div.thumbook').length > 0 && j.$('div.bixbox.animefull').length > 0;
   },
   sync: {
     getTitle(url) {
