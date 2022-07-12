@@ -22,30 +22,28 @@ export const Animeworld: pageInterface = {
       return utils.absoluteLink(j.$('a[href*="/play"]').first().attr('href'), Animeworld.domain);
     },
     getMalUrl(provider) {
-      return new Promise(resolve => {
-        const malUrl = j.$('#mal-button').attr('href');
-        if (malUrl) {
-          resolve(malUrl);
-          return;
-        }
+      const malUrl = j.$('#mal-button').attr('href');
+      if (malUrl) {
+        return malUrl;
+      }
 
-        if (provider === 'ANILIST') {
-          resolve(j.$('#anilist-button').attr('href') || false);
-          return;
-        }
+      if (provider === 'ANILIST') {
+        return j.$('#anilist-button').attr('href') || false;
+      }
 
-        resolve(false);
-      });
+      return false;
     },
     getEpisode(url) {
       return parseInt(j.$('a[href*="/play"].active').first().attr('data-episode-num') || '1');
     },
     uiSelector(selector) {
-      if ($('#mal-sync-ui-selector').length) {
-        $('#mal-sync-ui-selector').append(selector);
-      } else {
-        j.$('div.widget.player').first().after(j.html(`<div id="mal-sync-ui-selector" class="widget crop text-center">${selector}</div>`));
-      }
+      j.$('div.widget.player')
+        .first()
+        .after(
+          j.html(
+            `<div id="mal-sync-ui-selector" class="widget crop text-center">${selector}</div>`,
+          ),
+        );
     },
   },
   overview: {
@@ -55,7 +53,9 @@ export const Animeworld: pageInterface = {
     getIdentifier(url) {
       return '';
     },
-    uiSelector(selector) {},
+    uiSelector(selector) {
+      // no ui
+    },
     list: {
       offsetHandler: false,
       elementsSelector() {
@@ -76,6 +76,11 @@ export const Animeworld: pageInterface = {
     );
     utils.fullUrlChangeDetect(() => {
       page.reset();
+      j.$('#mal-sync-ui-selector').remove();
+      if (document.title.includes('Pagina non trovata')) {
+        con.error('404');
+        return;
+      }
       page.handlePage();
     });
   },
