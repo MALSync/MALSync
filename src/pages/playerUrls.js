@@ -725,4 +725,8 @@ module.exports = {
   simplyaweeb: {
     match: ['*://player.simplyaweeb.to/*'],
   },
+  // animeworld
+  animeworld: {
+    match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
+  },
 };
