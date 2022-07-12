@@ -1,3 +1,4 @@
+import { globToRegex } from 'webext-patterns';
 import { CustomDomainError } from '../utils/errors';
 import { isIframeUrl } from '../utils/manifest';
 import { Shark } from '../utils/shark';
@@ -66,6 +67,22 @@ function singleListener(domainConfig: domainType) {
         logger.m('Navigation').log('Do not inject page scripts in Iframe');
         return;
       }
+      const manifest = chrome.runtime.getManifest();
+      const regex = new RegExp(`^content/page_${domainConfig.page}.js`);
+
+      const pageScript = manifest.content_scripts!.find(content_script => {
+        return content_script.js && content_script.js.some(e => regex.test(e));
+      });
+
+      if (
+        pageScript &&
+        pageScript.exclude_globs &&
+        globToRegex(...pageScript.exclude_globs).test(data.url)
+      ) {
+        logger.m('Navigation').log(`${data.url} was found in excludes for the page`);
+        return;
+      }
+
       chrome.tabs.executeScript(data.tabId, {
         file: 'vendor/jquery.min.js',
         frameId: data.frameId,
@@ -102,12 +119,11 @@ function singleListener(domainConfig: domainType) {
     return;
   }
 
-  logger.m('registred').m(domainConfig.page).log(fixDomain);
+  logger.m('Registered').m(domainConfig.page).log(fixDomain);
 }
 
 export async function cleanupCustomDomains() {
   const manifest = chrome.runtime.getManifest();
-
   const pageScripts = manifest.content_scripts!.filter(content_script => {
     return content_script.js && content_script.js.some(e => /^content\/page_/.test(e));
   });
