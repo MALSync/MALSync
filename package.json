@@ -47,7 +47,7 @@
     "postcss-less": "^6.0.0",
     "prettier": "^2.7.1",
     "puppeteer": "^14.4.1",
-    "puppeteer-extra": "^3.2.3",
+    "puppeteer-extra": "^3.3.4",
     "puppeteer-extra-plugin-adblocker": "^2.12.0",
     "puppeteer-extra-plugin-stealth": "^2.9.0",
     "serialize-javascript": "^6.0.0",
