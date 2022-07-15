@@ -1,5 +1,5 @@
 {
-  "search": "https://monoschinos2.com/search?q={searchtermPlus}",
+  "search": "https://monoschinos2.com/buscar?q={searchtermPlus}",
   "urls": {
     "match": [
       "*://monoschinos.com/*",
