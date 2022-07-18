@@ -531,6 +531,7 @@ module.exports = {
       '*://voeun-block.net/e/*',
       '*://un-block-voe.net/e/*',
       '*://v-o-e-unblock.com/e/*',
+      '*://audaciousdefaulthouse.com/e/*',
     ],
   },
   // animewho
