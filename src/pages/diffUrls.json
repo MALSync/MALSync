@@ -49,6 +49,8 @@
       "https://vidstreaming1.xyz/*",
       "https://vizcloud.store/embed/*",
       "https://vizcloud.store/e/*",
+      "https://vizcloud.site/embed/*",
+      "https://vizcloud.site/e/*",
       "https://sbfull.com/e/*",
       "https://voeunblock3.com/e/*",
       "https://voeunbl0ck.com/e/*",
@@ -57,7 +59,9 @@
       "https://voe-un-block.com/e/*",
       "https://voeun-block.net/e/*",
       "https://un-block-voe.net/e/*",
-      "https://v-o-e-unblock.com/e/*"
+      "https://v-o-e-unblock.com/e/*",
+      "https://audaciousdefaulthouse.com/e/*",
+      "https://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*"
     ]
   }
 }
