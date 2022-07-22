@@ -94,7 +94,6 @@ export const nineAnime: pageInterface = {
             return j.$('#w-episodes div.dropdown.filter.type > button').text();
           },
         );
-
       },
     );
   },
