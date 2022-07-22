@@ -11,9 +11,12 @@ export const nineAnime: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$('h1.title').text();
+      return isWatch2Gether() ? j.$('div.info > div.d-title').text() : j.$('h1.title').text();
     },
     getIdentifier(url) {
+      if (isWatch2Gether()) {
+        url = nineAnime.sync.getOverviewUrl(url);
+      }
       url = utils.urlPart(url, 4);
       if (url.indexOf('.') > -1) {
         url = url.split('.')[1];
@@ -21,9 +24,18 @@ export const nineAnime: pageInterface = {
       return url;
     },
     getOverviewUrl(url) {
+      if (isWatch2Gether()) {
+        return utils.absoluteLink(
+          j.$('div.info a[href*="/watch/"]').attr('href'),
+          nineAnime.domain,
+        );
+      }
       return utils.absoluteLink(j.$('ul.ep-range > li > a').first().attr('href'), nineAnime.domain);
     },
     getEpisode(url) {
+      if (isWatch2Gether()) {
+        return parseInt(j.$('div.info span.dot.ep').text().replace(/\D+/g, ''));
+      }
       return parseInt(j.$('ul.ep-range > li > a.active').attr('data-num')!);
     },
     nextEpUrl(url) {
@@ -32,7 +44,11 @@ export const nineAnime: pageInterface = {
       return utils.absoluteLink(nextEp, nineAnime.domain);
     },
     uiSelector(selector) {
-      j.$('#w-media').after(j.html(`<div>${selector}</div>`));
+      if (isWatch2Gether()) {
+        j.$('div.room-info').after(j.html(selector));
+      } else {
+        j.$('#w-media').after(j.html(selector));
+      }
     },
   },
   overview: {
@@ -62,39 +78,77 @@ export const nineAnime: pageInterface = {
     api.storage.addStyle(
       require('!to-string-loader!css-loader!less-loader!./style.less').toString(),
     );
-    utils.waitUntilTrue(
-      function () {
-        return j.$('ul.ep-range li').length;
-      },
-      function () {
-        con.info('Start check');
-        page.handlePage();
 
-        utils.urlChangeDetect(function () {
-          con.info('Check');
-          page.reset();
+    if (isWatch2Gether()) {
+
+      if(utils.urlPart(window.location.href, 4) !== 'room') {
+        con.error('not watch2gether room page');
+        return;
+      }
+
+      utils.waitUntilTrue(
+        function () {
+          return (
+            nineAnime.sync.getTitle(window.location.href).length &&
+            nineAnime.sync.getEpisode(window.location.href)
+          );
+        },
+        function () {
+          con.info('Start check');
           page.handlePage();
-        });
+          utils.changeDetect(
+            () => {
+              page.reset();
+              page.handlePage();
+            },
+            () => {
+              return (
+                nineAnime.sync.getTitle(window.location.href) +
+                nineAnime.sync.getEpisode(window.location.href)
+              );
+            },
+          );
+        },
+      );
+    } else {
+      utils.waitUntilTrue(
+        function () {
+          return j.$('ul.ep-range li').length;
+        },
+        function () {
+          con.info('Start check');
+          page.handlePage();
 
-        // utils.changeDetect(
-        //   () => {
-        //     page.reset();
-        //     page.handlePage();
-        //   },
-        //   () => {
-        //     return nineAnime.sync.getEpisode(window.location.href);
-        //   },
-        // );
+          utils.urlChangeDetect(function () {
+            con.info('Check');
+            page.reset();
+            page.handlePage();
+          });
 
-        utils.changeDetect(
-          () => {
-            page.handleList();
-          },
-          () => {
-            return j.$('#w-episodes div.dropdown.filter.type > button').text();
-          },
-        );
-      },
-    );
+          // utils.changeDetect(
+          //   () => {
+          //     page.reset();
+          //     page.handlePage();
+          //   },
+          //   () => {
+          //     return nineAnime.sync.getEpisode(window.location.href);
+          //   },
+          // );
+
+          utils.changeDetect(
+            () => {
+              page.handleList();
+            },
+            () => {
+              return j.$('#w-episodes div.dropdown.filter.type > button').text();
+            },
+          );
+        },
+      );
+    }
   },
 };
+
+function isWatch2Gether() {
+  return utils.urlPart(window.location.href, 3) === 'watch2gether';
+}
