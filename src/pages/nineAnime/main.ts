@@ -21,18 +21,18 @@ export const nineAnime: pageInterface = {
       return url;
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('ul.episodes > li > a').first().attr('href'), nineAnime.domain);
+      return utils.absoluteLink(j.$('ul.ep-range > li > a').first().attr('href'), nineAnime.domain);
     },
     getEpisode(url) {
-      return parseInt(j.$('ul.episodes > li > a.active').attr('data-base')!);
+      return parseInt(j.$('ul.ep-range > li > a.active').attr('data-num')!);
     },
     nextEpUrl(url) {
-      const nextEp = j.$('ul.episodes > li > a.active').parent('li').next().find('a').attr('href');
+      const nextEp = j.$('ul.ep-range > li > a.active').parent('li').next().find('a').attr('href');
       if (!nextEp) return nextEp;
       return utils.absoluteLink(nextEp, nineAnime.domain);
     },
     uiSelector(selector) {
-      j.$('#episodes').after(j.html(`<section>${selector}</section>`));
+      j.$('#w-media').after(j.html(`<div>${selector}</div>`));
     },
   },
   overview: {
@@ -48,13 +48,13 @@ export const nineAnime: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.episodes > li > a');
+        return j.$('ul.ep-range > li:not([style*="display: none"]) > a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), nineAnime.domain);
       },
       elementEp(selector) {
-        return Number(selector.attr('data-base'));
+        return Number(selector.attr('data-num'));
       },
     },
   },
@@ -64,15 +64,37 @@ export const nineAnime: pageInterface = {
     );
     utils.waitUntilTrue(
       function () {
-        return j.$('ul.episodes > li').length;
+        return j.$('ul.ep-range li').length;
       },
       function () {
         con.info('Start check');
         page.handlePage();
+
         utils.urlChangeDetect(function () {
           con.info('Check');
+          page.reset();
           page.handlePage();
         });
+
+        // utils.changeDetect(
+        //   () => {
+        //     page.reset();
+        //     page.handlePage();
+        //   },
+        //   () => {
+        //     return nineAnime.sync.getEpisode(window.location.href);
+        //   },
+        // );
+
+        utils.changeDetect(
+          () => {
+            page.handleList();
+          },
+          () => {
+            return j.$('#w-episodes div.dropdown.filter.type > button').text();
+          },
+        );
+
       },
     );
   },

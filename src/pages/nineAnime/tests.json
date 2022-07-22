@@ -3,17 +3,17 @@
   "url": "https://9anime.to/",
   "testCases": [
     {
-      "url": "https://9anime.to/watch/no-game-no-life-dub.y2p0/ep-4",
+      "url": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-4",
       "expected": {
         "sync": true,
-        "title": "No Game, No Life (Dub)",
-        "identifier": "y2p0",
-        "overviewUrl": "https://9anime.to/watch/no-game-no-life-dub.y2p0/ep-1",
-        "nextEpUrl": "https://9anime.to/watch/no-game-no-life-dub.y2p0/ep-5",
+        "title": "No Game, No Life",
+        "identifier": "4qkm",
+        "overviewUrl": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-1",
+        "nextEpUrl": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-5",
         "episode": 4,
         "uiSelector": true,
         "epList": {
-          "5": "https://9anime.to/watch/no-game-no-life-dub.y2p0/ep-5"
+          "5": "https://9anime.pl/watch/no-game-no-life.4qkm/ep-5"
         }
       }
     }
