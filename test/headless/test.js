@@ -132,12 +132,12 @@ async function cdn(page, type) {
 async function onlineTest(url, page) {
   const [response] = await Promise.all([await page.goto(url, { waitUntil: 'networkidle0' })]);
 
-  if (parseInt(response.headers().status) !== 200) {
+  if (parseInt(response.status()) !== 200) {
     const content = await page.evaluate(() => document.body.innerHTML);
     if (content.indexOf('Why do I have to complete a CAPTCHA?') !== -1) {
       throw 'Captcha';
     }
-    throw response.headers().status;
+    throw response.status();
   }
 }
 
