@@ -210,11 +210,6 @@
     "name": "bato"
   },
   {
-    "domain": "https://dreamsub.me",
-    "type": "anime",
-    "name": "DreamSub"
-  },
-  {
     "domain": "https://mangapark.net",
     "type": "manga",
     "name": "MangaPark"
@@ -258,6 +253,11 @@
     "domain": "https://mangatx.com",
     "type": "manga",
     "name": "mangatx"
+  },
+  {
+    "domain": "https://manhuafast.com",
+    "type": "manga",
+    "name": "manhuafast"
   },
   {
     "domain": "https://www.tranimeizle.net/",
@@ -673,5 +673,15 @@
     "domain": "https://luminousscans.com",
     "type": "manga",
     "name": "LuminousScans"
+  },
+  {
+    "domain": "https://www.animeworld.tv",
+    "type": "anime",
+    "name": "Animeworld"
+  },
+  {
+    "domain": "https://mangabuddy.com",
+    "type": "manga",
+    "name": "MangaBuddy"
   }
 ]

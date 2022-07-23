@@ -63,5 +63,8 @@
       "https://audaciousdefaulthouse.com/e/*",
       "https://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*"
     ]
+  },
+  "0.8.22": {
+    "iframe": []
   }
 }

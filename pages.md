@@ -94,7 +94,7 @@
     <td>English, Japanese</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://animepahe.com"><img src="https://favicon.malsync.moe/?domain=https://animepahe.com"> animepahe</a></td>
@@ -174,6 +174,13 @@
     <td>:x:</td>
     <td>:x:</td>
   </tr><tr>
+    <td><a href="https://www.animeworld.tv"><img src="https://favicon.malsync.moe/?domain=https://www.animeworld.tv"> Animeworld</a></td>
+    <td>Italian</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://animexin.xyz"><img src="https://favicon.malsync.moe/?domain=https://animexin.xyz"> AnimeXin</a></td>
     <td>English, Spanish, Indonesian, Portuguese, Turkish, Italian</td>
     <td>:heavy_check_mark:</td>
@@ -232,13 +239,6 @@
   </tr><tr>
     <td><a href="https://desu-online.pl"><img src="https://favicon.malsync.moe/?domain=https://desu-online.pl"> DesuOnline</a></td>
     <td>Polish</td>
-    <td>:heavy_check_mark:</td>
-    <td>:heavy_check_mark:</td>
-    <td>:x:</td>
-    <td>:heavy_check_mark:</td>
-  </tr><tr>
-    <td><a href="https://dreamsub.me"><img src="https://favicon.malsync.moe/?domain=https://dreamsub.me"> DreamSub</a></td>
-    <td>Italian</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
     <td>:x:</td>
@@ -437,7 +437,7 @@
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
-    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://tioanime.com"><img src="https://favicon.malsync.moe/?domain=https://tioanime.com"> tioanime</a></td>
@@ -715,6 +715,13 @@
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
   </tr><tr>
+    <td><a href="https://mangabuddy.com"><img src="https://favicon.malsync.moe/?domain=https://mangabuddy.com"> MangaBuddy</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
     <td><a href="https://mangadenizi.com"><img src="https://favicon.malsync.moe/?domain=https://mangadenizi.com"> mangadenizi</a></td>
     <td>Turkish</td>
     <td>:heavy_check_mark:</td>
@@ -821,6 +828,13 @@
     <td>:heavy_check_mark:</td>
   </tr><tr>
     <td><a href="https://mangatx.com"><img src="https://favicon.malsync.moe/?domain=https://mangatx.com"> mangatx</a></td>
+    <td>English</td>
+    <td>:heavy_check_mark:</td>
+    <td>:heavy_check_mark:</td>
+    <td>:x:</td>
+    <td>:heavy_check_mark:</td>
+  </tr><tr>
+    <td><a href="https://manhuafast.com"><img src="https://favicon.malsync.moe/?domain=https://manhuafast.com"> manhuafast</a></td>
     <td>English</td>
     <td>:heavy_check_mark:</td>
     <td>:heavy_check_mark:</td>
