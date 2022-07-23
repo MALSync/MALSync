@@ -80,8 +80,7 @@ export const nineAnime: pageInterface = {
     );
 
     if (isWatch2Gether()) {
-
-      if(utils.urlPart(window.location.href, 4) !== 'room') {
+      if (utils.urlPart(window.location.href, 4) !== 'room') {
         con.error('not watch2gether room page');
         return;
       }

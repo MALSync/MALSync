@@ -1,19 +1,25 @@
 @import './../pages';
 
-@textColor: #16b6f8;
+@textColor: inherit;
 
 .mal-sync-active {
-  color: white !important;
+  border-left: 4px solid #1766dc !important;
 }
 
-@activeEp: #1766dc !important;
-
-select option {
-  background-color: #1c1b26 !important;
-}
+@activeEp: inherit;
 
 #malp {
-  margin-top: 30px;
-  padding: 10px;
-  background: #050a0f;
+  margin: 0;
+  margin-top: 1rem;
+  padding: 15px;
+  background-color: #010101;
+  border-radius: 5px;
+  .malp-group-field,
+  #AddMal {
+    font-weight: bold;
+  }
+}
+
+.w2g-watch #malp {
+  background-color: #1c1c1c;
 }
