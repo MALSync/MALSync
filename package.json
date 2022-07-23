@@ -109,7 +109,7 @@
   },
   "dependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
-    "@sentry/browser": "^7.0.0",
+    "@sentry/browser": "^7.7.0",
     "@types/chrome": "0.0.193",
     "@vue/eslint-config-typescript": "^11.0.0",
     "async-mutex": "^0.3.2",
