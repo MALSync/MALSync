@@ -5,6 +5,7 @@ export const tenshi: pageInterface = {
   domain: 'https://tenshi.moe',
   languages: ['English'],
   type: 'anime',
+  database: 'Tenshi',
   isSyncPage(url) {
     return url.split('/').length === 6;
   },
