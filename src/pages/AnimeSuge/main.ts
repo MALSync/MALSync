@@ -17,13 +17,13 @@ export const AnimeSuge: pageInterface = {
       return splitUrl[splitUrl.length - 1];
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(j.$('ul.episodes > li > a').first().attr('href'), AnimeSuge.domain);
+      return utils.absoluteLink(j.$('.episodes li > a').first().attr('href'), AnimeSuge.domain);
     },
     getEpisode(url) {
-      return parseInt(j.$('ul.episodes > li > a.active').attr('data-base')!);
+      return parseInt(j.$('.episodes li > a.active').attr('data-slug')!);
     },
     nextEpUrl(url) {
-      const nextEp = j.$('ul.episodes > li > a.active').parent('li').next().find('a').attr('href');
+      const nextEp = j.$('.episodes li > a.active').parent('li').next().find('a').attr('href');
       if (!nextEp) return nextEp;
       return utils.absoluteLink(nextEp, AnimeSuge.domain);
     },
@@ -44,13 +44,13 @@ export const AnimeSuge: pageInterface = {
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('ul.episodes > li > a');
+        return j.$('.episodes li > a');
       },
       elementUrl(selector) {
         return utils.absoluteLink(selector.attr('href'), AnimeSuge.domain);
       },
       elementEp(selector) {
-        return Number(selector.attr('data-base'));
+        return Number(selector.attr('data-slug'));
       },
     },
   },
@@ -61,7 +61,7 @@ export const AnimeSuge: pageInterface = {
     AnimeSuge.database = '9anime';
     utils.waitUntilTrue(
       function () {
-        return j.$('ul.episodes > li').length;
+        return j.$('.episodes li').length;
       },
       function () {
         con.info('Start check');
