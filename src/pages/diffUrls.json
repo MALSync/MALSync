@@ -65,6 +65,9 @@
     ]
   },
   "0.8.22": {
+    "Aniflix": [
+      "https://aniflix.cc/*"
+    ],
     "iframe": [
       "https://ssbstream.net/*"
     ]

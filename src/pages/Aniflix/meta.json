@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://*.aniflix.tv/*"]
+    "match": ["*://*.aniflix.tv/*", "*://*.aniflix.cc/*"]
   }
 }
