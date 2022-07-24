@@ -446,6 +446,7 @@ module.exports = {
       '*://steamsb.net/*',
       '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
+      '*://ssbstream.net/*',
     ],
   },
   // gogo

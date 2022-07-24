@@ -65,6 +65,8 @@
     ]
   },
   "0.8.22": {
-    "iframe": []
+    "iframe": [
+      "https://ssbstream.net/*"
+    ]
   }
 }
