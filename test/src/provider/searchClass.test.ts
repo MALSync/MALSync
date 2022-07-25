@@ -445,7 +445,7 @@ describe('Full Search', function() {
     const searchObj = new SearchClass(
       'Avatar: The Last Airbender',
       'anime',
-      'k1n4',
+      'wjzl',
     );
     searchObj.setPage({
       database: '9anime',
