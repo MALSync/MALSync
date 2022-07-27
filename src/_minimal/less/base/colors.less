@@ -1,39 +1,3 @@
-@colors: {
-  text: black;
-  light-text: #828282;
-  primary: #4C8FF2;
-  primary-dark: #0052F7;
-  secondary: #EB5757;
-  dark-background: #313131;
-  border-hover: #4B4B4B;
-  backdrop: #EBEBEB;
-  background: rgba(255, 255, 255, var(--cl-opacity));
-  foreground: rgba(255, 255, 255, var(--cl-opacity));
-  foreground-solid: rgba(255, 255, 255);
-  opacity: 1;
-}
-
-@dark-colors: {
-  text: white;
-  light-text: #afafaf;
-  secondary: #ff7c7c;
-  dark-background: #3b3b3b;
-  border-hover: white;
-  backdrop: #5e5e5e;
-  background: rgba(53, 53, 53, var(--cl-opacity));
-  foreground: rgba(94, 94, 94, var(--cl-opacity));
-  foreground-solid: rgba(94, 94, 94);
-}
-
-@states: {
-  watching: #EB5757;
-  completed: #27AE60;
-  on-hold: #F2994A;
-  dropped: #BB6BD9;
-  plan-to-watch: #56CCF2;
-  not-on-list: grey;
-}
-
 .root-variables(@array, @domain) {
   each(@array, {
       --@{domain}-@{key}: @value;
@@ -44,7 +8,7 @@
 
 :root {
   .root-variables(@colors, cl);
-  .root-variables(@states, state);
+  .root-variables(@state-colors, state);
 }
 
 html.dark {
