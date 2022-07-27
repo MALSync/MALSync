@@ -1,0 +1,45 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--cl-backdrop);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
+  &.backImage {
+    background-image: url(https://wallpapercave.com/wp/wp2301613.jpg);
+  }
+}
+
+body {
+  color: var(--cl-text);
+}
+
+#minimalApp {
+  background-color: var(--cl-background);
+  overflow: auto;
+  max-width: 1400px;
+  min-height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html.no-sidebar {
+  body {
+    background-color: var(--cl-background);
+  }
+
+  #minimalApp {
+    background-color: transparent;
+  }
+}
