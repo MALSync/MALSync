@@ -3,7 +3,9 @@
     <div ref="inner" class="open-gradient">
       <slot></slot>
     </div>
-    <FormButton v-show="!open && overflow" class="open-button" @click="open = true">Read More</FormButton>
+    <FormButton v-show="!open && overflow" class="open-button" @click="open = true"
+      >Read More</FormButton
+    >
     <div v-show="open" class="close-button-box">
       <FormButton class="close-button" @click="open = false">Read Less</FormButton>
     </div>
@@ -29,6 +31,7 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
 .description {
   position: relative;
 
@@ -42,7 +45,7 @@ onMounted(() => {
   .close-button-box {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-top: @spacer-half;
   }
 
   &.close {

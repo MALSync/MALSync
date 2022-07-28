@@ -69,7 +69,7 @@ watch(
       background-color: var(--cl-primary);
     }
 
-    &:focus + .slider {
+    &:focus-visible + .slider {
       .focus-outline();
     }
 
