@@ -49,8 +49,10 @@
     <FormCheckbox :model-value="false"></FormCheckbox>
     <PillDark>5 Days 3 Hours</PillDark>
     <PillSplit>
-      <template #left>Left</template>
-      <template #right>Right</template>
+      <template #left><TextIcon icon="star">10</TextIcon></template>
+      <template #right>
+        <TextIcon src="https://www.google.com/s2/favicons?domain=crunchyroll.com">4</TextIcon>
+      </template>
     </PillSplit>
   </div>
 </template>
@@ -64,6 +66,7 @@ import Description from './components/description.vue';
 import FormCheckbox from './components/form/form-checkbox.vue';
 import PillDark from './components/pill-dark.vue';
 import PillSplit from './components/pill-split.vue';
+import TextIcon from './components/text-icon.vue';
 </script>
 
 <style lang="less">
