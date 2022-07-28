@@ -1,26 +1,23 @@
 <template>
   <div class="content">
-    <imageLazy
-      mode="cover"
-      src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
-      style="width: 300px"
-    />
-    <imageLazy src="" mode="cover" style="width: 300px" />
-    <imageLazy src="https://s4.anilist.co/file/anilistcdn/medi" mode="cover" style="width: 300px" />
+    <Grid min-width="191">
+      <imageLazy
+        mode="cover"
+        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
+      />
+      <imageLazy src="" mode="cover" />
+      <imageLazy src="https://s4.anilist.co/file/anilistcdn/medi" mode="cover" />
+      <ImageFit
+        mode="cover"
+        src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
+      />
+      <ImageFit mode="cover" src="" />
+      <ImageFit mode="cover" src="https://s4.anilist.co/file/anilistcdn/media/" />
+    </Grid>
+
     <ImageFit
       style="width: 600px; height: 300px"
       src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
-    />
-    <ImageFit
-      style="width: 300px"
-      mode="cover"
-      src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
-    />
-    <ImageFit style="width: 300px" mode="cover" src="" />
-    <ImageFit
-      style="width: 300px"
-      mode="cover"
-      src="https://s4.anilist.co/file/anilistcdn/media/"
     />
   </div>
 </template>
@@ -28,6 +25,7 @@
 <script lang="ts" setup>
 import imageLazy from './components/image-lazy.vue';
 import ImageFit from './components/image-fit.vue';
+import Grid from './components/grid.vue';
 </script>
 
 <style lang="less">

@@ -63,6 +63,7 @@ function imageError(event: Event) {
 .lazy-image {
   display: inline-block;
   background-color: var(--cl-backdrop);
+  max-width: 100%;
 
   &.empty {
     background-image: url(@endless-clouds);
