@@ -47,6 +47,11 @@
     <Description>Short Description</Description>
     <FormCheckbox :model-value="true"></FormCheckbox>
     <FormCheckbox :model-value="false"></FormCheckbox>
+    <PillDark>5 Days 3 Hours</PillDark>
+    <PillSplit>
+      <template #left>Left</template>
+      <template #right>Right</template>
+    </PillSplit>
   </div>
 </template>
 
@@ -57,6 +62,8 @@ import Grid from './components/grid.vue';
 import FormButton from './components/form/form-button.vue';
 import Description from './components/description.vue';
 import FormCheckbox from './components/form/form-checkbox.vue';
+import PillDark from './components/pill-dark.vue';
+import PillSplit from './components/pill-split.vue';
 </script>
 
 <style lang="less">
