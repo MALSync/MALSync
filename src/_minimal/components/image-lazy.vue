@@ -78,7 +78,7 @@ function imageError(event: Event) {
   }
 
   &.mode-cover {
-    aspect-ratio: 225/350;
+    aspect-ratio: @aspect-ratio-cover;
   }
 }
 </style>
