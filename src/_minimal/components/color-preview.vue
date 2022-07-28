@@ -14,8 +14,6 @@
           :style="`background-color: var(--cl-${subColors})`"
         ></div>
       </div>
-    </div>
-    <div class="state-colors">
       <div
         v-for="stateColor in stateColors"
         :key="stateColor"
@@ -77,13 +75,10 @@ const stateColors = ['watching', 'completed', 'on-hold', 'dropped', 'plan-to-wat
 @import '../less/_globals.less';
 
 .color-preview {
-  border: 1px solid black;
+  border: 1px solid var(--cl-backdrop);
   .main-colors,
   .state-colors {
     display: flex;
-  }
-  .state-colors {
-    border-top: 1px solid black;
   }
   .top-color {
     flex-grow: 1;
@@ -99,7 +94,8 @@ const stateColors = ['watching', 'completed', 'on-hold', 'dropped', 'plan-to-wat
   .sub-colors {
     --cl-white-text: white;
 
-    width: 20px;
+    width: 100%;
+    max-width: 20px;
     height: 10px;
     border-radius: 10px;
   }
