@@ -15,6 +15,8 @@
       <ImageFit mode="cover" src="https://s4.anilist.co/file/anilistcdn/media/" />
     </Grid>
 
+    <FormButton>Read More</FormButton>
+    <FormButton padding="large">Load</FormButton>
     <ImageFit
       style="width: 600px; height: 300px"
       src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
@@ -26,6 +28,7 @@
 import imageLazy from './components/image-lazy.vue';
 import ImageFit from './components/image-fit.vue';
 import Grid from './components/grid.vue';
+import FormButton from './components/form/form-button.vue';
 </script>
 
 <style lang="less">
