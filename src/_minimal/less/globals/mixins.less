@@ -2,11 +2,16 @@
   border-radius: 10px;
 }
 
-.link() {
-  cursor: pointer;
-}
-
 /* Shadows */
 .box-shadow() {
   box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+}
+
+.click-move-down() {
+  transition: transform @fast-transition ease;
+
+  &:active {
+    transition-delay: 0s !important;
+    transform: translateY(3px);
+  }
 }

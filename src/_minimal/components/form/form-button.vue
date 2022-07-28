@@ -20,7 +20,9 @@ defineProps({
 
 .button {
   .link();
+  .block-select();
   .border-radius();
+  .click-move-down();
 
   display: inline-block;
   border: 1px solid var(--cl-backdrop);
