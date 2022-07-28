@@ -23,6 +23,22 @@ html {
 
 body {
   color: var(--cl-text);
+  overflow: overlay;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border: 6px solid transparent;
+    background-color: #c1c1c1;
+    background-clip: content-box;
+
+    &:hover {
+      border: 4px solid transparent;
+    }
+  }
 }
 
 #minimalApp {
