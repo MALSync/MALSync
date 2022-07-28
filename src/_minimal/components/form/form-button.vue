@@ -39,5 +39,9 @@ defineProps({
   &:hover {
     border-color: var(--cl-border-hover);
   }
+
+  &:focus {
+    .focus-outline();
+  }
 }
 </style>

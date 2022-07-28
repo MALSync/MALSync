@@ -45,6 +45,8 @@
       Koro-sensei.[Written by MAL Rewrite]</Description
     >
     <Description>Short Description</Description>
+    <FormCheckbox :model-value="true"></FormCheckbox>
+    <FormCheckbox :model-value="false"></FormCheckbox>
   </div>
 </template>
 
@@ -54,6 +56,7 @@ import ImageFit from './components/image-fit.vue';
 import Grid from './components/grid.vue';
 import FormButton from './components/form/form-button.vue';
 import Description from './components/description.vue';
+import FormCheckbox from './components/form/form-checkbox.vue';
 </script>
 
 <style lang="less">
