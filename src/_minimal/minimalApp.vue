@@ -54,6 +54,7 @@
         <TextIcon src="https://www.google.com/s2/favicons?domain=crunchyroll.com">4</TextIcon>
       </template>
     </PillSplit>
+    <Spinner />
   </div>
 </template>
 
@@ -67,6 +68,7 @@ import FormCheckbox from './components/form/form-checkbox.vue';
 import PillDark from './components/pill-dark.vue';
 import PillSplit from './components/pill-split.vue';
 import TextIcon from './components/text-icon.vue';
+import Spinner from '../minimal/minimalApp/components/spinner.vue';
 </script>
 
 <style lang="less">
