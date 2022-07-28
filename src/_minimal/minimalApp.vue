@@ -55,6 +55,7 @@
       </template>
     </PillSplit>
     <Spinner />
+    <ColorPreview />
   </div>
 </template>
 
@@ -69,6 +70,7 @@ import PillDark from './components/pill-dark.vue';
 import PillSplit from './components/pill-split.vue';
 import TextIcon from './components/text-icon.vue';
 import Spinner from '../minimal/minimalApp/components/spinner.vue';
+import ColorPreview from './components/color-preview.vue';
 </script>
 
 <style lang="less">
