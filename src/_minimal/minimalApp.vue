@@ -104,7 +104,7 @@
       <FormColorPicker model-value="#cacaca" />
     </Section>
     <Section>
-      <FormSlider />
+      <FormSlider :min="50" :max="100" :interval="0.5" />
     </Section>
     <Section>
       <FormSlider

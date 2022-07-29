@@ -7,6 +7,9 @@
       :height="10"
       :dot-size="16"
       :hide-label="true"
+      :min="min"
+      :max="max"
+      :interval="interval"
       data-value="value"
       data-label="title"
     />
@@ -22,6 +25,18 @@ const props = defineProps({
   options: {
     type: Array as PropType<{ value: string; title: string }[]>,
     required: true,
+  },
+  min: {
+    type: Number,
+    default: 0,
+  },
+  max: {
+    type: Number,
+    default: 100,
+  },
+  interval: {
+    type: Number,
+    default: 1,
   },
   modelValue: {
     type: String,
