@@ -70,6 +70,10 @@
     <Section>
       <ColorPreview />
     </Section>
+    <Section>
+      <FormColorPicker />
+      <FormColorPicker model-value="#cacaca" />
+    </Section>
   </div>
 </template>
 
@@ -87,6 +91,7 @@ import Spinner from '../minimal/minimalApp/components/spinner.vue';
 import ColorPreview from './components/color-preview.vue';
 import Section from './components/section.vue';
 import Hr from './components/hr.vue';
+import FormColorPicker from './components/form/form-color-picker.vue';
 </script>
 
 <style lang="less">

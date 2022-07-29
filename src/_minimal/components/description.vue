@@ -37,7 +37,7 @@ onMounted(() => {
 
   .open-button {
     position: absolute;
-    bottom: 0;
+    bottom: 1px;
     left: 50%;
     transform: translateX(-50%);
   }
