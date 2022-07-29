@@ -100,7 +100,7 @@ watch(
     margin-top: 10px;
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
-    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 20px rgb(0 0 0 / 15%);
     white-space: nowrap;
     &-default {
       .link();

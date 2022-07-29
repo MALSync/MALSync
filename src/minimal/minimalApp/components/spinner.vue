@@ -24,7 +24,6 @@
     border-right: 5px solid transparent;
     animation: spinner 0.75s infinite;
   }
-
 }
 
 @keyframes spinner {

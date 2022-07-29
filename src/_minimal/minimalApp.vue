@@ -87,7 +87,9 @@
         </template>
       </FormDropdown>
       <PillSplit>
-        <template #left><TextIcon icon="star">10</TextIcon></template>
+        <template #left>
+          <TextIcon icon="star">10</TextIcon>
+        </template>
         <template #right>
           <TextIcon src="https://www.google.com/s2/favicons?domain=crunchyroll.com">4</TextIcon>
         </template>
@@ -100,6 +102,18 @@
     <Section>
       <FormColorPicker />
       <FormColorPicker model-value="#cacaca" />
+    </Section>
+    <Section>
+      <FormSlider />
+    </Section>
+    <Section>
+      <FormSlider
+        color="violet"
+        :options="[
+          { title: 'test', value: '1' },
+          { title: 'test2', value: '2' },
+        ]"
+      />
     </Section>
   </div>
 </template>
@@ -120,6 +134,7 @@ import Section from './components/section.vue';
 import Hr from './components/hr.vue';
 import FormColorPicker from './components/form/form-color-picker.vue';
 import FormDropdown from './components/form/form-dropdown.vue';
+import FormSlider from './components/form/form-slider.vue';
 </script>
 
 <style lang="less">
