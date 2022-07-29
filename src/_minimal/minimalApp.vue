@@ -56,6 +56,7 @@
       <FormCheckbox :model-value="true"></FormCheckbox>
       <FormCheckbox :model-value="false"></FormCheckbox>
     </Section>
+    <Hr />
     <Section>
       <PillDark>5 Days 3 Hours</PillDark>
       <PillSplit>
@@ -85,6 +86,7 @@ import TextIcon from './components/text-icon.vue';
 import Spinner from '../minimal/minimalApp/components/spinner.vue';
 import ColorPreview from './components/color-preview.vue';
 import Section from './components/section.vue';
+import Hr from './components/hr.vue';
 </script>
 
 <style lang="less">
