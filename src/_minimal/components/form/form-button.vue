@@ -1,5 +1,5 @@
 <template>
-  <div class="button" :class="padding" tabindex="0">
+  <div class="button" :class="`${padding} ${animation ? 'animation' : ''}`" tabindex="tabindex">
     <slot />
   </div>
 </template>
@@ -12,6 +12,14 @@ defineProps({
     type: String as PropType<'small' | 'large'>,
     default: 'small',
   },
+  tabindex: {
+    type: Number,
+    default: 0,
+  },
+  animation: {
+    type: Boolean,
+    default: true,
+  },
 });
 </script>
 
@@ -22,11 +30,14 @@ defineProps({
   .link();
   .block-select();
   .border-radius();
-  .click-move-down();
 
   display: inline-block;
   border: 1px solid var(--cl-backdrop);
   background-color: var(--cl-foreground);
+
+  &.animation {
+    .click-move-down();
+  }
 
   &.small {
     padding: 5px 10px;

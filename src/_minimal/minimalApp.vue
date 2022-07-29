@@ -58,7 +58,34 @@
     </Section>
     <Hr />
     <Section>
-      <PillDark>5 Days 3 Hours</PillDark>
+      <FormDropdown
+        :options="[
+          { title: 'test', value: '1' },
+          { title: 'test2', value: '2' },
+        ]"
+        placeholder="place"
+      ></FormDropdown>
+      <FormDropdown
+        :options="[
+          { title: 'test', value: '1' },
+          { title: 'test2', value: '2' },
+        ]"
+        placeholder="place"
+        model-value="1"
+      ></FormDropdown>
+    </Section>
+    <Section>
+      <FormDropdown
+        :options="[
+          { title: 'test', value: '1' },
+          { title: 'test2', value: '2' },
+        ]"
+        placeholder="place"
+      >
+        <template #select>
+          <PillDark>5 Days 3 Hours</PillDark>
+        </template>
+      </FormDropdown>
       <PillSplit>
         <template #left><TextIcon icon="star">10</TextIcon></template>
         <template #right>
@@ -92,6 +119,7 @@ import ColorPreview from './components/color-preview.vue';
 import Section from './components/section.vue';
 import Hr from './components/hr.vue';
 import FormColorPicker from './components/form/form-color-picker.vue';
+import FormDropdown from './components/form/form-dropdown.vue';
 </script>
 
 <style lang="less">

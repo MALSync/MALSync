@@ -59,3 +59,20 @@ html.no-sidebar {
     background-color: transparent;
   }
 }
+
+button {
+  .border-radius();
+
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: inherit;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    .focus-outline();
+  }
+}
