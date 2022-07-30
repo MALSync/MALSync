@@ -23,6 +23,8 @@ export const settingsObj = {
     epPredictions: true,
 
     theme: 'auto',
+    themeSidebars: true,
+
     minimalWindow: false,
     posLeft: 'left',
     miniMALonMal: false,

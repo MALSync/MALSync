@@ -140,6 +140,7 @@
           ],
         }"
       />
+      <SettingsGeneral title="Sidebars [TODO]" option="themeSidebars" component="checkbox" />
     </Section>
   </div>
 </template>

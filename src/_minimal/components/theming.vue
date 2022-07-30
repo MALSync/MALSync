@@ -6,6 +6,7 @@ const classes = computed(() => {
 
   if (api.settings.get('theme') === 'dark') cl.push('dark');
   if (api.settings.get('theme') === 'auto') cl.push('auto');
+  if (!api.settings.get('themeSidebars')) cl.push('no-sidebar');
 
   return cl.join(' ');
 });
