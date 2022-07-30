@@ -137,10 +137,12 @@
             { title: 'System', value: 'auto' },
             { title: 'Light', value: 'light' },
             { title: 'Dark', value: 'dark' },
+            { title: 'Custom', value: 'custom' },
           ],
         }"
       />
       <SettingsGeneral title="Sidebars [TODO]" option="themeSidebars" component="checkbox" />
+      <SettingsGeneral title="Color [TODO]" option="themeColor" component="colorPicker" />
     </Section>
   </div>
 </template>

@@ -51,6 +51,7 @@ const properties = defineProps({
   },
 });
 
+let _debounce;
 let model;
 if (properties.option) {
   model = computed({
@@ -58,7 +59,14 @@ if (properties.option) {
       return api.settings.get(properties.option);
     },
     set(value) {
-      api.settings.set(properties.option, value);
+      if (properties.component === 'colorPicker') {
+        clearTimeout(_debounce);
+        _debounce = setTimeout(() => {
+          api.settings.set(properties.option, value);
+        }, 500);
+      } else {
+        api.settings.set(properties.option, value);
+      }
     },
   });
 } else {
