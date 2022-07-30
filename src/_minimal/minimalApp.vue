@@ -115,6 +115,17 @@
         ]"
       />
     </Section>
+    <Section>
+      <SettingsGeneral title="test123" component="checkbox" />
+      <SettingsGeneral title="test123" component="button" :props="{ title: 'Button' }" />
+      <SettingsGeneral title="test123" component="colorPicker" />
+      <SettingsGeneral title="test123" component="slider" :props="{ min: 50, max: 100 }" />
+      <SettingsGeneral
+        title="test123"
+        component="dropdown"
+        :props="{ options: [{ title: 'test', value: '1' }], placeholder: 'test' }"
+      />
+    </Section>
   </div>
 </template>
 
@@ -135,6 +146,7 @@ import Hr from './components/hr.vue';
 import FormColorPicker from './components/form/form-color-picker.vue';
 import FormDropdown from './components/form/form-dropdown.vue';
 import FormSlider from './components/form/form-slider.vue';
+import SettingsGeneral from './components/settings/settings-general.vue';
 </script>
 
 <style lang="less">

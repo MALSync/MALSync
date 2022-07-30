@@ -1,6 +1,6 @@
 <template>
   <div class="button" :class="`${padding} ${animation ? 'animation' : ''}`" tabindex="tabindex">
-    <slot />
+    <slot /> {{ title }}
   </div>
 </template>
 
@@ -19,6 +19,11 @@ defineProps({
   animation: {
     type: Boolean,
     default: true,
+  },
+  title: {
+    type: String,
+    required: false,
+    default: '',
   },
 });
 </script>
