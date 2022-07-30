@@ -25,7 +25,7 @@ const props = defineProps({
   options: {
     type: Array as PropType<{ value: string; title: string }[]>,
     required: false,
-    default: () => [],
+    default: null,
   },
   min: {
     type: Number,
@@ -40,7 +40,7 @@ const props = defineProps({
     default: 1,
   },
   modelValue: {
-    type: String,
+    type: [String, Number],
     require: true,
     default: '',
   },
