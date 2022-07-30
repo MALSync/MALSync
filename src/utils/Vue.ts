@@ -40,6 +40,9 @@ export function createApp(
         loadedStyles[this.$options.__file] = true;
       }
     },
+    methods: {
+      lang: api.storage.lang,
+    },
   });
 
   const root = app.mount(rootElement);

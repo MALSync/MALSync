@@ -126,6 +126,20 @@
         :props="{ options: [{ title: 'test', value: '1' }], placeholder: 'test' }"
       />
     </Section>
+    <Section>
+      <SettingsGeneral
+        :title="lang('settings_miniMAL_theme')"
+        component="dropdown"
+        option="theme"
+        :props="{
+          options: [
+            { title: 'System', value: 'auto' },
+            { title: 'Light', value: 'light' },
+            { title: 'Dark', value: 'dark' },
+          ],
+        }"
+      />
+    </Section>
   </div>
 </template>
 

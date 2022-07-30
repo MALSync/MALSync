@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref } from 'vue';
+import { computed, PropType, ref } from 'vue';
 import FormButton from '../form/form-button.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 import FormColorPicker from '../form/form-color-picker.vue';
@@ -29,12 +29,14 @@ const components = {
   dropdown: FormDropdown,
 };
 
-defineProps({
+const properties = defineProps({
   title: {
     type: String,
     required: true,
   },
   component: {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     type: String as PropType<keyof typeof components>,
     required: true,
   },
@@ -42,9 +44,26 @@ defineProps({
     type: Object,
     default: () => ({}),
   },
+  option: {
+    type: String,
+    required: false,
+    default: null,
+  },
 });
 
-const model = ref(null);
+let model;
+if (properties.option) {
+  model = computed({
+    get() {
+      return api.settings.get(properties.option);
+    },
+    set(value) {
+      api.settings.set(properties.option, value);
+    },
+  });
+} else {
+  model = ref(null);
+}
 </script>
 
 <style lang="less" scoped>
