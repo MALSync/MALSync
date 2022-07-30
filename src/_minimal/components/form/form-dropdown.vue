@@ -1,15 +1,15 @@
 <template>
-  <button class="dropdown" :aria-current="picked" @blur="open = false">
+  <button ref="triggerNode" class="dropdown" :aria-current="picked" @blur="open = false">
     <div class="selector" @click="open = !open">
       <slot name="select" :open="open" :current-title="currentTitle" :value="picked">
-        <FormButton tabindex="-1" :animation="false">
+        <FormButton :tabindex="-1" :animation="false">
           <TextIcon :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" position="after">
             {{ currentTitle }}
           </TextIcon>
         </FormButton>
       </slot>
     </div>
-    <div v-if="open" class="dropdown-pop">
+    <div v-show="open" ref="popperNode" class="dropdown-pop">
       <div class="dropdown-pop-default">
         <div
           v-for="option in options"
@@ -31,6 +31,7 @@
 import { computed, PropType, ref, watch } from 'vue';
 import FormButton from './form-button.vue';
 import TextIcon from '../text-icon.vue';
+import { usePopper } from '../../composables/popper';
 
 interface Option {
   value: string;
@@ -51,9 +52,29 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  position: {
+    type: String as PropType<
+      | 'auto'
+      | 'auto-start'
+      | 'auto-end'
+      | 'top'
+      | 'top-start'
+      | 'top-end'
+      | 'bottom'
+      | 'bottom-start'
+      | 'bottom-end'
+      | 'right'
+      | 'right-start'
+      | 'right-end'
+      | 'left'
+      | 'left-start'
+      | 'left-end'
+    >,
+    default: 'bottom',
+  },
 });
 
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue', 'close:popper', 'open:popper']);
 
 const picked = ref(props.modelValue);
 const open = ref(false);
@@ -76,6 +97,25 @@ watch(
     picked.value = value;
   },
 );
+
+const popperNode = ref(null);
+const triggerNode = ref(null);
+const placement = ref(props.position);
+
+const popper = usePopper({
+  emit,
+  placement,
+  popperNode,
+  triggerNode,
+});
+
+watch(open, value => {
+  if (value) {
+    popper.open();
+  } else {
+    popper.close();
+  }
+});
 </script>
 
 <style lang="less" scoped>
@@ -97,7 +137,6 @@ watch(
 
     position: absolute;
     z-index: 9999;
-    margin-top: 10px;
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
     box-shadow: 0 5px 20px rgb(0 0 0 / 15%);

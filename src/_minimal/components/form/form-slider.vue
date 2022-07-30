@@ -24,7 +24,8 @@ import VueSlider from 'vue-slider-component';
 const props = defineProps({
   options: {
     type: Array as PropType<{ value: string; title: string }[]>,
-    required: true,
+    required: false,
+    default: () => [],
   },
   min: {
     type: Number,

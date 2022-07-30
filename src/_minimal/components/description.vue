@@ -3,11 +3,13 @@
     <div ref="inner" class="open-gradient">
       <slot></slot>
     </div>
-    <FormButton v-show="!open && overflow" class="open-button" @click="open = true"
+    <FormButton v-if="!open && overflow" class="open-button" :animation="false" @click="open = true"
       >Read More</FormButton
     >
-    <div v-show="open" class="close-button-box">
-      <FormButton class="close-button" @click="open = false">Read Less</FormButton>
+    <div v-if="open" class="close-button-box">
+      <FormButton class="close-button" :animation="false" @click="open = false">
+        Read Less
+      </FormButton>
     </div>
   </div>
 </template>
