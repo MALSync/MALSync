@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <Theming />
     <Section>
       <Grid :min-width="191">
         <imageLazy
@@ -161,6 +162,7 @@ import FormColorPicker from './components/form/form-color-picker.vue';
 import FormDropdown from './components/form/form-dropdown.vue';
 import FormSlider from './components/form/form-slider.vue';
 import SettingsGeneral from './components/settings/settings-general.vue';
+import Theming from './components/theming.vue';
 </script>
 
 <style lang="less">

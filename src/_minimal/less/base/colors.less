@@ -14,3 +14,9 @@
 html.dark {
   .root-variables(@dark-colors, cl);
 }
+
+@media (prefers-color-scheme: dark) {
+  html.auto {
+    .root-variables(@dark-colors, cl);
+  }
+}
