@@ -153,7 +153,7 @@ watch(open, value => {
         border: 1px solid transparent;
         padding: 5px 15px;
         &.active {
-          background-color: var(--cl-backdrop);
+          background-color: var(--cl-foreground-active);
         }
         &:hover {
           border-color: var(--cl-border-hover);
