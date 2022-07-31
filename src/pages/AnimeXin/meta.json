@@ -1,6 +1,6 @@
 {
-  "search": "https://animexin.xyz/?s={searchtermPlus}",
+  "search": "https://animexinax.com/?s={searchtermPlus}",
   "urls": {
-    "match": ["*://animexin.xyz/*"]
+    "match": ["*://animexin.xyz/*", "*://animexinax.com/*"]
   }
 }

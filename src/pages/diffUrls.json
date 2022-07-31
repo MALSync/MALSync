@@ -68,6 +68,9 @@
     "Aniflix": [
       "https://aniflix.cc/*"
     ],
+    "AnimeXin": [
+      "https://animexinax.com/*"
+    ],
     "iframe": [
       "https://goload.io/streaming.php?*",
       "https://goload.io/load.php?*",
