@@ -14,6 +14,7 @@ const classes = computed(() => {
   if (api.settings.get('theme') === 'dark') cl.push('dark');
   if (api.settings.get('theme') === 'auto') cl.push('auto');
   if (!api.settings.get('themeSidebars')) cl.push('no-sidebar');
+  if (api.settings.get('themeImage')) cl.push('backImage');
 
   switch (api.settings.get('theme')) {
     case 'dark':
@@ -69,8 +70,11 @@ const styles = computed(() => {
   s.push(`--cl-secondary: ${hslColorString(secondary)}`);
   s.push(`--cl-light-text: ${hslColorString(lightText)}`);
 
-  const opacity = api.settings.get('themeOpacity');
-  s.push(`--cl-opacity: ${opacity / 100}`);
+  if (api.settings.get('themeImage')) {
+    // s.push(`--cl-backImage: url('${api.settings.get('themeImage')}')`);
+    s.push(`--cl-backImage: url('${'https://wallpapercave.com/wp/wp2301613.jpg'}')`);
+    s.push(`--cl-opacity: ${api.settings.get('themeOpacity') / 100}`);
+  }
 
   return s.join(';');
 });
