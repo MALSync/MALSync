@@ -51,7 +51,6 @@ const properties = defineProps({
   },
 });
 
-let _debounce;
 let model;
 if (properties.option) {
   model = computed({
@@ -60,10 +59,7 @@ if (properties.option) {
     },
     set(value) {
       if (properties.component === 'colorPicker') {
-        clearTimeout(_debounce);
-        _debounce = setTimeout(() => {
-          api.settings.set(properties.option, value);
-        }, 500);
+        api.settings.setDebounce(properties.option, value);
       } else {
         api.settings.set(properties.option, value);
       }

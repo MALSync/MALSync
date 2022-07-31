@@ -108,6 +108,8 @@ export const settingsObj = {
     malRefresh: '',
   }),
 
+  debounceArray: {},
+
   async init() {
     const tempSettings = [];
     for (const key in this.options) {
@@ -171,6 +173,15 @@ export const settingsObj = {
 
     this.options[name] = value;
     return api.storage.set(`settings/${name}`, value);
+  },
+
+  setDebounce(name: string, value: any) {
+    this.options[name] = value;
+    clearTimeout(this.debounceArray[name]);
+    this.debounceArray[name] = setTimeout(() => {
+      this.set(name, value);
+      delete this.debounceArray[name];
+    }, 1000);
   },
 
   async getAsync(name: string) {
