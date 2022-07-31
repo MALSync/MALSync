@@ -25,6 +25,7 @@ export const settingsObj = {
     theme: 'auto',
     themeSidebars: true,
     themeColor: '#000000',
+    themeOpacity: 100,
 
     minimalWindow: false,
     posLeft: 'left',

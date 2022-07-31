@@ -143,6 +143,7 @@
       />
       <SettingsGeneral title="Sidebars [TODO]" option="themeSidebars" component="checkbox" />
       <SettingsGeneral title="Color [TODO]" option="themeColor" component="colorPicker" />
+      <SettingsGeneral title="Background Opacity [TODO]" option="themeOpacity" component="slider" />
     </Section>
   </div>
 </template>
