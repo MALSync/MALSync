@@ -142,9 +142,24 @@
         }"
       />
       <SettingsGeneral title="Sidebars [TODO]" option="themeSidebars" component="checkbox" />
-      <SettingsGeneral title="Color [TODO]" option="themeColor" component="colorPicker" />
-      <SettingsGeneral title="Background Image [TODO]" option="themeImage" component="checkbox" />
-      <SettingsGeneral title="Background Opacity [TODO]" option="themeOpacity" component="slider" />
+      <SettingsGeneral
+        v-if="option('theme') === 'custom'"
+        title="Color [TODO]"
+        option="themeColor"
+        component="colorPicker"
+      />
+      <SettingsGeneral
+        v-if="option('theme') === 'custom'"
+        title="Background Image [TODO]"
+        option="themeImage"
+        component="checkbox"
+      />
+      <SettingsGeneral
+        v-if="option('theme') === 'custom' && option('themeImage')"
+        title="Background Opacity [TODO]"
+        option="themeOpacity"
+        component="slider"
+      />
     </Section>
   </div>
 </template>

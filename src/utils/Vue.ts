@@ -42,6 +42,7 @@ export function createApp(
     },
     methods: {
       lang: api.storage.lang,
+      option: value => api.settings.get(value),
     },
   });
 
