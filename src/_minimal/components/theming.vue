@@ -70,9 +70,7 @@ const styles = computed(() => {
   s.push(`--cl-light-text: ${hslColorString(lightText)}`);
 
   const opacity = api.settings.get('themeOpacity');
-  if (opacity) {
-    s.push(`--cl-opacity: ${opacity / 100}`);
-  }
+  s.push(`--cl-opacity: ${opacity / 100}`);
 
   return s.join(';');
 });
