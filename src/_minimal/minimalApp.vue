@@ -177,6 +177,16 @@
       <ImageFit mode="cover" src="" :loading="true" style="width: 200px" />
       <Description :loading="true">Short Description</Description>
     </Section>
+    <Section>
+      <TextScroller
+        >Score 8.13 Rank 379 Popularity 42 Members 1,176,966 Premiered: Winter 2015</TextScroller
+      >
+      <TextScroller
+        >Score 8.13 Rank 379 Popularity 42 Members 1,176,966 Premiered: Winter 2015 Premiered:
+        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015 Members 1,176,966 Premiered: Winter 2015 Premiered:
+        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015</TextScroller
+      >
+    </Section>
   </div>
 </template>
 
@@ -201,6 +211,7 @@ import SettingsGeneral from './components/settings/settings-general.vue';
 import Theming from './components/theming.vue';
 import StateDot from './components/state-dot.vue';
 import Header from './components/header.vue';
+import TextScroller from './components/text-scroller.vue';
 </script>
 
 <style lang="less">
