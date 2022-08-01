@@ -538,6 +538,7 @@ module.exports = {
       '*://v-o-e-unblock.com/e/*',
       '*://audaciousdefaulthouse.com/e/*',
       '*://launchreliantcleaverriver.com/e/*',
+      '*://reputationsheriffkennethsand.com/e/*',
     ],
   },
   // animewho
