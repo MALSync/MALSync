@@ -30,10 +30,12 @@
 }
 
 @state-colors: {
-  watching: #eb5757;
-  completed: #27ae60;
-  on-hold: #f2994a;
-  dropped: #bb6bd9;
-  plan-to-watch: #56ccf2;
-  not-on-list: grey;
+  0: grey;
+  1: #eb5757;
+  2: #27ae60;
+  3: #f2994a;
+  4: #bb6bd9;
+  6: #56ccf2;
+  23: var(--state-1);
+  7: conic-gradient(var(--state-1), var(--state-2), var(--state-3), var(--state-4), var(--state-6), var(--state-1));
 }

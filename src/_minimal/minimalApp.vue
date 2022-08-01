@@ -161,6 +161,15 @@
         component="slider"
       />
     </Section>
+    <Section>
+      <StateDot :status="1" />
+      <StateDot :status="2" />
+      <StateDot :status="3" />
+      <StateDot :status="4" />
+      <StateDot :status="6" />
+      <StateDot :status="7" />
+      <StateDot :status="23" />
+    </Section>
   </div>
 </template>
 
@@ -183,6 +192,7 @@ import FormDropdown from './components/form/form-dropdown.vue';
 import FormSlider from './components/form/form-slider.vue';
 import SettingsGeneral from './components/settings/settings-general.vue';
 import Theming from './components/theming.vue';
+import StateDot from './components/state-dot.vue';
 </script>
 
 <style lang="less">
