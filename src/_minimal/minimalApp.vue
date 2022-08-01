@@ -174,6 +174,7 @@
       <Header>Related Content</Header>
       <Header><StateDot :status="1" />Character</Header>
       <Header :loading="true"><StateDot :status="1" />Character</Header>
+      <Description :loading="true">Short Description</Description>
     </Section>
   </div>
 </template>

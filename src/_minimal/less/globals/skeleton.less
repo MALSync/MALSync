@@ -9,6 +9,19 @@
   max-width: 100%;
 }
 
+.skeleton-text-block() {
+  @gradient: linear-gradient(180deg, #000 0%, transparent 50%);
+  .skeleton-loading();
+
+  background-color: var(--cl-backdrop);
+  width: 100%;
+  height: 200px;
+  border-radius: 0.25rem;
+  mask-image: @gradient;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: @gradient;
+}
+
 .skeleton-loading() {
   position: relative;
   overflow: hidden;
@@ -25,10 +38,6 @@
     z-index: 1;
     background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), var(--cl-backdrop), hsla(0, 0%, 100%, 0));
     filter: brightness(1.15);
-  }
-
-  &.skeleton-text-block::after {
-    height: 45%;
   }
 }
 

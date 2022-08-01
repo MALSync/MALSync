@@ -1,16 +1,23 @@
 <template>
-  <div class="description" :class="{ close: !open && overflow }">
-    <div ref="inner" class="open-gradient">
-      <slot></slot>
-    </div>
-    <FormButton v-if="!open && overflow" class="open-button" :animation="false" @click="open = true"
-      >Read More</FormButton
-    >
-    <div v-if="open" class="close-button-box">
-      <FormButton class="close-button" :animation="false" @click="open = false">
-        Read Less
+  <div class="description" :class="{ close: !open && overflow, loading }">
+    <template v-if="!loading">
+      <div ref="inner" class="open-gradient">
+        <slot></slot>
+      </div>
+      <FormButton
+        v-if="!open && overflow"
+        class="open-button"
+        :animation="false"
+        @click="open = true"
+      >
+        Read More
       </FormButton>
-    </div>
+      <div v-if="open" class="close-button-box">
+        <FormButton class="close-button" :animation="false" @click="open = false">
+          Read Less
+        </FormButton>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -18,6 +25,13 @@
 import { onMounted, Ref, ref } from 'vue';
 
 import FormButton from './form/form-button.vue';
+
+defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const open = ref(false);
 const overflow = ref(true);
@@ -59,6 +73,10 @@ onMounted(() => {
       /* stylelint-disable-next-line property-no-vendor-prefix */
       -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
     }
+  }
+
+  &.loading {
+    .skeleton-text-block();
   }
 }
 </style>
