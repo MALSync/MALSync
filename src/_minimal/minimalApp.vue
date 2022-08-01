@@ -174,6 +174,7 @@
       <Header>Related Content</Header>
       <Header><StateDot :status="1" />Character</Header>
       <Header :loading="true"><StateDot :status="1" />Character</Header>
+      <ImageFit mode="cover" src="" :loading="true" style="width: 200px" />
       <Description :loading="true">Short Description</Description>
     </Section>
   </div>

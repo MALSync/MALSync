@@ -1,7 +1,9 @@
 <template>
-  <div class="image-fit" :class="{ small: small, cover: mode === 'cover' }">
-    <imageLazy class="mainImage" :src="src" mode="object-fit" @load="imageLoaded" />
-    <img v-if="small" class="sideImage" :src="src" />
+  <div class="image-fit" :class="{ small: small, cover: mode === 'cover', loading }">
+    <template v-if="!loading">
+      <imageLazy class="mainImage" :src="src" mode="object-fit" @load="imageLoaded" />
+      <img v-if="small" class="sideImage" :src="src" />
+    </template>
   </div>
 </template>
 
@@ -17,6 +19,10 @@ defineProps({
   mode: {
     type: String as PropType<'' | 'cover'>,
     default: '',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -61,6 +67,9 @@ const imageLoaded = (event: Event) => {
     aspect-ratio: @aspect-ratio-cover;
     .border-radius();
     .box-shadow();
+  }
+  &.loading {
+    .skeleton-img();
   }
 }
 </style>
