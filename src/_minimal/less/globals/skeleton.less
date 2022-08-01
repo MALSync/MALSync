@@ -1,0 +1,39 @@
+.skeleton-text() {
+  .skeleton-loading();
+
+  background-color: var(--cl-backdrop);
+  width: 20em;
+  height: 1em;
+  margin-bottom: 0.2em;
+  border-radius: 0.25rem;
+  max-width: 100%;
+}
+
+.skeleton-loading() {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    animation: skeleton-loading-malsync 1.5s infinite;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(-100%);
+    z-index: 1;
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0), var(--cl-backdrop), hsla(0, 0%, 100%, 0));
+    filter: brightness(1.15);
+  }
+
+  &.skeleton-text-block::after {
+    height: 45%;
+  }
+}
+
+@keyframes skeleton-loading-malsync {
+  to {
+    transform: translateX(100%);
+  }
+}

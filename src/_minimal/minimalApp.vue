@@ -170,6 +170,11 @@
       <StateDot :status="7" />
       <StateDot :status="23" />
     </Section>
+    <Section>
+      <Header>Related Content</Header>
+      <Header><StateDot :status="1" />Character</Header>
+      <Header :loading="true"><StateDot :status="1" />Character</Header>
+    </Section>
   </div>
 </template>
 
@@ -193,6 +198,7 @@ import FormSlider from './components/form/form-slider.vue';
 import SettingsGeneral from './components/settings/settings-general.vue';
 import Theming from './components/theming.vue';
 import StateDot from './components/state-dot.vue';
+import Header from './components/header.vue';
 </script>
 
 <style lang="less">
