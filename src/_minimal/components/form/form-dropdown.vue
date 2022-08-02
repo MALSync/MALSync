@@ -150,7 +150,7 @@ watch(open, value => {
       &-element {
         .border-radius();
 
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         padding: 5px 15px;
         &.active {
           background-color: var(--cl-foreground-active);

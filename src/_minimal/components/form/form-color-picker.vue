@@ -40,7 +40,8 @@ watch(
   height: 32px;
   width: 60px;
   background-color: v-bind(picked);
-  border: 1px solid var(--cl-backdrop);
+  border: 2px solid var(--cl-backdrop);
+  background-image: url(@endless-clouds);
 
   &:hover {
     border-color: var(--cl-border-hover);

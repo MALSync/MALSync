@@ -55,7 +55,7 @@ const inFocus = ref(false);
   height: 32px;
   min-width: 100px;
   background-color: v-bind(picked);
-  border: 1px solid var(--cl-backdrop);
+  border: 2px solid var(--cl-backdrop);
   padding: 0 10px;
   font-size: 16px;
 

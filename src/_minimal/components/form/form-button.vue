@@ -37,7 +37,7 @@ defineProps({
   .border-radius();
 
   display: inline-block;
-  border: 1px solid var(--cl-backdrop);
+  border: 2px solid var(--cl-backdrop);
   background-color: var(--cl-foreground);
 
   &.animation {
