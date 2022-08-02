@@ -20,6 +20,7 @@ import FormCheckbox from '../form/form-checkbox.vue';
 import FormColorPicker from '../form/form-color-picker.vue';
 import FormSlider from '../form/form-slider.vue';
 import FormDropdown from '../form/form-dropdown.vue';
+import FormText from '../form/form-text.vue';
 
 const components = {
   button: FormButton,
@@ -27,6 +28,7 @@ const components = {
   colorPicker: FormColorPicker,
   slider: FormSlider,
   dropdown: FormDropdown,
+  input: FormText,
 };
 
 const properties = defineProps({
@@ -84,5 +86,10 @@ if (properties.option) {
 .type-slider {
   flex-grow: 1;
   max-width: 150px;
+}
+
+.component {
+  max-width: 50%;
+  overflow: hidden;
 }
 </style>

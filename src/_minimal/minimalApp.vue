@@ -23,7 +23,7 @@
     </Section>
     <Section>
       <ImageFit
-        style="width: 600px; height: 300px"
+        style="width: 600px; height: 300px; max-width: 100%"
         src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
       />
     </Section>
@@ -129,6 +129,7 @@
         component="dropdown"
         :props="{ options: [{ title: 'test', value: '1' }], placeholder: 'test' }"
       />
+      <SettingsGeneral title="test123" component="input" />
     </Section>
     <Section>
       <SettingsGeneral
@@ -155,7 +156,7 @@
         v-if="option('theme') === 'custom'"
         title="Background Image [TODO]"
         option="themeImage"
-        component="checkbox"
+        component="input"
       />
       <SettingsGeneral
         v-if="option('theme') === 'custom' && option('themeImage')"

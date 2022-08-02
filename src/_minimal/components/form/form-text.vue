@@ -54,6 +54,7 @@ const inFocus = ref(false);
   align-items: center;
   height: 32px;
   min-width: 100px;
+  max-width: 100%;
   background-color: v-bind(picked);
   border: 2px solid var(--cl-backdrop);
   padding: 0 10px;
@@ -78,6 +79,7 @@ const inFocus = ref(false);
     color: inherit;
     font-size: inherit;
     padding: 0;
+    max-width: 100%;
 
     &:focus {
       outline: none;
