@@ -83,13 +83,13 @@ if (properties.option) {
   gap: @spacer;
 }
 
+.component {
+  max-width: 50%;
+  overflow: show;
+}
+
 .type-slider {
   flex-grow: 1;
   max-width: 150px;
-}
-
-.component {
-  max-width: 50%;
-  overflow: hidden;
 }
 </style>

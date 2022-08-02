@@ -1,5 +1,5 @@
 <template>
-  <label class="text-from" :class="{ noFocus: !inFocus }">
+  <label ref="el" class="text-from" :class="{ noFocus: !inFocus }">
     <input
       v-model="picked"
       class="text-input"
@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -39,7 +39,19 @@ watch(
   },
 );
 
+const el = ref(null as HTMLElement | null);
 const inFocus = ref(false);
+const minWidth = ref(100);
+watch(inFocus, value => {
+  if (value && el.value) {
+    minWidth.value = el.value.offsetWidth;
+  } else {
+    minWidth.value = 100;
+  }
+});
+const width = computed(() => {
+  return `${minWidth.value}px`;
+});
 </script>
 
 <style lang="less" scoped>
@@ -53,12 +65,12 @@ const inFocus = ref(false);
   position: relative;
   align-items: center;
   height: 32px;
-  min-width: 100px;
+  min-width: v-bind(width);
   max-width: 100%;
-  background-color: v-bind(picked);
   border: 2px solid var(--cl-backdrop);
   padding: 0 10px;
   font-size: 16px;
+  overflow: hidden;
 
   &:hover {
     border-color: var(--cl-border-hover);
@@ -80,6 +92,7 @@ const inFocus = ref(false);
     font-size: inherit;
     padding: 0;
     max-width: 100%;
+    width: 100%;
 
     &:focus {
       outline: none;
