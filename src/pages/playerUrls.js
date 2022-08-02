@@ -735,4 +735,8 @@ module.exports = {
   animeworld: {
     match: ['*://www.animeworld.tv/api/episode/serverPlayerAnimeWorld?id=*'],
   },
+  // 9anime
+  filemoon: {
+    match: ['*://filemoon.sx/e/*'],
+  },
 };
