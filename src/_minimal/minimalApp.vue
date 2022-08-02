@@ -117,6 +117,9 @@
       />
     </Section>
     <Section>
+      <FormText suffix="%" />
+    </Section>
+    <Section>
       <SettingsGeneral title="test123" component="checkbox" />
       <SettingsGeneral title="test123" component="button" :props="{ title: 'Button' }" />
       <SettingsGeneral title="test123" component="colorPicker" />
@@ -212,6 +215,7 @@ import Theming from './components/theming.vue';
 import StateDot from './components/state-dot.vue';
 import Header from './components/header.vue';
 import TextScroller from './components/text-scroller.vue';
+import FormText from './components/form/form-text.vue';
 </script>
 
 <style lang="less">

@@ -49,6 +49,10 @@ watch(
   &:focus-visible {
     .focus-outline();
   }
+
+  &:focus-within {
+    border-color: var(--cl-primary);
+  }
 }
 
 .color-picker {
