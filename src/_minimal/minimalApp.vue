@@ -187,8 +187,9 @@
       >
       <TextScroller
         >Score 8.13 Rank 379 Popularity 42 Members 1,176,966 Premiered: Winter 2015 Premiered:
-        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015 Members 1,176,966 Premiered: Winter 2015 Premiered:
-        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015</TextScroller
+        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015 Members 1,176,966 Premiered:
+        Winter 2015 Premiered: Winter 2015 Premiered: Winter 2015 Premiered: Winter
+        2015</TextScroller
       >
     </Section>
   </div>
