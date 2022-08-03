@@ -465,6 +465,7 @@ module.exports = {
       '*://dood.sh/e/*',
       '*://dood.so/e/*',
       '*://dood.pm/e/*',
+      '*://dood.wf/e/*',
     ],
   },
   // animedao.to
