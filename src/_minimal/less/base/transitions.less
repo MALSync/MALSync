@@ -1,0 +1,12 @@
+.fade-shrink-in-enter-active,
+.fade-shrink-in-leave-active {
+  transition-property: opacity, transform !important;
+  transition-timing-function: ease !important;
+  transition-duration: @fast-transition !important;
+}
+
+.fade-shrink-in-enter,
+.fade-shrink-in-leave-to {
+  opacity: 0;
+  transform: scale(1.1);
+}

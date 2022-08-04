@@ -22,9 +22,15 @@
       <FormButton padding="large">Load</FormButton>
     </Section>
     <Section>
+      <Modal v-model="imgModal">
+        <img
+          src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
+        />
+      </Modal>
       <ImageFit
         style="width: 600px; height: 300px; max-width: 100%"
         src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg"
+        @click="imgModal = true"
       />
     </Section>
     <Section>
@@ -196,6 +202,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import imageLazy from './components/image-lazy.vue';
 import ImageFit from './components/image-fit.vue';
 import Grid from './components/grid.vue';
@@ -218,6 +225,11 @@ import StateDot from './components/state-dot.vue';
 import Header from './components/header.vue';
 import TextScroller from './components/text-scroller.vue';
 import FormText from './components/form/form-text.vue';
+import Modal from './components/modal.vue';
+
+// temp
+
+const imgModal = ref(false);
 </script>
 
 <style lang="less">
