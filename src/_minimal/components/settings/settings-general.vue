@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType, ref } from 'vue';
+import { computed, ref } from 'vue';
 import FormButton from '../form/form-button.vue';
 import FormCheckbox from '../form/form-checkbox.vue';
 import FormColorPicker from '../form/form-color-picker.vue';
@@ -37,9 +37,7 @@ const properties = defineProps({
     required: true,
   },
   component: {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    type: String as PropType<keyof typeof components>,
+    type: String,
     required: true,
   },
   props: {
