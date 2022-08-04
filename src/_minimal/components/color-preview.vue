@@ -68,7 +68,7 @@ const cases = [
 ];
 
 const stateCases = ['background', 'foreground', 'foreground-solid'];
-const stateColors = ['watching', 'completed', 'on-hold', 'dropped', 'plan-to-watch', 'not-on-list'];
+const stateColors = [0, 1, 2, 3, 4, 6, 23];
 </script>
 
 <style lang="less" scoped>
