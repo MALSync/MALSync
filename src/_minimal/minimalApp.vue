@@ -2,6 +2,13 @@
   <div class="content">
     <Theming />
     <Section>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap">
+        <TransitionStaggered>
+          <div v-for="index in 40" :key="index" class="transitionTest" />
+        </TransitionStaggered>
+      </div>
+    </Section>
+    <Section>
       <Grid :min-width="191">
         <imageLazy
           mode="cover"
@@ -226,6 +233,7 @@ import Header from './components/header.vue';
 import TextScroller from './components/text-scroller.vue';
 import FormText from './components/form/form-text.vue';
 import Modal from './components/modal.vue';
+import TransitionStaggered from './components/transition-staggered.vue';
 
 // temp
 
@@ -240,5 +248,13 @@ const imgModal = ref(false);
 @import './less/_globals.less';
 .content {
   padding: 0 @spacer;
+}
+
+// temp
+
+.transitionTest {
+  width: 100px;
+  height: 100px;
+  background-color: red;
 }
 </style>
