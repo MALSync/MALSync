@@ -1,9 +1,15 @@
 <template>
   <div class="pill">
-    <div class="left"><slot name="left" /></div>
-    <div class="right"><slot name="right" /></div>
+    <div v-if="slots.left" class="left"><slot name="left" /></div>
+    <div v-if="slots.right" class="right"><slot name="right" /></div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import { useSlots } from 'vue';
+
+const slots = useSlots();
+</script>
 
 <style lang="less" scoped>
 @import '../less/_globals.less';
