@@ -71,7 +71,7 @@ const styles = computed(() => {
   s.push(`--cl-light-text: ${hslColorString(lightText)}`);
 
   if (api.settings.get('themeImage')) {
-    s.push(`--cl-backImage: url('${api.settings.get('themeImage')}')`);
+    s.push(`--cl-back-image: url('${api.settings.get('themeImage')}')`);
     s.push(`--cl-opacity: ${api.settings.get('themeOpacity') / 100}`);
   }
 
