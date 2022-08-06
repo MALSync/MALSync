@@ -1,5 +1,5 @@
 <template>
-  <div class="pill">
+  <div v-if="slots.left || slots.right" class="pill">
     <div v-if="slots.left" class="left"><slot name="left" /></div>
     <div v-if="slots.right" class="right"><slot name="right" /></div>
   </div>

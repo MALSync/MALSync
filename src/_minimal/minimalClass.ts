@@ -1,5 +1,6 @@
 import { createApp } from '../utils/Vue';
 import minimalApp from './minimalApp.vue';
+import { status } from '../_provider/definitions';
 
 export class Minimal {
   private minimalVue;
@@ -9,3 +10,18 @@ export class Minimal {
     this.minimalVue = createApp(minimalApp, this.minimal.find('#minimalApp').get(0));
   }
 }
+
+export type bookmarkItem = {
+  title: string;
+  type: 'anime' | 'manga';
+  url: string;
+  image: string;
+  status: status;
+  score?: any;
+  watchedEp: number;
+  totalEp: number;
+  streamUrl?: string;
+  streamIcon?: string;
+  progressEp?: number;
+  progressText?: string;
+};

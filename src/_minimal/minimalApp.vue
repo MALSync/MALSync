@@ -1,6 +1,16 @@
 <template>
   <div class="content">
     <Theming />
+    <Section />
+    <Section>
+      <Grid :min-width="130">
+        <TransitionStaggered>
+          <template v-for="item in list" :key="item.title">
+            <BookmarksTiles :item="item" />
+          </template>
+        </TransitionStaggered>
+      </Grid>
+    </Section>
     <Section>
       <div style="display: flex; gap: 20px; flex-wrap: wrap">
         <TransitionStaggered>
@@ -234,10 +244,63 @@ import TextScroller from './components/text-scroller.vue';
 import FormText from './components/form/form-text.vue';
 import Modal from './components/modal.vue';
 import TransitionStaggered from './components/transition-staggered.vue';
+import { bookmarkItem } from './minimalClass';
+import BookmarksTiles from './components/bookmarks/bookmarks-tiles.vue';
 
 // temp
 
 const imgModal = ref(false);
+
+const list: bookmarkItem[] = [
+  {
+    title: 'No game no life',
+    type: 'anime',
+    url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+    image: 'https://cdn.myanimelist.net/images/anime/1074/111944.jpg',
+    status: 1,
+    score: 3,
+    watchedEp: 3,
+    totalEp: 12,
+    streamUrl: 'https://www.crunchyroll.com',
+    streamIcon: 'https://www.google.com/s2/favicons?domain=crunchyroll.com',
+    progressEp: 4,
+    progressText: '5 Days 3 Hours',
+  },
+  {
+    title: 'No game no life',
+    type: 'anime',
+    url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+    image: 'https://cdn.myanimelist.net/images/anime/1074/111944.jpg',
+    status: 2,
+    watchedEp: 3,
+    totalEp: 12,
+  },
+  {
+    title: 'No game no life',
+    type: 'anime',
+    url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+    image: 'https://cdn.myanimelist.net/images/anime/1074/111944.jpg',
+    status: 3,
+    watchedEp: 3,
+    totalEp: 12,
+    streamUrl: 'https://www.crunchyroll.com',
+    streamIcon: 'https://www.google.com/s2/favicons?domain=crunchyroll.com',
+    progressEp: 4,
+    progressText: '5 Days 3 Hours',
+  },
+  {
+    title: 'No game no life',
+    type: 'anime',
+    url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
+    image: 'https://cdn.myanimelist.net/images/anime/1074/111944.jpg',
+    status: 4,
+    score: 3,
+    watchedEp: 3,
+    totalEp: 12,
+    progressEp: 4,
+    progressText: '5 Days 3 Hours',
+  },
+];
 </script>
 
 <style lang="less">
