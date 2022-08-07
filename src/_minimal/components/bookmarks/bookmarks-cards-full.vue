@@ -2,7 +2,7 @@
   <div class="book-element">
     <ImageLazy class="img" :src="item.image" mode="cover" />
     <div class="gradient" :class="`gradient-${item.status}`" />
-    <MediaLink class="link" :href="item.url" />
+    <MediaLink class="link" :href="item.url" :title="title" />
     <div class="text">
       <div class="top-text">
         <MediaPillProgress :episode="item.progressEp" :text="item.progressText" />
@@ -16,24 +16,37 @@
       <div class="bottomBox">
         <div class="backdrop"></div>
         <div class="title">{{ item.title }}</div>
+        <MediaBar
+          :watched-ep="item.watchedEp"
+          :total-ep="item.totalEp"
+          :progress-ep="item.progressEp"
+          :progress-text="item.progressText"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue';
+import { computed, PropType } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import MediaLink from '../media-link.vue';
 import MediaPill from '../media/media-pill.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
 import ImageLazy from '../image-lazy.vue';
+import MediaBar from '../media/media-bar.vue';
 
-defineProps({
+const props = defineProps({
   item: {
     type: Object as PropType<bookmarkItem>,
     required: true,
   },
+});
+
+const title = computed(() => {
+  const t = props.item.totalEp ? props.item.totalEp : '?';
+  const prog = props.item.progressEp ? `[${props.item.progressEp}]` : '';
+  return `${props.item.watchedEp}/${t} ${prog}`;
 });
 </script>
 
@@ -102,6 +115,7 @@ defineProps({
 
     .title {
       position: relative;
+      margin-bottom: 10px;
     }
   }
 

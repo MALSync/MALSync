@@ -1,5 +1,5 @@
 <template>
-  <div class="bars">
+  <div class="bars" :class="{ background }">
     <div
       v-for="(el, index) in bars"
       :key="index"
@@ -21,6 +21,10 @@ defineProps({
   bars: {
     type: Array as PropType<Bar[]>,
     required: true,
+  },
+  background: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -46,7 +50,10 @@ const barStyle = (el: Bar) => {
 
   overflow: hidden;
   position: relative;
-  background-color: var(--cl-backdrop);
+
+  &.background {
+    background-color: var(--cl-backdrop);
+  }
 
   .bar {
     .bar-size();
