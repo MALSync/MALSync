@@ -4,6 +4,15 @@
     <div class="gradient gradient-black" />
     <MediaLink class="link" :href="item.url" />
     <div class="text">
+      <div class="top-text">
+        <MediaPillProgress :episode="item.progressEp" :text="item.progressText" />
+        <MediaPill
+          :score="item.score"
+          :stream-url="item.streamUrl"
+          :stream-icon="item.streamIcon"
+          :watched-ep="item.watchedEp"
+        />
+      </div>
       <div class="subtext">
         <div>
           Progress
@@ -33,6 +42,8 @@ import Header from '../header.vue';
 import StateDot from '../state-dot.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
 import MediaProgress from '../media/media-progress.vue';
+import MediaPill from '../media/media-pill.vue';
+import MediaPillProgress from '../media/media-pill-progress.vue';
 
 defineProps({
   item: {
@@ -67,10 +78,20 @@ defineProps({
   }
 
   .text {
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    .fullSize();
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .top-text {
+    flex-grow: 1;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
   }
 
   .title {
