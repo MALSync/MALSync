@@ -83,6 +83,7 @@ defineProps({
     display: flex;
     flex-direction: column;
     padding: 20px;
+    pointer-events: none;
   }
 
   .top-text {
