@@ -233,6 +233,14 @@
         2015</TextScroller
       >
     </Section>
+    <Section>
+      <Bars
+        :bars="[
+          { color: 'red', width: 50 },
+          { color: 'blue', width: 40 },
+        ]"
+      />
+    </Section>
   </div>
 </template>
 
@@ -266,6 +274,7 @@ import { bookmarkItem } from './minimalClass';
 import BookmarksTiles from './components/bookmarks/bookmarks-tiles.vue';
 import BookmarksCards from './components/bookmarks/bookmarks-cards.vue';
 import BookmarksCardsFull from './components/bookmarks/bookmarks-cards-full.vue';
+import Bars from './components/bars.vue';
 
 // temp
 
