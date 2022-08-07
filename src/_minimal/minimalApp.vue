@@ -12,6 +12,15 @@
       </Grid>
     </Section>
     <Section>
+      <Grid :min-width="350">
+        <TransitionStaggered>
+          <template v-for="item in list" :key="item.title">
+            <BookmarksCards :item="item" />
+          </template>
+        </TransitionStaggered>
+      </Grid>
+    </Section>
+    <Section>
       <div style="display: flex; gap: 20px; flex-wrap: wrap">
         <TransitionStaggered>
           <div v-for="index in 40" :key="index" class="transitionTest" />
@@ -246,6 +255,7 @@ import Modal from './components/modal.vue';
 import TransitionStaggered from './components/transition-staggered.vue';
 import { bookmarkItem } from './minimalClass';
 import BookmarksTiles from './components/bookmarks/bookmarks-tiles.vue';
+import BookmarksCards from './components/bookmarks/bookmarks-cards.vue';
 
 // temp
 
@@ -260,7 +270,7 @@ const list: bookmarkItem[] = [
     status: 1,
     score: 3,
     watchedEp: 3,
-    totalEp: 12,
+    totalEp: 0,
     streamUrl: 'https://www.crunchyroll.com',
     streamIcon: 'https://www.google.com/s2/favicons?domain=crunchyroll.com',
     progressEp: 4,
