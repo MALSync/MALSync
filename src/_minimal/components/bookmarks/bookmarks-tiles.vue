@@ -4,16 +4,12 @@
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" />
     <div class="on-hover">
-      <PillSplit>
-        <template v-if="item.score" #left>
-          <TextIcon icon="star">{{ item.score }}</TextIcon>
-        </template>
-        <template v-if="item.streamUrl" #right>
-          <MediaLink :href="item.streamUrl">
-            <TextIcon :src="item.streamIcon">{{ item.watchedEp }}</TextIcon>
-          </MediaLink>
-        </template>
-      </PillSplit>
+      <MediaPill
+        :score="item.score"
+        :stream-url="item.streamUrl"
+        :stream-icon="item.streamIcon"
+        :watched-ep="item.watchedEp"
+      />
     </div>
   </div>
 </template>
@@ -23,8 +19,7 @@ import { PropType } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import ImageLazy from '../image-lazy.vue';
 import MediaLink from '../media-link.vue';
-import PillSplit from '../pill-split.vue';
-import TextIcon from '../text-icon.vue';
+import MediaPill from '../media/media-pill.vue';
 
 defineProps({
   item: {
