@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@sentry/webpack-plugin": "^1.19.0",
-    "@types/chai": "^4.3.1",
+    "@types/chai": "^4.3.3",
     "@types/jquery": "^3.5.14",
     "@types/mocha": "^9.1.1",
     "@types/node": "^16.0.0",
