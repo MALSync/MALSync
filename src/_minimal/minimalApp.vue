@@ -3,6 +3,13 @@
     <Theming />
     <Section />
     <Section>
+      <TransitionStaggered>
+        <template v-for="item in list" :key="item.title">
+          <BookmarksList :item="item" />
+        </template>
+      </TransitionStaggered>
+    </Section>
+    <Section>
       <Grid :min-width="130">
         <TransitionStaggered>
           <template v-for="item in list" :key="item.title">
@@ -275,6 +282,7 @@ import BookmarksTiles from './components/bookmarks/bookmarks-tiles.vue';
 import BookmarksCards from './components/bookmarks/bookmarks-cards.vue';
 import BookmarksCardsFull from './components/bookmarks/bookmarks-cards-full.vue';
 import Bars from './components/bars.vue';
+import BookmarksList from './components/bookmarks/bookmarks-list.vue';
 
 // temp
 

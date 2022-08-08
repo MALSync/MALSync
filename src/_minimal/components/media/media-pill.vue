@@ -23,7 +23,7 @@ defineProps({
     default: null,
   },
   score: {
-    type: String,
+    type: [String, Number],
     optional: true,
     default: '',
   },
