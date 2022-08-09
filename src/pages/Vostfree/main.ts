@@ -25,7 +25,7 @@ export const Vostfree: pageInterface = {
       const selectText = j
         .$('#player-tabs .new_player_selector_box .jq-selectbox__select-text')
         .text();
-      return Number(selectText.replace('Episode ', ''));
+      return Number(selectText.replace('Episode ', '')) || 1;
     },
     uiSelector(selector) {
       j.$('#player-tabs .new_player_top').first().after(j.html(selector));
