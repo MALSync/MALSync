@@ -24,6 +24,7 @@ const classes = computed(() => {
       cl.push('auto');
       break;
     case 'custom':
+      cl.push('custom');
       if (isDark(hslColor.value)) cl.push('dark');
       break;
     default:

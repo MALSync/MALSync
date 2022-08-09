@@ -19,3 +19,14 @@
 .stop-click-through() {
   pointer-events: all;
 }
+
+.flex-row(@gap: @spacer) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: @gap;
+
+  .flex-grow {
+    flex-grow: 1;
+  }
+}

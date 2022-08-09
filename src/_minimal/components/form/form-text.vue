@@ -1,5 +1,6 @@
 <template>
-  <label ref="el" class="text-from" :class="{ noFocus: !inFocus }">
+  <label ref="el" class="text-from" :class="{ noFocus: !inFocus, search: type === 'search' }">
+    <span v-if="icon" class="material-icons">{{ icon }}</span>
     <input
       v-model="picked"
       class="text-input"
@@ -7,7 +8,8 @@
       @focus="inFocus = true"
       @blur="inFocus = false"
     />
-    <span v-show="!inFocus">{{ picked }}{{ picked ? suffix : '' }}</span>
+    <span v-show="!inFocus" class="span-placeholder">{{ picked }}{{ picked ? suffix : '' }}</span>
+    <span v-if="clearIcon && picked" class="material-icons" @click="picked = ''">close</span>
   </label>
 </template>
 
@@ -23,6 +25,18 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  icon: {
+    type: String,
+    default: '',
+  },
+  clearIcon: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    default: '',
+  }
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -62,6 +76,7 @@ const width = computed(() => {
   .link();
 
   display: inline-flex;
+  gap: 10px;
   position: relative;
   align-items: center;
   height: 32px;
@@ -99,12 +114,22 @@ const width = computed(() => {
     }
   }
 
+  .span-placeholder {
+    flex-grow: 1;
+  }
+
   &.noFocus {
     .text-input {
       position: absolute;
       height: 0;
       width: 0;
     }
+  }
+
+  &.search {
+    padding: 10px;
+    height: auto;
+    border-radius: 30px;
   }
 }
 </style>

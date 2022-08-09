@@ -1,7 +1,7 @@
 <template>
+  <NavBar />
   <div class="content">
     <Theming />
-    <Section />
     <Section>
       <TransitionStaggered>
         <template v-for="item in list" :key="item.title">
@@ -304,6 +304,7 @@ import BookmarksCardsFull from './components/bookmarks/bookmarks-cards-full.vue'
 import Bars from './components/bars.vue';
 import BookmarksList from './components/bookmarks/bookmarks-list.vue';
 import FormSwitch from './components/form/form-switch.vue';
+import NavBar from './components/nav/nav-bar.vue';
 
 // temp
 
@@ -369,6 +370,7 @@ const list: bookmarkItem[] = [
 @import './less/_globals.less';
 .content {
   padding: 0 @spacer;
+  overflow: auto;
 }
 
 // temp
