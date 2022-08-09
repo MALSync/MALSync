@@ -13,10 +13,9 @@ export const Vostfree: pageInterface = {
       return j
         .$('h1')
         .text()
-        .replace(/ (FRENCH|VOSTFR)$/, '');
+        .replace(/ (FRENCH|VOSTFR|VF)$/, '');
     },
     getIdentifier(url) {
-      console.log(url);
       return url.split('/')[3].match(/[0-9]+/)?.[0] || '';
     },
     getOverviewUrl(url) {
