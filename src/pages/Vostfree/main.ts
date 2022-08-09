@@ -10,16 +10,22 @@ export const Vostfree: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$("h1").text().replace(/ (FRENCH|VOSTFR)$/, '');
+      return j
+        .$('h1')
+        .text()
+        .replace(/ (FRENCH|VOSTFR)$/, '');
     },
     getIdentifier(url) {
-      return url.split('/')[2].match(/[0-9]+/)?.[0] || '';
+      console.log(url);
+      return url.split('/')[3].match(/[0-9]+/)?.[0] || '';
     },
     getOverviewUrl(url) {
       return url;
     },
     getEpisode(url) {
-      var selectText = j.$('#player-tabs .new_player_selector_box .jq-selectbox__select-text').text();
+      const selectText = j
+        .$('#player-tabs .new_player_selector_box .jq-selectbox__select-text')
+        .text();
       return Number(selectText.replace('Episode ', ''));
     },
     uiSelector(selector) {
