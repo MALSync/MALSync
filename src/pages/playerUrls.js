@@ -620,7 +620,7 @@ module.exports = {
   },
   // zoro
   rapidstream: {
-    match: ['*://*.rapid-cloud.ru/*'],
+    match: ['*://*.rapid-cloud.ru/*', '*://*.rapid-cloud.co/*'],
   },
   // tenshi
   tenshi: {
