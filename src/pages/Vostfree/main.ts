@@ -10,7 +10,7 @@ export const Vostfree: pageInterface = {
   },
   sync: {
     getTitle(url) {
-      return j.$("h1").text();
+      return j.$("h1").text().replace(/ (FRENCH|VOSTFR)$/, '');
     },
     getIdentifier(url) {
       return url.split('/')[2].match(/[0-9]+/)?.[0] || '';
