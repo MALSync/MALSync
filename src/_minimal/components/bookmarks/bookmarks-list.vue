@@ -67,7 +67,7 @@ defineProps({
 
   position: relative;
   display: flex;
-  padding: 5px 10px;
+  padding: 5px 10px 5px 0;
   gap: 10px;
   min-height: 70px;
 

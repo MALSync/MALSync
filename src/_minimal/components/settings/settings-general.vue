@@ -21,6 +21,7 @@ import FormColorPicker from '../form/form-color-picker.vue';
 import FormSlider from '../form/form-slider.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
+import formSwitch from '../form/form-switch.vue';
 
 const components = {
   button: FormButton,
@@ -29,6 +30,7 @@ const components = {
   slider: FormSlider,
   dropdown: FormDropdown,
   input: FormText,
+  switch: formSwitch,
 };
 
 const properties = defineProps({

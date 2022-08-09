@@ -177,6 +177,17 @@
         component="dropdown"
         :props="{ options: [{ title: 'test', value: '1' }], placeholder: 'test' }"
       />
+      <SettingsGeneral
+        title="test123"
+        component="switch"
+        :props="{
+          options: [
+            { title: 'System', value: 'auto' },
+            { title: 'Light', value: 'light' },
+            { title: 'Dark', value: 'dark' },
+          ],
+        }"
+      />
       <SettingsGeneral title="test123" component="input" />
     </Section>
     <Section>
@@ -248,6 +259,15 @@
         ]"
       />
     </Section>
+    <Section>
+      <FormSwitch
+        :options="[
+          { title: 'System', value: 'auto' },
+          { title: 'Light', value: 'light' },
+          { title: 'Dark', value: 'dark' },
+        ]"
+      />
+    </Section>
   </div>
 </template>
 
@@ -283,6 +303,7 @@ import BookmarksCards from './components/bookmarks/bookmarks-cards.vue';
 import BookmarksCardsFull from './components/bookmarks/bookmarks-cards-full.vue';
 import Bars from './components/bars.vue';
 import BookmarksList from './components/bookmarks/bookmarks-list.vue';
+import FormSwitch from './components/form/form-switch.vue';
 
 // temp
 
