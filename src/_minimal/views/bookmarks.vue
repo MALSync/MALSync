@@ -15,6 +15,15 @@
         ]"
       />
       <MediaStatusDropdown v-model="parameters.state" />
+      <div style="flex-grow: 1"></div>
+      <FormDropdown v-model="theme" :options="options" align-items="left">
+        <template #select="slotProps">
+          <span class="material-icons">{{ slotProps.value }}</span>
+        </template>
+        <template #option="slotProps">
+          <span class="material-icons">{{ slotProps.option.value }}</span>
+        </template>
+      </FormDropdown>
     </Section>
 
     <Section v-if="!listRequest.loading">
@@ -43,11 +52,15 @@ import Section from '../components/section.vue';
 import { createRequest } from '../utils/reactive';
 import { getList } from '../../_provider/listFactory';
 import BookmarksCards from '../components/bookmarks/bookmarks-cards.vue';
+import BookmarksCardsFull from '../components/bookmarks/bookmarks-cards-full.vue';
+import BookmarksList from '../components/bookmarks/bookmarks-list.vue';
+import BookmarksTiles from '../components/bookmarks/bookmarks-tiles.vue';
 import Grid from '../components/grid.vue';
 import TransitionStaggered from '../components/transition-staggered.vue';
 import { bookmarkItem } from '../minimalClass';
 import { listElement } from '../../_provider/listAbstract';
 import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
+import FormDropdown from '../components/form/form-dropdown.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -55,6 +68,7 @@ const parameters = ref({
   state: 1,
   type: route.params.type as 'anime' | 'manga',
 });
+const theme = ref('view_agenda');
 
 watch(
   () => route.params.type,
@@ -82,12 +96,6 @@ const listRequest = createRequest<typeof parameters.value>(parameters, async par
   });
 });
 
-const listTheme = {
-  component: BookmarksCards,
-  width: 350,
-  transition: 0,
-};
-
 const formatItem = (item: listElement): bookmarkItem => {
   const resItem = item as bookmarkItem;
   if (item.options) {
@@ -106,7 +114,6 @@ const formatItem = (item: listElement): bookmarkItem => {
     if (resItem.streamUrl) {
       resItem.streamIcon = utils.favicon(resItem.streamUrl.split('/')[2]);
     }
-    console.log(resItem.streamUrl);
   }
   if (item.fn.progress && item.fn.progress.isAiring()) {
     resItem.progressText = item.fn.progress.getAuto();
@@ -114,6 +121,52 @@ const formatItem = (item: listElement): bookmarkItem => {
   }
   return resItem;
 };
+
+const formats = [
+  {
+    name: 'Cards',
+    icon: 'view_agenda',
+    component: BookmarksCards,
+    width: 350,
+    transition: 20,
+  },
+  {
+    name: 'Full Cards',
+    icon: 'view_module',
+    component: BookmarksCardsFull,
+    width: 191,
+    transition: 20,
+  },
+  {
+    name: 'List',
+    icon: 'view_list',
+    component: BookmarksList,
+    width: 0,
+    transition: 30,
+  },
+  {
+    name: 'Tiles',
+    icon: 'apps',
+    component: BookmarksTiles,
+    width: 130,
+    transition: 15,
+  },
+];
+
+const options = formats.map(format => ({
+  value: format.icon,
+  title: format.name,
+}));
+
+const listTheme = computed(() => {
+  const f = formats.find(format => format.icon === theme.value);
+
+  if (!f) {
+    return formats[0];
+  }
+
+  return f;
+});
 </script>
 
 <style lang="less" scoped>
