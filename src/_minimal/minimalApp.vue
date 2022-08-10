@@ -26,6 +26,9 @@ import NavBar from './components/nav/nav-bar.vue';
 .content {
   padding: 0 @spacer;
   overflow: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 // temp
