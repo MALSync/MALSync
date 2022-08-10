@@ -541,6 +541,7 @@ module.exports = {
       '*://launchreliantcleaverriver.com/e/*',
       '*://reputationsheriffkennethsand.com/e/*',
       '*://fittingcentermondaysunday.com/e/*',
+      '*://voe.bar/e/*',
     ],
   },
   // animewho
