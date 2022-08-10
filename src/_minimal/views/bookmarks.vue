@@ -1,20 +1,22 @@
 <template>
-  <Section class="controls">
-    <FormSwitch
-      v-model="type"
-      :options="[
-        {
-          value: 'anime',
-          title: lang('Anime'),
-        },
-        {
-          value: 'manga',
-          title: lang('Manga'),
-        },
-      ]"
-    />
-  </Section>
-  <Section class="spinner-wrap"><Spinner /></Section>
+  <div class="bookmarks">
+    <Section class="controls">
+      <FormSwitch
+        v-model="type"
+        :options="[
+          {
+            value: 'anime',
+            title: lang('Anime'),
+          },
+          {
+            value: 'manga',
+            title: lang('Manga'),
+          },
+        ]"
+      />
+    </Section>
+    <Section class="spinner-wrap"><Spinner /></Section>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -42,6 +44,11 @@ watch(type, value => {
 </script>
 
 <style lang="less" scoped>
+.bookmarks {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
 .spinner-wrap {
   flex-grow: 1;
   display: flex;
