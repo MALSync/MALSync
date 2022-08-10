@@ -9,7 +9,7 @@ import { PropType } from 'vue';
 
 defineProps({
   padding: {
-    type: String as PropType<'small' | 'large'>,
+    type: String as PropType<'small' | 'large' | 'pill'>,
     default: 'small',
   },
   tabindex: {
@@ -50,6 +50,14 @@ defineProps({
 
   &.large {
     padding: 10px 42px;
+  }
+
+  &.pill {
+    height: 30px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
   }
 
   &:hover {

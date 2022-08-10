@@ -14,6 +14,7 @@
           },
         ]"
       />
+      <MediaStatusDropdown v-model="parameters.state" />
     </Section>
 
     <Section v-if="!listRequest.loading">
@@ -46,6 +47,7 @@ import Grid from '../components/grid.vue';
 import TransitionStaggered from '../components/transition-staggered.vue';
 import { bookmarkItem } from '../minimalClass';
 import { listElement } from '../../_provider/listAbstract';
+import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -124,5 +126,10 @@ const formatItem = (item: listElement): bookmarkItem => {
   flex-grow: 1;
   display: flex;
   align-items: center;
+}
+.controls {
+  display: flex;
+  gap: 20px;
+  height: 30px;
 }
 </style>

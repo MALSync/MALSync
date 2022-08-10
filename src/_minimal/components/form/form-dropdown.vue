@@ -10,7 +10,7 @@
       </slot>
     </div>
     <div v-show="open" ref="popperNode" class="dropdown-pop">
-      <div class="dropdown-pop-default">
+      <div class="dropdown-pop-default" :style="`text-align: ${alignItems}`">
         <div
           v-for="option in options"
           :key="option.value"
@@ -34,7 +34,7 @@ import TextIcon from '../text-icon.vue';
 import { usePopper } from '../../composables/popper';
 
 interface Option {
-  value: string;
+  value: string | number;
   title: string;
 }
 
@@ -44,7 +44,7 @@ const props = defineProps({
     required: true,
   },
   modelValue: {
-    type: String,
+    type: [String, Number],
     require: true,
     default: '',
   },
@@ -71,6 +71,10 @@ const props = defineProps({
       | 'left-end'
     >,
     default: 'bottom',
+  },
+  alignItems: {
+    type: String as PropType<'left' | 'right' | 'center'>,
+    default: 'center',
   },
 });
 
