@@ -7,7 +7,7 @@
   "version": "0.8.22",
   "description": "Integrates MyAnimeList/AniList/Kitsu/Simkl into various sites, with auto episode tracking.",
   "engines": {
-    "npm": ">=8.0.0",
+    "npm": ">=8.17.0",
     "node": ">=16.0.0"
   },
   "devDependencies": {
