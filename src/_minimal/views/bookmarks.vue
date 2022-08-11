@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Spinner from '../components/spinner.vue';
 import FormSwitch from '../components/form/form-switch.vue';
@@ -164,6 +164,14 @@ const handleScroll = () => {
     loadNext();
   }
 };
+
+onActivated(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onDeactivated(() => {
+  window.removeEventListener('scroll', handleScroll);
+});
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
