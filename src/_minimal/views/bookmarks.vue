@@ -16,9 +16,15 @@
       />
       <MediaStatusDropdown v-model="parameters.state" />
       <div style="flex-grow: 1"></div>
-      <FormDropdown v-model="theme" :options="options" align-items="left">
-        <template #select="slotProps">
-          <span class="material-icons">{{ slotProps.value }}</span>
+      <FormDropdown
+        v-model="theme"
+        :options="options"
+        align-items="left"
+        direction="row"
+        size="small"
+      >
+        <template #select>
+          <span class="material-icons">{{ listTheme.icon }}</span>
         </template>
         <template #option="slotProps">
           <span class="material-icons">{{ slotProps.option.value }}</span>

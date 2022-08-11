@@ -1,5 +1,11 @@
 <template>
-  <button ref="triggerNode" class="dropdown" :aria-current="picked" @blur="open = false">
+  <button
+    ref="triggerNode"
+    class="dropdown"
+    :class="`${size}`"
+    :aria-current="picked"
+    @blur="open = false"
+  >
     <div class="selector" @click="open = !open">
       <slot name="select" :open="open" :current-title="currentTitle" :value="picked">
         <FormButton :tabindex="-1" :animation="false">
@@ -76,6 +82,14 @@ const props = defineProps({
     type: String as PropType<'left' | 'right' | 'center'>,
     default: 'center',
   },
+  direction: {
+    type: String as PropType<'column' | 'row'>,
+    default: 'column',
+  },
+  size: {
+    type: String as PropType<'small' | 'medium' | 'large'>,
+    default: 'medium',
+  },
 });
 
 const emit = defineEmits(['update:modelValue', 'close:popper', 'open:popper']);
@@ -149,7 +163,7 @@ watch(open, value => {
       .link();
 
       display: flex;
-      flex-direction: column;
+      flex-direction: v-bind(direction);
       gap: 5px;
       &-element {
         .border-radius();
@@ -162,6 +176,16 @@ watch(open, value => {
         &:hover {
           border-color: var(--cl-border-hover);
         }
+      }
+    }
+  }
+
+  &.small .dropdown-pop {
+    padding: 5px;
+    &-default {
+      gap: 0;
+      &-element {
+        padding: 0px 5px;
       }
     }
   }
