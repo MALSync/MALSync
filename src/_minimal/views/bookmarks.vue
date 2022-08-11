@@ -37,7 +37,7 @@
         <TransitionStaggered :delay-duration="listTheme.transition">
           <component
             :is="listTheme.component"
-            v-for="item in listRequest.data"
+            v-for="item in listRequest.data.getTemplist()"
             :key="item.id"
             :item="formatItem(item)"
           />
@@ -45,11 +45,17 @@
       </Grid>
     </Section>
     <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
+    <Section
+      v-if="!listRequest.loading && listRequest.data && !listRequest.data.isDone()"
+      class="spinner-wrap"
+    >
+      <Spinner />
+    </Section>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Spinner from '../components/spinner.vue';
 import FormSwitch from '../components/form/form-switch.vue';
@@ -96,9 +102,7 @@ const listRequest = createRequest<typeof parameters.value>(parameters, async par
   listProvider.initFrontendMode();
   await listProvider.getNextPage();
 
-  return computed(() => {
-    return listProvider.getTemplist();
-  });
+  return listProvider;
 });
 
 const formatItem = (item: listElement): bookmarkItem => {
@@ -180,6 +184,27 @@ const listTheme = computed(() => {
   }
 
   return f;
+});
+
+async function loadNext() {
+  if (listRequest.data.isLoading()) return;
+  await listRequest.data.getNextPage();
+};
+
+const handleScroll = () => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  if ($(window).scrollTop() + $(window).height() > $(document).height() - 500) {
+    loadNext();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 

@@ -16,6 +16,9 @@ const props = defineProps({
 
 const transitionDuration = 150;
 
+let index = 0;
+let debounce;
+
 async function beforeEnter(el: HTMLElement) {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
@@ -26,8 +29,12 @@ async function beforeEnter(el: HTMLElement) {
 
 async function enter(el: HTMLElement) {
   setTimeout(() => {
-    const index = Array.from(el.parentElement!.children).indexOf(el);
-    const delay = index * props.delayDuration;
+    clearTimeout(debounce);
+    debounce = setTimeout(() => {
+      index = 0;
+    }, 100);
+    const i = index++;
+    const delay = i * props.delayDuration;
     el.style.opacity = '1';
     el.style.transform = 'translateY(0)';
     el.style.transitionDelay = `${delay}ms`;
