@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Spinner from '../components/spinner.vue';
 import FormSwitch from '../components/form/form-switch.vue';
@@ -63,16 +63,13 @@ import { setStateContent } from '../utils/state';
 import Section from '../components/section.vue';
 import { createRequest } from '../utils/reactive';
 import { getList } from '../../_provider/listFactory';
-import BookmarksCards from '../components/bookmarks/bookmarks-cards.vue';
-import BookmarksCardsFull from '../components/bookmarks/bookmarks-cards-full.vue';
-import BookmarksList from '../components/bookmarks/bookmarks-list.vue';
-import BookmarksTiles from '../components/bookmarks/bookmarks-tiles.vue';
 import Grid from '../components/grid.vue';
 import TransitionStaggered from '../components/transition-staggered.vue';
 import { bookmarkItem } from '../minimalClass';
 import { listElement } from '../../_provider/listAbstract';
 import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
 import FormDropdown from '../components/form/form-dropdown.vue';
+import { bookmarkFormats } from '../utils/bookmarks';
 
 const route = useRoute();
 const router = useRouter();
@@ -131,38 +128,7 @@ const formatItem = (item: listElement): bookmarkItem => {
   return resItem;
 };
 
-const formats = [
-  {
-    name: 'Cards',
-    icon: 'view_agenda',
-    component: BookmarksCards,
-    width: 350,
-    transition: 20,
-  },
-  {
-    name: 'Full Cards',
-    icon: 'view_module',
-    component: BookmarksCardsFull,
-    width: 191,
-    transition: 20,
-  },
-  {
-    name: 'List',
-    icon: 'view_list',
-    component: BookmarksList,
-    width: 0,
-    transition: 30,
-  },
-  {
-    name: 'Tiles',
-    icon: 'apps',
-    component: BookmarksTiles,
-    width: 130,
-    transition: 15,
-  },
-];
-
-const options = formats.map(format => ({
+const options = bookmarkFormats.map(format => ({
   value: format.icon,
   title: format.name,
 }));
@@ -177,10 +143,10 @@ const theme = computed({
 });
 
 const listTheme = computed(() => {
-  const f = formats.find(format => format.icon === theme.value);
+  const f = bookmarkFormats.find(format => format.icon === theme.value);
 
   if (!f) {
-    return formats[0];
+    return bookmarkFormats[0];
   }
 
   return f;
