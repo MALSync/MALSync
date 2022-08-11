@@ -69,6 +69,10 @@ onUnmounted(() => {
     padding-bottom: 10px;
   }
 
+  .link {
+    .click-move-down();
+  }
+
   .material-icons {
     font-size: 30px;
     height: 30px;

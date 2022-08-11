@@ -27,8 +27,8 @@
     </Section>
 
     <Section v-if="!listRequest.loading">
-      <Grid :min-width="listTheme.width">
-        <TransitionStaggered>
+      <Grid :key="listTheme.name" :min-width="listTheme.width">
+        <TransitionStaggered :delay-duration="listTheme.transition">
           <component
             :is="listTheme.component"
             v-for="item in listRequest.data"
@@ -68,7 +68,6 @@ const parameters = ref({
   state: 1,
   type: route.params.type as 'anime' | 'manga',
 });
-const theme = ref('view_agenda');
 
 watch(
   () => route.params.type,
@@ -157,6 +156,15 @@ const options = formats.map(format => ({
   value: format.icon,
   title: format.name,
 }));
+
+const theme = computed({
+  get() {
+    return api.settings.get('bookMarksList');
+  },
+  set(value) {
+    api.settings.set('bookMarksList', value);
+  },
+});
 
 const listTheme = computed(() => {
   const f = formats.find(format => format.icon === theme.value);

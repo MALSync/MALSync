@@ -1,5 +1,5 @@
 <template>
-  <div class="grid">
+  <div :class="{ grid: minWidth }">
     <slot />
   </div>
 </template>
