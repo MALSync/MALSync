@@ -86,6 +86,9 @@ onUnmounted(() => {
 
 #header.scrolled {
   box-shadow: 0 5px 20px rgb(0 0 0 / 15%);
+}
+
+.backImage #header.scrolled {
   background-color: var(--cl-background);
   backdrop-filter: blur(2px);
 }

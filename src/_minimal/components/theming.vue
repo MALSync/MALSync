@@ -14,7 +14,6 @@ const classes = computed(() => {
   if (api.settings.get('theme') === 'dark') cl.push('dark');
   if (api.settings.get('theme') === 'auto') cl.push('auto');
   if (!api.settings.get('themeSidebars')) cl.push('no-sidebar');
-  if (api.settings.get('themeImage')) cl.push('backImage');
 
   switch (api.settings.get('theme')) {
     case 'dark':
@@ -26,6 +25,7 @@ const classes = computed(() => {
     case 'custom':
       cl.push('custom');
       if (isDark(hslColor.value)) cl.push('dark');
+      if (api.settings.get('themeImage')) cl.push('backImage');
       break;
     default:
       break;
