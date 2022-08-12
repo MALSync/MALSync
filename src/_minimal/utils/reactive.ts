@@ -19,6 +19,7 @@ export function createRequest<paramType>(
         result.data = res;
       })
       .catch(err => {
+        con.error(err);
         result.loading = false;
         result.error = err;
       });
