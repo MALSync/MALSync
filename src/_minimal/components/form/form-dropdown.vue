@@ -185,7 +185,7 @@ watch(open, value => {
     &-default {
       gap: 0;
       &-element {
-        padding: 0px 5px;
+        padding: 0 5px;
       }
     }
   }

@@ -155,7 +155,7 @@ const listTheme = computed(() => {
 async function loadNext() {
   if (listRequest.data.isLoading()) return;
   await listRequest.data.getNextPage();
-};
+}
 
 const handleScroll = () => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -65,6 +65,7 @@ onUnmounted(() => {
 
   .nav {
     .flex-row();
+
     padding-top: @spacer;
     padding-bottom: 10px;
   }
@@ -84,9 +85,8 @@ onUnmounted(() => {
 }
 
 #header.scrolled {
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 20px rgb(0 0 0 / 15%);
   background-color: var(--cl-background);
   backdrop-filter: blur(2px);
 }
-
 </style>
