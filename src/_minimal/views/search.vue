@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <Section class="controls">
+    <Section v-if="!listRequest.error" class="controls">
       <FormSwitch
         v-model="type"
         :options="[
@@ -15,7 +15,7 @@
         ]"
       />
     </Section>
-    <Section v-if="!listRequest.loading">
+    <Section v-if="!listRequest.loading && !listRequest.error">
       <Grid :key="listTheme.name" :min-width="listTheme.width">
         <TransitionStaggered :delay-duration="listTheme.transition">
           <component
@@ -27,6 +27,7 @@
         </TransitionStaggered>
       </Grid>
     </Section>
+    <ErrorSearch :list-request="listRequest" />
     <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
   </div>
 </template>
@@ -45,6 +46,7 @@ import TransitionStaggered from '../components/transition-staggered.vue';
 import { searchFormats } from '../utils/bookmarks';
 import { searchResult } from '../../_provider/definitions';
 import { bookmarkItem } from '../minimalClass';
+import ErrorSearch from '../components/error/error-search.vue';
 
 const route = useRoute();
 const router = useRouter();

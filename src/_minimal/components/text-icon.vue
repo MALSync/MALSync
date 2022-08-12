@@ -24,6 +24,10 @@ defineProps({
     type: String as PropType<'before' | 'after'>,
     default: 'before',
   },
+  color: {
+    type: String,
+    default: 'inherit',
+  },
 });
 </script>
 
@@ -38,6 +42,7 @@ defineProps({
   .material-icons {
     font-size: 18px;
     vertical-align: sub;
+    color: v-bind(color);
   }
   .img-icons {
     display: inline-block;

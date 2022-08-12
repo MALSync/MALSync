@@ -13,10 +13,15 @@ export function createRequest<paramType>(
   const execute = (params: Ref<paramType>) => {
     result.loading = true;
     result.error = null;
-    fn(params).then(res => {
-      result.loading = false;
-      result.data = res;
-    });
+    fn(params)
+      .then(res => {
+        result.loading = false;
+        result.data = res;
+      })
+      .catch(err => {
+        result.loading = false;
+        result.error = err;
+      });
   };
 
   watch(parameter, value => execute(parameter), { deep: true });
