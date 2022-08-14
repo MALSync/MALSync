@@ -542,6 +542,7 @@ module.exports = {
       '*://reputationsheriffkennethsand.com/e/*',
       '*://fittingcentermondaysunday.com/e/*',
       '*://voe.bar/e/*',
+      '*://housecardsummerbutton.com/e/*',
     ],
   },
   // animewho
