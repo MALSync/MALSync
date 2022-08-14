@@ -71,6 +71,10 @@
     "AnimeXin": [
       "https://animexinax.com/*"
     ],
+    "TRanimeizle": [
+      "https://tranimeizle.co/*",
+      "https://www.tranimeizle.co/*"
+    ],
     "iframe": [
       "https://goload.io/streaming.php?*",
       "https://goload.io/load.php?*",

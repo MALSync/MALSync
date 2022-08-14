@@ -1,5 +1,5 @@
 {
   "urls": {
-    "match": ["*://tranimeizle.net/*", "*://www.tranimeizle.net/*"]
+    "match": ["*://tranimeizle.net/*", "*://www.tranimeizle.net/*", "*://tranimeizle.co/*", "*://www.tranimeizle.co/*"]
   }
 }
