@@ -92,7 +92,7 @@ watch(
   },
 );
 
-const listRequest = createRequest<typeof parameters.value>(parameters, async param => {
+const listRequest = createRequest(parameters, async param => {
   const listProvider = await getList(param.value.state, param.value.type);
 
   listProvider.modes.initProgress = true;
@@ -153,7 +153,7 @@ const listTheme = computed(() => {
 });
 
 async function loadNext() {
-  if (listRequest.data.isLoading()) return;
+  if (!listRequest.data || listRequest.data.isLoading()) return;
   await listRequest.data.getNextPage();
 }
 

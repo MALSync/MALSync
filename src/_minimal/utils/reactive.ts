@@ -1,16 +1,18 @@
 import { reactive, Ref, watch } from 'vue';
 
-export function createRequest<paramType>(
-  parameter: Ref<paramType>,
-  fn: (param: Ref<paramType>) => Promise<any>,
+type Parameter<T> = T extends (arg: infer T) => any ? T : never;
+
+export function createRequest<F extends (arg: any) => Promise<any>>(
+  parameter: Ref<Parameter<F>>,
+  fn: F,
 ) {
   const result = reactive({
     loading: true,
-    data: null as any,
+    data: null as null | Awaited<ReturnType<F>>,
     error: null,
   });
 
-  const execute = (params: Ref<paramType>) => {
+  const execute = (params: Ref<Parameter<F>>) => {
     result.loading = true;
     result.error = null;
     fn(params)

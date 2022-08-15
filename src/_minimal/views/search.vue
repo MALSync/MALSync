@@ -54,7 +54,7 @@ const result = ref(route.query.s ? route.query.s.toString() : '');
 const type = ref(route.params.type.toString() as 'anime' | 'manga');
 const parameters = ref({ result, type });
 
-const listRequest = createRequest<typeof parameters.value>(parameters, async param => {
+const listRequest = createRequest(parameters, async param => {
   if (!param.value.result) return [];
   return miniMALSearch(param.value.result, param.value.type);
 });
