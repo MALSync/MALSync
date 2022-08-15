@@ -125,7 +125,9 @@ export class UserList extends ListAbstract {
             averageScore
             coverImage{
               large
+              extraLarge
             }
+            bannerImage
             title {
               userPreferred
             }
@@ -199,6 +201,8 @@ export class UserList extends ListAbstract {
           status: helper.translateList(el.status),
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
+          imageLarge: el.media.coverImage.extraLarge,
+          imageBanner: el.media.bannerImage,
           tags: el.notes,
           airingState: el.anime_airing_status,
         });
@@ -216,6 +220,8 @@ export class UserList extends ListAbstract {
           status: helper.translateList(el.status),
           score: Math.round(el.score / 10),
           image: el.media.coverImage.large,
+          imageLarge: el.media.coverImage.extraLarge,
+          imageBanner: el.media.bannerImage,
           tags: el.notes,
           airingState: el.anime_airing_status,
         });

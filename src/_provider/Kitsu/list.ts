@@ -123,7 +123,7 @@ export class UserList extends ListAbstract {
           this.listType
         }.mappings,${this.listType}.mappings.item&fields[${
           this.listType
-        }]=slug,titles,canonicalTitle,averageRating,posterImage,${
+        }]=slug,titles,canonicalTitle,averageRating,posterImage,coverImage,${
           this.listType === 'anime' ? 'episodeCount' : 'chapterCount,volumeCount'
         }`,
       )
@@ -177,8 +177,16 @@ export class UserList extends ListAbstract {
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
+            el.attributes.posterImage && el.attributes.posterImage.small
+              ? el.attributes.posterImage.small
+              : '',
+          imageLarge:
+            el.attributes.posterImage && el.attributes.posterImage.original
+              ? el.attributes.posterImage.original
+              : '',
+          imageBanner:
+            el.attributes.coverImage && el.attributes.coverImage.large
+              ? el.attributes.coverImage.large
               : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,
@@ -198,8 +206,16 @@ export class UserList extends ListAbstract {
           status: helper.translateList(list.attributes.status),
           score: Math.round(list.attributes.ratingTwenty / 2),
           image:
-            el.attributes.posterImage && el.attributes.posterImage.large
-              ? el.attributes.posterImage.large
+            el.attributes.posterImage && el.attributes.posterImage.small
+              ? el.attributes.posterImage.small
+              : '',
+          imageLarge:
+            el.attributes.posterImage && el.attributes.posterImage.original
+              ? el.attributes.posterImage.original
+              : '',
+          imageBanner:
+            el.attributes.coverImage && el.attributes.coverImage.large
+              ? el.attributes.coverImage.large
               : '',
           tags: list.attributes.notes,
           airingState: el.anime_airing_status,

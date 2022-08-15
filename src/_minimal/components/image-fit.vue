@@ -14,7 +14,8 @@ import imageLazy from './image-lazy.vue';
 defineProps({
   src: {
     type: String,
-    required: true,
+    required: false,
+    default: null,
   },
   mode: {
     type: String as PropType<'' | 'cover'>,

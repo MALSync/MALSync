@@ -66,6 +66,8 @@ export class UserList extends ListAbstract {
           status: st,
           score: el.user_rating ? el.user_rating : 0,
           image: `https://simkl.in/posters/${el.show.poster}_ca.jpg`,
+          imageLarge: `https://simkl.in/posters/${el.show.poster}_m.jpg`,
+          imageBanner: `https://simkl.in/posters/${el.show.poster}_w.jpg`,
           tags: el.private_memo,
           airingState: el.anime_airing_status,
         });

@@ -16,7 +16,8 @@ import { computed, ref, watch, PropType } from 'vue';
 const props = defineProps({
   src: {
     type: String,
-    required: true,
+    required: false,
+    default: null,
   },
   mode: {
     type: String as PropType<'' | 'cover' | 'object-fit'>,
