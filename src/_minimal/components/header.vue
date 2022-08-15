@@ -19,7 +19,7 @@ defineProps({
 .header {
   .header-normal();
 
-  margin-bottom: @spacer;
+  margin-bottom: 0;
 
   &.loading {
     .skeleton-text();

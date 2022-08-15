@@ -7,10 +7,22 @@
         :loading="metaRequest.loading"
       />
     </Section>
-    <Section>
+    <Section spacer="half">
       <Header :loading="metaRequest.loading">
         <StateDot :status="0" />{{ metaRequest.data?.title }}
       </Header>
+    </Section>
+    <Section spacer="half">
+      <TextScroller class="stats">
+        <span v-for="stat in metaRequest.data?.statistics" :key="stat.title">
+          {{ stat.title }} <span class="value">{{ stat.body }}</span>
+        </span>
+      </TextScroller>
+    </Section>
+    <Section>
+      <Description :loading="metaRequest.loading">
+        <div v-dompurify-html="metaRequest.data?.description" />
+      </Description>
     </Section>
   </div>
 </template>
@@ -25,6 +37,8 @@ import OverviewImage from '../components/overview/overview-image.vue';
 import Section from '../components/section.vue';
 import Header from '../components/header.vue';
 import StateDot from '../components/state-dot.vue';
+import Description from '../components/description.vue';
+import TextScroller from '../components/text-scroller.vue';
 
 const route = useRoute();
 
@@ -45,6 +59,15 @@ const metaRequest = createRequest(parameters, async param => {
 .overview {
   .image {
     height: 200px;
+  }
+
+  .stats {
+    color: var(--cl-light-text);
+    display: flex;
+    gap: 20px;
+    .value {
+      font-weight: bold;
+    }
   }
 }
 </style>
