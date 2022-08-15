@@ -21,7 +21,7 @@
     </Section>
     <Section>
       <Description :loading="metaRequest.loading">
-        <div v-dompurify-html="metaRequest.data?.description" />
+        <div class="description-html" v-dompurify-html="metaRequest.data?.description" />
       </Description>
     </Section>
   </div>
@@ -67,6 +67,11 @@ const metaRequest = createRequest(parameters, async param => {
     gap: 20px;
     .value {
       font-weight: bold;
+    }
+  }
+  .description-html {
+    ::v-deep br + br + br {
+      display: none;
     }
   }
 }
