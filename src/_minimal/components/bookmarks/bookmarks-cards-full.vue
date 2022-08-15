@@ -1,6 +1,6 @@
 <template>
   <div class="book-element">
-    <ImageLazy class="img" :src="item.image" mode="cover" />
+    <ImageLazy class="img" :src="item.imageLarge" mode="cover" />
     <div class="gradient" :class="`gradient-${item.status}`" />
     <MediaLink class="link" :href="item.url" :title="title" />
     <div class="text">

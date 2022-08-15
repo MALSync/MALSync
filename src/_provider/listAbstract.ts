@@ -18,6 +18,8 @@ export interface listElement {
   status: number;
   score: number;
   image: string;
+  imageLarge: string;
+  imageBanner?: string;
   tags: string;
   airingState: number;
   fn: {

@@ -307,6 +307,8 @@ const list: bookmarkItem[] = [
     type: 'anime',
     url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
     image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
+    imageLarge:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
     status: 1,
     score: 3,
     watchedEp: 3,
@@ -321,6 +323,8 @@ const list: bookmarkItem[] = [
     type: 'anime',
     url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
     image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
+    imageLarge:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
     status: 2,
     watchedEp: 3,
     totalEp: 12,
@@ -330,6 +334,8 @@ const list: bookmarkItem[] = [
     type: 'anime',
     url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
     image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
+    imageLarge:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
     status: 3,
     watchedEp: 3,
     totalEp: 12,
@@ -343,6 +349,8 @@ const list: bookmarkItem[] = [
     type: 'anime',
     url: 'https://myanimelist.net/anime/19815/No_Game_No_Life',
     image: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
+    imageLarge:
+      'https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx19815-bIo51RMWWhLv.jpg',
     status: 4,
     score: 3,
     watchedEp: 3,

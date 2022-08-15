@@ -21,6 +21,7 @@ export type bookmarkItem = {
   type: 'anime' | 'manga';
   url: string;
   image: string;
+  imageLarge: string;
   status: status;
   score?: any;
   watchedEp: number;

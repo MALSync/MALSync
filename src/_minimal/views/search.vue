@@ -90,6 +90,7 @@ const formatItem = (item: searchResult): bookmarkItem => {
     type: type.value,
     url: item.url,
     image: item.image,
+    imageLarge: item.image,
     status: item.list ? item.list.status : 0,
     score: item.list ? item.list.score : item.score,
     watchedEp: item.list ? item.list.episode : 0,
