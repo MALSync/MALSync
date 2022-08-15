@@ -23,7 +23,7 @@ defineProps({
   margin-right: 0.5em;
 
   &.state-0 {
-    background: var(--cl-background);
+    background: var(--cl-backdrop);
   }
 
   &.state-1 {

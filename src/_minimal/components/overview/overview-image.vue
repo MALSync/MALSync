@@ -1,6 +1,6 @@
 <template>
   <div class="overviewImage">
-    <ImageFit mode="cover" :src="src" :loading="loading" />
+    <ImageFit class="over" :src="src" :loading="loading" />
   </div>
 </template>
 
@@ -18,3 +18,16 @@ defineProps({
   },
 });
 </script>
+
+<style lang="less" scoped>
+@import '../../less/_globals.less';
+.overviewImage {
+  .border-radius();
+
+  overflow: hidden;
+  position: relative;
+  .over {
+    .fullSize();
+  }
+}
+</style>
