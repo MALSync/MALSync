@@ -1,6 +1,6 @@
 <template>
   <div class="book-element">
-    <ImageFit class="img" :src="item.imageLarge" mode="cover" />
+    <ImageFit class="img" :src="item.imageBanner ? item.imageBanner : item.imageLarge" mode="cover" />
     <div class="gradient gradient-black" />
     <MediaLink class="link" :href="item.url" />
     <div class="text">

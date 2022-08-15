@@ -22,6 +22,7 @@ export type bookmarkItem = {
   url: string;
   image: string;
   imageLarge: string;
+  imageBanner?: string;
   status: status;
   score?: any;
   watchedEp: number;
