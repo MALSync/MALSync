@@ -1,6 +1,7 @@
 import { reactive, Ref, watch } from 'vue';
 
-type Parameter<T> = T extends (arg: infer T) => any ? T : never;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, no-shadow
+type Parameter<G> = G extends (arg: infer G) => any ? G : never;
 
 export function createRequest<F extends (arg: any) => Promise<any>>(
   parameter: Ref<Parameter<F>>,
