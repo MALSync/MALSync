@@ -51,6 +51,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       title = data
         .split('itemprop="name">')[1]
         .split('</')[0]
+        .split('<br')[0]
         .replace(/&quot;/g, '"')
         .replace(/&#039;/g, "'");
     } catch (e) {
