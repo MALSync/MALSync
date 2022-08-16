@@ -1,55 +1,59 @@
 <template>
   <div class="overview">
-    <Section>
+    <Section class="image-section">
       <OverviewImage
         class="image"
         :src="metaRequest.data?.image || ''"
         :loading="metaRequest.loading"
       />
     </Section>
-    <Section spacer="half">
-      <Header :loading="metaRequest.loading">
-        <StateDot :status="0" />{{ metaRequest.data?.title }}
-      </Header>
-    </Section>
-    <Section spacer="half">
-      <TextScroller class="stats">
-        <span class="stats-block" v-for="stat in metaRequest.data?.statistics" :key="stat.title">
-          {{ stat.title }} <span class="value">{{ stat.body }}</span>
-        </span>
-      </TextScroller>
-    </Section>
-    <Section>
-      <Description :loading="metaRequest.loading">
-        <div class="description-html" v-dompurify-html="metaRequest.data?.description" />
-      </Description>
-    </Section>
-    <HR />
-    <Section>
+    <div class="header-section">
+      <Section spacer="half">
+        <Header :loading="metaRequest.loading">
+          <StateDot :status="0" />{{ metaRequest.data?.title }}
+        </Header>
+      </Section>
+      <Section spacer="half">
+        <TextScroller class="stats">
+          <span class="stats-block" v-for="stat in metaRequest.data?.statistics" :key="stat.title">
+            {{ stat.title }} <span class="value">{{ stat.body }}</span>
+          </span>
+        </TextScroller>
+      </Section>
+      <Section class="description-section">
+        <Description :loading="metaRequest.loading">
+          <div class="description-html" v-dompurify-html="metaRequest.data?.description" />
+        </Description>
+      </Section>
+    </div>
+    <HR class="header-split" />
+    <Section class="update-section">
       <OverviewUpdateUi />
     </Section>
     <HR />
-    <Section>
+    <Section class="stream-section">
       <OverviewStreaming />
     </Section>
     <HR />
-    <Section>
-      <OverviewRelated />
-    </Section>
+    <div class="additional-content">
+      <Section>
+        <OverviewRelated />
+      </Section>
+      <HR />
+      <Section>
+        <OverviewCharacters />
+      </Section>
+      <HR />
+      <Section>
+        <OverviewReviews />
+      </Section>
+      <HR />
+      <Section>
+        <OverviewRecommendations />
+      </Section>
+    </div>
     <HR />
-    <Section>
-      <OverviewCharacters />
-    </Section>
-    <HR />
-    <Section>
-      <OverviewReviews />
-    </Section>
-    <HR />
-    <Section>
-      <OverviewRecommendations />
-    </Section>
-    <HR />
-    <Section>
+    <Section class="info-section">
       <OverviewInfo />
     </Section>
   </div>
@@ -93,11 +97,8 @@ const metaRequest = createRequest(parameters, async param => {
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
 .overview {
-  .image {
-    height: 200px;
-  }
-
   .stats {
     color: var(--cl-light-text);
     .stats-block {
@@ -114,5 +115,61 @@ const metaRequest = createRequest(parameters, async param => {
       display: none;
     }
   }
+
+  .__breakpoint-desktop__( {
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-rows: min-content auto auto auto max-content;
+    gap: 0 40px;
+
+    > hr {
+      display: none;
+    }
+
+    .image-section {
+      grid-row-start: 1;
+      grid-row-end: 3;
+      overflow: hidden;
+    }
+
+    .header-section {
+      grid-column-start: 2;
+      grid-row-start: 1;
+      display: flex;
+      flex-direction: column;
+      .description-section {
+        flex-grow: 1;
+      }
+    }
+
+    .stream-section {
+      grid-column-start: 2;
+      grid-row-start: 2;
+    }
+
+    .header-split {
+      display: block;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 3;
+    }
+    .update-section {
+      grid-column-start: 1;
+      grid-row-start: 4;
+    }
+
+    .additional-content {
+      grid-column-start: 2;
+      grid-row-start: 4;
+      grid-row-end: 6;
+      overflow: hidden;
+    }
+
+    .info-section {
+      grid-column-start: 1;
+      grid-row-start: 5;
+    }
+
+  });
 }
 </style>

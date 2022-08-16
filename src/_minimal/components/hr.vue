@@ -10,5 +10,6 @@
   margin-bottom: @spacer;
   border: none;
   border-top: 2px solid var(--cl-backdrop);
+  width: 100%;
 }
 </style>

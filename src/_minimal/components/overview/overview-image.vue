@@ -41,5 +41,11 @@ const imgModal = ref(false);
     .click-move-down();
     .link();
   }
+
+  height: 200px;
+  .__breakpoint-desktop__({
+    height: auto;
+    aspect-ratio: @aspect-ratio-cover;
+  });
 }
 </style>
