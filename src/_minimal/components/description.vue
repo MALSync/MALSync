@@ -22,11 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref } from 'vue';
+import { onMounted, Ref, ref, watch } from 'vue';
 
 import FormButton from './form/form-button.vue';
 
-defineProps({
+const props = defineProps({
   loading: {
     type: Boolean,
     default: false,
@@ -38,12 +38,23 @@ const overflow = ref(true);
 
 const inner = ref(null) as Ref<HTMLElement | null>;
 
-onMounted(() => {
+const calcOverflow = () => {
   if (inner.value) {
     const { scrollHeight, clientHeight } = inner.value;
     overflow.value = Boolean(scrollHeight > clientHeight);
   }
+};
+
+onMounted(() => {
+  calcOverflow();
 });
+
+watch(
+  () => props.loading,
+  () => calcOverflow(),
+);
+
+watch(inner, () => calcOverflow());
 </script>
 
 <style lang="less" scoped>
