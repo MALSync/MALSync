@@ -14,7 +14,7 @@
     </Section>
     <Section spacer="half">
       <TextScroller class="stats">
-        <span v-for="stat in metaRequest.data?.statistics" :key="stat.title">
+        <span class="stats-block" v-for="stat in metaRequest.data?.statistics" :key="stat.title">
           {{ stat.title }} <span class="value">{{ stat.body }}</span>
         </span>
       </TextScroller>
@@ -100,10 +100,12 @@ const metaRequest = createRequest(parameters, async param => {
 
   .stats {
     color: var(--cl-light-text);
-    display: flex;
-    gap: 20px;
+    .stats-block {
+      display: inline-block;
+    }
     .value {
       font-weight: bold;
+      margin-right: 20px;
     }
   }
   .description-html {
