@@ -1,5 +1,5 @@
 <template>
-  <h4 class="header" :class="{ loading }">
+  <h4 class="header" :class="{ loading, spacer }">
     <template v-if="!loading"><slot /></template>
   </h4>
 </template>
@@ -7,6 +7,10 @@
 <script lang="ts" setup>
 defineProps({
   loading: {
+    type: Boolean,
+    default: false,
+  },
+  spacer: {
     type: Boolean,
     default: false,
   },
@@ -23,6 +27,10 @@ defineProps({
 
   &.loading {
     .skeleton-text();
+  }
+
+  &.spacer {
+    margin-bottom: @spacer;
   }
 }
 </style>
