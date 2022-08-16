@@ -24,6 +24,34 @@
         <div class="description-html" v-dompurify-html="metaRequest.data?.description" />
       </Description>
     </Section>
+    <HR />
+    <Section>
+      <OverviewUpdateUi />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewStreaming />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewRelated />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewCharacters />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewReviews />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewRecommendations />
+    </Section>
+    <HR />
+    <Section>
+      <OverviewInfo />
+    </Section>
   </div>
 </template>
 
@@ -39,6 +67,14 @@ import Header from '../components/header.vue';
 import StateDot from '../components/state-dot.vue';
 import Description from '../components/description.vue';
 import TextScroller from '../components/text-scroller.vue';
+import OverviewUpdateUi from '../components/overview/overview-update-ui.vue';
+import OverviewStreaming from '../components/overview/overview-streaming.vue';
+import OverviewCharacters from '../components/overview/overview-characters.vue';
+import OverviewReviews from '../components/overview/overview-reviews.vue';
+import OverviewInfo from '../components/overview/overview-info.vue';
+import OverviewRecommendations from '../components/overview/overview-recommendations.vue';
+import OverviewRelated from '../components/overview/overview-related.vue';
+import HR from '../components/hr.vue';
 
 const route = useRoute();
 
@@ -70,7 +106,7 @@ const metaRequest = createRequest(parameters, async param => {
     }
   }
   .description-html {
-    ::v-deep br + br + br {
+    :deep(br + br + br) {
       display: none;
     }
   }
