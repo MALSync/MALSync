@@ -86,6 +86,7 @@ const parameters = ref({
 });
 
 const metaRequest = createRequest(parameters, async param => {
+  if (!param.value.url) return null;
   const ov = await getOverview(param.value.url, param.value.type).init();
   return ov.getMeta();
 });
