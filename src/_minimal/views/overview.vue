@@ -106,6 +106,7 @@ const metaRequest = createRequest(parameters, async param => {
     }
   }
   .description-html {
+    white-space: pre-line;
     :deep(br + br + br) {
       display: none;
     }
