@@ -37,7 +37,7 @@
     <HR />
     <div class="additional-content">
       <Section>
-        <OverviewRelated />
+        <OverviewRelated :related="metaRequest.data?.related" />
       </Section>
       <HR />
       <Section>
