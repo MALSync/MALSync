@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Overview,
   },
   {
-    path: '/settings/:path?',
+    path: '/settings/:path*',
     name: 'Settings',
     component: Settings,
   },

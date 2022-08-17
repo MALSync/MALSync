@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="path">
+  <router-link :to="{ name: 'Settings', params: { path } }">
     <div class="overview-button">
       <Header>
         <TextIcon :icon="icon" mode="flex">{{ title }}</TextIcon>
@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
 import TextIcon from '../text-icon.vue';
 import Header from '../header.vue';
 
@@ -22,9 +23,9 @@ defineProps({
     required: true,
   },
   path: {
-    type: String,
+    type: Array as PropType<string[]>,
     require: true,
-    default: '',
+    default: () => [],
   },
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <span class="text-icon" :class="mode">
+  <span class="text-icon" :class="[mode, background].join(' ')">
     <span v-if="icon && position === 'before'" class="material-icons before">{{ icon }}</span>
     <img v-if="src && position === 'before'" class="img-icons before" :src="src" />
     <slot />
@@ -32,6 +32,10 @@ defineProps({
     type: String as PropType<'normal' | 'flex'>,
     default: 'normal',
   },
+  background: {
+    type: String as PropType<'round' | ''>,
+    default: '',
+  },
 });
 </script>
 
@@ -58,8 +62,22 @@ defineProps({
 
   &.flex {
     display: flex;
+    align-items: center;
     .material-icons {
       font-size: inherit;
+    }
+  }
+
+  &.round {
+    .material-icons {
+      background-color: var(--cl-text);
+      color: var(--cl-foreground-solid);
+      border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 30px;
     }
   }
 }
