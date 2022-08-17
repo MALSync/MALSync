@@ -17,6 +17,7 @@ defineProps({
 <style lang="less" scoped>
 .state-dot {
   display: inline-block;
+  min-width: 16px;
   width: 16px;
   height: 16px;
   border-radius: 50%;
