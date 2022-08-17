@@ -195,14 +195,19 @@ export class MetaOverview extends MetaOverviewAbstract {
     if (chars) {
       chars.forEach(i => {
         let name = '';
+        let role = '';
         if (i.node.name.last) name += i.node.name.last;
         if (i.node.name.first && i.node.name.last) {
           name += ', ';
         }
         if (i.node.name.first) name += i.node.name.first;
+        if (i.role) {
+          role = i.role.charAt(0).toUpperCase() + i.role.slice(1).toLowerCase();
+        }
         this.meta.characters.push({
           img: i.node.image.large,
           name,
+          subtext: role,
           url: i.node.siteUrl,
         });
       });

@@ -41,7 +41,7 @@
       </Section>
       <HR />
       <Section>
-        <OverviewCharacters />
+        <OverviewCharacters :characters="metaRequest.data?.characters" />
       </Section>
       <HR />
       <Section>
