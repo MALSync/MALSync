@@ -1,5 +1,5 @@
 <template>
-  <div class="overviewImage" :class="{ hov: src }" @click="imgModal = true">
+  <div class="overviewImage" :class="{ hov: src, notLoading: !loading }" @click="imgModal = true">
     <ImageFit class="over" :src="src" :loading="loading" />
     <Modal v-if="src" v-model="imgModal">
       <img :src="src" />
@@ -33,6 +33,7 @@ const imgModal = ref(false);
 
   overflow: hidden;
   position: relative;
+  margin: 5px;
   .over {
     .fullSize();
   }
@@ -40,6 +41,10 @@ const imgModal = ref(false);
   &.hov {
     .click-move-down();
     .link();
+  }
+
+  &.notLoading {
+    .box-shadow();
   }
 
   height: 200px;
