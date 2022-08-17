@@ -6,7 +6,10 @@
         <div class="type">{{ relation.type }}</div>
         <div v-for="link in relation.links" :key="link.id" class="title">
           <div class="state-circle-watching" />
-          <MediaLink :href="link.url"> <StateDot :status="0" /> {{ link.title }} </MediaLink>
+          <MediaLink :href="link.url">
+            <StateDot :status="link.list ? link.list.status : 0" />
+            {{ link.title }}
+          </MediaLink>
         </div>
       </FormButton>
     </div>

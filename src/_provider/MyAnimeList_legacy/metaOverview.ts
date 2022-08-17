@@ -333,7 +333,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
       const related = j.$.parseHTML(relatedBlock);
       j.$.each(j.$(related).filter('table').find('tr'), function (index, value) {
-        const links: { url: string; title: string; statusTag: string; type: string; id: number }[] =
+        const links: { url: string; title: string; type: string; id: number }[] =
           [];
         j.$(value)
           .find('.borderClass')
@@ -348,7 +348,6 @@ export class MetaOverview extends MetaOverviewAbstract {
                 title: j.$(valueB).text(),
                 type: utils.urlPart(url, 3),
                 id: Number(utils.urlPart(url, 4)),
-                statusTag: '',
               });
             }
           });

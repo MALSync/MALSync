@@ -281,7 +281,6 @@ export class MetaOverview extends MetaOverviewAbstract {
             title: helper.getTitle(i.attributes.titles, i.attributes.canonicalTitle),
             id: i.id,
             type: i.type,
-            statusTag: '',
           };
         }
       });

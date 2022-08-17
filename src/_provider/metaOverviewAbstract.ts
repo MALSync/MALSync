@@ -42,7 +42,11 @@ export interface Overview {
       title: string;
       type: 'anime' | 'manga';
       id: number | string;
-      statusTag: string;
+      list?: {
+        status: number;
+        score: number;
+        episode: number;
+      };
     }[];
   }[];
 }
@@ -64,13 +68,34 @@ export abstract class MetaOverviewAbstract {
       this.logger.log('Cached');
       this.meta = await this.getCache().getValue();
       this.run = true;
+      await this.fillOverviewState();
       return this;
     }
 
     await this._init();
     this.run = true;
     this.getCache().setValue(this.getMeta());
+    await this.fillOverviewState();
     return this;
+  }
+
+  protected async fillOverviewState() {
+    for (const relation in this.meta.related) {
+      for (const link in this.meta.related[relation].links) {
+        // eslint-disable-next-line no-await-in-loop
+        const dbEntry = await api.request.database('entry', {
+          id: this.meta.related[relation].links[link].id,
+          type: this.meta.related[relation].links[link].type,
+        });
+        if (dbEntry) {
+          this.meta.related[relation].links[link].list = {
+            status: dbEntry.status,
+            score: dbEntry.score,
+            episode: dbEntry.watchedEp,
+          };
+        }
+      }
+    }
   }
 
   protected abstract _init();

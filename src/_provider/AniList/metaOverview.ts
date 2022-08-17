@@ -371,7 +371,6 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: i.node.title.userPreferred,
         id: i.node.id,
         type: i.node.type.toLowerCase(),
-        statusTag: '',
       });
     });
     this.meta.related = Object.keys(links).map(key => links[key]);

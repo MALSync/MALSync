@@ -197,7 +197,6 @@ export class MetaOverview extends MetaOverviewAbstract {
         title: i.title,
         type: 'anime',
         id: i.ids.simkl,
-        statusTag: '',
       });
     });
     this.meta.related = Object.keys(links).map(key => links[key]);

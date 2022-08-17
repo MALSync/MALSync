@@ -383,7 +383,6 @@ export class MetaOverview extends MetaOverviewAbstract {
           title: el.node.title,
           id: el.node.id,
           type: 'anime',
-          statusTag: '',
         });
       });
     }
@@ -402,7 +401,6 @@ export class MetaOverview extends MetaOverviewAbstract {
           title: el.node.title,
           id: el.node.id,
           type: 'manga',
-          statusTag: '',
         });
       });
     }
