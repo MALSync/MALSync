@@ -39,6 +39,7 @@ const overflow = ref(true);
 const inner = ref(null) as Ref<HTMLElement | null>;
 
 const calcOverflow = () => {
+  overflow.value = true;
   if (inner.value) {
     const { scrollHeight, clientHeight } = inner.value;
     overflow.value = Boolean(scrollHeight > clientHeight);
@@ -89,5 +90,16 @@ watch(inner, () => calcOverflow());
   &.loading {
     .skeleton-text-block();
   }
+
+  .__breakpoint-desktop__({
+    height: 100%;
+    min-height: 200px;
+    position: relative;
+    &.close .open-gradient {
+      max-height: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  });
 }
 </style>
