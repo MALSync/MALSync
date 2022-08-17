@@ -42,9 +42,14 @@ defineProps({
     gap: 30px;
   });
 
+  .related-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .type {
     font-weight: bold;
-    margin-bottom: 7px;
   }
 }
 </style>
