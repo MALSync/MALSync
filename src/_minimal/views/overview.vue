@@ -9,8 +9,8 @@
     </Section>
     <div class="header-section">
       <Section spacer="half">
-        <Header :loading="metaRequest.loading">
-          <StateDot :status="0" />{{ metaRequest.data?.title }}
+        <Header :loading="metaRequest.loading" class="header-block">
+          <StateDot :status="0" /><span>{{ metaRequest.data?.title }}</span>
         </Header>
       </Section>
       <Section spacer="half">
@@ -109,6 +109,12 @@ const metaRequest = createRequest(parameters, async param => {
       margin-right: 20px;
     }
   }
+
+  .header-block {
+    display: flex;
+    align-items: center;
+  }
+
   .description-html {
     white-space: pre-line;
     :deep(br + br + br) {
