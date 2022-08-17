@@ -90,6 +90,6 @@ onUnmounted(() => {
 
 .backImage #header.scrolled {
   background-color: var(--cl-background);
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(15px);
 }
 </style>

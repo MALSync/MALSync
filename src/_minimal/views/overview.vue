@@ -54,7 +54,7 @@
     </div>
     <HR />
     <Section class="info-section">
-      <OverviewInfo />
+      <OverviewInfo :info="metaRequest.data?.info" />
     </Section>
   </div>
 </template>
