@@ -1,5 +1,5 @@
 <template>
-  <span class="text-icon">
+  <span class="text-icon" :class="mode">
     <span v-if="icon && position === 'before'" class="material-icons before">{{ icon }}</span>
     <img v-if="src && position === 'before'" class="img-icons before" :src="src" />
     <slot />
@@ -28,11 +28,16 @@ defineProps({
     type: String,
     default: 'inherit',
   },
+  mode: {
+    type: String as PropType<'normal' | 'flex'>,
+    default: 'normal',
+  },
 });
 </script>
 
 <style lang="less" scoped>
 .text-icon {
+  line-height: 1;
   .before {
     margin-right: 10px;
   }
@@ -49,6 +54,13 @@ defineProps({
     vertical-align: sub;
     height: 18px;
     width: 18px;
+  }
+
+  &.flex {
+    display: flex;
+    .material-icons {
+      font-size: inherit;
+    }
   }
 }
 </style>
