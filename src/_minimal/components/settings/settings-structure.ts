@@ -6,6 +6,7 @@ export interface ConfObj {
   key: string;
   title: string;
   component: Component;
+  condition?: () => boolean;
   props?: { [key: string]: any };
   children?: ConfObj[];
 }
@@ -35,6 +36,36 @@ const theming: ConfObj[] = [
       component: 'checkbox',
       option: 'themeSidebars',
     },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'color',
+    title: 'Color [TODO]',
+    props: {
+      component: 'colorPicker',
+      option: 'themeColor',
+    },
+    condition: () => api.settings.get('theme') === 'custom',
+    component: SettingsGeneral,
+  },
+  {
+    key: 'image',
+    title: 'Background Image [TODO]',
+    props: {
+      component: 'input',
+      option: 'themeImage',
+    },
+    condition: () => api.settings.get('theme') === 'custom',
+    component: SettingsGeneral,
+  },
+  {
+    key: 'opacity',
+    title: 'Background Opacity [TODO]',
+    props: {
+      component: 'slider',
+      option: 'themeOpacity',
+    },
+    condition: () => api.settings.get('theme') === 'custom' && api.settings.get('themeImage'),
     component: SettingsGeneral,
   },
 ];

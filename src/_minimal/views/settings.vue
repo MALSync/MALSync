@@ -9,14 +9,15 @@
         </Header>
       </router-link>
     </div>
-    <component
-      :is="comp.component"
-      v-for="comp in components.structure"
-      :key="comp.key"
-      :path="[...components.path, comp.key]"
-      :title="comp.title"
-      v-bind="comp.props"
-    />
+    <template v-for="comp in components.structure" :key="comp.key">
+      <component
+        :is="comp.component"
+        v-if="comp.condition ? comp.condition() : true"
+        :path="[...components.path, comp.key]"
+        :title="comp.title"
+        v-bind="comp.props"
+      />
+    </template>
   </div>
 </template>
 
