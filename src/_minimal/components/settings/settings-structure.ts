@@ -1,6 +1,7 @@
 import { Component } from 'vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsGeneral from './settings-general.vue';
+import ColorPreview from '../color-preview.vue';
 
 export interface ConfObj {
   key: string;
@@ -54,6 +55,9 @@ const theming: ConfObj[] = [
     props: {
       component: 'input',
       option: 'themeImage',
+      props: {
+        clearIcon: true,
+      },
     },
     condition: () => api.settings.get('theme') === 'custom',
     component: SettingsGeneral,
@@ -67,6 +71,12 @@ const theming: ConfObj[] = [
     },
     condition: () => api.settings.get('theme') === 'custom' && api.settings.get('themeImage'),
     component: SettingsGeneral,
+  },
+  {
+    key: 'colorPreview',
+    title: 'Color Preview',
+    condition: () => api.settings.get('theme') === 'custom',
+    component: ColorPreview,
   },
 ];
 

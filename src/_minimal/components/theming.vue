@@ -52,14 +52,18 @@ const styles = computed(() => {
   if (api.settings.get('theme') !== 'custom') return '';
   const s: string[] = [];
 
-  const backdrop = saturate(illuminate(hslColor.value, -15, 10), 15);
+  const backdrop = saturate(
+    illuminate(hslColor.value, -15, 20),
+    hslColor.value[1] < 85 ? 15 : -15,
+    15,
+  );
   const foreground = illuminate(hslColor.value, 8);
-  const primary = hue(illuminate(hslColor.value, 0, 30, 50), 60);
-  let secondary = hue(saturate(illuminate(hslColor.value, 0, 10, 30), 20, 70, 90), 60);
+  const primary = saturate(hue(illuminate(hslColor.value, 10, 30, 45), 120), 0, 50);
+  let secondary = hue(saturate(illuminate(hslColor.value, 0, 10, 30), 20, 70, 90), -120);
   let lightText = illuminate([hslColor.value[0], 0, hslColor.value[2]], -50, 10, 90);
 
   if (isDark(hslColor.value)) {
-    secondary = hue(saturate(illuminate(hslColor.value, 0, 70, 90), 20, 70, 90), 60);
+    secondary = hue(saturate(illuminate(hslColor.value, 40, 70, 90), 20, 70, 90), -120);
     lightText = illuminate([hslColor.value[0], 0, hslColor.value[2]], 50, 10, 90);
   }
 

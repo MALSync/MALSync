@@ -45,8 +45,8 @@ const props = defineProps({
     default: '',
   },
   color: {
-    type: String as PropType<'blue' | 'violet'>,
-    default: 'blue',
+    type: String as PropType<'default' | 'blue' | 'violet'>,
+    default: 'default',
   },
 });
 
@@ -87,7 +87,8 @@ watch(
     .vue-slider-dot-handle {
       opacity: 0;
       box-shadow: none;
-      background-color: var(--slider-dot);
+      background-color: var(--slider-body);
+      filter: brightness(0.8);
 
       &.vue-slider-dot-handle-focus {
         opacity: 1;
@@ -104,6 +105,7 @@ watch(
 }
 
 .slider-bar {
+  --slider-body: var(--cl-primary);
   .link();
 
   &:hover {
@@ -111,12 +113,13 @@ watch(
       opacity: 1;
     }
   }
-  --slider-body: #56ccf2;
-  --slider-dot: #92e2fc;
+
+  &.blue {
+    --slider-body: #56ccf2;
+  }
 
   &.violet {
     --slider-body: #bb6bd9;
-    --slider-dot: #cd9bdf;
   }
 }
 </style>

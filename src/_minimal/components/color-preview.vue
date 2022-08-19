@@ -76,6 +76,7 @@ const stateColors = [0, 1, 2, 3, 4, 6, 23];
 
 .color-preview {
   border: 1px solid var(--cl-backdrop);
+  margin: @spacer-half 0;
   .main-colors,
   .state-colors {
     display: flex;
