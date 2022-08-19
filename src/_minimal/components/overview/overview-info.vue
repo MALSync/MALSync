@@ -10,7 +10,7 @@
             <span v-else>
               {{ link.text }}
             </span>
-            <span v-if="index + 1 < item.body.length">, </span>
+            <span v-if="Number(index) + 1 < item.body.length">, </span>
           </template>
         </div>
       </div>
@@ -58,6 +58,7 @@ defineProps({
   .content {
     flex-grow: 1;
     width: 100%;
+    line-height: 1.3;
   }
 
   .link {
