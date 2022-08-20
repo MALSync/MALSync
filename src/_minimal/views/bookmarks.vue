@@ -32,25 +32,29 @@
       </FormDropdown>
     </Section>
 
-    <Section v-if="!listRequest.loading">
-      <Grid :key="listTheme.name" :min-width="listTheme.width">
-        <TransitionStaggered :delay-duration="listTheme.transition">
-          <component
-            :is="listTheme.component"
-            v-for="item in listRequest.data.getTemplist()"
-            :key="item.id"
-            :item="formatItem(item)"
-          />
-        </TransitionStaggered>
-      </Grid>
-    </Section>
-    <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
-    <Section
-      v-if="!listRequest.loading && listRequest.data && !listRequest.data.isDone()"
-      class="spinner-wrap"
-    >
-      <Spinner />
-    </Section>
+    <template v-if="!listRequest.error">
+      <Section v-if="!listRequest.loading">
+        <Grid :key="listTheme.name" :min-width="listTheme.width">
+          <TransitionStaggered :delay-duration="listTheme.transition">
+            <component
+              :is="listTheme.component"
+              v-for="item in listRequest.data.getTemplist()"
+              :key="item.id"
+              :item="formatItem(item)"
+            />
+          </TransitionStaggered>
+        </Grid>
+      </Section>
+      <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
+      <Section
+        v-if="!listRequest.loading && listRequest.data && !listRequest.data.isDone()"
+        class="spinner-wrap"
+      >
+        <Spinner />
+      </Section>
+    </template>
+
+    <ErrorBookmarks :list-request="listRequest" />
   </div>
 </template>
 
@@ -70,6 +74,7 @@ import { listElement } from '../../_provider/listAbstract';
 import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
 import FormDropdown from '../components/form/form-dropdown.vue';
 import { bookmarkFormats } from '../utils/bookmarks';
+import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -97,7 +102,9 @@ const listRequest = createRequest(parameters, async param => {
 
   listProvider.modes.initProgress = true;
   listProvider.initFrontendMode();
-  await listProvider.getNextPage();
+  await listProvider.getNextPage().catch(e => {
+    throw { e, html: listProvider.errorMessage(e) };
+  });
 
   return listProvider;
 });

@@ -22,5 +22,9 @@ import TextIcon from '../text-icon.vue';
   font-weight: bold;
   margin-left: auto;
   margin-right: auto;
+
+  :deep(a) {
+    color: var(--cl-secondary);
+  }
 }
 </style>
