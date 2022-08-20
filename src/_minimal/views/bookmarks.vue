@@ -36,12 +36,16 @@
     </Section>
 
     <template v-if="!listRequest.error">
-      <Section v-if="!listRequest.loading">
+      <Section
+        v-if="list"
+        class="grid"
+        :class="{ cached: cacheList.length && listRequest.loading }"
+      >
         <Grid :key="listTheme.name" :min-width="listTheme.width">
           <TransitionStaggered :delay-duration="listTheme.transition">
             <component
               :is="listTheme.component"
-              v-for="item in listRequest.data.getTemplist()"
+              v-for="item in list"
               :key="item.id"
               :item="formatItem(item)"
             />
@@ -85,6 +89,7 @@ const parameters = ref({
   state: Number(route.params.state),
   type: route.params.type as 'anime' | 'manga',
 });
+const cacheList = ref([] as listElement[]);
 
 watch(
   () => route.params.type,
@@ -118,11 +123,22 @@ const listRequest = createRequest(parameters, async param => {
 
   listProvider.modes.initProgress = true;
   listProvider.initFrontendMode();
+
+  listProvider.modes.cached = true;
+  listProvider.getCached().then(list => {
+    cacheList.value = list;
+  });
+
   await listProvider.getNextPage().catch(e => {
     throw { e, html: listProvider.errorMessage(e) };
   });
 
   return listProvider;
+});
+
+const list = computed(() => {
+  if (cacheList.value.length && listRequest.loading) return cacheList.value;
+  return listRequest.data && !listRequest.loading ? listRequest.data.getTemplist() : null;
 });
 
 const formatItem = (item: listElement): bookmarkItem => {
@@ -206,6 +222,7 @@ onUnmounted(() => {
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
 .bookmarks {
   flex-grow: 1;
   display: flex;
@@ -220,5 +237,14 @@ onUnmounted(() => {
   display: flex;
   gap: 20px;
   height: 30px;
+}
+
+.grid {
+  transition: filter @normal-transition, opacity @normal-transition;
+  &.cached {
+    opacity: 0.4;
+    filter: grayscale(1);
+    transition: none;
+  }
 }
 </style>
