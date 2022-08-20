@@ -83,6 +83,8 @@ export class MetaOverview extends MetaOverviewAbstract {
   private image(data) {
     const image = data.poster;
     if (image) this.meta.image = `https://simkl.in/posters/${image}_ca.jpg`;
+    if (image) this.meta.imageLarge = `https://simkl.in/posters/${image}_m.jpg`;
+    if (image) this.meta.imageBanner = `https://simkl.in/posters/${image}_w.jpg`;
   }
 
   private alternativeTitle(data) {

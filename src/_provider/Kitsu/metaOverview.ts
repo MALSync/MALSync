@@ -107,8 +107,16 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private image() {
     this.meta.image =
-      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.large
-        ? this.animeI().attributes.posterImage.large
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.small
+        ? this.animeI().attributes.posterImage.small
+        : '';
+    this.meta.imageLarge =
+      this.animeI().attributes.posterImage && this.animeI().attributes.posterImage.original
+        ? this.animeI().attributes.posterImage.original
+        : '';
+    this.meta.imageBanner =
+      this.animeI().attributes.coverImage && this.animeI().attributes.coverImage.large
+        ? this.animeI().attributes.coverImage.large
         : '';
   }
 

@@ -3,7 +3,7 @@
     <Section class="image-section">
       <OverviewImage
         class="image"
-        :src="metaRequest.data?.image || ''"
+        :src="metaRequest.data?.imageLarge || ''"
         :loading="metaRequest.loading"
       />
     </Section>

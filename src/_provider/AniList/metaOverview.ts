@@ -71,7 +71,9 @@ export class MetaOverview extends MetaOverviewAbstract {
         description(asHtml: true)
         coverImage{
           large
+          extraLarge
         }
+        bannerImage
         title {
           userPreferred
           romaji
@@ -176,6 +178,8 @@ export class MetaOverview extends MetaOverviewAbstract {
   private image(data) {
     const image = data?.data?.Media?.coverImage?.large;
     if (image) this.meta.image = image;
+    this.meta.imageLarge = data?.data?.Media?.coverImage?.extraLarge || image;
+    this.meta.imageBanner = data?.data?.Media?.bannerImage;
   }
 
   private alternativeTitle(data) {

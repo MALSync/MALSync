@@ -135,6 +135,7 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private image(data) {
     if (data.main_picture && data.main_picture.medium) this.meta.image = data.main_picture.medium;
+    this.meta.imageLarge = data.main_picture?.large || data.main_picture?.medium || '';
   }
 
   private alternativeTitle(data) {

@@ -72,12 +72,18 @@ export class MetaOverview extends MetaOverviewAbstract {
 
   private image(data) {
     let image = '';
+    let imageLarge = '';
     try {
       image = data.split('property="og:image"')[1].split('content="')[1].split('"')[0];
+      if (image) {
+        const ending = image.split('.').pop();
+        imageLarge = image.replace(`.${ending}`, `l.${ending}`);
+      }
     } catch (e) {
       console.log('[iframeOverview] Error:', e);
     }
     this.meta.image = image;
+    this.meta.imageLarge = imageLarge ?? image;
   }
 
   private alternativeTitle(data) {

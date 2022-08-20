@@ -5,6 +5,8 @@ export interface Overview {
   alternativeTitle: string[];
   description: string;
   image: string;
+  imageLarge: string;
+  imageBanner?: string;
   characters: {
     img: string;
     name: string;
@@ -107,6 +109,7 @@ export abstract class MetaOverviewAbstract {
     alternativeTitle: [],
     description: '',
     image: '',
+    imageLarge: '',
     characters: [],
     statistics: [],
     info: [],
