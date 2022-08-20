@@ -13,16 +13,18 @@
       <component
         :is="comp.component"
         v-if="comp.condition ? comp.condition() : true"
+        v-bind="comp.props"
+        :id="`id-${comp.key}`"
         :path="[...components.path, comp.key]"
         :title="comp.title"
-        v-bind="comp.props"
+        :class="{ highlight: comp.key === components.highlight }"
       />
     </template>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { structure, ConfObj } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
@@ -55,6 +57,7 @@ const followPath = (
       structure: struct,
       path: currentPath,
       parent,
+      highlight: path,
     };
   currentPath.push(path);
   return followPath(paths, tempStruct.children, currentPath, tempStruct);
@@ -62,6 +65,22 @@ const followPath = (
 const components = computed(() => {
   return followPath(route.params.path as string[], structure);
 });
+
+watch(
+  () => components.value.highlight,
+  value => {
+    if (value) {
+      setTimeout(() => {
+        const el = document.getElementById(`id-${value}`);
+        if (el) {
+          const topOfElement = el.offsetTop - 90;
+          window.scroll({ top: topOfElement, behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="less" scoped>
@@ -70,5 +89,19 @@ const components = computed(() => {
   .click-move-down();
 
   padding: @spacer-half 0;
+}
+
+.highlight {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    right: -20px;
+    bottom: 0;
+    border: 2px solid var(--cl-secondary);
+    border-radius: 10px;
+  }
 }
 </style>
