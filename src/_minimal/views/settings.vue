@@ -95,6 +95,7 @@ watch(
   position: relative;
   &::after {
     content: '';
+    pointer-events: none;
     position: absolute;
     top: 0;
     left: -20px;
