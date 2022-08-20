@@ -543,6 +543,7 @@ module.exports = {
       '*://fittingcentermondaysunday.com/e/*',
       '*://voe.bar/e/*',
       '*://housecardsummerbutton.com/e/*',
+      '*://fraudclatterflyingcar.com/e/*',
     ],
   },
   // animewho
