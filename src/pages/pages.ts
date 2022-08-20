@@ -98,7 +98,6 @@ import { FrixySubs } from './FrixySubs/main';
 import { Guya } from './Guya/main';
 import { MangaHub } from './MangaHub/main';
 import { ComicK } from './ComicK/main';
-import { AnimeShitai } from './AnimeShitai/main';
 import { Japanread } from './Japanread/main';
 import { Bentomanga } from './Bentomanga/main';
 import { MangaSushi } from './MangaSushi/main';
@@ -236,7 +235,6 @@ export const pages = {
   Guya,
   MangaHub,
   ComicK,
-  AnimeShitai,
   Japanread,
   Bentomanga,
   MangaSushi,
