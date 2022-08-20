@@ -221,7 +221,7 @@ export class MyAnimeListClass {
           let tempHtml = '';
 
           page.links.forEach(stream => {
-            tempHtml += `<div class="mal_links"><a target="_blank" href="${stream.url}">${stream.name}</a></div>`;
+            tempHtml += `<div class="mal_links" style="word-break: break-all;"><a target="_blank" href="${stream.url}">${stream.name}</a></div>`;
           });
 
           html += `<h2 id="${page.name}Links" class="mal_links"><img src="${utils.favicon(
