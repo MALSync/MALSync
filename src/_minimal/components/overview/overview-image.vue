@@ -2,7 +2,7 @@
   <div class="overviewImage" :class="{ hov: src, notLoading: !loading }" @click="imgModal = true">
     <ImageFit class="over" :src="src" :loading="loading" />
     <Modal v-if="src" v-model="imgModal">
-      <img :src="src" />
+      <img :src="src" class="modal-image" />
     </Modal>
   </div>
 </template>
@@ -52,5 +52,10 @@ const imgModal = ref(false);
     height: auto;
     aspect-ratio: @aspect-ratio-cover;
   });
+}
+
+.modal-image {
+  max-width: 100%;
+  max-height: 85vh;
 }
 </style>
