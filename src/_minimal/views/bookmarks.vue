@@ -14,7 +14,10 @@
           },
         ]"
       />
-      <MediaStatusDropdown v-model="parameters.state" />
+      <MediaStatusDropdown
+        v-model="parameters.state"
+        :rewatching="listRequest.data ? listRequest.data?.seperateRewatching : false"
+      />
       <div style="flex-grow: 1"></div>
       <FormDropdown
         v-model="theme"
