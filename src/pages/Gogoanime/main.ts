@@ -17,12 +17,13 @@ export const Gogoanime: pageInterface = {
       return j.$('.anime-info a').first().text().trim();
     },
     getIdentifier(url) {
-      return utils.urlPart(url, 3).split('-episode')[0];
+      return Gogoanime.sync.getOverviewUrl(url).split('/')[4];
     },
     getOverviewUrl(url) {
-      return `${url.split('/').slice(0, 3).join('/')}/category/${Gogoanime.sync.getIdentifier(
-        url,
-      )}`;
+      return utils.absoluteLink(
+        j.$('.anime-info a[href*="/category/"]').first().attr('href'),
+        Gogoanime.domain,
+      );
     },
     getEpisode(url) {
       return Number(utils.urlPart(url, 3).split('episode-')[1]);
@@ -30,7 +31,7 @@ export const Gogoanime: pageInterface = {
     nextEpUrl(url) {
       const href = j.$('.anime_video_body_episodes_r a').last().attr('href');
       if (typeof href !== 'undefined') {
-        return Gogoanime.domain + href;
+        return utils.absoluteLink(href, Gogoanime.domain);
       }
       return '';
     },
