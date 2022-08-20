@@ -82,7 +82,7 @@ import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 const route = useRoute();
 const router = useRouter();
 const parameters = ref({
-  state: 1,
+  state: Number(route.params.state),
   type: route.params.type as 'anime' | 'manga',
 });
 
@@ -97,6 +97,19 @@ watch(
   value => {
     router.push({ name: 'Bookmarks', params: { type: value } });
     setStateContent(value);
+  },
+);
+
+watch(
+  () => route.params.state,
+  value => {
+    if (route.name === 'Bookmarks') parameters.value.state = Number(value);
+  },
+);
+watch(
+  () => parameters.value.state,
+  value => {
+    router.push({ name: 'Bookmarks', params: { state: Number(value) } });
   },
 );
 

@@ -5,7 +5,7 @@
         class="link"
         :to="{
           name: 'Bookmarks',
-          params: { type: getStateContext().value },
+          params: { type: getStateContext().value, state: 1 },
         }"
       >
         <span class="material-icons">bookmark</span>

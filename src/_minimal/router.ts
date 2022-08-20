@@ -7,14 +7,15 @@ import Search from './views/search.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/anime',
+    redirect: '/book/anime/1',
   },
   {
-    path: '/:type',
+    path: '/book/:type/:state',
     name: 'Bookmarks',
     component: Bookmarks,
     props: {
       type: String,
+      state: Number,
     },
   },
   {
