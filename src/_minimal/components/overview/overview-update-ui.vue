@@ -1,24 +1,24 @@
 <template>
-  <div v-if="!loading" class="update-ui">
+  <div v-if="!loading && single" class="update-ui">
     <div class="list-select">
       Current list
-      <FormDropdown v-model="status" :options="(single?.getStatusCheckbox() as any)" />
+      <FormDropdown v-model="status" :options="(single.getStatusCheckbox() as any)" />
     </div>
     <div class="progress-select">
       Your progress
-      <FormText v-model="episode" :suffix="`/${single?.getTotalEpisodes()}`" />
+      <FormText v-model="episode" :suffix="`/${single.getTotalEpisodes()}`" />
       +
       <FormSlider
-        v-if="single?.getTotalEpisodes()"
+        v-if="single.getTotalEpisodes()"
         v-model="episode"
         :min="0"
-        :max="single?.getTotalEpisodes()"
+        :max="single.getTotalEpisodes()"
       />
     </div>
     <div class="score-select">
       Your score
-      <FormDropdown v-model="score" :options="(single?.getScoreCheckbox() as any)" />
-      <FormSlider v-model="score" :options="(single?.getScoreCheckbox() as any)" />
+      <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)" />
+      <FormSlider v-model="score" :options="(single.getScoreCheckbox() as any)" />
     </div>
     <div class="update-buttons">
       <div><span class="material-icons">cloud_upload</span>Update</div>

@@ -10,7 +10,13 @@
     <div class="header-section">
       <Section spacer="half">
         <Header :loading="metaRequest.loading" class="header-block">
-          <StateDot :status="0" /><span>{{ metaRequest.data?.title }}</span>
+          <StateDot
+            :status="
+              !singleRequest.loading && singleRequest.data?.getStatus()
+                ? singleRequest.data?.getStatus()
+                : 0
+            "
+          /><span>{{ metaRequest.data?.title }}</span>
         </Header>
       </Section>
       <Section spacer="half">
