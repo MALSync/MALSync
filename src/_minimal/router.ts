@@ -3,6 +3,7 @@ import Bookmarks from './views/bookmarks.vue';
 import Overview from './views/overview.vue';
 import Settings from './views/settings.vue';
 import Search from './views/search.vue';
+import NotFound from './views/notFound.vue';
 import { getUrlObj, setUrlObj } from './utils/state';
 
 const routes: Array<RouteRecordRaw> = [
@@ -12,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
       const urlObj = getUrlObj();
       if (urlObj && urlObj.url) return urlObj.url;
       return '/book/anime/1';
-    }
+    },
   },
   {
     path: '/book/:type/:state',
@@ -45,6 +46,7 @@ const routes: Array<RouteRecordRaw> = [
       type: String,
     },
   },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
 
 const router = createRouter({
