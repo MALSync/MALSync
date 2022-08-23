@@ -28,7 +28,7 @@
     </div>
     <HR class="header-split" />
     <Section class="update-section">
-      <OverviewUpdateUi />
+      <OverviewUpdateUi :single="singleRequest.data" :loading="singleRequest.loading" />
     </Section>
     <HR />
     <Section class="stream-section">
@@ -80,6 +80,7 @@ import OverviewRecommendations from '../components/overview/overview-recommendat
 import OverviewRelated from '../components/overview/overview-related.vue';
 import HR from '../components/hr.vue';
 import { UrlNotSupportedError } from '../../_provider/Errors';
+import { getSingle } from '../../_provider/singleFactory';
 
 const route = useRoute();
 const router = useRouter();
@@ -91,7 +92,7 @@ const open404 = () => {
     query: route.query,
     hash: route.hash,
   });
-}
+};
 
 const url = computed(() => {
   try {
@@ -122,6 +123,14 @@ watch(
     }
   },
 );
+
+const singleRequest = createRequest(parameters, async param => {
+  if (!param.value.url) return null;
+  const single = getSingle(param.value.url);
+  await single.update();
+
+  return single;
+});
 </script>
 
 <style lang="less" scoped>

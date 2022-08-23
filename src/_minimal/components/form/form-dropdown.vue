@@ -25,7 +25,7 @@
           @click="select(option)"
         >
           <slot name="option" :option="option">
-            {{ option.title }}
+            {{ option.title || option.label }}
           </slot>
         </div>
       </div>
@@ -41,7 +41,8 @@ import { usePopper } from '../../composables/popper';
 
 interface Option {
   value: string | number;
-  title: string;
+  title?: string;
+  label?: string;
 }
 
 const props = defineProps({
@@ -101,9 +102,9 @@ const select = (option: Option) => {
   open.value = false;
 };
 const currentTitle = computed(() => {
-  const active = props.options.find(el => el.value === picked.value);
+  const active = props.options.find(el => el.value.toString() === picked.value.toString());
   if (!active) return props.placeholder;
-  return active.title;
+  return active.title || active.label;
 });
 
 watch(picked, value => {

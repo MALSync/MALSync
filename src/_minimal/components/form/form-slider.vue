@@ -11,7 +11,7 @@
       :max="max"
       :interval="interval"
       data-value="value"
-      data-label="title"
+      :data-label="options && options.length && options[0].title ? 'title' : 'label'"
     />
   </div>
 </template>
@@ -23,7 +23,7 @@ import VueSlider from 'vue-slider-component';
 
 const props = defineProps({
   options: {
-    type: Array as PropType<{ value: string; title: string }[]>,
+    type: Array as PropType<{ value: string; title?: string; label?: string }[]>,
     required: false,
     default: null,
   },
