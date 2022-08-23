@@ -3,11 +3,16 @@ import Bookmarks from './views/bookmarks.vue';
 import Overview from './views/overview.vue';
 import Settings from './views/settings.vue';
 import Search from './views/search.vue';
+import { getUrlObj, setUrlObj } from './utils/state';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/book/anime/1',
+    redirect: () => {
+      const urlObj = getUrlObj();
+      if (urlObj && urlObj.url) return urlObj.url;
+      return '/book/anime/1';
+    }
   },
   {
     path: '/book/:type/:state',
@@ -51,6 +56,10 @@ const router = createRouter({
     }
     return { top: 0 };
   },
+});
+
+router.afterEach((to, from, failure) => {
+  if (!failure) setUrlObj(to.path);
 });
 
 export default router;
