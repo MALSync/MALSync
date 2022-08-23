@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { setStateContent } from '../utils/state';
+import { setTypeContext } from '../utils/state';
 import { createRequest } from '../utils/reactive';
 import { miniMALSearch } from '../../utils/Search';
 import FormSwitch from '../components/form/form-switch.vue';
@@ -72,7 +72,7 @@ watch(type, newValue => {
     params: { type: newValue },
     query: { s: route.query.s },
   });
-  setStateContent(newValue as 'anime' | 'manga');
+  setTypeContext(newValue as 'anime' | 'manga');
 });
 
 watch(

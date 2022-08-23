@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { getStateContext } from '../../utils/state';
+import { getTypeContext } from '../../utils/state';
 import FormText from '../form/form-text.vue';
 
 const route = useRoute();
@@ -23,7 +23,7 @@ watch(query, value => {
     debounce = setTimeout(() => {
       const nextRoute = {
         name: 'Search',
-        params: { type: getStateContext().value },
+        params: { type: getTypeContext().value },
         query: { s: value },
       };
       if (route.name === 'Search') {

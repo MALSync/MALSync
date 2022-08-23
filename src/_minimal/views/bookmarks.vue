@@ -70,7 +70,7 @@ import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, watc
 import { useRoute, useRouter } from 'vue-router';
 import Spinner from '../components/spinner.vue';
 import FormSwitch from '../components/form/form-switch.vue';
-import { setStateContent } from '../utils/state';
+import { setStateContext, setTypeContext } from '../utils/state';
 import Section from '../components/section.vue';
 import { createRequest } from '../utils/reactive';
 import { getList } from '../../_provider/listFactory';
@@ -101,7 +101,7 @@ watch(
   () => parameters.value.type,
   value => {
     router.push({ name: 'Bookmarks', params: { type: value } });
-    setStateContent(value);
+    if (value) setTypeContext(value);
   },
 );
 
@@ -109,6 +109,7 @@ watch(
   () => route.params.state,
   value => {
     if (route.name === 'Bookmarks') parameters.value.state = Number(value);
+    if (value) setStateContext(Number(value));
   },
 );
 watch(

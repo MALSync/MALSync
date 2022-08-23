@@ -5,7 +5,7 @@
         class="link"
         :to="{
           name: 'Bookmarks',
-          params: { type: getStateContext().value, state: 1 },
+          params: { type: getTypeContext().value, state: getStateContext().value },
         }"
       >
         <span class="material-icons">bookmark</span>
@@ -23,7 +23,7 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from 'vue';
-import { getStateContext } from '../../utils/state';
+import { getStateContext, getTypeContext } from '../../utils/state';
 import NavSearch from './nav-search.vue';
 
 const scrolled = ref(false);
