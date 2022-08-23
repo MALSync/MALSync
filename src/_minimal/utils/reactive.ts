@@ -10,7 +10,7 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   const result = reactive({
     loading: true,
     data: null as null | Awaited<ReturnType<F>>,
-    error: null,
+    error: null as null | Error,
   });
 
   const execute = (params: Ref<Parameter<F>>) => {

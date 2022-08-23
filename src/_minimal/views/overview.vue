@@ -60,8 +60,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { Path, pathToUrl } from '../../utils/slugs';
 import { getOverview } from '../../_provider/metaDataFactory';
 import { createRequest } from '../utils/reactive';
@@ -79,10 +79,29 @@ import OverviewInfo from '../components/overview/overview-info.vue';
 import OverviewRecommendations from '../components/overview/overview-recommendations.vue';
 import OverviewRelated from '../components/overview/overview-related.vue';
 import HR from '../components/hr.vue';
+import { UrlNotSupportedError } from '../../_provider/Errors';
 
 const route = useRoute();
+const router = useRouter();
 
-const url = computed(() => (route.params.slug ? pathToUrl(route.params as Path) : ''));
+const open404 = () => {
+  router.push({
+    name: 'NotFound',
+    params: { pathMatch: route.path.substring(1).split('/') },
+    query: route.query,
+    hash: route.hash,
+  });
+}
+
+const url = computed(() => {
+  try {
+    return route.params.slug ? pathToUrl(route.params as Path) : '';
+  } catch (error) {
+    con.error(error);
+    open404();
+  }
+  return '';
+});
 
 const parameters = ref({
   url,
@@ -94,6 +113,15 @@ const metaRequest = createRequest(parameters, async param => {
   const ov = await getOverview(param.value.url, param.value.type).init();
   return ov.getMeta();
 });
+
+watch(
+  () => metaRequest.error,
+  error => {
+    if (error instanceof UrlNotSupportedError) {
+      open404();
+    }
+  },
+);
 </script>
 
 <style lang="less" scoped>
