@@ -1,4 +1,5 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
+import { Cache } from '../../utils/Cache';
 
 const typeContext = ref('anime');
 const stateContext = ref(1);
@@ -24,4 +25,20 @@ export function setStateContext(value: number) {
 
 export function getStateContext() {
   return stateContext;
+}
+
+init();
+async function init() {
+  const cache = new Cache('stateContext', 14 * 24 * 60 * 60 * 1000);
+  if (await cache.hasValue()) {
+    const curContext = await cache.getValue();
+    if (curContext.stateContext) setStateContext(curContext.stateContext);
+    if (curContext.typeContext) setTypeContext(curContext.typeContext);
+  }
+  watch([typeContext, stateContext], () => {
+    cache.setValue({
+      stateContext: stateContext.value,
+      typeContext: typeContext.value,
+    });
+  });
 }
