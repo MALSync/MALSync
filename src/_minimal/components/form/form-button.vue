@@ -1,6 +1,7 @@
 <template>
   <div class="button" :class="`${padding} ${animation ? 'animation' : ''}`" tabindex="tabindex">
     <slot /> {{ title }}
+    <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
   </div>
 </template>
 
@@ -25,6 +26,10 @@ defineProps({
     required: false,
     default: '',
   },
+  icon: {
+    type: String,
+    default: '',
+  },
 });
 </script>
 
@@ -36,6 +41,7 @@ defineProps({
   .block-select();
   .border-radius();
 
+  position: relative;
   display: inline-block;
   border: 2px solid var(--cl-backdrop);
   background-color: var(--cl-foreground);
@@ -62,10 +68,25 @@ defineProps({
 
   &:hover {
     border-color: var(--cl-border-hover);
+    .top-icon {
+      border-color: var(--cl-border-hover);
+    }
   }
 
   &:focus-visible {
     .focus-outline();
+  }
+
+  .top-icon {
+    position: absolute;
+    font-size: 12px;
+    top: -10px;
+    right: -10px;
+    background-color: var(--cl-primary);
+    border-radius: 50%;
+    padding: 2px;
+    color: white;
+    border: 2px solid var(--cl-primary);
   }
 }
 </style>

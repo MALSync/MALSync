@@ -9,18 +9,14 @@
     <div v-else class="grid">
       <template v-for="b in streamRequest.data" :key="b.name">
         <MediaLink v-if="options(b).length === 1" :href="options(b)[0].value">
-          <FormButton>
-            <TextIcon :icon="groupIcon(b)" position="after">
-              <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
-            </TextIcon>
+          <FormButton :icon="groupIcon(b)">
+            <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
           </FormButton>
         </MediaLink>
         <FormDropdown v-else :options="options(b)" align-items="left">
           <template #select>
-            <FormButton :animation="false">
-              <TextIcon :icon="groupIcon(b)" position="after">
-                <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
-              </TextIcon>
+            <FormButton :animation="false" :icon="groupIcon(b)">
+              <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
             </FormButton>
           </template>
           <template #option="slotProps">
@@ -47,8 +43,6 @@ import FormDropdown from '../form/form-dropdown.vue';
 import MediaLink from '../media-link.vue';
 import { createRequest } from '../../utils/reactive';
 import { activeLinks, Quicklink, combinedLinks } from '../../../utils/quicklinksBuilder';
-
-const l = true;
 
 const props = defineProps({
   type: {
