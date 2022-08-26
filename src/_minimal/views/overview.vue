@@ -38,7 +38,11 @@
     </Section>
     <HR />
     <Section class="stream-section">
-      <OverviewStreaming />
+      <OverviewStreaming
+        :single="singleRequest.data"
+        :loading="singleRequest.loading"
+        :alternative-title="metaRequest.data?.alternativeTitle"
+      />
     </Section>
     <HR />
     <div class="additional-content">
