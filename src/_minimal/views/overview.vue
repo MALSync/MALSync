@@ -51,14 +51,18 @@
     </Section>
     <HR />
     <div class="additional-content">
-      <Section>
-        <OverviewRelated :related="metaRequest.data?.related" />
-      </Section>
-      <HR />
-      <Section>
-        <OverviewCharacters :characters="metaRequest.data?.characters" />
-      </Section>
-      <HR />
+      <template v-if="metaRequest.data?.related && metaRequest.data?.related.length">
+        <Section>
+          <OverviewRelated :related="metaRequest.data?.related" />
+        </Section>
+        <HR />
+      </template>
+      <template v-if="metaRequest.data?.characters && metaRequest.data?.characters.length">
+        <Section>
+          <OverviewCharacters :characters="metaRequest.data?.characters" />
+        </Section>
+        <HR />
+      </template>
       <Section>
         <OverviewReviews />
       </Section>
