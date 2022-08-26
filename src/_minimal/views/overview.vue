@@ -3,7 +3,7 @@
     <Section class="image-section">
       <OverviewImage
         class="image"
-        :src="metaRequest.data?.imageLarge || ''"
+        :src="metaRequest.data?.imageLarge || singleRequest.data?.getImage() || ''"
         :loading="metaRequest.loading"
       />
     </Section>
@@ -16,7 +16,7 @@
                 ? singleRequest.data?.getStatus()
                 : 0
             "
-          /><span>{{ metaRequest.data?.title }}</span>
+          /><span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || ''}}</span>
         </Header>
       </Section>
       <Section spacer="half">

@@ -143,10 +143,7 @@ export class MetaOverview extends MetaOverviewAbstract {
           const { name } = i.attributes;
 
           this.meta.characters.push({
-            img:
-              i.attributes.image !== null
-                ? i.attributes.image.original
-                : api.storage.assetUrl('questionmark.gif'),
+            img: i.attributes.image !== null ? i.attributes.image.original : '',
             name,
             url: `https://myanimelist.net/character/${i.attributes.malId}`,
           });

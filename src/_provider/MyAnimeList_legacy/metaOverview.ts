@@ -119,7 +119,7 @@ export class MetaOverview extends MetaOverviewAbstract {
         if (charImg && regexDimensions.test(charImg)) {
           charImg = charImg.replace(regexDimensions, '');
         } else {
-          charImg = api.storage.assetUrl('questionmark.gif');
+          charImg = '';
         }
 
         charImg = utils.handleMalImages(charImg);
@@ -339,8 +339,7 @@ export class MetaOverview extends MetaOverviewAbstract {
       const relatedBlock = data.split('Related ')[1].split('</h2>')[1].split('<h2>')[0];
       const related = j.$.parseHTML(relatedBlock);
       j.$.each(j.$(related).filter('table').find('tr'), function (index, value) {
-        const links: { url: string; title: string; type: string; id: number }[] =
-          [];
+        const links: { url: string; title: string; type: string; id: number }[] = [];
         j.$(value)
           .find('.borderClass')
           .last()

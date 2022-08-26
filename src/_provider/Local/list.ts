@@ -35,7 +35,8 @@ export class UserList extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? '',
+                imageLarge: el.image ?? '',
                 malId: 0,
                 apiCacheKey: 0,
                 tags: el.tags,
@@ -57,7 +58,8 @@ export class UserList extends ListAbstract {
             await this.fn(
               {
                 airingState: 2,
-                image: el.image ?? api.storage.assetUrl('questionmark.gif'),
+                image: el.image ?? '',
+                imageLarge: el.image ?? '',
                 malId: 0,
                 apiCacheKey: 0,
                 tags: el.tags,
