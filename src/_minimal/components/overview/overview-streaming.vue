@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header :spacer="true" class="head">Streaming [TODO]</Header>
-    <div v-if="streamRequest.loading" class="grid">
+    <div v-if="streamRequest.loading || !streamRequest.data" class="grid">
       <FormButton v-for="b in placeholder" :key="b.name" class="placeholder-link">
         <TextIcon icon="sync">{{ b.name }}</TextIcon>
       </FormButton>
