@@ -39,8 +39,9 @@
     <HR />
     <Section class="stream-section">
       <OverviewStreaming
-        :single="singleRequest.data"
-        :loading="singleRequest.loading"
+        :type="route.params.type as 'anime'"
+        :cache-key="singleRequest.data ? singleRequest.data.getCacheKey() : null"
+        :title="singleRequest.data ? singleRequest.data.getTitle() : ''"
         :alternative-title="metaRequest.data?.alternativeTitle"
       />
     </Section>

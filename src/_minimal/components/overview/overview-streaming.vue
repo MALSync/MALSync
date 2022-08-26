@@ -1,7 +1,12 @@
 <template>
   <div>
     <Header :spacer="true" class="head">Streaming [TODO]</Header>
-    <div v-if="!streamRequest.loading" class="grid">
+    <div v-if="streamRequest.loading" class="grid">
+      <FormButton v-for="b in placeholder" :key="b.name" class="placeholder-link">
+        <TextIcon icon="sync">{{ b.name }}</TextIcon>
+      </FormButton>
+    </div>
+    <div v-else class="grid">
       <template v-for="b in streamRequest.data" :key="b.name">
         <MediaLink v-if="options(b).length === 1" :href="options(b)[0].value">
           <FormButton>
@@ -41,17 +46,22 @@ import TextIcon from '../text-icon.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import MediaLink from '../media-link.vue';
 import { createRequest } from '../../utils/reactive';
-import { SingleAbstract } from '../../../_provider/singleAbstract';
-import { activeLinks, Quicklink } from '../../../utils/quicklinksBuilder';
+import { activeLinks, Quicklink, combinedLinks } from '../../../utils/quicklinksBuilder';
+
+const l = true;
 
 const props = defineProps({
-  single: {
-    type: Object as PropType<SingleAbstract | null>,
-    default: null,
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    default: 'anime',
   },
-  loading: {
-    type: Boolean,
-    default: false,
+  cacheKey: {
+    type: [String, Number],
+    default: '',
+  },
+  title: {
+    type: String,
+    default: '',
   },
   alternativeTitle: {
     type: Array as PropType<string[]>,
@@ -59,12 +69,16 @@ const props = defineProps({
   },
 });
 
+const placeholder = computed(() => {
+  return combinedLinks().filter(el => el.search && el.search[props.type]);
+});
+
 const parameters = computed(() => {
-  if (props.single && !props.loading) {
+  if (props.cacheKey) {
     return {
-      type: props.single.getType(),
-      cacheKey: props.single.getApiCacheKey(),
-      title: props.single.getTitle(),
+      type: props.type,
+      cacheKey: props.cacheKey,
+      title: props.title,
     };
   }
   return null;
@@ -149,7 +163,18 @@ const options = (el: Quicklink) => {
 }
 
 .dropdown-link {
+  display: block;
   margin: -7px -17px;
   padding: 7px 17px;
+}
+
+.placeholder-link {
+  .skeleton-loading();
+
+  background-color: var(--cl-backdrop) !important;
+
+  & > span {
+    visibility: hidden;
+  }
 }
 </style>
