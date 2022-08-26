@@ -9,6 +9,7 @@ import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getTypeContext } from '../../utils/state';
 import FormText from '../form/form-text.vue';
+import { setTyping } from './nav-search-state';
 
 const route = useRoute();
 const router = useRouter();
@@ -20,7 +21,9 @@ let debounce;
 watch(query, value => {
   clearTimeout(debounce);
   if (value) {
+    setTyping(true);
     debounce = setTimeout(() => {
+      setTyping(false);
       const nextRoute = {
         name: 'Search',
         params: { type: getTypeContext().value },
@@ -31,7 +34,7 @@ watch(query, value => {
       } else {
         router.push(nextRoute);
       }
-    }, 300);
+    }, 700);
   } else if (route.name === 'Search') {
     router.go(-1);
   }

@@ -15,8 +15,13 @@
         ]"
       />
     </Section>
-    <Section v-if="!listRequest.loading && !listRequest.error">
-      <Grid :key="listTheme.name" :min-width="listTheme.width">
+    <Section v-if="listRequest.data && !listRequest.error">
+      <Grid
+        :key="listTheme.name"
+        :min-width="listTheme.width"
+        class="grid"
+        :class="{ loading: listRequest.loading || getTyping() }"
+      >
         <TransitionStaggered :delay-duration="listTheme.transition">
           <component
             :is="listTheme.component"
@@ -28,7 +33,6 @@
       </Grid>
     </Section>
     <ErrorSearch :list-request="listRequest" />
-    <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
   </div>
 </template>
 
@@ -47,6 +51,7 @@ import { searchFormats } from '../utils/bookmarks';
 import { searchResult } from '../../_provider/definitions';
 import { bookmarkItem } from '../minimalClass';
 import ErrorSearch from '../components/error/error-search.vue';
+import { getTyping } from '../components/nav/nav-search-state';
 
 const route = useRoute();
 const router = useRouter();
@@ -100,6 +105,7 @@ const formatItem = (item: searchResult): bookmarkItem => {
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
 .search {
   flex-grow: 1;
   display: flex;
@@ -114,5 +120,14 @@ const formatItem = (item: searchResult): bookmarkItem => {
   display: flex;
   gap: 20px;
   height: 30px;
+}
+
+.grid {
+  transition: filter @normal-transition, opacity @normal-transition;
+  &.loading {
+    opacity: 0.4;
+    filter: grayscale(1);
+    transition: none;
+  }
 }
 </style>
