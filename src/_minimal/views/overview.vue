@@ -16,19 +16,23 @@
                 ? singleRequest.data?.getStatus()
                 : 0
             "
-          /><span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || ''}}</span>
+          /><span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
       <Section spacer="half">
         <TextScroller class="stats">
-          <span class="stats-block" v-for="stat in metaRequest.data?.statistics" :key="stat.title">
+          <span v-for="stat in metaRequest.data?.statistics" :key="stat.title" class="stats-block">
             {{ stat.title }} <span class="value">{{ stat.body }}</span>
           </span>
         </TextScroller>
       </Section>
       <Section class="description-section">
         <Description :loading="metaRequest.loading">
-          <div class="description-html" v-dompurify-html="metaRequest.data?.description" />
+          <div
+            v-dompurify-html="cleanDescription"
+            class="description-html"
+            :class="{ preLine: !cleanDescription.includes('<br') }"
+          />
         </Description>
       </Section>
     </div>
@@ -142,6 +146,13 @@ const singleRequest = createRequest(parameters, async param => {
 
   return single;
 });
+
+const cleanDescription = computed(() => {
+  if (!metaRequest.data) return '';
+  const { description } = metaRequest.data;
+  if (!description) return '';
+  return description.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
+});
 </script>
 
 <style lang="less" scoped>
@@ -164,9 +175,8 @@ const singleRequest = createRequest(parameters, async param => {
   }
 
   .description-html {
-    white-space: pre-line;
-    :deep(br + br + br) {
-      display: none;
+    &.preLine {
+      white-space: pre-line;
     }
   }
 

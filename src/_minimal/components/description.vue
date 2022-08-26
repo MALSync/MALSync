@@ -93,7 +93,7 @@ watch(inner, () => calcOverflow());
 
   .__breakpoint-desktop__({
     height: 100%;
-    min-height: 200px;
+    min-height: 150px;
     position: relative;
     &.close .open-gradient {
       max-height: 100%;
