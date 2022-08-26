@@ -63,13 +63,17 @@
         </Section>
         <HR />
       </template>
-      <Section>
-        <OverviewReviews />
-      </Section>
-      <HR />
-      <Section>
-        <OverviewRecommendations />
-      </Section>
+      <template v-if="singleRequest.data && singleRequest.data.getMalUrl()">
+        <Section>
+          <OverviewReviews :mal-url="singleRequest.data.getMalUrl()!" />
+        </Section>
+        <HR />
+      </template>
+      <template v-if="singleRequest.data && singleRequest.data.getMalUrl()">
+        <Section>
+          <OverviewRecommendations :mal-url="singleRequest.data.getMalUrl()!" />
+        </Section>
+      </template>
     </div>
     <HR />
     <Section class="info-section">

@@ -1,10 +1,17 @@
 <template>
   <div>
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
-    Reviews
+    <div>{{ malUrl }}</div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import Header from '../header.vue';
+
+const props = defineProps({
+  malUrl: {
+    type: String,
+    required: true,
+  },
+});
 </script>
