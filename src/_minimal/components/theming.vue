@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 import { computed, watch } from 'vue';
-import { hexToHsl, Hsl, hue, illuminate, isDark, saturate } from '../../utils/color';
+import { hexToHsl, HSL, Hsl } from '../../utils/color';
 
 const hslColor = computed(() => hexToHsl(api.settings.get('themeColor')));
 
@@ -24,7 +24,7 @@ const classes = computed(() => {
       break;
     case 'custom':
       cl.push('custom');
-      if (isDark(hslColor.value)) cl.push('dark');
+      if (new HSL(...hslColor.value).isDark()) cl.push('dark');
       if (api.settings.get('themeImage')) cl.push('backImage');
       break;
     default:
@@ -52,28 +52,26 @@ const styles = computed(() => {
   if (api.settings.get('theme') !== 'custom') return '';
   const s: string[] = [];
 
-  const backdrop = saturate(
-    illuminate(hslColor.value, -15, 20),
-    hslColor.value[1] < 85 ? 15 : -15,
-    15,
-  );
-  const foreground = illuminate(hslColor.value, 8);
-  const primary = saturate(hue(illuminate(hslColor.value, 10, 30, 45), 120), 0, 50);
-  let secondary = hue(saturate(illuminate(hslColor.value, 0, 10, 30), 20, 70, 90), -120);
-  let lightText = illuminate([hslColor.value[0], 0, hslColor.value[2]], -50, 10, 90);
+  const base = new HSL(...hslColor.value);
 
-  if (isDark(hslColor.value)) {
-    secondary = hue(saturate(illuminate(hslColor.value, 40, 70, 90), 20, 70, 90), -120);
-    lightText = illuminate([hslColor.value[0], 0, hslColor.value[2]], 50, 10, 90);
+  const backdrop = base.copy().illuminate(-15, 20).saturate(15, 15, 85, true);
+  const foreground = base.copy().illuminate(8, 0, 100, true);
+  const primary = base.copy().illuminate(10, 30, 45).hue(120).saturate(0, 50);
+  let secondary = base.copy().illuminate(0, 10, 30).hue(-120).saturate(20, 70, 90);
+  let lightText = base.copy().illuminate(-50, 10, 90).saturate(0, 0, 0);
+
+  if (base.isDark()) {
+    secondary = base.copy().illuminate(40, 70, 90).hue(-120).saturate(20, 70, 90);
+    lightText = base.copy().illuminate(50, 10, 90).saturate(0, 0, 0);
   }
 
-  s.push(`--cl-background: ${hslColorString(hslColor.value, true)}`);
-  s.push(`--cl-backdrop: ${hslColorString(backdrop)}`);
-  s.push(`--cl-foreground: ${hslColorString(foreground, true)}`);
-  s.push(`--cl-foreground-solid: ${hslColorString(foreground)}`);
-  s.push(`--cl-primary: ${hslColorString(primary)}`);
-  s.push(`--cl-secondary: ${hslColorString(secondary)}`);
-  s.push(`--cl-light-text: ${hslColorString(lightText)}`);
+  s.push(`--cl-background: ${hslColorString(base.toHsl(), true)}`);
+  s.push(`--cl-backdrop: ${hslColorString(backdrop.toHsl())}`);
+  s.push(`--cl-foreground: ${hslColorString(foreground.toHsl(), true)}`);
+  s.push(`--cl-foreground-solid: ${hslColorString(foreground.toHsl())}`);
+  s.push(`--cl-primary: ${hslColorString(primary.toHsl())}`);
+  s.push(`--cl-secondary: ${hslColorString(secondary.toHsl())}`);
+  s.push(`--cl-light-text: ${hslColorString(lightText.toHsl())}`);
 
   if (api.settings.get('themeImage')) {
     s.push(`--cl-back-image: url('${api.settings.get('themeImage')}')`);

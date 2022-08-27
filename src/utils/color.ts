@@ -6,30 +6,70 @@ export function hexToHsl(hex: string): Hsl {
   return hslConverter(hex);
 }
 
-export function illuminate(hsl: Hsl, percent: number, min = 0, max = 100) {
-  const newColor = [...hsl];
-  newColor[2] += percent;
-  if (newColor[2] > max) newColor[2] = max;
-  if (newColor[2] < min) newColor[2] = min;
-  return newColor as Hsl;
-}
+export class HSL {
+  constructor(
+    protected colorHue: number,
+    protected saturation: number,
+    protected lightness: number,
+  ) {
+    con.log('HSL', colorHue, saturation, lightness);
+  }
 
-export function saturate(hsl: Hsl, percent: number, min = 0, max = 100) {
-  const newColor = [...hsl];
-  newColor[1] += percent;
-  if (newColor[1] > max) newColor[1] = max;
-  if (newColor[1] < min) newColor[1] = min;
-  return newColor as Hsl;
-}
+  isDark() {
+    return this.lightness < 50;
+  }
 
-export function hue(hsl: Hsl, percent: number) {
-  const newColor = [...hsl];
-  newColor[0] += percent;
-  if (newColor[1] > 360) newColor[1] -= 360;
-  if (newColor[1] < 0) newColor[1] += 360;
-  return newColor as Hsl;
-}
+  hue(percent: number) {
+    this.colorHue = this.calculateValue(this.colorHue, percent, 0, 360, false, true);
+    return this;
+  }
 
-export function isDark(hsl: Hsl): boolean {
-  return hsl[2] < 50;
+  saturate(percent: number, min = 0, max = 100, bounce = false) {
+    this.saturation = this.calculateValue(this.saturation, percent, min, max, bounce);
+    return this;
+  }
+
+  illuminate(percent: number, min = 0, max = 100, bounce = false) {
+    this.lightness = this.calculateValue(this.lightness, percent, min, max, bounce);
+    return this;
+  }
+
+  toHsl(): Hsl {
+    return [this.colorHue, this.saturation, this.lightness];
+  }
+
+  copy() {
+    return new HSL(this.colorHue, this.saturation, this.lightness);
+  }
+
+  protected calculateValue(
+    value: number,
+    percent: number,
+    min: number,
+    max: number,
+    bounce: boolean,
+    overflow = false,
+  ) {
+    let temp = value;
+    temp += percent;
+    if (temp > max) {
+      if (overflow) {
+        return this.calculateValue(temp, 0 - max, min, max, bounce, overflow);
+      }
+      if (bounce) {
+        return this.calculateValue(value, 0 - percent, min, max, bounce, overflow);
+      }
+      temp = max;
+    }
+    if (temp < min) {
+      if (overflow) {
+        return this.calculateValue(temp, max, min, max, bounce, overflow);
+      }
+      if (bounce) {
+        return this.calculateValue(value, 0 - percent, min, max, bounce, overflow);
+      }
+      temp = min;
+    }
+    return temp;
+  }
 }
