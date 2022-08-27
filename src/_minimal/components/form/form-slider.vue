@@ -10,6 +10,7 @@
       :min="min"
       :max="max"
       :interval="interval"
+      :disabled="disabled"
       data-value="value"
       :data-label="options && options.length && options[0].title ? 'title' : 'label'"
     />
@@ -47,6 +48,10 @@ const props = defineProps({
   color: {
     type: String as PropType<'default' | 'blue' | 'violet'>,
     default: 'default',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -111,6 +116,13 @@ watch(
   &:hover {
     .vue-slider-dot-handle {
       opacity: 1;
+    }
+  }
+
+  .vue-slider-disabled {
+    .vue-slider-dot-handle,
+    .vue-slider-dot-tooltip {
+      opacity: 0;
     }
   }
 

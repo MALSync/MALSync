@@ -6,11 +6,11 @@
     </div>
     <div class="progress-select">
       Your progress
-      <FormText v-model="episode" :suffix="`/${single.getTotalEpisodes()}`" />
+      <FormText v-model="episode" :suffix="`/${single.getTotalEpisodes() || '?'}`" />
       +
       <FormSlider
-        v-if="single.getTotalEpisodes()"
         v-model="episode"
+        :disabled="!single.getTotalEpisodes()"
         :min="0"
         :max="single.getTotalEpisodes()"
       />
