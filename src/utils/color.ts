@@ -57,7 +57,7 @@ export class HSL {
         return this.calculateValue(temp, 0 - max, min, max, bounce, overflow);
       }
       if (bounce) {
-        return this.calculateValue(value, 0 - percent, min, max, bounce, overflow);
+        return this.calculateValue(value, 0 - percent, min, max, false, overflow);
       }
       temp = max;
     }
@@ -66,7 +66,7 @@ export class HSL {
         return this.calculateValue(temp, max, min, max, bounce, overflow);
       }
       if (bounce) {
-        return this.calculateValue(value, 0 - percent, min, max, bounce, overflow);
+        return this.calculateValue(value, 0 - percent, min, max, false, overflow);
       }
       temp = min;
     }
