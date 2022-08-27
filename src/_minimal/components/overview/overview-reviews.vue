@@ -1,29 +1,36 @@
 <template>
   <div>
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
-    <div v-if="!metaRequest.loading">
-      <Section v-for="review in metaRequest.data" :key="review.user.name">
-        <div class="head">
-          <MediaLink :href="review.user.href" class="img">
-            <ImageLazy :src="review.user.image" class="img-el" />
-          </MediaLink>
-          <div class="info">
-            <Header>
-              <MediaLink :href="review.user.href">{{ review.user.name }}</MediaLink>
-            </Header>
-            <div>{{ review.body.date }}</div>
-            <div>
-              Overall Rating: <strong>{{ review.body.rating }}</strong>
+    <div v-if="!metaRequest.loading && metaRequest.data">
+      <Pagination :entries-per-page="3" :elements="metaRequest.data">
+        <template #elements="{ elements }">
+          <Section v-for="review in elements" :key="review.user.name">
+            <div class="head">
+              <MediaLink :href="review.user.href" class="img">
+                <ImageLazy :src="review.user.image" class="img-el" />
+              </MediaLink>
+              <div class="info">
+                <Header>
+                  <MediaLink :href="review.user.href">{{ review.user.name }}</MediaLink>
+                </Header>
+                <div>{{ review.body.date }}</div>
+                <div>
+                  Overall Rating: <strong>{{ review.body.rating }}</strong>
+                </div>
+                <div>
+                  <strong>{{ review.body.people }}</strong> people found this review helpful
+                </div>
+              </div>
             </div>
-            <div>
-              <strong>{{ review.body.people }}</strong> people found this review helpful
+            <div class="text">
+              <Description>{{ review.body.text }}</Description>
             </div>
-          </div>
-        </div>
-        <div class="text">
-          <Description>{{ review.body.text }}</Description>
-        </div>
-      </Section>
+          </Section>
+        </template>
+      </Pagination>
+    </div>
+    <div v-if="!metaRequest.loading && !parameters.load">
+      <FormButton @click="parameters.load = true"> Load [TODO] </FormButton>
     </div>
   </div>
 </template>
@@ -37,6 +44,8 @@ import ImageLazy from '../image-lazy.vue';
 import MediaLink from '../media-link.vue';
 import Description from '../description.vue';
 import Section from '../section.vue';
+import FormButton from '../form/form-button.vue';
+import Pagination from '../pagination.vue';
 
 const props = defineProps({
   malUrl: {
@@ -47,10 +56,11 @@ const props = defineProps({
 
 const parameters = ref({
   url: props.malUrl,
+  load: false,
 });
 
 const metaRequest = createRequest(parameters, params => {
-  if (!params.value.url) return Promise.resolve([]);
+  if (!params.value.url || !params.value.load) return Promise.resolve([]);
   return reviewMeta(params.value.url);
 });
 </script>
