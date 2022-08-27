@@ -29,7 +29,7 @@
     <div class="score-select">
       {{ lang('UI_Score') }}
       <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)" />
-      <FormSlider v-model="score" :options="(single.getScoreCheckbox() as any)" />
+      <FormSlider v-model="score" :options="(sortedOptions(single.getScoreCheckbox()) as any)" />
     </div>
     <div class="update-buttons">
       <div><span class="material-icons">cloud_upload</span>Update</div>
@@ -45,6 +45,7 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import FormText from '../form/form-text.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormSlider from '../form/form-slider.vue';
+import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 
 const props = defineProps({
   single: {
@@ -120,6 +121,10 @@ const status = computed({
     }
   },
 });
+
+const sortedOptions = (options: ScoreOption[]) => {
+  return options.sort((a, b) => a.value - b.value);
+};
 </script>
 
 <style lang="less" scoped>

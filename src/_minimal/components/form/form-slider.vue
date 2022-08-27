@@ -3,7 +3,7 @@
     <vue-slider
       v-model="picked"
       :lazy="true"
-      :data="options"
+      :data="optionsComputed"
       :height="10"
       :dot-size="16"
       :hide-label="true"
@@ -12,13 +12,13 @@
       :interval="interval"
       :disabled="disabled"
       data-value="value"
-      :data-label="options && options.length && options[0].title ? 'title' : 'label'"
+      data-label="label"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, watch } from 'vue';
+import { computed, PropType, ref, watch } from 'vue';
 
 import VueSlider from 'vue-slider-component';
 
@@ -30,11 +30,11 @@ const props = defineProps({
   },
   min: {
     type: Number,
-    default: 0,
+    default: null,
   },
   max: {
     type: Number,
-    default: 100,
+    default: null,
   },
   interval: {
     type: Number,
@@ -67,6 +67,16 @@ watch(
     picked.value = value;
   },
 );
+
+const optionsComputed = computed(() => {
+  if (!props.options) return undefined;
+  return props.options.map(option => {
+    return {
+      value: option.value.toString(),
+      label: option.label || option.title,
+    };
+  });
+});
 </script>
 
 <style lang="less">
