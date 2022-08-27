@@ -38,7 +38,11 @@
     </div>
     <HR class="header-split" />
     <Section class="update-section">
-      <OverviewUpdateUi :single="singleRequest.data" :loading="singleRequest.loading" />
+      <OverviewUpdateUi
+        :single="singleRequest.data"
+        :loading="singleRequest.loading"
+        :type="route.params.type as 'anime'"
+      />
     </Section>
     <HR />
     <Section class="stream-section">

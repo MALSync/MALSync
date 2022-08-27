@@ -1,7 +1,7 @@
 <template>
   <div v-if="!loading && single" class="update-ui">
     <div class="list-select">
-      Current list
+      {{ lang('UI_Status') }}
       <FormDropdown v-model="status" :options="(single.getStatusCheckbox() as any)" />
     </div>
     <div class="progress-select">
@@ -15,8 +15,19 @@
         :max="single.getTotalEpisodes()"
       />
     </div>
+    <div v-if="type === 'manga'" class="volume-select">
+      {{ lang('UI_Volume') }}
+      <FormText v-model="volume" :suffix="`/${single.getTotalVolumes() || '?'}`" />
+      +
+      <FormSlider
+        v-model="volume"
+        :disabled="!single.getTotalVolumes()"
+        :min="0"
+        :max="single.getTotalVolumes()"
+      />
+    </div>
     <div class="score-select">
-      Your score
+      {{ lang('UI_Score') }}
       <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)" />
       <FormSlider v-model="score" :options="(single.getScoreCheckbox() as any)" />
     </div>
@@ -43,6 +54,26 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false,
+  },
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    default: 'anime',
+  },
+});
+
+const volume = computed({
+  get() {
+    if (props.single && props.single.isAuthenticated()) {
+      if (!props.single.isOnList()) return '';
+      if (Number.isNaN(props.single.getVolume())) return '';
+      return props.single.getVolume().toString();
+    }
+    return '';
+  },
+  set(value) {
+    if (props.single && props.single.isAuthenticated()) {
+      props.single.setVolume(Number(value));
+    }
   },
 });
 
