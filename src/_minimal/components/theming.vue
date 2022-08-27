@@ -54,7 +54,7 @@ const styles = computed(() => {
 
   const base = new HSL(...hslColor.value);
 
-  const backdrop = base.copy().illuminate(-15, 20).saturate(15, 15, 85, true);
+  const backdrop = base.copy().illuminate(-15, 20, 100, true).saturate(15, 15, 85, true);
   const foreground = base.copy().illuminate(8, 0, 100, true);
   const primary = base.copy().illuminate(10, 30, 45).hue(120).saturate(0, 50);
   let secondary = base.copy().illuminate(0, 10, 30).hue(-120).saturate(20, 70, 90);

@@ -83,6 +83,7 @@ const width = computed(() => {
   min-width: v-bind(width);
   max-width: 100%;
   border: 2px solid var(--cl-backdrop);
+  background-color: var(--cl-foreground);
   padding: 0 10px;
   font-size: 16px;
   overflow: hidden;

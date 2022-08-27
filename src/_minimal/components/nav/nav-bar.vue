@@ -80,7 +80,7 @@ onUnmounted(() => {
   }
 }
 
-.custom #header {
+.custom.backImage #header {
   background-color: transparent;
 }
 
