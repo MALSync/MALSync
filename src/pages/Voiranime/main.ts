@@ -25,7 +25,8 @@ export const Voiranime: pageInterface = {
           .$(
             'div.select-view:nth-child(2) > div:nth-child(2) > label:nth-child(1) > select >option:selected',
           )
-          .text(),
+          .text()
+          .replace('OAV', ''),
       );
     },
     nextEpUrl(url) {
@@ -58,7 +59,9 @@ export const Voiranime: pageInterface = {
         return utils.absoluteLink(selector.find('a').attr('href'), Voiranime.domain);
       },
       elementEp(selector) {
-        return Number(selector.find('a').first().text().split('-').pop());
+        return Number(
+          (selector.find('a').first().text().split('-').pop() || '').replace('OAV', ''),
+        );
       },
     },
   },
