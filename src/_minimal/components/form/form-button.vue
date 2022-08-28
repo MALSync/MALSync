@@ -53,7 +53,7 @@ defineProps({
   &.mini {
     .border-radius-small();
 
-    padding: 2px 10px;
+    padding: 2px 5px;
   }
 
   &.small {

@@ -24,7 +24,7 @@
     </div>
     <div class="progress-select">
       <div class="label-row">
-        <span class="label">Your progress</span>
+        <span class="label">{{ episodeLang(type) }}</span>
         <FormText v-model="episode" type="mini" :suffix="`/${single.getTotalEpisodes() || '?'}`" />
         <span class="label">+</span>
       </div>
@@ -33,6 +33,7 @@
         :disabled="!single.getTotalEpisodes()"
         :min="0"
         :max="single.getTotalEpisodes()"
+        color="blue"
       />
     </div>
     <div v-if="type === 'manga'" class="volume-select">
@@ -59,7 +60,11 @@
           </template>
         </FormDropdown>
       </div>
-      <FormSlider v-model="score" :options="(sortedOptions(single.getScoreCheckbox()) as any)" />
+      <FormSlider
+        v-model="score"
+        color="violet"
+        :options="(sortedOptions(single.getScoreCheckbox()) as any)"
+      />
     </div>
     <div class="update-buttons">
       <div><span class="material-icons">cloud_upload</span>Update</div>
@@ -157,6 +162,8 @@ const status = computed({
 const sortedOptions = (options: ScoreOption[]) => {
   return options.sort((a, b) => a.value - b.value);
 };
+
+const episodeLang = utils.episode;
 </script>
 
 <style lang="less" scoped>
@@ -170,11 +177,15 @@ const sortedOptions = (options: ScoreOption[]) => {
 .update-ui {
   .list-select {
     margin-bottom: @spacer-half;
+    padding-bottom: 8px;
   }
   .progress-select {
     margin-bottom: @spacer-half;
   }
   .score-select {
+    margin-bottom: @spacer-half;
+  }
+  .volume-select {
     margin-bottom: @spacer-half;
   }
 

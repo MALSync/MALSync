@@ -68,6 +68,9 @@ const theming: ConfObj[] = [
     props: {
       component: 'slider',
       option: 'themeOpacity',
+      props: {
+        max: 100,
+      },
     },
     condition: () => api.settings.get('theme') === 'custom' && api.settings.get('themeImage'),
     component: SettingsGeneral,

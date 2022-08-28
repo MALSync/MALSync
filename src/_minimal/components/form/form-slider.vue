@@ -89,6 +89,7 @@ const optionsComputed = computed(() => {
 
     .vue-slider-process {
       background-color: var(--slider-body);
+      box-shadow: 0 2px 6px var(--slider-body);
     }
   }
 
