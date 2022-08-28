@@ -1,6 +1,7 @@
 {
   "title": "Voiranime",
   "url": "http://voiranime.com",
+  "enabled": false,
   "testCases": [
     {
       "url": "https://voiranime.com/anime/no-game-no-life/no-game-no-life-06-vostfr/",
