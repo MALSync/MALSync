@@ -121,6 +121,7 @@
     "fuse.js": "^6.6.2",
     "hex-to-hsl": "^1.0.2",
     "jquery": "^3.6.0",
+    "popper-max-size-modifier": "^0.2.0",
     "semver": "^7.3.7",
     "string-similarity": "^4.0.4",
     "vue": "^3.2.37",

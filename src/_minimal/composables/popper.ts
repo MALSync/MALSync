@@ -4,6 +4,7 @@ import { createPopper } from '@popperjs/core';
 import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
 import flip from '@popperjs/core/lib/modifiers/flip';
 import offset from '@popperjs/core/lib/modifiers/offset';
+import maxSize from 'popper-max-size-modifier';
 
 export function usePopper({ emit, popperNode, triggerNode, placement }) {
   const state: {
@@ -67,6 +68,21 @@ export function usePopper({ emit, popperNode, triggerNode, placement }) {
           name: 'offset',
           options: {
             offset: [0, 10],
+          },
+        },
+        maxSize,
+        {
+          name: 'applyMaxSize',
+          enabled: true,
+          phase: 'beforeWrite',
+          requires: ['maxSize'],
+          fn(props) {
+            const { height } = props.state.modifiersData.maxSize;
+
+            props.state.styles.popper = {
+              ...props.state.styles.popper,
+              maxHeight: `${height - 10}px`,
+            };
           },
         },
       ],
