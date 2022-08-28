@@ -10,7 +10,7 @@ import { PropType } from 'vue';
 
 defineProps({
   padding: {
-    type: String as PropType<'small' | 'large' | 'pill'>,
+    type: String as PropType<'small' | 'large' | 'pill' | 'mini'>,
     default: 'small',
   },
   tabindex: {
@@ -48,6 +48,12 @@ defineProps({
 
   &.animation {
     .click-move-down();
+  }
+
+  &.mini {
+    .border-radius-small();
+
+    padding: 2px 10px;
   }
 
   &.small {

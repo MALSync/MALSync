@@ -1,13 +1,33 @@
 <template>
   <div v-if="!loading && single" class="update-ui">
     <div class="list-select">
-      {{ lang('UI_Status') }}
-      <FormDropdown v-model="status" :options="(single.getStatusCheckbox() as any)" />
+      <div class="label-row">
+        <span class="label">{{ lang('UI_Status') }}</span>
+        <FormDropdown
+          v-model="status"
+          :options="(single.getStatusCheckbox() as any)"
+          align-items="left"
+        >
+          <template #select="slotProps">
+            <FormButton :tabindex="-1" :animation="false" padding="mini" class="dots">
+              <StateDot :status="(slotProps.value as number)" /> {{ slotProps.currentTitle }}
+            </FormButton>
+          </template>
+          <template #option="slotProps">
+            <div class="dots">
+              <StateDot :status="(slotProps.option.value as number)" />
+              {{ slotProps.option.label }}
+            </div>
+          </template>
+        </FormDropdown>
+      </div>
     </div>
     <div class="progress-select">
-      Your progress
-      <FormText v-model="episode" :suffix="`/${single.getTotalEpisodes() || '?'}`" />
-      +
+      <div class="label-row">
+        <span class="label">Your progress</span>
+        <FormText v-model="episode" type="mini" :suffix="`/${single.getTotalEpisodes() || '?'}`" />
+        <span class="label">+</span>
+      </div>
       <FormSlider
         v-model="episode"
         :disabled="!single.getTotalEpisodes()"
@@ -16,9 +36,11 @@
       />
     </div>
     <div v-if="type === 'manga'" class="volume-select">
-      {{ lang('UI_Volume') }}
-      <FormText v-model="volume" :suffix="`/${single.getTotalVolumes() || '?'}`" />
-      +
+      <div class="label-row">
+        <span class="label">{{ lang('UI_Volume') }}</span>
+        <FormText v-model="volume" type="mini" :suffix="`/${single.getTotalVolumes() || '?'}`" />
+        <span class="label">+</span>
+      </div>
       <FormSlider
         v-model="volume"
         :disabled="!single.getTotalVolumes()"
@@ -27,8 +49,16 @@
       />
     </div>
     <div class="score-select">
-      {{ lang('UI_Score') }}
-      <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)" />
+      <div class="label-row">
+        <span class="label">{{ lang('UI_Score') }}</span>
+        <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)">
+          <template #select="slotProps">
+            <FormButton :tabindex="-1" :animation="false" padding="mini">
+              {{ slotProps.currentTitle }}
+            </FormButton>
+          </template>
+        </FormDropdown>
+      </div>
       <FormSlider v-model="score" :options="(sortedOptions(single.getScoreCheckbox()) as any)" />
     </div>
     <div class="update-buttons">
@@ -45,6 +75,8 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import FormText from '../form/form-text.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormSlider from '../form/form-slider.vue';
+import StateDot from '../state-dot.vue';
+import FormButton from '../form/form-button.vue';
 import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 
 const props = defineProps({
@@ -129,8 +161,13 @@ const sortedOptions = (options: ScoreOption[]) => {
 
 <style lang="less" scoped>
 @import '../../less/_globals.less';
-.update-ui {
+
+.update-buttons,
+.label {
   color: var(--cl-light-text);
+}
+
+.update-ui {
   .list-select {
     margin-bottom: @spacer-half;
   }
@@ -150,6 +187,17 @@ const sortedOptions = (options: ScoreOption[]) => {
       margin-left: @spacer-half;
       vertical-align: middle;
     }
+  }
+
+  .dots {
+    display: flex;
+    align-items: center;
+  }
+
+  .label-row {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 }
 </style>

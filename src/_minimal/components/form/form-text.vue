@@ -1,5 +1,9 @@
 <template>
-  <label ref="el" class="text-from" :class="{ noFocus: !inFocus, search: type === 'search' }">
+  <label
+    ref="el"
+    class="text-from"
+    :class="{ noFocus: !inFocus, search: type === 'search', mini: type === 'mini' }"
+  >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
     <input
       v-model="picked"
@@ -14,7 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, PropType } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -34,7 +38,7 @@ const props = defineProps({
     default: false,
   },
   type: {
-    type: String,
+    type: String as PropType<'' | 'search' | 'mini'>,
     default: '',
   },
 });
@@ -64,6 +68,7 @@ watch(inFocus, value => {
   }
 });
 const width = computed(() => {
+  if (props.type === 'mini') return '0';
   return `${minWidth.value}px`;
 });
 </script>
@@ -131,6 +136,16 @@ const width = computed(() => {
     padding: 10px;
     height: auto;
     border-radius: 30px;
+  }
+
+  &.mini {
+    .border-radius-small();
+
+    padding: 2px 5px;
+    height: auto;
+    .text-input {
+      width: 70px;
+    }
   }
 }
 </style>
