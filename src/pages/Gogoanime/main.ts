@@ -26,7 +26,9 @@ export const Gogoanime: pageInterface = {
       );
     },
     getEpisode(url) {
-      return Number(utils.urlPart(url, 3).split('episode-')[1]);
+      const temp = utils.urlPart(url, 3).match(/episode-(\d+)/i);
+      if (!temp) return NaN;
+      return Number(temp[1]);
     },
     nextEpUrl(url) {
       const href = j.$('.anime_video_body_episodes_r a').last().attr('href');

@@ -28,6 +28,21 @@
           "6": "https://gogoanime.tel/no-game-no-life-episode-6"
         }
       }
+    },
+    {
+      "url": "https://gogoanime.tel/isekai-ojisan-episode-6-1",
+      "expected": {
+        "sync": true,
+        "title": "Isekai Ojisan",
+        "identifier": "isekai-ojisan",
+        "overviewUrl": "https://gogoanime.tel/category/isekai-ojisan",
+        "nextEpUrl": "",
+        "episode": 6,
+        "uiSelector": false,
+        "epList": {
+          "4": "https://gogoanime.tel/isekai-ojisan-episode-4"
+        }
+      }
     }
   ]
 }
