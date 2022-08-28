@@ -67,9 +67,24 @@
       />
     </div>
     <div class="update-buttons">
-      <div><span class="material-icons">cloud_upload</span>Update</div>
-      <div><span class="material-icons">remove_circle_outline</span>Remove</div>
-      <div><span class="material-icons">cloud_download</span>Synchronize</div>
+      <div v-if="!single.isOnList()" class="update-button add">
+        <span class="material-icons">bookmark_add</span>
+        Add
+      </div>
+      <template v-else>
+        <div class="update-button">
+          <span class="material-icons">cloud_upload</span>
+          Update
+        </div>
+        <div class="update-button">
+          <span class="material-icons">remove_circle_outline</span>
+          Remove
+        </div>
+        <div class="update-button">
+          <span class="material-icons">cloud_download</span>
+          Synchronize
+        </div>
+      </template>
     </div>
   </div>
 </template>
@@ -193,10 +208,28 @@ const episodeLang = utils.episode;
     display: flex;
     justify-content: space-around;
     text-align: center;
-    .material-icons {
-      margin-right: @spacer-half;
-      margin-left: @spacer-half;
+    .update-button {
+      .click-move-down();
+      .link();
+      .border-radius();
+      .block-select();
+
       vertical-align: middle;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      &.add {
+        width: 100%;
+      }
+
+      &:hover {
+        background-color: var(--cl-primary);
+        color: white;
+      }
     }
   }
 
