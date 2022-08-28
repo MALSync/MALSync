@@ -196,7 +196,7 @@ const episodeLang = utils.episode;
 .update-ui {
   .list-select {
     margin-bottom: @spacer-half;
-    padding-bottom: 8px;
+    padding-bottom: 3px;
   }
   .progress-select {
     margin-bottom: @spacer-half;
@@ -252,6 +252,7 @@ const episodeLang = utils.episode;
     display: flex;
     align-items: center;
     gap: 5px;
+    padding-bottom: 5px;
   }
 
   .notOnList {
