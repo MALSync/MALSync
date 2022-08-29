@@ -80,6 +80,7 @@
       "https://www.tranimeizle.co/*"
     ],
     "iframe": [
+      "https://plyr.in/*",
       "https://goload.io/streaming.php?*",
       "https://goload.io/load.php?*",
       "https://goload.io/loadserver.php?*",
