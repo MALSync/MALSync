@@ -78,13 +78,22 @@ const parameters = computed(() => {
   return null;
 });
 
-const streamRequest = createRequest(parameters, param => {
-  if (!param || !param.value) {
-    return Promise.resolve(null);
-  }
+const streamRequest = createRequest(
+  parameters,
+  param => {
+    if (!param || !param.value) {
+      return Promise.resolve(null);
+    }
 
-  return activeLinks(param.value.type, param.value.cacheKey, param.value.title);
-});
+    return activeLinks(param.value.type, param.value.cacheKey, param.value.title);
+  },
+  {
+    cache: {
+      ttl: 10 * 1000,
+      refetchTtl: 7 * 24 * 60 * 60 * 1000,
+    },
+  },
+);
 
 const favicon = (url: string) => {
   return utils.favicon(url.split('/')[2]);
