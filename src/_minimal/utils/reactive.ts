@@ -11,6 +11,8 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
     cache?: { ttl: number; refetchTtl: number; keyFn?: (param: Ref<Parameter<F>>) => string };
   } = {},
 ) {
+  let id = 0;
+
   const result = reactive({
     loading: true,
     temporaryCache: false,
@@ -23,6 +25,8 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
     result.loading = true;
     result.temporaryCache = false;
     result.error = null;
+    const tempId = Math.random();
+    id = tempId;
 
     let state;
     let cache;
@@ -50,12 +54,14 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
 
     return fn(params)
       .then(res => {
+        if (tempId !== id) return;
         result.loading = false;
         result.temporaryCache = false;
         result.data = res;
         if (cache && res) cache.setValue(res);
       })
       .catch(err => {
+        if (tempId !== id) return;
         con.error(err);
         result.loading = false;
         result.temporaryCache = false;
