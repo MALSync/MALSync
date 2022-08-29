@@ -106,7 +106,7 @@ import OverviewInfo from '../components/overview/overview-info.vue';
 import OverviewRecommendations from '../components/overview/overview-recommendations.vue';
 import OverviewRelated from '../components/overview/overview-related.vue';
 import HR from '../components/hr.vue';
-import { UrlNotSupportedError } from '../../_provider/Errors';
+import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
 
 const route = useRoute();
@@ -142,15 +142,6 @@ const metaRequest = createRequest(parameters, async param => {
   return ov.getMeta();
 });
 
-watch(
-  () => metaRequest.error,
-  error => {
-    if (error instanceof UrlNotSupportedError) {
-      open404();
-    }
-  },
-);
-
 const singleRequest = createRequest(parameters, async param => {
   if (!param.value.url) return null;
   const single = getSingle(param.value.url);
@@ -158,6 +149,24 @@ const singleRequest = createRequest(parameters, async param => {
 
   return single;
 });
+
+watch(
+  () => metaRequest.error,
+  error => {
+    if (error instanceof UrlNotSupportedError || error instanceof NotFoundError) {
+      open404();
+    }
+  },
+);
+
+watch(
+  () => singleRequest.error,
+  error => {
+    if (error instanceof UrlNotSupportedError || error instanceof NotFoundError) {
+      open404();
+    }
+  },
+);
 
 const cleanDescription = computed(() => {
   if (!metaRequest.data) return '';
