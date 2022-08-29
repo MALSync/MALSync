@@ -6,12 +6,16 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = helper.authenticationUrl;
 
-  async getUsername() {
+  async getUserObject() {
     return this.apiCall({
       type: 'GET',
       path: 'users/@me',
     }).then(json => {
-      return json.name;
+      return {
+        username: json.name,
+        picture: json.picture,
+        href: `https://myanimelist.net/profile/${json.name}`,
+      };
     });
   }
 

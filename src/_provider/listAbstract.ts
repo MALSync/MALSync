@@ -186,7 +186,11 @@ export abstract class ListAbstract {
     }
   }
 
-  abstract getUsername(): Promise<string> | string;
+  public getUsername() {
+    return this.getUserObject().then(user => user.username);
+  }
+
+  abstract getUserObject(): Promise<{ username: string; picture: string; href: string }>;
 
   abstract _getSortingOptions(): { icon: string; title: string; value: string; asc?: boolean }[];
 

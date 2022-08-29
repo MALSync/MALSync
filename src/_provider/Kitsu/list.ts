@@ -7,7 +7,7 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = 'https://kitsu.io/404?mal-sync=authentication';
 
-  async getUsername() {
+  async getUserObject() {
     const user = await this.userRequest();
 
     const opt = api.settings.get('kitsuOptions');
@@ -16,6 +16,11 @@ export class UserList extends ListAbstract {
     opt.ratingSystem = user.attributes.ratingSystem;
     api.settings.set('kitsuOptions', opt);
 
+    return {
+      username: user.attributes.name,
+      picture: user.attributes.avatar?.large || '',
+      href: `https://kitsu.io/users/${user.attributes.slug}`,
+    };
     return user.attributes.name;
   }
 

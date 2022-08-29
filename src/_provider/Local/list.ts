@@ -6,8 +6,8 @@ export class UserList extends ListAbstract {
 
   authenticationUrl = '';
 
-  async getUsername() {
-    return 'local';
+  async getUserObject() {
+    return Promise.resolve({ username: 'local', picture: '', href: '' });
   }
 
   _getSortingOptions() {

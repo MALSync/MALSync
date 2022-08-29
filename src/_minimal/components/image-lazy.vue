@@ -31,11 +31,14 @@ watch(
   () => props.src,
   () => {
     error.value = false;
+    if (props.src === 'error') {
+      error.value = true;
+    }
   },
 );
 
 const tag = computed(() => {
-  return props.src && !error.value ? 'img' : 'div';
+  return props.src && props.src !== 'error' && !error.value ? 'img' : 'div';
 });
 
 const classes = computed(() => {

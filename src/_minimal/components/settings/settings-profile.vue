@@ -1,8 +1,10 @@
 <template>
-  <ImageText>
+  <ImageText :image="profileRequest.data?.picture" :href="profileRequest.data?.href">
     <template v-if="state === 'auth'">
       <Header>
-        {{ profileRequest.data.username }}
+        <MediaLink :href="profileRequest.data?.href">
+          {{ profileRequest.data.username }}
+        </MediaLink>
       </Header>
       <div>Logged in via {{ parameters.listObj.name }}</div>
       <div @click="deauth()">
@@ -42,19 +44,12 @@ const parameters = computed(() => {
 
 const profileRequest = createRequest(parameters, params => {
   const { listObj } = params.value;
-  const res = { username: '', page: listObj.name, authUrl: listObj.authenticationUrl };
-  return listObj
-    .getUsername()
-    .then(username => {
-      res.username = username;
-      return res;
-    })
-    .catch(e => {
-      if (e instanceof NotAutenticatedError) {
-        return res;
-      }
-      throw e;
-    });
+  return listObj.getUserObject().catch(e => {
+    if (e instanceof NotAutenticatedError) {
+      return { username: '', picture: 'error', href: '' };
+    }
+    throw e;
+  });
 });
 
 const deauth = () => {

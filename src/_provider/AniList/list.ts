@@ -11,12 +11,15 @@ export class UserList extends ListAbstract {
   authenticationUrl =
     'https://anilist.co/api/v2/oauth/authorize?client_id=1487&response_type=token';
 
-  getUsername() {
+  getUserObject() {
     const query = `
     query {
       Viewer {
         name
         id
+        avatar {
+          large
+        }
         options {
           displayAdultContent
         }
@@ -34,7 +37,11 @@ export class UserList extends ListAbstract {
         opt.scoreFormat = res.data.Viewer.mediaListOptions.scoreFormat;
         api.settings.set('anilistOptions', opt);
       }
-      return res.data.Viewer.name;
+      return {
+        username: res.data.Viewer.name,
+        picture: res.data.Viewer.avatar.large || '',
+        href: `https://anilist.co/user/${res.data.Viewer.id}`,
+      };
     });
   }
 

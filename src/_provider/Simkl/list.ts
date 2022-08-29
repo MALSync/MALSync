@@ -8,11 +8,14 @@ export class UserList extends ListAbstract {
   authenticationUrl =
     'https://simkl.com/oauth/authorize?response_type=code&client_id=39e8640b6f1a60aaf60f3f3313475e830517badab8048a4e52ff2d10deb2b9b0&redirect_uri=https://simkl.com/apps/chrome/mal-sync/connected/';
 
-  async getUsername() {
+  async getUserObject() {
     return this.call('https://api.simkl.com/users/settings').then(res => {
-      con.log(res);
       if (res && res.user && typeof res.user.name !== 'undefined') {
-        return res.user.name;
+        return {
+          username: res.user.name,
+          picture: res.user.avatar || '',
+          href: `https://simkl.com/${res.account.id}`,
+        };
       }
 
       throw new NotAutenticatedError('Not Authenticated');
