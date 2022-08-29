@@ -1,8 +1,8 @@
 <template>
-  <div v-if="!loading && single" class="update-ui">
-    <div :class="{ notOnList: !single.isOnList() }">
+  <div class="update-ui" :class="{ loading }">
+    <div :class="{ notOnList: !single?.isOnList() || false }">
       <div class="list-select">
-        <div class="label-row">
+        <div v-if="single" class="label-row">
           <span class="label">{{ lang('UI_Status') }}</span>
           <FormDropdown
             v-model="status"
@@ -24,56 +24,66 @@
         </div>
       </div>
       <div class="progress-select">
-        <div class="label-row">
-          <span class="label">{{ episodeLang(type) }}</span>
-          <FormText
+        <template v-if="single">
+          <div class="label-row">
+            <span class="label">{{ episodeLang(type) }}</span>
+            <FormText
+              v-model="episode"
+              type="mini"
+              :suffix="`/${single.getTotalEpisodes() || '?'}`"
+            />
+            <span class="label">+</span>
+          </div>
+          <FormSlider
             v-model="episode"
-            type="mini"
-            :suffix="`/${single.getTotalEpisodes() || '?'}`"
+            :disabled="!single.getTotalEpisodes()"
+            :min="0"
+            :max="single.getTotalEpisodes()"
+            color="blue"
           />
-          <span class="label">+</span>
-        </div>
-        <FormSlider
-          v-model="episode"
-          :disabled="!single.getTotalEpisodes()"
-          :min="0"
-          :max="single.getTotalEpisodes()"
-          color="blue"
-        />
+        </template>
       </div>
       <div v-if="type === 'manga'" class="volume-select">
-        <div class="label-row">
-          <span class="label">{{ lang('UI_Volume') }}</span>
-          <FormText v-model="volume" type="mini" :suffix="`/${single.getTotalVolumes() || '?'}`" />
-          <span class="label">+</span>
-        </div>
-        <FormSlider
-          v-model="volume"
-          :disabled="!single.getTotalVolumes()"
-          :min="0"
-          :max="single.getTotalVolumes()"
-        />
+        <template v-if="single">
+          <div class="label-row">
+            <span class="label">{{ lang('UI_Volume') }}</span>
+            <FormText
+              v-model="volume"
+              type="mini"
+              :suffix="`/${single.getTotalVolumes() || '?'}`"
+            />
+            <span class="label">+</span>
+          </div>
+          <FormSlider
+            v-model="volume"
+            :disabled="!single.getTotalVolumes()"
+            :min="0"
+            :max="single.getTotalVolumes()"
+          />
+        </template>
       </div>
       <div class="score-select">
-        <div class="label-row">
-          <span class="label">{{ lang('UI_Score') }}</span>
-          <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)">
-            <template #select="slotProps">
-              <FormButton :tabindex="-1" :animation="false" padding="mini">
-                {{ slotProps.currentTitle }}
-              </FormButton>
-            </template>
-          </FormDropdown>
-        </div>
-        <FormSlider
-          v-model="score"
-          color="violet"
-          :options="(sortedOptions(single.getScoreCheckbox()) as any)"
-        />
+        <template v-if="single">
+          <div class="label-row">
+            <span class="label">{{ lang('UI_Score') }}</span>
+            <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)">
+              <template #select="slotProps">
+                <FormButton :tabindex="-1" :animation="false" padding="mini">
+                  {{ slotProps.currentTitle }}
+                </FormButton>
+              </template>
+            </FormDropdown>
+          </div>
+          <FormSlider
+            v-model="score"
+            color="violet"
+            :options="(sortedOptions(single.getScoreCheckbox()) as any)"
+          />
+        </template>
       </div>
     </div>
     <div class="update-buttons">
-      <div v-if="!single.isOnList()" class="update-button add">
+      <div v-if="!single?.isOnList() || false" class="update-button add">
         <span class="material-icons">bookmark_add</span>
         Add
       </div>
@@ -194,18 +204,27 @@ const episodeLang = utils.episode;
 }
 
 .update-ui {
+  .border-radius();
+
+  background-color: transparent;
+  transition: background-color @fast-transition ease-in-out;
+
   .list-select {
     margin-bottom: @spacer-half;
     padding-bottom: 3px;
+    min-height: 36px;
   }
   .progress-select {
     margin-bottom: @spacer-half;
+    min-height: 60px;
   }
   .score-select {
     margin-bottom: @spacer-half;
+    min-height: 60px;
   }
   .volume-select {
     margin-bottom: @spacer-half;
+    min-height: 60px;
   }
 
   .update-buttons {
@@ -262,6 +281,16 @@ const episodeLang = utils.episode;
 
   &:hover .notOnList {
     opacity: 1;
+  }
+
+  &.loading {
+    .skeleton-loading();
+
+    background-color: var(--cl-backdrop);
+
+    * {
+      visibility: hidden;
+    }
   }
 }
 </style>
