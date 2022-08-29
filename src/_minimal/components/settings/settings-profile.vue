@@ -42,15 +42,27 @@ const parameters = computed(() => {
   };
 });
 
-const profileRequest = createRequest(parameters, params => {
-  const { listObj } = params.value;
-  return listObj.getUserObject().catch(e => {
-    if (e instanceof NotAutenticatedError) {
-      return { username: '', picture: 'error', href: '' };
-    }
-    throw e;
-  });
-});
+const profileRequest = createRequest(
+  parameters,
+  params => {
+    const { listObj } = params.value;
+    return listObj.getUserObject().catch(e => {
+      if (e instanceof NotAutenticatedError) {
+        return { username: '', picture: 'error', href: '' };
+      }
+      throw e;
+    });
+  },
+  {
+    cache: {
+      ttl: 10 * 1000,
+      refetchTtl: 60 * 60 * 1000,
+      keyFn: params => {
+        return params.value.listObj.name;
+      },
+    },
+  },
+);
 
 const deauth = () => {
   parameters.value.listObj
