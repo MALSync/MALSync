@@ -11,12 +11,13 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
     loading: true,
     data: null as null | Awaited<ReturnType<F>>,
     error: null as null | Error,
+    execute: () => Promise.resolve(),
   });
 
   const execute = (params: Ref<Parameter<F>>) => {
     result.loading = true;
     result.error = null;
-    fn(params)
+    return fn(params)
       .then(res => {
         result.loading = false;
         result.data = res;
@@ -31,6 +32,8 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   watch(parameter, value => execute(parameter), { deep: true });
 
   execute(parameter);
+
+  result.execute = () => execute(parameter);
 
   return result;
 }

@@ -40,6 +40,7 @@ import Description from '../description.vue';
 import Section from '../section.vue';
 import FormButton from '../form/form-button.vue';
 import Pagination from '../pagination.vue';
+import ImageText from '../image-text.vue';
 
 const props = defineProps({
   malUrl: {

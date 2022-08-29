@@ -1,6 +1,7 @@
 import { Component } from 'vue';
 import SettingsGroup from './settings-group.vue';
 import SettingsGeneral from './settings-general.vue';
+import SettingsProfile from './settings-profile.vue';
 import ColorPreview from '../color-preview.vue';
 
 export interface ConfObj {
@@ -83,7 +84,7 @@ const theming: ConfObj[] = [
   },
 ];
 
-export const structure: ConfObj[] = [
+const tracking: ConfObj[] = [
   {
     key: 'syncMode',
     title: api.storage.lang('settings_Mode'),
@@ -102,9 +103,26 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+];
+
+export const structure: ConfObj[] = [
+  {
+    key: 'profile',
+    title: 'Profile',
+    component: SettingsProfile,
+  },
+  {
+    key: 'tracking',
+    title: 'Tracking',
+    props: {
+      icon: 'visibility',
+    },
+    component: SettingsGroup,
+    children: tracking,
+  },
   {
     key: 'theming',
-    title: 'Theming [TODO]',
+    title: 'Theming',
     props: {
       icon: 'palette',
     },
