@@ -544,6 +544,7 @@ module.exports = {
       '*://voe.bar/e/*',
       '*://housecardsummerbutton.com/e/*',
       '*://fraudclatterflyingcar.com/e/*',
+      '*://bigclatterhomesguideservice.com/e/*',
     ],
   },
   // animewho
