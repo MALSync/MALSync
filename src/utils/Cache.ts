@@ -7,9 +7,17 @@ export class Cache {
     return this;
   }
 
+  protected containsValue(value) {
+    return typeof value !== 'undefined' && value !== null;
+  }
+
+  protected valueValid(value) {
+    return new Date().getTime() < value.timestamp + this.ttl;
+  }
+
   async hasValue() {
     const value = await this.getStorage();
-    if (typeof value !== 'undefined' && value !== null && new Date().getTime() < value.timestamp) {
+    if (this.containsValue(value) && this.valueValid(value)) {
       return true;
     }
     return false;
@@ -18,12 +26,11 @@ export class Cache {
   async hasValueAndIsNotEmpty() {
     const value = await this.getStorage();
     if (
-      typeof value !== 'undefined' &&
-      value !== null &&
+      this.containsValue(value) &&
       typeof value.data !== 'undefined' &&
       value.data !== null &&
       Object.keys(value.data).length &&
-      new Date().getTime() < value.timestamp
+      this.valueValid(value)
     ) {
       return true;
     }
@@ -36,7 +43,7 @@ export class Cache {
   }
 
   async setValue(result) {
-    const save = { data: result, timestamp: new Date().getTime() + this.ttl };
+    const save = { data: result, timestamp: new Date().getTime() };
     if (this.localStorage) {
       return localStorage.setItem(this.key, JSON.stringify(save));
     }
