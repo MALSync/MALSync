@@ -1,5 +1,5 @@
 <template>
-  <teleport to="html">
+  <component :is="Teleport" to="html">
     <transition name="fade-shrink-in" appear>
       <div v-if="state" class="modal" @click="state = false">
         <div class="content" @click.stop>
@@ -7,11 +7,11 @@
         </div>
       </div>
     </transition>
-  </teleport>
+  </component>
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { Teleport as teleport_, type TeleportProps, type VNodeProps, ref, watch } from 'vue';
 
 const props = defineProps({
   modelValue: {
@@ -33,6 +33,13 @@ watch(
     state.value = value;
   },
 );
+
+// https://github.com/vuejs/core/issues/2855
+const Teleport = teleport_ as {
+  new (): {
+    $props: VNodeProps & TeleportProps;
+  };
+};
 </script>
 
 <style lang="less" scoped>
