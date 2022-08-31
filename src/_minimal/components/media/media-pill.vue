@@ -1,9 +1,9 @@
 <template>
-  <PillSplit>
-    <template v-if="score" #left>
+  <PillSplit :left="Boolean(score)" :right="Boolean(streamUrl)">
+    <template #left>
       <TextIcon icon="star">{{ score }}</TextIcon>
     </template>
-    <template v-if="streamUrl" #right>
+    <template #right>
       <MediaLink :href="streamUrl">
         <TextIcon :src="streamIcon">{{ watchedEp }}</TextIcon>
       </MediaLink>

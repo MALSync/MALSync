@@ -46,8 +46,8 @@
             <component
               :is="listTheme.component"
               v-for="item in list"
-              :key="item.id"
-              :item="formatItem(item)"
+              :key="item.uid"
+              :item="formatItem(item as listElement)"
             />
           </TransitionStaggered>
         </Grid>

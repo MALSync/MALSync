@@ -1,14 +1,21 @@
 <template>
-  <div v-if="slots.left || slots.right" class="pill">
-    <div v-if="slots.left" class="left"><slot name="left" /></div>
-    <div v-if="slots.right" class="right"><slot name="right" /></div>
+  <div v-if="left || right" class="pill">
+    <div v-if="left" class="left"><slot name="left" /></div>
+    <div v-if="right" class="right"><slot name="right" /></div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useSlots } from 'vue';
-
-const slots = useSlots();
+defineProps({
+  left: {
+    type: Boolean,
+    default: true,
+  },
+  right: {
+    type: Boolean,
+    default: true,
+  },
+});
 </script>
 
 <style lang="less" scoped>
