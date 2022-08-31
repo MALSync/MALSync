@@ -54,7 +54,7 @@
       </Section>
       <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
       <Section
-        v-if="!listRequest.loading && listRequest.data && !listRequest.data.isDone()"
+        v-if="!listRequest.loading && listRequest.data && !listRequest.data!.isDone()"
         class="spinner-wrap"
       >
         <Spinner />

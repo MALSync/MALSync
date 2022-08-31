@@ -19,9 +19,9 @@
           /><span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
-      <Section spacer="half">
+      <Section v-if="metaRequest.data?.statistics?.length" spacer="half">
         <TextScroller class="stats">
-          <span v-for="stat in metaRequest.data?.statistics" :key="stat.title" class="stats-block">
+          <span v-for="stat in metaRequest.data!.statistics" :key="stat.title" class="stats-block">
             {{ stat.title }} <span class="value">{{ stat.body }}</span>
           </span>
         </TextScroller>
@@ -48,40 +48,40 @@
     <Section class="stream-section">
       <OverviewStreaming
         :type="route.params.type as 'anime'"
-        :cache-key="singleRequest.data ? singleRequest.data.getCacheKey() : null"
-        :title="singleRequest.data ? singleRequest.data.getTitle() : ''"
+        :cache-key="singleRequest.data ? singleRequest.data!.getCacheKey() : null"
+        :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
         :alternative-title="metaRequest.data?.alternativeTitle"
       />
     </Section>
     <HR />
     <div class="additional-content">
-      <template v-if="metaRequest.data?.related && metaRequest.data?.related.length">
+      <template v-if="metaRequest.data?.related?.length">
         <Section>
-          <OverviewRelated :related="metaRequest.data?.related" />
+          <OverviewRelated :related="metaRequest.data!.related" />
         </Section>
         <HR />
       </template>
-      <template v-if="metaRequest.data?.characters && metaRequest.data?.characters.length">
+      <template v-if="metaRequest.data?.characters?.length">
         <Section>
-          <OverviewCharacters :characters="metaRequest.data?.characters" />
+          <OverviewCharacters :characters="metaRequest.data!.characters" />
         </Section>
         <HR />
       </template>
-      <template v-if="singleRequest.data && singleRequest.data.getMalUrl()">
+      <template v-if="singleRequest.data?.getMalUrl()">
         <Section>
-          <OverviewReviews :mal-url="singleRequest.data.getMalUrl()!" />
+          <OverviewReviews :mal-url="singleRequest.data!.getMalUrl()!" />
         </Section>
         <HR />
       </template>
-      <template v-if="singleRequest.data && singleRequest.data.getMalUrl()">
+      <template v-if="singleRequest.data?.getMalUrl()">
         <Section>
-          <OverviewRecommendations :mal-url="singleRequest.data.getMalUrl()!" />
+          <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
         </Section>
       </template>
     </div>
     <HR />
-    <Section class="info-section">
-      <OverviewInfo :info="metaRequest.data?.info" />
+    <Section v-if="metaRequest.data" class="info-section">
+      <OverviewInfo :info="metaRequest.data!.info" />
     </Section>
   </div>
 </template>
