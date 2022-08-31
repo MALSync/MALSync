@@ -7,7 +7,7 @@
       </FormButton>
     </div>
     <div v-else class="grid">
-      <template v-for="b in streamRequest.data" :key="b.name">
+      <template v-for="b in streamRequest.data!" :key="b.name">
         <MediaLink v-if="options(b).length === 1" :href="options(b)[0].value">
           <FormButton :icon="groupIcon(b)">
             <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>

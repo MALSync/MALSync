@@ -45,7 +45,7 @@
           <TransitionStaggered :delay-duration="listTheme.transition">
             <component
               :is="listTheme.component"
-              v-for="item in list"
+              v-for="item in list!"
               :key="item.uid"
               :item="formatItem(item as listElement)"
             />
