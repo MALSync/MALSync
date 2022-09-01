@@ -24,14 +24,14 @@
         </template>
       </Pagination>
     </div>
-    <div v-if="!metaRequest.loading && !parameters.load">
-      <FormButton @click="parameters.load = true"> Load [TODO] </FormButton>
+    <div v-if="!metaRequest.loading && !parameters.load && !metaRequest.cache">
+      <FormButton @click="parameters.load = true"> {{ lang('Load') }} </FormButton>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { createRequest } from '../../utils/reactive';
 import Header from '../header.vue';
 import { reviewMeta } from './overview-reviews-meta';
@@ -50,14 +50,26 @@ const props = defineProps({
 });
 
 const parameters = ref({
-  url: props.malUrl,
+  url: computed(() => props.malUrl),
   load: false,
 });
 
-const metaRequest = createRequest(parameters, params => {
-  if (!params.value.url || !params.value.load) return Promise.resolve([]);
-  return reviewMeta(params.value.url);
+const metaRequest = createRequest(parameters, params => reviewMeta(params.value.url), {
+  executeCondition: params => params.value.load && params.value.url,
+  cache: {
+    ttl: 7 * 24 * 60 * 60 * 1000,
+    refetchTtl: 7 * 24 * 60 * 60 * 1000,
+    keyFn: params => params.value.url,
+  },
 });
+
+watch(
+  () => props.malUrl,
+  () => {
+    parameters.value.load = false;
+    metaRequest.reset();
+  },
+);
 </script>
 
 <style lang="less" scoped>

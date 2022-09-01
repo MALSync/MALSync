@@ -9,6 +9,7 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   fn: F,
   options: {
     cache?: { ttl: number; refetchTtl: number; keyFn?: (param: Ref<Parameter<F>>) => string };
+    executeCondition?: (param: Ref<Parameter<F>>) => boolean;
   } = {},
 ) {
   let id = 0;
@@ -16,9 +17,17 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   const result = reactive({
     loading: true,
     temporaryCache: false,
+    cache: false,
     data: null as null | Awaited<ReturnType<F>>,
     error: null as null | Error,
     execute: () => Promise.resolve(),
+    reset: () => {
+      result.loading = false;
+      result.temporaryCache = false;
+      result.cache = false;
+      result.error = null;
+      result.data = null;
+    },
   });
 
   const execute = async (params: Ref<Parameter<F>>, forceFresh = false) => {
@@ -45,6 +54,7 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
         if (state.hasValue) {
           result.data = state.value.data;
           result.loading = false;
+          result.cache = true;
           result.temporaryCache = state.refetch;
         }
       }
@@ -52,11 +62,17 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
 
     if (state && !state.refetch && state.hasValue) return Promise.resolve();
 
+    if (options.executeCondition && !options.executeCondition(params)) {
+      result.loading = false;
+      return Promise.resolve();
+    }
+
     return fn(params)
       .then(res => {
         if (tempId !== id) return;
         result.loading = false;
         result.temporaryCache = false;
+        result.cache = false;
         result.data = res;
         if (cache && res) cache.setValue(res);
       })
@@ -65,6 +81,7 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
         con.error(err);
         result.loading = false;
         result.temporaryCache = false;
+        result.cache = false;
         result.error = err;
       });
   };
