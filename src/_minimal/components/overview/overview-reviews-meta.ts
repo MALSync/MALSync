@@ -30,7 +30,9 @@ export async function reviewMeta(malUrl: string): Promise<Review[]> {
 
       const username = block.find('.username a').text().trim();
 
-      const reactions = JSON.parse(block.attr('data-reactions') || '{num: 0}');
+      const reactionJson = block.attr('data-reactions');
+
+      const reactions = reactionJson ? JSON.parse(reactionJson) : { num: 0 };
 
       const rPeople = reactions.num;
 
