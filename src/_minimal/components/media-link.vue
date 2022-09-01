@@ -1,6 +1,6 @@
 <template>
   <router-link
-    v-if="slugObj.path"
+    v-if="slugObj.path && !forceLink"
     class="media-link"
     :to="{ name: 'Overview', params: slugObj.path }"
     :href="slugObj.url"
@@ -8,7 +8,10 @@
   >
     <slot />
   </router-link>
-  <a v-else :href="slugObj.url" class="media-link" target="_blank" rel="noopener"><slot /></a>
+  <a v-else-if="slugObj.url" :href="slugObj.url" class="media-link" target="_blank" rel="noopener">
+    <slot />
+  </a>
+  <span v-else class="media-link"><slot /></span>
 </template>
 
 <script lang="ts" setup>
@@ -19,6 +22,10 @@ const props = defineProps({
   href: {
     type: String,
     required: true,
+  },
+  forceLink: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -10,13 +10,20 @@
     <div class="header-section">
       <Section spacer="half">
         <Header :loading="metaRequest.loading" class="header-block">
-          <StateDot
-            :status="
-              !singleRequest.loading && singleRequest.data?.getStatus()
-                ? singleRequest.data?.getStatus()
-                : 0
-            "
-          /><span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
+          <div class="statusDotSection">
+            <StateDot
+              class="dot"
+              :status="
+                !singleRequest.loading && singleRequest.data?.getStatus()
+                  ? singleRequest.data?.getStatus()
+                  : 0
+              "
+            />
+            <MediaLink :force-link="true" :href="singleRequest.data?.getDisplayUrl() || ''" class="header-link">
+              <span class="material-icons">open_in_new</span>
+            </MediaLink>
+          </div>
+          <span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
       <Section v-if="metaRequest.data?.statistics?.length" spacer="half">
@@ -108,6 +115,7 @@ import OverviewRelated from '../components/overview/overview-related.vue';
 import HR from '../components/hr.vue';
 import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
+import MediaLink from '../components/media-link.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -193,6 +201,30 @@ const cleanDescription = computed(() => {
   .header-block {
     display: flex;
     align-items: center;
+
+    .statusDotSection {
+      width: 32px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-link {
+      display: none;
+      margin-right: 0.5em;
+      color: var(--cl-secondary);
+    }
+
+    &:hover {
+      .dot {
+        display: none;
+      }
+      .header-link {
+        display: flex;
+        position: relative;
+        left: -3px;
+      }
+    }
   }
 
   .description-html {
