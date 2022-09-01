@@ -69,7 +69,6 @@ watch(
   () => props.malUrl,
   () => {
     parameters.value.load = false;
-    metaRequest.reset();
   },
 );
 </script>

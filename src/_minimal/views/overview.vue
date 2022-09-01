@@ -19,7 +19,11 @@
                   : 0
               "
             />
-            <MediaLink :force-link="true" :href="singleRequest.data?.getDisplayUrl() || ''" class="header-link">
+            <MediaLink
+              :force-link="true"
+              :href="singleRequest.data?.getDisplayUrl() || ''"
+              class="header-link"
+            >
               <span class="material-icons">open_in_new</span>
             </MediaLink>
           </div>
@@ -61,7 +65,7 @@
       />
     </Section>
     <HR />
-    <div class="additional-content">
+    <div v-if="metaRequest.data" class="additional-content">
       <template v-if="metaRequest.data?.related?.length">
         <Section>
           <OverviewRelated :related="metaRequest.data!.related" />

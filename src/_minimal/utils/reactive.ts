@@ -10,6 +10,7 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   options: {
     cache?: { ttl: number; refetchTtl: number; keyFn?: (param: Ref<Parameter<F>>) => string };
     executeCondition?: (param: Ref<Parameter<F>>) => boolean;
+    keepData?: boolean;
   } = {},
 ) {
   let id = 0;
@@ -21,19 +22,13 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
     data: null as null | Awaited<ReturnType<F>>,
     error: null as null | Error,
     execute: () => Promise.resolve(),
-    reset: () => {
-      result.loading = false;
-      result.temporaryCache = false;
-      result.cache = false;
-      result.error = null;
-      result.data = null;
-    },
   });
 
   const execute = async (params: Ref<Parameter<F>>, forceFresh = false) => {
     result.loading = true;
     result.temporaryCache = false;
     result.error = null;
+    if (!options.keepData) result.data = null;
     const tempId = Math.random();
     id = tempId;
 
