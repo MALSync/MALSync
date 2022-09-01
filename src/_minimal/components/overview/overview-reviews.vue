@@ -1,10 +1,11 @@
 <template>
   <div>
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
-    <div v-if="!metaRequest.loading && metaRequest.data">
+    <div v-if="!metaRequest.loading && metaRequest.data" class="grid">
       <Pagination :entries-per-page="3" :elements="metaRequest.data">
         <template #elements="{ elements }">
-          <Section v-for="review in elements" :key="review.user.name">
+          <Section v-for="(review, index) in elements" :key="review.user.name">
+            <HR v-if="index" size="thin" />
             <ImageText :href="review.user.href" :image="review.user.image">
               <Header>
                 <MediaLink :href="review.user.href">{{ review.user.name }}</MediaLink>
@@ -41,6 +42,7 @@ import Section from '../section.vue';
 import FormButton from '../form/form-button.vue';
 import Pagination from '../pagination.vue';
 import ImageText from '../image-text.vue';
+import HR from '../hr.vue';
 
 const props = defineProps({
   malUrl: {
@@ -75,5 +77,9 @@ watch(
 <style lang="less" scoped>
 .text {
   white-space: pre-line;
+}
+
+.grid {
+  padding: 0 10px;
 }
 </style>
