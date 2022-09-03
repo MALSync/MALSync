@@ -29,7 +29,7 @@ export const AnimeDao: pageInterface = {
   sync: {
     getTitle(url) {
       return j
-        .$('h2.page_title')
+        .$('div.animeinfo_top > span.animename')
         .text()
         .replace(/episode.*/i, '')
         .trim();
@@ -38,13 +38,15 @@ export const AnimeDao: pageInterface = {
       return utils.urlPart(AnimeDao.sync.getOverviewUrl(url), 4);
     },
     getOverviewUrl(url) {
-      return utils.absoluteLink(
-        j.$('#videocontent a[href*="/anime/"]').attr('href') || '',
-        AnimeDao.domain,
+      return utils.urlStrip(
+        utils.absoluteLink(
+          j.$('div.btn-group > a[href*="/anime/"]').attr('href') || '',
+          AnimeDao.domain,
+        ),
       );
     },
     getEpisode(url) {
-      const text = j.$('h2.page_title').text().toLowerCase();
+      const text = $('div.animeinfo_top > span.animename').text().toLowerCase();
       if (text.includes('special') || text.includes('ova') || text.includes('movie')) {
         throw new SafeError('specials are not supported');
       }
@@ -55,7 +57,7 @@ export const AnimeDao: pageInterface = {
     },
     nextEpUrl(url) {
       const href = j
-        .$('div.btn-group > a > button > span.glyphicon-arrow-right')
+        .$('div.btn-group > a[href*="/view/"] > button > .fa-arrow-right')
         .closest('a')
         .attr('href');
       if (href) return utils.absoluteLink(href, AnimeDao.domain);
@@ -64,25 +66,25 @@ export const AnimeDao: pageInterface = {
   },
   overview: {
     getTitle(url) {
-      return j.$('div.animeinfo-div > div > h2 > b').text().trim();
+      return j.$('div.component-animeinfo h2 > b').text().trim();
     },
     getIdentifier(url) {
       return utils.urlPart(url, 4);
     },
     uiSelector(selector) {
-      j.$('div.animeinfo-div > div > h2').first().after(j.html(selector));
+      j.$('#hometab').before(j.html(selector));
     },
     list: {
       offsetHandler: false,
       elementsSelector() {
-        return j.$('#eps > div:nth-child(1) > a');
+        return j.$('#episodes-tab-pane > div > div:nth-child(1) > div.episodelist');
       },
       elementUrl(selector) {
-        return utils.absoluteLink(selector.attr('href'), AnimeDao.domain);
+        return utils.absoluteLink(selector.find('a').attr('href'), AnimeDao.domain);
       },
       elementEp(selector) {
         try {
-          return episodePartToEpisode(selector.text());
+          return episodePartToEpisode(selector.find('a').attr('title'));
         } catch (error) {
           return NaN;
         }
@@ -105,13 +107,9 @@ export const AnimeDao: pageInterface = {
 
 function episodePartToEpisode(string) {
   let temp = [];
-  temp = string.match(/(episode)\D?\d+/i);
+  temp = string.match(/episode\D?(\d+)/i);
   if (temp !== null) {
-    string = temp[0];
-    temp = string.match(/\d+/);
-    if (temp !== null) {
-      return temp[0];
-    }
+    return temp[1];
   }
   return 1;
 }
