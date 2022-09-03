@@ -2,20 +2,20 @@
   <div>
     <Header :spacer="true" class="head">Streaming [TODO]</Header>
     <div v-if="streamRequest.loading || !streamRequest.data" class="grid">
-      <FormButton v-for="b in placeholder" :key="b.name" class="placeholder-link">
+      <FormButton v-for="b in placeholder" :key="b.name" class="placeholder-link btn">
         <TextIcon icon="sync">{{ b.name }}</TextIcon>
       </FormButton>
     </div>
     <div v-else class="grid">
       <template v-for="b in streamRequest.data!" :key="b.name">
         <MediaLink v-if="options(b).length === 1" :href="options(b)[0].value">
-          <FormButton :icon="groupIcon(b)">
+          <FormButton :icon="groupIcon(b)" class="btn">
             <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
           </FormButton>
         </MediaLink>
         <FormDropdown v-else :options="options(b)" align-items="left">
           <template #select>
-            <FormButton :animation="false" :icon="groupIcon(b)">
+            <FormButton :animation="false" :icon="groupIcon(b)" class="btn">
               <TextIcon :src="favicon(b.domain)">{{ b.name }}</TextIcon>
             </FormButton>
           </template>
@@ -179,5 +179,9 @@ const options = (el: Quicklink) => {
   & > span {
     visibility: hidden;
   }
+}
+
+.btn {
+  min-height: 34px;
 }
 </style>
