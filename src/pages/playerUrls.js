@@ -545,6 +545,7 @@ module.exports = {
       '*://housecardsummerbutton.com/e/*',
       '*://fraudclatterflyingcar.com/e/*',
       '*://bigclatterhomesguideservice.com/e/*',
+      '*://uptodatefinishconferenceroom.com/*',
     ],
   },
   // animewho
