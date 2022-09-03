@@ -33,7 +33,6 @@ const imgModal = ref(false);
 
   overflow: hidden;
   position: relative;
-  margin: 5px;
   .over {
     .fullSize();
   }

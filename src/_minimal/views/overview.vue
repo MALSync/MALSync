@@ -1,6 +1,7 @@
 <template>
   <div class="overview">
-    <Section class="image-section">
+    <Section class="image-section fake" />
+    <Section class="image-section real">
       <OverviewImage
         class="image"
         :src="metaRequest.data?.imageLarge || singleRequest.data?.getImage() || ''"
@@ -237,6 +238,10 @@ const cleanDescription = computed(() => {
     }
   }
 
+  .fake {
+    display: none;
+  }
+
   .__breakpoint-desktop__( {
     display: grid;
     grid-template-columns: 300px auto;
@@ -250,7 +255,18 @@ const cleanDescription = computed(() => {
     .image-section {
       grid-row-start: 1;
       grid-row-end: 3;
-      overflow: hidden;
+      grid-column-start: 1;
+
+      &.fake {
+        display: block;
+        overflow: hidden;
+        visibility: hidden;
+        aspect-ratio: @aspect-ratio-cover;
+      }
+
+      &.real {
+        height: 0;
+      }
     }
 
     .header-section {
