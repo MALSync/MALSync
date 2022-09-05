@@ -1,6 +1,6 @@
 <template>
-  <div class="section" :class="spacer">
-    <slot />
+  <div class="section" :class="`${spacer} ${loading ? 'loading' : ''}`">
+    <slot v-if="!loading" />
   </div>
 </template>
 
@@ -9,8 +9,12 @@ import { PropType } from 'vue';
 
 defineProps({
   spacer: {
-    type: String as PropType<'half' | 'full'>,
+    type: String as PropType<'half' | 'full' | 'none'>,
     default: 'full',
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
@@ -23,6 +27,18 @@ defineProps({
 
   &.half {
     margin-bottom: @spacer-half;
+  }
+
+  &.none {
+    margin-bottom: 0;
+  }
+
+  &.loading {
+    .skeleton-text-block();
+
+    &.none {
+      margin-bottom: @spacer;
+    }
   }
 }
 </style>

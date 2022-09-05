@@ -39,7 +39,7 @@
         </TextScroller>
       </Section>
       <Section class="description-section">
-        <Description :loading="metaRequest.loading">
+        <Description :loading="totalLoading">
           <div
             v-dompurify-html="cleanDescription"
             class="description-html"
@@ -52,7 +52,7 @@
     <Section class="update-section">
       <OverviewUpdateUi
         :single="singleRequest.data"
-        :loading="singleRequest.loading"
+        :loading="totalLoading"
         :type="route.params.type as 'anime'"
       />
     </Section>
@@ -60,13 +60,13 @@
     <Section class="stream-section">
       <OverviewStreaming
         :type="route.params.type as 'anime'"
-        :cache-key="singleRequest.data ? singleRequest.data!.getCacheKey() : null"
+        :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : null"
         :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
         :alternative-title="metaRequest.data?.alternativeTitle"
       />
     </Section>
-    <HR />
-    <div v-if="metaRequest.data" class="additional-content">
+    <HR v-if="!totalLoading" />
+    <Section :loading="totalLoading" class="additional-content" spacer="none">
       <template v-if="metaRequest.data?.related?.length">
         <Section>
           <OverviewRelated :related="metaRequest.data!.related" />
@@ -90,9 +90,9 @@
           <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
         </Section>
       </template>
-    </div>
+    </Section>
     <HR />
-    <Section v-if="metaRequest.data" class="info-section">
+    <Section class="info-section" :loading="totalLoading">
       <OverviewInfo :info="metaRequest.data!.info" />
     </Section>
   </div>
@@ -187,6 +187,8 @@ const cleanDescription = computed(() => {
   if (!description) return '';
   return description.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
 });
+
+const totalLoading = computed(() => metaRequest.loading || singleRequest.loading);
 </script>
 
 <style lang="less" scoped>

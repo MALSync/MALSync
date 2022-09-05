@@ -204,11 +204,6 @@ const episodeLang = utils.episode;
 }
 
 .update-ui {
-  .border-radius();
-
-  background-color: transparent;
-  transition: background-color @fast-transition ease-in-out;
-
   .list-select {
     margin-bottom: @spacer-half;
     padding-bottom: 3px;
@@ -231,6 +226,12 @@ const episodeLang = utils.episode;
     display: flex;
     justify-content: space-around;
     text-align: center;
+    align-items: center;
+
+    .__breakpoint-desktop__({
+      min-height: 75px;
+    });
+
     .update-button {
       .click-move-down();
       .link();
@@ -284,9 +285,9 @@ const episodeLang = utils.episode;
   }
 
   &.loading {
-    .skeleton-loading();
+    .skeleton-text-block();
 
-    background-color: var(--cl-backdrop);
+    height: auto;
 
     * {
       visibility: hidden;
