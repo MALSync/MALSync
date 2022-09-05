@@ -92,7 +92,7 @@
       </template>
     </Section>
     <HR />
-    <Section class="info-section" :loading="totalLoading">
+    <Section v-if="metaRequest.data" class="info-section" :loading="totalLoading">
       <OverviewInfo :info="metaRequest.data!.info" />
     </Section>
   </div>
