@@ -52,7 +52,7 @@
     <Section class="update-section">
       <OverviewUpdateUi
         :single="singleRequest.data"
-        :loading="totalLoading"
+        :loading="totalLoading || singleRequest.loading"
         :type="route.params.type as 'anime'"
       />
     </Section>
@@ -188,7 +188,10 @@ const cleanDescription = computed(() => {
   return description.replace(/(< *\/? *br *\/? *>(\r|\n| )*){2,}/gim, '<br /><br />');
 });
 
-const totalLoading = computed(() => metaRequest.loading || singleRequest.loading);
+const totalLoading = computed(() => {
+  if (!metaRequest.loading) return false;
+  return metaRequest.loading || singleRequest.loading;
+});
 </script>
 
 <style lang="less" scoped>
