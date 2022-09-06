@@ -5,7 +5,7 @@
     <MediaLink class="link" :href="item.url" :title="title" />
     <div class="text">
       <div class="top-text">
-        <MediaPillProgress :episode="item.progressEp" :text="item.progressText" />
+        <MediaPillProgress :progress="item.progress" />
         <MediaPill
           :score="item.score"
           :stream-url="item.streamUrl"

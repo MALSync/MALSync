@@ -1,22 +1,19 @@
 <template>
-  <PillDark v-if="text">
-    {{ text }}
+  <PillDark v-if="progress && progress.getAuto()" :title="progress.getAutoText()">
+    {{ progress.getAuto() }}
   </PillDark>
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
+import { Progress } from '../../../utils/progress';
 import PillDark from '../pill-dark.vue';
 
 defineProps({
-  episode: {
-    type: Number,
+  progress: {
+    type: Object as PropType<Progress | null>,
     required: false,
-    default: 0,
-  },
-  text: {
-    type: String,
-    required: false,
-    default: '',
+    default: null,
   },
 });
 </script>

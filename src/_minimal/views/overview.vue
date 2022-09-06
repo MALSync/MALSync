@@ -4,6 +4,7 @@
     <Section class="image-section real">
       <OverviewImage
         class="image"
+        :single="singleRequest.data"
         :src="metaRequest.data?.imageLarge || singleRequest.data?.getImage() || ''"
         :loading="metaRequest.loading"
       />
@@ -99,7 +100,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue';
+import { computed, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Path, pathToUrl } from '../../utils/slugs';
 import { getOverview } from '../../_provider/metaDataFactory';
@@ -157,8 +158,10 @@ const metaRequest = createRequest(parameters, async param => {
 
 const singleRequest = createRequest(parameters, async param => {
   if (!param.value.url) return null;
-  const single = getSingle(param.value.url);
+  const single = reactive(getSingle(param.value.url));
   await single.update();
+
+  single.initProgress();
 
   return single;
 });

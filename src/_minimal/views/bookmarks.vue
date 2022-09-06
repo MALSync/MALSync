@@ -164,6 +164,7 @@ const formatItem = (item: listElement): bookmarkItem => {
   if (item.fn.progress && item.fn.progress.isAiring()) {
     resItem.progressText = item.fn.progress.getAuto();
     resItem.progressEp = item.fn.progress.getCurrentEpisode();
+    resItem.progress = item.fn.progress;
   }
   return resItem;
 };
