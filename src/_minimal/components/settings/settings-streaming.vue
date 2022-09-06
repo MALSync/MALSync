@@ -1,20 +1,22 @@
 <template>
   <div class="quicklinkedit">
-    <div class="grid">
-      <div
-        v-for="link in linksWithState"
-        :key="link.name"
-        class="mdl-chip quicklink"
-        :class="{
-          active: link.active,
-        }"
-        @click="toggleLink(link)"
-      >
-        <FormButton :animation="false" :icon="groupIcon(link)" class="btn">
-          <TextIcon :src="favicon(link.domain)">{{ link.name }}</TextIcon>
-        </FormButton>
+    <Card>
+      <div class="grid">
+        <div
+          v-for="link in linksWithState"
+          :key="link.name"
+          class="mdl-chip quicklink"
+          :class="{
+            active: link.active,
+          }"
+          @click="toggleLink(link)"
+        >
+          <FormButton :animation="false" :icon="groupIcon(link)" class="btn">
+            <TextIcon :src="favicon(link.domain)">{{ link.name }}</TextIcon>
+          </FormButton>
+        </div>
       </div>
-    </div>
+    </Card>
   </div>
 </template>
 
@@ -23,6 +25,7 @@ import { computed, ref } from 'vue';
 import { quicklinks } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
+import Card from '../card.vue';
 
 function stateNumber(link) {
   if (link.custom) return 0;
