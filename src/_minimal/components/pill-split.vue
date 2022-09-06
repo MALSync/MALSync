@@ -1,11 +1,13 @@
 <template>
-  <div v-if="left || right" class="pill">
-    <div v-if="left" class="left"><slot name="left" /></div>
+  <div v-if="left || right" class="pill" :class="{ reverse }">
+    <div v-if="left" class="left" :class="color"><slot name="left" /></div>
     <div v-if="right" class="right"><slot name="right" /></div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import { PropType } from 'vue';
+
 defineProps({
   left: {
     type: Boolean,
@@ -14,6 +16,14 @@ defineProps({
   right: {
     type: Boolean,
     default: true,
+  },
+  reverse: {
+    type: Boolean,
+    default: false,
+  },
+  color: {
+    type: String as PropType<'primary-dark' | 'secondary'>,
+    default: 'primary-dark',
   },
 });
 </script>
@@ -29,6 +39,10 @@ defineProps({
   background-color: #00000021;
   backdrop-filter: blur(5px);
 
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
   & > .right,
   & > .left {
     padding: 5px 10px;
@@ -37,7 +51,13 @@ defineProps({
     .border-pill();
 
     color: white;
-    background-color: var(--cl-primary-dark);
+
+    &.primary-dark {
+      background-color: var(--cl-primary-dark);
+    }
+    &.secondary {
+      background-color: var(--cl-secondary);
+    }
   }
   & > .right {
     color: white;

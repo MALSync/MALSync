@@ -4,6 +4,25 @@
     <div v-if="progress" class="progress">
       <MediaPillProgress :progress="progress" />
     </div>
+    <div v-if="streaming.url" class="streaming" @click.stop>
+      <PillSplit
+        :right="Boolean(streaming.url)"
+        :left="Boolean(streaming.url)"
+        :reverse="true"
+        color="secondary"
+      >
+        <template #right>
+          <MediaLink :href="streaming.url" class="stream-link">
+            <img class="img-icons" :src="streaming.favicon" />
+          </MediaLink>
+        </template>
+        <template #left>
+          <MediaLink :href="streaming.continueUrl">
+            {{ lang(`overview_Continue_${single?.getType()}`) }} <span class="arrow">→</span>
+          </MediaLink>
+        </template>
+      </PillSplit>
+    </div>
     <Modal v-if="src" v-model="imgModal">
       <img :src="src" class="modal-image" />
     </Modal>
@@ -16,6 +35,8 @@ import { SingleAbstract } from '../../../_provider/singleAbstract';
 import ImageFit from '../image-fit.vue';
 import Modal from '../modal.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
+import PillSplit from '../pill-split.vue';
+import MediaLink from '../media-link.vue';
 
 const props = defineProps({
   src: {
@@ -40,6 +61,37 @@ const progress = computed(() => {
   if (!progressEl) return false;
   if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
   return progressEl;
+});
+
+const streaming = computed(() => {
+  const streamingEl = {
+    url: '',
+    favicon: '',
+    continueUrl: '',
+  };
+
+  if (!props.single) return streamingEl;
+
+  const overview = props.single.getStreamingUrl() || '';
+  const resumeUrlObj = props.single.getResumeWatching();
+  const continueUrlObj = props.single.getContinueWatching();
+  const ep = props.single.getEpisode();
+
+  streamingEl.url = overview;
+
+  if (continueUrlObj && continueUrlObj.ep === ep + 1) {
+    streamingEl.continueUrl = continueUrlObj.url;
+  } else if (resumeUrlObj && resumeUrlObj.ep === ep) {
+    streamingEl.continueUrl = resumeUrlObj.url;
+  } else if (overview) {
+    streamingEl.continueUrl = overview;
+  }
+
+  if (streamingEl.url) {
+    streamingEl.favicon = utils.favicon(streamingEl.url.split('/')[2]);
+  }
+
+  return streamingEl;
 });
 </script>
 
@@ -80,5 +132,31 @@ const progress = computed(() => {
   top: 0;
   right: 0;
   margin: 10px;
+}
+
+.streaming {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 10px;
+  border-radius: 30px;
+  .block-select();
+
+  .pill {
+    user-select: none;
+  }
+
+  .img-icons {
+    width: 18px;
+    height: 18px;
+  }
+
+  .arrow {
+    font-family: sans-serif;
+  }
+
+  .stream-link {
+    display: flex;
+  }
 }
 </style>
