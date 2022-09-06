@@ -1,6 +1,9 @@
 <template>
   <div class="quicklinkedit">
     <Card>
+      <Section>
+        <FormText v-model="search" icon="search" :clear-icon="true" class="search-field"></FormText>
+      </Section>
       <div class="grid">
         <div
           v-for="link in linksWithState"
@@ -26,6 +29,8 @@ import { quicklinks } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
 import Card from '../card.vue';
+import FormText from '../form/form-text.vue';
+import Section from '../section.vue';
 
 function stateNumber(link) {
   if (link.custom) return 0;
@@ -94,5 +99,9 @@ const groupIcon = el => {
     opacity: 1;
     filter: none;
   }
+}
+
+.search-field {
+  width: 100%;
 }
 </style>
