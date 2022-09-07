@@ -63,7 +63,6 @@ defineProps({
 
 .book-element {
   .click-move-down();
-  .border-radius();
 
   position: relative;
   display: flex;
@@ -76,9 +75,12 @@ defineProps({
     overflow: hidden;
     width: 10vw;
     min-width: 80px;
+    max-width: 125px;
     border-radius: 10px;
 
     .lazy-image {
+      .border-radius();
+
       position: absolute;
       top: 50%;
       left: 0;
@@ -93,6 +95,7 @@ defineProps({
 
   .text-side {
     flex-grow: 1;
+    flex-shrink: 1000;
     display: flex;
     gap: 5px;
     flex-direction: column;
