@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :spacer="true">Information [TODO]</Header>
+    <Header :spacer="true">Information</Header>
     <div class="flex">
       <div v-for="item in info" :key="item.title" class="item">
         <div class="type">{{ item.title }}</div>

@@ -201,22 +201,22 @@
         ],
       }"
     />
-    <SettingsGeneral title="Sidebars [TODO]" option="themeSidebars" component="checkbox" />
+    <SettingsGeneral title="Sidebars" option="themeSidebars" component="checkbox" />
     <SettingsGeneral
       v-if="getOption('theme') === 'custom'"
-      title="Color [TODO]"
+      title="Color"
       option="themeColor"
       component="colorPicker"
     />
     <SettingsGeneral
       v-if="getOption('theme') === 'custom'"
-      title="Background Image [TODO]"
+      title="Background Image"
       option="themeImage"
       component="input"
     />
     <SettingsGeneral
       v-if="getOption('theme') === 'custom' && getOption('themeImage')"
-      title="Background Opacity [TODO]"
+      title="Background Opacity"
       option="themeOpacity"
       component="slider"
     />

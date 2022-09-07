@@ -34,7 +34,7 @@ const theming: ConfObj[] = [
   },
   {
     key: 'sidebars',
-    title: 'Sidebars [TODO]',
+    title: 'Sidebars',
     props: {
       component: 'checkbox',
       option: 'themeSidebars',
@@ -43,7 +43,7 @@ const theming: ConfObj[] = [
   },
   {
     key: 'color',
-    title: 'Color [TODO]',
+    title: 'Color',
     props: {
       component: 'colorPicker',
       option: 'themeColor',
@@ -53,7 +53,7 @@ const theming: ConfObj[] = [
   },
   {
     key: 'image',
-    title: 'Background Image [TODO]',
+    title: 'Background Image',
     props: {
       component: 'input',
       option: 'themeImage',
@@ -66,7 +66,7 @@ const theming: ConfObj[] = [
   },
   {
     key: 'opacity',
-    title: 'Background Opacity [TODO]',
+    title: 'Background Opacity',
     props: {
       component: 'slider',
       option: 'themeOpacity',
