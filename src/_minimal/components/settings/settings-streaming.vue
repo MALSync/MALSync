@@ -2,15 +2,19 @@
   <div class="quicklinkedit">
     <Section spacer="half">
       <Card>
-        <Section>
+        <Section class="ui-row">
+          <FormButton color="secondary" padding="slim" @click="orderMode = !orderMode">
+            <span class="material-icons">{{ orderMode ? 'edit_attributes' : 'low_priority' }}</span>
+          </FormButton>
           <FormText
             v-model="search"
+            v-visible="!orderMode"
             icon="search"
             :clear-icon="true"
             class="search-field"
-          ></FormText>
+          />
         </Section>
-        <div class="grid">
+        <div v-if="!orderMode" class="grid">
           <div
             v-for="link in linksWithState"
             :key="link.name"
@@ -24,6 +28,24 @@
               <TextIcon :src="favicon(link.domain)">{{ link.name }}</TextIcon>
             </FormButton>
           </div>
+        </div>
+        <div v-else>
+          <draggable
+            v-model="model"
+            class="forSorting"
+            group="people"
+            :item-key="link => optionToCombined(link).name"
+          >
+            <template #item="{ element }">
+              <FormButton :animation="false" class="grab">
+                <TextIcon icon="drag_handle">
+                  <TextIcon :src="favicon(optionToCombined(element).domain)">
+                    {{ optionToCombined(element).name }}
+                  </TextIcon>
+                </TextIcon>
+              </FormButton>
+            </template>
+          </draggable>
         </div>
       </Card>
     </Section>
@@ -79,7 +101,8 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { quicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
+import draggable from 'vuedraggable';
+import { optionToCombined, quicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
 import Card from '../card.vue';
@@ -185,6 +208,10 @@ const addCustom = () => {
   customAnime.value = '';
   customManga.value = '';
 };
+
+// Order
+
+const orderMode = ref(false);
 </script>
 
 <style lang="less" scoped>
@@ -219,5 +246,21 @@ const addCustom = () => {
 
 .custom-field {
   min-width: 250px;
+}
+
+.ui-row {
+  display: flex;
+  gap: 15px;
+  align-items: stretch;
+}
+
+.forSorting {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grab {
+  cursor: row-resize;
 }
 </style>

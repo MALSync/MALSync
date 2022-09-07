@@ -46,6 +46,10 @@ export function createApp(
     },
   });
 
+  app.directive('visible', (el, binding) => {
+    el.style.visibility = binding.value ? 'visible' : 'hidden';
+  });
+
   const root = app.mount(rootElement);
 
   return root;

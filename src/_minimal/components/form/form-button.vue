@@ -14,7 +14,7 @@ import { PropType } from 'vue';
 
 defineProps({
   padding: {
-    type: String as PropType<'small' | 'large' | 'pill' | 'mini'>,
+    type: String as PropType<'small' | 'large' | 'pill' | 'mini' | 'slim'>,
     default: 'small',
   },
   tabindex: {
@@ -82,6 +82,12 @@ defineProps({
     display: flex;
     align-items: center;
     padding: 0 10px;
+  }
+
+  &.slim {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
   }
 
   &.primary {
