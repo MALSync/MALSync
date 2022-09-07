@@ -87,11 +87,13 @@ defineProps({
   &.primary {
     background-color: var(--cl-primary);
     border-color: var(--cl-primary);
+    color: white;
   }
 
   &.secondary {
     background-color: var(--cl-secondary);
     border-color: var(--cl-secondary);
+    color: white;
   }
 
   &:hover {
@@ -111,6 +113,7 @@ defineProps({
     cursor: not-allowed;
     background-color: var(--cl-foreground);
     border-color: var(--cl-foreground);
+    color: inherit;
   }
 
   .top-icon {

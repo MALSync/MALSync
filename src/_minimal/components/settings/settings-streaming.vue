@@ -1,6 +1,6 @@
 <template>
   <div class="quicklinkedit">
-    <Section>
+    <Section spacer="half">
       <Card>
         <Section>
           <FormText
@@ -47,12 +47,14 @@
             <td><CodeBlock>{searchtermUnderscore}</CodeBlock></td>
             <td>=> <CodeBlock>no_game_no_life</CodeBlock></td>
           </tr>
-          <tr class="row">
+          <tr>
             <td><CodeBlock>{searchtermRaw}</CodeBlock></td>
             <td>=> <CodeBlock>no game no life</CodeBlock></td>
           </tr>
         </table>
       </Section>
+
+      <HR />
 
       <Section spacer="half">
         <FormText v-model="customName" placeholder="Name" class="custom-field" />
@@ -77,7 +79,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
-import { quicklinks } from '../../../utils/quicklinksBuilder';
+import { quicklinks, removeOptionKey } from '../../../utils/quicklinksBuilder';
 import FormButton from '../form/form-button.vue';
 import TextIcon from '../text-icon.vue';
 import Card from '../card.vue';
@@ -85,6 +87,7 @@ import FormText from '../form/form-text.vue';
 import Section from '../section.vue';
 import Header from '../header.vue';
 import CodeBlock from '../code-block.vue';
+import HR from '../hr.vue';
 
 function stateNumber(link) {
   if (link.custom) return 0;
@@ -132,6 +135,20 @@ const groupIcon = el => {
   if (el.database) return 'link';
   if (el.search && !(el.search.anime === 'home' || el.search.manga === 'home')) return 'search';
   return 'home';
+};
+
+const toggleLink = link => {
+  if (link.active) {
+    if (link.custom) {
+      customName.value = link.name;
+      customAnime.value = link.search.anime;
+      customManga.value = link.search.manga;
+    }
+    model.value = removeOptionKey(model.value, link.name);
+  } else {
+    model.value.push(link.name);
+  }
+  model.value = [...model.value];
 };
 
 const addCustom = () => {
