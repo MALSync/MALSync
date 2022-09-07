@@ -1,5 +1,8 @@
 <template>
-  <PillDark v-if="progress && progress.getAuto()" :title="progress.getAutoText()">
+  <PillDark
+    v-if="progress && progress.getAuto && progress.getAuto()"
+    :title="progress.getAutoText()"
+  >
     {{ progress.getAuto() }}
   </PillDark>
 </template>
