@@ -79,6 +79,7 @@ module.exports = {
       '*://*.dutrag.com/*',
       '*://*.diasfem.com/*',
       '*://*.fembed-hd.com/*',
+      '*://*.fembed9hd.com/*',
     ],
   },
   youpload: {
@@ -391,6 +392,10 @@ module.exports = {
       '*://*.gogoplay.io/load.php?*',
       '*://*.gogoplay.io/loadserver.php?*',
       '*://*.gogoplay.io/embedplus*',
+      '*://*.gogohd.net/embedplus*',
+      '*://*.gogohd.net/streaming.php?*',
+      '*://*.gogohd.net/load.php?*',
+      '*://*.gogohd.net/loadserver.php?*',
     ],
   },
   // bs.to
@@ -452,6 +457,7 @@ module.exports = {
       '*://sbplay2.xyz/*',
       '*://sbfull.com/e/*',
       '*://ssbstream.net/*',
+      '*://streamsss.net/*',
     ],
   },
   // gogo
