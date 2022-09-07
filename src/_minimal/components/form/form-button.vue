@@ -1,5 +1,9 @@
 <template>
-  <div class="button" :class="`${padding} ${animation ? 'animation' : ''}`" tabindex="tabindex">
+  <div
+    class="button"
+    :class="`${padding} ${animation ? 'animation' : ''} ${color} ${disabled ? 'disabled' : ''}`"
+    tabindex="tabindex"
+  >
     <slot /> {{ title }}
     <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
   </div>
@@ -29,6 +33,14 @@ defineProps({
   icon: {
     type: String,
     default: '',
+  },
+  color: {
+    type: String as PropType<'default' | 'primary' | 'secondary'>,
+    default: 'default',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
@@ -72,6 +84,16 @@ defineProps({
     padding: 0 10px;
   }
 
+  &.primary {
+    background-color: var(--cl-primary);
+    border-color: var(--cl-primary);
+  }
+
+  &.secondary {
+    background-color: var(--cl-secondary);
+    border-color: var(--cl-secondary);
+  }
+
   &:hover {
     border-color: var(--cl-border-hover);
     .top-icon {
@@ -81,6 +103,14 @@ defineProps({
 
   &:focus-visible {
     .focus-outline();
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    user-select: none;
+    cursor: not-allowed;
+    background-color: var(--cl-foreground);
+    border-color: var(--cl-foreground);
   }
 
   .top-icon {

@@ -1,24 +1,76 @@
 <template>
   <div class="quicklinkedit">
-    <Card>
-      <Section>
-        <FormText v-model="search" icon="search" :clear-icon="true" class="search-field"></FormText>
-      </Section>
-      <div class="grid">
-        <div
-          v-for="link in linksWithState"
-          :key="link.name"
-          class="mdl-chip quicklink"
-          :class="{
-            active: link.active,
-          }"
-          @click="toggleLink(link)"
-        >
-          <FormButton :animation="false" :icon="groupIcon(link)" class="btn">
-            <TextIcon :src="favicon(link.domain)">{{ link.name }}</TextIcon>
-          </FormButton>
+    <Section>
+      <Card>
+        <Section>
+          <FormText
+            v-model="search"
+            icon="search"
+            :clear-icon="true"
+            class="search-field"
+          ></FormText>
+        </Section>
+        <div class="grid">
+          <div
+            v-for="link in linksWithState"
+            :key="link.name"
+            class="mdl-chip quicklink"
+            :class="{
+              active: link.active,
+            }"
+            @click="toggleLink(link)"
+          >
+            <FormButton :animation="false" :icon="groupIcon(link)" class="btn">
+              <TextIcon :src="favicon(link.domain)">{{ link.name }}</TextIcon>
+            </FormButton>
+          </div>
         </div>
-      </div>
+      </Card>
+    </Section>
+    <Card>
+      <Header :spacer="true">Custom search links</Header>
+      <Section>
+        <table>
+          <tr class="row">
+            <td><CodeBlock>{searchterm}</CodeBlock></td>
+            <td>=> <CodeBlock>no%20game%20no%20life</CodeBlock></td>
+          </tr>
+          <tr class="row">
+            <td><CodeBlock>{searchtermPlus}</CodeBlock></td>
+            <td>=> <CodeBlock>no+game+no+life</CodeBlock></td>
+          </tr>
+          <tr class="row">
+            <td><CodeBlock>{searchtermMinus}</CodeBlock></td>
+            <td>=> <CodeBlock>no-game-no-life</CodeBlock></td>
+          </tr>
+          <tr class="row">
+            <td><CodeBlock>{searchtermUnderscore}</CodeBlock></td>
+            <td>=> <CodeBlock>no_game_no_life</CodeBlock></td>
+          </tr>
+          <tr class="row">
+            <td><CodeBlock>{searchtermRaw}</CodeBlock></td>
+            <td>=> <CodeBlock>no game no life</CodeBlock></td>
+          </tr>
+        </table>
+      </Section>
+
+      <Section spacer="half">
+        <FormText v-model="customName" placeholder="Name" class="custom-field" />
+      </Section>
+      <Section spacer="half">
+        <FormText v-model="customAnime" placeholder="Anime Search Url" class="custom-field" />
+      </Section>
+      <Section spacer="half">
+        <FormText v-model="customManga" placeholder="Manga Search Url" class="custom-field" />
+      </Section>
+
+      <FormButton
+        color="secondary"
+        :disabled="!customName || (!customAnime && !customManga)"
+        @click="!customName || (!customAnime && !customManga) ? '' : addCustom()"
+      >
+        {{ lang('Add') }}
+      </FormButton>
     </Card>
   </div>
 </template>
@@ -31,6 +83,8 @@ import TextIcon from '../text-icon.vue';
 import Card from '../card.vue';
 import FormText from '../form/form-text.vue';
 import Section from '../section.vue';
+import Header from '../header.vue';
+import CodeBlock from '../code-block.vue';
 
 function stateNumber(link) {
   if (link.custom) return 0;
@@ -49,6 +103,9 @@ const model = computed({
 });
 
 const search = ref('');
+const customName = ref('');
+const customAnime = ref('');
+const customManga = ref('');
 
 const linksWithState = computed(() => {
   return [...quicklinks, ...model.value.filter(el => typeof el === 'object' && el)]
@@ -71,11 +128,45 @@ const favicon = (url: string) => {
 };
 
 const groupIcon = el => {
-  console.log(el);
   if (el.custom) return 'tune';
   if (el.database) return 'link';
   if (el.search && !(el.search.anime === 'home' || el.search.manga === 'home')) return 'search';
   return 'home';
+};
+
+const addCustom = () => {
+  let domain = '';
+  if (customAnime.value || customManga.value) {
+    let domainParts;
+    if (customAnime.value) {
+      domainParts = customAnime.value.split('?')[0].split('#')[0].split('/');
+    } else {
+      domainParts = customManga.value.split('?')[0].split('#')[0].split('/');
+    }
+    if (domainParts.length > 2) {
+      domain = `${domainParts[0]}//${domainParts[2]}/`;
+    }
+  }
+
+  if (!domain) {
+    utils.flashm('Something is wrong', { error: true });
+    return;
+  }
+
+  const res = {
+    name: customName.value,
+    custom: true,
+    domain,
+    search: {
+      anime: customAnime.value ? customAnime.value : null,
+      manga: customManga.value ? customManga.value : null,
+    },
+  };
+
+  model.value = [...model.value, res];
+  customName.value = '';
+  customAnime.value = '';
+  customManga.value = '';
 };
 </script>
 
@@ -92,6 +183,10 @@ const groupIcon = el => {
   gap: 15px;
 }
 
+.row > td {
+  padding-bottom: 15px;
+}
+
 .quicklink {
   opacity: 0.5;
   filter: grayscale(1);
@@ -103,5 +198,9 @@ const groupIcon = el => {
 
 .search-field {
   width: 100%;
+}
+
+.custom-field {
+  min-width: 250px;
 }
 </style>

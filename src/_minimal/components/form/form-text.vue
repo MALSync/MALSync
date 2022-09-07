@@ -5,6 +5,9 @@
     :class="{ noFocus: !inFocus, search: type === 'search', mini: type === 'mini' }"
   >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
+    <span v-if="placeholder && !inFocus" class="placeholder-text">
+      {{ placeholder }}{{ picked ? ':' : '' }}
+    </span>
     <input
       v-model="picked"
       class="text-input"
@@ -30,6 +33,10 @@ const props = defineProps({
     default: '',
   },
   icon: {
+    type: String,
+    default: '',
+  },
+  placeholder: {
     type: String,
     default: '',
   },
@@ -122,6 +129,11 @@ const width = computed(() => {
 
   .span-placeholder {
     flex-grow: 1;
+  }
+
+  .placeholder-text {
+    color: var(--cl-light-text);
+    white-space: nowrap;
   }
 
   &.noFocus {
