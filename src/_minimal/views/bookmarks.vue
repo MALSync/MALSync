@@ -120,6 +120,7 @@ watch(
 );
 
 const listRequest = createRequest(parameters, async param => {
+  cacheList.value = [];
   const listProvider = await getList(param.value.state, param.value.type);
 
   listProvider.modes.initProgress = true;
