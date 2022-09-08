@@ -167,4 +167,9 @@ defineProps({
     }
   }
 }
+
+.empty,
+.error {
+  height: 100%;
+}
 </style>
