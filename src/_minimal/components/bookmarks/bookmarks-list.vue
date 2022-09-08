@@ -15,9 +15,7 @@
         </div>
       </div>
       <MediaLink :href="item.url" class="link" />
-      <Header class="title">
-        {{ item.title }}
-      </Header>
+      <DynamicFont class="title" :text="item.title" />
       <MediaBar
         :watched-ep="item.watchedEp"
         :total-ep="item.totalEp"
@@ -49,6 +47,7 @@ import MediaBar from '../media/media-bar.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
 import MediaProgress from '../media/media-progress.vue';
 import TextIcon from '../text-icon.vue';
+import DynamicFont from '../dynamic-font.vue';
 
 defineProps({
   item: {
