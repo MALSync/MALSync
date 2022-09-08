@@ -25,6 +25,9 @@
         </template>
       </Pagination>
     </div>
+    <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
+      <Empty :card="true"/>
+    </Section>
     <div v-if="!metaRequest.loading && !parameters.load && !metaRequest.cache">
       <FormButton @click="parameters.load = true"> {{ lang('Load') }} </FormButton>
     </div>
@@ -43,6 +46,7 @@ import FormButton from '../form/form-button.vue';
 import Pagination from '../pagination.vue';
 import ImageText from '../image-text.vue';
 import HR from '../hr.vue';
+import Empty from '../empty.vue';
 
 const props = defineProps({
   malUrl: {

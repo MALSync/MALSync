@@ -1,12 +1,13 @@
 <template>
-  <div class="empty-block">
+  <component :is="card ? Card : 'div'" class="empty-block" :class="{ card }">
     <div class="material-icons icon">{{ icon }}</div>
     <div class="text">{{ text }}</div>
-  </div >
+  </component>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
+import Card from './card.vue';
 
 defineProps({
   text: {
@@ -16,6 +17,10 @@ defineProps({
   icon: {
     type: String as PropType<'set_meal' | 'search_off' | 'flood'>,
     default: 'set_meal',
+  },
+  card: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>
