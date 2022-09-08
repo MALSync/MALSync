@@ -52,6 +52,9 @@
           </TransitionStaggered>
         </Grid>
       </Section>
+      <Section v-if="!listRequest.loading && list && !list.length" class="spinner-wrap">
+        <Empty />
+      </Section>
       <Section v-if="listRequest.loading" class="spinner-wrap"><Spinner /></Section>
       <Section
         v-if="!listRequest.loading && listRequest.data && !listRequest.data!.isDone()"
@@ -82,6 +85,7 @@ import MediaStatusDropdown from '../components/media/media-status-dropdown.vue';
 import FormDropdown from '../components/form/form-dropdown.vue';
 import { bookmarkFormats } from '../utils/bookmarks';
 import ErrorBookmarks from '../components/error/error-bookmarks.vue';
+import Empty from '../components/empty.vue';
 
 const route = useRoute();
 const router = useRouter();

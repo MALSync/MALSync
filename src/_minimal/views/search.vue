@@ -32,6 +32,12 @@
         </TransitionStaggered>
       </Grid>
     </Section>
+    <Section
+      v-if="!listRequest.loading && listRequest.data && !listRequest.data.length"
+      class="spinner-wrap"
+    >
+      <Empty icon="search_off" />
+    </Section>
     <ErrorSearch :list-request="listRequest" />
   </div>
 </template>
@@ -46,6 +52,7 @@ import FormSwitch from '../components/form/form-switch.vue';
 import Section from '../components/section.vue';
 import Spinner from '../components/spinner.vue';
 import Grid from '../components/grid.vue';
+import Empty from '../components/empty.vue';
 import TransitionStaggered from '../components/transition-staggered.vue';
 import { searchFormats } from '../utils/bookmarks';
 import { searchResult } from '../../_provider/definitions';
