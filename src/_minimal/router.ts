@@ -49,11 +49,28 @@ const routes: Array<RouteRecordRaw> = [
   { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
 ];
 
+let scrollUntilDebounce;
+const scrollUntilTrue = (scrollPosition: number) => {
+  let count = 0;
+  scrollUntilDebounce = setInterval(() => {
+    count++;
+    if (count > 50 || scrollPosition - 50 < window.scrollY) {
+      clearInterval(scrollUntilDebounce);
+    } else {
+      $(window).scrollTop(scrollPosition);
+    }
+  }, 100);
+};
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
+    clearInterval(scrollUntilDebounce);
     if (savedPosition) {
+      if (to.name === 'Bookmarks' && savedPosition.top) {
+        scrollUntilTrue(savedPosition.top);
+      }
       return savedPosition;
     }
     return { top: 0 };
