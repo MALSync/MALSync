@@ -131,7 +131,7 @@ export abstract class ListAbstract {
 
     await this.getNext();
 
-    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 18));
+    if (this.modes.cached) this.getCache().setValue(this.templist.slice(0, 24));
 
     this.firstLoaded = true;
 

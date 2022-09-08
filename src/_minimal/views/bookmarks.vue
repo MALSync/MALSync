@@ -206,6 +206,11 @@ const handleScroll = () => {
   }
 };
 
+watch(
+  () => listRequest.data,
+  () => handleScroll(),
+);
+
 onActivated(() => {
   window.addEventListener('scroll', handleScroll);
 });
