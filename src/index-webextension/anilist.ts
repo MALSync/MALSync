@@ -38,7 +38,7 @@ function messageAniListListener(anilist) {
             image: anilist.getImage(),
             title: anilist.getTitle(),
           };
-          if (malUrl && api.settings.get('syncMode') === 'ANILIST') {
+          if (!malUrl && api.settings.get('syncMode') === 'ANILIST') {
             res.url = anilist.url;
           }
           sendResponse(res);

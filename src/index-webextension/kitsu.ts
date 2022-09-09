@@ -37,7 +37,7 @@ function messageKitsuListener(kitsu: KitsuClass) {
             image: kitsu.getImage(),
             title: kitsu.getTitle(),
           };
-          if (malUrl && api.settings.get('syncMode') === 'KITSU') {
+          if (!malUrl && api.settings.get('syncMode') === 'KITSU') {
             res.url = kitsu.url;
           }
           sendResponse(res);

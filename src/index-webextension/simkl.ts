@@ -37,7 +37,7 @@ function messageSimklListener(simkl: SimklClass) {
             image: simkl.getImage(),
             title: simkl.getTitle(),
           };
-          if (malUrl && api.settings.get('syncMode') === 'SIMKL') {
+          if (!malUrl && api.settings.get('syncMode') === 'SIMKL') {
             res.url = simkl.url;
           }
           sendResponse(res);
