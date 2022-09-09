@@ -282,6 +282,8 @@ const totalLoading = computed(() => {
       grid-row-start: 1;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+
       .description-section {
         flex-grow: 1;
       }
