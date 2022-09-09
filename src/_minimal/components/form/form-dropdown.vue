@@ -153,12 +153,12 @@ watch(open, value => {
 
   .dropdown-pop {
     .border-radius();
+    .big-shadow();
 
     position: absolute;
     z-index: 9999;
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
-    box-shadow: 0 5px 20px rgb(0 0 0 / 15%);
     white-space: nowrap;
     overflow-y: auto;
     &-default {

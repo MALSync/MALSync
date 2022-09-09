@@ -30,26 +30,21 @@ api.settings.init().then(() => {
   });
 });
 
-function checkFill(minimalObj) {
+function checkFill(minimalObj: Minimal) {
   con.log('CheckFill');
-  /* TODO: Reimplement
   if (!chrome.tabs) {
     con.error('Can not check for tabs');
     return;
   }
-  chrome.tabs.query({ active: true }, function (tabs) {
+  chrome.tabs.query({ active: true }, tabs => {
     con.m('tabs').log(tabs);
     tabs.forEach(el => {
-      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, function (response) {
-        setTimeout(() => {
-          if (typeof response !== 'undefined' && response.length) {
-            minimalObj.fillBase(response);
-          } else if ($('html').attr('mode') === 'popup') {
-            minimalObj.fillBase(null);
-          }
-        }, 500);
+      chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, response => {
+        if (response && response.url) {
+          con.log('Fill', response);
+          minimalObj.fill(response);
+        }
       });
     });
   });
-  */
 }

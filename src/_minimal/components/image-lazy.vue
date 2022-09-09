@@ -3,7 +3,7 @@
     :is="tag"
     class="lazy-image"
     :class="classes"
-    :src="src"
+    :src="realSrc"
     loading="lazy"
     @load="imageLoaded"
     @error="imageError"
@@ -24,6 +24,8 @@ const props = defineProps({
     default: '',
   },
 });
+
+const realSrc = computed(() => props.src.replace(/^\/\//g, 'https://'));
 
 const error = ref(false);
 

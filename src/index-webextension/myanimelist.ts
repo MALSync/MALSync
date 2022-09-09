@@ -34,7 +34,7 @@ function messageMalListener(mal: MyAnimeListClass) {
       if (msg.action === 'TabMalUrl') {
         logger.log('Response', mal.url);
         sendResponse({
-          malUrl: mal.url,
+          url: mal.url,
           title: mal.getTitle(),
           image: mal.getImage(),
         });

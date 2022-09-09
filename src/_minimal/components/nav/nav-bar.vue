@@ -85,7 +85,7 @@ onUnmounted(() => {
 }
 
 #header.scrolled {
-  box-shadow: 0 5px 20px rgb(0 0 0 / 15%);
+  .big-shadow();
 }
 
 .backImage #header.scrolled {

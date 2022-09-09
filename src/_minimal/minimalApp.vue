@@ -1,5 +1,6 @@
 <template>
   <Theming />
+  <MediaModal />
   <NavBar />
   <div class="content">
     <router-view v-slot="{ Component }">
@@ -15,6 +16,7 @@
 <script lang="ts" setup>
 import Theming from './components/theming.vue';
 import NavBar from './components/nav/nav-bar.vue';
+import MediaModal from './components/media/media-modal.vue';
 </script>
 
 <style lang="less">
