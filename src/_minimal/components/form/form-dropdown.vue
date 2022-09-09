@@ -6,7 +6,7 @@
     :aria-current="picked"
     @blur="open = false"
   >
-    <div class="selector" @click="open = !open">
+    <div class="selector" :class="{ animate }" @click="open = !open">
       <slot name="select" :open="open" :current-title="currentTitle" :value="picked">
         <FormButton :tabindex="-1" :animation="false">
           <TextIcon :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" position="after">
@@ -43,6 +43,7 @@ interface Option {
   value: string | number;
   title?: string;
   label?: string;
+  meta?: any;
 }
 
 const props = defineProps({
@@ -90,6 +91,10 @@ const props = defineProps({
   size: {
     type: String as PropType<'small' | 'medium' | 'large'>,
     default: 'medium',
+  },
+  animate: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -147,8 +152,10 @@ watch(open, value => {
   display: inline-block;
 
   .selector {
-    .click-move-down();
     .link();
+    &.animate {
+      .click-move-down();
+    }
   }
 
   .dropdown-pop {

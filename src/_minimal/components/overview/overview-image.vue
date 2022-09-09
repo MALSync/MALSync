@@ -1,7 +1,9 @@
 <template>
   <div class="overviewImage" :class="{ hov: src, notLoading: !loading }" @click="imgModal = true">
     <ImageFit class="over" :src="src" :loading="loading" />
-    <OverviewImageLanguage :single="single" />
+    <div v-if="progress" class="progress">
+      <MediaPillProgress :progress="progress" />
+    </div>
     <div v-if="streaming.url" class="streaming" @click.stop>
       <PillSplit
         :right="Boolean(streaming.url)"
@@ -34,7 +36,7 @@ import ImageFit from '../image-fit.vue';
 import Modal from '../modal.vue';
 import PillSplit from '../pill-split.vue';
 import MediaLink from '../media-link.vue';
-import OverviewImageLanguage from './overview-image-language.vue';
+import MediaPillProgress from '../media/media-pill-progress.vue';
 
 const props = defineProps({
   src: {
@@ -82,6 +84,14 @@ const streaming = computed(() => {
   }
 
   return streamingEl;
+});
+
+const progress = computed(() => {
+  if (!props.single) return false;
+  const progressEl = props.single.getProgress();
+  if (!progressEl) return false;
+  if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
+  return progressEl;
 });
 </script>
 
@@ -141,5 +151,11 @@ const streaming = computed(() => {
   .stream-link {
     display: flex;
   }
+}
+.progress {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
 }
 </style>
