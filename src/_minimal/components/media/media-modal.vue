@@ -4,6 +4,7 @@
       <ImageFit :src="fill.image" class="image" />
       <DynamicFont class="title" :text="fill.title || fill.url" />
       <div class="material-icons top-icon" @click.prevent="open = false">close</div>
+      <div class="material-icons image-icon" @click.prevent="open = false">open_in_browser</div>
     </MediaLink>
   </div>
 </template>
@@ -42,6 +43,7 @@ watch(url, () => {
 .mediaModal {
   .border-radius();
   .big-shadow();
+  .click-move-down();
 
   display: flex;
   align-items: center;
@@ -58,6 +60,7 @@ watch(url, () => {
     min-height: 65px;
     min-width: 125px;
     height: 100%;
+    filter: brightness(0.7);
   }
   .title {
     padding: 10px 15px;
@@ -75,6 +78,16 @@ watch(url, () => {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+  }
+
+  .image-icon {
+    position: absolute;
+    left: 68px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 32px;
+    color: white;
   }
 }
 </style>
