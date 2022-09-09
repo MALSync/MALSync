@@ -34,6 +34,8 @@ const imageLoaded = (event: Event) => {
 
     if (el.naturalWidth * 1.4 < el.width) {
       small.value = true;
+    } else if (el.naturalHeight * 1.4 < el.height) {
+      small.value = true;
     }
   }
 };
