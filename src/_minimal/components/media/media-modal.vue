@@ -1,16 +1,27 @@
 <template>
-  <div v-if="fill && fill.url && open" class="outer">
-    <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
-      <ImageFit :src="fill.image" class="image" />
-      <DynamicFont class="title" :text="fill.title || fill.url" />
-      <div class="material-icons top-icon" @click.prevent="open = false">close</div>
-      <div class="material-icons image-icon" @click.prevent="open = false">open_in_browser</div>
-    </MediaLink>
-  </div>
+  <component :is="Teleport" to="html">
+    <div v-if="fill && fill.url && open" class="outer">
+      <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
+        <ImageFit :src="fill.image" class="image" />
+        <DynamicFont class="title" :text="fill.title || fill.url" />
+        <div class="material-icons top-icon" @click.prevent="open = false">close</div>
+        <div class="material-icons image-icon">open_in_browser</div>
+      </MediaLink>
+    </div>
+  </component>
 </template>
 
 <script lang="ts" setup>
-import { computed, inject, Ref, ref, watch } from 'vue';
+import {
+  Teleport as teleport_,
+  type TeleportProps,
+  type VNodeProps,
+  computed,
+  inject,
+  Ref,
+  ref,
+  watch,
+} from 'vue';
 import MediaLink from '../media-link.vue';
 import ImageFit from '../image-fit.vue';
 import DynamicFont from '../dynamic-font.vue';
@@ -24,6 +35,12 @@ const url = computed(() => (fill.value ? fill.value.url : null));
 watch(url, () => {
   open.value = true;
 });
+
+const Teleport = teleport_ as {
+  new (): {
+    $props: VNodeProps & TeleportProps;
+  };
+};
 </script>
 
 <style lang="less" scoped>
@@ -61,9 +78,11 @@ watch(url, () => {
     min-width: 125px;
     height: 100%;
     filter: brightness(0.7);
+    transition: filter @fast-transition;
   }
   .title {
     padding: 10px 15px;
+    color: var(--cl-text);
   }
 
   .top-icon {
@@ -88,6 +107,17 @@ watch(url, () => {
     transform: translateY(-50%) translateX(-50%);
     font-size: 32px;
     color: white;
+    transition: opacity @fast-transition;
+  }
+
+  &:hover {
+    .image {
+      filter: brightness(1);
+    }
+
+    .image-icon {
+      opacity: 0;
+    }
   }
 }
 </style>
