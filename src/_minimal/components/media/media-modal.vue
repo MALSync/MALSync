@@ -1,20 +1,28 @@
 <template>
-  <div class="outer">
-    <MediaLink v-if="fill && fill.url" :href="fill.url" class="mediaModal">
+  <div v-if="fill && fill.url && open" class="outer">
+    <MediaLink :href="fill.url" class="mediaModal" @click="open = false">
       <ImageFit :src="fill.image" class="image" />
       <DynamicFont class="title" :text="fill.title || fill.url" />
+      <div class="material-icons top-icon" @click.prevent="open = false">close</div>
     </MediaLink>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { inject } from 'vue';
+import { computed, inject, Ref, ref, watch } from 'vue';
 import MediaLink from '../media-link.vue';
 import ImageFit from '../image-fit.vue';
-import Header from '../header.vue';
 import DynamicFont from '../dynamic-font.vue';
 
-const fill = inject('fill') as null | { url: string; image: string; title: string };
+const fill = inject('fill') as Ref<null | { url: string; image: string; title: string }>;
+
+const open = ref(true);
+
+const url = computed(() => (fill.value ? fill.value.url : null));
+
+watch(url, () => {
+  open.value = true;
+});
 </script>
 
 <style lang="less" scoped>
@@ -41,6 +49,7 @@ const fill = inject('fill') as null | { url: string; image: string; title: strin
   background-image: url(@diamonds);
   max-width: 600px;
   padding: 5px;
+  position: relative;
 
   .image {
     .border-radius();
@@ -52,6 +61,20 @@ const fill = inject('fill') as null | { url: string; image: string; title: strin
   }
   .title {
     padding: 10px 15px;
+  }
+
+  .top-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--cl-primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
