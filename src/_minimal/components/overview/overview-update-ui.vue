@@ -21,6 +21,7 @@
               </div>
             </template>
           </FormDropdown>
+          <OverviewImageLanguage :single="single" />
         </div>
       </div>
       <div class="progress-select">
@@ -114,6 +115,7 @@ import FormSlider from '../form/form-slider.vue';
 import StateDot from '../state-dot.vue';
 import FormButton from '../form/form-button.vue';
 import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
+import OverviewImageLanguage from './overview-image-language.vue';
 
 const props = defineProps({
   single: {

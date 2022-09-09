@@ -194,11 +194,8 @@ export abstract class SingleAbstract {
 
   protected progressXhr;
 
-  protected prList: { key: string; label: string }[] = [];
-
   public async initProgress() {
     const xhr = await predictionXhrGET(this.getType()!, this.getApiCacheKey());
-    this.prList = await getProgressTypeList(this.getType()!);
     return new Progress(this.getCacheKey(), this.getType()!)
       .init({
         uid: this.getCacheKey(),
@@ -222,21 +219,23 @@ export abstract class SingleAbstract {
   }
 
   public getProgressOptions() {
-    const op: { value: string; key: string }[] = [];
+    const op: {
+      label: string;
+      key: string;
+      type: 'dub' | 'sub';
+      dropped: boolean;
+      episode: Number;
+    }[] = [];
+    const languageNames = new Intl.DisplayNames('en', { type: 'language' });
     if (this.progressXhr && Object.keys(this.progressXhr).length) {
       this.progressXhr.forEach(el => {
         if (el.state === 'complete') return;
-        let val = `${el.lang.toUpperCase()} (${el.type.toUpperCase()})`;
-        if (this.prList && this.prList.length) {
-          const tTemp = this.prList.find(p => p.key === el.id);
-          if (tTemp) val = tTemp.label;
-        }
-        if (el.title) val = el.title;
-        if (el.lastEp && el.lastEp.total) val += ` EP${el.lastEp.total}`;
-        if (el.state === 'dropped') val += ` Incomplete`;
         op.push({
+          type: el.type,
           key: el.id,
-          value: val,
+          label: languageNames.of(el.lang) || el.lang,
+          dropped: el.state === 'dropped',
+          episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
         });
       });
     }
