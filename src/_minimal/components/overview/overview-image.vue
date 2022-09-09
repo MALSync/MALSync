@@ -1,9 +1,7 @@
 <template>
   <div class="overviewImage" :class="{ hov: src, notLoading: !loading }" @click="imgModal = true">
     <ImageFit class="over" :src="src" :loading="loading" />
-    <div v-if="progress" class="progress">
-      <MediaPillProgress :progress="progress" />
-    </div>
+    <OverviewImageLanguage :single="single" />
     <div v-if="streaming.url" class="streaming" @click.stop>
       <PillSplit
         :right="Boolean(streaming.url)"
@@ -34,9 +32,9 @@ import { computed, PropType, ref } from 'vue';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
 import ImageFit from '../image-fit.vue';
 import Modal from '../modal.vue';
-import MediaPillProgress from '../media/media-pill-progress.vue';
 import PillSplit from '../pill-split.vue';
 import MediaLink from '../media-link.vue';
+import OverviewImageLanguage from './overview-image-language.vue';
 
 const props = defineProps({
   src: {
@@ -54,14 +52,6 @@ const props = defineProps({
 });
 
 const imgModal = ref(false);
-
-const progress = computed(() => {
-  if (!props.single) return false;
-  const progressEl = props.single.getProgress();
-  if (!progressEl) return false;
-  if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
-  return progressEl;
-});
 
 const streaming = computed(() => {
   const streamingEl = {
@@ -125,13 +115,6 @@ const streaming = computed(() => {
 .modal-image {
   max-width: 100%;
   max-height: 85vh;
-}
-
-.progress {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 10px;
 }
 
 .streaming {
