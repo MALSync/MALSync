@@ -184,10 +184,18 @@ export class SimklClass {
     }
   }
 
+  getImage() {
+    return $('#detailPosterImg').attr('src');
+  }
+
+  getTitle() {
+    return $('h1').first().text().trim() || '';
+  }
+
   malToKiss() {
     con.log('malToKiss');
 
-    const title = $('h1').first().text().trim();
+    const title = this.getTitle();
 
     activeLinks(this.page!.type, this.page!.malid, title).then(links => {
       this.malkiss.links = links;

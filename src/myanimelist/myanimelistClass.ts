@@ -208,11 +208,19 @@ export class MyAnimeListClass {
     }
   }
 
+  getImage() {
+    return $('.leftside img').first().attr('src') || '';
+  }
+
+  getTitle() {
+    return $('meta[property="og:title"]').first().attr('content')!.trim() || '';
+  }
+
   async malToKiss() {
     $(document).ready(() => {
       con.log('malToKiss');
 
-      const title = $('meta[property="og:title"]').first().attr('content')!.trim();
+      const title = this.getTitle();
 
       activeLinks(this.type!, this.id, title).then(links => {
         let html = '';
