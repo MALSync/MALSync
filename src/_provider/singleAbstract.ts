@@ -233,7 +233,7 @@ export abstract class SingleAbstract {
         op.push({
           type: el.type,
           key: el.id,
-          label: languageNames.of(el.lang) || el.lang,
+          label: languageNames.of(el.lang.replace(/^jp$/, 'ja')) || el.lang,
           dropped: el.state === 'dropped',
           episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
         });
@@ -257,6 +257,35 @@ export abstract class SingleAbstract {
       this.options.p = mode;
       this.updateProgress = true;
     }
+    if (!api.settings.get('malTags')) {
+      utils
+        .setEntrySettings(this.type, this.getCacheKey(), this.options, this._getTags())
+        .then(() => this.initProgress());
+    }
+  }
+
+  public getProgressKey() {
+    let mode = this.getProgressMode();
+
+    if (!mode) {
+      if (this.getType() === 'anime') {
+        mode = api.settings.get('progressIntervalDefaultAnime');
+      } else {
+        mode = api.settings.get('progressIntervalDefaultManga');
+      }
+    }
+
+    if (!mode) return null;
+
+    const res = /^([^/]*)\/(.*)$/.exec(mode);
+
+    if (!res) return null;
+
+    return {
+      key: mode,
+      lang: res[1],
+      type: res[2],
+    };
   }
 
   public getPageRelations(): { name: string; icon: string; link: string }[] {
