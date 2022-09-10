@@ -16,13 +16,9 @@ export const Kaguya: pageInterface = {
   languages: ['Vietnamese', 'English'],
   type: 'anime',
   isSyncPage(url) {
-    console.log('sync', url);
-
     return url.includes('/anime/watch/');
   },
   isOverviewPage(url) {
-    console.log('overview', url);
-
     return url.includes('/anime/details/');
   },
   sync: {
@@ -77,16 +73,12 @@ export const Kaguya: pageInterface = {
           function () {
             jsonData = JSON.parse(j.$('#syncData').text() || '{}');
 
-            console.log(jsonData);
-
             page.handlePage();
           },
         );
       };
 
       utils.fullUrlChangeDetect(function () {
-        console.log('fullUrlChangeDetect');
-
         page.reset();
         check();
       });
