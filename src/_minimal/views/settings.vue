@@ -1,25 +1,29 @@
 <template>
   <div>
-    <div v-if="components.path.length" class="back-button">
-      <router-link :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }">
-        <Header>
-          <TextIcon icon="arrow_back" mode="flex" background="round">
-            {{ components.parent ? components.parent.title : 'Back' }}
-          </TextIcon>
-        </Header>
-      </router-link>
-    </div>
-    <template v-for="comp in components.structure" :key="comp.key">
-      <component
-        :is="comp.component"
-        v-if="comp.condition ? comp.condition() : true"
-        v-bind="comp.props"
-        :id="`id-${comp.key}`"
-        :path="[...components.path, comp.key]"
-        :title="comp.title"
-        :class="{ highlight: comp.key === components.highlight }"
-      />
-    </template>
+    <transition :name="components.path.length ? 'slide-in' : 'slide-out'">
+      <div :key="components.path">
+        <div v-if="components.path.length" class="back-button">
+          <router-link :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }">
+            <Header>
+              <TextIcon icon="arrow_back" mode="flex" background="round">
+                {{ components.parent ? components.parent.title : 'Back' }}
+              </TextIcon>
+            </Header>
+          </router-link>
+        </div>
+        <template v-for="comp in components.structure" :key="comp.key">
+          <component
+            :is="comp.component"
+            v-if="comp.condition ? comp.condition() : true"
+            v-bind="comp.props"
+            :id="`id-${comp.key}`"
+            :path="[...components.path, comp.key]"
+            :title="comp.title"
+            :class="{ highlight: comp.key === components.highlight }"
+          />
+        </template>
+      </div>
+    </transition>
   </div>
 </template>
 

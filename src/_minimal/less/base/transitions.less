@@ -21,3 +21,27 @@
 .fade-enter-from {
   opacity: 0;
 }
+
+// Slide in
+.slide-in-enter-active {
+  transition-property: opacity transform !important;
+  transition-timing-function: ease !important;
+  transition-duration: 0.2s !important;
+}
+
+.slide-in-enter-from {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+// Slide out
+.slide-out-enter-active {
+  transition-property: opacity transform !important;
+  transition-timing-function: ease !important;
+  transition-duration: 0.2s !important;
+}
+
+.slide-out-enter-from {
+  opacity: 0;
+  transform: translateX(-20px);
+}
