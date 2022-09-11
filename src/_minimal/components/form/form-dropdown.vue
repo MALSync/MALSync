@@ -7,7 +7,13 @@
     @blur="open = false"
   >
     <div class="selector" :class="{ animate }" @click="open = !open">
-      <slot name="select" :open="open" :current-title="currentTitle" :value="picked">
+      <slot
+        name="select"
+        :open="open"
+        :current-title="currentTitle"
+        :value="picked"
+        :meta="currentMeta"
+      >
         <FormButton :tabindex="-1" :animation="false">
           <TextIcon :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" position="after">
             {{ currentTitle }}
@@ -110,6 +116,11 @@ const currentTitle = computed(() => {
   const active = props.options.find(el => el.value.toString() === picked.value.toString());
   if (!active) return props.placeholder;
   return active.title || active.label;
+});
+const currentMeta = computed(() => {
+  const active = props.options.find(el => el.value.toString() === picked.value.toString());
+  if (!active) return {};
+  return active.meta;
 });
 
 watch(picked, value => {

@@ -20,6 +20,20 @@
       />
       <div style="flex-grow: 1"></div>
       <FormDropdown
+        v-if="sortingOptions && sortingOptions.length"
+        v-model="sort"
+        :options="sortingOptions"
+        align-items="left"
+      >
+        <template #select="slotProps">
+          <span class="material-icons">{{ slotProps.meta.icon || 'filter_list' }}</span>
+        </template>
+        <template #option="slotProps">
+          <TextIcon :icon="slotProps.option.meta.icon"> {{ slotProps.option.title }}</TextIcon>
+        </template>
+      </FormDropdown>
+      <span v-else class="material-icons">filter_list</span>
+      <FormDropdown
         v-model="theme"
         :options="options"
         align-items="left"
@@ -86,6 +100,7 @@ import FormDropdown from '../components/form/form-dropdown.vue';
 import { bookmarkFormats } from '../utils/bookmarks';
 import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 import Empty from '../components/empty.vue';
+import TextIcon from '../components/text-icon.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -123,17 +138,25 @@ watch(
   },
 );
 
+const getSort = sortingOptions => {
+  const curSort = localStorage.getItem(`sort/${parameters.value.type}/${parameters.value.state}`);
+  if (curSort && sortingOptions.find(el => el.value === curSort)) return curSort;
+  return 'default';
+};
+
 const listRequest = createRequest(parameters, async param => {
   cacheList.value = [];
   const listProvider = await getList(param.value.state, param.value.type);
 
-  listProvider.modes.initProgress = true;
-  listProvider.initFrontendMode();
+  listProvider.setSort(getSort(listProvider.getSortingOptions(true)));
 
   listProvider.modes.cached = true;
   listProvider.getCached().then(list => {
     cacheList.value = list;
   });
+
+  listProvider.modes.initProgress = true;
+  listProvider.initFrontendMode();
 
   await listProvider.getNextPage().catch(e => {
     throw { e, html: listProvider.errorMessage(e) };
@@ -230,6 +253,29 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+});
+
+const sortingOptions = computed(() => {
+  const temp = listRequest.data ? listRequest.data.getSortingOptions(true) : [];
+
+  return temp.map(option => ({
+    value: option.value,
+    title: option.title,
+    meta: {
+      icon: option.icon,
+      child: option.child,
+    },
+  }));
+});
+
+const sort = computed({
+  get() {
+    return getSort(sortingOptions.value);
+  },
+  set(value) {
+    localStorage.setItem(`sort/${parameters.value.type}/${parameters.value.state}`, value);
+    listRequest.execute();
+  },
 });
 </script>
 
