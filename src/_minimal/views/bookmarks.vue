@@ -42,7 +42,7 @@
           <TextIcon :icon="slotProps.option.meta.icon"> {{ slotProps.option.title }}</TextIcon>
         </template>
       </FormDropdown>
-      <span v-else class="material-icons">filter_list</span>
+      <span v-else class="material-icons sortPlaceholder">filter_list</span>
       <FormDropdown
         v-model="theme"
         :options="options"
@@ -315,5 +315,9 @@ const sort = computed({
     filter: grayscale(1);
     transition: none;
   }
+}
+
+.sortPlaceholder {
+  padding-top: 1px;
 }
 </style>
