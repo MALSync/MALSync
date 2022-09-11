@@ -24,8 +24,18 @@
         v-model="sort"
         :options="sortingOptions"
         align-items="left"
+        :compare-func="(el, picked) => el.toString() === picked.toString().replace('_asc', '')"
       >
         <template #select="slotProps">
+          <span
+            v-if="slotProps.meta.asc"
+            class="material-icons"
+            @click.stop="
+              sort.endsWith('_asc') ? (sort = sort.replace('_asc', '')) : (sort = sort + '_asc')
+            "
+          >
+            {{ !sort.endsWith('_asc') ? 'arrow_downward' : 'arrow_upward' }}
+          </span>
           <span class="material-icons">{{ slotProps.meta.icon || 'filter_list' }}</span>
         </template>
         <template #option="slotProps">
@@ -140,7 +150,8 @@ watch(
 
 const getSort = sortingOptions => {
   const curSort = localStorage.getItem(`sort/${parameters.value.type}/${parameters.value.state}`);
-  if (curSort && sortingOptions.find(el => el.value === curSort)) return curSort;
+  if (curSort && sortingOptions.find(el => el.value === curSort.replace('_asc', '')))
+    return curSort;
   return 'default';
 };
 
@@ -148,7 +159,7 @@ const listRequest = createRequest(parameters, async param => {
   cacheList.value = [];
   const listProvider = await getList(param.value.state, param.value.type);
 
-  listProvider.setSort(getSort(listProvider.getSortingOptions(true)));
+  listProvider.setSort(getSort(listProvider.getSortingOptions()));
 
   listProvider.modes.cached = true;
   listProvider.getCached().then(list => {
@@ -263,7 +274,7 @@ const sortingOptions = computed(() => {
     title: option.title,
     meta: {
       icon: option.icon,
-      child: option.child,
+      asc: option.asc,
     },
   }));
 });

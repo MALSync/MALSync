@@ -27,7 +27,7 @@
           v-for="option in options"
           :key="option.value"
           class="dropdown-pop-default-element"
-          :class="{ active: option.value === picked }"
+          :class="{ active: compareFunc(option.value, picked) }"
           @click="select(option)"
         >
           <slot name="option" :option="option">
@@ -102,6 +102,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  compareFunc: {
+    type: Function as PropType<(el: string | number, picked: string | number) => boolean>,
+    default: (el: string | number, picked: string | number) => el.toString() === picked.toString(),
+  },
 });
 
 const emit = defineEmits(['update:modelValue', 'close:popper', 'open:popper']);
@@ -113,12 +117,12 @@ const select = (option: Option) => {
   open.value = false;
 };
 const currentTitle = computed(() => {
-  const active = props.options.find(el => el.value.toString() === picked.value.toString());
+  const active = props.options.find(el => props.compareFunc(el.value, picked.value));
   if (!active) return props.placeholder;
   return active.title || active.label;
 });
 const currentMeta = computed(() => {
-  const active = props.options.find(el => el.value.toString() === picked.value.toString());
+  const active = props.options.find(el => props.compareFunc(el.value, picked.value));
   if (!active) return {};
   return active.meta;
 });
