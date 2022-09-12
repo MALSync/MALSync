@@ -28,6 +28,9 @@ const routes: Array<RouteRecordRaw> = [
     path: '/:type/:slug',
     name: 'Overview',
     component: Overview,
+    meta: {
+      key: true,
+    },
   },
   {
     path: '/settings/:path*',

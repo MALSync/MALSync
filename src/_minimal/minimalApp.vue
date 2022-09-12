@@ -4,9 +4,16 @@
   <NavBar />
   <div class="content">
     <router-view v-slot="{ Component, route }">
-      <transition name="fade">
-        <keep-alive max="5">
-          <component :is="Component" v-bind="route.params" />
+      <transition
+        :name="route.meta.transition as string || 'fade'"
+        :duration="route.meta.duration as number || 0"
+      >
+        <keep-alive max="5" :exclude="['overview']">
+          <component
+            :is="Component"
+            v-bind="route.params"
+            :key="route.meta.key ? route.path : undefined"
+          />
         </keep-alive>
       </transition>
     </router-view>
