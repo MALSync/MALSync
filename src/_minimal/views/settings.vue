@@ -28,13 +28,18 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed, PropType, watch } from 'vue';
+
 import { structure, ConfObj } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
 import TextIcon from '../components/text-icon.vue';
 
-const route = useRoute();
+const props = defineProps({
+  path: {
+    type: Array as PropType<string[]>,
+    default: () => [],
+  },
+});
 
 const followPath = (
   paths: string[],
@@ -67,7 +72,7 @@ const followPath = (
   return followPath(paths, tempStruct.children, currentPath, tempStruct);
 };
 const components = computed(() => {
-  return followPath(route.params.path as string[], structure);
+  return followPath(props.path as string[], structure);
 });
 
 watch(

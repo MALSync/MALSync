@@ -54,13 +54,13 @@
       <OverviewUpdateUi
         :single="singleRequest.data"
         :loading="totalLoading || singleRequest.loading"
-        :type="route.params.type as 'anime'"
+        :type="props.type as 'anime'"
       />
     </Section>
     <HR />
     <Section class="stream-section">
       <OverviewStreaming
-        :type="route.params.type as 'anime'"
+        :type="props.type as 'anime'"
         :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : null"
         :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
         :alternative-title="metaRequest.data?.alternativeTitle"
@@ -100,9 +100,9 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from 'vue';
+import { computed, PropType, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { Path, pathToUrl } from '../../utils/slugs';
+import { pathToUrl } from '../../utils/slugs';
 import { getOverview } from '../../_provider/metaDataFactory';
 import { createRequest } from '../utils/reactive';
 import OverviewImage from '../components/overview/overview-image.vue';
@@ -135,9 +135,20 @@ const open404 = () => {
   });
 };
 
+const props = defineProps({
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+  },
+});
+
 const url = computed(() => {
   try {
-    return route.params.slug ? pathToUrl(route.params as Path) : '';
+    return props.slug ? pathToUrl(props) : '';
   } catch (error) {
     con.error(error);
     open404();
@@ -147,7 +158,7 @@ const url = computed(() => {
 
 const parameters = ref({
   url,
-  type: route.params.type as 'anime' | 'manga',
+  type: props.type as 'anime' | 'manga',
 });
 
 const metaRequest = createRequest(parameters, async param => {

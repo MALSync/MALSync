@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { PropType, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { setTypeContext } from '../utils/state';
 import { createRequest } from '../utils/reactive';
@@ -62,8 +62,16 @@ import { getTyping } from '../components/nav/nav-search-state';
 
 const route = useRoute();
 const router = useRouter();
+
+const props = defineProps({
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    required: true,
+  },
+});
+
 const result = ref(route.query.s ? route.query.s.toString() : '');
-const type = ref(route.params.type.toString() as 'anime' | 'manga');
+const type = ref(props.type.toString() as 'anime' | 'manga');
 const parameters = ref({ result, type });
 
 const listRequest = createRequest(parameters, async param => {
@@ -72,9 +80,9 @@ const listRequest = createRequest(parameters, async param => {
 });
 
 watch(
-  () => route.params.type,
+  () => props.type,
   value => {
-    if (route.name === 'Search') type.value = value.toString() as 'anime' | 'manga';
+    type.value = value.toString() as 'anime' | 'manga';
   },
 );
 

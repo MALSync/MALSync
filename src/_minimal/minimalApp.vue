@@ -3,10 +3,10 @@
   <MediaModal />
   <NavBar />
   <div class="content">
-    <router-view v-slot="{ Component }">
+    <router-view v-slot="{ Component, route }">
       <transition name="fade">
         <keep-alive max="5">
-          <component :is="Component" />
+          <component :is="Component" v-bind="route.params" />
         </keep-alive>
       </transition>
     </router-view>

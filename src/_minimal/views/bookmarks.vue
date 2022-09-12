@@ -93,8 +93,17 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import {
+  computed,
+  onActivated,
+  onDeactivated,
+  onMounted,
+  onUnmounted,
+  PropType,
+  ref,
+  watch,
+} from 'vue';
+import { useRouter } from 'vue-router';
 import Spinner from '../components/spinner.vue';
 import FormSwitch from '../components/form/form-switch.vue';
 import { setStateContext, setTypeContext } from '../utils/state';
@@ -112,18 +121,29 @@ import ErrorBookmarks from '../components/error/error-bookmarks.vue';
 import Empty from '../components/empty.vue';
 import TextIcon from '../components/text-icon.vue';
 
-const route = useRoute();
 const router = useRouter();
+
+const props = defineProps({
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    default: 'anime',
+  },
+  state: {
+    type: String,
+    default: '2',
+  },
+});
+
 const parameters = ref({
-  state: Number(route.params.state),
-  type: route.params.type as 'anime' | 'manga',
+  state: Number(props.state),
+  type: props.type as 'anime' | 'manga',
 });
 const cacheList = ref([] as listElement[]);
 
 watch(
-  () => route.params.type,
+  () => props.type,
   value => {
-    if (route.name === 'Bookmarks') parameters.value.type = value as 'anime' | 'manga';
+    parameters.value.type = value as 'anime' | 'manga';
   },
 );
 watch(
@@ -135,9 +155,9 @@ watch(
 );
 
 watch(
-  () => route.params.state,
+  () => props.state,
   value => {
-    if (route.name === 'Bookmarks') parameters.value.state = Number(value);
+    parameters.value.state = Number(value);
     if (value) setStateContext(Number(value));
   },
 );
