@@ -78,6 +78,10 @@ const width = computed(() => {
   if (props.type === 'mini') return '0';
   return `${minWidth.value}px`;
 });
+
+const textWidth = computed(() => {
+  return `${(picked.value + props.suffix).trim().length + 1}ch`;
+});
 </script>
 
 <style lang="less" scoped>
@@ -157,6 +161,11 @@ const width = computed(() => {
     height: auto;
     .text-input {
       width: 70px;
+    }
+
+    &.noFocus {
+      min-width: v-bind(textWidth);
+      text-align: center;
     }
   }
 }

@@ -21,7 +21,6 @@
               </div>
             </template>
           </FormDropdown>
-          <OverviewImageLanguage :single="single" />
         </div>
       </div>
       <div class="progress-select">
@@ -31,9 +30,16 @@
             <FormText
               v-model="episode"
               type="mini"
-              :suffix="`/${single.getTotalEpisodes() || '?'}`"
+              :suffix="`/${single.getTotalEpisodes() || '? '}`"
             />
-            <span class="label">+</span>
+            <OverviewImageLanguage :single="single" />
+            <span
+              v-show="!(single.getTotalEpisodes() && Number(episode) === single.getTotalEpisodes())"
+              class="label increase"
+              @click="episode = String(Number(episode) + 1)"
+            >
+              +
+            </span>
           </div>
           <FormSlider
             v-model="episode"
@@ -53,7 +59,13 @@
               type="mini"
               :suffix="`/${single.getTotalVolumes() || '?'}`"
             />
-            <span class="label">+</span>
+            <span
+              v-show="!(single.getTotalVolumes() && Number(volume) === single.getTotalVolumes())"
+              class="label increase"
+              @click="volume = String(Number(volume) + 1)"
+            >
+              +
+            </span>
           </div>
           <FormSlider
             v-model="volume"
@@ -295,5 +307,11 @@ const episodeLang = utils.episode;
       visibility: hidden;
     }
   }
+}
+
+.increase {
+  .click-move-down();
+  .link();
+  .block-select();
 }
 </style>
