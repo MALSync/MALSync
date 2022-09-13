@@ -21,9 +21,31 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted, onUnmounted, provide, ref } from 'vue';
 import Theming from './components/theming.vue';
 import NavBar from './components/nav/nav-bar.vue';
 import MediaModal from './components/media/media-modal.vue';
+
+const breakpoint = ref('desktop' as 'desktop' | 'mobile');
+
+function setBreakpoint() {
+  if (window.innerWidth < 900) {
+    breakpoint.value = 'mobile';
+  } else {
+    breakpoint.value = 'desktop';
+  }
+}
+setBreakpoint();
+
+onMounted(() => {
+  window.addEventListener('resize', setBreakpoint);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('resize', setBreakpoint);
+});
+
+provide('breakpoint', breakpoint);
 </script>
 
 <style lang="less">

@@ -40,7 +40,7 @@
         </TextScroller>
       </Section>
       <Section class="description-section">
-        <Description :loading="totalLoading" height="dynamic">
+        <Description :loading="totalLoading" :height="breakpoint === 'desktop' ? 'dynamic' : 240">
           <div
             v-dompurify-html="cleanDescription"
             class="description-html"
@@ -100,7 +100,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType, reactive, ref, watch } from 'vue';
+import { computed, inject, PropType, reactive, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { pathToUrl } from '../../utils/slugs';
 import { getOverview } from '../../_provider/metaDataFactory';
@@ -122,6 +122,8 @@ import HR from '../components/hr.vue';
 import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
 import MediaLink from '../components/media-link.vue';
+
+const breakpoint = inject('breakpoint');
 
 const route = useRoute();
 const router = useRouter();
