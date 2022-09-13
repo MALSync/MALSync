@@ -1,7 +1,7 @@
 <template>
-  <div class="head">
+  <div class="head" :class="{ loading }">
     <MediaLink :href="href" class="img">
-      <ImageLazy :src="image" class="img-el" />
+      <ImageLazy v-if="!loading" :src="image" class="img-el" />
     </MediaLink>
     <div class="info">
       <slot />
@@ -22,14 +22,19 @@ defineProps({
     type: String,
     default: '',
   },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
 });
 </script>
 
 <style lang="less" scoped>
+@import '../less/_globals.less';
+
 .head {
   display: flex;
   gap: 20px;
-  margin-bottom: 20px;
   .img {
     width: 100px;
     height: 100px;
@@ -46,6 +51,10 @@ defineProps({
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+
+  &.loading .img {
+    .skeleton-img();
   }
 }
 </style>

@@ -1,7 +1,36 @@
 <template>
-  <div>
+  <div :class="{ stopLoading: !metaRequest.loading }">
     <Header :spacer="true">{{ lang('minimalApp_Reviews') }}</Header>
-    <div v-if="!metaRequest.loading && metaRequest.data" class="grid">
+    <Card
+      v-if="metaRequest.loading || (!metaRequest.loading && !parameters.load && !metaRequest.cache)"
+      class="grid"
+      @click="temp = !temp"
+    >
+      <div class="loading-placeholder">
+        <ImageText href="" image="" :loading="true">
+          <Header class="skeleton-text">
+            <MediaLink href=""></MediaLink>
+          </Header>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+        </ImageText>
+        <div v-if="metaRequest.loading" class="text">
+          <Description :loading="true" :height="150"></Description>
+        </div>
+        <div class="load-button">
+          <FormButton
+            v-if="!metaRequest.loading"
+            padding="large"
+            color="secondary"
+            @click="parameters.load = true"
+          >
+            {{ lang('Load') }}
+          </FormButton>
+        </div>
+      </div>
+    </Card>
+    <div v-if="!metaRequest.loading && metaRequest.data && metaRequest.data.length" class="grid">
       <Pagination :entries-per-page="3" :elements="metaRequest.data">
         <template #elements="{ elements }">
           <Section v-for="(review, index) in elements" :key="review.user.name">
@@ -19,18 +48,15 @@
               </div>
             </ImageText>
             <div class="text">
-              <Description>{{ review.body.text }}</Description>
+              <Description :height="150">{{ review.body.text }}</Description>
             </div>
           </Section>
         </template>
       </Pagination>
     </div>
     <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
-      <Empty :card="true"/>
+      <Empty :card="true" />
     </Section>
-    <div v-if="!metaRequest.loading && !parameters.load && !metaRequest.cache">
-      <FormButton @click="parameters.load = true"> {{ lang('Load') }} </FormButton>
-    </div>
   </div>
 </template>
 
@@ -47,6 +73,9 @@ import Pagination from '../pagination.vue';
 import ImageText from '../image-text.vue';
 import HR from '../hr.vue';
 import Empty from '../empty.vue';
+import Card from '../card.vue';
+
+const temp = ref(true);
 
 const props = defineProps({
   malUrl: {
@@ -78,11 +107,38 @@ watch(
 </script>
 
 <style lang="less" scoped>
+@import '../../less/_globals.less';
+
 .text {
   white-space: pre-line;
 }
 
 .grid {
-  padding: 0 10px;
+  padding: 10px !important;
+}
+
+.text {
+  margin-top: @spacer-half;
+}
+
+.skeleton-text {
+  .skeleton-text();
+
+  color: transparent;
+}
+
+.loading-placeholder {
+  position: relative;
+  .load-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+  }
+}
+
+.stopLoading {
+  --cl-loading: 0;
 }
 </style>
