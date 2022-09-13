@@ -32,8 +32,8 @@
           <span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
-      <Section v-if="metaRequest.data?.statistics?.length && false" spacer="half">
-        <TextScroller class="stats">
+      <Section v-if="metaRequest.data?.statistics?.length || metaRequest.loading" spacer="half">
+        <TextScroller class="stats" :loading="metaRequest.loading">
           <span v-for="stat in metaRequest.data!.statistics" :key="stat.title" class="stats-block">
             {{ stat.title }} <span class="value">{{ stat.body }}</span>
           </span>

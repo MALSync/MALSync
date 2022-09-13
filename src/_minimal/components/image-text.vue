@@ -38,6 +38,7 @@ defineProps({
   .img {
     width: 100px;
     height: 100px;
+    min-width: 100px;
     border-radius: 50%;
     overflow: hidden;
     &-el {
@@ -53,8 +54,13 @@ defineProps({
     justify-content: space-around;
   }
 
-  &.loading .img {
-    .skeleton-img();
+  &.loading {
+    .img {
+      .skeleton-img();
+    }
+    .info {
+      overflow: hidden;
+    }
   }
 }
 </style>

@@ -1,6 +1,7 @@
 <template>
   <h4 class="header" :class="{ loading, spacer }">
     <template v-if="!loading"><slot /></template>
+    <span v-else class="loading-placeholder"></span>
   </h4>
 </template>
 
@@ -25,12 +26,12 @@ defineProps({
 
   margin-bottom: 0;
 
-  &.loading {
-    .skeleton-text();
-  }
-
   &.spacer {
     margin-bottom: @spacer;
   }
+}
+
+.loading-placeholder {
+  .skeleton-text();
 }
 </style>

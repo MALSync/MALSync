@@ -1,9 +1,19 @@
 <template>
-  <div class="horizontal-scroller" :class="{ open }" @click="open = !open"><slot /></div>
+  <div class="horizontal-scroller" :class="{ open, loading }" @click="open = !open">
+    <slot v-if="!loading" />
+    <div v-else class="loading-placeholder"></div>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+
+defineProps({
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+});
 
 const open = ref(false);
 </script>
@@ -41,5 +51,15 @@ const open = ref(false);
     /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-mask-image: none;
   }
+
+  &.loading {
+    width: 20em;
+  }
+}
+
+.loading-placeholder {
+  .skeleton-text();
+
+  height: 1.3em;
 }
 </style>
