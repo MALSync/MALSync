@@ -16,7 +16,7 @@
       <router-link to="/settings" class="link">
         <span class="material-icons">settings</span>
       </router-link>
-      <span class="material-icons">close</span>
+      <span class="material-icons link" @click="closeWindow()">close</span>
     </div>
   </div>
 </template>
@@ -45,6 +45,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('scroll', scrollEvent);
 });
+
+const closeWindow = () => {
+  window.close();
+};
 </script>
 
 <style lang="less" scoped>
@@ -72,6 +76,7 @@ onUnmounted(() => {
 
   .link {
     .click-move-down();
+    .link();
   }
 
   .material-icons {
