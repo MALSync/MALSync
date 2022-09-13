@@ -1,5 +1,8 @@
 <template>
-  <div class="description" :class="{ close: !open && overflow, loading }">
+  <div
+    class="description"
+    :class="{ close: !open && overflow, loading, dynamic: height === 'dynamic' }"
+  >
     <template v-if="!loading">
       <div ref="inner" class="open-gradient">
         <slot></slot>
@@ -22,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, Ref, ref, watch } from 'vue';
+import { computed, onMounted, PropType, Ref, ref, watch } from 'vue';
 
 import FormButton from './form/form-button.vue';
 
@@ -30,6 +33,10 @@ const props = defineProps({
   loading: {
     type: Boolean,
     default: false,
+  },
+  height: {
+    type: [Number, String] as PropType<number | 'dynamic'>,
+    default: 240,
   },
 });
 
@@ -45,6 +52,11 @@ const calcOverflow = () => {
     overflow.value = Boolean(scrollHeight > clientHeight);
   }
 };
+
+const heightStyle = computed(() => {
+  if (props.height === 'dynamic') return 'auto';
+  return `${props.height}px`;
+});
 
 onMounted(() => {
   calcOverflow();
@@ -80,7 +92,7 @@ watch(inner, () => calcOverflow());
     overflow: hidden;
 
     .open-gradient {
-      max-height: 240px;
+      max-height: v-bind(heightStyle);
       mask-image: linear-gradient(180deg, #000 60%, transparent);
       /* stylelint-disable-next-line property-no-vendor-prefix */
       -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
@@ -89,9 +101,11 @@ watch(inner, () => calcOverflow());
 
   &.loading {
     .skeleton-text-block();
+
+    height: v-bind(heightStyle);
   }
 
-  .__breakpoint-desktop__({
+  &.dynamic {
     height: 100%;
     min-height: 150px;
     position: relative;
@@ -100,6 +114,6 @@ watch(inner, () => calcOverflow());
       height: 100%;
       position: absolute;
     }
-  });
+  }
 }
 </style>

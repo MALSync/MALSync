@@ -36,6 +36,8 @@ defineProps({
   &.loading {
     .skeleton-text-block();
 
+    min-height: 200px;
+
     &.none {
       margin-bottom: @spacer;
     }

@@ -301,8 +301,6 @@ const episodeLang = utils.episode;
   &.loading {
     .skeleton-text-block();
 
-    height: auto;
-
     * {
       visibility: hidden;
     }

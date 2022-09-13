@@ -40,7 +40,7 @@
         </TextScroller>
       </Section>
       <Section class="description-section">
-        <Description :loading="totalLoading">
+        <Description :loading="totalLoading" height="dynamic">
           <div
             v-dompurify-html="cleanDescription"
             class="description-html"
