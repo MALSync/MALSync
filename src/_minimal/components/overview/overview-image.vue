@@ -18,7 +18,7 @@
         </template>
         <template #left>
           <MediaLink :href="streaming.continueUrl">
-            {{ lang(`overview_Continue_${single?.getType()}`) }} <span class="arrow">→</span>
+            {{ lang(`overview_Continue_${single?.getType()}`) }} <Arrow />
           </MediaLink>
         </template>
       </PillSplit>
@@ -37,6 +37,7 @@ import Modal from '../modal.vue';
 import PillSplit from '../pill-split.vue';
 import MediaLink from '../media-link.vue';
 import MediaPillProgress from '../media/media-pill-progress.vue';
+import Arrow from '../arrow.vue';
 
 const props = defineProps({
   src: {
@@ -142,10 +143,6 @@ const progress = computed(() => {
   .img-icons {
     width: 18px;
     height: 18px;
-  }
-
-  .arrow {
-    font-family: sans-serif;
   }
 
   .stream-link {

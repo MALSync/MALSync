@@ -7,7 +7,7 @@
       <div class="top-text">
         <MediaLink v-if="item.streamUrl" :href="item.streamUrl" class="stream">
           <TextIcon :src="item.streamIcon">
-            {{ lang(`overview_Continue_${item.type}`) }} →
+            <span class="stream-text">{{ lang(`overview_Continue_${item.type}`) }} <Arrow /></span>
           </TextIcon>
         </MediaLink>
         <div v-if="item.progressText" class="time">
@@ -42,12 +42,12 @@ import { PropType } from 'vue';
 import { bookmarkItem } from '../../minimalClass';
 import ImageLazy from '../image-lazy.vue';
 import MediaLink from '../media-link.vue';
-import Header from '../header.vue';
 import MediaBar from '../media/media-bar.vue';
 import MediaTotalEpisode from '../media/media-total-episode.vue';
 import MediaProgress from '../media/media-progress.vue';
 import TextIcon from '../text-icon.vue';
 import DynamicFont from '../dynamic-font.vue';
+import Arrow from '../arrow.vue';
 
 defineProps({
   item: {
@@ -167,6 +167,12 @@ defineProps({
     }
   }
 }
+
+.__breakpoint-small__( {
+  .stream-text {
+    display: none;
+  }
+});
 
 .empty,
 .error {

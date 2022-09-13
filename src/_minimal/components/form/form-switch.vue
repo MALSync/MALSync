@@ -60,7 +60,8 @@ const id = Math.floor(Math.random() * 10000);
   .border-pill();
 
   border: 2px solid var(--cl-backdrop);
-  display: inline-block;
+  display: inline-flex;
+  align-items: stretch;
   padding: 0;
 
   .label {
