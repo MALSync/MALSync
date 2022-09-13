@@ -1,5 +1,5 @@
 <template>
-  <component :is="card ? Card : 'div'" class="empty-block" :class="{ card }">
+  <component :is="card ? Card : 'div'" class="empty-block" :class="{ cardMode: card }">
     <div class="material-icons icon">{{ icon }}</div>
     <div class="text">{{ text }}</div>
   </component>
@@ -41,5 +41,8 @@ defineProps({
 
 .text {
   .header-normal();
+}
+.cardMode {
+  color: var(--cl-text);
 }
 </style>
