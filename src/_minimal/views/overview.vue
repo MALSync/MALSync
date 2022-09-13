@@ -32,7 +32,7 @@
           <span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
-      <Section v-if="metaRequest.data?.statistics?.length" spacer="half">
+      <Section v-if="metaRequest.data?.statistics?.length && false" spacer="half">
         <TextScroller class="stats">
           <span v-for="stat in metaRequest.data!.statistics" :key="stat.title" class="stats-block">
             {{ stat.title }} <span class="value">{{ stat.body }}</span>
@@ -40,7 +40,11 @@
         </TextScroller>
       </Section>
       <Section class="description-section">
-        <Description :loading="totalLoading" :height="breakpoint === 'desktop' ? 'dynamic' : 240">
+        <Description
+          :loading="totalLoading"
+          :height="breakpoint === 'desktop' ? 'dynamic' : 240"
+          :fade="breakpoint === 'mobile'"
+        >
           <div
             v-dompurify-html="cleanDescription"
             class="description-html"
@@ -49,53 +53,55 @@
         </Description>
       </Section>
     </div>
-    <HR class="header-split" />
-    <Section class="update-section">
+    <HR v-if="breakpoint === 'desktop' || !totalLoading" class="header-split" />
+    <Section v-if="breakpoint === 'desktop' || !totalLoading" class="update-section">
       <OverviewUpdateUi
         :single="singleRequest.data"
         :loading="totalLoading || singleRequest.loading"
-        :type="props.type as 'anime'"
+        :type="props.type"
       />
     </Section>
-    <HR />
-    <Section class="stream-section">
-      <OverviewStreaming
-        :type="props.type as 'anime'"
-        :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : null"
-        :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
-        :alternative-title="metaRequest.data?.alternativeTitle"
-      />
-    </Section>
-    <HR v-if="!totalLoading" />
-    <Section :loading="totalLoading" class="additional-content" spacer="none">
-      <template v-if="metaRequest.data?.related?.length">
-        <Section>
-          <OverviewRelated :related="metaRequest.data!.related" />
-        </Section>
-        <HR />
-      </template>
-      <template v-if="metaRequest.data?.characters?.length">
-        <Section>
-          <OverviewCharacters :characters="metaRequest.data!.characters" />
-        </Section>
-        <HR />
-      </template>
-      <template v-if="singleRequest.data?.getMalUrl()">
-        <Section>
-          <OverviewReviews :mal-url="singleRequest.data!.getMalUrl()!" />
-        </Section>
-        <HR />
-      </template>
-      <template v-if="singleRequest.data?.getMalUrl()">
-        <Section>
-          <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
-        </Section>
-      </template>
-    </Section>
-    <HR />
-    <Section v-if="metaRequest.data" class="info-section" :loading="totalLoading">
-      <OverviewInfo :info="metaRequest.data!.info" />
-    </Section>
+    <template v-if="breakpoint === 'desktop' || (!totalLoading && !singleRequest.loading)">
+      <HR />
+      <Section class="stream-section">
+        <OverviewStreaming
+          :type="props.type as 'anime'"
+          :cache-key="singleRequest.data && !totalLoading ? singleRequest.data!.getCacheKey() : null"
+          :title="singleRequest.data ? singleRequest.data!.getTitle() : ''"
+          :alternative-title="metaRequest.data?.alternativeTitle"
+        />
+      </Section>
+      <HR v-if="!totalLoading" />
+      <Section :loading="totalLoading" class="additional-content" spacer="none">
+        <template v-if="metaRequest.data?.related?.length">
+          <Section>
+            <OverviewRelated :related="metaRequest.data!.related" />
+          </Section>
+          <HR />
+        </template>
+        <template v-if="metaRequest.data?.characters?.length">
+          <Section>
+            <OverviewCharacters :characters="metaRequest.data!.characters" />
+          </Section>
+          <HR />
+        </template>
+        <template v-if="singleRequest.data?.getMalUrl()">
+          <Section>
+            <OverviewReviews :mal-url="singleRequest.data!.getMalUrl()!" />
+          </Section>
+          <HR />
+        </template>
+        <template v-if="singleRequest.data?.getMalUrl()">
+          <Section>
+            <OverviewRecommendations :mal-url="singleRequest.data!.getMalUrl()!" />
+          </Section>
+        </template>
+      </Section>
+      <HR />
+      <Section v-if="metaRequest.data" class="info-section" :loading="totalLoading">
+        <OverviewInfo :info="metaRequest.data!.info" />
+      </Section>
+    </template>
   </div>
 </template>
 

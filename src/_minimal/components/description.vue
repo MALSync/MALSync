@@ -1,7 +1,7 @@
 <template>
   <div
     class="description"
-    :class="{ close: !open && overflow, loading, dynamic: height === 'dynamic' }"
+    :class="{ close: !open && overflow, loading, fade, dynamic: height === 'dynamic' }"
   >
     <template v-if="!loading">
       <div ref="inner" class="open-gradient">
@@ -31,6 +31,10 @@ import FormButton from './form/form-button.vue';
 
 const props = defineProps({
   loading: {
+    type: Boolean,
+    default: false,
+  },
+  fade: {
     type: Boolean,
     default: false,
   },
@@ -103,6 +107,10 @@ watch(inner, () => calcOverflow());
     .skeleton-text-block();
 
     height: v-bind(heightStyle);
+
+    &.fade {
+      .skeleton-text-block-fade();
+    }
   }
 
   &.dynamic {
