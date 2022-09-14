@@ -208,6 +208,7 @@ export abstract class SingleAbstract {
         xhr,
       })
       .then(progress => {
+        this.updateProgress = false;
         this.progress = progress;
         this.progressXhr = xhr;
       });
@@ -427,7 +428,10 @@ export abstract class SingleAbstract {
   }
 
   public isDirty(): boolean {
-    return JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl());
+    return (
+      JSON.stringify(this.persistanceState) !== JSON.stringify(this.getStateEl()) ||
+      this.updateProgress
+    );
   }
 
   public undo(): Promise<void> {

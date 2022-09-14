@@ -101,17 +101,17 @@
         Add
       </div>
       <template v-else>
-        <div class="update-button">
+        <div v-if="single.isDirty()" class="update-button">
           <span class="material-icons">cloud_upload</span>
           Update
+        </div>
+        <div v-else class="update-button">
+          <span class="material-icons">cloud_download</span>
+          Synchronize
         </div>
         <div class="update-button">
           <span class="material-icons">remove_circle_outline</span>
           Remove
-        </div>
-        <div class="update-button">
-          <span class="material-icons">cloud_download</span>
-          Synchronize
         </div>
       </template>
     </div>
@@ -243,7 +243,7 @@ const episodeLang = utils.episode;
     align-items: center;
 
     .__breakpoint-desktop__({
-      min-height: 75px;
+      min-height: 45px;
     });
 
     .update-button {
