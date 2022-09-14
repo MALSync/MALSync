@@ -553,6 +553,7 @@ module.exports = {
       '*://fraudclatterflyingcar.com/e/*',
       '*://bigclatterhomesguideservice.com/e/*',
       '*://uptodatefinishconferenceroom.com/*',
+      '*://realfinanceblogcenter.com/e/*',
     ],
   },
   // animewho
