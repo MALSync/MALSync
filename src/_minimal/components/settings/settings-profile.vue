@@ -55,6 +55,7 @@ const profileRequest = createRequest(
   },
   {
     cache: {
+      prefix: 'settings-profile',
       ttl: 10 * 1000,
       refetchTtl: 60 * 60 * 1000,
       keyFn: params => {

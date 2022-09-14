@@ -8,7 +8,12 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
   parameter: Ref<Parameter<F>>,
   fn: F,
   options: {
-    cache?: { ttl: number; refetchTtl: number; keyFn?: (param: Ref<Parameter<F>>) => string };
+    cache?: {
+      prefix: string;
+      ttl: number;
+      refetchTtl: number;
+      keyFn?: (param: Ref<Parameter<F>>) => string;
+    };
     executeCondition?: (param: Ref<Parameter<F>>) => boolean;
     keepData?: boolean;
   } = {},
@@ -36,7 +41,8 @@ export function createRequest<F extends (arg: any) => Promise<any>>(
     let cache;
     if (options.cache) {
       cache = new Cache(
-        options.cache.keyFn ? options.cache.keyFn(params) : JSON.stringify(params.value),
+        options.cache.prefix +
+          (options.cache.keyFn ? options.cache.keyFn(params) : JSON.stringify(params.value)),
         options.cache.ttl,
         true,
         options.cache.refetchTtl,

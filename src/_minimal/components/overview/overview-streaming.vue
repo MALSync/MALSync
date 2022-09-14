@@ -89,6 +89,7 @@ const streamRequest = createRequest(
   },
   {
     cache: {
+      prefix: 'overview-streaming',
       ttl: 10 * 1000,
       refetchTtl: 7 * 24 * 60 * 60 * 1000,
     },

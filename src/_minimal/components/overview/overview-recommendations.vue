@@ -104,6 +104,7 @@ const parameters = ref({
 const metaRequest = createRequest(parameters, params => recommendationsMeta(params.value.url), {
   executeCondition: params => params.value.load && params.value.url,
   cache: {
+    prefix: 'overview-recommendations',
     ttl: 7 * 24 * 60 * 60 * 1000,
     refetchTtl: 7 * 24 * 60 * 60 * 1000,
     keyFn: params => params.value.url,
