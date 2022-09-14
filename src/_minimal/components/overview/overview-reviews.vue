@@ -4,7 +4,6 @@
     <Card
       v-if="metaRequest.loading || (!metaRequest.loading && !parameters.load && !metaRequest.cache)"
       class="grid"
-      @click="temp = !temp"
     >
       <div class="loading-placeholder">
         <ImageText href="" image="" :loading="true">
@@ -74,8 +73,6 @@ import ImageText from '../image-text.vue';
 import HR from '../hr.vue';
 import Empty from '../empty.vue';
 import Card from '../card.vue';
-
-const temp = ref(true);
 
 const props = defineProps({
   malUrl: {
