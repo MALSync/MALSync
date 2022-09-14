@@ -1,6 +1,6 @@
 <template>
   <div class="update-ui" :class="{ loading }">
-    <div :class="{ notOnList: !single?.isOnList() || false }">
+    <div class="form-section" :class="{ notOnList: !single?.isOnList() || false }">
       <div class="list-select">
         <div v-if="single" class="label-row">
           <span class="label">{{ lang('UI_Status') }}</span>
@@ -245,12 +245,15 @@ const episodeLang = utils.episode;
     min-height: 60px;
   }
   .score-select {
-    margin-bottom: @spacer-half;
     min-height: 60px;
   }
   .volume-select {
     margin-bottom: @spacer-half;
     min-height: 60px;
+  }
+
+  .form-section {
+    margin-bottom: @spacer-half;
   }
 
   .update-buttons {
@@ -260,7 +263,7 @@ const episodeLang = utils.episode;
     align-items: center;
 
     .__breakpoint-desktop__({
-      min-height: 45px;
+      min-height: 48px;
     });
 
     .update-button {
@@ -316,10 +319,12 @@ const episodeLang = utils.episode;
   }
 
   &.loading {
-    .skeleton-text-block();
-
-    * {
-      visibility: hidden;
+    .form-section,
+    .update-buttons {
+      .skeleton-text-block();
+      * {
+        visibility: hidden;
+      }
     }
   }
 }
