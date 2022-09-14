@@ -4,6 +4,8 @@
   Manga = "manga"
 } */
 
+import { Component } from 'vue';
+
 export type contentType = 'anime' | 'manga';
 
 export enum status {
@@ -58,3 +60,12 @@ export type searchInterface = (
   options?: {},
   sync?: boolean,
 ) => Promise<searchResult[]>;
+
+export interface ConfObj {
+  key: string;
+  title: string;
+  component: Component;
+  condition?: () => boolean;
+  props?: { [key: string]: any };
+  children?: ConfObj[];
+}
