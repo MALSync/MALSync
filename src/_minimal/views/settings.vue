@@ -30,9 +30,10 @@
 <script lang="ts" setup>
 import { computed, PropType, watch } from 'vue';
 
-import { structure, ConfObj } from '../components/settings/settings-structure';
+import { structure } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
 import TextIcon from '../components/text-icon.vue';
+import { ConfObj } from '../../_provider/definitions';
 
 const props = defineProps({
   path: {

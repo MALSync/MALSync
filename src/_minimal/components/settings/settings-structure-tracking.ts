@@ -1,7 +1,22 @@
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
+import SettingsLogin from './settings-login.vue';
 
 export const tracking: ConfObj[] = [
+  {
+    key: 'login',
+    title: 'Login',
+    component: SettingsLogin,
+  },
+  {
+    key: 'login',
+    title: 'Login',
+    condition: () => api.settings.get('syncMode') === 'SIMKL',
+    props: {
+      option: 'syncModeSimkl',
+    },
+    component: SettingsLogin,
+  },
   {
     key: 'syncMode',
     title: api.storage.lang('settings_Mode'),

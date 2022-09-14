@@ -15,7 +15,11 @@
         :meta="currentMeta"
       >
         <FormButton :tabindex="-1" :animation="false">
-          <TextIcon :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" position="after">
+          <TextIcon
+            :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+            position="after"
+            class="icon-text"
+          >
             {{ currentTitle }}
           </TextIcon>
         </FormButton>
@@ -171,6 +175,11 @@ watch(open, value => {
     &.animate {
       .click-move-down();
     }
+  }
+
+  .icon-text {
+    display: flex;
+    align-items: center;
   }
 
   .dropdown-pop {
