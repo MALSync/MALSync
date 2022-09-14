@@ -1,5 +1,5 @@
 <template>
-  <div class="update-ui" :class="{ loading }">
+  <div class="update-ui" :class="{ loading, singleLoading }">
     <div class="form-section" :class="{ notOnList: !single?.isOnList() || false }">
       <div class="list-select">
         <div v-if="single" class="label-row">
@@ -105,20 +105,20 @@
       </div>
     </div>
     <div class="update-buttons">
-      <div v-if="!single?.isOnList() || false" class="update-button add">
+      <div v-if="!single?.isOnList() || false" class="update-button add" @click="sync()">
         <span class="material-icons">bookmark_add</span>
         Add
       </div>
       <template v-else>
-        <div v-if="single.isDirty()" class="update-button">
+        <div v-if="single.isDirty()" class="update-button" @click="sync()">
           <span class="material-icons">cloud_upload</span>
           Update
         </div>
-        <div v-else class="update-button">
+        <div v-else class="update-button" @click="update()">
           <span class="material-icons">cloud_download</span>
           Synchronize
         </div>
-        <div class="update-button">
+        <div class="update-button" @click="remove()">
           <span class="material-icons">remove_circle_outline</span>
           Remove
         </div>
@@ -128,7 +128,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType } from 'vue';
+import { computed, PropType, ref } from 'vue';
 import { SingleAbstract } from '../../../_provider/singleAbstract';
 import FormText from '../form/form-text.vue';
 import FormDropdown from '../form/form-dropdown.vue';
@@ -137,6 +137,8 @@ import StateDot from '../state-dot.vue';
 import FormButton from '../form/form-button.vue';
 import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 import OverviewImageLanguage from './overview-image-language.vue';
+
+const singleLoading = ref(false);
 
 const props = defineProps({
   single: {
@@ -222,6 +224,31 @@ const progress = computed(() => {
   if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
   return progressEl;
 });
+
+async function update() {
+  if (props.single) {
+    singleLoading.value = true;
+    await props.single.update();
+    singleLoading.value = false;
+  }
+}
+
+async function sync() {
+  if (props.single) {
+    singleLoading.value = true;
+    await props.single.sync();
+    await props.single.update();
+    singleLoading.value = false;
+  }
+}
+
+async function remove() {
+  if (props.single) {
+    singleLoading.value = true;
+    await props.single.delete();
+    singleLoading.value = false;
+  }
+}
 
 const episodeLang = utils.episode;
 </script>
@@ -320,6 +347,18 @@ const episodeLang = utils.episode;
 
   &.loading {
     .form-section,
+    .update-buttons {
+      .skeleton-text-block();
+      * {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &.singleLoading {
+    .form-section {
+      pointer-events: none;
+    }
     .update-buttons {
       .skeleton-text-block();
       * {
