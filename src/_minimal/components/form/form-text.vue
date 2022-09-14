@@ -15,7 +15,11 @@
       @focus="inFocus = true"
       @blur="inFocus = false"
     />
-    <span v-show="!inFocus" class="span-placeholder">{{ picked }}{{ picked ? suffix : '' }}</span>
+    <span v-show="!inFocus" class="span-placeholder">
+      <slot name="placeholder" :picked="picked" :suffix="suffix">
+        {{ picked }}{{ picked ? suffix : '' }}
+      </slot>
+    </span>
     <span v-if="clearIcon && picked" class="material-icons" @click="picked = ''">close</span>
   </label>
 </template>

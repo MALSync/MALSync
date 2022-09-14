@@ -31,7 +31,16 @@
               v-model="episode"
               type="mini"
               :suffix="`/${single.getTotalEpisodes() || '? '}`"
-            />
+            >
+              <template #placeholder="{ picked, suffix }">
+                <div class="progress-picked">
+                  {{ picked }}{{ picked ? suffix : '' }}
+                  <span v-if="progress" class="progress-pill">{{
+                    progress.getCurrentEpisode()
+                  }}</span>
+                </div>
+              </template>
+            </FormText>
             <OverviewImageLanguage :single="single" />
             <span
               v-show="!(single.getTotalEpisodes() && Number(episode) === single.getTotalEpisodes())"
@@ -206,6 +215,14 @@ const sortedOptions = (options: ScoreOption[]) => {
   return options.sort((a, b) => a.value - b.value);
 };
 
+const progress = computed(() => {
+  if (!props.single) return false;
+  const progressEl = props.single.getProgress();
+  if (!progressEl) return false;
+  if (!progressEl.isAiring() || !progressEl.getCurrentEpisode()) return false;
+  return progressEl;
+});
+
 const episodeLang = utils.episode;
 </script>
 
@@ -304,6 +321,21 @@ const episodeLang = utils.episode;
     * {
       visibility: hidden;
     }
+  }
+}
+
+.progress-picked {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+
+  .progress-pill {
+    font-size: 12px;
+    background-color: var(--cl-primary);
+    color: white;
+    padding: 0 5px;
+    border-radius: 5px;
   }
 }
 
