@@ -150,6 +150,14 @@ export async function getEntry(
   return table.get(uid);
 }
 
+export async function getEntryByMalId(
+  type: 'anime' | 'manga',
+  malId: number,
+): Promise<undefined | Entry> {
+  const table = type === 'anime' ? db.table('anime') : db.table('manga');
+  return table.get({ malId });
+}
+
 export async function removeEntry(type: 'anime' | 'manga', uid: number | string) {
   const table = type === 'anime' ? db.table('anime') : db.table('manga');
   return table.where('uid').equals(uid).delete();
@@ -166,6 +174,9 @@ export async function databaseRequest(call: string, param: any) {
     case 'entry':
       indexUpdate();
       return getEntry(param.type, param.id);
+    case 'entryByMalId':
+      indexUpdate();
+      return getEntryByMalId(param.type, param.id);
     default:
       throw `Unknown call "${call}"`;
   }

@@ -3,6 +3,11 @@ export type Recommendation = {
     title: string;
     url: string;
     image: string;
+    list?: {
+      status: number;
+      score: number;
+      episode: number;
+    };
   };
   user: {
     name: string;
@@ -80,6 +85,24 @@ export async function recommendationsMeta(malUrl: string): Promise<Recommendatio
         },
       });
     });
+
+    for (const recommendation in res) {
+      const type = utils.urlPart(res[recommendation].entry.url, 3);
+      const id = Number(utils.urlPart(res[recommendation].entry.url, 4));
+
+      // eslint-disable-next-line no-await-in-loop
+      const dbEntry = await api.request.database('entryByMalId', {
+        id,
+        type,
+      });
+      if (dbEntry) {
+        res[recommendation].entry.list = {
+          status: dbEntry.status,
+          score: dbEntry.score,
+          episode: dbEntry.watchedEp,
+        };
+      }
+    }
   } catch (e) {
     con.m('review').error(e);
   }

@@ -37,7 +37,12 @@
             <ImageText :href="rec.entry.url" :image="rec.entry.image">
               <div />
               <Header>
-                <MediaLink :href="rec.entry.url">{{ rec.entry.title }}</MediaLink>
+                <MediaLink :href="rec.entry.url">
+                  <div class="head-dot">
+                    <StateDot class="dot" :status="rec.entry.list ? rec.entry.list.status : 0" />
+                    {{ rec.entry.title }}
+                  </div>
+                </MediaLink>
               </Header>
               <div>
                 <MediaLink :href="rec.body.more.url">
@@ -82,6 +87,7 @@ import HR from '../hr.vue';
 import Empty from '../empty.vue';
 import Card from '../card.vue';
 import TextIcon from '../text-icon.vue';
+import StateDot from '../state-dot.vue';
 
 const props = defineProps({
   malUrl: {
@@ -125,6 +131,11 @@ watch(
 
 .text {
   margin-top: @spacer-half;
+}
+
+.head-dot {
+  display: flex;
+  align-items: center;
 }
 
 .skeleton-text {
