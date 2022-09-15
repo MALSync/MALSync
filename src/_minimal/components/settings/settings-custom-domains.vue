@@ -28,7 +28,7 @@
     <div v-if="!verifyEverything">
       <FormButton color="secondary">Configuration is not correct!</FormButton>
     </div>
-    <div v-else-if="JSON.stringify(model) !== JSON.stringify(permissions)">
+    <div v-else-if="!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions)">
       <FormButton color="primary" @click="savePermissions()">{{ lang('Update') }}</FormButton>
     </div>
   </Card>

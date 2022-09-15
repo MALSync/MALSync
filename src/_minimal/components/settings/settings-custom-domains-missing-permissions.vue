@@ -1,13 +1,13 @@
 <template>
   <Card
-    v-if="neededPermissions && neededPermissions.length"
+    v-if="(neededPermissions && neededPermissions.length) || !hasAllPermissions"
     border="secondary"
     class="custom-missing"
   >
     <Header :spacer="true">
       {{ lang('settings_custom_domains_missing_permissions_header') }}
     </Header>
-    <Section spacer="half">
+    <Section v-if="neededPermissions && neededPermissions.length" spacer="half">
       <table>
         <tbody>
           <tr v-for="permission in neededPermissions" :key="permission.domain">
@@ -26,6 +26,7 @@
         </tbody>
       </table>
     </Section>
+    <Section v-if="!hasAllPermissions">Some Page permissions are not yet granted</Section>
     <FormButton color="secondary" padding="large" @click="add()">
       {{ lang('Add') }}
     </FormButton>
@@ -33,8 +34,13 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { getPageOptions, MissingPermissions, requestPermissions } from '../../../utils/customDomains';
+import { computed, ref, watch } from 'vue';
+import {
+  checkPermissions,
+  getPageOptions,
+  MissingPermissions,
+  requestPermissions,
+} from '../../../utils/customDomains';
 import Card from '../card.vue';
 import Header from '../header.vue';
 import CodeBlock from '../code-block.vue';
@@ -64,6 +70,12 @@ const neededPermissions = computed(() => {
   return permissions.value.getMissingPermissions(model.value);
 });
 
+const hasAllPermissions = ref(true);
+
+async function checkAllPermission() {
+  hasAllPermissions.value = await checkPermissions(model.value);
+}
+
 function getPageName(key: string) {
   const page = options.find(pageEl => pageEl.key === key);
   return page ? page.title : key;
@@ -73,7 +85,16 @@ async function add() {
   con.log('Add missing Permissions', neededPermissions.value);
   model.value = JSON.parse(JSON.stringify(model.value.concat(neededPermissions.value)));
   await requestPermissions(model.value);
+  checkAllPermission();
 }
+
+watch(
+  model,
+  () => {
+    checkAllPermission();
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <style lang="less" scoped>
