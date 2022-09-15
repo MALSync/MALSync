@@ -102,6 +102,7 @@ module.exports = {
         options: {
           customElement: true,
           shadowMode: true,
+          exposeFilename: true,
         },
       },
     ],
