@@ -19,15 +19,16 @@ const transitionDuration = 150;
 let index = 0;
 let debounce;
 
-async function beforeEnter(el: HTMLElement) {
+function beforeEnter(el) {
   el.style.opacity = '0';
   el.style.transform = 'translateY(20px)';
-  await nextTick();
-  el.style.transitionProperty = 'opacity, transform';
-  el.style.transitionDuration = `${transitionDuration}ms`;
+  nextTick().then(() => {
+    el.style.transitionProperty = 'opacity, transform';
+    el.style.transitionDuration = `${transitionDuration}ms`;
+  });
 }
 
-async function enter(el: HTMLElement) {
+function enter(el) {
   setTimeout(() => {
     clearTimeout(debounce);
     debounce = setTimeout(() => {

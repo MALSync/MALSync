@@ -4,7 +4,7 @@
     <Section class="image-section real">
       <OverviewImage
         class="image"
-        :single="singleRequest.data"
+        :single="(singleRequest.data as null | SingleAbstract)"
         :src="metaRequest.data?.imageLarge || singleRequest.data?.getImage() || ''"
         :loading="metaRequest.loading"
       />
@@ -56,7 +56,7 @@
     <HR v-if="breakpoint === 'desktop' || !totalLoading" class="header-split" />
     <Section v-if="breakpoint === 'desktop' || !totalLoading" class="update-section">
       <OverviewUpdateUi
-        :single="singleRequest.data"
+        :single="(singleRequest.data as null | SingleAbstract)"
         :loading="totalLoading || singleRequest.loading"
         :type="props.type"
       />
@@ -128,6 +128,7 @@ import HR from '../components/hr.vue';
 import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
 import MediaLink from '../components/media-link.vue';
+import { SingleAbstract } from '../../_provider/singleAbstract';
 
 const breakpoint = inject('breakpoint');
 

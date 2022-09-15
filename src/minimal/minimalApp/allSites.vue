@@ -23,7 +23,7 @@
                   type="checkbox"
                   class="mdl-switch__input"
                   :checked="getPageState(page)"
-                  @change="setPageState(page, $event.target.checked)"
+                  @change="setPageState(page, ($event as any).target!.checked!)"
                 />
               </label>
             </span>

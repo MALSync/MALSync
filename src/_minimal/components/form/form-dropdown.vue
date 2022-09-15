@@ -1,11 +1,5 @@
 <template>
-  <button
-    ref="triggerNode"
-    class="dropdown"
-    :class="`${size}`"
-    :aria-current="picked"
-    @blur="open = false"
-  >
+  <button ref="triggerNode" class="dropdown" :class="`${size}`" @blur="open = false">
     <div class="selector" :class="{ animate }" @click="open = !open">
       <slot
         name="select"
