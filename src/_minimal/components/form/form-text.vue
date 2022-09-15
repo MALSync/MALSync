@@ -7,6 +7,7 @@
       search: type === 'search',
       mini: type === 'mini',
       invalid: !valid,
+      disabled,
     }"
   >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
@@ -60,6 +61,10 @@ const props = defineProps({
   validation: {
     type: Function as PropType<(value: string) => boolean>,
     default: () => true,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -185,6 +190,12 @@ const valid = computed(() => {
       min-width: v-bind(textwidth);
       text-align: center;
     }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   &.invalid {

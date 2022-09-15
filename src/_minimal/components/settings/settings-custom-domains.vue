@@ -8,6 +8,7 @@
         <FormDropdown
           v-model="perm.page"
           :options="options"
+          :disabled="perm.auto"
           align-items="left"
           placeholder="Select Page"
           class="page-select select-items"
@@ -15,6 +16,7 @@
         <FormText
           v-model="perm.domain"
           :validation="validDomain"
+          :disabled="perm.auto"
           placeholder="Domain"
           class="select-items"
         />
@@ -34,25 +36,21 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
-import { getPageOptions } from '../../../utils/customDomains';
+import { checkPermissions, getPageOptions, requestPermissions } from '../../../utils/customDomains';
 import Card from '../card.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
 import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
-
-type Permission = {
-  domain: string;
-  page: string;
-};
+import { domainType } from '../../../background/customDomain';
 
 const options = getPageOptions().map(el => ({ title: el.title, value: el.key }));
 
-const permissions = ref([] as Permission[]);
+const permissions = ref([] as domainType[]);
 
 const model = computed({
   get() {
-    return api.settings.get('customDomains') as Permission[];
+    return api.settings.get('customDomains') as domainType[];
   },
   set(value) {
     api.settings.set('customDomains', value);
@@ -87,29 +85,8 @@ function validDomain(domain) {
 
 const hasAllPermissions = ref(false);
 
-function getOrigins() {
-  return permissions.value
-    .filter(perm => {
-      try {
-        const url = new URL(perm.domain);
-        return Boolean(url.origin);
-      } catch (_) {
-        return false;
-      }
-    })
-    .map(perm => `${new URL(perm.domain).origin}/`);
-}
-
-function checkAllPermission() {
-  chrome.permissions.contains(
-    {
-      permissions: ['webNavigation'],
-      origins: getOrigins(),
-    },
-    result => {
-      hasAllPermissions.value = result;
-    },
-  );
+async function checkAllPermission() {
+  hasAllPermissions.value = await checkPermissions(permissions.value);
 }
 
 watch(
@@ -126,19 +103,10 @@ const verifyEverything = computed(() => {
   });
 });
 
-const savePermissions = () => {
+const savePermissions = async () => {
   model.value = JSON.parse(JSON.stringify(permissions.value));
-  con.m('Request Permissions').log(getOrigins());
-  chrome.permissions.request(
-    {
-      permissions: ['webNavigation'],
-      origins: getOrigins(),
-    },
-    granted => {
-      if (!granted) utils.flashm('Requesting the permissions failed', { error: true });
-      checkAllPermission();
-    },
-  );
+  await requestPermissions(model.value);
+  checkAllPermission();
 };
 
 const removePermission = index => {

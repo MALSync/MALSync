@@ -1,5 +1,10 @@
 <template>
-  <button ref="triggerNode" class="dropdown" :class="`${size}`" @blur="open = false">
+  <button
+    ref="triggerNode"
+    class="dropdown"
+    :class="`${size} ${disabled ? 'disabled' : ''}`"
+    @blur="open = false"
+  >
     <div class="selector" :class="{ animate }" @click="open = !open">
       <slot
         name="select"
@@ -104,6 +109,10 @@ const props = defineProps({
   compareFunc: {
     type: Function as PropType<(el: string | number, picked: string | number) => boolean>,
     default: (el: string | number, picked: string | number) => el.toString() === picked.toString(),
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -210,6 +219,12 @@ watch(open, value => {
         }
       }
     }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
   }
 
   &.small .dropdown-pop {

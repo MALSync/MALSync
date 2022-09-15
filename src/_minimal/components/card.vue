@@ -1,10 +1,19 @@
 <template>
-  <div class="card">
+  <div class="card" :class="{ [`border-${border}`]: border }">
     <div class="inner-card">
       <slot />
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+defineProps({
+  border: {
+    type: String,
+    default: '',
+  },
+});
+</script>
 
 <style lang="less" scoped>
 @import '../less/_globals.less';
@@ -18,6 +27,10 @@
   .inner-card {
     --cl-foreground: var(--cl-background);
     --cl-backdrop: var(--cl-background);
+  }
+
+  &.border-secondary {
+    border-color: var(--cl-secondary);
   }
 }
 </style>

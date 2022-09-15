@@ -92,3 +92,46 @@ export async function hasMissingPermissions(): Promise<boolean> {
   con.m('Missing Permissions').log(missing);
   return Boolean(missing.length);
 }
+
+function getOrigins(permissions: domainType[]) {
+  return permissions
+    .filter(perm => {
+      try {
+        const url = new URL(perm.domain);
+        return Boolean(url.origin);
+      } catch (_) {
+        return false;
+      }
+    })
+    .map(perm => `${new URL(perm.domain).origin}/`);
+}
+
+export async function requestPermissions(permissions: domainType[]) {
+  return new Promise(resolve => {
+    con.m('Request Permissions').log(getOrigins(permissions));
+    chrome.permissions.request(
+      {
+        permissions: ['webNavigation'],
+        origins: getOrigins(permissions),
+      },
+      granted => {
+        if (!granted) utils.flashm('Requesting the permissions failed', { error: true });
+        resolve(null);
+      },
+    );
+  });
+}
+
+export async function checkPermissions(permissions: domainType[]): Promise<boolean> {
+  return new Promise(resolve => {
+    chrome.permissions.contains(
+      {
+        permissions: ['webNavigation'],
+        origins: getOrigins(permissions),
+      },
+      result => {
+        resolve(result);
+      },
+    );
+  });
+}
