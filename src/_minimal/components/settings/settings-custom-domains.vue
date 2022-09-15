@@ -2,7 +2,7 @@
   <Card class="custom">
     <Section v-if="permissions.length" class="grid" spacer="half">
       <template v-for="(perm, index) in permissions" :key="index">
-        <FormButton @click="removePermission(index)">
+        <FormButton class="close-item" @click="removePermission(index)">
           <div class="material-icons">close</div>
         </FormButton>
         <FormDropdown
@@ -10,9 +10,14 @@
           :options="options"
           align-items="left"
           placeholder="Select Page"
-          class="page-select"
+          class="page-select select-items"
         />
-        <FormText v-model="perm.domain" :validation="validDomain" placeholder="Domain" />
+        <FormText
+          v-model="perm.domain"
+          :validation="validDomain"
+          placeholder="Domain"
+          class="select-items"
+        />
       </template>
     </Section>
     <Section>
@@ -149,11 +154,25 @@ const removePermission = index => {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: [col-start] auto [col-end] auto [col-end] auto;
   justify-content: start;
   gap: @spacer-half;
   align-items: center;
 }
+
+.__breakpoint-small__( {
+  .select-items {
+    grid-column-start: col-end 1;
+    grid-column-end: col-end 3;
+  }
+
+  .close-item {
+    grid-row-start: span 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+});
 
 .page-select {
   min-width: 220px;
