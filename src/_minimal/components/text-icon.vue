@@ -29,7 +29,7 @@ defineProps({
     default: 'inherit',
   },
   mode: {
-    type: String as PropType<'normal' | 'flex'>,
+    type: String as PropType<'normal' | 'flex' | 'space-between'>,
     default: 'normal',
   },
   background: {
@@ -80,6 +80,11 @@ defineProps({
     .material-icons {
       font-size: inherit;
     }
+  }
+
+  &.space-between {
+    display: flex;
+    justify-content: space-between;
   }
 
   &.round {

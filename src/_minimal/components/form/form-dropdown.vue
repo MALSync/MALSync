@@ -14,10 +14,11 @@
         :value="picked"
         :meta="currentMeta"
       >
-        <FormButton :tabindex="-1" :animation="false">
+        <FormButton :tabindex="-1" :animation="false" class="form-button">
           <TextIcon
             :icon="open ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
             position="after"
+            mode="space-between"
             class="icon-text"
           >
             {{ currentTitle }}
@@ -175,6 +176,10 @@ watch(open, value => {
     &.animate {
       .click-move-down();
     }
+  }
+
+  .form-button {
+    width: 100%;
   }
 
   .icon-text {

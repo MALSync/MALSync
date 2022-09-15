@@ -1,27 +1,27 @@
 <template>
   <Card class="custom">
-    <div v-for="(perm, index) in permissions" :key="index">
-      <div class="material-icons">close</div>
-      <FormDropdown
-        v-model="perm.page"
-        :options="options"
-        align-items="left"
-        placeholder="Select Page"
-      />
-      <FormText v-model="perm.domain" :validation="validDomain" />
-    </div>
-    <div>
-      <FormButton @click="addPermission()">{{ lang('Add') }}</FormButton>
-    </div>
+    <Section v-if="permissions.length" class="grid" spacer="half">
+      <template v-for="(perm, index) in permissions" :key="index">
+        <FormButton @click="removePermission(index)">
+          <div class="material-icons">close</div>
+        </FormButton>
+        <FormDropdown
+          v-model="perm.page"
+          :options="options"
+          align-items="left"
+          placeholder="Select Page"
+          class="page-select"
+        />
+        <FormText v-model="perm.domain" :validation="validDomain" placeholder="Domain" />
+      </template>
+    </Section>
+    <Section>
+      <FormButton @click="addPermission()"><div class="material-icons">add</div></FormButton>
+    </Section>
     <div v-if="!verifyEverything">
       <FormButton color="secondary">Configuration is not correct!</FormButton>
     </div>
-    <div
-      v-if="
-        verifyEverything &&
-        (!hasAllPermissions || JSON.stringify(model) !== JSON.stringify(permissions))
-      "
-    >
+    <div v-else-if="JSON.stringify(model) !== JSON.stringify(permissions)">
       <FormButton color="primary" @click="savePermissions()">{{ lang('Update') }}</FormButton>
     </div>
   </Card>
@@ -34,6 +34,7 @@ import Card from '../card.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
 import FormButton from '../form/form-button.vue';
+import Section from '../section.vue';
 
 type Permission = {
   domain: string;
@@ -134,11 +135,27 @@ const savePermissions = () => {
     },
   );
 };
+
+const removePermission = index => {
+  permissions.value.splice(index, 1);
+};
 </script>
 
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .custom {
   margin: @spacer-half 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: start;
+  gap: @spacer-half;
+  align-items: center;
+}
+
+.page-select {
+  min-width: 220px;
 }
 </style>
