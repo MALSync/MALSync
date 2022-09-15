@@ -1,5 +1,5 @@
 <template>
-  <Section spacer="half">
+  <Section spacer="half" direction="both">
     <ImageText :image="profileRequest.data?.picture" :href="profileRequest.data?.href">
       <template v-if="state === 'auth'">
         <Header>

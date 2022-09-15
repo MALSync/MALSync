@@ -1,36 +1,37 @@
 <template>
-  <Card
+  <div
     v-if="(neededPermissions && neededPermissions.length) || !hasAllPermissions"
-    border="secondary"
     class="custom-missing"
   >
-    <Header :spacer="true">
-      {{ lang('settings_custom_domains_missing_permissions_header') }}
-    </Header>
-    <Section v-if="neededPermissions && neededPermissions.length" spacer="half">
-      <table>
-        <tbody>
-          <tr v-for="permission in neededPermissions" :key="permission.domain">
-            <td>
-              <Section spacer="half">
-                <CodeBlock>{{ getPageName(permission.page) }}</CodeBlock>
-              </Section>
-            </td>
-            <td><Section spacer="half">⬌</Section></td>
-            <td>
-              <Section spacer="half">
-                <CodeBlock>{{ permission.domain }}</CodeBlock>
-              </Section>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </Section>
-    <Section v-if="!hasAllPermissions">Some Page permissions are not yet granted</Section>
-    <FormButton color="secondary" padding="large" @click="add()">
-      {{ lang('Add') }}
-    </FormButton>
-  </Card>
+    <Card border="secondary">
+      <Header :spacer="true">
+        {{ lang('settings_custom_domains_missing_permissions_header') }}
+      </Header>
+      <Section v-if="neededPermissions && neededPermissions.length" spacer="half">
+        <table>
+          <tbody>
+            <tr v-for="permission in neededPermissions" :key="permission.domain">
+              <td>
+                <Section spacer="half">
+                  <CodeBlock>{{ getPageName(permission.page) }}</CodeBlock>
+                </Section>
+              </td>
+              <td><Section spacer="half">⬌</Section></td>
+              <td>
+                <Section spacer="half">
+                  <CodeBlock>{{ permission.domain }}</CodeBlock>
+                </Section>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </Section>
+      <Section v-if="!hasAllPermissions">Some Page permissions are not yet granted</Section>
+      <FormButton color="secondary" padding="large" @click="add()">
+        {{ lang('Add') }}
+      </FormButton>
+    </Card>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -100,6 +101,6 @@ watch(
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .custom-missing {
-  margin: @spacer-half 0;
+  padding: @spacer-half 0;
 }
 </style>

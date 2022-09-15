@@ -2,11 +2,10 @@ import SettingsGroup from './settings-group.vue';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProfile from './settings-profile.vue';
 import SettingsStreaming from './settings-streaming.vue';
-import SettingsCustomDomains from './settings-custom-domains.vue';
-import SettingsCustomDomainsMissingPermissions from './settings-custom-domains-missing-permissions.vue';
 import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
+import { customDomains, missingPermissions } from './settings-structure-custom-domains';
 
 export const structure: ConfObj[] = [
   {
@@ -14,6 +13,7 @@ export const structure: ConfObj[] = [
     title: 'Profile',
     component: SettingsProfile,
   },
+  missingPermissions,
   {
     key: 'tracking',
     title: 'Tracking',
@@ -71,17 +71,6 @@ export const structure: ConfObj[] = [
       icon: 'http',
     },
     component: SettingsGroup,
-    children: [
-      {
-        key: 'permissions',
-        title: api.storage.lang('settings_custom_domains_button'),
-        component: SettingsCustomDomainsMissingPermissions,
-      },
-      {
-        key: 'domains',
-        title: api.storage.lang('settings_custom_domains_button'),
-        component: SettingsCustomDomains,
-      },
-    ],
+    children: customDomains,
   },
 ];

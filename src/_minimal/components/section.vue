@@ -1,5 +1,5 @@
 <template>
-  <div class="section" :class="`${spacer} ${loading ? 'loading' : ''}`">
+  <div class="section" :class="`${direction} ${spacer} ${loading ? 'loading' : ''}`">
     <slot v-if="!loading" />
   </div>
 </template>
@@ -11,6 +11,10 @@ defineProps({
   spacer: {
     type: String as PropType<'half' | 'full' | 'none'>,
     default: 'full',
+  },
+  direction: {
+    type: String as PropType<'down' | 'both'>,
+    default: 'down',
   },
   loading: {
     type: Boolean,
@@ -25,8 +29,15 @@ defineProps({
 .section {
   margin-bottom: @spacer;
 
+  &.both {
+    margin-top: @spacer;
+  }
+
   &.half {
     margin-bottom: @spacer-half;
+    &.both {
+      margin-top: @spacer-half;
+    }
   }
 
   &.none {
