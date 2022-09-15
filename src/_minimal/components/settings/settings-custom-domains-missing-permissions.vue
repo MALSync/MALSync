@@ -8,23 +8,25 @@
         {{ lang('settings_custom_domains_missing_permissions_header') }}
       </Header>
       <Section v-if="neededPermissions && neededPermissions.length" spacer="half">
-        <table>
-          <tbody>
-            <tr v-for="permission in neededPermissions" :key="permission.domain">
-              <td>
-                <Section spacer="half">
-                  <CodeBlock>{{ getPageName(permission.page) }}</CodeBlock>
-                </Section>
-              </td>
-              <td><Section spacer="half">⬌</Section></td>
-              <td>
-                <Section spacer="half">
-                  <CodeBlock>{{ permission.domain }}</CodeBlock>
-                </Section>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Description :height="150">
+          <table>
+            <tbody>
+              <tr v-for="permission in neededPermissions" :key="permission.domain">
+                <td>
+                  <Section spacer="half">
+                    <CodeBlock>{{ getPageName(permission.page) }}</CodeBlock>
+                  </Section>
+                </td>
+                <td><Section spacer="half">⬌</Section></td>
+                <td>
+                  <Section spacer="half">
+                    <CodeBlock>{{ permission.domain }}</CodeBlock>
+                  </Section>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Description>
       </Section>
       <Section v-if="!hasAllPermissions">Some Page permissions are not yet granted</Section>
       <FormButton color="secondary" padding="large" @click="add()">
@@ -48,6 +50,7 @@ import CodeBlock from '../code-block.vue';
 import Section from '../section.vue';
 import FormButton from '../form/form-button.vue';
 import { domainType } from '../../../background/customDomain';
+import Description from '../description.vue';
 
 const permissions = ref(null as null | MissingPermissions);
 const temp = new MissingPermissions();
