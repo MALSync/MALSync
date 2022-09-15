@@ -92,7 +92,7 @@ const width = computed(() => {
   return `${minWidth.value}px`;
 });
 
-const textWidth = computed(() => {
+const textwidth = computed(() => {
   return `${(picked.value + props.suffix).trim().length + 1}ch`;
 });
 
@@ -182,7 +182,7 @@ const valid = computed(() => {
     }
 
     &.noFocus {
-      min-width: v-bind(textWidth);
+      min-width: v-bind(textwidth);
       text-align: center;
     }
   }

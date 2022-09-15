@@ -1,7 +1,7 @@
 import * as definitions from './definitions';
 
 import { Progress } from '../utils/progress';
-import { getProgressTypeList, predictionXhrGET } from '../background/releaseProgress';
+import { predictionXhrGET } from '../background/releaseProgress';
 
 import { emitter, globalEmit } from '../utils/emitter';
 import { SafeError } from '../utils/errors';

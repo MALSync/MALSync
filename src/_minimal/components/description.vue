@@ -57,7 +57,7 @@ const calcOverflow = () => {
   }
 };
 
-const heightStyle = computed(() => {
+const heightstyle = computed(() => {
   if (props.height === 'dynamic') return 'auto';
   return `${props.height}px`;
 });
@@ -96,7 +96,7 @@ watch(inner, () => calcOverflow());
     overflow: hidden;
 
     .open-gradient {
-      max-height: v-bind(heightStyle);
+      max-height: v-bind(heightstyle);
       mask-image: linear-gradient(180deg, #000 60%, transparent);
       /* stylelint-disable-next-line property-no-vendor-prefix */
       -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent);
@@ -106,7 +106,7 @@ watch(inner, () => calcOverflow());
   &.loading {
     .skeleton-text-block();
 
-    height: v-bind(heightStyle);
+    height: v-bind(heightstyle);
 
     &.fade {
       .skeleton-text-block-fade();
