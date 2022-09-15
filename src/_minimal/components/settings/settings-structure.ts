@@ -2,6 +2,7 @@ import SettingsGroup from './settings-group.vue';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProfile from './settings-profile.vue';
 import SettingsStreaming from './settings-streaming.vue';
+import SettingsCustomDomains from './settings-custom-domains.vue';
 import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
@@ -59,6 +60,21 @@ export const structure: ConfObj[] = [
         key: 'streamingSite',
         title: api.storage.lang('settings_StreamingSite'),
         component: SettingsStreaming,
+      },
+    ],
+  },
+  {
+    key: 'customDoamins',
+    title: api.storage.lang('settings_custom_domains_button'),
+    props: {
+      icon: 'http',
+    },
+    component: SettingsGroup,
+    children: [
+      {
+        key: 'domains',
+        title: api.storage.lang('settings_custom_domains_button'),
+        component: SettingsCustomDomains,
       },
     ],
   },

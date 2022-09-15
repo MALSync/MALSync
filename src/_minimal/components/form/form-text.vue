@@ -2,7 +2,12 @@
   <label
     ref="el"
     class="text-from"
-    :class="{ noFocus: !inFocus, search: type === 'search', mini: type === 'mini' }"
+    :class="{
+      noFocus: !inFocus,
+      search: type === 'search',
+      mini: type === 'mini',
+      invalid: !valid,
+    }"
   >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
     <span v-if="placeholder && !inFocus" class="placeholder-text">
@@ -52,6 +57,10 @@ const props = defineProps({
     type: String as PropType<'' | 'search' | 'mini'>,
     default: '',
   },
+  validation: {
+    type: Function as PropType<(value: string) => boolean>,
+    default: () => true,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -85,6 +94,11 @@ const width = computed(() => {
 
 const textWidth = computed(() => {
   return `${(picked.value + props.suffix).trim().length + 1}ch`;
+});
+
+const valid = computed(() => {
+  if (!picked.value) return true;
+  return props.validation(picked.value);
 });
 </script>
 
@@ -171,6 +185,10 @@ const textWidth = computed(() => {
       min-width: v-bind(textWidth);
       text-align: center;
     }
+  }
+
+  &.invalid {
+    border-color: red;
   }
 }
 </style>
