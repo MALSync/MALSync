@@ -13,6 +13,7 @@
     "strict": true,
     "useUnknownInCatchVariables": false,
   },
+  "include": ["**/*.ts", "src/**/*.vue"],
   "exclude": [
     "dist",
     "**/*.test.ts",

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const pages = require('./utils/pages').pages();
 
@@ -67,11 +68,7 @@ module.exports = {
       {
         test: /\.less$/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'less-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'less-loader'],
       },
       {
         test: /\.vue$/,
@@ -97,6 +94,17 @@ module.exports = {
     path: path.resolve(__dirname, '..', 'dist', 'webextension'),
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: path.resolve(__dirname, '../tsconfig.json'),
+        extensions: {
+          vue: {
+            enabled: true,
+            compiler: '@vue/compiler-sfc',
+          },
+        },
+      },
+    }),
     new VueLoaderPlugin(),
     new webpack.ProvidePlugin({
       con: path.resolve(__dirname, './../src/utils/console'),
