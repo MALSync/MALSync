@@ -62,7 +62,7 @@ defineProps({
   }
 
   .link {
-    color: var(--cl-secondary);
+    color: var(--cl-secondary-text);
   }
 }
 </style>
