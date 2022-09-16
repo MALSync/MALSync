@@ -57,11 +57,11 @@ const styles = computed(() => {
   const backdrop = base.copy().illuminate(-15, 20, 100, true).saturate(15, 15, 85, true);
   const foreground = base.copy().illuminate(8, 0, 100, true);
   const primary = base.copy().illuminate(10, 30, 45).hue(120).saturate(0, 50);
-  let secondary = base.copy().illuminate(0, 10, 30).hue(-120).saturate(20, 70, 90);
+  let secondary = base.copy().illuminate(0, 35, 45).hue(-120).saturate(-20, 40, 80);
   let lightText = base.copy().illuminate(-50, 10, 90).saturate(0, 0, 0);
 
   if (base.isDark()) {
-    secondary = base.copy().illuminate(40, 70, 90).hue(-120).saturate(20, 70, 90);
+    secondary = base.copy().illuminate(0, 35, 45).hue(-120).saturate(-20, 40, 80);
     lightText = base.copy().illuminate(50, 10, 90).saturate(0, 0, 0);
   }
 
