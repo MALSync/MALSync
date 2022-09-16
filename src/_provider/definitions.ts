@@ -43,6 +43,8 @@ export type searchResult = {
   url: string;
   malUrl: () => Promise<string | null>;
   image: string;
+  imageLarge: string;
+  imageBanner?: string;
   media_type: string;
   isNovel: boolean;
   score: string;

@@ -53,6 +53,7 @@ export const search: searchInterface = async function (
             return `https://myanimelist.net/${type}/${item.node.id}`;
           },
           image: item.node.main_picture?.medium ?? '',
+          imageLarge: item.node.main_picture?.large || item.node.main_picture?.medium || '',
           media_type: item.node.media_type
             ? (
                 item.node.media_type.charAt(0) + item.node.media_type.slice(1).toLowerCase()
