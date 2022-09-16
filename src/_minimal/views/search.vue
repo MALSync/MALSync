@@ -15,7 +15,10 @@
         ]"
       />
     </Section>
-    <Section v-if="listRequest.data && !listRequest.error">
+    <Section v-if="listRequest.loading || getTyping()">
+      <Spinner />
+    </Section>
+    <Section v-else-if="listRequest.data && !listRequest.error">
       <Grid
         :key="listTheme.name"
         :min-width="listTheme.width"
@@ -33,7 +36,7 @@
       </Grid>
     </Section>
     <Section
-      v-if="!listRequest.loading && listRequest.data && !listRequest.data.length"
+      v-if="!(listRequest.loading || getTyping()) && listRequest.data && !listRequest.data.length"
       class="spinner-wrap"
     >
       <Empty icon="search_off" />
