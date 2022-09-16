@@ -58,10 +58,12 @@ const styles = computed(() => {
   const foreground = base.copy().illuminate(8, 0, 100, true);
   const primary = base.copy().illuminate(10, 30, 45).hue(120).saturate(0, 50);
   let secondary = base.copy().illuminate(0, 35, 45).hue(-120).saturate(-20, 40, 80);
+  let secondaryText = base.copy().illuminate(0, 45, 55).hue(-120).saturate(10, 30, 55);
   let lightText = base.copy().illuminate(-50, 10, 90).saturate(0, 0, 0);
 
   if (base.isDark()) {
     secondary = base.copy().illuminate(0, 35, 45).hue(-120).saturate(-20, 40, 80);
+    secondaryText = base.copy().illuminate(0, 59, 60).hue(-120).saturate(10, 40, 100);
     lightText = base.copy().illuminate(50, 10, 90).saturate(0, 0, 0);
   }
 
@@ -71,6 +73,7 @@ const styles = computed(() => {
   s.push(`--cl-foreground-solid: ${hslColorString(foreground.toHsl())}`);
   s.push(`--cl-primary: ${hslColorString(primary.toHsl())}`);
   s.push(`--cl-secondary: ${hslColorString(secondary.toHsl())}`);
+  s.push(`--cl-secondary-text: ${hslColorString(secondaryText.toHsl())}`);
   s.push(`--cl-light-text: ${hslColorString(lightText.toHsl())}`);
 
   if (api.settings.get('themeImage')) {

@@ -65,4 +65,13 @@ defineProps({
     color: var(--cl-secondary-text);
   }
 }
+
+.custom .link {
+  color: inherit;
+  border-bottom: 3px solid var(--cl-secondary-text);
+
+  &:hover {
+    border-color: var(--cl-secondary);
+  }
+}
 </style>
