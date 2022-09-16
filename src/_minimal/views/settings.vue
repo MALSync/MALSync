@@ -12,15 +12,17 @@
           </router-link>
         </div>
         <template v-for="comp in components.structure" :key="comp.key">
-          <component
-            :is="comp.component"
-            v-if="comp.condition ? comp.condition() : true"
-            v-bind="comp.props"
-            :id="`id-${comp.key}`"
-            :path="[...components.path, comp.key]"
-            :title="comp.title"
-            :class="{ highlight: comp.key === components.highlight }"
-          />
+          <TransitionSlide>
+            <component
+              :is="comp.component"
+              v-if="comp.condition ? comp.condition() : true"
+              v-bind="comp.props"
+              :id="`id-${comp.key}`"
+              :path="[...components.path, comp.key]"
+              :title="comp.title"
+              :class="{ highlight: comp.key === components.highlight }"
+            />
+          </TransitionSlide>
         </template>
       </div>
     </transition>
@@ -34,6 +36,7 @@ import { structure } from '../components/settings/settings-structure';
 import Header from '../components/header.vue';
 import TextIcon from '../components/text-icon.vue';
 import { ConfObj } from '../../_provider/definitions';
+import TransitionSlide from '../components/transition-slide.vue';
 
 const props = defineProps({
   path: {
