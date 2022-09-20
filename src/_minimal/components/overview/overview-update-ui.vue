@@ -102,7 +102,13 @@
                 :placeholder="lang('UI_Score_Not_Rated')"
               />
             </template>
-            <template v-else-if="scoreModeStrategy.ui.module === 'click'"> Click </template>
+            <template v-else-if="scoreModeStrategy.ui.module === 'click'">
+              <FormClick
+                v-model="score"
+                :options="(scoreModeStrategy.getOptions() as any)"
+                :type="scoreModeStrategy.ui.type"
+              />
+            </template>
             <template v-else>
               <FormDropdown v-model="score" :options="(scoreModeStrategy.getOptions() as any)">
                 <template #select="slotProps">
@@ -154,6 +160,7 @@ import StateDot from '../state-dot.vue';
 import FormButton from '../form/form-button.vue';
 import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 import OverviewImageLanguage from './overview-image-language.vue';
+import FormClick from '../form/form-click.vue';
 
 const singleLoading = ref(false);
 
