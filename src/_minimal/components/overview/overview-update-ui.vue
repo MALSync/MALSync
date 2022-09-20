@@ -209,16 +209,23 @@ const episode = computed({
   },
 });
 
+const scoreModeStrategy = computed(() => {
+  if (props.single) {
+    return props.single.getScoreMode();
+  }
+  return null;
+});
+
 const score = computed({
   get() {
-    if (props.single && props.single.isAuthenticated()) {
-      return props.single.getAbsoluteScore().toString();
+    if (props.single && props.single.isAuthenticated() && scoreModeStrategy.value) {
+      return scoreModeStrategy.value.valueToOptionValue(props.single.getAbsoluteScore()).toString();
     }
     return '';
   },
   set(value) {
-    if (props.single && props.single.isAuthenticated()) {
-      props.single.setAbsoluteScore(Number(value) || 0);
+    if (props.single && props.single.isAuthenticated() && scoreModeStrategy.value) {
+      props.single.setAbsoluteScore(scoreModeStrategy.value.optionValueToValue(Number(value) || 0));
     }
   },
 });
@@ -284,13 +291,6 @@ async function remove() {
 }
 
 const episodeLang = utils.episode;
-
-const scoreModeStrategy = computed(() => {
-  if (props.single) {
-    return props.single.getScoreMode();
-  }
-  return null;
-});
 </script>
 
 <style lang="less" scoped>
