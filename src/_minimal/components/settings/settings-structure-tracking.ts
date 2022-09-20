@@ -83,4 +83,34 @@ export const tracking: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'videoDuration',
+    title: () =>
+      api.storage.lang('settings_AutoTracking_Video', [api.settings.get('videoDuration')]),
+    condition: () => api.settings.get('autoTrackingModeanime') === 'video',
+    props: {
+      component: 'input',
+      option: 'videoDuration',
+      props: {
+        suffix: '%',
+        validation: value => Boolean(value >= 10 && value < 100),
+      },
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'delay',
+    title: () => api.storage.lang('settings_AutoTracking_Instant', [api.settings.get('delay')]),
+    condition: () =>
+      api.settings.get('autoTrackingModeanime') === 'instant' ||
+      api.settings.get('autoTrackingModemanga') === 'instant',
+    props: {
+      component: 'input',
+      option: 'delay',
+      props: {
+        validation: value => Boolean((Number(value) && Number(value) > 0) || value === '0'),
+      },
+    },
+    component: SettingsGeneral,
+  },
 ];

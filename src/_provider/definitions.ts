@@ -65,7 +65,7 @@ export type searchInterface = (
 
 export interface ConfObj {
   key: string;
-  title: string;
+  title: string | (() => string);
   component: Component;
   condition?: () => boolean;
   props?: { [key: string]: any };

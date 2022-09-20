@@ -2,7 +2,7 @@
   <div class="option">
     <div class="title">
       <slot name="title">
-        {{ title }}
+        {{ typeof title === 'function' ? (title as any)() : title }}
       </slot>
     </div>
     <div class="component" :class="`type-${component}`">
@@ -35,7 +35,7 @@ const components = {
 
 const properties = defineProps({
   title: {
-    type: String,
+    type: [String, Function],
     required: true,
   },
   component: {

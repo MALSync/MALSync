@@ -38,7 +38,7 @@ import { ref, watch, computed, PropType } from 'vue';
 
 const props = defineProps({
   modelValue: {
-    type: String,
+    type: [String, Number],
     default: '',
   },
   suffix: {
@@ -81,10 +81,10 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-const picked = ref(props.modelValue);
+const picked = ref(props.modelValue.toString());
 watch(picked, value => {
-  if (props.strictValidation && props.validation && !props.validation(value) && value !== '') {
-    picked.value = props.modelValue;
+  if (props.validation && !props.validation(value)) {
+    if (props.strictValidation) picked.value = props.modelValue.toString();
     return;
   }
   emit('update:modelValue', value);
@@ -93,7 +93,7 @@ watch(picked, value => {
 watch(
   () => props.modelValue,
   value => {
-    picked.value = value;
+    picked.value = value.toString();
   },
 );
 
