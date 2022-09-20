@@ -6,6 +6,7 @@ import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
 import { customDomains, missingPermissions } from './settings-structure-custom-domains';
+import { todo } from './settings-structure-todo';
 
 export const structure: ConfObj[] = [
   {
@@ -72,5 +73,14 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: customDomains,
+  },
+  {
+    key: 'todo',
+    title: 'TODO',
+    props: {
+      icon: 'check_box',
+    },
+    component: SettingsGroup,
+    children: todo,
   },
 ];
