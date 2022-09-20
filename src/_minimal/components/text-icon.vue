@@ -46,7 +46,6 @@ defineProps({
 <style lang="less" scoped>
 .text-icon {
   line-height: 1;
-  white-space: nowrap;
 
   .before {
     margin-right: 10px;

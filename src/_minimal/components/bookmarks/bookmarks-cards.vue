@@ -68,6 +68,9 @@ defineProps({
   overflow: hidden;
   position: relative;
   height: 240px;
+  .__breakpoint-popup__( {
+    height: 190px;
+  });
 
   .img {
     .fullSize();
