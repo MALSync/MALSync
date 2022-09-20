@@ -85,16 +85,33 @@
         </template>
       </div>
       <div class="score-select">
-        <template v-if="single">
+        <template v-if="single && scoreModeStrategy">
           <div class="label-row">
             <span class="label">{{ lang('UI_Score') }}</span>
-            <FormDropdown v-model="score" :options="(single.getScoreCheckbox() as any)">
-              <template #select="slotProps">
-                <FormButton :tabindex="-1" :animation="false" padding="mini">
-                  {{ slotProps.currentTitle }}
-                </FormButton>
-              </template>
-            </FormDropdown>
+            <template v-if="scoreModeStrategy.ui.module === 'input'">
+              <FormText
+                v-model="scoreTextField"
+                type="mini"
+                :simple-placeholder="true"
+                :strict-validation="true"
+                :validation="
+                  value => {
+                    return Boolean(String(value).match(new RegExp(scoreModeStrategy!.ui.pattern)));
+                  }
+                "
+                :placeholder="lang('UI_Score_Not_Rated')"
+              />
+            </template>
+            <template v-else-if="scoreModeStrategy.ui.module === 'click'"> Click </template>
+            <template v-else>
+              <FormDropdown v-model="score" :options="(scoreModeStrategy.getOptions() as any)">
+                <template #select="slotProps">
+                  <FormButton :tabindex="-1" :animation="false" padding="mini">
+                    {{ slotProps.currentTitle }}
+                  </FormButton>
+                </template>
+              </FormDropdown>
+            </template>
           </div>
           <FormSlider
             v-model="score"
@@ -188,14 +205,23 @@ const episode = computed({
 const score = computed({
   get() {
     if (props.single && props.single.isAuthenticated()) {
-      return props.single.getScoreCheckboxValue().toString();
+      return props.single.getAbsoluteScore().toString();
     }
-    return 0;
+    return '';
   },
   set(value) {
     if (props.single && props.single.isAuthenticated()) {
-      props.single.handleScoreCheckbox(value);
+      props.single.setAbsoluteScore(Number(value) || 0);
     }
+  },
+});
+
+const scoreTextField = computed({
+  get() {
+    return !Number(score.value) ? '' : score.value;
+  },
+  set(value) {
+    score.value = value || '0';
   },
 });
 
@@ -251,6 +277,13 @@ async function remove() {
 }
 
 const episodeLang = utils.episode;
+
+const scoreModeStrategy = computed(() => {
+  if (props.single) {
+    return props.single.getScoreMode();
+  }
+  return null;
+});
 </script>
 
 <style lang="less" scoped>

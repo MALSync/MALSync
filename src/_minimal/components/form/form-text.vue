@@ -11,7 +11,10 @@
     }"
   >
     <span v-if="icon" class="material-icons">{{ icon }}</span>
-    <span v-if="placeholder && !inFocus" class="placeholder-text">
+    <span
+      v-if="placeholder && !inFocus && (!simplePlaceholder || !picked)"
+      class="placeholder-text"
+    >
       {{ placeholder }}{{ picked ? ':' : '' }}
     </span>
     <input
@@ -21,7 +24,7 @@
       @focus="inFocus = true"
       @blur="inFocus = false"
     />
-    <span v-show="!inFocus" class="span-placeholder">
+    <span v-show="!inFocus && picked" class="span-placeholder">
       <slot name="placeholder" :picked="picked" :suffix="suffix">
         {{ picked }}{{ picked ? suffix : '' }}
       </slot>
@@ -50,6 +53,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  simplePlaceholder: {
+    type: Boolean,
+    default: false,
+  },
   clearIcon: {
     type: Boolean,
     default: false,
@@ -62,6 +69,10 @@ const props = defineProps({
     type: Function as PropType<(value: string) => boolean>,
     default: () => true,
   },
+  strictValidation: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -72,6 +83,10 @@ const emit = defineEmits(['update:modelValue']);
 
 const picked = ref(props.modelValue);
 watch(picked, value => {
+  if (props.strictValidation && props.validation && !props.validation(value) && value !== '') {
+    picked.value = props.modelValue;
+    return;
+  }
   emit('update:modelValue', value);
 });
 
