@@ -99,7 +99,10 @@
       </Section>
       <HR />
       <Section v-if="metaRequest.data" class="info-section" :loading="totalLoading">
-        <OverviewInfo :info="metaRequest.data!.info" />
+        <OverviewInfo
+          :info="metaRequest.data!.info"
+          :single="(singleRequest.data as null | SingleAbstract)"
+        />
       </Section>
     </template>
   </div>

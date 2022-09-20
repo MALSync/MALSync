@@ -219,28 +219,48 @@ export abstract class SingleAbstract {
     return this.progress;
   }
 
-  public getProgressOptions() {
+  public getProgressFormated() {
     const op: {
       label: string;
       key: string;
+      state: 'complete' | 'ongoing' | 'dropped' | 'discontinued';
       type: 'dub' | 'sub';
       dropped: boolean;
       episode: Number;
+      lastEp?: {
+        total: number;
+        timestamp?: number;
+      };
+      predicition?: {
+        timestamp: number;
+        probability: 'low' | 'medium' | 'high';
+      };
     }[] = [];
     const languageNames = new Intl.DisplayNames('en', { type: 'language' });
+    con.log(this.progressXhr);
     if (this.progressXhr && Object.keys(this.progressXhr).length) {
       this.progressXhr.forEach(el => {
-        if (el.state === 'complete') return;
         op.push({
           type: el.type,
           key: el.id,
+          state: el.state,
           label: languageNames.of(el.lang.replace(/^jp$/, 'ja')) || el.lang,
-          dropped: el.state === 'dropped',
+          dropped: el.state === 'dropped' || el.state === 'discontinued',
           episode: el.lastEp && el.lastEp.total ? el.lastEp.total : 0,
+          lastEp: el.lastEp,
+          predicition: el.prediction,
         });
       });
     }
     return op;
+  }
+
+  public getProgressOptions() {
+    return this.getProgressFormated().filter(el => el.state !== 'complete');
+  }
+
+  public getProgressCompleted() {
+    return this.getProgressFormated().filter(el => el.state === 'complete');
   }
 
   private updateProgress = false;
