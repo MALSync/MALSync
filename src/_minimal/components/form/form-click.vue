@@ -18,7 +18,20 @@
     </div>
 
     <div v-else-if="type === 'smiley'" class="smile-score-wrap">
-      <div class="el-rate"></div>
+      <div class="el-rate">
+        <span
+          v-for="i in options.slice().reverse()"
+          v-show="i.value"
+          :key="i.value"
+          class="el-rate__item"
+          :class="{ active: i.value == picked && !hoverValue, hoverActive: i.value == hoverValue }"
+          @click="Number(picked) !== Number(i.value) ? (picked = i.value) : (picked = 0)"
+          @mouseover="hoverValue = Number(i.value)"
+          @mouseout="hoverValue = 0"
+        >
+          {{ i.label }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -77,14 +90,36 @@ watch(
 @import '../../less/_globals.less';
 
 .form-click {
-  margin-left: 5px;
   .el-rate__item {
     .link();
 
     font-size: 20px;
+    display: inline-block;
+  }
 
-    &.hoverActive {
-      color: var(--cl-primary);
+  .star-score-wrap {
+    margin-left: 5px;
+
+    .el-rate__item {
+      &.hoverActive {
+        color: var(--cl-primary);
+      }
+    }
+  }
+
+  .smile-score-wrap {
+    .el-rate__item {
+      filter: grayscale(100%);
+      transition: transform @fast-transition ease, filter @fast-transition ease;
+      transform: scale(1);
+
+      &.active,
+      &.hoverActive {
+        filter: grayscale(0%);
+      }
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 }
