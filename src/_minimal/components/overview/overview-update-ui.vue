@@ -96,7 +96,7 @@
                 :strict-validation="true"
                 :validation="
                   value => {
-                    return Boolean(String(value).match(new RegExp(scoreModeStrategy!.ui.pattern)));
+                    return Boolean(String(value).match(new RegExp((scoreModeStrategy!.ui as any).pattern)));
                   }
                 "
                 :placeholder="lang('UI_Score_Not_Rated')"
