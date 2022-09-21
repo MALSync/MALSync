@@ -154,7 +154,7 @@
 </template>
 
 <script lang="ts">
-import * as sync from './syncHandler';
+import * as sync from '../../../utils/syncHandler';
 import backbutton from '../components/backbutton.vue';
 
 export default {
