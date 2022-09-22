@@ -41,7 +41,35 @@
 
     <Card v-if="syncRequest.loading" class="spinner-wrap"><Spinner /></Card>
 
+    <Section v-if="!syncRequest.loading && syncRequest.data">
+      <Card>
+        <Section v-if="!syncing" spacer="half">
+          Items to sync:
+          <CodeBlock>
+            <strong>{{ itemNumber }}</strong>
+          </CodeBlock>
+        </Section>
+
+        <Section v-else spacer="half">
+          Syncing please wait:
+          <CodeBlock>
+            <strong>{{ totalItems - itemNumber }} / {{ totalItems }}</strong>
+          </CodeBlock>
+        </Section>
+
+        <FormButton
+          v-if="!syncRequest.loading && syncRequest.data"
+          color="primary"
+          :disabled="syncing"
+          @click="!syncing ? startSync() : ''"
+        >
+          Sync
+        </FormButton>
+      </Card>
+    </Section>
+
     <Section v-if="!syncRequest.loading && listDiff">
+      <Header spacer="half">Updates</Header>
       <Description :height="500">
         <Section v-for="(item, index) in listDiff" :key="index" spacer="half">
           <Card class="listDiff">
@@ -105,6 +133,7 @@
     </Section>
 
     <Section v-if="!syncRequest.loading && syncRequest.data && syncRequest.data.missing.length">
+      <Header spacer="half">Missing</Header>
       <Description :height="500">
         <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
           <Card class="missing">
@@ -119,9 +148,9 @@
               <div>EP: {{ item.watchedEp }}</div>
               <div>Status: {{ item.status }}</div>
               <div>Score: {{ item.score }}</div>
-              <div v-if="item.error">
+              <FormButton v-if="item.error" :animation="false" color="secondary" padding="mini">
                 {{ item.error }}
-              </div>
+              </FormButton>
             </FormButton>
           </Card>
         </Section>
@@ -143,13 +172,14 @@ import Spinner from '../spinner.vue';
 import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import Description from '../description.vue';
+import CodeBlock from '../code-block.vue';
 
 const mode = 'mirror';
 
 const providerList = ref(null as any);
 
 const parameters = ref({
-  type: 'manga',
+  type: 'anime',
 });
 
 const syncRequest = createRequest(parameters, async params => {
@@ -218,6 +248,24 @@ const listDiff = computed(() => {
   }
   return res;
 });
+
+const itemNumber = computed(() => {
+  if (!listDiff.value || !syncRequest.data) {
+    return 0;
+  }
+  return (
+    Object.keys(listDiff.value).length + syncRequest.data.missing.filter(el => !el.error).length
+  );
+});
+
+const syncing = ref(false);
+const totalItems = ref(0);
+function startSync() {
+  syncing.value = true;
+  totalItems.value = itemNumber.value;
+
+  sync.syncList(syncRequest.data!.list, syncRequest.data!.missing);
+}
 </script>
 
 <style lang="less" scoped>
