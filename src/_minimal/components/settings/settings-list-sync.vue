@@ -103,6 +103,30 @@
         </Section>
       </Description>
     </Section>
+
+    <Section v-if="!syncRequest.loading && syncRequest.data && syncRequest.data.missing.length">
+      <Description :height="500">
+        <Section v-for="(item, index) in syncRequest.data.missing" :key="index" spacer="half">
+          <Card class="missing">
+            <Header spacer="half">
+              {{ item.title }}
+            </Header>
+            <FormButton :animation="false">
+              <div>{{ item.syncType }}</div>
+              <div>
+                ID: <MediaLink :href="item.url">{{ item.malId }}</MediaLink>
+              </div>
+              <div>EP: {{ item.watchedEp }}</div>
+              <div>Status: {{ item.status }}</div>
+              <div>Score: {{ item.score }}</div>
+              <div v-if="item.error">
+                {{ item.error }}
+              </div>
+            </FormButton>
+          </Card>
+        </Section>
+      </Description>
+    </Section>
   </div>
 </template>
 
