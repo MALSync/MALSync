@@ -1,5 +1,8 @@
 <template>
   <div class="list-sync">
+    <SettingsGeneral v-if="isExtension()" component="checkbox" title="Sync daily in the background">
+      <template #component> <FormCheckbox v-model="backgroundSync" /> </template>
+    </SettingsGeneral>
     <Card class="list-sync">
       <Section>
         <FormSwitch
@@ -173,6 +176,8 @@ import Header from '../header.vue';
 import MediaLink from '../media-link.vue';
 import Description from '../description.vue';
 import CodeBlock from '../code-block.vue';
+import SettingsGeneral from './settings-general.vue';
+import FormCheckbox from '../form/form-checkbox.vue';
 
 const mode = 'mirror';
 
@@ -268,6 +273,28 @@ function startSync() {
 
   sync.syncList(syncRequest.data!.list, syncRequest.data!.missing);
 }
+
+function isExtension() {
+  return api.type === 'webextension';
+}
+
+const backSync = ref(false);
+async function updateBackgroundSyncState() {
+  backSync.value = await sync.background.isEnabled();
+}
+const backgroundSync = computed({
+  get() {
+    return backSync.value;
+  },
+  set(value) {
+    if (value) {
+      sync.background.enable().finally(updateBackgroundSyncState);
+    } else {
+      sync.background.disable().finally(updateBackgroundSyncState);
+    }
+  },
+});
+updateBackgroundSyncState();
 </script>
 
 <style lang="less" scoped>
