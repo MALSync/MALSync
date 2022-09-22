@@ -52,7 +52,13 @@
               <FormButton :animation="false">
                 {{ index }}
               </FormButton>
-              <FormButton v-if="item.master && item.master.uid" :animation="false" class="master">
+              <FormButton
+                v-if="item.master && item.master.uid"
+                :animation="false"
+                color="secondary"
+                class="master"
+              >
+                <div>{{ sync.getType(item.master.url) }}</div>
                 <div>
                   ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
                 </div>
@@ -66,6 +72,7 @@
                 :animation="false"
                 class="slave"
               >
+                <div>{{ sync.getType(slave.url) }}</div>
                 <div>
                   ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
                 </div>
