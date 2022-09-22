@@ -2,6 +2,7 @@ import SettingsGroup from './settings-group.vue';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProfile from './settings-profile.vue';
 import SettingsStreaming from './settings-streaming.vue';
+import SettingsListSync from './settings-list-sync.vue';
 import { tracking } from './settings-structure-tracking';
 import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
@@ -73,6 +74,21 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: customDomains,
+  },
+  {
+    key: 'listSyncSection',
+    title: 'List Sync',
+    props: {
+      icon: 'sync_alt',
+    },
+    component: SettingsGroup,
+    children: [
+      {
+        key: 'listSync',
+        title: 'List Sync',
+        component: SettingsListSync,
+      },
+    ],
   },
   {
     key: 'todo',
