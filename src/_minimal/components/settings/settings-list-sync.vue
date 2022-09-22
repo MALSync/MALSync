@@ -1,23 +1,22 @@
 <template>
-  <Card class="list-sync">
-    <Section>
-      <FormSwitch
-        v-model="parameters.type"
-        :options="[
-          {
-            value: 'anime',
-            title: lang('Anime'),
-          },
-          {
-            value: 'manga',
-            title: lang('Manga'),
-          },
-        ]"
-      />
-    </Section>
-
-    <Section v-if="providerList" class="provider">
-      <Grid>
+  <div class="list-sync">
+    <Card class="list-sync">
+      <Section>
+        <FormSwitch
+          v-model="parameters.type"
+          :options="[
+            {
+              value: 'anime',
+              title: lang('Anime'),
+            },
+            {
+              value: 'manga',
+              title: lang('Manga'),
+            },
+          ]"
+        />
+      </Section>
+      <Grid class="provider-section">
         <div
           v-for="provider in (Object.values(providerList) as any[])"
           :key="provider.providerType"
@@ -38,14 +37,70 @@
           </FormButton>
         </div>
       </Grid>
-    </Section>
+    </Card>
 
-    <Section v-if="syncRequest.loading" class="spinner-wrap"><Spinner /></Section>
-  </Card>
+    <Card v-if="syncRequest.loading" class="spinner-wrap"><Spinner /></Card>
+
+    <Section v-if="!syncRequest.loading && listDiff">
+      <Description :height="500">
+        <Section v-for="(item, index) in listDiff" :key="index" spacer="half">
+          <Card class="listDiff">
+            <Header spacer="half">
+              {{ item.master.title }}
+            </Header>
+            <div class="listDiff-inner">
+              <FormButton :animation="false">
+                {{ index }}
+              </FormButton>
+              <FormButton v-if="item.master && item.master.uid" :animation="false" class="master">
+                <div>
+                  ID: <MediaLink :href="item.master.url">{{ item.master.uid }}</MediaLink>
+                </div>
+                <div>EP: {{ item.master.watchedEp }}</div>
+                <div>Status: {{ item.master.status }}</div>
+                <div>Score: {{ item.master.score }}</div>
+              </FormButton>
+              <FormButton
+                v-for="slave in item.slaves"
+                :key="slave.uid"
+                :animation="false"
+                class="slave"
+              >
+                <div>
+                  ID: <MediaLink :href="slave.url">{{ slave.uid }}</MediaLink>
+                </div>
+                <div>
+                  EP: {{ slave.watchedEp }}
+                  <span v-if="slave.diff && slave.diff.watchedEp" class="highlight">
+                    →
+                    <FormButton :animation="false" color="primary" padding="mini">
+                      {{ slave.diff.watchedEp }}
+                    </FormButton>
+                  </span>
+                </div>
+                <div>
+                  Status: {{ slave.status }}
+                  <span v-if="slave.diff && slave.diff.status" class="highlight">
+                    → {{ slave.diff.status }}
+                  </span>
+                </div>
+                <div>
+                  Score: {{ slave.score }}
+                  <span v-if="slave.diff && slave.diff.score" class="highlight">
+                    → {{ slave.diff.score }}
+                  </span>
+                </div>
+              </FormButton>
+            </div>
+          </Card>
+        </Section>
+      </Description>
+    </Section>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import * as sync from '../../../utils/syncHandler';
 import { createRequest } from '../../utils/reactive';
 import Card from '../card.vue';
@@ -54,13 +109,16 @@ import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
 import Grid from '../grid.vue';
 import Spinner from '../spinner.vue';
+import Header from '../header.vue';
+import MediaLink from '../media-link.vue';
+import Description from '../description.vue';
 
 const mode = 'mirror';
 
 const providerList = ref(null as any);
 
 const parameters = ref({
-  type: 'anime',
+  type: 'manga',
 });
 
 const syncRequest = createRequest(parameters, async params => {
@@ -94,10 +152,10 @@ const syncRequest = createRequest(parameters, async params => {
     simkl: listProvider.simkl,
   });
 
-  const listOptions = await sync.retriveLists(providerList.value, params.type, sync.getList);
+  const listOptions = await sync.retriveLists(providerList.value, params.value.type, sync.getList);
 
-  const list = [];
-  const missing = [];
+  const list = [] as any[];
+  const missing = [] as any[];
 
   sync.generateSync(
     listOptions.master as any,
@@ -112,6 +170,22 @@ const syncRequest = createRequest(parameters, async params => {
     list,
     missing,
   };
+});
+
+const listDiff = computed(() => {
+  const res = {} as any;
+  if (syncRequest.loading || !syncRequest.data) {
+    return res;
+  }
+  for (const key in syncRequest.data.list) {
+    if (
+      Object.prototype.hasOwnProperty.call(syncRequest.data.list, key) &&
+      syncRequest.data.list[key].diff
+    ) {
+      res[key] = syncRequest.data.list[key];
+    }
+  }
+  return res;
 });
 </script>
 
@@ -132,6 +206,21 @@ const syncRequest = createRequest(parameters, async params => {
       flex-direction: column;
       gap: 5px;
     }
+  }
+}
+
+.provider-section {
+  align-items: end;
+}
+
+.listDiff {
+  .listDiff-inner {
+    display: flex;
+    gap: 5px;
+  }
+
+  .highlight {
+    color: var(--primary-color);
   }
 }
 </style>

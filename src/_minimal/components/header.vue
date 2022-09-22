@@ -1,20 +1,28 @@
 <template>
-  <h4 class="header" :class="{ loading, spacer }">
+  <h4 class="header" :class="{ loading, [spacerClass]: spacerClass }">
     <template v-if="!loading"><slot /></template>
     <span v-else class="loading-placeholder"></span>
   </h4>
 </template>
 
 <script lang="ts" setup>
-defineProps({
+import { computed, PropType } from 'vue';
+
+const props = defineProps({
   loading: {
     type: Boolean,
     default: false,
   },
   spacer: {
-    type: Boolean,
+    type: [Boolean, String] as PropType<boolean | 'half'>,
     default: false,
   },
+});
+
+const spacerClass = computed(() => {
+  if (props.spacer === 'half') return 'spacer-half';
+  if (props.spacer) return 'spacer';
+  return '';
 });
 </script>
 
@@ -28,6 +36,9 @@ defineProps({
 
   &.spacer {
     margin-bottom: @spacer;
+  }
+  &.spacer-half {
+    margin-bottom: @spacer-half;
   }
 }
 
