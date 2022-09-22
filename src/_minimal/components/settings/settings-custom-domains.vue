@@ -128,7 +128,7 @@ const removePermission = index => {
   align-items: center;
 }
 
-.__breakpoint-small__( {
+.__breakpoint-popup__( {
   .select-items {
     grid-column-start: col-end 1;
     grid-column-end: col-end 3;
