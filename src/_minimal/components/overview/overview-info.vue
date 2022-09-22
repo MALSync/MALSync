@@ -6,7 +6,9 @@
         <div class="type">{{ item.title }}</div>
         <div class="content">
           <template v-for="(link, index) in item.body" :key="link.text">
-            <MediaLink v-if="link.url" :href="link.url" class="link">{{ link.text }}</MediaLink>
+            <MediaLink v-if="link.url" color="secondary" :href="link.url">
+              {{ link.text }}
+            </MediaLink>
             <span v-else>
               {{ link.text }}
             </span>
@@ -120,19 +122,6 @@ function getTitle(item) {
       display: flex;
       flex-direction: column;
     }
-  }
-
-  .link {
-    color: var(--cl-secondary-text);
-  }
-}
-
-.custom .link {
-  color: inherit;
-  border-bottom: 3px solid var(--cl-secondary-text);
-
-  &:hover {
-    border-color: var(--cl-secondary);
   }
 }
 
