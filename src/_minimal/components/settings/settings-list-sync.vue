@@ -177,12 +177,16 @@ import CodeBlock from '../code-block.vue';
 const mode = 'mirror';
 
 const providerList = ref(null as any);
+const syncing = ref(false);
+const totalItems = ref(0);
 
 const parameters = ref({
   type: 'anime',
 });
 
 const syncRequest = createRequest(parameters, async params => {
+  syncing.value = false;
+  totalItems.value = 0;
   const listProvider = reactive({
     mal: {
       text: 'Init',
@@ -258,8 +262,6 @@ const itemNumber = computed(() => {
   );
 });
 
-const syncing = ref(false);
-const totalItems = ref(0);
 function startSync() {
   syncing.value = true;
   totalItems.value = itemNumber.value;
