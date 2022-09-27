@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { keyboardMap } from './components/keyboardMap';
+import { keyboardMap } from '../../_minimal/components/form/keyboardMap';
 
 export default {
   props: {

@@ -22,6 +22,7 @@ import FormSlider from '../form/form-slider.vue';
 import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
 import formSwitch from '../form/form-switch.vue';
+import FormShortcut from '../form/form-shortcut.vue';
 
 const components = {
   button: FormButton,
@@ -31,6 +32,7 @@ const components = {
   dropdown: FormDropdown,
   input: FormText,
   switch: formSwitch,
+  shortcut: FormShortcut,
 };
 
 const properties = defineProps({

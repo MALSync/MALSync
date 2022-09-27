@@ -59,8 +59,8 @@
 </style>
 
 <script lang="ts">
+import { keyboardMap } from '../../../_minimal/components/form/keyboardMap';
 import tooltip from './tooltip.vue';
-import { keyboardMap } from './keyboardMap';
 
 let tempKeysTimeout;
 export default {
