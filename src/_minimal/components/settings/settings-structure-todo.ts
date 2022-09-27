@@ -3,6 +3,24 @@ import SettingsGeneral from './settings-general.vue';
 
 export const todo: ConfObj[] = [
   {
+    key: 'correctionShort',
+    title: api.storage.lang('settings_Shortcuts_Correction'),
+    props: {
+      component: 'shortcut',
+      option: 'correctionShort',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'syncShort',
+    title: api.storage.lang('settings_Shortcuts_Sync'),
+    props: {
+      component: 'shortcut',
+      option: 'syncShort',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'malThumbnail',
     title: api.storage.lang('settings_Thumbnails'),
     props: {
@@ -166,6 +184,34 @@ export const todo: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'nextEpShort',
+    title: api.storage.lang('settings_Shortcuts_Next_Episode'),
+    props: {
+      component: 'shortcut',
+      option: 'nextEpShort',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'introSkipFwd',
+    title: api.storage.lang('settings_Shortcuts_Skip_Forward'),
+    props: {
+      component: 'shortcut',
+      option: 'introSkipFwd',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'introSkipBwd',
+    title: api.storage.lang('settings_Shortcuts_Skip_Backward'),
+    props: {
+      component: 'shortcut',
+      option: 'introSkipBwd',
+    },
+    component: SettingsGeneral,
+  },
+
   {
     key: 'introSkip',
     title: () => api.storage.lang('settings_introSkip', [api.settings.get('introSkip')]),
