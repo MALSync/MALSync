@@ -552,8 +552,9 @@ module.exports = {
       '*://housecardsummerbutton.com/e/*',
       '*://fraudclatterflyingcar.com/e/*',
       '*://bigclatterhomesguideservice.com/e/*',
-      '*://uptodatefinishconferenceroom.com/*',
+      '*://uptodatefinishconferenceroom.com/e/*',
       '*://realfinanceblogcenter.com/e/*',
+      '*://tinycat-voe-fashion.com/e/*',
     ],
   },
   // animewho
