@@ -113,4 +113,14 @@ export const tracking: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'localSync',
+    title: api.storage.lang('settings_LocalSync'),
+    props: {
+      component: 'checkbox',
+      option: 'localSync',
+      infoLink: 'https://github.com/MALSync/MALSync/wiki/Local-Sync',
+    },
+    component: SettingsGeneral,
+  },
 ];
