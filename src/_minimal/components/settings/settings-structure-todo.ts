@@ -158,6 +158,22 @@ export const todo: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'posLeft',
+    title: api.storage.lang('settings_miniMAL_Display'),
+    props: {
+      component: 'dropdown',
+      option: 'posLeft',
+      props: {
+        options: [
+          { title: api.storage.lang('settings_miniMAL_Display_Left'), value: 'left' },
+          { title: api.storage.lang('settings_miniMAL_Display_Center'), value: 'center' },
+          { title: api.storage.lang('settings_miniMAL_Display_Right'), value: 'right' },
+        ].filter(el => !(el.value === 'center' && api.type !== 'webextension')),
+      },
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'autofull',
     title: api.storage.lang('settings_Video_Fullscreen'),
     props: {

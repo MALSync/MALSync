@@ -779,6 +779,10 @@
     "message": "Left",
     "description": "miniMAL Display Left"
   },
+  "settings_miniMAL_Display_Center": {
+    "message": "Center",
+    "description": "miniMAL Display Center"
+  },
   "settings_miniMAL_Display_Right": {
     "message": "Right",
     "description": "miniMAL Display Right"
