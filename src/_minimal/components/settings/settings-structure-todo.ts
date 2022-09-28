@@ -70,7 +70,7 @@ export const todo: ConfObj[] = [
     title: api.storage.lang('settings_malTags'),
     props: {
       component: 'checkbox',
-      tooltop: api.storage.lang('settings_malTags_text'),
+      tooltip: api.storage.lang('settings_malTags_text'),
       option: 'malTags',
     },
     component: SettingsGeneral,

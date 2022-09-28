@@ -1,6 +1,7 @@
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsLogin from './settings-login.vue';
+import SettingsLocalSyncExport from './settings-local-sync-export.vue';
 
 export const tracking: ConfObj[] = [
   {
@@ -122,5 +123,11 @@ export const tracking: ConfObj[] = [
       infoLink: 'https://github.com/MALSync/MALSync/wiki/Local-Sync',
     },
     component: SettingsGeneral,
+  },
+  {
+    key: 'localSyncExport',
+    title: 'Local Sync Export',
+    condition: () => api.settings.get('localSync'),
+    component: SettingsLocalSyncExport,
   },
 ];
