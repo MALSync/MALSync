@@ -75,6 +75,10 @@
       "https://gogoanime.tel/*",
       "https://gogoanime.ee/*"
     ],
+    "nineAnime": [
+      "https://9anime.gs/watch/*",
+      "https://9anime.gs/watch2gether/*"
+    ],
     "TRanimeizle": [
       "https://tranimeizle.co/*",
       "https://www.tranimeizle.co/*"
