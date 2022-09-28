@@ -12,7 +12,7 @@ function startProgressSync() {
       when: Date.now() + 1000,
     });
   }
-},
+}
 
 export const todo: ConfObj[] = [
   {

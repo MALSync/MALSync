@@ -11,6 +11,9 @@ export class Minimal {
   private fillState = ref(null);
 
   constructor(public minimal) {
+    if (document.body.hasAttribute('hash')) {
+      document.location.hash = document.body.getAttribute('hash')!;
+    }
     this.minimal.find('body').append(j.html('<div id="minimalApp"></div>'));
     this.minimalVue = createApp(minimalApp, this.minimal.find('#minimalApp').get(0), {
       use: vue => {
