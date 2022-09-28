@@ -190,6 +190,9 @@ const valid = computed(() => {
     padding: 10px;
     height: auto;
     border-radius: 30px;
+    .__breakpoint-popup__({
+      height: 32px;
+    });
   }
 
   &.mini {

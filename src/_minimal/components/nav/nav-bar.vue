@@ -77,6 +77,9 @@ const closeWindow = () => {
   .link {
     .click-move-down();
     .link();
+
+    display: flex;
+    align-items: center;
   }
 
   .material-icons {
@@ -85,10 +88,10 @@ const closeWindow = () => {
   }
 
   .__breakpoint-popup__({
-    top: 0;
-
+    top: -10px;
+    margin-bottom: @spacer-half;
     .nav {
-      padding-top: 10px;
+      padding-top: 20px;
     }
   });
 }

@@ -18,7 +18,7 @@
     <Section v-if="listRequest.loading || getTyping()">
       <Spinner />
     </Section>
-    <Section v-else-if="listRequest.data && !listRequest.error">
+    <Section v-else-if="listRequest.data && !listRequest.error" spacer="double">
       <Grid
         :key="listTheme.name"
         :min-width="listTheme.width"
