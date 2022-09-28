@@ -2,6 +2,18 @@ import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsProgressDropdown from './settings-progress-dropdown.vue';
 
+function startProgressSync() {
+  if (api.type === 'webextension') {
+    const inter = parseInt(api.settings.get('progressInterval'));
+    if (!inter) return;
+    con.log('Trigger Progress update');
+    chrome.alarms.create('progressSync', {
+      periodInMinutes: inter,
+      when: Date.now() + 1000,
+    });
+  }
+},
+
 export const todo: ConfObj[] = [
   {
     key: 'correctionShort',
@@ -244,6 +256,7 @@ export const todo: ConfObj[] = [
   {
     key: 'progressInterval',
     title: api.storage.lang('settings_Interval'),
+    change: () => startProgressSync(),
     props: {
       component: 'dropdown',
       option: 'progressInterval',
@@ -264,6 +277,7 @@ export const todo: ConfObj[] = [
   {
     key: 'progressIntervalDefaultAnime',
     title: api.storage.lang('settings_Interval_Default_Anime'),
+    change: () => startProgressSync(),
     props: {
       component: 'dropdown',
       option: 'progressIntervalDefaultAnime',
@@ -274,6 +288,7 @@ export const todo: ConfObj[] = [
   {
     key: 'progressIntervalDefaultManga',
     title: api.storage.lang('settings_Interval_Default_Manga'),
+    change: () => startProgressSync(),
     props: {
       component: 'dropdown',
       option: 'progressIntervalDefaultManga',

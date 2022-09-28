@@ -68,6 +68,7 @@ export interface ConfObj {
   title: string | (() => string);
   component: Component;
   condition?: () => boolean;
+  change?: () => void;
   props?: { [key: string]: any };
   children?: ConfObj[];
 }

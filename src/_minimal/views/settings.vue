@@ -21,6 +21,7 @@
               :path="[...components.path, comp.key]"
               :title="comp.title"
               :class="{ highlight: comp.key === components.highlight }"
+              @change="comp.change ? comp.change() : null"
             />
           </TransitionSlide>
         </template>

@@ -35,6 +35,8 @@ const components = {
   shortcut: FormShortcut,
 };
 
+const emit = defineEmits(['change']);
+
 const properties = defineProps({
   title: {
     type: [String, Function],
@@ -67,6 +69,7 @@ if (properties.option) {
       } else {
         api.settings.set(properties.option, value);
       }
+      emit('change', value);
     },
   });
 } else {
