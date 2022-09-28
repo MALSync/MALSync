@@ -1,5 +1,6 @@
 import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
+import SettingsProgressDropdown from './settings-progress-dropdown.vue';
 
 export const todo: ConfObj[] = [
   {
@@ -259,6 +260,26 @@ export const todo: ConfObj[] = [
       },
     },
     component: SettingsGeneral,
+  },
+  {
+    key: 'progressIntervalDefaultAnime',
+    title: api.storage.lang('settings_Interval_Default_Anime'),
+    props: {
+      component: 'dropdown',
+      option: 'progressIntervalDefaultAnime',
+      type: 'anime',
+    },
+    component: SettingsProgressDropdown,
+  },
+  {
+    key: 'progressIntervalDefaultManga',
+    title: api.storage.lang('settings_Interval_Default_Manga'),
+    props: {
+      component: 'dropdown',
+      option: 'progressIntervalDefaultManga',
+      type: 'manga',
+    },
+    component: SettingsProgressDropdown,
   },
   {
     key: 'progressNotificationsAnime',
