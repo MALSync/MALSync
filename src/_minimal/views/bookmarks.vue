@@ -62,6 +62,7 @@
     <template v-if="!listRequest.error">
       <Section
         v-if="list"
+        spacer="double"
         class="grid"
         :class="{ cached: cacheList.length && listRequest.loading }"
       >

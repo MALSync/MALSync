@@ -9,7 +9,7 @@ import { PropType } from 'vue';
 
 defineProps({
   spacer: {
-    type: String as PropType<'half' | 'full' | 'none'>,
+    type: String as PropType<'half' | 'full' | 'double' | 'none'>,
     default: 'full',
   },
   direction: {
@@ -37,6 +37,13 @@ defineProps({
     margin-bottom: @spacer-half;
     &.both {
       margin-top: @spacer-half;
+    }
+  }
+
+  &.double {
+    margin-bottom: calc(@spacer * 2);
+    &.both {
+      margin-top: calc(@spacer * 2);
     }
   }
 
