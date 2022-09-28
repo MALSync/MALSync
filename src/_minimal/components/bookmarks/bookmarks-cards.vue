@@ -89,7 +89,7 @@ defineProps({
 
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: @spacer-half;
     pointer-events: none;
   }
 

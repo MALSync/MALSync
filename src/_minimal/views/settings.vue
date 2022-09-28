@@ -101,7 +101,7 @@ watch(
 .back-button {
   .click-move-down();
 
-  padding: @spacer-half 0;
+  padding: 0 0 @spacer-half;
 }
 
 .highlight {

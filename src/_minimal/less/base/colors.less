@@ -9,6 +9,12 @@
 :root {
   .root-variables(@colors, cl);
   .root-variables(@state-colors, state);
+  --size-spacer: 30px;
+  --size-spacer-half: 15px;
+  .__breakpoint-popup__( {
+    --size-spacer: 15px;
+    --size-spacer-half: 10px;
+  });
 }
 
 html.dark {

@@ -277,7 +277,7 @@ const totalLoading = computed(() => {
     display: grid;
     grid-template-columns: 300px auto;
     grid-template-rows: min-content auto auto auto max-content;
-    gap: 0 40px;
+    gap: 0 @spacer;
 
     > hr {
       display: none;

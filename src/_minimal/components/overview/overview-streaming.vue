@@ -162,7 +162,7 @@ const options = (el: Quicklink) => {
 
 .grid {
   display: flex;
-  gap: 20px;
+  gap: @spacer-half;
   flex-wrap: wrap;
 }
 

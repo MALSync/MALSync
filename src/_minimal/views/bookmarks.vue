@@ -324,7 +324,7 @@ const sort = computed({
 }
 .controls {
   display: flex;
-  gap: 20px;
+  gap: @spacer-half;
   height: 30px;
 }
 

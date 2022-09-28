@@ -35,13 +35,13 @@ defineProps({
 <style lang="less" scoped>
 @import '../../less/_globals.less';
 .grid {
-  grid-gap: 20px;
+  grid-gap: @spacer-half;
   display: flex;
   flex-direction: column;
   .__breakpoint-desktop__( {
     display: grid;
     grid-template-columns: repeat(2, 2fr);
-    gap: 30px;
+    gap: @spacer;
   });
 
   .related-item {

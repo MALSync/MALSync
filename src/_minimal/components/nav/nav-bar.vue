@@ -60,7 +60,7 @@ const closeWindow = () => {
   position: sticky;
   padding: 0 @spacer;
   top: -20px;
-  margin-bottom: 20px;
+  margin-bottom: @spacer;
   z-index: 10;
   transition: box-shadow 0.1s, background-color 0.1s;
   border-top-left-radius: 0;
@@ -70,7 +70,7 @@ const closeWindow = () => {
   .nav {
     .flex-row();
 
-    padding-top: @spacer;
+    padding-top: 30px;
     padding-bottom: 10px;
   }
 
@@ -83,6 +83,14 @@ const closeWindow = () => {
     font-size: 30px;
     height: 30px;
   }
+
+  .__breakpoint-popup__({
+    top: 0;
+
+    .nav {
+      padding-top: 10px;
+    }
+  });
 }
 
 .custom.backImage #header {

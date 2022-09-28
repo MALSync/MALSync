@@ -224,7 +224,7 @@ const orderMode = ref(false);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: @spacer-half;
 }
 
 .row > td {
@@ -250,7 +250,7 @@ const orderMode = ref(false);
 
 .ui-row {
   display: flex;
-  gap: 15px;
+  gap: @spacer-half;
   align-items: stretch;
 }
 
