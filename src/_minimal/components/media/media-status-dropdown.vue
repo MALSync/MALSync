@@ -15,7 +15,6 @@
 <script lang="ts" setup>
 import { computed, PropType, ref, watch } from 'vue';
 import FormDropdown from '../form/form-dropdown.vue';
-import { status as state } from '../../../_provider/definitions';
 import StateDot from '../state-dot.vue';
 import FormButton from '../form/form-button.vue';
 
@@ -33,6 +32,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  type: {
+    type: String as PropType<'anime' | 'manga'>,
+    default: 'anime',
+  },
 });
 
 const options = computed(() => {
@@ -40,7 +43,7 @@ const options = computed(() => {
   if (props.rewatching) states.push(23);
   return states.map(st => ({
     value: st,
-    title: state[st] as string,
+    title: utils.getStatusText(props.type, st),
   }));
 });
 

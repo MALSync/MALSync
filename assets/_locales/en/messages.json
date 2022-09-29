@@ -103,6 +103,10 @@
     "message": "Status:",
     "description": "Status"
   },
+  "UI_Status_All": {
+    "message": "All",
+    "description": "Dropdown text to show all anime on the users list"
+  },
   "UI_Status_watching_anime": {
     "message": "Watching",
     "description": "Watching"
