@@ -1,6 +1,13 @@
 <template>
   <div class="notFound">
-    <div class="text"><span class="hover">404</span><span class="noHover">UWU</span></div>
+    <div class="text">
+      <span class="hover">404</span>
+      <span class="noHover">UwU</span>
+      <span class="text2">Not Found</span>
+      <span class="text3"></span>
+      <span class="text4"></span>
+      <span class="text5"></span>
+    </div>
   </div>
 </template>
 
@@ -30,6 +37,7 @@
   margin: 0 auto;
   transform: rotateZ(10deg);
   user-select: none;
+  position: relative;
 
   .noHover,
   .hover {
@@ -47,6 +55,43 @@
     .hover {
       display: none;
     }
+  }
+
+  .text2,
+  .text3,
+  .text4,
+  .text5 {
+    position: absolute;
+    font-size: 16px;
+    bottom: -26px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background: black;
+    color: grey;
+    padding: 3px;
+    height: 22px;
+  }
+  .text3 {
+    top: -26px;
+    bottom: auto;
+  }
+
+  .text4 {
+    left: -26px;
+    top: -26px;
+    bottom: -26px;
+    right: auto;
+    height: auto;
+    width: 22px;
+  }
+  .text5 {
+    right: -26px;
+    top: -26px;
+    bottom: -26px;
+    left: auto;
+    height: auto;
+    width: 22px;
   }
 }
 </style>
