@@ -37,7 +37,7 @@ export const settingsObj = {
     floatButtonHide: false,
     autoCloseMinimal: false,
     outWay: true,
-    miniMalWidth: '500px',
+    miniMalWidth: '550px',
     miniMalHeight: '90%',
     malThumbnail: 100,
     friendScore: true,

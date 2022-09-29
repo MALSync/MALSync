@@ -187,6 +187,34 @@ export const todo: ConfObj[] = [
     component: SettingsGeneral,
   },
   {
+    key: 'miniMalHeight',
+    title: api.storage.lang('settings_miniMAL_Height'),
+    props: {
+      component: 'input',
+      option: 'miniMalHeight',
+      props: {
+        validation: (val: string) => {
+          return /^\d+(%|px)$/i.test(val);
+        },
+      },
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'miniMalWidth',
+    title: api.storage.lang('settings_miniMAL_Width'),
+    props: {
+      component: 'input',
+      option: 'miniMalWidth',
+      props: {
+        validation: (val: string) => {
+          return /^\d+(%|px)$/i.test(val);
+        },
+      },
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'autofull',
     title: api.storage.lang('settings_Video_Fullscreen'),
     props: {
