@@ -2,6 +2,8 @@ import { ConfObj } from '../../../_provider/definitions';
 import SettingsGeneral from './settings-general.vue';
 import SettingsLogin from './settings-login.vue';
 import SettingsLocalSyncExport from './settings-local-sync-export.vue';
+import SettingsDisabledWebsites from './settings-disabled-websites.vue';
+import SettingsGroup from './settings-group.vue';
 
 export const tracking: ConfObj[] = [
   {
@@ -131,5 +133,32 @@ export const tracking: ConfObj[] = [
     title: 'Local Sync Export',
     condition: () => api.settings.get('localSync'),
     component: SettingsLocalSyncExport,
+  },
+  {
+    key: 'allSitesUi',
+    title: 'Tracking',
+    props: {
+      type: 'button',
+      props: {
+        color: 'primary',
+        title: api.storage.lang('settings_website_button'),
+      },
+    },
+    component: SettingsGroup,
+    children: [
+      {
+        key: 'enablePages',
+        title: api.storage.lang('settings_website_button'),
+        component: SettingsDisabledWebsites,
+      },
+    ],
+  },
+  {
+    key: 'enablePages',
+    title: api.storage.lang('settings_website_button'),
+    props: {
+      onlyDisabled: true,
+    },
+    component: SettingsDisabledWebsites,
   },
 ];
