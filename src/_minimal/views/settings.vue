@@ -6,7 +6,13 @@
           <router-link :to="{ name: 'Settings', params: { path: [components.path.slice(0, -1)] } }">
             <Header>
               <TextIcon icon="arrow_back" mode="flex" background="round">
-                {{ components.parent ? components.parent.title : 'Back' }}
+                {{
+                  components.parent
+                    ? typeof components.parent.title === 'function'
+                      ? components.parent.title()
+                      : components.parent.title
+                    : 'Back'
+                }}
               </TextIcon>
             </Header>
           </router-link>
