@@ -3,6 +3,7 @@
     class="button"
     :class="`${padding} ${animation ? 'animation' : ''} ${color} ${disabled ? 'disabled' : ''}`"
     tabindex="tabindex"
+    @click="disabled ? null : click()"
   >
     <slot /> {{ title }}
     <div v-if="icon" class="material-icons top-icon">{{ icon }}</div>
@@ -29,6 +30,10 @@ defineProps({
     type: String,
     required: false,
     default: '',
+  },
+  click: {
+    type: Function as PropType<(value: string) => void>,
+    default: () => true,
   },
   icon: {
     type: String,

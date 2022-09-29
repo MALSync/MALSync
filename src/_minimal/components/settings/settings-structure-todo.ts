@@ -433,4 +433,17 @@ export const todo: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
+  {
+    key: 'clearCache',
+    title: api.storage.lang('settings_ClearCache'),
+    props: {
+      component: 'button',
+      props: {
+        color: 'primary',
+        title: api.storage.lang('settings_ClearCache'),
+        click: () => utils.clearCache(),
+      },
+    },
+    component: SettingsGeneral,
+  },
 ];

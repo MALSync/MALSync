@@ -21,6 +21,7 @@ export const tracking: ConfObj[] = [
   {
     key: 'syncMode',
     title: api.storage.lang('settings_Mode'),
+    change: () => utils.clearCache(),
     props: {
       component: 'dropdown',
       option: 'syncMode',
@@ -40,6 +41,7 @@ export const tracking: ConfObj[] = [
     key: 'syncModeSimkl',
     title: `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
     condition: () => api.settings.get('syncMode') === 'SIMKL',
+    change: () => utils.clearCache(),
     props: {
       component: 'dropdown',
       option: 'syncModeSimkl',

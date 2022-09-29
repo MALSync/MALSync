@@ -906,3 +906,17 @@ export function makeDomainCompatible(domain: string) {
   domain = domain.replace(/\?.*/, '?');
   return domain;
 }
+
+export async function clearCache() {
+  const cacheArray = await api.storage.list();
+  let deleted = 0;
+
+  j.$.each(cacheArray, function (index, cache) {
+    if (!utils.syncRegex.test(String(index)) && !/(^tagSettings\/.*)/.test(String(index))) {
+      api.storage.remove(String(index));
+      deleted++;
+    }
+  });
+
+  utils.flashm(`Cache Cleared [${deleted}]`);
+}
