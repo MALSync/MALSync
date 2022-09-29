@@ -2,7 +2,7 @@ import { pageInterface } from '../pageInterface';
 
 export const AsuraScans: pageInterface = {
   name: 'AsuraScans',
-  domain: 'https://asurascans.com',
+  domain: ['https://asura.gg', 'https://asurascans.com'],
   languages: ['English'],
   type: 'manga',
   isSyncPage(url) {
