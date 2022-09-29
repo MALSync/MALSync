@@ -60,6 +60,7 @@ const id = Math.floor(Math.random() * 10000);
   .border-pill();
 
   border: 2px solid var(--cl-backdrop);
+  background-color: var(--cl-foreground);
   display: inline-flex;
   align-items: stretch;
   padding: 0;
