@@ -36,7 +36,7 @@ export const structure: ConfObj[] = [
   },
   {
     key: 'streaming',
-    title: api.storage.lang('settings_StreamingSite'),
+    title: () => api.storage.lang('settings_StreamingSite'),
     props: {
       icon: 'rss_feed',
     },
@@ -44,7 +44,7 @@ export const structure: ConfObj[] = [
     children: [
       {
         key: 'quicklinksPosition',
-        title: api.storage.lang('settings_custom_domains_position'),
+        title: () => api.storage.lang('settings_custom_domains_position'),
         condition: () =>
           api.settings.get('syncMode') === 'ANILIST' || api.settings.get('syncMode') === 'MAL',
         props: {
@@ -61,14 +61,14 @@ export const structure: ConfObj[] = [
       },
       {
         key: 'streamingSite',
-        title: api.storage.lang('settings_StreamingSite'),
+        title: () => api.storage.lang('settings_StreamingSite'),
         component: SettingsStreaming,
       },
     ],
   },
   {
     key: 'customDoamins',
-    title: api.storage.lang('settings_custom_domains_button'),
+    title: () => api.storage.lang('settings_custom_domains_button'),
     props: {
       icon: 'http',
     },

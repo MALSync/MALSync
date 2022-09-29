@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 export const settingsObj = {
   options: reactive({
@@ -112,6 +112,8 @@ export const settingsObj = {
 
   debounceArray: {},
 
+  isInit: ref(false),
+
   async init() {
     const tempSettings = [];
     for (const key in this.options) {
@@ -159,10 +161,13 @@ export const settingsObj = {
       }
     });
 
+    this.isInit.value = true;
+
     return this;
   },
 
   get(name: string) {
+    if (!this.isInit.value) throw 'Settings not initialized';
     return this.options[name];
   },
 

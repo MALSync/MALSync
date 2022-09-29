@@ -22,7 +22,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'syncMode',
-    title: api.storage.lang('settings_Mode'),
+    title: () => api.storage.lang('settings_Mode'),
     change: () => utils.clearCache(),
     props: {
       component: 'dropdown',
@@ -41,7 +41,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'syncModeSimkl',
-    title: `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
+    title: () => `${api.storage.lang('Manga')} ${api.storage.lang('settings_Mode')}`,
     condition: () => api.settings.get('syncMode') === 'SIMKL',
     change: () => utils.clearCache(),
     props: {
@@ -59,8 +59,8 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'autoTrackingModeanime',
-    title: api.storage.lang('settings_Animesync'),
-    props: {
+    title: () => api.storage.lang('settings_Animesync'),
+    props: () => ({
       component: 'dropdown',
       option: 'autoTrackingModeanime',
       props: {
@@ -70,13 +70,13 @@ export const tracking: ConfObj[] = [
           { title: api.storage.lang('settings_Animesync_Manual'), value: 'manual' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'autoTrackingModemanga',
-    title: api.storage.lang('settings_Mangasync'),
-    props: {
+    title: () => api.storage.lang('settings_Mangasync'),
+    props: () => ({
       component: 'dropdown',
       option: 'autoTrackingModemanga',
       props: {
@@ -85,7 +85,7 @@ export const tracking: ConfObj[] = [
           { title: api.storage.lang('settings_Animesync_Manual'), value: 'manual' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
@@ -120,7 +120,7 @@ export const tracking: ConfObj[] = [
   },
   {
     key: 'localSync',
-    title: api.storage.lang('settings_LocalSync'),
+    title: () => api.storage.lang('settings_LocalSync'),
     props: {
       component: 'checkbox',
       option: 'localSync',
@@ -137,25 +137,25 @@ export const tracking: ConfObj[] = [
   {
     key: 'allSitesUi',
     title: 'Tracking',
-    props: {
+    props: () => ({
       type: 'button',
       props: {
         color: 'primary',
         title: api.storage.lang('settings_website_button'),
       },
-    },
+    }),
     component: SettingsGroup,
     children: [
       {
         key: 'enablePages',
-        title: api.storage.lang('settings_website_button'),
+        title: () => api.storage.lang('settings_website_button'),
         component: SettingsDisabledWebsites,
       },
     ],
   },
   {
     key: 'enablePages',
-    title: api.storage.lang('settings_website_button'),
+    title: () => api.storage.lang('settings_website_button'),
     props: {
       onlyDisabled: true,
     },

@@ -12,7 +12,7 @@ import Card from './card.vue';
 defineProps({
   text: {
     type: String,
-    default: api.storage.lang('NothingFound'),
+    default: () => api.storage.lang('NothingFound'),
   },
   icon: {
     type: String as PropType<'set_meal' | 'search_off' | 'flood'>,

@@ -3,7 +3,7 @@ import SettingsCustomDomainsMissingPermissions from './settings-custom-domains-m
 
 export const missingPermissions = {
   key: 'permissions',
-  title: api.storage.lang('settings_custom_domains_button'),
+  title: () => api.storage.lang('settings_custom_domains_button'),
   component: SettingsCustomDomainsMissingPermissions,
 };
 
@@ -11,7 +11,7 @@ export const customDomains = [
   missingPermissions,
   {
     key: 'domains',
-    title: api.storage.lang('settings_custom_domains_button'),
+    title: () => api.storage.lang('settings_custom_domains_button'),
     component: SettingsCustomDomains,
   },
 ];

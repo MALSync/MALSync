@@ -16,10 +16,10 @@
             <component
               :is="comp.component"
               v-if="comp.condition ? comp.condition() : true"
-              v-bind="comp.props"
+              v-bind="typeof comp.props === 'function' ? comp.props() : comp.props"
               :id="`id-${comp.key}`"
               :path="[...components.path, comp.key]"
-              :title="comp.title"
+              :title="typeof comp.title === 'function' ? comp.title() : comp.title"
               :class="{ highlight: comp.key === components.highlight }"
               @change="comp.change ? comp.change() : null"
             />

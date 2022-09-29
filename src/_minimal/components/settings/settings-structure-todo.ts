@@ -19,7 +19,7 @@ function startProgressSync() {
 export const todo: ConfObj[] = [
   {
     key: 'correctionShort',
-    title: api.storage.lang('settings_Shortcuts_Correction'),
+    title: () => api.storage.lang('settings_Shortcuts_Correction'),
     props: {
       component: 'shortcut',
       option: 'correctionShort',
@@ -28,7 +28,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'syncShort',
-    title: api.storage.lang('settings_Shortcuts_Sync'),
+    title: () => api.storage.lang('settings_Shortcuts_Sync'),
     props: {
       component: 'shortcut',
       option: 'syncShort',
@@ -37,8 +37,8 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'malThumbnail',
-    title: api.storage.lang('settings_Thumbnails'),
-    props: {
+    title: () => api.storage.lang('settings_Thumbnails'),
+    props: () => ({
       component: 'dropdown',
       tooltip: api.storage.lang('settings_Thumbnails_text'),
       option: 'malThumbnail',
@@ -50,12 +50,12 @@ export const todo: ConfObj[] = [
           { title: api.storage.lang('settings_Thumbnails_Default'), value: '0' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'friendScore',
-    title: api.storage.lang('settings_FriendScore'),
+    title: () => api.storage.lang('settings_FriendScore'),
     props: {
       component: 'checkbox',
       option: 'friendScore',
@@ -64,7 +64,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'anilistUpdateUi',
-    title: api.storage.lang('settings_anilist_update_ui'),
+    title: () => api.storage.lang('settings_anilist_update_ui'),
     props: {
       component: 'checkbox',
       option: 'anilistUpdateUi',
@@ -73,7 +73,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'epPredictions',
-    title: api.storage.lang('settings_epPredictions'),
+    title: () => api.storage.lang('settings_epPredictions'),
     props: {
       component: 'checkbox',
       option: 'epPredictions',
@@ -82,17 +82,17 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'malTags',
-    title: api.storage.lang('settings_malTags'),
-    props: {
+    title: () => api.storage.lang('settings_malTags'),
+    props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_malTags_text'),
       option: 'malTags',
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'malContinue',
-    title: api.storage.lang('settings_malContinue'),
+    title: () => api.storage.lang('settings_malContinue'),
     props: {
       component: 'checkbox',
       option: 'malContinue',
@@ -101,7 +101,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'malResume',
-    title: api.storage.lang('settings_malResume'),
+    title: () => api.storage.lang('settings_malResume'),
     props: {
       component: 'checkbox',
       option: 'malResume',
@@ -110,7 +110,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'usedPage',
-    title: api.storage.lang('settings_usedPage'),
+    title: () => api.storage.lang('settings_usedPage'),
     props: {
       component: 'checkbox',
       option: 'usedPage',
@@ -120,7 +120,7 @@ export const todo: ConfObj[] = [
 
   {
     key: 'minimalWindow',
-    title: api.storage.lang('settings_miniMAL_window'),
+    title: () => api.storage.lang('settings_miniMAL_window'),
     props: {
       component: 'checkbox',
       option: 'minimalWindow',
@@ -129,7 +129,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'floatButtonStealth',
-    title: api.storage.lang('settings_miniMAL_floatButtonStealth'),
+    title: () => api.storage.lang('settings_miniMAL_floatButtonStealth'),
     props: {
       component: 'checkbox',
       option: 'floatButtonStealth',
@@ -138,7 +138,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'minimizeBigPopup',
-    title: api.storage.lang('settings_miniMAL_minimizeBigPopup'),
+    title: () => api.storage.lang('settings_miniMAL_minimizeBigPopup'),
     props: {
       component: 'checkbox',
       option: 'minimizeBigPopup',
@@ -147,7 +147,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'floatButtonCorrection',
-    title: api.storage.lang('settings_miniMAL_floatButtonCorrection'),
+    title: () => api.storage.lang('settings_miniMAL_floatButtonCorrection'),
     props: {
       component: 'checkbox',
       option: 'floatButtonCorrection',
@@ -156,7 +156,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'floatButtonHide',
-    title: api.storage.lang('settings_miniMAL_floatButtonHide'),
+    title: () => api.storage.lang('settings_miniMAL_floatButtonHide'),
     props: {
       component: 'checkbox',
       option: 'floatButtonHide',
@@ -165,7 +165,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'autoCloseMinimal',
-    title: api.storage.lang('settings_miniMAL_autoCloseMinimal'),
+    title: () => api.storage.lang('settings_miniMAL_autoCloseMinimal'),
     props: {
       component: 'checkbox',
       option: 'autoCloseMinimal',
@@ -174,8 +174,8 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'posLeft',
-    title: api.storage.lang('settings_miniMAL_Display'),
-    props: {
+    title: () => api.storage.lang('settings_miniMAL_Display'),
+    props: () => ({
       component: 'dropdown',
       option: 'posLeft',
       props: {
@@ -185,12 +185,12 @@ export const todo: ConfObj[] = [
           { title: api.storage.lang('settings_miniMAL_Display_Right'), value: 'right' },
         ].filter(el => !(el.value === 'center' && api.type !== 'webextension')),
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'miniMalHeight',
-    title: api.storage.lang('settings_miniMAL_Height'),
+    title: () => api.storage.lang('settings_miniMAL_Height'),
     props: {
       component: 'input',
       option: 'miniMalHeight',
@@ -204,7 +204,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'miniMalWidth',
-    title: api.storage.lang('settings_miniMAL_Width'),
+    title: () => api.storage.lang('settings_miniMAL_Width'),
     props: {
       component: 'input',
       option: 'miniMalWidth',
@@ -218,7 +218,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'autofull',
-    title: api.storage.lang('settings_Video_Fullscreen'),
+    title: () => api.storage.lang('settings_Video_Fullscreen'),
     props: {
       component: 'checkbox',
       option: 'autofull',
@@ -227,7 +227,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'autoresume',
-    title: api.storage.lang('settings_Video_Resume'),
+    title: () => api.storage.lang('settings_Video_Resume'),
     props: {
       component: 'checkbox',
       option: 'autoresume',
@@ -236,7 +236,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'autoNextEp',
-    title: api.storage.lang('settings_autoNextEp'),
+    title: () => api.storage.lang('settings_autoNextEp'),
     props: {
       component: 'checkbox',
       option: 'autoNextEp',
@@ -245,7 +245,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'nextEpShort',
-    title: api.storage.lang('settings_Shortcuts_Next_Episode'),
+    title: () => api.storage.lang('settings_Shortcuts_Next_Episode'),
     props: {
       component: 'shortcut',
       option: 'nextEpShort',
@@ -254,7 +254,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'introSkipFwd',
-    title: api.storage.lang('settings_Shortcuts_Skip_Forward'),
+    title: () => api.storage.lang('settings_Shortcuts_Skip_Forward'),
     props: {
       component: 'shortcut',
       option: 'introSkipFwd',
@@ -263,7 +263,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'introSkipBwd',
-    title: api.storage.lang('settings_Shortcuts_Skip_Backward'),
+    title: () => api.storage.lang('settings_Shortcuts_Skip_Backward'),
     props: {
       component: 'shortcut',
       option: 'introSkipBwd',
@@ -285,9 +285,9 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'progressInterval',
-    title: api.storage.lang('settings_Interval'),
+    title: () => api.storage.lang('settings_Interval'),
     change: () => startProgressSync(),
-    props: {
+    props: () => ({
       component: 'dropdown',
       option: 'progressInterval',
       props: {
@@ -301,12 +301,12 @@ export const todo: ConfObj[] = [
           { title: '24h', value: '1440' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'progressIntervalDefaultAnime',
-    title: api.storage.lang('settings_Interval_Default_Anime'),
+    title: () => api.storage.lang('settings_Interval_Default_Anime'),
     change: () => startProgressSync(),
     props: {
       component: 'dropdown',
@@ -317,7 +317,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'progressIntervalDefaultManga',
-    title: api.storage.lang('settings_Interval_Default_Manga'),
+    title: () => api.storage.lang('settings_Interval_Default_Manga'),
     change: () => startProgressSync(),
     props: {
       component: 'dropdown',
@@ -328,7 +328,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'progressNotificationsAnime',
-    title: `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Anime')})`,
+    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Anime')})`,
     props: {
       component: 'checkbox',
       option: 'progressNotificationsAnime',
@@ -337,7 +337,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'progressNotificationsManga',
-    title: `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Manga')})`,
+    title: () => `${api.storage.lang('settings_Notifications')} (${api.storage.lang('Manga')})`,
     props: {
       component: 'checkbox',
       option: 'progressNotificationsManga',
@@ -346,7 +346,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'loadPTWForProgress',
-    title: api.storage.lang('settings_loadPTWForProgress'),
+    title: () => api.storage.lang('settings_loadPTWForProgress'),
     props: {
       component: 'checkbox',
       option: 'loadPTWForProgress',
@@ -355,7 +355,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'rpc',
-    title: api.storage.lang('settings_enabled'),
+    title: () => api.storage.lang('settings_enabled'),
     props: {
       component: 'checkbox',
       option: 'rpc',
@@ -364,8 +364,8 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'presenceLargeImage',
-    title: api.storage.lang('settings_presence_largeimage'),
-    props: {
+    title: () => api.storage.lang('settings_presence_largeimage'),
+    props: () => ({
       component: 'dropdown',
       option: 'presenceLargeImage',
       props: {
@@ -375,12 +375,12 @@ export const todo: ConfObj[] = [
           { title: api.storage.lang('settings_presence_largeimage_malsync'), value: 'malsync' },
         ],
       },
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'presenceShowMalsync',
-    title: api.storage.lang('settings_presenceShowMalsync'),
+    title: () => api.storage.lang('settings_presenceShowMalsync'),
     props: {
       component: 'checkbox',
       option: 'presenceShowMalsync',
@@ -389,7 +389,7 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'presenceShowButtons',
-    title: api.storage.lang('settings_presenceShowButtons'),
+    title: () => api.storage.lang('settings_presenceShowButtons'),
     props: {
       component: 'checkbox',
       option: 'presenceShowButtons',
@@ -407,64 +407,64 @@ export const todo: ConfObj[] = [
   },
   {
     key: 'highlightAllEp',
-    title: api.storage.lang('settings_highlightAllEp'),
-    props: {
+    title: () => api.storage.lang('settings_highlightAllEp'),
+    props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_highlightAllEp_Text'),
       option: 'highlightAllEp',
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'checkForFiller',
-    title: api.storage.lang('settings_filler'),
-    props: {
+    title: () => api.storage.lang('settings_filler'),
+    props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_filler_text'),
       option: 'checkForFiller',
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'crashReport',
-    title: api.storage.lang('settings_crash_report'),
-    props: {
+    title: () => api.storage.lang('settings_crash_report'),
+    props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_crash_report_text'),
       option: 'crashReport',
-    },
+    }),
     component: SettingsGeneral,
   },
   {
     key: 'cleanTagsUi',
-    title: api.storage.lang('settings_clean_tags_button'),
-    props: {
+    title: () => api.storage.lang('settings_clean_tags_button'),
+    props: () => ({
       type: 'button',
       props: {
         color: 'primary',
         title: api.storage.lang('settings_clean_tags_button'),
       },
-    },
+    }),
     component: SettingsGroup,
     children: [
       {
         key: 'cleanTags',
-        title: api.storage.lang('settings_clean_tags_button'),
+        title: () => api.storage.lang('settings_clean_tags_button'),
         component: SettingsClearTags,
       },
     ],
   },
   {
     key: 'clearCache',
-    title: api.storage.lang('settings_ClearCache'),
-    props: {
+    title: () => api.storage.lang('settings_ClearCache'),
+    props: () => ({
       component: 'button',
       props: {
         color: 'primary',
         title: api.storage.lang('settings_ClearCache'),
         click: () => utils.clearCache(),
       },
-    },
+    }),
     component: SettingsGeneral,
   },
 ];

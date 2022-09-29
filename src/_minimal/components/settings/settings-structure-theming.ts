@@ -5,7 +5,7 @@ import { ConfObj } from '../../../_provider/definitions';
 export const theming: ConfObj[] = [
   {
     key: 'theme',
-    title: api.storage.lang('settings_miniMAL_theme'),
+    title: () => api.storage.lang('settings_miniMAL_theme'),
     props: {
       component: 'dropdown',
       option: 'theme',
