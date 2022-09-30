@@ -57,6 +57,7 @@ provide('breakpoint', breakpoint);
 .content {
   padding: 0 @spacer;
   overflow: auto;
+  overflow-x: hidden;
   flex-grow: 1;
   display: flex;
   flex-direction: column;

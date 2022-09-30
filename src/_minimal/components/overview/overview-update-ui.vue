@@ -110,7 +110,11 @@
               />
             </template>
             <template v-else>
-              <FormDropdown v-model="score" :options="(scoreModeStrategy.getOptions() as any)">
+              <FormDropdown
+                v-model="score"
+                align-items="left"
+                :options="(scoreModeStrategy.getOptions() as any)"
+              >
                 <template #select="slotProps">
                   <FormButton :tabindex="-1" :animation="false" padding="mini">
                     {{ slotProps.currentTitle }}
