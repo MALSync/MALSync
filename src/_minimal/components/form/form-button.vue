@@ -32,7 +32,7 @@ defineProps({
     default: '',
   },
   click: {
-    type: Function as PropType<(value: string) => void>,
+    type: Function as PropType<() => void>,
     default: () => true,
   },
   icon: {

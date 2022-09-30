@@ -4,6 +4,7 @@
     class="dropdown"
     :class="`${size} ${disabled ? 'disabled' : ''}`"
     @blur="open = false"
+    @keydown.prevent="keyDown($event)"
   >
     <div class="selector" :class="{ animate }" @click="open = !open">
       <slot
@@ -31,8 +32,9 @@
           v-for="option in options"
           :key="option.value"
           class="dropdown-pop-default-element"
-          :class="{ active: compareFunc(option.value, picked) }"
+          :class="{ active: compareFunc(option.value, picked), focus: activeKey === option.value }"
           @click="select(option)"
+          @mouseover="activeKey = option.value"
         >
           <slot name="option" :option="option">
             {{ option.title || option.label }}
@@ -44,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, PropType, ref, watch } from 'vue';
+import { computed, PropType, ref, watch, nextTick } from 'vue';
 import FormButton from './form-button.vue';
 import TextIcon from '../text-icon.vue';
 import { usePopper } from '../../composables/popper';
@@ -163,6 +165,65 @@ watch(open, value => {
     popper.close();
   }
 });
+
+const activeKey = ref('_-_' as string | number);
+
+function getActiveKeyIndex() {
+  return props.options.findIndex(el => props.compareFunc(el.value, activeKey.value));
+}
+
+function scrollFocusIntoView() {
+  nextTick(() => {
+    if (popperNode.value) {
+      const el = $(popperNode.value as HTMLElement)
+        .find('.focus')
+        .first()
+        .get(0);
+
+      if (el) {
+        el.scrollIntoView({ block: 'nearest' });
+      }
+    }
+  });
+}
+
+function keyDown(event: KeyboardEvent) {
+  switch (event.key) {
+    case 'ArrowUp': {
+      const activeIndex = getActiveKeyIndex();
+      if (activeIndex > 0) {
+        activeKey.value = props.options[activeIndex - 1].value;
+        scrollFocusIntoView();
+      }
+      break;
+    }
+
+    case 'ArrowDown': {
+      const activeIndex = getActiveKeyIndex();
+      if (activeIndex < props.options.length - 1) {
+        activeKey.value = props.options[activeIndex + 1].value;
+        scrollFocusIntoView();
+      }
+      break;
+    }
+
+    case 'Enter': {
+      if (activeKey.value !== '_-_') {
+        picked.value = activeKey.value;
+      }
+      open.value = false;
+      break;
+    }
+
+    case 'Escape': {
+      open.value = false;
+      break;
+    }
+
+    default:
+      break;
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -199,6 +260,7 @@ watch(open, value => {
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
     white-space: nowrap;
+    overflow-y: auto;
     overflow: overlay;
     &-default {
       .link();
@@ -214,7 +276,8 @@ watch(open, value => {
         &.active {
           background-color: var(--cl-foreground-active);
         }
-        &:hover {
+
+        &.focus {
           border-color: var(--cl-border-hover);
         }
       }
