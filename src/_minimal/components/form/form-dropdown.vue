@@ -88,7 +88,7 @@ const props = defineProps({
       | 'left-start'
       | 'left-end'
     >,
-    default: 'bottom',
+    default: 'auto',
   },
   alignItems: {
     type: String as PropType<'left' | 'right' | 'center'>,

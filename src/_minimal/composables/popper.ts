@@ -62,6 +62,9 @@ export function usePopper({ emit, popperNode, triggerNode, placement }) {
         {
           name: 'flip',
           enabled: true,
+          options: {
+            allowedAutoPlacements: ['top', 'bottom'],
+          },
         },
         offset,
         {
