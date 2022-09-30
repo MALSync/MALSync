@@ -2,7 +2,7 @@
   <Card v-if="Object.keys(pageArray).length" class="disabledWebsites">
     <Header v-if="onlyDisabled" :spacer="true">Tracking Disabled</Header>
     <SettingsGeneral
-      v-for="(page, key) in pageArray"
+      v-for="(page, key) in (pageArray as any)"
       :key="key"
       component="checkbox"
       title=""
