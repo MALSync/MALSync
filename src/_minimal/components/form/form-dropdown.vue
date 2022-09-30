@@ -199,7 +199,7 @@ watch(open, value => {
     background-color: var(--cl-foreground-solid);
     padding: 15px 10px;
     white-space: nowrap;
-    overflow-y: auto;
+    overflow: overlay;
     &-default {
       .link();
 
