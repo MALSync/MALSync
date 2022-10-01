@@ -1,0 +1,31 @@
+{
+    "title": "VoidScans",
+    "url": "https://void-scans.com",
+    "testCases": [
+      {
+        "url": "https://void-scans.com/leveling-up-by-only-eating-chapter-101-chosen/",
+        "expected": {
+          "sync": true,
+          "title": "Leveling Up, by Only Eating!",
+          "identifier": "leveling-up-by-only-eating",
+          "overviewUrl": "https://void-scans.com/manga/leveling-up-by-only-eating/",
+          "nextEpUrl": "https://void-scans.com/leveling-up-by-only-eating-chapter-102-pope/",
+          "episode": 101,
+          "uiSelector": false
+        }
+      },
+      {
+        "url": "https://void-scans.com/manga/leveling-up-by-only-eating/",
+        "expected": {
+        "sync": false,
+        "title": "Leveling Up, by Only Eating!",
+        "identifier": "leveling-up-by-only-eating",
+        "uiSelector": true,
+        "epList": {
+          "108": "https://void-scans.com/leveling-up-by-only-eating-chapter-108-punk/",
+          "1": "https://void-scans.com/leveling-up-by-only-eating-chapter-1-ginseng/"
+        }
+        }
+      }
+    ]
+  }
