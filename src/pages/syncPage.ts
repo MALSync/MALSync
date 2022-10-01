@@ -1237,8 +1237,9 @@ export class SyncPage {
           };
 
           if (api.settings.get('presenceShowButtons')) {
-            let url = this.singleObj.getMalUrl();
-            if (!url && this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            let url = null;
+            if (this.singleObj.shortName !== 'Local') url = this.singleObj.getDisplayUrl();
+            if (!url) url = this.singleObj.getMalUrl();
             if (!url && !presenceHidePage) url = this.singleObj.getStreamingUrl();
             if (url) {
               pres.presence.buttons = [
