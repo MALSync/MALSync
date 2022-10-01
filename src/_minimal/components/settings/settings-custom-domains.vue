@@ -44,7 +44,9 @@ import FormButton from '../form/form-button.vue';
 import Section from '../section.vue';
 import { domainType } from '../../../background/customDomain';
 
-const options = getPageOptions().map(el => ({ title: el.title, value: el.key }));
+const options = getPageOptions()
+  .map(el => ({ title: el.title, value: el.key }))
+  .sort((a, b) => utils.sortAlphabetically(a.title, b.title));
 
 const permissions = ref([] as domainType[]);
 

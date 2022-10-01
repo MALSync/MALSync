@@ -922,3 +922,9 @@ export async function clearCache() {
 
   utils.flashm(`Cache Cleared [${deleted}]`);
 }
+
+export function sortAlphabetically(a, b) {
+  if (a.toLowerCase() < b.toLowerCase()) return -1;
+  if (a.toLowerCase() > b.toLowerCase()) return 1;
+  return 0;
+}
