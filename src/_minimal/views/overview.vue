@@ -182,7 +182,10 @@ const metaRequest = createRequest(parameters, async param => {
 const singleRequest = createRequest(parameters, async param => {
   if (!param.value.url) return null;
   const single = reactive(getSingle(param.value.url));
-  await single.update();
+  await single.update().catch(e => {
+    con.error(e);
+    return single;
+  });
 
   single.initProgress();
 

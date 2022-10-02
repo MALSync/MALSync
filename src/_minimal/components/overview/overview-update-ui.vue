@@ -1,5 +1,6 @@
 <template>
-  <div class="update-ui" :class="{ loading, singleLoading }">
+  <ErrorSingle v-if="single && single.getLastError()" :error="single.getLastErrorMessage()" />
+  <div v-else class="update-ui" :class="{ loading, singleLoading }">
     <div class="form-section" :class="{ notOnList: !single?.isOnList() || false }">
       <div class="list-select">
         <div v-if="single" class="label-row">
@@ -165,6 +166,7 @@ import FormButton from '../form/form-button.vue';
 import { ScoreOption } from '../../../_provider/ScoreMode/ScoreModeStrategy';
 import OverviewImageLanguage from './overview-image-language.vue';
 import FormClick from '../form/form-click.vue';
+import ErrorSingle from '../error/error-single.vue';
 
 const singleLoading = ref(false);
 
