@@ -16,24 +16,6 @@ function startProgressSync() {
 
 export const todo: ConfObj[] = [
   {
-    key: 'correctionShort',
-    title: () => api.storage.lang('settings_Shortcuts_Correction'),
-    props: {
-      component: 'shortcut',
-      option: 'correctionShort',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'syncShort',
-    title: () => api.storage.lang('settings_Shortcuts_Sync'),
-    props: {
-      component: 'shortcut',
-      option: 'syncShort',
-    },
-    component: SettingsGeneral,
-  },
-  {
     key: 'malThumbnail',
     title: () => api.storage.lang('settings_Thumbnails'),
     props: () => ({
@@ -141,15 +123,6 @@ export const todo: ConfObj[] = [
     props: {
       component: 'checkbox',
       option: 'minimizeBigPopup',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'floatButtonCorrection',
-    title: () => api.storage.lang('settings_miniMAL_floatButtonCorrection'),
-    props: {
-      component: 'checkbox',
-      option: 'floatButtonCorrection',
     },
     component: SettingsGeneral,
   },

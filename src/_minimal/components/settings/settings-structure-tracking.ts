@@ -4,6 +4,7 @@ import SettingsLogin from './settings-login.vue';
 import SettingsLocalSyncExport from './settings-local-sync-export.vue';
 import SettingsDisabledWebsites from './settings-disabled-websites.vue';
 import SettingsGroup from './settings-group.vue';
+import SettingsHr from './settings-hr.vue';
 
 export const tracking: ConfObj[] = [
   {
@@ -120,6 +121,43 @@ export const tracking: ConfObj[] = [
       },
     },
     component: SettingsGeneral,
+  },
+  {
+    key: 'syncShort',
+    title: () => api.storage.lang('settings_Shortcuts_Sync'),
+    props: {
+      component: 'shortcut',
+      option: 'syncShort',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'hr',
+    title: '',
+    component: SettingsHr,
+  },
+  {
+    key: 'correctionShort',
+    title: () => api.storage.lang('settings_Shortcuts_Correction'),
+    props: {
+      component: 'shortcut',
+      option: 'correctionShort',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'floatButtonCorrection',
+    title: () => api.storage.lang('settings_miniMAL_floatButtonCorrection'),
+    props: {
+      component: 'checkbox',
+      option: 'floatButtonCorrection',
+    },
+    component: SettingsGeneral,
+  },
+  {
+    key: 'hr',
+    title: '',
+    component: SettingsHr,
   },
   {
     key: 'localSync',
