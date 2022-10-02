@@ -47,6 +47,8 @@ export const theming: ConfObj[] = [
       option: 'themeImage',
       props: {
         clearIcon: true,
+        placeholder: 'url',
+        simplePlaceholder: true,
       },
     },
     condition: () => api.settings.get('theme') === 'custom',
