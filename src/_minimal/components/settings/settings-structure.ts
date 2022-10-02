@@ -8,6 +8,7 @@ import { ConfObj } from '../../../_provider/definitions';
 import { theming } from './settings-structure-theming';
 import { customDomains, missingPermissions } from './settings-structure-custom-domains';
 import { todo } from './settings-structure-todo';
+import { discord } from './settings-structure-discord';
 
 export const structure: ConfObj[] = [
   {
@@ -90,6 +91,16 @@ export const structure: ConfObj[] = [
         component: SettingsListSync,
       },
     ],
+  },
+  {
+    key: 'DiscordSection',
+    title: 'Discord Rich Presence',
+    system: 'webextension',
+    props: {
+      icon: 'badge',
+    },
+    component: SettingsGroup,
+    children: discord,
   },
   {
     key: 'todo',
