@@ -1,5 +1,5 @@
 <template>
-  <div class="overview">
+  <div v-if="!hide" class="overview">
     <Section class="image-section fake" />
     <Section class="image-section real">
       <OverviewImage
@@ -139,6 +139,11 @@ const breakpoint = inject('breakpoint');
 
 const route = useRoute();
 const router = useRouter();
+
+const hide = ref(true);
+setTimeout(() => {
+  hide.value = false;
+}, 100);
 
 const open404 = () => {
   router.push({
