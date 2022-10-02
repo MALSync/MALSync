@@ -32,6 +32,7 @@
           <span>{{ metaRequest.data?.title || singleRequest.data?.getTitle() || '' }}</span>
         </Header>
       </Section>
+      <ErrorMeta :meta-request="metaRequest" />
       <Section v-if="metaRequest.data?.statistics?.length || metaRequest.loading" spacer="half">
         <TextScroller class="stats" :loading="metaRequest.loading">
           <span v-for="stat in metaRequest.data!.statistics" :key="stat.title" class="stats-block">
@@ -132,6 +133,7 @@ import { NotFoundError, UrlNotSupportedError } from '../../_provider/Errors';
 import { getSingle } from '../../_provider/singleFactory';
 import MediaLink from '../components/media-link.vue';
 import { SingleAbstract } from '../../_provider/singleAbstract';
+import ErrorMeta from '../components/error/error-meta.vue';
 
 const breakpoint = inject('breakpoint');
 

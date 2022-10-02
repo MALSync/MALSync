@@ -1,6 +1,6 @@
 <template>
-  <ErrorGeneral v-if="!listRequest.loading && listRequest.error">
-    {{ listRequest.error.message || listRequest.error }}
+  <ErrorGeneral v-if="!metaRequest.loading && metaRequest.error">
+    {{ metaRequest.error.message || metaRequest.error }}
   </ErrorGeneral>
 </template>
 
@@ -8,7 +8,7 @@
 import ErrorGeneral from './error-general.vue';
 
 defineProps({
-  listRequest: {
+  metaRequest: {
     type: Object,
     default: () => ({}),
   },
