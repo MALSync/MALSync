@@ -49,5 +49,5 @@ export function getUrlObj() {
 }
 
 export function setUrlObj(url: string) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ url }));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ url, timestamp: Date.now() }));
 }

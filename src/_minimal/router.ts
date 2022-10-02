@@ -11,7 +11,14 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     redirect: () => {
       const urlObj = getUrlObj();
-      if (urlObj && urlObj.url) return urlObj.url;
+      if (urlObj && urlObj.url) {
+        if (
+          document.documentElement.getAttribute('mode') !== 'popup' ||
+          urlObj.timestamp + 1000 * 60 * 60 * 1 > Date.now()
+        ) {
+          return urlObj.url;
+        }
+      }
       return '/book/anime/1';
     },
   },
