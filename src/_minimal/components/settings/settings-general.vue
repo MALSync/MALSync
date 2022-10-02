@@ -7,6 +7,7 @@
       <MediaLink v-if="infoLink" class="infoLink" :href="infoLink">
         <FormButton padding="mini" color="primary">Info</FormButton>
       </MediaLink>
+      <span v-if="tooltip" :data-text="tooltip" class="material-icons tooltip">help</span>
     </div>
     <div class="component" :class="`type-${component}`">
       <slot name="component">
@@ -64,6 +65,11 @@ const properties = defineProps({
     required: false,
     default: null,
   },
+  tooltip: {
+    type: String,
+    required: false,
+    default: null,
+  },
 });
 
 let model;
@@ -109,5 +115,39 @@ if (properties.option) {
 
 .infoLink {
   margin-left: 10px;
+}
+
+.tooltip {
+  cursor: help;
+  font-size: 18px;
+  margin-left: 5px;
+  vertical-align: bottom;
+  position: relative;
+
+  &::before {
+    .border-radius();
+    .big-shadow();
+
+    content: attr(data-text);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    white-space: normal;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 100%;
+    margin-left: 15px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--cl-foreground-solid);
+    padding: 10px 5px;
+    display: none;
+  }
+
+  &:hover::before {
+    display: block;
+  }
 }
 </style>
