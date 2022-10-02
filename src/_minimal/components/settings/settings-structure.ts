@@ -12,6 +12,7 @@ import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
 import { video } from './settings-structure-video';
 import { minimal } from './settings-structure-minimal';
+import { estimation } from './settings-structure-estimation';
 
 export const structure: ConfObj[] = [
   {
@@ -87,6 +88,15 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: minimal,
+  },
+  {
+    key: 'estimationSection',
+    title: 'Progress Estimation',
+    props: {
+      icon: 'update',
+    },
+    component: SettingsGroup,
+    children: estimation,
   },
   {
     key: 'customDoamins',
