@@ -440,6 +440,7 @@ export const todo: ConfObj[] = [
     title: () => api.storage.lang('settings_clean_tags_button'),
     props: () => ({
       type: 'button',
+      icon: '',
       props: {
         color: 'primary',
         title: api.storage.lang('settings_clean_tags_button'),

@@ -47,7 +47,7 @@ import TransitionSlide from '../components/transition-slide.vue';
 
 const props = defineProps({
   path: {
-    type: Array as PropType<string[]>,
+    type: [Array, String] as PropType<string[]|string>,
     default: () => [],
   },
 });

@@ -139,6 +139,7 @@ export const tracking: ConfObj[] = [
     title: 'Tracking',
     props: () => ({
       type: 'button',
+      icon: '-',
       props: {
         color: 'primary',
         title: api.storage.lang('settings_website_button'),
