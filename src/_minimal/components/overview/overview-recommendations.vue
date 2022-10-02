@@ -67,7 +67,7 @@
       </Pagination>
     </div>
     <Section v-if="!metaRequest.loading && metaRequest.data && !metaRequest.data.length">
-      <Empty :card="true" />
+      <Empty :card="true" icon="egg_alt" />
     </Section>
   </div>
 </template>

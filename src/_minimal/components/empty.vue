@@ -15,7 +15,7 @@ defineProps({
     default: () => api.storage.lang('NothingFound'),
   },
   icon: {
-    type: String as PropType<'set_meal' | 'search_off' | 'flood'>,
+    type: String as PropType<'set_meal' | 'search_off' | 'flood' | 'egg_alt'>,
     default: 'set_meal',
   },
   card: {
