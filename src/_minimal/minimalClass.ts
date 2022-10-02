@@ -4,6 +4,7 @@ import minimalApp from './minimalApp.vue';
 import { status } from '../_provider/definitions';
 import router from './router';
 import { Progress } from '../utils/progress';
+import { urlToSlug } from '../utils/slugs';
 
 export class Minimal {
   private minimalVue;
@@ -23,7 +24,14 @@ export class Minimal {
     });
   }
 
-  fill(data) {
+  fill(data, home: boolean) {
+    if (data.url && home) {
+      const slugObj = urlToSlug(data.url);
+      if (slugObj && slugObj.path) {
+        router.push({ name: 'Overview', params: slugObj.path });
+        return;
+      }
+    }
     this.fillState.value = data;
   }
 }

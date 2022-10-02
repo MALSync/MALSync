@@ -23,14 +23,14 @@ api.settings.init().then(() => {
 
   const minimalObj = new Minimal($('html'));
 
-  checkFill(minimalObj);
+  checkFill(minimalObj, true);
 
   $(window).focus(() => {
     checkFill(minimalObj);
   });
 });
 
-function checkFill(minimalObj: Minimal) {
+function checkFill(minimalObj: Minimal, home = false) {
   con.log('CheckFill');
   if (!chrome.tabs) {
     con.error('Can not check for tabs');
@@ -42,7 +42,7 @@ function checkFill(minimalObj: Minimal) {
       chrome.tabs.sendMessage(el.id!, { action: 'TabMalUrl' }, response => {
         if (response && response.url) {
           con.log('Fill', response);
-          minimalObj.fill(response);
+          minimalObj.fill(response, home);
         }
       });
     });
