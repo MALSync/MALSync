@@ -97,17 +97,6 @@ export const todo: ConfObj[] = [
     },
     component: SettingsGeneral,
   },
-
-  {
-    key: 'minimalWindow',
-    title: () => api.storage.lang('settings_miniMAL_window'),
-    system: 'webextension',
-    props: {
-      component: 'checkbox',
-      option: 'minimalWindow',
-    },
-    component: SettingsGeneral,
-  },
   {
     key: 'floatButtonStealth',
     title: () => api.storage.lang('settings_miniMAL_floatButtonStealth'),
@@ -132,60 +121,6 @@ export const todo: ConfObj[] = [
     props: {
       component: 'checkbox',
       option: 'floatButtonHide',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'autoCloseMinimal',
-    title: () => api.storage.lang('settings_miniMAL_autoCloseMinimal'),
-    system: 'userscript',
-    props: {
-      component: 'checkbox',
-      option: 'autoCloseMinimal',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'posLeft',
-    title: () => api.storage.lang('settings_miniMAL_Display'),
-    props: () => ({
-      component: 'dropdown',
-      option: 'posLeft',
-      props: {
-        options: [
-          { title: api.storage.lang('settings_miniMAL_Display_Left'), value: 'left' },
-          { title: api.storage.lang('settings_miniMAL_Display_Center'), value: 'center' },
-          { title: api.storage.lang('settings_miniMAL_Display_Right'), value: 'right' },
-        ].filter(el => !(el.value === 'center' && api.type !== 'webextension')),
-      },
-    }),
-    component: SettingsGeneral,
-  },
-  {
-    key: 'miniMalHeight',
-    title: () => api.storage.lang('settings_miniMAL_Height'),
-    props: {
-      component: 'input',
-      option: 'miniMalHeight',
-      props: {
-        validation: (val: string) => {
-          return /^\d+(%|px)$/i.test(val);
-        },
-      },
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'miniMalWidth',
-    title: () => api.storage.lang('settings_miniMAL_Width'),
-    props: {
-      component: 'input',
-      option: 'miniMalWidth',
-      props: {
-        validation: (val: string) => {
-          return /^\d+(%|px)$/i.test(val);
-        },
-      },
     },
     component: SettingsGeneral,
   },
@@ -256,15 +191,6 @@ export const todo: ConfObj[] = [
     props: {
       component: 'checkbox',
       option: 'loadPTWForProgress',
-    },
-    component: SettingsGeneral,
-  },
-  {
-    key: 'forceEn',
-    title: 'Force english',
-    props: {
-      component: 'checkbox',
-      option: 'forceEn',
     },
     component: SettingsGeneral,
   },

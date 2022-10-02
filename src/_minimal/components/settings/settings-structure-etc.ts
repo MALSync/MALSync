@@ -5,6 +5,15 @@ import SettingsClearTags from './settings-clear-tags.vue';
 
 export const etc: ConfObj[] = [
   {
+    key: 'forceEn',
+    title: 'Force english',
+    props: {
+      component: 'checkbox',
+      option: 'forceEn',
+    },
+    component: SettingsGeneral,
+  },
+  {
     key: 'crashReport',
     title: () => api.storage.lang('settings_crash_report'),
     system: 'webextension',

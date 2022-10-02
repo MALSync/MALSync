@@ -11,6 +11,7 @@ import { todo } from './settings-structure-todo';
 import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
 import { video } from './settings-structure-video';
+import { minimal } from './settings-structure-minimal';
 
 export const structure: ConfObj[] = [
   {
@@ -77,6 +78,15 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: video,
+  },
+  {
+    key: 'minimalSection',
+    title: () => api.storage.lang('settings_miniMAL_popup'),
+    props: {
+      icon: 'picture_in_picture',
+    },
+    component: SettingsGroup,
+    children: minimal,
   },
   {
     key: 'customDoamins',
