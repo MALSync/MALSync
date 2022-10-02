@@ -9,6 +9,7 @@ import { theming } from './settings-structure-theming';
 import { customDomains, missingPermissions } from './settings-structure-custom-domains';
 import { todo } from './settings-structure-todo';
 import { discord } from './settings-structure-discord';
+import { etc } from './settings-structure-etc';
 
 export const structure: ConfObj[] = [
   {
@@ -101,6 +102,15 @@ export const structure: ConfObj[] = [
     },
     component: SettingsGroup,
     children: discord,
+  },
+  {
+    key: 'miscellaneous',
+    title: 'Miscellaneous',
+    props: {
+      icon: 'code',
+    },
+    component: SettingsGroup,
+    children: etc,
   },
   {
     key: 'todo',
