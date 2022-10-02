@@ -1,6 +1,7 @@
 <template>
   <div id="header" :class="{ scrolled }">
     <div class="nav">
+      <NavBack />
       <router-link
         class="link"
         :to="{
@@ -25,6 +26,7 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import { getStateContext, getTypeContext } from '../../utils/state';
 import NavSearch from './nav-search.vue';
+import NavBack from './nav-back.vue';
 
 const scrolled = ref(false);
 
