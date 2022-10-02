@@ -4,6 +4,9 @@
       <slot name="title">
         {{ typeof title === 'function' ? (title as any)() : title }}
       </slot>
+      <MediaLink v-if="infoLink" class="infoLink" :href="infoLink">
+        <FormButton padding="mini" color="primary">Info</FormButton>
+      </MediaLink>
     </div>
     <div class="component" :class="`type-${component}`">
       <slot name="component">
@@ -23,6 +26,7 @@ import FormDropdown from '../form/form-dropdown.vue';
 import FormText from '../form/form-text.vue';
 import formSwitch from '../form/form-switch.vue';
 import FormShortcut from '../form/form-shortcut.vue';
+import MediaLink from '../media-link.vue';
 
 const components = {
   button: FormButton,
@@ -51,6 +55,11 @@ const properties = defineProps({
     default: () => ({}),
   },
   option: {
+    type: String,
+    required: false,
+    default: null,
+  },
+  infoLink: {
     type: String,
     required: false,
     default: null,
@@ -96,5 +105,9 @@ if (properties.option) {
 .type-slider {
   flex-grow: 1;
   max-width: 150px;
+}
+
+.infoLink {
+  margin-left: 10px;
 }
 </style>
