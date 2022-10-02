@@ -263,6 +263,7 @@ const totalLoading = computed(() => {
       .header-link {
         display: flex;
         position: relative;
+        max-width: 16px;
         left: -3px;
       }
     }
