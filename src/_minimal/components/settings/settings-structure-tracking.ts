@@ -23,7 +23,10 @@ export const tracking: ConfObj[] = [
   {
     key: 'syncMode',
     title: () => api.storage.lang('settings_Mode'),
-    change: () => utils.clearCache(),
+    change: () => {
+      utils.clearCache();
+      if (api.type === 'webextension') localStorage.clear();
+    },
     props: {
       component: 'dropdown',
       option: 'syncMode',

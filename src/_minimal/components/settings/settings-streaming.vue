@@ -125,6 +125,7 @@ const model = computed({
   },
   set(value) {
     api.settings.set('quicklinks', value);
+    if (api.type === 'webextension') localStorage.clear();
   },
 });
 
