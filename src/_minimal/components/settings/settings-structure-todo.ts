@@ -121,6 +121,7 @@ export const todo: ConfObj[] = [
   {
     key: 'minimalWindow',
     title: () => api.storage.lang('settings_miniMAL_window'),
+    system: 'webextension',
     props: {
       component: 'checkbox',
       option: 'minimalWindow',
@@ -166,6 +167,7 @@ export const todo: ConfObj[] = [
   {
     key: 'autoCloseMinimal',
     title: () => api.storage.lang('settings_miniMAL_autoCloseMinimal'),
+    system: 'userscript',
     props: {
       component: 'checkbox',
       option: 'autoCloseMinimal',
@@ -246,6 +248,7 @@ export const todo: ConfObj[] = [
   {
     key: 'nextEpShort',
     title: () => api.storage.lang('settings_Shortcuts_Next_Episode'),
+    system: 'webextension',
     props: {
       component: 'shortcut',
       option: 'nextEpShort',
@@ -255,6 +258,7 @@ export const todo: ConfObj[] = [
   {
     key: 'introSkipFwd',
     title: () => api.storage.lang('settings_Shortcuts_Skip_Forward'),
+    system: 'webextension',
     props: {
       component: 'shortcut',
       option: 'introSkipFwd',
@@ -264,6 +268,7 @@ export const todo: ConfObj[] = [
   {
     key: 'introSkipBwd',
     title: () => api.storage.lang('settings_Shortcuts_Skip_Backward'),
+    system: 'webextension',
     props: {
       component: 'shortcut',
       option: 'introSkipBwd',
@@ -274,6 +279,7 @@ export const todo: ConfObj[] = [
   {
     key: 'introSkip',
     title: () => api.storage.lang('settings_introSkip', [api.settings.get('introSkip')]),
+    system: 'webextension',
     props: {
       component: 'input',
       option: 'introSkip',
@@ -418,6 +424,7 @@ export const todo: ConfObj[] = [
   {
     key: 'checkForFiller',
     title: () => api.storage.lang('settings_filler'),
+    system: 'webextension',
     props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_filler_text'),
@@ -428,6 +435,7 @@ export const todo: ConfObj[] = [
   {
     key: 'crashReport',
     title: () => api.storage.lang('settings_crash_report'),
+    system: 'webextension',
     props: () => ({
       component: 'checkbox',
       tooltip: api.storage.lang('settings_crash_report_text'),

@@ -66,6 +66,7 @@ export type searchInterface = (
 export interface ConfObj {
   key: string;
   title: string | (() => string);
+  system?: 'userscript' | 'webextension';
   component: Component;
   condition?: () => boolean;
   change?: () => void;

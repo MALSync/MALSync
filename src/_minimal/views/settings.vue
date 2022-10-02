@@ -21,7 +21,7 @@
           <TransitionSlide>
             <component
               :is="comp.component"
-              v-if="comp.condition ? comp.condition() : true"
+              v-if="showOption(comp)"
               v-bind="typeof comp.props === 'function' ? comp.props() : comp.props"
               :id="`id-${comp.key}`"
               :path="[...components.path, comp.key]"
@@ -47,7 +47,7 @@ import TransitionSlide from '../components/transition-slide.vue';
 
 const props = defineProps({
   path: {
-    type: [Array, String] as PropType<string[]|string>,
+    type: [Array, String] as PropType<string[] | string>,
     default: () => [],
   },
 });
@@ -101,6 +101,14 @@ watch(
   },
   { immediate: true },
 );
+
+function showOption(comp: ConfObj) {
+  if (comp.condition && !comp.condition()) return false;
+
+  if (comp.system && comp.system !== api.type) return false;
+
+  return true;
+}
 </script>
 
 <style lang="less" scoped>

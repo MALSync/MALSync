@@ -69,6 +69,7 @@ export const structure: ConfObj[] = [
   {
     key: 'customDoamins',
     title: () => api.storage.lang('settings_custom_domains_button'),
+    system: 'webextension',
     props: {
       icon: 'http',
     },
