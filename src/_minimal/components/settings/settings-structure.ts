@@ -10,6 +10,7 @@ import { customDomains, missingPermissions } from './settings-structure-custom-d
 import { todo } from './settings-structure-todo';
 import { discord } from './settings-structure-discord';
 import { etc } from './settings-structure-etc';
+import { video } from './settings-structure-video';
 
 export const structure: ConfObj[] = [
   {
@@ -67,6 +68,15 @@ export const structure: ConfObj[] = [
         component: SettingsStreaming,
       },
     ],
+  },
+  {
+    key: 'videoPlayerSection',
+    title: () => api.storage.lang('settings_Video_Player'),
+    props: {
+      icon: 'play_circle_filled',
+    },
+    component: SettingsGroup,
+    children: video,
   },
   {
     key: 'customDoamins',

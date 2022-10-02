@@ -1,5 +1,5 @@
 <template>
-  <hr class="hr" :class="`${size}`" />
+  <hr class="hr" :class="[size, padding, direction].join(' ')" />
 </template>
 
 <script lang="ts" setup>
@@ -9,6 +9,14 @@ defineProps({
   size: {
     type: String as PropType<'thin' | 'normal'>,
     default: 'normal',
+  },
+  padding: {
+    type: String as PropType<'full' | 'half'>,
+    default: 'full',
+  },
+  direction: {
+    type: String as PropType<'bottom' | 'both'>,
+    default: 'bottom',
   },
 });
 </script>
@@ -25,6 +33,18 @@ defineProps({
 
   &.thin {
     border-top-width: 1px;
+  }
+
+  &.both {
+    margin-top: @spacer;
+  }
+
+  &.half {
+    margin-bottom: @spacer-half;
+
+    &.both {
+      margin-top: @spacer-half;
+    }
   }
 }
 </style>
