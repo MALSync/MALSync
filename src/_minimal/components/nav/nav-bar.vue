@@ -8,8 +8,11 @@
           name: 'Bookmarks',
           params: { type: getTypeContext().value, state: getStateContext().value },
         }"
+        @click="route.name === 'Bookmarks' ? router.go(-1) : null"
       >
-        <span class="material-icons">bookmark</span>
+        <span class="material-icons">
+          {{ route.name === 'Bookmarks' ? 'bookmarks' : 'bookmark' }}
+        </span>
       </router-link>
 
       <NavSearch class="flex-grow" />
@@ -24,11 +27,15 @@
 
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { getStateContext, getTypeContext } from '../../utils/state';
 import NavSearch from './nav-search.vue';
 import NavBack from './nav-back.vue';
 
 const scrolled = ref(false);
+
+const route = useRoute();
+const router = useRouter();
 
 function scrollEvent() {
   const scrollPos = document.documentElement.scrollTop;
